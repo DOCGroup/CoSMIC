@@ -6,9 +6,10 @@ project (BDCWebService) : ciao_events_dnc, valuetype {
    IDL_Files {
    }
    Source_Files {
-     Benchmark_Data_Collector.cpp
+     Benchmark_Data_Collector_Impl.cpp
    }
    Header_Files {
+     Benchmark_Data_Collector_Impl.h
      Benchmark_Data_Collector.h
    }
 }

@@ -2,14 +2,14 @@
 <wsdl:definitions name="SLICE" targetNamespace="urn:SLICE" xmlns:tns="urn:SLICE" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:corba="http://www.omg.org/IDL-WSDL/1.0/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:dime="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:import namespace="http://www.omg.org/IDL-WSDL/1.0/" location="CORBA.wsdl"/>
   <wsdl:types>
-    <xsd:schema targetNamespace="urn:SLICE" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/><import namespace="http://www.omg.org/IDL-WSDL/1.0/" schemaLocation="CORBA.xsd"/><xsd:complexType name="CUTS.Binding_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.ID_Not_Found"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Operation_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Registration_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Registration_Limit"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Component_Registration"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="agent" type="corba:ObjectReference"/><xsd:element maxOccurs="1" minOccurs="1" name="name" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="ipaddr" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="hostname" nillable="true" type="xsd:string"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Path_Element"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="node" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="src" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="dst" nillable="true" type="xsd:string"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Path_Sequence"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Path_Element"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Path_Element[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:simpleType name="CUTS.Time_Stamp"><xsd:restriction base="xsd:int"/></xsd:simpleType><xsd:complexType name="CUTS.Time_Info"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="total" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="max" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="min" type="tns:CUTS.Time_Stamp"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Event_Time_Info"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Info"/><xsd:element maxOccurs="1" minOccurs="1" name="max_events" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="min_events" type="xsd:int"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Time_Sample"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="count" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Info"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Action_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Sample"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Action_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Action_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Action_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Worker_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="actions" type="tns:CUTS._SE_Action_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Worker_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Worker_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Worker_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Exit_Point_Time"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="exit_point_" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="time_sample_" type="tns:CUTS.Time_Sample"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Exit_Point_Time_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Exit_Point_Time"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Exit_Point_Time[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Mapped_Port_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="owner" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="transit_time" type="tns:CUTS.Time_Sample"/><xsd:element maxOccurs="1" minOccurs="1" name="process_time" type="tns:CUTS.Time_Sample"/><xsd:element maxOccurs="1" minOccurs="1" name="exit_times" type="tns:CUTS._SE_Exit_Point_Time_Seq"/><xsd:element maxOccurs="1" minOccurs="1" name="workers" type="tns:CUTS._SE_Worker_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Mapped_Port_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Mapped_Port_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Mapped_Port_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Port_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="port" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="measurements" type="tns:CUTS._SE_Mapped_Port_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Port_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Port_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Port_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Benchmark_Data"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="owner" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="timestamp" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="ports" type="tns:CUTS._SE_Port_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Collection_Statistics"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="start_time" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="finish_time" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="component_count" type="xsd:unsignedInt"/></xsd:sequence><xsd:attribute name="id" type="xsd:ID" use="optional"/></xsd:complexType></xsd:schema>
+    <xsd:schema targetNamespace="urn:SLICE" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="soap-encoding.xsd"/><import namespace="http://www.omg.org/IDL-WSDL/1.0/" schemaLocation="CORBA.xsd"/><xsd:complexType name="CUTS.Binding_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.ID_Not_Found"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Operation_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Registration_Failed"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Registration_Limit"><xsd:sequence/></xsd:complexType><xsd:complexType name="CUTS.Component_Registration"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="agent" type="corba:ObjectReference"/><xsd:element maxOccurs="1" minOccurs="1" name="name" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="type" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="ipaddr" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="hostname" nillable="true" type="xsd:string"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Path_Element"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="node" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="src" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="dst" nillable="true" type="xsd:string"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Path_Sequence"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Path_Element"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Path_Element[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:simpleType name="CUTS.Time_Stamp"><xsd:restriction base="xsd:int"/></xsd:simpleType><xsd:complexType name="CUTS.Time_Info"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="total" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="max" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="min" type="tns:CUTS.Time_Stamp"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Event_Time_Info"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Info"/><xsd:element maxOccurs="1" minOccurs="1" name="max_events" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="min_events" type="xsd:int"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Time_Sample"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="count" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Info"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Action_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="time" type="tns:CUTS.Time_Sample"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Action_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Action_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Action_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Worker_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="type" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="actions" type="tns:CUTS._SE_Action_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Worker_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Worker_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Worker_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Exit_Point_Time"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="exit_point_" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="time_sample_" type="tns:CUTS.Time_Sample"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Exit_Point_Time_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Exit_Point_Time"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Exit_Point_Time[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Mapped_Port_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="owner" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="transit_time" type="tns:CUTS.Time_Sample"/><xsd:element maxOccurs="1" minOccurs="1" name="process_time" type="tns:CUTS.Time_Sample"/><xsd:element maxOccurs="1" minOccurs="1" name="exit_times" type="tns:CUTS._SE_Exit_Point_Time_Seq"/><xsd:element maxOccurs="1" minOccurs="1" name="workers" type="tns:CUTS._SE_Worker_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Mapped_Port_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Mapped_Port_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Mapped_Port_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Port_Measurement"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="port" nillable="true" type="xsd:string"/><xsd:element maxOccurs="1" minOccurs="1" name="measurements" type="tns:CUTS._SE_Mapped_Port_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS._SE_Port_Measurement_Seq"><complexContent><xsd:restriction base="soap-enc:Array"><xsd:sequence><xsd:element maxOccurs="unbounded" minOccurs="0" name="item" type="tns:CUTS.Port_Measurement"/></xsd:sequence><xsd:attribute ref="soap-enc:arrayType" wsdl:arrayType="tns:CUTS.Port_Measurement[]" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"/></xsd:restriction></complexContent></xsd:complexType><xsd:complexType name="CUTS.Benchmark_Data"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="owner" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="timestamp" type="tns:CUTS.Time_Stamp"/><xsd:element maxOccurs="1" minOccurs="1" name="ports" type="tns:CUTS._SE_Port_Measurement_Seq"/></xsd:sequence></xsd:complexType><xsd:complexType name="CUTS.Collection_Statistics"><xsd:sequence><xsd:element maxOccurs="1" minOccurs="1" name="start_time" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="finish_time" type="xsd:int"/><xsd:element maxOccurs="1" minOccurs="1" name="component_count" type="xsd:unsignedInt"/></xsd:sequence><xsd:attribute name="id" type="xsd:ID" use="optional"/></xsd:complexType></xsd:schema>
   </wsdl:types>
   <wsdl:message name="CUTS.Path_Measurement.bind_to_path">
     <wsdl:part name="path" type="tns:CUTS._SE_Path_Sequence"/>
     <wsdl:part name="flags" type="xsd:unsignedShort"/>
   </wsdl:message>
   <wsdl:message name="CUTS.Testing_Service.register_component">
-    <wsdl:part name="creg" type="tns:CUTS.Component_Registration"/>
+    <wsdl:part name="cr" type="tns:CUTS.Component_Registration"/>
   </wsdl:message>
   <wsdl:message name="CUTS.Benchmark_Data_Collector._get_timeoutResponse">
     <wsdl:part name="_return" type="xsd:int"/>
@@ -83,14 +83,68 @@
     <wsdl:part name="_return" type="xsd:int"/>
   </wsdl:message>
   <wsdl:message name="CUTS.Testing_Service.unregister_component">
-    <wsdl:part name="creg" type="tns:CUTS.Component_Registration"/>
+    <wsdl:part name="cr" type="tns:CUTS.Component_Registration"/>
   </wsdl:message>
   <wsdl:message name="CUTS.Benchmark_Data_Collector._set_timeoutResponse">
   </wsdl:message>
+  <wsdl:portType name="CUTS.Testing_Service">
+    <wsdl:operation name="unregister_component">
+      <wsdl:input name="unregister_componentRequest" message="tns:CUTS.Testing_Service.unregister_component"/>
+      <wsdl:output name="unregister_componentResponse" message="tns:CUTS.Testing_Service.unregister_componentResponse"/>
+      <wsdl:fault name="CUTS.ID_Not_Found" message="tns:_exception.CUTS.ID_Not_Found"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="register_component">
+      <wsdl:input name="register_componentRequest" message="tns:CUTS.Testing_Service.register_component"/>
+      <wsdl:output name="register_componentResponse" message="tns:CUTS.Testing_Service.register_componentResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+      <wsdl:fault name="CUTS.Registration_Failed" message="tns:_exception.CUTS.Registration_Failed"/>
+      <wsdl:fault name="CUTS.Registration_Limit" message="tns:_exception.CUTS.Registration_Limit"/>
+    </wsdl:operation>
+  </wsdl:portType>
   <wsdl:portType name="CUTS.BDC_Control_Handle">
     <wsdl:operation name="collect_performance_data">
       <wsdl:input name="collect_performance_dataRequest" message="tns:CUTS.BDC_Control_Handle.collect_performance_data"/>
       <wsdl:output name="collect_performance_dataResponse" message="tns:CUTS.BDC_Control_Handle.collect_performance_dataResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CUTS.Benchmark_Agent">
+    <wsdl:operation name="collect_performance_data">
+      <wsdl:input name="collect_performance_dataRequest" message="tns:CUTS.Benchmark_Agent.collect_performance_data"/>
+      <wsdl:output name="collect_performance_dataResponse" message="tns:CUTS.Benchmark_Agent.collect_performance_dataResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="CUTS.Benchmark_Data_Collector">
+    <wsdl:operation name="_set_metrics_outfile">
+      <wsdl:input name="_set_metrics_outfileRequest" message="tns:CUTS.Benchmark_Data_Collector._set_metrics_outfile"/>
+      <wsdl:output name="_set_metrics_outfileResponse" message="tns:CUTS.Benchmark_Data_Collector._set_metrics_outfileResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="_get_metrics_outfile">
+      <wsdl:input name="_get_metrics_outfileRequest" message="tns:CUTS.Benchmark_Data_Collector._get_metrics_outfile"/>
+      <wsdl:output name="_get_metrics_outfileResponse" message="tns:CUTS.Benchmark_Data_Collector._get_metrics_outfileResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="_set_collection_threads">
+      <wsdl:input name="_set_collection_threadsRequest" message="tns:CUTS.Benchmark_Data_Collector._set_collection_threads"/>
+      <wsdl:output name="_set_collection_threadsResponse" message="tns:CUTS.Benchmark_Data_Collector._set_collection_threadsResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="_get_collection_threads">
+      <wsdl:input name="_get_collection_threadsRequest" message="tns:CUTS.Benchmark_Data_Collector._get_collection_threads"/>
+      <wsdl:output name="_get_collection_threadsResponse" message="tns:CUTS.Benchmark_Data_Collector._get_collection_threadsResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="_set_timeout">
+      <wsdl:input name="_set_timeoutRequest" message="tns:CUTS.Benchmark_Data_Collector._set_timeout"/>
+      <wsdl:output name="_set_timeoutResponse" message="tns:CUTS.Benchmark_Data_Collector._set_timeoutResponse"/>
+      <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="_get_timeout">
+      <wsdl:input name="_get_timeoutRequest" message="tns:CUTS.Benchmark_Data_Collector._get_timeout"/>
+      <wsdl:output name="_get_timeoutResponse" message="tns:CUTS.Benchmark_Data_Collector._get_timeoutResponse"/>
       <wsdl:fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
     </wsdl:operation>
   </wsdl:portType>
@@ -181,12 +235,129 @@
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="CUTS.Benchmark_Data_Collector._SE_testing_service" type="tns:CUTS.Testing_Service">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="unregister_component">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="unregister_componentRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="unregister_componentResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CUTS.ID_Not_Found">
+        <soap:fault name="CUTS.ID_Not_Found" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="register_component">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="register_componentRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="register_componentResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+      <wsdl:fault name="CUTS.Registration_Failed">
+        <soap:fault name="CUTS.Registration_Failed" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+      <wsdl:fault name="CUTS.Registration_Limit">
+        <soap:fault name="CUTS.Registration_Limit" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CUTS._SE_Benchmark_Data_Collector" type="tns:CUTS.Benchmark_Data_Collector">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" wsdl:required="false"/>
+    <wsdl:operation name="_set_metrics_outfile">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_set_metrics_outfileRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_set_metrics_outfileResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="_get_metrics_outfile">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_get_metrics_outfileRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_get_metrics_outfileResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="_set_collection_threads">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_set_collection_threadsRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_set_collection_threadsResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="_get_collection_threads">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_get_collection_threadsRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_get_collection_threadsResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="_set_timeout">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_set_timeoutRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_set_timeoutResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="_get_timeout">
+      <soap:operation soapAction="" style="rpc" wsdl:required="false"/>
+      <wsdl:input name="_get_timeoutRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:input>
+      <wsdl:output name="_get_timeoutResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:SLICE" wsdl:required="false"/>
+      </wsdl:output>
+      <wsdl:fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" wsdl:required="false"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="CUTS.Benchmark_Data_Collector">
     <wsdl:port name="CUTS.Benchmark_Data_Collector.online_measurements" binding="tns:CUTS.Benchmark_Data_Collector._SE_online_measurements">
-      <soap:address location="http://localhost:8080/" wsdl:required="false"/>
+      <soap:address location="http://tempuri.org" wsdl:required="false"/>
+    </wsdl:port>
+    <wsdl:port name="CUTS.Benchmark_Data_Collector.testing_service" binding="tns:CUTS.Benchmark_Data_Collector._SE_testing_service">
+      <soap:address location="http://tempuri.org" wsdl:required="false"/>
     </wsdl:port>
     <wsdl:port name="CUTS.Benchmark_Data_Collector.controls" binding="tns:CUTS.Benchmark_Data_Collector._SE_controls">
-      <soap:address location="http://localhost:8080/" wsdl:required="false"/>
+      <soap:address location="http://tempuri.org" wsdl:required="false"/>
+    </wsdl:port>
+    <wsdl:port name="CUTS.Benchmark_Data_Collector" binding="tns:CUTS._SE_Benchmark_Data_Collector">
+      <soap:address location="http://tempuri.org" wsdl:required="false"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

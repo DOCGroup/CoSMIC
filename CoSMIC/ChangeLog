@@ -1,7 +1,43 @@
+Wed Feb  7 17:11:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+
+          Fixed a typo where instead of setting the Namespace to PICML,
+          the code actually set the name of the project.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          Updated to register IDLGenerator for SIML in addition to PICML.
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.reg:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratord.reg:
+
+          Added new files to allow registration of GatewayGenerator.
+
+        * demos/STI/BDCWebService.NET/BDC.mpc:
+        * demos/STI/BDCWebService.NET/BDCWebService.vcproj:
+        * demos/STI/BDCWebService/BDC.mpc:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.h:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.cpp:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.nsmap:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollectorService.cpp:
+        * demos/STI/BDCWebService/CORBA.nsmap:
+        * demos/STI/BDCWebService/CORBA_.nsmap:
+        * demos/STI/BDCWebService/SLICE.h:
+        * demos/STI/BDCWebService/SLICE.wsdl:
+        * demos/STI/BDCWebService/SLICEC.cpp:
+        * demos/STI/BDCWebService/SLICEH.h:
+        * demos/STI/BDCWebService/SLICEStub.h:
+        * demos/STI/BDC_WSClient/BDCClient.csproj:
+
+          Updated the demos directory to contain the latest set of fixes
+          done during the last demo.
+
 Wed Feb  7 16:07:46 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/ILDGenerator/DependencyVisitor.cpp:
-        
+
           Changed a guard around debugging output code to be active -
           it had accidentally been switched off somehow, and lots
           of extraneous file were being generated. Thanks to James
@@ -13,10 +49,10 @@ Wed Feb  7 02:42:01 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
         * PIM/PICML/interpreters/Package/PackagerVisitor.h
         * PIM/PICML/interpreters/Package/ZIP_create.cpp
         * PIM/PICML/interpreters/Package/ZIP_create.h
-        
+
           Added new functionality to Packager to deal with different
           versions and operating systems.
-        
+
 Tue Feb  6 23:03:49 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:

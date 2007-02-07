@@ -88,6 +88,30 @@ SOAP_FMAC3 enum CORBA__CORBA_x002ecompletion_USCOREstatus * SOAP_FMAC4 soap_in_C
 
 SOAP_FMAC3S int SOAP_FMAC4S soap_s2CORBA__CORBA_x002ecompletion_USCOREstatus(struct soap*, const char*, enum CORBA__CORBA_x002ecompletion_USCOREstatus *);
 
+#ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit (87)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, const char*, int, const _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *, const char*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *, const char*, const char*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, const char*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *, const char*);
+SOAP_FMAC5 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC6 soap_new__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed (85)
+#endif
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, const char*, int, const _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *, const char*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *, const char*, const char*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, const char*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *, const char*);
+SOAP_FMAC5 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC6 soap_new__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*);
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap*, int, int, void*, size_t, const void*, size_t);
+
 #ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed
 #define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed (83)
 #endif
@@ -589,7 +613,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_xsd__anyType(struct soap*, int, int, void*,
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (110)
+#define SOAP_TYPE_SOAP_ENV__Fault (144)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Fault(struct soap*, const struct SOAP_ENV__Fault *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Fault(struct soap*, struct SOAP_ENV__Fault *);
@@ -607,7 +631,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Fault(struct soap*, int, int, voi
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (109)
+#define SOAP_TYPE_SOAP_ENV__Reason (143)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Reason(struct soap*, const struct SOAP_ENV__Reason *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *);
@@ -625,7 +649,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Reason(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (108)
+#define SOAP_TYPE_SOAP_ENV__Detail (142)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Detail(struct soap*, const struct SOAP_ENV__Detail *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *);
@@ -643,7 +667,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Detail(struct soap*, int, int, vo
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (106)
+#define SOAP_TYPE_SOAP_ENV__Code (140)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Code(struct soap*, const struct SOAP_ENV__Code *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *);
@@ -661,7 +685,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Code(struct soap*, int, int, void
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (105)
+#define SOAP_TYPE_SOAP_ENV__Header (139)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SOAP_ENV__Header(struct soap*, const struct SOAP_ENV__Header *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SOAP_ENV__Header(struct soap*, struct SOAP_ENV__Header *);
@@ -676,8 +700,232 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap*, int, int, vo
 
 #endif
 
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREtimeout
+#define SOAP_TYPE_SLICE___USCOREget_USCOREtimeout (136)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREtimeout(struct soap*, const struct SLICE___USCOREget_USCOREtimeout *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREtimeout(struct soap*, struct SLICE___USCOREget_USCOREtimeout *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREtimeout(struct soap*, const struct SLICE___USCOREget_USCOREtimeout *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREtimeout(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREtimeout *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREtimeout(struct soap*, struct SLICE___USCOREget_USCOREtimeout *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREtimeout(struct soap*, const char*, struct SLICE___USCOREget_USCOREtimeout *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREtimeout(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREtimeout(struct soap*, struct SLICE___USCOREget_USCOREtimeout*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREtimeout(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREtimeout(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse (135)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, const struct SLICE___USCOREget_USCOREtimeoutResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREget_USCOREtimeoutResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, const struct SLICE___USCOREget_USCOREtimeoutResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREtimeoutResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREget_USCOREtimeoutResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, const char*, struct SLICE___USCOREget_USCOREtimeoutResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREget_USCOREtimeoutResponse*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREtimeoutResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREtimeout
+#define SOAP_TYPE_SLICE___USCOREset_USCOREtimeout (133)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREtimeout(struct soap*, const struct SLICE___USCOREset_USCOREtimeout *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREtimeout(struct soap*, struct SLICE___USCOREset_USCOREtimeout *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREtimeout(struct soap*, const struct SLICE___USCOREset_USCOREtimeout *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREtimeout(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREtimeout *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREtimeout(struct soap*, struct SLICE___USCOREset_USCOREtimeout *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREtimeout(struct soap*, const char*, struct SLICE___USCOREset_USCOREtimeout *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREtimeout(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREtimeout(struct soap*, struct SLICE___USCOREset_USCOREtimeout*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREtimeout(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREtimeout(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse (130)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, const struct SLICE___USCOREset_USCOREtimeoutResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREset_USCOREtimeoutResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, const struct SLICE___USCOREset_USCOREtimeoutResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREtimeoutResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREset_USCOREtimeoutResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, const char*, struct SLICE___USCOREset_USCOREtimeoutResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, struct SLICE___USCOREset_USCOREtimeoutResponse*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREtimeoutResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads
+#define SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads (129)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, const char*, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreads*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse (128)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, const char*, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads
+#define SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads (126)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, const char*, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreads*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse (123)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, const char*, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile
+#define SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile (122)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, const char*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse (121)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, const char*, int, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, const char*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*);
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile
+#define SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile (118)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, const char*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse (115)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, const char*, int, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, const char*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *, const char*);
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*);
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE__register_USCOREcomponent
+#define SOAP_TYPE_SLICE__register_USCOREcomponent (114)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__register_USCOREcomponent(struct soap*, const struct SLICE__register_USCOREcomponent *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__register_USCOREcomponent(struct soap*, struct SLICE__register_USCOREcomponent *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__register_USCOREcomponent(struct soap*, const struct SLICE__register_USCOREcomponent *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__register_USCOREcomponent(struct soap*, const char*, int, const struct SLICE__register_USCOREcomponent *, const char*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_get_SLICE__register_USCOREcomponent(struct soap*, struct SLICE__register_USCOREcomponent *, const char*, const char*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_in_SLICE__register_USCOREcomponent(struct soap*, const char*, struct SLICE__register_USCOREcomponent *, const char*);
+SOAP_FMAC5 struct SLICE__register_USCOREcomponent * SOAP_FMAC6 soap_new_SLICE__register_USCOREcomponent(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__register_USCOREcomponent(struct soap*, struct SLICE__register_USCOREcomponent*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_instantiate_SLICE__register_USCOREcomponent(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__register_USCOREcomponent(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE__register_USCOREcomponentResponse
+#define SOAP_TYPE_SLICE__register_USCOREcomponentResponse (113)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__register_USCOREcomponentResponse(struct soap*, const struct SLICE__register_USCOREcomponentResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__register_USCOREcomponentResponse(struct soap*, struct SLICE__register_USCOREcomponentResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__register_USCOREcomponentResponse(struct soap*, const struct SLICE__register_USCOREcomponentResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__register_USCOREcomponentResponse(struct soap*, const char*, int, const struct SLICE__register_USCOREcomponentResponse *, const char*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_get_SLICE__register_USCOREcomponentResponse(struct soap*, struct SLICE__register_USCOREcomponentResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_in_SLICE__register_USCOREcomponentResponse(struct soap*, const char*, struct SLICE__register_USCOREcomponentResponse *, const char*);
+SOAP_FMAC5 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC6 soap_new_SLICE__register_USCOREcomponentResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__register_USCOREcomponentResponse(struct soap*, struct SLICE__register_USCOREcomponentResponse*);
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_instantiate_SLICE__register_USCOREcomponentResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__register_USCOREcomponentResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE__unregister_USCOREcomponent
+#define SOAP_TYPE_SLICE__unregister_USCOREcomponent (111)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unregister_USCOREcomponent(struct soap*, const struct SLICE__unregister_USCOREcomponent *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unregister_USCOREcomponent(struct soap*, struct SLICE__unregister_USCOREcomponent *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__unregister_USCOREcomponent(struct soap*, const struct SLICE__unregister_USCOREcomponent *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__unregister_USCOREcomponent(struct soap*, const char*, int, const struct SLICE__unregister_USCOREcomponent *, const char*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_get_SLICE__unregister_USCOREcomponent(struct soap*, struct SLICE__unregister_USCOREcomponent *, const char*, const char*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_in_SLICE__unregister_USCOREcomponent(struct soap*, const char*, struct SLICE__unregister_USCOREcomponent *, const char*);
+SOAP_FMAC5 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC6 soap_new_SLICE__unregister_USCOREcomponent(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__unregister_USCOREcomponent(struct soap*, struct SLICE__unregister_USCOREcomponent*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_instantiate_SLICE__unregister_USCOREcomponent(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unregister_USCOREcomponent(struct soap*, int, int, void*, size_t, const void*, size_t);
+
+#ifndef SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse
+#define SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse (107)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unregister_USCOREcomponentResponse(struct soap*, const struct SLICE__unregister_USCOREcomponentResponse *);
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unregister_USCOREcomponentResponse(struct soap*, struct SLICE__unregister_USCOREcomponentResponse *);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__unregister_USCOREcomponentResponse(struct soap*, const struct SLICE__unregister_USCOREcomponentResponse *, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__unregister_USCOREcomponentResponse(struct soap*, const char*, int, const struct SLICE__unregister_USCOREcomponentResponse *, const char*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_get_SLICE__unregister_USCOREcomponentResponse(struct soap*, struct SLICE__unregister_USCOREcomponentResponse *, const char*, const char*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_in_SLICE__unregister_USCOREcomponentResponse(struct soap*, const char*, struct SLICE__unregister_USCOREcomponentResponse *, const char*);
+SOAP_FMAC5 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC6 soap_new_SLICE__unregister_USCOREcomponentResponse(struct soap*, int);
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__unregister_USCOREcomponentResponse(struct soap*, struct SLICE__unregister_USCOREcomponentResponse*);
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_instantiate_SLICE__unregister_USCOREcomponentResponse(struct soap*, int, const char*, const char*, size_t*);
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unregister_USCOREcomponentResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
+
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (102)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (106)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__bind_USCOREto_USCOREpath(struct soap*, const struct SLICE__bind_USCOREto_USCOREpath *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__bind_USCOREto_USCOREpath(struct soap*, struct SLICE__bind_USCOREto_USCOREpath *);
@@ -691,7 +939,7 @@ SOAP_FMAC3 struct SLICE__bind_USCOREto_USCOREpath * SOAP_FMAC4 soap_instantiate_
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__bind_USCOREto_USCOREpath(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (101)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (105)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, const struct SLICE__bind_USCOREto_USCOREpathResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, struct SLICE__bind_USCOREto_USCOREpathResponse *);
@@ -705,7 +953,7 @@ SOAP_FMAC3 struct SLICE__bind_USCOREto_USCOREpathResponse * SOAP_FMAC4 soap_inst
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__bind_USCOREto_USCOREpathResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (97)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (101)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unbind_USCOREto_USCOREpath(struct soap*, const struct SLICE__unbind_USCOREto_USCOREpath *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unbind_USCOREto_USCOREpath(struct soap*, struct SLICE__unbind_USCOREto_USCOREpath *);
@@ -719,7 +967,7 @@ SOAP_FMAC3 struct SLICE__unbind_USCOREto_USCOREpath * SOAP_FMAC4 soap_instantiat
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unbind_USCOREto_USCOREpath(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (94)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (98)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, const struct SLICE__unbind_USCOREto_USCOREpathResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, struct SLICE__unbind_USCOREto_USCOREpathResponse *);
@@ -733,7 +981,7 @@ SOAP_FMAC3 struct SLICE__unbind_USCOREto_USCOREpathResponse * SOAP_FMAC4 soap_in
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unbind_USCOREto_USCOREpathResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtime
-#define SOAP_TYPE_SLICE__execution_USCOREtime (93)
+#define SOAP_TYPE_SLICE__execution_USCOREtime (97)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__execution_USCOREtime(struct soap*, const struct SLICE__execution_USCOREtime *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__execution_USCOREtime(struct soap*, struct SLICE__execution_USCOREtime *);
@@ -747,7 +995,7 @@ SOAP_FMAC3 struct SLICE__execution_USCOREtime * SOAP_FMAC4 soap_instantiate_SLIC
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__execution_USCOREtime(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtimeResponse
-#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (89)
+#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (93)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__execution_USCOREtimeResponse(struct soap*, const struct SLICE__execution_USCOREtimeResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__execution_USCOREtimeResponse(struct soap*, struct SLICE__execution_USCOREtimeResponse *);
@@ -761,7 +1009,7 @@ SOAP_FMAC3 struct SLICE__execution_USCOREtimeResponse * SOAP_FMAC4 soap_instanti
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__execution_USCOREtimeResponse(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (88)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (92)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, const struct SLICE__collect_USCOREperformance_USCOREdata *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, struct SLICE__collect_USCOREperformance_USCOREdata *);
@@ -775,7 +1023,7 @@ SOAP_FMAC3 struct SLICE__collect_USCOREperformance_USCOREdata * SOAP_FMAC4 soap_
 SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__collect_USCOREperformance_USCOREdata(struct soap*, int, int, void*, size_t, const void*, size_t);
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (85)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (89)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__collect_USCOREperformance_USCOREdataResponse(struct soap*, const struct SLICE__collect_USCOREperformance_USCOREdataResponse *);
 SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__collect_USCOREperformance_USCOREdataResponse(struct soap*, struct SLICE__collect_USCOREperformance_USCOREdataResponse *);
@@ -791,7 +1039,7 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__collect_USCOREperformance_USCOREdata
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Reason
-#define SOAP_TYPE_PointerToSOAP_ENV__Reason (112)
+#define SOAP_TYPE_PointerToSOAP_ENV__Reason (146)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Reason(struct soap*, struct SOAP_ENV__Reason *const*, const char*, const char*);
@@ -804,7 +1052,7 @@ SOAP_FMAC3 struct SOAP_ENV__Reason ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Reas
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Detail
-#define SOAP_TYPE_PointerToSOAP_ENV__Detail (111)
+#define SOAP_TYPE_PointerToSOAP_ENV__Detail (145)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Detail(struct soap*, struct SOAP_ENV__Detail *const*, const char*, const char*);
@@ -817,7 +1065,7 @@ SOAP_FMAC3 struct SOAP_ENV__Detail ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Deta
 #ifndef WITH_NOGLOBAL
 
 #ifndef SOAP_TYPE_PointerToSOAP_ENV__Code
-#define SOAP_TYPE_PointerToSOAP_ENV__Code (107)
+#define SOAP_TYPE_PointerToSOAP_ENV__Code (141)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSOAP_ENV__Code(struct soap*, struct SOAP_ENV__Code *const*, const char*, const char*);
@@ -827,8 +1075,17 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Code(s
 
 #endif
 
+#ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration (108)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, SLICE__CUTS_x002eComponent_USCORERegistration *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, SLICE__CUTS_x002eComponent_USCORERegistration *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, const char *, int, SLICE__CUTS_x002eComponent_USCORERegistration *const*, const char *);
+SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, SLICE__CUTS_x002eComponent_USCORERegistration **, const char*, const char*);
+SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap*, const char*, SLICE__CUTS_x002eComponent_USCORERegistration **, const char*);
+
 #ifndef SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence
-#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence (98)
+#define SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence (102)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*, const char*, const char*);
@@ -837,13 +1094,31 @@ SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence ** SOAP_FMAC4 soap_get_
 SOAP_FMAC3 CUTS_x002e_USCORESE_USCOREPath_USCORESequence ** SOAP_FMAC4 soap_in_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap*, const char*, CUTS_x002e_USCORESE_USCOREPath_USCORESequence **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo
-#define SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (90)
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo (94)
 #endif
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*, const char*, const char*);
 SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, const char *, int, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*, const char *);
 SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo **, const char*, const char*);
 SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(struct soap*, const char*, SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo **, const char*);
+
+#ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit (88)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, SLICE__CUTS_x002eRegistration_USCORELimit *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, SLICE__CUTS_x002eRegistration_USCORELimit *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, const char *, int, SLICE__CUTS_x002eRegistration_USCORELimit *const*, const char *);
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCORELimit ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, SLICE__CUTS_x002eRegistration_USCORELimit **, const char*, const char*);
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCORELimit ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap*, const char*, SLICE__CUTS_x002eRegistration_USCORELimit **, const char*);
+
+#ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed
+#define SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed (86)
+#endif
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, SLICE__CUTS_x002eRegistration_USCOREFailed *const*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, SLICE__CUTS_x002eRegistration_USCOREFailed *const*, const char*, const char*);
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, const char *, int, SLICE__CUTS_x002eRegistration_USCOREFailed *const*, const char *);
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCOREFailed ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, SLICE__CUTS_x002eRegistration_USCOREFailed **, const char*, const char*);
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCOREFailed ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap*, const char*, SLICE__CUTS_x002eRegistration_USCOREFailed **, const char*);
 
 #ifndef SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed
 #define SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed (84)

@@ -9,6 +9,5 @@ SOAP_NMAC struct Namespace namespaces[] =
 	{"CORBA", "http://www.omg.org/IDL-WSDL/1.0/", NULL, NULL},
 	{"CORBA", "http://tempuri.org/CORBA.xsd", NULL, NULL},
 	{"SLICE", "urn:SLICE", NULL, NULL},
-	{"SLICE", "http://tempuri.org/SLICE.xsd", NULL, NULL},
 	{NULL, NULL, NULL, NULL}
 };

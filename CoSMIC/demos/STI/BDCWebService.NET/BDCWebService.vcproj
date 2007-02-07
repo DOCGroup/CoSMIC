@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(ACE_ROOT),$(TAO_ROOT),$(TAO_ROOT)\orbsvcs,$(CIAO_ROOT),$(CIAO_ROOT)\ciao,$(CIAO_ROOT)\DAnCE,$(CIAO_ROOT)\ciaosvcs\Events,$(CUTS_ROOT)"
+				AdditionalIncludeDirectories="$(COSMIC_ROOT)/demos/STI/BDCWebService.NET,$(ACE_ROOT),$(TAO_ROOT),$(TAO_ROOT)\orbsvcs,$(CIAO_ROOT),$(CIAO_ROOT)\ciao,$(CIAO_ROOT)\DAnCE,$(CIAO_ROOT)\ciaosvcs\Events,$(CUTS_ROOT)"
 				PreprocessorDefinitions="WIN32;_DEBUG"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -119,6 +119,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="$(COSMIC_ROOT)/demos/STI/BDCWebService.NET,$(ACE_ROOT),$(TAO_ROOT),$(TAO_ROOT)\orbsvcs,$(CIAO_ROOT),$(CIAO_ROOT)\ciao,$(CIAO_ROOT)\DAnCE,$(CIAO_ROOT)\ciaosvcs\Events,$(CUTS_ROOT)"
 				PreprocessorDefinitions="WIN32;NDEBUG"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="2"
@@ -205,7 +206,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\Benchmark_Data_Collector.cpp"
+				RelativePath=".\Benchmark_Data_Collector_Impl.cpp"
 				>
 			</File>
 			<File
@@ -222,6 +223,10 @@
 			>
 			<File
 				RelativePath=".\Benchmark_Data_Collector.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Benchmark_Data_Collector_Impl.h"
 				>
 			</File>
 		</Filter>

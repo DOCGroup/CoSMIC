@@ -310,6 +310,7 @@ class SOAP_CMAC SLICE__CUTS_x002eComponent_USCORERegistration : public xsd__anyT
 public:
 	class CORBA__ObjectReference *agent;	/* required element of type CORBA:ObjectReference */
 	char *name;	/* required element of type xsd:string */
+	char *type;	/* required element of type xsd:string */
 	char *ipaddr;	/* required element of type xsd:string */
 	char *hostname;	/* required element of type xsd:string */
 public:
@@ -320,7 +321,7 @@ public:
 	virtual int soap_out(struct soap*, const char*, int, const char*) const;
 	virtual void *soap_get(struct soap*, const char*, const char*);
 	virtual void *soap_in(struct soap*, const char*, const char*);
-	         SLICE__CUTS_x002eComponent_USCORERegistration() : agent(NULL), name(NULL), ipaddr(NULL), hostname(NULL) { }
+	         SLICE__CUTS_x002eComponent_USCORERegistration() : agent(NULL), name(NULL), type(NULL), ipaddr(NULL), hostname(NULL) { }
 	virtual ~SLICE__CUTS_x002eComponent_USCORERegistration() { }
 };
 #endif
@@ -903,8 +904,50 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed (85)
+/* CORBA:_exception.CUTS.Registration_Failed */
+class SOAP_CMAC _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed
+{
+public:
+	SLICE__CUTS_x002eRegistration_USCOREFailed *exception;	/* optional element of type SLICE:CUTS.Registration_Failed */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 85; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed() : exception(NULL), soap(NULL) { }
+	virtual ~_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed() { }
+};
+#endif
+
+#ifndef SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit
+#define SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit (87)
+/* CORBA:_exception.CUTS.Registration_Limit */
+class SOAP_CMAC _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit
+{
+public:
+	SLICE__CUTS_x002eRegistration_USCORELimit *exception;	/* optional element of type SLICE:CUTS.Registration_Limit */
+	struct soap *soap;	/* transient */
+public:
+	virtual int soap_type() const { return 87; } /* = unique id SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit */
+	virtual void soap_default(struct soap*);
+	virtual void soap_serialize(struct soap*) const;
+	virtual int soap_put(struct soap*, const char*, const char*) const;
+	virtual int soap_out(struct soap*, const char*, int, const char*) const;
+	virtual void *soap_get(struct soap*, const char*, const char*);
+	virtual void *soap_in(struct soap*, const char*, const char*);
+	         _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit() : exception(NULL), soap(NULL) { }
+	virtual ~_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit() { }
+};
+#endif
+
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (85)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse (89)
 /* SLICE:collect_performance_dataResponse */
 struct SLICE__collect_USCOREperformance_USCOREdataResponse
 {
@@ -912,7 +955,7 @@ struct SLICE__collect_USCOREperformance_USCOREdataResponse
 #endif
 
 #ifndef SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata
-#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (88)
+#define SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata (92)
 /* SLICE:collect_performance_data */
 struct SLICE__collect_USCOREperformance_USCOREdata
 {
@@ -920,7 +963,7 @@ struct SLICE__collect_USCOREperformance_USCOREdata
 #endif
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtimeResponse
-#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (89)
+#define SOAP_TYPE_SLICE__execution_USCOREtimeResponse (93)
 /* SLICE:execution_timeResponse */
 struct SLICE__execution_USCOREtimeResponse
 {
@@ -930,7 +973,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__execution_USCOREtime
-#define SOAP_TYPE_SLICE__execution_USCOREtime (93)
+#define SOAP_TYPE_SLICE__execution_USCOREtime (97)
 /* SLICE:execution_time */
 struct SLICE__execution_USCOREtime
 {
@@ -940,7 +983,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (94)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpathResponse (98)
 /* SLICE:unbind_to_pathResponse */
 struct SLICE__unbind_USCOREto_USCOREpathResponse
 {
@@ -948,7 +991,7 @@ struct SLICE__unbind_USCOREto_USCOREpathResponse
 #endif
 
 #ifndef SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (97)
+#define SOAP_TYPE_SLICE__unbind_USCOREto_USCOREpath (101)
 /* SLICE:unbind_to_path */
 struct SLICE__unbind_USCOREto_USCOREpath
 {
@@ -958,7 +1001,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (101)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse (105)
 /* SLICE:bind_to_pathResponse */
 struct SLICE__bind_USCOREto_USCOREpathResponse
 {
@@ -968,7 +1011,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath
-#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (102)
+#define SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath (106)
 /* SLICE:bind_to_path */
 struct SLICE__bind_USCOREto_USCOREpath
 {
@@ -978,8 +1021,154 @@ public:
 };
 #endif
 
+#ifndef SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse
+#define SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse (107)
+/* SLICE:unregister_componentResponse */
+struct SLICE__unregister_USCOREcomponentResponse
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE__unregister_USCOREcomponent
+#define SOAP_TYPE_SLICE__unregister_USCOREcomponent (111)
+/* SLICE:unregister_component */
+struct SLICE__unregister_USCOREcomponent
+{
+public:
+	SLICE__CUTS_x002eComponent_USCORERegistration *cr;	/* optional element of type SLICE:CUTS.Component_Registration */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE__register_USCOREcomponentResponse
+#define SOAP_TYPE_SLICE__register_USCOREcomponentResponse (113)
+/* SLICE:register_componentResponse */
+struct SLICE__register_USCOREcomponentResponse
+{
+public:
+	int _USCOREreturn;	/* RPC return element */	/* required element of type xsd:int */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE__register_USCOREcomponent
+#define SOAP_TYPE_SLICE__register_USCOREcomponent (114)
+/* SLICE:register_component */
+struct SLICE__register_USCOREcomponent
+{
+public:
+	SLICE__CUTS_x002eComponent_USCORERegistration *cr;	/* optional element of type SLICE:CUTS.Component_Registration */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse (115)
+/* SLICE:_set_metrics_outfileResponse */
+struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile
+#define SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile (118)
+/* SLICE:_set_metrics_outfile */
+struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile
+{
+public:
+	char *value;	/* optional element of type xsd:string */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse (121)
+/* SLICE:_get_metrics_outfileResponse */
+struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse
+{
+public:
+	char *_USCOREreturn;	/* RPC return element */	/* required element of type xsd:string */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile
+#define SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile (122)
+/* SLICE:_get_metrics_outfile */
+struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse (123)
+/* SLICE:_set_collection_threadsResponse */
+struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads
+#define SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads (126)
+/* SLICE:_set_collection_threads */
+struct SLICE___USCOREset_USCOREcollection_USCOREthreads
+{
+public:
+	int value;	/* required element of type xsd:int */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse (128)
+/* SLICE:_get_collection_threadsResponse */
+struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse
+{
+public:
+	int _USCOREreturn;	/* RPC return element */	/* required element of type xsd:int */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads
+#define SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads (129)
+/* SLICE:_get_collection_threads */
+struct SLICE___USCOREget_USCOREcollection_USCOREthreads
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse
+#define SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse (130)
+/* SLICE:_set_timeoutResponse */
+struct SLICE___USCOREset_USCOREtimeoutResponse
+{
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREset_USCOREtimeout
+#define SOAP_TYPE_SLICE___USCOREset_USCOREtimeout (133)
+/* SLICE:_set_timeout */
+struct SLICE___USCOREset_USCOREtimeout
+{
+public:
+	int value;	/* required element of type xsd:int */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse
+#define SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse (135)
+/* SLICE:_get_timeoutResponse */
+struct SLICE___USCOREget_USCOREtimeoutResponse
+{
+public:
+	int _USCOREreturn;	/* RPC return element */	/* required element of type xsd:int */
+};
+#endif
+
+#ifndef SOAP_TYPE_SLICE___USCOREget_USCOREtimeout
+#define SOAP_TYPE_SLICE___USCOREget_USCOREtimeout (136)
+/* SLICE:_get_timeout */
+struct SLICE___USCOREget_USCOREtimeout
+{
+};
+#endif
+
 #ifndef SOAP_TYPE_SOAP_ENV__Header
-#define SOAP_TYPE_SOAP_ENV__Header (105)
+#define SOAP_TYPE_SOAP_ENV__Header (139)
 /* SOAP Header: */
 struct SOAP_ENV__Header
 {
@@ -989,7 +1178,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Code
-#define SOAP_TYPE_SOAP_ENV__Code (106)
+#define SOAP_TYPE_SOAP_ENV__Code (140)
 /* SOAP Fault Code: */
 struct SOAP_ENV__Code
 {
@@ -1000,7 +1189,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Detail
-#define SOAP_TYPE_SOAP_ENV__Detail (108)
+#define SOAP_TYPE_SOAP_ENV__Detail (142)
 /* SOAP-ENV:Detail */
 struct SOAP_ENV__Detail
 {
@@ -1012,7 +1201,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Reason
-#define SOAP_TYPE_SOAP_ENV__Reason (109)
+#define SOAP_TYPE_SOAP_ENV__Reason (143)
 /* SOAP-ENV:Reason */
 struct SOAP_ENV__Reason
 {
@@ -1022,7 +1211,7 @@ public:
 #endif
 
 #ifndef SOAP_TYPE_SOAP_ENV__Fault
-#define SOAP_TYPE_SOAP_ENV__Fault (110)
+#define SOAP_TYPE_SOAP_ENV__Fault (144)
 /* SOAP Fault: */
 struct SOAP_ENV__Fault
 {

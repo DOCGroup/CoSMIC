@@ -7,7 +7,7 @@
 
 #include "SLICEH.h"
 
-SOAP_SOURCE_STAMP("@(#) SLICEC.cpp ver 2.7.8c 2006-08-18 15:17:48 GMT")
+SOAP_SOURCE_STAMP("@(#) SLICEC.cpp ver 2.7.8c 2006-11-01 23:06:30 GMT")
 
 
 #ifndef WITH_NOGLOBAL
@@ -227,6 +227,38 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_xsd__ID_(soap, NULL, NULL, "xsd:ID");
 	case SOAP_TYPE_xsd__anyType:
 		return soap_in_xsd__anyType(soap, NULL, NULL, "xsd:anyType");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeout:
+		return soap_in_SLICE___USCOREget_USCOREtimeout(soap, NULL, NULL, "SLICE:_get_timeout");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse:
+		return soap_in_SLICE___USCOREget_USCOREtimeoutResponse(soap, NULL, NULL, "SLICE:_get_timeoutResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeout:
+		return soap_in_SLICE___USCOREset_USCOREtimeout(soap, NULL, NULL, "SLICE:_set_timeout");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse:
+		return soap_in_SLICE___USCOREset_USCOREtimeoutResponse(soap, NULL, NULL, "SLICE:_set_timeoutResponse");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads:
+		return soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, NULL, NULL, "SLICE:_get_collection_threads");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse:
+		return soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, NULL, NULL, "SLICE:_get_collection_threadsResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads:
+		return soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, NULL, NULL, "SLICE:_set_collection_threads");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse:
+		return soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, NULL, NULL, "SLICE:_set_collection_threadsResponse");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile:
+		return soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, NULL, NULL, "SLICE:_get_metrics_outfile");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse:
+		return soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, NULL, NULL, "SLICE:_get_metrics_outfileResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile:
+		return soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, NULL, NULL, "SLICE:_set_metrics_outfile");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse:
+		return soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, NULL, NULL, "SLICE:_set_metrics_outfileResponse");
+	case SOAP_TYPE_SLICE__register_USCOREcomponent:
+		return soap_in_SLICE__register_USCOREcomponent(soap, NULL, NULL, "SLICE:register_component");
+	case SOAP_TYPE_SLICE__register_USCOREcomponentResponse:
+		return soap_in_SLICE__register_USCOREcomponentResponse(soap, NULL, NULL, "SLICE:register_componentResponse");
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponent:
+		return soap_in_SLICE__unregister_USCOREcomponent(soap, NULL, NULL, "SLICE:unregister_component");
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse:
+		return soap_in_SLICE__unregister_USCOREcomponentResponse(soap, NULL, NULL, "SLICE:unregister_componentResponse");
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath:
 		return soap_in_SLICE__bind_USCOREto_USCOREpath(soap, NULL, NULL, "SLICE:bind_to_path");
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse:
@@ -243,10 +275,16 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		return soap_in_SLICE__collect_USCOREperformance_USCOREdata(soap, NULL, NULL, "SLICE:collect_performance_data");
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse:
 		return soap_in_SLICE__collect_USCOREperformance_USCOREdataResponse(soap, NULL, NULL, "SLICE:collect_performance_dataResponse");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration:
+		return soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, NULL, NULL, "SLICE:CUTS.Component_Registration");
 	case SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence:
 		return soap_in_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(soap, NULL, NULL, "SLICE:CUTS.Path_Element");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo:
 		return soap_in_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(soap, NULL, NULL, "SLICE:CUTS.Event_Time_Info");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit:
+		return soap_in_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, NULL, NULL, "SLICE:CUTS.Registration_Limit");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed:
+		return soap_in_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, NULL, NULL, "SLICE:CUTS.Registration_Failed");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed:
 		return soap_in_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(soap, NULL, NULL, "SLICE:CUTS.Operation_Failed");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound:
@@ -492,6 +530,70 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 		{	*type = SOAP_TYPE_xsd__anyType;
 			return soap_in_xsd__anyType(soap, NULL, NULL, NULL);
 		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_timeout"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREtimeout;
+			return soap_in_SLICE___USCOREget_USCOREtimeout(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_timeoutResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse;
+			return soap_in_SLICE___USCOREget_USCOREtimeoutResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_timeout"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREtimeout;
+			return soap_in_SLICE___USCOREset_USCOREtimeout(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_timeoutResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse;
+			return soap_in_SLICE___USCOREset_USCOREtimeoutResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_collection_threads"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads;
+			return soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_collection_threadsResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse;
+			return soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_collection_threads"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads;
+			return soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_collection_threadsResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse;
+			return soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_metrics_outfile"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile;
+			return soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_get_metrics_outfileResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse;
+			return soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_metrics_outfile"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile;
+			return soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:_set_metrics_outfileResponse"))
+		{	*type = SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse;
+			return soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:register_component"))
+		{	*type = SOAP_TYPE_SLICE__register_USCOREcomponent;
+			return soap_in_SLICE__register_USCOREcomponent(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:register_componentResponse"))
+		{	*type = SOAP_TYPE_SLICE__register_USCOREcomponentResponse;
+			return soap_in_SLICE__register_USCOREcomponentResponse(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:unregister_component"))
+		{	*type = SOAP_TYPE_SLICE__unregister_USCOREcomponent;
+			return soap_in_SLICE__unregister_USCOREcomponent(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "SLICE:unregister_componentResponse"))
+		{	*type = SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse;
+			return soap_in_SLICE__unregister_USCOREcomponentResponse(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "SLICE:bind_to_path"))
 		{	*type = SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath;
 			return soap_in_SLICE__bind_USCOREto_USCOREpath(soap, NULL, NULL, NULL);
@@ -543,6 +645,14 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_getelement(struct soap *soap, int *type)
 			return s ? *s : NULL;
 		}
 		t = soap->tag;
+		if (!soap_match_tag(soap, t, "CORBA:_exception.CUTS.Registration_Limit"))
+		{	*type = SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit;
+			return soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, NULL, NULL, NULL);
+		}
+		if (!soap_match_tag(soap, t, "CORBA:_exception.CUTS.Registration_Failed"))
+		{	*type = SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed;
+			return soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, NULL, NULL, NULL);
+		}
 		if (!soap_match_tag(soap, t, "CORBA:_exception.CUTS.Operation_Failed"))
 		{	*type = SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed;
 			return soap_in__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed(soap, NULL, NULL, NULL);
@@ -650,6 +760,10 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_unsignedInt(soap, tag, id, (const unsigned int *)ptr, "xsd:unsignedInt");
 	case SOAP_TYPE_CORBA__CORBA_x002ecompletion_USCOREstatus:
 		return soap_out_CORBA__CORBA_x002ecompletion_USCOREstatus(soap, tag, id, (const enum CORBA__CORBA_x002ecompletion_USCOREstatus *)ptr, "CORBA:CORBA.completion_status");
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit:
+		return ((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *)ptr)->soap_out(soap, "CORBA:_exception.CUTS.Registration_Limit", id, NULL);
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed:
+		return ((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *)ptr)->soap_out(soap, "CORBA:_exception.CUTS.Registration_Failed", id, NULL);
 	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed:
 		return ((_CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed *)ptr)->soap_out(soap, "CORBA:_exception.CUTS.Operation_Failed", id, NULL);
 	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound:
@@ -734,6 +848,38 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return ((xsd__ID_ *)ptr)->soap_out(soap, tag, id, "xsd:ID");
 	case SOAP_TYPE_xsd__anyType:
 		return ((xsd__anyType *)ptr)->soap_out(soap, tag, id, "xsd:anyType");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeout:
+		return soap_out_SLICE___USCOREget_USCOREtimeout(soap, tag, id, (const struct SLICE___USCOREget_USCOREtimeout *)ptr, "SLICE:_get_timeout");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse:
+		return soap_out_SLICE___USCOREget_USCOREtimeoutResponse(soap, tag, id, (const struct SLICE___USCOREget_USCOREtimeoutResponse *)ptr, "SLICE:_get_timeoutResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeout:
+		return soap_out_SLICE___USCOREset_USCOREtimeout(soap, tag, id, (const struct SLICE___USCOREset_USCOREtimeout *)ptr, "SLICE:_set_timeout");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse:
+		return soap_out_SLICE___USCOREset_USCOREtimeoutResponse(soap, tag, id, (const struct SLICE___USCOREset_USCOREtimeoutResponse *)ptr, "SLICE:_set_timeoutResponse");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads:
+		return soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, tag, id, (const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *)ptr, "SLICE:_get_collection_threads");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse:
+		return soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, tag, id, (const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *)ptr, "SLICE:_get_collection_threadsResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads:
+		return soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, tag, id, (const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *)ptr, "SLICE:_set_collection_threads");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse:
+		return soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, tag, id, (const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *)ptr, "SLICE:_set_collection_threadsResponse");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile:
+		return soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, tag, id, (const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *)ptr, "SLICE:_get_metrics_outfile");
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse:
+		return soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, tag, id, (const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *)ptr, "SLICE:_get_metrics_outfileResponse");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile:
+		return soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, tag, id, (const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *)ptr, "SLICE:_set_metrics_outfile");
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse:
+		return soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, tag, id, (const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *)ptr, "SLICE:_set_metrics_outfileResponse");
+	case SOAP_TYPE_SLICE__register_USCOREcomponent:
+		return soap_out_SLICE__register_USCOREcomponent(soap, tag, id, (const struct SLICE__register_USCOREcomponent *)ptr, "SLICE:register_component");
+	case SOAP_TYPE_SLICE__register_USCOREcomponentResponse:
+		return soap_out_SLICE__register_USCOREcomponentResponse(soap, tag, id, (const struct SLICE__register_USCOREcomponentResponse *)ptr, "SLICE:register_componentResponse");
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponent:
+		return soap_out_SLICE__unregister_USCOREcomponent(soap, tag, id, (const struct SLICE__unregister_USCOREcomponent *)ptr, "SLICE:unregister_component");
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse:
+		return soap_out_SLICE__unregister_USCOREcomponentResponse(soap, tag, id, (const struct SLICE__unregister_USCOREcomponentResponse *)ptr, "SLICE:unregister_componentResponse");
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath:
 		return soap_out_SLICE__bind_USCOREto_USCOREpath(soap, tag, id, (const struct SLICE__bind_USCOREto_USCOREpath *)ptr, "SLICE:bind_to_path");
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpathResponse:
@@ -750,10 +896,16 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_putelement(struct soap *soap, const void *ptr, co
 		return soap_out_SLICE__collect_USCOREperformance_USCOREdata(soap, tag, id, (const struct SLICE__collect_USCOREperformance_USCOREdata *)ptr, "SLICE:collect_performance_data");
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse:
 		return soap_out_SLICE__collect_USCOREperformance_USCOREdataResponse(soap, tag, id, (const struct SLICE__collect_USCOREperformance_USCOREdataResponse *)ptr, "SLICE:collect_performance_dataResponse");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration:
+		return soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, tag, id, (SLICE__CUTS_x002eComponent_USCORERegistration *const*)ptr, "SLICE:CUTS.Component_Registration");
 	case SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence:
 		return soap_out_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(soap, tag, id, (CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*)ptr, "SLICE:CUTS.Path_Element");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo:
 		return soap_out_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(soap, tag, id, (SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*)ptr, "SLICE:CUTS.Event_Time_Info");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit:
+		return soap_out_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, tag, id, (SLICE__CUTS_x002eRegistration_USCORELimit *const*)ptr, "SLICE:CUTS.Registration_Limit");
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed:
+		return soap_out_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, tag, id, (SLICE__CUTS_x002eRegistration_USCOREFailed *const*)ptr, "SLICE:CUTS.Registration_Failed");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed:
 		return soap_out_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(soap, tag, id, (SLICE__CUTS_x002eOperation_USCOREFailed *const*)ptr, "SLICE:CUTS.Operation_Failed");
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eID_USCORENot_USCOREFound:
@@ -829,6 +981,12 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	(void)soap; (void)ptr; (void)type; /* appease -Wall -Werror */
 	switch (type)
 	{
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit:
+		((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *)ptr)->soap_serialize(soap);
+		break;
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed:
+		((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *)ptr)->soap_serialize(soap);
+		break;
 	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed:
 		((_CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed *)ptr)->soap_serialize(soap);
 		break;
@@ -955,6 +1113,54 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_xsd__anyType:
 		((xsd__anyType *)ptr)->soap_serialize(soap);
 		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeout:
+		soap_serialize_SLICE___USCOREget_USCOREtimeout(soap, (const struct SLICE___USCOREget_USCOREtimeout *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse:
+		soap_serialize_SLICE___USCOREget_USCOREtimeoutResponse(soap, (const struct SLICE___USCOREget_USCOREtimeoutResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeout:
+		soap_serialize_SLICE___USCOREset_USCOREtimeout(soap, (const struct SLICE___USCOREset_USCOREtimeout *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse:
+		soap_serialize_SLICE___USCOREset_USCOREtimeoutResponse(soap, (const struct SLICE___USCOREset_USCOREtimeoutResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads:
+		soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, (const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse:
+		soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, (const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads:
+		soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, (const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse:
+		soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, (const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile:
+		soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, (const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse:
+		soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, (const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile:
+		soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, (const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *)ptr);
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse:
+		soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, (const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE__register_USCOREcomponent:
+		soap_serialize_SLICE__register_USCOREcomponent(soap, (const struct SLICE__register_USCOREcomponent *)ptr);
+		break;
+	case SOAP_TYPE_SLICE__register_USCOREcomponentResponse:
+		soap_serialize_SLICE__register_USCOREcomponentResponse(soap, (const struct SLICE__register_USCOREcomponentResponse *)ptr);
+		break;
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponent:
+		soap_serialize_SLICE__unregister_USCOREcomponent(soap, (const struct SLICE__unregister_USCOREcomponent *)ptr);
+		break;
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse:
+		soap_serialize_SLICE__unregister_USCOREcomponentResponse(soap, (const struct SLICE__unregister_USCOREcomponentResponse *)ptr);
+		break;
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath:
 		soap_serialize_SLICE__bind_USCOREto_USCOREpath(soap, (const struct SLICE__bind_USCOREto_USCOREpath *)ptr);
 		break;
@@ -979,11 +1185,20 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_markelement(struct soap *soap, const void *ptr, 
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse:
 		soap_serialize_SLICE__collect_USCOREperformance_USCOREdataResponse(soap, (const struct SLICE__collect_USCOREperformance_USCOREdataResponse *)ptr);
 		break;
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration:
+		soap_serialize_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, (SLICE__CUTS_x002eComponent_USCORERegistration *const*)ptr);
+		break;
 	case SOAP_TYPE_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence:
 		soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(soap, (CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo:
 		soap_serialize_PointerToSLICE__CUTS_x002eEvent_USCORETime_USCOREInfo(soap, (SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit:
+		soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, (SLICE__CUTS_x002eRegistration_USCORELimit *const*)ptr);
+		break;
+	case SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed:
+		soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, (SLICE__CUTS_x002eRegistration_USCOREFailed *const*)ptr);
 		break;
 	case SOAP_TYPE_PointerToSLICE__CUTS_x002eOperation_USCOREFailed:
 		soap_serialize_PointerToSLICE__CUTS_x002eOperation_USCOREFailed(soap, (SLICE__CUTS_x002eOperation_USCOREFailed *const*)ptr);
@@ -1173,6 +1388,10 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eID_USCORENot_USCOREFound(soap, -1, type, arrayType, n);
 	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed:
 		return (void*)soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed:
+		return (void*)soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, -1, type, arrayType, n);
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit:
+		return (void*)soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse:
 		return (void*)soap_instantiate_SLICE__collect_USCOREperformance_USCOREdataResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdata:
@@ -1189,6 +1408,38 @@ SOAP_FMAC3 void * SOAP_FMAC4 soap_instantiate(struct soap *soap, int t, const ch
 		return (void*)soap_instantiate_SLICE__bind_USCOREto_USCOREpathResponse(soap, -1, type, arrayType, n);
 	case SOAP_TYPE_SLICE__bind_USCOREto_USCOREpath:
 		return (void*)soap_instantiate_SLICE__bind_USCOREto_USCOREpath(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse:
+		return (void*)soap_instantiate_SLICE__unregister_USCOREcomponentResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponent:
+		return (void*)soap_instantiate_SLICE__unregister_USCOREcomponent(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE__register_USCOREcomponentResponse:
+		return (void*)soap_instantiate_SLICE__register_USCOREcomponentResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE__register_USCOREcomponent:
+		return (void*)soap_instantiate_SLICE__register_USCOREcomponent(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREtimeoutResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeout:
+		return (void*)soap_instantiate_SLICE___USCOREset_USCOREtimeout(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREtimeoutResponse(soap, -1, type, arrayType, n);
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeout:
+		return (void*)soap_instantiate_SLICE___USCOREget_USCOREtimeout(soap, -1, type, arrayType, n);
 	}
 	return NULL;
 }
@@ -1448,6 +1699,18 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 		else
 			delete[] (_CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed*)p->ptr;
 		break;
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed:
+		if (p->size < 0)
+			delete (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)p->ptr;
+		else
+			delete[] (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)p->ptr;
+		break;
+	case SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit:
+		if (p->size < 0)
+			delete (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)p->ptr;
+		else
+			delete[] (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)p->ptr;
+		break;
 	case SOAP_TYPE_SLICE__collect_USCOREperformance_USCOREdataResponse:
 		if (p->size < 0)
 			delete (struct SLICE__collect_USCOREperformance_USCOREdataResponse*)p->ptr;
@@ -1495,6 +1758,102 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_fdelete(struct soap_clist *p)
 			delete (struct SLICE__bind_USCOREto_USCOREpath*)p->ptr;
 		else
 			delete[] (struct SLICE__bind_USCOREto_USCOREpath*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse:
+		if (p->size < 0)
+			delete (struct SLICE__unregister_USCOREcomponentResponse*)p->ptr;
+		else
+			delete[] (struct SLICE__unregister_USCOREcomponentResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE__unregister_USCOREcomponent:
+		if (p->size < 0)
+			delete (struct SLICE__unregister_USCOREcomponent*)p->ptr;
+		else
+			delete[] (struct SLICE__unregister_USCOREcomponent*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE__register_USCOREcomponentResponse:
+		if (p->size < 0)
+			delete (struct SLICE__register_USCOREcomponentResponse*)p->ptr;
+		else
+			delete[] (struct SLICE__register_USCOREcomponentResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE__register_USCOREcomponent:
+		if (p->size < 0)
+			delete (struct SLICE__register_USCOREcomponent*)p->ptr;
+		else
+			delete[] (struct SLICE__register_USCOREcomponent*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREcollection_USCOREthreads*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREcollection_USCOREthreads*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREcollection_USCOREthreads*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREcollection_USCOREthreads*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREtimeoutResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREtimeoutResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREset_USCOREtimeout:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREset_USCOREtimeout*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREset_USCOREtimeout*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREtimeoutResponse*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREtimeoutResponse*)p->ptr;
+		break;
+	case SOAP_TYPE_SLICE___USCOREget_USCOREtimeout:
+		if (p->size < 0)
+			delete (struct SLICE___USCOREget_USCOREtimeout*)p->ptr;
+		else
+			delete[] (struct SLICE___USCOREget_USCOREtimeout*)p->ptr;
 		break;
 	case SOAP_TYPE_SOAP_ENV__Header:
 		if (p->size < 0)
@@ -1810,6 +2169,272 @@ SOAP_FMAC3 enum CORBA__CORBA_x002ecompletion_USCOREstatus * SOAP_FMAC4 soap_in_C
 			return NULL;
 	}
 	return a;
+}
+
+void _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, &((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)this)->exception);
+	/* transient soap skipped */
+}
+
+void _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)this)->exception = NULL;
+	/* transient soap skipped */
+}
+
+int _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit);
+	if (this->soap_out(soap, tag, id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+int _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, const char *tag, int id, const _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit), type);
+	soap_out_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, "exception", -1, &(((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)a)->exception), "");
+	/* transient soap skipped */
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+void *_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+void *_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, const char *tag, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit, sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *)a->soap_in(soap, tag, type);
+		}
+	}
+	short soap_flag_exception1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_exception1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, "exception", &(((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)a)->exception), "SLICE:CUTS.Registration_Limit"))
+				{	soap_flag_exception1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit, 0, sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit), 0, soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC6 soap_new__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, int n)
+{	return soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit * SOAP_FMAC4 soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit;
+		if (size)
+			*size = sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit);
+		((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)new _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit[n];
+		if (size)
+			*size = n * sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit);
+		for (int i = 0; i < n; i++)
+			((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit %p -> %p\n", q, p));
+	*(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)p = *(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCORELimit*)q;
+}
+
+void _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_serialize(struct soap *soap) const
+{
+	(void)soap; /* appease -Wall -Werror */
+	soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, &((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)this)->exception);
+	/* transient soap skipped */
+}
+
+void _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_default(struct soap *soap)
+{
+	this->soap = soap;
+	((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)this)->exception = NULL;
+	/* transient soap skipped */
+}
+
+int _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_put(struct soap *soap, const char *tag, const  char *type) const
+{
+	register int id = soap_embed(soap, (void*)this, NULL, 0, tag, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed);
+	if (this->soap_out(soap, tag, id, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+int _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_out(struct soap *soap, const char *tag, int id, const char *type) const
+{
+	return soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, tag, id, this, type);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, const char *tag, int id, const _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed), type);
+	soap_out_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, "exception", -1, &(((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)a)->exception), "");
+	/* transient soap skipped */
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+void *_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_get(struct soap *soap, const char *tag, const char *type)
+{
+	return soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, this, tag, type);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_get__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *p, const char *tag, const char *type)
+{
+	if ((p = soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+void *_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed::soap_in(struct soap *soap, const char *tag, const char *type)
+{	return soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, tag, this, type);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_in__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, const char *tag, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 0, NULL))
+		return NULL;
+	a = (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *)soap_class_id_enter(soap, soap->id, a, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed, sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed), soap->type, soap->arrayType);
+	if (!a)
+		return NULL;
+	if (soap->alloced)
+	{	a->soap_default(soap);
+		if (soap->clist->type != SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed)
+		{	soap_revert(soap);
+			*soap->id = '\0';
+			return (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *)a->soap_in(soap, tag, type);
+		}
+	}
+	short soap_flag_exception1 = 1;
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_exception1 && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, "exception", &(((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)a)->exception), "SLICE:CUTS.Registration_Failed"))
+				{	soap_flag_exception1--;
+					continue;
+				}
+			/* transient soap skipped */
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed, 0, sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed), 0, soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC6 soap_new__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, int n)
+{	return soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed * SOAP_FMAC4 soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed;
+		if (size)
+			*size = sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed);
+		((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)cp->ptr)->soap = soap;
+	}
+	else
+	{	cp->ptr = (void*)new _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed[n];
+		if (size)
+			*size = n * sizeof(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed);
+		for (int i = 0; i < n; i++)
+			((_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)cp->ptr)[i].soap = soap;
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy__CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying _CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed %p -> %p\n", q, p));
+	*(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)p = *(_CORBA___USCOREexception_x002eCUTS_x002eRegistration_USCOREFailed*)q;
 }
 
 void _CORBA___USCOREexception_x002eCUTS_x002eOperation_USCOREFailed::soap_serialize(struct soap *soap) const
@@ -6180,6 +6805,7 @@ void SLICE__CUTS_x002eComponent_USCORERegistration::soap_serialize(struct soap *
 	(void)soap; /* appease -Wall -Werror */
 	soap_serialize_PointerToCORBA__ObjectReference(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->agent);
 	soap_serialize_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->name);
+	soap_serialize_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->type);
 	soap_serialize_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->ipaddr);
 	soap_serialize_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->hostname);
 	/* transient soap skipped */
@@ -6190,6 +6816,7 @@ void SLICE__CUTS_x002eComponent_USCORERegistration::soap_default(struct soap *so
 	this->soap = soap;
 	((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->agent = NULL;
 	soap_default_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->name);
+	soap_default_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->type);
 	soap_default_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->ipaddr);
 	soap_default_string(soap, &((SLICE__CUTS_x002eComponent_USCORERegistration*)this)->hostname);
 	((xsd__anyType*)this)->__item = NULL;
@@ -6215,6 +6842,7 @@ SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__CUTS_x002eComponent_USCORERegistration
 	/* transient soap skipped */
 	soap_out_PointerToCORBA__ObjectReference(soap, "agent", -1, &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->agent), "");
 	soap_out_string(soap, "name", -1, &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->name), "");
+	soap_out_string(soap, "type", -1, &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->type), "");
 	soap_out_string(soap, "ipaddr", -1, &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->ipaddr), "");
 	soap_out_string(soap, "hostname", -1, &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->hostname), "");
 	soap_element_end_out(soap, tag);
@@ -6252,7 +6880,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration * SOAP_FMAC4 soap_in_SL
 			return (SLICE__CUTS_x002eComponent_USCORERegistration *)a->soap_in(soap, tag, type);
 		}
 	}
-	short soap_flag___item2 = 1, soap_flag_agent1 = 1, soap_flag_name1 = 1, soap_flag_ipaddr1 = 1, soap_flag_hostname1 = 1;
+	short soap_flag___item2 = 1, soap_flag_agent1 = 1, soap_flag_name1 = 1, soap_flag_type1 = 1, soap_flag_ipaddr1 = 1, soap_flag_hostname1 = 1;
 	if (soap->body && !*soap->href)
 	{
 		for (;;)
@@ -6266,6 +6894,11 @@ SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration * SOAP_FMAC4 soap_in_SL
 			if (soap_flag_name1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
 				if (soap_in_string(soap, "name", &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->name), "xsd:string"))
 				{	soap_flag_name1--;
+					continue;
+				}
+			if (soap_flag_type1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "type", &(((SLICE__CUTS_x002eComponent_USCORERegistration*)a)->type), "xsd:string"))
+				{	soap_flag_type1--;
 					continue;
 				}
 			if (soap_flag_ipaddr1 && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
@@ -6290,7 +6923,7 @@ SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration * SOAP_FMAC4 soap_in_SL
 			if (soap->error)
 				return NULL;
 		}
-		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_agent1 > 0 || soap_flag_name1 > 0 || soap_flag_ipaddr1 > 0 || soap_flag_hostname1 > 0))
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_agent1 > 0 || soap_flag_name1 > 0 || soap_flag_type1 > 0 || soap_flag_ipaddr1 > 0 || soap_flag_hostname1 > 0))
 		{	soap->error = SOAP_OCCURS;
 			return NULL;
 		}
@@ -8851,6 +9484,1651 @@ SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SOAP_ENV__Header(struct soap *soap, int st,
 
 #endif
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREtimeout(struct soap *soap, const struct SLICE___USCOREget_USCOREtimeout *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREtimeout(struct soap *soap, struct SLICE___USCOREget_USCOREtimeout *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREtimeout(struct soap *soap, const struct SLICE___USCOREget_USCOREtimeout *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREtimeout);
+	if (soap_out_SLICE___USCOREget_USCOREtimeout(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREtimeout(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREtimeout *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREtimeout), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREtimeout(struct soap *soap, struct SLICE___USCOREget_USCOREtimeout *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREtimeout(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREtimeout(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREtimeout *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREtimeout *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREtimeout, sizeof(struct SLICE___USCOREget_USCOREtimeout), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREtimeout(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREtimeout *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREtimeout, 0, sizeof(struct SLICE___USCOREget_USCOREtimeout), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREtimeout(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREtimeout(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREtimeout(struct soap *soap, struct SLICE___USCOREget_USCOREtimeout *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeout * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREtimeout(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREtimeout(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREtimeout, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREtimeout;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREtimeout);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREtimeout[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREtimeout);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREtimeout*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREtimeout(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREtimeout %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREtimeout*)p = *(struct SLICE___USCOREget_USCOREtimeout*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREtimeoutResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREget_USCOREtimeoutResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->_USCOREreturn);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREtimeoutResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse);
+	if (soap_out_SLICE___USCOREget_USCOREtimeoutResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREtimeoutResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse), type);
+	soap_element_result(soap, "_return");
+	soap_out_int(soap, "_return", -1, &a->_USCOREreturn, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREget_USCOREtimeoutResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREtimeoutResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREtimeoutResponse *a, const char *type)
+{
+	short soap_flag__USCOREreturn = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREtimeoutResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse, sizeof(struct SLICE___USCOREget_USCOREtimeoutResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREtimeoutResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__USCOREreturn && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "_return", &a->_USCOREreturn, "xsd:int"))
+				{	soap_flag__USCOREreturn--;
+					continue;
+				}
+			soap_check_result(soap, "_return");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__USCOREreturn > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREtimeoutResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse, 0, sizeof(struct SLICE___USCOREget_USCOREtimeoutResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREtimeoutResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREget_USCOREtimeoutResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREtimeoutResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREtimeoutResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREtimeoutResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREtimeoutResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREtimeoutResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREtimeoutResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREtimeoutResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREtimeoutResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREtimeoutResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREtimeoutResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREtimeoutResponse*)p = *(struct SLICE___USCOREget_USCOREtimeoutResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREtimeout(struct soap *soap, const struct SLICE___USCOREset_USCOREtimeout *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREtimeout(struct soap *soap, struct SLICE___USCOREset_USCOREtimeout *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->value);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREtimeout(struct soap *soap, const struct SLICE___USCOREset_USCOREtimeout *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREtimeout);
+	if (soap_out_SLICE___USCOREset_USCOREtimeout(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREtimeout(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREtimeout *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREtimeout), type);
+	soap_out_int(soap, "value", -1, &a->value, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREtimeout(struct soap *soap, struct SLICE___USCOREset_USCOREtimeout *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREtimeout(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREtimeout(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREtimeout *a, const char *type)
+{
+	short soap_flag_value = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREtimeout *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREtimeout, sizeof(struct SLICE___USCOREset_USCOREtimeout), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREtimeout(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_value && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "value", &a->value, "xsd:int"))
+				{	soap_flag_value--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_value > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREtimeout *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREtimeout, 0, sizeof(struct SLICE___USCOREset_USCOREtimeout), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREtimeout(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREtimeout(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREtimeout(struct soap *soap, struct SLICE___USCOREset_USCOREtimeout *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeout * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREtimeout(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREtimeout(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREtimeout, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREtimeout;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREtimeout);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREtimeout[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREtimeout);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREtimeout*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREtimeout(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREtimeout %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREtimeout*)p = *(struct SLICE___USCOREset_USCOREtimeout*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREtimeoutResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREset_USCOREtimeoutResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREtimeoutResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse);
+	if (soap_out_SLICE___USCOREset_USCOREtimeoutResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREtimeoutResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREset_USCOREtimeoutResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREtimeoutResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREtimeoutResponse *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREtimeoutResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse, sizeof(struct SLICE___USCOREset_USCOREtimeoutResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREtimeoutResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREtimeoutResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse, 0, sizeof(struct SLICE___USCOREset_USCOREtimeoutResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREtimeoutResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, struct SLICE___USCOREset_USCOREtimeoutResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREtimeoutResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREtimeoutResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREtimeoutResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREtimeoutResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREtimeoutResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREtimeoutResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREtimeoutResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREtimeoutResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREtimeoutResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREtimeoutResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREtimeoutResponse*)p = *(struct SLICE___USCOREset_USCOREtimeoutResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads);
+	if (soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREcollection_USCOREthreads *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREcollection_USCOREthreads *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads, sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreads), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREcollection_USCOREthreads *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads, 0, sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreads), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreads(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreads *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreads(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreads, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREcollection_USCOREthreads;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreads);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREcollection_USCOREthreads[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreads);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREcollection_USCOREthreads*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREcollection_USCOREthreads(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREcollection_USCOREthreads %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREcollection_USCOREthreads*)p = *(struct SLICE___USCOREget_USCOREcollection_USCOREthreads*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->_USCOREreturn);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse);
+	if (soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse), type);
+	soap_element_result(soap, "_return");
+	soap_out_int(soap, "_return", -1, &a->_USCOREreturn, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *a, const char *type)
+{
+	short soap_flag__USCOREreturn = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse, sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__USCOREreturn && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "_return", &a->_USCOREreturn, "xsd:int"))
+				{	soap_flag__USCOREreturn--;
+					continue;
+				}
+			soap_check_result(soap, "_return");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__USCOREreturn > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse, 0, sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*)p = *(struct SLICE___USCOREget_USCOREcollection_USCOREthreadsResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->value);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads);
+	if (soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREcollection_USCOREthreads *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads), type);
+	soap_out_int(soap, "value", -1, &a->value, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *a, const char *type)
+{
+	short soap_flag_value = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREcollection_USCOREthreads *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads, sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreads), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_value && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "value", &a->value, "xsd:int"))
+				{	soap_flag_value--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag_value > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREcollection_USCOREthreads *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads, 0, sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreads), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreads(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreads *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreads * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreads(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreads, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREcollection_USCOREthreads;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreads);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREcollection_USCOREthreads[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreads);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREcollection_USCOREthreads*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREcollection_USCOREthreads(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREcollection_USCOREthreads %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREcollection_USCOREthreads*)p = *(struct SLICE___USCOREset_USCOREcollection_USCOREthreads*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse);
+	if (soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse, sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse, 0, sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*)p = *(struct SLICE___USCOREset_USCOREcollection_USCOREthreadsResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile);
+	if (soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile, sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile, 0, sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfile, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREmetrics_USCOREoutfile(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*)p = *(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfile*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->_USCOREreturn);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_string(soap, &a->_USCOREreturn);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse);
+	if (soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse), type);
+	if (a->_USCOREreturn)
+		soap_element_result(soap, "_return");
+	soap_out_string(soap, "_return", -1, &a->_USCOREreturn, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_get_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_in_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const char *tag, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *a, const char *type)
+{
+	short soap_flag__USCOREreturn = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse, sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__USCOREreturn && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "_return", &a->_USCOREreturn, "xsd:string"))
+				{	soap_flag__USCOREreturn--;
+					continue;
+				}
+			soap_check_result(soap, "_return");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__USCOREreturn > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse, 0, sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC6 soap_new_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*)p = *(struct SLICE___USCOREget_USCOREmetrics_USCOREoutfileResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_string(soap, &a->value);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_string(soap, &a->value);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile);
+	if (soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile), type);
+	soap_out_string(soap, "value", -1, &a->value, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *a, const char *type)
+{
+	short soap_flag_value = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile, sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_value && (soap->error == SOAP_TAG_MISMATCH || soap->error == SOAP_NO_TAG))
+				if (soap_in_string(soap, "value", &a->value, "xsd:string"))
+				{	soap_flag_value--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile, 0, sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfile, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREmetrics_USCOREoutfile(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*)p = *(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfile*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse);
+	if (soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const char *tag, int id, const struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_get_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_in_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, const char *tag, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse, sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse, 0, sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC6 soap_new_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse * SOAP_FMAC4 soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse;
+		if (size)
+			*size = sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse %p -> %p\n", q, p));
+	*(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*)p = *(struct SLICE___USCOREset_USCOREmetrics_USCOREoutfileResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__register_USCOREcomponent(struct soap *soap, const struct SLICE__register_USCOREcomponent *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, &a->cr);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__register_USCOREcomponent(struct soap *soap, struct SLICE__register_USCOREcomponent *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->cr = NULL;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__register_USCOREcomponent(struct soap *soap, const struct SLICE__register_USCOREcomponent *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE__register_USCOREcomponent);
+	if (soap_out_SLICE__register_USCOREcomponent(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__register_USCOREcomponent(struct soap *soap, const char *tag, int id, const struct SLICE__register_USCOREcomponent *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE__register_USCOREcomponent), type);
+	soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, "cr", -1, &a->cr, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_get_SLICE__register_USCOREcomponent(struct soap *soap, struct SLICE__register_USCOREcomponent *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE__register_USCOREcomponent(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_in_SLICE__register_USCOREcomponent(struct soap *soap, const char *tag, struct SLICE__register_USCOREcomponent *a, const char *type)
+{
+	short soap_flag_cr = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE__register_USCOREcomponent *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE__register_USCOREcomponent, sizeof(struct SLICE__register_USCOREcomponent), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE__register_USCOREcomponent(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_cr && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, "cr", &a->cr, "SLICE:CUTS.Component_Registration"))
+				{	soap_flag_cr--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE__register_USCOREcomponent *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE__register_USCOREcomponent, 0, sizeof(struct SLICE__register_USCOREcomponent), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE__register_USCOREcomponent * SOAP_FMAC6 soap_new_SLICE__register_USCOREcomponent(struct soap *soap, int n)
+{	return soap_instantiate_SLICE__register_USCOREcomponent(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__register_USCOREcomponent(struct soap *soap, struct SLICE__register_USCOREcomponent *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponent * SOAP_FMAC4 soap_instantiate_SLICE__register_USCOREcomponent(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE__register_USCOREcomponent(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE__register_USCOREcomponent, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE__register_USCOREcomponent;
+		if (size)
+			*size = sizeof(struct SLICE__register_USCOREcomponent);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE__register_USCOREcomponent[n];
+		if (size)
+			*size = n * sizeof(struct SLICE__register_USCOREcomponent);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE__register_USCOREcomponent*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__register_USCOREcomponent(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE__register_USCOREcomponent %p -> %p\n", q, p));
+	*(struct SLICE__register_USCOREcomponent*)p = *(struct SLICE__register_USCOREcomponent*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__register_USCOREcomponentResponse(struct soap *soap, const struct SLICE__register_USCOREcomponentResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__register_USCOREcomponentResponse(struct soap *soap, struct SLICE__register_USCOREcomponentResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_default_int(soap, &a->_USCOREreturn);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__register_USCOREcomponentResponse(struct soap *soap, const struct SLICE__register_USCOREcomponentResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE__register_USCOREcomponentResponse);
+	if (soap_out_SLICE__register_USCOREcomponentResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__register_USCOREcomponentResponse(struct soap *soap, const char *tag, int id, const struct SLICE__register_USCOREcomponentResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE__register_USCOREcomponentResponse), type);
+	soap_element_result(soap, "_return");
+	soap_out_int(soap, "_return", -1, &a->_USCOREreturn, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_get_SLICE__register_USCOREcomponentResponse(struct soap *soap, struct SLICE__register_USCOREcomponentResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE__register_USCOREcomponentResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_in_SLICE__register_USCOREcomponentResponse(struct soap *soap, const char *tag, struct SLICE__register_USCOREcomponentResponse *a, const char *type)
+{
+	short soap_flag__USCOREreturn = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE__register_USCOREcomponentResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE__register_USCOREcomponentResponse, sizeof(struct SLICE__register_USCOREcomponentResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE__register_USCOREcomponentResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag__USCOREreturn && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_int(soap, "_return", &a->_USCOREreturn, "xsd:int"))
+				{	soap_flag__USCOREreturn--;
+					continue;
+				}
+			soap_check_result(soap, "_return");
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if ((soap->mode & SOAP_XML_STRICT) && (soap_flag__USCOREreturn > 0))
+		{	soap->error = SOAP_OCCURS;
+			return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE__register_USCOREcomponentResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE__register_USCOREcomponentResponse, 0, sizeof(struct SLICE__register_USCOREcomponentResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC6 soap_new_SLICE__register_USCOREcomponentResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE__register_USCOREcomponentResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__register_USCOREcomponentResponse(struct soap *soap, struct SLICE__register_USCOREcomponentResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE__register_USCOREcomponentResponse * SOAP_FMAC4 soap_instantiate_SLICE__register_USCOREcomponentResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE__register_USCOREcomponentResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE__register_USCOREcomponentResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE__register_USCOREcomponentResponse;
+		if (size)
+			*size = sizeof(struct SLICE__register_USCOREcomponentResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE__register_USCOREcomponentResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE__register_USCOREcomponentResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE__register_USCOREcomponentResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__register_USCOREcomponentResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE__register_USCOREcomponentResponse %p -> %p\n", q, p));
+	*(struct SLICE__register_USCOREcomponentResponse*)p = *(struct SLICE__register_USCOREcomponentResponse*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unregister_USCOREcomponent(struct soap *soap, const struct SLICE__unregister_USCOREcomponent *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	soap_serialize_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, &a->cr);
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unregister_USCOREcomponent(struct soap *soap, struct SLICE__unregister_USCOREcomponent *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+	a->cr = NULL;
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__unregister_USCOREcomponent(struct soap *soap, const struct SLICE__unregister_USCOREcomponent *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE__unregister_USCOREcomponent);
+	if (soap_out_SLICE__unregister_USCOREcomponent(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__unregister_USCOREcomponent(struct soap *soap, const char *tag, int id, const struct SLICE__unregister_USCOREcomponent *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE__unregister_USCOREcomponent), type);
+	soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, "cr", -1, &a->cr, "");
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_get_SLICE__unregister_USCOREcomponent(struct soap *soap, struct SLICE__unregister_USCOREcomponent *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE__unregister_USCOREcomponent(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_in_SLICE__unregister_USCOREcomponent(struct soap *soap, const char *tag, struct SLICE__unregister_USCOREcomponent *a, const char *type)
+{
+	short soap_flag_cr = 1;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE__unregister_USCOREcomponent *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE__unregister_USCOREcomponent, sizeof(struct SLICE__unregister_USCOREcomponent), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE__unregister_USCOREcomponent(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap_flag_cr && soap->error == SOAP_TAG_MISMATCH)
+				if (soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, "cr", &a->cr, "SLICE:CUTS.Component_Registration"))
+				{	soap_flag_cr--;
+					continue;
+				}
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE__unregister_USCOREcomponent *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE__unregister_USCOREcomponent, 0, sizeof(struct SLICE__unregister_USCOREcomponent), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC6 soap_new_SLICE__unregister_USCOREcomponent(struct soap *soap, int n)
+{	return soap_instantiate_SLICE__unregister_USCOREcomponent(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__unregister_USCOREcomponent(struct soap *soap, struct SLICE__unregister_USCOREcomponent *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponent * SOAP_FMAC4 soap_instantiate_SLICE__unregister_USCOREcomponent(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE__unregister_USCOREcomponent(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE__unregister_USCOREcomponent, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE__unregister_USCOREcomponent;
+		if (size)
+			*size = sizeof(struct SLICE__unregister_USCOREcomponent);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE__unregister_USCOREcomponent[n];
+		if (size)
+			*size = n * sizeof(struct SLICE__unregister_USCOREcomponent);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE__unregister_USCOREcomponent*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unregister_USCOREcomponent(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE__unregister_USCOREcomponent %p -> %p\n", q, p));
+	*(struct SLICE__unregister_USCOREcomponent*)p = *(struct SLICE__unregister_USCOREcomponent*)q;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, const struct SLICE__unregister_USCOREcomponentResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_default_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, struct SLICE__unregister_USCOREcomponentResponse *a)
+{
+	(void)soap; (void)a; /* appease -Wall -Werror */
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, const struct SLICE__unregister_USCOREcomponentResponse *a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse);
+	if (soap_out_SLICE__unregister_USCOREcomponentResponse(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, const char *tag, int id, const struct SLICE__unregister_USCOREcomponentResponse *a, const char *type)
+{
+	soap_element_begin_out(soap, tag, soap_embedded_id(soap, id, a, SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse), type);
+	soap_element_end_out(soap, tag);
+	return SOAP_OK;
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_get_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, struct SLICE__unregister_USCOREcomponentResponse *p, const char *tag, const char *type)
+{
+	if ((p = soap_in_SLICE__unregister_USCOREcomponentResponse(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_in_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, const char *tag, struct SLICE__unregister_USCOREcomponentResponse *a, const char *type)
+{;
+	if (soap_element_begin_in(soap, tag, 0, type))
+		return NULL;
+	a = (struct SLICE__unregister_USCOREcomponentResponse *)soap_id_enter(soap, soap->id, a, SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse, sizeof(struct SLICE__unregister_USCOREcomponentResponse), 0, NULL, NULL, NULL);
+	if (!a)
+		return NULL;
+	soap_default_SLICE__unregister_USCOREcomponentResponse(soap, a);
+	if (soap->body && !*soap->href)
+	{
+		for (;;)
+		{	soap->error = SOAP_TAG_MISMATCH;
+			if (soap->error == SOAP_TAG_MISMATCH)
+				soap->error = soap_ignore_element(soap);
+			if (soap->error == SOAP_NO_TAG)
+				break;
+			if (soap->error)
+				return NULL;
+		}
+		if (soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	else
+	{	a = (struct SLICE__unregister_USCOREcomponentResponse *)soap_id_forward(soap, soap->href, (void**)a, 0, SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse, 0, sizeof(struct SLICE__unregister_USCOREcomponentResponse), 0, NULL);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC5 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC6 soap_new_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, int n)
+{	return soap_instantiate_SLICE__unregister_USCOREcomponentResponse(soap, n, NULL, NULL, NULL);
+}
+
+SOAP_FMAC5 void SOAP_FMAC6 soap_delete_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, struct SLICE__unregister_USCOREcomponentResponse *p)
+{	soap_delete(soap, p);
+}
+
+SOAP_FMAC3 struct SLICE__unregister_USCOREcomponentResponse * SOAP_FMAC4 soap_instantiate_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, int n, const char *type, const char *arrayType, size_t *size)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "soap_instantiate_SLICE__unregister_USCOREcomponentResponse(%d, %s, %s)\n", n, type?type:"", arrayType?arrayType:""));
+	struct soap_clist *cp = soap_link(soap, NULL, SOAP_TYPE_SLICE__unregister_USCOREcomponentResponse, n, soap_fdelete);
+	if (!cp)
+		return NULL;
+	if (n < 0)
+	{	cp->ptr = (void*)new struct SLICE__unregister_USCOREcomponentResponse;
+		if (size)
+			*size = sizeof(struct SLICE__unregister_USCOREcomponentResponse);
+	}
+	else
+	{	cp->ptr = (void*)new struct SLICE__unregister_USCOREcomponentResponse[n];
+		if (size)
+			*size = n * sizeof(struct SLICE__unregister_USCOREcomponentResponse);
+	}
+		DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Instantiated location=%p\n", cp->ptr));
+	return (struct SLICE__unregister_USCOREcomponentResponse*)cp->ptr;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_copy_SLICE__unregister_USCOREcomponentResponse(struct soap *soap, int st, int tt, void *p, size_t len, const void *q, size_t n)
+{
+	DBGLOG(TEST, SOAP_MESSAGE(fdebug, "Copying struct SLICE__unregister_USCOREcomponentResponse %p -> %p\n", q, p));
+	*(struct SLICE__unregister_USCOREcomponentResponse*)p = *(struct SLICE__unregister_USCOREcomponentResponse*)q;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_SLICE__bind_USCOREto_USCOREpath(struct soap *soap, const struct SLICE__bind_USCOREto_USCOREpath *a)
 {
 	(void)soap; (void)a; /* appease -Wall -Werror */
@@ -9851,6 +12129,59 @@ SOAP_FMAC3 struct SOAP_ENV__Code ** SOAP_FMAC4 soap_in_PointerToSOAP_ENV__Code(s
 
 #endif
 
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap *soap, SLICE__CUTS_x002eComponent_USCORERegistration *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap *soap, SLICE__CUTS_x002eComponent_USCORERegistration *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerToSLICE__CUTS_x002eComponent_USCORERegistration);
+	if (soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap *soap, const char *tag, int id, SLICE__CUTS_x002eComponent_USCORERegistration *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap *soap, SLICE__CUTS_x002eComponent_USCORERegistration **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eComponent_USCORERegistration ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eComponent_USCORERegistration(struct soap *soap, const char *tag, SLICE__CUTS_x002eComponent_USCORERegistration **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (SLICE__CUTS_x002eComponent_USCORERegistration **)soap_malloc(soap, sizeof(SLICE__CUTS_x002eComponent_USCORERegistration *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (SLICE__CUTS_x002eComponent_USCORERegistration *)soap_instantiate_SLICE__CUTS_x002eComponent_USCORERegistration(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	a = (SLICE__CUTS_x002eComponent_USCORERegistration **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_SLICE__CUTS_x002eComponent_USCORERegistration, sizeof(SLICE__CUTS_x002eComponent_USCORERegistration), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
 SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToCUTS_x002e_USCORESE_USCOREPath_USCORESequence(struct soap *soap, CUTS_x002e_USCORESE_USCOREPath_USCORESequence *const*a)
 {
 	if (*a)
@@ -9951,6 +12282,112 @@ SOAP_FMAC3 SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo ** SOAP_FMAC4 soap_in_Po
 	}
 	else
 	{	a = (SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo, sizeof(SLICE__CUTS_x002eEvent_USCORETime_USCOREInfo), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap *soap, SLICE__CUTS_x002eRegistration_USCORELimit *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap *soap, SLICE__CUTS_x002eRegistration_USCORELimit *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCORELimit);
+	if (soap_out_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap *soap, const char *tag, int id, SLICE__CUTS_x002eRegistration_USCORELimit *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCORELimit ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap *soap, SLICE__CUTS_x002eRegistration_USCORELimit **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCORELimit ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eRegistration_USCORELimit(struct soap *soap, const char *tag, SLICE__CUTS_x002eRegistration_USCORELimit **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (SLICE__CUTS_x002eRegistration_USCORELimit **)soap_malloc(soap, sizeof(SLICE__CUTS_x002eRegistration_USCORELimit *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (SLICE__CUTS_x002eRegistration_USCORELimit *)soap_instantiate_SLICE__CUTS_x002eRegistration_USCORELimit(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	a = (SLICE__CUTS_x002eRegistration_USCORELimit **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCORELimit, sizeof(SLICE__CUTS_x002eRegistration_USCORELimit), 0);
+		if (soap->body && soap_element_end_in(soap, tag))
+			return NULL;
+	}
+	return a;
+}
+
+SOAP_FMAC3 void SOAP_FMAC4 soap_serialize_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap *soap, SLICE__CUTS_x002eRegistration_USCOREFailed *const*a)
+{
+	if (!soap_reference(soap, *a, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed))
+		(*a)->soap_serialize(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_put_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap *soap, SLICE__CUTS_x002eRegistration_USCOREFailed *const*a, const char *tag, const char *type)
+{
+	register int id = soap_embed(soap, (void*)a, NULL, 0, tag, SOAP_TYPE_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed);
+	if (soap_out_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, tag, id, a, type))
+		return soap->error;
+	return soap_putindependent(soap);
+}
+
+SOAP_FMAC3 int SOAP_FMAC4 soap_out_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap *soap, const char *tag, int id, SLICE__CUTS_x002eRegistration_USCOREFailed *const*a, const char *type)
+{
+	id = soap_element_id(soap, tag, id, *a, NULL, 0, type, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed);
+	if (id < 0)
+		return soap->error;
+	return (*a)->soap_out(soap, tag, id, type);
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCOREFailed ** SOAP_FMAC4 soap_get_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap *soap, SLICE__CUTS_x002eRegistration_USCOREFailed **p, const char *tag, const char *type)
+{
+	if ((p = soap_in_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(soap, tag, p, type)))
+		soap_getindependent(soap);
+	return p;
+}
+
+SOAP_FMAC3 SLICE__CUTS_x002eRegistration_USCOREFailed ** SOAP_FMAC4 soap_in_PointerToSLICE__CUTS_x002eRegistration_USCOREFailed(struct soap *soap, const char *tag, SLICE__CUTS_x002eRegistration_USCOREFailed **a, const char *type)
+{
+	if (soap_element_begin_in(soap, tag, 1, NULL))
+		return NULL;
+	if (!a)
+		if (!(a = (SLICE__CUTS_x002eRegistration_USCOREFailed **)soap_malloc(soap, sizeof(SLICE__CUTS_x002eRegistration_USCOREFailed *))))
+			return NULL;
+	*a = NULL;
+	if (!soap->null && *soap->href != '#')
+	{	soap_revert(soap);
+		if (!(*a = (SLICE__CUTS_x002eRegistration_USCOREFailed *)soap_instantiate_SLICE__CUTS_x002eRegistration_USCOREFailed(soap, -1, soap->type, soap->arrayType, NULL)))
+			return NULL;
+		(*a)->soap_default(soap);
+		if (!(*a)->soap_in(soap, tag, NULL))
+			return NULL;
+	}
+	else
+	{	a = (SLICE__CUTS_x002eRegistration_USCOREFailed **)soap_id_lookup(soap, soap->href, (void**)a, SOAP_TYPE_SLICE__CUTS_x002eRegistration_USCOREFailed, sizeof(SLICE__CUTS_x002eRegistration_USCOREFailed), 0);
 		if (soap->body && soap_element_end_in(soap, tag))
 			return NULL;
 	}
