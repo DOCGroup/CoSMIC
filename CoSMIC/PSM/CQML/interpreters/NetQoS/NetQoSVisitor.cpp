@@ -106,7 +106,7 @@ namespace CQML
       }
     else
       {
-        throw(std::exception());
+		  throw (udm_exception ("NetQoSVisitor::pop(): Internal stack error."));
       }
   }
 
@@ -187,13 +187,26 @@ namespace CQML
         }
      }
 
-  QoSCharacteristic NetQoSVisitor::recursive_dereference (const QoSCharacteristic &qos_char)
+  QoSCharacteristic NetQoSVisitor::recursive_dereference (const QoSCharacteristic &qos_char, int depth)
   {
-      if (Udm::IsDerivedFrom (qos_char.type(), QoSCharRef::meta))
+	  // CQML's generic QoSModeling makes cycles of references possible including
+	  // self-referencing. This is actually unfortunate but I am living it for now!
+	  // Therefore, a sanity-check is necessary below.
+	  const int MAX_DEPTH = 100;
+	  if (depth == MAX_DEPTH) 
+		// If recursion goes too too deep then throw a udm_exception.
+		throw udm_exception ("NetQoSVisitor::recursive_dereference(): To long a chain of references! Check for cyclic references.");
+
+	  if (Udm::IsDerivedFrom (qos_char.type(), QoSCharRef::meta))
 	  {
 		  QoSCharRef qos_char_ref = QoSCharRef::Cast (qos_char);
 		  QoSCharacteristic qc = qos_char_ref.ref();
-		  return recursive_dereference (qc);
+		  // Self-refereing references are also possible in CQML.
+		  // This is actually unfortunate but I am living it for now!
+		  // Therefore, a sanity-check is necessary below.
+		  if (qc == qos_char_ref)
+			  throw udm_exception ("NetQoSVisitor::recursive_dereference(): Self-refering reference was detected!");
+		  return recursive_dereference (qc, depth+1);
 	  }
 	  else
 		  return qos_char;

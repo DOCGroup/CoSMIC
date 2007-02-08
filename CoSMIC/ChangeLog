@@ -1,3 +1,10 @@
+Thu Feb  8 05:44:05 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Made more robust. Added meaningful error messages.
+
 Wed Feb  7 22:43:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:

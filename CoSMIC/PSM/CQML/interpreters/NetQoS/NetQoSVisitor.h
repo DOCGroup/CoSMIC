@@ -105,7 +105,7 @@ namespace CQML
                                        QoSConnectorRet (ConnectionType::*connector_getter)() const,
                                        Port generic_port);
     void conn_qoschar_visit (const ConnectionQoSCharacteristic &);
-	QoSCharacteristic recursive_dereference (const QoSCharacteristic &qos_char);
+	QoSCharacteristic recursive_dereference (const QoSCharacteristic &qos_char, int depth = 0);
 
   private:
 
