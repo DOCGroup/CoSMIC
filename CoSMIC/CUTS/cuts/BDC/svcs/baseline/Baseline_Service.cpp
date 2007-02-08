@@ -5,11 +5,13 @@
 #include "cuts/Port_Metric.h"
 #include "cuts/Component_Info.h"
 #include "cuts/Host_Table_Entry.h"
+#include "cuts/Auto_Functor_T.h"
 #include "cuts/BDC/BDC_Service_Manager.h"
 #include "cuts/utils/ODBC/ODBC_Connection.h"
 #include "cuts/utils/ODBC/ODBC_Query.h"
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
+#include "ace/Auto_Functor.h"
 #include "ace/Get_Opt.h"
 
 // Helper macro for writing verbose messages.
@@ -123,17 +125,9 @@ parse_args (int argc, ACE_TCHAR * argv [])
 //
 int CUTS_Baseline_Service::handle_deactivate (void)
 {
-  if (this->warmup_count_ > 0)
-  {
-    // Notify the user that the test is stopping before the
-    // warmup phase is complete.
-    ACE_ERROR_RETURN ((LM_WARNING,
-                       "*** warn [baseline]: deactivating test before "
-                       "completing warmup\n"),
-                       0);
-  }
-
-  if (this->inst_id_ != -1 && this->host_id_ != -1)
+  if (this->warmup_count_ == 0 &&
+      this->inst_id_ != -1 &&
+      this->host_id_ != -1)
   {
     // Open a connection to the database. We only need to continue
     // if we have established a connection.
@@ -158,15 +152,19 @@ int CUTS_Baseline_Service::handle_deactivate (void)
         "UPDATE baseline SET metric_count = ?, metric_total = ? "
         "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
 
+      int retval = 0;
       try
       {
         long count,     /* number of events */
-             total;     /* total execution time */
+              total;    /* total execution time */
 
         char inport  [MAX_VARCHAR_LENGTH],    /* name of input port */
-             outport [MAX_VARCHAR_LENGTH];    /* name of output port */
+              outport [MAX_VARCHAR_LENGTH];   /* name of output port */
 
-        // Create the query.
+        // Create the query. We are using an auto functor since the
+        // allocation occurs in another module/address space. Invoking
+        // the destructor manually can cause problems. We therefore
+        // need to call the release method, but do it automatically.
         ACE_Auto_Ptr <ODBC_Query> insert (this->create_query ());
         ACE_Auto_Ptr <ODBC_Query> update (this->create_query ());
 
@@ -196,8 +194,8 @@ int CUTS_Baseline_Service::handle_deactivate (void)
         const CUTS_Port_Metric_Map & map = component_metric->port_metrics ();
 
         for (CUTS_Port_Metric_Map::const_iterator port = map.begin ();
-             port != map.end ();
-             port ++)
+              port != map.end ();
+              port ++)
         {
           // Copy the <inport> to the parameter.
           ACE_OS::strcpy (inport, port->first.c_str ());
@@ -241,19 +239,21 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                 }
                 catch (const CUTS_DB_Exception & ex)
                 {
-                  ACE_ERROR ((LM_ERROR,
-                              "*** error [baseline]: %s\n"
-                              "*** error [baseline]: failed to update baseline "
-                              "metric\n",
-                              ex.message ().c_str ()));
+                  ACE_ERROR ((
+                    LM_ERROR,
+                    "*** error [baseline]: %s\n"
+                    "*** error [baseline]: failed to update baseline "
+                    "metric\n",
+                    ex.message ().c_str ()));
                 }
                 catch (...)
                 {
-                  ACE_ERROR ((LM_ERROR,
-                              "*** error [baseline]: caught unknown exception\n"
-                              "*** error [baseline]: failed to update baseline "
-                              "metric\n",
-                              ex.message ().c_str ()));
+                  ACE_ERROR ((
+                    LM_ERROR,
+                    "*** error [baseline]: caught unknown exception\n"
+                    "*** error [baseline]: failed to update baseline "
+                    "metric\n",
+                    ex.message ().c_str ()));
                 }
               }
             }
@@ -269,29 +269,28 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                               endpoint->second->worse_time ()));
           }
         }
-
-        // This is the success exit point. We are going to disconnect
-        // from the database and return a success value.
-        this->disconnect ();
-        return 0;
       }
       catch (CUTS_DB_Exception & ex)
       {
         ACE_ERROR ((LM_ERROR,
-                    "*** error [baseline]: %s\n"
-                    "*** error [baseline]: aborting baseline metric logging\n",
+                    "*** error [baseline]: %s\n",
                     ex.message ().c_str ()));
       }
       catch (...)
       {
         ACE_ERROR ((LM_ERROR,
-                    "*** error [baseline]: caught unknown exception\n"
-                    "*** error [baseline]: aborting baseline metric logging\n"));
+                    "*** error [baseline]: caught unknown exception\n"));
+        retval = 1;
       }
 
-      // Disconnect from the database, but only this time we are
-      // doing and returning a failed value.
+      // This is the success exit point. We are going to disconnect
+      // from the database and return a success value.
       this->disconnect ();
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [baseline]: closed connection to %s\n",
+                        this->server_.c_str ()));
+
+      return retval;
     }
     else
     {
@@ -305,9 +304,29 @@ int CUTS_Baseline_Service::handle_deactivate (void)
   }
   else
   {
-    ACE_DEBUG ((LM_ERROR,
-                "*** info [baseline]: not saving baseline metrics since "
-                "initialization failed\n"));
+    // Ok, so there was some error and we need to determine which
+    // error it was. It could be multiple errors. Either way, we
+    // need to display all the possible errors.
+    if (this->warmup_count_ != 0)
+    {
+      ACE_DEBUG ((LM_WARNING,
+                  "*** warn [baseline]: deactivating test before completing "
+                  "warmup\n"));
+    }
+
+    if (this->inst_id_ == -1)
+    {
+      ACE_DEBUG ((LM_WARNING,
+                  "*** warn [baseline]: not saving baseline metrics since "
+                  "failed to initialize instance id\n"));
+    }
+
+    if (this->host_id_ == -1)
+    {
+      ACE_DEBUG ((LM_WARNING,
+                  "*** warn [baseline]: not saving baseline metrics since "
+                  "failed to initialize host id\n"));
+    }
   }
 
   return 1;

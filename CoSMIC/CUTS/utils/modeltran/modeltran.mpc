@@ -9,4 +9,8 @@ project (gems2picml) : taoexe, cutsexe {
   Source_Files {
     gems2picml.cpp
   }
+
+  Header_Files {
+    G2P_Options.h
+  }
 }

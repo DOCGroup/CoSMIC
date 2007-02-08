@@ -1,17 +1,49 @@
+Thu Feb  8 01:48:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Auto_Functor_T.h:
+        * cuts/Auto_Functor_T.inl:
+        * cuts/Auto_Functor_T.cpp:
+
+          Implemented an auto functor class that will invoke
+          a method of the stored pointer on destruction.
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          Updated the verbose messages.
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp (handle_deactivate):
+
+          Fixed bug that was caused by closing the connection
+          before deallocating database queries.
+
+        * cuts/CUTS.mpc (CUTS):
+
+          Added the CUTS_Auto_Functor class.
+
+        * utils/modeltran/modeltran.mpc:
+        * utils/modeltran/G2P_Options.h:
+
+          Contains class that holds command-line options for
+          gems2picml program.
+
+        * utils/modeltran/gems2picml.cpp:
+
+          Added initial support for command-line options.
+
 Tue Feb  6 20:05:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
-        
+
           Include missing header file.
 
         * cuts/utils/ODBC/ODBC.h:
-        
+
           Removed CUTS_HAS_ODBC preprocessor definition since we use features
           to validate requirements.
 
         * etc/config/odbc.mpb:
-        
-          Removed the CUTS_HAS_ODBC marco specficiation since it is now controlled 
+
+          Removed the CUTS_HAS_ODBC marco specficiation since it is now controlled
           using features.
 
 Tue Feb  6 18:34:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>

@@ -146,6 +146,11 @@ int CUTS_GEMS_Service::handle_activate (void)
                          "*** error [GEMS]: failed to build GEMS model\n"),
                          -1);
     }
+    else
+    {
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [GEMS]: successfully built GEMS model\n"));
+    }
 
     // Let's extract all the components and populate the node
     // map. We need this so we can push the metrics back into
@@ -456,9 +461,12 @@ handle_component (const CUTS_Component_Info & info)
   {
     // Save the id in the existing element.
     VERBOSE_MESSAGE ((LM_INFO,
-                      "*** info [GEMS]: caching %s with id %d\n",
+                      "*** info [GEMS]: caching %s with id %d using "
+                      "host info %s (%s)\n",
                       info.inst_.c_str (),
-                      info.uid_));
+                      info.uid_,
+                      info.host_info_->hostname_.c_str (),
+                      info.host_info_->ipaddr_.c_str ()));
 
     iter->second.first = info.uid_;
   }
