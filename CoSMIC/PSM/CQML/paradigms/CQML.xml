@@ -125,7 +125,7 @@
 	</Association>
 	<Association nonpersistent="false">
 		<AssociationRole _id="id46b" max="-1" min="0" name="referedbyInitiatorRoleRef" target="id5d" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id46c" max="1" min="0" name="ref" target="id66" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id46c" max="1" min="0" name="ref" target="id6a" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association _id="id46d" name="OnInterfaceConn" assocClass="id4d" nonpersistent="false">
 		<AssociationRole _id="id46e" max="-1" min="0" name="srcOnInterfaceConn" target="id5c" isPrimary="false" isNavigable="true"/>
@@ -135,25 +135,25 @@
 		<AssociationRole _id="id471" max="-1" min="0" name="srcOperationInvokeConn" target="id5c" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id472" max="1" min="0" name="dstOperationInvokeConn" target="id54" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id473" name="RightsAssignmentConn" assocClass="id6d" nonpersistent="false">
-		<AssociationRole _id="id474" max="-1" min="0" name="srcRightsAssignmentConn" target="id66" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id475" max="1" min="0" name="dstRightsAssignmentConn" target="id63" isPrimary="false" isNavigable="true"/>
-	</Association>
-	<Association _id="id476" name="RoleAssignmentConn" assocClass="id6b" nonpersistent="false">
-		<AssociationRole _id="id477" max="-1" min="0" name="srcRoleAssignmentConn" target="id62" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id478" max="-1" min="0" name="dstRoleAssignmentConn" target="id66" isPrimary="false" isNavigable="true"/>
+	<Association nonpersistent="false">
+		<AssociationRole _id="id473" max="-1" min="0" name="referedbyAssemblyRuleRef" target="id62" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id474" max="1" min="0" name="ref" target="id52" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association nonpersistent="false">
-		<AssociationRole _id="id479" max="-1" min="0" name="referedbyAssemblyRuleRef" target="id70" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id47a" max="1" min="0" name="ref" target="id52" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id475" max="-1" min="0" name="referedbyPortRuleRef" target="id63" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id476" max="1" min="0" name="ref" target="id5c" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association nonpersistent="false">
-		<AssociationRole _id="id47b" max="-1" min="0" name="referedbyPortRuleRef" target="id71" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id47c" max="1" min="0" name="ref" target="id5c" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id477" max="-1" min="0" name="referedbyComponentRuleRef" target="id64" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id478" max="1" min="0" name="ref" target="id4b" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association nonpersistent="false">
-		<AssociationRole _id="id47d" max="-1" min="0" name="referedbyComponentRuleRef" target="id72" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id47e" max="1" min="0" name="ref" target="id4b" isPrimary="false" isNavigable="true"/>
+	<Association _id="id479" name="RightsAssignmentConn" assocClass="id71" nonpersistent="false">
+		<AssociationRole _id="id47a" max="-1" min="0" name="srcRightsAssignmentConn" target="id6a" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id47b" max="1" min="0" name="dstRightsAssignmentConn" target="id67" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Association _id="id47c" name="RoleAssignmentConn" assocClass="id6f" nonpersistent="false">
+		<AssociationRole _id="id47d" max="-1" min="0" name="srcRoleAssignmentConn" target="id66" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id47e" max="-1" min="0" name="dstRoleAssignmentConn" target="id6a" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association _id="id47f" name="AttributeMappingDelegate" assocClass="id73" nonpersistent="false">
 		<AssociationRole _id="id480" max="1" min="0" name="srcAttributeMappingDelegate" target="id75" isPrimary="false" isNavigable="true"/>
@@ -387,29 +387,29 @@
 		<AssociationRole _id="id516" max="-1" min="0" name="referedbyProvidedRequestPort" target="ide5" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id517" max="1" min="0" name="ref" target="ided" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id518" name="ProvidedRequestQoS" assocClass="id1d" nonpersistent="false">
-		<AssociationRole _id="id519" max="1" min="0" name="srcProvidedRequestQoS" target="ide5" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id51a" max="-1" min="0" name="dstProvidedRequestQoS" target="id16" isPrimary="false" isNavigable="true"/>
+	<Association _id="id518" name="FacetDelegate" assocClass="id7c" nonpersistent="false">
+		<AssociationRole _id="id519" max="-1" min="0" name="srcFacetDelegate" target="ide5" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id51a" max="-1" min="0" name="dstFacetDelegate" target="ide5" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id51b" name="FacetDelegate" assocClass="id7c" nonpersistent="false">
-		<AssociationRole _id="id51c" max="-1" min="0" name="srcFacetDelegate" target="ide5" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id51d" max="-1" min="0" name="dstFacetDelegate" target="ide5" isPrimary="false" isNavigable="true"/>
+	<Association _id="id51b" name="ProvidedRequestQoS" assocClass="id1d" nonpersistent="false">
+		<AssociationRole _id="id51c" max="1" min="0" name="srcProvidedRequestQoS" target="ide5" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id51d" max="-1" min="0" name="dstProvidedRequestQoS" target="id16" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association nonpersistent="false">
 		<AssociationRole _id="id51e" max="-1" min="0" name="referedbyRequiredRequestPort" target="ide7" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id51f" max="1" min="0" name="ref" target="ided" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id520" name="RecepInvoke" assocClass="id11" nonpersistent="false">
-		<AssociationRole _id="id521" max="1" min="0" name="srcRecepInvoke" target="ide7" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id522" max="-1" min="0" name="dstRecepInvoke" target="id13" isPrimary="false" isNavigable="true"/>
+	<Association _id="id520" name="ReceptacleDelegate" assocClass="id7d" nonpersistent="false">
+		<AssociationRole _id="id521" max="-1" min="0" name="srcReceptacleDelegate" target="ide7" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id522" max="-1" min="0" name="dstReceptacleDelegate" target="ide7" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id523" name="ReceptacleDelegate" assocClass="id7d" nonpersistent="false">
-		<AssociationRole _id="id524" max="-1" min="0" name="srcReceptacleDelegate" target="ide7" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id525" max="-1" min="0" name="dstReceptacleDelegate" target="ide7" isPrimary="false" isNavigable="true"/>
+	<Association _id="id523" name="invoke" assocClass="id85" nonpersistent="false">
+		<AssociationRole _id="id524" max="-1" min="0" name="srcinvoke" target="ide7" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id525" max="-1" min="0" name="dstinvoke" target="ide5" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id526" name="invoke" assocClass="id85" nonpersistent="false">
-		<AssociationRole _id="id527" max="-1" min="0" name="srcinvoke" target="ide7" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id528" max="-1" min="0" name="dstinvoke" target="ide5" isPrimary="false" isNavigable="true"/>
+	<Association _id="id526" name="RecepInvoke" assocClass="id11" nonpersistent="false">
+		<AssociationRole _id="id527" max="1" min="0" name="srcRecepInvoke" target="ide7" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id528" max="-1" min="0" name="dstRecepInvoke" target="id13" isPrimary="false" isNavigable="true"/>
 	</Association>
 	<Association _id="id529" name="PortQoS" assocClass="id15" nonpersistent="false">
 		<AssociationRole _id="id52a" max="-1" min="0" name="srcPortQoS" target="id87" isPrimary="false" isNavigable="true"/>
@@ -491,7 +491,7 @@
 		<AssociationRole _id="id55b" max="-1" min="0" name="referedbyInherits" target="id115" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id55c" max="1" min="0" name="ref" target="iddc" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id55d" name="InterfaceClassificationConn" assocClass="id6c" nonpersistent="false">
+	<Association _id="id55d" name="InterfaceClassificationConn" assocClass="id70" nonpersistent="false">
 		<AssociationRole _id="id55e" max="-1" min="0" name="srcInterfaceClassificationConn" target="id99" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id55f" max="1" min="0" name="dstInterfaceClassificationConn" target="id5b" isPrimary="false" isNavigable="true"/>
 	</Association>
@@ -503,7 +503,7 @@
 		<AssociationRole _id="id563" max="-1" min="0" name="referedbySharedComponentReference" target="id8" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id564" max="1" min="0" name="ref" target="id6" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id565" name="OperationClassificationConn" assocClass="id67" nonpersistent="false">
+	<Association _id="id565" name="OperationClassificationConn" assocClass="id6b" nonpersistent="false">
 		<AssociationRole _id="id566" max="-1" min="0" name="srcOperationClassificationConn" target="id9a" isPrimary="false" isNavigable="true"/>
 		<AssociationRole _id="id567" max="1" min="0" name="dstOperationClassificationConn" target="id5b" isPrimary="false" isNavigable="true"/>
 	</Association>
@@ -651,24 +651,24 @@
 	<Class _id="ida" name="ConnectionQoSCharacteristic" subTypes="id9 idc idd" baseTypes="idb" isAbstract="true" stereotype="FCO" associationRoles="id424"/>
 	<Class _id="ide" name="EventSourcePublish" baseTypes="idf" childRoles="id310" isAbstract="false" stereotype="Connection" association="id4f9"/>
 	<Class _id="id10" name="FacetInvoke" baseTypes="idf" childRoles="id312" isAbstract="false" stereotype="Connection" association="id41c"/>
-	<Class _id="id11" name="RecepInvoke" baseTypes="idf" childRoles="id30e" isAbstract="false" stereotype="Connection" association="id520"/>
+	<Class _id="id11" name="RecepInvoke" baseTypes="idf" childRoles="id30e" isAbstract="false" stereotype="Connection" association="id526"/>
 	<Class _id="id12" name="EventSinkPublish" baseTypes="idf" childRoles="id314" isAbstract="false" stereotype="Connection" association="id41f"/>
-	<Class _id="id13" name="QoSConnector" baseTypes="idf" childRoles="id316" isAbstract="false" stereotype="Atom" associationRoles="id41d id420 id423 id4fb id522"/>
+	<Class _id="id13" name="QoSConnector" baseTypes="idf" childRoles="id316" isAbstract="false" stereotype="Atom" associationRoles="id41d id420 id423 id4fb id528"/>
 	<Class _id="id14" name="QoSReq" baseTypes="idf" childRoles="id318" isAbstract="false" stereotype="Connection" association="id422"/>
 	<Class _id="id15" name="PortQoS" baseTypes="idf" childRoles="id31a" isAbstract="false" stereotype="Connection" association="id529"/>
 	<Class _id="idb" name="QoSCharacteristic" subTypes="ida id17 id18 id19" baseTypes="id16" isAbstract="true" stereotype="FCO" associationRoles="id426"/>
 	<Class _id="id19" name="PortQoSCharacteristic" subTypes="idc id1a" baseTypes="idb" childRoles="id3c6" isAbstract="true" stereotype="FCO"/>
-	<Class _id="id16" name="QoSCharacteristicBase" subTypes="idb" baseTypes="idf" childRoles="id322" isAbstract="true" stereotype="FCO" associationRoles="id429 id42c id51a id52b"/>
+	<Class _id="id16" name="QoSCharacteristicBase" subTypes="idb" baseTypes="idf" childRoles="id322" isAbstract="true" stereotype="FCO" associationRoles="id429 id42c id51d id52b"/>
 	<Class _id="idc" name="QoSCharRef" baseTypes="ida id17 id18 id19" isAbstract="false" stereotype="Reference" associationRoles="id425"/>
 	<Class _id="id1b" name="ComponentQoS" baseTypes="idf" childRoles="id31e" isAbstract="false" stereotype="Connection" association="id427"/>
 	<Class _id="id1c" name="ComponentAssemblyQoS" baseTypes="idf" childRoles="id31c id3c2" isAbstract="false" stereotype="Connection" association="id42a"/>
-	<Class _id="id1d" name="ProvidedRequestQoS" baseTypes="idf" childRoles="id320" isAbstract="false" stereotype="Connection" association="id518"/>
+	<Class _id="id1d" name="ProvidedRequestQoS" baseTypes="idf" childRoles="id320" isAbstract="false" stereotype="Connection" association="id51b"/>
 	<Class _id="id1e" name="ComponentBase" subTypes="id6 id1f" baseTypes="idf" isAbstract="true" stereotype="FCO" associationRoles="id428"/>
 	<Class _id="id20" name="ComponentAssemblyBase" subTypes="id7 id21" baseTypes="idf" isAbstract="true" stereotype="FCO" associationRoles="id42b"/>
 	<Class _id="id22" name="DeploymentPlanQoS" subTypes="id23" baseTypes="idf" childRoles="id354" isAbstract="true" stereotype="FCO"/>
 	<Class _id="id17" name="ComponentAssemblyQoSCharacteristic" subTypes="idc id24 id25" baseTypes="idb" childRoles="id3c4" isAbstract="true" stereotype="FCO"/>
-	<Class _id="id18" name="ComponentQoSCharacteristic" subTypes="idc id24 id26 id27" baseTypes="idb" isAbstract="true" stereotype="FCO"/>
-	<Class _id="id24" name="FailOverUnit" baseTypes="id17 id18" isAbstract="false" stereotype="Model" parentRoles="id169 id16b id16d">
+	<Class _id="id18" name="ComponentQoSCharacteristic" subTypes="idc id25 id26 id27" baseTypes="idb" isAbstract="true" stereotype="FCO"/>
+	<Class _id="id25" name="FailOverUnit" baseTypes="id17 id18" isAbstract="false" stereotype="Model" parentRoles="id169 id16b id16d">
 		<Attribute max="1" min="1" name="Replica" type="Integer" ordered="false" defvalue="0;" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Class _id="id28" name="FTDeployDepends" baseTypes="idf" childRoles="id17c" isAbstract="false" stereotype="Connection" association="id437"/>
@@ -771,13 +771,13 @@
 		<Attribute max="1" min="1" name="ECProxyPushConsumerCollectionIterator" type="String" ordered="false" defvalue="immediate (default);" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Class _id="id4a" name="AttributeManipulateConn" baseTypes="idf" childRoles="id1c2" isAbstract="false" stereotype="Connection" association="id450"/>
-	<Class _id="id4b" name="ComponentRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id451 id454 id464 id47e"/>
+	<Class _id="id4b" name="ComponentRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id451 id454 id464 id478"/>
 	<Class _id="id4d" name="OnInterfaceConn" baseTypes="idf" childRoles="id1ac" isAbstract="false" stereotype="Connection" association="id46d"/>
 	<Class _id="id4e" name="SecuredPathConn" baseTypes="idf" childRoles="id1bc" isAbstract="false" stereotype="Connection" association="id45a"/>
 	<Class _id="id4f" name="AssemblyAccessConn" baseTypes="idf" childRoles="id1ca" isAbstract="false" stereotype="Connection" association="id468"/>
 	<Class _id="id50" name="PathRef" baseTypes="idf" childRoles="id1c6" isAbstract="false" stereotype="Reference" associationRoles="id456 id45c"/>
 	<Class _id="id51" name="TargetObjectRef" baseTypes="idf" childRoles="id1b4" isAbstract="false" stereotype="Reference" associationRoles="id458 id46f"/>
-	<Class _id="id52" name="AssemblyRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id45b id45e id46a id47a"/>
+	<Class _id="id52" name="AssemblyRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id45b id45e id46a id474"/>
 	<Class _id="id53" name="OperationSet" baseTypes="id54" isAbstract="false" stereotype="Model" parentRoles="id1a7"/>
 	<Class _id="id55" name="ObjectAccessConn" baseTypes="idf" childRoles="id1ae" isAbstract="false" stereotype="Connection" association="id465"/>
 	<Class _id="id56" name="AttributeRef" baseTypes="idf" childRoles="id1c4" isAbstract="false" stereotype="Reference" associationRoles="id452 id460"/>
@@ -789,38 +789,13 @@
 		<Attribute max="1" min="1" name="allow" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Class _id="id5d" name="InitiatorRoleRef" baseTypes="idf" childRoles="id1b6" isAbstract="false" stereotype="Reference" associationRoles="id463 id466 id469 id46b"/>
-	<Class _id="id5c" name="PortRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id467 id46e id471 id47c"/>
+	<Class _id="id5c" name="PortRule" baseTypes="id4c" isAbstract="false" stereotype="Atom" associationRoles="id467 id46e id471 id476"/>
 	<Class _id="id5e" name="OnAssemblyConn" baseTypes="idf" childRoles="id1b0" isAbstract="false" stereotype="Connection" association="id45d"/>
-	<Class _id="id5f" name="PolicySet" baseTypes="idf" childRoles="id1dc" isAbstract="false" stereotype="Model" parentRoles="id1a9"/>
+	<Class _id="id5f" name="PolicySet" baseTypes="idf" childRoles="id1e2" isAbstract="false" stereotype="Model" parentRoles="id1a9"/>
 	<Class _id="id60" name="Policy" baseTypes="idf" childRoles="id1a8" isAbstract="false" stereotype="Model" parentRoles="id1ab id1ad id1af id1b1 id1b3 id1b5 id1b7 id1b9 id1bb id1bd id1bf id1c1 id1c3 id1c5 id1c7 id1c9 id1cb"/>
-	<Class _id="id61" name="Group" baseTypes="id62" isAbstract="false" stereotype="Model" parentRoles="id1cd"/>
-	<Class _id="id63" name="GrantedRights" baseTypes="id64" childRoles="id1d8" isAbstract="false" stereotype="Atom" associationRoles="id475"/>
-	<Class _id="id65" name="RBAC" baseTypes="idf" childRoles="id1da" isAbstract="false" stereotype="Model" parentRoles="id1cf id1d1 id1d3 id1d5 id1d7 id1d9"/>
-	<Class _id="id66" name="Role" baseTypes="idf" childRoles="id1d2 id1e0" isAbstract="false" stereotype="Atom" associationRoles="id46c id474 id478"/>
-	<Class _id="id67" name="OperationClassificationConn" baseTypes="idf" childRoles="id340" isAbstract="false" stereotype="Connection" association="id565"/>
-	<Class _id="id64" name="Rights" subTypes="id5b id63" baseTypes="idf" isAbstract="true" stereotype="FCO">
-		<Attribute max="1" min="1" name="family" type="String" ordered="false" defvalue="corba;" registry="false" visibility="public" nonpersistent="false"/>
-		<Attribute max="1" min="1" name="get" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
-		<Attribute max="1" min="1" name="set" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
-		<Attribute max="1" min="1" name="use" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
-		<Attribute max="1" min="1" name="manage" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="id5b" name="RequiredRights" baseTypes="id54 id64" childRoles="id21a id33e" isAbstract="false" stereotype="Atom" associationRoles="id55f id567">
-		<Attribute max="1" min="1" name="combinator" type="String" ordered="false" defvalue="All;" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="id68" name="Security" baseTypes="idf" childRoles="id3f7" isAbstract="false" stereotype="Model" parentRoles="id1db id1dd"/>
-	<Class _id="id69" name="User" baseTypes="id62" isAbstract="false" stereotype="Atom"/>
-	<Class _id="id6a" name="SecurityDomain" baseTypes="idf" childRoles="id1ce" isAbstract="false" stereotype="Model" parentRoles="id1df"/>
-	<Class _id="id6b" name="RoleAssignmentConn" baseTypes="idf" childRoles="id1d0" isAbstract="false" stereotype="Connection" association="id476"/>
-	<Class _id="id6c" name="InterfaceClassificationConn" baseTypes="idf" childRoles="id218" isAbstract="false" stereotype="Connection" association="id55d"/>
-	<Class _id="id6d" name="RightsAssignmentConn" baseTypes="idf" childRoles="id1d6" isAbstract="false" stereotype="Connection" association="id473"/>
-	<Class _id="id6e" name="Realm" baseTypes="idf" childRoles="id1de" isAbstract="false" stereotype="Model" parentRoles="id1e1"/>
-	<Class _id="id62" name="Subject" subTypes="id61 id69" baseTypes="idf" childRoles="id1cc id1d4" isAbstract="true" stereotype="FCO" associationRoles="id477">
-		<Attribute max="1" min="1" name="principal" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="id1a" name="PortSecurityQoS" baseTypes="id19 id6f" isAbstract="false" stereotype="Model"/>
-	<Class _id="id25" name="ComponentAssemblySecurityQoS" baseTypes="id17 id6f" isAbstract="false" stereotype="Model" parentRoles="id1e3"/>
-	<Class _id="id6f" name="SecurityQoS" subTypes="id1a id25 id27" baseTypes="idf" isAbstract="true" stereotype="Model" parentRoles="id1e5">
+	<Class _id="id1a" name="PortSecurityQoS" baseTypes="id19 id61" isAbstract="false" stereotype="Model"/>
+	<Class _id="id24" name="ComponentAssemblySecurityQoS" baseTypes="id17 id61" isAbstract="false" stereotype="Model" parentRoles="id1cd"/>
+	<Class _id="id61" name="SecurityQoS" subTypes="id1a id24 id27" baseTypes="idf" isAbstract="true" stereotype="Model" parentRoles="id1cf">
 		<Attribute max="1" min="1" name="Authentication" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="IntegrityLevel" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="AuditLevel" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
@@ -830,10 +805,35 @@
 		<Attribute max="1" min="1" name="SecurityPolicy" type="String" ordered="false" defvalue="SecureInvocationPolicy;" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="DelegationPolicy" type="String" ordered="false" defvalue="None;" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
-	<Class _id="id70" name="AssemblyRuleRef" baseTypes="idf" childRoles="id1e2" isAbstract="false" stereotype="Reference" associationRoles="id479"/>
-	<Class _id="id71" name="PortRuleRef" baseTypes="idf" childRoles="id1e4" isAbstract="false" stereotype="Reference" associationRoles="id47b"/>
-	<Class _id="id27" name="ComponentSecurityQoS" baseTypes="id18 id6f" isAbstract="false" stereotype="Model" parentRoles="id1e7"/>
-	<Class _id="id72" name="ComponentRuleRef" baseTypes="idf" childRoles="id1e6" isAbstract="false" stereotype="Reference" associationRoles="id47d"/>
+	<Class _id="id62" name="AssemblyRuleRef" baseTypes="idf" childRoles="id1cc" isAbstract="false" stereotype="Reference" associationRoles="id473"/>
+	<Class _id="id63" name="PortRuleRef" baseTypes="idf" childRoles="id1ce" isAbstract="false" stereotype="Reference" associationRoles="id475"/>
+	<Class _id="id27" name="ComponentSecurityQoS" baseTypes="id18 id61" isAbstract="false" stereotype="Model" parentRoles="id1d1"/>
+	<Class _id="id64" name="ComponentRuleRef" baseTypes="idf" childRoles="id1d0" isAbstract="false" stereotype="Reference" associationRoles="id477"/>
+	<Class _id="id65" name="Group" baseTypes="id66" isAbstract="false" stereotype="Model" parentRoles="id1d3"/>
+	<Class _id="id67" name="GrantedRights" baseTypes="id68" childRoles="id1de" isAbstract="false" stereotype="Atom" associationRoles="id47b"/>
+	<Class _id="id69" name="RBAC" baseTypes="idf" childRoles="id1e0" isAbstract="false" stereotype="Model" parentRoles="id1d5 id1d7 id1d9 id1db id1dd id1df"/>
+	<Class _id="id6a" name="Role" baseTypes="idf" childRoles="id1d8 id1e6" isAbstract="false" stereotype="Atom" associationRoles="id46c id47a id47e"/>
+	<Class _id="id6b" name="OperationClassificationConn" baseTypes="idf" childRoles="id340" isAbstract="false" stereotype="Connection" association="id565"/>
+	<Class _id="id68" name="Rights" subTypes="id5b id67" baseTypes="idf" isAbstract="true" stereotype="FCO">
+		<Attribute max="1" min="1" name="family" type="String" ordered="false" defvalue="corba;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="get" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="set" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="use" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="manage" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id5b" name="RequiredRights" baseTypes="id54 id68" childRoles="id21a id33e" isAbstract="false" stereotype="Atom" associationRoles="id55f id567">
+		<Attribute max="1" min="1" name="combinator" type="String" ordered="false" defvalue="All;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id6c" name="Security" baseTypes="idf" childRoles="id3f7" isAbstract="false" stereotype="Model" parentRoles="id1e1 id1e3"/>
+	<Class _id="id6d" name="User" baseTypes="id66" isAbstract="false" stereotype="Atom"/>
+	<Class _id="id6e" name="SecurityDomain" baseTypes="idf" childRoles="id1d4" isAbstract="false" stereotype="Model" parentRoles="id1e5"/>
+	<Class _id="id6f" name="RoleAssignmentConn" baseTypes="idf" childRoles="id1d6" isAbstract="false" stereotype="Connection" association="id47c"/>
+	<Class _id="id70" name="InterfaceClassificationConn" baseTypes="idf" childRoles="id218" isAbstract="false" stereotype="Connection" association="id55d"/>
+	<Class _id="id71" name="RightsAssignmentConn" baseTypes="idf" childRoles="id1dc" isAbstract="false" stereotype="Connection" association="id479"/>
+	<Class _id="id72" name="Realm" baseTypes="idf" childRoles="id1e4" isAbstract="false" stereotype="Model" parentRoles="id1e7"/>
+	<Class _id="id66" name="Subject" subTypes="id65 id6d" baseTypes="idf" childRoles="id1d2 id1da" isAbstract="true" stereotype="FCO" associationRoles="id47d">
+		<Attribute max="1" min="1" name="principal" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
 	<Class _id="id73" name="AttributeMappingDelegate" baseTypes="idf" childRoles="id2d8" isAbstract="false" stereotype="Connection" association="id47f"/>
 	<Class _id="id74" name="AttributeMappingValue" baseTypes="idf" childRoles="id2e2" isAbstract="false" stereotype="Connection" association="id482"/>
 	<Class _id="id75" name="AttributeMapping" baseTypes="idf" childRoles="id2d4" isAbstract="false" stereotype="Reference" associationRoles="id480 id481 id483 id486 id488"/>
@@ -845,8 +845,8 @@
 	</Class>
 	<Class _id="id7a" name="EventSinkDelegate" baseTypes="idf" childRoles="id2f4" isAbstract="false" stereotype="Connection" association="id50a"/>
 	<Class _id="id7b" name="EventSourceDelegate" baseTypes="idf" childRoles="id2f6" isAbstract="false" stereotype="Connection" association="id4ff"/>
-	<Class _id="id7c" name="FacetDelegate" baseTypes="idf" childRoles="id2de" isAbstract="false" stereotype="Connection" association="id51b"/>
-	<Class _id="id7d" name="ReceptacleDelegate" baseTypes="idf" childRoles="id2da" isAbstract="false" stereotype="Connection" association="id523"/>
+	<Class _id="id7c" name="FacetDelegate" baseTypes="idf" childRoles="id2de" isAbstract="false" stereotype="Connection" association="id518"/>
+	<Class _id="id7d" name="ReceptacleDelegate" baseTypes="idf" childRoles="id2da" isAbstract="false" stereotype="Connection" association="id520"/>
 	<Class _id="id7e" name="emit" baseTypes="idf" childRoles="id2f8" isAbstract="false" stereotype="Connection" association="id502"/>
 	<Class _id="id7f" name="AssemblyDeployRequirement" baseTypes="idf" childRoles="id2ee" isAbstract="false" stereotype="Connection" association="id48a"/>
 	<Class _id="id80" name="deliverTo" baseTypes="idf" childRoles="id2f2" isAbstract="false" stereotype="Connection" association="id48d"/>
@@ -854,7 +854,7 @@
 	<Class _id="id82" name="PublishConnector" baseTypes="idf" childRoles="id2d0" isAbstract="false" stereotype="Atom" associationRoles="id48b id48e id507"/>
 	<Class _id="id83" name="AssemblyConfigProperty" baseTypes="idf" childRoles="id2e0" isAbstract="false" stereotype="Connection" association="id510"/>
 	<Class _id="id84" name="AssemblyselectRequirement" baseTypes="idf" childRoles="id2e8" isAbstract="false" stereotype="Connection" association="id513"/>
-	<Class _id="id85" name="invoke" baseTypes="idf" childRoles="id2dc" isAbstract="false" stereotype="Connection" association="id526"/>
+	<Class _id="id85" name="invoke" baseTypes="idf" childRoles="id2dc" isAbstract="false" stereotype="Connection" association="id523"/>
 	<Class _id="id86" name="CommonPortAttrs" subTypes="id87" baseTypes="idf" isAbstract="true" stereotype="FCO">
 		<Attribute max="1" min="1" name="exclusiveProvider" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="exclusiveUser" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
@@ -1005,8 +1005,8 @@
 		<Attribute max="1" min="1" name="UUID" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="label" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
-	<Class _id="ide5" name="ProvidedRequestPort" baseTypes="id87 ide6" childRoles="id300" isAbstract="false" stereotype="Reference" associationRoles="id41e id516 id519 id51c id51d id528"/>
-	<Class _id="ide7" name="RequiredRequestPort" baseTypes="id87 ide8" childRoles="id2fe" isAbstract="false" stereotype="Reference" associationRoles="id51e id521 id524 id525 id527">
+	<Class _id="ide5" name="ProvidedRequestPort" baseTypes="id87 ide6" childRoles="id300" isAbstract="false" stereotype="Reference" associationRoles="id41e id516 id519 id51a id51c id525"/>
+	<Class _id="ide7" name="RequiredRequestPort" baseTypes="id87 ide8" childRoles="id2fe" isAbstract="false" stereotype="Reference" associationRoles="id51e id521 id522 id524 id527">
 		<Attribute max="1" min="1" name="multiple_connections" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Class _id="id87" name="Port" subTypes="iddf ide1 ide5 ide7" baseTypes="id86 id8e ide9" childRoles="id28e id36b" isAbstract="true" stereotype="FCO" associationRoles="id52a"/>
@@ -1260,21 +1260,21 @@
 	<Class _id="id3f5" name="RootFolder" childRoles="id415" isAbstract="false" stereotype="Folder" parentRoles="id3f6 id3f8 id3fa id3fc id3fe id400 id402 id404 id406 id408 id40a id40c id40e id410 id412 id414 id416">
 		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
-	<Class _id="idf" name="MgaObject" subTypes="id4 id8 ide id10 id11 id12 id13 id14 id15 id16 id1b id1c id1d id1e id20 id22 id28 id29 id2c id2d id2e id2f id30 id31 id32 id35 id36 id37 id38 id39 id3a id3b id3c id3d id3e id3f id40 id42 id43 id44 id45 id47 id48 id49 id4a id4c id4d id4e id4f id50 id51 id54 id55 id56 id57 id58 id59 id5d id5e id5f id60 id62 id64 id65 id66 id67 id68 id6a id6b id6c id6d id6e id6f id70 id71 id72 id73 id74 id75 id76 id77 id78 id79 id7a id7b id7c id7d id7e id7f id80 id81 id82 id83 id84 id85 id86 id88 id89 id8a id8b id8c id8e id90 id91 id93 id96 id9d id9f ida2 ida3 ida4 ida5 ida6 ida7 ida8 ida9 idaa idad idae idaf idb1 idb5 idb6 idb7 idb8 idba idbb idbd idc1 idc2 idc3 idc4 idc5 idc6 idc7 idc8 idcc idcd idce idcf idd0 idd1 idd2 idd3 idd7 idda iddd idde ide0 ide2 ide3 ide6 ide8 ide9 idec ided idef idf0 idf1 idf2 idf3 idf4 idf5 idf8 idf9 idfc idfd idfe id100 id101 id102 id103 id104 id105 id106 id107 id108 id109 id10a id10b id10c id10d id10e id111 id112 id114 id115 id116 id117 id118 id11e id11f id120 id121 id122 id123 id124 id125 id127 id12a id12b id12d id12e id12f id130 id131 id132 id133 id134 id135 id136 id137 id138 id139 id13a id145 id147 id148 id149 id14a id14b id14c id14d id14e id14f id150 id151 id152 id154 id155 id159 id15d id15e id15f id161 id162 id163 id164 id165 id166 id167" isAbstract="true">
+	<Class _id="idf" name="MgaObject" subTypes="id4 id8 ide id10 id11 id12 id13 id14 id15 id16 id1b id1c id1d id1e id20 id22 id28 id29 id2c id2d id2e id2f id30 id31 id32 id35 id36 id37 id38 id39 id3a id3b id3c id3d id3e id3f id40 id42 id43 id44 id45 id47 id48 id49 id4a id4c id4d id4e id4f id50 id51 id54 id55 id56 id57 id58 id59 id5d id5e id5f id60 id61 id62 id63 id64 id66 id68 id69 id6a id6b id6c id6e id6f id70 id71 id72 id73 id74 id75 id76 id77 id78 id79 id7a id7b id7c id7d id7e id7f id80 id81 id82 id83 id84 id85 id86 id88 id89 id8a id8b id8c id8e id90 id91 id93 id96 id9d id9f ida2 ida3 ida4 ida5 ida6 ida7 ida8 ida9 idaa idad idae idaf idb1 idb5 idb6 idb7 idb8 idba idbb idbd idc1 idc2 idc3 idc4 idc5 idc6 idc7 idc8 idcc idcd idce idcf idd0 idd1 idd2 idd3 idd7 idda iddd idde ide0 ide2 ide3 ide6 ide8 ide9 idec ided idef idf0 idf1 idf2 idf3 idf4 idf5 idf8 idf9 idfc idfd idfe id100 id101 id102 id103 id104 id105 id106 id107 id108 id109 id10a id10b id10c id10d id10e id111 id112 id114 id115 id116 id117 id118 id11e id11f id120 id121 id122 id123 id124 id125 id127 id12a id12b id12d id12e id12f id130 id131 id132 id133 id134 id135 id136 id137 id138 id139 id13a id145 id147 id148 id149 id14a id14b id14c id14d id14e id14f id150 id151 id152 id154 id155 id159 id15d id15e id15f id161 id162 id163 id164 id165 id166 id167" isAbstract="true">
 		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="0" name="position" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id168" max="-1" min="0" target="id2f" isNavigable="true"/>
-		<CompositionParentRole _id="id169" target="id24" isNavigable="true"/>
+		<CompositionParentRole _id="id169" target="id25" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id16a" max="-1" min="0" target="id32" isNavigable="true"/>
-		<CompositionParentRole _id="id16b" target="id24" isNavigable="true"/>
+		<CompositionParentRole _id="id16b" target="id25" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id16c" max="-1" min="0" target="id31" isNavigable="true"/>
-		<CompositionParentRole _id="id16d" target="id24" isNavigable="true"/>
+		<CompositionParentRole _id="id16d" target="id25" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id16e" max="-1" min="0" target="id30" isNavigable="true"/>
@@ -1466,59 +1466,59 @@
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id1cc" max="-1" min="0" target="id62" isNavigable="true"/>
-		<CompositionParentRole _id="id1cd" target="id61" isNavigable="true"/>
+		<CompositionParentRole _id="id1cd" target="id24" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1ce" max="-1" min="0" target="id6a" isNavigable="true"/>
-		<CompositionParentRole _id="id1cf" target="id65" isNavigable="true"/>
+		<CompositionChildRole _id="id1ce" max="-1" min="0" target="id63" isNavigable="true"/>
+		<CompositionParentRole _id="id1cf" target="id61" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1d0" max="-1" min="0" target="id6b" isNavigable="true"/>
-		<CompositionParentRole _id="id1d1" target="id65" isNavigable="true"/>
+		<CompositionChildRole _id="id1d0" max="-1" min="0" target="id64" isNavigable="true"/>
+		<CompositionParentRole _id="id1d1" target="id27" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id1d2" max="-1" min="0" target="id66" isNavigable="true"/>
 		<CompositionParentRole _id="id1d3" target="id65" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1d4" max="-1" min="0" target="id62" isNavigable="true"/>
-		<CompositionParentRole _id="id1d5" target="id65" isNavigable="true"/>
+		<CompositionChildRole _id="id1d4" max="-1" min="0" target="id6e" isNavigable="true"/>
+		<CompositionParentRole _id="id1d5" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1d6" max="-1" min="0" target="id6d" isNavigable="true"/>
-		<CompositionParentRole _id="id1d7" target="id65" isNavigable="true"/>
+		<CompositionChildRole _id="id1d6" max="-1" min="0" target="id6f" isNavigable="true"/>
+		<CompositionParentRole _id="id1d7" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1d8" max="-1" min="0" target="id63" isNavigable="true"/>
-		<CompositionParentRole _id="id1d9" target="id65" isNavigable="true"/>
+		<CompositionChildRole _id="id1d8" max="-1" min="0" target="id6a" isNavigable="true"/>
+		<CompositionParentRole _id="id1d9" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1da" max="-1" min="0" target="id65" isNavigable="true"/>
-		<CompositionParentRole _id="id1db" target="id68" isNavigable="true"/>
+		<CompositionChildRole _id="id1da" max="-1" min="0" target="id66" isNavigable="true"/>
+		<CompositionParentRole _id="id1db" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1dc" max="-1" min="0" target="id5f" isNavigable="true"/>
-		<CompositionParentRole _id="id1dd" target="id68" isNavigable="true"/>
+		<CompositionChildRole _id="id1dc" max="-1" min="0" target="id71" isNavigable="true"/>
+		<CompositionParentRole _id="id1dd" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1de" max="-1" min="0" target="id6e" isNavigable="true"/>
-		<CompositionParentRole _id="id1df" target="id6a" isNavigable="true"/>
+		<CompositionChildRole _id="id1de" max="-1" min="0" target="id67" isNavigable="true"/>
+		<CompositionParentRole _id="id1df" target="id69" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1e0" max="-1" min="0" target="id66" isNavigable="true"/>
-		<CompositionParentRole _id="id1e1" target="id6e" isNavigable="true"/>
+		<CompositionChildRole _id="id1e0" max="-1" min="0" target="id69" isNavigable="true"/>
+		<CompositionParentRole _id="id1e1" target="id6c" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1e2" max="-1" min="0" target="id70" isNavigable="true"/>
-		<CompositionParentRole _id="id1e3" target="id25" isNavigable="true"/>
+		<CompositionChildRole _id="id1e2" max="-1" min="0" target="id5f" isNavigable="true"/>
+		<CompositionParentRole _id="id1e3" target="id6c" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1e4" max="-1" min="0" target="id71" isNavigable="true"/>
-		<CompositionParentRole _id="id1e5" target="id6f" isNavigable="true"/>
+		<CompositionChildRole _id="id1e4" max="-1" min="0" target="id72" isNavigable="true"/>
+		<CompositionParentRole _id="id1e5" target="id6e" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1e6" max="-1" min="0" target="id72" isNavigable="true"/>
-		<CompositionParentRole _id="id1e7" target="id27" isNavigable="true"/>
+		<CompositionChildRole _id="id1e6" max="-1" min="0" target="id6a" isNavigable="true"/>
+		<CompositionParentRole _id="id1e7" target="id72" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
 		<CompositionChildRole _id="id1e8" max="1" min="0" target="id6" isNavigable="true"/>
@@ -1613,7 +1613,7 @@
 		<CompositionParentRole _id="id217" target="id97" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id218" max="-1" min="0" target="id6c" isNavigable="true"/>
+		<CompositionChildRole _id="id218" max="-1" min="0" target="id70" isNavigable="true"/>
 		<CompositionParentRole _id="id219" target="id97" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
@@ -2193,7 +2193,7 @@
 		<CompositionParentRole _id="id33f" target="ideb" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id340" max="-1" min="0" target="id67" isNavigable="true"/>
+		<CompositionChildRole _id="id340" max="-1" min="0" target="id6b" isNavigable="true"/>
 		<CompositionParentRole _id="id341" target="ideb" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
@@ -2545,7 +2545,7 @@
 		<CompositionParentRole _id="id3f6" target="id3f5" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id3f7" max="-1" min="0" target="id68" isNavigable="true"/>
+		<CompositionChildRole _id="id3f7" max="-1" min="0" target="id6c" isNavigable="true"/>
 		<CompositionParentRole _id="id3f8" target="id3f5" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
