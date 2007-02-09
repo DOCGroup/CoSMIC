@@ -1,3 +1,18 @@
+Fri Feb  9 07:05:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/GME.mpc:
+
+          Alphabetized the source files.
+
+        * MDE/GME/Application.h:
+        * MDE/GME/Application.cpp:
+        * MDE/GME/Component.h:
+        * MDE/GME/Component.cpp:
+        * MDE/GME/Interpreter.h:
+        * MDE/GME/Interpreter.cpp:
+
+          Added missing files.
+
 Fri Feb  9 06:59:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML:

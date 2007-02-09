@@ -21,24 +21,20 @@ project (GME) : cutslib {
     $(GME_ROOT)Interfaces/Meta.idl
     $(GME_ROOT)Interfaces/Mga.idl
 
-    GME.cpp
-
-    MetaBase.cpp
-
-    Exception.cpp
-    Folder.cpp
-    Object.cpp
-    FCO.cpp
-    Model.cpp
     Atom.cpp
-    Project.cpp
-    Set.cpp
-    Reference.cpp
-
-    Territory.cpp
-
     Component.cpp
+    Exception.cpp
+    FCO.cpp
+    Folder.cpp
+    GME.cpp
     Interpreter.cpp
+    Object.cpp
+    MetaBase.cpp
+    Model.cpp
+    Project.cpp
+    Reference.cpp
+    Set.cpp
+    Territory.cpp
   }
 
   Template_Files {
