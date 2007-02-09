@@ -1,3 +1,81 @@
+Fri Feb  9 16:08:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme:
+        * MDE/GME/gme/Application.h:
+        * MDE/GME/gme/Application.cpp:
+        * MDE/GME/gme/Atom.h:
+        * MDE/GME/gme/Atom.cpp:
+        * MDE/GME/gme/Component.h:
+        * MDE/GME/gme/Component.cpp:
+        * MDE/GME/gme/Exception.h:
+        * MDE/GME/gme/Exception.inl:
+        * MDE/GME/gme/Exception.cpp:
+        * MDE/GME/gme/FCO.h:
+        * MDE/GME/gme/FCO.cpp:
+        * MDE/GME/gme/Folder.h:
+        * MDE/GME/gme/Folder.cpp:
+        * MDE/GME/gme/GME.h:
+        * MDE/GME/gme/GME.cpp:
+        * MDE/GME/gme/GME.mpc:
+        * MDE/GME/gme/GME_export.h:
+        * MDE/GME/gme/GME_fwd.h:
+        * MDE/GME/gme/Interpreter.h:
+        * MDE/GME/gme/Interpreter.cpp:
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/MetaBase.cpp:
+        * MDE/GME/gme/Model.h:
+        * MDE/GME/gme/Model.cpp:
+        * MDE/GME/gme/Object.h:
+        * MDE/GME/gme/Object.cpp:
+        * MDE/GME/gme/Project.h:
+        * MDE/GME/gme/Project.cpp:
+        * MDE/GME/gme/Reference.h:
+        * MDE/GME/gme/Reference.cpp:
+        * MDE/GME/gme/Set.h:
+        * MDE/GME/gme/Set.cpp:
+        * MDE/GME/gme/Territory.h:
+        * MDE/GME/gme/Territory.cpp:
+
+          These files are the original files belows except they
+          are moved to a new location in the project.
+
+        * MDE/GME/Application.h:
+        * MDE/GME/Application.cpp:
+        * MDE/GME/Atom.h:
+        * MDE/GME/Atom.cpp:
+        * MDE/GME/Component.h:
+        * MDE/GME/Component.cpp:
+        * MDE/GME/Exception.h:
+        * MDE/GME/Exception.inl:
+        * MDE/GME/Exception.cpp:
+        * MDE/GME/FCO.h:
+        * MDE/GME/FCO.cpp:
+        * MDE/GME/Folder.h:
+        * MDE/GME/Folder.cpp:
+        * MDE/GME/GME.h:
+        * MDE/GME/GME.cpp:
+        * MDE/GME/GME.mpc:
+        * MDE/GME/GME_export.h:
+        * MDE/GME/GME_fwd.h:
+        * MDE/GME/Interpreter.h:
+        * MDE/GME/Interpreter.cpp:
+        * MDE/GME/MetaBase.h:
+        * MDE/GME/MetaBase.cpp:
+        * MDE/GME/Model.h:
+        * MDE/GME/Model.cpp:
+        * MDE/GME/Object.h:
+        * MDE/GME/Object.cpp:
+        * MDE/GME/Project.h:
+        * MDE/GME/Project.cpp:
+        * MDE/GME/Reference.h:
+        * MDE/GME/Reference.cpp:
+        * MDE/GME/Set.h:
+        * MDE/GME/Set.cpp:
+        * MDE/GME/Territory.h:
+        * MDE/GME/Territory.cpp:
+
+          Removed these files.
+
 Fri Feb  9 07:05:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/GME.mpc:
