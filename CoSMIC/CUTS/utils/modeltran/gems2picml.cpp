@@ -32,10 +32,10 @@
 //
 int parse_args (int argc, char * argv [])
 {
-  const char * opts = ACE_TEXT ("ng:");
+  const char * opts = ACE_TEXT ("no:");
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
 
-  get_opt.long_option ("gme-connstr", 'g', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("output", 'o', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("naming-service", 'n', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
 
@@ -46,7 +46,7 @@ int parse_args (int argc, char * argv [])
     switch (option)
     {
     case 0:
-      if (ACE_OS::strcmp (get_opt.long_option (), "gme-connstr") == 0)
+      if (ACE_OS::strcmp (get_opt.long_option (), "output") == 0)
       {
         CUTS_G2P_OPTIONS ()->gme_connstr_ = get_opt.opt_arg ();
       }
@@ -160,8 +160,6 @@ int convert_gems_2_picml (GME::Model & deployment,
 //
 int main (int argc, char * argv [])
 {
-  GME::init ();
-
   try
   {
     // Initialize the ORB.
@@ -175,27 +173,32 @@ int main (int argc, char * argv [])
                          1);
     }
 
-    // Get the initial reference to the GEMS model.
-    ::CORBA::Object_var obj = orb->resolve_initial_references ("GEMS");
-    if (::CORBA::is_nil (obj.in ()))
+    int load_retval = 0;
+
+    if (CUTS_G2P_OPTIONS ()->use_naming_service_)
     {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [gems2picml]: failed to resolve reference to GEMS\n"));
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [gems2picml]: loading GEMS from naming "
+                        "service\n"));
+
+      // Load GEMS from the naming service.
+      load_retval =
+        GEMS_MODEL_MANAGER ()->load_from_naming_service (orb.in ());
+    }
+    else
+    {
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [gems2picml]: loading GEMS model\n"));
+
+      // Load GEMS manually from the ORB.
+      load_retval =
+        GEMS_MODEL_MANAGER ()->load_from_init_ref (orb.in ());
     }
 
-    // Resolve the GEMS model from the generic object.
-    GEMSServer::Model_var gems = GEMSServer::Model::_narrow (obj.in ());
-    if (::CORBA::is_nil (gems.in ()))
+    if (load_retval == -1)
     {
       ACE_ERROR ((LM_ERROR,
-                  "*** error [gems2picml]: resolved object is not a GEMS server\n"));
-    }
-
-    // Try and reconstruct the GEMS model on our side.
-    if (GEMS_MODEL_MANAGER ()->build (gems._retn ()) == -1)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [gems2picml]: failed to reconstruct GEMS model\n"));
+                  "*** error [gems2picml]: failed to load GEMS model\n"));
     }
 
     // Get all the deployment connections in the model.
@@ -219,6 +222,8 @@ int main (int argc, char * argv [])
     VERBOSE_MESSAGE ((LM_INFO,
                       "*** info [gems2picml]: opening GME model %s\n",
                       CUTS_G2P_OPTIONS ()->gme_connstr_.c_str ()));
+
+    GME::init ();
 
     // Open a new GME project.
     GME::Project project;

@@ -18,6 +18,7 @@
 
 #include "GEMS_CRN_export.h"
 #include "GEMSServerC.h"
+#include "tao/ORB.h"
 
 // STL headers
 #include <string>
@@ -304,6 +305,23 @@ namespace GEMS
     int build (::GEMSServer::Model_ptr model);
 
     /**
+     * Load the model manager using the version of GEMS located
+     * in the naming service.
+     *
+     * @param[in]     orb         Pointer to the CORBA orb.
+     * @retval        0           Successfully loaded GEMS.
+     * @retval        -1          Failed to load GEMS.
+     */
+    int load_from_init_ref (::CORBA::ORB_ptr orb);
+
+    int load_from_naming_service (::CORBA::ORB_ptr orb);
+
+    int load_from_object (::CORBA::Object_ptr obj);
+
+    int load_from_string (::CORBA::ORB_ptr orb,
+                          const ACE_CString & str);
+
+    /**
      * Apply the current changes back to the GEMS model.
      *
      * @retval      0     Success applying all changes.
@@ -346,9 +364,19 @@ namespace GEMS
     Connection_Set connections (const std::string & type) const;
 
     /**
+     * Run the constraint solver. This will execute the specified
+     * Prolog \a operation in GEMS on the current model. If there
+     * are any changes present on the CORBA side, they can be saved
+     * to the model before executing \a operation.
      *
+     * @param[in]       operation       The constaint method to execute.
+     * @param[in]       apply_changes   Apply current changes to the model
+     *                                  before executing \a operation.
+     * @retval          0               \a operation successful.
+     * @retval          -1              \a operation failed.
      */
-    int run_constraint_solver (bool apply_changes = true);
+    int run_constraint_solver (const std::string & operation,
+                               bool apply_changes = true);
 
   private:
     /// Default constructor.
@@ -373,6 +401,8 @@ namespace GEMS
 
     int is_string_value (const char * param);
 
+    int build_i (void);
+
     static Model_Manager * instance_;
 
     typedef std::map <size_t, GEMS::Model *> Model_Map;
@@ -385,9 +415,9 @@ namespace GEMS
 
     mutable Model * root_;
 
-    GEMSServer::Model_var gems_model_;
+    ::GEMSServer::Model_var gems_model_;
 
-    GEMSServer::EntityRecordSeq changes_;
+    ::GEMSServer::EntityRecordSeq changes_;
 
     size_t next_id_;
   };

@@ -56,12 +56,6 @@ public:
 private:
   int parse_args (int argc, ACE_TCHAR * argv []);
 
-  /// Initialize service connection to GEMS.
-  int init_gems (void);
-
-  /// Finalize service connection to GEMS.
-  int fini_gems (void);
-
   /// Populate the node map with GEMS node elements.
   int populate_component_map (void);
 
@@ -80,9 +74,6 @@ private:
   /// Location of the baseline server.
   ACE_CString baseline_server_;
 
-  /// The GEMS remote server.
-  ::GEMSServer::Model_var gems_;
-
   /// Stringy version of the GEMS reference.
   ACE_CString gems_string_;
 
@@ -100,6 +91,10 @@ private:
 
   /// Map for mapping names to nodes in GEMS.
   GEMS_Model_Map component_map_;
+
+  bool use_naming_service_;
+
+  ACE_CString constraint_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_GEMS_Export);

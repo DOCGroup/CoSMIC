@@ -36,6 +36,9 @@ project (GME) : cutslib {
     Reference.cpp
 
     Territory.cpp
+
+    Component.cpp
+    Interpreter.cpp
   }
 
   Template_Files {

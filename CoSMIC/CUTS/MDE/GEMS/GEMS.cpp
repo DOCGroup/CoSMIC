@@ -6,6 +6,7 @@
 #include "GEMS.inl"
 #endif
 
+#include "orbsvcs/orbsvcs/CosNamingC.h"
 #include <algorithm>
 #include <iostream>
 #include <sstream>
@@ -124,21 +125,18 @@ namespace GEMS
   {
     this->roles_[role] = value;
 
-    std::string temp_value = value;
-    stringify (temp_value);
-
     std::string predicate ("self_");
     predicate.append (role);
 
-    GEMSServer::EntityRecord rec;
-    rec.op = GEMSServer::Insert;
+    ::GEMSServer::EntityRecord rec;
+    rec.op = ::GEMSServer::Insert;
     rec.predicate = ::CORBA::string_dup (predicate.c_str ());
 
     char idstr[7];
 
     rec.params.length (2);
     rec.params[0] = ::CORBA::string_dup (ACE_OS::itoa (this->id_, idstr, 10));
-    rec.params[1] = ::CORBA::string_dup (temp_value.c_str ());
+    rec.params[1] = ::CORBA::string_dup (stringify (value).c_str ());
 
     // Resize the <changes_> collection.
     ::CORBA::ULong length = Model_Manager::instance ()->changes_.length ();
@@ -317,13 +315,167 @@ namespace GEMS
   }
 
   //
+  // load_from_string
+  //
+  int Model_Manager::load_from_string (::CORBA::ORB_ptr orb,
+                                       const ACE_CString & str)
+  {
+    try
+    {
+      // Try to conver the string to an object.
+      ::CORBA::Object_var obj = orb->string_to_object (str.c_str ());
+
+      // If we do have an object, we continue with the loading
+      // process. Otherwise, we just fail through and return an
+      // error value.
+      if (!::CORBA::is_nil (obj.in ()))
+        return this->load_from_object (obj.in ());
+
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_string): failed to convert string "
+                  "to an object\n"));
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_string): %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_string): caught unknown "
+                  "exception\n"));
+    }
+
+    return -1;
+  }
+
+  //
+  // load_from_orb
+  //
+  int Model_Manager::load_from_init_ref (::CORBA::ORB_ptr orb)
+  {
+    try
+    {
+      // Get the initial reference to the GEMS model.
+      ::CORBA::Object_var obj =
+        orb->resolve_initial_references ("GEMS");
+
+      return this->load_from_object (obj.in ());
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_orb): %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_orb): caught unknown "
+                  "exception\n"));
+    }
+
+    return -1;
+  }
+
+  //
+  // load_from_naming_service
+  //
+  int Model_Manager::load_from_naming_service (::CORBA::ORB_ptr orb)
+  {
+    try
+    {
+      ::CORBA::Object_var name_service =
+        orb->resolve_initial_references ("NameService");
+
+      ::CosNaming::NamingContext_var ctx =
+        ::CosNaming::NamingContext::_narrow (name_service.in ());
+
+      if (::CORBA::is_nil (ctx.in ()))
+      {
+        ACE_ERROR_RETURN ((LM_ERROR,
+                           "*** error: object is not a naming service\n"),
+                           -1);
+      }
+
+      // Construct the name for GEMS (i.e., GEMS/Model).
+      ::CosNaming::Name name (2);
+      name.length (2);
+      name[0].id = ::CORBA::string_dup ("GEMS");
+      name[1].id = ::CORBA::string_dup ("Model");
+
+      // Try to resolve the object from the nameing service.
+      ::CORBA::Object_var obj = ctx->resolve (name);
+      return this->load_from_object (obj.in ());
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_naming_service): %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_naming_service): caught unknown "
+                  "exception\n"));
+    }
+
+    return -1;
+  }
+
+  //
+  // load_from_object
+  //
+  int Model_Manager::load_from_object (::CORBA::Object_ptr obj)
+  {
+    try
+    {
+      // Resolve the GEMS model from the generic object.
+      this->gems_model_ = ::GEMSServer::Model::_narrow (obj);
+
+      if (::CORBA::is_nil (this->gems_model_.in ()))
+      {
+        ACE_ERROR_RETURN ((LM_ERROR,
+                          "*** error [gems2picml]: resolved object is not a "
+                          "GEMS server\n"),
+                          -1);
+      }
+
+      return this->build_i ();
+    }
+    catch (const ::CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_object): %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (load_from_object): caught unknown "
+                  "exception\n"));
+    }
+
+    return -1;
+  }
+
+  //
   // build
   //
-  int Model_Manager::build (GEMSServer::Model_ptr gems_model)
+  int Model_Manager::build (::GEMSServer::Model_ptr gems_model)
   {
-    this->gems_model_ =
-      GEMSServer::Model::_duplicate (gems_model);
+    this->gems_model_ = ::GEMSServer::Model::_duplicate (gems_model);
+    return this->build_i ();
+  }
 
+  //
+  // build_i
+  //
+  int Model_Manager::build_i ()
+  {
     try
     {
       // Right now, there isn't a predefined max value for the
@@ -642,26 +794,43 @@ namespace GEMS
   //
   // run_constraint_solver
   //
-  int Model_Manager::run_constraint_solver (bool apply_changes)
+  int Model_Manager::
+  run_constraint_solver (const std::string & operation,
+                         bool apply_changes)
   {
-    if (apply_changes)
-      this->apply_changes ();
-
     try
     {
-      // Construct the entity record to invoke the constraint
-      // solver.
-      GEMSServer::EntityRecord entity;
+      // Construct the entity record to invoke constraint solver. We have
+      // to make sure to stringify the <operation> for GEMS.
+      ::GEMSServer::EntityRecord entity;
       entity.op = GEMSServer::Insert;
       entity.predicate = ::CORBA::string_dup ("trigger");
-      entity.params.length (1);
-      entity.params[0] = ::CORBA::string_dup ("deploy_all");
 
-      // Place the entity record in a sequence then call GEMS.
-      GEMSServer::EntityRecordSeq records (1);
-      records[0] = entity;
-      this->gems_model_->applyChanges (records);
-      return 0;
+      entity.params.length (1);
+      entity.params[0] =
+        ::CORBA::string_dup (stringify (operation).c_str ());
+
+      if (apply_changes)
+      {
+        // Place the <entity> with the rest of the <changes_> so we only
+        // have to make one call. This is the batch operation pattern.
+        ::CORBA::ULong length = this->changes_.length ();
+        this->changes_.length (length + 1);
+        this->changes_[length] = entity;
+
+        return this->apply_changes ();
+      }
+      else
+      {
+        // Construct a temporary change log that will consist of
+        // only the trigger statement.
+        ::GEMSServer::EntityRecordSeq records (1);
+        records.length (1);
+        records[0] = entity;
+
+        this->gems_model_->applyChanges (records);
+        return 0;
+      }
     }
     catch (const GEMSServer::ModelUpdateException & ex)
     {

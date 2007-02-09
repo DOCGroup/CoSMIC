@@ -27,6 +27,7 @@
 #include <sstream>
 #include <cmath>
 
+#define MAX_RESOURCE_VALUE  100
 #define MAX_VARCHAR_LENGTH  256
 
 // Declare the service impl.
@@ -54,7 +55,8 @@ CUTS_BDC_SERVICE_IMPL (CUTS_GEMS_Service);
 //
 CUTS_GEMS_Service::CUTS_GEMS_Service (void)
 : verbose_ (false),
-  baseline_server_ ("localhost")
+  baseline_server_ ("localhost"),
+  use_naming_service_ (false)
 {
 
 }
@@ -80,9 +82,10 @@ int CUTS_GEMS_Service::init (int argc, ACE_TCHAR * argv [])
 //
 int CUTS_GEMS_Service::parse_args (int argc, ACE_TCHAR * argv [])
 {
-  const char * opts = "b:";
+  const char * opts = "nb:r:";
 
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
+  get_opt.long_option ("run-constraint", 'r', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("baseline-server", 'b', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("gems", ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
@@ -96,12 +99,24 @@ int CUTS_GEMS_Service::parse_args (int argc, ACE_TCHAR * argv [])
     case 0:
       if (ACE_OS::strcmp (get_opt.long_option (), "gems") == 0)
         this->gems_string_ = get_opt.opt_arg ();
+      else if (ACE_OS::strcmp (get_opt.long_option (), "run-constraint") == 0)
+        this->constraint_ = get_opt.opt_arg ();
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
         this->verbose_ = true;
       else
+      {
         ACE_DEBUG ((LM_DEBUG,
                     "--%s is an unknown option; ignoring\n",
                     get_opt.long_option ()));
+      }
+      break;
+
+    case 'n':
+      this->use_naming_service_ = true;
+      break;
+
+    case 'r':
+      this->constraint_ = get_opt.opt_arg ();
       break;
 
     case '?':
@@ -132,24 +147,36 @@ int CUTS_GEMS_Service::handle_activate (void)
 {
   try
   {
-    if (this->init_gems () == -1)
-      return -1;
+    // Get the ORB.
+    ::CORBA::ORB_var orb = this->svc_mgr ()->get_orb ();
 
-    // Let's build the GEM model in our address space so that
-    // we can manage it accordingly.
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "*** info [GEMS]: building GEMS model...\n"));
+    int load_retval;
 
-    if (GEMS_MODEL_MANAGER ()->build (this->gems_.in ()) != 0)
+    if (this->use_naming_service_)
+    {
+      // Load GEMS using the naming service.
+      load_retval =
+        GEMS_MODEL_MANAGER ()->load_from_naming_service (orb.in ());
+    }
+    else
+    {
+      // Load GEMS using the ORBInitRef.
+      load_retval =
+        GEMS_MODEL_MANAGER ()->
+        load_from_string (orb.in (), this->gems_string_.c_str ());
+    }
+
+    // Display the appropriate message to the client.
+    if (load_retval == 0)
+    {
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [GEMS]: successfully built GEMS model\n"));
+    }
+    else
     {
       ACE_ERROR_RETURN ((LM_ERROR,
                          "*** error [GEMS]: failed to build GEMS model\n"),
                          -1);
-    }
-    else
-    {
-      VERBOSE_MESSAGE ((LM_INFO,
-                        "*** info [GEMS]: successfully built GEMS model\n"));
     }
 
     // Let's extract all the components and populate the node
@@ -346,29 +373,32 @@ int CUTS_GEMS_Service::handle_deactivate (void)
         {
           // Get the current value for the CPU requirement.
           std::string strval = (*req_iter)->role ("value");
-          double old_value;
+          long old_value;
 
           // Extract the value from the string.
           std::istringstream istr (strval);
           istr >> old_value;
 
           // Calculate how much to increase the current value by.
-          double new_value = old_value + ((100.0 - old_value) * percentage);
+          double tempval =
+            old_value + ((MAX_RESOURCE_VALUE - old_value) * percentage);
+
+          long new_value =
+            min (MAX_RESOURCE_VALUE, static_cast <long> (ceil (tempval)));
 
           // Convert the value back into a string. We are taking the absolute
           // value just to be safe, however, this shouldn't be necessary. The
           // baseline will always be less than the experimental value. If this
           // is ever the case, then the baseline metric is wrong.
           std::ostringstream ostr;
-          ostr << std::abs (new_value);
+          ostr << new_value;
 
-          //
           (*req_iter)->role ("value", ostr.str ());
 
           // Display a nice message to the user.
           VERBOSE_MESSAGE ((LM_DEBUG,
                             "*** info [GEMS]: update model; increasing CPU "
-                            "value from %f to %f\n",
+                            "value from %d to %d\n",
                             old_value,
                             new_value));
           break;
@@ -394,52 +424,33 @@ int CUTS_GEMS_Service::handle_deactivate (void)
     }
   }
 
-  // Apply the changes to the GEMS model and run the constraint solver.
-  // We can then close the singleton since we aren't going to perform
-  // any more operations on the model.
-  GEMS_MODEL_MANAGER ()->run_constraint_solver ();
+  if (!this->constraint_.empty ())
+  {
+    // Apply the changes to the GEMS model and run the constraint solver.
+    // We can then close the singleton since we aren't going to perform
+    // any more operations on the model.
+    if (GEMS_MODEL_MANAGER ()->
+        run_constraint_solver (this->constraint_.c_str ()) == 0)
+    {
+      VERBOSE_MESSAGE ((LM_INFO,
+                        "*** info [GEMS]: successfully invoked '%s' "
+                        "in GEMS\n",
+                        this->constraint_.c_str ()));
+    }
+    else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error [GEMS]: failed to invoke '%s' in GEMS\n",
+                  this->constraint_.c_str ()));
+    }
+  }
+  else
+  {
+    // Just apply the changes to the model.
+    GEMS_MODEL_MANAGER ()->apply_changes ();
+  }
+
   GEMS::Model_Manager::close_singleton ();
-  return this->fini_gems ();
-}
-
-//
-// init_gems
-//
-int CUTS_GEMS_Service::init_gems (void)
-{
-  VERBOSE_MESSAGE ((LM_INFO,
-                    "*** info [GEMS]: resolving reference to GEMS\n"));
-
-  // Get the ORB and initialize the reference to GEMS.
-  ::CORBA::ORB_var orb = this->svc_mgr ()->get_orb ();
-
-  ::CORBA::Object_var obj =
-    orb->string_to_object (this->gems_string_.c_str ());
-
-  if (::CORBA::is_nil (obj.in ()))
-  {
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       "*** error [GEMS]: failed to resolve reference to "
-                       "GEMS server\n"),
-                        -1);
-  }
-
-  // Narrow the GEMS model from the object reference.
-  VERBOSE_MESSAGE ((LM_INFO,
-                    "*** info [GEMS]: extracting GEMS model from reference\n"));
-
-  this->gems_ = GEMSServer::Model::_narrow (obj.in ());
-
-  if (::CORBA::is_nil (this->gems_.in ()))
-  {
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       "*** error [GEMS]: object reference is not a "
-                       "GEMS model\n"),
-                        -1);
-  }
-
-  VERBOSE_MESSAGE ((LM_INFO,
-                    "*** info [GEMS]: sucessfully connected to GEMS\n"));
   return 0;
 }
 
@@ -517,39 +528,6 @@ handle_component (const CUTS_Component_Info & info)
   }
 
   return 0;
-}
-
-//
-// fini_gems
-//
-int CUTS_GEMS_Service::fini_gems (void)
-{
-  try
-  {
-    // Transfer ownership of the GEMS model so we can release
-    // it during out finalization steps.
-    GEMSServer::Model_var gems = this->gems_._retn ();
-
-    VERBOSE_MESSAGE ((LM_DEBUG,
-                      "successfully disconnected from GEMS server\n"));
-    return 0;
-  }
-  catch (const ::CORBA::Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "CORBA exception [%s]\n",
-                ex._info ().c_str ()));
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "caught unknown exception\n"));
-  }
-
-  ACE_ERROR ((LM_ERROR,
-              "failed to finalize connection to GEM model server\n"));
-
-  return -1;
 }
 
 //

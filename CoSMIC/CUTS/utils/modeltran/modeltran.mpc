@@ -1,6 +1,6 @@
 // $Id$
 
-project (gems2picml) : taoexe, cutsexe {
+project (gems2picml) : cutsexe, taoexe {
   exename = gems2picml
 
   after += GEMS_CRN GME

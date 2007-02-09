@@ -1,7 +1,7 @@
 // $Id$
 // GEMS CORBA Remote Network (CRN)
 
-project (GEMS_CRN) : cutslib, taolib, taoidldefaults {
+project (GEMS_CRN) : cutslib, naming {
   sharedname = GEMS_CRN
 
   dynamicflags = GEMS_CRN_BUILD_DLL

@@ -1,3 +1,34 @@
+Fri Feb  9 06:52:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS.h:
+        * MDE/GEMS/GEMS.cpp:
+        * MDE/GEMS/GEMS_CRN.mpc:
+
+          - Added support for invoking in trigger (constraint) in
+            GEMS from the remote service.
+          - Moved the resolving of GEMS to this framework.
+          - Added multiple ways of resolving the GEMS model (e.g.,
+            naming service, initial referene, string, and etc).
+
+        * MDE/GME/GME.mpc:
+        * MDE/GME/paradigms:
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.h:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          - Added support for triggering any constraint solver at
+            the conclusion of an experiment.
+          - Fixed bug that would all the value of a resource requirement
+            to exceed the max value of 100.
+          - Added support for resolving GEMS from the naming service.
+
+        * utils/modeltran/modeltran.mpc:
+        * utils/modeltran/gems2picml.cpp:
+
+          - Added support for resolving GEMS from the naming service.
+          - Added support for outputing GEMS model to any PICML model,
+            however, its to a predefined location.
+
 Thu Feb  8 01:48:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Auto_Functor_T.h:
