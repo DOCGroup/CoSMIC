@@ -69,12 +69,12 @@ int parse_args (int argc, char * argv [])
       CUTS_G2P_OPTIONS ()->target_model_ = get_opt.opt_arg ();
       break;
 
-    case 'g':
-      CUTS_G2P_OPTIONS ()->gme_connstr_ = get_opt.opt_arg ();
-      break;
-
     case 'm':
       CUTS_G2P_OPTIONS ()->target_model_ = get_opt.opt_arg ();
+      break;
+
+    case 'o':
+      CUTS_G2P_OPTIONS ()->gme_connstr_ = get_opt.opt_arg ();
       break;
 
     case 'n':
