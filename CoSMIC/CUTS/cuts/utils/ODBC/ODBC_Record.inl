@@ -115,7 +115,7 @@ void ODBC_Record::get_data (size_t column,
                             float & value)
                             ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
-  this->get_data_i (static_cast <SQLFLOAT> (column),
+  this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_FLOAT,
                     &value,
                     sizeof (float),
@@ -131,7 +131,7 @@ void ODBC_Record::get_data (size_t column,
                             double & value)
                             ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
-  this->get_data_i (static_cast <SQLDOUBLE> (column),
+  this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_DOUBLE,
                     &value,
                     sizeof (double),
