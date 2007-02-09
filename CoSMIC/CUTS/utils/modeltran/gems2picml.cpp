@@ -12,7 +12,7 @@
 
 #include "G2P_Options.h"
 #include "GEMS/GEMS.h"
-#include "GME/GME.h"
+#include "GME/gme/GME.h"
 #include "ace/Get_Opt.h"
 
 /// Singleton declaration for the options.
@@ -32,9 +32,11 @@
 //
 int parse_args (int argc, char * argv [])
 {
-  const char * opts = ACE_TEXT ("no:");
+  const char * opts = ACE_TEXT ("f:m:no:");
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
 
+  get_opt.long_option ("folder", 'f', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("model", 'm', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("output", 'o', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("naming-service", 'n', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
@@ -47,21 +49,32 @@ int parse_args (int argc, char * argv [])
     {
     case 0:
       if (ACE_OS::strcmp (get_opt.long_option (), "output") == 0)
-      {
         CUTS_G2P_OPTIONS ()->gme_connstr_ = get_opt.opt_arg ();
-      }
+
+      else if (ACE_OS::strcmp (get_opt.long_option (), "folder") == 0)
+        CUTS_G2P_OPTIONS ()->target_folder_ = get_opt.long_option ();
+
+      else if (ACE_OS::strcmp (get_opt.long_option (), "model") == 0)
+        CUTS_G2P_OPTIONS ()->target_model_ = get_opt.long_option ();
+
       else if (ACE_OS::strcmp (get_opt.long_option (), "naming-service") == 0)
-      {
         CUTS_G2P_OPTIONS ()->use_naming_service_ = true;
-      }
+
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
-      {
         CUTS_G2P_OPTIONS ()->verbose_ = true;
-      }
+
+      break;
+
+    case 'f':
+      CUTS_G2P_OPTIONS ()->target_model_ = get_opt.opt_arg ();
       break;
 
     case 'g':
       CUTS_G2P_OPTIONS ()->gme_connstr_ = get_opt.opt_arg ();
+      break;
+
+    case 'm':
+      CUTS_G2P_OPTIONS ()->target_model_ = get_opt.opt_arg ();
       break;
 
     case 'n':
@@ -215,7 +228,7 @@ int main (int argc, char * argv [])
     {
       ACE_ERROR_RETURN ((LM_ERROR,
                          "*** error [gems2picml]: failed to specify "
-                         "target model\n"),
+                         "GME project file\n"),
                          1);
     }
 
@@ -235,8 +248,8 @@ int main (int argc, char * argv [])
     std::vector <GME::Folder> folders = root.folders ();
 
     VERBOSE_MESSAGE ((LM_INFO,
-                      "*** info [gems2picml]: locating GUTS_DeploymentPlans "
-                      "folder\n"));
+                      "*** info [gems2picml]: locating %s folder\n",
+                      CUTS_G2P_OPTIONS ()->target_folder_.c_str ()));
 
     // Search for the deployment plan folders.
     bool done = false;
@@ -245,12 +258,14 @@ int main (int argc, char * argv [])
          !done && iter != folders.end ();
          iter ++)
     {
+      // Determine if this is the correct folder type and, if so,
+      // determine if this is the <target_folder_>.
       if (iter->meta ().name () == "DeploymentPlans" &&
-          iter->name () == "GUTS_DeploymentPlans")
+          iter->name () == CUTS_G2P_OPTIONS ()->target_folder_)
       {
         VERBOSE_MESSAGE ((LM_INFO,
-                          "*** info [gems2picml]: locating GUTS_DeploymentPlan "
-                          "model\n"));
+                          "*** info [gems2picml]: locating %s model\n",
+                          CUTS_G2P_OPTIONS ()->target_model_.c_str ()));
 
         // Get all the deployment plans in the model.
         std::vector <GME::Model> models = iter->models ("DeploymentPlan");
@@ -260,7 +275,8 @@ int main (int argc, char * argv [])
              !done && m_iter != models.end ();
              m_iter ++)
         {
-          if (m_iter->name () == "GUTS_DeploymentPlan")
+          // Determine if this the the <target_model_>.
+          if (m_iter->name () == CUTS_G2P_OPTIONS ()->target_model_)
           {
             convert_gems_2_picml (*m_iter, deployments);
             done = true;

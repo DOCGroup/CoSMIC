@@ -1,3 +1,11 @@
+Fri Feb  9 16:46:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/modeltran/G2P_Options.h:
+        * utils/modeltran/gems2picml.cpp:
+
+          Added command-line options to specify the target folder and
+          target model of the conversion.
+
 Fri Feb  9 16:08:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme:
