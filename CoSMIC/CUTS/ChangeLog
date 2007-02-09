@@ -1,3 +1,13 @@
+Fri Feb  9 06:59:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML:
+        * MDE/GME/paradigms/PICML/examples:
+        * MDE/GME/paradigms/PICML/examples/SLICE-cpu-bound.xme:
+
+          Started separate directory different paradigms in different
+          MDE tools. This will allow me to keep all everything in one
+          since location that is related to CUTS.
+
 Fri Feb  9 06:52:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS.h:
