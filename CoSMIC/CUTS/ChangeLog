@@ -1,3 +1,27 @@
+Sat Feb 10 21:55:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Component.h:
+        * MDE/GME/gme/Component.cpp:
+
+          Implemented the initialize () wrapper method.
+
+        * utils/modeltran/G2P_Options.h:
+        * utils/modeltran/G2P_Options.cpp:
+
+          - The options now has a source file.
+          - Implemented insert_param, which can parse a name=value
+            string to extract the name of a parameter and its value.
+
+        * utils/modeltran/gems2picml.cpp:
+        * utils/modeltran/gems2picml_App.h:
+        * utils/modeltran/gems2picml_App.cpp:
+        * utils/modeltran/modeltran.mpc:
+
+          - Moved all the logic located in gems2picml.cpp into
+            gems2picml_App.cpp
+          - Added support for invoking a PICML interpreter on the
+            converted GEMS to PICML model.
+
 Sat Feb 10 01:15:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Component.h:

@@ -79,4 +79,12 @@ namespace GME
   {
     VERIFY_HRESULT (this->component_->Invoke (project, 0, param));
   }
+
+  //
+  // initialize
+  //
+  void Component::initialize (Project & project)
+  {
+    VERIFY_HRESULT (this->component_->Initialize (project));
+  }
 }

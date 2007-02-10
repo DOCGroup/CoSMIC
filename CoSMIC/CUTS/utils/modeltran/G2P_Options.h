@@ -13,9 +13,9 @@
 #ifndef _CUTS_G2P_OPTIONS_H_
 #define _CUTS_G2P_OPTIONS_H_
 
-#include "ace/Null_Mutex.h"
-#include "ace/Singleton.h"
 #include <string>
+#include <list>
+#include <utility>
 
 //=============================================================================
 /**
@@ -26,14 +26,14 @@
 struct CUTS_G2P_Options
 {
   /// Default constructor.
-  CUTS_G2P_Options (void)
-    : verbose_ (false),
-      use_naming_service_  (false),
-      target_folder_ ("GUTS_DeploymentPlans"),
-      target_model_ ("GUTS_DeploymentPlan"),
-      create_ (false)
-  {
-  }
+  CUTS_G2P_Options (void);
+
+  /**
+   * Insert a new parameter into the list.
+   *
+   * @param[in]     param      The name=value pair.
+   */
+  int insert_param (char * param);
 
   /// Verbose flag.
   bool verbose_;
@@ -52,6 +52,14 @@ struct CUTS_G2P_Options
 
   /// Create the target folder and model it does not exist.
   bool create_;
+
+  /// Run the following component.
+  std::string run_component_;
+
+  /// Listing of parameters for the component.
+  typedef std::list <std::pair <std::string, std::string> > Parameter_List;
+
+  Parameter_List params_;
 };
 
 #endif  // !defined _CUTS_G2P_OPTIONS_H_

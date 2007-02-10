@@ -7,10 +7,11 @@ project (gems2picml) : cutsexe, taoexe {
   libs  += GEMS_CRN GME
 
   Source_Files {
+    G2P_Options.cpp
+    gems2picml_App.cpp
     gems2picml.cpp
   }
 
   Header_Files {
-    G2P_Options.h
   }
 }

@@ -36,6 +36,13 @@ namespace GME
     virtual ~Component (void);
 
     /**
+     * Initialize the component.
+     *
+     * @param[in]   project     The target project.
+     */
+    void initialize (GME::Project & project);
+
+    /**
      * Get the name of the component.
      *
      * @return      The name of the component.
