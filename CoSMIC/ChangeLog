@@ -1,3 +1,16 @@
+Sat Feb 10 22:08:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          - Implemented the put_ComponentParameter () method. This will
+            allow external applications, such as CUTS, to set parameters to
+            be used by the interpreter.
+          - The interpreter now handles the 'output' parameter. If this
+            parameter is set before interpretation, then the interpreter
+            does not prompt the user for an output directory.
+
 Thu Feb  8 07:26:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/paradigms/CQML-uml.xme:

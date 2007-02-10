@@ -56,10 +56,10 @@ STDMETHODIMP RawComponent::Invoke(IMgaProject* gme, IMgaFCOs *models, long param
 			void dummy(void) {; } // Dummy function for UDM meta initialization
 #endif
 
-// This is the main component method for interpereters and plugins. 
+// This is the main component method for interpereters and plugins.
 // May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,  
-									IMgaFCOs *selectedobjs,  long param) 
+STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
+									IMgaFCOs *selectedobjs,  long param)
 {
 	// Calling the user's initialization function
 	if(CUdmApp::Initialize())
@@ -69,8 +69,8 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 
 	CComPtr<IMgaProject>ccpProject(project);
 	try
-	{	  
-	  if(interactive) 
+	{	
+	  if(interactive)
 	  {
 		CComBSTR projname;
 		CComBSTR focusname = "<nothing>";
@@ -140,15 +140,17 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 			set<Udm::Object> selectedObjects;
 
 			CComPtr<IMgaFCOs> ccpSelObject(selectedobjs);
-
-			MGACOLL_ITERATE(IMgaFCO,ccpSelObject){		 
-				Udm::Object currObj;
-				if(MGACOLL_ITER)
-				{
-					currObj=dngBackend.Gme2Udm(MGACOLL_ITER);
-				}
-			 selectedObjects.insert(currObj);
-			}MGACOLL_ITERATE_END;
+      if (ccpSelObject)
+      {
+			  MGACOLL_ITERATE(IMgaFCO,ccpSelObject){		
+				  Udm::Object currObj;
+				  if(MGACOLL_ITER)
+				  {
+					  currObj=dngBackend.Gme2Udm(MGACOLL_ITER);
+				  }
+			  selectedObjects.insert(currObj);
+			  }MGACOLL_ITERATE_END;
+      }
 
 #ifdef _ACCESS_MEMORY
 			// Creating Cache
@@ -160,7 +162,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 			
 			const Uml::Class & safeType = Uml::SafeTypeContainer::GetSafeType(dngBackend.GetRootObject().type());
 
-			dnsCacheBackend.CreateNew("","",safeType, Udm::CHANGES_LOST_DEFAULT); 
+			dnsCacheBackend.CreateNew("","",safeType, Udm::CHANGES_LOST_DEFAULT);
 			
 			Udm::Object nullObject(&Udm::__null);
 			UdmUtil::copy_assoc_map copyAssocMap;
@@ -228,7 +230,7 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 #endif
 
 		}
-		catch(udm_exception &exc) 
+		catch(udm_exception &exc)
 		{
 #ifdef _META_ACCESS_MEMORY
 			dnCacheBackend.CloseNoUpdate();
@@ -241,12 +243,12 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,  IMgaFCO *currentobj,
 		}
 	  }
 	}
-	catch(udm_exception &exc) 
+	catch(udm_exception &exc)
 	{	
 		AfxMessageBox(exc.what());			
 		return S_FALSE;
-	}			 
-	catch(...) 
+	}			
+	catch(...)
 	{
 		ccpProject->AbortTransaction();
 		AfxMessageBox("An unexpected error has occured during the interpretation process.");
@@ -266,30 +268,47 @@ STDMETHODIMP RawComponent::ObjectsInvokeEx( IMgaProject *project,  IMgaObject *c
 
 
 // implement application specific parameter-mechanism in these functions:
-STDMETHODIMP RawComponent::get_ComponentParameter(BSTR name, VARIANT *pVal) {
+STDMETHODIMP RawComponent::
+get_ComponentParameter(BSTR name, VARIANT *pVal)
+{
 	return S_OK;
 }
 
-STDMETHODIMP RawComponent::put_ComponentParameter(BSTR name, VARIANT newVal) {
+STDMETHODIMP RawComponent::
+put_ComponentParameter(BSTR name, VARIANT newVal)
+{
+  CComVariant value (newVal);
+
+  // Right now, we only care about string types, but I really nasty do
+  // not like this. Until I come up with a better way, this will have
+  // to suffice.
+  if (value.vt == VT_BSTR)
+  {
+    CW2A name_str (name);
+    CW2A value_str (value.bstrVal);
+
+    CUdmApp::SetParameter (name_str.m_psz, value_str.m_psz);
+  }
+
 	return S_OK;
 }
 
 
 #ifdef GME_ADDON
 
-// these two functions are the main 
-STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) { 
+// these two functions are the main
+STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) {
 	if(event == GLOBALEVENT_UNDO) {
 		AfxMessageBox("UNDO!!");
 	}
-	return S_OK; 
+	return S_OK;
 }
 
 STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v) {
 	if(eventmask & OBJEVENT_CREATED) {
 		CComBSTR objID;
 		COMTHROW(obj->get_ID(&objID));
-		AfxMessageBox( "Object created! ObjID: " + CString(objID)); 
+		AfxMessageBox( "Object created! ObjID: " + CString(objID));
 	}		
 	return S_OK;
 }

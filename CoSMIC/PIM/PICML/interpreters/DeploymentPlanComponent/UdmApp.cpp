@@ -54,6 +54,9 @@ using Utils::getPath;
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
+// static variable decl.
+std::string CUdmApp::output_path_;
+
 // Initialization function. The framework calls it before preparing the
 // backend. Initialize here the settings in the config static object.
 // Return 0 if successful.
@@ -94,7 +97,6 @@ int CUdmApp::Initialize()
 /***********************************************/
 
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
-                                                        // (already open!)
                       Udm::Object focusObject,          // Focus object
                       set<Udm::Object> selectedObjects,	// Selected objects
                       long param)			// Parameters
@@ -104,11 +106,19 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       XMLPlatformUtils::Initialize();
       try
         {
-          std::string outputPath;
-          std::string message = "Please specify the Output Directory";
-          if (!getPath (message, outputPath))
-            return;
-          PICML::DeploymentPlanVisitor visitor (outputPath);
+          // We only need to ask for the output path it wasn't already
+          // set before hand. The only want to can be set before hand
+          // is by some external application invoking put_ComponentParameter
+          // method for the interpreter. :o)
+
+          if (CUdmApp::output_path_.empty ())
+          {
+            std::string message = "Please specify the output directory";
+            if (!getPath (message, CUdmApp::output_path_))
+              return;
+          }
+
+          PICML::DeploymentPlanVisitor visitor (CUdmApp::output_path_);
           PICML::RootFolder
             start = PICML::RootFolder::Cast (p_backend->GetRootObject());
           start.Accept (visitor);
@@ -179,4 +189,12 @@ string CUdmApp::ExtractName(Udm::Object ob)
     }
   return string("<no name specified>");
 }
+
+void CUdmApp::SetParameter (const std::string & name,
+                            const std::string & value)
+{
+  if (name == "output")
+    CUdmApp::output_path_ = value;
+}
+
 #endif
