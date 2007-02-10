@@ -67,6 +67,8 @@ namespace GME
     Folder folder_by_path (const std::string & path) const;
     Object object_by_path (const std::string & path) const;
 
+    operator IMgaProject * (void) const;
+
   private:
     /// The project type.
     CComPtr <IMgaProject> project_;

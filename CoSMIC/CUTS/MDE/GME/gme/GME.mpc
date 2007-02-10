@@ -23,6 +23,7 @@ project (GME) : cutslib {
 
     Atom.cpp
     Component.cpp
+    ComponentEx.cpp
     Exception.cpp
     FCO.cpp
     Folder.cpp

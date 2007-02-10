@@ -1,3 +1,21 @@
+Sat Feb 10 01:15:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Component.h:
+        * MDE/GME/gme/Component.cpp:
+        * MDE/GME/gme/ComponentEx.h:
+        * MDE/GME/gme/ComponentEx.cpp:
+
+          Implemented wrappers for the component interfaces.
+
+        * MDE/GME/gme/GME.mpc:
+
+          Added the ComponentEx.* files.
+
+        * MDE/GME/gme/Project.h:
+        * MDE/GME/gme/Project.cpp:
+
+          Added a conversion operator for its COM type.
+
 Fri Feb  9 20:41:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/utils/ODBC/ODBC_Record.inl:

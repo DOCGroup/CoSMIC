@@ -296,4 +296,12 @@ namespace GME
 
     return Object (object);
   }
+
+  //
+  // operator IMgaProject *
+  //
+  Project::operator IMgaProject * (void) const
+  {
+    return this->project_;
+  }
 }
