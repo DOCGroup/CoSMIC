@@ -1,3 +1,21 @@
+Sat Feb 10 22:20:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/GUTS/modeltran.mpc:
+
+          Changed the project name from gem2picml to GUTS.
+
+        * CUTS.mwc:
+        * utils/GUTS:
+        * utils/modeltran:
+        * utils/modeltran/G2P_Options.h:
+        * utils/modeltran/G2P_Options.cpp:
+        * utils/modeltran/gems2picml.cpp:
+        * utils/modeltran/gems2picml_App.h:
+        * utils/modeltran/gems2picml_App.cpp:
+        * utils/modeltran/modeltran.mpc:
+
+          Renamed modeltran to GUTS.
+
 Sat Feb 10 21:55:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Component.h:

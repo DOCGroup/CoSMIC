@@ -1,7 +1,7 @@
 // $Id$
 
-project (gems2picml) : cutsexe, taoexe {
-  exename = gems2picml
+project (GUTS) : cutsexe, taoexe {
+  exename = GUTS
 
   after += GEMS_CRN GME
   libs  += GEMS_CRN GME
