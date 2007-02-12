@@ -1,3 +1,9 @@
+Mon Feb 12 20:02:07 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+          - An example that shows NetQoS.
+
 Mon Feb 12 11:44:32 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/CQML/CQML.mpc:
