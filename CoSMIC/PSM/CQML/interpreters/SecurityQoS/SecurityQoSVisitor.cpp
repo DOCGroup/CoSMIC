@@ -41,13 +41,13 @@ namespace CQML
 
         // Capture the Operation classifications from the interface definitions
         std::set<InterfaceDefinitions> interface_defs_folders = rf.InterfaceDefinitions_kind_children();
-        this->accept_each(interface_defs_folders);
+        accept_each(interface_defs_folders, *this);
         outfile << "Dumping Operation Rights...\n";
         this->secqos_dumper_.dumpInterfaceRights (this->secqos_req_.iface2op2rts_map_);
         
         // Capture the user-role-rights mappings and the policy definitions from the Security model 
         std::set<Security> security = rf.Security_kind_children();
-        this->accept_each(security);
+        accept_each(security, *this);
         outfile << "Dumping Role Rights...\n";
         this->secqos_dumper_.dumpRoleRights (this->secqos_req_.role2rights_map_);
         outfile << "Dumping Security Policies...\n";
@@ -56,7 +56,7 @@ namespace CQML
         // Capture the QoS assignments from component/assmbly implementations
         std::set<ComponentImplementations> comp_impls = rf.ComponentImplementations_kind_children();
         outfile << "Checking QoS Assignments...\n";
-        this->accept_each(comp_impls);
+        accept_each(comp_impls, *this);
                 
         // Dump the final Security Permissions that are derived from all the mappings, policy rules and assignments
         outfile << "Dumping Security Permissions...\n";
@@ -83,20 +83,21 @@ namespace CQML
 	    {
         // e.g. cuts/CUTS
         std::set<File> files = ntrface_def.File_kind_children();
-        this->accept_each(files);
+        accept_each(files, *this);
 	    }
 
      void SecurityQoSVisitor::Visit_File(const File& file)
 	    {
         // e.g. CUTS
         std::set<Package> packages = file.Package_kind_children();
-        this->accept_each(packages);      }
+        accept_each(packages, *this);
+		}
 
     void SecurityQoSVisitor::Visit_Package(const Package& package)
 	    {
         // e.g. Testing_Service
         std::set<CQML::Object> objects = package.Object_kind_children();
-        this->accept_each(objects);      
+        accept_each(objects, *this);
       }
 
     void SecurityQoSVisitor::Visit_Object(const CQML::Object& object)
@@ -116,10 +117,10 @@ namespace CQML
           }
 
         std::set<OnewayOperation> onewyops = object.OnewayOperation_kind_children();
-        this->accept_each(onewyops);      
+        accept_each(onewyops, *this);
   
         std::set<TwowayOperation> twowyops = object.TwowayOperation_kind_children();
-        this->accept_each(twowyops);      
+        accept_each(twowyops, *this);
         
         // The operation set is ready so load it in the map
         this->populateObj2Op2RightsMap(object);
@@ -166,9 +167,9 @@ namespace CQML
     void SecurityQoSVisitor::Visit_Security(const Security& security)
       {
         std::set<PolicySet> policysets = security.PolicySet_kind_children();
-        this->accept_each(policysets);
+        accept_each(policysets, *this);
         std::set<RBAC> rbac_models = security.RBAC_kind_children();
-        this->accept_each(rbac_models);
+        accept_each(rbac_models, *this);
       }
 
     /////////////////////////////////////////////////////////////////////////////////////////
@@ -199,20 +200,20 @@ namespace CQML
     void SecurityQoSVisitor::Visit_PolicySet(const PolicySet& policyset)
       {
         std::set<Policy> policies = policyset.Policy_kind_children();
-        this->accept_each(policies);
+        accept_each(policies, *this);
       }
     
 
     void SecurityQoSVisitor::Visit_Policy(const Policy& policy)
       {
         std::set<PortRule> port_rules = policy.PortRule_kind_children();
-        this->accept_each(port_rules);
+        accept_each(port_rules, *this);
 
         std::set<ComponentRule> comp_rules = policy.ComponentRule_kind_children();
-        this->accept_each(comp_rules);
+        accept_each(comp_rules, *this);
 
         std::set<AssemblyRule> assm_rules = policy.AssemblyRule_kind_children();
-        this->accept_each(assm_rules);
+        accept_each(assm_rules, *this);
 
         this->populatePoliciesMap(policy);
       }
@@ -320,7 +321,7 @@ namespace CQML
         std::set<ComponentImplementationContainer> comp_impl_conts 
                                             = comp_impls.ComponentImplementationContainer_kind_children();
 
-        this->accept_each(comp_impl_conts);
+        accept_each(comp_impl_conts, *this);
       }
     
     void SecurityQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer& comp_impl_cont)
@@ -328,20 +329,20 @@ namespace CQML
         outfile << "ComponentImplmentationContainer...\n";
         std::set<ComponentAssemblySecurityQoS> assm_sec_qos_set 
                                        = comp_impl_cont.ComponentAssemblySecurityQoS_kind_children();
-        this->accept_each(assm_sec_qos_set);
+        accept_each(assm_sec_qos_set, *this);
 
         std::set<ComponentAssembly> comp_assmblies = comp_impl_cont.ComponentAssembly_kind_children();
-        this->accept_each(comp_assmblies);
+        accept_each(comp_assmblies, *this);
       }
 
     void SecurityQoSVisitor::Visit_ComponentAssembly(const ComponentAssembly& comp_assm)
       {
         outfile << "ComponentAssembly...\n";
         std::set<PortSecurityQoS> port_sec_qos_set = comp_assm.PortSecurityQoS_kind_children();
-        this->accept_each(port_sec_qos_set);
+        accept_each(port_sec_qos_set, *this);
 
         std::set<ComponentSecurityQoS> comp_sec_qos_set = comp_assm.ComponentSecurityQoS_kind_children();
-        this->accept_each(comp_sec_qos_set);
+        accept_each(comp_sec_qos_set, *this);
       }
 
     void SecurityQoSVisitor::Visit_PortSecurityQoS(const PortSecurityQoS& port_sec_qos)

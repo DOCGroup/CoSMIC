@@ -16,5 +16,6 @@ project (CQML) : cosmic_common, udm, xerces, cosmic_utils {
    Header_Files {
      CQML.h
      CQML_Export.h
+     Acceptor.h
    }
 }

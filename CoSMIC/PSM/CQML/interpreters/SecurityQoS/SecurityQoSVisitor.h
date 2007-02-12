@@ -8,6 +8,7 @@
 #include <map>
 #include <fstream>
 #include "CQML/CQML.h"
+#include "CQML/Acceptor.h"
 
 // Utility includes
 #include "Utils/XercesString.h"
@@ -25,28 +26,6 @@ namespace CQML
   {
   public:
     SecurityQoSVisitor (const std::string& outputPath);
-    
-    // Function object that accepts visitors
-    template <class Obj>
-    class Acceptor
-      {
-        public:
-          Acceptor (Visitor &v)
-            : visitor_(&v) {}
-          void operator ()(const Obj &o)
-            {
-              const_cast<Obj &> (o).Accept (*visitor_);
-            };
-      private:
-          Visitor *visitor_;
-      };
-
-    // Template that makes the accept code just a single template method call. :-)
-    template <class Container>
-    void accept_each (Container c)
-      {
-        std::for_each (c.begin (), c.end(), Acceptor<Container::value_type> (*this));            
-      }
     
     // Helpers
     inline void populateObj2Op2RightsMap(CQML::Object object);
