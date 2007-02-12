@@ -1,3 +1,18 @@
+Mon Feb 12 11:44:32 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+
+          - An Acceptor functor was added to facilitate writing visitors.
+            The following projects make use of the Acceptor functor.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
 Sat Feb 10 22:08:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
