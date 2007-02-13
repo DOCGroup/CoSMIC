@@ -76,7 +76,7 @@ namespace GME
   //
   // members
   //
-  std::vector <FCO> Set::members (void) const
+  size_t Set::members (std::vector <FCO> & elements) const
   {
     // Get all the members in the set.
     CComPtr <IMgaFCOs> fcos;
@@ -85,7 +85,7 @@ namespace GME
     // Determine the number of members in the set.
     long count;
     VERIFY_HRESULT (fcos->get_Count (&count));
-    std::vector <FCO> members (count);
+    elements.resize (count);
 
     if (count > 0)
     {
@@ -95,13 +95,13 @@ namespace GME
 
       // Store the members in a collection.
       for (long i = 0; i < count; i ++)
-        members[i].attach (array[i]);
+        elements[i].attach (array[i]);
 
       // Release the temp storage.
       delete [] array;
     }
 
-    return members;
+    return count;
   }
 
   //

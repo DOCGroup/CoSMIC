@@ -80,4 +80,12 @@ namespace GME
 
     return *this;
   }
+
+  //
+  // operator IMgaMetaBase *
+  //
+  MetaBase::operator IMgaMetaBase * (void) const
+  {
+    return this->metabase_.p;
+  }
 }

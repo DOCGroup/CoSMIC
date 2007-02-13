@@ -5,7 +5,7 @@ namespace GME
   //
   // error
   //
-  CUTS_INLINE
+  GME_INLINE
   const HRESULT & Failed_Result::value (void) const
   {
     return this->value_;

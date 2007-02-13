@@ -1,3 +1,59 @@
+Tue Feb 13 20:41:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/MetaBase.cpp:
+
+          - Removed the typedef.
+          - Added a conversion operator for IMgaMetaBase *.
+
+        * MDE/GME/gme/Exception.h:
+        * MDE/GME/gme/Exception.inl:
+        * MDE/GME/gme/Exception.cpp:
+
+          - Changed __CUTS_INLINE__ to __GME_INLINE__
+          - Changed CUTS_INLINE to GME_INLINE
+
+        * MDE/GME/gme/FCO.h:
+
+          Aesthetic changes.
+
+        * MDE/GME/gme/GME.mpc:
+        * MDE/GME/gme/Folder_Model_T.h:
+        * MDE/GME/gme/Folder_Model_T.inl:
+        * MDE/GME/gme/Folder_Model_T.cpp:
+
+          Implemented a new class that is the base class of GME models
+          and folders. It defines methods that are common to both types
+          to reduce code redundency and improve consistency.
+
+        * MDE/GME/gme/Folder.h:
+        * MDE/GME/gme/Folder.cpp:
+        * MDE/GME/gme/Model.h:
+        * MDE/GME/gme/Model.cpp:
+
+          Derived both classes from GME::Folder_Model_T.
+
+        * MDE/GME/gme/Territory.h:
+        * MDE/GME/gme/Project.h:
+        * MDE/GME/gme/Project.cpp:
+
+          Documented the methods.
+
+        * MDE/GME/gme/GME_export.h:
+
+          Added preprocessor definition for __GME_INLINE__ and GME_INLINE.
+
+        * MDE/GME/gme/Set.h:
+        * MDE/GME/gme/Set.cpp:
+
+          Changed the members () method to return the vector as an
+          output parameter instead of a return value.
+
+        * utils/GUTS/gems2picml_App.cpp:
+
+          Update the models (...) and members (...) method calls
+          to use the new programming semantics of the GME backend.
+
 Tue Feb 13 17:31:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp:

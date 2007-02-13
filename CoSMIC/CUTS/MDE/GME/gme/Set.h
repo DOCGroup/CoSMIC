@@ -87,9 +87,10 @@ namespace GME
     /**
      * Get all the objects in the set.
      *
-     * @return        The collection of FCO members for the set.
+     * @param[out]    members       Collection of objects in the set.
+     * @return        Number of elements in \a members.
      */
-    std::vector <FCO> members (void) const;
+    size_t members (std::vector <FCO> & members) const;
 
   protected:
     /// Helper method for getting the correct implemenation.

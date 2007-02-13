@@ -29,9 +29,6 @@ namespace GME
   class GME_Export MetaBase
   {
   public:
-    /// Type definition of the interface pointer.
-    typedef IMgaMetaBase _type;
-
     /// Default constructor.
     MetaBase (void);
 
@@ -80,6 +77,13 @@ namespace GME
      * @return          Reference to this object.
      */
     const MetaBase & operator = (const MetaBase & meta);
+
+    /**
+     * Convert the object to a IMgaMetaBase pointer.
+     *
+     * @return          Pointer to a IMgaMetaBase object.
+     */
+    operator IMgaMetaBase * (void) const;
 
   protected:
     /// The underlying interface pointer.

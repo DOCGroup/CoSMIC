@@ -4,8 +4,6 @@
 #ifndef GME_EXPORT_H
 #define GME_EXPORT_H
 
-#include "cuts/config.h"
-
 #if !defined (GME_HAS_DLL)
 #  define GME_HAS_DLL 1
 #endif /* ! GME_HAS_DLL */
@@ -19,5 +17,11 @@
 #else /* GME_HAS_DLL == 1 */
 #  define GME_Export
 #endif /* GME_HAS_DLL == 1 */
+
+#if defined (__GME_INLINE__)
+#define GME_INLINE inline
+#else
+#define GME_INLINE
+#endif
 
 #endif /* GME_EXPORT_H */

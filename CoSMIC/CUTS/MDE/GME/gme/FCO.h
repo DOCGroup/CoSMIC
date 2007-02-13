@@ -24,6 +24,7 @@ namespace GME
    * Wrapper class for the IMgaFCO interface.
    */
   //=============================================================================
+
   class GME_Export FCO : public Object
   {
   public:

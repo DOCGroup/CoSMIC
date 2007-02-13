@@ -290,7 +290,10 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
 {
   // Get the root folder.
   GME::Folder root = this->project_->root_folder ();
-  std::vector <GME::Folder> folders = root.folders ();
+
+  // Get all the folders in the <root> folder.
+  std::vector <GME::Folder> folders;
+  root.folders (folders);
 
   VERBOSE_MESSAGE ((LM_INFO,
                     "*** info [gems2picml]: locating %s folder\n",
@@ -310,7 +313,8 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
                         this->options_.target_model_.c_str ()));
 
       // Get all the deployment plans in the model.
-      std::vector <GME::Model> models = iter->models ("DeploymentPlan");
+      std::vector <GME::Model> models;
+      iter->models ("DeploymentPlan", models);
 
       // Search for one by the name of "SLICE_DeploymentPlan"
       for (std::vector <GME::Model>::iterator m_iter = models.begin ();
@@ -341,8 +345,8 @@ convert_gems_2_picml (GME::Model & deployment)
                     "PICML model...\n"));
 
   // Get all the component references for this deployment.
-  std::vector <GME::Reference> components =
-    deployment.references ("ComponentRef");
+  std::vector <GME::Reference> components;
+  deployment.references ("ComponentRef", components);
 
   // We need to create a reverse map of the *real* components
   // to the references.
@@ -363,7 +367,9 @@ convert_gems_2_picml (GME::Model & deployment)
   /// @todo Re-implement algorithm such that we do not have to
   /// empty all the sets before we begin reconfiguring the
   /// deployment.
-  std::vector <GME::Set> hosts = deployment.sets ("CollocationGroup");
+  std::vector <GME::Set> hosts;
+  deployment.sets ("CollocationGroup", hosts);
+
   std::map <std::string, GME::Set> hostmap;
 
   for (std::vector <GME::Set>::iterator iter = hosts.begin ();

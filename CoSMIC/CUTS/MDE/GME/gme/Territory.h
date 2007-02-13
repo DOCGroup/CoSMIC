@@ -15,7 +15,6 @@
 
 #include "Exception.h"
 #include "Mga.h"
-#include "GME_export.h"
 
 namespace GME
 {

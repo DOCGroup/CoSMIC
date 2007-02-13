@@ -99,7 +99,7 @@ namespace GME
   }
 
   //
-  // name
+  // [get_]name
   //
   std::string Project::name (void) const
   {
@@ -111,7 +111,7 @@ namespace GME
   }
 
   //
-  // name
+  // [set_]name
   //
   void Project::name (const std::string & name)
   {
@@ -120,7 +120,7 @@ namespace GME
   }
 
   //
-  // version
+  // [get_]version
   //
   std::string Project::version (void) const
   {
@@ -132,7 +132,7 @@ namespace GME
   }
 
   //
-  // version
+  // [set_]version
   //
   void Project::version (const std::string & version)
   {
@@ -141,7 +141,7 @@ namespace GME
   }
 
   //
-  // author
+  // [get_]author
   //
   std::string Project::author (void) const
   {
@@ -153,7 +153,7 @@ namespace GME
   }
 
   //
-  // author
+  // [set_]author
   //
   void Project::author (const std::string & author)
   {
@@ -162,7 +162,7 @@ namespace GME
   }
 
   //
-  // comment
+  // [get_]comment
   //
   std::string Project::comment (void) const
   {
@@ -174,7 +174,7 @@ namespace GME
   }
 
   //
-  // comment
+  // [set_]comment
   //
   void Project::comment (const std::string & comment)
   {
@@ -195,7 +195,7 @@ namespace GME
   }
 
   //
-  // create_time
+  // change_time
   //
   std::string Project::change_time (void) const
   {
