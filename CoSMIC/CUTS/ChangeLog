@@ -1,3 +1,10 @@
+Tue Feb 13 17:31:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+
+          Updated the VERBOSE_MESSAGE that displays a synopsis of the
+          current baseline metric.
+
 Tue Feb 13 17:27:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.h:

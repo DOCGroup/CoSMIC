@@ -273,8 +273,9 @@ int CUTS_Baseline_Service::handle_deactivate (void)
 
             // Notify the user of the collected baseline metrics.
             VERBOSE_MESSAGE ((LM_DEBUG,
-                              "*** info [baseline]: port %s ("
+                              "*** info [baseline]: %s bound for port %s ("
                               "count: %d; min: %d; avg: %f; max: %d)\n",
+                              (this->min_baseline_ ? "lower" : "upper"),
                               outport,
                               count,
                               endpoint->second->best_time (),
