@@ -88,4 +88,20 @@ namespace GME
   {
     return this->metabase_.p;
   }
+
+  //
+  // operator ==
+  //
+  bool MetaBase::operator == (const std::string & name) const
+  {
+    return this->name () == name;
+  }
+
+  //
+  // operator ==
+  //
+  bool MetaBase::operator == (const MetaBase & meta) const
+  {
+    return this->metabase_ == meta.metabase_;
+  }
 }

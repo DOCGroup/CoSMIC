@@ -85,6 +85,26 @@ namespace GME
      */
     operator IMgaMetaBase * (void) const;
 
+    /**
+     * Determine if the metabase's name is equal to \a name. This
+     * compares the name with the real name, not the displayed name
+     * of the metabase.
+     *
+     * @param[in]       name        Name to compare.
+     * @retval          true        The object matches \a name.
+     * @retval          false       The object does not match \a name.
+     */
+    bool operator == (const std::string & name) const;
+
+    /**
+     * Determine if two MetaBase objects are equal.
+     *
+     * @param[in]       meta        The source object.
+     * @retval          true        The two objects are the same
+     * @retval          false       The two objects are not the name.
+     */
+    bool operator == (const MetaBase & meta) const;
+
   protected:
     /// The underlying interface pointer.
     CComPtr <IMgaMetaBase> metabase_;

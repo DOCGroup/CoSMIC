@@ -305,7 +305,7 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
   {
     // Determine if this is the correct folder type and, if so,
     // determine if this is the <target_folder_>.
-    if (iter->meta ().name () == "DeploymentPlans" &&
+    if (iter->meta () == "DeploymentPlans" &&
         iter->name () == this->options_.target_folder_)
     {
       VERBOSE_MESSAGE ((LM_INFO,

@@ -1,3 +1,16 @@
+Tue Feb 13 20:57:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/MetaBase.cpp:
+
+          Implemented equality comparison operator for the name.
+
+        * utils/GUTS/gems2picml_App.cpp:
+
+          Change the "DeploymentPlans" comparison for the metabase's
+          name to use the equality operator provided by the GME::MetaBase
+          object.
+
 Tue Feb 13 20:41:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/MetaBase.h:
