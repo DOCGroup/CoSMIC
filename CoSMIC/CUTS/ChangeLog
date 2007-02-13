@@ -1,3 +1,16 @@
+Tue Feb 13 17:27:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+
+          Added support for storing upper-bound baseline metrics.
+
+        * etc/SQL/CUTS-baseline.sql:
+
+          Removed the NOT NULL requirement from the metric fields since
+          it is non-deterministic as to which metric would be entered
+          first (e.g., min or max).
+
 Tue Feb 13 17:13:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/GEMS/CUTS_GEMS.h:

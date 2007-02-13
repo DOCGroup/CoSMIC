@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS baseline
   host            INT             NOT NULL DEFAULT 0,
   inport          VARCHAR(255)    NOT NULL,
   outport         VARCHAR(255)    NOT NULL,
-  min_count       INT             NOT NULL,
-  min_total       INT             NOT NULL,
-  max_count       INT             NOT NULL,
-  max_total       INT             NOT NULL,
+  min_count       INT,
+  min_total       INT,
+  max_count       INT,
+  max_total       INT,
 
   -- set the primary key
   PRIMARY KEY (bid),

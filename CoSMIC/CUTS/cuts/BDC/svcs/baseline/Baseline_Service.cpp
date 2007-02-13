@@ -35,7 +35,8 @@ CUTS_Baseline_Service::CUTS_Baseline_Service (void)
   server_ ("localhost"),
   default_ (false),
   inst_id_ (-1),
-  host_id_ (-1)
+  host_id_ (-1),
+  min_baseline_ (true)
 {
 
 }
@@ -67,13 +68,14 @@ int CUTS_Baseline_Service::init (int argc, ACE_TCHAR * argv[])
 int CUTS_Baseline_Service::
 parse_args (int argc, ACE_TCHAR * argv [])
 {
-  const char * opts = "dw:";
+  const char * opts = "udw:";
 
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
   get_opt.long_option ("server", ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("warmup-count", 'w', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
-  get_opt.long_option ("default-baseline", ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("default", ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("upper-bound", 'u', ACE_Get_Opt::NO_ARG);
 
   int option;
 
@@ -88,16 +90,23 @@ parse_args (int argc, ACE_TCHAR * argv [])
       else if (ACE_OS::strcmp (get_opt.long_option (), "server") == 0)
         this->server_ = get_opt.opt_arg ();
 
-      else if (ACE_OS::strcmp (get_opt.long_option (), "default-baseline") == 0)
+      else if (ACE_OS::strcmp (get_opt.long_option (), "default") == 0)
         this->default_ = true;
+
+      else if (ACE_OS::strcmp (get_opt.long_option (), "upper-bound") == 0)
+        this->min_baseline_ = false;
 
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
         this->verbose_ = true;
       break;
 
     case 'w':
-        this->warmup_count_ = ACE_OS::atoi (get_opt.opt_arg ());
-        break;
+      this->warmup_count_ = ACE_OS::atoi (get_opt.opt_arg ());
+      break;
+
+    case 'u':
+      this->min_baseline_ = false;
+      break;
 
     case '?':
       ACE_DEBUG ((LM_NOTICE,
@@ -142,14 +151,18 @@ int CUTS_Baseline_Service::handle_deactivate (void)
                         this->server_.c_str ()));
 
       // Insert statement for the database.
-      const char * insert_stmt =
+      const char * insert_stmt = this->min_baseline_ ?
         "INSERT INTO baseline "
-        "(instance, host, inport, outport, metric_count, metric_total) "
+        "(instance, host, inport, outport, min_count, min_total) "
+        "VALUES (?, ?, ?, ?, ?, ?)" : "INSERT INTO baseline "
+        "(instance, host, inport, outport, max_count, max_total) "
         "VALUES (?, ?, ?, ?, ?, ?)";
 
       // Update statement for the database.
-      const char * update_stmt =
-        "UPDATE baseline SET metric_count = ?, metric_total = ? "
+      const char * update_stmt = this->min_baseline_ ?
+        "UPDATE baseline SET min_count = ?, min_total = ? "
+        "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?" :
+        "UPDATE baseline SET max_count = ?, max_total = ? "
         "WHERE instance = ? AND host = ? AND inport = ? AND outport = ?";
 
       int retval = 0;

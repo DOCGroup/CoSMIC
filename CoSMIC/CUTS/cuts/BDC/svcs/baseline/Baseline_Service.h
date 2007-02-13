@@ -87,6 +87,8 @@ private:
   long inst_id_;
 
   long host_id_;
+
+  bool min_baseline_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_BASELINE_SERVICE_Export);
