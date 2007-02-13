@@ -1,0 +1,10 @@
+// $Id$
+
+project {
+  requires += gme
+
+  after    += GME
+
+  includes += $(CUTS_ROOT)/MDE/GME
+  libs     += GME
+}

@@ -1,0 +1,10 @@
+// $Id$
+
+project {
+  requires += gems
+
+  after    += GEMS_CRN
+
+  includes += $(CUTS_ROOT)/MDE/GEMS
+  libs     += GEMS_CRN
+}

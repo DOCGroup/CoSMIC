@@ -1,3 +1,15 @@
+Tue Feb 13 21:04:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_gems.mpb:
+
+          Base project that will include set the correct properties
+          (e.g., libs, includes, etc.) for using GEMS.
+
+        * etc/config/cuts_gme.mpb:
+
+          Base project that will include set the correct properties
+          (e.g., libs, includes, etc.) for using GME.
+
 Tue Feb 13 20:57:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/MetaBase.h:
