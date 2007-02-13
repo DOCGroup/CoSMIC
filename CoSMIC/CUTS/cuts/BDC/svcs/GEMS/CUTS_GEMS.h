@@ -92,9 +92,14 @@ private:
   /// Map for mapping names to nodes in GEMS.
   GEMS_Model_Map component_map_;
 
+  /// Use the naming service to resolve GEMS.
   bool use_naming_service_;
 
-  ACE_CString constraint_;
+  /// GEMS method to invoke after values are pulled from GEMS.
+  ACE_CString init_gems_;
+
+  /// GEMS method to invoke after values are pushed to GEMS.
+  ACE_CString fini_gems_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_GEMS_Export);

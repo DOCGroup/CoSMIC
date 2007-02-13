@@ -1,3 +1,20 @@
+Tue Feb 13 17:13:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.h:
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
+
+          Added --init and --fini command-line options to determine
+          what constraint solver to run after initializing and
+          finalizing the GEMS remote connection.
+
+        * etc/SQL/CUTS-baseline.sql:
+
+          - Changed metric_count and metric_total to min_count and
+            min_total, respectively, to hold the min values for a
+            baseline metric.
+          - Added a max_count and max_total to store the maximum value
+            for a baseline metric.
+
 Sat Feb 10 23:37:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/BON:

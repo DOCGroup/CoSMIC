@@ -85,9 +85,12 @@ int CUTS_GEMS_Service::parse_args (int argc, ACE_TCHAR * argv [])
   const char * opts = "nb:r:";
 
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
-  get_opt.long_option ("run-constraint", 'r', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("baseline-server", 'b', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("gems", ACE_Get_Opt::ARG_REQUIRED);
+
+  get_opt.long_option ("fini", ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("init", ACE_Get_Opt::ARG_REQUIRED);
+
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
 
   int option;
@@ -99,8 +102,10 @@ int CUTS_GEMS_Service::parse_args (int argc, ACE_TCHAR * argv [])
     case 0:
       if (ACE_OS::strcmp (get_opt.long_option (), "gems") == 0)
         this->gems_string_ = get_opt.opt_arg ();
-      else if (ACE_OS::strcmp (get_opt.long_option (), "run-constraint") == 0)
-        this->constraint_ = get_opt.opt_arg ();
+      else if (ACE_OS::strcmp (get_opt.long_option (), "init") == 0)
+        this->init_gems_ = get_opt.opt_arg ();
+      else if (ACE_OS::strcmp (get_opt.long_option (), "fini") == 0)
+        this->fini_gems_ = get_opt.opt_arg ();
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
         this->verbose_ = true;
       else
@@ -113,10 +118,6 @@ int CUTS_GEMS_Service::parse_args (int argc, ACE_TCHAR * argv [])
 
     case 'n':
       this->use_naming_service_ = true;
-      break;
-
-    case 'r':
-      this->constraint_ = get_opt.opt_arg ();
       break;
 
     case '?':
@@ -188,6 +189,27 @@ int CUTS_GEMS_Service::handle_activate (void)
                          "*** error [GEMS]: failed to extract "
                          "component models\n"),
                          -1);
+    }
+
+    if (!this->init_gems_.empty ())
+    {
+      // Apply the changes to the GEMS model and run the constraint solver.
+      // We can then close the singleton since we aren't going to perform
+      // any more operations on the model.
+      if (GEMS_MODEL_MANAGER ()->
+          run_constraint_solver (this->init_gems_.c_str ()) == 0)
+      {
+        VERBOSE_MESSAGE ((LM_INFO,
+                          "*** info [GEMS]: successfully invoked '%s' "
+                          "in GEMS\n",
+                          this->init_gems_.c_str ()));
+      }
+      else
+      {
+        ACE_ERROR ((LM_ERROR,
+                    "*** error [GEMS]: failed to invoke '%s' in GEMS\n",
+                    this->init_gems_.c_str ()));
+      }
     }
 
     return 0;
@@ -424,24 +446,24 @@ int CUTS_GEMS_Service::handle_deactivate (void)
     }
   }
 
-  if (!this->constraint_.empty ())
+  if (!this->fini_gems_.empty ())
   {
     // Apply the changes to the GEMS model and run the constraint solver.
     // We can then close the singleton since we aren't going to perform
     // any more operations on the model.
     if (GEMS_MODEL_MANAGER ()->
-        run_constraint_solver (this->constraint_.c_str ()) == 0)
+        run_constraint_solver (this->fini_gems_.c_str ()) == 0)
     {
       VERBOSE_MESSAGE ((LM_INFO,
                         "*** info [GEMS]: successfully invoked '%s' "
                         "in GEMS\n",
-                        this->constraint_.c_str ()));
+                        this->fini_gems_.c_str ()));
     }
     else
     {
       ACE_ERROR ((LM_ERROR,
                   "*** error [GEMS]: failed to invoke '%s' in GEMS\n",
-                  this->constraint_.c_str ()));
+                  this->fini_gems_.c_str ()));
     }
   }
   else
@@ -450,6 +472,7 @@ int CUTS_GEMS_Service::handle_deactivate (void)
     GEMS_MODEL_MANAGER ()->apply_changes ();
   }
 
+  // Close the model manager.
   GEMS::Model_Manager::close_singleton ();
   return 0;
 }
