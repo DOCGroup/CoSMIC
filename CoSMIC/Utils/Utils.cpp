@@ -1,41 +1,80 @@
 // $Id: Utils.cpp 607 2006-01-20 20:02:25Z hillj $
 
 #include "Utils/Utils.h"
+#include <direct.h>
 #include <atlcomcli.h>
+#include <commdlg.h>
+#include <stack>
 
 namespace Utils
 {
+  //
+  // BrowseCallbackProc
+  //
+  static int CALLBACK
+  BrowseCallbackProc (HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
+  {
+    switch (msg)
+    {
+    case BFFM_INITIALIZED:
+      {
+        // Convert the string into a ITEMIDLIST. Then pass the ITEMIDLIST
+        // to the browse dialog. This will initialize its selection.
+        // Finally, we need to free its allocated memory.
+        LPITEMIDLIST ppidl = ::ILCreateFromPath ((LPCTSTR)lparam);
+        ::SendMessage (hwnd, BFFM_SETSELECTION, FALSE, (LPARAM)ppidl);
+        ::CoTaskMemFree (ppidl);
+      }
+      break;
 
-  // This method prompts a dialog to allow the user to specify a folder
-  Utils_Export bool getPath (const std::string& description, std::string& path)
+    case BFFM_VALIDATEFAILED:
+      // We have to return 1 to keep the dialog open.
+      return 1;
+    }
+
+    return 0;
+  }
+
+  //
+  // getPath
+  //
+  bool getPath (const std::string & prompt, std::string & path)
+  {
+    std::string initdir;
+    return getPath (prompt, path, initdir);
+  }
+
+  //
+  // getPath
+  //
+  bool getPath (const std::string & prompt,
+                std::string & path,
+                const std::string & initdir)
   {
     // Initalize the com library
-    HRESULT hr = ::CoInitialize (NULL);
-    if (FAILED(hr))
+    if (FAILED (::CoInitialize (NULL)))
       return false;
 
     // Dialog instruction
     char display_buffer[MAX_PATH];
     BROWSEINFO folder_browsinfo;
-    memset (&folder_browsinfo, 0, sizeof (folder_browsinfo));
+    ZeroMemory (&folder_browsinfo, sizeof (folder_browsinfo));
 
-    // Set GME as the owner of the dialog
-    folder_browsinfo.hwndOwner = GetActiveWindow ();
-    // Start the browse from desktop
+    // Initialize the structure.
+    folder_browsinfo.hwndOwner = ::GetActiveWindow ();
     folder_browsinfo.pidlRoot = NULL;
-    // Pointer to the folder name display buffer
     folder_browsinfo.pszDisplayName = &display_buffer[0];
-    // Dialog instruction string
-    folder_browsinfo.lpszTitle = description.c_str();
-    // Use new GUI style and allow edit plus file view
-    folder_browsinfo.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI;
-    // No callback function
-    folder_browsinfo.lpfn = NULL;
-    // No parameter passing into the dialog
-    folder_browsinfo.lParam = 0;
+    folder_browsinfo.lpszTitle = prompt.c_str();
+    folder_browsinfo.ulFlags   = BIF_RETURNONLYFSDIRS | BIF_USENEWUI;
+
+    // We are going to setup a callback function and pass in the
+    // initial directory as a parameter. The callback will use the
+    // parameter to initialize the dialog properly.
+    folder_browsinfo.lpfn = (BFFCALLBACK)&BrowseCallbackProc;
+    folder_browsinfo.lParam = (LPARAM)initdir.c_str ();
 
     // Show the Browse... folder and save the result.
-    LPITEMIDLIST folder_pidl = SHBrowseForFolder(&folder_browsinfo);
+    LPITEMIDLIST folder_pidl = ::SHBrowseForFolder(&folder_browsinfo);
     bool result = folder_pidl != NULL;
 
     if (result)
@@ -43,7 +82,7 @@ namespace Utils
       TCHAR FolderNameBuffer[MAX_PATH];
 
       // Convert the selection into a path
-      if (SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
+      if (::SHGetPathFromIDList (folder_pidl, FolderNameBuffer))
         path = FolderNameBuffer;
 
       // Free the ItemIDList object returned from the call to
@@ -55,6 +94,9 @@ namespace Utils
     return result;
   }
 
+  //
+  // CreateUuid
+  //
   std::string CreateUuid (void)
   {
     std::string idstr ("");
@@ -82,6 +124,9 @@ namespace Utils
     return idstr;
   }
 
+  //
+  // ValidUuid
+  //
   bool ValidUuid (const std::string & uuid)
   {
     UUID uuid_placeholder;
@@ -90,5 +135,54 @@ namespace Utils
       UuidFromString ((unsigned char *)uuid.c_str (), &uuid_placeholder);
 
     return result == RPC_S_OK;
+  }
+
+  //
+  // CreatePath
+  //
+  bool CreatePath (const std::string & path, char separator)
+  {
+    int retval;
+    size_t index;
+
+    std::stack <size_t> indices;
+    std::string tempstr = path;
+
+    do
+    {
+      // Try to make the directory in <tempstr>. We keep repeating
+      // this loop until we reach the deepest subdirectory specified
+      // in <tempstr> that actually creates a new directory. Or,
+      // until we have reached the top-most level directory.
+      retval = _mkdir (tempstr.c_str ());
+
+      if (retval == -1 && errno == ENOENT)
+      {
+        // Locate the last seperator in the string.
+        index = tempstr.rfind (separator);
+
+        // Remove that seperator so that we go up one directory.
+        if (index != std::string::npos)
+        {
+          indices.push (index);
+          tempstr[index] = 0;
+        }
+      }
+    } while (retval == -1 && errno == ENOENT && index != std::string::npos);
+
+    // Ok, the path in <tempstr> already exists. So, now we need
+    // to create the remaining subdirectories.
+    while (!indices.empty ())
+    {
+      // Restore the next <separator> in <tempstr>.
+      tempstr[indices.top ()] = separator;
+      indices.pop ();
+
+      // Try to make this directory. We stop on any error.
+      if (_mkdir (tempstr.c_str ()) == -1)
+        break;
+    }
+
+    return indices.empty ();
   }
 } // namespace PICML
