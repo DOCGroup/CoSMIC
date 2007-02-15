@@ -1,3 +1,11 @@
+Thu Feb 15 23:26:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+        * cuts/be/CoWorkEr_Generator.h:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Changed CUTS_UDM_CoWorkEr_Generator to CUTS_CoWorkEr_Generator.
+
 Thu Feb 15 21:30:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME:

@@ -1,24 +1,35 @@
-#ifndef _UDM_COWORKER_GENERATOR_H_
-#define _UDM_COWORKER_GENERATOR_H_
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      CoWorkEr_Generator.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _CUTS_COWORKER_GENERATOR_H_
+#define _CUTS_COWORKER_GENERATOR_H_
 
 #include "BE_export.h"
 #include "PICML/PICML.h"
 
 //=============================================================================
 /**
- * @class CUTS_UDM_CoWorkEr_Generator
+ * @class CUTS_CoWorkEr_Generator
  */
 //=============================================================================
 
-class CUTS_BE_Export CUTS_UDM_CoWorkEr_Generator :
-  public PICML::Visitor
+class CUTS_BE_Export CUTS_CoWorkEr_Generator : public PICML::Visitor
 {
 public:
   /// Default constructor.
-  CUTS_UDM_CoWorkEr_Generator (void);
+  CUTS_CoWorkEr_Generator (void);
 
   /// Destructor.
-  virtual ~CUTS_UDM_CoWorkEr_Generator (void);
+  virtual ~CUTS_CoWorkEr_Generator (void);
 
 private:
   //===========================================================================
@@ -88,4 +99,4 @@ private:
   size_t coworkers_;
 };
 
-#endif  /* !defined _UDM_COWORKER_GENERATOR_H_ */
+#endif  /* !defined _CUTS_COWORKER_GENERATOR_H_ */

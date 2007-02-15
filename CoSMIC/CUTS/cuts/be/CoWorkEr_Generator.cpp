@@ -25,9 +25,9 @@ static const std::string
 COWORKER_INTERFACE_FOLDER ("CoWorkEr_InterfaceDefinitions");
 
 //
-// CUTS_UDM_CoWorkEr_Generator
+// CUTS_CoWorkEr_Generator
 //
-CUTS_UDM_CoWorkEr_Generator::CUTS_UDM_CoWorkEr_Generator (void)
+CUTS_CoWorkEr_Generator::CUTS_CoWorkEr_Generator (void)
 : parent_ (0),
   coworkers_ (0)
 {
@@ -35,14 +35,14 @@ CUTS_UDM_CoWorkEr_Generator::CUTS_UDM_CoWorkEr_Generator (void)
 }
 
 //
-// ~CUTS_UDM_CoWorkEr_Generator
+// ~CUTS_CoWorkEr_Generator
 //
-CUTS_UDM_CoWorkEr_Generator::~CUTS_UDM_CoWorkEr_Generator (void)
+CUTS_CoWorkEr_Generator::~CUTS_CoWorkEr_Generator (void)
 {
 
 }
 
-void CUTS_UDM_CoWorkEr_Generator::Visit_RootFolder (
+void CUTS_CoWorkEr_Generator::Visit_RootFolder (
   const PICML::RootFolder & root)
 {
   // Get all the <PICML::InterfaceDefinitions> elements.
@@ -82,7 +82,7 @@ void CUTS_UDM_CoWorkEr_Generator::Visit_RootFolder (
 //
 // Visit_InterfaceDefinitions
 //
-void CUTS_UDM_CoWorkEr_Generator::Visit_InterfaceDefinitions (
+void CUTS_CoWorkEr_Generator::Visit_InterfaceDefinitions (
   const PICML::InterfaceDefinitions & idefs)
 {
   // Get all the <PICML::File> elements in this folder.
@@ -127,7 +127,7 @@ void CUTS_UDM_CoWorkEr_Generator::Visit_InterfaceDefinitions (
 //
 // Visit_File
 //
-void CUTS_UDM_CoWorkEr_Generator::Visit_File (const PICML::File & file)
+void CUTS_CoWorkEr_Generator::Visit_File (const PICML::File & file)
 {
   // Get all the <PICML::Package> elements in this <file>.
   typedef std::vector <PICML::Package> Package_Set;
@@ -238,7 +238,7 @@ void CUTS_UDM_CoWorkEr_Generator::Visit_File (const PICML::File & file)
 //
 // Visit_Component
 //
-void CUTS_UDM_CoWorkEr_Generator::Visit_Component (
+void CUTS_CoWorkEr_Generator::Visit_Component (
   const PICML::Component & component)
 {
   // Get all the <PICML::ProvidedRequestPort> for this component.
@@ -309,7 +309,7 @@ void CUTS_UDM_CoWorkEr_Generator::Visit_Component (
 //
 // Package_Visitor
 //
-CUTS_UDM_CoWorkEr_Generator::
+CUTS_CoWorkEr_Generator::
 Package_Visitor::Package_Visitor (const PICML::Package & parent)
 : parent_ (parent),
   coworkers_ (0)
@@ -320,7 +320,7 @@ Package_Visitor::Package_Visitor (const PICML::Package & parent)
 //
 // ~Package_Visitor
 //
-CUTS_UDM_CoWorkEr_Generator::
+CUTS_CoWorkEr_Generator::
 Package_Visitor::~Package_Visitor (void)
 {
 
@@ -329,7 +329,7 @@ Package_Visitor::~Package_Visitor (void)
 //
 // Visit_Package
 //
-void CUTS_UDM_CoWorkEr_Generator::
+void CUTS_CoWorkEr_Generator::
 Package_Visitor::Visit_Package (const PICML::Package & package)
 {
   // Get all the <Package> elements at this level and create a
@@ -396,7 +396,7 @@ Package_Visitor::Visit_Package (const PICML::Package & package)
 //
 // Visit_Component
 //
-void CUTS_UDM_CoWorkEr_Generator::
+void CUTS_CoWorkEr_Generator::
 Package_Visitor::Visit_Component (const PICML::Component & component)
 {
   // Get all the <PICML::ProvidedRequestPort> for this component.
@@ -496,7 +496,7 @@ Package_Visitor::Visit_Component (const PICML::Component & component)
   manage.srcManagesComponent_end () = cfactory;
 }
 
-size_t CUTS_UDM_CoWorkEr_Generator::
+size_t CUTS_CoWorkEr_Generator::
 Package_Visitor::coworker_count (void) const
 {
   return this->coworkers_;
