@@ -1,3 +1,11 @@
+Thu Feb 15 23:15:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          Changed CreatePropertyElement and Visit_DataType implementation
+          to compare the meta information of a predefined type when generating
+          the XML instead of the name of the predefined type.
+
 Thu Feb 15 07:19:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/Utils.h:
