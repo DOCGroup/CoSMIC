@@ -1,3 +1,10 @@
+Thu Feb 15 20:50:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/GME/interpreters/PICML_CIAO_Impl/CUTS_PICML.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/PICML_CIAO_Impl.mpc:
+
+          Renamed the latter to the former.
+
 Thu Feb 15 19:58:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/GUTS/modeltran.mpc:
