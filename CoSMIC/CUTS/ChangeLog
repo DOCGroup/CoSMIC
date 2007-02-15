@@ -1,3 +1,87 @@
+Thu Feb 15 19:42:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Atom.h:
+        * MDE/GME/gme/Atom.cpp:
+
+          - Added the _create method for creating atoms.
+          - Added the _narrow method for converting FCO's to atoms.
+
+        * MDE/GME/gme/FCO.h:
+        * MDE/GME/gme/FCO.cpp:
+
+          - Added methods for creating instance, subtypes and regular
+            FCO objects.
+          - Added a meta () to get meta infomration about the object.
+          - Added metarole () to get a object's role information.
+
+        * MDE/GME/gme/Folder.h:
+        * MDE/GME/gme/Folder.cpp:
+
+          - Added parent () to get the parent folder of a folder.
+          - Added meta () to get a meta information for the folder.
+          - Added _create () to create subfolders.
+
+        * MDE/GME/gme/Folder_Model_T.h:
+
+          Moved the impl () method to the public section.
+
+        * MDE/GME/gme/Folder_Model_T.inl:
+        * MDE/GME/gme/Folder_Model_T.cpp:
+
+          Moved the attach () method from the .cpp file to
+          the .inl file.
+
+        * MDE/GME/gme/GME.mpc:
+
+          Added the new source files to the project.
+
+        * MDE/GME/gme/GME_fwd.h:
+
+          Added Folder to the forward declaration list.
+
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/MetaBase.cpp:
+
+          - Added methods for changing the displayed name
+            and default name.
+          - Added methods to get/set registry values.
+
+        * MDE/GME/gme/MetaFCO.h:
+        * MDE/GME/gme/MetaFCO.inl:
+        * MDE/GME/gme/MetaFCO.cpp:
+        * MDE/GME/gme/MetaFolder.h:
+        * MDE/GME/gme/MetaFolder.inl:
+        * MDE/GME/gme/MetaFolder.cpp:
+        * MDE/GME/gme/MetaModel.h:
+        * MDE/GME/gme/MetaModel.inl:
+        * MDE/GME/gme/MetaModel.cpp:
+        * MDE/GME/gme/MetaRole.h:
+        * MDE/GME/gme/MetaRole.inl:
+        * MDE/GME/gme/MetaRole.cpp:
+
+          New additions to the repo.
+
+        * MDE/GME/gme/Object.h:
+        * MDE/GME/gme/Object.cpp:
+
+          Implemented the destroy () method for delete object
+          from the model.
+
+        * MDE/GME/gme/Model.h:
+        * MDE/GME/gme/Model.cpp:
+        * MDE/GME/gme/Reference.h:
+        * MDE/GME/gme/Reference.inl:
+        * MDE/GME/gme/Reference.cpp:
+        * MDE/GME/gme/Set.h:
+        * MDE/GME/gme/Set.cpp:
+
+          - Added _create () and _narrow () methods.
+
+        * utils/GUTS/gems2picml_App.cpp:
+
+          Added the ability to create the target model if it
+          does not exist.
+
 Tue Feb 13 21:04:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_gems.mpb:

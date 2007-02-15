@@ -57,11 +57,25 @@ namespace GME
     std::string name (void) const;
 
     /**
+     * Set the actual meta name.
+     *
+     * @param[in]       name      The name of the meta object.
+     */
+    void name (const std::string & name);
+
+    /**
      * Get the displayed name for the meta.
      *
      * @return          The displayed name.
      */
     std::string displayed_name (void) const;
+
+    /**
+     * Set the displayed meta name.
+     *
+     * @param[in]       name      The name of the meta object.
+     */
+    void displayed_name (const std::string & name);
 
     /**
      * Attach to an existing interface.
@@ -104,6 +118,63 @@ namespace GME
      * @retval          false       The two objects are not the name.
      */
     bool operator == (const MetaBase & meta) const;
+
+    /**
+     * Get the meta reference id.
+     *
+     * @return          The reference id.
+     */
+    long refid (void) const;
+
+    /**
+     * Set the meta reference id.
+     *
+     * @param[in]       refid       The reference id.
+     */
+    void refid (long refid);
+
+    /**
+     * Get the object type of the meta information.
+     *
+     * @return          The object type.
+     */
+    objtype_enum type (void) const;
+
+    /// Delete the meta object.
+    void destroy (void);
+
+    /**
+     * Get the specified registry value.
+     *
+     * @param[in]       path      The target path.
+     * @return          The registry value of \a path.
+     */
+    std::string registry_value (const std::string & path) const;
+
+    /**
+     * Set the specified registry value.
+     *
+     * @param[in]       path      The target path.
+     * @param[in]       value     The new value.
+     */
+    void registry_value (const std::string & path,
+                         const std::string & value);
+
+    /**
+     * Get a pointer to the implementation.
+     *
+     * @return          Pointer to the implementation.
+     */
+    IMgaMetaBase * impl (void) const;
+
+    /**
+     * Convert the object to a boolean value. This will test the
+     * validity of the object.
+     *
+     * @retval          true      The object is valid.
+     * @retval          false     The object is not valid.
+     */
+    operator bool (void) const;
 
   protected:
     /// The underlying interface pointer.

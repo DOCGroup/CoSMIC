@@ -31,6 +31,24 @@ namespace GME
     /// Type definition for the interface pointer.
     typedef IMgaSet _type;
 
+    /**
+     * Convert a FCO into an set.
+     *
+     * @param[in]       fco           The source FCO object.
+     * @return          The atom object.
+     */
+    static Set _narrow (FCO & fco);
+
+    /**
+     * Create a new set element.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created set.
+     */
+    static Set _create (const std::string & role, Model & parent);
+
     /// Default constructor.
     Set (void);
 
@@ -50,6 +68,13 @@ namespace GME
 
     /// Destructor.
     virtual ~Set (void);
+
+    /**
+     * Attach to an existing set.
+     *
+     * @param[in]       set       The existing set.
+     */
+    void attach (IMgaSet * set);
 
     /**
      * Assignment operator.

@@ -302,4 +302,13 @@ namespace GME
     /// @todo Allow an optional trailing separator.
     return pathstr.str ();
   }
+
+  //
+  // destroy
+  //
+  void Object::destroy (void)
+  {
+    VERIFY_HRESULT (this->object_->DestroyObject ());
+    this->object_.Release ();
+  }
 }

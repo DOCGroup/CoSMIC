@@ -91,6 +91,13 @@ namespace GME
     size_t references (const std::string & type,
                        std::vector <Reference> & refs) const;
 
+    /**
+     * Helper method to get the correct implementation.
+     *
+     * @return          Pointer to the implementation.
+     */
+    T * impl (void) const;
+
   protected:
     /// Default constructor.
     Folder_Model_T (void);
@@ -108,13 +115,6 @@ namespace GME
      * @param[in]       type    The source object.
      */
     Folder_Model_T (const Folder_Model_T & type);
-
-    /**
-     * Helper method to get the correct implementation.
-     *
-     * @return          Pointer to the implementation.
-     */
-    T * impl (void) const;
 
     /// Helper method that gets the children of a specified \a type
     /// and returns them as the specified GME type (i.e., Model, FCO,

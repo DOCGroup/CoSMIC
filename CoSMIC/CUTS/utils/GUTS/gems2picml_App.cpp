@@ -38,7 +38,7 @@ gems2picml_App::~gems2picml_App (void)
 //
 int gems2picml_App::parse_args (int argc, char * argv [])
 {
-  const char * opts = ACE_TEXT ("f:m:no:r:p:");
+  const char * opts = ACE_TEXT ("cf:m:no:r:p:");
   ACE_Get_Opt get_opt (argc, argv, opts, 0);
 
   get_opt.long_option ("folder", 'f', ACE_Get_Opt::ARG_REQUIRED);
@@ -48,6 +48,7 @@ int gems2picml_App::parse_args (int argc, char * argv [])
   get_opt.long_option ("param", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
   get_opt.long_option ("run", 'r', ACE_Get_Opt::ARG_REQUIRED);
+  get_opt.long_option ("create", 'c', ACE_Get_Opt::NO_ARG);
 
   int option;
 
@@ -81,10 +82,18 @@ int gems2picml_App::parse_args (int argc, char * argv [])
       {
         this->options_.run_component_ = get_opt.opt_arg ();
       }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "create") == 0)
+      {
+        this->options_.create_ = true;
+      }
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
       {
         this->options_.verbose_ = true;
       }
+      break;
+
+    case 'c':
+      this->options_.create_ = true;
       break;
 
     case 'f':
@@ -299,14 +308,14 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
                     "*** info [gems2picml]: locating %s folder\n",
                     this->options_.target_folder_.c_str ()));
 
-  for (std::vector <GME::Folder>::iterator iter = folders.begin ();
-       iter != folders.end ();
-       iter ++)
+  for (std::vector <GME::Folder>::iterator f_iter = folders.begin ();
+       f_iter != folders.end ();
+       f_iter ++)
   {
     // Determine if this is the correct folder type and, if so,
     // determine if this is the <target_folder_>.
-    if (iter->meta () == "DeploymentPlans" &&
-        iter->name () == this->options_.target_folder_)
+    if (f_iter->meta () == "DeploymentPlans" &&
+        f_iter->name () == this->options_.target_folder_)
     {
       VERBOSE_MESSAGE ((LM_INFO,
                         "*** info [gems2picml]: locating %s model\n",
@@ -314,12 +323,11 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
 
       // Get all the deployment plans in the model.
       std::vector <GME::Model> models;
-      iter->models ("DeploymentPlan", models);
+      f_iter->models ("DeploymentPlan", models);
 
       // Search for one by the name of "SLICE_DeploymentPlan"
-      for (std::vector <GME::Model>::iterator m_iter = models.begin ();
-           m_iter != models.end ();
-           m_iter ++)
+      std::vector <GME::Model>::iterator m_iter;
+      for (m_iter = models.begin (); m_iter != models.end (); m_iter ++)
       {
         // Determine if this the the <target_model_>.
         if (m_iter->name () == this->options_.target_model_)
@@ -327,6 +335,15 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
           plan = *m_iter;
           return 0;
         }
+      }
+
+      // Ok, we found the folder, but we didn't find <target_model_>. We
+      // therefore need to create a new model. However, we only create a
+      // new model if we have permission.
+      if (m_iter == models.end () && this->options_.create_)
+      {
+        plan = GME::Model::_create ("DeploymentPlan", *f_iter);
+        return 0;
       }
     }
   }

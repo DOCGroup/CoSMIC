@@ -13,7 +13,9 @@
 #ifndef _GME_FCO_H_
 #define _GME_FCO_H_
 
+#include "GME_fwd.h"
 #include "Object.h"
+#include "MetaRole.h"
 
 namespace GME
 {
@@ -30,6 +32,16 @@ namespace GME
   public:
     /// Type definition of the COM pointer type.
     typedef IMgaFCO _type;
+
+    /**
+     * Create a new atom element.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created atom.
+     */
+    static FCO _create (const std::string & role, Model & parent);
 
     /// Default constructor.
     FCO (void);
@@ -58,6 +70,14 @@ namespace GME
      * @retval        false       FCO is not an instance.
      */
     bool is_instance (void) const;
+
+    /**
+     * Get the instance type.
+     *
+     * @retval        The instance's type. NULL if the object is
+     *                not an instance.
+     */
+    FCO instance_type (void) const;
 
     /**
      * Determine if the FCO is the first derivation of anohter
@@ -91,7 +111,20 @@ namespace GME
      */
     operator IMgaFCO * (void) const;
 
-  protected:
+    /**
+     * Get the meta information for this object.
+     *
+     * @return        Its meta information.
+     */
+    MetaFCO meta (void) const;
+
+    /**
+     * Get the meta information about its role.
+     *
+     * @return        Its role's meta information.
+     */
+    MetaRole metarole (void) const;
+
     /**
      * Helper method to return this IMgaFCO implementation from
      * the object interface. This operation then caches the interface
@@ -102,6 +135,68 @@ namespace GME
      */
     IMgaFCO * impl (void) const;
 
+    /**
+     * Create a new instance of the a model.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created model.
+     */
+    FCO create_instance (Model & parent);
+
+    /**
+     * Create a new model element.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created model.
+     */
+    FCO create_subtype (Model & parent);
+
+    /**
+     * Get the archetype for the object. The archetype is the top
+     * most basetype in a multi-hierarchial derivation tree.
+     *
+     * @return      The archetype of the object.
+     */
+    FCO archetype (void) const;
+
+    /**
+     * Determine if the object is a subtype.
+     *
+     * @retval      true      It is a subtype.
+     * @retval      false     It is not a subtype.
+     */
+    bool is_subtype (void) const;
+
+    /**
+     * Get the basetype for the object. The base type is the closet
+     * object that the current object is derived from in a multi-
+     * hierarchial derivation tree.
+     *
+     * @return      The basetype for the object.
+     */
+    FCO basetype (void) const;
+
+    /**
+     * Get a registry value.
+     *
+     * @param[in]   path      The path of the value.
+     * @return      The value stored at \a path.
+     */
+    std::string registry_value (const std::string & path) const;
+
+    /**
+     * Set a registry value.
+     *
+     * @param[in]   path      The path of the value.
+     * @param[in]   value     The new value of \a path.
+     */
+    void registry_value (const std::string & path, const std::string & value);
+
+  private:
     /// The COM pointer for the FCO type.
     mutable CComPtr <IMgaFCO> fco_;
   };

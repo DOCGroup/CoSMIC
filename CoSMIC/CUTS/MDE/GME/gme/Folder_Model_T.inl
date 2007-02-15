@@ -106,4 +106,14 @@ namespace GME
   {
     return this->get_children (type, refs);
   }
+
+  //
+  // attach
+  //
+  GME_INLINE
+  template <typename T, typename BASE>
+  void Folder_Model_T <T, BASE>::attach (T * type)
+  {
+    BASE::attach (type);
+  }
 }

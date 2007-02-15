@@ -31,6 +31,24 @@ namespace GME
     /// Type definition of the COM interface.
     typedef IMgaReference _type;
 
+    /**
+     * Convert a FCO into an atom.
+     *
+     * @param[in]       fco           The source FCO object.
+     * @return          The atom object.
+     */
+    static Reference _narrow (FCO & fco);
+
+    /**
+     * Create a new atom element.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created atom.
+     */
+    static Reference _create (const std::string & role, Model & parent);
+
     /// Default constructor.
     Reference (void);
 
@@ -95,5 +113,9 @@ namespace GME
     mutable CComPtr <IMgaReference> ref_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "Reference.inl"
+#endif
 
 #endif  // !defined _GME_REFERENCE_H_

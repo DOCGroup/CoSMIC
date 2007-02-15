@@ -14,6 +14,7 @@
 #define _GME_FOLDER_H_
 
 #include "Folder_Model_T.h"
+#include "MetaFolder.h"
 
 namespace GME
 {
@@ -49,6 +50,15 @@ namespace GME
      */
     Folder (const Folder & folder);
 
+    /**
+     * Create a folder.
+     *
+     * @param[in]       type          The folder's type.
+     * @param[in]       parent        The parent folder.
+     * @return          The newly created folder.
+     */
+    Folder _create (const std::string & type, Folder & parent);
+
     /// Destructor.
     virtual ~Folder (void);
 
@@ -66,6 +76,20 @@ namespace GME
      * @return      Collection of folder objects.
      */
     size_t folders (std::vector <Folder> & folders) const;
+
+    /**
+     * Get the parent of this folder.
+     *
+     * @return      The parent folder.
+     */
+    Folder parent (void) const;
+
+    /**
+     * Get the meta information for this folder.
+     *
+     * @return      The folders meta information.
+     */
+    MetaFolder meta (void) const;
   };
 }
 

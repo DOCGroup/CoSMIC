@@ -31,6 +31,10 @@ project (GME) : cutslib {
     Interpreter.cpp
     Object.cpp
     MetaBase.cpp
+    MetaFolder.cpp
+    MetaFCO.cpp
+    MetaModel.cpp
+    MetaRole.cpp
     Model.cpp
     Project.cpp
     Reference.cpp

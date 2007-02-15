@@ -35,6 +35,9 @@ namespace GME
 
   // Forward decl.
   class Set;
+
+  // Forward decl.
+  class Folder;
 }
 
 #endif  // !defined _GME_FWD_H_

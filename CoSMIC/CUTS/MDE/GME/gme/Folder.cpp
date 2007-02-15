@@ -77,4 +77,42 @@ namespace GME
 
     return *this;
   }
+
+  //
+  // _create
+  //
+  Folder Folder::_create (const std::string & type, Folder & parent)
+  {
+    CComPtr <IMgaFolder> folder;
+    MetaFolder meta = parent.meta ().folder (type);
+
+    if (meta)
+    {
+      VERIFY_HRESULT (parent.impl ()->CreateFolder (meta, &folder));
+    }
+
+    return folder.p;
+  }
+
+  //
+  // parent
+  //
+  Folder Folder::parent(void) const
+  {
+    CComPtr <IMgaFolder> folder;
+    VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
+
+    return folder.p;
+  }
+
+  //
+  // meta
+  //
+  MetaFolder Folder::meta (void) const
+  {
+    CComPtr <IMgaMetaFolder> meta;
+    VERIFY_HRESULT (this->impl ()->get_MetaFolder (&meta));
+
+    return meta.p;
+  }
 }

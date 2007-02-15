@@ -59,6 +59,9 @@ namespace GME
      */
     void attach (IMgaObject * object);
 
+    /// Delete the object from the model.
+    void destroy (void);
+
     /**
      * Assignment operator.
      *

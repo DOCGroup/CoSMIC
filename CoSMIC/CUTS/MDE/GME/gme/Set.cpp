@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Set.h"
+#include "Model.h"
 
 namespace GME
 {
@@ -124,5 +125,39 @@ namespace GME
       this->object_ = set.object_;
 
     return *this;
+  }
+
+  //
+  // _narrow
+  //
+  Set Set::_narrow (FCO & fco)
+  {
+    CComPtr <IMgaSet> set;
+    VERIFY_HRESULT (fco.impl ()->QueryInterface (&set));
+
+    return set.p;
+  }
+
+  //
+  // _create
+  //
+  Set Set::_create (const std::string & role,
+                    Model & parent)
+  {
+    CComPtr <IMgaFCO> child;
+    MetaRole metarole = parent.meta ().role (role);
+
+    VERIFY_HRESULT (
+      parent.impl ()->CreateChildObject (metarole, &child));
+
+    return Set::_narrow (FCO (child));
+  }
+
+  //
+  // attach
+  //
+  void Set::attach (IMgaSet * set)
+  {
+    FCO::attach (set);
   }
 }

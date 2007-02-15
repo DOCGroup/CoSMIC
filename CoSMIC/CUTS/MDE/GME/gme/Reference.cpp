@@ -1,43 +1,14 @@
 // $Id$
 
 #include "Reference.h"
+#include "Model.h"
+
+#if !defined (__GME_INLINE__)
+#include "Reference.inl"
+#endif
 
 namespace GME
 {
-  //
-  // Reference
-  //
-  Reference::Reference (void)
-  {
-
-  }
-
-  //
-  // Reference
-  //
-  Reference::Reference (IMgaReference * ref)
-    : FCO (ref)
-  {
-
-  }
-
-  //
-  // Reference
-  //
-  Reference::Reference (const Reference & ref)
-    : FCO (ref)
-  {
-
-  }
-
-  //
-  // ~Reference
-  //
-  Reference::~Reference (void)
-  {
-
-  }
-
   //
   // operator =
   //
@@ -80,18 +51,27 @@ namespace GME
   }
 
   //
-  // impl
+  // _narrow
   //
-  void Reference::attach (IMgaReference * ref)
+  Reference Reference::_narrow (FCO & fco)
   {
-    VERIFY_HRESULT (ref->QueryInterface (&this->object_));
+    CComPtr <IMgaReference> ref;
+    VERIFY_HRESULT (fco.impl ()->QueryInterface (&ref));
+
+    return ref.p;
   }
 
   //
-  // operator IMgaReference *
+  // _create
   //
-  Reference::operator IMgaReference * (void) const
+  Reference Reference::_create (const std::string & role, Model & parent)
   {
-    return this->impl ();
+    CComPtr <IMgaFCO> child;
+    MetaRole metarole = parent.meta ().role (role);
+
+    VERIFY_HRESULT (
+      parent.impl ()->CreateChildObject (metarole, &child));
+
+    return Reference::_narrow (FCO (child));
   }
 }

@@ -31,6 +31,24 @@ namespace GME
     /// Type definition for the interface.
     typedef IMgaAtom _type;
 
+    /**
+     * Convert a FCO into an atom.
+     *
+     * @param[in]       fco           The source FCO object.
+     * @return          The atom object.
+     */
+    static Atom _narrow (FCO & fco);
+
+    /**
+     * Create a new atom element.
+     *
+     * @param[in]       role          The role of the new object, i.e.,
+     *                                its meta name.
+     * @param[in]       parent        The parent model.
+     * @return          The newly created atom.
+     */
+    static Atom _create (const std::string & role, Model & parent);
+
     /// Default constructor.
     Atom (void);
 

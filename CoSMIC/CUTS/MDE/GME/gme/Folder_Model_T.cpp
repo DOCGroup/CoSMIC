@@ -69,16 +69,4 @@ namespace GME
 
     return count;
   }
-
-  //
-  // attach
-  //
-  template <typename T, typename BASE>
-  void Folder_Model_T <T, BASE>::attach (T * type)
-  {
-    if (this->object_)
-      this->object_.Release ();
-
-    VERIFY_HRESULT (type->QueryInterface (&this->object_));
-  }
 }
