@@ -1,8 +1,8 @@
 // $Id$
 
 #include "gems2picml_App.h"
-#include "GEMS/GEMS.h"
-#include "GME/gme/ComponentEx.h"
+#include "GEMS.h"
+#include "gme/ComponentEx.h"
 #include "ace/Get_Opt.h"
 
 // Helper macro for generating verbose messages.

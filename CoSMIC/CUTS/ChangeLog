@@ -1,3 +1,14 @@
+Thu Feb 15 19:58:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/GUTS/modeltran.mpc:
+
+          Derived the project from cuts_gme.mpb and cuts_gems.mpb
+
+        * utils/GUTS/gems2picml_App.cpp:
+
+          Updated the include directives to reflect the change
+          above.
+
 Thu Feb 15 19:42:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Atom.h:
