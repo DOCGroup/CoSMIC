@@ -18,7 +18,7 @@ workspace (CUTS_CoSMIC) {
 
     // -- CUTS projects
     cuts/be
-    cuts/GME
+    MDE
 
     cosmic {
       // CoSMIC related projects. This will determine if the following

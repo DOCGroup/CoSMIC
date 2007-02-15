@@ -1,3 +1,58 @@
+Thu Feb 15 21:27:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * NEWS:
+
+          Updated file to discuss the proxies and changes in the
+          interpreter.
+
+        * CUTS.mwc:
+        * CUTS_CoSMIC.mwc:
+
+          Moved the MDE directory from the former to the latter.
+
+        * MDE/GME/paradigms/PICML/interpreter:
+        * MDE/GME/paradigms/PICML/interpreter/CUTS_PICML.mpc:
+        * MDE/GME/paradigms/PICML/interpreter/CompIcon.ico:
+        * MDE/GME/paradigms/PICML/interpreter/Component.rc:
+        * MDE/GME/paradigms/PICML/interpreter/ComponentConfig.h:
+        * MDE/GME/paradigms/PICML/interpreter/ComponentLib.idl:
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.h:
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/RawComponent.h:
+        * MDE/GME/paradigms/PICML/interpreter/RawComponent.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/Resource.h:
+        * MDE/GME/paradigms/PICML/interpreter/StdAfx.h:
+        * MDE/GME/paradigms/PICML/interpreter/StdAfx.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.h:
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/UdmConfig.h:
+        * MDE/GME/paradigms/PICML/interpreter/component.def:
+
+          All the files that were located in
+          cuts/GME/interpreters/PICML_CIAO_Impl
+
+        * cuts/GME/CUTS.xme:
+        * cuts/GME/interpreters:
+        * cuts/GME/interpreters/PICML_CIAO_Impl:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/CUTS_PICML.mpc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/CompIcon.ico:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Component.rc:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/ComponentConfig.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/ComponentLib.idl:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Main_Dialog.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Main_Dialog.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/RawComponent.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/RawComponent.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/Resource.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/StdAfx.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/StdAfx.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmApp.cpp:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/UdmConfig.h:
+        * cuts/GME/interpreters/PICML_CIAO_Impl/component.def:
+
+          Removed these files.
+
 Thu Feb 15 20:50:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/GME/interpreters/PICML_CIAO_Impl/CUTS_PICML.mpc:
