@@ -201,8 +201,6 @@ void PackageVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& 
   this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
 
   string location = ia.location();
-  // MAJO: Location field should not be empty or not present.  This
-  // should be enforced in the model.
   this->curr_->appendChild (this->createSimpleContent ("location",
                                                        location));
 
@@ -217,6 +215,14 @@ void PackageVisitor::Visit_ImplementationArtifact(const ImplementationArtifact& 
   set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter();
   for_each (exec.begin(), exec.end(),
             bind (&ArtifactExecParameter::Accept, _1, ref (*this)));
+
+  set<ArtifactInfoProperty> infoProps = ia.dstArtifactInfoProperty();
+  for_each (infoProps.begin(), infoProps.end(),
+            bind (&ArtifactInfoProperty::Accept, _1, ref (*this)));
+
+  // Generate all the execParameters required to ensure that the location
+  // of this artifact in the Component Repository can be retrieved.
+  this->GenerateExecParameters (ia);
 
   // Dump out an ImplementationArtifactDescription file
   this->dumpDocument();
@@ -274,6 +280,28 @@ void PackageVisitor::Visit_ArtifactExecParameter(const ArtifactExecParameter& pa
   this->pop();
 }
 
+void PackageVisitor::GenerateExecParameters (const ImplementationArtifact& ia)
+{
+  map<string, string> params;
+  params["configuration"] = ia.configuration();
+  params["operatingSystem"] = ia.operatingSystem();
+  params["artifactVersion"] = ia.artifactVersion();
+  params["architecture"] = ia.architecture();
+
+  for (map<string, string>::iterator iter = params.begin();
+       iter != params.end();
+       ++iter)
+    {
+      this->push();
+      pair<string,string> param = *iter;
+      DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+      this->curr_->appendChild (ele);
+      this->curr_ = ele;
+      this->DumpStringProperty (param.first, param.second);
+      this->pop();
+    }
+}
+
 void PackageVisitor::Visit_Property(const Property& property)
 {
   this->CreatePropertyElement (property.name(), property);
@@ -295,33 +323,33 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
   this->curr_->appendChild (val);
   this->curr_ = val;
   PredefinedType ref = type.ref();
-  string refName = ref.name();
-  if (refName == "Boolean")
+  const Uml::Class& refType = ref.type();
+  if (refType == Boolean::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("boolean",
                                                            property.DataValue()));
     }
-  else if (refName == "Byte")
+  else if (refType == Byte::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("octet",
                                                            property.DataValue()));
     }
-  else if (refName == "String")
+  else if (refType == String::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("string",
                                                            property.DataValue()));
     }
-  else if (refName == "RealNumber")
+  else if (refType == RealNumber::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("double",
                                                            property.DataValue()));
     }
-  else if (refName == "ShortInteger")
+  else if (refType == ShortInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("short",
                                                            property.DataValue()));
     }
-  else if (refName == "LongInteger")
+  else if (refType == LongInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("long",
                                                            property.DataValue()));
@@ -332,33 +360,33 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
 void PackageVisitor::Visit_DataType(const DataType& type)
 {
   PredefinedType ref = type.ref();
-  string kindName = ref.meta_name.type();
-  if (kindName == "Boolean")
+  const Uml::Class& refType = ref.type();
+  if (refType == Boolean::meta)
     {
       Boolean boolv = PICML::Boolean::Cast (ref);
       boolv.Accept (*this);
     }
-  else if (kindName == "Byte")
+  else if (refType == Byte::meta)
     {
       Byte byte = PICML::Byte::Cast (ref);
       byte.Accept (*this);
     }
-  else if (kindName == "String")
+  else if (refType == String::meta)
     {
       String str = PICML::String::Cast (ref);
       str.Accept (*this);
     }
-  else if (kindName == "RealNumber")
+  else if (refType == RealNumber::meta)
     {
       RealNumber real = PICML::RealNumber::Cast (ref);
       real.Accept (*this);
     }
-  else if (kindName == "ShortInteger")
+  else if (refType == ShortInteger::meta)
     {
       ShortInteger shortv = PICML::ShortInteger::Cast (ref);
       shortv.Accept (*this);
     }
-  else if (kindName == "LongInteger")
+  else if (refType == LongInteger::meta)
     {
       LongInteger lint = PICML::LongInteger::Cast (ref);
       lint.Accept (*this);
@@ -436,8 +464,16 @@ void PackageVisitor::Visit_LongInteger(const LongInteger&)
 void PackageVisitor::Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&)
 {}
 
-void PackageVisitor::Visit_ArtifactInfoProperty(const ArtifactInfoProperty&)
-{}
+void PackageVisitor::Visit_ArtifactInfoProperty(const ArtifactInfoProperty& aip)
+{
+  this->push();
+  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = aip.dstArtifactInfoProperty_end();
+  ref.Accept (*this);
+  this->pop();
+}
 
 void PackageVisitor::Visit_ImplementationRequirement(const ImplementationRequirement&)
 {}
@@ -540,6 +576,11 @@ void PackageVisitor::Visit_PackageConfiguration(const PackageConfiguration& pc)
             pcsc.Accept (*this);
         }
     }
+
+  set<PackageConfConfigProperty> pccps = pc.dstPackageConfConfigProperty();
+  for_each (pccps.begin(), pccps.end(),
+            bind (&PackageConfConfigProperty::Accept, _1, ref (*this)));
+
   this->dumpDocument();
   this->pop();
 }
@@ -575,8 +616,16 @@ void PackageVisitor::Visit_ComponentPackageReference(const ComponentPackageRefer
   this->pop();
 }
 
-void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty&)
-{}
+void PackageVisitor::Visit_PackageConfConfigProperty(const PackageConfConfigProperty& pccp)
+{
+  this->push();
+  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = pccp.dstPackageConfConfigProperty_end();
+  ref.Accept (*this);
+  this->pop();
+}
 
 void PackageVisitor::Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&)
 {}
@@ -631,6 +680,15 @@ void PackageVisitor::Visit_ComponentPackage(const ComponentPackage& cp)
   set<Implementation> impls = cp.dstImplementation();
   for_each (impls.begin(), impls.end(),
             bind (&Implementation::Accept, _1, ref (*this)));
+
+  set<PackageConfigProperty> pcps = cp.dstPackageConfigProperty();
+  for_each (pcps.begin(), pcps.end(),
+            bind (&PackageConfigProperty::Accept, _1, ref (*this)));
+
+  set<PackageInfoProperty> pips = cp.dstPackageInfoProperty();
+  for_each (pips.begin(), pips.end(),
+            bind (&PackageInfoProperty::Accept, _1, ref (*this)));
+
   // Dump out an ComponentPackageDescription file
   this->dumpDocument();
   this->pop();
@@ -672,11 +730,27 @@ void PackageVisitor::Visit_ComponentImplementationReference(const ComponentImple
   this->pop();
 }
 
-void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty&)
-{}
+void PackageVisitor::Visit_PackageConfigProperty(const PackageConfigProperty& pcp)
+{
+  this->push();
+  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = pcp.dstPackageConfigProperty_end();
+  ref.Accept (*this);
+  this->pop();
+}
 
-void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty&)
-{}
+void PackageVisitor::Visit_PackageInfoProperty(const PackageInfoProperty& pip)
+{
+  this->push();
+  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = pip.dstPackageInfoProperty_end();
+  ref.Accept (*this);
+  this->pop();
+}
 
 void PackageVisitor::Visit_ComponentTypes(const ComponentTypes& cts)
 {
@@ -2133,8 +2207,16 @@ void PackageVisitor::Visit_AssemblyDeployRequirement(const AssemblyDeployRequire
 {}
 
 
-void PackageVisitor::Visit_InfoProperty(const InfoProperty&)
-{}
+void PackageVisitor::Visit_InfoProperty(const InfoProperty& ip)
+{
+  this->push();
+  DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = ip.dstInfoProperty_end();
+  ref.Accept (*this);
+  this->pop();
+}
 
 
 void PackageVisitor::Visit_MonolithDeployRequirement(const MonolithDeployRequirement&)

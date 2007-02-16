@@ -221,7 +221,7 @@ namespace PICML
     void CreateAttributeMappings (vector<ComponentAssembly>& assemblies);
     void CreatePropertyElement (string name, const Property& property);
     void DumpStringProperty (const string& name, const string& pvalue);
-
+    void GenerateExecParameters (const ImplementationArtifact& ia);
     string CreatePath (const DisplayNode& node);
     string CreateRepositoryId (const Udm::Object& comp);
     void CreateComponentCanonicalIds();

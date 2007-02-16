@@ -1,3 +1,21 @@
+Fri Feb 16 04:51:48 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Added support for generation of the execParameters for
+          ImplementationArtifacts to help installation of artifacts into
+          the component repository.  Filled in empty functions for
+          generating infoProperty and configProperty on a bunch of
+          elements.
+
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+          Don't duplicate the code for exception handling between
+          PackageVisitor and PackagerVisitor.
+
+        * .svnignore:  Updated the list of files to ignore.
+
 Thu Feb 15 23:15:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
@@ -336,7 +354,7 @@ Fri Jan 26 05:12:55 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
           recursively.  If you make changes to this file, please update
           the svn:ignore property on all the directories by first changing
           to $(COSMIC_ROOT) and running,
-                 svn propset -R svn:ignore -F .svnignore
+                 svn propset -R svn:ignore -F .svnignore .\
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
