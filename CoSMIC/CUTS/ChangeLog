@@ -1,3 +1,13 @@
+Fri Feb 16 21:07:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CoWorkEr_Generator.h:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Updated CoWorkEr generator to create all the necessary
+          elements needed to use CoWorkEr proxy elements. This includes
+          creating the artifacts, monolithic implementations, and
+          packages.
+
 Thu Feb 15 23:26:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
