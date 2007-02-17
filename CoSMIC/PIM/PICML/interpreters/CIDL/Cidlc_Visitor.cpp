@@ -1,10 +1,12 @@
 // $Id$
 
 #include "Cidlc_Visitor.h"
+#include "Utils/Utils.h"
+
 #include "Uml.h"
+
 #include <algorithm>
 #include <fstream>
-#include <sstream>
 
 namespace PICML
 {
@@ -61,7 +63,8 @@ namespace PICML
   //
   // Visit_ComponentImplementationContainer
   //
-  void Cidlc_Visitor::Visit_ComponentImplementationContainer (
+  void Cidlc_Visitor::
+    Visit_ComponentImplementationContainer (
     const PICML::ComponentImplementationContainer & container)
   {
     // Initialize the <cidl_> structure for a new container.
@@ -89,7 +92,8 @@ namespace PICML
   //
   // Visit_MonolithicImplementation
   //
-  void Cidlc_Visitor::Visit_MonolithicImplementation (
+  void Cidlc_Visitor::
+    Visit_MonolithicImplementation (
     const PICML::MonolithicImplementation & mono)
   {
     // We need to determine the type of component we are implementing
@@ -115,7 +119,8 @@ namespace PICML
   //
   // Visit_Component
   //
-  void Cidlc_Visitor::Visit_Component (const PICML::Component & component)
+  void Cidlc_Visitor::
+    Visit_Component (const PICML::Component & component)
   {
     this->cidl_.component_ = component.name ();
 
@@ -243,13 +248,39 @@ namespace PICML
   //
   void Cidlc_Visitor::generate_cidl_file (void)
   {
-    std::ostringstream filename;
-    filename
-      << this->output_ << "\\"
-      << this->cidl_.cidlfile_ << ".cidl" << std::ends;
+    std::string filename;
+    std::string pathname = this->output_;
 
+    // If the <cidlfile_> contains slashes, then we need to
+    // make sure the directory exists.
+    size_t index = this->cidl_.cidlfile_.find_last_of ("\\/");
+
+    if (index != std::string::npos)
+    {
+      // Copy the actual filename into <filename>.
+      filename = this->cidl_.cidlfile_.substr (index + 1);
+      this->cidl_.cidlfile_.erase (index);
+
+      // Make sure the output directory exists.
+      pathname += '\\' + this->cidl_.cidlfile_;
+      Utils::CreatePath (pathname);
+    }
+
+    // Finish constructing the pathname.
+    pathname += '\\';
+
+    if (filename.empty ())
+      // The <cidlfile_> contains the filename.
+      pathname += this->cidl_.cidlfile_;
+    else
+      // The <cidlfile_> contained a path, so <filename> is valid.
+      pathname += filename;
+
+    pathname += ".cidl";
+
+    // Open <pathname> for writing.
     ofstream outfile;
-    outfile.open (filename.str ().c_str ());
+    outfile.open (pathname.c_str ());
 
     if (outfile.is_open ())
     {
