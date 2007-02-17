@@ -250,6 +250,7 @@ namespace PICML
   {
     std::string filename;
     std::string pathname = this->output_;
+    std::string hashdef = this->cidl_.cidlfile_;
 
     // If the <cidlfile_> contains slashes, then we need to
     // make sure the directory exists.
@@ -285,7 +286,7 @@ namespace PICML
     if (outfile.is_open ())
     {
       // Create the #ifdef macro for the CIDL file.
-      std::string hashdef = this->cidl_.cidlfile_;
+      std::replace (hashdef.begin (), hashdef.end (), '/', '_');
 
       std::transform (hashdef.begin (),
                       hashdef.end (),
