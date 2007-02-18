@@ -19,6 +19,21 @@ CUTS_Export_File_Generator (const std::string & name)
 }
 
 //
+// CUTS_Export_File_Generator
+//
+CUTS_Export_File_Generator::
+CUTS_Export_File_Generator (const std::string & name,
+                            const std::string & filename)
+: name_ (name)
+{
+  this->export_macro_ = this->export_macro (this->name_);
+  this->build_flag_ = this->build_flag (this->name_);
+
+  this->export_file_ = this->export_file (filename);
+}
+
+
+//
 // ~CUTS_Export_File_Generator
 //
 CUTS_Export_File_Generator::~CUTS_Export_File_Generator (void)
@@ -102,7 +117,7 @@ bool CUTS_Export_File_Generator::generate (void)
   std::ostringstream pathname;
   pathname
     << CUTS_BE_OPTIONS ()->output_directory_
-    << "\\" << this->export_file_ << std::ends;
+    << "\\" << this->export_file_;
 
   // Open the file for writing.
   std::ofstream exportfile;

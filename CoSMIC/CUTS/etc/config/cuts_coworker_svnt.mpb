@@ -1,17 +1,17 @@
 // $Id$
 
 project : cuts_servant_dnc {
-  // -- place all files in a common location
-  libpaths += ./lib
+  // -- specify the output relative to the project root directory.
+  dllout = $(PROJECT_ROOT)/lib
+  libout = $(PROJECT_ROOT)/lib
 
-  specific (vc6, vc7, vc71, vc8, nmake) {
-    defines += CUTS_HAS_DATABASE
+  // -- specify the location of headers and libraries
+  includes += $(PROJECT_ROOT)
+  libpaths += $(PROJECT_ROOT)/lib
 
-    // -- place all files in a common location
-    libout = ./lib
-    dllout = ./bin
-  } else {
-    // -- place all files in a common location
-    dllout = ./lib
-  }
+  // -- necesssary flags for the IDL and CIDL compiler.
+  idlflags += -I$(PROJECT_ROOT)
+
+  cidlflags -= --
+  cidlflags += -I $(PROJECT_ROOT) --
 }

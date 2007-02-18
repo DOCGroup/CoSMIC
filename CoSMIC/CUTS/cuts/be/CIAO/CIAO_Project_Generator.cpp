@@ -88,7 +88,7 @@ generate_proxy (const CUTS_BE_Impl_Node & node)
   ostr
     << CUTS_BE_OPTIONS ()->output_directory_ << "/"
     << node.name_
-    << CUTS_BE_OPTIONS ()->proxy_suffix_ << ".mpc";
+    << CUTS_BE_OPTIONS ()->exec_suffix_ << ".mpc";
 
   // Open the MPC file for writing.
   std::ofstream outfile;
@@ -242,17 +242,23 @@ generate_impl_project (std::ofstream & outfile,
                        bool executor_type)
 {
   // Generate the export_file file for the project.
-  std::string impl_project = node.basename_;
+  std::string impl_project = node.name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
+  std::string impl_export (impl_project.size (), '\0');
 
-  if (executor_type)
-    impl_project += CUTS_BE_OPTIONS ()->exec_suffix_;
-  else
-    impl_project += CUTS_BE_OPTIONS ()->proxy_suffix_;
+  std::replace_copy (impl_project.begin (),
+                     impl_project.end (),
+                     impl_export.begin (),
+                     '/', '_');
 
-  CUTS_Export_File_Generator efg (impl_project);
+  CUTS_Export_File_Generator efg (impl_export, impl_project);
+  efg.generate ();
+
+  // Convert the name to a valid project name.
+  std::replace (impl_project.begin (), impl_project.end (), '/', '_');
 
   // Construct the name of the servant project.
-  std::string svnt_project = node.basename_ + SVNT_SUFFIX;
+  std::string svnt_project = node.name_ + SVNT_SUFFIX;
+  std::replace (svnt_project.begin (), svnt_project.end (), '/', '_');
 
   // Generate the executor project.
   outfile
@@ -263,7 +269,8 @@ generate_impl_project (std::ofstream & outfile,
     << std::endl
     << "  after  += " << svnt_project << std::endl
     << std::endl
-    << "  libs   += " << svnt_project;
+    << "  libs   += \\ " << std::endl
+    << "    " << svnt_project;
 
   // Generate the stub import libraries for this node.
   std::for_each (node.references_.begin (),
@@ -285,7 +292,8 @@ generate_impl_project (std::ofstream & outfile,
   outfile
     // Generate the source files.
     << "  Source_Files {" << std::endl
-    << "    " << impl_project << ".cpp" << std::endl
+    << "    " << node.basename_ <<  CUTS_BE_OPTIONS ()->exec_suffix_
+    << ".cpp" << std::endl
     << "  }" << std::endl
     << std::endl
 
@@ -312,24 +320,33 @@ void CUTS_CIAO_Project_Generator::
 generate_svnt_project (std::ofstream & outfile,
                        const CUTS_BE_Impl_Node & node)
 {
-  // Generate the export_file file for the project.
-  std::string svnt_project = node.basename_ + SVNT_SUFFIX;
+  // Generator the export file.
+  std::string svnt_project = node.name_ + SVNT_SUFFIX;
+  std::string svnt_export = node.basename_ + SVNT_SUFFIX;
 
-  CUTS_Export_File_Generator export_file (svnt_project);
-  export_file.generate ();
+  CUTS_Export_File_Generator efg (svnt_export, svnt_project);
+  efg.generate ();
 
-  // Generate the project, keeping in mind the export_file file.
+  // Convert the <svnt_project> to a valid name.
+  std::replace (svnt_project.begin (), svnt_project.end (), '/', '_');
+
+  std::string efg_basename = efg.export_file ();
+  size_t index = efg_basename.find_last_of ('/');
+
+  if (index != std::string::npos)
+    efg_basename.erase (0, index + 1);
+
   outfile
     << "project (" << svnt_project << ") : cuts_coworker_svnt {" << std::endl
     << "  sharedname   = " << svnt_project << std::endl
     << std::endl
-    << "  dynamicflags = " << export_file.build_flag () << std::endl
+    << "  dynamicflags = " << efg.build_flag () << std::endl
     << std::endl
 
     // Generate the IDL flag definitions.
-    << "  idlflags += -Wb,export_macro=" << export_file.export_macro ()
+    << "  idlflags += -Wb,export_macro=" << efg.export_macro ()
     << " \\" << std::endl
-    << "              -Wb,export_include=" << export_file.export_file ()
+    << "              -Wb,export_include=" << efg_basename
     << std::endl
     << std::endl;
 
@@ -389,7 +406,7 @@ generate_svnt_project (std::ofstream & outfile,
     // Generate the source files
     << "  Source_Files {" << std::endl
     << "    " << node.basename_ << "EC.cpp" << std::endl
-    << "    " << svnt_project << ".cpp" << std::endl
+    << "    " << node.basename_ << SVNT_SUFFIX << ".cpp" << std::endl
     << "  }" << std::endl
     << std::endl
 

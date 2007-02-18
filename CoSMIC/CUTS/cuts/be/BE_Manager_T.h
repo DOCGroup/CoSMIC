@@ -40,18 +40,13 @@ public:
 
 private:
   /// Workspace generator for the manager.
-  CUTS_BE_Workspace_Generator_T <
-    PROJ_STRATEGY>
-    workspace_generator_;
+  CUTS_BE_Workspace_Generator_T <PROJ_STRATEGY> workspace_generator_;
 
   /// Implementation generator for the manager.
-  CUTS_BE_Impl_Generator_T <
-    EXEC_STRATEGY>
-    exec_generator_;
+  CUTS_BE_Impl_Generator_T <EXEC_STRATEGY> exec_generator_;
 
-  CUTS_BE_Impl_Generator_T <
-    PROXY_STRATEGY>
-    pxoxy_generator_;
+  /// Implementation generator for the proxy.
+  CUTS_BE_Impl_Generator_T <PROXY_STRATEGY> pxoxy_generator_;
 };
 
 #include "BE_Manager_T.cpp"

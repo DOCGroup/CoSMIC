@@ -1,19 +1,16 @@
 // $Id$
 
 project : cuts_component_dnc, rt_server {
+  // -- specify the output relative to the project root directory.
+  dllout = $(PROJECT_ROOT)/lib
+  libout = $(PROJECT_ROOT)/lib
+
+  // -- specify the location of headers and libraries
+  includes += $(PROJECT_ROOT)
+  libpaths += $(PROJECT_ROOT)/lib
+
   // -- include the required libraries
-  libs += CUTS CUTS_exec
-
-  libpaths += ./lib
-
-  specific (vc6, vc7, vc71, vc8, nmake) {
-    // -- place all files in a common location
-    libout = ./lib
-    dllout = ./bin
-  } else {
-    // -- place all files in a common location
-    dllout = ./lib
-  }
+  libs += CUTS_exec
 
   IDL_Files {
 

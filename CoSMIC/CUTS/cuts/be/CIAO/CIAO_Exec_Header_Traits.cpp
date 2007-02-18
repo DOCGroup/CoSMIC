@@ -106,6 +106,10 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     to_upper ((std::string)container.name () +
     CUTS_BE_OPTIONS ()->exec_suffix_);
 
+  std::replace (hashdef.begin (),
+                hashdef.end (),
+                '/', '_');
+
   this->outfile ()
     << "// -*- C++ -*-" << std::endl
     << std::endl
@@ -136,6 +140,10 @@ write_epilogue (const PICML::ComponentImplementationContainer & container)
   std::string hashdef =
     to_upper ((std::string)container.name () +
     CUTS_BE_OPTIONS ()->exec_suffix_);
+
+  std::replace (hashdef.begin (),
+                hashdef.end (),
+                '/', '_');
 
   this->outfile ()
     << "#include /**/ \"ace/post.h\"" << std::endl
@@ -246,8 +254,17 @@ write_factory_end (const PICML::ComponentFactory & factory,
                    const PICML::MonolithicImplementation & impl,
                    const PICML::Component & type)
 {
-  // Generate the export file for the factory.
-  CUTS_Export_File_Generator export_file ((std::string)type.name () + "_exec");
+  // Generate the export file for the implementation.
+  PICML::ComponentImplementationContainer container =
+    PICML::ComponentImplementationContainer::Cast (impl.parent ());
+
+  std::string exportfile =
+    (std::string) container.name () + CUTS_BE_OPTIONS ()->exec_suffix_;
+
+  std::string exportname = exportfile;
+  std::replace (exportname.begin (), exportname.end (), '/', '_');
+
+  CUTS_Export_File_Generator export_file (exportname, exportfile);
   export_file.generate ();
 
   // Close off the class definition.

@@ -36,6 +36,9 @@ public:
    */
   CUTS_Export_File_Generator (const std::string & name);
 
+  CUTS_Export_File_Generator (const std::string & name,
+                              const std::string & filename);
+
   /// Destructor.
   ~CUTS_Export_File_Generator (void);
 

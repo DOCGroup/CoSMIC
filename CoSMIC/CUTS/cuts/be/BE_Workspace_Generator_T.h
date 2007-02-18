@@ -14,6 +14,7 @@
 #define _CUTS_BE_WORKSPACE_GENERATOR_H_
 
 #include <iosfwd>
+#include <vector>
 
 // Forward decl.
 class CUTS_BE_Preprocessor;
@@ -59,11 +60,9 @@ public:
   bool generate (void);
 
 protected:
-  void generate_impl_project (std::ofstream & outfile,
-                              const CUTS_BE_Impl_Node * node);
+  void generate_impl_project (const CUTS_BE_Impl_Node * node);
 
-  void generate_stub_project (std::ofstream & outfile,
-                              const CUTS_BE_IDL_Node * node);
+  void generate_stub_project (const CUTS_BE_IDL_Node * node);
 
 private:
   /// Project generator for this workspace.
@@ -78,9 +77,15 @@ private:
   /// Collection of stubs that need to be generated.
   IDL_Node_Set required_stubs_;
 
+  /// Collection of project files.
+  CUTS_String_Set project_files_;
+
   // prevent the following operations
-  CUTS_BE_Workspace_Generator_T (const CUTS_BE_Workspace_Generator_T &);
-  const CUTS_BE_Workspace_Generator_T & operator = (const CUTS_BE_Workspace_Generator_T &);
+  CUTS_BE_Workspace_Generator_T (
+    const CUTS_BE_Workspace_Generator_T &);
+
+  const CUTS_BE_Workspace_Generator_T &
+    operator = (const CUTS_BE_Workspace_Generator_T &);
 };
 
 #include "BE_Workspace_Generator_T.cpp"

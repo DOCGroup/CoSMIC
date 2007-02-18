@@ -1,3 +1,46 @@
+Sat Feb 17 21:52:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+
+          Removed the proxy suffix declaration since its no
+          longer part of the backend options.
+
+        * cuts/be/BE_Options.h:
+
+          Removed the proxy_ suffix configuration option.
+
+        * cuts/be/BE_Manager_T.h:
+
+          Made aesthetic changes to the code.
+
+        * cuts/be/BE_Workspace_Generator_T.h:
+        * cuts/be/BE_Workspace_Generator_T.cpp:
+
+          Added -relative declaration to the cmdline += specification.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Updated the generators to handle projects that  are
+          located in subdirectories.
+
+        * cuts/be/CIAO/Export_File_Generator.h:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+
+          Added a new constructor that allows explicit specification
+          of the export filename and macro
+
+        * etc/config/cuts_coworker_exec.mpb:
+        * etc/config/cuts_coworker_stub.mpb:
+        * etc/config/cuts_coworker_svnt.mpb:
+
+          The dllout, libout, includes and libpaths are now defined
+          in terms of their relative location to $(PROJECT_ROOT),
+          which is the location of the workspace file.
+
 Fri Feb 16 21:07:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.h:

@@ -43,9 +43,6 @@ struct CUTS_BE_Export CUTS_BE_Options
   /// Suffix for the executor files.
   std::string exec_suffix_;
 
-  /// Suffix for the proxy exeuctor files.
-  std::string proxy_suffix_;
-
 private:
   /// Instance of the singleton.
   static CUTS_BE_Options * instance_;

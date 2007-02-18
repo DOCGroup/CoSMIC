@@ -62,7 +62,6 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
       // be able to set these via a dialog.
       CUTS_BE_OPTIONS ()->project_name_ = root.name ();
       CUTS_BE_OPTIONS ()->exec_suffix_  = "_exec";
-      CUTS_BE_OPTIONS ()->proxy_suffix_ = "_proxy";
 
       // Request the user to select an output directory.
       bool valid = Utils::getPath ("Please specify the output directory",
