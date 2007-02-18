@@ -17,7 +17,6 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Set.cpp
     BE_Traits.cpp
     BE_File_Traits.cpp
-
     BE_IDL_Graph.cpp
     BE_IDL_Node.cpp
     BE_Impl_Node.cpp
@@ -25,8 +24,9 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Manager.cpp
     BE_Options.cpp
     BE_Preprocessor.cpp
-
     BE_Project_Generator.cpp
+
+    Export_File_Generator.cpp
   }
 
   Header_Files {

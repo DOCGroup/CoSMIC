@@ -1,8 +1,8 @@
 // $Id$
 
 #include "CIAO_Project_Generator.h"
-#include "Export_File_Generator.h"
 
+#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_IDL_Node.h"
 #include "cuts/be/BE_Impl_Node.h"

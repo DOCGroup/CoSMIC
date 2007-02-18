@@ -9,8 +9,8 @@
 #include "CIAO_Var_Type.h"
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
-#include "Export_File_Generator.h"
 
+#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Impl_Node.h"
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_Preprocessor.h"

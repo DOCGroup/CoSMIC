@@ -1,3 +1,22 @@
+Sun Feb 18 00:18:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+        * cuts/be/Export_File_Generator.h:
+        * cuts/be/Export_File_Generator.cpp:
+
+          Move the export file generator from cuts/be/CIAO
+          to cuts/be so other backends can use it, if necessary.
+
+        * cuts/be/CIAO/Export_File_Generator.h:
+        * cuts/be/CIAO/Export_File_Generator.cpp:
+
+          Removed these files.
+
 Sat Feb 17 21:52:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:

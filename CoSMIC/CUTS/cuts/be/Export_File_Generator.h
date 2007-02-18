@@ -13,6 +13,7 @@
 #ifndef _CUTS_EXPORT_FILE_GENERATOR_H_
 #define _CUTS_EXPORT_FILE_GENERATOR_H_
 
+#include "BE_export.h"
 #include <string>
 
 //=============================================================================
@@ -24,7 +25,7 @@
  */
 //=============================================================================
 
-class CUTS_Export_File_Generator
+class CUTS_BE_Export CUTS_Export_File_Generator
 {
 public:
   /**
