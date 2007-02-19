@@ -20,6 +20,8 @@
 #include "cuts/Worker_T.h"
 #include "cuts/Worker.h"
 #include "cuts/WML_Macros.h"
+#include "ace/Thread_Mutex.h"
+#include <vector>
 
 //=============================================================================
 /**
@@ -70,11 +72,28 @@ public:
    */
   virtual long counter (void) const;
 
+  /**
+   * Occupy the CPU for a specified amount of time. This method
+   * is experimental and still under investigation.
+   *
+   * @param[in]     msec      Number of msec to occupy the CPU
+   * @return        Number of cycles executed.
+   */
+  size_t run (size_t msec);
+
 private:
+  void run_i (size_t count);
+
   CUTS_ACTION_TABLE_DECLARE ();
 
   /// Number of visits completed by the CPU worker.
   long visits_;
+
+  /// The granularity of the counter in msec.
+  suseconds_t calib_;
+
+  /// Number of counts executed per run.
+  const size_t counts_per_run_;
 };
 
 //=============================================================================

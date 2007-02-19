@@ -49,6 +49,9 @@ void CUTS_Msg_Log::init (CUTS_Msg_Log_Strategy * log)
 //
 bool CUTS_Msg_Log::open (const std::string & outdir)
 {
+  if (this->log_ == 0)
+    return false;
+
   return this->log_->open (outdir);
 }
 
@@ -57,7 +60,8 @@ bool CUTS_Msg_Log::open (const std::string & outdir)
 //
 void CUTS_Msg_Log::close (void)
 {
-  this->log_->close ();
+  if (this->log_ != 0)
+    this->log_->close ();
 }
 
 //
@@ -65,7 +69,8 @@ void CUTS_Msg_Log::close (void)
 //
 void CUTS_Msg_Log::info_message (const std::string & msg)
 {
-  this->log_->info_message (msg);
+  if (this->log_ != 0)
+    this->log_->info_message (msg);
 }
 
 //
@@ -73,7 +78,8 @@ void CUTS_Msg_Log::info_message (const std::string & msg)
 //
 void CUTS_Msg_Log::error_message (const std::string & msg)
 {
-  this->log_->error_message (msg);
+  if (this->log_ != 0)
+    this->log_->error_message (msg);
 }
 
 //
@@ -81,7 +87,8 @@ void CUTS_Msg_Log::error_message (const std::string & msg)
 //
 void CUTS_Msg_Log::warning_message (const std::string & msg)
 {
-  this->log_->warning_message (msg);
+  if (this->log_ != 0)
+    this->log_->warning_message (msg);
 }
 
 //

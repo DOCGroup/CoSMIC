@@ -1,3 +1,25 @@
+Mon Feb 19 18:22:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          The proxy no longer caches the home.
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.cpp:
+
+          Added an experimental method to occupy the CPU for a
+          given about of time (i.e., msec).
+
+        * tests/Msg_Log.cpp:
+
+          Placed guards about all calls to the contained strategy.
+
+        * tests/Test_Client.cpp:
+
+          The ACE_DEBUG message after the run_test () method was
+          missing the first variatric parameter.
+
 Sun Feb 18 00:18:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE.mpc:

@@ -50,8 +50,8 @@ int main (int argc, char * argv [])
       // Run the test_suite.
       test_suite->run (argc, argv);
 
-      ACE_ERROR ((LM_INFO,
-                  "*** info: %u passed and %u failed\n",
+      ACE_DEBUG ((LM_INFO,
+                  "*** info (%s): %u passed and %u failed\n",
                   test_suite->name (),
                   test_suite->passed (),
                   test_suite->failed ()));

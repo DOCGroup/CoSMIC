@@ -103,9 +103,6 @@ protected:
   ACE_Auto_Ptr <CTX_TYPE> context_;
 
   /// Reference to the home for the component.
-  typename CCM_HOME::_var_type home_impl_;
-
-  /// Reference to the home for the component.
   typename CCM_TYPE::_var_type type_impl_;
 
   /// Session component aspect of the real component.

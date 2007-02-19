@@ -115,7 +115,7 @@ load_implementation (const char * dllname, const char * entry)
   // Create the base home executor from the entry point, then
   // narrow it to the correct home to created the executor.
   ::Components::HomeExecutorBase_var home_base = entry_point ();
-  this->home_impl_ = _home_type::_narrow (home_base.in ());
+  CCM_HOME::_var_type = CCM_HOME::_narrow (home_base.in ());
 
   if (::CORBA::is_nil (this->home_impl_.in ()))
   {
@@ -170,7 +170,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
     {
       ACE_DEBUG ((LM_INFO,
                   "[%M] (preactivate) -%T - %s not connected to data collector\n",
-                  this->instance_.c_str ())); 
+                  this->instance_.c_str ()));
     }
   else if (::CORBA::is_nil (this->type_impl_.in ()))
     {
@@ -197,7 +197,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
                           reg.name.in (),
                           regid));
             }
-          
+
           // Store registration id and pass control to hosted component.
           this->agent_->parent (regid);
         }
