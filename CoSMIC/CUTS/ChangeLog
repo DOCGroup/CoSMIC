@@ -1,3 +1,13 @@
+Mon Feb 19 18:29:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * tests/cuts/workers:
+        * tests/cuts/workers/CPU_Worker_Test.cpp:
+        * tests/cuts/workers/workers.mpc:
+
+          Added a simple CPU worker method to help understanding
+          how to calibrate the CPU worker to occupy the CPU for a
+          specific amount of time.
+
 Mon Feb 19 18:22:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.h:

@@ -1,0 +1,12 @@
+// $Id$
+
+project (CUTS_CPU_Worker_Test) : cutslib, cuts_test_base {
+  sharedname = CUTS_CPU_Worker_Test
+
+  after += CUTS_Test CUTS_Test_Client
+  libs  += CUTS_CPU_Worker
+
+  Source_Files {
+    CPU_Worker_Test.cpp
+  }
+}
