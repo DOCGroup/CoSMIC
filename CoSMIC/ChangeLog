@@ -1,8 +1,22 @@
+Tue Feb 20 17:10:16 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * Transformations:
+        * Transformations/QUICKER:
+        * Transformations/QUICKER/QoSMapping.xme:
+          Added QUICKER transformations that take PICML model annotated with
+          RealTime Requirements and produces the CQML model with
+          RTConfiguration.
+
+        * Transformations/QUICKER/examples:
+        * Transformations/QUICKER/examples/Sample_Strings.xme:
+          Example uses the Sample_Strings from PICML/examples, with added
+          Real Time QoS requirements.
+
 Tue Feb 20 03:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/CQML/acceptor.h:
 
-          Added some macros and function templates to replace the stereotypical 
+          Added some macros and function templates to replace the stereotypical
           visitor traversal code with a one-liner shorthand.
 
         * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
