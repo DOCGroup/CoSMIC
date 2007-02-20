@@ -48,8 +48,8 @@ namespace CQML
     virtual void Visit_NetQoS (const NetQoS &);
     virtual void Visit_QoSConnector (const QoSConnector &);
     virtual void Visit_QoSCharRef(const QoSCharRef &);
-	virtual void Visit_QoSReq (const QoSReq &);
     virtual void Visit_PortQoS (const PortQoS &);
+	//virtual void Visit_QoSReq (const QoSReq &qos_req);
 
   private:
     template <typename T, typename Del, typename DelRet, typename DelEndRet>

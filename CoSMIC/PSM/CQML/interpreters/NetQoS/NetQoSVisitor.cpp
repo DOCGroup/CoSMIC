@@ -112,15 +112,12 @@ namespace CQML
 
   void NetQoSVisitor::Visit_RootFolder(const RootFolder& rf)
   {
-    std::set <DeploymentPlans> dep_plan_folders = rf.DeploymentPlans_kind_children ();
-	accept_each (dep_plan_folders, *this);
+	accept_each_child (rf, DeploymentPlans, *this);
     
 	this->initDocument ("CIAO:NetQoSRequirements");
     this->initRootAttributes(); // this->curr_ is ROOT now.
 
-    std::set<ComponentImplementations>
-      comp_impls = rf.ComponentImplementations_kind_children();
-	accept_each (comp_impls, *this);
+	accept_each_child (rf, ComponentImplementations, *this);
 
     for (std::set <std::string>::const_iterator iter = this->filenames_.begin();
          iter != this->filenames_.end ();
@@ -136,15 +133,13 @@ namespace CQML
 
   void NetQoSVisitor::Visit_DeploymentPlans(const DeploymentPlans& plans_folder)
     {
-      std::set <DeploymentPlan> dep_plans = plans_folder.DeploymentPlan_kind_children ();
-	  accept_each (dep_plans, *this);
-  }
+	  accept_each_child (plans_folder, DeploymentPlan, *this);
+    }
   
   void NetQoSVisitor::Visit_DeploymentPlan(const DeploymentPlan& dep_plan)
     {
-      std::set <Property> properties = dep_plan.Property_kind_children ();
-	  accept_each (properties, *this);
-  }
+	  accept_each_child (dep_plan, Property, *this);
+    }
 
   void NetQoSVisitor::Visit_Property(const Property &property) 
     {
@@ -155,24 +150,18 @@ namespace CQML
 
   void NetQoSVisitor::Visit_ComponentImplementations(const ComponentImplementations &comp_impl)
   {
-    std::set<ComponentImplementationContainer>
-      comp_impl_conts = comp_impl.ComponentImplementationContainer_kind_children();
-	accept_each (comp_impl_conts, *this);  
+	accept_each_child (comp_impl, ComponentImplementationContainer, *this);  
   }
 
   void NetQoSVisitor::Visit_ComponentImplementationContainer(const ComponentImplementationContainer &comp_impl_cont)
   {
-    std::set<ComponentAssembly>
-      comp_assemblies = comp_impl_cont.ComponentAssembly_kind_children();
-	accept_each (comp_assemblies, *this);
+	accept_each_child (comp_impl_cont, ComponentAssembly, *this);
   }
 
   void NetQoSVisitor::Visit_ComponentAssembly(const ComponentAssembly &comp_assembly)
     {
-      std::set<QoSCharRef> qos_char_refs = comp_assembly.QoSCharRef_kind_children();
-	  accept_each (qos_char_refs, *this);
-      std::set<NetQoS> netqos = comp_assembly.NetQoS_kind_children();
-	  accept_each (netqos, *this);    
+	  accept_each_child (comp_assembly, QoSCharRef, *this);
+	  accept_each_child (comp_assembly, NetQoS, *this);    
     }
 
   void NetQoSVisitor::Visit_QoSCharRef(const QoSCharRef &qc_ref)
@@ -241,12 +230,6 @@ namespace CQML
       this->pop (); // pop connectionQoS
     }
 
-  void NetQoSVisitor::Visit_QoSReq (const QoSReq &qos_req)
-  {
-	  QoSConnector qos_connector = qos_req.srcQoSReq_end ();
-	  qos_connector.Accept (*this);
-  }
-
   void NetQoSVisitor::Visit_PortQoS (const PortQoS &port_qos)
   {
       Port port = port_qos.srcPortQoS_end ();
@@ -275,7 +258,11 @@ namespace CQML
                                               port); 
         }
   }
-
+/* void NetQoSVisitor::Visit_QoSReq (const QoSReq &qos_req)
+  {
+	  QoSConnector qos_connector = qos_req.srcQoSReq_end ();
+	  qos_connector.Accept (*this);
+  }*/
   void NetQoSVisitor::conn_qoschar_visit (const ConnectionQoSCharacteristic & conn_qoschar)
     {
 /*		QoSCharacteristicBase base_qos;
@@ -290,15 +277,8 @@ namespace CQML
 */
 		if (Udm::IsDerivedFrom (conn_qoschar.type (), ConnectionQoSCharacteristic::meta ))
 		  {
-			  ConnectionQoSCharacteristic cqc 
-				  = ConnectionQoSCharacteristic::Cast (conn_qoschar);
-			  std::set <QoSReq> qos_req_connections = cqc.srcQoSReq ();
-			  if (! qos_req_connections.empty ())
-					accept_each (qos_req_connections, *this);        
-
-			  std::set <PortQoS> port_qos_connections = conn_qoschar.srcPortQoS ();
-			  if (! port_qos_connections.empty ())
-				  accept_each (port_qos_connections, *this);
+  			  accept_each_src (conn_qoschar, QoSReq, *this);
+			  accept_each_src (conn_qoschar, PortQoS, *this);
 		  }
     }
 
@@ -557,15 +537,4 @@ namespace CQML
       }
     return string("<no name specified>");
   }
-/*
-  NetQoSRequirementsIterator NetQoSVisitor::iterator_begin () const
-    {
-      return NetQoSRequirementsIterator (*this, this->qos_conn_mmap_.begin ());
-    }
-  
-  NetQoSRequirementsIterator NetQoSVisitor::iterator_end () const
-    {
-      return NetQoSRequirementsIterator (*this, this->qos_conn_mmap_.end ());
-    }
-*/
 }

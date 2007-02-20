@@ -22,7 +22,6 @@ namespace CQML
    		  virtual void Visit_ComponentImplementations (const ComponentImplementations &);
 		  virtual void Visit_ComponentImplementationContainer (const ComponentImplementationContainer &);
           virtual void Visit_FTDeployment(const FTDeployment &);
-          //virtual void Visit_FailOverUnit(const FailOverUnit &);
 		  virtual void Visit_ComponentAssembly (const ComponentAssembly &assembly);
 		  virtual void Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq);
 		  virtual void Visit_ComponentAssemblyReference 
@@ -31,7 +30,6 @@ namespace CQML
 		  virtual void Visit_ComponentRef (const ComponentRef &comp_ref);
 		  virtual void Visit_Component(const Component &comp);
 		  virtual void Visit_ComponentQoS (const ComponentQoS & cq);
-		  //virtual void Visit_SRGRiskAssociation (const SRGRiskAssociation &sra);
 
           std::set <std::string> get_all_monolith_components (void) const;
           std::set <std::string> get_all_assembly_components (void) const;
@@ -66,12 +64,10 @@ namespace CQML
           SRGVisitor ();
           virtual ~SRGVisitor();
           virtual void Visit_DomainRiskGrouping (const DomainRiskGrouping &);
-		  virtual void Visit_RootRiskAssociation (const RootRiskAssociation &rra);
 		  virtual void Visit_SRGBase (const SRGBase &rra);
 		  virtual void Visit_SharedRiskGroup (const SharedRiskGroup &srg);
           virtual void Visit_HostReference (const HostReference &hr);
 		  virtual void Visit_RootRiskGroup (const RootRiskGroup &rrg);
-		  virtual void Visit_SRGRiskAssociation (const SRGRiskAssociation &sra);
           
 		  virtual int node_count() const;
           virtual HostReference get_hostref (int) const;

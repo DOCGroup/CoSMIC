@@ -1,9 +1,6 @@
 #include "FaultTolerance/FTVisitors.h"
 #include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
-/*
-template <>
-::CQML::DeploymentPlanFrameworkVisitor::unique_id <Component &> ();
-*/
+
 // Named Loop idiom
 #define LABEL(x) goto LOOP_##x; \
 				 BREAK_##x: if(0)  \
@@ -30,22 +27,14 @@ namespace CQML
 
   void FTRequirementsVisitor::Visit_RootFolder (const RootFolder &rf)
   {
-      std::set<ComponentImplementations>
-        comp_impls = rf.ComponentImplementations_kind_children();
-	  accept_each (comp_impls, *this);
- 
-/*	  std::set<FTDeployment>
-        ftdeploy_models = rf.FTDeployment_kind_children();
-	  accept_each (ftdeploy_models, *this);
-*/
+	  accept_each_child (rf, ComponentImplementations, *this);
+//	  accept_each_child (rf, FTDeployment, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentImplementations 
 	  (const ComponentImplementations &comp_impls)
   {
-	  std::set <ComponentImplementationContainer> comp_impl_containers = 
-		  comp_impls.ComponentImplementationContainer_kind_children ();
-	  accept_each (comp_impl_containers, *this);
+	  accept_each_child (comp_impls, ComponentImplementationContainer, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentImplementationContainer 
@@ -55,8 +44,7 @@ namespace CQML
 		  impl_container.MonolithicImplementation_kind_children ();
 	  if (!mono_impls.empty()) // We don't want to visit a component implementation
 		  return;
-	  std::set <ComponentAssembly> assemblies = impl_container.ComponentAssembly_kind_children ();
-	  accept_each (assemblies, *this);
+	  accept_each_child (impl_container, ComponentAssembly, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentAssembly (const ComponentAssembly &assembly)
@@ -81,22 +69,13 @@ namespace CQML
 	  this->nonFT_nested_assemblies_ = assembly.ComponentAssembly_kind_children ();
 */
 	  this->attached_FOU_ = false;
-	  std::set <ComponentAssemblyQoS> caq_connection_set = assembly.dstComponentAssemblyQoS ();
-	  accept_each (caq_connection_set, *this);
+	  accept_each_dst (assembly, ComponentAssemblyQoS, *this);
 	  if (!this->attached_FOU_)
 	  {
-		  std::set<ComponentAssembly> nested_assemblies
-			  = assembly.ComponentAssembly_kind_children ();
-		  accept_each (nested_assemblies, *this);
-		  std::set<Component> nested_components
-			  = assembly.Component_kind_children ();
-		  accept_each (nested_components,*this);
-		  std::set<ComponentAssemblyReference> nested_assembly_refs
-			  = assembly.ComponentAssemblyReference_kind_children ();
-		  accept_each (nested_assembly_refs,*this);
-		  std::set<ComponentRef> nested_component_refs
-			  = assembly.ComponentRef_kind_children ();
-		  accept_each (nested_component_refs,*this);
+		  accept_each_child (assembly, ComponentAssembly, *this);
+		  accept_each_child (assembly, Component, *this);
+		  accept_each_child (assembly, ComponentAssemblyReference, *this);
+		  accept_each_child (assembly, ComponentRef, *this);
 	  }
 	  //accept_each (nonFT_nested_assemblies_, *this);
 /*
@@ -144,41 +123,29 @@ namespace CQML
 	  (const ComponentAssemblyReference &assembly_ref)
   {
 	  this->attached_FOU_ = false;
-	  std::set <ComponentAssemblyQoS> caq_connection_set 
-		  = assembly_ref.dstComponentAssemblyQoS ();
-	  accept_each (caq_connection_set, *this);
+	  accept_each_dst (assembly_ref, ComponentAssemblyQoS, *this);
 	  /// Not sure whether I should do this recursively when assembly reference
 	  /// is annotated. There is a possibility that the referred assembly will
 	  /// be traversed twice.
 	  if (!this->attached_FOU_)
 	  {
 		  ComponentAssembly assembly = assembly_ref.ref ();
-		  std::set<ComponentAssembly> nested_assemblies
-			  = assembly.ComponentAssembly_kind_children ();
-		  accept_each (nested_assemblies, *this);
-		  std::set<Component> nested_components
-			  = assembly.Component_kind_children ();
-		  accept_each (nested_components,*this);
-		  std::set<ComponentAssemblyReference> nested_assembly_refs
-			  = assembly.ComponentAssemblyReference_kind_children ();
-		  accept_each (nested_assembly_refs,*this);
-		  std::set<ComponentRef> nested_component_refs
-			  = assembly.ComponentRef_kind_children ();
-		  accept_each (nested_component_refs,*this);
+		  accept_each_child (assembly, ComponentAssembly, *this);
+		  accept_each_child (assembly, Component, *this);
+		  accept_each_child (assembly, ComponentAssemblyReference, *this);
+		  accept_each_child (assembly, ComponentRef, *this);
 	  }
   }
 
   void FTRequirementsVisitor::Visit_ComponentRef
 	  (const ComponentRef &comp_ref)
   {
-	  std::set <ComponentQoS> cq_connection_set = comp_ref.dstComponentQoS ();
-	  accept_each (cq_connection_set, *this);
+	  accept_each_dst (comp_ref, ComponentQoS, *this);
   }
 
   void FTRequirementsVisitor::Visit_Component(const Component &comp)
   {
-	  std::set <ComponentQoS> cq_connection_set = comp.dstComponentQoS ();
-	  accept_each (cq_connection_set, *this);
+	  accept_each_dst (comp, ComponentQoS, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentQoS (const ComponentQoS & cq)
@@ -569,30 +536,13 @@ namespace CQML
 
   void SRGVisitor::Visit_DomainRiskGrouping (const DomainRiskGrouping &drg)
     {
-	  std::set<RootRiskGroup> rrg_set = drg.RootRiskGroup_kind_children ();
-	  accept_each (rrg_set, *this);
-/*
-	  std::set <SharedRiskGroup> srgs = srg_con.SharedRiskGroup_kind_children ();
-      for (std::set <SharedRiskGroup>::iterator itr = srgs.begin();
-            itr != srgs.end();
-            ++itr)
-        {
-          this->srg_visit (*itr);
-        }
-*/
+	  accept_each_child (drg, RootRiskGroup, *this);
     }
 
   void SRGVisitor::Visit_RootRiskGroup (const RootRiskGroup &rrg)
   {
 	  this->root_risk_group_ = rrg;
-	  std::set <RootRiskAssociation> rra_set = rrg.dstRootRiskAssociation ();
-	  accept_each (rra_set, *this);
-  }
-
-  void SRGVisitor::Visit_RootRiskAssociation (const RootRiskAssociation &rra)
-  {
-	  SRGBase srgbase = rra.dstRootRiskAssociation_end ();
-	  srgbase.Accept (*this);
+	  accept_each_dst (rrg, RootRiskAssociation, *this);
   }
 
   void SRGVisitor::Visit_SRGBase (const SRGBase &srgbase)
@@ -611,16 +561,15 @@ namespace CQML
 
   void SRGVisitor::Visit_SharedRiskGroup (const SharedRiskGroup &srg)
   {
-	  std::set <SRGRiskAssociation> sra_set = srg.dstSRGRiskAssociation ();
-	  accept_each (sra_set, *this);
+	  accept_each_dst (srg, SRGRiskAssociation, *this);
   }
-
+/*
   void SRGVisitor::Visit_SRGRiskAssociation (const SRGRiskAssociation &sra)
   {
 	  SRGBase srgbase = sra.dstSRGRiskAssociation_end ();
 	  srgbase.Accept (*this);
   }
-/*
+
   void SRGVisitor::srg_visit (const SharedRiskGroup &srg)
     {
       std::set <SharedRiskGroup> srgs = srg.SharedRiskGroup_kind_children ();
