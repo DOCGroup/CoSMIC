@@ -1,3 +1,15 @@
+Thu Feb 22 07:21:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added an abstract reference called 'ParameterType', which is
+          the base element type of a 'InParameter', 'OutParameter', and
+          'InoutParameter'. I have verified that this modification does
+          not affect existing models, the IDLGenerator, or idl_to_picml.
+
 Tue Feb 20 17:10:16 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
 
         * Transformations:
