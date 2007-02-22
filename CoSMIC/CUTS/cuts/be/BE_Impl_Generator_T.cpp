@@ -146,28 +146,49 @@ const PICML::MonolithicImplementation & monoimpl)
     // monolithic implementation.
     this->traits_.write_impl_end (monoimpl, component);
 
+    // Get all the facets in the component so that we can
+    // generate their implementation.
+    typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
+    Facet_Set facets = component.ProvidedRequestPort_kind_children ();
+
+    std::for_each (facets.begin (),
+                   facets.end (),
+                   boost::bind (&CUTS_BE_Impl_Generator_T::
+                                Visit_ProvidedRequestPort_impl,
+                                boost::ref (this),
+                                _1));
+
     // Get the factory that manages this component.
     PICML::ComponentFactory factory;
+
     if (this->get_component_factory (component, factory))
     {
-      this->traits_.write_factory_begin (factory, monoimpl, component);
+      this->traits_.write_factory_impl_begin (factory, monoimpl, component);
 
-      /// @todo Implement visiting the factory so that we can
-      /// also generate its methods.
       factory.Accept (*this);
 
-      this->traits_.write_factory_end (factory, monoimpl, component);
+      this->traits_.write_factory_impl_end (factory, monoimpl, component);
     }
   }
 }
 
 //
-// Visit_MonolithicImplementation
+// Visit_Component
 //
 template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_Component (const PICML::Component & component)
 {
+  // Visit all the supported interfaces.
+  typedef std::vector <PICML::Supports> Supports_Set;
+  Supports_Set supports = component.Supports_kind_children ();
+
+  std::for_each (supports.begin (),
+                 supports.end (),
+                 boost::bind (&Supports_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+
   // Visit all the InEventPort elements of the <component>.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set sinks = component.InEventPort_kind_children ();
@@ -260,27 +281,18 @@ Visit_Component (const PICML::Component & component)
                               boost::ref (*this)));
 
   // Write the attribute variables.
-  typedef
-    void (IMPL_STRATEGY::*attr_method) (const PICML::ReadonlyAttribute &);
-
-  std::for_each (
-    ro_attrs.begin (),
-    ro_attrs.end (),
-    boost::bind (reinterpret_cast <attr_method> (&IMPL_STRATEGY::write_variable),
-                 boost::ref (this->traits_),
-                 _1));
+  std::for_each (ro_attrs.begin (),
+                 ro_attrs.end (),
+                 boost::bind (&IMPL_STRATEGY::write_ReadonlyAttribute_variable,
+                              boost::ref (this->traits_),
+                              _1));
 
   // Write the periodic event variables.
-  typedef
-    void (IMPL_STRATEGY::*periodic_method) (const PICML::PeriodicEvent &);
-
-  std::for_each (
-    periodics.begin (),
-    periodics.end (),
-    boost::bind (reinterpret_cast <periodic_method> (
-                 &IMPL_STRATEGY::write_variable),
-                 boost::ref (this->traits_),
-                 _1));
+  std::for_each (periodics.begin (),
+                 periodics.end (),
+                 boost::bind (&IMPL_STRATEGY::write_PeriodicEvent_variable,
+                              boost::ref (this->traits_),
+                              _1));
 
   this->traits_.write_variables_end ();
 }
@@ -292,12 +304,12 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_InEventPort (const PICML::InEventPort & sink)
 {
-  this->traits_.write_method_begin (sink);
+  this->traits_.write_InEventPort_begin (sink);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor (this->traits_);
   exec_visitor.generate (sink);
 
-  this->traits_.write_method_end (sink);
+  this->traits_.write_InEventPort_end (sink);
 }
 
 //
@@ -307,12 +319,33 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & facet)
 {
-  this->traits_.write_method_begin (facet);
+  this->traits_.write_ProvidedRequestPort_begin (facet);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor (this->traits_);
   exec_visitor.generate (facet);
 
-  this->traits_.write_method_end (facet);
+  this->traits_.write_ProvidedRequestPort_end (facet);
+}
+
+//
+// Visit_ProvidedRequestPort
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_ProvidedRequestPort_impl (const PICML::ProvidedRequestPort & facet)
+{
+  // Get the parent component and the facet's interface/object.
+  PICML::Component parent = PICML::Component::Cast (facet.parent ());
+  PICML::Object object = PICML::Object::Cast (facet.ref ());
+
+  if (object != Udm::null)
+  {
+    this->traits_.write_object_impl_begin (parent, facet);
+
+    object.Accept (*this);
+
+    this->traits_.write_object_impl_end (parent, facet);
+  }
 }
 
 //
@@ -322,12 +355,12 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_PeriodicEvent (const PICML::PeriodicEvent & periodic)
 {
-  this->traits_.write_method_begin (periodic);
+  this->traits_.write_PeriodicEvent_begin (periodic);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor (this->traits_);
   exec_visitor.generate (periodic);
 
-  this->traits_.write_method_end (periodic);
+  this->traits_.write_PeriodicEvent_end (periodic);
 }
 
 //
@@ -337,9 +370,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_Attribute (const PICML::Attribute & attr)
 {
-  this->traits_.write_method_begin (attr);
+  this->traits_.write_Attribute_begin (attr);
 
-  this->traits_.write_method_end (attr);
+  this->traits_.write_Attribute_end (attr);
 }
 
 //
@@ -349,9 +382,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & ro_attr)
 {
-  this->traits_.write_method_begin (ro_attr);
+  this->traits_.write_ReadonlyAttribute_begin (ro_attr);
 
-  this->traits_.write_method_end (ro_attr);
+  this->traits_.write_ReadonlyAttribute_end (ro_attr);
 }
 
 //
@@ -413,5 +446,124 @@ Visit_WorkerType (const PICML::WorkerType & type)
   PICML::Worker worker = type.ref ();
 
   if (worker != Udm::null)
-    this->traits_.write_variable (type, worker);
+    this->traits_.write_worker_variable (type, worker);
+}
+
+//
+// Visit_TwowayOperation
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_TwowayOperation (const PICML::TwowayOperation & twoway)
+{
+  this->traits_.write_TwowayOperation_begin (twoway);
+
+  this->traits_.write_TwowayOperation_end (twoway);
+}
+
+//
+// Visit_OnewayOperation
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_OnewayOperation (const PICML::OnewayOperation & oneway)
+{
+  this->traits_.write_OnewayOperation_begin (oneway);
+
+  this->traits_.write_OnewayOperation_end (oneway);
+}
+
+//
+// Visit_ComponentFactory
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_ComponentFactory (const PICML::ComponentFactory & factory)
+{
+  // Visit all the component's factory operations.
+  typedef std::vector <PICML::FactoryOperation> FactoryOperation_Set;
+  FactoryOperation_Set operations = factory.FactoryOperation_children ();
+
+  std::for_each (operations.begin (),
+                 operations.end (),
+                 boost::bind (&FactoryOperation_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // Visit all the base factories, so we can generate to
+  // correct methods for this component's factory.
+  typedef std::vector <PICML::Inherits> Inherits_Set;
+  Inherits_Set inherits = factory.Inherits_kind_children ();
+
+  std::for_each (inherits.begin (),
+                 inherits.end (),
+                 boost::bind (&CUTS_BE_Impl_Generator_T::
+                              Visit_ComponentFactory_inherits,
+                              this,
+                              _1));
+}
+
+//
+// Visit_ComponentFactory
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_ComponentFactory_inherits (const PICML::Inherits & inherits)
+{
+  PICML::ComponentFactory factory =
+    PICML::ComponentFactory::Cast (inherits.ref ());
+
+  factory.Accept (*this);
+}
+
+//
+// Visit_FactoryOperation
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_FactoryOperation (const PICML::FactoryOperation & factory_op)
+{
+  this->traits_.write_FactoryOperation_begin (factory_op);
+
+  this->traits_.write_FactoryOperation_end (factory_op);
+}
+
+//
+// Visit_Supports
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_Supports (const PICML::Supports & supports)
+{
+  PICML::Object object = supports.ref ();
+
+  if (object != Udm::null)
+    object.Accept (*this);
+}
+
+//
+// Visit_Component_supports
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_Object (const PICML::Object & object)
+{
+  // Write all the methods of the facet.
+  typedef std::vector <PICML::OnewayOperation> OnewayOperation_Set;
+  OnewayOperation_Set oneways = object.OnewayOperation_kind_children ();
+
+  std::for_each (oneways.begin (),
+                 oneways.end (),
+                 boost::bind (&OnewayOperation_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  typedef std::vector <PICML::TwowayOperation> TwowayOperation_Set;
+  TwowayOperation_Set twoways = object.TwowayOperation_kind_children ();
+
+  std::for_each (twoways.begin (),
+                 twoways.end (),
+                 boost::bind (&TwowayOperation_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
 }

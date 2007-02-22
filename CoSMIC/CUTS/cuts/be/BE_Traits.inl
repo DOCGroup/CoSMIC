@@ -1,4 +1,23 @@
+// -*- C++ -*-
 // $Id$
+
+//
+// CUTS_BE_Traits
+//
+CUTS_INLINE
+CUTS_BE_Traits::CUTS_BE_Traits (void)
+{
+
+}
+
+//
+// ~CUTS_BE_Traits
+//
+CUTS_INLINE
+CUTS_BE_Traits::~CUTS_BE_Traits (void)
+{
+
+}
 
 CUTS_INLINE
 bool CUTS_BE_Traits::
@@ -53,88 +72,132 @@ write_impl_end (const PICML::MonolithicImplementation &,
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_factory_begin (const PICML::ComponentFactory & factory,
-                     const PICML::MonolithicImplementation & impl,
-                     const PICML::Component & type)
+write_object_impl_begin (const PICML::Component & component,
+                         const PICML::ProvidedRequestPort & facet)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_factory_end (const PICML::ComponentFactory & factory,
-                   const PICML::MonolithicImplementation & impl,
-                   const PICML::Component & type)
+write_object_impl_end (const PICML::Component & component,
+                       const PICML::ProvidedRequestPort & facet)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_begin (const PICML::ProvidedRequestPort & facet)
+write_factory_impl_begin (const PICML::ComponentFactory & factory,
+                          const PICML::MonolithicImplementation & impl,
+                          const PICML::Component & type)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_end (const PICML::ProvidedRequestPort & facet)
+write_factory_impl_end (const PICML::ComponentFactory & factory,
+                        const PICML::MonolithicImplementation & impl,
+                        const PICML::Component & type)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_begin (const PICML::InEventPort & sink)
+write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_end (const PICML::InEventPort & sink)
+write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_begin (const PICML::Attribute & attr)
+write_InEventPort_begin (const PICML::InEventPort & sink)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_end (const PICML::Attribute & attr)
+write_InEventPort_end (const PICML::InEventPort & sink)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_begin (const PICML::ReadonlyAttribute & ro_attr)
+write_Attribute_begin (const PICML::Attribute & attr)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_end (const PICML::ReadonlyAttribute & ro_attr)
+write_Attribute_end (const PICML::Attribute & attr)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_begin (const PICML::PeriodicEvent & periodic)
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_method_end (const PICML::PeriodicEvent & periodic)
+write_ReadonlyAttribute_end (const PICML::ReadonlyAttribute & ro_attr)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_PeriodicEvent_end (const PICML::PeriodicEvent & periodic)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_OnewayOperation_begin (const PICML::OnewayOperation & oneway)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_OnewayOperation_end (const PICML::OnewayOperation & oneway)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_TwowayOperation_end (const PICML::TwowayOperation & twoway)
 {
 
 }
@@ -183,22 +246,22 @@ write_variable (const PICML::Variable & variable)
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_variable (const PICML::WorkerType & type,
-                const PICML::Worker & worker)
+write_worker_variable (const PICML::WorkerType & type,
+                       const PICML::Worker & worker)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_variable (const PICML::ReadonlyAttribute & type)
+write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & type)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_variable (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_variable (const PICML::PeriodicEvent & periodic)
 {
 
 }
@@ -232,21 +295,35 @@ write_action_property (const PICML::Property & property)
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_action_begin (const PICML::Worker & worker,
-                    const PICML::Action & action)
+write_WorkerAction_begin (const PICML::Worker & worker,
+                          const PICML::Action & action)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::
-write_action_begin (const PICML::OutputAction & action)
+write_OutputAction_begin (const PICML::OutputAction & action)
 {
 
 }
 
 CUTS_INLINE
 void CUTS_BE_Traits::write_action_end (void)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_FactoryOperation_begin (const PICML::FactoryOperation & factory)
+{
+
+}
+
+CUTS_INLINE
+void CUTS_BE_Traits::
+write_FactoryOperation_end (const PICML::FactoryOperation & factory)
 {
 
 }

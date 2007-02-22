@@ -54,122 +54,154 @@ public:
   /// Destructor.
   virtual ~CUTS_BE_List_T (void);
 
-  /**
-   * Open the file for the specified implementation container.
-   *
-   * @retval      true      Successfully opened the file.
-   * @retval      false     Failed to open file.
-   */
-  bool open_file (
+  virtual bool open_file (
     const PICML::ComponentImplementationContainer & container);
 
-  void close_file (
+  virtual void close_file (
     const PICML::ComponentImplementationContainer & container);
 
-  void write_prologue (
+  virtual void write_prologue (
     const PICML::ComponentImplementationContainer & container);
 
-  void write_epilogue (
+  virtual void write_epilogue (
     const PICML::ComponentImplementationContainer & container);
 
-  void write_includes (
+  virtual void write_includes (
     const CUTS_String_Set & includes);
 
-  void write_impl_begin (
+  // @@ begin component implementation
+
+  virtual void write_impl_begin (
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & type);
 
-  void write_impl_end (
+  virtual void write_InEventPort_begin (
+    const PICML::InEventPort & sink);
+
+  virtual void write_InEventPort_end (
+    const PICML::InEventPort & sink);
+
+  virtual void write_ProvidedRequestPort_begin (
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_ProvidedRequestPort_end (
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_Attribute_begin (
+    const PICML::Attribute & attr);
+
+  virtual void write_Attribute_end (
+    const PICML::Attribute & attr);
+
+  virtual void write_ReadonlyAttribute_begin (
+    const PICML::ReadonlyAttribute & ro_attr);
+
+  virtual void write_ReadonlyAttribute_end (
+    const PICML::ReadonlyAttribute & ro_attr);
+
+  virtual void write_PeriodicEvent_begin (
+    const PICML::PeriodicEvent & periodic);
+
+  virtual void write_PeriodicEvent_end (
+    const PICML::PeriodicEvent & periodic);
+
+  virtual void write_environment_begin (
+    const PICML::Component & component);
+
+  virtual void write_environment_method_begin (
+    const PICML::InputAction &);
+
+  virtual void write_environment_method_end (
+    const PICML::InputAction &);
+
+  virtual void write_environment_end (
+    const PICML::Component & component);
+
+  virtual void write_impl_end (
     const PICML::MonolithicImplementation &,
     const PICML::Component & type);
 
-  void write_factory_begin (
+  // @@ end component implementation
+
+  // @@ begin facet implementation
+
+  virtual void write_object_impl_begin (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_OnewayOperation_begin (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_OnewayOperation_end (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_TwowayOperation_begin (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_TwowayOperation_end (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_object_impl_end (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  // @@ end facet implementation
+
+  // @@ begin home implementation
+
+  virtual void write_factory_impl_begin (
     const PICML::ComponentFactory & factory,
     const PICML::MonolithicImplementation & impl,
     const PICML::Component & type);
 
-  void write_factory_end (
+  virtual void write_FactoryOperation_begin (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_FactoryOperation_end (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_factory_impl_end (
     const PICML::ComponentFactory & factory,
     const PICML::MonolithicImplementation & impl,
     const PICML::Component & type);
 
-  void write_method_begin (
-    const PICML::InEventPort & sink);
+  // @@ end home implementation
 
-  void write_method_end (
-    const PICML::InEventPort & sink);
-
-  void write_method_begin (
-    const PICML::ProvidedRequestPort & facet);
-
-  void write_method_end (
-    const PICML::ProvidedRequestPort & facet);
-
-  void write_method_begin (
-    const PICML::PeriodicEvent & facet);
-
-  void write_method_end (
-    const PICML::PeriodicEvent & facet);
-
-  void write_method_begin (
-    const PICML::Attribute & attr);
-
-  void write_method_end (
-    const PICML::Attribute & attr);
-
-  void write_method_begin (
-    const PICML::ReadonlyAttribute & ro_attr);
-
-  void write_method_end (
-    const PICML::ReadonlyAttribute & ro_attr);
-
-  void write_environment_begin (
+  virtual void write_variables_begin (
     const PICML::Component & component);
 
-  void write_environment_end (
-    const PICML::Component & component);
-
-  void write_environment_method_begin (
-    const PICML::InputAction &);
-
-  void write_environment_method_end (
-    const PICML::InputAction &);
-
-  void write_variables_begin (
-    const PICML::Component & component);
-
-  void write_variable (
+  virtual void write_variable (
     const PICML::Variable & variable);
 
-  void write_variable (
+  virtual void write_worker_variable (
     const PICML::WorkerType & type,
     const PICML::Worker & worker);
 
-  void write_variable (
+  virtual void write_ReadonlyAttribute_variable (
     const PICML::ReadonlyAttribute & readonly);
 
-  void write_variable (
+  virtual void write_PeriodicEvent_variable (
     const PICML::PeriodicEvent & periodic);
 
-  void write_variables_end (void);
+  virtual void write_variables_end (void);
 
-  void write_precondition (
+  virtual void write_precondition (
     const std::string & precondition);
 
-  void write_postcondition (
+  virtual void write_postcondition (
     const std::string & precondition);
 
-  void write_action_property (
-    const PICML::Property & property);
-
-  void write_action_begin (
+  virtual void write_WorkerAction_begin (
     const PICML::Worker & worker,
     const PICML::Action & action);
 
-  void write_action_begin (
+  virtual void write_OutputAction_begin (
     const PICML::OutputAction & action);
 
-  void write_action_end (void);
+  virtual void write_action_property (
+    const PICML::Property & property);
+
+  virtual void write_action_end (void);
 
 private:
   /// The traits for this node.

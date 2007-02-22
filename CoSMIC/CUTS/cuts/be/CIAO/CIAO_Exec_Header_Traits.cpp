@@ -221,69 +221,6 @@ write_impl_end (const PICML::MonolithicImplementation & monoimpl,
 }
 
 //
-// write_factory_begin
-//
-void CUTS_CIAO_Exec_Header_Traits::
-write_factory_begin (const PICML::ComponentFactory & factory,
-                     const PICML::MonolithicImplementation & impl,
-                     const PICML::Component & type)
-{
-  this->outfile ()
-    << "class " << factory.name () << " :" << std::endl
-    << "  public virtual " << factory.name () << "_Exec," << std::endl
-    << "  public virtual TAO_Local_RefCounted_Object {"
-    << "public:" << std::endl
-    << single_line_comment ("default constructor")
-    << factory.name () << " (void);"
-    << std::endl
-    << single_line_comment ("destructor")
-    << "virtual ~" << factory.name () << " (void);"
-    << std::endl
-    << single_line_comment ("default creation method")
-    << "virtual ::Components::EnterpriseComponent_ptr" << std::endl
-    << "  create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException));" << std::endl;
-}
-
-//
-// write_factory_end
-//
-void CUTS_CIAO_Exec_Header_Traits::
-write_factory_end (const PICML::ComponentFactory & factory,
-                   const PICML::MonolithicImplementation & impl,
-                   const PICML::Component & type)
-{
-  // Generate the export file for the implementation.
-  PICML::ComponentImplementationContainer container =
-    PICML::ComponentImplementationContainer::Cast (impl.parent ());
-
-  std::string exportfile =
-    (std::string) container.name () + CUTS_BE_OPTIONS ()->exec_suffix_;
-
-  std::string exportname = exportfile;
-  std::replace (exportname.begin (), exportname.end (), '/', '_');
-
-  CUTS_Export_File_Generator export_file (exportname, exportfile);
-  export_file.generate ();
-
-  // Close off the class definition.
-  this->outfile ()
-    << "};";
-
-  _super::write_factory_end (factory, impl, type);
-
-  this->outfile ()
-    << "#include \"" << export_file.export_file () << "\"" << std::endl
-    << std::endl
-    << "extern \"C\" " << export_file.export_macro () << std::endl
-    << "::Components::HomeExecutorBase_ptr " << std::endl
-    << "create_" << scope (factory, "_")
-    << factory.name () << "_Impl (void);"
-    << std::endl;
-}
-
-//
 // write_variables_begin
 //
 void CUTS_CIAO_Exec_Header_Traits::
@@ -326,7 +263,7 @@ write_variable (const PICML::Variable & variable)
 // write_variable
 //
 void CUTS_CIAO_Exec_Header_Traits::
-write_variable (const PICML::ReadonlyAttribute & readonly)
+write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & readonly)
 {
   // Get the contained attribute member.
   PICML::AttributeMember member = readonly.AttributeMember_child ();
@@ -355,10 +292,10 @@ write_variable (const PICML::ReadonlyAttribute & readonly)
 }
 
 //
-// write_variable
+// write_PeriodicEvent_variable
 //
 void CUTS_CIAO_Exec_Header_Traits::
-write_variable (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_variable (const PICML::PeriodicEvent & periodic)
 {
   PICML::Component parent = PICML::Component::Cast (periodic.parent ());
 
@@ -370,10 +307,10 @@ write_variable (const PICML::PeriodicEvent & periodic)
 
 
 //
-// write_variable
+// write_worker_variable
 //
 void CUTS_CIAO_Exec_Header_Traits::
-write_variable (const PICML::WorkerType & var,
+write_worker_variable (const PICML::WorkerType & var,
                 const PICML::Worker & worker)
 {
   this->outfile ()

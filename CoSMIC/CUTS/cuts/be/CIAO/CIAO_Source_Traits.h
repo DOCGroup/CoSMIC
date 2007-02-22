@@ -32,35 +32,71 @@ public:
 
   virtual ~CUTS_CIAO_Source_Traits (void);
 
-  virtual void write_method_begin (
+  virtual void write_ProvidedRequestPort_begin (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_end (
+  virtual void write_ProvidedRequestPort_end (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_begin (
+  virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_end (
+  virtual void write_InEventPort_end (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_begin (
+  virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_end (
+  virtual void write_PeriodicEvent_end (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_begin (
+  virtual void write_Attribute_begin (
     const PICML::Attribute & attr);
 
-  virtual void write_method_end (
+  virtual void write_Attribute_end (
     const PICML::Attribute & attr);
 
-  virtual void write_method_begin (
+  virtual void write_ReadonlyAttribute_begin (
     const PICML::ReadonlyAttribute & readonly);
 
-  virtual void write_method_end (
+  virtual void write_ReadonlyAttribute_end (
     const PICML::ReadonlyAttribute & readonly);
+
+  virtual void write_TwowayOperation_begin (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_TwowayOperation_end (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_OnewayOperation_begin (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_OnewayOperation_end (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_FactoryOperation_begin (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_FactoryOperation_end (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_object_impl_begin (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_object_impl_end (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_factory_impl_begin (
+    const PICML::ComponentFactory & factory,
+    const PICML::MonolithicImplementation & impl,
+    const PICML::Component & type);
+
+  virtual void write_factory_impl_end (
+    const PICML::ComponentFactory & factory,
+    const PICML::MonolithicImplementation & impl,
+    const PICML::Component & type);
 
 protected:
   virtual void write_set_session_context (
@@ -96,6 +132,9 @@ protected:
    * @return        The function header for \func.
    */
   std::string function_header (const std::string & func);
+
+  /// The name of the current object's implementation.
+  std::string object_impl_;
 };
 
 #endif  // !defined _CUTS_CIAO_SOURCE_TRAITS_H_

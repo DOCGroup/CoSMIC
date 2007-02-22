@@ -155,20 +155,20 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
 
   // Let's write the constructor and destructor for the monolithic
   // implementation of the component.
-  std::string destructor ("~");
-  destructor += component.name ();
+  this->object_impl_ = (std::string) component.name ();
+  std::string destructor = "~" + this->object_impl_;
 
-  _super::write_impl_begin (monoimpl, component);
+  this->_super::write_impl_begin (monoimpl, component);
 
   this->outfile ()
-    << function_header (component.name ())
-    << component.name () << "::" << component.name () << " (void)"
+    << function_header (this->object_impl_)
+    << this->object_impl_ << "::" << this->object_impl_ << " (void)"
     << "{"
     << "CUTS_Thread_Activation_Record::init_singleton ();"
     << "}"
 
     << function_header (destructor)
-    << component.name () << "::" << destructor << " (void)"
+    << this->object_impl_ << "::" << destructor << " (void)"
     << "{"
     << "}";
 }
@@ -184,80 +184,10 @@ write_impl_end (const PICML::MonolithicImplementation & monoimpl,
 }
 
 //
-// write_factory_begin
+// write_ProvidedRequestPort_end
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_factory_begin (const PICML::ComponentFactory & factory,
-                     const PICML::MonolithicImplementation & impl,
-                     const PICML::Component & type)
-{
-  std::string destructor ("~");
-  destructor += factory.name ();
-
-  this->outfile ()
-    << function_header (factory.name ())
-    << factory.name () << "::" << factory.name () << " (void)"
-    << "{"
-    << "}"
-
-    << function_header (destructor)
-    << factory.name () << "::" << destructor << " (void)"
-    << "{"
-    << "}"
-
-    << function_header ("create")
-    << "::Components::EnterpriseComponent_ptr " << std::endl
-    << "  " << factory.name ()
-    << "::create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException)) {"
-    << "::Components::EnterpriseComponent_ptr retval =" << std::endl
-    << "  ::Components::EnterpriseComponent::_nil ();"
-    << std::endl
-    << "ACE_NEW_THROW_EX (retval," << std::endl
-    << type.name () << "," << std::endl
-    << "::CORBA::NO_MEMORY ());"
-    << std::endl
-    << "ACE_CHECK_RETURN (::Components::EnterpriseComponent::_nil ());"
-    << "return retval;"
-    << "}";
-}
-
-//
-// write_factory_end
-//
-void CUTS_CIAO_Exec_Source_Traits::
-write_factory_end (const PICML::ComponentFactory & factory,
-                   const PICML::MonolithicImplementation & impl,
-                   const PICML::Component & type)
-{
-  _super::write_factory_end (factory, impl, type);
-
-  std::string func_name =
-    "create_" + scope (factory, "_") +
-    (std::string)factory.name () + "_Impl";
-
-  this->outfile ()
-    << function_header (func_name)
-    << "::Components::HomeExecutorBase_ptr" << std::endl
-    << func_name << " (void) {"
-    << "::Components::HomeExecutorBase_ptr retval =" << std::endl
-    << "  ::Components::HomeExecutorBase::_nil ();"
-    << std::endl
-    << "ACE_NEW_RETURN (retval," << std::endl
-    << "::CIDL_" << impl.name ()
-    << "::" << factory.name () << "," << std::endl
-    << "::Components::HomeExecutorBase::_nil ());"
-    << std::endl
-    << "return retval;"
-    << "}";
-}
-
-//
-// write_method_end
-//
-void CUTS_CIAO_Exec_Source_Traits::
-write_method_end (const PICML::ProvidedRequestPort & facet)
+write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 {
   PICML::Object obj = PICML::Object::Cast (facet.ref ());
 
@@ -270,16 +200,16 @@ write_method_end (const PICML::ProvidedRequestPort & facet)
       << "CCM_" << obj.name () << "::_nil ();";
   }
 
-  this->_super::write_method_end (facet);
+  this->_super::write_ProvidedRequestPort_end (facet);
 }
 
 //
-// write_method_begin
+// write_InEventPort_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_method_begin (const PICML::InEventPort & sink)
+write_InEventPort_begin (const PICML::InEventPort & sink)
 {
-  this->_super::write_method_begin (sink);
+  this->_super::write_InEventPort_begin (sink);
 
   this->outfile ()
     << single_line_comment ("get activation record for this thread")
@@ -288,13 +218,13 @@ write_method_begin (const PICML::InEventPort & sink)
 }
 
 //
-// write_method_begin [ReadonlyAttribute]
+// write_ReadonlyAttribute_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_method_begin (const PICML::ReadonlyAttribute & attr)
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 {
   // Write the class scope resolution.
-  this->_super::write_method_begin (attr);
+  this->_super::write_ReadonlyAttribute_begin (attr);
 
   PICML::AttributeMember member = attr.AttributeMember_child ();
   PICML::MemberType mtype = member.ref ();
@@ -337,12 +267,12 @@ write_method_begin (const PICML::ReadonlyAttribute & attr)
 }
 
 //
-// write_method_begin [Attribute]
+// write_Attribute_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_method_begin (const PICML::Attribute & attr)
+write_Attribute_begin (const PICML::Attribute & attr)
 {
-  this->_super::write_method_begin (attr);
+  this->_super::write_Attribute_begin (attr);
   this->outfile () << "this->" << attr.name () << "_ = ";
 
   PICML::AttributeMember member = attr.AttributeMember_child ();
@@ -586,8 +516,8 @@ write_environment_end (const PICML::Component & component)
 // write_action_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_action_begin (const PICML::Worker & parent,
-                    const PICML::Action & action)
+write_WorkerAction_begin (const PICML::Worker & parent,
+                          const PICML::Action & action)
 {
   long repetitions = static_cast <long> (action.Repetitions ());
 
@@ -666,7 +596,7 @@ write_action_property (const PICML::Property & property)
 // write_action_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_action_begin (const PICML::OutputAction & action)
+write_OutputAction_begin (const PICML::OutputAction & action)
 {
   std::string scoped_name;
 
@@ -706,9 +636,9 @@ write_postcondition (const std::string & postcondition)
 // write_method_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
-write_method_begin (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 {
-  this->_super::write_method_begin (periodic);
+  this->_super::write_PeriodicEvent_begin (periodic);
 
   this->outfile ()
     << single_line_comment ("get activation record for this thread")

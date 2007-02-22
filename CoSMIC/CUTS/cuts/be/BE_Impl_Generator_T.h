@@ -60,12 +60,23 @@ protected:
   void Visit_Component (
     const PICML::Component & component);
 
+  void Visit_Supports (
+    const PICML::Supports & supports);
+
+  /// Visit a Component element.
+  void Visit_Object (
+    const PICML::Object & object);
+
   /// Visit a InEventPort element.
   void Visit_InEventPort (
     const PICML::InEventPort & sink);
 
   /// Visit a ProvidedRequestPort element.
   void Visit_ProvidedRequestPort (
+    const PICML::ProvidedRequestPort & facet);
+
+  /// Visit a ProvidedRequestPort element.
+  void Visit_ProvidedRequestPort_impl (
     const PICML::ProvidedRequestPort & facet);
 
   /// Visit a ProvidedRequestPort element.
@@ -87,6 +98,21 @@ protected:
   /// Visit a WorkerType element.
   void Visit_WorkerType (
     const PICML::WorkerType & type);
+
+  void Visit_OnewayOperation (
+    const PICML::OnewayOperation & oneway);
+
+  void Visit_TwowayOperation (
+    const PICML::TwowayOperation & twoway);
+
+  void Visit_ComponentFactory (
+    const PICML::ComponentFactory & factory);
+
+  void Visit_ComponentFactory_inherits (
+    const PICML::Inherits & inherits);
+
+  void Visit_FactoryOperation (
+    const PICML::FactoryOperation & factory_op);
 
 private:
   bool get_component_factory (const PICML::Component & component,

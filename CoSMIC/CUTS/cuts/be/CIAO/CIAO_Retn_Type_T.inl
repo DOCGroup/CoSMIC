@@ -20,5 +20,5 @@ CUTS_INLINE
 void CUTS_CIAO_Retn_Type_T <T>::
 write (std::ostream & out) const
 {
-  out << "/* unsupported type */";
+  out << "/* unsupported return type */";
 }

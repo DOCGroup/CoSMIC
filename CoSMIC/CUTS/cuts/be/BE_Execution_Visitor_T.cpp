@@ -1,5 +1,7 @@
 // $Id$
 
+#include "UDM_Utility_T.h"
+
 // BOOST headers
 #include "boost/bind.hpp"
 
@@ -51,65 +53,6 @@ struct Is_Finish_Connection
   // Source input action we are looking for.
   const PICML::InputAction & src_input_;
 };
-
-//=============================================================================
-/**
- * @struct Sort_By_Position
- *
- * @brief Help functor to sort objects by their position. The object
- * sorted by this method are in left-to-right ordering. Their y-value
- * is currently ignored when sorting objects.
- */
-//=============================================================================
-
-template <typename T>
-struct Sort_By_Position
-{
-  struct Position
-  {
-    /// X-value of the position.
-    long x;
-
-    /// Y-value of the position
-    long y;
-
-    /**
-     * Extraction operator. This method takes a string and extracts
-     * the coordinates from it. The format of the string should be
-     * (x, y). If the source string does not have coordinates stored
-     * in this format, it will cause unpredictable behavior.
-     *
-     * @param[in]     str     Source string with the x-,y-coordinates
-     */
-    void operator <<= (const std::string & str)
-    {
-      char tmp;
-
-      std::istringstream istr (str);
-
-      istr >> tmp;
-      istr >> this->x;
-      istr >> tmp;
-      istr >> this->y;
-    }
-  };
-
-  /**
-   * Functor operation. This method will compare the determine
-   * which object is the furthest most left object of the two.
-   */
-  bool operator () (const T & lhs, const T & rhs)
-  {
-    Position pos_lhs;
-    pos_lhs <<= lhs.position ();
-
-    Position pos_rhs;
-    pos_rhs <<= rhs.position ();
-
-    return pos_lhs.x < pos_rhs.x;
-  }
-};
-
 
 //
 // CUTS_BE_Execution_Visitor_T
@@ -410,7 +353,7 @@ Visit_Action (const PICML::Action & action)
 
   // Let's tell the <traits_> to begin generating an action.
   PICML::Worker worker = action_type.Worker_parent ();
-  this->traits_.write_action_begin (worker, action);
+  this->traits_.write_WorkerAction_begin (worker, action);
 
   // Generate the parameters for the action.
   typedef std::set <PICML::Property,
@@ -436,9 +379,7 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_OutputAction (const PICML::OutputAction & action)
 {
-  this->traits_.write_action_begin (action);
-
-  this->traits_.write_action_end ();
+  this->traits_.write_OutputAction_begin (action);
 }
 
 //

@@ -34,41 +34,81 @@ public:
 
   virtual ~CUTS_CIAO_Header_Traits (void);
 
+  virtual void write_impl_begin (
+    const PICML::MonolithicImplementation & monoimpl,
+    const PICML::Component & component);
+
   virtual void write_environment_begin (
     const PICML::Component & component);
 
-  virtual void write_method_begin (
+  virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_end (
+  virtual void write_InEventPort_end (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_begin (
+  virtual void write_ProvidedRequestPort_begin (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_end (
+  virtual void write_ProvidedRequestPort_end (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_begin (
+  virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_end (
+  virtual void write_PeriodicEvent_end (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_begin (
+  virtual void write_Attribute_begin (
     const PICML::Attribute & attr);
 
-  virtual void write_method_end (
+  virtual void write_Attribute_end (
     const PICML::Attribute & attr);
 
-  virtual void write_method_begin (
+  virtual void write_ReadonlyAttribute_begin (
     const PICML::ReadonlyAttribute & attr);
 
-  virtual void write_method_end (
+  virtual void write_ReadonlyAttribute_end (
     const PICML::ReadonlyAttribute & attr);
 
   virtual void write_variables_begin (
     const PICML::Component & component);
+
+  virtual void write_object_impl_begin (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_object_impl_end (
+    const PICML::Component & component,
+    const PICML::ProvidedRequestPort & facet);
+
+  virtual void write_TwowayOperation_begin (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_TwowayOperation_end (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_OnewayOperation_begin (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_OnewayOperation_end (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_factory_impl_begin (
+    const PICML::ComponentFactory & factory,
+    const PICML::MonolithicImplementation & impl,
+    const PICML::Component & type);
+
+  virtual void write_FactoryOperation_begin (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_FactoryOperation_end (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_factory_impl_end (
+    const PICML::ComponentFactory & factory,
+    const PICML::MonolithicImplementation & impl,
+    const PICML::Component & type);
 
 protected:
   virtual void write_set_session_context (
@@ -94,6 +134,8 @@ protected:
 
   virtual void write_method (
     const PICML::RequiredRequestPort & source);
+
+  void write_forward_decl (const PICML::ProvidedRequestPort & facet);
 };
 
 #if defined (__CUTS_INLINE__)

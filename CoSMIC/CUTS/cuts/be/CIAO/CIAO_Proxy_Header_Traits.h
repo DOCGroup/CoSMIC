@@ -46,52 +46,19 @@ public:
   virtual void write_includes (
     const CUTS_String_Set & includes);
 
+  // @@ begin component impl.
   void write_impl_begin (
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & type);
 
-  void write_method_begin (
-    const PICML::ProvidedRequestPort & facet);
-
-  void write_method_end (
-    const PICML::ProvidedRequestPort & facet);
-
-  void write_method_begin (
+  void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
-  void write_method_end (
+  void write_PeriodicEvent_end (
     const PICML::PeriodicEvent & periodic);
-
-  void write_method_begin (
-    const PICML::InEventPort & sink);
-
-  void write_method_end (
-    const PICML::InEventPort & sink);
-
-  void write_method_begin (
-    const PICML::ReadonlyAttribute & readonly);
-
-  void write_method_end (
-    const PICML::ReadonlyAttribute & readonly);
-
-  void write_method_begin (
-    const PICML::Attribute & readonly);
-
-  void write_method_end (
-    const PICML::Attribute & readonly);
 
   void write_impl_end (
     const PICML::MonolithicImplementation &,
-    const PICML::Component & type);
-
-  virtual void write_factory_begin (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_factory_end (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
     const PICML::Component & type);
 
   virtual void write_variables_begin (
@@ -100,18 +67,15 @@ public:
   virtual void write_variable (
     const PICML::Variable & variable);
 
-  virtual void write_variable (
+  virtual void write_worker_variable (
     const PICML::WorkerType & type,
     const PICML::Worker & worker);
 
-  virtual void write_variable (
+  virtual void write_ReadonlyAttribute_variable (
     const PICML::ReadonlyAttribute & readonly);
 
-  virtual void write_variable (
+  virtual void write_PeriodicEvent_variable (
     const PICML::PeriodicEvent & periodic);
-
-  virtual void write_environment_begin (
-    const PICML::Component & component);
 
   virtual void write_environment_method_begin (
     const PICML::InputAction &);
@@ -121,13 +85,6 @@ public:
 
   virtual void write_environment_end (
     const PICML::Component & component);
-
-protected:
-  void write_method (
-    const PICML::OutEventPort & source);
-
-  void write_method (
-    const PICML::RequiredRequestPort & receptacle);
 
 private:
   bool get_component_factory (

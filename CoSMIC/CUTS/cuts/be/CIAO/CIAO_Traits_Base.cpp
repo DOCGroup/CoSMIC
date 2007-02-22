@@ -4,12 +4,18 @@
 #include "CIAO_In_Type.h"
 #include "CIAO_Retn_Type.h"
 
+#include "cuts/be/UDM_Utility_T.h"
+
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
 
 #include "Uml.h"
+
+#include "boost/bind.hpp"
+
 #include <algorithm>
 #include <ctype.h>
+#include <stack>
 
 //
 // CIAO_Traits_Base
@@ -71,19 +77,33 @@ single_line_comment (const std::string & str)
 // scope
 //
 std::string CIAO_Traits_Base::
-scope (const PICML::NamedType & type,
-       const std::string & separator)
+scope (const PICML::MgaObject & type,
+       const std::string & separator,
+       bool leading)
 {
   std::string scope;
+  std::stack <PICML::MgaObject> temp_stack;
 
-  PICML::MgaObject parent = type.parent ();
+  // Continue walking up the tree until we reach a File object.
+  PICML::MgaObject parent = PICML::MgaObject::Cast (type.parent ());
 
   while (parent.type () != PICML::File::meta)
   {
-    scope.insert (0, separator);
-    scope.insert (0, parent.name ());
-
+    temp_stack.push (parent);
     parent = PICML::MgaObject::Cast (parent.parent ());
+  }
+
+  // Insert the leading separator, if applicable.
+  if (leading)
+    scope += separator;
+
+  // Empty the stack while writing its contents to a string.
+  while (!temp_stack.empty ())
+  {
+    parent = temp_stack.top ();
+    temp_stack.pop ();
+
+    scope += (std::string) parent.name () + separator;
   }
 
   return scope;
@@ -102,22 +122,23 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
 }
 
 //
-// write_factory_end
+// write_factory_impl_end
 //
 void CIAO_Traits_Base::
-write_factory_end (const PICML::ComponentFactory & factory,
-                   const PICML::MonolithicImplementation & impl,
-                   const PICML::Component & type)
+write_factory_impl_end (const PICML::ComponentFactory & factory,
+                        const PICML::MonolithicImplementation & impl,
+                        const PICML::Component & type)
 {
   // This is really closing off the implementation namespace
-  this->outfile () << "}";
+  this->outfile ()
+    << "}";
 }
 
 //
-// write_method_begin [InEventPort]
+// write_InEventPort_begin
 //
 void CIAO_Traits_Base::
-write_method_begin (const PICML::InEventPort & sink)
+write_InEventPort_begin (const PICML::InEventPort & sink)
 {
   PICML::Event event = sink.ref ();
 
@@ -125,63 +146,59 @@ write_method_begin (const PICML::InEventPort & sink)
   {
     this->outfile ()
       << "push_" << sink.name () << " (" << std::endl
-      << scope (event, "::") << event.name () << " * ev" << std::endl
-      << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+      << scope (event, "::") << event.name () << " * ev)" << std::endl
       << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
   }
 }
 
 //
-// write_method_begin [PeriodicEvent]
+// write_PeriodicEvent_begin
 //
 void CIAO_Traits_Base::
-write_method_begin (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 {
   this->outfile ()
     << "periodic_" << periodic.name () << " (void)";
 }
 
 //
-// write_method_begin [ProvidedRequestPort]
+// write_ProvidedRequestPort_begin
 //
 void CIAO_Traits_Base::
-write_method_begin (const PICML::ProvidedRequestPort & facet)
+write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
   this->outfile ()
-    << "get_" << facet.name () << " (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "get_" << facet.name () << " (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }
 
 //
-// write_method_begin [ReadonlyAttribute]
+// write_ReadonlyAttribute_begin
 //
 void CIAO_Traits_Base::
-write_method_begin (const PICML::ReadonlyAttribute & ro_attr)
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
 {
   this->outfile ()
-    << ro_attr.name () << " (" << std::endl
-    << "void ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << ro_attr.name () << " (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }
 
 //
-// write_method_begin [Attribute]
+// write_Attribute_begin
 //
 void CIAO_Traits_Base::
-write_method_begin (const PICML::Attribute & attr)
+write_Attribute_begin (const PICML::Attribute & attr)
 {
   PICML::AttributeMember member = attr.AttributeMember_child ();
   PICML::MemberType mtype = member.ref ();
 
   this->outfile ()
-    << attr.name () << " (" << std::endl;
+    << attr.name () << " (";
 
   CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->outfile (), mtype);
 
   this->outfile ()
-    << " " << attr.name () << std::endl
-    << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << " " << attr.name () << ")" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }
 
@@ -197,8 +214,7 @@ write_method (const PICML::OutEventPort & source)
   {
     this->outfile ()
       << "push_" << source.name () << " (" << std::endl
-      << scope (event, "::") << event.name () << " * ev" << std::endl
-      << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+      << scope (event, "::") << event.name () << " * ev)" << std::endl
       << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
   }
 }
@@ -210,8 +226,7 @@ void CIAO_Traits_Base::
 write_method (const PICML::RequiredRequestPort & receptacle)
 {
   this->outfile ()
-    << "get_connection_" << receptacle.name () << " (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "get_connection_" << receptacle.name () << " (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }
 
@@ -270,8 +285,7 @@ write_set_session_context (const PICML::Component & component)
 
   this->outfile ()
     << "set_session_context (" << std::endl
-    << "::Components::SessionContext_ptr ctx" << std::endl
-    << "ACE_ENV_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "::Components::SessionContext_ptr ctx)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
 }
@@ -285,8 +299,7 @@ write_ciao_preactivate (const PICML::Component & component)
   this->env_bits_[ENV_PREACTIVATE] = true;
 
   this->outfile ()
-    << "ciao_preactivate (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ciao_preactivate (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
 }
@@ -300,8 +313,7 @@ write_ccm_activate (const PICML::Component & component)
   this->env_bits_[ENV_ACTIVATE] = true;
 
   this->outfile ()
-    << "ccm_activate (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ccm_activate (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
 }
@@ -315,8 +327,7 @@ write_ciao_postactivate (const PICML::Component & component)
   this->env_bits_[ENV_POSTACTIVATE] = true;
 
   this->outfile ()
-    << "ciao_postactivate (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ciao_postactivate (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
 }
@@ -327,8 +338,7 @@ write_ccm_passivate (const PICML::Component & component)
   this->env_bits_[ENV_PASSIVATE] = true;
 
   this->outfile ()
-    << "ccm_passivate (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ccm_passivate (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
 }
@@ -342,8 +352,234 @@ write_ccm_remove (const PICML::Component & component)
   this->env_bits_[ENV_REMOVE] = true;
 
   this->outfile ()
-    << "ccm_remove (" << std::endl
-    << "ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "ccm_remove (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException))";
+}
+
+//
+// write_TwowayOperation_begin
+//
+void CIAO_Traits_Base::
+write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
+{
+  this->outfile ()
+    << twoway.name () << " (";
+
+  typedef std::vector <PICML::ParameterType> ParameterType_Set;
+  ParameterType_Set params =
+    twoway.ParameterType_kind_children_sorted (
+    Sort_By_Position <PICML::ParameterType> ());
+
+  if (!params.empty ())
+  {
+    ParameterType_Set::iterator iter = params.begin ();
+    this->write_parameter_first (*iter ++);
+
+    // Write all the in parameters for this method.
+    std::for_each (iter,
+                   params.end (),
+                   boost::bind (&CIAO_Traits_Base::write_parameter,
+                                this,
+                                _1));
+  }
+  else
+    // Print the correct trailing macro for no arguments.
+    this->outfile () << "void";
+
+  this->outfile ()
+    << ")" << std::endl
+    << "  ACE_THROW_SPEC ((::CORBA::SystemException";
+
+  // Write all the exceptions thrown by this method.
+  typedef std::vector <PICML::ExceptionRef> ExceptionRef_Set;
+  ExceptionRef_Set exceptions = twoway.ExceptionRef_kind_children ();
+
+  std::for_each (exceptions.begin (),
+                 exceptions.end (),
+                 boost::bind (&CIAO_Traits_Base::write_exception_spec,
+                              this,
+                              _1));
+
+  this->outfile ()
+    << "))";
+}
+
+//
+// write_TwowayOperation_begin
+//
+void CIAO_Traits_Base::
+write_OnewayOperation_begin (const PICML::OnewayOperation & oneway)
+{
+  this->write_OperationBase_begin (oneway);
+}
+
+//
+// write_in_parameter_first
+//
+void CIAO_Traits_Base::
+write_in_parameter_first (const PICML::InParameter & in)
+{
+  PICML::MemberType type = in.ref ();
+  CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->outfile (),
+                                                  type);
+
+  this->outfile ()
+    << " " << in.name ();
+}
+
+//
+// write_in_parameter
+//
+void CIAO_Traits_Base::
+write_in_parameter (const PICML::InParameter & in)
+{
+  this->outfile ()
+    << "," << std::endl;
+
+  this->write_in_parameter_first (in);
+}
+
+//
+// write_out_parameter_first
+//
+void CIAO_Traits_Base::
+write_out_parameter_first (const PICML::OutParameter & out)
+{
+  this->outfile ()
+    << "/* out not supported */ " << out.name ();
+}
+
+//
+// write_out_parameter
+//
+void CIAO_Traits_Base::
+write_out_parameter (const PICML::OutParameter & out)
+{
+  this->outfile ()
+    << "," << std::endl;
+
+  this->write_out_parameter_first (out);
+}
+
+//
+// write_inout_parameter_first
+//
+void CIAO_Traits_Base::
+write_inout_parameter_first (const PICML::InoutParameter & inout)
+{
+  this->outfile ()
+    << "/* inout not supported */ " << inout.name ();
+}
+
+//
+// write_inout_parameter
+//
+void CIAO_Traits_Base::
+write_inout_parameter (const PICML::InoutParameter & inout)
+{
+  this->outfile ()
+    << "," << std::endl;
+
+  this->write_inout_parameter_first (inout);
+}
+
+//
+// write_parameter
+//
+void CIAO_Traits_Base::
+write_parameter (const PICML::ParameterType & param)
+{
+  Uml::Class type = param.type ();
+
+  if (type == PICML::InParameter::meta)
+    this->write_in_parameter (PICML::InParameter::Cast (param));
+  else if (type == PICML::OutParameter::meta)
+    this->write_out_parameter (PICML::OutParameter::Cast (param));
+  else if (type == PICML::InoutParameter::meta)
+    this->write_inout_parameter (PICML::InoutParameter::Cast (param));
+}
+
+//
+// write_parameter_first
+//
+void CIAO_Traits_Base::
+write_parameter_first (const PICML::ParameterType & param)
+{
+  Uml::Class type = param.type ();
+
+  if (type == PICML::InParameter::meta)
+    this->write_in_parameter_first (PICML::InParameter::Cast (param));
+  else if (type == PICML::OutParameter::meta)
+    this->write_out_parameter_first (PICML::OutParameter::Cast (param));
+  else if (type == PICML::InoutParameter::meta)
+    this->write_inout_parameter_first (PICML::InoutParameter::Cast (param));
+}
+
+//
+// write_exception
+//
+void CIAO_Traits_Base::
+write_exception_spec (const PICML::ExceptionRef & ref)
+{
+  PICML::Exception exception = ref.ref ();
+  std::string scope = this->scope (exception, "::", true);
+
+  this->outfile ()
+    << "," << std::endl
+    << scope << exception.name ();
+}
+
+//
+// write_FactoryOperation_begin
+//
+void CIAO_Traits_Base::
+write_FactoryOperation_begin (const PICML::FactoryOperation & factory_op)
+{
+  this->write_OperationBase_begin (factory_op);
+}
+
+//
+// write_FactoryOperation_end
+//
+void CIAO_Traits_Base::
+write_FactoryOperation_end (const PICML::FactoryOperation & factory_op)
+{
+
+}
+
+//
+// write_OperationBase
+//
+void CIAO_Traits_Base::
+write_OperationBase_begin (const PICML::OperationBase & operation_base)
+{
+  this->outfile ()
+    << operation_base.name () << " (";
+
+  // Get all the in parameters for this method.
+  typedef std::vector <PICML::InParameter> InParameter_Set;
+  InParameter_Set inparams =
+    operation_base.InParameter_kind_children_sorted (
+    Sort_By_Position <InParameter_Set::value_type> ());
+
+  if (!inparams.empty ())
+  {
+    InParameter_Set::iterator iter = inparams.begin ();
+    this->write_in_parameter_first (*iter ++);
+
+    // Write all the in parameters for this method.
+    std::for_each (iter,
+                   inparams.end (),
+                   boost::bind (&CIAO_Traits_Base::write_in_parameter,
+                                this,
+                                _1));
+  }
+  else
+    this->outfile () << "void";
+
+  // Close the method declaration and write the exception.
+  this->outfile ()
+    << ")" << std::endl
+    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }

@@ -53,24 +53,24 @@ public:
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & type);
 
-  virtual void write_factory_end (
+  virtual void write_factory_impl_end (
     const PICML::ComponentFactory & factory,
     const PICML::MonolithicImplementation & impl,
     const PICML::Component & type);
 
-  virtual void write_method_begin (
+  virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_begin (
+  virtual void write_ProvidedRequestPort_begin (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_begin (
+  virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_begin (
+  virtual void write_ReadonlyAttribute_begin (
     const PICML::ReadonlyAttribute & ro_attr);
 
-  virtual void write_method_begin (
+  virtual void write_Attribute_begin (
     const PICML::Attribute & attr);
 
   virtual void write_environment_begin (
@@ -79,7 +79,22 @@ public:
   virtual void write_environment_end (
     const PICML::Component & component);
 
+  virtual void write_TwowayOperation_begin (
+    const PICML::TwowayOperation & twoway);
+
+  virtual void write_OnewayOperation_begin (
+    const PICML::OnewayOperation & oneway);
+
+  virtual void write_FactoryOperation_begin (
+    const PICML::FactoryOperation & factory_op);
+
+  virtual void write_FactoryOperation_end (
+    const PICML::FactoryOperation & factory_op);
+
 protected:
+  void write_OperationBase_begin (
+    const PICML::OperationBase & operation_base);
+
   void open_file_i (void);
 
   virtual void write_method (
@@ -88,14 +103,29 @@ protected:
   virtual void write_method (
     const PICML::RequiredRequestPort & source);
 
+  void write_exception_spec (const PICML::ExceptionRef & ref);
+
+  void write_parameter (const PICML::ParameterType & param);
+  void write_parameter_first (const PICML::ParameterType & param);
+
+  void write_in_parameter (const PICML::InParameter & in);
+  void write_in_parameter_first (const PICML::InParameter & in);
+
+  void write_out_parameter (const PICML::OutParameter & out);
+  void write_out_parameter_first (const PICML::OutParameter & out);
+
+  void write_inout_parameter (const PICML::InoutParameter & inout);
+  void write_inout_parameter_first (const PICML::InoutParameter & inout);
+
   std::string to_upper (const std::string & str);
 
   std::string include (const std::string & str);
 
   std::string single_line_comment (const std::string & str);
 
-  std::string scope (const PICML::NamedType & type,
-                     const std::string & separator);
+  std::string scope (const PICML::MgaObject & type,
+                     const std::string & separator,
+                     bool leading = false);
 
   // CIAO-specific environment methods
   virtual void write_set_session_context (

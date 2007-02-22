@@ -54,51 +54,8 @@ public:
     const PICML::MonolithicImplementation &,
     const PICML::Component & type);
 
-  virtual void write_factory_begin (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_factory_end (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_environment_begin (
-    const PICML::Component & component);
-
   virtual void write_environment_method_begin (
     const PICML::InputAction & action);
-
-  virtual void write_method_begin (
-    const PICML::InEventPort & sink);
-
-  virtual void write_method_end (
-    const PICML::InEventPort & sink);
-
-  virtual void write_method_begin (
-    const PICML::ProvidedRequestPort & facet);
-
-  virtual void write_method_end (
-    const PICML::ProvidedRequestPort & facet);
-
-  virtual void write_method_begin (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_method_end (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_method_begin (
-    const PICML::Attribute & attr);
-
-  virtual void write_method_end (
-    const PICML::Attribute & attr);
-
-  virtual void write_method_begin (
-    const PICML::ReadonlyAttribute & attr);
-
-  virtual void write_method_end (
-    const PICML::ReadonlyAttribute & attr);
 
   virtual void write_variables_begin (
     const PICML::Component & component);
@@ -106,17 +63,16 @@ public:
   virtual void write_variable (
     const PICML::Variable & variable);
 
-  virtual void write_variable (
+  virtual void write_PeriodicEvent_variable (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_variable (
+  virtual void write_worker_variable (
     const PICML::WorkerType & type,
     const PICML::Worker & worker);
 
-  virtual void write_variable (
+  virtual void write_ReadonlyAttribute_variable (
     const PICML::ReadonlyAttribute & readonly);
 
-protected:
 private:
   /// Type definition for pointer-to-methods to environment methods.
   typedef void (CUTS_CIAO_Exec_Header_Traits::

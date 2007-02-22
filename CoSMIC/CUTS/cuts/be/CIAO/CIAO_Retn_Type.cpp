@@ -14,15 +14,22 @@
 void CUTS_CIAO_Retn_Type_T <PICML::MemberType>::
 write (std::ostream & out) const
 {
-  try
+  if (this->element_ != Udm::null)
   {
-    CUTS_CIAO_Retn_Type_T <PICML::PredefinedType> (
-      PICML::PredefinedType::Cast (this->element_)).write (out);
+    try
+    {
+      CUTS_CIAO_Retn_Type_T <PICML::PredefinedType> (
+        PICML::PredefinedType::Cast (this->element_)).write (out);
+    }
+    catch (...)
+    {
+      CUTS_CIAO_Retn_Type_T <PICML::NamedType> (
+        PICML::NamedType::Cast (this->element_)).write (out);
+    }
   }
-  catch (...)
+  else
   {
-    CUTS_CIAO_Retn_Type_T <PICML::NamedType> (
-      PICML::NamedType::Cast (this->element_)).write (out);
+    out << "void";
   }
 }
 

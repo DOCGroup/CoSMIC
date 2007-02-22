@@ -1,3 +1,51 @@
+Thu Feb 22 08:14:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Fixed implementation bug where old reminents of home_impl_
+          were still in the source code when the coworker no longer
+          caches the component's home.
+
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_Impl_Generator_T.h:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/BE_List_T.h:
+        * cuts/be/BE_List_T.inl:
+        * cuts/be/BE_Set.h:
+        * cuts/be/BE_Set.cpp:
+        * cuts/be/BE_Traits.h:
+        * cuts/be/BE_Traits.inl:
+        * cuts/be/BE_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          Added support to generating coworkers that have supported
+          interfaces, componets that have factory operations and the
+          ability to generate objects returned by facets.
+
+        * cuts/be/UDM_Utility_T.h:
+
+          Moved the Sort_By_Position functor into this file from one
+          of the CIAO backend files.
+
 Mon Feb 19 18:29:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * tests/cuts/workers:

@@ -16,6 +16,9 @@
 // UDM headers
 #include "Uml.h"
 
+// BOOST headers
+#include "boost/bind.hpp"
+
 // STL headers
 #include <algorithm>
 #include <fstream>
@@ -39,6 +42,29 @@ CUTS_CIAO_Header_Traits::
 }
 
 //
+// write_impl_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
+                  const PICML::Component & component)
+{
+  // Pass control to the parent class.
+  this->_super::write_impl_begin (monoimpl, component);
+
+  // We need to forward declare all the facets since we aren't
+  // going to generate their implementation until after the component's
+  // implementation is generated.
+  typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
+  Facet_Set facets = component.ProvidedRequestPort_kind_children ();
+
+  std::for_each (facets.begin (),
+                 facets.end (),
+                 boost::bind (&CUTS_CIAO_Header_Traits::write_forward_decl,
+                              boost::ref (this),
+                              _1));
+}
+
+//
 // write_environment_begin
 //
 void CUTS_CIAO_Header_Traits::
@@ -55,46 +81,44 @@ write_environment_begin (const PICML::Component & component)
 // write_method_begin
 //
 void CUTS_CIAO_Header_Traits::
-write_method_begin (const PICML::InEventPort & sink)
+write_InEventPort_begin (const PICML::InEventPort & sink)
 {
   this->outfile ()
     << single_line_comment ("EventSink: " + (std::string)sink.name ())
     << "virtual void ";
 
-  this->_super::write_method_begin (sink);
+  this->_super::write_InEventPort_begin (sink);
 }
 
 //
 // write_method_end
 //
 void CUTS_CIAO_Header_Traits::
-write_method_end (const PICML::InEventPort & sink)
+write_InEventPort_end (const PICML::InEventPort & sink)
 {
-  this->outfile ()
-    << ";" << std::endl;
+  this->outfile () << ";" << std::endl;
 }
 
 //
 // write_method_begin
 //
 void CUTS_CIAO_Header_Traits::
-write_method_begin (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 {
   this->outfile ()
     << single_line_comment ("PeriodicEvent: " + (std::string)periodic.name ())
     << "void ";
 
-  this->_super::write_method_begin (periodic);
+  this->_super::write_PeriodicEvent_begin (periodic);
 }
 
 //
 // write_method_end
 //
 void CUTS_CIAO_Header_Traits::
-write_method_end (const PICML::PeriodicEvent & sink)
+write_PeriodicEvent_end (const PICML::PeriodicEvent & sink)
 {
-  this->outfile ()
-    << ";" << std::endl;
+  this->outfile () << ";" << std::endl;
 }
 
 //
@@ -135,26 +159,29 @@ write_method (const PICML::RequiredRequestPort & receptacle)
 }
 
 //
-// write_method_begin
+// write_ProvidedRequestPort_begin
 //
 void CUTS_CIAO_Header_Traits::
-write_method_begin (const PICML::ProvidedRequestPort & facet)
+write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
+  PICML::Object object = PICML::Object::Cast (facet.ref ());
+  std::string scope = this->scope (object, "::", true);
+
   this->outfile ()
     << single_line_comment ("Facet: " + (std::string)facet.name ())
-    << "virtual void ";
+    << "virtual " << scope << "CCM_" << object.name ()
+    << "_ptr " << std::endl;
 
-  this->_super::write_method_begin (facet);
+  this->_super::write_ProvidedRequestPort_begin (facet);
 }
 
 //
 // write_method_end
 //
 void CUTS_CIAO_Header_Traits::
-write_method_end (const PICML::ProvidedRequestPort & facet)
+write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 {
-  this->outfile ()
-    << ";" << std::endl;
+  this->outfile () << ";" << std::endl;
 }
 
 //
@@ -257,7 +284,7 @@ write_ccm_remove (const PICML::Component & component)
 // write_method_begin
 //
 void CUTS_CIAO_Header_Traits::
-write_method_begin (const PICML::ReadonlyAttribute & attr)
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 {
   PICML::AttributeMember member = attr.AttributeMember_child ();
 
@@ -274,7 +301,7 @@ write_method_begin (const PICML::ReadonlyAttribute & attr)
         << CUTS_CIAO_Retn_Type (mtype)
         << " ";
 
-      this->_super::write_method_begin (attr);
+      this->_super::write_ReadonlyAttribute_begin (attr);
     }
   }
 }
@@ -283,24 +310,23 @@ write_method_begin (const PICML::ReadonlyAttribute & attr)
 // write_method_end
 //
 void CUTS_CIAO_Header_Traits::
-write_method_end (const PICML::ReadonlyAttribute & attr)
+write_ReadonlyAttribute_end (const PICML::ReadonlyAttribute & attr)
 {
-  this->outfile ()
-    << ";" << std::endl;
+  this->outfile () << ";" << std::endl;
 }
 
 //
 // write_method_begin
 //
 void CUTS_CIAO_Header_Traits::
-write_method_begin (const PICML::Attribute & attr)
+write_Attribute_begin (const PICML::Attribute & attr)
 {
   // Generate the getter method for the attribute.
   PICML::Attribute temp_attr (attr);
   PICML::ReadonlyAttribute ro = PICML::ReadonlyAttribute::Cast (temp_attr);
 
-  this->write_method_begin (ro);
-  this->write_method_end (ro);
+  this->write_ReadonlyAttribute_begin (ro);
+  this->write_ReadonlyAttribute_end (ro);
 
   // Close the getter method and generate the setter method
   // for the current attribute.
@@ -308,17 +334,16 @@ write_method_begin (const PICML::Attribute & attr)
     << single_line_comment ("set " + (std::string)attr.name ())
     << "virtual void ";
 
-  this->_super::write_method_begin (attr);
+  this->_super::write_Attribute_begin (attr);
 }
 
 //
 // write_method_end
 //
 void CUTS_CIAO_Header_Traits::
-write_method_end (const PICML::Attribute & attr)
+write_Attribute_end (const PICML::Attribute & attr)
 {
-  this->outfile ()
-    << ";" << std::endl;
+  this->outfile () << ";" << std::endl;
 }
 
 //
@@ -327,6 +352,202 @@ write_method_end (const PICML::Attribute & attr)
 void CUTS_CIAO_Header_Traits::
 write_variables_begin (const PICML::Component & component)
 {
+  this->outfile () << "private:" << std::endl;
+}
+
+//
+// write_forward_decl
+//
+void CUTS_CIAO_Header_Traits::
+write_forward_decl (const PICML::ProvidedRequestPort & facet)
+{
   this->outfile ()
-    << "private:" << std::endl;
+    << single_line_comment ("Forward decl.")
+    << "class " << facet.name () << "_i;"
+    << std::endl;
+}
+
+//
+// write_TwowayOperation_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
+{
+  PICML::ReturnType return_type = twoway.ReturnType_child ();
+
+  this->outfile ()
+    << single_line_comment ("twoway: " + (std::string) twoway.name ());
+
+  if (return_type != Udm::null)
+  {
+    PICML::MemberType type = return_type.ref ();
+
+    this->outfile () << CUTS_CIAO_Retn_Type (type);
+  }
+  else
+  {
+    this->outfile () << "void";
+  }
+
+  this->outfile () << " ";
+
+  this->_super::write_TwowayOperation_begin (twoway);
+}
+
+//
+// write_TwowayOperation_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_TwowayOperation_end (const PICML::TwowayOperation & twoway)
+{
+  this->outfile () << ";";
+}
+
+//
+// write_OnewayOperation_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_OnewayOperation_begin (const PICML::OnewayOperation & oneway)
+{
+  this->outfile ()
+    << single_line_comment ("oneway: " + (std::string) oneway.name ())
+    << "void ";
+
+  this->_super::write_OnewayOperation_begin (oneway);
+}
+
+//
+// write_OnewayOperation_end
+//
+void CUTS_CIAO_Header_Traits::
+write_OnewayOperation_end (const PICML::OnewayOperation & oneway)
+{
+  this->outfile () << ";";
+}
+
+//
+// write_factory_impl_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_factory_impl_begin (const PICML::ComponentFactory & factory,
+                          const PICML::MonolithicImplementation & impl,
+                          const PICML::Component & type)
+{
+  std::string factory_impl = (std::string) factory.name () + "_i";
+
+  this->outfile ()
+    << "class " << factory_impl << " :" << std::endl
+    << "  public virtual " << factory.name () << "_Exec," << std::endl
+    << "  public virtual TAO_Local_RefCounted_Object {"
+    << "public:" << std::endl
+    << single_line_comment ("default constructor")
+    << factory_impl << " (void);"
+    << std::endl
+    << single_line_comment ("destructor")
+    << "virtual ~" << factory_impl << " (void);"
+    << std::endl
+    << single_line_comment ("default creation method")
+    << "virtual ::Components::EnterpriseComponent_ptr" << std::endl
+    << "  create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
+    << "::Components::CCMException));" << std::endl;
+}
+
+//
+// write_FactoryOperation_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_FactoryOperation_begin (const PICML::FactoryOperation & factory_op)
+{
+  this->outfile ()
+    << single_line_comment ("factory operation: " + (std::string) factory_op.name ())
+    << "virtual ::Components::EnterpriseComponent_ptr" << std::endl
+    << "  ";
+
+  this->_super::write_FactoryOperation_begin (factory_op);
+}
+
+//
+// write_FactoryOperation_end
+//
+void CUTS_CIAO_Header_Traits::
+write_FactoryOperation_end (const PICML::FactoryOperation & factory_op)
+{
+  this->outfile ()
+    << ";";
+}
+
+//
+// write_factory_impl_end
+//
+void CUTS_CIAO_Header_Traits::
+write_factory_impl_end (const PICML::ComponentFactory & factory,
+                        const PICML::MonolithicImplementation & impl,
+                        const PICML::Component & type)
+{
+  // Generate the export file for the implementation.
+  PICML::ComponentImplementationContainer container =
+    PICML::ComponentImplementationContainer::Cast (impl.parent ());
+
+  std::string exportfile =
+    (std::string) container.name () + CUTS_BE_OPTIONS ()->exec_suffix_;
+
+  std::string exportname = exportfile;
+  std::replace (exportname.begin (), exportname.end (), '/', '_');
+
+  CUTS_Export_File_Generator export_file (exportname, exportfile);
+  export_file.generate ();
+
+  // Close off the class definition.
+  this->outfile ()
+    << "};";
+
+  this->_super::write_factory_impl_end (factory, impl, type);
+
+  this->outfile ()
+    << "#include \"" << export_file.export_file () << "\"" << std::endl
+    << std::endl
+    << "extern \"C\" " << export_file.export_macro () << std::endl
+    << "::Components::HomeExecutorBase_ptr " << std::endl
+    << "create_" << scope (factory, "_") << factory.name () << "_Impl (void);"
+    << std::endl;
+}
+
+//
+// write_impl_begin
+//
+void CUTS_CIAO_Header_Traits::
+write_object_impl_begin (const PICML::Component & component,
+                         const PICML::ProvidedRequestPort & facet)
+{
+  PICML::Object object = PICML::Object::Cast (facet.ref ());
+
+  std::string facet_name = (std::string) facet.name () + "_i";
+  std::string object_name = object.name ();
+  std::string scope = this->scope (object, "::");
+
+  this->outfile ()
+    << single_line_comment ("Facet: " + (std::string) facet.name ())
+    << "class " << facet_name << " :" << std::endl
+    << "  public virtual " << scope << "CCM_" << object_name
+    << "," << std::endl
+    << "  public virtual TAO_Local_RefCounted_Object {"
+    << "public:" << std::endl
+    << single_line_comment ("Default constructor")
+    << facet_name << " (void);"
+    << std::endl
+    << single_line_comment ("Destructor")
+    << "virtual ~" << facet_name << " (void);"
+    << std::endl;
+}
+
+//
+// write_impl_end
+//
+void CUTS_CIAO_Header_Traits::
+write_object_impl_end (const PICML::Component & component,
+                       const PICML::ProvidedRequestPort & facet)
+{
+  this->outfile ()
+    << "};";
 }

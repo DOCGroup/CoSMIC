@@ -69,113 +69,169 @@ write_impl_end (const PICML::MonolithicImplementation & impl,
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_factory_begin (const PICML::ComponentFactory & factory,
-                     const PICML::MonolithicImplementation & impl,
-                     const PICML::Component & type)
+write_object_impl_begin (const PICML::Component & component,
+                         const PICML::ProvidedRequestPort & facet)
 {
-  this->traits_.write_factory_begin (factory, impl, type);
-  this->next_.write_factory_begin (factory, impl, type);
+  this->traits_.write_object_impl_begin (component, facet);
+  this->next_.write_object_impl_begin (component, facet);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_factory_end (const PICML::ComponentFactory & factory,
-                   const PICML::MonolithicImplementation & impl,
-                   const PICML::Component & type)
+write_object_impl_end (const PICML::Component & component,
+                       const PICML::ProvidedRequestPort & facet)
 {
-  this->traits_.write_factory_end (factory, impl, type);
-  this->next_.write_factory_end (factory, impl, type);
+  this->traits_.write_object_impl_end (component, facet);
+  this->next_.write_object_impl_end (component, facet);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_begin (const PICML::InEventPort & sink)
+write_factory_impl_begin (const PICML::ComponentFactory & factory,
+                          const PICML::MonolithicImplementation & impl,
+                          const PICML::Component & type)
 {
-  this->traits_.write_method_begin (sink);
-  this->next_.write_method_begin (sink);
+  this->traits_.write_factory_impl_begin (factory, impl, type);
+  this->next_.write_factory_impl_begin (factory, impl, type);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_end (const PICML::InEventPort & sink)
+write_factory_impl_end (const PICML::ComponentFactory & factory,
+                        const PICML::MonolithicImplementation & impl,
+                        const PICML::Component & type)
 {
-  this->traits_.write_method_end (sink);
-  this->next_.write_method_end (sink);
+  this->traits_.write_factory_impl_end (factory, impl, type);
+  this->next_.write_factory_impl_end (factory, impl, type);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_begin (const PICML::ProvidedRequestPort & facet)
+write_InEventPort_begin (const PICML::InEventPort & sink)
 {
-  this->traits_.write_method_begin (facet);
-  this->next_.write_method_begin (facet);
+  this->traits_.write_InEventPort_begin (sink);
+  this->next_.write_InEventPort_begin (sink);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_end (const PICML::ProvidedRequestPort & facet)
+write_InEventPort_end (const PICML::InEventPort & sink)
 {
-  this->traits_.write_method_end (facet);
-  this->next_.write_method_end (facet);
+  this->traits_.write_InEventPort_end (sink);
+  this->next_.write_InEventPort_end (sink);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_begin (const PICML::Attribute & attr)
+write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
-  this->traits_.write_method_begin (attr);
-  this->next_.write_method_begin (attr);
+  this->traits_.write_ProvidedRequestPort_begin (facet);
+  this->next_.write_ProvidedRequestPort_begin (facet);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_end (const PICML::Attribute & attr)
+write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 {
-  this->traits_.write_method_end (attr);
-  this->next_.write_method_end (attr);
+  this->traits_.write_ProvidedRequestPort_end (facet);
+  this->next_.write_ProvidedRequestPort_end (facet);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_begin (const PICML::PeriodicEvent & periodic)
+write_Attribute_begin (const PICML::Attribute & attr)
 {
-  this->traits_.write_method_begin (periodic);
-  this->next_.write_method_begin (periodic);
+  this->traits_.write_Attribute_begin (attr);
+  this->next_.write_Attribute_begin (attr);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_end (const PICML::PeriodicEvent & periodic)
+write_Attribute_end (const PICML::Attribute & attr)
 {
-  this->traits_.write_method_end (periodic);
-  this->next_.write_method_end (periodic);
+  this->traits_.write_Attribute_end (attr);
+  this->next_.write_Attribute_end (attr);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_begin (const PICML::ReadonlyAttribute & ro_attr)
+write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 {
-  this->traits_.write_method_begin (ro_attr);
-  this->next_.write_method_begin (ro_attr);
+  this->traits_.write_PeriodicEvent_begin (periodic);
+  this->next_.write_PeriodicEvent_begin (periodic);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_method_end (const PICML::ReadonlyAttribute & ro_attr)
+write_PeriodicEvent_end (const PICML::PeriodicEvent & periodic)
 {
-  this->traits_.write_method_end (ro_attr);
-  this->next_.write_method_end (ro_attr);
+  this->traits_.write_PeriodicEvent_end (periodic);
+  this->next_.write_PeriodicEvent_end (periodic);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
+{
+  this->traits_.write_ReadonlyAttribute_begin (ro_attr);
+  this->next_.write_ReadonlyAttribute_begin (ro_attr);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_ReadonlyAttribute_end (const PICML::ReadonlyAttribute & ro_attr)
+{
+  this->traits_.write_ReadonlyAttribute_end (ro_attr);
+  this->next_.write_ReadonlyAttribute_end (ro_attr);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_OnewayOperation_begin (const PICML::OnewayOperation & oneway)
+{
+  this->traits_.write_OnewayOperation_begin (oneway);
+  this->next_.write_OnewayOperation_begin (oneway);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_OnewayOperation_end (const PICML::OnewayOperation & oneway)
+{
+  this->traits_.write_OnewayOperation_end (oneway);
+  this->next_.write_OnewayOperation_end (oneway);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
+{
+  this->traits_.write_TwowayOperation_begin (twoway);
+  this->next_.write_TwowayOperation_begin (twoway);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_TwowayOperation_end (const PICML::TwowayOperation & twoway)
+{
+  this->traits_.write_TwowayOperation_end (twoway);
+  this->next_.write_TwowayOperation_end (twoway);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
@@ -185,15 +241,6 @@ write_environment_begin (const PICML::Component & component)
 {
   this->traits_.write_environment_begin (component);
   this->next_.write_environment_begin (component);
-}
-
-template <typename BE_STRATEGY, typename BE_NEXT>
-CUTS_INLINE
-void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_environment_end (const PICML::Component & component)
-{
-  this->traits_.write_environment_end (component);
-  this->next_.write_environment_end (component);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
@@ -217,6 +264,15 @@ write_environment_method_end (const PICML::InputAction & action)
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_environment_end (const PICML::Component & component)
+{
+  this->traits_.write_environment_end (component);
+  this->next_.write_environment_end (component);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
 write_variables_begin (const PICML::Component & component)
 {
   this->traits_.write_variables_begin (component);
@@ -235,29 +291,29 @@ write_variable (const PICML::Variable & variable)
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_variable (const PICML::WorkerType & type,
+write_worker_variable (const PICML::WorkerType & type,
                 const PICML::Worker & worker)
 {
-  this->traits_.write_variable (type, worker);
-  this->next_.write_variable (type, worker);
+  this->traits_.write_worker_variable (type, worker);
+  this->next_.write_worker_variable (type, worker);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_variable (const PICML::ReadonlyAttribute & readonly)
+write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & readonly)
 {
-  this->traits_.write_variable (readonly);
-  this->next_.write_variable (readonly);
+  this->traits_.write_ReadonlyAttribute_variable (readonly);
+  this->next_.write_ReadonlyAttribute_variable (readonly);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_variable (const PICML::PeriodicEvent & periodic)
+write_PeriodicEvent_variable (const PICML::PeriodicEvent & periodic)
 {
-  this->traits_.write_variable (periodic);
-  this->next_.write_variable (periodic);
+  this->traits_.write_PeriodicEvent_variable (periodic);
+  this->next_.write_PeriodicEvent_variable (periodic);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
@@ -299,20 +355,20 @@ write_action_property (const PICML::Property & property)
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_action_begin (const PICML::Worker & worker,
-                    const PICML::Action & action)
+write_WorkerAction_begin (const PICML::Worker & worker,
+                          const PICML::Action & action)
 {
-  this->traits_.write_action_begin (worker, action);
-  this->next_.write_action_begin (worker, action);
+  this->traits_.write_WorkerAction_begin (worker, action);
+  this->next_.write_WorkerAction_begin (worker, action);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
 CUTS_INLINE
 void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
-write_action_begin (const PICML::OutputAction & action)
+write_OutputAction_begin (const PICML::OutputAction & action)
 {
-  this->traits_.write_action_begin (action);
-  this->next_.write_action_begin (action);
+  this->traits_.write_OutputAction_begin (action);
+  this->next_.write_OutputAction_begin (action);
 }
 
 template <typename BE_STRATEGY, typename BE_NEXT>
@@ -322,4 +378,22 @@ write_action_end (void)
 {
   this->traits_.write_action_end ();
   this->next_.write_action_end ();
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_FactoryOperation_begin (const PICML::FactoryOperation & factory_op)
+{
+  this->traits_.write_FactoryOperation_begin (factory_op);
+  this->next_.write_FactoryOperation_begin (factory_op);
+}
+
+template <typename BE_STRATEGY, typename BE_NEXT>
+CUTS_INLINE
+void CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
+write_FactoryOperation_end (const PICML::FactoryOperation & factory_op)
+{
+  this->traits_.write_FactoryOperation_end (factory_op);
+  this->next_.write_FactoryOperation_end (factory_op);
 }

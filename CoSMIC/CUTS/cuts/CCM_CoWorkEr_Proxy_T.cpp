@@ -115,9 +115,9 @@ load_implementation (const char * dllname, const char * entry)
   // Create the base home executor from the entry point, then
   // narrow it to the correct home to created the executor.
   ::Components::HomeExecutorBase_var home_base = entry_point ();
-  CCM_HOME::_var_type = CCM_HOME::_narrow (home_base.in ());
+  CCM_HOME::_var_type home_impl = CCM_HOME::_narrow (home_base.in ());
 
-  if (::CORBA::is_nil (this->home_impl_.in ()))
+  if (::CORBA::is_nil (home_impl.in ()))
   {
     ACE_ERROR_RETURN ((LM_ERROR,
                        "failed to extract component home\n"),
@@ -125,7 +125,7 @@ load_implementation (const char * dllname, const char * entry)
   }
 
   // Create the component from the home and store it in <proxy_impl_>.
-  ::CORBA::Object_var obj = this->home_impl_->create ();
+  ::CORBA::Object_var obj = home_impl->create ();
   this->type_impl_ = _impl_type::_narrow (obj.in ());
 
   if (::CORBA::is_nil (this->type_impl_.in ()))
@@ -301,7 +301,6 @@ void CUTS_CCM_CoWorkEr_Proxy_T <
 PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 reset (void)
 {
-  this->home_impl_ = CCM_HOME::_nil ();
   this->type_impl_ = CCM_TYPE::_nil ();
   this->sc_ = ::Components::SessionComponent::_nil ();
 }

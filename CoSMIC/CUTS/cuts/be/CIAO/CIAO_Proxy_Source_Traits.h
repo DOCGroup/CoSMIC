@@ -48,48 +48,26 @@ public:
     const PICML::MonolithicImplementation &,
     const PICML::Component & type);
 
-  virtual void write_factory_begin (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_factory_end (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_method_begin (
+  virtual void write_ProvidedRequestPort_begin (
     const PICML::ProvidedRequestPort & facet);
 
-  virtual void write_method_end (
-    const PICML::ProvidedRequestPort & facet);
-
-  virtual void write_method_begin (
+  virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
-  virtual void write_method_end (
-    const PICML::InEventPort & sink);
-
-  virtual void write_method_begin (
+  virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_end (
+  virtual void write_PeriodicEvent_end (
     const PICML::PeriodicEvent & periodic);
 
-  virtual void write_method_begin (
+  virtual void write_Attribute_begin (
     const PICML::Attribute & sink);
 
-  virtual void write_method_end (
+  virtual void write_Attribute_end (
     const PICML::Attribute & sink);
 
-  virtual void write_method_begin (
+  virtual void write_ReadonlyAttribute_begin (
     const PICML::ReadonlyAttribute & sink);
-
-  virtual void write_method_end (
-    const PICML::ReadonlyAttribute & sink);
-
-  virtual void write_environment_begin (
-    const PICML::Component & component);
 
   virtual void write_environment_method_begin (
     const PICML::InputAction & action);
@@ -109,11 +87,11 @@ public:
   virtual void write_action_property (
     const PICML::Property & property);
 
-  virtual void write_action_begin (
+  virtual void write_WorkerAction_begin (
     const PICML::Worker & worker,
     const PICML::Action & action);
 
-  virtual void write_action_begin (
+  virtual void write_OutputAction_begin (
     const PICML::OutputAction & action);
 
   virtual void write_action_end (void);
