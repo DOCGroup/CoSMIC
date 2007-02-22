@@ -14,8 +14,10 @@ project (CUTS_BE_CIAO) : cosmic_lib, boost_base, picml_udm {
 
   Source_Files {
     CIAO_In_Type.cpp
-    CIAO_Var_Type.cpp
+    CIAO_Out_Type.cpp
+    CIAO_Inout_Type.cpp
     CIAO_Retn_Type.cpp
+    CIAO_Var_Type.cpp
 
     CIAO_Traits_Base.cpp
     CIAO_Header_Traits.cpp
@@ -28,9 +30,6 @@ project (CUTS_BE_CIAO) : cosmic_lib, boost_base, picml_udm {
   }
 
   Template_Files {
-    CIAO_In_Type_T.cpp
-    CIAO_Var_Type_T.cpp
-    CIAO_Retn_Type_T.cpp
     Port_Manager_T.cpp
   }
 

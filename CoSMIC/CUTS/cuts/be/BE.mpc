@@ -25,6 +25,7 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Options.cpp
     BE_Preprocessor.cpp
     BE_Project_Generator.cpp
+    BE_Type_Map.cpp
 
     Export_File_Generator.cpp
   }

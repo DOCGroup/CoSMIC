@@ -298,7 +298,7 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
       this->outfile ()
         << single_line_comment ("get " + (std::string)attr.name ())
         << "virtual "
-        << CUTS_CIAO_Retn_Type (mtype)
+        << CIAO_RETURN_TYPE (mtype)
         << " ";
 
       this->_super::write_ReadonlyAttribute_begin (attr);
@@ -382,7 +382,8 @@ write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
   {
     PICML::MemberType type = return_type.ref ();
 
-    this->outfile () << CUTS_CIAO_Retn_Type (type);
+    this->outfile ()
+      << CIAO_RETURN_TYPE (type);
   }
   else
   {

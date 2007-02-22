@@ -1,3 +1,58 @@
+Thu Feb 22 20:40:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Type_Map.h:
+        * cuts/be/BE_Type_Map.inl:
+        * cuts/be/BE_Type_Map.cpp:
+
+          Generic map for storing PICML to backend type mappings.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_In_Type.h:
+        * cuts/be/CIAO/CIAO_In_Type.inl:
+        * cuts/be/CIAO/CIAO_In_Type.cpp:
+
+          Derived the In_Type from the CUTS_BE_Type and removed
+          all the template declarations.
+
+        * cuts/be/CIAO/CIAO_Inout_Type.h:
+        * cuts/be/CIAO/CIAO_Inout_Type.inl:
+        * cuts/be/CIAO/CIAO_Inout_Type.cpp:
+        * cuts/be/CIAO/CIAO_Out_Type.h:
+        * cuts/be/CIAO/CIAO_Out_Type.inl:
+        * cuts/be/CIAO/CIAO_Out_Type.cpp:
+
+          Implemented the mapping of inout and out types for CIAO.
+
+        * cuts/be/CIAO/CIAO_Retn_Type.h:
+        * cuts/be/CIAO/CIAO_Retn_Type.inl:
+        * cuts/be/CIAO/CIAO_Retn_Type.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+        * cuts/be/CIAO/CIAO_Var_Type.h:
+        * cuts/be/CIAO/CIAO_Var_Type.inl:
+        * cuts/be/CIAO/CIAO_Var_Type.cpp:
+
+          Derived the Var_Type from the CUTS_BE_Type and removed
+          all the template declarations.
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Updated the project file with the new sources.
+
+        * cuts/be/CIAO/CIAO_In_Type_T.h:
+        * cuts/be/CIAO/CIAO_In_Type_T.inl:
+        * cuts/be/CIAO/CIAO_In_Type_T.cpp:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.h:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Retn_Type_T.cpp:
+        * cuts/be/CIAO/CIAO_Var_Type_T.h:
+        * cuts/be/CIAO/CIAO_Var_Type_T.inl:
+        * cuts/be/CIAO/CIAO_Var_Type_T.cpp:
+
+          Removed these files.
+
 Thu Feb 22 08:14:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:

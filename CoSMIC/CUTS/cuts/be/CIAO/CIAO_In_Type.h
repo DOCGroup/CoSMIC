@@ -13,201 +13,41 @@
 #ifndef _CUTS_CIAO_IN_TYPE_H_
 #define _CUTS_CIAO_IN_TYPE_H_
 
-#include "CIAO_In_Type_T.h"
+#include "cuts/be/BE_Type_Map.h"
 
 //=============================================================================
 /**
- * @class CUTS_CIAO_In_Type_T <PICML::MemberType>
+ * @class CUTS_CIAO_In_Type
  *
- * Template specialization for MemberType elements.
+ * CIAO C++ mapping for return types.
  */
 //=============================================================================
 
-template <>
-class CUTS_CIAO_In_Type_T <PICML::MemberType>
+class CUTS_CIAO_In_Type : public CUTS_BE_Type_Map
 {
 public:
-  /**
-   * Write the type identifier for a predefined type.
-   *
-   * @param[in]       out         Target stream
-   * @param[in]       type        Source type.
-   */
-  static void write (std::ostream & out,
-                     const PICML::MemberType & type);
+  static CUTS_CIAO_In_Type * instance (void);
+
+  static void close_singleton (void);
+
+private:
+  /// Default constructor.
+  CUTS_CIAO_In_Type (void);
+
+  /// Destructor.
+  ~CUTS_CIAO_In_Type (void);
+
+  /// Pointer to the singleton instance.
+  static CUTS_CIAO_In_Type * instance_;
+
+  // prevent the following operations
+  CUTS_CIAO_In_Type (const CUTS_CIAO_In_Type &);
+  const CUTS_CIAO_In_Type & operator = (const CUTS_CIAO_In_Type &);
 };
 
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::PredefinedType>
- *
- * Template specialization for PredefinedType elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::PredefinedType>
-{
-public:
-  /**
-   * Write the type identifier for a predefined type.
-   *
-   * @param[in]       out         Target stream
-   * @param[in]       type        Source type.
-   */
-  static void write (std::ostream & out,
-                     const PICML::PredefinedType & type);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::Byte>
- *
- * Template specialization for Byte elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::Byte>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::String>
- *
- * Template specialization for String elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::String>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::ShortInteger>
- *
- * Template specialization for ShortInteger elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::ShortInteger>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::LongInteger>
- *
- * Template specialization for LongInteger elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::LongInteger>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::Boolean>
- *
- * Template specialization for Boolean elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::Boolean>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::RealNumber>
- *
- * Template specialization for RealNumber elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::RealNumber>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::GenericObject>
- *
- * Template specialization for GenericObject elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::GenericObject>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::GenericObject>
- *
- * Template specialization for GenericObject elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::GenericValue>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::TypeKind>
- *
- * Template specialization for TypeKind elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::TypeKind>
-{
-public:
-  static void write (std::ostream & out);
-};
-
-//=============================================================================
-/**
- * @class CUTS_CIAO_In_Type_T <PICML::TypeEncoding>
- *
- * Template specialization for TypeEncoding elements.
- */
-//=============================================================================
-
-template <>
-class CUTS_CIAO_In_Type_T <PICML::TypeEncoding>
-{
-public:
-  static void write (std::ostream & out);
-};
+/// Macro to simply requesting the return types mapping.
+#define CIAO_IN_TYPE(type) \
+  CUTS_CIAO_In_Type::instance ()->value (type)
 
 #if defined (__CUTS_INLINE__)
 #include "CIAO_In_Type.inl"

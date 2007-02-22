@@ -3,6 +3,8 @@
 #include "CIAO_Traits_Base.h"
 #include "CIAO_In_Type.h"
 #include "CIAO_Retn_Type.h"
+#include "CIAO_Out_Type.h"
+#include "CIAO_Inout_Type.h"
 
 #include "cuts/be/UDM_Utility_T.h"
 
@@ -189,16 +191,13 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
 void CIAO_Traits_Base::
 write_Attribute_begin (const PICML::Attribute & attr)
 {
+  std::string attr_name = attr.name ();
   PICML::AttributeMember member = attr.AttributeMember_child ();
   PICML::MemberType mtype = member.ref ();
 
   this->outfile ()
-    << attr.name () << " (";
-
-  CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->outfile (), mtype);
-
-  this->outfile ()
-    << " " << attr.name () << ")" << std::endl
+    << attr_name << " (" << CIAO_IN_TYPE (mtype)
+    << " " << attr_name << ")" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
 }
 
@@ -421,11 +420,12 @@ void CIAO_Traits_Base::
 write_in_parameter_first (const PICML::InParameter & in)
 {
   PICML::MemberType type = in.ref ();
-  CUTS_CIAO_In_Type_T <PICML::MemberType>::write (this->outfile (),
-                                                  type);
 
-  this->outfile ()
-    << " " << in.name ();
+  if (type != Udm::null)
+  {
+    this->outfile ()
+      << CIAO_IN_TYPE (type) << " " << in.name ();
+  }
 }
 
 //
@@ -446,8 +446,13 @@ write_in_parameter (const PICML::InParameter & in)
 void CIAO_Traits_Base::
 write_out_parameter_first (const PICML::OutParameter & out)
 {
-  this->outfile ()
-    << "/* out not supported */ " << out.name ();
+  PICML::MemberType type = out.ref ();
+
+  if (type != Udm::null)
+  {
+    this->outfile ()
+      << CIAO_OUT_TYPE (type) << " " << out.name ();
+  }
 }
 
 //
@@ -468,8 +473,13 @@ write_out_parameter (const PICML::OutParameter & out)
 void CIAO_Traits_Base::
 write_inout_parameter_first (const PICML::InoutParameter & inout)
 {
-  this->outfile ()
-    << "/* inout not supported */ " << inout.name ();
+  PICML::MemberType type = inout.ref ();
+
+  if (type != Udm::null)
+  {
+    this->outfile ()
+      << CIAO_INOUT_TYPE (type) << " " << inout.name ();
+  }
 }
 
 //

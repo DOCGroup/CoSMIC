@@ -181,7 +181,7 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
   // Write the getter method for the attribute.
   this->outfile ()
     << function_header ((std::string)ro_attr.name () + " [getter]")
-    << CUTS_CIAO_Retn_Type (mtype);
+    << CIAO_RETURN_TYPE (mtype);
 
   PICML::Component parent = ro_attr.Component_parent ();
 
@@ -355,7 +355,8 @@ write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
   {
     PICML::MemberType type = return_type.ref ();
 
-    this->outfile () << CUTS_CIAO_Retn_Type (type);
+    if (type != Udm::null)
+      this->outfile () << CIAO_RETURN_TYPE (type);
   }
   else
   {

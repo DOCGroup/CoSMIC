@@ -6,71 +6,66 @@
 #include "CIAO_Retn_Type.inl"
 #endif
 
-#include "Uml.h"
+//
+// instance_
+//
+CUTS_CIAO_Retn_Type * CUTS_CIAO_Retn_Type::instance_ = 0;
 
 //
-// <PICML::MemberType> write
+// instance
 //
-void CUTS_CIAO_Retn_Type_T <PICML::MemberType>::
-write (std::ostream & out) const
+CUTS_CIAO_Retn_Type * CUTS_CIAO_Retn_Type::instance (void)
 {
-  if (this->element_ != Udm::null)
+  if (CUTS_CIAO_Retn_Type::instance_ == 0)
+    CUTS_CIAO_Retn_Type::instance_ = new CUTS_CIAO_Retn_Type ();
+
+  return CUTS_CIAO_Retn_Type::instance_;
+}
+
+//
+// instance
+//
+void CUTS_CIAO_Retn_Type::close_singleton (void)
+{
+  if (CUTS_CIAO_Retn_Type::instance_)
   {
-    try
-    {
-      CUTS_CIAO_Retn_Type_T <PICML::PredefinedType> (
-        PICML::PredefinedType::Cast (this->element_)).write (out);
-    }
-    catch (...)
-    {
-      CUTS_CIAO_Retn_Type_T <PICML::NamedType> (
-        PICML::NamedType::Cast (this->element_)).write (out);
-    }
-  }
-  else
-  {
-    out << "void";
+    delete CUTS_CIAO_Retn_Type::instance_;
+    CUTS_CIAO_Retn_Type::instance_ = 0;
   }
 }
 
 //
-// <PICML::PredefinedType> write
+// CUTS_CIAO_Retn_Type
 //
-void CUTS_CIAO_Retn_Type_T <PICML::PredefinedType>::
-write (std::ostream & out) const
+CUTS_CIAO_Retn_Type::CUTS_CIAO_Retn_Type (void)
 {
-  Uml::Class metatype = this->element_.type ();
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::String::meta, "char *"));
 
-  if (metatype == PICML::String::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::String>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::LongInteger::meta, "::CORBA::Long"));
 
-  else if (metatype == PICML::Byte::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::Byte>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::ShortInteger::meta, "::CORBA::Short"));
 
-  else if (metatype == PICML::ShortInteger::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::ShortInteger>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::Byte::meta, "::CORBA::Octet"));
 
-  else if (metatype == PICML::LongInteger::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::LongInteger>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::Boolean::meta, "::CORBA::Octet"));
 
-  else if (metatype == PICML::Boolean::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::Boolean>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::RealNumber::meta, "::CORBA::Double"));
 
-  else if (metatype == PICML::RealNumber::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::RealNumber>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::GenericObject::meta, "::CORBA::Object_ptr"));
 
-  else if (metatype == PICML::GenericObject::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::GenericObject>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::GenericValue::meta, "::CORBA::Any *"));
 
-  else if (metatype == PICML::GenericValue::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::GenericValue>::write (out);
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::TypeKind::meta, "::CORBA::TCKind"));
 
-  else if (metatype == PICML::TypeKind::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::TypeKind>::write (out);
-
-  else if (metatype == PICML::TypeEncoding::meta)
-    CUTS_CIAO_Retn_Type_T <PICML::TypeEncoding>::write (out);
-
-  else
-    out << "/* unsupported type [" << metatype.name () << "] */";
+  this->predefined_type_map_.insert (
+    PredefinedType_Map::value_type (PICML::TypeEncoding::meta, "::CORBA::TypeCode_ptr"));
 }

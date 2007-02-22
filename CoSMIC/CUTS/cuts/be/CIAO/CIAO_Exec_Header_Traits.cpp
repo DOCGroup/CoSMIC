@@ -248,13 +248,8 @@ write_variable (const PICML::Variable & variable)
     std::string name = variable.name ();
 
     this->outfile ()
-      << single_line_comment ("variable: " + name);
-
-    CUTS_CIAO_Var_Type_T <PICML::PredefinedType>::write (this->outfile (),
-                                                         ptype);
-
-    this->outfile ()
-      << " " << name << "_;"
+      << single_line_comment ("variable: " + name)
+      << CIAO_VAR_TYPE (ptype) << " " << name << "_;"
       << std::endl;
   }
 }
@@ -280,12 +275,8 @@ write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & readonly)
       std::string name = readonly.name ();
 
       this->outfile ()
-        << single_line_comment ("variable: " + name);
-
-      CUTS_CIAO_Var_Type_T <PICML::MemberType>::write (this->outfile (),
-                                                       mtype);
-      this->outfile ()
-        << " " << name << "_;"
+        << single_line_comment ("variable: " + name)
+        << CIAO_VAR_TYPE (mtype) << " " << name << "_;"
         << std::endl;
     }
   }
