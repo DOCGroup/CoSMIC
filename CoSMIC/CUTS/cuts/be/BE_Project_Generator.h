@@ -46,8 +46,6 @@ public:
 
   virtual bool generate_exec (const CUTS_BE_Impl_Node & node) = 0;
 
-  virtual bool generate_proxy (const CUTS_BE_Impl_Node & node) = 0;
-
 protected:
   /// Default constructor.
   CUTS_BE_Project_Generator (void);

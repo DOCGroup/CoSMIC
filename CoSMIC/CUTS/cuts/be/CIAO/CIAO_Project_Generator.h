@@ -43,8 +43,6 @@ public:
 
   virtual bool generate_exec (const CUTS_BE_Impl_Node & node);
 
-  virtual bool generate_proxy (const CUTS_BE_Impl_Node & node);
-
 private:
   void generate_impl_project (std::ofstream & out,
                               const CUTS_BE_Impl_Node & node,

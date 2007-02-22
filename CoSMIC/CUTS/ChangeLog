@@ -1,3 +1,34 @@
+Thu Feb 22 21:31:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Impl_Graph.cpp:
+
+          Instead of setting a bit in the impl_type_ bitset, we
+          now only set a flag to determine the implemenation's
+          type (i.e., is_proxy_).
+
+        * cuts/be/BE_Impl_Node.h:
+
+          Removed the bitset member.
+
+        * cuts/be/BE_Project_Generator.h:
+        * cuts/be/BE_Workspace_Generator_T.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+
+          - Removed all distinctions between a proxy and a non-proxy
+            implementations since the projects resulting project files
+            are the same.
+          - The generate_proxy () method for the project generator
+            no longer exists.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Updated the guard statements to use is_proxy_ since the
+          bitset was removed from the CUTS_BE_Impl_Node.
+
 Thu Feb 22 20:40:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE.mpc:

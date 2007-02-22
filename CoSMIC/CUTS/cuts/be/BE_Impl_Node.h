@@ -45,16 +45,9 @@ struct CUTS_BE_Export CUTS_BE_Impl_Node :
   /// Collection of import libraries.
   CUTS_String_Set lib_;
 
-  enum
-  {
-    /// The implementation contains an executor.
-    IMPL_EXEC   = 0,
-
-    /// The implementation contains a proxy.
-    IMPL_PROXY  = 1
-  };
-
-  std::bitset <2> impl_flags_;
+  /// Flag that determines if the implementation is a
+  /// CUTS CoWorkEr proxy.
+  bool is_proxy_;
 };
 
 #if defined (__CUTS_INLINE__)

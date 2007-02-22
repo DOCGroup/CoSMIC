@@ -74,7 +74,7 @@ open_file (const PICML::ComponentImplementationContainer & container)
   if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node))
     return false;
 
-  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY])
+  if (node->is_proxy_)
     return false;
 
   // Construct the name of the file.

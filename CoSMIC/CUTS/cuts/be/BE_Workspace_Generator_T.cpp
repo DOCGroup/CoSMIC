@@ -118,25 +118,12 @@ generate_impl_project (const CUTS_BE_Impl_Node * node)
   // recognize if the impl is a proxy or executor. It would be easier
   // if we recognize it ourselves at this level and tell the generator
   // which type of project to generate (i.e., exec or proxy).
-  if (node->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY])
+  if (this->proj_generator_.generate_exec (*node))
   {
-    if (this->proj_generator_.generate_proxy (*node))
-    {
-      std::string filename =
-        node->name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
+    std::string filename =
+      node->name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
 
-      this->project_files_.insert (filename);
-    }
-  }
-  else
-  {
-    if (this->proj_generator_.generate_exec (*node))
-    {
-      std::string filename =
-        node->name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
-
-      this->project_files_.insert (filename);
-    }
+    this->project_files_.insert (filename);
   }
 
   // Now, we need to add all the stubs for this implementation to the

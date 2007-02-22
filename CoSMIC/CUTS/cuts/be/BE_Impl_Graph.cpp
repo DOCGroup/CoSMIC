@@ -77,13 +77,8 @@ Visit_Component (const PICML::Component & component)
   // Maybe this component we are generating is a proxy-enabled
   // component. If this is the case, we need to save this info
   // the generators.
-  bool is_coworker =
-    CUTS_CoWorkEr_Cache::instance ()->is_coworker (component);
-
-  this->current_impl_->impl_flags_[CUTS_BE_Impl_Node::IMPL_PROXY] = is_coworker;
-  this->current_impl_->impl_flags_[CUTS_BE_Impl_Node::IMPL_EXEC] = !is_coworker;
-
-
+  this->current_impl_->is_proxy_ =
+   CUTS_CoWorkEr_Cache::instance ()->is_coworker (component);
 
   // Let's locate the parent file of this <component>.
   PICML::MgaObject parent = component.parent ();
