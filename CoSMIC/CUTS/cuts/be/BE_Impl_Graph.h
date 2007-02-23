@@ -29,6 +29,9 @@ protected:
   void Visit_MonolithicImplementation (
     const PICML::MonolithicImplementation & monoimpl);
 
+  void Visit_MonolithprimaryArtifact (
+    const PICML::MonolithprimaryArtifact & primary);
+
   void Visit_Component (
     const PICML::Component & component);
 

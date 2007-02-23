@@ -64,7 +64,7 @@ CUTS_CIAO_Out_Type::CUTS_CIAO_Out_Type (void)
     PredefinedType_Map::value_type (PICML::GenericValue::meta, "const ::CORBA::Any_out"));
 
   this->predefined_type_map_.insert (
-    PredefinedType_Map::value_type (PICML::TypeKind::meta, ":::CORBA::TCKind_out"));
+    PredefinedType_Map::value_type (PICML::TypeKind::meta, "::CORBA::TCKind_out"));
 
   this->predefined_type_map_.insert (
     PredefinedType_Map::value_type (PICML::TypeEncoding::meta, "::CORBA::TypeCode_out"));

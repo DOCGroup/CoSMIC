@@ -20,6 +20,9 @@
 #include <memory>
 #include <bitset>
 
+// Forward decl.
+struct CUTS_BE_Impl_Node;
+
 namespace Indentation
 {
   // Forward decl.
@@ -97,6 +100,9 @@ protected:
 
   void open_file_i (void);
 
+  void get_impl_entry_point (
+    const PICML::ComponentImplementationContainer & container);
+
   virtual void write_method (
     const PICML::OutEventPort & source);
 
@@ -151,6 +157,9 @@ protected:
 
   /// Pointer to the formatter.
   std::auto_ptr <Formatter_Type> formatter_;
+
+  /// Entry point for the implementation.
+  std::string entry_point_;
 
 private:
   enum _env_bit

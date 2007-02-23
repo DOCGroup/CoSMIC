@@ -531,13 +531,13 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
   Artifact_Set artifacts_set = container.ImplementationArtifact_children ();
 
   PICML::ImplementationArtifact artifact;
-  char * suffix[3] = {"_stub", "_svnt", "_exec"};
-  char * positions[3] = {"(140,150)", "(375,75)", "(375,235)"};
+  char * suffix[2] = {"_svnt", "_exec"};
+  char * positions[2] = {"(375,75)", "(375,235)"};
 
-  char * entrypoint[3] = {0, "_Servant", "_Impl"};
-  char * entrypoint_positions[3] = {0, "(545,125)", "(545,300)"};
+  char * entrypoint[2] = {"_Servant", "_Impl"};
+  char * entrypoint_positions[2] = {"(545,125)", "(545,300)"};
 
-  artifacts.resize (3);
+  artifacts.resize (2);
 
   for (size_t i = 0; i < 3; i ++)
   {

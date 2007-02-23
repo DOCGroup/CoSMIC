@@ -6,15 +6,21 @@
 #include "CIAO_Out_Type.h"
 #include "CIAO_Inout_Type.h"
 
+// backend headers
 #include "cuts/be/UDM_Utility_T.h"
+#include "cuts/be/BE_Preprocessor.h"
 
+// code generation headers
 #include "CCF/CodeGenerationKit/IndentationCxx.hpp"
 #include "CCF/CodeGenerationKit/IndentationImplanter.hpp"
 
+// UDM headers
 #include "Uml.h"
 
+// BOOST headers
 #include "boost/bind.hpp"
 
+// STL headers
 #include <algorithm>
 #include <ctype.h>
 #include <stack>
@@ -131,6 +137,13 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
                         const PICML::MonolithicImplementation & impl,
                         const PICML::Component & type)
 {
+  if (this->entry_point_.empty ())
+  {
+    this->entry_point_ =
+      "create_" + this->scope (factory, "_") +
+      (std::string) factory.name () + "_Impl";
+  }
+
   // This is really closing off the implementation namespace
   this->outfile ()
     << "}";
@@ -592,4 +605,43 @@ write_OperationBase_begin (const PICML::OperationBase & operation_base)
   this->outfile ()
     << ")" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+}
+
+//
+// get_impl_entry_point
+//
+void CIAO_Traits_Base::
+get_impl_entry_point (const PICML::
+                      ComponentImplementationContainer & container)
+{
+  const CUTS_BE_Impl_Node * node = 0;
+  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node))
+    return;
+
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter;
+
+  for (iter  = node->artifacts_.begin ();
+       iter != node->artifacts_.end ();
+       iter ++)
+  {
+    std::string name = iter->name ();
+    size_t index = name.rfind ("_exec");
+
+    if (index == name.length () - 5)
+    {
+      // We found the artifact that ends in _exec!!!
+      typedef std::set <PICML::ArtifactExecParameter> ExecParameter_Set;
+      ExecParameter_Set params = iter->dstArtifactExecParameter ();
+
+      for (ExecParameter_Set::iterator piter = params.begin ();
+           piter != params.end ();
+           piter ++)
+      {
+        PICML::Property property = piter->dstArtifactExecParameter_end ();
+
+        if ((std::string)property.name () == "entryPoint")
+          this->entry_point_ = property.DataValue ();
+      }
+    }
+  }
 }

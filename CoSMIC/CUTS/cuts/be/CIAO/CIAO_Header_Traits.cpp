@@ -22,6 +22,7 @@
 // STL headers
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 
 //
 // CUTS_CIAO_Header_Traits
@@ -39,6 +40,33 @@ CUTS_CIAO_Header_Traits::
 ~CUTS_CIAO_Header_Traits (void)
 {
 
+}
+
+//
+// open_fle
+//
+bool CUTS_CIAO_Header_Traits::
+open_file (const PICML::ComponentImplementationContainer & container)
+{
+  // Get the entry point for the node.
+  this->get_impl_entry_point (container);
+
+  // Construct the name of the file.
+  std::ostringstream ostr;
+  ostr
+    << CUTS_BE_OPTIONS ()->output_directory_
+    << "/" << container.name ()
+    << CUTS_BE_OPTIONS ()->exec_suffix_
+    << ".h";
+
+  // Open the file and pass control to the base class.
+  this->outfile ().open (ostr.str ().c_str ());
+
+  if (!this->outfile ().is_open ())
+    return false;
+
+  this->open_file_i ();
+  return this->outfile ().good ();
 }
 
 //
@@ -508,9 +536,10 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
   this->outfile ()
     << "#include \"" << export_file.export_file () << "\"" << std::endl
     << std::endl
+    << single_line_comment (this->entry_point_)
     << "extern \"C\" " << export_file.export_macro () << std::endl
     << "::Components::HomeExecutorBase_ptr " << std::endl
-    << "create_" << scope (factory, "_") << factory.name () << "_Impl (void);"
+    << this->entry_point_ + " (void);"
     << std::endl;
 }
 

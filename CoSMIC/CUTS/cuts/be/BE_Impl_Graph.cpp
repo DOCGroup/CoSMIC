@@ -66,6 +66,15 @@ const PICML::MonolithicImplementation & monoimpl)
     if (component != Udm::null)
       component.Accept (*this);
   }
+
+  typedef std::set <PICML::MonolithprimaryArtifact> PrimaryArtifact_Set;
+  PrimaryArtifact_Set primaries = monoimpl.dstMonolithprimaryArtifact ();
+
+  std::for_each (primaries.begin (),
+                 primaries.end (),
+                 boost::bind (&PrimaryArtifact_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
 }
 
 //
@@ -177,5 +186,20 @@ Visit_WorkerLibrary (const PICML::WorkerLibrary & library)
 
   if (!location.empty ())
     this->current_impl_->lib_paths_.insert (location);
+}
+
+//
+// Visit_MonolithprimaryArtifact
+//
+void CUTS_BE_Impl_Graph::
+Visit_MonolithprimaryArtifact (const PICML::MonolithprimaryArtifact & primary)
+{
+  PICML::ImplementationArtifactReference ref =
+    primary.dstMonolithprimaryArtifact_end ();
+
+  PICML::ImplementationArtifact artifact = ref.ref ();
+
+  if (artifact != Udm::null)
+    this->current_impl_->artifacts_.insert (artifact);
 }
 

@@ -10,6 +10,8 @@
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
 #include "CIAO_Var_Type.h"
+#include "cuts/be/BE_Impl_Node.h"
+#include "cuts/be/BE_Options.h"
 
 // UDM headers
 #include "Uml.h"
@@ -32,6 +34,32 @@ CUTS_CIAO_Source_Traits::CUTS_CIAO_Source_Traits (void)
 CUTS_CIAO_Source_Traits::~CUTS_CIAO_Source_Traits (void)
 {
 
+}
+
+//
+// open_file
+//
+bool CUTS_CIAO_Source_Traits::
+open_file (const PICML::ComponentImplementationContainer & container)
+{
+  // Get the entry point for the node.
+  this->get_impl_entry_point (container);
+
+  // Construct the name of the file.
+  std::ostringstream ostr;
+  ostr
+    << CUTS_BE_OPTIONS ()->output_directory_
+    << "/" << container.name ()
+    << CUTS_BE_OPTIONS ()->exec_suffix_ << ".cpp";
+
+  // Open the file and pass contol to base class.
+  this->outfile ().open (ostr.str ().c_str ());
+
+  if (!this->outfile ().is_open ())
+    return false;
+
+  this->open_file_i ();
+  return this->outfile ().good ();
 }
 
 //
@@ -479,14 +507,10 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
 {
   this->_super::write_factory_impl_end (factory, impl, type);
 
-  std::string func_name =
-    "create_" + scope (factory, "_") +
-    (std::string)factory.name () + "_Impl";
-
   this->outfile ()
-    << function_header (func_name)
+    << function_header (this->entry_point_)
     << "::Components::HomeExecutorBase_ptr" << std::endl
-    << func_name << " (void) {"
+    << this->entry_point_ << " (void) {"
     << "::Components::HomeExecutorBase_ptr retval =" << std::endl
     << "  ::Components::HomeExecutorBase::_nil ();"
     << std::endl

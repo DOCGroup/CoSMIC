@@ -64,7 +64,7 @@ CUTS_CIAO_Var_Type::CUTS_CIAO_Var_Type (void)
     PredefinedType_Map::value_type (PICML::GenericValue::meta, "::CORBA::Any"));
 
   this->predefined_type_map_.insert (
-    PredefinedType_Map::value_type (PICML::TypeKind::meta, ":::CORBA::TCKind"));
+    PredefinedType_Map::value_type (PICML::TypeKind::meta, "::CORBA::TCKind"));
 
   this->predefined_type_map_.insert (
     PredefinedType_Map::value_type (PICML::TypeEncoding::meta, "::CORBA::TypeCode_var"));

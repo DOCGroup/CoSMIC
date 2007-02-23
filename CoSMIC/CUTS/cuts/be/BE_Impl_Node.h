@@ -13,6 +13,7 @@
 #ifndef _CUTS_BE_IMPL_NODE_H_
 #define _CUTS_BE_IMPL_NODE_H_
 
+#include "PICML/PICML.h"
 #include "BE_IDL_Node.h"
 
 //=============================================================================
@@ -48,6 +49,12 @@ struct CUTS_BE_Export CUTS_BE_Impl_Node :
   /// Flag that determines if the implementation is a
   /// CUTS CoWorkEr proxy.
   bool is_proxy_;
+
+  /// Type definition of a collection of artifacts for this.
+  typedef std::set <PICML::ImplementationArtifact> Artifact_Set;
+
+  /// Collection of artifacts for this implementation.
+  Artifact_Set artifacts_;
 };
 
 #if defined (__CUTS_INLINE__)

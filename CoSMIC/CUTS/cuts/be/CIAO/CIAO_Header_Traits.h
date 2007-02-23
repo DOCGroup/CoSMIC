@@ -34,6 +34,9 @@ public:
 
   virtual ~CUTS_CIAO_Header_Traits (void);
 
+  virtual bool open_file (
+    const PICML::ComponentImplementationContainer & container);
+
   virtual void write_impl_begin (
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & component);

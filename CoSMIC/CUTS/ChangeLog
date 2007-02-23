@@ -1,3 +1,61 @@
+Fri Feb 23 00:44:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Impl_Node.h:
+
+          Added a new field for holding the implementation artifacts
+          of a component.
+
+        * cuts/be/BE_Impl_Graph.h:
+        * cuts/be/BE_Impl_Graph.cpp:
+
+          The implementation preprocessor gathers all the implemenation
+          artifacts when preprocessing each monolithic implementation.
+
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+
+          - Moved the logic for opening a header file to the from
+            CIAO_Proxy_Header_Traits and CIAO_Exec_Header_Traits to
+            CIAO_Header_Traits.
+          - The name of the exported entry point is now taken from
+            the _exec execParameter, and if it doesn't not exist, then
+            default entry point used (i.e., based on the components
+            factory).
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+
+          - Moved the logic for opening a header file to the from
+            CIAO_Proxy_Source_Traits and CIAO_Exec_Source_Traits to
+            CIAO_Source_Traits.
+          - The name of the exported entry point is now taken from
+            the _exec execParameter, and if it doesn't not exist, then
+            default entry point used (i.e., based on the component's
+            factory).
+
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          When write_factory_impl_end () is invoked, if the monolithic
+          implementations entry point does not exist, the default one
+          is used (i.e., based on the component's factory).
+
+        * cuts/be/CIAO/CIAO_In_Type.cpp:
+        * cuts/be/CIAO/CIAO_Out_Type.cpp:
+        * cuts/be/CIAO/CIAO_Var_Type.cpp:
+
+          Removed the extra ':' at the beginning of the scope resolution
+          for TypeKind elements.
+
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Removed the generation of stub artifacts since they are
+          currently generated incorrectly.
+
 Thu Feb 22 21:31:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Impl_Graph.cpp:

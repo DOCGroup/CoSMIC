@@ -32,6 +32,9 @@ public:
 
   virtual ~CUTS_CIAO_Source_Traits (void);
 
+  virtual bool open_file (
+    const PICML::ComponentImplementationContainer & container);
+
   virtual void write_ProvidedRequestPort_begin (
     const PICML::ProvidedRequestPort & facet);
 

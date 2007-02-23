@@ -55,22 +55,7 @@ open_file (const PICML::ComponentImplementationContainer & container)
   if (!node->is_proxy_)
     return false;
 
-  // Construct the name of the file.
-  std::ostringstream ostr;
-  ostr
-    << CUTS_BE_OPTIONS ()->output_directory_
-    << "/" << container.name ()
-    << CUTS_BE_OPTIONS ()->exec_suffix_
-    << ".h";
-
-  // Open the file and pass control to the base class.
-  this->outfile ().open (ostr.str ().c_str ());
-
-  if (!this->outfile ().is_open ())
-    return false;
-
-  this->open_file_i ();
-  return this->outfile ().good ();
+  return this->_super::open_file (container);
 }
 
 //
