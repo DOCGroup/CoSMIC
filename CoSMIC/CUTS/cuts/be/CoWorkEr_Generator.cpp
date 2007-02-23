@@ -539,7 +539,7 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
 
   artifacts.resize (2);
 
-  for (size_t i = 0; i < 3; i ++)
+  for (size_t i = 0; i < artifacts.size (); i ++)
   {
     std::string artifact_name = container_name + suffix[i];
 
