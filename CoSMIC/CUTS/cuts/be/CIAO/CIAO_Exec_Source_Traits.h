@@ -55,6 +55,9 @@ public:
   virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
+  virtual void write_InEventPort_end (
+    const PICML::InEventPort & sink);
+
   virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 

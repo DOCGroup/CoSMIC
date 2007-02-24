@@ -1,3 +1,31 @@
+Sat Feb 24 17:27:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.mpc:
+
+          Added str.cpp to the CUTS project.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          Implemented the write_InEventPort_end () method to generate
+          ACE_UNUSED_ARG () statements for the *record* and *ev* variables
+          just in case they are not used.
+
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          - Added cuts/str to the generated include files.
+          - The generated proxy code for getting an attributes value
+            now returns a default value of the proxy isn't hosting
+            and implementation.
+
+        * cuts/str.h:
+        * cuts/str.inl:
+        * cuts/str.cpp:
+
+          Wrapper for the ACE_CString class that allows char * allocated
+          by the CORBA middleware to be copied (cached) for usage by the
+          Pending_Op_List_T class (mainly functors).
+
 Fri Feb 23 01:11:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp (generate_artifacts):

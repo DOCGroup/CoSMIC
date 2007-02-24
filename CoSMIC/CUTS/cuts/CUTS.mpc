@@ -79,7 +79,6 @@ project (CUTS) : cutslib {
     CUTS_export.h
     Host_Table_Entry.h
     Log_Msg.h
-//    mem_action_t.h
     WML_Macros.h
   }
 
@@ -105,6 +104,7 @@ project (CUTS) : cutslib {
     Port_Measurement_Pool.cpp
     Port_Metric.cpp
     Component_Registry.cpp
+    str.cpp
     Testing_Service.cpp
     Time.cpp
     Time_Metric.cpp
@@ -129,7 +129,7 @@ project (CUTS) : cutslib {
     Event_Guard_T.cpp
     Event_Handler_T.cpp
     Event_Handler_Manager_T.cpp
-    mem_action_t.h
+    // mem_action_t.cpp
     Pending_Op_T.cpp
     Pending_Op_List_T.cpp
     Trigger_T.cpp

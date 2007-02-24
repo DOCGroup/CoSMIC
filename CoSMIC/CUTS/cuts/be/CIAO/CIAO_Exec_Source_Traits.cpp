@@ -204,6 +204,21 @@ write_InEventPort_begin (const PICML::InEventPort & sink)
 }
 
 //
+// write_InEventPort_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_InEventPort_end (const PICML::InEventPort & sink)
+{
+  this->outfile ()
+    << single_line_comment ("just in case we don't use either one")
+    << "ACE_UNUSED_ARG (ev);"
+    << "ACE_UNUSED_ARG (record);";
+
+  this->_super::write_InEventPort_end (sink);
+}
+
+
+//
 // write_ReadonlyAttribute_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::

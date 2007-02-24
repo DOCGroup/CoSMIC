@@ -78,6 +78,7 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << include (basename + CUTS_BE_OPTIONS ()->exec_suffix_)
     << include ("cuts/Activation_Record")
     << include ("cuts/Thread_Activation_Record")
+    << include ("cuts/str")
     << std::endl;
 }
 
@@ -207,7 +208,51 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
   else
   {
     this->outfile ()
-      << "return this->type_impl_->" << attr.name () << " ();";
+      << "if (!::CORBA::is_nil (this->type_impl_.in ()))"
+      << "{"
+      << "return this->type_impl_->" << attr.name () << " ();"
+      << "}";
+
+    PICML::AttributeMember member = attr.AttributeMember_child ();
+
+    if (member != Udm::null)
+    {
+      PICML::MemberType mtype = member.ref ();
+
+      if (mtype != Udm::null)
+      {
+        Uml::Class metaclass = mtype.type ();
+
+        if (metaclass == PICML::LongInteger::meta ||
+            metaclass == PICML::ShortInteger::meta ||
+            metaclass == PICML::Byte::meta)
+        {
+          this->outfile ()
+            << "return 0;";
+        }
+        else if (metaclass == PICML::Boolean::meta)
+        {
+          this->outfile ()
+            << "return false;";
+        }
+        else if (metaclass == PICML::RealNumber::meta)
+        {
+          this->outfile ()
+            << "return 0.0;";
+        }
+        else if (metaclass == PICML::Object::meta)
+        {
+          this->outfile ()
+            << "return ::CORBA::Object::_nil ();";
+        }
+        else if (metaclass == PICML::String::meta)
+        {
+          this->outfile ()
+            << "::CORBA::String_var str = ::CORBA::string_dup (\"\");"
+            << "return str._retn ();";
+        }
+      }
+    }
   }
 }
 
@@ -282,16 +327,44 @@ write_Attribute_begin (const PICML::Attribute & attr)
   else
   {
     this->outfile ()
-      << "if (!::CORBA::is_nil (this->type_impl_.in ()))" << std::endl
-      << "  this->type_impl_->"
+      << "if (!::CORBA::is_nil (this->type_impl_.in ()))"
+      << "{"
+      << "this->type_impl_->"
       << attr.name () << " (" << attr.name () << ");"
+      << "}"
       << "else {"
       << single_line_comment ("wait until the real component is loaded")
       << "this->pending_ops_.insert (" << std::endl
       << "CUTS_Pending_Op (&_proxy_type::_impl_type::"
-      << attr.name () << "," << std::endl
-      << attr.name () << "));"
-      << "}";
+      << attr.name () << "," << std::endl;
+
+    PICML::AttributeMember member = attr.AttributeMember_child ();
+    if (member != Udm::null)
+    {
+      PICML::MemberType mtype = member.ref ();
+
+      if (mtype != Udm::null)
+      {
+        if (mtype.type () == PICML::String::meta)
+        {
+          // Treat strings differently.
+          this->outfile () << "CUTS_str (" << attr.name () << ")";
+        }
+        else
+        {
+          this->outfile () << attr.name ();
+        }
+      }
+      else
+      {
+        this->outfile () << attr.name ();
+      }
+
+      this->outfile () << "));";
+    }
+
+    // Close off the function definition.
+    this->outfile () << "}";
   }
 }
 
