@@ -1,3 +1,11 @@
+Sun Feb 25 06:19:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          - Added the merge modules declarations for vc71.
+          - Defined a feature for vc71 and vc8 merge modules that can
+            can be included by other .wxs files.
+
 Thu Feb 22 08:11:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PSM/CQML/paradigms/CQML-uml.xme:

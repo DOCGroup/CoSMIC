@@ -5,6 +5,31 @@
 
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='WindowsFolder'>
+      <!-- C runtime for VC71 -->
+      <Merge Id='VC_User_CRT71_RTL_X86_---.msm'
+             DiskId='1' Language='1033'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_CRT71_RTL_X86_---.msm' />
+
+      <!-- STL runtime for VC71 -->
+      <Merge Id='VC_User_STL71_RTL_X86_---.msm'
+             DiskId='1' Language='1033'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_STL71_RTL_X86_---.msm' />
+
+      <!-- MFC runtime for VC71 -->
+      <Merge Id='VC_User_MFC71_RTL_X86_---.msm'
+             DiskId='1' Language='1033'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_MFC71_RTL_X86_---.msm' />
+
+      <!-- MFC Localization for VC71 -->
+      <Merge Id='VC_User_MFC71_Loc_RTL_X86_---.msm'
+             DiskId='1' Language='1033'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_MFC71_Loc_RTL_X86_---.msm' />
+
+      <!-- ATL runtime for VC71 -->
+      <Merge Id='VC_User_ATL71_RTL_X86_---.msm'
+             DiskId='1' Language='1033'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_ATL71_RTL_X86_---.msm' />
+
       <!-- C runtime for VC8 -->
       <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='1033'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
@@ -56,5 +81,34 @@
               DiskId="1" />
       </Component>
     </DirectoryRef>
+
+    <!-- Visual Studio merge modules -->
+    <Feature Id="vc71_merge_modules" Display="hidden"
+             TypicalDefault="install" Level="1">
+      <MergeRef Id="VC_User_CRT71_RTL_X86_---.msm" />
+      <MergeRef Id="VC_User_STL71_RTL_X86_---.msm" />
+      <MergeRef Id="VC_User_ATL71_RTL_X86_---.msm" />
+      <MergeRef Id="VC_User_MFC71_RTL_X86_---.msm" />
+      <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
+    </Feature>
+
+    <Feature Id="vc8_merge_modules" Display="hidden"
+             TypicalDefault="install" Level="1">
+      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
+      <MergeRef Id="policy_8_0_Microsoft_VC80_CRT_x86.msm" />
+
+      <MergeRef Id="Microsoft_VC80_DebugCRT_x86.msm" />
+      <MergeRef Id="policy_8_0_Microsoft_VC80_DebugCRT_x86.msm" />
+
+      <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
+      <MergeRef Id="policy_8_0_Microsoft_VC80_ATL_x86.msm" />
+
+      <MergeRef Id="Microsoft_VC80_MFC_x86.msm" />
+      <MergeRef Id="policy_8_0_Microsoft_VC80_MFC_x86.msm" />
+
+      <MergeRef Id="Microsoft_VC80_DebugMFC_x86.msm" />
+      <MergeRef Id="policy_8_0_Microsoft_VC80_DebugMFC_x86.msm" />
+    </Feature>
+
   </Fragment>
 </Wix>
