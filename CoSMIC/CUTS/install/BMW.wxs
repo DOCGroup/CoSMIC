@@ -3,17 +3,21 @@
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
   <?define BMW_ROOT = $(env.CUTS_ROOT)\bin\BMW ?>
 
-  <Product Name="CUTS Benchmark Manager Web Utility" Id="1D209D0C-13C5-4DEC-A2C1-08A4A22FDC5D"
-    UpgradeCode="823EE6B0-1BE2-4706-B5F6-58962744BDD3" Language="1033" Codepage="1252" Version="0.2"
-    Manufacturer="DOC Group, ISIS, Vanderbilt University">
+  <Product Name="CUTS Benchmark Manager Web Utility"
+           Id="1D209D0C-13C5-4DEC-A2C1-08A4A22FDC5D"
+           UpgradeCode="823EE6B0-1BE2-4706-B5F6-58962744BDD3"
+           Language="1033" Codepage="1252" Version="0.2"
+           Manufacturer="DOC Group, ISIS, Vanderbilt University">
 
-    <Package Id='504DB389-68E1-4d29-B519-9B4499CAF048' Keywords='Installer'
+    <Package Id='????????-????-????-????-????????????'
+             Keywords='Installer'
              Description='CUTS Benchmark Manager Web Utility Installer'
-             Manufacturer='DOC Group, ISIS, Vanderbilt University' InstallerVersion='100'
-             Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+             Manufacturer='DOC Group, ISIS, Vanderbilt University'
+             InstallerVersion='100'
+             Languages='1033' Compressed='yes'
+             SummaryCodepage='1252' />
 
     <!-- properties -->
-    <Property Id="WIXUI_INSTALLDIR" Value="C:\Inetpub\wwwroot\CUTS" />
 
     <Property Id="IIS_INSTALLED">
       <RegistrySearch Id="IISRegSearch" Root="HKLM" Type="raw"
@@ -37,169 +41,183 @@
 
     <Media Id="1" Cabinet="BMW.cab" EmbedCab="yes" />
 
-    <Directory Id='WIXUI_INSTALLDIR' Name='SourceDir'>
-      <!-- IIS configuration -->
-      <Component Id="BMWWebSite" Guid="B813A159-5BD3-4595-9F5B-09AA5CA63FCF">
-        <WebVirtualDir Id="CUTSWebVirtualDir" Alias="CUTS" Directory="WIXUI_INSTALLDIR" WebSite="DefaultWebSite">
-          <WebApplication Id="CUTSWebApplication" Name="CUTS" AllowSessions="yes" Isolation="medium"
-            DefaultScript="JScript" ClientDebugging="no" ServerDebugging="no" />
-        </WebVirtualDir>
-      </Component>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="CoSMIC" Name="CoSMIC">
+          <Directory Id="CUTS" Name="CUTS">
+            <Directory Id="INSTALLDIR" Name="BMW"
+                       LongName="Benchmark Manager Web Utility">
+              <!-- IIS configuration -->
+              <Component Id="BMWWebSite" Guid="B813A159-5BD3-4595-9F5B-09AA5CA63FCF">
+                <WebVirtualDir Id="CUTSWebVirtualDir"
+                               Alias="CUTS"
+                               Directory="INSTALLDIR"
+                               WebSite="DefaultWebSite">
+                  <WebApplication Id="CUTSWebApplication"
+                                  Name="CUTS" AllowSessions="yes"
+                                  Isolation="medium" DefaultScript="JScript"
+                                  ClientDebugging="no" ServerDebugging="no" />
+                </WebVirtualDir>
+              </Component>
 
-      <!-- http://localhost/CUTS -->
-      <Component Id="BMWServerFiles" Guid="0E082EE0-3EB7-4BEA-BAFA-721DB5875DA6">
-        <!-- master pages -->
-        <File Id="BMW.master" Name="BMW.MAS" LongName="BMW.master" Source="$(var.BMW_ROOT)\BMW.master"
-          DiskId="1" />
+              <!-- http://localhost/CUTS -->
+              <Component Id="BMWServerFiles" Guid="0E082EE0-3EB7-4BEA-BAFA-721DB5875DA6">
+                <!-- master pages -->
+                <File Id="BMW.master" Name="BMW.MAS" LongName="BMW.master" Source="$(var.BMW_ROOT)\BMW.master"
+                  DiskId="1" />
 
-        <File Id="components.aspx" Name="COMPONEN.ASP" LongName="components.aspx"
-              Source="$(var.BMW_ROOT)\components.aspx" DiskId="1" />
+                <File Id="components.aspx" Name="COMPONEN.ASP" LongName="components.aspx"
+                      Source="$(var.BMW_ROOT)\components.aspx" DiskId="1" />
 
-        <File Id="Critical_Path.aspx" Name="PATH.ASP" LongName="Critical_Path.aspx"
-              Source="$(var.BMW_ROOT)\Critical_Path.aspx" DiskId="1" />
+                <File Id="Critical_Path.aspx" Name="PATH.ASP" LongName="Critical_Path.aspx"
+                      Source="$(var.BMW_ROOT)\Critical_Path.aspx" DiskId="1" />
 
-        <File Id="Critical_Path_Timeline.aspx" Name="PATHTIME.ASP" LongName="Critical_Path_Timeline.aspx"
-              Source="$(var.BMW_ROOT)\Critical_Path_Timeline.aspx" DiskId="1" />
+                <File Id="Critical_Path_Timeline.aspx" Name="PATHTIME.ASP" LongName="Critical_Path_Timeline.aspx"
+                      Source="$(var.BMW_ROOT)\Critical_Path_Timeline.aspx" DiskId="1" />
 
-        <File Id="default.aspx" Name="DEFAULT.ASP" LongName="default.aspx"
-              Source="$(var.BMW_ROOT)\default.aspx" DiskId="1" />
+                <File Id="default.aspx" Name="DEFAULT.ASP" LongName="default.aspx"
+                      Source="$(var.BMW_ROOT)\default.aspx" DiskId="1" />
 
-        <File Id="Execution_Times.aspx" Name="EXECUTE.ASP" LongName="Execution_Times.aspx"
-              Source="$(var.BMW_ROOT)\Execution_Times.aspx" DiskId="1" />
+                <File Id="Execution_Times.aspx" Name="EXECUTE.ASP" LongName="Execution_Times.aspx"
+                      Source="$(var.BMW_ROOT)\Execution_Times.aspx" DiskId="1" />
 
-        <File Id="environment.aspx" Name="ENV.ASP" LongName="environment.aspx"
-              Source="$(var.BMW_ROOT)\environment.aspx" DiskId="1" />
+                <File Id="environment.aspx" Name="ENV.ASP" LongName="environment.aspx"
+                      Source="$(var.BMW_ROOT)\environment.aspx" DiskId="1" />
 
-        <!-- user-defined controls -->
-        <File Id="Component_Metrics.ascx" Name="METRICS.ASC" LongName="Component_Metrics.ascx"
-              Source="$(var.BMW_ROOT)\Component_Metrics.ascx" DiskId="1" />
+                <!-- user-defined controls -->
+                <File Id="Component_Metrics.ascx" Name="METRICS.ASC" LongName="Component_Metrics.ascx"
+                      Source="$(var.BMW_ROOT)\Component_Metrics.ascx" DiskId="1" />
 
-        <File Id="Node_Details.ascx" Name="NODES.ASC" LongName="Node_Details.ascx"
-              Source="$(var.BMW_ROOT)\Node_Details.ascx"
-          DiskId="1" />
+                <File Id="Node_Details.ascx" Name="NODES.ASC" LongName="Node_Details.ascx"
+                      Source="$(var.BMW_ROOT)\Node_Details.ascx"
+                  DiskId="1" />
 
-        <File Id="Sender_Metrics.ascx" Name="SENDER.ASC" LongName="Sender_Metrics.ascx"
-              Source="$(var.BMW_ROOT)\Sender_Metrics.ascx" DiskId="1" />
+                <File Id="Sender_Metrics.ascx" Name="SENDER.ASC" LongName="Sender_Metrics.ascx"
+                      Source="$(var.BMW_ROOT)\Sender_Metrics.ascx" DiskId="1" />
 
-        <!-- web services -->
-        <File Id="Service.asmx" Name="SERVICE.ASM" LongName="Service.asmx"
-              Source="$(var.BMW_ROOT)\Service.asmx" DiskId="1" />
+                <!-- web services -->
+                <File Id="Service.asmx" Name="SERVICE.ASM" LongName="Service.asmx"
+                      Source="$(var.BMW_ROOT)\Service.asmx" DiskId="1" />
 
-        <!-- config files -->
-        <File Id="PrecompiledApp.config" Name="PRECOM.CON" LongName="PrecompiledApp.config"
-              Source="$(var.BMW_ROOT)\PrecompiledApp.config" DiskId="1" />
-        <File Id="Web.config" Name="WEB.CON" LongName="Web.config"
-              Source="$(var.BMW_ROOT)\Web.config" DiskId="1" />
-      </Component>
+                <!-- config files -->
+                <File Id="PrecompiledApp.config" Name="PRECOM.CON" LongName="PrecompiledApp.config"
+                      Source="$(var.BMW_ROOT)\PrecompiledApp.config" DiskId="1" />
+                <File Id="Web.config" Name="WEB.CON" LongName="Web.config"
+                      Source="$(var.BMW_ROOT)\Web.config" DiskId="1" />
+              </Component>
 
-      <!-- http://localhost/CUTS/bin -->
-      <Directory Id="bin" Name="bin">
-        <Component Id="BMWBinFiles" Guid="9A3DE607-7FC8-4192-84CE-EF7A8DAAED14">
-          <!-- Precompiled website -->
-          <File Id="App_Code.dll" Name="APPCODE.DLL" LongName="App_Code.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Code.dll" DiskId="1" />
+              <!-- http://localhost/CUTS/bin -->
+              <Directory Id="bin" Name="bin">
+                <Component Id="BMWBinFiles" Guid="9A3DE607-7FC8-4192-84CE-EF7A8DAAED14">
+                  <!-- Precompiled website -->
+                  <File Id="App_Code.dll" Name="APPCODE.DLL" LongName="App_Code.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Code.dll" DiskId="1" />
 
-          <File Id="App_Code.compiled" Name="APPCODE.COM" LongName="App_Code.compiled"
-                Source="$(var.BMW_ROOT)\bin\App_Code.compiled" DiskId="1" />
+                  <File Id="App_Code.compiled" Name="APPCODE.COM" LongName="App_Code.compiled"
+                        Source="$(var.BMW_ROOT)\bin\App_Code.compiled" DiskId="1" />
 
-          <File Id="App_Web_timeline.aspx.cdcab7d2.dll" Name="TIMELINE.DLL" LongName="App_Web_timeline.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_timeline.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_timeline.aspx.cdcab7d2.dll" Name="TIMELINE.DLL" LongName="App_Web_timeline.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_timeline.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_sender_metrics.ascx.cdcab7d2.dll" Name="SENDMETS.DLL" LongName="App_Web_sender_metrics.ascx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_sender_metrics.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_sender_metrics.ascx.cdcab7d2.dll" Name="SENDMETS.DLL" LongName="App_Web_sender_metrics.ascx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_sender_metrics.ascx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_node_details.ascx.cdcab7d2.dll" Name="NODEDATA.DLL" LongName="App_Web_node_details.ascx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_node_details.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_node_details.ascx.cdcab7d2.dll" Name="NODEDATA.DLL" LongName="App_Web_node_details.ascx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_node_details.ascx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_environment.aspx.cdcab7d2.dll" Name="ENV.DLL" LongName="App_Web_environment.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_environment.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_environment.aspx.cdcab7d2.dll" Name="ENV.DLL" LongName="App_Web_environment.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_environment.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_header.aspx.cdcab7d2.dll" Name="HEADER.DLL" LongName="App_Web_header.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_header.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_header.aspx.cdcab7d2.dll" Name="HEADER.DLL" LongName="App_Web_header.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_header.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_execution_times.aspx.cdcab7d2.dll" Name="EXECUTE.DLL" LongName="App_Web_execution_times.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_execution_times.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_execution_times.aspx.cdcab7d2.dll" Name="EXECUTE.DLL" LongName="App_Web_execution_times.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_execution_times.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_default.aspx.cdcab7d2.dll" Name="DEFAULT.DLL" LongName="App_Web_default.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_default.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_default.aspx.cdcab7d2.dll" Name="DEFAULT.DLL" LongName="App_Web_default.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_default.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_critical_path_timeline.aspx.cdcab7d2.dll" Name="CPTIME.DLL" LongName="App_Web_critical_path_timeline.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_critical_path_timeline.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_critical_path_timeline.aspx.cdcab7d2.dll" Name="CPTIME.DLL" LongName="App_Web_critical_path_timeline.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path_timeline.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_critical_path.aspx.cdcab7d2.dll" Name="CP.DLL" LongName="App_Web_critical_path.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_critical_path.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_critical_path.aspx.cdcab7d2.dll" Name="CP.DLL" LongName="App_Web_critical_path.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_component_metrics.ascx.cdcab7d2.dll" Name="COMTIME.DLL" LongName="App_Web_component_metrics.ascx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_component_metrics.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_component_metrics.ascx.cdcab7d2.dll" Name="COMTIME.DLL" LongName="App_Web_component_metrics.ascx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_component_metrics.ascx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_components.aspx.cdcab7d2.dll" Name="COMPONEN.DLL" LongName="App_Web_components.aspx.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_components.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_components.aspx.cdcab7d2.dll" Name="COMPONEN.DLL" LongName="App_Web_components.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_components.aspx.cdcab7d2.dll" DiskId="1" />
 
-          <File Id="App_Web_bmw.master.cdcab7d2.dll" Name="MASTER.DLL" LongName="App_Web_bmw.master.cdcab7d2.dll"
-                Source="$(var.BMW_ROOT)\bin\App_Web_bmw.master.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_bmw.master.cdcab7d2.dll" Name="MASTER.DLL" LongName="App_Web_bmw.master.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_bmw.master.cdcab7d2.dll" DiskId="1" />
 
-          <!-- 3rd-party libraries -->
-          <File Id="CUTS_Database_Utility.dll" Name="CUTSUTIL.DLL" LongName="CUTS_Database_Utility.dll"
-                Source="$(var.BMW_ROOT)\bin\CUTS_Database_Utility.dll" DiskId="1" />
+                  <!-- 3rd-party libraries -->
+                  <File Id="CUTS_Database_Utility.dll" Name="CUTSUTIL.DLL" LongName="CUTS_Database_Utility.dll"
+                        Source="$(var.BMW_ROOT)\bin\CUTS_Database_Utility.dll" DiskId="1" />
 
-          <File Id="IIOPChannel.dll" Name="IIOP.DLL" LongName="IIOPChannel.dll"
-                Source="$(var.BMW_ROOT)\bin\IIOPChannel.dll" DiskId="1" />
+                  <File Id="IIOPChannel.dll" Name="IIOP.DLL" LongName="IIOPChannel.dll"
+                        Source="$(var.BMW_ROOT)\bin\IIOPChannel.dll" DiskId="1" />
 
-          <File Id="Node_Daemon.NET.dll" Name="CUTSNODE.DLL" LongName="Node_Daemon.NET.dll"
-                Source="$(var.BMW_ROOT)\bin\Node_Daemon.NET.dll" DiskId="1" />
+                  <File Id="Node_Daemon.NET.dll" Name="CUTSNODE.DLL" LongName="Node_Daemon.NET.dll"
+                        Source="$(var.BMW_ROOT)\bin\Node_Daemon.NET.dll" DiskId="1" />
 
-          <File Id="WebChart.dll" Name="WEBCHART.DLL" LongName="WebChart.dll"
-                Source="$(var.BMW_ROOT)\bin\WebChart.dll" DiskId="1" />
-        </Component>
-      </Directory>
+                  <File Id="WebChart.dll" Name="WEBCHART.DLL" LongName="WebChart.dll"
+                        Source="$(var.BMW_ROOT)\bin\WebChart.dll" DiskId="1" />
+                </Component>
+              </Directory>
 
-      <!-- http://localhost/CUTS/styles -->
-      <Directory Id="styles" Name="styles">
-        <Component Id="BMWStyleFiles" Guid="75BD71D7-1795-4db1-94FA-A0C5804AAFA7">
-          <File Id="default.css" Name="DEFAULT.CSS" LongName="default.css"
-                Source="$(var.BMW_ROOT)\styles\default.css" DiskId="1" />
-        </Component>
-      </Directory>
+              <!-- http://localhost/CUTS/styles -->
+              <Directory Id="styles" Name="styles">
+                <Component Id="BMWStyleFiles" Guid="75BD71D7-1795-4db1-94FA-A0C5804AAFA7">
+                  <File Id="default.css" Name="DEFAULT.CSS" LongName="default.css"
+                        Source="$(var.BMW_ROOT)\styles\default.css" DiskId="1" />
+                </Component>
+              </Directory>
 
-      <!-- http://localhost/CUTS/images -->
-      <Directory Id="images" Name="images">
-        <Component Id="BMWImageFiles" Guid="9A3DE607-7FC8-4192-84CE-EF7A8DAAED14">
-          <File Id="active.gif" Name="ACTIVE.GIF" LongName="active.gif"
-                Source="$(var.BMW_ROOT)\images\active.gif" DiskId="1" />
+              <!-- http://localhost/CUTS/images -->
+              <Directory Id="images" Name="images">
+                <Component Id="BMWImageFiles" Guid="9A3DE607-7FC8-4192-84CE-EF7A8DAAED14">
+                  <File Id="active.gif" Name="ACTIVE.GIF" LongName="active.gif"
+                        Source="$(var.BMW_ROOT)\images\active.gif" DiskId="1" />
 
-          <File Id="cancel.gif" Name="CANCEL.GIF" LongName="cancel.gif"
-                Source="$(var.BMW_ROOT)\images\cancel.gif" DiskId="1" />
+                  <File Id="cancel.gif" Name="CANCEL.GIF" LongName="cancel.gif"
+                        Source="$(var.BMW_ROOT)\images\cancel.gif" DiskId="1" />
 
-          <File Id="delete.gif" Name="DELETE.GIF" LongName="delete.gif"
-                Source="$(var.BMW_ROOT)\images\delete.gif" DiskId="1" />
+                  <File Id="delete.gif" Name="DELETE.GIF" LongName="delete.gif"
+                        Source="$(var.BMW_ROOT)\images\delete.gif" DiskId="1" />
 
-          <File Id="edit.gif" Name="EDIT.GIF" LongName="edit.gif"
-                Source="$(var.BMW_ROOT)\images\edit.gif" DiskId="1" />
+                  <File Id="edit.gif" Name="EDIT.GIF" LongName="edit.gif"
+                        Source="$(var.BMW_ROOT)\images\edit.gif" DiskId="1" />
 
-          <File Id="graph.gif" Name="GRAPH.GIF" LongName="graph.gif"
-                Source="$(var.BMW_ROOT)\images\graph.gif" DiskId="1" />
+                  <File Id="graph.gif" Name="GRAPH.GIF" LongName="graph.gif"
+                        Source="$(var.BMW_ROOT)\images\graph.gif" DiskId="1" />
 
-          <File Id="inactive.gif" Name="INACTIVE.GIF" LongName="inactive.gif"
-                Source="$(var.BMW_ROOT)\images\inactive.gif" DiskId="1" />
+                  <File Id="inactive.gif" Name="INACTIVE.GIF" LongName="inactive.gif"
+                        Source="$(var.BMW_ROOT)\images\inactive.gif" DiskId="1" />
 
-          <File Id="minus.gif" Name="MINUS.GIF" LongName="minus.gif"
-                Source="$(var.BMW_ROOT)\images\minus.gif" DiskId="1" />
+                  <File Id="minus.gif" Name="MINUS.GIF" LongName="minus.gif"
+                        Source="$(var.BMW_ROOT)\images\minus.gif" DiskId="1" />
 
-          <File Id="ok.gif" Name="OK.GIF" LongName="ok.gif"
-                Source="$(var.BMW_ROOT)\images\ok.gif" DiskId="1" />
+                  <File Id="ok.gif" Name="OK.GIF" LongName="ok.gif"
+                        Source="$(var.BMW_ROOT)\images\ok.gif" DiskId="1" />
 
-          <File Id="plus.gif" Name="PLUS.GIF" LongName="plus.gif"
-                Source="$(var.BMW_ROOT)\images\plus.gif" DiskId="1" />
+                  <File Id="plus.gif" Name="PLUS.GIF" LongName="plus.gif"
+                        Source="$(var.BMW_ROOT)\images\plus.gif" DiskId="1" />
 
-          <File Id="table.gif" Name="TABLE.GIF" LongName="table.gif"
-                Source="$(var.BMW_ROOT)\images\table.gif" DiskId="1" />
+                  <File Id="table.gif" Name="TABLE.GIF" LongName="table.gif"
+                        Source="$(var.BMW_ROOT)\images\table.gif" DiskId="1" />
 
-          <File Id="logo.jpg" Name="LOGO.JPG" LongName="logo.jpg"
-                Source="$(var.BMW_ROOT)\images\logo.jpg" DiskId="1" />
+                  <File Id="logo.jpg" Name="LOGO.JPG" LongName="logo.jpg"
+                        Source="$(var.BMW_ROOT)\images\logo.jpg" DiskId="1" />
 
-          <File Id="menudot.gif" Name="MENUDOT.gif" LongName="menudot.gif"
-                Source="$(var.BMW_ROOT)\images\menudot.gif" DiskId="1" />
-        </Component>
+                  <File Id="menudot.gif" Name="MENUDOT.gif" LongName="menudot.gif"
+                        Source="$(var.BMW_ROOT)\images\menudot.gif" DiskId="1" />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
       </Directory>
     </Directory>
 
@@ -219,7 +237,8 @@
     </Feature>
 
     <!-- user interface -->
-    <UIRef Id="WixUI_Minimal" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <UIRef Id="WixUI_InstallDir" />
     <UIRef Id="WixUI_ErrorProgressText" />
   </Product>
 </Wix>

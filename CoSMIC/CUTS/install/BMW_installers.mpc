@@ -1,6 +1,8 @@
 // $Id$
 
 project (BMW) : wix {
+  prebuild = aspnet_compiler -v CUTS -p $(CUTS_ROOT)/utils/BMW -f -u -fixednames $(CUTS_ROOT)/bin/BMW
+
   specific {
     light_flags += -loc $(WIX_ROOT)/WixUI_en-us.wxl \
       $(WIX_ROOT)/wixui.wixlib $(WIX_ROOT)/sca.wixlib

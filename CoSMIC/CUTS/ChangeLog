@@ -1,3 +1,19 @@
+Sun Feb 25 09:36:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          - Changed the UI to WixUI_Mondo
+          - The default install location for the BMW website is
+            C:\Program Files\CoSMIC\CUTS\Benchmark Manager Web Utility.
+          - Fixed the <Directory> statements to be consistent with the
+            preferred method for creating .wxs files (i.e., begins with
+            and TARGETDIR and SourceDir directory element).
+
+        * install/BMW_installers.mpc:
+
+          Added the missing prebuild statement to compile the
+          ASP.NET website.
+
 Sun Feb 25 08:22:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/ComponentConfig.h:
