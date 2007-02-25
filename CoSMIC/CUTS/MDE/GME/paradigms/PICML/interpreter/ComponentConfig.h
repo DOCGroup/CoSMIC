@@ -8,7 +8,7 @@
 #define TYPELIB_NAME "CUTS Interpreter TypeLibrary"
 #define COCLASS_UUID "DD5752C3-12EF-43D0-978C-F5C395D5BF13"
 #define COCLASS_NAME "CUTS Interpreter CoClass"
-#define COCLASS_PROGID "CUTS.Interpreter.PICML.Impl"
+#define COCLASS_PROGID "CUTS.Interpreter.PICML"
 
 
 // This name will appear in the popup window for interpreter selection.

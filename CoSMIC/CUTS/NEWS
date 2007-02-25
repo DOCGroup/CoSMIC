@@ -1,3 +1,17 @@
+USER VISIBLE CHANGES IN CUTS AFTER REVISION 1200
+====================================================
+
+. Changed the progid of the interpreter from
+  CUTS.Interpreter.PICML.Impl to CUTS.Interpreter.PICML
+
+. Finished implementing the "Generate CoWorkEr model"
+  options, which generates the necessary model elements
+  in PICML to use CoWorkEr proxies for instrumentation.
+
+. The entry point for the component execute is derived
+  from the implementation artifact that ends in _exec,
+  given it has a execProperty attached to it.
+
 USER VISIBLE CHANGES IN CUTS AFTER REVISION 1173
 ====================================================
 

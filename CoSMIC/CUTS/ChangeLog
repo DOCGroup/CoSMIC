@@ -1,3 +1,14 @@
+Sun Feb 25 08:22:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/ComponentConfig.h:
+
+          Changed the progid to CUTS.Interpreter.PICML.
+
+        * NEWS:
+
+          Updated the NEWS file with the latest user visible
+          changes in CUTS.
+
 Sun Feb 25 07:26:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/Bitmaps:
