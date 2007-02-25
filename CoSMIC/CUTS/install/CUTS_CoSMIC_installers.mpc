@@ -1,19 +1,12 @@
 // $Id$
 
-project (CUTS_CoSMIC_preinstaller) : wix {
-  Wxs_Files {
-    $(COSMIC_ROOT)/Installer/CoSMIC_common.wxs
-    CUTS_CoSMIC.wxs
+project (CUTS_CoSMIC) : wix {
+  specific {
+    light_flags += -loc $(WIX_ROOT)/WixUI_en-us.wxl $(WIX_ROOT)/wixui.wixlib
   }
-}
 
-project (CUTS_CoSMIC_installer) : wix { 
-  after += CUTS_CoSMIC_preinstaller
-  
-  wixobj_flags += -loc $(WIX_ROOT)/WixUI_en-us.wxl $(WIX_ROOT)/wixui.wixlib \
-    $(COSMIC_ROOT)/Installer/CoSMIC_common.wixobj
-  
-  WIXOBJ_Files {
-    CUTS_CoSMIC.wixobj << CUTS_CoSMIC.wxs
+  Wix_Files {
+    CUTS_CoSMIC.wxs
+    $(COSMIC_ROOT)/Installer/CoSMIC_common.wxs
   }
 }

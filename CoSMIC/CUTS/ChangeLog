@@ -1,3 +1,26 @@
+Sun Feb 25 06:10:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/wix.mpb:
+
+          - Improved the WIX project specification. Now, there is only
+            one block (i.e., Wix_Files) needed to build a .msi. All files
+            in a project located under the Wix_Files block will be used
+            to construct the .msi file.
+          - Removed  Define_Custom (WIXOBJ) and Define_Custom (MSI).
+
+        * install/CUTS_CoSMIC_installers.mpc:
+        * install/BMW_installers.mpc:
+
+          Reimplemented the project specifications based on the new
+          WIX MPC project specification.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          - The project file was missing the TARGET directory declaration.
+          - Added preprocessor statements to include either vc71 or vc8
+            merge modules depending on the value of $(var.type).
+          - The package id is now assigned by *candle*
+
 Sat Feb 24 17:27:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:

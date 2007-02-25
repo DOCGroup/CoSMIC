@@ -2,33 +2,26 @@
 
 project {
   custom_only = 1
-  
-  Define_Custom (WXS) {
-    automatic             = 0
+
+  Define_Custom (WIX) {
+    automatic             = 1
     command               = $(WIX_ROOT)/candle
+
     inputext              = .wxs
     output_option         = -out
     commandflags          = -nologo
     source_outputext      = .wixobj
-    keyword wxs_flags     = commandflags
+    keyword wix_flags     = commandflags
   }
 
-  Define_Custom (WIXOBJ) {
-    automatic             = 0
-    command               = $(WIX_ROOT)/light
-    inputext              = .wixobj
-    output_option         = -out
-    commandflags          = -nologo
-    source_outputext      = .msi
-    keyword wixobj_flags  = commandflags
+  postbuild = $(WIX_ROOT)/light -out <%project_name%>.msi \
+    <%light_flags%> <%foreach(wix_files)%><%noextension(wix_file)%>.wixobj <%endfor%>
+
+  specific(vc71) {
+    wix_flags += -dtype=vc71
   }
-  
-  Define_Custom (MSI) {
-    automatic             = 0
-    command               = $(WIX_ROOT)/dark
-    inputext              = .msi
-    commandflags          = -nologo
-    source_outputext      = .wxs
-    keyword msi_flags     = commandflags
+
+  specific(vc8) {
+    wix_flags += -dtype=vc8
   }
 }

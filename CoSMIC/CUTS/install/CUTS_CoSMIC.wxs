@@ -4,17 +4,20 @@
   <?define COSMIC_ROOT = $(env.COSMIC_ROOT) ?>
   <?define COSMIC_BIN  = $(var.COSMIC_ROOT)/bin ?>
 
-  <Product Name="CUTS Modeling Tools for CoSMIC" Id="9a601859-e2d1-4c1f-b897-b13fea0261b0"
-    UpgradeCode="1cef4517-4472-4a6f-8d4e-4d5b5f3b240a" Language="1033" Codepage="1252" Version="0.2"
-    Manufacturer="DOC Group, ISIS, Vanderbilt University">
+  <Product Name="CUTS Modeling Tools for CoSMIC"
+           Id="9A601859-E2D1-4C1F-B897-B13fEA0261B0"
+           UpgradeCode="1CEF4517-4472-4A6F-8D4E-4D5B5F3B240A"
+           Language="1033" Codepage="1252" Version="0.2"
+           Manufacturer="DOC Group, ISIS, Vanderbilt University">
 
-    <Package Id='09c570ff-7f9f-402b-8d7a-e1194695bc19' Keywords='Installer'
+    <Package Id='????????-????-????-????-????????????'
+             Keywords='Installer'
              Description='CUTS Modeling Tools for CoSMIC'
-             Manufacturer='DOC Group, ISIS, Vanderbilt University' InstallerVersion='100'
-             Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+             Manufacturer='DOC Group, ISIS, Vanderbilt University'
+             InstallerVersion='100' Languages='1033' Compressed='yes'
+             SummaryCodepage='1252' />
 
     <!-- properties -->
-    <Property Id="WIXUI_INSTALLDIR" Value="C:\Program Files\ISIS\CoSMIC" />
 
     <Property Id="PICML_INSTALLED">
       <RegistrySearch Id="PICML_version" Root="HKLM" Type="raw"
@@ -22,74 +25,81 @@
     </Property>
 
     <!-- installation conditions -->
-    <Condition Message='CUTS modeling tools requires CoSMIC to be installed'>PICML_INSTALLED</Condition>
+    <Condition Message='CUTS modeling tools requires CoSMIC to be installed'>
+      PICML_INSTALLED</Condition>
 
     <!-- installation media -->
     <Media Id="1" Cabinet="CUTS_CoSMIC.cab" EmbedCab="yes" />
 
-    <Directory Id="WindowsFolder" Name="WINDOWS" />
+    <Directory Id='TARGETDIR' Name='SourceDir'>
+      <Directory Id="WindowsFolder" Name="WINDOWS" />
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLDIR" Name="CoSMIC">
+          <Directory Id="bin" Name="bin">
+            <Component Id="CUTS_components"
+                       Guid="6EE61FA3-D86A-4325-99E5-35E96DCA8095"
+                       Location="local">
 
-    <Directory Id='WIXUI_INSTALLDIR' Name='SourceDir'>
-      <Directory Id="bin" Name="bin">
-        <Component Id="CUTS_components" Guid="c22f4814-e8a3-43f6-9ba7-044e405478ea"
-                   Location="local">
+              <File Id="CUTS_PICML.dll" Name="CUTSPICM.dll" LongName="CUTS_PICML.dll"
+                    Source="$(var.COSMIC_BIN)\CUTS_PICML.dll" DiskId="1" />
 
-          <File Id="CUTS_PICML_CIAO_Impl.dll" Name="CUTSCIAO.dll" LongName="CUTS_PICML_CIAO_Impl.dll"
-                Source="$(var.COSMIC_BIN)\CUTS_PICML_CIAO_Impl.dll" DiskId="1" />
+              <File Id="CUTS_BE_CIAO.dll" Name="CUTSCIAO.dll" LongName="CUTS_BE_CIAO.dll"
+                    Source="$(var.COSMIC_BIN)\CUTS_BE_CIAO.dll" DiskId="1" />
 
-          <File Id="CUTS_UDM_CIAO.dll" Name="CUTSUDM.dll" LongName="CUTS_UDM_CIAO.dll"
-                Source="$(var.COSMIC_BIN)\CUTS_UDM_CIAO.dll" DiskId="1" />
+              <File Id="CUTS_BE.dll" Name="CUTSBE.dll" LongName="CUTS_BE.dll"
+                    Source="$(var.COSMIC_BIN)\CUTS_BE.dll" DiskId="1" />
 
-          <File Id="CUTS_BE.dll" Name="CUTSBE.dll" LongName="CUTS_BE.dll"
-                Source="$(var.COSMIC_BIN)\CUTS_BE.dll" DiskId="1" />
+              <!-- GME registry information -->
+              <Registry Root="HKLM"
+                        Key="SOFTWARE\GME\Components\CUTS.Interpreter.PICML"
+                        Action="createKeyAndRemoveKeyOnUninstall">
+                <Registry Name="Description" Type="string" Value="CUTS Interpreter" Action="write" />
+                <Registry Name="Icon" Type="string" Value=",IDI_COMPICON" Action="write" />
+                <Registry Name="Paradigm" Type="string" Value="PICML" Action="write" />
+                <Registry Name="Tooltip" Type="string" Value="CUTS interpreter" Action="write" />
+                <Registry Name="Type" Type="integer" Value="1" Action="write" />
+                <Registry Key="Associated" Action="createKey">
+                  <Registry Name="PICML" Type="string" Action="write" />
+                </Registry>
+              </Registry>
 
-          <!-- GME registry information -->
-          <Registry Root="HKLM"
-                    Key="SOFTWARE\GME\Components\CUTS.Interpreter.PICML"
-                    Action="createKeyAndRemoveKeyOnUninstall">
-            <Registry Name="Description" Type="string" Value="CUTS Interpreter" Action="write" />
-            <Registry Name="Icon" Type="string" Value=",IDI_COMPICON" Action="write" />
-            <Registry Name="Paradigm" Type="string" Value="PICML" Action="write" />
-            <Registry Name="Tooltip" Type="string" Value="CUTS interpreter" Action="write" />
-            <Registry Name="Type" Type="integer" Value="1" Action="write" />
-            <Registry Key="Associated" Action="createKey">
-              <Registry Name="PICML" Type="string" Action="write" />
-            </Registry>
-          </Registry>
+              <!-- ProgID registry information -->
+              <Registry Root="HKCR"
+                        Key="CUTS.Interpreter.PICML"
+                        Action="createKeyAndRemoveKeyOnUninstall">
+                <Registry Type="string" Value="CUTS.Interpreter.PICML" />
+                <Registry Key="CLSID" Action="createKey">
+                  <Registry Type="string" Value="{DD5752C3-12EF-43D0-978C-F5C395D5BF13}" />
+                </Registry>
+              </Registry>
 
-          <!-- ProgID registry information -->
-          <Registry Root="HKCR"
-                    Key="CUTS.Interpreter.PICML"
-                    Action="createKeyAndRemoveKeyOnUninstall">
-            <Registry Type="string" Value="CUTS.Interpreter.PICML" />
-            <Registry Key="CLSID" Action="createKey">
-              <Registry Type="string" Value="{DD5752C3-12EF-43D0-978C-F5C395D5BF13}" />
-            </Registry>
-          </Registry>
+              <!-- CLSID registry information -->
+              <Registry Root="HKCR"
+                        Key="CLSID\{DD5752C3-12EF-43D0-978C-F5C395D5BF13}"
+                        Action="createKeyAndRemoveKeyOnUninstall">
+                <Registry Type="string" Value="CUTS.Interpreter.PICML" />
 
-          <!-- CLSID registry information -->
-          <Registry Root="HKCR"
-                    Key="CLSID\{DD5752C3-12EF-43D0-978C-F5C395D5BF13}"
-                    Action="createKeyAndRemoveKeyOnUninstall">
-            <Registry Type="string" Value="CUTS.Interpreter.PICML" />
+                <Registry Key="InProcServer32" Action="createKey">
+                  <Registry Type="string" Value="[INSTALLDIR]bin\CUTS_PICML.dll" />
+                </Registry>
 
-            <Registry Key="InProcServer32" Action="createKey">
-              <Registry Type="string" Value="[WIXUI_INSTALLDIR]bin\CUTS_PICML_CIAO_Impl.dll" />
-            </Registry>
+                <Registry Key="ProgID" Action="createKey">
+                  <Registry Type="string" Value="CUTS.Interpreter.PICML" />
+                </Registry>
+              </Registry>
 
-            <Registry Key="ProgID" Action="createKey">
-              <Registry Type="string" Value="CUTS.Interpreter.PICML" />
-            </Registry>
-          </Registry>
-
-        </Component>
+            </Component>
+          </Directory>
+        </Directory>
       </Directory>
     </Directory>
 
     <!-- product features -->
-    <Feature Id="CUTS_CoSMIC_feature" Title="CUTS Modeling Tools" Display="collapse"
-             Absent="disallow" Description="Installs the default CUTS modeling tools for CoSMIC" Level="1"
-             ConfigurableDirectory="WIXUI_INSTALLDIR" AllowAdvertise="no">
+    <Feature Id="CUTS_CoSMIC_feature" Title="CUTS Modeling Tools"
+             Display="collapse" Absent="disallow"
+             Description="Installs the default CUTS modeling tools for CoSMIC"
+             Level="1" ConfigurableDirectory="INSTALLDIR"
+             AllowAdvertise="no">
       <ComponentRef Id="CUTS_components" />
 
       <!-- components from CoSMIC_common -->
@@ -97,24 +107,16 @@
       <ComponentRef Id="PICML" />
       <ComponentRef Id="UDM_3_1_1" />
 
-      <!-- VC8 merge modules -->
-      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
-      <MergeRef Id="policy_8_0_Microsoft_VC80_CRT_x86.msm" />
-
-      <MergeRef Id="Microsoft_VC80_DebugCRT_x86.msm" />
-      <MergeRef Id="policy_8_0_Microsoft_VC80_DebugCRT_x86.msm" />
-
-      <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
-      <MergeRef Id="policy_8_0_Microsoft_VC80_ATL_x86.msm" />
-
-      <MergeRef Id="Microsoft_VC80_MFC_x86.msm" />
-      <MergeRef Id="policy_8_0_Microsoft_VC80_MFC_x86.msm" />
-
-      <MergeRef Id="Microsoft_VC80_DebugMFC_x86.msm" />
-      <MergeRef Id="policy_8_0_Microsoft_VC80_DebugMFC_x86.msm" />
+<?if $(var.type) = vc8 ?>
+      <FeatureRef Id="vc8_merge_modules" />
+<?elseif $(var.type) = vc71 ?>
+      <FeatureRef Id="vc71_merge_modules" />
+<?endif?>
     </Feature>
 
     <!-- user interface -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
   </Product>
