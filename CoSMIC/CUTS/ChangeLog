@@ -1,3 +1,9 @@
+Sun Feb 25 06:52:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/License.rtf:
+
+          Added the DOC software license agreement to the installers.
+
 Sun Feb 25 06:10:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/wix.mpb:
