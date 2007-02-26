@@ -2,6 +2,6 @@ workspace {
 
 	BenchmarkInterpreter/BenchmarkInterpreter.mpc
 	ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
-OmnetInterpreter/OmnetInterpreter.mpc
-
+	AspectInterpreter/AspectInterpreter.mpc
+	OmnetInterpreter/OmnetInterpreter.mpc
 }
