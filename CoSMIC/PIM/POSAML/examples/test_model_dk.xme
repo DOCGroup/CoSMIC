@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{498C8BC5-71F5-4A51-8D3F-593F5BB6F0EE}" cdate="Tue Jan 23 13:24:06 2007" mdate="Tue Jan 23 13:24:06 2007" version="" metaguid="{C90A17B4-1246-4641-8E14-93756747319F}" metaversion="" metaname="POSAML">
+<project guid="{4053D9E5-1BA4-40E7-8BB9-2EFD645C0976}" cdate="Wed Feb 21 22:18:52 2007" mdate="Wed Feb 21 22:18:52 2007" version="" metaguid="{286AB807-1685-4713-AF26-1479E143F0B2}" metaversion="" metaname="POSAML">
 	<name>Root Folder</name>
 	<comment></comment>
 	<author></author>
@@ -9,182 +9,1091 @@
 		<name>Root Folder</name>
 		<model id="id-0065-00000001" kind="Middleware" relid="0x1" childrelidcntr="0x4">
 			<name>NewMiddleware</name>
-			<model id="id-0065-00000002" kind="Bridge" role="Bridge" relid="0x4" childrelidcntr="0xc">
+			<model id="id-0065-00000002" kind="Bridge" role="Bridge" relid="0x1" childrelidcntr="0x11">
 				<name>Bridge</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Benchmarking" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>387,149</value>
+							<value>317,93</value>
 						</regnode>
 					</regnode>
 					<regnode name="Feature" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>387,149</value>
+							<value>317,93</value>
 						</regnode>
 					</regnode>
 					<regnode name="Pattern" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>387,149</value>
+							<value>292,127</value>
+						</regnode>
+					</regnode>
+					<regnode name="Simulation_Aspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>317,93</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<model id="id-0065-00000003" kind="Abstraction" role="Abstraction" relid="0x1" childrelidcntr="0x0">
-					<name>Abstraction</name>
+				<model id="id-0065-00000003" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x1" childrelidcntr="0x0">
+					<name>ACE_WFMO_Reactor</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="AOP" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>226,30</value>
+								<value>235,202</value>
 							</regnode>
 						</regnode>
 						<regnode name="Bridge_Aspect" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>226,30</value>
+								<value>235,195</value>
 							</regnode>
 						</regnode>
 					</regnode>
 				</model>
-				<model id="id-0065-00000004" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x2" childrelidcntr="0x0">
-					<name>ConcreteImplementation</name>
+				<model id="id-0065-00000004" kind="RefinedAbstraction" role="RefinedAbstraction" relid="0x2" childrelidcntr="0x0">
+					<name>ACE_Reactor_Impl</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="AOP" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>196,210</value>
+								<value>225,71</value>
 							</regnode>
 						</regnode>
 						<regnode name="Bridge_Aspect" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>105,147</value>
+								<value>211,43</value>
 							</regnode>
 						</regnode>
 					</regnode>
 				</model>
-				<model id="id-0065-00000005" kind="AspectFeature" role="AspectFeature" relid="0x4" childrelidcntr="0x2">
-					<name>AspectFeature</name>
+				<model id="id-0065-00000005" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x3" childrelidcntr="0x0">
+					<name>ACE_TP_Reactor</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="AOP" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>63,84</value>
+								<value>403,202</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>445,202</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</model>
+				<model id="id-0065-00000006" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x6" childrelidcntr="0x0">
+					<name>ACE_Select_Reactor</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>67,202</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>53,202</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</model>
+				<model id="id-0065-00000007" kind="AspectFeature" role="AspectFeature" relid="0x9" childrelidcntr="0xd">
+					<name>TP_Thread_Aspect</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="AOP" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>408,101</value>
+							</regnode>
+						</regnode>
+						<regnode name="Bridge_Aspect" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>541,80</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="TypeOfAspect" status="meta">
 						<value>Logging</value>
 					</attribute>
-					<atom id="id-0066-00000001" kind="Advice" role="Advice" relid="0x1">
-						<name>Advice</name>
+					<model id="id-0065-00000008" kind="Pointcut" role="Pointcut" relid="0x1" childrelidcntr="0xa4">
+						<name>Pointcut2</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
 							<regnode name="AOP" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>180,47</value>
+									<value>233,109</value>
 								</regnode>
 							</regnode>
 						</regnode>
+						<atom id="id-0066-00000001" kind="FinalJointPoint" role="FinalJointPoint" relid="0xe">
+							<name>JointPoint1</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>194,201</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000002" kind="and" role="and" relid="0x47">
+							<name>and</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>191,285</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000003" kind="MainPointcut" role="MainPointcut" relid="0x61">
+							<name>Pointcut</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>383,40</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000004" kind="Jointpoint" role="Jointpoint" relid="0x7c">
+							<name>b</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>143,366</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>b_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000005" kind="Jointpoint" role="Jointpoint" relid="0x7d">
+							<name>a</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>45,366</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>a_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000006" kind="Jointpoint" role="Jointpoint" relid="0x7e">
+							<name>d</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>346,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>d_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000007" kind="Jointpoint" role="Jointpoint" relid="0x7f">
+							<name>c</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>262,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>c_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000008" kind="or" role="or" relid="0x8c">
+							<name>or</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>394,117</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000009" kind="Jointpoint" role="Jointpoint" relid="0x8f">
+							<name>g</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>640,373</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>g_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-0000000a" kind="FinalJointPoint" role="FinalJointPoint" relid="0x91">
+							<name>JointPoint2</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>565,208</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-0000000b" kind="Jointpoint" role="Jointpoint" relid="0x92">
+							<name>f</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>444,380</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>f_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-0000000c" kind="Jointpoint" role="Jointpoint" relid="0x93">
+							<name>e</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>528,380</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>e_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-0000000d" kind="Jointpoint" role="Jointpoint" relid="0x94">
+							<name>h</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>738,380</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>h_equation</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-0000000e" kind="or" role="or" relid="0x9f">
+							<name>or</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>562,285</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<connection id="id-0068-00000001" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x5d">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-00000001"/>
+							<connpoint role="src" target="id-0069-00000001"/>
+						</connection>
+						<connection id="id-0068-00000002" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x5e">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-00000001"/>
+							<connpoint role="src" target="id-0069-00000002"/>
+						</connection>
+						<connection id="id-0068-00000003" kind="FinalPointCutConnection" role="FinalPointCutConnection" relid="0x66">
+							<name>FinalPointCutConnection</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value></value>
+							</regnode>
+							<connpoint role="src" target="id-0066-00000001"/>
+							<connpoint role="dst" target="id-0069-00000003"/>
+						</connection>
+						<connection id="id-0068-00000004" kind="AddPointCutConnection" role="AddPointCutConnection" relid="0x69">
+							<name>AddPointCutConnection</name>
+							<connpoint role="dst" target="id-0066-00000003"/>
+							<connpoint role="src" target="id-0069-00000003"/>
+						</connection>
+						<connection id="id-0068-00000005" kind="JPAndOr_Connection1" role="JPAndOr_Connection1" relid="0x79">
+							<name>JPAndOr_Connection1</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value></value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-00000002"/>
+							<connpoint role="src" target="id-0069-00000001"/>
+						</connection>
+						<connection id="id-0068-00000006" kind="JPAndOr_Connection2" role="JPAndOr_Connection2" relid="0x7a">
+							<name>JPAndOr_Connection2</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value></value>
+							</regnode>
+							<connpoint role="src" target="id-0066-00000002"/>
+							<connpoint role="dst" target="id-0069-00000002"/>
+						</connection>
+						<connection id="id-0068-00000008" kind="JPSet_Connection" role="JPSet_Connection" relid="0x84">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000004"/>
+							<connpoint role="dst" target="id-0069-00000001"/>
+						</connection>
+						<connection id="id-0068-00000009" kind="JPSet_Connection" role="JPSet_Connection" relid="0x85">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000007"/>
+							<connpoint role="dst" target="id-0069-00000002"/>
+						</connection>
+						<connection id="id-0068-0000000a" kind="JPSet_Connection" role="JPSet_Connection" relid="0x86">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000006"/>
+							<connpoint role="dst" target="id-0069-00000002"/>
+						</connection>
+						<connection id="id-0068-0000000b" kind="PointCutAndOrConnection1" role="PointCutAndOrConnection1" relid="0x8d">
+							<name>PointCutAndOrConnection1</name>
+							<connpoint role="dst" target="id-0066-00000008"/>
+							<connpoint role="src" target="id-0069-00000003"/>
+						</connection>
+						<connection id="id-0068-0000000c" kind="PointCutAndOrConnection2" role="PointCutAndOrConnection2" relid="0x8e">
+							<name>PointCutAndOrConnection2</name>
+							<connpoint role="src" target="id-0066-00000008"/>
+							<connpoint role="dst" target="id-0069-00000004"/>
+						</connection>
+						<connection id="id-0068-0000000d" kind="JPSet_Connection" role="JPSet_Connection" relid="0x97">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000009"/>
+							<connpoint role="dst" target="id-0069-00000005"/>
+						</connection>
+						<connection id="id-0068-0000000e" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x99">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-0000000a"/>
+							<connpoint role="src" target="id-0069-00000005"/>
+						</connection>
+						<connection id="id-0068-0000000f" kind="JPSet_Connection" role="JPSet_Connection" relid="0x9b">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-0000000c"/>
+							<connpoint role="dst" target="id-0069-00000006"/>
+						</connection>
+						<connection id="id-0068-00000010" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x9c">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-0000000a"/>
+							<connpoint role="src" target="id-0069-00000006"/>
+						</connection>
+						<connection id="id-0068-00000011" kind="JPSet_Connection" role="JPSet_Connection" relid="0x9d">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-0000000b"/>
+							<connpoint role="dst" target="id-0069-00000006"/>
+						</connection>
+						<connection id="id-0068-00000012" kind="JPSet_Connection" role="JPSet_Connection" relid="0x9e">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-0000000d"/>
+							<connpoint role="dst" target="id-0069-00000005"/>
+						</connection>
+						<connection id="id-0068-00000013" kind="JPAndOr_Connection1" role="JPAndOr_Connection1" relid="0xa0">
+							<name>JPAndOr_Connection1</name>
+							<connpoint role="dst" target="id-0066-0000000e"/>
+							<connpoint role="src" target="id-0069-00000006"/>
+						</connection>
+						<connection id="id-0068-00000014" kind="JPAndOr_Connection2" role="JPAndOr_Connection2" relid="0xa1">
+							<name>JPAndOr_Connection2</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>e</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-0000000e"/>
+							<connpoint role="dst" target="id-0069-00000005"/>
+						</connection>
+						<connection id="id-0068-00000015" kind="FinalPointCutConnection" role="FinalPointCutConnection" relid="0xa2">
+							<name>FinalPointCutConnection</name>
+							<connpoint role="src" target="id-0066-0000000a"/>
+							<connpoint role="dst" target="id-0069-00000004"/>
+						</connection>
+						<connection id="id-0068-00000016" kind="AddPointCutConnection" role="AddPointCutConnection" relid="0xa3">
+							<name>AddPointCutConnection</name>
+							<connpoint role="dst" target="id-0066-00000003"/>
+							<connpoint role="src" target="id-0069-00000004"/>
+						</connection>
+						<connection id="id-0068-0000001c" kind="JPSet_Connection" role="JPSet_Connection" relid="0xa4">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000005"/>
+							<connpoint role="dst" target="id-0069-00000001"/>
+						</connection>
+						<set id="id-0069-00000001" kind="JointPointAndSet" role="JointPointAndSet" relid="0x51" members="id-0066-00000004 id-0066-00000005">
+							<name>JointPointAndSet1</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>89,271</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000002" kind="JointPointOrSet" role="JointPointOrSet" relid="0x53" members="id-0066-00000006 id-0066-00000007">
+							<name>JointPointOrSet1</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>292,264</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000003" kind="PointcutAndSet" role="PointcutAndSet" relid="0x62" members="id-0066-00000001">
+							<name>PointcutAndSet1</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>194,68</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000004" kind="PointcutOrSet" role="PointcutOrSet" relid="0x8b" members="id-0066-0000000a">
+							<name>PointcutOrSet1</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>565,68</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000005" kind="JointPointOrSet" role="JointPointOrSet" relid="0x90" members="id-0066-00000009 id-0066-0000000d">
+							<name>JointPointOrSet2</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>670,264</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000006" kind="JointPointAndSet" role="JointPointAndSet" relid="0x96" members="id-0066-0000000b id-0066-0000000c">
+							<name>JointPointAndSet2</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>467,257</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+					</model>
+					<model id="id-0065-0000000e" kind="Pointcut" role="Pointcut" relid="0x8" childrelidcntr="0x9">
+						<name>Pointcut1</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>212,212</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<atom id="id-0066-00000014" kind="MainPointcut" role="MainPointcut" relid="0x1">
+							<name>MainPointcut</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>327,180</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000015" kind="FinalJointPoint" role="FinalJointPoint" relid="0x2">
+							<name>FinalJointPoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>327,355</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000016" kind="Jointpoint" role="Jointpoint" relid="0x3">
+							<name>Jointpoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>325,492</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>&quot;% ACE_Reactor_Impl::purge_pending_notifications(...)&quot;</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<connection id="id-0068-00000026" kind="FinalPointCutConnection" role="FinalPointCutConnection" relid="0x6">
+							<name>FinalPointCutConnection</name>
+							<connpoint role="src" target="id-0066-00000015"/>
+							<connpoint role="dst" target="id-0069-00000009"/>
+						</connection>
+						<connection id="id-0068-00000027" kind="JPSet_Connection" role="JPSet_Connection" relid="0x7">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000016"/>
+							<connpoint role="dst" target="id-0069-0000000a"/>
+						</connection>
+						<connection id="id-0068-00000028" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x8">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-00000015"/>
+							<connpoint role="src" target="id-0069-0000000a"/>
+						</connection>
+						<connection id="id-0068-00000029" kind="AddPointCutConnection" role="AddPointCutConnection" relid="0x9">
+							<name>AddPointCutConnection</name>
+							<connpoint role="dst" target="id-0066-00000014"/>
+							<connpoint role="src" target="id-0069-00000009"/>
+						</connection>
+						<set id="id-0069-00000009" kind="PointcutAndSet" role="PointcutAndSet" relid="0x4" members="id-0066-00000015">
+							<name>PointcutAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>320,236</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-0000000a" kind="JointPointAndSet" role="JointPointAndSet" relid="0x5" members="id-0066-00000016">
+							<name>JointPointAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>327,425</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+					</model>
+					<atom id="id-0066-0000000f" kind="Advice" role="Advice" relid="0x2">
+						<name>FirstAdvice</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>72,228</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="AdviceDefinition">
+							<value>((ACE_Select_Reactor_Impl *) tjp-&gt;target ())-&gt;ACE_Select_Reactor_Impl::purge_pending_notifications (*tjp-&gt;arg &lt; 0 &gt;(),*tjp-&gt;arg &lt; 1 &gt;());</value>
+						</attribute>
 						<attribute kind="TypeOfAdvice" status="meta">
 							<value>around()</value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-00000002" kind="Pointcut" role="Pointcut" relid="0x2">
-						<name>Pointcut</name>
+					<atom id="id-0066-0000001b" kind="Advice" role="Advice" relid="0xa">
+						<name>SecondAdvice</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
 							<regnode name="AOP" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>264,47</value>
+									<value>86,128</value>
 								</regnode>
 							</regnode>
 						</regnode>
+						<attribute kind="AdviceDefinition">
+							<value>printf(&quot;redirecting call of %s  &quot;, JoinPoint::signature());
+</value>
+						</attribute>
+						<attribute kind="TypeOfAdvice" status="meta">
+							<value>around()</value>
+						</attribute>
 					</atom>
+					<connection id="id-0068-0000002e" kind="Advice_Pointcut_Connection" role="Advice_Pointcut_Connection" relid="0xc">
+						<name>Advice_Pointcut_Connection</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>S</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000008"/>
+						<connpoint role="dst" target="id-0066-0000001b"/>
+					</connection>
+					<connection id="id-0068-0000002f" kind="Advice_Pointcut_Connection" role="Advice_Pointcut_Connection" relid="0xd">
+						<name>Advice_Pointcut_Connection</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>e</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000000e"/>
+						<connpoint role="dst" target="id-0066-0000000f"/>
+					</connection>
 				</model>
-				<model id="id-0065-00000006" kind="ConcreteImplementation" role="ConcreteImplementation" relid="0x5" childrelidcntr="0x0">
-					<name>ConcreteImplementation</name>
+				<model id="id-0065-0000000c" kind="AspectFeature" role="AspectFeature" relid="0xf" childrelidcntr="0x8">
+					<name>Single_Thread_Aspect</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="AOP" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>389,216</value>
+								<value>37,93</value>
 							</regnode>
 						</regnode>
 						<regnode name="Bridge_Aspect" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>345,142</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</model>
-				<model id="id-0065-00000007" kind="AspectFeature" role="AspectFeature" relid="0x8" childrelidcntr="0x1">
-					<name>AspectFeature</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="AOP" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>434,77</value>
+								<value>37,93</value>
 							</regnode>
 						</regnode>
 					</regnode>
 					<attribute kind="TypeOfAspect" status="meta">
 						<value>Logging</value>
 					</attribute>
-					<atom id="id-0066-00000003" kind="Pointcut" role="Pointcut" relid="0x1">
-						<name>Pointcut</name>
+					<model id="id-0065-0000000d" kind="Pointcut" role="Pointcut" relid="0x2" childrelidcntr="0x9">
+						<name>method1Pointcut</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
 							<regnode name="AOP" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>296,184</value>
+									<value>275,121</value>
 								</regnode>
 							</regnode>
 						</regnode>
+						<atom id="id-0066-00000011" kind="Jointpoint" role="Jointpoint" relid="0x1">
+							<name>Jointpoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>353,331</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>&quot;% ACE_Reactor_Impl::purge_pending_notifications(...)&quot;</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000012" kind="FinalJointPoint" role="FinalJointPoint" relid="0x4">
+							<name>FinalJointPoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>355,194</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000013" kind="MainPointcut" role="MainPointcut" relid="0x8">
+							<name>MainPointcut</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>355,19</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<connection id="id-0068-0000001f" kind="JPSet_Connection" role="JPSet_Connection" relid="0x3">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000011"/>
+							<connpoint role="dst" target="id-0069-00000007"/>
+						</connection>
+						<connection id="id-0068-00000020" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x5">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-00000012"/>
+							<connpoint role="src" target="id-0069-00000007"/>
+						</connection>
+						<connection id="id-0068-00000021" kind="FinalPointCutConnection" role="FinalPointCutConnection" relid="0x7">
+							<name>FinalPointCutConnection</name>
+							<connpoint role="src" target="id-0066-00000012"/>
+							<connpoint role="dst" target="id-0069-00000008"/>
+						</connection>
+						<connection id="id-0068-00000022" kind="AddPointCutConnection" role="AddPointCutConnection" relid="0x9">
+							<name>AddPointCutConnection</name>
+							<connpoint role="dst" target="id-0066-00000013"/>
+							<connpoint role="src" target="id-0069-00000008"/>
+						</connection>
+						<set id="id-0069-00000007" kind="JointPointAndSet" role="JointPointAndSet" relid="0x2" members="id-0066-00000011">
+							<name>JointPointAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>355,264</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-00000008" kind="PointcutAndSet" role="PointcutAndSet" relid="0x6" members="id-0066-00000012">
+							<name>PointcutAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>348,75</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+					</model>
+					<model id="id-0065-0000000f" kind="Pointcut" role="Pointcut" relid="0x4" childrelidcntr="0x9">
+						<name>method2Pointcut</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>268,205</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<atom id="id-0066-00000017" kind="MainPointcut" role="MainPointcut" relid="0x2">
+							<name>MainPointcut</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>341,131</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000018" kind="FinalJointPoint" role="FinalJointPoint" relid="0x4">
+							<name>FinalJointPoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>341,306</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000019" kind="Jointpoint" role="Jointpoint" relid="0x5">
+							<name>Jointpoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>339,443</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SetOfJointPoint">
+								<value>&quot;% ACE_Reactor_Impl::renew()&quot;</value>
+							</attribute>
+							<attribute kind="TypeOfJointPoint" status="meta">
+								<value>call</value>
+							</attribute>
+						</atom>
+						<connection id="id-0068-0000002a" kind="FinalPointCutConnection" role="FinalPointCutConnection" relid="0x6">
+							<name>FinalPointCutConnection</name>
+							<connpoint role="src" target="id-0066-00000018"/>
+							<connpoint role="dst" target="id-0069-0000000b"/>
+						</connection>
+						<connection id="id-0068-0000002b" kind="JPSet_Connection" role="JPSet_Connection" relid="0x7">
+							<name>JPSet_Connection</name>
+							<connpoint role="src" target="id-0066-00000019"/>
+							<connpoint role="dst" target="id-0069-0000000c"/>
+						</connection>
+						<connection id="id-0068-0000002c" kind="AddJointPointsConnection" role="AddJointPointsConnection" relid="0x8">
+							<name>AddJointPointsConnection</name>
+							<connpoint role="dst" target="id-0066-00000018"/>
+							<connpoint role="src" target="id-0069-0000000c"/>
+						</connection>
+						<connection id="id-0068-0000002d" kind="AddPointCutConnection" role="AddPointCutConnection" relid="0x9">
+							<name>AddPointCutConnection</name>
+							<connpoint role="dst" target="id-0066-00000017"/>
+							<connpoint role="src" target="id-0069-0000000b"/>
+						</connection>
+						<set id="id-0069-0000000b" kind="PointcutAndSet" role="PointcutAndSet" relid="0x1" members="id-0066-00000018">
+							<name>PointcutAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>334,187</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+						<set id="id-0069-0000000c" kind="JointPointAndSet" role="JointPointAndSet" relid="0x3" members="id-0066-00000019">
+							<name>JointPointAndSet</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Pointcut_Aspect" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>341,376</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</set>
+					</model>
+					<atom id="id-0066-00000010" kind="Advice" role="Advice" relid="0x1">
+						<name>FirstAdvice</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>93,121</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="AdviceDefinition">
+							<value>printf(&quot;redirecting call of %s  &quot;, JoinPoint::signature());
+</value>
+						</attribute>
+						<attribute kind="TypeOfAdvice" status="meta">
+							<value>around()</value>
+						</attribute>
 					</atom>
+					<atom id="id-0066-0000001a" kind="Advice" role="Advice" relid="0x5">
+						<name>SecondAdvice</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="AOP" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>86,200</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="AdviceDefinition">
+							<value>printf(&quot;redirecting call of %s  &quot;, JoinPoint::signature());
+</value>
+						</attribute>
+						<attribute kind="TypeOfAdvice" status="meta">
+							<value>around()</value>
+						</attribute>
+					</atom>
+					<connection id="id-0068-00000030" kind="Advice_Pointcut_Connection" role="Advice_Pointcut_Connection" relid="0x7">
+						<name>Advice_Pointcut_Connection</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>E</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000000d"/>
+						<connpoint role="dst" target="id-0066-00000010"/>
+					</connection>
+					<connection id="id-0068-00000031" kind="Advice_Pointcut_Connection" role="Advice_Pointcut_Connection" relid="0x8">
+						<name>Advice_Pointcut_Connection</name>
+						<connpoint role="src" target="id-0065-0000000f"/>
+						<connpoint role="dst" target="id-0066-0000001a"/>
+					</connection>
 				</model>
-				<connection id="id-0068-00000001" kind="Connection" role="Connection" relid="0x6">
+				<connection id="id-0068-00000017" kind="Connection" role="Connection" relid="0x4">
 					<name>Connection</name>
-					<connpoint role="src" target="id-0065-00000003"/>
-					<connpoint role="dst" target="id-0065-00000006"/>
+					<connpoint role="dst" target="id-0065-00000003"/>
+					<connpoint role="src" target="id-0065-00000004"/>
 				</connection>
-				<connection id="id-0068-00000002" kind="Connection" role="Connection" relid="0x7">
+				<connection id="id-0068-00000018" kind="Connection" role="Connection" relid="0x5">
 					<name>Connection</name>
-					<connpoint role="src" target="id-0065-00000003"/>
-					<connpoint role="dst" target="id-0065-00000004"/>
-				</connection>
-				<connection id="id-0068-00000003" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0x9">
-					<name>ConnectionAspectAbstract</name>
-					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="src" target="id-0065-00000004"/>
 					<connpoint role="dst" target="id-0065-00000005"/>
 				</connection>
-				<connection id="id-0068-00000004" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0xa">
-					<name>ConnectionAspectImplement</name>
-					<connpoint role="dst" target="id-0065-00000004"/>
-					<connpoint role="src" target="id-0065-00000005"/>
+				<connection id="id-0068-00000019" kind="Connection" role="Connection" relid="0x7">
+					<name>Connection</name>
+					<connpoint role="src" target="id-0065-00000004"/>
+					<connpoint role="dst" target="id-0065-00000006"/>
 				</connection>
-				<connection id="id-0068-00000005" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0xb">
+				<connection id="id-0068-0000001a" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0xa">
 					<name>ConnectionAspectAbstract</name>
-					<connpoint role="src" target="id-0065-00000003"/>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="src" target="id-0065-00000004"/>
 					<connpoint role="dst" target="id-0065-00000007"/>
 				</connection>
-				<connection id="id-0068-00000006" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0xc">
+				<connection id="id-0068-0000001b" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0xb">
 					<name>ConnectionAspectImplement</name>
-					<connpoint role="dst" target="id-0065-00000006"/>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value></value>
+					</regnode>
+					<connpoint role="dst" target="id-0065-00000005"/>
 					<connpoint role="src" target="id-0065-00000007"/>
 				</connection>
+				<connection id="id-0068-0000001d" kind="ConnectionAspectAbstract" role="ConnectionAspectAbstract" relid="0x10">
+					<name>ConnectionAspectAbstract</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>s</value>
+					</regnode>
+					<connpoint role="src" target="id-0065-00000004"/>
+					<connpoint role="dst" target="id-0065-0000000c"/>
+				</connection>
+				<connection id="id-0068-0000001e" kind="ConnectionAspectImplement" role="ConnectionAspectImplement" relid="0x11">
+					<name>ConnectionAspectImplement</name>
+					<connpoint role="dst" target="id-0065-00000006"/>
+					<connpoint role="src" target="id-0065-0000000c"/>
+				</connection>
+			</model>
+			<model id="id-0065-00000009" kind="Acceptor_Connector" role="Acceptor_Connector" relid="0x2" childrelidcntr="0x0">
+				<name>Acceptor_Connector</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Benchmarking" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>163,142</value>
+						</regnode>
+					</regnode>
+					<regnode name="Feature" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>163,142</value>
+						</regnode>
+					</regnode>
+					<regnode name="Pattern" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>166,124</value>
+						</regnode>
+					</regnode>
+					<regnode name="Simulation_Aspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>163,142</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000000a" kind="Active_Object" role="Active_Object" relid="0x3" childrelidcntr="0x0">
+				<name>Active_Object</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Pattern" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,121</value>
+						</regnode>
+					</regnode>
+					<regnode name="Simulation_Aspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,121</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000000b" kind="Reactor_Pattern" role="Reactor_Pattern" relid="0x4" childrelidcntr="0x0">
+				<name>Reactor_Pattern</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Benchmarking" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>170,247</value>
+						</regnode>
+					</regnode>
+					<regnode name="Feature" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>170,247</value>
+						</regnode>
+					</regnode>
+					<regnode name="Pattern" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>163,240</value>
+						</regnode>
+					</regnode>
+					<regnode name="Simulation_Aspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>170,247</value>
+						</regnode>
+					</regnode>
+				</regnode>
 			</model>
 		</model>
 	</folder>
