@@ -1,3 +1,15 @@
+Mon Feb 26 06:42:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          - Removed the vc8 policy merge modules since it is strongly
+            encouraged not the redistribute those for vc8.
+          - Removed the vc71 debug modules since it debug modules
+            are not allowed to be distrubuted to the public under the
+            EULA.
+          - The merge modules are now defined under one a single
+            feature called *vc_merge_modules*.
+
 Sun Feb 25 06:19:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_common.wxs:
