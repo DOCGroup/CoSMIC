@@ -1,3 +1,22 @@
+Mon Feb 26 06:38:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/wix.mpb:
+
+          Placed <%quote%> tags around the command keyword's
+          value.
+
+        * install/BMW.wxs:
+        * install/BMW_installers.mpc:
+        * install/CUTS_CoSMIC.wxs:
+        * install/CUTS_CoSMIC_installers.mpc:
+
+          Updated the install scripts to be Wix 3.0 compliant.
+
+        * install/Bitmaps/bannrbmp.bmp:
+        * install/Bitmaps/dlgbmp.bmp:
+
+          Resized the bitmaps the Wix 3.0 specification size.
+
 Sun Feb 25 09:36:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:

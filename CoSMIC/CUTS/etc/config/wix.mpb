@@ -5,7 +5,7 @@ project {
 
   Define_Custom (WIX) {
     automatic             = 1
-    command               = $(WIX_ROOT)/candle
+    command               = <%quote%>$(WIX_ROOT)<%quote%>/bin/candle
 
     inputext              = .wxs
     output_option         = -out
@@ -14,7 +14,8 @@ project {
     keyword wix_flags     = commandflags
   }
 
-  postbuild = $(WIX_ROOT)/light -out <%project_name%>.msi \
+  postbuild = \
+    $(WIX_ROOT)/bin/light -out <%project_name%>.msi \
     <%light_flags%> <%foreach(wix_files)%><%noextension(wix_file)%>.wixobj <%endfor%>
 
   specific(vc71) {
