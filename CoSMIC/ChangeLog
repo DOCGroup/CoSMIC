@@ -1,3 +1,35 @@
+Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
+
+        * PIM/POSAML/examples/test_model_dk.xme:
+
+        * PIM/POSAML/interpreters/AspectInterpreter:
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AOP.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/AOP.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
+        * PIM/POSAML/interpreters/AspectInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/CompIcon.ico:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/Resource.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/component.def:
+        * PIM/POSAML/interpreters/AspectInterpreter/dlldata.c:
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+        * PIM/POSAML/paradigms/icons/and.bmp:
+        * PIM/POSAML/paradigms/icons/equation.bmp:
+        * PIM/POSAML/paradigms/icons/myaspect.bmp:
+        * PIM/POSAML/paradigms/icons/not.bmp:
+        * PIM/POSAML/paradigms/icons/or.bmp:
+        
+        Added new interpreter to automate generation of specialization 
+	files and Updated modeling example xme files
+	
 Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/EUCON.xme: Added a new example.
