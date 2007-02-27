@@ -1,3 +1,9 @@
+Tue Feb 27 05:26:53 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+          
+          Close zip file at the end of get_exist_files_in_zip () function.        
+        
 Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
 
         * PIM/POSAML/examples/test_model_dk.xme:

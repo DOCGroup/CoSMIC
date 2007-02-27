@@ -236,4 +236,6 @@ void ZIP_create::get_exist_files_in_zip(const std::string filename, const std::s
               (string ("There is some problem with zipFile using unzGoToNextFile: " + filename));
         }
     }
+
+  unzClose(uf);
 }
