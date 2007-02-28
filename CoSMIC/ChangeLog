@@ -1,9 +1,28 @@
+Wed Feb 28 03:23:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Changed the display name of the Postcondition attribute
+            to "Effect".
+          - Changed Postcondition attribute value to display 10
+            lines of input.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refreshed the attached PICML library.
+
 Tue Feb 27 05:26:53 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
 
         * PIM/PICML/interpreters/Package/ZIP_create.cpp
-          
-          Close zip file at the end of get_exist_files_in_zip () function.        
-        
+
+          Close zip file at the end of get_exist_files_in_zip () function.
+
 Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
 
         * PIM/POSAML/examples/test_model_dk.xme:
@@ -32,13 +51,15 @@ Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
         * PIM/POSAML/paradigms/icons/myaspect.bmp:
         * PIM/POSAML/paradigms/icons/not.bmp:
         * PIM/POSAML/paradigms/icons/or.bmp:
-        
-        Added new interpreter to automate generation of specialization 
-	files and Updated modeling example xme files
+
+          Added new interpreter to automate generation of specialization
+	        files and Updated modeling example xme files
 	
 Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/EUCON.xme: Added a new example.
+        * PIM/PICML/examples/EUCON.xme:
+
+          Added a new example.
 
 Mon Feb 26 06:42:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 

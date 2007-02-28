@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{3CD88E68-3D36-4492-AEC1-B3E272A0053F}" cdate="Tue Feb 20 00:41:12 2007" mdate="Tue Feb 20 00:41:12 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{367520D4-49B4-499F-B186-252D7DC83623}" cdate="Tue Feb 20 00:41:12 2007" mdate="Tue Feb 20 00:41:12 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -4548,8 +4548,7 @@ endif</value>
 						<value></value>
 					</attribute>
 					<attribute kind="GeneralPreferences">
-						<value>
-sName = srcEffect
+						<value>sName = srcEffect
 dName = dstEffect</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
@@ -4907,11 +4906,11 @@ dName = dstFinish</value>
 					<attribute kind="IsViewable" status="meta">
 						<value>true</value>
 					</attribute>
-					<attribute kind="Multiline" status="meta">
-						<value>1</value>
+					<attribute kind="Multiline">
+						<value>10</value>
 					</attribute>
 					<attribute kind="Prompt">
-						<value>Postcondition:</value>
+						<value>Effects:</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000019" kind="Reference" role="Reference" guid="{761A32DC-C226-424f-8681-70E8725C36CB}" relid="0x2ae">
