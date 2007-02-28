@@ -54,7 +54,7 @@ Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
 
           Added new interpreter to automate generation of specialization
 	    files and Updated modeling example xme files
-	
+
 Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/EUCON.xme:
@@ -107,14 +107,14 @@ Tue Feb 20 17:10:16 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
         * Transformations:
         * Transformations/QUICKER:
         * Transformations/QUICKER/QoSMapping.xme:
-          
+
           Added QUICKER transformations that take PICML model annotated with
           RealTime Requirements and produces the CQML model with
           RTConfiguration.
 
         * Transformations/QUICKER/examples:
         * Transformations/QUICKER/examples/Sample_Strings.xme:
-          
+
           Example uses the Sample_Strings from PICML/examples, with added
           Real Time QoS requirements.
 
@@ -420,9 +420,9 @@ Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
           registry keys instead of relying on self-registration.  This
           makes it possible to build PICML under Windows Vista.
 
-        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
 
-          Use the type of a PredefinedType instead of the name to 
+          Use the type of a PredefinedType instead of the name to
           check for type conformance, when outputting Property types.
 
 
@@ -435,7 +435,7 @@ Tue Jan 30 19:46:02 UTC 2007  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/SQML - Project Report.doc:
         * PSM/CQML/SQML-SecurityQoSDSML.ppt:
-          
+
           Added the Security Modeling report and presentation
 
 Tue Jan 30 18:43:21 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
@@ -756,7 +756,7 @@ Sat Dec 16 04:31:58 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/examples/BasicSP.xme:
-        
+
           Works with new CQML containing FT and Security QoS
 
         * PSM/CQML/interpreters/Interpreters.mwc:
@@ -940,14 +940,14 @@ Mon Nov 20 22:33:06 UTC 2006  Sumant Tambe <sutambe@dre.vanderbilt.edu>
 
 Wed Nov 15 14:42:59 UTC 2006  Nishanth Shanakran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
-          Modified the names of the components to Gizmo, Comm, Analysis, 
+          Modified the names of the components to Gizmo, Comm, Analysis,
           etc. Also, created the deployment plan for the "combination string".
 
 Tue Nov 14 06:19:35 UTC 2006  Nishanth Shankran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
           Updated the model to include the "combination string".
 
@@ -967,13 +967,13 @@ Tue Nov 14 000:04:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Mon Nov 13 19:27:06 UTC 2006  Nishanth Shankaran  <nshnakar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
           Updated the example.
 
 Mon Nov 13 15:42:59 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
           Updated the example.
 
@@ -1027,7 +1027,7 @@ Thu Nov  9 17:12:39 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
-          
+
           Fixed xml files such that picml gets built.
 
 Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
@@ -1094,13 +1094,13 @@ Fri Nov  3 22:22:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Wed Nov  1 22:49:39 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/RACE.xme: 
-           
+        * PIM/PICML/examples/RACE.xme:
+
           Updated the model to include the XML Output Adapter.
 
 Wed Nov  1 20:17:03 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
-        * demos/STI/BDCWebService.NET/BDC.mpc:  
+        * demos/STI/BDCWebService.NET/BDC.mpc:
 
           Missing MPC file to allow compilation of BDCWebService.NET.
 
@@ -1124,14 +1124,14 @@ Tue Oct 17 23:34:14 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Tue Oct 17 21:50:53 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
           Updated the model.
 
 Tue Oct 17 21:38:17 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/RACE.xme:
-        * PIM/PICML/examples/RACE_NetQoS.xme:  
+        * PIM/PICML/examples/RACE_NetQoS.xme:
 
           Moved these files up one level in the directory hierarchy.
 
@@ -1142,9 +1142,9 @@ Tue Oct 17 21:38:17 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Tue Oct 17 16:32:44 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/Sample_Strings.xme: 
+        * PIM/PICML/examples/Sample_Strings.xme:
 
-          Checking in the initial version of the operational strings 
+          Checking in the initial version of the operational strings
           used for the ARMS/NASA demo.
 
 Sat Oct 14 03:37:17 UTC 2006  Sumant Tambe <sutambe@nospam>
@@ -1168,7 +1168,7 @@ Fri Oct 13 03:42:58 UTC 2006  Sumant Tambe <sutambe@nospam>
 
 Thu Oct 12 01:57:57 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
-        * PIM/SIML/examples/SLICE.xme:  
+        * PIM/SIML/examples/SLICE.xme:
 
           Updated example to reflect changes in the paradigm.
 
@@ -1257,14 +1257,14 @@ Tue Oct 10 17:58:15 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Mon Oct  9 16:40:15 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * CUTS/default.features: 
+        * CUTS/default.features:
 
-          Reverting to the previous version since this file was accidentaly 
+          Reverting to the previous version since this file was accidentaly
           checked in during the previous commit.
 
 Mon Oct  9 16:34:22 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/SPACE.xme: 
+        * PIM/PICML/examples/SPACE.xme:
 
           Checking in the SPACE model that is being used for the LMCO ATC project.
 
@@ -1765,7 +1765,7 @@ Mon Aug 28 07:35:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
        * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp 
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
          Changed the NetQoS interpreter to generate deployment plans
@@ -1797,47 +1797,47 @@ Mon Aug 28 01:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
        * udm.mpb
        * Utils
        * utils.mpb
-       
+
        * PIM/PICML/addons/UUIDManager/RawComponent.cpp
        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc
-       
+
        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc
        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
-       
+
        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h
        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp
-       
+
        * PIM/PICML/interpreters/Package/PackageVisitor.cpp
        * PIM/PICML/interpreters/Package/PackageVisitor.h
-       
+
        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
-       
+
        * PIM/PICML/interpreters/PICML/PICML.mpc
        * PIM/PICML/interpreters/PICML/Utils.cpp
-       
+
        * PIM/PICML/paradigms/PICML.xmp
-       
+
        * PSM/CQML/interpreters/CQML/CQML.mpc
-       
+
        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
-       
+
        * PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc
-       
+
        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc
        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp
-       
+
        * PSM/CQML/interpreters/Interpreters.mwc
-       
+
        * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
-       
+
        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc
        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp
-       
+
        * Utils/Utils.cpp
        * Utils/Utils.h
        * Utils/Utils.mpc
@@ -1852,7 +1852,7 @@ Sat Aug 26 03:24:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
 
-          New interpreter after adding support for infoProperty in the DeploymentPlan.        
+          New interpreter after adding support for infoProperty in the DeploymentPlan.
 
         * PIM/PICML/paradigms/PICML-uml.xme
         * PIM/PICML/paradigms/PICML.xme
@@ -1860,28 +1860,28 @@ Sat Aug 26 03:24:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/paradigms/PICML.xmp
 
           New paradigm after adding support for infoProperty in the DeploymentPlan.
-        
+
         * PSM/CQML/examples/BasicSP.xme
-        
+
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
         * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
 
           Improved DeploymentPlanFramework Injector interface.
-        
+
         * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
         * PSM/CQML/interpreters/FaultTolerance/FTAdders.h
         * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
         * PSM/CQML/interpreters/FaultTolerance/FTInjector.h
-        
+
           Uses infoProperty.
 
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
           Uses infoProperty.
-        
+
         * PSM/CQML/paradigms/CQML-uml.xme
         * PSM/CQML/paradigms/CQML.xme
         * PSM/CQML/paradigms/CQML.xml
@@ -3703,11 +3703,11 @@ Fri Jun 23 19:43:48 UTC 2006  Jeff Parsons  <j.parsons@vanderbilt.edu>
 Fri Jun 23 01:54:18 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
-          
+
           Removed some legacy interpreters.
 
         * cosmic.mwc:
-          
+
           Removed some legacy projects.
 
 Fri Jun 16 22:10:48 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
@@ -3718,20 +3718,20 @@ Fri Jun 16 22:10:48 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 Tue Jun 13 04:54:27 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-          
+
           Fixed a few constraint violations in the FaultTolerance folder
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           Added new constraints in the FaultTolerance paradigm sheet.
 
 Thu Jun  8 17:18:23 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanFramework/Injector.h:
-          
+
           Minor #ifdef changes.
 
         * PIM/PICML/interpreters/FaultTolerance/FTAdders.h:
@@ -3744,14 +3744,14 @@ Thu Jun  8 17:18:23 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
         * PIM/PICML/interpreters/FaultTolerance/common.h:
-          
+
           Restructured the FaultTolerance interpreter.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           Added a few constraints in the FaultTolerance paradigm sheet.
 
 Wed Jun  7 18:01:27 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -4835,7 +4835,7 @@ Tue Apr 18 23:06:52 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           Merging FT changes after April ARMS demo.
 
 Sun Apr  9 16:24:27 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
@@ -4893,19 +4893,19 @@ Fri Apr  7 14:05:51 GMT 2006  Jaiganesh Balasubramanian  <jai.dre.vanderbilt.edu
 Thu Apr  6 21:21:40 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-          
+
           Added some fault tolerance elements such as more SRGs.
 
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
-          
+
           The BranchNBound algorithm work in this version.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           Changed FOURequirement to FOU_Requirement.
 
 Thu Apr  6 19:49:42 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
@@ -5045,7 +5045,7 @@ Mon Apr  3 22:51:21 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 Mon Apr  3 19:56:46 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-          
+
           Changed CriticalPath_FTRequirements
 
 Mon Apr  3 08:08:17 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
@@ -5060,11 +5060,11 @@ Mon Apr  3 08:08:17 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 Sun Apr  2 09:14:19 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-          
+
            Changed FaultTolerance folder.
 
         * PIM/PICML/interpreters/DeploymentPlanFramework/Injector.h:
-          
+
           Updated DeploymentPlanFramework's injector interface.
 
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
@@ -5074,7 +5074,7 @@ Sun Apr  2 09:14:19 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          
+
           Updated some FT elements.
 
 Sat Apr  1 08:44:14 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
@@ -5345,18 +5345,19 @@ Thu Mar 23 23:59:21 UTC 2006 Jaiganesh B  <jai@dre.vanderbilt.edu>
         Made changes to the deployment plan paradigm sheet to support
         shared component deployments.
 
-Thu Mar 23 17:13:52 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
-
-        * PIM/PICML/examples/Hog_string/Hog_string.xme:
-
-        Modified the "hog" string so that it's identical to RT1High.
-
 Thu Mar 23 21:39:21 UTC 2006 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
 
           Made a fix to include the right set of component assembly
           parents while creating the connections.
+
+Thu Mar 23 17:13:52 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/Hog_string/Hog_string.xme:
+
+        Modified the "hog" string so that it's identical to RT1High.
+
 
 Thu Mar 23 07:49:42 UTC 2006  Krishnakumar B  <kitty@spam.invalid.domain>
 
@@ -5387,12 +5388,6 @@ Tue Mar 21 22:28:17 UTC 2006 Jaiganesh B  <jai@dre.vanderbilt.edu>
 
           Made lot of cosmetic changes
 
-Mon Mar 20 17:39:29 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
-
-        * PIM/PICML/examples/Hog_string/Hog_string.xme:
-
-        Added the model for the "hog_string".
-
 Mon Mar 20 16:12:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
@@ -5400,6 +5395,13 @@ Mon Mar 20 16:12:48 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
         Updated model to contain a deployment plan with on the
         components in the critical path. The deployment plan is
         called Critical-Path.
+
+Mon Mar 20 17:39:29 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/Hog_string/Hog_string.xme:
+
+        Added the model for the "hog_string".
+
 
 Fri Mar 17 20:16:41 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
