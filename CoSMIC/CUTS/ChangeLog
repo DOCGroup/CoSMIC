@@ -1,3 +1,24 @@
+Wed Feb 28 16:51:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/CUTS_CoSMIC.wxs:
+
+          - Removed the COSMIC_ROOT and COSMIC_BIN variable declarations.
+          - Removed the entire CUTS_components components (see change
+            below).
+
+        * install/CUTS_PICML.wxs:
+
+          Refactored the CUTS_components component into its separate
+          .wxs file. This will allow other WIX projects (installers)
+          to include the CUTS_PICML interpreter in their installer
+          by adding the CUTS_PICML.wxs to their project, and adding
+          a <ComponentRef id='CUTS_PICML'> declaration to the appropriate
+          feature node.
+
+        * install/CUTS_CoSMIC_installers.mpc:
+
+          Added CUTS_PICML.wxs to the CUTS_CoSMIC installer project.
+
 Mon Feb 26 06:38:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/wix.mpb:

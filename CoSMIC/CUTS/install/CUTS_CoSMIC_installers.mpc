@@ -7,6 +7,7 @@ project (CUTS_CoSMIC) : wix {
   }
 
   Wix_Files {
+    CUTS_PICML.wxs
     CUTS_CoSMIC.wxs
     $(COSMIC_ROOT)/Installer/CoSMIC_common.wxs
   }

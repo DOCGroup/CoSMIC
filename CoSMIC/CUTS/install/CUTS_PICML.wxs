@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <Fragment Id='CUTS_CoSMIC'>
+    <DirectoryRef Id='bin'>
+      <Component Id='CUTS_PICML'
+                 Guid='1B880B88-2944-419C-843F-433096213675'>
+
+        <File Id="CUTS_PICML.dll" Name="CUTS_PICML.dll"
+              Source="$(env.COSMIC_ROOT)\bin\CUTS_PICML.dll" DiskId="1" />
+
+        <File Id="CUTS_BE_CIAO.dll" Name="CUTS_BE_CIAO.dll"
+              Source="$(env.COSMIC_ROOT)\bin\CUTS_BE_CIAO.dll" DiskId="1" />
+
+        <File Id="CUTS_BE.dll" Name="CUTS_BE.dll"
+              Source="$(env.COSMIC_ROOT)\bin\CUTS_BE.dll" DiskId="1" />
+
+        <!-- GME registry information -->
+        <RegistryKey Root="HKLM"
+                     Key="SOFTWARE\GME\Components\CUTS.Interpreter.PICML"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Description" Type="string"
+                         Value="CUTS Interpreter" Action="write" />
+          <RegistryValue Name="Icon" Type="string"
+                         Value=",IDI_COMPICON" Action="write" />
+          <RegistryValue Name="Paradigm" Type="string"
+                         Value="PICML" Action="write" />
+          <RegistryValue Name="Tooltip" Type="string"
+                         Value="CUTS interpreter" Action="write" />
+          <RegistryValue Name="Type" Type="integer"
+                         Value="1" Action="write" />
+          <RegistryKey Key="Associated" Action="create">
+            <RegistryValue Name="PICML" Type="string"
+                           Action="write" Value="" />
+          </RegistryKey>
+        </RegistryKey>
+
+        <!-- ProgID registry information -->
+        <RegistryKey Root="HKCR"
+                     Key="CUTS.Interpreter.PICML"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string" Value="CUTS.Interpreter.PICML" />
+          <RegistryKey Key="CLSID" Action="create">
+            <RegistryValue Type="string"
+                           Value="{DD5752C3-12EF-43D0-978C-F5C395D5BF13}" />
+          </RegistryKey>
+        </RegistryKey>
+
+        <!-- CLSID registry information -->
+        <RegistryKey Root="HKCR"
+                     Key="CLSID\{DD5752C3-12EF-43D0-978C-F5C395D5BF13}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Type="string"
+                         Value="CUTS.Interpreter.PICML" />
+
+          <RegistryKey Key="InProcServer32" Action="create">
+            <RegistryValue Type="string"
+                           Value="[INSTALLDIR]bin\CUTS_PICML.dll" />
+          </RegistryKey>
+
+          <RegistryKey Key="ProgID" Action="create">
+            <RegistryValue Type="string" Value="CUTS.Interpreter.PICML" />
+          </RegistryKey>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
