@@ -53,7 +53,7 @@ Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
         * PIM/POSAML/paradigms/icons/or.bmp:
 
           Added new interpreter to automate generation of specialization
-	        files and Updated modeling example xme files
+	    files and Updated modeling example xme files
 	
 Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
 
@@ -107,12 +107,14 @@ Tue Feb 20 17:10:16 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
         * Transformations:
         * Transformations/QUICKER:
         * Transformations/QUICKER/QoSMapping.xme:
+          
           Added QUICKER transformations that take PICML model annotated with
           RealTime Requirements and produces the CQML model with
           RTConfiguration.
 
         * Transformations/QUICKER/examples:
         * Transformations/QUICKER/examples/Sample_Strings.xme:
+          
           Example uses the Sample_Strings from PICML/examples, with added
           Real Time QoS requirements.
 
@@ -126,12 +128,12 @@ Tue Feb 20 03:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
         * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
 
-          FT interpreter uses the new macros.
+          FT interpreter uses the above new macros.
 
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
 
-          NetQoS interpreter also uses the new macros.
+          NetQoS interpreter also uses the above new macros.
 
 Sat Feb 17 09:18:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -201,15 +203,20 @@ Mon Feb 12 11:44:32 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/CQML/CQML.mpc:
         * PSM/CQML/interpreters/CQML/acceptor.h:
 
-          - An Acceptor functor was added to facilitate writing visitors.
-            The following projects make use of the Acceptor functor.
+          An Acceptor functor was added to facilitate writing visitors.
 
         * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
 
+          FTVisitor now uses the Acceptor functor.
+
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+
+          NetQoSVisitor also uses the Acceptor functor.
 
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          SecurityQoSVisitor also uses the Acceptor functor.
 
 Sat Feb 10 22:08:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -348,6 +355,7 @@ Tue Feb  6 23:03:49 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+
           Checking in .reg files for these interpreters.  I had missed
           them in the previous check-in.
 
@@ -383,26 +391,6 @@ Mon Feb  5 09:13:59 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
           Some QoSModeling and FT paradigm sheets of CQML were modified.
 
-Mon Feb  5 09:10:38 UTC 2007  Sumant Tambe  <sutambe@nospam>
-
-        * PIM/PICML/paradigms/PICML.xmp:
-
-        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
-        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
-        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
-
-        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
-        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
-        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
-        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
-        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
-        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
-        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
-
-        * PSM/CQML/paradigms/CQML.xme:
-        * PSM/CQML/paradigms/CQML.xml:
-        * PSM/CQML/paradigms/CQML.xmp:
-
 Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/addons/UUIDManager/UUIDManager.reg:
@@ -432,9 +420,10 @@ Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
           registry keys instead of relying on self-registration.  This
           makes it possible to build PICML under Windows Vista.
 
-        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Use the type
-          of a PredefinedType instead of the name to check for type
-          conformance, when outputting Property types.
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  
+
+          Use the type of a PredefinedType instead of the name to 
+          check for type conformance, when outputting Property types.
 
 
 Tue Jan 30 20:25:08 UTC 2007  unknown  <unknown@vuse.vanderbilt.edu>
@@ -446,6 +435,7 @@ Tue Jan 30 19:46:02 UTC 2007  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/SQML - Project Report.doc:
         * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+          
           Added the Security Modeling report and presentation
 
 Tue Jan 30 18:43:21 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
@@ -552,13 +542,14 @@ Wed Jan 24 19:05:46 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
 Wed Jan 24 17:17:52 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
 
-        Icons for Automation of Aspects
         * PIM/POSAML/paradigms/icons/Implementation.bmp:
         * PIM/POSAML/paradigms/icons/Pointcut.bmp:
         * PIM/POSAML/paradigms/icons/abstract.bmp:
         * PIM/POSAML/paradigms/icons/advice.bmp:
         * PIM/POSAML/paradigms/icons/myaspect.bmp:
         * PIM/POSAML/paradigms/icons/myclass.bmp:
+
+          Icons for Automation of Aspects
 
 Sat Jan 20 09:28:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
@@ -734,14 +725,14 @@ Tue Dec 19 18:02:18 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
         * PIM/POSAML/interpreters/OmnetInterpreter/component.def:
         * PIM/POSAML/interpreters/OmnetInterpreter/dlldata.c:
 
-        Added a new interpreter to generate OMNeT++ files
+          Added a new interpreter to generate OMNeT++ files
 
         * PIM/POSAML/interpreters/interpreters.mwc:
 
         * PIM/POSAML/paradigms/POSAML.xme:
         * PIM/POSAML/paradigms/POSAML.xmp:
 
-        Latest version of POSAML
+          Latest version of POSAML
 
 Tue Dec 19 06:25:33 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -754,40 +745,40 @@ Mon Dec 18 17:09:35 UTC 2006  Joe Hoffert  <jhofert@dre.vanderbilt.edu>
 
         * PSM/
 
-        Added DQML (DDS QoS Modeling Language) directories.
+          Added DQML (DDS QoS Modeling Language) directories.
 
 Sat Dec 16 04:31:58 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xmp:
 
-        Latest interpreted version for CQML.
+          Latest interpreted version for CQML.
 
 Sat Dec 16 04:23:21 UTC 2006  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
 
         * PSM/CQML/examples/BasicSP.xme:
-        Works with new CQML containing FT and Security QoS
-
+        
+          Works with new CQML containing FT and Security QoS
 
         * PSM/CQML/interpreters/Interpreters.mwc:
 
-        Added Security QoS interpreter.
+          Added Security QoS interpreter.
 
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
 
-        Now the interpreter dumps the metadeta for CCM Container configuration
+          Now the interpreter dumps the metadeta for CCM Container configuration
 
         * PSM/CQML/paradigms/CQML-uml.xme:
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-        FT now conforms to CQML
+          FT now conforms to CQML
 
         * PSM/CQML/paradigms/icons/DeploymentPlan.bmp:
         * PSM/CQML/paradigms/icons/RootRiskGroup.bmp:
         * PSM/CQML/paradigms/icons/TargetReliabilityModel.bmp:
 
-        FT icons upgraded
+          FT icons upgraded
 
 Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
 
@@ -812,7 +803,7 @@ Fri Dec 15 02:16:11 UTC 2006  Akshay V. Dabholkar <aky@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/icons/security_policy.bmp:
         * PSM/CQML/paradigms/icons/user.gif:
 
-                                Added some security QoS icons
+          Added some security QoS icons
 
 Wed Dec 13 00:49:31 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -934,29 +925,31 @@ Fri Nov 24 17:11:22 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Mon Nov 20 22:33:06 UTC 2006  Sumant Tambe <sutambe@dre.vanderbilt.edu>
 
-  The first version of NetQoS attribute splitting functionality.
-  This feature is not complete yet and should not be included in the
-  compilation.
+        * PSM/CQML/interpreters/NetQoS/common.h
+        * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+        * PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.cpp
+        * PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.h
+        * PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.cpp
+        * PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.h
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
-  * PSM/CQML/interpreters/NetQoS/common.h
-  * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-  * PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoS_Splitter.h
-  * PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSRequirementsIterator.h
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+          The first version of NetQoS attribute splitting functionality.
+          This feature is not complete yet and is not be included in the
+          compilation.
 
 Wed Nov 15 14:42:59 UTC 2006  Nishanth Shanakran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Modified the names of the
-          components to Gizmo, Comm, Analysis, etc. Also, created the
-          deployment plan for the "combination string".
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Modified the names of the components to Gizmo, Comm, Analysis, 
+          etc. Also, created the deployment plan for the "combination string".
 
 Tue Nov 14 06:19:35 UTC 2006  Nishanth Shankran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Updated the model to
-          include the "combination string".
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Updated the model to include the "combination string".
 
 Tue Nov 14 000:04:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
@@ -974,11 +967,15 @@ Tue Nov 14 000:04:29 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Mon Nov 13 19:27:06 UTC 2006  Nishanth Shankaran  <nshnakar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Updated the example.
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Updated the example.
 
 Mon Nov 13 15:42:59 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Updated the example.
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Updated the example.
 
 Thu Nov  9 22:46:51 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -1030,10 +1027,10 @@ Thu Nov  9 17:12:39 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
+          
           Fixed xml files such that picml gets built.
 
 Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
-
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
@@ -1044,12 +1041,12 @@ Wed Nov  8 23:43:46 UTC 2006  Amogh Kavimandan <amoghk@dre.vanderbilt.edu>
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
+
           PICML changes: Platform Independent QoS models additions
           for EC and RT configurations.
           CQML changes: CQML changes to use PICML as a library,
           thus any changes to PICML would have to be accompanied
           by a corresponding library refresh in CQML.
-
 
 Wed Nov  8 23:01:10 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
@@ -1097,13 +1094,15 @@ Fri Nov  3 22:22:06 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Wed Nov  1 22:49:39 UTC 2006  Nishanth Shankaran  <nshankar@nospam.com>
 
-        * PIM/PICML/examples/RACE.xme: Updated the model to include the
-          XML Output Adapter.
+        * PIM/PICML/examples/RACE.xme: 
+           
+          Updated the model to include the XML Output Adapter.
 
 Wed Nov  1 20:17:03 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
-        * demos/STI/BDCWebService.NET/BDC.mpc:  Missing MPC file to allow
-          compilation of BDCWebService.NET.
+        * demos/STI/BDCWebService.NET/BDC.mpc:  
+
+          Missing MPC file to allow compilation of BDCWebService.NET.
 
 Thu Oct 19 01:17:26 UTC 2006  Sumant Tambe <sutambe@nospam>
 
@@ -1112,7 +1111,7 @@ Thu Oct 19 01:17:26 UTC 2006  Sumant Tambe <sutambe@nospam>
           * PSM/CQML/paradigms/CQML.xml
           * PSM/CQML/paradigms/CQML.xmp
 
-          Added the HIGH_THROUGHPUT attribute in the NetQoS.
+            Added the HIGH_THROUGHPUT attribute to the NetQoS.
 
 Tue Oct 17 23:34:14 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
@@ -1125,13 +1124,16 @@ Tue Oct 17 23:34:14 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Tue Oct 17 21:50:53 UTC 2006  Nishanth Shankaran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Updated the model.
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Updated the model.
 
 Tue Oct 17 21:38:17 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/RACE.xme:
-        * PIM/PICML/examples/RACE_NetQoS.xme:  Moved these files up one
-          level in the directory hierarchy.
+        * PIM/PICML/examples/RACE_NetQoS.xme:  
+
+          Moved these files up one level in the directory hierarchy.
 
         * PIM/PICML/examples/RACE/RACE.xme:
         * PIM/PICML/examples/RACE/RACE_NetQoS.xme:
@@ -1140,21 +1142,21 @@ Tue Oct 17 21:38:17 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Tue Oct 17 16:32:44 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/Sample_Strings.xme: Checking in the initial
-          version of the operational strings used for the ARMS/NASA demo.
+        * PIM/PICML/examples/Sample_Strings.xme: 
+
+          Checking in the initial version of the operational strings 
+          used for the ARMS/NASA demo.
 
 Sat Oct 14 03:37:17 UTC 2006  Sumant Tambe <sutambe@nospam>
-
-        Fixed a constraint in ConnectionQoS modeling.
 
         * PSM/CQML/paradigms/CQML-uml.xme
         * PSM/CQML/paradigms/CQML.xme
         * PSM/CQML/paradigms/CQML.xml
         * PSM/CQML/paradigms/CQML.xmp
 
-Fri Oct 13 03:42:58 UTC 2006  Sumant Tambe <sutambe@nospam>
+          Fixed a constraint in ConnectionQoS modeling.
 
-        Fixed NetQoS interpreter and modified the RACE_NetQoS xme file.
+Fri Oct 13 03:42:58 UTC 2006  Sumant Tambe <sutambe@nospam>
 
         * PIM/PICML/examples/RACE/RACE_NetQoS.xme
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
@@ -1162,10 +1164,13 @@ Fri Oct 13 03:42:58 UTC 2006  Sumant Tambe <sutambe@nospam>
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
+        Fixed NetQoS interpreter and modified the RACE_NetQoS xme file.
+
 Thu Oct 12 01:57:57 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
-        * PIM/SIML/examples/SLICE.xme:  Updated example to reflect changes
-          in the paradigm.
+        * PIM/SIML/examples/SLICE.xme:  
+
+          Updated example to reflect changes in the paradigm.
 
         * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.h:
         * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.cpp:
@@ -1252,13 +1257,16 @@ Tue Oct 10 17:58:15 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Mon Oct  9 16:40:15 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * CUTS/default.features: Reverting to the previous version since
-          this file was accidentaly checked in during the previous commit.
+        * CUTS/default.features: 
+
+          Reverting to the previous version since this file was accidentaly 
+          checked in during the previous commit.
 
 Mon Oct  9 16:34:22 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
-        * PIM/PICML/examples/SPACE.xme: Checking in the SPACE model that
-          is being used for the LMCO ATC project.
+        * PIM/PICML/examples/SPACE.xme: 
+
+          Checking in the SPACE model that is being used for the LMCO ATC project.
 
 Thu Oct  5 10:13:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -1270,11 +1278,11 @@ Thu Oct  5 10:13:07 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
 Wed Oct  4 00:50:15 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-          Added a model of RACE with a NetQoS planner in it.
-          Fixed name typos in the RACE model.
-
         * PIM/PICML/examples/RACE/RACE.xme
         * PIM/PICML/examples/RACE/RACE_NetQoS.xme
+
+          Added a model of RACE with a NetQoS planner in it.
+          Fixed name typos in the RACE model.
 
 Mon Oct  2 20:18:57 UTC 2006  Nishanth Shanakran  <nshankar@dre.vanderbilt.edu>
 
@@ -1297,7 +1305,6 @@ Fri Sep 29 00:01:02 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
           Updates to the icons to make them more appealing.
 
 Mon Sep 25 21:16:25 UTC 2006  akogekar  <akogekar@dre.vanderbilt.edu>
-
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.sln:
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkingBON2Component.vcproj:
@@ -1708,12 +1715,12 @@ Fri Sep  1 00:02:18 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
 Tue Aug 29 00:33:54 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-        Fixed a deployment plan interpreter bug and refactored
-        unique identifier creation code. Fixed UUIDManager mpc.
-
         * PIM/PICML/addons/UUIDManager/UUIDManager.mpc
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+
+          Fixed a deployment plan interpreter bug and refactored
+          unique identifier creation code. Fixed UUIDManager mpc.
 
 Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
@@ -1743,9 +1750,9 @@ Mon Aug 28 19:38:17 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
 
 Mon Aug 28 19:16:34 UTC 2006  Sumant Tambe <sutambe@nospam>
 
-  Added some missing files.
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp
 
-  * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp
+          I missed this file in the last checkin.
 
 Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
@@ -1756,102 +1763,131 @@ Mon Aug 28 16:18:52 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 
 Mon Aug 28 07:35:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-  Changed the NetQoS interpreter to generate deployment plans
-        using the Deployment Plan Framework.
+       * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+       * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp 
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+         Changed the NetQoS interpreter to generate deployment plans
+         using the Deployment Plan Framework.
 
 Mon Aug 28 07:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-  Fixed these files to compile as per the new refactored
-  CoSMIC code.
+       * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp
+       * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp
+       * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp
+       * PIM/PICML/interpreters/Path/PathVisitor.cpp
+       * PIM/PICML/interpreters/Path/PathVisitor.h
+       * PIM/PICML/interpreters/PathComponent/UdmApp.cpp
+       * PIM/PICML/interpreters/Target/DomainVisitor.cpp
+       * PIM/PICML/interpreters/Target/DomainVisitor.h
+       * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
 
-  * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/Path/PathVisitor.cpp
-  * PIM/PICML/interpreters/Path/PathVisitor.h
-  * PIM/PICML/interpreters/PathComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/Target/DomainVisitor.cpp
-  * PIM/PICML/interpreters/Target/DomainVisitor.h
-  * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+         Fixed these files to compile as per the new refactored
+         CoSMIC code.
 
 Mon Aug 28 01:15:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-        Refactored some CoSMIC code into Utils directory in COSMIC_ROOT.
-        Most probably it will break some builds. It is being worked upon.
+       * cosmic.mwc
+       * cosmic_common.mpb
+       * cqmllib.mpb
+       * picmllib.mpb
+       * udm.mpb
+       * Utils
+       * utils.mpb
+       
+       * PIM/PICML/addons/UUIDManager/RawComponent.cpp
+       * PIM/PICML/addons/UUIDManager/UUIDManager.mpc
+       
+       * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc
+       * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+       * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
+       
+       * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h
+       * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp
+       
+       * PIM/PICML/interpreters/Package/PackageVisitor.cpp
+       * PIM/PICML/interpreters/Package/PackageVisitor.h
+       
+       * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
+       
+       * PIM/PICML/interpreters/PICML/PICML.mpc
+       * PIM/PICML/interpreters/PICML/Utils.cpp
+       
+       * PIM/PICML/paradigms/PICML.xmp
+       
+       * PSM/CQML/interpreters/CQML/CQML.mpc
+       
+       * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
+       * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+       * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
+       
+       * PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc
+       
+       * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc
+       * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp
+       
+       * PSM/CQML/interpreters/Interpreters.mwc
+       
+       * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+       * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+       
+       * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc
+       * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp
+       
+       * Utils/Utils.cpp
+       * Utils/Utils.h
+       * Utils/Utils.mpc
+       * Utils/Utils_export.h
+       * Utils/XercesString.cpp
+       * Utils/XercesString.h
 
-  * cosmic.mwc
-  * cosmic_common.mpb
-  * cqmllib.mpb
-  * picmllib.mpb
-  * PIM/PICML/addons/UUIDManager/RawComponent.cpp
-  * PIM/PICML/addons/UUIDManager/UUIDManager.mpc
-  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc
-  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
-  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
-  * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h
-  * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/Package/PackageVisitor.cpp
-  * PIM/PICML/interpreters/Package/PackageVisitor.h
-  * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
-  * PIM/PICML/interpreters/PICML/PICML.mpc
-  * PIM/PICML/interpreters/PICML/Utils.cpp
-  * PIM/PICML/paradigms/PICML.xmp
-  * PSM/CQML/interpreters/CQML/CQML.mpc
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
-  * PSM/CQML/interpreters/FaultTolerance/FaultTolerance.mpc
-  * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc
-  * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp
-  * PSM/CQML/interpreters/Interpreters.mwc
-  * PSM/CQML/interpreters/NetQoS/NetQoS.mpc
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
-  * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc
-  * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp
-  * udm.mpb
-  * Utils
-  * utils.mpb
-  * Utils/Utils.cpp
-  * Utils/Utils.h
-  * Utils/Utils.mpc
-  * Utils/Utils_export.h
-  * Utils/XercesString.cpp
-  * Utils/XercesString.h
+        Refactored some CoSMIC code into Utils directory in COSMIC_ROOT.
 
 Sat Aug 26 03:24:09 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-  Added infoProperty support in PICML and CQML DeploymentPlan sheet.
-        Improved DeploymentPlanFramework Injector interface.
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
 
-  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
-  * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h
-  * PIM/PICML/paradigms/PICML-uml.xme
-  * PIM/PICML/paradigms/PICML.xme
-  * PIM/PICML/paradigms/PICML.xml
-  * PIM/PICML/paradigms/PICML.xmp
-  * PSM/CQML/examples/BasicSP.xme
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
-  * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
-  * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
-  * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
-  * PSM/CQML/interpreters/FaultTolerance/FTAdders.h
-  * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
-  * PSM/CQML/interpreters/FaultTolerance/FTInjector.h
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
-  * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
-  * PSM/CQML/paradigms/CQML-uml.xme
-  * PSM/CQML/paradigms/CQML.xme
-  * PSM/CQML/paradigms/CQML.xml
-  * PSM/CQML/paradigms/CQML.xmp
+          New interpreter after adding support for infoProperty in the DeploymentPlan.        
+
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+
+          New paradigm after adding support for infoProperty in the DeploymentPlan.
+        
+        * PSM/CQML/examples/BasicSP.xme
+        
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h
+
+          Improved DeploymentPlanFramework Injector interface.
+        
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h
+        
+          Uses infoProperty.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h
+
+          Uses infoProperty.
+        
+        * PSM/CQML/paradigms/CQML-uml.xme
+        * PSM/CQML/paradigms/CQML.xme
+        * PSM/CQML/paradigms/CQML.xml
+        * PSM/CQML/paradigms/CQML.xmp
+
+          Added infoProperty support in PICML and CQML DeploymentPlan sheet.
 
 Thu Aug 24 02:59:56 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
@@ -2205,32 +2241,29 @@ Sat Aug  5 20:55:32 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
 Sat Aug  5 07:05:06 UTC 2006  Sumant Tambe  <sutambe@nospam>
 
-        Fixed some minor inconsistencies.
-
         * PIM/PICML/examples/RobotAssembly.xme:
+
+          Fixed some minor inconsistencies in the example.
 
         * PIM/PICML/paradigms/PICML-monolith.xmp:
         * PIM/PICML/paradigms/PICML.xmp:
 
         * PSM/CQML/examples/BasicSP.xme:
 
+          Fixed some minor inconsistencies in the example.
+
         * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+
+          Changed the Visitor name.
 
         * PSM/CQML/paradigms/CQML-uml.xme:
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
+          Updated the paradigm for NetQoS.
+
 Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
-
-        QoS characteristics such as RT, FT and Event-channel configuration
-        has been removed out of PICML and are moved to new PSM level language
-        called CQML. The old version of PICML can be found in PICML-monolith.xme.
-
-        The new PSM level language, CQML, has been added to COSMIC_ROOT/PSM/.
-        FT interpreter has been moved to be a CQML interpreter rather than
-        PICML interpreter. NetQoS interpreter has been added for CQML. The
-        DeploymentPlanFramework has also been moved to CQML.
 
         * PIM/PICML/interpreters/Interpreters.mwc:
 
@@ -2260,6 +2293,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework_Export.h:
         * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
 
+          Moved DeploymentPlanFramework to CQML.
+
         * PSM/CQML/interpreters/FaultTolerance:
 
         * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
@@ -2273,6 +2308,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
         * PSM/CQML/interpreters/FaultTolerance/FaultTolerance_Export.h:
         * PSM/CQML/interpreters/FaultTolerance/common.h:
+
+          Added FT interpreter to CQML.
 
         * PSM/CQML/interpreters/FaultToleranceComponent:
 
@@ -2290,6 +2327,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/FaultToleranceComponent/UdmConfig.h:
         * PSM/CQML/interpreters/FaultToleranceComponent/resource.h:
 
+          Added FT interpreter to CQML.
+
         * PSM/CQML/interpreters/Interpreters.mwc:
         * PSM/CQML/interpreters/NetQoS:
 
@@ -2297,6 +2336,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
         * PSM/CQML/interpreters/NetQoS/NetQoS_Export.h:
+
+          Added NetQoS interpreter to CQML.
 
         * PSM/CQML/interpreters/NetQoSComponent:
 
@@ -2313,6 +2354,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/NetQoSComponent/UdmConfig.h:
         * PSM/CQML/interpreters/NetQoSComponent/compicon.ico:
         * PSM/CQML/interpreters/NetQoSComponent/resource.h:
+
+          Added NetQoS interpreter to CQML.
 
         * PSM/CQML/paradigms:
 
@@ -2504,6 +2547,8 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/paradigms/icons/workerref.gif:
         * PSM/CQML/paradigms/icons/workspace.bmp:
 
+          Added a whole bunch of icons.
+
         * cosmic.mwc:
         * cqmllib.mpb:
 
@@ -2547,6 +2592,15 @@ Sat Aug  5 05:40:45 UTC 2006  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/interpreters/FaultToleranceComponent/UdmApp.cpp:
         * PIM/PICML/interpreters/FaultToleranceComponent/UdmConfig.h:
         * PIM/PICML/interpreters/FaultToleranceComponent/resource.h:
+
+          QoS characteristics such as RT, FT and Event-channel configuration
+          has been removed out of PICML and are moved to new PSM level language
+          called CQML. The old version of PICML can be found in PICML-monolith.xme.
+
+          The new PSM level language, CQML, has been added to COSMIC_ROOT/PSM/.
+          FT interpreter has been moved to be a CQML interpreter rather than
+          PICML interpreter. NetQoS interpreter has been added for CQML. The
+          DeploymentPlanFramework has also been moved to CQML.
 
 Sat Aug  5 03:04:39 UTC 2006  Krishnakumar B  <kitty@nospam.invalid.domain>
 
@@ -3649,9 +3703,11 @@ Fri Jun 23 19:43:48 UTC 2006  Jeff Parsons  <j.parsons@vanderbilt.edu>
 Fri Jun 23 01:54:18 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
+          
           Removed some legacy interpreters.
 
         * cosmic.mwc:
+          
           Removed some legacy projects.
 
 Fri Jun 16 22:10:48 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
@@ -3662,17 +3718,20 @@ Fri Jun 16 22:10:48 UTC 2006  Krishnakumar B  <kitty@dre.vanderbilt.edu>
 Tue Jun 13 04:54:27 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
+          
           Fixed a few constraint violations in the FaultTolerance folder
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
+          
           Added new constraints in the FaultTolerance paradigm sheet.
 
 Thu Jun  8 17:18:23 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanFramework/Injector.h:
+          
           Minor #ifdef changes.
 
         * PIM/PICML/interpreters/FaultTolerance/FTAdders.h:
@@ -3685,12 +3744,14 @@ Thu Jun  8 17:18:23 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
         * PIM/PICML/interpreters/FaultTolerance/common.h:
+          
           Restructured the FaultTolerance interpreter.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
+          
           Added a few constraints in the FaultTolerance paradigm sheet.
 
 Wed Jun  7 18:01:27 UTC 2006  Jeff Parsons <j.parsons@vanderbilt.edu>
@@ -4407,20 +4468,20 @@ Wed May 10 20:50:19 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
 Wed May 10 7:58:46 UTC 2006  William R. Otte  <wotte@dre.vanderbilt.edu>
 
-  * PIM/PICML/interpreters/Package/PackageVisitor.cpp
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp
 
-    Added genration of infoProperties and configProperties
-    on assemblies.
+          Added genration of infoProperties and configProperties
+          on assemblies.
 
 Wed May 10 6:58:46 UTC 2006  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme
 
-        Added web input datapter models.
+          Added web input datapter models.
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp
 
-        Made connection names unique in generated deployment plans.
+          Made connection names unique in generated deployment plans.
 
 Wed May 10 00:58:46 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 
@@ -4766,7 +4827,7 @@ Tue Apr 18 23:38:14 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
 
-          Merged changes after April ARMS demo.
+          Merged FT changes after April ARMS demo.
 
 Tue Apr 18 23:06:52 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
@@ -4774,7 +4835,8 @@ Tue Apr 18 23:06:52 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-          Merging changes after April ARMS demo.
+          
+          Merging FT changes after April ARMS demo.
 
 Sun Apr  9 16:24:27 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
@@ -4831,16 +4893,19 @@ Fri Apr  7 14:05:51 GMT 2006  Jaiganesh Balasubramanian  <jai.dre.vanderbilt.edu
 Thu Apr  6 21:21:40 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
+          
           Added some fault tolerance elements such as more SRGs.
 
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+          
           The BranchNBound algorithm work in this version.
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
+          
           Changed FOURequirement to FOU_Requirement.
 
 Thu Apr  6 19:49:42 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
@@ -4980,6 +5045,7 @@ Mon Apr  3 22:51:21 UTC 2006  James H. Hill  <hillj@isis.vanderbilt.edu>
 Mon Apr  3 19:56:46 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
+          
           Changed CriticalPath_FTRequirements
 
 Mon Apr  3 08:08:17 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
@@ -4994,9 +5060,11 @@ Mon Apr  3 08:08:17 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 Sun Apr  2 09:14:19 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * PIM/PICML/examples/RT1H/RT1H_Combined.xme:
-          Changed FaultTolerance folder.
+          
+           Changed FaultTolerance folder.
 
         * PIM/PICML/interpreters/DeploymentPlanFramework/Injector.h:
+          
           Updated DeploymentPlanFramework's injector interface.
 
         * PIM/PICML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
@@ -5006,6 +5074,7 @@ Sun Apr  2 09:14:19 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
+          
           Updated some FT elements.
 
 Sat Apr  1 08:44:14 UTC 2006  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
