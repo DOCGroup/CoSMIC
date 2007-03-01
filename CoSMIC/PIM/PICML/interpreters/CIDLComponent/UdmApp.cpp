@@ -9,6 +9,11 @@
 #include "Utils/Utils.h"
 
 //
+// outdir_
+//
+std::string CUdmApp::outdir_;
+
+//
 // Initialize
 //
 int CUdmApp::Initialize()
@@ -47,23 +52,22 @@ int CUdmApp::Initialize()
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
 
-void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
-                      Udm::Object focusObject,
-                      std::set <Udm::Object> selectedObjects,
-                      long param)
+void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,
+                       Udm::Object focusObject,
+                       std::set <Udm::Object> selectedObjects,
+                       long param)
 {
-  std::string output;
   std::string message = "Please specify the output directory";
 
   // If there is no output path specified
-  if (!Utils::getPath (message, output))
+  if (!Utils::getPath (message, CUdmApp::outdir_, CUdmApp::outdir_))
     return;
 
   // Get the root object and visit it.
   Udm::Object root_obj = p_backend->GetRootObject();
   PICML::RootFolder root = PICML::RootFolder::Cast (root_obj);
 
-  PICML::Cidlc_Visitor visitor (output);
+  PICML::Cidlc_Visitor visitor (CUdmApp::outdir_);
   root.Accept (visitor);
 
   AfxMessageBox ("Successfully generated CIDL files",

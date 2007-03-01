@@ -1,3 +1,31 @@
+Thu Mar  1 19:16:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+          Added preprocess () and postprocess () method to restore
+          and cache, respectively, the selected output directory.
+
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.h:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+
+          Exposed the output directory variable as a static variable
+          so the RawComponent can access it (mainly to cache/restore
+          the current/previous output directory).
+
+        * Utils/Utils.mpc:
+
+          - Added Project{.h,.cpp} to the Util project.
+          - Added Meta.idl and Mga.idl to the source files since the
+            generated stubs are used by Utils::Project class.
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Implemented a utility class for projects that can cache the
+          output directory for later retrieval when the interpreter is
+          invoked again.
+
 Wed Feb 28 03:23:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -53,7 +81,7 @@ Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
         * PIM/POSAML/paradigms/icons/or.bmp:
 
           Added new interpreter to automate generation of specialization
-	    files and Updated modeling example xme files
+            files and Updated modeling example xme files
 
 Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
 

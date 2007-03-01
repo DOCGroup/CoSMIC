@@ -1,6 +1,14 @@
-// UdmApp.h: interface for the CUdmApp class.
-//
-//////////////////////////////////////////////////////////////////////
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      UdmApp.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
 
 #if !defined(AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_)
 #define AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_
@@ -21,19 +29,28 @@
 #include "UdmGme.h"
 #include "UdmStatic.h"
 
+//=============================================================================
+/**
+ * @class CUdmApp
+ */
+//=============================================================================
 
-class CUdmApp  
+class CUdmApp
 {
-
 public:
-	static int Initialize();
-	static void UdmMain(Udm::DataNetwork* p_backend,Udm::Object currentObject, set<Udm::Object> selectedObjects, long param);
+	static int Initialize (void);
+
+	static void UdmMain (Udm::DataNetwork * p_backend,
+                       Udm::Object currentObject,
+                       set <Udm::Object> selectedObjects,
+                       long param);
 
 #ifdef _DEBUG
 	static string ExtractName(Udm::Object ob);
 #endif
 
-	
+  /// The output directory for the files.
+  static std::string outdir_;
 };
 
 #endif // !defined(AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_)

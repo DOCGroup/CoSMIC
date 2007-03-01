@@ -1,21 +1,29 @@
 // $Id$
 
 project (Utils) : xerces, cosmic_common {
-   sharedname = Utils
+  sharedname = Utils
 
-   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
+  macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
 
-   includes  += $(COSMIC_ROOT)
-   lit_libs  += rpcrt4
+  includes  += $(COSMIC_ROOT)
+  lit_libs  += rpcrt4
 
-   Source_Files {
-     XercesString.cpp
-     Utils.cpp
-   }
+  specific {
+     midl_includes += $(GME_ROOT)Interfaces
+     midl_flags    += /client stub /server none
+     midl_notlb     = 1
+  }
 
-   Header_Files {
-     Utils.h
-     Utils_Export.h
-     XercesString.h
-   }
+  Source_Files {
+    $(GME_ROOT)Interfaces/Mga.idl
+    $(GME_ROOT)Interfaces/Meta.idl
+
+    Project.cpp
+    Utils.cpp
+    XercesString.cpp
+  }
+
+  Header_Files {
+    Utils_Export.h
+  }
 }
