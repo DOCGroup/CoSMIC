@@ -15,6 +15,7 @@
 
 #include "Folder_Model_T.h"
 #include "MetaFolder.h"
+#include "RegistryNode.h"
 
 namespace GME
 {
@@ -90,6 +91,39 @@ namespace GME
      * @return      The folders meta information.
      */
     MetaFolder meta (void) const;
+
+    /**
+     * Get a registry value.
+     *
+     * @param[in]   path      The path of the value.
+     * @return      The value stored at \a path.
+     */
+    std::string registry_value (const std::string & path) const;
+
+    /**
+     * Set a registry value.
+     *
+     * @param[in]   path      The path of the value.
+     * @param[in]   value     The new value of \a path.
+     */
+    void registry_value (const std::string & path, const std::string & value);
+
+    /**
+     * Get the registry node for this folder object.
+     *
+     * @return      The registry node.
+     */
+    RegistryNode registry_node (const std::string & path) const;
+
+    /**
+     * Get the registry nodes for this object.
+     *
+     * @param[in]   nodes     The collection of nodes.
+     * @param[in]   vtypes    The the virtual nodes as well.
+     * @return      Number of elements in \a nodes.
+     */
+    size_t registry_nodes (RegistryNodes & nodes,
+                           bool vtypes = false) const;
   };
 }
 
