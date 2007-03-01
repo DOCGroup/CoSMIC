@@ -18,28 +18,28 @@
 namespace Utils
 {
   //
-  // global_cached_outdir
+  // get_global_default_output_dir
   //
-  std::string Project::global_cached_outdir (IMgaProject * project)
+  std::string Project::get_global_default_output_dir (IMgaProject * project)
   {
-    return Project::cached_outdir (project, "");
+    return Project::get_default_output_dir (project, "");
   }
 
   //
-  // global_cached_outdir
+  // set_global_default_output_dir
   //
-  void Project::global_cached_outdir (IMgaProject * project,
-                                      const std::string & outdir)
+  void Project::set_global_default_output_dir (IMgaProject * project,
+                                               const std::string & outdir)
   {
-    Project::cached_outdir (project, "", outdir);
+    Project::set_defualt_output_dir (project, "", outdir);
   }
 
   //
-  // cached_outdir
+  // set_defualt_output_dir
   //
-  void Project::cached_outdir (IMgaProject * proj,
-                               const std::string & uuid,
-                               const std::string & outdir)
+  void Project::set_defualt_output_dir (IMgaProject * proj,
+                                        const std::string & uuid,
+                                        const std::string & outdir)
   {
     // Get the root folder for the project.
     CComPtr <IMgaProject> project (proj);
@@ -57,10 +57,10 @@ namespace Utils
   }
 
   //
-  // cached_outdir
+  // get_default_output_dir
   //
-  std::string Project::cached_outdir (IMgaProject * proj,
-                                      const std::string & uuid)
+  std::string Project::get_default_output_dir (IMgaProject * proj,
+                                               const std::string & uuid)
   {
     // Get the root folder for the project.
     CComPtr <IMgaProject> project (proj);

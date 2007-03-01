@@ -341,7 +341,8 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 //
 void RawComponent::preprocess (IMgaProject * project)
 {
-  CUdmApp::outdir_ = Utils::Project::cached_outdir (project, "CIDL");
+  CUdmApp::outdir_ =
+    Utils::Project::get_default_output_dir (project, "CIDL");
 }
 
 //
@@ -349,5 +350,7 @@ void RawComponent::preprocess (IMgaProject * project)
 //
 void RawComponent::postprocess (IMgaProject * project)
 {
-  Utils::Project::cached_outdir (project, "CIDL", CUdmApp::outdir_);
+  Utils::Project::set_defualt_output_dir (project,
+                                          "CIDL",
+                                          CUdmApp::outdir_);
 }

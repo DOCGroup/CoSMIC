@@ -40,7 +40,7 @@ namespace Utils
      * @param[in]       project     The target project.
      * @return          The global cached output directory,
      */
-    static std::string global_cached_outdir (IMgaProject * project);
+    static std::string get_global_default_output_dir (IMgaProject * project);
 
     /**
      * Set the global cached output directory.
@@ -48,8 +48,8 @@ namespace Utils
      * @param[in]       project     The target project.
      * @param[in]       outdir      The output directory to store.
      */
-    static void global_cached_outdir (IMgaProject * project,
-                                      const std::string & outdir);
+    static void set_global_default_output_dir (IMgaProject * project,
+                                               const std::string & outdir);
 
     /**
      * Get the cached output directory. This will get the cached
@@ -61,8 +61,8 @@ namespace Utils
      * @param[in]       uuid        Unique identifier
      * @return          The cached output directory.
      */
-    static std::string cached_outdir (IMgaProject * project,
-                                      const std::string & uuid);
+    static std::string get_default_output_dir (IMgaProject * project,
+                                               const std::string & uuid);
 
     /**
      * Set the cached output directory. This will store the output
@@ -72,9 +72,9 @@ namespace Utils
      * @param[in]       uuid        Unique identifier
      * @param[in]       outdir      The output directory to store.
      */
-    static void cached_outdir (IMgaProject * project,
-                               const std::string & uuid,
-                               const std::string & outdir);
+    static void set_defualt_output_dir (IMgaProject * project,
+                                        const std::string & uuid,
+                                        const std::string & outdir);
   };
 }
 

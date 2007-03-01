@@ -1,3 +1,19 @@
+Thu Mar  1 21:00:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Gave the *cached_dir () methods more meaningful names. The following
+          is how each changed.
+
+            - cached_dir => {get,set}_default_output_dir
+            - global_cached_dir => {get,set}_global_default_output_dir
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+          Changed the cached_dir () methods to
+          {get,set}_default_output_dir
+
 Thu Mar  1 19:16:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
