@@ -38,6 +38,7 @@ project (GME) : cutslib {
     Model.cpp
     Project.cpp
     Reference.cpp
+    RegistryNode.cpp
     Set.cpp
     Territory.cpp
   }

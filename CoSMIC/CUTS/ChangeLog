@@ -1,3 +1,16 @@
+Thu Mar  1 02:13:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/GME.mpc:
+
+          Added RegistryNode{.h,.cpp,.inl} files to the GME
+          project.
+
+        * MDE/GME/gme/RegistryNode.h:
+        * MDE/GME/gme/RegistryNode.inl:
+        * MDE/GME/gme/RegistryNode.cpp:
+
+          Implemented a wrapper class for IMgaRegNode interface.
+
 Wed Feb 28 16:51:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/CUTS_CoSMIC.wxs:
