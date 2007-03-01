@@ -8,14 +8,17 @@
 #define IDC_OPERATION                   201
 #define IDD_MAINDIALOG                  202
 #define IDC_COWORKER_IMPL               202
+#define IDC_EDIT1                       204
+#define IDC_OUTPUTDIR                   204
+#define IDC_BROWSE                      205
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        203
+#define _APS_NEXT_RESOURCE_VALUE        204
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         203
+#define _APS_NEXT_CONTROL_VALUE         206
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

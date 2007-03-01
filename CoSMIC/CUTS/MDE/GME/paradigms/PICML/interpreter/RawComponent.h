@@ -37,6 +37,10 @@ public:
 	STDMETHODIMP GlobalEvent(globalevent_enum event);
 	STDMETHODIMP ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v);
 #endif
+
+private:
+  int preprocess (IMgaProject * project);
+  int postprocess (IMgaProject * project);
 };
 
 

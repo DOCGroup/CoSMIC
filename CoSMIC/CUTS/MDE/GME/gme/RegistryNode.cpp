@@ -54,7 +54,7 @@ namespace GME
 
     // Convert the wide-string to a C-string
     CW2A convert (bstrval);
-    return convert.m_psz;
+    return convert.m_psz ? convert.m_psz : "";
   }
 
   //

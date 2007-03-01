@@ -43,6 +43,18 @@ struct CUTS_BE_Export CUTS_BE_Options
   /// Suffix for the executor files.
   std::string exec_suffix_;
 
+  enum Menu_Option
+  {
+    /// Generate CoWorkEr models.
+    OPT_GENERATE_MODELS = 0,
+
+    /// Generate source files from the model.
+    OPT_GENERATE_SOURCE = 1
+  };
+
+  /// Menu options for the backend.
+  Menu_Option option_;
+
 private:
   /// Instance of the singleton.
   static CUTS_BE_Options * instance_;

@@ -30,10 +30,13 @@
 // Global config object
 _config config;
 
+#include "gme/Project.h"
+#include "cuts/be/BE_Options.h"
+
 //
 // Initialize
 //
-STDMETHODIMP RawComponent::Initialize(struct IMgaProject *)
+STDMETHODIMP RawComponent::Initialize (struct IMgaProject * proj)
 {
   return S_OK;
 }
@@ -42,18 +45,16 @@ STDMETHODIMP RawComponent::Initialize(struct IMgaProject *)
 //
 // Invoke
 //
-STDMETHODIMP RawComponent::Invoke (IMgaProject* gme,
-                                   IMgaFCOs *models,
-                                   long param)
+STDMETHODIMP RawComponent::
+Invoke (IMgaProject* project, IMgaFCOs *models, long param)
 {
 #ifdef SUPPORT_OLD_INVOKE
   CComPtr<IMgaFCO> focus;
   CComVariant parval = param;
   return InvokeEx(gme, focus, selected, parvar);
 #else
-  if(interactive) {
-    AfxMessageBox("This component does not support the obsolete invoke mechanism");
-  }
+  if (interactive)
+    AfxMessageBox ("This component does not support the obsolete invoke mechanism");
   return E_MGA_NOT_SUPPORTED;
 #endif
 }
@@ -76,13 +77,9 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
                                      IMgaFCOs *selectedobjs,
                                      long param)
 {
-  // @@ INSERT PREPROCESSOR HOOK HERE
-
   // Calling the user's initialization function
-  if (CUdmApp::Initialize())
-  {
+  if (CUdmApp::Initialize ())
     return S_FALSE;
-  }
 
   CComPtr <IMgaProject> ccpProject (project);
 
@@ -155,17 +152,15 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
         // Opening backend
         dngBackend.OpenExisting(ccpProject);
 
-
-        CComPtr<IMgaFCO> ccpFocus(currentobj);
+        CComPtr <IMgaFCO> ccpFocus(currentobj);
         Udm::Object currentObject;
-        if(ccpFocus)
-        {
-          currentObject=dngBackend.Gme2Udm(ccpFocus);
-        }
+
+        if (ccpFocus)
+          currentObject = dngBackend.Gme2Udm (ccpFocus);
 
         set<Udm::Object> selectedObjects;
 
-        CComPtr<IMgaFCOs> ccpSelObject(selectedobjs);
+        CComPtr <IMgaFCOs> ccpSelObject(selectedobjs);
 
         MGACOLL_ITERATE (IMgaFCO,ccpSelObject)
         {
@@ -178,6 +173,14 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
           selectedObjects.insert(currObj);
         }
         MGACOLL_ITERATE_END;
+
+        //=====================================================================
+        // @@ BEGIN PREPROCESSING METHODS
+
+        this->preprocess (project);
+
+        // @@ END PREPROCESSING METHODS
+        //=====================================================================
 
 #ifdef _ACCESS_MEMORY
         // Creating Cache
@@ -259,15 +262,31 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
                           selectedObjectsCache,
                           param);
 
+
+        //=====================================================================
+        // @@ BEGIN POSTPROCESSING METHODS
+
+        this->postprocess (project);
+
+        // @@ END POSTPROCESSING METHODS
+        //=====================================================================
+
         // Close cache backend
         dnsCacheBackend.CloseNoUpdate();
-
 #else
         // Calling the main entry point
         CUdmApp::UdmMain (&dngBackend,
                           currentObject,
                           selectedObjects,
                           param);
+
+        //=====================================================================
+        // @@ BEGIN POSTPROCESSING METHODS
+
+        this->postprocess (project);
+
+        // @@ END POSTPROCESSING METHODS
+        //=====================================================================
 
         // Closing backend
         dngBackend.CloseWithUpdate();
@@ -334,4 +353,37 @@ STDMETHODIMP RawComponent::put_ComponentParameter (BSTR name,
                                                    VARIANT newVal)
 {
   return S_OK;
+}
+
+//
+// preprocess
+//
+int RawComponent::preprocess (IMgaProject * proj)
+{
+  // Initialize the project's name.
+  GME::Project project (proj);
+  CUTS_BE_OPTIONS ()->project_name_ = project.name ();
+
+  // Initialize the output directory.
+  GME::Folder root = project.root_folder ();
+  CUTS_BE_OPTIONS ()->output_directory_ =
+    root.registry_value ("/__OutputDir__/CUTS_PICML");
+
+  return 0;
+}
+
+//
+// postprocess
+//
+int RawComponent::postprocess (IMgaProject * proj)
+{
+  // Get the root folder for the project.
+  GME::Project project (proj);
+  GME::Folder root = project.root_folder ();
+
+  // Cache the output directory for future use.
+  root.registry_value ("/__OutputDir__/CUTS_PICML",
+                       CUTS_BE_OPTIONS ()->output_directory_);
+
+  return 0;
 }

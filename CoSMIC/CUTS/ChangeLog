@@ -1,3 +1,51 @@
+Thu Mar  1 19:24:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Folder.cpp (registry_value):
+        * MDE/GME/gme/RegistryNode.cpp (value):
+
+          Fixed a bug that was causing an NULL exception when requesting
+          the value of an registry node that was non-existent. Now, if
+          the node was non-existent, the return value is an empty string.
+
+        * MDE/GME/paradigms/PICML/interpreter/CUTS_PICML.mpc:
+
+          Added cuts_gme as a base project.
+
+        * MDE/GME/paradigms/PICML/interpreter/Component.rc:
+
+          - The output directory for the generated files is now displayed
+            as a text box, with a Browse... button.
+          - When the user selects either of the radio buttons, it
+            enables/disables to the appropriate dialog controls.
+
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.h:
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.cpp:
+
+          - Updated its documentation
+          - Removed the Menu_Option enum
+          - The dialog now stores a pointer to a CUTS_BE_Options object
+            which is stores its data
+
+        * MDE/GME/paradigms/PICML/interpreter/RawComponent.h:
+        * MDE/GME/paradigms/PICML/interpreter/RawComponent.cpp:
+
+          Added process and postprocess methods to retrieve/store
+          the previous/current output directory in the model between
+          interpreter invocations.
+
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp (UdmMain):
+
+          - Removed the code that would display the browse for folder
+            dialog since its now handled by Main_Dialog.
+          - The Main_Dialog is initialized with the singleton CUTS_BE_Options.
+          - The switch statement now uses the menu enum in CUTS_BE_Options
+            since the menu enum in Main_Dialog has been removed.
+
+        * cuts/be/BE_Options.h:
+
+          Added an enumeration (and variable of the enum type) that
+          holds the backend operation the user wants to execute.
+
 Thu Mar  1 03:37:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Folder.h:

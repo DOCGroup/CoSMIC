@@ -99,18 +99,23 @@ IDI_COMPICON            ICON                    "compicon.ico"
 // Dialog
 //
 
-IDD_MAINDIALOG DIALOGEX 0, 0, 160, 73
+IDD_MAINDIALOG DIALOGEX 0, 0, 286, 129
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "CoWorkEr Test Suite"
+CAPTION "CUTS for CoSMIC"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CONTROL         "Generate CoWorkEr models",IDC_OPERATION,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,18,12,104,10
-    CONTROL         "Generate CoWorkEr implementation",IDC_COWORKER_IMPL,
-                    "Button",BS_AUTORADIOBUTTON,18,30,130,10
-    DEFPUSHBUTTON   "OK",IDOK,102,54,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,48,54,50,14
+    GROUPBOX        "Model Generation",IDC_STATIC,7,7,272,28
+    CONTROL         "Generate component proxy models",IDC_OPERATION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,19,128,10
+    GROUPBOX        "Model Interpretation",IDC_STATIC,7,42,272,60
+    CONTROL         "Generate component implementation",IDC_COWORKER_IMPL,
+                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,54,133,10
+    LTEXT           "Output Directory:",IDC_STATIC,15,67,58,8
+    EDITTEXT        IDC_OUTPUTDIR,14,78,207,14,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "Browse...",IDC_BROWSE,221,78,50,14,WS_DISABLED
+    DEFPUSHBUTTON   "OK",IDOK,229,108,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,175,108,50,14
 END
 
 
@@ -125,9 +130,9 @@ BEGIN
     IDD_MAINDIALOG, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 153
+        RIGHTMARGIN, 279
         TOPMARGIN, 7
-        BOTTOMMARGIN, 66
+        BOTTOMMARGIN, 122
     END
 END
 #endif    // APSTUDIO_INVOKED

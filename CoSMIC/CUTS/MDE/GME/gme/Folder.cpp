@@ -127,7 +127,7 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_RegistryValue (bstrpath, &bstrvalue));
 
     CW2A tempstr (bstrvalue);
-    return tempstr.m_psz;
+    return tempstr.m_psz ? tempstr.m_psz : "";
   }
 
   //
