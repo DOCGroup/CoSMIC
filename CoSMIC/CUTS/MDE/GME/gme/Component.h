@@ -14,7 +14,10 @@
 #define _GME_COMPONENT_H_
 
 #include "Project.h"
+
+#if !defined (__ComponentLib_h__)
 #include "Mga.h"
+#endif
 
 namespace GME
 {

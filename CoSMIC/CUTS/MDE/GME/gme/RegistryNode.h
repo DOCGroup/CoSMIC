@@ -14,7 +14,11 @@
 #define _GME_REGISTRYNODE_H_
 
 #include "Exception.h"
+
+#if !defined (__ComponentLib_h__)
 #include "Mga.h"
+#endif
+
 #include <vector>
 
 namespace GME

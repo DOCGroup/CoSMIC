@@ -14,7 +14,10 @@
 #define _GME_TERRITORY_H_
 
 #include "Exception.h"
+
+#if !defined (__ComponentLib_h__)
 #include "Mga.h"
+#endif
 
 namespace GME
 {

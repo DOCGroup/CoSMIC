@@ -1,3 +1,17 @@
+Thu Mar  1 02:45:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Component.h:
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/RegistryNode.h:
+        * MDE/GME/gme/Territory.h:
+
+          Added a #if defined (__ComponentLib_h__) proprocessor statement
+          around all Mga.h header files just in case this library is
+          used with the current implementation of GME components. Since
+          the backend of GME is not implemented as a shared library, it
+          regenerates the stubs, which conflicts with the ones generated
+          by the shared library version of the GME backend.
+
 Thu Mar  1 02:13:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/GME.mpc:
