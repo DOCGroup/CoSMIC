@@ -35,7 +35,7 @@ XStr& XStr::operator= (const XStr& rhs)
 {
   if (&rhs == this) return *this;
   XStr temp (rhs);
-  ACE_Swap<XMLCh*>::swap (this->_wstr, temp._wstr);
+  std::swap<XMLCh*> (this->_wstr, temp._wstr);
   return *this;
 }
 
