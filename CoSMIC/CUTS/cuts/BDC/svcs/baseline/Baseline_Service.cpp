@@ -364,8 +364,11 @@ int CUTS_Baseline_Service::handle_activate (void)
 int CUTS_Baseline_Service::
 handle_component (const CUTS_Component_Info & info)
 {
-  if (info.inst_ == "Unknown")
+  if (info.inst_ == "Unknown" ||
+      info.state_ != CUTS_Component_Info::STATE_ACTIVATE)
+  {
     return 0;
+  }
 
   // Save the id of the component and start the countdown.
   this->instance_ = info.inst_;

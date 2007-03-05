@@ -31,6 +31,16 @@ class CUTS_Host_Table_Entry;
 
 struct CUTS_Export CUTS_Component_Info
 {
+  /// Defines the different states of a component.
+  enum Component_State
+  {
+    /// The component is in the activate state.
+    STATE_ACTIVATE    = 0,
+
+    /// The component is in the passivate state.
+    STATE_PASSIVATE   = 1
+  };
+
   /// Default constructor.
   inline CUTS_Component_Info (size_t uid)
     : uid_ (uid), host_info_ (0) { }
@@ -39,7 +49,7 @@ struct CUTS_Export CUTS_Component_Info
   const size_t uid_;
 
   /// The state of the component.
-  int state_;
+  Component_State state_;
 
   /// Instance id for the component.
   ACE_CString inst_;

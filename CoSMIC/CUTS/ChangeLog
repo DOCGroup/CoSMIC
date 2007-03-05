@@ -1,3 +1,29 @@
+Mon Mar  5 21:43:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+
+          Added a guard that only allows handle_activate () to
+          process the data only if the state_ of the component is
+          STATE_ACTIVATE.
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_activate):
+
+          Change the comparison value from 1 to STATE_ACTIVATE.
+
+        * cuts/Component_Info.h:
+
+          The state_ is now an enumeration of type Component_State.
+
+        * cuts/Component_Registry.cpp (register_component):
+
+          The state_ is now assigned the value of STATE_ACTIVATE.
+
+        * cuts/Time.h:
+        * cuts/Time.cpp:
+
+          Added another overload to CUTS_string_time to convert a
+          ACE_Time_Value to a C-string of the specified format.
+
 Thu Mar  1 19:24:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Folder.cpp (registry_value):

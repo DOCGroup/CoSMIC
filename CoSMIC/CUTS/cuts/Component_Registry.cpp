@@ -44,7 +44,7 @@ register_component (CUTS_Component_Registry_Node * info)
   {
     // Set the state of the component to *active* and signal all
     // the <handlers_> that we have a new component registered.
-    info->info_.state_ = 1;
+    info->info_.state_ = CUTS_Component_Info::STATE_ACTIVATE;
     this->info_queue_.enqueue_tail (info);
   }
 

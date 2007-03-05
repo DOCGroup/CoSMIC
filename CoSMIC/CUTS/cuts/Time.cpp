@@ -2,7 +2,8 @@
 // $Id$
 
 #include "Time.h"
-#include <ace/OS_NS_time.h>
+#include "ace/OS_NS_time.h"
+#include "ace/Time_Value.h"
 
 //
 // CUTS_string_time
@@ -14,6 +15,15 @@ const char * CUTS_string_time (const char * format)
   ACE_OS::time (&clock);
 
   return CUTS_string_time (clock, format);
+}
+
+//
+// CUTS_string_time
+//
+const char * CUTS_string_time (const ACE_Time_Value & tv,
+                               const char * format)
+{
+  return CUTS_string_time (tv.sec (), format);
 }
 
 //

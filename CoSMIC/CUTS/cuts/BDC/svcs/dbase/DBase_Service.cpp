@@ -448,7 +448,7 @@ int CUTS_Database_Service::handle_metrics (void)
 int CUTS_Database_Service::
 handle_component (const CUTS_Component_Info & info)
 {
-  if (info.state_ == 1)
+  if (info.state_ == CUTS_Component_Info::STATE_ACTIVATE)
   {
     long inst_id = -1;
 
