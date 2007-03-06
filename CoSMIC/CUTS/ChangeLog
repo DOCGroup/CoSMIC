@@ -1,3 +1,44 @@
+Tue Mar  6 21:58:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.inl:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          - The service manager now stores a pointer to the testing
+            service assigned parent BDC (this is passed in via the
+            open () method).
+          - Implemented an accessor method for the testing service
+            so loaded services can access to the testing service's
+            data (e.g., component registry).
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          Passed the internally stored testing service to the open ()
+          method of the BDC service manager.
+
+        * cuts/BDC/Testing_Service_exec_i.h:
+
+          Removed the commented out method (ccm_registry) since it
+          is no longer needed.
+
+        * cuts/BDC/svcs/IO:
+        * cuts/BDC/svcs/IO/BDC_IO.h:
+        * cuts/BDC/svcs/IO/BDC_IO.cpp:
+        * cuts/BDC/svcs/IO/BDC_IO.mpc:
+        * cuts/BDC/svcs/IO/BDC_IO_export.h:
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.h:
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.cpp:
+
+          Implemented a new BDC service that writes all BDC events
+          to the console in a readable format.
+
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.cpp:
+
+          Implemented the get_component_info () method, which allows
+          a client to get informatation about a component given its
+          id.
+
 Mon Mar  5 21:43:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Service.cpp:

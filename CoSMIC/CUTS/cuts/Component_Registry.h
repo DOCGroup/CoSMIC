@@ -13,6 +13,7 @@
 #ifndef _CUTS_COMPONENT_REGISTRY_H_
 #define _CUTS_COMPONENT_REGISTRY_H_
 
+#include "cuts/Component_Registry_Node.h"
 #include "cuts/Host_Table.h"
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/RW_Thread_Mutex.h"
@@ -24,9 +25,6 @@
 
 // Forward decl.
 class CUTS_Component_Registry_Handler;
-
-// Forward decl.
-class CUTS_Component_Registry_Node;
 
 //=============================================================================
 /**
@@ -47,6 +45,7 @@ public:
                                 ACE_RW_Thread_Mutex>
                                 Component_Registry_Map;
 
+  /// Type definition of the registry const iterator.
   typedef Component_Registry_Map::CONST_ITERATOR CONST_ITERATOR;
 
   /// Default constructor.
@@ -56,7 +55,12 @@ public:
   virtual ~CUTS_Component_Registry (void);
 
   /**
+   * Open the registry. This allows the active object stored
+   * internally to signal registered handlers when a component's
+   * state changes.
    *
+   * @retval          0         Successfully opened the registry.
+   * @retval          -1        Failed to open the registry.
    */
   int open (void);
 
@@ -66,6 +70,14 @@ public:
    */
   int close (void);
 
+  /**
+   * Determine if the registry is open, or closed. If the registry
+   * is open, then it signals registered handlers when a components
+   * registration information changes.
+   *
+   * @retval          0         The registry is not open.
+   * @retval          1         The registry is open.
+   */
   int is_open (void);
 
   /**
@@ -135,6 +147,8 @@ public:
    */
   const Component_Registry_Map & entries (void) const;
 
+  int get_component_info (size_t uid,
+                          const CUTS_Component_Info ** info) const;
 protected:
   /// Type defintion of registration queue.
   typedef ACE_Message_Queue_Ex <

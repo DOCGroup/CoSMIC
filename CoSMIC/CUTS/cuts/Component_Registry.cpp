@@ -146,3 +146,24 @@ int CUTS_Component_Registry::close (void)
 
   return 0;
 }
+
+//
+// get_component_info
+//
+int CUTS_Component_Registry::
+get_component_info (size_t uid,
+                    const CUTS_Component_Info ** info) const
+{
+  if (uid == CUTS_UNKNOWN_IMPL)
+    return -1;
+
+  /// @warning This only works as long as size_t is the size
+  /// of a pointer.
+  CUTS_Component_Registry_Node * node =
+    reinterpret_cast <CUTS_Component_Registry_Node *> (uid);
+
+  if (info != 0)
+    *info = &node->info_;
+
+  return 0;
+}

@@ -68,6 +68,7 @@ namespace CUTS
 
       CUTS_BDC_SVC_MANAGER ()->open (orb.in (),
                                      &this->metrics_,
+                                     this->tsvc_.get (),
                                      &this->collect_done_);
     }
 

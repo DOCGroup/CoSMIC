@@ -25,7 +25,17 @@ get_orb (void) const
 //
 CUTS_INLINE
 CUTS_System_Metric * CUTS_BDC_Service_Manager::
-metrics (void)
+metrics (void) const
 {
   return this->metrics_;
+}
+
+//
+// testing_service
+//
+CUTS_INLINE
+CUTS_Testing_Service * CUTS_BDC_Service_Manager::
+testing_service (void) const
+{
+  return this->tsvc_;
 }

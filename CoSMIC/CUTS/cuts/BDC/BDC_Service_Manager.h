@@ -29,6 +29,9 @@ class CUTS_System_Metric;
 class CUTS_BDC_Service;
 
 // Forward decl.
+class CUTS_Testing_Service;
+
+// Forward decl.
 class ACE_Event;
 
 /// Type decleration for a collection of service names.
@@ -57,11 +60,14 @@ public:
    * Open the service manager. This will cause all services
    * opened in this manager to use the specified system metrics.
    *
-   * @param[in]       metric      Pointer to the system metrics.
+   * @param[in]       orb         Target CORBA ORB.
+   * @param[in]       metrics     Pointer to the system metrics.
+   * @param[in]       tsvc        Target testing service.
    * @param[in]       notify      Notification event.
    */
   int open (::CORBA::ORB_ptr orb,
             CUTS_System_Metric * metrics,
+            CUTS_Testing_Service * tsvc,
             ACE_Event * notify);
 
   /**
@@ -134,7 +140,14 @@ public:
    *
    * @return        Pointer to the metrics.
    */
-  CUTS_System_Metric * metrics (void);
+  CUTS_System_Metric * metrics (void) const;
+
+  /**
+   * Get a pointer to the testing service.
+   *
+   * @return        Pointer to the testing service.
+   */
+  CUTS_Testing_Service * testing_service (void) const;
 
 private:
   /// The main ORB for this manager.
@@ -145,6 +158,9 @@ private:
 
   /// Pointer to the target metrics
   CUTS_System_Metric * metrics_;
+
+  /// Pointer to the target testing service.
+  CUTS_Testing_Service * tsvc_;
 
   /// Notificition condition for this manager.
   ACE_Event * notify_;

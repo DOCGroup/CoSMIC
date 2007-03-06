@@ -86,6 +86,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
 //
 int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
                                     CUTS_System_Metric * metrics,
+                                    CUTS_Testing_Service * tsvc,
                                     ACE_Event * notify)
 {
   if (this->is_opened ())
@@ -95,6 +96,7 @@ int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
   // services or the default services (e.g., svc.conf). We also want
   // to ingore any debug information.
   this->metrics_ = metrics;
+  this->tsvc_ = tsvc;
   this->notify_ = notify;
   this->orb_ = ::CORBA::ORB::_duplicate (orb);
 
