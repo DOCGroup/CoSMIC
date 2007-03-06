@@ -39,3 +39,12 @@ testing_service (void) const
 {
   return this->tsvc_;
 }
+
+//
+// get_uuid
+//
+CUTS_INLINE
+const ACE_Utils::UUID * CUTS_BDC_Service_Manager::get_uuid (void) const
+{
+  return this->uuid_.get ();
+}

@@ -15,12 +15,13 @@
 
 #include "BDC_export.h"
 #include "cuts/Component_Registry_Handler.h"
+#include "tao/ORB.h"
 #include "ace/Null_Mutex.h"
 #include "ace/Thread_Manager.h"
 #include "ace/Service_Gestalt.h"
 #include "ace/Singleton.h"
 #include "ace/Vector_T.h"
-#include "tao/ORB.h"
+#include "ace/UUID.h"
 
 // Forward decl.
 class CUTS_System_Metric;
@@ -149,6 +150,13 @@ public:
    */
   CUTS_Testing_Service * testing_service (void) const;
 
+  /**
+   * Get a pointer to the UUID for this manager.
+   *
+   * @return        Pointer to the UUID for the manager.
+   */
+  const ACE_Utils::UUID * get_uuid (void) const;
+
 private:
   /// The main ORB for this manager.
   ::CORBA::ORB_var orb_;
@@ -164,6 +172,9 @@ private:
 
   /// Notificition condition for this manager.
   ACE_Event * notify_;
+
+  /// UUID for the service manager.
+  ACE_Auto_Ptr <ACE_Utils::UUID> uuid_;
 };
 
 // Singlton export decl.

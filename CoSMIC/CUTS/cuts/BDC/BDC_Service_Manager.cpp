@@ -75,9 +75,12 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
   // Wait for all service threads to exit. Then we can close
   // the underlying service manager in ACE.
   this->notify_->signal ();
-  int retval = this->thr_mgr_->wait (timeout);
 
-  retval |= ACE_Service_Gestalt::close ();
+  int retval =
+    this->thr_mgr_->wait (timeout) | ACE_Service_Gestalt::close ();
+
+  // Reset the <uuid_> of the service manager.
+  this->uuid_.reset ();
   return retval;
 }
 
@@ -99,6 +102,12 @@ int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
   this->tsvc_ = tsvc;
   this->notify_ = notify;
   this->orb_ = ::CORBA::ORB::_duplicate (orb);
+
+  // Generate the UUID. We need to place around with the parameters
+  // of this generator so we generate the most unique UUID possible.
+  ACE_Utils::UUID * uuid =
+    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID ();
+  this->uuid_.reset (uuid);
 
   return ACE_Service_Gestalt::open ("CUTS_BDC",
                                     ACE_DEFAULT_LOGGER_KEY,
