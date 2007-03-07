@@ -10,6 +10,9 @@ project: picmllib {
   }
 
   specific {
+     midl_includes += $(GME_ROOT)/Interfaces
+     midl_flags    += /client stub /server none
+     midl_notlb     = 1
      use_lib_modifier =
      runtime_library = 1
   }
@@ -24,6 +27,6 @@ project: picmllib {
   Header_Files {
     Mga.h
     Meta.h
-    MgaUtil.h << Mga.h
+    MgaUtil.h
   }
 }

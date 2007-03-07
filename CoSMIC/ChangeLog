@@ -1,8 +1,20 @@
+Wed Mar  7 03:29:43 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Updated the
+          MPC file to specifically include the midl_notlb option.  This
+          fixes a longstanding bug with the idl files always getting
+          recompiled.  Thanks to James for the hint.
+
+        * Utils/Utils.mpc:  Fixed a problem with leaving out a \ between
+          $(GME_ROOT) and "Interfaces" in the idl file definition.  If
+          GME_ROOT doesn't have a \ at the end, it resulted in a
+          compilation error.
+
 Mon Mar  5 00:33:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/IDLImporter/XercesString.h:
         * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
-        
+
           Removed the inclusion of ACE/Swap.h file in the header file
           since it was removed from ACE.  Any use of ACE_Swap is to be
           substituted by std::swap per ACE's Changelog entry. We made this

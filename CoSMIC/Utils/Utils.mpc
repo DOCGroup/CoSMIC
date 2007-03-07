@@ -9,15 +9,14 @@ project (Utils) : xerces, cosmic_common {
   lit_libs  += rpcrt4
 
   specific {
-     midl_includes += $(GME_ROOT)Interfaces
+     midl_includes += $(GME_ROOT)/Interfaces
      midl_flags    += /client stub /server none
      midl_notlb     = 1
   }
 
   Source_Files {
-    $(GME_ROOT)Interfaces/Mga.idl
-    $(GME_ROOT)Interfaces/Meta.idl
-
+    $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/Meta.idl
     Project.cpp
     Utils.cpp
     XercesString.cpp
