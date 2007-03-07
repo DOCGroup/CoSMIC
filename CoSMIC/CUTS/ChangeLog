@@ -1,3 +1,9 @@
+Wed Mar  7 00:16:23 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Component_Registry.h:
+
+          Updated the Doxygen documentation for the methods.
+
 Wed Mar  7 00:05:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service.h:

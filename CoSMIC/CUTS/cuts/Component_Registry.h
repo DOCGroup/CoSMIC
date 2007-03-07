@@ -81,10 +81,24 @@ public:
   int is_open (void);
 
   /**
+   * Register an callback with the registry. This allows an
+   * object to receive notifications when a components status
+   * changes.
    *
+   * @param[in]       handler   The target handler.
+   * @retval          0         Succcessfully registered \a handler.
+   * @retval          -1        Failed to register \a handler.
    */
   int register_handler (CUTS_Component_Registry_Handler * handler);
 
+  /**
+   * Unregister a callback handler. If the \a handler is not registered
+   * the nothing happens.
+   *
+   * @param[in]       handler   Target handler.
+   * @retval          0         Successfully unregistered \a handler.
+   * @retval          -1        Failed to unregister \a handler.
+   */
   int unregister_handler (CUTS_Component_Registry_Handler * handler);
 
   /**
@@ -147,8 +161,17 @@ public:
    */
   const Component_Registry_Map & entries (void) const;
 
+  /**
+   * Get the registeration information for a component.
+   *
+   * @param[in]   uid     The component's unique id.
+   * @param[out]  info    Pointer to the components info.
+   * @retval      0       \a info contains the component's info.
+   * @retval      -1      Failed to locate \a uid component info.
+   */
   int get_component_info (size_t uid,
                           const CUTS_Component_Info ** info) const;
+
 protected:
   /// Type defintion of registration queue.
   typedef ACE_Message_Queue_Ex <
