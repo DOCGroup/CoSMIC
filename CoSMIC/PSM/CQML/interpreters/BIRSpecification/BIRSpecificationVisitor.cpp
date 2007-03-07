@@ -1,4 +1,3 @@
-$Id$
 #include <algorithm>
 #include <functional>
 #include <sstream>
