@@ -111,6 +111,10 @@ public:
    */
   int close (ACE_Time_Value * timeout = 0);
 
+  int activate (void);
+
+  int deactivate (void);
+
   int handle_component (const CUTS_Component_Info & info);
 
   /**
@@ -158,6 +162,8 @@ public:
   const ACE_Utils::UUID * get_uuid (void) const;
 
 private:
+  static ACE_THR_FUNC_RETURN thr_handle_metrics (void * param);
+
   /// The main ORB for this manager.
   ::CORBA::ORB_var orb_;
 
@@ -175,6 +181,9 @@ private:
 
   /// UUID for the service manager.
   ACE_Auto_Ptr <ACE_Utils::UUID> uuid_;
+
+  /// The active state of the manager.
+  int active_;
 };
 
 // Singlton export decl.

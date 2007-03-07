@@ -20,7 +20,8 @@
 //
 CUTS_BDC_Service_Manager::CUTS_BDC_Service_Manager (void)
 : ACE_Service_Gestalt (ACE_Service_Gestalt::MAX_SERVICES, true, true),
-  metrics_ (0)
+  metrics_ (0),
+  active_ (0)
 {
   ACE_Thread_Manager * thr_mgr = 0;
   ACE_NEW_THROW_EX (thr_mgr, ACE_Thread_Manager (), ACE_bad_alloc ());
@@ -103,24 +104,22 @@ int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
   this->notify_ = notify;
   this->orb_ = ::CORBA::ORB::_duplicate (orb);
 
-  // Generate the UUID. We need to place around with the parameters
-  // of this generator so we generate the most unique UUID possible.
-  ACE_Utils::UUID * uuid =
-    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID ();
-  this->uuid_.reset (uuid);
+  if (ACE_Service_Gestalt::open ("CUTS_BDC",
+                                 ACE_DEFAULT_LOGGER_KEY,
+                                 1, 1, 1) == -1)
+  {
+    return -1;
+  }
 
-  return ACE_Service_Gestalt::open ("CUTS_BDC",
-                                    ACE_DEFAULT_LOGGER_KEY,
-                                    1, 1, 1);
+  return this->activate ();
 }
 
 //
 // load_service
 //
-int CUTS_BDC_Service_Manager::
-load_service (const char * name,
-              const char * path,
-              const char * args)
+int CUTS_BDC_Service_Manager::load_service (const char * name,
+                                            const char * path,
+                                            const char * args)
 {
   // Create the directive for the ACE service configurator.
   std::ostringstream dir;
@@ -130,9 +129,10 @@ load_service (const char * name,
     << "\"" << args << "\"";
 
   // Let the configurator load the service.
-  int errs = ACE_Service_Gestalt::process_directive (dir.str ().c_str ());
+  int error_count =
+    ACE_Service_Gestalt::process_directive (dir.str ().c_str ());
 
-  if (errs == 0)
+  if (error_count == 0)
   {
     // We need to locate the service that we just loaded.
     CUTS_BDC_Service * svc =
@@ -140,56 +140,29 @@ load_service (const char * name,
 
     if (svc != 0)
     {
-      // Initialize the parent of the service.
+      // Initialize the parent of the service. Then try to activate
+      // the service.
       svc->svc_mgr_ = this;
 
       if (svc->handle_activate () != 0)
       {
         ACE_ERROR ((LM_ERROR,
-                    "*** error: %s failed during handle_activate ()\n",
+                    "%s service failed during handle_activate ()\n",
                     name));
 
-        // Increment the number of errors.
-        ++ errs;
-      }
-
-      if (errs == 0)
-      {
-        // Set its <active_> flag and start the service thread.
-        svc->active_ = 1;
-
-        // Create the service parameter object for the thread.
-        CUTS_BDC_Service::Svc_Thread_Param * param = 0;
-
-        ACE_NEW_THROW_EX (param,
-                          CUTS_BDC_Service::Svc_Thread_Param,
-                          ACE_bad_alloc ());
-
-        param->svc_ = svc;
-        param->notify_ = this->notify_;
-
-        ACE_Auto_Ptr <CUTS_BDC_Service::Svc_Thread_Param> auto_clean (param);
-
-        // Spawn a new thread for the service object.
-        if (this->thr_mgr_->spawn (CUTS_BDC_Service::svc, param) != -1)
-          auto_clean.release ();
-        else
-          svc->active_ = 0;
+        ++ error_count;
       }
     }
-    else
-      ++ errs;
   }
 
   // Return the number of errors that occured.
-  return errs;
+  return error_count;
 }
 
 //
 // unload_service
 //
-int CUTS_BDC_Service_Manager::
-unload_service (const char * name)
+int CUTS_BDC_Service_Manager::unload_service (const char * name)
 {
   // We need to locate this service.
   CUTS_BDC_Service * svc = 0;
@@ -253,9 +226,8 @@ handle_component (const CUTS_Component_Info & info)
 //
 // get_service
 //
-int CUTS_BDC_Service_Manager::
-get_service (const char * name,
-             CUTS_BDC_Service * & svc)
+int CUTS_BDC_Service_Manager::get_service (const char * name,
+                                           CUTS_BDC_Service * & svc)
 {
   svc = ACE_Dynamic_Service <CUTS_BDC_Service>::instance (this, name);
   return svc != 0 ? 0 : -1;
@@ -287,4 +259,150 @@ get_service_names (CUTS_BDC_Service_Names & names)
     // Move to the next service.
     iter.advance ();
   }
+}
+
+//
+// activate
+//
+int CUTS_BDC_Service_Manager::activate (void)
+{
+  // Create an iterator to the underlying repo so we can
+  // iterate over all the loaded services.
+  if (!this->is_opened ())
+    return -1;
+
+  // Generate the UUID. We need to place around with the parameters
+  // of this generator so we generate the most unique UUID possible.
+  ACE_Utils::UUID * uuid =
+    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID ();
+  this->uuid_.reset (uuid);
+
+  // Iterate over every service in the repository.
+  ACE_Service_Repository_Iterator iter (*this->repo_, 1);
+  const ACE_Service_Type * svc_type = 0;
+
+  while (iter.next (svc_type) == 1)
+  {
+    // Extract the <CUTS_BDC_Service> from the service object.
+    const ACE_Service_Type_Impl * type = svc_type->type ();
+
+    CUTS_BDC_Service * svc =
+      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+
+    if (svc == 0 != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "%s service failed during handle_activate ()\n",
+                  type->name ()));
+    }
+
+    iter.advance ();
+  }
+
+  // Spawn the thread for monitoring the metrics.
+  this->active_ = 1;
+
+  if (this->thr_mgr_->spawn (&CUTS_BDC_Service_Manager::thr_handle_metrics,
+                             this) == -1)
+  {
+    this->active_ = 0;
+  }
+
+  return this->active_ == 1 ? 0 : -1;
+}
+
+//
+// deactivate
+//
+int CUTS_BDC_Service_Manager::deactivate (void)
+{
+  // Create an iterator to the underlying repo so we can
+  // iterate over all the loaded services.
+  if (!this->is_opened ())
+    return -1;
+
+  this->active_ = 0;
+  this->notify_->signal ();
+  this->thr_mgr_->wait ();
+
+  ACE_Service_Repository_Iterator iter (*this->repo_, 1);
+  const ACE_Service_Type * svc_type = 0;
+
+  while (iter.next (svc_type) == 1)
+  {
+    // Extract the <CUTS_BDC_Service> from the service object.
+    const ACE_Service_Type_Impl * type = svc_type->type ();
+
+    CUTS_BDC_Service * svc =
+      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+
+    // Signal the service thread to exit and advance to the
+    // next service in the repo.
+    if (svc != 0 &&
+        svc->handle_deactivate () != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error: %s failed during handle_deactivate ()\n",
+                  type->name ()));
+    }
+
+    iter.advance ();
+  }
+
+  // Release the current UUID.
+  this->uuid_.reset ();
+  this->active_ = 0;
+
+  return 0;
+}
+
+//
+// thr_handle_metrics
+//
+ACE_THR_FUNC_RETURN CUTS_BDC_Service_Manager::
+thr_handle_metrics (void * param)
+{
+  CUTS_BDC_Service_Manager * svc_mgr =
+    reinterpret_cast <CUTS_BDC_Service_Manager *> (param);
+
+  while (svc_mgr->active_)
+  {
+    // Wait for the collection done event from the data collector. Once
+    // we receieve the event, we need to make sure we are still <active_>.
+    svc_mgr->notify_->wait ();
+
+    if (!svc_mgr->active_)
+      continue;
+
+    // Create an iterator to the underlying repo so we can
+    // iterate over all the loaded services.
+    ACE_Service_Repository_Iterator iter (*svc_mgr->repo_, 0);
+    const ACE_Service_Type * svc_type = 0;
+
+    while (iter.next (svc_type) == 1)
+    {
+      // Extract the <CUTS_BDC_Service> from the service object.
+      const ACE_Service_Type_Impl * type = svc_type->type ();
+
+      CUTS_BDC_Service * svc =
+        ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+
+      // Signal the service thread to exit and advance to the
+      // next service in the repo.
+
+      if (svc != 0)
+      {
+        if (svc->handle_metrics () != 0)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "%s service failed during handle_metrics ()\n",
+                      svc_type->name ()));
+        }
+      }
+
+      iter.advance ();
+    }
+  }
+
+  return 0;
 }

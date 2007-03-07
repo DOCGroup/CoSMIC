@@ -1,3 +1,19 @@
+Wed Mar  7 00:05:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service.h:
+        * cuts/BDC/BDC_Service.inl:
+        * cuts/BDC/BDC_Service.cpp:
+
+          Removed the active object from the service since this meant
+          each loaded service would have an active object, and thus
+          affect scalability.
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          The service manager now contains the active object for
+          monitoring the collection done event.
+
 Tue Mar  6 22:29:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service_Manager.h:

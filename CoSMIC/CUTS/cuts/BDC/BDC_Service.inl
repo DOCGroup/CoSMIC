@@ -64,7 +64,7 @@ CUTS_INLINE
 CUTS::BDC_Service_ptr CUTS_BDC_Service::
 get_remote_object (void) const
 {
-  return CUTS::BDC_Service::_nil ();
+  return ::CUTS::BDC_Service::_nil ();
 }
 
 //

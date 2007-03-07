@@ -14,16 +14,12 @@
 #include "serviceC.h"
 #include "cuts/Component_Registry_Handler.h"
 #include "ace/Service_Object.h"
-#include "ace/Thread_Mutex.h"
 
 // Forward decl.
 class CUTS_System_Metric;
 
 // Forward decl.
 class CUTS_BDC_Service_Manager;
-
-// Forward decl.
-class ACE_Event;
 
 //=============================================================================
 /**
@@ -93,7 +89,7 @@ public:
    *
    * @return      Pointer reference to the service object.
    */
-  virtual CUTS::BDC_Service_ptr get_remote_object (void) const;
+  virtual ::CUTS::BDC_Service_ptr get_remote_object (void) const;
 
   /**
    * Determine if the service is currently active.
@@ -120,33 +116,6 @@ protected:
   CUTS_BDC_Service_Manager * svc_mgr (void);
 
 private:
-  //===========================================================================
-  /**
-   * @struct Svc_Thread_Param
-   *
-   * Thread parameter for the service object. It contain vital information
-   * for properly configuring the service object for its multithreaded
-   * environment (e.g., service and notification object).
-   */
-  //===========================================================================
-  struct Svc_Thread_Param
-  {
-    /// Pointer to the service object.
-    CUTS_BDC_Service * svc_;
-
-    /// Pointer to the notication object.
-    ACE_Event * notify_;
-  };
-
-  /**
-   * Service thread funtion. This method is responsible for
-   * monitoring invoking handle_metrics () when new data is
-   * present.
-   *
-   * @param[in]     param       Thread function parameter.
-   */
-  static ACE_THR_FUNC_RETURN svc (void * param);
-
   /// Pointer to the parent service manager.
   CUTS_BDC_Service_Manager * svc_mgr_;
 
