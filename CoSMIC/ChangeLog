@@ -1,3 +1,36 @@
+Wed Mar  7 15:04:27 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/BIRSpecification:
+
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecification.mpc:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecification_Export.h:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecification.ico:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.reg:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponentd.reg:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/Component.def:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/Component.rc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/RawComponent.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/resource.h:
+
+          Added BIRSpecification interpreter for generation of BIR input from
+          RTConfiguration.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+          Added BIRSpecification interpreter.
+
 Wed Mar  7 03:29:43 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * Installer/RegisterParadigm/RegisterParadigm.mpc:  Updated the

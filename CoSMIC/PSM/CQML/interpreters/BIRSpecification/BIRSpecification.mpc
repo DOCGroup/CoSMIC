@@ -1,0 +1,16 @@
+project(BIRSpecification): cqmllib {
+
+   after += DeploymentPlanFramework
+   sharedname = BIRSpecification
+   macros += BIRSPECIFICATION_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
+   libs += DeploymentPlanFramework
+
+   Source_Files {
+     BIRSpecificationVisitor.cpp
+   }
+
+   Header_Files {
+     BIRSpecificationVisitor.h
+     BIRSpecification_Export.h
+   }
+}
