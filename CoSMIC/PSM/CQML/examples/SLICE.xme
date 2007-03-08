@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{23E02631-2CF1-4544-A41E-E852059DDA24}" cdate="Sun Dec 10 12:18:55 2006" mdate="Sun Dec 10 12:18:55 2006" version="" metaguid="{2DB83270-4A99-48B5-B475-E4F22189DD02}" metaversion="" metaname="CQML">
+<project guid="{4158AD49-9A38-4B9A-8162-81E1749489D1}" cdate="Mon Mar 05 15:58:28 2007" mdate="Mon Mar 05 15:58:28 2007" version="" metaguid="{EB6FA4A4-B8E5-43AD-89FB-7D65D8AF2C06}" metaversion="" metaname="CQML">
 	<name>SLICE</name>
 	<comment>SLICE scenario</comment>
 	<author>James H. Hill</author>
@@ -2236,7 +2236,7 @@
 						<attribute kind="VersionTag" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-0000012d" kind="Member" role="Member" guid="{39DE4B7D-C006-4973-8D7A-DDF04FC49B9F}" relid="0x1" referred="id-0067-0000010f">
+						<reference id="id-0067-00000131" kind="Member" role="Member" guid="{39DE4B7D-C006-4973-8D7A-DDF04FC49B9F}" relid="0x1" referred="id-0067-0000010f">
 							<name>total</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2248,7 +2248,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000012e" kind="Member" role="Member" guid="{A12F6BA5-DE29-40d9-A505-DC88968D2B2F}" relid="0x2" referred="id-0067-0000010f">
+						<reference id="id-0067-00000132" kind="Member" role="Member" guid="{A12F6BA5-DE29-40d9-A505-DC88968D2B2F}" relid="0x2" referred="id-0067-0000010f">
 							<name>max</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2260,7 +2260,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-0000012f" kind="Member" role="Member" guid="{C1F11E57-9B6C-43ff-B830-462FD3F09071}" relid="0x3" referred="id-0067-0000010f">
+						<reference id="id-0067-00000133" kind="Member" role="Member" guid="{C1F11E57-9B6C-43ff-B830-462FD3F09071}" relid="0x3" referred="id-0067-0000010f">
 							<name>min</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -2518,7 +2518,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000130" kind="Member" role="Member" guid="{51F02170-6A9A-4a35-9584-13F3E447AE87}" relid="0x2" referred="id-0067-0000010f">
+						<reference id="id-0067-00000134" kind="Member" role="Member" guid="{51F02170-6A9A-4a35-9584-13F3E447AE87}" relid="0x2" referred="id-0067-0000010f">
 							<name>timestamp</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -3027,6 +3027,9 @@
 					<attribute kind="UUID">
 						<value>D6FCAF85-EA01-4CD1-9A68-EDCCA6083C09</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -3153,6 +3156,9 @@
 					</regnode>
 					<attribute kind="UUID">
 						<value>C9C4C017-2686-442F-A65D-1C46566A8CF6</value>
+					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -3320,14 +3326,23 @@
 					<attribute kind="UUID">
 						<value>D8068050-3829-4458-932B-2997CC9DAE02</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000011" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{B0563D59-07D8-45d7-BD6E-FA5DC9741325}" relid="0x3">
@@ -3344,14 +3359,23 @@
 					<attribute kind="UUID">
 						<value>2C2DFE71-434E-4F92-BB2C-B34C41D69F7E</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000012" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{E02916D8-6E41-49e6-B512-04D084EAB412}" relid="0x5">
@@ -3368,14 +3392,23 @@
 					<attribute kind="UUID">
 						<value>CBA5B2DC-414B-4EFA-A853-054B616924D8</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_exec</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<connection id="id-0068-00000015" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{AC16FD40-F907-4f71-B4ED-66022FD87CB7}" relid="0x7">
@@ -3474,14 +3507,23 @@
 					<attribute kind="UUID">
 						<value>8991AE7F-9972-4E8B-BE54-E74E6803006A</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_Ex_exec</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000014" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{011A62D4-2379-476b-962F-94AF0CD54CDB}" relid="0x1">
@@ -3498,14 +3540,23 @@
 					<attribute kind="UUID">
 						<value>42665F7D-D45D-4174-971F-57E3BCCB2CEB</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_Ex_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000015" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{7E424997-702D-4345-9B32-B8123E69640B}" relid="0x3">
@@ -3522,14 +3573,23 @@
 					<attribute kind="UUID">
 						<value>04299BFF-90E2-4A42-8185-98C59921A9BD</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Benchmark_Data_Collector_Ex_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<connection id="id-0068-0000001a" kind="ArtifactDependency" role="ArtifactDependency" guid="{A73714F6-4C87-4b5b-9B2A-E0F7FBC23A5E}" relid="0xa">
@@ -4659,7 +4719,7 @@
 								<attribute kind="DataValue">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000da" kind="DataType" role="DataType" guid="{22627C52-4D20-4948-8E8B-901079779D35}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000df" kind="DataType" role="DataType" guid="{22627C52-4D20-4948-8E8B-901079779D35}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -4707,7 +4767,7 @@
 								<attribute kind="DataValue">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f3" kind="DataType" role="DataType" guid="{44EA5A25-A0E4-44fe-BF86-E5BF1C43F8EB}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f5" kind="DataType" role="DataType" guid="{44EA5A25-A0E4-44fe-BF86-E5BF1C43F8EB}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
@@ -5347,7 +5407,7 @@
 								<attribute kind="DataValue">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000cf" kind="DataType" role="DataType" guid="{A6CDD229-F293-47ba-9D7F-BF673B8FAD0B}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d4" kind="DataType" role="DataType" guid="{A6CDD229-F293-47ba-9D7F-BF673B8FAD0B}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -5413,7 +5473,7 @@
 								<attribute kind="DataValue">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000dc" kind="DataType" role="DataType" guid="{E998EB23-46B4-4843-B49F-1F5F70F42775}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000e1" kind="DataType" role="DataType" guid="{E998EB23-46B4-4843-B49F-1F5F70F42775}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -5440,7 +5500,7 @@
 								<attribute kind="DataValue">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000e9" kind="DataType" role="DataType" guid="{47133290-2317-4784-9AB8-FE3CE801C5E8}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000ed" kind="DataType" role="DataType" guid="{47133290-2317-4784-9AB8-FE3CE801C5E8}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -5539,7 +5599,7 @@
 								<attribute kind="DataValue">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f5" kind="DataType" role="DataType" guid="{897CDF3A-0223-4413-A290-F0D619F4F146}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f7" kind="DataType" role="DataType" guid="{897CDF3A-0223-4413-A290-F0D619F4F146}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
@@ -6110,7 +6170,7 @@
 								<attribute kind="DataValue">
 									<value>40</value>
 								</attribute>
-								<reference id="id-0067-000000ec" kind="DataType" role="DataType" guid="{312A455C-388C-4a66-881A-56587EBA79D9}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000e9" kind="DataType" role="DataType" guid="{312A455C-388C-4a66-881A-56587EBA79D9}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -6137,7 +6197,7 @@
 								<attribute kind="DataValue">
 									<value>5</value>
 								</attribute>
-								<reference id="id-0067-000000df" kind="DataType" role="DataType" guid="{96615E56-64CD-4367-816D-4FB651186D1E}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000da" kind="DataType" role="DataType" guid="{96615E56-64CD-4367-816D-4FB651186D1E}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -6203,7 +6263,7 @@
 								<attribute kind="DataValue">
 									<value>5</value>
 								</attribute>
-								<reference id="id-0067-000000d2" kind="DataType" role="DataType" guid="{E356CFE8-F7D1-47fa-A704-AEA9360F2EC0}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000cf" kind="DataType" role="DataType" guid="{E356CFE8-F7D1-47fa-A704-AEA9360F2EC0}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -6230,7 +6290,7 @@
 								<attribute kind="DataValue">
 									<value>1</value>
 								</attribute>
-								<reference id="id-0067-000000ee" kind="DataType" role="DataType" guid="{485FFFB6-967C-43a3-AEDF-1271CF8FE219}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000eb" kind="DataType" role="DataType" guid="{485FFFB6-967C-43a3-AEDF-1271CF8FE219}" derivedfrom="id-0067-000000e4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -6293,7 +6353,7 @@
 								<attribute kind="DataValue">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f8" kind="DataType" role="DataType" guid="{250B8CFB-9CA2-4b86-B606-68A1599BD78D}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f3" kind="DataType" role="DataType" guid="{250B8CFB-9CA2-4b86-B606-68A1599BD78D}" derivedfrom="id-0067-000000f0" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
@@ -6430,7 +6490,67 @@
 								</regnode>
 							</regnode>
 						</atom>
-						<reference id="id-0067-00000041" kind="OutEventPort" role="OutEventPort" guid="{E8F1C4ED-AD88-4dfc-B7B6-73214F10490A}" derivedfrom="id-0067-00000003" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000041" kind="InEventPort" role="InEventPort" guid="{FE3F51A1-DC20-4f72-8D64-867EA06D11D3}" derivedfrom="id-0067-00000001" isinstance="no" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>AssessmentEvent</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>55,125</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" guid="{3354B0BE-02F7-4f03-ADF8-E4ABB42414BB}" derivedfrom="id-0067-00000002" isinstance="no" isprimary="no" referred="id-0065-00000004" isbound="yes">
+							<name>StatusEvent</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Behavior" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>55,223</value>
+									</regnode>
+								</regnode>
+								<regnode name="InterfaceDefinition" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>76,237</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000043" kind="OutEventPort" role="OutEventPort" guid="{E8F1C4ED-AD88-4dfc-B7B6-73214F10490A}" derivedfrom="id-0067-00000003" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -6466,66 +6586,6 @@
 								<value>DirectConnect</value>
 							</attribute>
 							<attribute kind="single_destination" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000042" kind="InEventPort" role="InEventPort" guid="{FE3F51A1-DC20-4f72-8D64-867EA06D11D3}" derivedfrom="id-0067-00000001" isinstance="no" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>AssessmentEvent</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>55,125</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000043" kind="InEventPort" role="InEventPort" guid="{3354B0BE-02F7-4f03-ADF8-E4ABB42414BB}" derivedfrom="id-0067-00000002" isinstance="no" isprimary="no" referred="id-0065-00000004" isbound="yes">
-							<name>StatusEvent</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Behavior" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>55,223</value>
-									</regnode>
-								</regnode>
-								<regnode name="InterfaceDefinition" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>76,237</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
 						</reference>
@@ -6739,7 +6799,7 @@
 								<value>Ew</value>
 							</regnode>
 							<connpoint role="dst" target="id-0065-00000091"/>
-							<connpoint role="src" target="id-0067-00000042"/>
+							<connpoint role="src" target="id-0067-00000041"/>
 						</connection>
 						<connection id="id-0068-0000006d" kind="Input" role="Input" guid="{9B35FC34-A01D-4251-8E6B-382BDC15CF38}" relid="0x20">
 							<name>Input</name>
@@ -6747,7 +6807,7 @@
 								<value>Ew</value>
 							</regnode>
 							<connpoint role="dst" target="id-0065-0000009c"/>
-							<connpoint role="src" target="id-0067-00000043"/>
+							<connpoint role="src" target="id-0067-00000042"/>
 						</connection>
 						<connection id="id-0068-0000006e" kind="InputEffect" role="InputEffect" guid="{E00469BD-6558-401c-AA05-CAA1908253A4}" relid="0x22">
 							<name>Effect</name>
@@ -6909,7 +6969,7 @@
 								<attribute kind="DataValue">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000e1" kind="DataType" role="DataType" guid="{EA00D989-494D-44a9-84F2-5CD64415B9E1}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000dc" kind="DataType" role="DataType" guid="{EA00D989-494D-44a9-84F2-5CD64415B9E1}" derivedfrom="id-0067-000000d7" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7008,7 +7068,7 @@
 								<attribute kind="DataValue">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000d4" kind="DataType" role="DataType" guid="{0479D0D0-6DCA-43a2-8DBA-E5240583BC65}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d1" kind="DataType" role="DataType" guid="{0479D0D0-6DCA-43a2-8DBA-E5240583BC65}" derivedfrom="id-0067-000000ca" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7693,7 +7753,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>40</value>
 								</attribute>
-								<reference id="id-0067-000000ed" kind="DataType" role="DataType" guid="{3C3A3513-ED68-46e6-A1B8-3A55665ED4AB}" derivedfrom="id-0067-000000ec" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000ea" kind="DataType" role="DataType" guid="{3C3A3513-ED68-46e6-A1B8-3A55665ED4AB}" derivedfrom="id-0067-000000e9" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7711,7 +7771,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>5</value>
 								</attribute>
-								<reference id="id-0067-000000e0" kind="DataType" role="DataType" guid="{FF160484-3F4F-4659-80CF-B2B576CB213B}" derivedfrom="id-0067-000000df" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000db" kind="DataType" role="DataType" guid="{FF160484-3F4F-4659-80CF-B2B576CB213B}" derivedfrom="id-0067-000000da" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7741,7 +7801,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>5</value>
 								</attribute>
-								<reference id="id-0067-000000d3" kind="DataType" role="DataType" guid="{92E0E1CE-139D-467a-A4E1-326E8186AD90}" derivedfrom="id-0067-000000d2" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d0" kind="DataType" role="DataType" guid="{92E0E1CE-139D-467a-A4E1-326E8186AD90}" derivedfrom="id-0067-000000cf" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7759,7 +7819,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>1</value>
 								</attribute>
-								<reference id="id-0067-000000ef" kind="DataType" role="DataType" guid="{F2135F0C-4E97-4964-8DEC-D771C728A14D}" derivedfrom="id-0067-000000ee" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000ec" kind="DataType" role="DataType" guid="{F2135F0C-4E97-4964-8DEC-D771C728A14D}" derivedfrom="id-0067-000000eb" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -7783,45 +7843,81 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f9" kind="DataType" role="DataType" guid="{9853F649-98A1-41b0-B9F4-9C1D8F541710}" derivedfrom="id-0067-000000f8" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f4" kind="DataType" role="DataType" guid="{9853F649-98A1-41b0-B9F4-9C1D8F541710}" derivedfrom="id-0067-000000f3" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
 						</model>
-						<atom id="id-0066-0000004b" kind="Environment" role="Environment" guid="{025FF686-9EDA-479c-93B6-0C696156DA1F}" derivedfrom="id-0066-0000003f" isinstance="yes" isprimary="no">
+						<atom id="id-0066-0000004b" kind="State" role="State" guid="{436AE794-5457-4d52-A9F8-FFFFD173EF61}" derivedfrom="id-0066-00000037" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000004c" kind="State" role="State" guid="{977C00C9-6F42-4d5a-8C2F-B1904B6AC3BE}" derivedfrom="id-0066-00000038" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000004d" kind="State" role="State" guid="{7E228161-7D0D-4a1a-87B3-B7F902EFDCB3}" derivedfrom="id-0066-00000039" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000004e" kind="State" role="State" guid="{63B7E815-6CDA-44bf-9199-94FC2DC8FD48}" derivedfrom="id-0066-0000003a" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-0000004f" kind="State" role="State" guid="{AF233245-F7CE-48b8-970A-5773651BC90E}" derivedfrom="id-0066-0000003b" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000050" kind="State" role="State" guid="{A2D860F7-8284-4587-9D9B-B38EE1E62C56}" derivedfrom="id-0066-0000003c" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000051" kind="State" role="State" guid="{E121BB55-118F-46ec-8910-97282A8F8576}" derivedfrom="id-0066-0000003d" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000052" kind="State" role="State" guid="{9D58B92E-39FD-4578-B685-6DF3E7E2B789}" derivedfrom="id-0066-0000003e" isinstance="yes" isprimary="no">
+							<name>State</name>
+						</atom>
+						<atom id="id-0066-00000053" kind="Environment" role="Environment" guid="{025FF686-9EDA-479c-93B6-0C696156DA1F}" derivedfrom="id-0066-0000003f" isinstance="yes" isprimary="no">
 							<name>Environment</name>
 						</atom>
-						<atom id="id-0066-0000004c" kind="State" role="State" guid="{9D58B92E-39FD-4578-B685-6DF3E7E2B789}" derivedfrom="id-0066-0000003e" isinstance="yes" isprimary="no">
+						<atom id="id-0066-00000054" kind="State" role="State" guid="{513EFDFE-9FEB-45bb-8789-DFE3363A0C34}" derivedfrom="id-0066-00000040" isinstance="yes" isprimary="no">
 							<name>State</name>
 						</atom>
-						<atom id="id-0066-0000004d" kind="State" role="State" guid="{436AE794-5457-4d52-A9F8-FFFFD173EF61}" derivedfrom="id-0066-00000037" isinstance="yes" isprimary="no">
+						<atom id="id-0066-00000055" kind="State" role="State" guid="{E62DF56E-154A-432c-B6E8-6A726F3E47DF}" derivedfrom="id-0066-00000041" isinstance="yes" isprimary="no">
 							<name>State</name>
 						</atom>
-						<atom id="id-0066-0000004e" kind="State" role="State" guid="{977C00C9-6F42-4d5a-8C2F-B1904B6AC3BE}" derivedfrom="id-0066-00000038" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-0000004f" kind="State" role="State" guid="{7E228161-7D0D-4a1a-87B3-B7F902EFDCB3}" derivedfrom="id-0066-00000039" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000050" kind="State" role="State" guid="{63B7E815-6CDA-44bf-9199-94FC2DC8FD48}" derivedfrom="id-0066-0000003a" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000051" kind="State" role="State" guid="{AF233245-F7CE-48b8-970A-5773651BC90E}" derivedfrom="id-0066-0000003b" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000052" kind="State" role="State" guid="{A2D860F7-8284-4587-9D9B-B38EE1E62C56}" derivedfrom="id-0066-0000003c" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000053" kind="State" role="State" guid="{513EFDFE-9FEB-45bb-8789-DFE3363A0C34}" derivedfrom="id-0066-00000040" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000054" kind="State" role="State" guid="{E62DF56E-154A-432c-B6E8-6A726F3E47DF}" derivedfrom="id-0066-00000041" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<atom id="id-0066-00000055" kind="State" role="State" guid="{E121BB55-118F-46ec-8910-97282A8F8576}" derivedfrom="id-0066-0000003d" isinstance="yes" isprimary="no">
-							<name>State</name>
-						</atom>
-						<reference id="id-0067-00000052" kind="OutEventPort" role="OutEventPort" guid="{E6B38AFD-3171-4c87-8EB9-35487F30AE7B}" derivedfrom="id-0067-00000041" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000052" kind="InEventPort" role="InEventPort" guid="{E0E5C992-3E36-4d28-963E-16C058B46ACD}" derivedfrom="id-0067-00000041" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>AssessmentEvent</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000053" kind="InEventPort" role="InEventPort" guid="{3F095981-8D84-4603-B430-A3258088BE8C}" derivedfrom="id-0067-00000042" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
+							<name>StatusEvent</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000054" kind="OutEventPort" role="OutEventPort" guid="{E6B38AFD-3171-4c87-8EB9-35487F30AE7B}" derivedfrom="id-0067-00000043" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -7842,42 +7938,6 @@
 								<value>DirectConnect</value>
 							</attribute>
 							<attribute kind="single_destination" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000053" kind="InEventPort" role="InEventPort" guid="{E0E5C992-3E36-4d28-963E-16C058B46ACD}" derivedfrom="id-0067-00000042" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>AssessmentEvent</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000054" kind="InEventPort" role="InEventPort" guid="{3F095981-8D84-4603-B430-A3258088BE8C}" derivedfrom="id-0067-00000043" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
-							<name>StatusEvent</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
 						</reference>
@@ -8086,7 +8146,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000e2" kind="DataType" role="DataType" guid="{85C12DCF-2B08-4f5e-AFE0-B6D9B8DFEDAC}" derivedfrom="id-0067-000000e1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000de" kind="DataType" role="DataType" guid="{85C12DCF-2B08-4f5e-AFE0-B6D9B8DFEDAC}" derivedfrom="id-0067-000000dc" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8101,7 +8161,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>256</value>
 								</attribute>
-								<reference id="id-0067-0000005c" kind="DataType" role="DataType" guid="{436A8082-116A-42eb-85A9-E9A98217FBC3}" derivedfrom="id-0067-0000004b" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-0000005e" kind="DataType" role="DataType" guid="{436A8082-116A-42eb-85A9-E9A98217FBC3}" derivedfrom="id-0067-0000004b" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8128,7 +8188,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000d5" kind="DataType" role="DataType" guid="{8BF07FDB-487B-476c-B265-3EEAFE286F42}" derivedfrom="id-0067-000000d4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d3" kind="DataType" role="DataType" guid="{8BF07FDB-487B-476c-B265-3EEAFE286F42}" derivedfrom="id-0067-000000d1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8140,7 +8200,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>32</value>
 								</attribute>
-								<reference id="id-0067-0000005d" kind="DataType" role="DataType" guid="{C2A62EC2-9D5F-40c8-BFBD-75E177F4E1D7}" derivedfrom="id-0067-0000004c" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-0000005f" kind="DataType" role="DataType" guid="{C2A62EC2-9D5F-40c8-BFBD-75E177F4E1D7}" derivedfrom="id-0067-0000004c" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8190,7 +8250,13 @@
 						<atom id="id-0066-0000005e" kind="State" role="State" guid="{92440974-709D-4236-9552-13701EA55928}" derivedfrom="id-0066-0000004a" isinstance="yes" isprimary="no">
 							<name>State</name>
 						</atom>
-						<reference id="id-0067-0000005a" kind="InEventPort" role="InEventPort" guid="{0D604A29-8007-48b9-9228-D36558951B9A}" derivedfrom="id-0067-00000049" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-0000005a" kind="WorkerType" role="WorkerType" guid="{25508194-9032-41ae-8AB4-AF5F35A4D6A4}" derivedfrom="id-0067-0000004e" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
+							<name>cpu</name>
+						</reference>
+						<reference id="id-0067-0000005b" kind="WorkerType" role="WorkerType" guid="{E4CC231A-95DE-4082-B6EF-84CA17E599EB}" derivedfrom="id-0067-0000004f" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
+							<name>memory</name>
+						</reference>
+						<reference id="id-0067-0000005c" kind="InEventPort" role="InEventPort" guid="{0D604A29-8007-48b9-9228-D36558951B9A}" derivedfrom="id-0067-00000049" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8208,7 +8274,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000005b" kind="OutEventPort" role="OutEventPort" guid="{41F6B4DC-FAB1-42b4-BA3F-EDAA0639A5C1}" derivedfrom="id-0067-0000004a" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
+						<reference id="id-0067-0000005d" kind="OutEventPort" role="OutEventPort" guid="{41F6B4DC-FAB1-42b4-BA3F-EDAA0639A5C1}" derivedfrom="id-0067-0000004a" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
 							<name>StatusEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8232,7 +8298,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000005e" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{BD559F38-926F-41a0-8260-53EC8BF0FB5F}" derivedfrom="id-0067-0000004d" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
+						<reference id="id-0067-00000060" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{BD559F38-926F-41a0-8260-53EC8BF0FB5F}" derivedfrom="id-0067-0000004d" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
 							<name>cuts_testing_service</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8252,12 +8318,6 @@
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
-						</reference>
-						<reference id="id-0067-0000005f" kind="WorkerType" role="WorkerType" guid="{25508194-9032-41ae-8AB4-AF5F35A4D6A4}" derivedfrom="id-0067-0000004e" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
-							<name>cpu</name>
-						</reference>
-						<reference id="id-0067-00000060" kind="WorkerType" role="WorkerType" guid="{E4CC231A-95DE-4082-B6EF-84CA17E599EB}" derivedfrom="id-0067-0000004f" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
-							<name>memory</name>
 						</reference>
 						<connection isbound="yes" id="id-0068-000000a5" kind="Effect" role="Effect" guid="{207B460B-D271-4b0d-A001-7C44BBB830C4}" derivedfrom="id-0068-00000077" isinstance="yes" isprimary="no">
 							<name>Effect</name>
@@ -8410,7 +8470,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000e3" kind="DataType" role="DataType" guid="{7FDF9768-172C-4ca6-9DD8-8AFF0860A17C}" derivedfrom="id-0067-000000e1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000dd" kind="DataType" role="DataType" guid="{7FDF9768-172C-4ca6-9DD8-8AFF0860A17C}" derivedfrom="id-0067-000000dc" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8425,7 +8485,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>256</value>
 								</attribute>
-								<reference id="id-0067-00000063" kind="DataType" role="DataType" guid="{16A31577-6785-4722-968D-CF87FF7FBD5B}" derivedfrom="id-0067-0000004b" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-00000065" kind="DataType" role="DataType" guid="{16A31577-6785-4722-968D-CF87FF7FBD5B}" derivedfrom="id-0067-0000004b" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8452,7 +8512,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000d6" kind="DataType" role="DataType" guid="{B9342D02-A768-4091-ABDD-3E6AD1D42DD0}" derivedfrom="id-0067-000000d4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d2" kind="DataType" role="DataType" guid="{B9342D02-A768-4091-ABDD-3E6AD1D42DD0}" derivedfrom="id-0067-000000d1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8464,7 +8524,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>32</value>
 								</attribute>
-								<reference id="id-0067-00000064" kind="DataType" role="DataType" guid="{646EE3BB-3971-4f82-B660-370684205E4B}" derivedfrom="id-0067-0000004c" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-00000066" kind="DataType" role="DataType" guid="{646EE3BB-3971-4f82-B660-370684205E4B}" derivedfrom="id-0067-0000004c" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -8514,7 +8574,13 @@
 						<atom id="id-0066-00000067" kind="State" role="State" guid="{BA8BCE34-DD24-4045-9C87-AC785CD497F5}" derivedfrom="id-0066-0000004a" isinstance="yes" isprimary="no">
 							<name>State</name>
 						</atom>
-						<reference id="id-0067-00000061" kind="InEventPort" role="InEventPort" guid="{661BD501-EA70-444b-A1FC-55409A5C6A34}" derivedfrom="id-0067-00000049" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
+						<reference id="id-0067-00000061" kind="WorkerType" role="WorkerType" guid="{292001DF-432F-4410-8C61-0190AD67BCE3}" derivedfrom="id-0067-0000004e" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
+							<name>cpu</name>
+						</reference>
+						<reference id="id-0067-00000062" kind="WorkerType" role="WorkerType" guid="{8EC9E7D6-14AE-4a48-B35C-0D0FFFE139B0}" derivedfrom="id-0067-0000004f" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
+							<name>memory</name>
+						</reference>
+						<reference id="id-0067-00000063" kind="InEventPort" role="InEventPort" guid="{661BD501-EA70-444b-A1FC-55409A5C6A34}" derivedfrom="id-0067-00000049" isinstance="yes" isprimary="no" referred="id-0065-00000005" isbound="yes">
 							<name>CommandEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8532,7 +8598,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000062" kind="OutEventPort" role="OutEventPort" guid="{1CC478C6-A3CE-49d2-9BEF-06CE8AA52514}" derivedfrom="id-0067-0000004a" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
+						<reference id="id-0067-00000064" kind="OutEventPort" role="OutEventPort" guid="{1CC478C6-A3CE-49d2-9BEF-06CE8AA52514}" derivedfrom="id-0067-0000004a" isinstance="yes" isprimary="no" referred="id-0065-00000004" isbound="yes">
 							<name>StatusEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8556,7 +8622,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000065" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{206E46EF-F33B-4ce9-9584-C471E3F1F889}" derivedfrom="id-0067-0000004d" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
+						<reference id="id-0067-00000067" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{206E46EF-F33B-4ce9-9584-C471E3F1F889}" derivedfrom="id-0067-0000004d" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
 							<name>cuts_testing_service</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -8576,12 +8642,6 @@
 							<attribute kind="optional" status="meta">
 								<value>false</value>
 							</attribute>
-						</reference>
-						<reference id="id-0067-00000066" kind="WorkerType" role="WorkerType" guid="{292001DF-432F-4410-8C61-0190AD67BCE3}" derivedfrom="id-0067-0000004e" isinstance="yes" isprimary="no" referred="id-0065-00000016" isbound="yes">
-							<name>cpu</name>
-						</reference>
-						<reference id="id-0067-00000067" kind="WorkerType" role="WorkerType" guid="{8EC9E7D6-14AE-4a48-B35C-0D0FFFE139B0}" derivedfrom="id-0067-0000004f" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
-							<name>memory</name>
 						</reference>
 						<connection isbound="yes" id="id-0068-000000b7" kind="Effect" role="Effect" guid="{883B6A5A-5D73-491b-B5C5-3B4FA1B9B7CB}" derivedfrom="id-0068-00000077" isinstance="yes" isprimary="no">
 							<name>Effect</name>
@@ -8721,30 +8781,9 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-000000dd" kind="InputAction" role="InputAction" guid="{E15CA7FC-619D-4a82-B676-1ECF7A97A4D7}" derivedfrom="id-0065-0000007a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>activate</name>
-						</model>
-						<model id="id-0065-000000de" kind="Action" role="Action" guid="{AD99B86D-A688-41f4-8CAB-85D28F4AB6A3}" derivedfrom="id-0065-0000007b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>dbase</name>
-							<attribute kind="LogAction" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="Repetitions" status="meta">
-								<value>1</value>
-							</attribute>
-							<model id="id-0065-000000df" kind="Property" role="Property" guid="{5E7987D1-362A-49c0-B0E2-24708A408B39}" derivedfrom="id-0065-0000007c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>hostname</name>
-								<attribute kind="DataValue" status="inherited">
-									<value>localhost</value>
-								</attribute>
-								<reference id="id-0067-000000f4" kind="DataType" role="DataType" guid="{172E2220-61AA-4c91-9A0B-5BF66E17913A}" derivedfrom="id-0067-000000f3" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
-									<name>String</name>
-								</reference>
-							</model>
-						</model>
-						<model id="id-0065-000000e0" kind="OutputAction" role="OutputAction" guid="{3804AB89-64AA-443c-9FE2-13789AF5225A}" derivedfrom="id-0065-0000006e" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000dd" kind="OutputAction" role="OutputAction" guid="{3804AB89-64AA-443c-9FE2-13789AF5225A}" derivedfrom="id-0065-0000006e" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>CommandEvent</name>
-							<model id="id-0065-000000e1" kind="Property" role="Property" guid="{95048825-22F2-45f0-B3B7-ACD2AFE121CE}" derivedfrom="id-0065-0000006f" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000de" kind="Property" role="Property" guid="{95048825-22F2-45f0-B3B7-ACD2AFE121CE}" derivedfrom="id-0065-0000006f" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>size</name>
 								<attribute kind="DataValue" status="inherited">
 									<value>24</value>
@@ -8754,10 +8793,10 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-000000e2" kind="InputAction" role="InputAction" guid="{15A50E87-D4E2-40d4-A7AA-0890448F0B6C}" derivedfrom="id-0065-00000070" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000df" kind="InputAction" role="InputAction" guid="{15A50E87-D4E2-40d4-A7AA-0890448F0B6C}" derivedfrom="id-0065-00000070" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>InputAction</name>
 						</model>
-						<model id="id-0065-000000e3" kind="Action" role="Action" guid="{B32A8CB3-4247-458f-9665-6D2EFA1BB452}" derivedfrom="id-0065-00000071" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000e0" kind="Action" role="Action" guid="{B32A8CB3-4247-458f-9665-6D2EFA1BB452}" derivedfrom="id-0065-00000071" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>memory</name>
 							<attribute kind="LogAction" status="meta">
 								<value>false</value>
@@ -8765,7 +8804,7 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-000000e4" kind="Property" role="Property" guid="{914C2221-C83B-4045-8975-065B72E34DB1}" derivedfrom="id-0065-00000072" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000e1" kind="Property" role="Property" guid="{914C2221-C83B-4045-8975-065B72E34DB1}" derivedfrom="id-0065-00000072" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>kilobytes</name>
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
@@ -8775,7 +8814,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-000000e5" kind="Action" role="Action" guid="{E1DA2051-3BCB-472c-8824-92E049201983}" derivedfrom="id-0065-00000073" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000e2" kind="Action" role="Action" guid="{E1DA2051-3BCB-472c-8824-92E049201983}" derivedfrom="id-0065-00000073" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>dbase</name>
 							<attribute kind="LogAction" status="meta">
 								<value>false</value>
@@ -8783,7 +8822,7 @@
 							<attribute kind="Repetitions" status="inherited">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-000000e6" kind="Property" role="Property" guid="{F8E92AF0-FF31-470b-8EDB-D364E91496E2}" derivedfrom="id-0065-00000074" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000e3" kind="Property" role="Property" guid="{F8E92AF0-FF31-470b-8EDB-D364E91496E2}" derivedfrom="id-0065-00000074" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>count</name>
 								<attribute kind="DataValue" status="inherited">
 									<value>55</value>
@@ -8793,7 +8832,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-000000e7" kind="Action" role="Action" guid="{3295E982-5F8E-4562-965E-0E4EE99A8E7F}" derivedfrom="id-0065-00000075" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000e4" kind="Action" role="Action" guid="{3295E982-5F8E-4562-965E-0E4EE99A8E7F}" derivedfrom="id-0065-00000075" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>cpu</name>
 							<attribute kind="LogAction" status="meta">
 								<value>false</value>
@@ -8802,9 +8841,9 @@
 								<value>45</value>
 							</attribute>
 						</model>
-						<model id="id-0065-000000e8" kind="OutputAction" role="OutputAction" guid="{5075431A-8F9D-4315-A7D2-93BA3AD62DC8}" derivedfrom="id-0065-00000076" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000e5" kind="OutputAction" role="OutputAction" guid="{5075431A-8F9D-4315-A7D2-93BA3AD62DC8}" derivedfrom="id-0065-00000076" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>SituationEvent</name>
-							<model id="id-0065-000000e9" kind="Property" role="Property" guid="{5AB220A7-A784-4bb1-9CF4-0C6AB927E556}" derivedfrom="id-0065-00000077" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000e6" kind="Property" role="Property" guid="{5AB220A7-A784-4bb1-9CF4-0C6AB927E556}" derivedfrom="id-0065-00000077" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>size</name>
 								<attribute kind="DataValue" status="inherited">
 									<value>132</value>
@@ -8814,7 +8853,7 @@
 								</reference>
 							</model>
 						</model>
-						<model id="id-0065-000000ea" kind="Action" role="Action" guid="{7CFE0FD7-54E3-4588-BAD1-509219ED638F}" derivedfrom="id-0065-00000078" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000e7" kind="Action" role="Action" guid="{7CFE0FD7-54E3-4588-BAD1-509219ED638F}" derivedfrom="id-0065-00000078" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>memory</name>
 							<attribute kind="LogAction" status="meta">
 								<value>false</value>
@@ -8822,13 +8861,34 @@
 							<attribute kind="Repetitions" status="meta">
 								<value>1</value>
 							</attribute>
-							<model id="id-0065-000000eb" kind="Property" role="Property" guid="{0A076246-581A-4cb1-B651-46AE128530AA}" derivedfrom="id-0065-00000079" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000e8" kind="Property" role="Property" guid="{0A076246-581A-4cb1-B651-46AE128530AA}" derivedfrom="id-0065-00000079" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>kilobytes</name>
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000db" kind="DataType" role="DataType" guid="{69C7F87C-7510-4b80-9CFD-7CA9CDBF905B}" derivedfrom="id-0067-000000da" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000e0" kind="DataType" role="DataType" guid="{69C7F87C-7510-4b80-9CFD-7CA9CDBF905B}" derivedfrom="id-0067-000000df" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
+								</reference>
+							</model>
+						</model>
+						<model id="id-0065-000000e9" kind="InputAction" role="InputAction" guid="{E15CA7FC-619D-4a82-B676-1ECF7A97A4D7}" derivedfrom="id-0065-0000007a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>activate</name>
+						</model>
+						<model id="id-0065-000000ea" kind="Action" role="Action" guid="{AD99B86D-A688-41f4-8CAB-85D28F4AB6A3}" derivedfrom="id-0065-0000007b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>dbase</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-000000eb" kind="Property" role="Property" guid="{5E7987D1-362A-49c0-B0E2-24708A408B39}" derivedfrom="id-0065-0000007c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>hostname</name>
+								<attribute kind="DataValue" status="inherited">
+									<value>localhost</value>
+								</attribute>
+								<reference id="id-0067-000000f6" kind="DataType" role="DataType" guid="{172E2220-61AA-4c91-9A0B-5BF66E17913A}" derivedfrom="id-0067-000000f5" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+									<name>String</name>
 								</reference>
 							</model>
 						</model>
@@ -9279,25 +9339,7 @@
 						<atom id="id-0066-0000007c" kind="State" role="State" guid="{BD163C5D-30A7-4b94-8170-499C5A99B884}" derivedfrom="id-0066-00000020" isinstance="yes" isprimary="no">
 							<name>State</name>
 						</atom>
-						<reference id="id-0067-00000071" kind="InEventPort" role="InEventPort" guid="{B8C45FC1-2318-4597-B9D9-955E01B6564C}" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
-							<name>SituationEvent</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000072" kind="OutEventPort" role="OutEventPort" guid="{5E163071-8143-4b3b-B324-EE78BEE78103}" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000071" kind="OutEventPort" role="OutEventPort" guid="{5E163071-8143-4b3b-B324-EE78BEE78103}" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>AssessmentEvent</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -9319,6 +9361,24 @@
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
 								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000072" kind="InEventPort" role="InEventPort" guid="{B8C45FC1-2318-4597-B9D9-955E01B6564C}" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000003" isbound="yes">
+							<name>SituationEvent</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
 							</attribute>
 						</reference>
 						<reference id="id-0067-00000074" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{723F7174-7121-4068-863E-7F271F1B3275}" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-0000002c" isbound="yes">
@@ -9502,7 +9562,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000d0" kind="DataType" role="DataType" guid="{91133F3C-ABF9-4ca3-80D8-57E3051685A0}" derivedfrom="id-0067-000000cf" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d5" kind="DataType" role="DataType" guid="{91133F3C-ABF9-4ca3-80D8-57E3051685A0}" derivedfrom="id-0067-000000d4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9532,7 +9592,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000dd" kind="DataType" role="DataType" guid="{32566B39-AC0F-4b0e-8617-5086EA567289}" derivedfrom="id-0067-000000dc" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000e2" kind="DataType" role="DataType" guid="{32566B39-AC0F-4b0e-8617-5086EA567289}" derivedfrom="id-0067-000000e1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9550,7 +9610,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000ea" kind="DataType" role="DataType" guid="{F481671D-96A9-4e21-90CE-EF2FA7982BE5}" derivedfrom="id-0067-000000e9" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000ee" kind="DataType" role="DataType" guid="{F481671D-96A9-4e21-90CE-EF2FA7982BE5}" derivedfrom="id-0067-000000ed" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9592,7 +9652,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f6" kind="DataType" role="DataType" guid="{EB91FCB0-4A94-4211-8B31-96A08252699A}" derivedfrom="id-0067-000000f5" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f8" kind="DataType" role="DataType" guid="{EB91FCB0-4A94-4211-8B31-96A08252699A}" derivedfrom="id-0067-000000f7" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
@@ -9699,111 +9759,111 @@
 						<reference id="id-0067-0000007e" kind="WorkerType" role="WorkerType" guid="{CABC97D4-E346-4d74-827B-AE69C9CA39C9}" derivedfrom="id-0067-00000040" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
 							<name>memory</name>
 						</reference>
-						<connection isbound="yes" id="id-0068-000000f2" kind="Transition" role="Transition" guid="{DC9885F9-64EF-40dd-988B-2AE90DB1D669}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f2" kind="Effect" role="Effect" guid="{F25485A4-51CD-4352-8DB4-BA94D12BF424}" derivedfrom="id-0068-00000059" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000f3" kind="Transition" role="Transition" guid="{0DA1075D-2DF6-4785-9201-7A82E740C9B1}" derivedfrom="id-0068-0000005a" isinstance="yes" isprimary="no">
 							<name>Transition</name>
 							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-000000f3" kind="Effect" role="Effect" guid="{8CB184CB-95D7-4526-B49D-A5D218887402}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f4" kind="Effect" role="Effect" guid="{5E01AFE8-0F68-489e-B19E-A192AA08DC40}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f5" kind="InputEffect" role="InputEffect" guid="{E059FD63-2982-4c68-B79B-C368B3E4155F}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f6" kind="Transition" role="Transition" guid="{09997553-AA06-42cf-940C-B32BE097ECDF}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f7" kind="Transition" role="Transition" guid="{DF62A1FE-D2C7-408e-934A-16EF68A91E7D}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f8" kind="Effect" role="Effect" guid="{9721B88D-CD43-4786-A256-FE13C75AA3E2}" derivedfrom="id-0068-00000052" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000f9" kind="Transition" role="Transition" guid="{AFC4230C-0D3D-4a6d-B0ED-475BE17D2E0F}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000fa" kind="Effect" role="Effect" guid="{AF4E350A-6B9C-4323-97A1-5A372D435209}" derivedfrom="id-0068-00000054" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000fb" kind="Finish" role="Finish" guid="{65131B26-B8D1-43d7-8D9F-124DF84582A3}" derivedfrom="id-0068-00000055" isinstance="yes" isprimary="no">
-							<name>Finish</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000fc" kind="Effect" role="Effect" guid="{51AD0FD7-2B81-46c4-93C5-ABDCF80F0F4A}" derivedfrom="id-0068-00000056" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000fd" kind="Input" role="Input" guid="{56E7E230-7604-479f-9E5E-FDAB7744F150}" derivedfrom="id-0068-00000057" isinstance="yes" isprimary="no">
-							<name>Input</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000fe" kind="Transition" role="Transition" guid="{ADADDC20-FCFC-4a87-87C0-2BD293CBB6B7}" derivedfrom="id-0068-00000058" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-000000ff" kind="Effect" role="Effect" guid="{F25485A4-51CD-4352-8DB4-BA94D12BF424}" derivedfrom="id-0068-00000059" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000100" kind="Transition" role="Transition" guid="{0DA1075D-2DF6-4785-9201-7A82E740C9B1}" derivedfrom="id-0068-0000005a" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000101" kind="MultiInput" role="MultiInput" guid="{202815B0-8BFB-47a9-91F2-D068BF4D295E}" derivedfrom="id-0068-0000005b" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f4" kind="MultiInput" role="MultiInput" guid="{202815B0-8BFB-47a9-91F2-D068BF4D295E}" derivedfrom="id-0068-0000005b" isinstance="yes" isprimary="no">
 							<name>MultiInput</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000102" kind="Transition" role="Transition" guid="{563A93BF-6454-40d5-90C3-EFAB64D0A6D4}" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f5" kind="Transition" role="Transition" guid="{563A93BF-6454-40d5-90C3-EFAB64D0A6D4}" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
 							<name>Transition</name>
 							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000103" kind="Finish" role="Finish" guid="{4954E6F3-B601-4980-9254-C42A0D0EEAB3}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f6" kind="Finish" role="Finish" guid="{4954E6F3-B601-4980-9254-C42A0D0EEAB3}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000104" kind="InputEffect" role="InputEffect" guid="{D6098890-8747-42bf-A755-10E11C8D3C06}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f7" kind="InputEffect" role="InputEffect" guid="{D6098890-8747-42bf-A755-10E11C8D3C06}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000105" kind="Effect" role="Effect" guid="{FAED3942-F906-4e3b-8BA5-EA739BCFED41}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-000000f8" kind="Effect" role="Effect" guid="{FAED3942-F906-4e3b-8BA5-EA739BCFED41}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000f9" kind="Transition" role="Transition" guid="{DC9885F9-64EF-40dd-988B-2AE90DB1D669}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000fa" kind="Effect" role="Effect" guid="{8CB184CB-95D7-4526-B49D-A5D218887402}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000fb" kind="Effect" role="Effect" guid="{5E01AFE8-0F68-489e-B19E-A192AA08DC40}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000fc" kind="InputEffect" role="InputEffect" guid="{E059FD63-2982-4c68-B79B-C368B3E4155F}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000fd" kind="Transition" role="Transition" guid="{09997553-AA06-42cf-940C-B32BE097ECDF}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000fe" kind="Transition" role="Transition" guid="{DF62A1FE-D2C7-408e-934A-16EF68A91E7D}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-000000ff" kind="Effect" role="Effect" guid="{9721B88D-CD43-4786-A256-FE13C75AA3E2}" derivedfrom="id-0068-00000052" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000100" kind="Transition" role="Transition" guid="{AFC4230C-0D3D-4a6d-B0ED-475BE17D2E0F}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000101" kind="Effect" role="Effect" guid="{AF4E350A-6B9C-4323-97A1-5A372D435209}" derivedfrom="id-0068-00000054" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000102" kind="Finish" role="Finish" guid="{65131B26-B8D1-43d7-8D9F-124DF84582A3}" derivedfrom="id-0068-00000055" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000103" kind="Effect" role="Effect" guid="{51AD0FD7-2B81-46c4-93C5-ABDCF80F0F4A}" derivedfrom="id-0068-00000056" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000104" kind="Input" role="Input" guid="{56E7E230-7604-479f-9E5E-FDAB7744F150}" derivedfrom="id-0068-00000057" isinstance="yes" isprimary="no">
+							<name>Input</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000105" kind="Transition" role="Transition" guid="{ADADDC20-FCFC-4a87-87C0-2BD293CBB6B7}" derivedfrom="id-0068-00000058" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
@@ -9862,7 +9922,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000d1" kind="DataType" role="DataType" guid="{8648E9C8-F950-407d-B0C2-7C68F4393D4F}" derivedfrom="id-0067-000000cf" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000d6" kind="DataType" role="DataType" guid="{8648E9C8-F950-407d-B0C2-7C68F4393D4F}" derivedfrom="id-0067-000000d4" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9892,7 +9952,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>35</value>
 								</attribute>
-								<reference id="id-0067-000000de" kind="DataType" role="DataType" guid="{48E7241A-A11E-4f80-938A-628D7D44DDBC}" derivedfrom="id-0067-000000dc" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000e3" kind="DataType" role="DataType" guid="{48E7241A-A11E-4f80-938A-628D7D44DDBC}" derivedfrom="id-0067-000000e1" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9910,7 +9970,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>30</value>
 								</attribute>
-								<reference id="id-0067-000000eb" kind="DataType" role="DataType" guid="{00F0A319-485A-4da6-8180-512F1AD42D16}" derivedfrom="id-0067-000000e9" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
+								<reference id="id-0067-000000ef" kind="DataType" role="DataType" guid="{00F0A319-485A-4da6-8180-512F1AD42D16}" derivedfrom="id-0067-000000ed" isinstance="yes" isprimary="no" referred="id-0066-0000000d" isbound="yes">
 									<name>LongInteger</name>
 								</reference>
 							</model>
@@ -9952,7 +10012,7 @@
 								<attribute kind="DataValue" status="inherited">
 									<value>localhost</value>
 								</attribute>
-								<reference id="id-0067-000000f7" kind="DataType" role="DataType" guid="{E4E11F8F-256A-48dd-9865-CCC8B6E59E65}" derivedfrom="id-0067-000000f5" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
+								<reference id="id-0067-000000f9" kind="DataType" role="DataType" guid="{E4E11F8F-256A-48dd-9865-CCC8B6E59E65}" derivedfrom="id-0067-000000f7" isinstance="yes" isprimary="no" referred="id-0066-0000000c" isbound="yes">
 									<name>String</name>
 								</reference>
 							</model>
@@ -10059,111 +10119,111 @@
 						<reference id="id-0067-00000085" kind="WorkerType" role="WorkerType" guid="{97384296-04A1-4b0f-A916-1A84C3E9158A}" derivedfrom="id-0067-00000040" isinstance="yes" isprimary="no" referred="id-0065-0000001a" isbound="yes">
 							<name>memory</name>
 						</reference>
-						<connection isbound="yes" id="id-0068-00000106" kind="Transition" role="Transition" guid="{86DE7A54-3D4A-4f59-B8DD-3E65030394B1}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000106" kind="Effect" role="Effect" guid="{F8FB2BC9-4182-4e71-A498-E58FE8D2CC82}" derivedfrom="id-0068-00000059" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000107" kind="Transition" role="Transition" guid="{87C5E6B2-4EF6-429f-97FC-C98A32162167}" derivedfrom="id-0068-0000005a" isinstance="yes" isprimary="no">
 							<name>Transition</name>
 							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000107" kind="Effect" role="Effect" guid="{B675533C-AAAD-417c-8268-0E3D8BD67350}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000108" kind="Effect" role="Effect" guid="{2C7743A1-C42A-4a2b-9F8E-36F3911C174D}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000109" kind="InputEffect" role="InputEffect" guid="{260FD2D1-D12C-4208-89A0-C3590FA3BB58}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010a" kind="Transition" role="Transition" guid="{B990ABF4-EF32-45e5-B37B-CCDA6247D5EC}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010b" kind="Transition" role="Transition" guid="{A9BABF82-6DEC-4c96-9559-9A7317879321}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010c" kind="Effect" role="Effect" guid="{19D4CAD7-6B51-46fa-BFF3-4CB30F74DA36}" derivedfrom="id-0068-00000052" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010d" kind="Transition" role="Transition" guid="{E0ACDA05-7F16-42ad-8ECE-40818A8224A1}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010e" kind="Effect" role="Effect" guid="{340B23DE-98A6-4882-9C82-B58F70991445}" derivedfrom="id-0068-00000054" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000010f" kind="Finish" role="Finish" guid="{AB1B0C57-CAD3-4b6d-9C04-7BD7C612EE05}" derivedfrom="id-0068-00000055" isinstance="yes" isprimary="no">
-							<name>Finish</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000110" kind="Effect" role="Effect" guid="{81C8F03C-2A50-44ce-9702-0637D19583FB}" derivedfrom="id-0068-00000056" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000111" kind="Input" role="Input" guid="{CB1B65BF-F780-4cd5-B76A-E0D90D48A70F}" derivedfrom="id-0068-00000057" isinstance="yes" isprimary="no">
-							<name>Input</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000112" kind="Transition" role="Transition" guid="{D8B4C92D-C785-4efe-AB70-A720B3D4E5E4}" derivedfrom="id-0068-00000058" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000113" kind="Effect" role="Effect" guid="{F8FB2BC9-4182-4e71-A498-E58FE8D2CC82}" derivedfrom="id-0068-00000059" isinstance="yes" isprimary="no">
-							<name>Effect</name>
-							<attribute kind="Postcondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000114" kind="Transition" role="Transition" guid="{87C5E6B2-4EF6-429f-97FC-C98A32162167}" derivedfrom="id-0068-0000005a" isinstance="yes" isprimary="no">
-							<name>Transition</name>
-							<attribute kind="Precondition" status="meta">
-								<value></value>
-							</attribute>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000115" kind="MultiInput" role="MultiInput" guid="{7459678D-388E-43d5-AAF7-8D526A333A13}" derivedfrom="id-0068-0000005b" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000108" kind="MultiInput" role="MultiInput" guid="{7459678D-388E-43d5-AAF7-8D526A333A13}" derivedfrom="id-0068-0000005b" isinstance="yes" isprimary="no">
 							<name>MultiInput</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000116" kind="Transition" role="Transition" guid="{CD1B03F5-0CAE-442d-8DE0-6D7F6DE453FB}" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000109" kind="Transition" role="Transition" guid="{CD1B03F5-0CAE-442d-8DE0-6D7F6DE453FB}" derivedfrom="id-0068-0000005c" isinstance="yes" isprimary="no">
 							<name>Transition</name>
 							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000117" kind="Finish" role="Finish" guid="{9C8AC0E4-6B6B-447d-92E6-39416AAC3F21}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000010a" kind="Finish" role="Finish" guid="{9C8AC0E4-6B6B-447d-92E6-39416AAC3F21}" derivedfrom="id-0068-0000005d" isinstance="yes" isprimary="no">
 							<name>Finish</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000118" kind="InputEffect" role="InputEffect" guid="{FC44C359-F46B-4eea-97AD-E142969608B2}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000010b" kind="InputEffect" role="InputEffect" guid="{FC44C359-F46B-4eea-97AD-E142969608B2}" derivedfrom="id-0068-0000005e" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000119" kind="Effect" role="Effect" guid="{98573333-C72A-461e-9F3C-7ADB269F859F}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000010c" kind="Effect" role="Effect" guid="{98573333-C72A-461e-9F3C-7ADB269F859F}" derivedfrom="id-0068-0000005f" isinstance="yes" isprimary="no">
 							<name>Effect</name>
 							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000010d" kind="Transition" role="Transition" guid="{86DE7A54-3D4A-4f59-B8DD-3E65030394B1}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000010e" kind="Effect" role="Effect" guid="{B675533C-AAAD-417c-8268-0E3D8BD67350}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000010f" kind="Effect" role="Effect" guid="{2C7743A1-C42A-4a2b-9F8E-36F3911C174D}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000110" kind="InputEffect" role="InputEffect" guid="{260FD2D1-D12C-4208-89A0-C3590FA3BB58}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000111" kind="Transition" role="Transition" guid="{B990ABF4-EF32-45e5-B37B-CCDA6247D5EC}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000112" kind="Transition" role="Transition" guid="{A9BABF82-6DEC-4c96-9559-9A7317879321}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000113" kind="Effect" role="Effect" guid="{19D4CAD7-6B51-46fa-BFF3-4CB30F74DA36}" derivedfrom="id-0068-00000052" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000114" kind="Transition" role="Transition" guid="{E0ACDA05-7F16-42ad-8ECE-40818A8224A1}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000115" kind="Effect" role="Effect" guid="{340B23DE-98A6-4882-9C82-B58F70991445}" derivedfrom="id-0068-00000054" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000116" kind="Finish" role="Finish" guid="{AB1B0C57-CAD3-4b6d-9C04-7BD7C612EE05}" derivedfrom="id-0068-00000055" isinstance="yes" isprimary="no">
+							<name>Finish</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000117" kind="Effect" role="Effect" guid="{81C8F03C-2A50-44ce-9702-0637D19583FB}" derivedfrom="id-0068-00000056" isinstance="yes" isprimary="no">
+							<name>Effect</name>
+							<attribute kind="Postcondition" status="meta">
+								<value></value>
+							</attribute>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000118" kind="Input" role="Input" guid="{CB1B65BF-F780-4cd5-B76A-E0D90D48A70F}" derivedfrom="id-0068-00000057" isinstance="yes" isprimary="no">
+							<name>Input</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000119" kind="Transition" role="Transition" guid="{D8B4C92D-C785-4efe-AB70-A720B3D4E5E4}" derivedfrom="id-0068-00000058" isinstance="yes" isprimary="no">
+							<name>Transition</name>
+							<attribute kind="Precondition" status="meta">
 								<value></value>
 							</attribute>
 						</connection>
@@ -10375,7 +10435,7 @@
 							<value>1</value>
 						</attribute>
 						<attribute kind="SecurityPolicy" status="meta">
-							<value>DomainAccessPolicy</value>
+							<value>SecureInvocationPolicy</value>
 						</attribute>
 						<reference id="id-0067-0000011b" kind="PortRuleRef" role="PortRuleRef" guid="{7D426007-32C8-45f3-8F25-0D22C800EA42}" relid="0x3" referred="id-0066-000000b9">
 							<name>PortRule1</name>
@@ -10389,7 +10449,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000132" kind="PortRuleRef" role="PortRuleRef" guid="{8CA2AD34-F4DE-43ae-8247-539CE96531AA}" relid="0x4" referred="id-0066-000000bb">
+						<reference id="id-0067-0000011c" kind="PortRuleRef" role="PortRuleRef" guid="{8CA2AD34-F4DE-43ae-8247-539CE96531AA}" relid="0x4" referred="id-0066-000000bb">
 							<name>PortRule1</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -10401,7 +10461,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000133" kind="PortRuleRef" role="PortRuleRef" guid="{0C331E28-2465-46a2-A4A2-CF67AFDA2D49}" relid="0x5" referred="id-0066-000000ba">
+						<reference id="id-0067-0000011d" kind="PortRuleRef" role="PortRuleRef" guid="{0C331E28-2465-46a2-A4A2-CF67AFDA2D49}" relid="0x5" referred="id-0066-000000ba">
 							<name>PortRule2</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -10447,9 +10507,9 @@
 							<value>1</value>
 						</attribute>
 						<attribute kind="SecurityPolicy" status="meta">
-							<value>DomainAccessPolicy</value>
+							<value>SecureInvocationPolicy</value>
 						</attribute>
-						<reference id="id-0067-0000011c" kind="ComponentRuleRef" role="ComponentRuleRef" guid="{9CB7637A-8753-41d7-B908-B19117182368}" relid="0x4" referred="id-0066-000000b7">
+						<reference id="id-0067-0000011e" kind="ComponentRuleRef" role="ComponentRuleRef" guid="{9CB7637A-8753-41d7-B908-B19117182368}" relid="0x4" referred="id-0066-000000b7">
 							<name>ComponentRule1</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -10461,7 +10521,7 @@
 								</regnode>
 							</regnode>
 						</reference>
-						<reference id="id-0067-00000134" kind="PortRuleRef" role="PortRuleRef" guid="{4681ED12-AEAC-4237-993C-18DB6C895860}" relid="0x5" referred="id-0066-000000bb">
+						<reference id="id-0067-0000011f" kind="PortRuleRef" role="PortRuleRef" guid="{4681ED12-AEAC-4237-993C-18DB6C895860}" relid="0x5" referred="id-0066-000000bb">
 							<name>PortRule3</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -10541,12 +10601,12 @@
 					<connection id="id-0068-0000011f" kind="emit" role="emit" guid="{736567B1-2C14-4847-9C7A-BA7175AEB585}" relid="0xf">
 						<name>emit</name>
 						<connpoint role="src" target="id-0067-0000006a"/>
-						<connpoint role="dst" target="id-0067-00000071"/>
+						<connpoint role="dst" target="id-0067-00000072"/>
 					</connection>
 					<connection id="id-0068-00000120" kind="emit" role="emit" guid="{EB9CB186-B0F2-4aaf-AD01-2AED1C0BD59C}" relid="0x10">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000053"/>
-						<connpoint role="src" target="id-0067-00000072"/>
+						<connpoint role="dst" target="id-0067-00000052"/>
+						<connpoint role="src" target="id-0067-00000071"/>
 					</connection>
 					<connection id="id-0068-00000121" kind="publish" role="publish" guid="{D92D8D25-9FBC-4e24-9F51-7914954BA8EE}" relid="0x12">
 						<name>publish</name>
@@ -10554,7 +10614,7 @@
 							<value>w</value>
 						</regnode>
 						<connpoint role="dst" target="id-0066-00000092"/>
-						<connpoint role="src" target="id-0067-00000052"/>
+						<connpoint role="src" target="id-0067-00000054"/>
 					</connection>
 					<connection id="id-0068-00000122" kind="deliverTo" role="deliverTo" guid="{E8B1BC21-649D-4994-A102-35BACBF42271}" relid="0x13">
 						<name>deliverTo</name>
@@ -10562,7 +10622,7 @@
 							<value>E</value>
 						</regnode>
 						<connpoint role="src" target="id-0066-00000092"/>
-						<connpoint role="dst" target="id-0067-0000005a"/>
+						<connpoint role="dst" target="id-0067-0000005c"/>
 					</connection>
 					<connection id="id-0068-00000123" kind="deliverTo" role="deliverTo" guid="{B5C1D586-2068-4302-8B29-1FB239E348F3}" relid="0x14">
 						<name>deliverTo</name>
@@ -10570,17 +10630,17 @@
 							<value>E</value>
 						</regnode>
 						<connpoint role="src" target="id-0066-00000092"/>
-						<connpoint role="dst" target="id-0067-00000061"/>
+						<connpoint role="dst" target="id-0067-00000063"/>
 					</connection>
 					<connection id="id-0068-00000124" kind="emit" role="emit" guid="{AFD695C7-2745-443c-BD44-3A04792D9ED7}" relid="0x15">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000054"/>
-						<connpoint role="src" target="id-0067-00000062"/>
+						<connpoint role="dst" target="id-0067-00000053"/>
+						<connpoint role="src" target="id-0067-00000064"/>
 					</connection>
 					<connection id="id-0068-00000125" kind="emit" role="emit" guid="{D9F4F8A4-45AC-42bc-8B4E-BDAE7DE20A9C}" relid="0x16">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000054"/>
-						<connpoint role="src" target="id-0067-0000005b"/>
+						<connpoint role="dst" target="id-0067-00000053"/>
+						<connpoint role="src" target="id-0067-0000005d"/>
 					</connection>
 					<connection id="id-0068-00000126" kind="invoke" role="invoke" guid="{53889AE4-6B17-4a67-8F30-56FBA3457DFE}" relid="0x18">
 						<name>invoke</name>
@@ -10609,12 +10669,12 @@
 					</connection>
 					<connection id="id-0068-0000012b" kind="invoke" role="invoke" guid="{21695F47-866D-4a61-B615-EB58912A9E73}" relid="0x1d">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-0000005e"/>
+						<connpoint role="src" target="id-0067-00000060"/>
 						<connpoint role="dst" target="id-0067-00000086"/>
 					</connection>
 					<connection id="id-0068-0000012c" kind="invoke" role="invoke" guid="{18DB0842-9B4E-44ae-8395-174AC5ED2297}" relid="0x1e">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000065"/>
+						<connpoint role="src" target="id-0067-00000067"/>
 						<connpoint role="dst" target="id-0067-00000086"/>
 					</connection>
 					<connection id="id-0068-0000012d" kind="AttributeValue" role="AttributeValue" guid="{B3EA038C-23FA-4b76-BFED-E691CB806D37}" relid="0x20">
@@ -10649,7 +10709,7 @@
 						<connpoint role="src" target="id-0065-00000119"/>
 						<connpoint role="dst" target="id-0065-0000011f"/>
 					</connection>
-					<connection id="id-0068-00000187" kind="PortQoS" role="PortQoS" guid="{C0EB88A4-20DA-41d3-B269-F7E71EC2CFCC}" relid="0x27">
+					<connection id="id-0068-00000131" kind="PortQoS" role="PortQoS" guid="{C0EB88A4-20DA-41d3-B269-F7E71EC2CFCC}" relid="0x27">
 						<name>PortQoS</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
@@ -10657,7 +10717,7 @@
 						<connpoint role="dst" target="id-0065-0000011e"/>
 						<connpoint role="src" target="id-0067-00000080"/>
 					</connection>
-					<connection id="id-0068-00000188" kind="PortQoS" role="PortQoS" guid="{C8F760EE-8F27-470c-9D3D-D7271392DADB}" relid="0x28">
+					<connection id="id-0068-00000132" kind="PortQoS" role="PortQoS" guid="{C8F760EE-8F27-470c-9D3D-D7271392DADB}" relid="0x28">
 						<name>PortQoS</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
@@ -10665,7 +10725,7 @@
 						<connpoint role="dst" target="id-0065-0000011e"/>
 						<connpoint role="src" target="id-0067-0000007f"/>
 					</connection>
-					<connection id="id-0068-00000189" kind="PortQoS" role="PortQoS" guid="{1C7C6329-3E08-4f4e-87B8-8B5AD5DA3969}" relid="0x29">
+					<connection id="id-0068-00000133" kind="PortQoS" role="PortQoS" guid="{1C7C6329-3E08-4f4e-87B8-8B5AD5DA3969}" relid="0x29">
 						<name>PortQoS</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
@@ -10673,7 +10733,7 @@
 						<connpoint role="dst" target="id-0065-0000011e"/>
 						<connpoint role="src" target="id-0067-00000082"/>
 					</connection>
-					<connection id="id-0068-0000018a" kind="ComponentQoS" role="ComponentQoS" guid="{F1C7A8B9-7677-4cb2-8C42-361E5D6F49A9}" relid="0x2a">
+					<connection id="id-0068-00000134" kind="ComponentQoS" role="ComponentQoS" guid="{F1C7A8B9-7677-4cb2-8C42-361E5D6F49A9}" relid="0x2a">
 						<name>ComponentQoS</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ns</value>
@@ -10730,9 +10790,9 @@
 						<value>1</value>
 					</attribute>
 					<attribute kind="SecurityPolicy" status="meta">
-						<value>DomainAccessPolicy</value>
+						<value>SecureInvocationPolicy</value>
 					</attribute>
-					<reference id="id-0067-0000011d" kind="AssemblyRuleRef" role="AssemblyRuleRef" guid="{78E47818-C639-44d6-BF95-C4C61F79B1A0}" relid="0x5" referred="id-0066-000000b6">
+					<reference id="id-0067-00000120" kind="AssemblyRuleRef" role="AssemblyRuleRef" guid="{78E47818-C639-44d6-BF95-C4C61F79B1A0}" relid="0x5" referred="id-0066-000000b6">
 						<name>AssemblyRule1</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -10744,7 +10804,7 @@
 							</regnode>
 						</regnode>
 					</reference>
-					<reference id="id-0067-00000131" kind="PortRuleRef" role="PortRuleRef" guid="{AEBFEEF3-05C7-4f66-A4B3-03DDAD85B173}" relid="0x6" referred="id-0066-000000ba">
+					<reference id="id-0067-00000121" kind="PortRuleRef" role="PortRuleRef" guid="{AEBFEEF3-05C7-4f66-A4B3-03DDAD85B173}" relid="0x6" referred="id-0066-000000ba">
 						<name>PortRule2</name>
 						<regnode name="PartRegs" status="undefined">
 							<value></value>
@@ -10757,7 +10817,7 @@
 						</regnode>
 					</reference>
 				</model>
-				<connection id="id-0068-00000131" kind="ConfigProperty" role="ConfigProperty" guid="{CE44E18F-42F5-4b5a-8AB5-CB3013EDC7A7}" relid="0x3">
+				<connection id="id-0068-00000135" kind="ConfigProperty" role="ConfigProperty" guid="{CE44E18F-42F5-4b5a-8AB5-CB3013EDC7A7}" relid="0x3">
 					<name>ConfigProperty</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -10765,7 +10825,7 @@
 					<connpoint role="src" target="id-0065-000000b0"/>
 					<connpoint role="dst" target="id-0065-00000120"/>
 				</connection>
-				<connection id="id-0068-00000132" kind="ComponentAssemblyQoS" role="ComponentAssemblyQoS" guid="{36742AA4-A5F5-438b-A0BA-8107D5A1C1D1}" relid="0x6">
+				<connection id="id-0068-00000136" kind="ComponentAssemblyQoS" role="ComponentAssemblyQoS" guid="{36742AA4-A5F5-438b-A0BA-8107D5A1C1D1}" relid="0x6">
 					<name>ComponentAssemblyQoS</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -10790,6 +10850,9 @@
 					<attribute kind="UUID">
 						<value>AAE7B0FE-BF51-4988-B47C-607893708123</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -10812,7 +10875,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000011e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{BE35BA25-F64C-4332-89E2-6004DD392913}" relid="0x3" referred="id-0066-000000a0">
+				<reference id="id-0067-00000122" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{BE35BA25-F64C-4332-89E2-6004DD392913}" relid="0x3" referred="id-0066-000000a0">
 					<name>ConfigOp_CoWorkEr_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10824,7 +10887,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000011f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{67F36BA7-A3F7-44e6-8309-39B1A53ECDD0}" relid="0x4" referred="id-0066-0000009f">
+				<reference id="id-0067-00000123" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{67F36BA7-A3F7-44e6-8309-39B1A53ECDD0}" relid="0x4" referred="id-0066-0000009f">
 					<name>ConfigOp_CoWorkEr_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10836,7 +10899,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000120" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{70379DF6-0D10-44e9-B471-6B84FD190009}" relid="0x5" referred="id-0066-0000009e">
+				<reference id="id-0067-00000124" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{70379DF6-0D10-44e9-B471-6B84FD190009}" relid="0x5" referred="id-0066-0000009e">
 					<name>ConfigOp_CoWorkEr_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10848,31 +10911,31 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000133" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{72613CAF-F9B9-408f-BE99-0D5A620C25B6}" relid="0x6">
+				<connection id="id-0068-00000137" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{72613CAF-F9B9-408f-BE99-0D5A620C25B6}" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000093"/>
-					<connpoint role="dst" target="id-0067-0000011f"/>
+					<connpoint role="dst" target="id-0067-00000123"/>
 				</connection>
-				<connection id="id-0068-00000134" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{755092CC-688A-4215-86E2-A7AE48A1B877}" relid="0x7">
+				<connection id="id-0068-00000138" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{755092CC-688A-4215-86E2-A7AE48A1B877}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000093"/>
-					<connpoint role="dst" target="id-0067-00000120"/>
+					<connpoint role="dst" target="id-0067-00000124"/>
 				</connection>
-				<connection id="id-0068-00000135" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{C3D4BEAB-B047-4e22-8EDC-5E31D230462E}" relid="0x8">
+				<connection id="id-0068-00000139" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{C3D4BEAB-B047-4e22-8EDC-5E31D230462E}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000093"/>
-					<connpoint role="dst" target="id-0067-0000011e"/>
+					<connpoint role="dst" target="id-0067-00000122"/>
 				</connection>
-				<connection id="id-0068-00000136" kind="Implements" role="Implements" guid="{0E61F4BA-9BED-4720-9926-8BECDA92E7F6}" relid="0x9">
+				<connection id="id-0068-0000013a" kind="Implements" role="Implements" guid="{0E61F4BA-9BED-4720-9926-8BECDA92E7F6}" relid="0x9">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -10897,6 +10960,9 @@
 					<attribute kind="UUID">
 						<value>7B8AA8BD-F577-49CD-9A4F-D0B33C495A70</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -10913,7 +10979,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000121" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{43FA25FF-D27A-41eb-AFF9-FBB72F36457D}" relid="0x1" referred="id-0066-0000009a">
+				<reference id="id-0067-00000125" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{43FA25FF-D27A-41eb-AFF9-FBB72F36457D}" relid="0x1" referred="id-0066-0000009a">
 					<name>Effector_CoWorkEr_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10925,7 +10991,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000122" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{E2801F42-7048-49d1-BE82-F7E691E23B93}" relid="0x2" referred="id-0066-00000098">
+				<reference id="id-0067-00000126" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{E2801F42-7048-49d1-BE82-F7E691E23B93}" relid="0x2" referred="id-0066-00000098">
 					<name>Effector_CoWorkEr_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10937,7 +11003,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000123" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{33305498-BB95-4210-93CA-3AE7EBDD0411}" relid="0x3" referred="id-0066-00000099">
+				<reference id="id-0067-00000127" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{33305498-BB95-4210-93CA-3AE7EBDD0411}" relid="0x3" referred="id-0066-00000099">
 					<name>Effector_CoWorkEr_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -10949,31 +11015,31 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000137" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{DE8A6FC4-3483-4bd4-8479-DAF9DD7338C4}" relid="0x5">
+				<connection id="id-0068-0000013b" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{DE8A6FC4-3483-4bd4-8479-DAF9DD7338C4}" relid="0x5">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000094"/>
-					<connpoint role="dst" target="id-0067-00000122"/>
+					<connpoint role="dst" target="id-0067-00000126"/>
 				</connection>
-				<connection id="id-0068-00000138" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{1262811D-7335-4d0c-A6BE-6A7A24A2B409}" relid="0x6">
+				<connection id="id-0068-0000013c" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{1262811D-7335-4d0c-A6BE-6A7A24A2B409}" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000094"/>
-					<connpoint role="dst" target="id-0067-00000123"/>
+					<connpoint role="dst" target="id-0067-00000127"/>
 				</connection>
-				<connection id="id-0068-00000139" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{718893A4-F4CE-4c39-8BD1-A1E476E42A22}" relid="0x7">
+				<connection id="id-0068-0000013d" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{718893A4-F4CE-4c39-8BD1-A1E476E42A22}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000094"/>
-					<connpoint role="dst" target="id-0067-00000121"/>
+					<connpoint role="dst" target="id-0067-00000125"/>
 				</connection>
-				<connection id="id-0068-0000013a" kind="Implements" role="Implements" guid="{9E78062E-922F-4692-8732-9F14E4738936}" relid="0x9">
+				<connection id="id-0068-0000013e" kind="Implements" role="Implements" guid="{9E78062E-922F-4692-8732-9F14E4738936}" relid="0x9">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -10998,6 +11064,9 @@
 					<attribute kind="UUID">
 						<value>9F325747-79CA-4312-8AA8-017EE3BB32F1</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -11014,7 +11083,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000124" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{0891E809-9E2E-4551-B40C-76BCFCEA71A6}" relid="0x1" referred="id-0066-000000a3">
+				<reference id="id-0067-00000128" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{0891E809-9E2E-4551-B40C-76BCFCEA71A6}" relid="0x1" referred="id-0066-000000a3">
 					<name>PlannerOne_CoWorkEr_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11026,7 +11095,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000125" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{028FE31A-455A-4f71-9518-3D2C1DCB5350}" relid="0x2" referred="id-0066-000000a2">
+				<reference id="id-0067-00000129" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{028FE31A-455A-4f71-9518-3D2C1DCB5350}" relid="0x2" referred="id-0066-000000a2">
 					<name>PlannerOne_CoWorkEr_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11038,7 +11107,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000126" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{18347D3A-91EF-480b-B41C-A08B59502C65}" relid="0x3" referred="id-0066-000000a1">
+				<reference id="id-0067-0000012a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{18347D3A-91EF-480b-B41C-A08B59502C65}" relid="0x3" referred="id-0066-000000a1">
 					<name>PlannerOne_CoWorkEr_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11050,31 +11119,31 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000013b" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{7EE7738B-9D1F-40bf-BA1E-FC789C66ECAF}" relid="0x5">
+				<connection id="id-0068-0000013f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{7EE7738B-9D1F-40bf-BA1E-FC789C66ECAF}" relid="0x5">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000095"/>
-					<connpoint role="dst" target="id-0067-00000125"/>
+					<connpoint role="dst" target="id-0067-00000129"/>
 				</connection>
-				<connection id="id-0068-0000013c" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{1099B8AD-28D4-4451-B016-3B643A82C7B7}" relid="0x6">
+				<connection id="id-0068-00000140" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{1099B8AD-28D4-4451-B016-3B643A82C7B7}" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000095"/>
-					<connpoint role="dst" target="id-0067-00000126"/>
+					<connpoint role="dst" target="id-0067-0000012a"/>
 				</connection>
-				<connection id="id-0068-0000013d" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{3EFD80F0-A755-4dca-8EFA-929883634022}" relid="0x7">
+				<connection id="id-0068-00000141" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{3EFD80F0-A755-4dca-8EFA-929883634022}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000095"/>
-					<connpoint role="dst" target="id-0067-00000124"/>
+					<connpoint role="dst" target="id-0067-00000128"/>
 				</connection>
-				<connection id="id-0068-0000013e" kind="Implements" role="Implements" guid="{C9CFD3BC-C80A-4423-AA60-448236C78C43}" relid="0x9">
+				<connection id="id-0068-00000142" kind="Implements" role="Implements" guid="{C9CFD3BC-C80A-4423-AA60-448236C78C43}" relid="0x9">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -11099,6 +11168,9 @@
 					<attribute kind="UUID">
 						<value>800556A9-AA33-4DA3-B4E1-59F508ADC1DA</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -11115,7 +11187,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000127" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{43A28B22-32B1-4b76-9716-BBF84523FDC4}" relid="0x1" referred="id-0066-000000a4">
+				<reference id="id-0067-0000012b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{43A28B22-32B1-4b76-9716-BBF84523FDC4}" relid="0x1" referred="id-0066-000000a4">
 					<name>PlannerTwo_CoWorkEr_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11127,7 +11199,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000128" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{372A7D67-E603-45b7-A899-C15BE36B502E}" relid="0x2" referred="id-0066-000000a6">
+				<reference id="id-0067-0000012c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{372A7D67-E603-45b7-A899-C15BE36B502E}" relid="0x2" referred="id-0066-000000a6">
 					<name>PlannerTwo_CoWorkEr_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11139,7 +11211,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000129" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{D7B2348D-31EB-4733-90C7-A9B63754608A}" relid="0x3" referred="id-0066-000000a5">
+				<reference id="id-0067-0000012d" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{D7B2348D-31EB-4733-90C7-A9B63754608A}" relid="0x3" referred="id-0066-000000a5">
 					<name>PlannerTwo_CoWorkEr_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11151,31 +11223,31 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000013f" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{434F8225-9EE7-43d5-995B-FFA4FA86EB36}" relid="0x5">
+				<connection id="id-0068-00000143" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{434F8225-9EE7-43d5-995B-FFA4FA86EB36}" relid="0x5">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000096"/>
-					<connpoint role="dst" target="id-0067-00000128"/>
+					<connpoint role="dst" target="id-0067-0000012c"/>
 				</connection>
-				<connection id="id-0068-00000140" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{B05EB6E7-0F4D-481f-AE5B-ED68B55186BC}" relid="0x6">
+				<connection id="id-0068-00000144" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{B05EB6E7-0F4D-481f-AE5B-ED68B55186BC}" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000096"/>
-					<connpoint role="dst" target="id-0067-00000129"/>
+					<connpoint role="dst" target="id-0067-0000012d"/>
 				</connection>
-				<connection id="id-0068-00000141" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{8199000B-83DA-4674-9F70-52499AF8C463}" relid="0x7">
+				<connection id="id-0068-00000145" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{8199000B-83DA-4674-9F70-52499AF8C463}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000096"/>
-					<connpoint role="dst" target="id-0067-00000127"/>
+					<connpoint role="dst" target="id-0067-0000012b"/>
 				</connection>
-				<connection id="id-0068-00000142" kind="Implements" role="Implements" guid="{5D4F9B2D-371D-4bac-9A3D-70E54C75E3FF}" relid="0x9">
+				<connection id="id-0068-00000146" kind="Implements" role="Implements" guid="{5D4F9B2D-371D-4bac-9A3D-70E54C75E3FF}" relid="0x9">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -11200,6 +11272,9 @@
 					<attribute kind="UUID">
 						<value>E2A6F490-85A0-4BB9-BDFE-14567D307B3B</value>
 					</attribute>
+					<attribute kind="defaultVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
@@ -11216,7 +11291,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000012a" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{EED11894-9733-4fb1-876D-BE7EC15BF9C3}" relid="0x1" referred="id-0066-0000009d">
+				<reference id="id-0067-0000012e" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{EED11894-9733-4fb1-876D-BE7EC15BF9C3}" relid="0x1" referred="id-0066-0000009d">
 					<name>Sensor_CoWorkEr_exec</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11228,7 +11303,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000012b" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{16CDCE15-4EC2-4c5e-BF72-E1D749D5424A}" relid="0x2" referred="id-0066-0000009b">
+				<reference id="id-0067-0000012f" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{16CDCE15-4EC2-4c5e-BF72-E1D749D5424A}" relid="0x2" referred="id-0066-0000009b">
 					<name>Sensor_CoWorkEr_stub</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11240,7 +11315,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000012c" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{567D824E-4D45-472c-AE8A-E85411AD29B8}" relid="0x3" referred="id-0066-0000009c">
+				<reference id="id-0067-00000130" kind="ImplementationArtifactReference" role="ImplementationArtifactReference" guid="{567D824E-4D45-472c-AE8A-E85411AD29B8}" relid="0x3" referred="id-0066-0000009c">
 					<name>Sensor_CoWorkEr_svnt</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11252,31 +11327,31 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000143" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{426FC0A2-C313-4197-B6E3-937C2F2B63AA}" relid="0x6">
+				<connection id="id-0068-00000147" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{426FC0A2-C313-4197-B6E3-937C2F2B63AA}" relid="0x6">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000097"/>
-					<connpoint role="dst" target="id-0067-0000012b"/>
+					<connpoint role="dst" target="id-0067-0000012f"/>
 				</connection>
-				<connection id="id-0068-00000144" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{B11F6EEF-426F-45fb-BFED-8806B2484D1C}" relid="0x7">
+				<connection id="id-0068-00000148" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{B11F6EEF-426F-45fb-BFED-8806B2484D1C}" relid="0x7">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>E</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000097"/>
-					<connpoint role="dst" target="id-0067-0000012c"/>
+					<connpoint role="dst" target="id-0067-00000130"/>
 				</connection>
-				<connection id="id-0068-00000145" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{3048683D-4572-49e8-975A-9DBD5631A162}" relid="0x8">
+				<connection id="id-0068-00000149" kind="MonolithprimaryArtifact" role="MonolithprimaryArtifact" guid="{3048683D-4572-49e8-975A-9DBD5631A162}" relid="0x8">
 					<name>MonolithprimaryArtifact</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000097"/>
-					<connpoint role="dst" target="id-0067-0000012a"/>
+					<connpoint role="dst" target="id-0067-0000012e"/>
 				</connection>
-				<connection id="id-0068-00000146" kind="Implements" role="Implements" guid="{4BEA72DF-C0AF-4a51-9F3A-CA04B0E72679}" relid="0x9">
+				<connection id="id-0068-0000014a" kind="Implements" role="Implements" guid="{4BEA72DF-C0AF-4a51-9F3A-CA04B0E72679}" relid="0x9">
 					<name>Implements</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
@@ -11358,14 +11433,23 @@
 					<attribute kind="UUID">
 						<value>BE422A36-FF21-4CC3-A10C-8D593FAF73ED</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Effector_CoWorkEr_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000099" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{29E8EEEF-F73A-4dfe-A6F7-EC685BA159D7}" relid="0x2">
@@ -11382,14 +11466,23 @@
 					<attribute kind="UUID">
 						<value>46B740C9-37D3-4833-A604-397E0D8D84A3</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Effector_CoWorkEr_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000009a" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{30A52205-811A-4645-A05E-51E167390AF2}" relid="0x3">
@@ -11406,8 +11499,14 @@
 					<attribute kind="UUID">
 						<value>C79F7CB2-EDAC-43EE-83DB-707C42A4928D</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -11415,8 +11514,11 @@
 					<attribute kind="location">
 						<value>Effector_CoWorkEr_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<connection id="id-0068-00000147" kind="ArtifactDependency" role="ArtifactDependency" guid="{F7EE2C4F-7FE1-463a-BA07-E2BBCA351B5D}" relid="0x4">
+				<connection id="id-0068-0000014b" kind="ArtifactDependency" role="ArtifactDependency" guid="{F7EE2C4F-7FE1-463a-BA07-E2BBCA351B5D}" relid="0x4">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -11424,7 +11526,7 @@
 					<connpoint role="dst" target="id-0066-00000098"/>
 					<connpoint role="src" target="id-0066-00000099"/>
 				</connection>
-				<connection id="id-0068-00000148" kind="ArtifactDependency" role="ArtifactDependency" guid="{0275141B-7B4D-4240-BABA-D3024A9DC185}" relid="0x5">
+				<connection id="id-0068-0000014c" kind="ArtifactDependency" role="ArtifactDependency" guid="{0275141B-7B4D-4240-BABA-D3024A9DC185}" relid="0x5">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -11432,7 +11534,7 @@
 					<connpoint role="dst" target="id-0066-00000098"/>
 					<connpoint role="src" target="id-0066-0000009a"/>
 				</connection>
-				<connection id="id-0068-00000149" kind="ArtifactDependency" role="ArtifactDependency" guid="{334CB223-0244-47d9-BFC6-3DBE89008D61}" relid="0x6">
+				<connection id="id-0068-0000014d" kind="ArtifactDependency" role="ArtifactDependency" guid="{334CB223-0244-47d9-BFC6-3DBE89008D61}" relid="0x6">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -11440,7 +11542,7 @@
 					<connpoint role="dst" target="id-0066-00000099"/>
 					<connpoint role="src" target="id-0066-0000009a"/>
 				</connection>
-				<connection id="id-0068-0000014a" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{737E65D2-9C5C-4cad-A58D-756253097A03}" relid="0x9">
+				<connection id="id-0068-0000014e" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{737E65D2-9C5C-4cad-A58D-756253097A03}" relid="0x9">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11448,7 +11550,7 @@
 					<connpoint role="dst" target="id-0065-00000128"/>
 					<connpoint role="src" target="id-0066-00000099"/>
 				</connection>
-				<connection id="id-0068-0000014b" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{9F58FB5E-EA4A-442d-9920-3AB50A5B22EF}" relid="0xa">
+				<connection id="id-0068-0000014f" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{9F58FB5E-EA4A-442d-9920-3AB50A5B22EF}" relid="0xa">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11527,14 +11629,23 @@
 					<attribute kind="UUID">
 						<value>94A79119-CB51-4759-9AA4-BC62CCBF960C</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Sensor_CoWorkEr_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000009c" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{4352E6FA-BB96-45b0-8F11-47C1B2C0B594}" relid="0x2">
@@ -11551,14 +11662,23 @@
 					<attribute kind="UUID">
 						<value>9E61FD41-9386-4C72-A492-8B15A86D8A83</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>Sensor_CoWorkEr_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000009d" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{080424CD-114F-46c3-95F3-41FA1B26239D}" relid="0x3">
@@ -11575,8 +11695,14 @@
 					<attribute kind="UUID">
 						<value>CC1EA8F4-9A4F-45E5-82EC-3057DDCA2CBE</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -11584,8 +11710,11 @@
 					<attribute kind="location">
 						<value>Sensor_CoWorkEr_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<connection id="id-0068-0000014c" kind="ArtifactDependency" role="ArtifactDependency" guid="{E7F60B42-5E0B-4ef0-A4D5-447C7FFFE7B1}" relid="0x4">
+				<connection id="id-0068-00000150" kind="ArtifactDependency" role="ArtifactDependency" guid="{E7F60B42-5E0B-4ef0-A4D5-447C7FFFE7B1}" relid="0x4">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -11593,7 +11722,7 @@
 					<connpoint role="dst" target="id-0066-0000009b"/>
 					<connpoint role="src" target="id-0066-0000009c"/>
 				</connection>
-				<connection id="id-0068-0000014d" kind="ArtifactDependency" role="ArtifactDependency" guid="{FB7A1A49-DE10-4c61-8DE3-F331F198DD2B}" relid="0x5">
+				<connection id="id-0068-00000151" kind="ArtifactDependency" role="ArtifactDependency" guid="{FB7A1A49-DE10-4c61-8DE3-F331F198DD2B}" relid="0x5">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -11601,7 +11730,7 @@
 					<connpoint role="dst" target="id-0066-0000009b"/>
 					<connpoint role="src" target="id-0066-0000009d"/>
 				</connection>
-				<connection id="id-0068-0000014e" kind="ArtifactDependency" role="ArtifactDependency" guid="{A6004582-A404-454f-B349-CCC477A79AC7}" relid="0x6">
+				<connection id="id-0068-00000152" kind="ArtifactDependency" role="ArtifactDependency" guid="{A6004582-A404-454f-B349-CCC477A79AC7}" relid="0x6">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -11609,7 +11738,7 @@
 					<connpoint role="dst" target="id-0066-0000009c"/>
 					<connpoint role="src" target="id-0066-0000009d"/>
 				</connection>
-				<connection id="id-0068-0000014f" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D0428BEB-90AC-41f7-B9FD-417A46B2065E}" relid="0x9">
+				<connection id="id-0068-00000153" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D0428BEB-90AC-41f7-B9FD-417A46B2065E}" relid="0x9">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11617,7 +11746,7 @@
 					<connpoint role="dst" target="id-0065-0000012b"/>
 					<connpoint role="src" target="id-0066-0000009c"/>
 				</connection>
-				<connection id="id-0068-00000150" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D0D4F1DD-AE79-4ffc-B05B-228E72CD9B2F}" relid="0xa">
+				<connection id="id-0068-00000154" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D0D4F1DD-AE79-4ffc-B05B-228E72CD9B2F}" relid="0xa">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11696,14 +11825,23 @@
 					<attribute kind="UUID">
 						<value>9374D62D-656D-456E-B3A4-18DA212778EB</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>ConfigOp_CoWorkEr_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-0000009f" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{43F8F916-ADF5-4ebe-A250-A6C6F7426E63}" relid="0x2">
@@ -11720,14 +11858,23 @@
 					<attribute kind="UUID">
 						<value>CB51CE92-D32E-4EE8-9401-D2948ACD7C3B</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>ConfigOp_CoWorkEr_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-000000a0" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{4116F0F3-6058-45b8-A724-837407FD72E8}" relid="0x5">
@@ -11744,8 +11891,14 @@
 					<attribute kind="UUID">
 						<value>5E591377-7339-475B-A41B-974A06D723CA</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -11753,8 +11906,11 @@
 					<attribute kind="location">
 						<value>ConfigOp_CoWorkEr_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<connection id="id-0068-00000151" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{23F07546-4442-455b-B4B7-F56278BDA761}" relid="0x6">
+				<connection id="id-0068-00000155" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{23F07546-4442-455b-B4B7-F56278BDA761}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11762,7 +11918,7 @@
 					<connpoint role="dst" target="id-0065-0000012e"/>
 					<connpoint role="src" target="id-0066-0000009e"/>
 				</connection>
-				<connection id="id-0068-00000152" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{C8D5E615-44A6-4dec-91EE-91F709959C41}" relid="0x7">
+				<connection id="id-0068-00000156" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{C8D5E615-44A6-4dec-91EE-91F709959C41}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11770,7 +11926,7 @@
 					<connpoint role="dst" target="id-0065-0000012f"/>
 					<connpoint role="src" target="id-0066-000000a0"/>
 				</connection>
-				<connection id="id-0068-00000153" kind="ArtifactDependency" role="ArtifactDependency" guid="{133BB77C-604F-46f7-A9CA-66FE12A066B6}" relid="0x8">
+				<connection id="id-0068-00000157" kind="ArtifactDependency" role="ArtifactDependency" guid="{133BB77C-604F-46f7-A9CA-66FE12A066B6}" relid="0x8">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -11778,7 +11934,7 @@
 					<connpoint role="dst" target="id-0066-0000009f"/>
 					<connpoint role="src" target="id-0066-000000a0"/>
 				</connection>
-				<connection id="id-0068-00000154" kind="ArtifactDependency" role="ArtifactDependency" guid="{B765A3B0-1D9E-465b-BF5B-1643B83ED2A8}" relid="0x9">
+				<connection id="id-0068-00000158" kind="ArtifactDependency" role="ArtifactDependency" guid="{B765A3B0-1D9E-465b-BF5B-1643B83ED2A8}" relid="0x9">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -11786,7 +11942,7 @@
 					<connpoint role="src" target="id-0066-0000009e"/>
 					<connpoint role="dst" target="id-0066-0000009f"/>
 				</connection>
-				<connection id="id-0068-00000155" kind="ArtifactDependency" role="ArtifactDependency" guid="{AE4919C1-7026-49b9-9CA2-BF6ED14BEDB2}" relid="0xa">
+				<connection id="id-0068-00000159" kind="ArtifactDependency" role="ArtifactDependency" guid="{AE4919C1-7026-49b9-9CA2-BF6ED14BEDB2}" relid="0xa">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -11865,14 +12021,23 @@
 					<attribute kind="UUID">
 						<value>1E77DE44-A742-4AB0-845C-C2DAD7A95FA8</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>PlannerOne_CoWorkEr_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-000000a2" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{6D983E0C-B3BC-46ee-A01A-6AB8DB6DCFA9}" relid="0x2">
@@ -11889,14 +12054,23 @@
 					<attribute kind="UUID">
 						<value>3D731442-66EF-47A3-9C35-2814EC667893</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>PlannerOne_CoWorkEr_stub</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-000000a3" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{77702E87-5A25-4d12-9066-EDEA24377589}" relid="0x5">
@@ -11913,8 +12087,14 @@
 					<attribute kind="UUID">
 						<value>3F31493C-A2EC-4D9E-9475-632B108FDDA2</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -11922,8 +12102,11 @@
 					<attribute kind="location">
 						<value>PlannerOne_CoWorkEr_exec</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<connection id="id-0068-00000156" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D5F7443E-DEC0-447f-9FD1-5E797B72B2D3}" relid="0x6">
+				<connection id="id-0068-0000015a" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{D5F7443E-DEC0-447f-9FD1-5E797B72B2D3}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11931,7 +12114,7 @@
 					<connpoint role="dst" target="id-0065-00000131"/>
 					<connpoint role="src" target="id-0066-000000a1"/>
 				</connection>
-				<connection id="id-0068-00000157" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{4B34B8D7-2041-4f48-A6F9-59B4C477CB37}" relid="0x7">
+				<connection id="id-0068-0000015b" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{4B34B8D7-2041-4f48-A6F9-59B4C477CB37}" relid="0x7">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -11939,7 +12122,7 @@
 					<connpoint role="dst" target="id-0065-00000132"/>
 					<connpoint role="src" target="id-0066-000000a3"/>
 				</connection>
-				<connection id="id-0068-00000158" kind="ArtifactDependency" role="ArtifactDependency" guid="{3D11B3F9-7FDB-42ca-BE4D-BAB9E5B6D458}" relid="0x8">
+				<connection id="id-0068-0000015c" kind="ArtifactDependency" role="ArtifactDependency" guid="{3D11B3F9-7FDB-42ca-BE4D-BAB9E5B6D458}" relid="0x8">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -11947,7 +12130,7 @@
 					<connpoint role="dst" target="id-0066-000000a2"/>
 					<connpoint role="src" target="id-0066-000000a3"/>
 				</connection>
-				<connection id="id-0068-00000159" kind="ArtifactDependency" role="ArtifactDependency" guid="{D276A95D-B334-4efb-8923-C412DE600C21}" relid="0x9">
+				<connection id="id-0068-0000015d" kind="ArtifactDependency" role="ArtifactDependency" guid="{D276A95D-B334-4efb-8923-C412DE600C21}" relid="0x9">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -11955,7 +12138,7 @@
 					<connpoint role="src" target="id-0066-000000a1"/>
 					<connpoint role="dst" target="id-0066-000000a2"/>
 				</connection>
-				<connection id="id-0068-0000015a" kind="ArtifactDependency" role="ArtifactDependency" guid="{70900A58-4AAB-494a-B33E-BE57415E1180}" relid="0xa">
+				<connection id="id-0068-0000015e" kind="ArtifactDependency" role="ArtifactDependency" guid="{70900A58-4AAB-494a-B33E-BE57415E1180}" relid="0xa">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -12034,14 +12217,23 @@
 					<attribute kind="UUID">
 						<value>BDBFE580-127C-4213-AD8F-D07A86FB32CD</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>PlannerTwo_CoWorkEr_exec</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-000000a5" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{158F5DF4-87D3-4bf9-9FC3-5461CA300E44}" relid="0x3">
@@ -12058,14 +12250,23 @@
 					<attribute kind="UUID">
 						<value>0FD8DF9E-FCFA-40BA-9760-8B0A7F8416B4</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
 					</attribute>
 					<attribute kind="location">
 						<value>PlannerTwo_CoWorkEr_svnt</value>
+					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-000000a6" kind="ImplementationArtifact" role="ImplementationArtifact" guid="{8CAE1027-267E-4cb2-A5E4-A222E0A9BC1A}" relid="0x5">
@@ -12082,8 +12283,14 @@
 					<attribute kind="UUID">
 						<value>586F7461-82E1-434E-8E63-786261AA7717</value>
 					</attribute>
+					<attribute kind="architecture" status="meta">
+						<value>x86</value>
+					</attribute>
+					<attribute kind="artifactVersion" status="meta">
+						<value>0.0.0.0</value>
+					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -12091,8 +12298,11 @@
 					<attribute kind="location">
 						<value>PlannerTwo_CoWorkEr_stub</value>
 					</attribute>
+					<attribute kind="operatingSystem" status="meta">
+						<value>Linux</value>
+					</attribute>
 				</atom>
-				<connection id="id-0068-0000015b" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{13281B56-8677-473f-AA88-EE87074EA8AD}" relid="0x6">
+				<connection id="id-0068-0000015f" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{13281B56-8677-473f-AA88-EE87074EA8AD}" relid="0x6">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -12100,7 +12310,7 @@
 					<connpoint role="dst" target="id-0065-00000135"/>
 					<connpoint role="src" target="id-0066-000000a5"/>
 				</connection>
-				<connection id="id-0068-0000015c" kind="ArtifactDependency" role="ArtifactDependency" guid="{D3382DED-8B86-4d47-ACD4-C22C5745CD2C}" relid="0x7">
+				<connection id="id-0068-00000160" kind="ArtifactDependency" role="ArtifactDependency" guid="{D3382DED-8B86-4d47-ACD4-C22C5745CD2C}" relid="0x7">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ne</value>
@@ -12108,7 +12318,7 @@
 					<connpoint role="src" target="id-0066-000000a4"/>
 					<connpoint role="dst" target="id-0066-000000a6"/>
 				</connection>
-				<connection id="id-0068-0000015d" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{AD9D72B5-30CA-4274-A90F-1A0A764F5C15}" relid="0x8">
+				<connection id="id-0068-00000161" kind="ArtifactExecParameter" role="ArtifactExecParameter" guid="{AD9D72B5-30CA-4274-A90F-1A0A764F5C15}" relid="0x8">
 					<name>ArtifactExecParameter</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -12116,7 +12326,7 @@
 					<connpoint role="dst" target="id-0065-00000134"/>
 					<connpoint role="src" target="id-0066-000000a4"/>
 				</connection>
-				<connection id="id-0068-0000015e" kind="ArtifactDependency" role="ArtifactDependency" guid="{DEE127F5-AE8C-436b-A374-59BBC6C9E70A}" relid="0x9">
+				<connection id="id-0068-00000162" kind="ArtifactDependency" role="ArtifactDependency" guid="{DEE127F5-AE8C-436b-A374-59BBC6C9E70A}" relid="0x9">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -12124,7 +12334,7 @@
 					<connpoint role="src" target="id-0066-000000a4"/>
 					<connpoint role="dst" target="id-0066-000000a5"/>
 				</connection>
-				<connection id="id-0068-0000015f" kind="ArtifactDependency" role="ArtifactDependency" guid="{F75F12DA-5589-40cf-BC27-C16543D8107C}" relid="0xa">
+				<connection id="id-0068-00000163" kind="ArtifactDependency" role="ArtifactDependency" guid="{F75F12DA-5589-40cf-BC27-C16543D8107C}" relid="0xa">
 					<name>ArtifactDependency</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -12180,7 +12390,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000160" kind="Implementation" role="Implementation" guid="{8836795E-366A-41b4-AB3C-1BD79BE1EC37}" relid="0x4">
+				<connection id="id-0068-00000164" kind="Implementation" role="Implementation" guid="{8836795E-366A-41b4-AB3C-1BD79BE1EC37}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>En</value>
@@ -12188,7 +12398,7 @@
 					<connpoint role="src" target="id-0066-000000a7"/>
 					<connpoint role="dst" target="id-0067-0000009b"/>
 				</connection>
-				<connection id="id-0068-00000161" kind="PackageInterface" role="PackageInterface" guid="{BD44FE24-BB09-4106-B6BF-3E755FFDC995}" relid="0x5">
+				<connection id="id-0068-00000165" kind="PackageInterface" role="PackageInterface" guid="{BD44FE24-BB09-4106-B6BF-3E755FFDC995}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -12241,7 +12451,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000162" kind="Implementation" role="Implementation" guid="{E52A0190-2922-4115-A85A-04F62E11C2B2}" relid="0x4">
+				<connection id="id-0068-00000166" kind="Implementation" role="Implementation" guid="{E52A0190-2922-4115-A85A-04F62E11C2B2}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -12249,7 +12459,7 @@
 					<connpoint role="src" target="id-0066-000000a8"/>
 					<connpoint role="dst" target="id-0067-0000009c"/>
 				</connection>
-				<connection id="id-0068-00000163" kind="PackageInterface" role="PackageInterface" guid="{15AF8A17-2419-4087-9FA2-EF4056F35E62}" relid="0x5">
+				<connection id="id-0068-00000167" kind="PackageInterface" role="PackageInterface" guid="{15AF8A17-2419-4087-9FA2-EF4056F35E62}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ws</value>
@@ -12302,7 +12512,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000164" kind="Implementation" role="Implementation" guid="{3E28972A-745B-4a30-B5D1-7FF678B6D56F}" relid="0x4">
+				<connection id="id-0068-00000168" kind="Implementation" role="Implementation" guid="{3E28972A-745B-4a30-B5D1-7FF678B6D56F}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -12310,7 +12520,7 @@
 					<connpoint role="src" target="id-0066-000000a9"/>
 					<connpoint role="dst" target="id-0067-0000009e"/>
 				</connection>
-				<connection id="id-0068-00000165" kind="PackageInterface" role="PackageInterface" guid="{1B76E193-3DAE-4b1f-89F8-772DE9E4D6FD}" relid="0x5">
+				<connection id="id-0068-00000169" kind="PackageInterface" role="PackageInterface" guid="{1B76E193-3DAE-4b1f-89F8-772DE9E4D6FD}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ws</value>
@@ -12363,7 +12573,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000166" kind="Implementation" role="Implementation" guid="{B4FD74E8-8FA1-493f-8745-38B9BB850529}" relid="0x4">
+				<connection id="id-0068-0000016a" kind="Implementation" role="Implementation" guid="{B4FD74E8-8FA1-493f-8745-38B9BB850529}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>En</value>
@@ -12371,7 +12581,7 @@
 					<connpoint role="src" target="id-0066-000000aa"/>
 					<connpoint role="dst" target="id-0067-000000a1"/>
 				</connection>
-				<connection id="id-0068-00000167" kind="PackageInterface" role="PackageInterface" guid="{41EF81DF-1ACA-46ef-A9B6-BD886226C851}" relid="0x5">
+				<connection id="id-0068-0000016b" kind="PackageInterface" role="PackageInterface" guid="{41EF81DF-1ACA-46ef-A9B6-BD886226C851}" relid="0x5">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -12424,7 +12634,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-00000168" kind="Implementation" role="Implementation" guid="{34BD84D6-2C1A-4cc1-A38C-744E214AA779}" relid="0x4">
+				<connection id="id-0068-0000016c" kind="Implementation" role="Implementation" guid="{34BD84D6-2C1A-4cc1-A38C-744E214AA779}" relid="0x4">
 					<name>Implementation</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>En</value>
@@ -12432,7 +12642,7 @@
 					<connpoint role="src" target="id-0066-000000ab"/>
 					<connpoint role="dst" target="id-0067-000000a2"/>
 				</connection>
-				<connection id="id-0068-00000169" kind="PackageInterface" role="PackageInterface" guid="{B65E2DA4-E445-459f-A631-5AF234F203F8}" relid="0x7">
+				<connection id="id-0068-0000016d" kind="PackageInterface" role="PackageInterface" guid="{B65E2DA4-E445-459f-A631-5AF234F203F8}" relid="0x7">
 					<name>PackageInterface</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -12668,7 +12878,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection id="id-0068-0000016a" kind="InstanceMapping" role="InstanceMapping" guid="{9C8418EF-CBFE-4559-9D31-5D955755F7F6}" relid="0x9">
+				<connection id="id-0068-0000016e" kind="InstanceMapping" role="InstanceMapping" guid="{9C8418EF-CBFE-4559-9D31-5D955755F7F6}" relid="0x9">
 					<name>InstanceMapping</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -12676,7 +12886,7 @@
 					<connpoint role="dst" target="id-0067-000000a4"/>
 					<connpoint role="src" target="id-0069-00000001"/>
 				</connection>
-				<connection id="id-0068-0000016b" kind="InstanceMapping" role="InstanceMapping" guid="{2A4911F6-C8D4-4188-BB1B-679572A628DE}" relid="0xa">
+				<connection id="id-0068-0000016f" kind="InstanceMapping" role="InstanceMapping" guid="{2A4911F6-C8D4-4188-BB1B-679572A628DE}" relid="0xa">
 					<name>InstanceMapping</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -12684,7 +12894,7 @@
 					<connpoint role="dst" target="id-0067-000000a5"/>
 					<connpoint role="src" target="id-0069-00000002"/>
 				</connection>
-				<connection id="id-0068-0000016c" kind="InstanceMapping" role="InstanceMapping" guid="{F70B3816-88D3-4020-B61A-8104F793DCDB}" relid="0xb">
+				<connection id="id-0068-00000170" kind="InstanceMapping" role="InstanceMapping" guid="{F70B3816-88D3-4020-B61A-8104F793DCDB}" relid="0xb">
 					<name>InstanceMapping</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -12692,7 +12902,7 @@
 					<connpoint role="dst" target="id-0067-000000a6"/>
 					<connpoint role="src" target="id-0069-00000003"/>
 				</connection>
-				<connection id="id-0068-0000016d" kind="InstanceMapping" role="InstanceMapping" guid="{59FE0901-6F62-4c8a-B983-728C86189FF0}" relid="0xc">
+				<connection id="id-0068-00000171" kind="InstanceMapping" role="InstanceMapping" guid="{59FE0901-6F62-4c8a-B983-728C86189FF0}" relid="0xc">
 					<name>InstanceMapping</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -12756,6 +12966,12 @@
 				<name>SLICE_RBAC</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>168,28</value>
+						</regnode>
+					</regnode>
 					<regnode name="SecurityRule" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
@@ -13030,7 +13246,7 @@
 						<value>true</value>
 					</attribute>
 				</atom>
-				<connection id="id-0068-0000016e" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{AA50DCF1-D084-4c3d-BD0B-5D647CDB7518}" relid="0xc">
+				<connection id="id-0068-00000172" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{AA50DCF1-D084-4c3d-BD0B-5D647CDB7518}" relid="0xc">
 					<name>RightsAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13038,7 +13254,7 @@
 					<connpoint role="src" target="id-0066-000000ae"/>
 					<connpoint role="dst" target="id-0066-000000b2"/>
 				</connection>
-				<connection id="id-0068-0000016f" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{B070BA01-0238-47d8-9FA6-0C6F0C2D43F3}" relid="0xd">
+				<connection id="id-0068-00000173" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{B070BA01-0238-47d8-9FA6-0C6F0C2D43F3}" relid="0xd">
 					<name>RightsAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13046,7 +13262,7 @@
 					<connpoint role="src" target="id-0066-000000af"/>
 					<connpoint role="dst" target="id-0066-000000b3"/>
 				</connection>
-				<connection id="id-0068-00000170" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{9307A37B-98C8-414a-A915-44A1F34B8843}" relid="0xe">
+				<connection id="id-0068-00000174" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{9307A37B-98C8-414a-A915-44A1F34B8843}" relid="0xe">
 					<name>RightsAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13054,7 +13270,7 @@
 					<connpoint role="src" target="id-0066-000000b0"/>
 					<connpoint role="dst" target="id-0066-000000b4"/>
 				</connection>
-				<connection id="id-0068-00000171" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{71AF99B9-03AD-4b1c-915C-4B3D4915B5E6}" relid="0xf">
+				<connection id="id-0068-00000175" kind="RightsAssignmentConn" role="RightsAssignmentConn" guid="{71AF99B9-03AD-4b1c-915C-4B3D4915B5E6}" relid="0xf">
 					<name>RightsAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13062,7 +13278,7 @@
 					<connpoint role="src" target="id-0066-000000b1"/>
 					<connpoint role="dst" target="id-0066-000000b5"/>
 				</connection>
-				<connection id="id-0068-00000172" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{E8C87A03-967A-48cc-A3E8-832B7435F42B}" relid="0x10">
+				<connection id="id-0068-00000176" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{E8C87A03-967A-48cc-A3E8-832B7435F42B}" relid="0x10">
 					<name>RoleAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13070,7 +13286,7 @@
 					<connpoint role="src" target="id-0066-000000ac"/>
 					<connpoint role="dst" target="id-0066-000000ae"/>
 				</connection>
-				<connection id="id-0068-00000173" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{CECD8297-8D0C-43d5-A6D5-5655B40B57E2}" relid="0x12">
+				<connection id="id-0068-00000177" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{CECD8297-8D0C-43d5-A6D5-5655B40B57E2}" relid="0x12">
 					<name>RoleAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13078,7 +13294,7 @@
 					<connpoint role="src" target="id-0066-000000ad"/>
 					<connpoint role="dst" target="id-0066-000000b1"/>
 				</connection>
-				<connection id="id-0068-00000174" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{35B94FBF-32A0-4df5-B275-B9BDB4749555}" relid="0x13">
+				<connection id="id-0068-00000178" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{35B94FBF-32A0-4df5-B275-B9BDB4749555}" relid="0x13">
 					<name>RoleAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13086,7 +13302,7 @@
 					<connpoint role="src" target="id-0066-000000ac"/>
 					<connpoint role="dst" target="id-0066-000000b0"/>
 				</connection>
-				<connection id="id-0068-00000175" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{1D420B28-BF83-49f8-B6EB-A86CDE38A5F4}" relid="0x16">
+				<connection id="id-0068-00000179" kind="RoleAssignmentConn" role="RoleAssignmentConn" guid="{1D420B28-BF83-49f8-B6EB-A86CDE38A5F4}" relid="0x16">
 					<name>RoleAssignmentConn</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -13097,6 +13313,15 @@
 			</model>
 			<model id="id-0065-00000144" kind="PolicySet" role="PolicySet" guid="{4C8552F2-CD38-46a1-8B34-256449B77927}" relid="0x3" childrelidcntr="0x2">
 				<name>SLICE_PolicySet</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>187,208</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<model id="id-0065-00000145" kind="Policy" role="Policy" guid="{8956C7C3-8758-4d98-B930-AD90C8971B5A}" relid="0x2" childrelidcntr="0x20">
 					<name>CoWorkerAccessPolicy</name>
 					<regnode name="PartRegs" status="undefined">
@@ -13459,7 +13684,7 @@
 							</regnode>
 						</regnode>
 					</reference>
-					<connection id="id-0068-00000176" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{A102B508-8B75-429b-BCF2-574012D4E2BD}" relid="0xf">
+					<connection id="id-0068-0000017a" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{A102B508-8B75-429b-BCF2-574012D4E2BD}" relid="0xf">
 						<name>ObjectAccessConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13467,7 +13692,7 @@
 						<connpoint role="dst" target="id-0066-000000b9"/>
 						<connpoint role="src" target="id-0067-000000b8"/>
 					</connection>
-					<connection id="id-0068-00000177" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{B2CE6D62-E595-4cc9-9445-717E6CB87F7C}" relid="0x12">
+					<connection id="id-0068-0000017b" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{B2CE6D62-E595-4cc9-9445-717E6CB87F7C}" relid="0x12">
 						<name>ObjectAccessConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13475,7 +13700,7 @@
 						<connpoint role="dst" target="id-0066-000000ba"/>
 						<connpoint role="src" target="id-0067-000000b8"/>
 					</connection>
-					<connection id="id-0068-00000178" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{CF81E86F-0F14-4a6c-B84B-4F7EA7523E9C}" relid="0x13">
+					<connection id="id-0068-0000017c" kind="ObjectAccessConn" role="ObjectAccessConn" guid="{CF81E86F-0F14-4a6c-B84B-4F7EA7523E9C}" relid="0x13">
 						<name>ObjectAccessConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13483,7 +13708,7 @@
 						<connpoint role="dst" target="id-0066-000000bb"/>
 						<connpoint role="src" target="id-0067-000000b8"/>
 					</connection>
-					<connection id="id-0068-00000179" kind="ComponentAccessConn" role="ComponentAccessConn" guid="{84069EFE-4460-4b5e-9BAC-F3FF695F8D1D}" relid="0x14">
+					<connection id="id-0068-0000017d" kind="ComponentAccessConn" role="ComponentAccessConn" guid="{84069EFE-4460-4b5e-9BAC-F3FF695F8D1D}" relid="0x14">
 						<name>ComponentAccessConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13491,7 +13716,7 @@
 						<connpoint role="dst" target="id-0066-000000b7"/>
 						<connpoint role="src" target="id-0067-000000b6"/>
 					</connection>
-					<connection id="id-0068-0000017a" kind="AssemblyAccessConn" role="AssemblyAccessConn" guid="{0F1ACF1F-360F-4852-8504-007DE0BDE40C}" relid="0x15">
+					<connection id="id-0068-0000017e" kind="AssemblyAccessConn" role="AssemblyAccessConn" guid="{0F1ACF1F-360F-4852-8504-007DE0BDE40C}" relid="0x15">
 						<name>AssemblyAccessConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13499,7 +13724,7 @@
 						<connpoint role="dst" target="id-0066-000000b6"/>
 						<connpoint role="src" target="id-0067-000000b7"/>
 					</connection>
-					<connection id="id-0068-0000017b" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{7262094A-AF80-4fc5-A2B8-B272640A40D5}" relid="0x16">
+					<connection id="id-0068-0000017f" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{7262094A-AF80-4fc5-A2B8-B272640A40D5}" relid="0x16">
 						<name>OnInterfaceConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13507,7 +13732,7 @@
 						<connpoint role="src" target="id-0066-000000b9"/>
 						<connpoint role="dst" target="id-0067-000000ba"/>
 					</connection>
-					<connection id="id-0068-0000017c" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{23347B16-992C-43e5-905F-06898D090240}" relid="0x17">
+					<connection id="id-0068-00000180" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{23347B16-992C-43e5-905F-06898D090240}" relid="0x17">
 						<name>OnInterfaceConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13515,7 +13740,7 @@
 						<connpoint role="src" target="id-0066-000000ba"/>
 						<connpoint role="dst" target="id-0067-000000ba"/>
 					</connection>
-					<connection id="id-0068-0000017d" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{01587838-1543-4aa1-A51D-07776ACFDA24}" relid="0x18">
+					<connection id="id-0068-00000181" kind="OnInterfaceConn" role="OnInterfaceConn" guid="{01587838-1543-4aa1-A51D-07776ACFDA24}" relid="0x18">
 						<name>OnInterfaceConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13523,7 +13748,7 @@
 						<connpoint role="src" target="id-0066-000000bb"/>
 						<connpoint role="dst" target="id-0067-000000ba"/>
 					</connection>
-					<connection id="id-0068-0000017e" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{9670365E-6387-4264-A68A-EAB5583DEC55}" relid="0x19">
+					<connection id="id-0068-00000182" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{9670365E-6387-4264-A68A-EAB5583DEC55}" relid="0x19">
 						<name>OperationInvokeConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Sn</value>
@@ -13531,7 +13756,7 @@
 						<connpoint role="src" target="id-0066-000000b9"/>
 						<connpoint role="dst" target="id-0067-000000b5"/>
 					</connection>
-					<connection id="id-0068-0000017f" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{6BA0C450-5F4E-4011-A28C-FFE8B931D726}" relid="0x1a">
+					<connection id="id-0068-00000183" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{6BA0C450-5F4E-4011-A28C-FFE8B931D726}" relid="0x1a">
 						<name>OperationInvokeConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Sn</value>
@@ -13539,7 +13764,7 @@
 						<connpoint role="dst" target="id-0065-00000146"/>
 						<connpoint role="src" target="id-0066-000000ba"/>
 					</connection>
-					<connection id="id-0068-00000180" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{5346E204-BD2B-41ff-AF76-88422425FAFF}" relid="0x1b">
+					<connection id="id-0068-00000184" kind="OperationInvokeConn" role="OperationInvokeConn" guid="{5346E204-BD2B-41ff-AF76-88422425FAFF}" relid="0x1b">
 						<name>OperationInvokeConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Sn</value>
@@ -13547,7 +13772,7 @@
 						<connpoint role="dst" target="id-0066-000000b8"/>
 						<connpoint role="src" target="id-0066-000000bb"/>
 					</connection>
-					<connection id="id-0068-00000181" kind="OnComponentConn" role="OnComponentConn" guid="{B452569F-5EB7-4c3d-8FA0-2AF5C144F0BB}" relid="0x1c">
+					<connection id="id-0068-00000185" kind="OnComponentConn" role="OnComponentConn" guid="{B452569F-5EB7-4c3d-8FA0-2AF5C144F0BB}" relid="0x1c">
 						<name>OnComponentConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>
@@ -13555,7 +13780,7 @@
 						<connpoint role="src" target="id-0066-000000b7"/>
 						<connpoint role="dst" target="id-0067-000000b2"/>
 					</connection>
-					<connection id="id-0068-00000182" kind="AttributeManipulateConn" role="AttributeManipulateConn" guid="{2D8BD3B1-B83F-4463-BA42-CA5A144B489C}" relid="0x1d">
+					<connection id="id-0068-00000186" kind="AttributeManipulateConn" role="AttributeManipulateConn" guid="{2D8BD3B1-B83F-4463-BA42-CA5A144B489C}" relid="0x1d">
 						<name>AttributeManipulateConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Sn</value>
@@ -13563,7 +13788,7 @@
 						<connpoint role="src" target="id-0066-000000b7"/>
 						<connpoint role="dst" target="id-0067-000000b4"/>
 					</connection>
-					<connection id="id-0068-00000183" kind="SecuredPathConn" role="SecuredPathConn" guid="{E9559FD6-7ABD-4cf0-8F4A-B37C7EF19DA7}" relid="0x1f">
+					<connection id="id-0068-00000187" kind="SecuredPathConn" role="SecuredPathConn" guid="{E9559FD6-7ABD-4cf0-8F4A-B37C7EF19DA7}" relid="0x1f">
 						<name>SecuredPathConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Sn</value>
@@ -13571,7 +13796,7 @@
 						<connpoint role="src" target="id-0066-000000b6"/>
 						<connpoint role="dst" target="id-0067-000000b9"/>
 					</connection>
-					<connection id="id-0068-00000184" kind="OnAssemblyConn" role="OnAssemblyConn" guid="{956BF806-4149-42db-9CC3-3A2F65D4641C}" relid="0x20">
+					<connection id="id-0068-00000188" kind="OnAssemblyConn" role="OnAssemblyConn" guid="{956BF806-4149-42db-9CC3-3A2F65D4641C}" relid="0x20">
 						<name>OnAssemblyConn</name>
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>Ew</value>

@@ -74,7 +74,7 @@ namespace CQML
             itr++)
           {
             R rule = itr->ref();
-            outfile << rule.name() <<"\n";
+            //outfile << rule.name() <<"\n";
             // Reusing visitor that populates the rule associations into a rule set
             rule.Accept (*this);
           }
@@ -134,7 +134,11 @@ namespace CQML
     virtual void Visit_ComponentSecurityQoS(const ComponentSecurityQoS&);
     virtual void Visit_ComponentAssemblySecurityQoS(const ComponentAssemblySecurityQoS&);
 
-    virtual void Visit_PriorityModelPolicy(const PriorityModelPolicy&){};
+    virtual void Visit_CriticalPath (const CriticalPath& cpath);
+    virtual void Visit_PathReference (const PathReference& pref);
+    virtual void Visit_Path (const Path& path);
+    virtual std::string CreatePath (const DisplayNode& node);
+    virtual std::string ExtractName(Udm::Object ob);
 
   private:
     RequiredRights obj_req_rights_cache_;

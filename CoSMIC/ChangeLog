@@ -1,3 +1,37 @@
+Thu Mar  8 02:12:10 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/docs:
+
+          Created a new directory for documentation, reports, posters,
+          presentations, etc.
+
+        * PSM/CQML/docs/SQML - Project Report.doc:
+        * PSM/CQML/docs/SQML-SecurityQoSDSML.ppt:
+
+          Moved the Security QoS report and presentation under docs.
+
+        * PSM/CQML/examples/SLICE.xme:
+
+          Updated the SecurityQoS example.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          Added functionality for including Critical Path functionality.
+          Not yet completely working, so currently its essentially a no-op.
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/Component.def:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.reg:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponentd.reg:
+
+          Made entries so that the interpreter will automatically register in a
+          more general way on any Windows OS. Needed this to register on Vista.
+
+        * PSM/CQML/SQML - Project Report.doc:
+        * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+
+          Removed these files.
+
 Wed Mar  7 15:12:19 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
 
         * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
