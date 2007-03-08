@@ -34,28 +34,28 @@ public:
    *
    * @param[in]     metrics     Reference to the system metrics.
    */
-  virtual void visit_system_metrics (CUTS_System_Metric & metrics);
+  virtual void visit_system_metrics (const CUTS_System_Metric & metrics);
 
   /**
    * Visit the component metrics.
    *
    * @param[in]     metrics     Reference to the component metrics.
    */
-  virtual void visit_component_metrics (CUTS_Component_Metric & metrics);
+  virtual void visit_component_metrics (const CUTS_Component_Metric & metrics);
 
   /**
    * Visit the port metrics.
    *
    * @param[in]     metrics     Reference to the port metrics.
    */
-  virtual void visit_port_metrics (CUTS_Port_Metric & metrics);
+  virtual void visit_port_metrics (const CUTS_Port_Metric & metrics);
 
   /**
    * Visit the time metrics.
    *
    * @param[in]     metrics     Reference to the time metrics.
    */
-  virtual void visit_time_metrics (CUTS_Time_Metric & metrics);
+  virtual void visit_time_metrics (const CUTS_Time_Metric & metrics);
 };
 
 #if defined (__CUTS_INLINE__)

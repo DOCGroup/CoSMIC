@@ -111,6 +111,7 @@ project (CUTS) : cutslib {
     Time_Measurement.cpp
     Thread_Activation_Record.cpp
     System_Metric.cpp
+    System_Metric_Handler.cpp
     System_Metrics_Visitor.cpp
     Worker.cpp
     Worker_Library.cpp

@@ -72,7 +72,7 @@ public:
    *
    * @param[in]     visitor     Reference to the visitor.
    */
-  void accept (CUTS_System_Metrics_Visitor & visitor);
+  void accept (CUTS_System_Metrics_Visitor & visitor) const;
 
   /***
    * Initialize the timestamp stored in the metrics database. This

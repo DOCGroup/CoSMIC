@@ -41,16 +41,16 @@ public:
   virtual ~CUTS_IO_System_Metric_Visitor (void);
 
   // Visit the CUTS_System_Metric object.
-  virtual void visit_system_metrics (CUTS_System_Metric & metrics);
+  void visit_system_metrics (const CUTS_System_Metric & metrics);
 
   // Visit the CUTS_Component_Metric object.
-  virtual void visit_component_metrics (CUTS_Component_Metric & metrics);
+  void visit_component_metrics (const CUTS_Component_Metric & metrics);
 
   // Visit the CUTS_Port_Metric object.
-  virtual void visit_port_metrics (CUTS_Port_Metric & metrics);
+  void visit_port_metrics (const CUTS_Port_Metric & metrics);
 
   // Visit the CUTS_Time_Metric object.
-  virtual void visit_time_metrics (CUTS_Time_Metric & metrics);
+  void visit_time_metrics (const CUTS_Time_Metric & metrics);
 
 private:
   /// Pointer to the testing service database.

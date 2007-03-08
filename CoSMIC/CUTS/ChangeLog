@@ -1,3 +1,92 @@
+Thu Mar  8 05:33:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Task.h:
+        * cuts/BDC/BDC_Task.inl:
+        * cuts/BDC/BDC_Task.cpp:
+
+          - The data collection done event is stored internally to
+            the task.
+          - Added (un)register_handler methods that allow objects
+            to receive notices when the system metrics collected from
+            components changes.
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          - Moved the collection done notification event into the
+            BDC_Task class.
+          - Registered the BDC_Service_Manager singletone with the
+            BDC_Task during ciao_preactivate ().
+
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.h:
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.cpp:
+
+          Updated the visitor to use the new function signatures
+          for each method in the CUTS_System_Metric_Visitor class.
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          Removed the active object for notifying loaded services
+          when metrics are collected from all the components. This
+          is now handled by the BDC_Task active object.
+
+        * cuts/BDC/BDC_Service.h:
+        * cuts/BDC/BDC_Service.inl:
+        * cuts/BDC/svcs/IO/BDC_IO.h:
+        * cuts/BDC/svcs/IO/BDC_IO.cpp:
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          Updated the handle_metrics () method to use the new
+          function signature.
+
+        * cuts/CUTS.mpc:
+
+          Added the System_Metric_Handler.cpp source file.
+
+        * cuts/Component_Registry_Handler.h:
+        * cuts/Component_Registry_Handler.inl:
+        * cuts/Component_Registry_Handler.cpp:
+
+          - Removed the pure virtual method declaration from
+            handle_component
+          - Re-implemented the class so that it is a normal class
+            that can only be subclassed, i.e., its constructor(s)
+            is declared in the protected region.
+
+        * cuts/Port_Metric.inl:
+
+          Added a read-only version of transit_time ().
+
+        * cuts/System_Metric_Handler.h:
+        * cuts/System_Metric_Handler.inl:
+        * cuts/System_Metric_Handler.cpp:
+
+          Implemented a callback handler for receiving event
+          notifications related to the system metrics. This is mainly
+          used by the BDC task that collects performance metrics and
+          needs to notify all parties when the collection is complete.
+
+        * cuts/System_Metrics_Visitor.h:
+        * cuts/System_Metrics_Visitor.inl:
+
+          Added a const modifier to all the visitation methods, so they
+          can be used within const methods. This, however, makes the
+          visitation read-only.
+
+        * cuts/Component_Metric.h:
+        * cuts/Component_Metric.cpp:
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.cpp:
+        * cuts/System_Metric.h:
+        * cuts/System_Metric.cpp:
+        * cuts/Time_Metric.h:
+        * cuts/Time_Metric.cpp:
+
+          Added a const modifier to the accept () methods. This makes
+          the visitation operations and parameter read-only.
+
 Wed Mar  7 16:18:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * docs/bmw-install.html:

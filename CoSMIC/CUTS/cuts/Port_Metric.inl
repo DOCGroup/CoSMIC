@@ -19,6 +19,15 @@ CUTS_Time_Metric & CUTS_Port_Metric::transit_time (void)
 }
 
 //
+// transit_time
+//
+CUTS_INLINE
+const CUTS_Time_Metric & CUTS_Port_Metric::transit_time (void) const
+{
+  return this->transit_time_;
+}
+
+//
 // endpoints
 //
 CUTS_INLINE

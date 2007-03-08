@@ -2,6 +2,10 @@
 
 #include "DBase_Service.h"
 
+#if !defined (__CUTS_INLINE__)
+#include "DBase_Service.inl"
+#endif
+
 #include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Metric.h"
@@ -27,10 +31,6 @@
 #include "ace/Get_Opt.h"
 
 #define MAX_VARCHAR_LENGTH 256
-
-#if !defined (__CUTS_INLINE__)
-#include "DBase_Service.inl"
-#endif
 
 CUTS_BDC_SERVICE_IMPL (CUTS_Database_Service);
 
@@ -284,9 +284,10 @@ bool CUTS_Database_Service::stop_current_test_i (void)
 }
 
 //
-// archive_system_metrics
+// handle_metrics
 //
-int CUTS_Database_Service::handle_metrics (void)
+int CUTS_Database_Service::
+handle_metrics (const CUTS_System_Metric & metrics)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
   ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
@@ -309,8 +310,7 @@ int CUTS_Database_Service::handle_metrics (void)
   try
   {
     // Convert the <timestamp> to a known type.
-    CUTS_System_Metric * metric = this->svc_mgr ()->metrics ();
-    ACE_Time_Value timestamp = metric->get_timestamp ();
+    ACE_Time_Value timestamp = metrics.get_timestamp ();
     ACE_Date_Time ct (timestamp);
     ODBC_Date_Time datetime (ct);
 
@@ -334,8 +334,8 @@ int CUTS_Database_Service::handle_metrics (void)
 
     CUTS_Component_Metric_Map::const_iterator cm_iter;
 
-    for (cm_iter  = metric->component_metrics ().begin ();
-         cm_iter != metric->component_metrics ().end ();
+    for (cm_iter  = metrics.component_metrics ().begin ();
+         cm_iter != metrics.component_metrics ().end ();
          cm_iter ++)
     {
       // Determine if this component has any metrics that correspond
@@ -394,14 +394,14 @@ int CUTS_Database_Service::handle_metrics (void)
 
           CUTS_Endpoint_Metric_Map::const_iterator em_iter;
 
-          for (em_iter = spm_iter->second->endpoints ().begin ();
-                em_iter != spm_iter->second->endpoints ().end ();
-                em_iter ++)
+          for (em_iter  = spm_iter->second->endpoints ().begin ();
+               em_iter != spm_iter->second->endpoints ().end ();
+               em_iter ++)
           {
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (metric->get_timestamp () != em_iter->second->timestamp ())
+            if (metrics.get_timestamp () != em_iter->second->timestamp ())
               continue;
 
             // Copy the metrics for the process data into the appropriate

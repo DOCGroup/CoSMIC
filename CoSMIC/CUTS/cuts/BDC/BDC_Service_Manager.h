@@ -15,25 +15,18 @@
 
 #include "BDC_export.h"
 #include "cuts/Component_Registry_Handler.h"
+#include "cuts/System_Metric_Handler.h"
 #include "tao/ORB.h"
-#include "ace/Null_Mutex.h"
-#include "ace/Thread_Manager.h"
 #include "ace/Service_Gestalt.h"
 #include "ace/Singleton.h"
 #include "ace/Vector_T.h"
 #include "ace/UUID.h"
 
 // Forward decl.
-class CUTS_System_Metric;
-
-// Forward decl.
 class CUTS_BDC_Service;
 
 // Forward decl.
 class CUTS_Testing_Service;
-
-// Forward decl.
-class ACE_Event;
 
 /// Type decleration for a collection of service names.
 typedef ACE_Vector <const char *>  CUTS_BDC_Service_Names;
@@ -47,8 +40,9 @@ typedef ACE_Vector <const char *>  CUTS_BDC_Service_Names;
 //=============================================================================
 
 class CUTS_BDC_Export CUTS_BDC_Service_Manager :
+  protected ACE_Service_Gestalt,
   public CUTS_Component_Registry_Handler,
-  protected ACE_Service_Gestalt
+  public CUTS_System_Metric_Handler
 {
 public:
   /// Constructor.
@@ -68,8 +62,7 @@ public:
    */
   int open (::CORBA::ORB_ptr orb,
             CUTS_System_Metric * metrics,
-            CUTS_Testing_Service * tsvc,
-            ACE_Event * notify);
+            CUTS_Testing_Service * tsvc);
 
   /**
    * Load a service into the manager.
@@ -111,11 +104,31 @@ public:
    */
   int close (ACE_Time_Value * timeout = 0);
 
+  /**
+   * Activate the service manager. This will cause all loaded
+   * services to be activated as well. In addition, it causes
+   * the generation of a new UUID.
+   *
+   * @retval        0             Successfully activate the manager.
+   * @retval        -1            Failed to activate the manager.
+   */
   int activate (void);
 
+  /**
+   * Deactivate the service manager. This will cause all the loaded
+   * services to enter the deactivate state as well. In addition, it
+   * will erase the current UUID.
+   *
+   * @retval        0             Successfully activate the manager.
+   * @retval        -1            Failed to activate the manager.
+   */
   int deactivate (void);
 
+  // Handle the component registry event.
   int handle_component (const CUTS_Component_Info & info);
+
+  // Handle the system metrics event.
+  int handle_metrics (const CUTS_System_Metric & metrics);
 
   /**
    * Get the number of services currently loaded.
@@ -162,13 +175,8 @@ public:
   const ACE_Utils::UUID * get_uuid (void) const;
 
 private:
-  static ACE_THR_FUNC_RETURN thr_handle_metrics (void * param);
-
   /// The main ORB for this manager.
   ::CORBA::ORB_var orb_;
-
-  /// Personal thread manager.
-  ACE_Auto_Ptr <ACE_Thread_Manager> thr_mgr_;
 
   /// Pointer to the target metrics
   CUTS_System_Metric * metrics_;
@@ -176,14 +184,8 @@ private:
   /// Pointer to the target testing service.
   CUTS_Testing_Service * tsvc_;
 
-  /// Notificition condition for this manager.
-  ACE_Event * notify_;
-
   /// UUID for the service manager.
   ACE_Auto_Ptr <ACE_Utils::UUID> uuid_;
-
-  /// The active state of the manager.
-  int active_;
 };
 
 // Singlton export decl.

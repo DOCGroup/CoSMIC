@@ -38,15 +38,14 @@ CUTS_BDC_IO_Service::~CUTS_BDC_IO_Service (void)
 //
 // handle_metrics
 //
-int CUTS_BDC_IO_Service::handle_metrics (void)
+int CUTS_BDC_IO_Service::
+handle_metrics (const CUTS_System_Metric & metrics)
 {
   // Get the current metrics and testing service.
-  CUTS_System_Metric * metrics = this->svc_mgr ()->metrics ();
   CUTS_Testing_Service * tsvc = this->svc_mgr ()->testing_service ();
 
   CUTS_IO_System_Metric_Visitor visitor (tsvc);
-  metrics->accept (visitor);
-
+  metrics.accept (visitor);
   return 0;
 }
 

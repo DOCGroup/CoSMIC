@@ -21,14 +21,18 @@
 #pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
-#include "Benchmark_Data_Collector_exec_export.h"
 #include "CCM_Component_Registry.h"
 #include "ace/Atomic_Op_T.h"
 #include "ace/streams.h"
 #include "ace/Task_Ex_T.h"
+#include "ace/Manual_Event.h"
+#include "ace/Unbounded_Set.h"
 
 // Forward decl.
 class CUTS_System_Metric;
+
+// Forward decl.
+class CUTS_System_Metric_Handler;
 
 // Forward decl.
 class ACE_Time_Value;
@@ -58,7 +62,7 @@ namespace CUTS
    */
   //=========================================================================
 
-  class BENCHMARK_DATA_COLLECTOR_EXEC_Export BDC_Task :
+  class BDC_Task :
     public ACE_Task_Ex <ACE_MT_SYNCH, ::CUTS::Benchmark_Agent>
   {
   public:
@@ -81,8 +85,7 @@ namespace CUTS
     bool activate (const ACE_Time_Value & delay,
                    const ACE_Time_Value & interval,
                    Testing_Service_exec_i * tsvc,
-                   CUTS_System_Metric * metric,
-                   ACE_Event * notify);
+                   CUTS_System_Metric * metric);
 
     /// Deactivate the task.
     void deactivate (void);
@@ -101,6 +104,23 @@ namespace CUTS
      * @param[in]     abstime       Absolute timeout value.
      */
     void wait_for_collection_done (const ACE_Time_Value * abstime = 0);
+
+    /**
+     * Register a handler for the system metrics. Whenever the
+     * metrics are collected, the \a handler will be notified.
+     *
+     * @retval        0             Successfully registered \a handler.
+     * @retval        -1            Failed to register \a handler.
+     */
+    int register_handler (CUTS_System_Metric_Handler * handler);
+
+    /**
+     * Unregister a handler for the system metrics.
+     *
+     * @retval        0             Successfully unregistered \a handler.
+     * @retval        -1            Failed to unregister \a handler.
+     */
+    int unregister_handler (CUTS_System_Metric_Handler * handler);
 
   protected:
     /// Storage location for the system metrics.
@@ -136,7 +156,15 @@ namespace CUTS
     ACE_Atomic_Op <ACE_RW_Thread_Mutex, size_t> count_;
 
     /// Condition variable for sychronizing with data collection.
-    ACE_Event * collect_done_;
+    ACE_Manual_Event collect_done_;
+
+    /// Type definition for a collection of registered handlers.
+    typedef ACE_Unbounded_Set <
+            CUTS_System_Metric_Handler *>
+            CUTS_Handler_Set;
+
+    /// Collection of registered handlers.
+    CUTS_Handler_Set handles_;
   };
 }
 

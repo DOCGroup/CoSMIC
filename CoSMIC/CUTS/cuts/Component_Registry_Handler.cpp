@@ -2,10 +2,6 @@
 
 #include "cuts/Component_Registry_Handler.h"
 
-//
-// ~CUTS_Component_Registry_Handler
-//
-CUTS_Component_Registry_Handler::~CUTS_Component_Registry_Handler (void)
-{
-
-}
+#if !defined (__CUTS_INLINE__)
+#include "cuts/Component_Registry_Handler.inl"
+#endif

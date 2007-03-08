@@ -4,8 +4,8 @@
 // visit_system_metrics
 //
 CUTS_INLINE
-void CUTS_System_Metrics_Visitor::visit_system_metrics (
-  CUTS_System_Metric & )
+void CUTS_System_Metrics_Visitor::
+visit_system_metrics (const CUTS_System_Metric & )
 {
 
 }
@@ -14,8 +14,8 @@ void CUTS_System_Metrics_Visitor::visit_system_metrics (
 // visit_component_metrics
 //
 CUTS_INLINE
-void CUTS_System_Metrics_Visitor::visit_component_metrics (
-  CUTS_Component_Metric & )
+void CUTS_System_Metrics_Visitor::
+visit_component_metrics (const CUTS_Component_Metric & )
 {
 
 }
@@ -24,8 +24,8 @@ void CUTS_System_Metrics_Visitor::visit_component_metrics (
 // visit_port_metrics
 //
 CUTS_INLINE
-void CUTS_System_Metrics_Visitor::visit_port_metrics (
-  CUTS_Port_Metric & )
+void CUTS_System_Metrics_Visitor::
+visit_port_metrics (const CUTS_Port_Metric & )
 {
 
 }
@@ -34,8 +34,8 @@ void CUTS_System_Metrics_Visitor::visit_port_metrics (
 // visit_time_metrics
 //
 CUTS_INLINE
-void CUTS_System_Metrics_Visitor::visit_time_metrics (
-  CUTS_Time_Metric & )
+void CUTS_System_Metrics_Visitor::
+visit_time_metrics (const CUTS_Time_Metric & )
 {
 
 }

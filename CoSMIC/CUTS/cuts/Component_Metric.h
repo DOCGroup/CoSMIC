@@ -67,7 +67,7 @@ public:
 
   const CUTS_Port_Metric_Map & port_metrics (void) const;
 
-  void accept (CUTS_System_Metrics_Visitor & visitor);
+  void accept (CUTS_System_Metrics_Visitor & visitor) const;
 
   const ACE_Time_Value & timestamp (void) const;
 

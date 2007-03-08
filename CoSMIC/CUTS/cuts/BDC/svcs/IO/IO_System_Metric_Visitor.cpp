@@ -32,7 +32,7 @@ CUTS_IO_System_Metric_Visitor::~CUTS_IO_System_Metric_Visitor (void)
 // visit_system_metrics
 //
 void CUTS_IO_System_Metric_Visitor::
-visit_system_metrics (CUTS_System_Metric & metrics)
+visit_system_metrics (const CUTS_System_Metric & metrics)
 {
   std::cout
     << "*** Collection Time: "
@@ -69,7 +69,7 @@ visit_system_metrics (CUTS_System_Metric & metrics)
 // visit_component_metrics
 //
 void CUTS_IO_System_Metric_Visitor::
-visit_component_metrics (CUTS_Component_Metric & metrics)
+visit_component_metrics (const CUTS_Component_Metric & metrics)
 {
   CUTS_Port_Metric_Map::const_iterator iter;
 
@@ -113,7 +113,7 @@ visit_component_metrics (CUTS_Component_Metric & metrics)
 // visit_port_metrics
 //
 void CUTS_IO_System_Metric_Visitor::
-visit_port_metrics (CUTS_Port_Metric & metrics)
+visit_port_metrics (const CUTS_Port_Metric & metrics)
 {
   // Write the queue time metrics.
   std::cout << "  Queuing Time ";
@@ -135,7 +135,7 @@ visit_port_metrics (CUTS_Port_Metric & metrics)
 // visit_time_metrics
 //
 void CUTS_IO_System_Metric_Visitor::
-visit_time_metrics (CUTS_Time_Metric & metrics)
+visit_time_metrics (const CUTS_Time_Metric & metrics)
 {
   std::cout
     << "(best/avg/worst) (msec): "

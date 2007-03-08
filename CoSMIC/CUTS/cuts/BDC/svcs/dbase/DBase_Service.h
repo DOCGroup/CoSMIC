@@ -55,7 +55,7 @@ public:
   int handle_deactivate (void);
 
   // Handle metric notification events.
-  int handle_metrics (void);
+  int handle_metrics (const CUTS_System_Metric & metrics);
 
   // Handle the component notification events.
   int handle_component (const CUTS_Component_Info & info);

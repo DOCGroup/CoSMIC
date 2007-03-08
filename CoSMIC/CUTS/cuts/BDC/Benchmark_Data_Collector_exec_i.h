@@ -14,7 +14,6 @@
 #include "BDC_Task.h"
 #include "cuts/System_Metric.h"
 #include "tao/LocalObject.h"
-#include "ace/Manual_Event.h"
 #include "ace/SString.h"
 
 namespace CUTS
@@ -120,8 +119,7 @@ namespace CUTS
       /// System metrics database.
       CUTS_System_Metric metrics_;
 
-      ACE_Manual_Event collect_done_;
-
+      /// Listing of all the services.
       ACE_CString svcs_;
     };
 

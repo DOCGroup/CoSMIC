@@ -13,10 +13,8 @@
 #include "BDC_export.h"
 #include "serviceC.h"
 #include "cuts/Component_Registry_Handler.h"
+#include "cuts/System_Metric_Handler.h"
 #include "ace/Service_Object.h"
-
-// Forward decl.
-class CUTS_System_Metric;
 
 // Forward decl.
 class CUTS_BDC_Service_Manager;
@@ -33,27 +31,13 @@ class CUTS_BDC_Service_Manager;
 
 class CUTS_BDC_Export CUTS_BDC_Service :
   public ACE_Service_Object,
-  public CUTS_Component_Registry_Handler
+  public CUTS_Component_Registry_Handler,
+  public CUTS_System_Metric_Handler
 {
   // Friend decl.
   friend class CUTS_BDC_Service_Manager;
 
 public:
-  /**
-   * Initialize the service object. During this time the object
-   * has not been initailized with the system metrics.
-   *
-   * @param[in]       argc      Number of command-line arguments.
-   * @param[in]       argv      The command-line arguments.
-   */
-  virtual int init (int argc, ACE_TCHAR * argv []);
-
-  /**
-   * Cleanup callback method for the service object. During this
-   * time the object has no reference to the system metrics.
-   */
-  virtual int fini (void);
-
   /**
    * Activate the service object. This allows the service object
    * to perform any initial operations on the system metrics.
@@ -65,21 +49,6 @@ public:
    * to perform any final operations on the system metrics.
    */
   virtual int handle_deactivate (void);
-
-  /**
-   * Handle the state change of a component.
-   *
-   * @param[in]     info        Information for the component.
-   */
-  virtual int handle_component (const CUTS_Component_Info & info);
-
-  /**
-   * Signal the service object to handle the new set of data. This
-   * method is required by all service objects because it is their
-   * only way of processing data collected from the testing
-   * environment.
-   */
-  virtual int handle_metrics (void);
 
   /**
    * Get a reference to the remoting object. This method is not

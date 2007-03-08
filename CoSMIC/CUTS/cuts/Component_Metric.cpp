@@ -73,7 +73,8 @@ CUTS_Component_Metric::port_metrics (const char * port, size_t sender)
 //
 // accept
 //
-void CUTS_Component_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+void CUTS_Component_Metric::
+accept (CUTS_System_Metrics_Visitor & visitor) const
 {
   visitor.visit_component_metrics (*this);
 }

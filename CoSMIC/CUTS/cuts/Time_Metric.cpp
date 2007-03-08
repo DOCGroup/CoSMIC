@@ -124,7 +124,8 @@ CUTS_Time_Metric::operator += (const CUTS_Time_Metric & rhs)
 //
 // accept
 //
-void CUTS_Time_Metric::accept (CUTS_System_Metrics_Visitor & visitor)
+void CUTS_Time_Metric::
+accept (CUTS_System_Metrics_Visitor & visitor) const
 {
   visitor.visit_time_metrics (*this);
 }

@@ -106,7 +106,7 @@ CUTS_System_Metric::component_metrics (long regid)
 // accept
 //
 void CUTS_System_Metric::
-accept (CUTS_System_Metrics_Visitor & visitor)
+accept (CUTS_System_Metrics_Visitor & visitor) const
 {
   return visitor.visit_system_metrics (*this);
 }

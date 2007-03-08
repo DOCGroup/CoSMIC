@@ -32,6 +32,9 @@ public:
   /// Get the transit time metrics for the port.
   CUTS_Time_Metric & transit_time (void);
 
+  /// Get the transit time metrics for the port.
+  const CUTS_Time_Metric & transit_time (void) const;
+
   /// Get the specified endpoint time metrics.
   CUTS_Time_Metric * endpoint (const char * endpoint);
 
@@ -46,7 +49,7 @@ public:
 
   const CUTS_Endpoint_Metric_Map & endpoints (void) const;
 
-  void accept (CUTS_System_Metrics_Visitor & visitor);
+  void accept (CUTS_System_Metrics_Visitor & visitor) const;
 
   const ACE_Time_Value & timestamp (void) const;
 

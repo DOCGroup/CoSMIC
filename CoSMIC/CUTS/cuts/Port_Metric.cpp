@@ -110,7 +110,7 @@ CUTS_Time_Metric * CUTS_Port_Metric::endpoint (const char * endpoint)
 // accept
 //
 void CUTS_Port_Metric::
-accept (CUTS_System_Metrics_Visitor & visitor)
+accept (CUTS_System_Metrics_Visitor & visitor) const
 {
   visitor.visit_port_metrics (*this);
 }

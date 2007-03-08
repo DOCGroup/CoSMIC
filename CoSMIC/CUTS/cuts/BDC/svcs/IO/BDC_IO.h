@@ -37,10 +37,10 @@ public:
   virtual ~CUTS_BDC_IO_Service (void);
 
   // Handle the performance metric's event.
-  int handle_metrics (void);
+  virtual int handle_metrics (const CUTS_System_Metric & metrics);
 
   // Handle the component events.
-  int handle_component (const CUTS_Component_Info & info);
+  virtual int handle_component (const CUTS_Component_Info & info);
 
 private:
   static const char * state_cstr_ [2];

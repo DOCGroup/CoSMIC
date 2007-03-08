@@ -68,8 +68,7 @@ namespace CUTS
 
       CUTS_BDC_SVC_MANAGER ()->open (orb.in (),
                                      &this->metrics_,
-                                     this->tsvc_.get (),
-                                     &this->collect_done_);
+                                     this->tsvc_.get ());
     }
 
     //
@@ -80,8 +79,12 @@ namespace CUTS
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
+      // Register the service manager with the registry.
       this->tsvc_->registry ().register_handler (CUTS_BDC_SVC_MANAGER ());
       this->tsvc_->registry ().open ();
+
+      // Register the service manager with the task.
+      this->task_.register_handler (CUTS_BDC_SVC_MANAGER ());
     }
 
     //
@@ -108,8 +111,7 @@ namespace CUTS
       if (!this->task_.activate (delay,
                                  delay,
                                  this->tsvc_.get (),
-                                 &this->metrics_,
-                                 &this->collect_done_))
+                                 &this->metrics_))
       {
         CUTS_ERROR (LM_ERROR, "failed to activate data collector\n");
       }

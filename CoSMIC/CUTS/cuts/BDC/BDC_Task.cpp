@@ -11,7 +11,7 @@
 #include "cuts/Time_Metric.h"
 #include "cuts/Port_Metric.h"
 #include "cuts/Component_Metric.h"
-#include "cuts/System_Metric.h"
+#include "cuts/System_Metric_Handler.h"
 #include "cuts/IDL_Streams.h"
 #include "cuts/Log_Msg.h"
 #include "ace/Event.h"
@@ -31,10 +31,14 @@ namespace CUTS
       count_ (0),
       collect_done_ (0)
   {
+    // Create a thread pool reactor.
     ACE_TP_Reactor * tp_reactor = 0;
     ACE_NEW_THROW_EX (tp_reactor,
                       ACE_TP_Reactor (),
                       ACE_bad_alloc ());
+
+    // Setup the auto clean just in case the next allocation fails.
+    ACE_Auto_Ptr <ACE_TP_Reactor> auto_clean (tp_reactor);
 
     ACE_Reactor * reactor = 0;
     ACE_NEW_THROW_EX (reactor,
@@ -42,6 +46,7 @@ namespace CUTS
                       ACE_bad_alloc ());
 
     this->reactor (reactor);
+    auto_clean.release ();
   }
 
   //
@@ -59,8 +64,7 @@ namespace CUTS
   bool BDC_Task::activate (const ACE_Time_Value & delay,
                            const ACE_Time_Value & interval,
                            Testing_Service_exec_i * tsvc,
-                           CUTS_System_Metric * metrics,
-                           ACE_Event * collect_done)
+                           CUTS_System_Metric * metrics)
   {
     if (this->active_)
       return this->active_;
@@ -69,7 +73,6 @@ namespace CUTS
     // we will be requesting its registry at timeout.
     this->testing_service_ = tsvc;
     this->metrics_ = metrics;
-    this->collect_done_ = collect_done;
 
     // Schedule the timer for the active object.
     this->timer_ =
@@ -86,23 +89,23 @@ namespace CUTS
   //
   void BDC_Task::deactivate (void)
   {
-    if (!this->active_)
-      return;
-
-    this->active_ = false;
-
-    // Cancel the current timer for the task.
-    if (this->timer_ != -1)
+    if (this->active_)
     {
-      this->reactor ()->cancel_timer (this->timer_);
-      this->timer_ = -1;
+      this->active_ = false;
+
+      // Cancel the current timer for the task.
+      if (this->timer_ != -1)
+      {
+        this->reactor ()->cancel_timer (this->timer_);
+        this->timer_ = -1;
+      }
+
+      this->msg_queue_->deactivate ();
+      this->reactor ()->notify (this);
+
+      // Wait for all threads to exit.
+      this->wait ();
     }
-
-    this->msg_queue_->deactivate ();
-    this->reactor ()->notify (this);
-
-    // Wait for all threads to exit.
-    this->wait ();
   }
 
   //
@@ -198,10 +201,23 @@ namespace CUTS
   //
   void BDC_Task::finalize_collection (void)
   {
-    ACE_DEBUG ((LM_INFO,
-                "*** info: notifying services that collection is finished\n"));
+    if (this->metrics_ == 0)
+      return;
 
-    this->collect_done_->signal ();
+    // Let's iterate over all the registered handlers and notify
+    // them that the metrics have been updated.
+    CUTS_Handler_Set::ITERATOR iter (this->handles_);
+
+    while (iter.done () == 0)
+    {
+      CUTS_System_Metric_Handler ** handle = 0;
+
+      if (iter.next (handle) != 0 && handle != 0)
+        (*handle)->handle_metrics (*this->metrics_);
+
+      // Move to the next item.
+      iter.advance ();
+    }
   }
 
   //
@@ -282,6 +298,6 @@ namespace CUTS
   void BDC_Task::wait_for_collection_done (const ACE_Time_Value * abstime)
   {
     if (this->active_)
-      this->collect_done_->wait (abstime);
+      this->collect_done_.wait (abstime);
   }
 }

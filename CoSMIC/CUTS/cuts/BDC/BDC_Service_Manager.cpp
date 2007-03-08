@@ -9,7 +9,6 @@
 #include "BDC_Service.h"
 #include "cuts/Component_Info.h"
 #include "cuts/Log_Msg.h"
-#include "ace/CORBA_macros.h"
 #include "ace/Dynamic_Service.h"
 #include "ace/Event.h"
 #include "ace/Service_Types.h"
@@ -20,13 +19,9 @@
 //
 CUTS_BDC_Service_Manager::CUTS_BDC_Service_Manager (void)
 : ACE_Service_Gestalt (ACE_Service_Gestalt::MAX_SERVICES, true, true),
-  metrics_ (0),
-  active_ (0)
+  metrics_ (0)
 {
-  ACE_Thread_Manager * thr_mgr = 0;
-  ACE_NEW_THROW_EX (thr_mgr, ACE_Thread_Manager (), ACE_bad_alloc ());
 
-  this->thr_mgr_.reset (thr_mgr);
 }
 
 //
@@ -73,16 +68,9 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
     iter.advance ();
   }
 
-  // Wait for all service threads to exit. Then we can close
-  // the underlying service manager in ACE.
-  this->notify_->signal ();
-
-  int retval =
-    this->thr_mgr_->wait (timeout) | ACE_Service_Gestalt::close ();
-
   // Reset the <uuid_> of the service manager.
   this->uuid_.reset ();
-  return retval;
+  return 0;
 }
 
 //
@@ -90,8 +78,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
 //
 int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
                                     CUTS_System_Metric * metrics,
-                                    CUTS_Testing_Service * tsvc,
-                                    ACE_Event * notify)
+                                    CUTS_Testing_Service * tsvc)
 {
   if (this->is_opened ())
     return 1;
@@ -101,7 +88,6 @@ int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
   // to ingore any debug information.
   this->metrics_ = metrics;
   this->tsvc_ = tsvc;
-  this->notify_ = notify;
   this->orb_ = ::CORBA::ORB::_duplicate (orb);
 
   if (ACE_Service_Gestalt::open ("CUTS_BDC",
@@ -289,7 +275,8 @@ int CUTS_BDC_Service_Manager::activate (void)
     CUTS_BDC_Service * svc =
       ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
 
-    if (svc == 0 != 0)
+    if (svc == 0 &&
+        svc->handle_activate () != 0)
     {
       ACE_ERROR ((LM_ERROR,
                   "%s service failed during handle_activate ()\n",
@@ -299,16 +286,7 @@ int CUTS_BDC_Service_Manager::activate (void)
     iter.advance ();
   }
 
-  // Spawn the thread for monitoring the metrics.
-  this->active_ = 1;
-
-  if (this->thr_mgr_->spawn (&CUTS_BDC_Service_Manager::thr_handle_metrics,
-                             this) == -1)
-  {
-    this->active_ = 0;
-  }
-
-  return this->active_ == 1 ? 0 : -1;
+  return 0;
 }
 
 //
@@ -320,10 +298,6 @@ int CUTS_BDC_Service_Manager::deactivate (void)
   // iterate over all the loaded services.
   if (!this->is_opened ())
     return -1;
-
-  this->active_ = 0;
-  this->notify_->signal ();
-  this->thr_mgr_->wait ();
 
   ACE_Service_Repository_Iterator iter (*this->repo_, 1);
   const ACE_Service_Type * svc_type = 0;
@@ -351,58 +325,45 @@ int CUTS_BDC_Service_Manager::deactivate (void)
 
   // Release the current UUID.
   this->uuid_.reset ();
-  this->active_ = 0;
-
   return 0;
 }
 
 //
-// thr_handle_metrics
+// deactivate
 //
-ACE_THR_FUNC_RETURN CUTS_BDC_Service_Manager::
-thr_handle_metrics (void * param)
+int CUTS_BDC_Service_Manager::
+handle_metrics (const CUTS_System_Metric & metrics)
 {
-  CUTS_BDC_Service_Manager * svc_mgr =
-    reinterpret_cast <CUTS_BDC_Service_Manager *> (param);
+  // Create an iterator to the underlying repo so we can
+  // iterate over all the loaded services.
+  if (!this->is_opened ())
+    return -1;
 
-  while (svc_mgr->active_)
+  ACE_Service_Repository_Iterator iter (*this->repo_, 1);
+  const ACE_Service_Type * svc_type = 0;
+
+  while (iter.next (svc_type) == 1)
   {
-    // Wait for the collection done event from the data collector. Once
-    // we receieve the event, we need to make sure we are still <active_>.
-    svc_mgr->notify_->wait ();
+    // Extract the <CUTS_BDC_Service> from the service object.
+    const ACE_Service_Type_Impl * type = svc_type->type ();
 
-    if (!svc_mgr->active_)
-      continue;
+    CUTS_BDC_Service * svc =
+      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
 
-    // Create an iterator to the underlying repo so we can
-    // iterate over all the loaded services.
-    ACE_Service_Repository_Iterator iter (*svc_mgr->repo_, 0);
-    const ACE_Service_Type * svc_type = 0;
-
-    while (iter.next (svc_type) == 1)
+    // Signal the service thread to exit and advance to the
+    // next service in the repo.
+    if (svc != 0 &&
+        svc->handle_metrics (metrics) != 0)
     {
-      // Extract the <CUTS_BDC_Service> from the service object.
-      const ACE_Service_Type_Impl * type = svc_type->type ();
-
-      CUTS_BDC_Service * svc =
-        ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
-
-      // Signal the service thread to exit and advance to the
-      // next service in the repo.
-
-      if (svc != 0)
-      {
-        if (svc->handle_metrics () != 0)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      "%s service failed during handle_metrics ()\n",
-                      svc_type->name ()));
-        }
-      }
-
-      iter.advance ();
+      ACE_ERROR ((LM_ERROR,
+                  "*** error: %s failed during handle_metrics ()\n",
+                  type->name ()));
     }
+
+    iter.advance ();
   }
 
+  // Release the current UUID.
+  this->uuid_.reset ();
   return 0;
 }

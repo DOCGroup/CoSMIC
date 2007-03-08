@@ -98,7 +98,7 @@ public:
    *
    * @param[in]     visitor     Reference to the visitor object.
    */
-  void accept (CUTS_System_Metrics_Visitor & visitor);
+  void accept (CUTS_System_Metrics_Visitor & visitor) const;
 
 private:
   /// Number of samples in the timing metric
