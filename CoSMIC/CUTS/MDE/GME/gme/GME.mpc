@@ -52,3 +52,15 @@ project (GME) : cutslib {
     GME_fwd.h
   }
 }
+
+//=============================================================================
+// feature: noinline
+//=============================================================================
+
+feature(noinline) {
+  macros -= __GME_INLINE__
+}
+
+feature(!noinline) {
+  macros += __GME_INLINE__
+}
