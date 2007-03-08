@@ -36,6 +36,12 @@ modeling = 0
 
 bmw = 0
 
+/// @feature noinline
+/// This will disable all inlining for all projects in CUTS. By default
+/// inlining is turned on.
+
+noinline = 0
+
 ///============================================================================
 // DO NOT CHANGE ANYTHING BELOW THIS LINE
 ///============================================================================

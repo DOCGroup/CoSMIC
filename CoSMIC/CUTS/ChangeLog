@@ -1,9 +1,15 @@
-Thu Mar  8 07:30:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+Thu Mar  8 07:34:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * default.features:
 
           Added a new feature named 'noinline' to MPC files that
           dictates if, or if not, files should be inlined.
+
+        * cuts/Auto_Functor_T.inl:
+
+          Fixed invalid inline specification.
+
+Thu Mar  8 07:30:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/GME.mpc
         * etc/config/cuts_base.mpb:

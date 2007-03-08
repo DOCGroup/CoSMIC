@@ -30,8 +30,8 @@ CUTS_Auto_Functor_T (const CUTS_Auto_Functor_T & rhs)
 //
 // ~CUTS_Auto_Functor_T
 //
-CUTS_INLINE
 template <typename TYPE, typename METHOD>
+CUTS_INLINE
 CUTS_Auto_Functor_T <TYPE, METHOD>::~CUTS_Auto_Functor_T (void)
 {
   this->reset ();
