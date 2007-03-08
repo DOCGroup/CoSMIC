@@ -27,9 +27,9 @@ namespace CQML
           const ComponentAdder * get_component_adder(void) const;
           const ConnectionAdder * get_connection_adder (void) const;
           const NodeAssigner * get_node_assigner (const std::string &plan_name) const;
-		  virtual void register_with_DPFramework ();
 		  void add_node_assigner (const std::string &, NodeAssigner *);
-	  
+		  void register_with_DPFramework ();
+
 	    protected:
 		  void destroy_node_assigner (NodeAssigner *na) throw ();
 

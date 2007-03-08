@@ -25,11 +25,15 @@ namespace CQML
     {
       this->monolith_comp_map_.clear();
       std::set<std::string> comp_names = this->ft_req_visitor_->get_all_monolith_components ();
-      this->populate_map (this->monolith_comp_map_, comp_names);
+      this->populate_map (this->monolith_comp_replica_map_, 
+						  this->monolith_comp_map_,
+		                  comp_names);
 
       this->assembly_comp_map_.clear();
       comp_names = this->ft_req_visitor_->get_all_assembly_components ();
-      this->populate_map (this->assembly_comp_map_, comp_names);
+      this->populate_map (this->assembly_comp_replica_map_,
+		                  this->assembly_comp_map_,
+		                  comp_names);
     }
 
   std::set <std::string> ComponentAdder::give_replica_set (const std::string &comp_name) const
@@ -58,22 +62,24 @@ namespace CQML
       return replica_map;
     }
 
-  void ComponentAdder::populate_map (std::map <std::string, Component> & map, const std::set <std::string> & names)
+  void ComponentAdder::populate_map (std::map <std::string, Component> & replica_map, 
+	                                 std::map <std::string, Component> & primary_map,
+									 const std::set <std::string> & names)
     {
       for (std::set <std::string>::const_iterator itr = names.begin ();
            itr != names.end();
            ++itr)
         {
           FTReq req = this->ft_req_visitor_->get_requirements (*itr);
-          map.insert (std::make_pair (*itr, req.second)); 
+          primary_map.insert (std::make_pair (*itr, req.second)); 
 
           std::set <std::string> replica_set = this->give_replica_set (*itr);
 
-          for (std::set <std::string>::iterator itr = replica_set.begin ();
-               itr != replica_set.end ();
-               ++itr)
+          for (std::set <std::string>::iterator iter = replica_set.begin ();
+               iter != replica_set.end ();
+               ++iter)
             {
-              map.insert (std::make_pair (*itr, req.second)); 
+              replica_map.insert (std::make_pair (*iter, req.second)); 
             }
         }
      }
@@ -85,12 +91,12 @@ namespace CQML
 
   const std::map <std::string, Component> &ComponentAdder::get_all_monolith_components (void) const
     {
-      return this->monolith_comp_map_;
+      return this->monolith_comp_replica_map_;
     }
 
   const std::map <std::string, Component> & ComponentAdder::get_all_assembly_components (void) const
     {
-      return this->assembly_comp_map_;
+      return this->assembly_comp_replica_map_;
     }
 
   bool ComponentAdder::is_monolith_instance (const std::string &str) const
@@ -183,6 +189,7 @@ namespace CQML
         }
       return new_map;
     }
+
   RandomNodeAssigner::RandomNodeAssigner (const NodeCollector *dv, const ComponentAdder *comp_add)
     : node_collector_ (dv),
       comp_addr_ (comp_add)

@@ -1,3 +1,33 @@
+Thu Mar  8 04:17:43 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+
+          Fixed some macros for visitor traversal.
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+          Refactored connection generation part of the Deploymentplan Framework.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Fixed bugs related to component addition and connection addition.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Now uses accept_each* macros.
+
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+
+          Removed an include: CQML.h
+
 Thu Mar  8 02:12:10 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/CQML/docs:

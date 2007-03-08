@@ -35,7 +35,6 @@
 #include "UdmConfig.h"
 
 #include "Utils/Utils.h"
-#include "CQML/CQML.h"
 #include "NetQoS/NetQoSVisitor.h"
 
 using xercesc::XMLPlatformUtils;

@@ -4,7 +4,6 @@
 #include <set>
 #include <map>
 #include "CQML/CQML.h"
-#include "CQML/Acceptor.h"
 
 #include "common.h"
 
@@ -64,11 +63,13 @@ namespace CQML
           SRGVisitor ();
           virtual ~SRGVisitor();
           virtual void Visit_DomainRiskGrouping (const DomainRiskGrouping &);
-		  virtual void Visit_SRGBase (const SRGBase &rra);
 		  virtual void Visit_SharedRiskGroup (const SharedRiskGroup &srg);
           virtual void Visit_HostReference (const HostReference &hr);
 		  virtual void Visit_RootRiskGroup (const RootRiskGroup &rrg);
-          
+		  virtual void Visit_RootRiskAssociation (const RootRiskAssociation &rra);
+		  virtual void Visit_SRGRiskAssociation (const SRGRiskAssociation &sra);
+
+		  void srgbase_visit (const SRGBase &srgbase);
 		  virtual int node_count() const;
           virtual HostReference get_hostref (int) const;
           virtual void compute_metric ();

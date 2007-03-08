@@ -1,7 +1,9 @@
 #include <algorithm>
 #include <functional>
 #include <sstream>
+
 #include "NetQoS/NetQoSVisitor.h"
+#include "CQML/Acceptor.h"
 #include "UmlExt.h"
 #include "Utils/Utils.h"
 
@@ -258,11 +260,7 @@ namespace CQML
                                               port); 
         }
   }
-/* void NetQoSVisitor::Visit_QoSReq (const QoSReq &qos_req)
-  {
-	  QoSConnector qos_connector = qos_req.srcQoSReq_end ();
-	  qos_connector.Accept (*this);
-  }*/
+
   void NetQoSVisitor::conn_qoschar_visit (const ConnectionQoSCharacteristic & conn_qoschar)
     {
 /*		QoSCharacteristicBase base_qos;
@@ -277,8 +275,9 @@ namespace CQML
 */
 		if (Udm::IsDerivedFrom (conn_qoschar.type (), ConnectionQoSCharacteristic::meta ))
 		  {
-  			  accept_each_src (conn_qoschar, QoSReq, *this);
-			  accept_each_src (conn_qoschar, PortQoS, *this);
+  			  accept_each_src (conn_qoschar, QoSReq, QoSConnector, *this);
+			  std::set <PortQoS> port_qos_set = conn_qoschar.srcPortQoS ();
+			  accept_each (port_qos_set, *this);
 		  }
     }
 

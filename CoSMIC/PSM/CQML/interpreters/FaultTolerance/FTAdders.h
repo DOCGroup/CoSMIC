@@ -26,9 +26,13 @@ namespace CQML
           virtual std::string replica_suffix () const;
 
         private:
-          void populate_map (std::map <std::string, Component> &, const std::set <std::string> &);
+          void populate_map (std::map <std::string, Component> &, 
+			                 std::map <std::string, Component> &, 
+							 const std::set <std::string> &);
 
           const FTRequirementsVisitor * ft_req_visitor_;
+          std::map <std::string, Component> monolith_comp_replica_map_;
+          std::map <std::string, Component> assembly_comp_replica_map_;
           std::map <std::string, Component> monolith_comp_map_;
           std::map <std::string, Component> assembly_comp_map_;
       };

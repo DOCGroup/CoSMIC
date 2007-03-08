@@ -770,20 +770,7 @@ namespace CQML
 				                                        const std::string& dest_kind)
   {
     std::string source_comp_instance = this->unique_id (srcComp);
-    
-    //std::string source_comp_instance = srcComp.UUID();
-    //std::string source_comp_instance = source_comp_instance_path;
-    //if (source_comp_instance.empty())
-      //srcComp.UUID() = source_comp_instance = CreateUuid();
-    //source_comp_instance = std::string ("_") + source_comp_instance;
-
     std::string dest_comp_instance = this->unique_id (dstComp);
-
-    //std::string dest_comp_instance = dstComp.UUID();
-    //std::string dest_comp_instance = dest_comp_instance_path;
-    //if (dest_comp_instance.empty())
-      //dstComp.UUID() = dest_comp_instance = CreateUuid();
-    //dest_comp_instance = std::string ("_") + dest_comp_instance;
 
     if (this->selected_instances_.find (source_comp_instance)
 		    != this->selected_instances_.end ())
@@ -791,42 +778,36 @@ namespace CQML
         if (this->selected_instances_.find (dest_comp_instance)
 			!= this->selected_instances_.end ())
           {
-            // Create a connection
-            DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-            this->curr_->appendChild (ele);
+			CQML::InstanceConnection source_connection;
+            source_connection.instance_name = source_comp_instance;
+            source_connection.port_name = srcPortName;
+            source_connection.port_kind = dest_kind;
 
-            std::string connection = srcPortName + "_" + dstPortName + source_comp_instance + dest_comp_instance;
-            ele->appendChild (this->createSimpleContent ("name", connection));
+			CQML::InstanceConnection dest_connection;
+			dest_connection.instance_name = dest_comp_instance;
+            dest_connection.port_name = dstPortName;
+            dest_connection.port_kind = source_kind;
 
-            // Source endPoint
-            DOMElement* endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
-		    
-            endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   source_comp_instance));
-            ele->appendChild (endPoint);
+			this->generate_connection_descriptors (source_connection, dest_connection);
 
-            // Destination endPoint
-            endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-            endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
-            endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
-		    
-            endPoint->appendChild (this->createSimpleContent ("instance", dest_comp_instance));
-            ele->appendChild (endPoint);
+			/// Code below is for the DeploymentPlanFramework.
+
+            std::pair <CQML::InstanceConnection, CQML::InstanceConnection> 
+              connection_pair (make_pair (source_connection, dest_connection));
+
+            std::string connection_instance = source_comp_instance + "_" + dest_comp_instance;
+            this->connections_.insert (make_pair (connection_instance, connection_pair));
           }
       }
   }
 
 /*
+// Original
   void DeploymentPlanFrameworkVisitor::CreateConnection (const Component& srcComp,
      const std::string& srcPortName, const Component& dstComp,
      const std::string& dstPortName, const std::string& source_kind,
 		 const std::string& dest_kind)
   {
-    CQML::InstanceConnection source_connection;
-    CQML::InstanceConnection dest_connection;
-
     std::string source_comp_instance_path = 
         srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
@@ -876,6 +857,7 @@ namespace CQML
                                    source_instance_id));
             ele->appendChild (endPoint);
 
+			CQML::InstanceConnection source_connection;
             source_connection.instance_name = source_comp_instance_path;
             source_connection.port_name = srcPortName;
             source_connection.port_kind = dest_kind;
@@ -894,7 +876,8 @@ namespace CQML
                                    dest_instance_id));
             ele->appendChild (endPoint);
 
-            dest_connection.instance_name = dest_comp_instance_path;
+            CQML::InstanceConnection dest_connection;
+			dest_connection.instance_name = dest_comp_instance_path;
             dest_connection.port_name = dstPortName;
             dest_connection.port_kind = source_kind;
 
@@ -1121,46 +1104,48 @@ namespace CQML
 
         DeploymentPlan plan = *iter;
         std::string plan_name = plan.name ();
-		    plan.Accept (*this);
+	    plan.Accept (*this);
 
-		    Injector* injector;
-		    std::map<std::string, CQML::Component> monolith_instances;
-        std::map<std::string, CQML::Component> assembly_instances;
-        std::map<std::string, std::string> node_mappings;
-        std::map<std::string, std::string> node_initial_mappings;
-        std::set<std::string> selected_failover_units;
-        std::map<std::string, std::string> deployed_instances;
+	    Injector* injector;
+	    std::map<std::string, CQML::Component> monolith_instances;
+		std::map<std::string, CQML::Component> assembly_instances;
+		std::map<std::string, std::string> node_mappings;
+		std::map<std::string, std::string> node_initial_mappings;
+		std::set<std::string> selected_failover_units;
+		std::map<std::string, std::string> deployed_instances;
 
-		    this->instantiate_deployment_plan_descriptor (plan);
-		    this->create_label_and_uuid (plan);
-		    this->generate_implementation_descriptions ();
+	    this->instantiate_deployment_plan_descriptor (plan);
+	    this->create_label_and_uuid (plan);
+	    this->generate_implementation_descriptions ();
         deployed_instances = this->deployed_instances_;
-    		
-		    if (this->injectors_.find (plan_name) != this->injectors_.end ())
-		      {
-		        injector = this->injectors_[plan_name];
+		
+	    if (this->injectors_.find (plan_name) != this->injectors_.end ())
+	      {
+	        injector = this->injectors_[plan_name];
 
-	          monolith_instances = injector->add_monolith_instances (plan_name);
+ 	        monolith_instances = injector->add_monolith_instances (plan_name);
             this->instance_monolith_components_.insert 
-              (monolith_instances.begin (), monolith_instances.end ());
-            assembly_instances = injector->add_assembly_instances (plan_name);
+               (monolith_instances.begin (), monolith_instances.end ());
+        
+			assembly_instances = injector->add_assembly_instances (plan_name);
             this->instance_assembly_components_.insert 
                (assembly_instances.begin (), assembly_instances.end ());
-            node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
+        
+			node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
             for (std::map<std::string, std::string>::const_iterator node_mapping_iter =
                  node_mappings.begin (); node_mapping_iter != node_mappings.end ();
                  ++node_mapping_iter)
               {
-                std::string comp_instance_name = node_mapping_iter->first;
-                std::string node_name = node_mapping_iter->second;
-                this->update_component_instance (comp_instance_name, node_name);
-              }
-		      }
+					std::string comp_instance_name = node_mapping_iter->first;
+					std::string node_name = node_mapping_iter->second;
+					this->update_component_instance (comp_instance_name, node_name);
+			  }
+	      }
 
-		    this->generate_instance_deployment_descriptions ();
-		    this->generate_assembly_instance_deployment_descriptions ();
-		    this->generate_parent_connections ();
-		    this->generate_child_connections ();
+	    this->generate_instance_deployment_descriptions ();
+	    this->generate_assembly_instance_deployment_descriptions ();
+	    this->generate_parent_connections ();
+	    this->generate_child_connections ();
 
         Injector::ConnectionMap replica_connections;
 
@@ -1174,50 +1159,48 @@ namespace CQML
              itr != replica_connections.end ();
              ++itr)
           {
-            const std::string &source_comp_name = itr->second.first.instance_name;
-            const std::string &source_port_name = itr->second.first.port_name;
-            const std::string &source_port_kind = itr->second.first.port_kind;
-            std::string source_instance_id = std::string ("_") + source_comp_name;
+            this->generate_connection_descriptors (itr->second.first, itr->second.second);
+          }
 
-            const std::string &dest_comp_name = itr->second.second.instance_name;
-            const std::string &dest_port_name = itr->second.second.port_name;
-            const std::string &dest_port_kind = itr->second.second.port_kind;
-            std::string dest_instance_id = std::string ("_") + dest_comp_name;
+		  this->generate_artifact_descriptions ();
+          this->generate_infoproperties(plan);
+		  this->finalize_deployment_plan_descriptor ();
 
+          this->clear_private_variables ();
+      }
+  }
+
+  void DeploymentPlanFrameworkVisitor::generate_connection_descriptors 
+	  (InstanceConnection const &source_comp,
+	   InstanceConnection const &dest_comp)
+  {
             DOMElement* ele = this->doc_->createElement (XStr ("connection"));
             this->curr_->appendChild (ele);
 
-            std::string connection = source_port_name + "_" + dest_port_name;
+            std::string connection = source_comp.port_name + "_" + dest_comp.port_name +
+				                     source_comp.instance_name + dest_comp.instance_name;
             ele->appendChild (this->createSimpleContent ("name", connection));
 
             // Source endPoint
             DOMElement* endPoint
                = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
-                                   source_port_name));
+                                   source_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
-                                   source_port_kind));
+                                   source_comp.port_kind));
             endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   source_instance_id));
+                                   source_comp.instance_name));
             ele->appendChild (endPoint);
 
             // Destination endPoint
             endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
             endPoint->appendChild (this->createSimpleContent ("portName",
-                                   dest_port_name));
+                                   dest_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
-                                   dest_port_kind));   
+                                   dest_comp.port_kind));   
             endPoint->appendChild (this->createSimpleContent ("instance", 
-                                   dest_instance_id));
+                                   dest_comp.instance_name));
             ele->appendChild (endPoint);
-          }
-
-		    this->generate_artifact_descriptions ();
-        this->generate_infoproperties(plan);
-		    this->finalize_deployment_plan_descriptor ();
-
-        this->clear_private_variables ();
-      }
   }
 
   void DeploymentPlanFrameworkVisitor::clear_private_variables (void)

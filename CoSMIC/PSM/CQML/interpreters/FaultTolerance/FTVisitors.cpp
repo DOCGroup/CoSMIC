@@ -1,5 +1,6 @@
 #include "FaultTolerance/FTVisitors.h"
 #include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
+#include "CQML/Acceptor.h"
 
 // Named Loop idiom
 #define LABEL(x) goto LOOP_##x; \
@@ -28,7 +29,6 @@ namespace CQML
   void FTRequirementsVisitor::Visit_RootFolder (const RootFolder &rf)
   {
 	  accept_each_child (rf, ComponentImplementations, *this);
-//	  accept_each_child (rf, FTDeployment, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentImplementations 
@@ -69,7 +69,8 @@ namespace CQML
 	  this->nonFT_nested_assemblies_ = assembly.ComponentAssembly_kind_children ();
 */
 	  this->attached_FOU_ = false;
-	  accept_each_dst (assembly, ComponentAssemblyQoS, *this);
+	  std::set <ComponentAssemblyQoS> caq_set = assembly.dstComponentAssemblyQoS ();
+	  accept_each (caq_set, *this);
 	  if (!this->attached_FOU_)
 	  {
 		  accept_each_child (assembly, ComponentAssembly, *this);
@@ -123,7 +124,8 @@ namespace CQML
 	  (const ComponentAssemblyReference &assembly_ref)
   {
 	  this->attached_FOU_ = false;
-	  accept_each_dst (assembly_ref, ComponentAssemblyQoS, *this);
+	  std::set <ComponentAssemblyQoS> caq_set = assembly_ref.dstComponentAssemblyQoS ();
+	  accept_each (caq_set, *this);
 	  /// Not sure whether I should do this recursively when assembly reference
 	  /// is annotated. There is a possibility that the referred assembly will
 	  /// be traversed twice.
@@ -140,12 +142,14 @@ namespace CQML
   void FTRequirementsVisitor::Visit_ComponentRef
 	  (const ComponentRef &comp_ref)
   {
-	  accept_each_dst (comp_ref, ComponentQoS, *this);
+	  std::set <ComponentQoS> cq_set = comp_ref.dstComponentQoS ();
+	  accept_each (cq_set, *this);
   }
 
   void FTRequirementsVisitor::Visit_Component(const Component &comp)
   {
-	  accept_each_dst (comp, ComponentQoS, *this);
+	  std::set <ComponentQoS> cq_set = comp.dstComponentQoS ();
+	  accept_each (cq_set, *this);
   }
 
   void FTRequirementsVisitor::Visit_ComponentQoS (const ComponentQoS & cq)
@@ -161,13 +165,11 @@ namespace CQML
 		{
 			ComponentRef comp_ref = ComponentRef::Cast (comp_base);
 			Component comp = comp_ref.ref ();
-			this->current_req_replica_ = fou.Replica();
 			this->component_visit (comp);
 		}
 		else if (Udm::IsDerivedFrom (comp_base.type(), Component::meta))
 		{
 			Component comp = Component::Cast (comp_base);
-			this->current_req_replica_ = fou.Replica();
 			this->component_visit (comp);
 		}
 	}
@@ -542,10 +544,17 @@ namespace CQML
   void SRGVisitor::Visit_RootRiskGroup (const RootRiskGroup &rrg)
   {
 	  this->root_risk_group_ = rrg;
-	  accept_each_dst (rrg, RootRiskAssociation, *this);
+	  std::set <RootRiskAssociation> rra_set = rrg.dstRootRiskAssociation();
+	  accept_each (rra_set, *this);
   }
 
-  void SRGVisitor::Visit_SRGBase (const SRGBase &srgbase)
+  void SRGVisitor::Visit_RootRiskAssociation (const RootRiskAssociation &rra)
+  {
+	  SRGBase srgbase = rra.dstRootRiskAssociation_end ();
+	  this->srgbase_visit (srgbase);
+  }
+
+  void SRGVisitor::srgbase_visit (const SRGBase &srgbase)
   {
 	if (Udm::IsDerivedFrom (srgbase.type(), SharedRiskGroup::meta))
 	{
@@ -561,55 +570,16 @@ namespace CQML
 
   void SRGVisitor::Visit_SharedRiskGroup (const SharedRiskGroup &srg)
   {
-	  accept_each_dst (srg, SRGRiskAssociation, *this);
+	  std::set <SRGRiskAssociation> sra_set = srg.dstSRGRiskAssociation ();
+	  accept_each (sra_set, *this);
   }
-/*
+
   void SRGVisitor::Visit_SRGRiskAssociation (const SRGRiskAssociation &sra)
   {
 	  SRGBase srgbase = sra.dstSRGRiskAssociation_end ();
-	  srgbase.Accept (*this);
+	  this->srgbase_visit (srgbase);
   }
 
-  void SRGVisitor::srg_visit (const SharedRiskGroup &srg)
-    {
-      std::set <SharedRiskGroup> srgs = srg.SharedRiskGroup_kind_children ();
-      for (std::set <SharedRiskGroup>::iterator itr = srgs.begin();
-            itr != srgs.end();
-            ++itr)
-        {
-          this->srg_visit (*itr);
-        }
-      std::set <NodeGroup> node_groups = srg.NodeGroup_kind_children ();
-      for (std::set <NodeGroup>::iterator itr = node_groups.begin();
-            itr != node_groups.end();
-            ++itr)
-        {
-          NodeGroup node_group = *itr;
-          node_group.Accept (*this);
-        }
-      std::set <NodeRef> nodes = srg.NodeRef_kind_children ();
-      for (std::set <NodeRef>::iterator itr = nodes.begin();
-            itr != nodes.end();
-            ++itr)
-        {
-          NodeRef node_ref = *itr;
-          node_ref.Accept (*this);
-        }
-    }
-*/
-  /*
-  void SRGVisitor::Visit_NodeGroup (const NodeGroup &node_group)
-    {
-      std::set <NodeRef> nodes = node_group.NodeRef_kind_children();
-      for (std::set <NodeRef>::iterator itr = nodes.begin ();
-            itr != nodes.end();
-            ++itr)
-        {
-          NodeRef node_ref = *itr;
-          node_ref.Accept (*this);
-        }
-    }
-*/
   void SRGVisitor::Visit_HostReference (const HostReference &hr)
     {
       Node node = hr.ref();
@@ -743,6 +713,52 @@ namespace CQML
     {
       return this->node_matrix_[node1][node2];
     }
+/*
+  void SRGVisitor::Visit_SRGRiskAssociation (const SRGRiskAssociation &sra)
+  {
+	  SRGBase srgbase = sra.dstSRGRiskAssociation_end ();
+	  srgbase.Accept (*this);
+  }
 
+  void SRGVisitor::srg_visit (const SharedRiskGroup &srg)
+    {
+      std::set <SharedRiskGroup> srgs = srg.SharedRiskGroup_kind_children ();
+      for (std::set <SharedRiskGroup>::iterator itr = srgs.begin();
+            itr != srgs.end();
+            ++itr)
+        {
+          this->srg_visit (*itr);
+        }
+      std::set <NodeGroup> node_groups = srg.NodeGroup_kind_children ();
+      for (std::set <NodeGroup>::iterator itr = node_groups.begin();
+            itr != node_groups.end();
+            ++itr)
+        {
+          NodeGroup node_group = *itr;
+          node_group.Accept (*this);
+        }
+      std::set <NodeRef> nodes = srg.NodeRef_kind_children ();
+      for (std::set <NodeRef>::iterator itr = nodes.begin();
+            itr != nodes.end();
+            ++itr)
+        {
+          NodeRef node_ref = *itr;
+          node_ref.Accept (*this);
+        }
+    }
+*/
+  /*
+  void SRGVisitor::Visit_NodeGroup (const NodeGroup &node_group)
+    {
+      std::set <NodeRef> nodes = node_group.NodeRef_kind_children();
+      for (std::set <NodeRef>::iterator itr = nodes.begin ();
+            itr != nodes.end();
+            ++itr)
+        {
+          NodeRef node_ref = *itr;
+          node_ref.Accept (*this);
+        }
+    }
+*/
 
 }

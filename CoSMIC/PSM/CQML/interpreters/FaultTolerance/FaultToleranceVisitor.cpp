@@ -2,6 +2,7 @@
 #include <fstream>
 
 #include "FaultTolerance/FaultToleranceVisitor.h"
+#include "CQML/Acceptor.h"
 
 namespace CQML
 {
@@ -70,15 +71,12 @@ namespace CQML
 			     		  							   conn_addr.release(), 
 				  								       ft_req_visitor.release()));
 
-	std::set <DeploymentPlans> dep_plan_folders = 
-		rf.DeploymentPlans_kind_children ();
-	accept_each (dep_plan_folders, *this);
+	accept_each_child (rf, DeploymentPlans, *this);
   }
   
   void FaultToleranceVisitor::Visit_DeploymentPlans (const DeploymentPlans& dp_folder)
   {
-	std::set <DeploymentPlan> dp_set = dp_folder.DeploymentPlan_kind_children ();
-	accept_each (dp_set, *this);
+	accept_each_child (dp_folder, DeploymentPlan, *this);
   }
 
   void FaultToleranceVisitor::Visit_DeploymentPlan (const DeploymentPlan& plan)

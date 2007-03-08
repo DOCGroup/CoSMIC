@@ -17,7 +17,6 @@
 // Utility includes
 #include "Utils/XercesString.h"
 #include "NetQoS/NetQoS_Export.h"
-#include "CQML/Acceptor.h"
 
 #include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
 #include "common.h"
