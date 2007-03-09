@@ -1,3 +1,19 @@
+Fri Mar  9 05:27:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/gme_base.mpb:
+
+          Added the 'noinline' feature blocks.
+
+        * MDE/GME/gme/GME.mpc:
+        * etc/config/cuts_gme.mpb:
+
+          Removed the feature blocks and added  gme_base as a
+          base project.
+
+        * etc/config/gme_component.mpb:
+
+          Added pch_header and pch_source project declarations.
+
 Fri Mar  9 00:18:16 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/gme/Exception.inl:

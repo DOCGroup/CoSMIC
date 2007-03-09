@@ -4,23 +4,9 @@
 // base project
 //=============================================================================
 
-project {
-  requires += gme
-
+project : gme_base {
   after    += GME
 
   includes += $(CUTS_ROOT)/MDE/GME
   libs     += GME
-}
-
-//=============================================================================
-// feature: noinline
-//=============================================================================
-
-feature(noinline) {
-  macros -= __GME_INLINE__
-}
-
-feature(!noinline) {
-  macros += __GME_INLINE__
 }

@@ -1,11 +1,10 @@
 // $Id$
 
-project : gme_base {
-  includes += $(CUTS_ROOT)
+project : regsvr32, mfc, gme_base {
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
 
-  specific {
-     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
-  }
+  includes += $(CUTS_ROOT)
 
   specific {
     link_options += /DEF:component.def
