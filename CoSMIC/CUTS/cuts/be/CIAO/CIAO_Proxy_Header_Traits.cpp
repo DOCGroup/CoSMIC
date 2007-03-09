@@ -64,6 +64,9 @@ open_file (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Proxy_Header_Traits::
 write_prologue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Generate the hash definition for this file.
   std::string hashdef =
     to_upper ((std::string)container.name () +
@@ -95,6 +98,9 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Proxy_Header_Traits::
 write_epilogue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string hashdef =
     to_upper ((std::string)container.name () +
     CUTS_BE_OPTIONS ()->exec_suffix_);
@@ -115,6 +121,9 @@ write_epilogue (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Proxy_Header_Traits::
 write_includes (const CUTS_String_Set & includes)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile ()
     << std::endl
     << single_line_comment ("proxy header file")
@@ -131,6 +140,9 @@ void CUTS_CIAO_Proxy_Header_Traits::
 write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
                   const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string name = component.name ();
   std::string proxy_exec = name + "_Exec";
   std::string proxy_ctx = proxy_exec + "_Context";
@@ -244,8 +256,10 @@ void CUTS_CIAO_Proxy_Header_Traits::
 write_impl_end (const PICML::MonolithicImplementation & monoimpl,
                 const PICML::Component & component)
 {
-  this->outfile ()
-    << "};";
+  if (!this->outfile ().is_open ())
+    return;
+
+  this->outfile () << "};";
 }
 
 //
@@ -292,6 +306,9 @@ get_component_factory (const PICML::Component & component,
 void CUTS_CIAO_Proxy_Header_Traits::
 write_variables_begin (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile ()
     << "private:" << std::endl;
 
@@ -312,6 +329,9 @@ write_variables_begin (const PICML::Component & component)
 void CUTS_CIAO_Proxy_Header_Traits::
 write_eventsink_variable (const PICML::InEventPort & sink)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   PICML::Event event = sink.ref ();
 
   this->outfile ()
@@ -329,6 +349,9 @@ write_eventsink_variable (const PICML::InEventPort & sink)
 void CUTS_CIAO_Proxy_Header_Traits::
 write_id_variable (const PICML::OutEventPort & source)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string name = source.name ();
 
   this->outfile ()

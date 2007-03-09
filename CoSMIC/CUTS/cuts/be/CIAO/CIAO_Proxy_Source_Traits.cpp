@@ -65,6 +65,9 @@ open_file (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_prologue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string basename = (std::string) container.name ();
   size_t index = basename.find_last_of ('/');
 
@@ -98,6 +101,9 @@ void CUTS_CIAO_Proxy_Source_Traits::
 write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
                   const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Create some of the commonly used names.
   this->object_impl_ = (std::string) component.name ();
   std::string destructor = "~" + this->object_impl_;
@@ -189,6 +195,9 @@ void CUTS_CIAO_Proxy_Source_Traits::
 write_impl_end (const PICML::MonolithicImplementation & monoimpl,
                 const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->in_events_.clear ();
 }
 
@@ -198,6 +207,9 @@ write_impl_end (const PICML::MonolithicImplementation & monoimpl,
 void CUTS_CIAO_Proxy_Source_Traits::
 write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ReadonlyAttribute_begin (attr);
 
   if ((std::string)attr.name () == "cuts_proxy_impl")
@@ -262,6 +274,9 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_method (const PICML::OutEventPort & source)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_method (source);
 
   std::string name = source.name ();
@@ -282,6 +297,9 @@ write_method (const PICML::OutEventPort & source)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_method (const PICML::RequiredRequestPort & receptacle)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_method (receptacle);
 
   this->outfile ()
@@ -295,6 +313,9 @@ write_method (const PICML::RequiredRequestPort & receptacle)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_Attribute_begin (const PICML::Attribute & attr)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_Attribute_begin (attr);
 
   if ((std::string)attr.name () == "cuts_proxy_impl")
@@ -374,6 +395,9 @@ write_Attribute_begin (const PICML::Attribute & attr)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_set_session_context (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_set_session_context (component);
 
   std::string name = (std::string)component.name ();
@@ -443,6 +467,9 @@ write_event_handler_bind (const PICML::InEventPort & sink)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_InEventPort_begin (const PICML::InEventPort & sink)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_InEventPort_begin (sink);
 
   this->outfile ()
@@ -462,6 +489,9 @@ write_InEventPort_begin (const PICML::InEventPort & sink)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ProvidedRequestPort_begin (facet);
 
   this->outfile ()
@@ -474,6 +504,9 @@ write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 void CUTS_CIAO_Proxy_Source_Traits::
 write_Attribute_end (const PICML::Attribute & attr)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   if ((std::string)attr.name () == "cuts_proxy_impl")
   {
     this->outfile ()

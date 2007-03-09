@@ -94,6 +94,9 @@ open_file (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Exec_Source_Traits::
 write_prologue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string basename = container.name ();
   size_t index = basename.find_last_of ('/');
 
@@ -126,6 +129,9 @@ void CUTS_CIAO_Exec_Source_Traits::
 write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
                   const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Let's get all the event sources and initalize out port
   // manager. There has to be a better way to do this, which
   // I hope to realize in the near future.
@@ -166,6 +172,9 @@ void CUTS_CIAO_Exec_Source_Traits::
 write_impl_end (const PICML::MonolithicImplementation & monoimpl,
                 const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outevent_mgr_.clear ();
 }
 
@@ -175,6 +184,9 @@ write_impl_end (const PICML::MonolithicImplementation & monoimpl,
 void CUTS_CIAO_Exec_Source_Traits::
 write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   PICML::Object obj = PICML::Object::Cast (facet.ref ());
 
   if (obj != Udm::null)
@@ -195,6 +207,9 @@ write_ProvidedRequestPort_end (const PICML::ProvidedRequestPort & facet)
 void CUTS_CIAO_Exec_Source_Traits::
 write_InEventPort_begin (const PICML::InEventPort & sink)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_InEventPort_begin (sink);
 
   this->outfile ()
@@ -209,6 +224,9 @@ write_InEventPort_begin (const PICML::InEventPort & sink)
 void CUTS_CIAO_Exec_Source_Traits::
 write_InEventPort_end (const PICML::InEventPort & sink)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile ()
     << single_line_comment ("just in case we don't use either one")
     << "ACE_UNUSED_ARG (ev);"
@@ -224,6 +242,9 @@ write_InEventPort_end (const PICML::InEventPort & sink)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Write the class scope resolution.
   this->_super::write_ReadonlyAttribute_begin (attr);
 
@@ -273,6 +294,9 @@ write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
 void CUTS_CIAO_Exec_Source_Traits::
 write_Attribute_begin (const PICML::Attribute & attr)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_Attribute_begin (attr);
   this->outfile () << "this->" << attr.name () << "_ = ";
 
@@ -306,6 +330,9 @@ write_Attribute_begin (const PICML::Attribute & attr)
 void CUTS_CIAO_Exec_Source_Traits::
 write_set_session_context (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_set_session_context (component);
 
   // Since we do not support this method, we do not have to guard
@@ -332,6 +359,9 @@ write_set_session_context (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ciao_preactivate (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ciao_preactivate (component);
   this->outfile () << "{";
 
@@ -360,6 +390,9 @@ write_ciao_preactivate (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ccm_activate (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ccm_activate (component);
   this->outfile () << "{";
 
@@ -373,6 +406,9 @@ write_ccm_activate (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ciao_postactivate (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ciao_postactivate (component);
   this->outfile () << "{";
 
@@ -398,6 +434,9 @@ write_ciao_postactivate (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ccm_passivate (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ccm_passivate (component);
   this->outfile () << "{";
 
@@ -423,6 +462,9 @@ write_ccm_passivate (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_ccm_remove (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_ccm_remove (component);
 
   this->outfile ()
@@ -442,6 +484,9 @@ write_ccm_remove (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_environment_begin (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->auto_env_ = false;
   this->_super::write_environment_begin (component);
 }
@@ -452,6 +497,9 @@ write_environment_begin (const PICML::Component & component)
 void CUTS_CIAO_Exec_Source_Traits::
 write_environment_method_begin (const PICML::InputAction & action)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Extract the name of the environment method and the
   // component to which the method belongs.
   std::string name = action.name ();
@@ -484,6 +532,9 @@ write_environment_method_begin (const PICML::InputAction & action)
 void CUTS_CIAO_Exec_Source_Traits::
 write_environment_method_end (const PICML::InputAction & action)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Determine if this is a valid environment method.
   Environment_Table::const_iterator iter =
     this->env_table_.find (action.name ());
@@ -509,6 +560,9 @@ write_environment_method_end (const PICML::InputAction & action)
 void CUTS_CIAO_Exec_Source_Traits::
 write_environment_end (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->auto_env_ = true;
   this->_super::write_environment_end (component);
 }
@@ -520,6 +574,9 @@ void CUTS_CIAO_Exec_Source_Traits::
 write_WorkerAction_begin (const PICML::Worker & parent,
                           const PICML::Action & action)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   long repetitions = static_cast <long> (action.Repetitions ());
 
   if (repetitions > 0)
@@ -576,6 +633,9 @@ write_WorkerAction_begin (const PICML::Worker & parent,
 void CUTS_CIAO_Exec_Source_Traits::
 write_action_end (void)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   if (!this->skip_action_)
     this->outfile () << "));" << std::endl;
 }
@@ -586,6 +646,9 @@ write_action_end (void)
 void CUTS_CIAO_Exec_Source_Traits::
 write_action_property (const PICML::Property & property)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Extract the type information from the <property>.
   PICML::DataType datatype = property.DataType_child ();
 
@@ -599,6 +662,9 @@ write_action_property (const PICML::Property & property)
 void CUTS_CIAO_Exec_Source_Traits::
 write_OutputAction_begin (const PICML::OutputAction & action)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string scoped_name;
 
   if (this->outevent_mgr_.get_scoped_typename (action.name (), scoped_name))
@@ -620,6 +686,9 @@ write_OutputAction_begin (const PICML::OutputAction & action)
 void CUTS_CIAO_Exec_Source_Traits::
 write_precondition (const std::string & precondition)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile () << precondition;
 }
 
@@ -629,6 +698,9 @@ write_precondition (const std::string & precondition)
 void CUTS_CIAO_Exec_Source_Traits::
 write_postcondition (const std::string & postcondition)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile () << postcondition << ";";
 }
 
@@ -639,6 +711,9 @@ write_postcondition (const std::string & postcondition)
 void CUTS_CIAO_Exec_Source_Traits::
 write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_PeriodicEvent_begin (periodic);
 
   this->outfile ()

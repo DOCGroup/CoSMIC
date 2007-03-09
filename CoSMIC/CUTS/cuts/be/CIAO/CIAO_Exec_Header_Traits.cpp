@@ -86,6 +86,9 @@ open_file (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Exec_Header_Traits::
 write_prologue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Generate the hash definition for this file.
   std::string hashdef =
     to_upper ((std::string)container.name () +
@@ -122,6 +125,9 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Exec_Header_Traits::
 write_epilogue (const PICML::ComponentImplementationContainer & container)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   std::string hashdef =
     to_upper ((std::string)container.name () +
     CUTS_BE_OPTIONS ()->exec_suffix_);
@@ -142,6 +148,9 @@ write_epilogue (const PICML::ComponentImplementationContainer & container)
 void CUTS_CIAO_Exec_Header_Traits::
 write_includes (const CUTS_String_Set & includes)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   for (CUTS_String_Set::const_iterator iter = includes.begin ();
       iter != includes.end ();
       iter ++)
@@ -158,6 +167,9 @@ void CUTS_CIAO_Exec_Header_Traits::
 write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
                   const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   typedef std::vector <PICML::PeriodicEvent> PeriodicEvent_Set;
   PeriodicEvent_Set periodics = component.PeriodicEvent_kind_children ();
 
@@ -201,6 +213,9 @@ void CUTS_CIAO_Exec_Header_Traits::
 write_impl_end (const PICML::MonolithicImplementation & monoimpl,
                 const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile ()
     << "};";
 }
@@ -211,6 +226,9 @@ write_impl_end (const PICML::MonolithicImplementation & monoimpl,
 void CUTS_CIAO_Exec_Header_Traits::
 write_variables_begin (const PICML::Component & component)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->_super::write_variables_begin (component);
 
   this->outfile ()
@@ -226,6 +244,9 @@ write_variables_begin (const PICML::Component & component)
 void CUTS_CIAO_Exec_Header_Traits::
 write_variable (const PICML::Variable & variable)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   PICML::PredefinedType ptype = variable.ref ();
 
   if (ptype != Udm::null)
@@ -245,6 +266,9 @@ write_variable (const PICML::Variable & variable)
 void CUTS_CIAO_Exec_Header_Traits::
 write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & readonly)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Get the contained attribute member.
   PICML::AttributeMember member = readonly.AttributeMember_child ();
 
@@ -273,6 +297,9 @@ write_ReadonlyAttribute_variable (const PICML::ReadonlyAttribute & readonly)
 void CUTS_CIAO_Exec_Header_Traits::
 write_PeriodicEvent_variable (const PICML::PeriodicEvent & periodic)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   PICML::Component parent = PICML::Component::Cast (periodic.parent ());
 
   this->outfile ()
@@ -289,6 +316,9 @@ void CUTS_CIAO_Exec_Header_Traits::
 write_worker_variable (const PICML::WorkerType & var,
                 const PICML::Worker & worker)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   this->outfile ()
     << single_line_comment ("worker variable: " + (std::string)var.name ())
     << worker.name () << " " << var.name () << "_;" << std::endl;
@@ -300,6 +330,9 @@ write_worker_variable (const PICML::WorkerType & var,
 void CUTS_CIAO_Exec_Header_Traits::
 write_environment_method_begin (const PICML::InputAction & action)
 {
+  if (!this->outfile ().is_open ())
+    return;
+
   // Extract the necessary information.
   PICML::Component component = PICML::Component::Cast (action.parent ());
   std::string name = action.name ();

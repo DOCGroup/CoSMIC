@@ -9,10 +9,9 @@
 //
 template <typename WORKSPACE_STRATEGY,
           typename PROJECT_STRATEGY,
-          typename EXEC_STRATEGY,
-          typename PROXY_STRATEGY>
+          typename EXECUTOR_STRATEGY>
 CUTS_BE_Manager_T <
-WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXEC_STRATEGY, PROXY_STRATEGY>::
+WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXECUTOR_STRATEGY>::
 CUTS_BE_Manager_T (void)
 {
 
@@ -23,10 +22,9 @@ CUTS_BE_Manager_T (void)
 //
 template <typename WORKSPACE_STRATEGY,
           typename PROJECT_STRATEGY,
-          typename EXEC_STRATEGY,
-          typename PROXY_STRATEGY>
+          typename EXECUTOR_STRATEGY>
 CUTS_BE_Manager_T <
-WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXEC_STRATEGY, PROXY_STRATEGY>::
+WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXECUTOR_STRATEGY>::
 ~CUTS_BE_Manager_T (void)
 {
 
@@ -37,23 +35,20 @@ WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXEC_STRATEGY, PROXY_STRATEGY>::
 //
 template <typename WORKSPACE_STRATEGY,
           typename PROJECT_STRATEGY,
-          typename EXEC_STRATEGY,
-          typename PROXY_STRATEGY>
+          typename EXECUTOR_STRATEGY>
 bool CUTS_BE_Manager_T <
-WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXEC_STRATEGY, PROXY_STRATEGY>::
+WORKSPACE_STRATEGY, PROJECT_STRATEGY, EXECUTOR_STRATEGY>::
 handle (const PICML::RootFolder & root)
 {
-  CUTS_BE_Impl_Generator_T <EXEC_STRATEGY> exec_generator;
-  CUTS_BE_Impl_Generator_T <PROXY_STRATEGY> pxoxy_generator;
-
-  // Generate the executor and proxy implemenation.
+  // Generate the executor implementations.
+  CUTS_BE_Impl_Generator_T <EXECUTOR_STRATEGY> exec_generator;
   PICML::RootFolder tmp_root (root);
   tmp_root.Accept (exec_generator);
-  tmp_root.Accept (pxoxy_generator);
 
-  /// Workspace generator for the manager.
+  // Workspace generator for the manager.
   CUTS_BE_Workspace_Generator_T <
     WORKSPACE_STRATEGY, PROJECT_STRATEGY> workspace_generator;
 
-  return workspace_generator.generate ();
+  workspace_generator.generate ();
+  return true;
 }

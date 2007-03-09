@@ -23,7 +23,7 @@ CUTS_INLINE
 bool CUTS_BE_Traits::
 open_file (const PICML::ComponentImplementationContainer & container)
 {
-  return true;
+  return false;
 }
 
 CUTS_INLINE

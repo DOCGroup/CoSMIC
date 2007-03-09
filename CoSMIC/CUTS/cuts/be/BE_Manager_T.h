@@ -23,8 +23,7 @@
 
 template <typename WORKSPACE_STRATEGY,
           typename PROJECT_STRATEGY,
-          typename EXEC_STRATEGY,
-          typename PROXY_STRATEGY>
+          typename EXECUTOR_STRATEGY>
 class CUTS_BE_Manager_T : public CUTS_BE_Manager
 {
 public:

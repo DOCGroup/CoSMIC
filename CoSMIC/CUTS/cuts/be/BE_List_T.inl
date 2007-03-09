@@ -6,7 +6,7 @@ bool CUTS_BE_List_T <BE_STRATEGY, BE_NEXT>::
 open_file (const PICML::ComponentImplementationContainer & container)
 {
   return
-    this->traits_.open_file (container) &
+    this->traits_.open_file (container) |
     this->next_.open_file (container);
 }
 

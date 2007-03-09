@@ -1,3 +1,36 @@
+Fri Mar  9 06:06:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_List_T.inl:
+
+          The open_file () method returns the logical or of all the
+          nodes in its list. Therefore, if one node succeeds then
+          the operation succeeds.
+
+        * cuts/be/BE_Manager_T.h:
+        * cuts/be/BE_Manager_T.cpp:
+
+          Removed the proxy template parameter since there is no
+          distinction between a proxy and a non-proxy component.
+
+        * cuts/be/BE_Traits.inl:
+
+          open_file () return 'false' by default.
+
+        * cuts/be/CIAO/CIAO_Manager.h:
+
+          Removed the proxy parameter from the manager's declaration
+          and combined the proxy and implemenation generator into
+          a BE_List_T, which is used to parameterize the backend
+          manager.
+
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          Added guards to each method that return control to the
+          caller if the output file is not open.
+
 Fri Mar  9 05:27:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/gme_base.mpb:
