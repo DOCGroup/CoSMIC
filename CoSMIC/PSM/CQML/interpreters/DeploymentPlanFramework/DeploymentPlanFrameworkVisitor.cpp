@@ -1124,12 +1124,14 @@ namespace CQML
 	        injector = this->injectors_[plan_name];
 
  	        monolith_instances = injector->add_monolith_instances (plan_name);
-            this->instance_monolith_components_.insert 
-               (monolith_instances.begin (), monolith_instances.end ());
+			merge_component_instances (this->instance_monolith_components_, monolith_instances);
+            //this->instance_monolith_components_.insert 
+            //   (monolith_instances.begin (), monolith_instances.end ());
         
 			assembly_instances = injector->add_assembly_instances (plan_name);
-            this->instance_assembly_components_.insert 
-               (assembly_instances.begin (), assembly_instances.end ());
+			merge_component_instances (this->instance_assembly_components_, assembly_instances);
+            //this->instance_assembly_components_.insert 
+            //   (assembly_instances.begin (), assembly_instances.end ());
         
 			node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
             for (std::map<std::string, std::string>::const_iterator node_mapping_iter =
@@ -1168,6 +1170,19 @@ namespace CQML
 
           this->clear_private_variables ();
       }
+  }
+
+  void DeploymentPlanFrameworkVisitor::merge_component_instances (
+	                                 std::map<std::string, CQML::Component> &dest, 
+		                             const std::map<std::string, CQML::Component> &src)
+  {
+	  for (std::map<std::string, CQML::Component>::const_iterator iter = src.begin ();
+		   iter != src.end ();
+		   ++iter)
+	  {
+		  if (dest.find (iter->first) == dest.end ())
+			  dest.insert (*iter);
+	  }
   }
 
   void DeploymentPlanFrameworkVisitor::generate_connection_descriptors 
@@ -1422,7 +1437,7 @@ namespace CQML
 		     instance_iterator != this->instance_monolith_components_.end ();
 	       ++instance_iterator)
 	    {
-	      Component instance_component = instance_iterator->second;
+	        Component instance_component = instance_iterator->second;
 		    std::string instance_component_name = instance_iterator->first;
 		    this->push ();
 		    update_monolith_impl (instance_component);

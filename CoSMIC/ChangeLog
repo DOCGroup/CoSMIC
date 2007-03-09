@@ -1,3 +1,23 @@
+Fri Mar  9 01:20:24 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+          Now BasicSP has a working example of a FT model and node placement using
+          DomainRiskGrouping.
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+          Fixed a bug that used to produce duplicate component instances.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Fixed a node assignment bug and added support for QoSCharRef.
+
 Thu Mar  8 04:17:43 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/CQML/acceptor.h:

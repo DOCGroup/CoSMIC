@@ -17,8 +17,8 @@ namespace CQML
           ComponentAdder (const FTRequirementsVisitor *);
           virtual ~ComponentAdder ();
           virtual void compute_new_components (void);
-          virtual const std::map <std::string, Component> & get_all_assembly_components (void) const;
-          virtual const std::map <std::string, Component> & get_all_monolith_components (void) const;
+          virtual std::map <std::string, Component> get_all_assembly_components (void) const;
+          virtual std::map <std::string, Component> get_all_monolith_components (void) const;
           virtual bool is_monolith_instance (const std::string &str) const;
           virtual bool is_assembly_instance (const std::string &str) const;
           virtual std::set <std::string> give_replica_set (const std::string &comp_name) const;

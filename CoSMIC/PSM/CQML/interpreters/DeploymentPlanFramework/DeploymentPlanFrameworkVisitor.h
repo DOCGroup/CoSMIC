@@ -291,9 +291,11 @@ namespace CQML
 	DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor * instance ();
 	static void operator delete (void *);
 	DeploymentPlanFramework_Export void set_path (std::string const &path);
+ private:
 	void generate_connection_descriptors (InstanceConnection const &source_comp,
 	                                      InstanceConnection const &dest_comp);
- private:
+     void merge_component_instances (std::map<std::string, CQML::Component> &, 
+		                             const std::map<std::string, CQML::Component> &);
 	 static DeploymentPlanFrameworkVisitor *instance_;
 
   private:

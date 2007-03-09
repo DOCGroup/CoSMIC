@@ -89,14 +89,20 @@ namespace CQML
       return std::string ("_Replica");
     }
 
-  const std::map <std::string, Component> &ComponentAdder::get_all_monolith_components (void) const
+  std::map <std::string, Component> ComponentAdder::get_all_monolith_components (void) const
     {
-      return this->monolith_comp_replica_map_;
+	  std::map <std::string, Component> all_mono (this->monolith_comp_map_);
+	  all_mono.insert (this->monolith_comp_replica_map_.begin (),
+  					   this->monolith_comp_replica_map_.end());
+	  return all_mono;
     }
 
-  const std::map <std::string, Component> & ComponentAdder::get_all_assembly_components (void) const
+  std::map <std::string, Component> ComponentAdder::get_all_assembly_components (void) const
     {
-      return this->assembly_comp_replica_map_;
+		std::map <std::string, Component> all_asm (this->assembly_comp_map_);
+		all_asm.insert (this->assembly_comp_replica_map_.begin (),
+	  		            this->assembly_comp_replica_map_.end());
+        return all_asm;
     }
 
   bool ComponentAdder::is_monolith_instance (const std::string &str) const
@@ -265,7 +271,7 @@ namespace CQML
           std::vector <int> permutation_vector (node_count);
 
           /// Put numbers in the increasing order.
-          for (int i = 1; i < node_count; ++i)
+          for (int i = 0; i < node_count; ++i)
             {
               permutation_vector[i] = i;
               this->best_permutation_[i] = i;
@@ -285,10 +291,11 @@ namespace CQML
             }
           else
             {
-              this->best_permutation_[0] = permutation_vector[0] = 
-                this->srg_visitor_->get_node_number (primary_node_name);
-              
-              /// Primary node is given and its placement therefore, take the placement 
+              int n = this->srg_visitor_->get_node_number (primary_node_name);;
+			  std::swap (this->best_permutation_[n], this->best_permutation_[0]);
+			  std::swap (permutation_vector[n], permutation_vector[0]);
+
+			  /// Primary node is given and its placement therefore, take the placement 
               /// decision of the replicas only.
               this->nPr (permutation_vector, 1, permutation_vector.size(), repg_size);
             }

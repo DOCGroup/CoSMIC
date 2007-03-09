@@ -157,8 +157,24 @@ namespace CQML
 	QoSCharacteristicBase qos_char = cq.dstComponentQoS_end ();  
 	if (Udm::IsDerivedFrom (qos_char.type(), FailOverUnit::meta))
 	{
-		this->attached_FOU_ = true;
 		FailOverUnit fou = FailOverUnit::Cast (qos_char);
+		this->failoverunit_visit (fou, cq);
+	}
+	else if (Udm::IsDerivedFrom (qos_char.type(), QoSCharRef::meta))
+	{
+		QoSCharRef qc_ref = QoSCharRef::Cast (qos_char);
+		const MgaObject & some_qos = qc_ref.ref();
+		if (Udm::IsDerivedFrom (some_qos.type(), FailOverUnit::meta))
+		{
+			FailOverUnit fou = FailOverUnit::Cast (qc_ref.ref());
+			this->failoverunit_visit (fou, cq);
+		}
+	}
+  }
+	
+  void FTRequirementsVisitor::failoverunit_visit (const FailOverUnit &fou, const ComponentQoS & cq)
+  {
+		this->attached_FOU_ = true;
 		this->current_req_replica_ = fou.Replica ();
 		ComponentBase comp_base = cq.srcComponentQoS_end ();
 		if (Udm::IsDerivedFrom (comp_base.type(), ComponentRef::meta))
@@ -172,9 +188,8 @@ namespace CQML
 			Component comp = Component::Cast (comp_base);
 			this->component_visit (comp);
 		}
-	}
   }
-	
+
   void FTRequirementsVisitor::Visit_ComponentAssemblyQoS (const ComponentAssemblyQoS & caq)
   {
 	QoSCharacteristicBase qos_char = caq.dstComponentAssemblyQoS_end ();  
@@ -339,13 +354,13 @@ namespace CQML
           }
     }
 
-  void FTRequirementsVisitor::monolith_instance_visit (const Component &component)
+  void FTRequirementsVisitor::assembly_instance_visit (const Component &component)
     {
         const std::string comp_name = 
 			DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
         
         // Put the component primary into the replica group set.
-        this->monolith_instance_req_map_.insert (std::make_pair(comp_name, 
+        this->assembly_instance_req_map_.insert (std::make_pair(comp_name, 
                                                  std::make_pair (this->current_req_replica_, 
                                                  component)));
     }
@@ -356,7 +371,7 @@ namespace CQML
 			= DeploymentPlanFrameworkVisitor::instance()->unique_id(component);
         
         // Put the component primary into the replica group set.
-        this->assembly_instance_req_map_.insert (std::make_pair(comp_name, 
+        this->monolith_instance_req_map_.insert (std::make_pair(comp_name, 
                                                  std::make_pair (this->current_req_replica_, 
                                                  component)));
     }
@@ -625,9 +640,12 @@ namespace CQML
                 {
                   HostReference i_noderef = this->noderef_vec_[i];
                   HostReference j_noderef = this->noderef_vec_[j];
-                  //Node i_node = i_noderef.ref();
-                  //Node j_node = j_noderef.ref();
-                  //outfile << "(" << i << ", " << j << ") ";
+                  Node i_node = i_noderef.ref();
+                  Node j_node = j_noderef.ref();
+				  std::string i_node_name = i_node.name ();
+				  std::string j_node_name = j_node.name ();
+				  
+				  //outfile << "(" << i << ", " << j << ") ";
                   //outfile << "(" << std::string (i_node.name()) << ", " << std::string (j_node.name()) << ")" << std::endl;
 
                   bool found = false;
@@ -642,7 +660,7 @@ namespace CQML
                       if (i_parent == j_parent)
                         {
                           this->node_matrix_[j][i] = this->node_matrix_[i][j] = 
-                            i_dist + j_dist - 1;
+                            i_dist + j_dist + 1;
                           //outfile << this->node_matrix_[i][j] << std::endl;
                           found = true;
 						  BREAK(OUTER);
@@ -653,7 +671,7 @@ namespace CQML
 						  j_dist++;
 					  }
 					  else
-						  BREAK(OUTER);
+						  break;//BREAK(OUTER);
 					}
 				    if (i_parent != this->root_risk_group_)
 				    {

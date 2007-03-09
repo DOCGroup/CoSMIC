@@ -36,9 +36,10 @@ namespace CQML
 
         private:
           int strcasecmp (const std::string &, const std::string &);
-          void monolith_instance_visit (const Component &);
+          void assembly_instance_visit (const Component &);
           void component_visit (const Component &);
           void assembly_visit (const ComponentAssembly &);
+		  void failoverunit_visit (const FailOverUnit &fou, const ComponentQoS & cq);
 /*		  template <class QoSConnectionType, class T, class TRef, class UnaryFunctor>
 		  void qos_connection_visit (const FailOverUnit & fou,
 								     void (QoSConnectionType::*QoS_end)(void),

@@ -83,10 +83,10 @@ namespace CQML
   {
 	std::auto_ptr <NodeAssigner> node_assgn;
 	std::string dep_plan_name = std::string (plan.name());
-	std::set <DomainRiskGroupingRef> srgc_refs 
+	std::set <DomainRiskGroupingRef> drg_refs 
 		= plan.DomainRiskGroupingRef_kind_children ();
  
-	if (srgc_refs.empty())
+	if (drg_refs.empty())
 	  {
 		std::auto_ptr<NodeCollector> node_collector (new NodeCollector ());
 		node_collector->Visit_DeploymentPlan (plan);
@@ -96,7 +96,7 @@ namespace CQML
 	else
 	  {
 		std::set <DomainRiskGroupingRef>::const_iterator iter 
-			= srgc_refs.begin ();
+			= drg_refs.begin ();
 		DomainRiskGrouping srg_con = iter->ref(); // Exactly one!!
 		std::auto_ptr <SRGVisitor> srg_visitor (new SRGVisitor());
 		srg_visitor->Visit_DomainRiskGrouping (srg_con);
