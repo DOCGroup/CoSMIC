@@ -1,3 +1,13 @@
+Fri Mar  9 06:22:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Removed the 'PICML' project dependency.
+
+        * etc/config/picml_udm.mpb:
+
+          Added the 'PICML' project dependency.
+
 Fri Mar  9 06:06:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_List_T.inl:

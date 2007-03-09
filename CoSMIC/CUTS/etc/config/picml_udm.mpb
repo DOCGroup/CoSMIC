@@ -7,6 +7,7 @@ project {
   libpaths  += $(COSMIC_ROOT)/lib \
                $(UDM_PATH)/lib
 
+  after     += PICML
   libs      += PICML UdmDll
 
   dynamicflags += UDM_DYNAMIC_LINKING \
