@@ -110,8 +110,8 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
   template <typename T, typename BASE>
+  GME_INLINE
   void Folder_Model_T <T, BASE>::attach (T * type)
   {
     BASE::attach (type);

@@ -39,9 +39,11 @@ public:
   /// Destructor.
   virtual ~CUTS_CIAO_Project_Generator (void);
 
-  virtual bool generate_stub (const CUTS_BE_IDL_Node & node);
+  // Write the stub project file.
+  virtual bool write_stub_project (const CUTS_BE_IDL_Node & node);
 
-  virtual bool generate_exec (const CUTS_BE_Impl_Node & node);
+  // Write the executor project file.
+  virtual bool write_exec_project (const CUTS_BE_Impl_Node & node);
 
 private:
   void generate_impl_project (std::ofstream & out,

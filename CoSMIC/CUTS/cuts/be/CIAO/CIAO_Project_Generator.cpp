@@ -42,7 +42,7 @@ CUTS_CIAO_Project_Generator::
 // generate_exec
 //
 bool CUTS_CIAO_Project_Generator::
-generate_exec (const CUTS_BE_Impl_Node & node)
+write_exec_project (const CUTS_BE_Impl_Node & node)
 {
   // Construct the filename of the MPC file.
   std::ostringstream ostr;
@@ -81,7 +81,7 @@ generate_exec (const CUTS_BE_Impl_Node & node)
 // generate_stub
 //
 bool CUTS_CIAO_Project_Generator::
-generate_stub (const CUTS_BE_IDL_Node & node)
+write_stub_project (const CUTS_BE_IDL_Node & node)
 {
   // Construct the name of the MPC file.
   std::ostringstream pathname;

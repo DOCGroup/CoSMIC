@@ -36,7 +36,7 @@ struct CUTS_BE_IDL_Node;
  */
 //=============================================================================
 
-template <typename PROJ_STRATEGY>
+template <typename WORKSPACE_STRATEGY, typename PROJ_STRATEGY>
 class CUTS_BE_Workspace_Generator_T
 {
 public:
@@ -65,6 +65,9 @@ protected:
   void generate_stub_project (const CUTS_BE_IDL_Node * node);
 
 private:
+  /// The workspace generator strategy.
+  WORKSPACE_STRATEGY workspace_generator_;
+
   /// Project generator for this workspace.
   PROJ_STRATEGY proj_generator_;
 

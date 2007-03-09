@@ -1,3 +1,79 @@
+Fri Mar  9 00:18:16 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/gme/Exception.inl:
+        * MDE/GME/gme/Exception.cpp:
+
+          Moved all empty methods from Exception.cpp to
+          Exception.inl.
+
+        * MDE/GME/gme/Folder_Model_T.inl:
+
+          Fixed incorrect inline specification(s).
+
+        * MDE/GME/gme/GME.mpc:
+
+          Moved the feature block(s) to the top of the project file
+          since they must come before any project declaration.
+
+        * cuts/be/BE.mpc:
+
+          Added BE_MPC_Workspace{.h,.inl,.cpp} and
+          BE_Workspace_Strategy{.h,.inl,.cpp}.
+
+        * cuts/be/BE_MPC_Workspace.h:
+        * cuts/be/BE_MPC_Workspace.inl:
+        * cuts/be/BE_MPC_Workspace.cpp:
+
+          Implemented a workspace strategy that generates workspaces
+          for the Makefile Project Creator utility.
+
+        * cuts/be/BE_Manager_T.h:
+        * cuts/be/BE_Manager_T.cpp:
+
+          Removed all private variables and placed them in the the
+          handle () method since that is the only method using them.
+
+        * cuts/be/BE_Project_Generator.h:
+        * cuts/be/BE_Project_Generator.inl:
+        * cuts/be/BE_Project_Generator.cpp:
+
+          Removed the pure virtual methods so this can be an empty
+          base class.
+
+        * cuts/be/BE_Workspace_Generator_T.h:
+        * cuts/be/BE_Workspace_Generator_T.cpp:
+
+          - Added a new parameter that allows backends to customize
+            the workspace generator.
+          - Generalized the generate () method to use the WORKSPACE_STRATEGY
+            template parameter when generating the workspace.
+
+        * cuts/be/BE_Workspace_Strategy.h:
+        * cuts/be/BE_Workspace_Strategy.inl:
+        * cuts/be/BE_Workspace_Strategy.cpp:
+
+          Empty strategy that all workspace generators derive from.
+
+        * cuts/be/CIAO/CIAO_Manager.h:
+
+          Added CUTS_BE_MPC_Workspace as the workspace parameter
+          for the code generator.
+
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+
+          Changed generate_stub () -> write_stub_project () and
+          generate_exec () -> write_exec_project ().
+
+        * etc/config/cuts_gme.mpb:
+
+          Added 'noinline' feature blocks to the base project.
+
+        * etc/config/gme_component.mpb:
+
+          Remove the '/server none' and '/client none' parameters from
+          the midl_flags since they were duplicate flags.
+
 Thu Mar  8 07:34:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * default.features:

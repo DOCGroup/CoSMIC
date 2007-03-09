@@ -1,5 +1,21 @@
 // $Id$
 
+//=============================================================================
+// feature: noinline
+//=============================================================================
+
+feature(noinline) {
+  macros -= __GME_INLINE__
+}
+
+feature(!noinline) {
+  macros += __GME_INLINE__
+}
+
+//=============================================================================
+// project: GME
+//=============================================================================
+
 project (GME) : cutslib {
   sharedname = GME
 
@@ -9,18 +25,18 @@ project (GME) : cutslib {
   after -= CUTS
   libs  -= CUTS
 
-  dynamicflags += GME_BUILD_DLL _WIN32_DCOM
+  macros += _WIN32_DCOM
+  dynamicflags += GME_BUILD_DLL
 
-  specific (nmake, vc6, vc7, vc71, vc8) {
-     midl_includes += $(GME_ROOT)Interfaces
-     midl_flags    += /client stub /server none
+  specific {
+     midl_includes += $(GME_ROOT)/Interfaces
      midl_notlb     = 1
+     midl_flags    += /server none /client none
   }
 
   Source_Files {
-    $(GME_ROOT)Interfaces/Meta.idl
-    $(GME_ROOT)Interfaces/Mga.idl
-
+    $(GME_ROOT)/Interfaces/Meta.idl
+    $(GME_ROOT)/Interfaces/Mga.idl
     Atom.cpp
     Component.cpp
     ComponentEx.cpp
@@ -51,16 +67,4 @@ project (GME) : cutslib {
     GME_export.h
     GME_fwd.h
   }
-}
-
-//=============================================================================
-// feature: noinline
-//=============================================================================
-
-feature(noinline) {
-  macros -= __GME_INLINE__
-}
-
-feature(!noinline) {
-  macros += __GME_INLINE__
 }

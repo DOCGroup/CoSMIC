@@ -39,16 +39,29 @@ struct CUTS_BE_Impl_Node;
 class CUTS_BE_Export CUTS_BE_Project_Generator
 {
 public:
+  /// Default constructor.
+  CUTS_BE_Project_Generator (void);
+
   /// Destructor.
   virtual ~CUTS_BE_Project_Generator (void);
 
-  virtual bool generate_stub (const CUTS_BE_IDL_Node & node) = 0;
+  /**
+   * Generate the project file for a stub project.
+   *
+   * @param[in]         node        The target node/project.
+   * @retval            true        Successfully generated file.
+   * @retval            false       Failed to generate file.
+   */
+  virtual bool write_stub_project (const CUTS_BE_IDL_Node & node);
 
-  virtual bool generate_exec (const CUTS_BE_Impl_Node & node) = 0;
-
-protected:
-  /// Default constructor.
-  CUTS_BE_Project_Generator (void);
+  /**
+   * Generate the project file for a executor project.
+   *
+   * @param[in]         node        The target node/project.
+   * @retval            true        Successfully generated file.
+   * @retval            false       Failed to generate file.
+   */
+  virtual bool write_exec_project (const CUTS_BE_Impl_Node & node);
 
 private:
   // prevent the following operations

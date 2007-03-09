@@ -22,11 +22,12 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Impl_Node.cpp
     BE_Impl_Graph.cpp
     BE_Manager.cpp
+    BE_MPC_Workspace.cpp
     BE_Options.cpp
     BE_Preprocessor.cpp
     BE_Project_Generator.cpp
     BE_Type_Map.cpp
-
+    BE_Workspace_Strategy.cpp
     Export_File_Generator.cpp
   }
 

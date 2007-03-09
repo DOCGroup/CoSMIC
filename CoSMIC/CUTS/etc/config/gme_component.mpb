@@ -4,7 +4,6 @@ project : gme_base {
   includes += $(CUTS_ROOT)
 
   specific {
-     midl_flags += /server none /client none
      midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
   }
 
@@ -23,8 +22,8 @@ project : gme_base {
     ComponentLib.h
     $(GME_ROOT)/SDK/BON/GMECOM.h
   }
-  
+
   Resource_Files {
-  
+
   }
 }
