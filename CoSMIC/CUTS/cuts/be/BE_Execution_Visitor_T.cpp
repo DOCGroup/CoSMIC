@@ -380,6 +380,8 @@ void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_OutputAction (const PICML::OutputAction & action)
 {
   this->traits_.write_OutputAction_begin (action);
+
+  this->traits_.write_action_end ();
 }
 
 //

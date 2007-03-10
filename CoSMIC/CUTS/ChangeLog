@@ -1,3 +1,40 @@
+Sat Mar 10 07:44:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/CUTS_PICML.mpc:
+
+          Added the natural language libraries to the interpreter
+          compilation, but the natural language interpreter is not
+          exposed to the user.
+
+        * cuts/be/BE.mpc:
+
+          Added BE_Scope_Manager{.h,.inl,.cpp} to the project.
+
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+
+          Added write_action_end () method at the end of
+          Visit_OutputAction ().
+
+        * cuts/be/BE_Scope_Manager.h:
+        * cuts/be/BE_Scope_Manager.inl:
+        * cuts/be/BE_Scope_Manager.cpp:
+
+          Implemented a class that is responsible for managing
+          the scope of objects.
+
+        * cuts/be/natural-lang:
+        * cuts/be/natural-lang/Natural_Lang.mpc:
+        * cuts/be/natural-lang/Natural_Lang_Generator.h:
+        * cuts/be/natural-lang/Natural_Lang_Generator.inl:
+        * cuts/be/natural-lang/Natural_Lang_Generator.cpp:
+        * cuts/be/natural-lang/Natural_Lang_Manager.h:
+        * cuts/be/natural-lang/Natural_Lang_export.h:
+
+          Implemented a natural langauge interpreter that generates a text
+          file that describes the behavior of each implementation. This
+          backend has not been integrated into the main interpreter. Right
+          now it is part of a proof-of-concept.
+
 Fri Mar  9 06:22:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/UDM_CIAO.mpc:

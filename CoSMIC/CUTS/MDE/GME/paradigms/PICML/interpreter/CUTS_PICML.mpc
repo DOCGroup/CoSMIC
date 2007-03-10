@@ -8,8 +8,8 @@ project (CUTS_PICML) : picmllib, boost_base, cuts_gme, udm_component, gme_interp
   }
 
   // -- dependencies
-  after +=  CUTS_BE_CIAO
-  libs  +=  CUTS_BE CUTS_BE_CIAO
+  after +=  CUTS_BE_CIAO CUTS_BE_Natural_Lang
+  libs  +=  CUTS_BE CUTS_BE_CIAO CUTS_BE_Natural_Lang
 
   Source_Files {
     Main_Dialog.cpp
