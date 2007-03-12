@@ -1,3 +1,49 @@
+Mon Mar 12 02:08:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+          
+          Removed hard-coded dependency in the macro GME_BASE.
+
+        * PSM/CQML/interpreters/EventBus:
+
+        * PSM/CQML/interpreters/EventBus/BaseMessage.h:
+        * PSM/CQML/interpreters/EventBus/EventBus.mpc:
+        * PSM/CQML/interpreters/EventBus/EventBusMember.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitor.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitor.cpp:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitorImpl.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitorImpl.cpp:
+        * PSM/CQML/interpreters/EventBus/EventBus_Export.h:
+
+          EventBus is a new project that is basically an anonymous pub-sub 
+          mechanism to be used in a single process. It provides a software-bus
+	  like abstraction to allow anonymous communication between different 
+          QoS interpreters.
+
+        * PSM/CQML/interpreters/EventBusComponent:
+
+        * PSM/CQML/interpreters/EventBusComponent/Component.def:
+        * PSM/CQML/interpreters/EventBusComponent/Component.rc:
+        * PSM/CQML/interpreters/EventBusComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.reg:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponentd.reg:
+        * PSM/CQML/interpreters/EventBusComponent/RawComponent.h:
+        * PSM/CQML/interpreters/EventBusComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/UdmApp.h:
+        * PSM/CQML/interpreters/EventBusComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/compicon.ico:
+        * PSM/CQML/interpreters/EventBusComponent/resource.h:
+
+          EventBusComponent makes EventBus invocable from GME GUI.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Added EventBus and EventBusComponent.
+
 Fri Mar  9 01:20:24 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/examples/BasicSP.xme:

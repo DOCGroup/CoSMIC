@@ -7,11 +7,11 @@ workspace {
   NetQoSComponent
   BIRSpecification  
   BIRSpecificationComponent
-	SecurityQoS  
-	SecurityQoSComponent
-//  DeploymentPlan
-//  DeploymentPlanComponent
+  SecurityQoS  
+  SecurityQoSComponent
   DeploymentPlanFramework
   FaultTolerance
   FaultToleranceComponent
+  EventBus  
+  EventBusComponent
 }
