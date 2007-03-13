@@ -1,3 +1,23 @@
+Tue Mar 13 23:20:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Benchmark_Collector_Visitor.cpp:
+
+          Added function headers/documentation.
+
+        * cuts/IDL_Streams.cpp:
+
+          Added support to adding the history metrics to the
+          performance IDL structure.
+
+        * cuts/Time_Measurement.inl:
+
+          Added a missing missing accessor method.
+
+        * cuts/performance.idl:
+
+          Added a history field for sending the history of
+          all metrics collected to the BDC.
+
 Tue Mar 13 17:07:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Time_Measurement.h:

@@ -4,6 +4,9 @@
 #include "cuts/IDL_Streams.h"
 #include "cuts/Port_Agent.h"
 
+//
+// CUTS_Benchmark_Collector_Visitor
+//
 CUTS_Benchmark_Collector_Visitor::
 CUTS_Benchmark_Collector_Visitor (::CUTS::Benchmark_Data & data)
 : data_ (data)
@@ -11,12 +14,18 @@ CUTS_Benchmark_Collector_Visitor (::CUTS::Benchmark_Data & data)
 
 }
 
+//
+// ~CUTS_Benchmark_Collector_Visitor
+//
 CUTS_Benchmark_Collector_Visitor::
 ~CUTS_Benchmark_Collector_Visitor (void)
 {
 
 }
 
+//
+// visit_benchmark_agent
+//
 void CUTS_Benchmark_Collector_Visitor::
 visit_benchmark_agent (const CUTS_Benchmark_Agent & agent)
 {
@@ -35,6 +44,9 @@ visit_benchmark_agent (const CUTS_Benchmark_Agent & agent)
   }
 }
 
+//
+// visit_port_agent
+//
 void CUTS_Benchmark_Collector_Visitor::
 visit_port_agent (const CUTS_Port_Agent & agent)
 {
@@ -59,6 +71,9 @@ visit_port_agent (const CUTS_Port_Agent & agent)
   }
 }
 
+//
+// visit_port_measurement
+//
 void CUTS_Benchmark_Collector_Visitor::
 visit_port_measurement (const CUTS_Port_Measurement & measurement)
 {
@@ -69,6 +84,7 @@ visit_port_measurement (const CUTS_Port_Measurement & measurement)
   // Collect the exit times for the port.
   this->active_mpm_->exit_times.length (measurement.exit_points ().size ());
 
+  // Collect the history for the port.
   ::CORBA::ULong index = 0;
   CUTS_Port_Measurement::Exit_Points::const_iterator iter;
 

@@ -109,8 +109,27 @@ void operator >> (const ::CUTS::Time_Sample & time_sample,
 void operator << (::CUTS::Time_Sample & sample,
                   const CUTS_Time_Measurement & pm)
 {
-  sample.count = pm.count ();
+  // Cache the number of samples collected.
+  size_t sample_count = pm.count ();
+
+  // Save the time meaasurement in the IDL structure.
+  sample.count = sample_count;
   sample.time.min = pm.minimum ().msec ();
   sample.time.max = pm.maximum ().msec ();
   sample.time.total = pm.accumulation ().msec ();
+
+  // Determine if the number of sample collected is less than the
+  // size of the history. We only want to collect valid metrics
+  // and ignore all the left over metrics.
+  const CUTS_Time_Value_History & history = pm.history ();
+  size_t history_size = history.size ();
+
+  if (sample_count < history_size)
+    history_size = sample_count;
+
+  // Set the size of the history
+  sample.time.history.length (history_size);
+
+  for (size_t i = 0; i < history_size; i ++)
+    sample.time.history[i] = history[i].msec ();
 }

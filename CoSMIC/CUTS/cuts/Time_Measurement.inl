@@ -48,10 +48,20 @@ const ACE_Time_Value & CUTS_Time_Measurement::accumulation (void) const
 }
 
 //
-// average
+// count
 //
 CUTS_INLINE
 size_t CUTS_Time_Measurement::count (void) const
 {
   return this->count_;
+}
+
+//
+// history
+//
+CUTS_INLINE
+const CUTS_Time_Value_History &
+CUTS_Time_Measurement::history (void) const
+{
+  return this->history_;
 }

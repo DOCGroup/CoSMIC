@@ -6,8 +6,6 @@
  *
  * $Id$
  *
- * [insert description here]
- *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */
 //=============================================================================
@@ -20,17 +18,29 @@ module CUTS
   /// type definition for the time
   typedef long Time_Stamp;
 
-  /// Timing information collected while running an experiment.
+  typedef sequence <long> Time_Stamp_History;
+
+  //===========================================================================
+  /**
+   * @struct Time_Info
+   *
+   * Timing information collected while running an experiment.
+   */
+  //===========================================================================
+
   struct Time_Info
   {
-    /// total time during which the sample data was processed
+    /// Total time during which the sample data was processed
     Time_Stamp total;
 
-    /// maximum time taken to process an event during sample period
+    /// Maximum time taken to process an event during sample period
     Time_Stamp max;
 
-    /// minimum time to process an event during the sample period
+    /// Minimum time to process an event during the sample period
     Time_Stamp min;
+
+    /// The history of all the time metrics collected.
+    Time_Stamp_History history;
   };
 
   struct Event_Time_Info
