@@ -87,10 +87,40 @@ const PICML::ComponentImplementationContainer & container)
   // Let's preprocess this container before we continue. We
   // need to extract as much information about the component(s)
   // in this container as possible.
+
   CUTS_BE_PREPROCESSOR ()->preprocess (container);
 
+  /**
+   * class My_Backend_Traits
+   * {
+   *   static std::ofstream outfile_;
+   *
+   *   struct Open_File
+   *   {
+   *     static bool generate (container)
+   *       { My_Backend_Traits::outfile_.open (container.name ()); }
+   *   };
+   *
+   *   struct Close_File
+   *   {
+   *     static bool generate (container)
+   *       { My_Backend_Traits::outfile_.close (container.name ());
+   *         My_Backend_Traits::outfile_.clear (); }
+   *   };
+   * };
+   *
+   * if (CUTS_BE::generate_if <IMPL_STRATEGY::Open_File>::
+   *                           result_type::generate (container))
+   * {
+   *  ...
+   * }
+   */
   if (this->traits_.open_file (container))
   {
+    /**
+     * CUTS_BE::generate_if <IMPL_STRATEGY::Prologue_Generator>::
+     *                       result_type::generate (container);
+     */
     // Write the prologue for the file.
     this->traits_.write_prologue (container);
 
@@ -103,6 +133,11 @@ const PICML::ComponentImplementationContainer & container)
 
     this->traits_.write_includes (impl->include_);
 
+    /**
+     * CUTS_BE::if_then <CUTS_BE::visit_type <STRATEGY, PICML::MonolithicImplementation>::result_type,
+     *                   CUTS_BE::iterate_all>::
+     *                   result_type::execute (monos, functor);
+     */
     std::for_each (monos.begin (),
                    monos.end (),
                    boost::bind (&MonoImpl_Set::value_type::Accept,

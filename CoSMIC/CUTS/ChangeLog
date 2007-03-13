@@ -1,3 +1,32 @@
+Tue Mar 13 17:07:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Measurement.inl:
+        * cuts/Time_Measurement.cpp:
+
+          Added support to keeping a history of all the logged
+          time values.
+
+        * cuts/be/BE.mpc:
+
+          Added BE_algorithm.h and BE_nil.h to the BE project.
+
+        * cuts/be/BE_algorithm.h:
+
+          Implemented a set of algorithms to be used with the
+          metaprogrammable backend, which allows suppression of
+          different execution flows.
+
+        * cuts/be/BE_nil.h:
+
+          Implemented a NIL generator for the metaprogrammable
+          backend modeling backend.
+
+        * cuts/be/BE_Impl_Generator_T.cpp:
+
+          Added markup code that shows how the generative programming
+          approach will work.
+
 Sat Mar 10 07:44:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/CUTS_PICML.mpc:

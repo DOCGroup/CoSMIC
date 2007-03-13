@@ -1,10 +1,24 @@
 // $Id$
 
-//=============================================================================
-/*
- * CUTS_Timing_Measurement
- */
-//=============================================================================
+//
+// CUTS_Timing_Measurement
+//
+CUTS_INLINE
+CUTS_Time_Measurement::CUTS_Time_Measurement (size_t history_size)
+: count_ (0),
+  history_ (history_size)
+{
+
+}
+
+//
+// ~CUTS_Timing_Measurement
+//
+CUTS_INLINE
+CUTS_Time_Measurement::~CUTS_Time_Measurement (void)
+{
+
+}
 
 //
 // maximum
