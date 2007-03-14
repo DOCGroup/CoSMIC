@@ -1,7 +1,23 @@
+Wed Mar 14 00:40:02 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          Updated the interpreter to use accept macros from Acceptor.h
+          and removed commented debug statements.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated QoSModeling sheet to show explicit composition for
+          Port and Assembly QoS to eliminate metainterpretation errors.
+
 Mon Mar 12 02:08:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
-          
+
           Removed hard-coded dependency in the macro GME_BASE.
 
         * PSM/CQML/interpreters/EventBus:
@@ -15,9 +31,9 @@ Mon Mar 12 02:08:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/EventBus/EventBusVisitorImpl.cpp:
         * PSM/CQML/interpreters/EventBus/EventBus_Export.h:
 
-          EventBus is a new project that is basically an anonymous pub-sub 
+          EventBus is a new project that is basically an anonymous pub-sub
           mechanism to be used in a single process. It provides a software-bus
-	  like abstraction to allow anonymous communication between different 
+          like abstraction to allow anonymous communication between different
           QoS interpreters.
 
         * PSM/CQML/interpreters/EventBusComponent:

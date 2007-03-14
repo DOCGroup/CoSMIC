@@ -50,7 +50,6 @@ namespace CQML
               {
                 OperationBase opn = itr1->first;
                 RequiredRights rts = itr1->second;
-                //std::set<RequiredRights> req_rights = object.RequiredRights_kind_children();
                 Auto_DOM dom (*this, "Operation");
                 dom.curr()->setAttribute (XStr("name"), XStr (std::string (opn.name ())));
                 dom.curr()->setAttribute (XStr("required_rights"), XStr (this->getRightsString(rts)));
@@ -101,7 +100,6 @@ namespace CQML
 
             Auto_DOM dom (*this, "security-policy");
             dom.curr()->setAttribute (XStr("policy-name"), XStr (std::string (policy.name ())));
-            //policy_elm->setAttribute (XStr("policy-id"), XStr (policy.uniqueId()));
             for (RuleSet::iterator rule_itr=rules_set.begin();
                   rule_itr != rules_set.end();          
                   ++rule_itr)
@@ -186,7 +184,6 @@ namespace CQML
                   {
                     OperationRef op_ref = (*itr);
                     OperationBase op_base = op_ref.ref();
-                    //std::set<RequiredRights> req_rights = object.RequiredRights_kind_children();
                     DOMElement *op_elm = this->doc_->createElement(XStr ("Operation"));
                     op_elm ->setAttribute (XStr("name"), XStr (std::string (op_base.name ())));
                     this->curr_->appendChild (op_elm);
@@ -228,7 +225,6 @@ namespace CQML
 
     void SecurityQoSDumper::generateComponentRule (Rule& rule)
       {
-              outfile << "generateComponentRule\n";
         if (Udm::null != rule.action_ && Udm::IsDerivedFrom (rule.action_.type(), Attribute::meta))
           {
             Attribute attr = Attribute::Cast (rule.action_);
@@ -240,7 +236,6 @@ namespace CQML
 
     void SecurityQoSDumper::generateAssemblyRule (Rule& rule)
       {
-      outfile << "generateAssemblyRule\n";
         if (Udm::null != rule.action_ && Udm::IsDerivedFrom (rule.action_.type(), Path::meta))
           {
             Path path = Path::Cast (rule.action_);
@@ -360,12 +355,10 @@ namespace CQML
                           {
                             generateAssemblyRule (rule);
                           }
-    
                       }
                   }
               }
           }
          this->dumpDocument(); 
       }
-
   }
