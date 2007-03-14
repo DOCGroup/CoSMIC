@@ -1,3 +1,14 @@
+Wed Mar 14 01:23:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/EventBus/EventBus.mpc:
+
+	  Fixed a bug related to libout. The order of derivation
+          of base projects does matter to the variables that are
+          assigned. for example, libout. if acelib is after
+          cqmllib then libout takes the value defined in acelib
+          and thats what created a linking bug. This problem
+          should not occur for variables that are assigned using +=.
+
 Wed Mar 14 00:40:02 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:

@@ -1,4 +1,4 @@
-project(EventBus): cqmllib, acelib, boost_base {
+project(EventBus): boost_base, acelib, cqmllib  {
 
    sharedname = EventBus
    macros += EVENTBUS_BUILD_DLL
