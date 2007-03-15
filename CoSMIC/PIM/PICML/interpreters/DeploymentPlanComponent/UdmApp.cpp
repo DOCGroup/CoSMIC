@@ -157,6 +157,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 }
 
 #ifdef _DEBUG
+
 /*****************************************************/
 /* Debug time helper function. If the object has an  */
 /* attribute called "name", this function retreives  */
@@ -165,6 +166,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 /* has a "name" attribute. If an object hapens not	 */
 /* to have it,function retreives <no name specified>.*/
 /*****************************************************/
+
 string CUdmApp::ExtractName(Udm::Object ob)
 {
   Uml::Class cls= ob.type();
@@ -190,6 +192,8 @@ string CUdmApp::ExtractName(Udm::Object ob)
   return string("<no name specified>");
 }
 
+#endif // _DEBUG
+
 void CUdmApp::SetParameter (const std::string & name,
                             const std::string & value)
 {
@@ -197,4 +201,4 @@ void CUdmApp::SetParameter (const std::string & name,
     CUdmApp::output_path_ = value;
 }
 
-#endif
+

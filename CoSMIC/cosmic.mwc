@@ -2,6 +2,7 @@ workspace {
   cmdline += -feature_file default.features
 
   Utils/Utils.mpc
+  $(ACE_ROOT)/contrib/minizip/minizip.mpc
   PIM/PICML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
   PIM/PICML/addons/UUIDManager

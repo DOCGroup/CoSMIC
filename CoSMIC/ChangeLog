@@ -1,8 +1,25 @@
+Thu Mar 15 01:47:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+
+          Added first cut of simple WiX installer source files for
+          CoSMIC and FT.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          Fixed a #ifdef _DEBUG and #endif for a function SetParameter.
+
+        * Release.mwc:
+        * cosmic.mwc:
+
+          Added $ACE_ROOT/contrib/minizip into the main build process.
+
 Wed Mar 14 01:23:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/EventBus/EventBus.mpc:
 
-	  Fixed a bug related to libout. The order of derivation
+          Fixed a bug related to libout. The order of derivation
           of base projects does matter to the variables that are
           assigned. for example, libout. if acelib is after
           cqmllib then libout takes the value defined in acelib

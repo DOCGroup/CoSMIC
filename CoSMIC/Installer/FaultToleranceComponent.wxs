@@ -1,0 +1,49 @@
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
+  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
+  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
+  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+
+  <Fragment Id="FaultToleranceComponentReg">
+    <DirectoryRef Id="CoSMIC_bin">
+      <Component Id='FaultToleranceLibrary' Guid='5F7DFE91-4A8E-4B64-BED2-F446EE670EBC'>
+        <File Id='FaultToleranceDLL'
+              Name='FT.dll'
+              LongName='FaultTolerance.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\FaultTolerance.dll' />
+      </Component>
+      <Component Id='FaultToleranceComponentLibrary' Guid='6e84cd34-4808-4880-b22a-60752e49a589'>
+        <File Id='FaultToleranceComponentDLL'
+              Name='FTC.dll'
+              LongName='FaultToleranceComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\FaultToleranceComponent.dll' />
+
+        <Registry Root="HKCU" Key="Software\Classes" />
+        <Registry Root="HKCU" Key="Software\Classes\CLSID" />
+        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}"
+                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\ProgID"
+                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\InProcServer32"
+                  Value="FaultToleranceComponent.dll" Type="string" />
+        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent"
+                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent\CLSID"
+                  Value="{6e84cd34-4808-4880-b22a-60752e49a589}" Type="string" />
+        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent">
+          <Registry Name="Tooltip" Value="FaultToleranceComponent Interpreter" Type="string" />
+          <Registry Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <Registry Name="Paradigm" Value="CQML" Type="string" />
+          <Registry Name="Type" Value="1" Type="integer" />
+          <Registry Name="Description" Value="FaultToleranceComponent" Type="string" />
+        </Registry>
+        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent\Associated">
+          <Registry Name="CQML" Type="string" />
+        </Registry>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
