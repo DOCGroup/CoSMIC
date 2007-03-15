@@ -1,0 +1,1280 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
+  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
+  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
+  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+
+  <Fragment Id="PICMLParadigmFrag">
+    <DirectoryRef Id="PICML_paradigm_dir">
+      <Component Id='PICML_Paradigm' Guid='AC9C4D19-327B-471A-AAB2-EB2597840D27'>
+        <File Id='PICMLUML'
+              Name='PICMLUML'
+              LongName='PICML-uml.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML-uml.xme' />
+        <File Id='PICMLXME'
+              Name='PICMLXME'
+              LongName='PICML.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xme' />
+        <File Id='PICMLXML'
+              Name='PICMLXML'
+              LongName='PICML.xml'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xml' />
+        <File Id='PICMLXMP'
+              Name='PICMLXMP'
+              LongName='PICML.xmp'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xmp' />
+        <File Id='PICMLTemplate'
+              Name='PICMLTem'
+              LongName='PICML-Template.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICMLTemplate.xme' />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="PICML_icons_dir">
+      <Component Id='PICML_Paradigm_icons' Guid='2AE68EFF-5F6D-4607-9D3C-485D499E0C21'>
+        <File Id='PICML_icon_1'
+        Name='f1'
+        LongName='Any.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Any.bmp' />
+
+        <File Id='PICML_icon_2'
+        Name='f2'
+        LongName='Assembly.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Assembly.bmp' />
+
+        <File Id='PICML_icon_3'
+        Name='f3'
+        LongName='AttributeMapping.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\AttributeMapping.bmp' />
+
+        <File Id='PICML_icon_4'
+        Name='f4'
+        LongName='Average.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Average.bmp' />
+
+        <File Id='PICML_icon_5'
+        Name='f5'
+        LongName='BandedConnection.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\BandedConnection.bmp' />
+
+        <File Id='PICML_icon_6'
+        Name='f6'
+        LongName='BandedConnectionRef.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\BandedConnectionRef.bmp' />
+
+        <File Id='PICML_icon_7'
+        Name='f7'
+        LongName='Bridge.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Bridge.bmp' />
+
+        <File Id='PICML_icon_8'
+        Name='f8'
+        LongName='Capability.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Capability.bmp' />
+
+        <File Id='PICML_icon_9'
+        Name='f9'
+        LongName='ComponentPackage.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ComponentPackage.bmp' />
+
+        <File Id='PICML_icon_10'
+        Name='f10'
+        LongName='ComponentProperty.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ComponentProperty.bmp' />
+
+        <File Id='PICML_icon_11'
+        Name='f11'
+        LongName='ComponentSet.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ComponentSet.bmp' />
+
+        <File Id='PICML_icon_12'
+        Name='f12'
+        LongName='ConnectionBand.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ConnectionBand.bmp' />
+
+        <File Id='PICML_icon_13'
+        Name='f13'
+        LongName='Connector.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Connector.bmp' />
+
+        <File Id='PICML_icon_14'
+        Name='f14'
+        LongName='DataType.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\DataType.bmp' />
+
+        <File Id='PICML_icon_15'
+        Name='f15'
+        LongName='DeploymentPlan.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\DeploymentPlan.bmp' />
+
+        <File Id='PICML_icon_16'
+        Name='f16'
+        LongName='Discrete-Benchmark.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Discrete-Benchmark.bmp' />
+
+        <File Id='PICML_icon_17'
+        Name='f17'
+        LongName='Domain.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Domain.bmp' />
+
+        <File Id='PICML_icon_18'
+        Name='f18'
+        LongName='EnvironmentConf.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\EnvironmentConf.bmp' />
+
+        <File Id='PICML_icon_19'
+        Name='f19'
+        LongName='ExternalReferenceEndPoint.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ExternalReferenceEndPoint.bmp' />
+
+        <File Id='PICML_icon_20'
+        Name='f20'
+        LongName='FOU.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\FOU.bmp' />
+
+        <File Id='PICML_icon_21'
+        Name='f21'
+        LongName='ImplementationArtifact.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ImplementationArtifact.bmp' />
+
+        <File Id='PICML_icon_22'
+        Name='f22'
+        LongName='ImplementationArtifactReference.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ImplementationArtifactReference.bmp' />
+
+        <File Id='PICML_icon_23'
+        Name='f23'
+        LongName='ImplementationDependency.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ImplementationDependency.bmp' />
+
+        <File Id='PICML_icon_24'
+        Name='f24'
+        LongName='ImplementationReference.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ImplementationReference.bmp' />
+
+        <File Id='PICML_icon_25'
+        Name='f25'
+        LongName='ImplementationRequirement.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ImplementationRequirement.bmp' />
+
+        <File Id='PICML_icon_26'
+        Name='f26'
+        LongName='InputAction.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\InputAction.bmp' />
+
+        <File Id='PICML_icon_27'
+        Name='f27'
+        LongName='Interconnect.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Interconnect.bmp' />
+
+        <File Id='PICML_icon_28'
+        Name='f28'
+        LongName='Jitter.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Jitter.bmp' />
+
+        <File Id='PICML_icon_29'
+        Name='f29'
+        LongName='Latency.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Latency.bmp' />
+
+        <File Id='PICML_icon_30'
+        Name='f30'
+        LongName='Max.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Max.bmp' />
+
+        <File Id='PICML_icon_31'
+        Name='f31'
+        LongName='Min.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Min.bmp' />
+
+        <File Id='PICML_icon_32'
+        Name='f32'
+        LongName='MonolithicImplementation.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\MonolithicImplementation.bmp' />
+
+        <File Id='PICML_icon_33'
+        Name='f33'
+        LongName='Node.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Node.bmp' />
+
+        <File Id='PICML_icon_34'
+        Name='f34'
+        LongName='NodeGroup.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\NodeGroup.bmp' />
+
+        <File Id='PICML_icon_35'
+        Name='f35'
+        LongName='OutputAction.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\OutputAction.bmp' />
+
+        <File Id='PICML_icon_36'
+        Name='f36'
+        LongName='PackageConfiguration.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PackageConfiguration.bmp' />
+
+        <File Id='PICML_icon_37'
+        Name='f37'
+        LongName='PackageConfigurationReference.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PackageConfigurationReference.bmp' />
+
+        <File Id='PICML_icon_38'
+        Name='f38'
+        LongName='PackageReference.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PackageReference.bmp' />
+
+        <File Id='PICML_icon_39'
+        Name='f39'
+        LongName='Periodic-Bench.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Periodic-Bench.bmp' />
+
+        <File Id='PICML_icon_40'
+        Name='f40'
+        LongName='PolicySet.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PolicySet.bmp' />
+
+        <File Id='PICML_icon_41'
+        Name='f41'
+        LongName='PolicySetRef.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PolicySetRef.bmp' />
+
+        <File Id='PICML_icon_42'
+        Name='f42'
+        LongName='PriorityModelPolicy.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\PriorityModelPolicy.bmp' />
+
+        <File Id='PICML_icon_43'
+        Name='f43'
+        LongName='Property.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Property.bmp' />
+
+        <File Id='PICML_icon_44'
+        Name='f44'
+        LongName='RPG.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\RPG.bmp' />
+
+        <File Id='PICML_icon_45'
+        Name='f45'
+        LongName='RTModel.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\RTModel.bmp' />
+
+        <File Id='PICML_icon_46'
+        Name='f46'
+        LongName='Requirement.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Requirement.bmp' />
+
+        <File Id='PICML_icon_47'
+        Name='f47'
+        LongName='Resource.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Resource.bmp' />
+
+        <File Id='PICML_icon_48'
+        Name='f48'
+        LongName='ResourceContainer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ResourceContainer.bmp' />
+
+        <File Id='PICML_icon_49'
+        Name='f49'
+        LongName='RootRiskGroup.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\RootRiskGroup.bmp' />
+
+        <File Id='PICML_icon_50'
+        Name='f50'
+        LongName='SatisfierProperty.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\SatisfierProperty.bmp' />
+
+        <File Id='PICML_icon_51'
+        Name='f51'
+        LongName='SharedResource.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\SharedResource.bmp' />
+
+        <File Id='PICML_icon_52'
+        Name='f52'
+        LongName='SharedRiskGroup.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\SharedRiskGroup.bmp' />
+
+        <File Id='PICML_icon_53'
+        Name='f53'
+        LongName='SimpleThreadPool.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\SimpleThreadPool.bmp' />
+
+        <File Id='PICML_icon_54'
+        Name='f54'
+        LongName='StartState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\StartState.bmp' />
+
+        <File Id='PICML_icon_55'
+        Name='f55'
+        LongName='State.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\State.bmp' />
+
+        <File Id='PICML_icon_56'
+        Name='f56'
+        LongName='TargetReliabilityModel.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\TargetReliabilityModel.bmp' />
+
+        <File Id='PICML_icon_57'
+        Name='f57'
+        LongName='ThreadPoolLane.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ThreadPoolLane.bmp' />
+
+        <File Id='PICML_icon_58'
+        Name='f58'
+        LongName='ThreadPoolRef.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ThreadPoolRef.bmp' />
+
+        <File Id='PICML_icon_59'
+        Name='f59'
+        LongName='ThreadPoolWithLanes.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ThreadPoolWithLanes.bmp' />
+
+        <File Id='PICML_icon_60'
+        Name='f60'
+        LongName='Throughput.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Throughput.bmp' />
+
+        <File Id='PICML_icon_61'
+        Name='f61'
+        LongName='Thumbs.db'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Thumbs.db' />
+
+        <File Id='PICML_icon_62'
+        Name='f62'
+        LongName='TimerState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\TimerState.bmp' />
+
+        <File Id='PICML_icon_63'
+        Name='f63'
+        LongName='TopLevelPackage.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\TopLevelPackage.bmp' />
+
+        <File Id='PICML_icon_64'
+        Name='f64'
+        LongName='Trigger-Bench.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Trigger-Bench.bmp' />
+
+        <File Id='PICML_icon_65'
+        Name='f65'
+        LongName='action.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\action.bmp' />
+
+        <File Id='PICML_icon_66'
+        Name='f66'
+        LongName='aggregate.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\aggregate.bmp' />
+
+        <File Id='PICML_icon_67'
+        Name='f67'
+        LongName='aggregateref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\aggregateref.bmp' />
+
+        <File Id='PICML_icon_68'
+        Name='f68'
+        LongName='alias.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\alias.bmp' />
+
+        <File Id='PICML_icon_69'
+        Name='f69'
+        LongName='aliasref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\aliasref.bmp' />
+
+        <File Id='PICML_icon_70'
+        Name='f70'
+        LongName='assembly_qos.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\assembly_qos.bmp' />
+
+        <File Id='PICML_icon_71'
+        Name='f71'
+        LongName='assembly_ref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\assembly_ref.bmp' />
+
+        <File Id='PICML_icon_72'
+        Name='f72'
+        LongName='assembly_rule.GIF'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\assembly_rule.GIF' />
+
+        <File Id='PICML_icon_73'
+        Name='f73'
+        LongName='attribute.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\attribute.bmp' />
+
+        <File Id='PICML_icon_74'
+        Name='f74'
+        LongName='boolean.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\boolean.bmp' />
+
+        <File Id='PICML_icon_75'
+        Name='f75'
+        LongName='boxed.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\boxed.bmp' />
+
+        <File Id='PICML_icon_76'
+        Name='f76'
+        LongName='boxedref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\boxedref.bmp' />
+
+        <File Id='PICML_icon_77'
+        Name='f77'
+        LongName='byte.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\byte.bmp' />
+
+        <File Id='PICML_icon_78'
+        Name='f78'
+        LongName='comp-proj.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\comp-proj.bmp' />
+
+        <File Id='PICML_icon_79'
+        Name='f79'
+        LongName='component.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\component.bmp' />
+
+        <File Id='PICML_icon_80'
+        Name='f80'
+        LongName='component_qos.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\component_qos.bmp' />
+
+        <File Id='PICML_icon_81'
+        Name='f81'
+        LongName='component_rule.gif'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\component_rule.gif' />
+
+        <File Id='PICML_icon_82'
+        Name='f82'
+        LongName='componentfactory.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\componentfactory.bmp' />
+
+        <File Id='PICML_icon_83'
+        Name='f83'
+        LongName='componentfactoryref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\componentfactoryref.bmp' />
+
+        <File Id='PICML_icon_84'
+        Name='f84'
+        LongName='componentref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\componentref.bmp' />
+
+        <File Id='PICML_icon_85'
+        Name='f85'
+        LongName='composite.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\composite.bmp' />
+
+        <File Id='PICML_icon_86'
+        Name='f86'
+        LongName='conjunction_group.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\conjunction_group.bmp' />
+
+        <File Id='PICML_icon_87'
+        Name='f87'
+        LongName='const.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\const.bmp' />
+
+        <File Id='PICML_icon_88'
+        Name='f88'
+        LongName='critical_path.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\critical_path.bmp' />
+
+        <File Id='PICML_icon_89'
+        Name='f89'
+        LongName='critical_path_ref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\critical_path_ref.bmp' />
+
+        <File Id='PICML_icon_90'
+        Name='f90'
+        LongName='discriminator.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\discriminator.bmp' />
+
+        <File Id='PICML_icon_91'
+        Name='f91'
+        LongName='disjunction_group.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\disjunction_group.bmp' />
+
+        <File Id='PICML_icon_92'
+        Name='f92'
+        LongName='ec_consumer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_consumer.bmp' />
+
+        <File Id='PICML_icon_93'
+        Name='f93'
+        LongName='ec_dependency.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_dependency.bmp' />
+
+        <File Id='PICML_icon_94'
+        Name='f94'
+        LongName='ec_event.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_event.bmp' />
+
+        <File Id='PICML_icon_95'
+        Name='f95'
+        LongName='ec_option.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_option.bmp' />
+
+        <File Id='PICML_icon_96'
+        Name='f96'
+        LongName='ec_proxy.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_proxy.bmp' />
+
+        <File Id='PICML_icon_97'
+        Name='f97'
+        LongName='ec_proxy_consumer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_proxy_consumer.bmp' />
+
+        <File Id='PICML_icon_98'
+        Name='f98'
+        LongName='ec_proxy_supplier.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_proxy_supplier.bmp' />
+
+        <File Id='PICML_icon_99'
+        Name='f99'
+        LongName='ec_resource_factory.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_resource_factory.bmp' />
+
+        <File Id='PICML_icon_100'
+        Name='f100'
+        LongName='ec_supplier.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_supplier.bmp' />
+
+        <File Id='PICML_icon_101'
+        Name='f101'
+        LongName='ec_supplier_id.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ec_supplier_id.bmp' />
+
+        <File Id='PICML_icon_102'
+        Name='f102'
+        LongName='enum.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\enum.bmp' />
+
+        <File Id='PICML_icon_103'
+        Name='f103'
+        LongName='enumref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\enumref.bmp' />
+
+        <File Id='PICML_icon_104'
+        Name='f104'
+        LongName='enumvalue.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\enumvalue.bmp' />
+
+        <File Id='PICML_icon_105'
+        Name='f105'
+        LongName='event.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\event.bmp' />
+
+        <File Id='PICML_icon_106'
+        Name='f106'
+        LongName='event_sink.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\event_sink.bmp' />
+
+        <File Id='PICML_icon_107'
+        Name='f107'
+        LongName='event_source.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\event_source.bmp' />
+
+        <File Id='PICML_icon_108'
+        Name='f108'
+        LongName='eventref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\eventref.bmp' />
+
+        <File Id='PICML_icon_109'
+        Name='f109'
+        LongName='eventtype-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\eventtype-port.bmp' />
+
+        <File Id='PICML_icon_110'
+        Name='f110'
+        LongName='eventtype.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\eventtype.bmp' />
+
+        <File Id='PICML_icon_111'
+        Name='f111'
+        LongName='exception.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\exception.bmp' />
+
+        <File Id='PICML_icon_112'
+        Name='f112'
+        LongName='exceptionref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\exceptionref.bmp' />
+
+        <File Id='PICML_icon_113'
+        Name='f113'
+        LongName='factory.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\factory.bmp' />
+
+        <File Id='PICML_icon_114'
+        Name='f114'
+        LongName='file.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\file.bmp' />
+
+        <File Id='PICML_icon_115'
+        Name='f115'
+        LongName='fileref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\fileref.bmp' />
+
+        <File Id='PICML_icon_116'
+        Name='f116'
+        LongName='genericobject.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\genericobject.bmp' />
+
+        <File Id='PICML_icon_117'
+        Name='f117'
+        LongName='genericvalue.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\genericvalue.bmp' />
+
+        <File Id='PICML_icon_118'
+        Name='f118'
+        LongName='genericvalueobject.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\genericvalueobject.bmp' />
+
+        <File Id='PICML_icon_119'
+        Name='f119'
+        LongName='getexception.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\getexception.bmp' />
+
+        <File Id='PICML_icon_120'
+        Name='f120'
+        LongName='group.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\group.bmp' />
+
+        <File Id='PICML_icon_121'
+        Name='f121'
+        LongName='in.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\in.bmp' />
+
+        <File Id='PICML_icon_122'
+        Name='f122'
+        LongName='inevent_lf.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\inevent_lf.bmp' />
+
+        <File Id='PICML_icon_123'
+        Name='f123'
+        LongName='inevent_rt.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\inevent_rt.bmp' />
+
+        <File Id='PICML_icon_124'
+        Name='f124'
+        LongName='ineventport.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ineventport.bmp' />
+
+        <File Id='PICML_icon_125'
+        Name='f125'
+        LongName='inherits.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\inherits.bmp' />
+
+        <File Id='PICML_icon_126'
+        Name='f126'
+        LongName='initiator.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\initiator.bmp' />
+
+        <File Id='PICML_icon_127'
+        Name='f127'
+        LongName='inout.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\inout.bmp' />
+
+        <File Id='PICML_icon_128'
+        Name='f128'
+        LongName='label.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\label.bmp' />
+
+        <File Id='PICML_icon_129'
+        Name='f129'
+        LongName='logical_and_group.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\logical_and_group.bmp' />
+
+        <File Id='PICML_icon_130'
+        Name='f130'
+        LongName='long.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\long.bmp' />
+
+        <File Id='PICML_icon_131'
+        Name='f131'
+        LongName='lookup.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\lookup.bmp' />
+
+        <File Id='PICML_icon_132'
+        Name='f132'
+        LongName='lookupkey.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\lookupkey.bmp' />
+
+        <File Id='PICML_icon_133'
+        Name='f133'
+        LongName='member.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\member.bmp' />
+
+        <File Id='PICML_icon_134'
+        Name='f134'
+        LongName='ns_admin.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_admin.bmp' />
+
+        <File Id='PICML_icon_135'
+        Name='f135'
+        LongName='ns_config.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_config.bmp' />
+
+        <File Id='PICML_icon_136'
+        Name='f136'
+        LongName='ns_constraint.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_constraint.bmp' />
+
+        <File Id='PICML_icon_137'
+        Name='f137'
+        LongName='ns_consumer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_consumer.bmp' />
+
+        <File Id='PICML_icon_138'
+        Name='f138'
+        LongName='ns_event.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_event.bmp' />
+
+        <File Id='PICML_icon_139'
+        Name='f139'
+        LongName='ns_filter-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_filter-port.bmp' />
+
+        <File Id='PICML_icon_140'
+        Name='f140'
+        LongName='ns_filter.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_filter.bmp' />
+
+        <File Id='PICML_icon_141'
+        Name='f141'
+        LongName='ns_option.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_option.bmp' />
+
+        <File Id='PICML_icon_142'
+        Name='f142'
+        LongName='ns_proxy.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_proxy.bmp' />
+
+        <File Id='PICML_icon_143'
+        Name='f143'
+        LongName='ns_proxy_consumer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_proxy_consumer.bmp' />
+
+        <File Id='PICML_icon_144'
+        Name='f144'
+        LongName='ns_proxy_supplier.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_proxy_supplier.bmp' />
+
+        <File Id='PICML_icon_145'
+        Name='f145'
+        LongName='ns_qos-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_qos-port.bmp' />
+
+        <File Id='PICML_icon_146'
+        Name='f146'
+        LongName='ns_qos.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_qos.bmp' />
+
+        <File Id='PICML_icon_147'
+        Name='f147'
+        LongName='ns_resource_factory-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_resource_factory-port.bmp' />
+
+        <File Id='PICML_icon_148'
+        Name='f148'
+        LongName='ns_resource_factory.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_resource_factory.bmp' />
+
+        <File Id='PICML_icon_149'
+        Name='f149'
+        LongName='ns_supplier.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\ns_supplier.bmp' />
+
+        <File Id='PICML_icon_150'
+        Name='f150'
+        LongName='object.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\object.bmp' />
+
+        <File Id='PICML_icon_151'
+        Name='f151'
+        LongName='objectref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\objectref.bmp' />
+
+        <File Id='PICML_icon_152'
+        Name='f152'
+        LongName='oneway.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\oneway.bmp' />
+
+        <File Id='PICML_icon_153'
+        Name='f153'
+        LongName='operation_set.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\operation_set.bmp' />
+
+        <File Id='PICML_icon_154'
+        Name='f154'
+        LongName='operationref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\operationref.bmp' />
+
+        <File Id='PICML_icon_155'
+        Name='f155'
+        LongName='out.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\out.bmp' />
+
+        <File Id='PICML_icon_156'
+        Name='f156'
+        LongName='outevent_lf.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\outevent_lf.bmp' />
+
+        <File Id='PICML_icon_157'
+        Name='f157'
+        LongName='outevent_rt.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\outevent_rt.bmp' />
+
+        <File Id='PICML_icon_158'
+        Name='f158'
+        LongName='outeventport.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\outeventport.bmp' />
+
+        <File Id='PICML_icon_159'
+        Name='f159'
+        LongName='package.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\package.bmp' />
+
+        <File Id='PICML_icon_160'
+        Name='f160'
+        LongName='policy_set.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\policy_set.bmp' />
+
+        <File Id='PICML_icon_161'
+        Name='f161'
+        LongName='port_qos.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\port_qos.bmp' />
+
+        <File Id='PICML_icon_162'
+        Name='f162'
+        LongName='port_rule.GIF'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\port_rule.GIF' />
+
+        <File Id='PICML_icon_163'
+        Name='f163'
+        LongName='private.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\private.bmp' />
+
+        <File Id='PICML_icon_164'
+        Name='f164'
+        LongName='project.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\project.bmp' />
+
+        <File Id='PICML_icon_165'
+        Name='f165'
+        LongName='providedrequestport.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\providedrequestport.bmp' />
+
+        <File Id='PICML_icon_166'
+        Name='f166'
+        LongName='readonlyattribute.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\readonlyattribute.bmp' />
+
+        <File Id='PICML_icon_167'
+        Name='f167'
+        LongName='realm.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\realm.bmp' />
+
+        <File Id='PICML_icon_168'
+        Name='f168'
+        LongName='realnumber.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\realnumber.bmp' />
+
+        <File Id='PICML_icon_169'
+        Name='f169'
+        LongName='receptacle_lf.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\receptacle_lf.bmp' />
+
+        <File Id='PICML_icon_170'
+        Name='f170'
+        LongName='receptacle_rt.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\receptacle_rt.bmp' />
+
+        <File Id='PICML_icon_171'
+        Name='f171'
+        LongName='requiredrequestport.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\requiredrequestport.bmp' />
+
+        <File Id='PICML_icon_172'
+        Name='f172'
+        LongName='return.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\return.bmp' />
+
+        <File Id='PICML_icon_173'
+        Name='f173'
+        LongName='rights.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rights.bmp' />
+
+        <File Id='PICML_icon_174'
+        Name='f174'
+        LongName='role.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\role.bmp' />
+
+        <File Id='PICML_icon_175'
+        Name='f175'
+        LongName='role_access_rights.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\role_access_rights.bmp' />
+
+        <File Id='PICML_icon_176'
+        Name='f176'
+        LongName='rt_info-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rt_info-port.bmp' />
+
+        <File Id='PICML_icon_177'
+        Name='f177'
+        LongName='rt_info.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rt_info.bmp' />
+
+        <File Id='PICML_icon_178'
+        Name='f178'
+        LongName='rtec_proxy_consumer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rtec_proxy_consumer.bmp' />
+
+        <File Id='PICML_icon_179'
+        Name='f179'
+        LongName='rtec_proxy_supplier.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rtec_proxy_supplier.bmp' />
+
+        <File Id='PICML_icon_180'
+        Name='f180'
+        LongName='rtec_resource_factory-port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rtec_resource_factory-port.bmp' />
+
+        <File Id='PICML_icon_181'
+        Name='f181'
+        LongName='rtec_resource_factory.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\rtec_resource_factory.bmp' />
+
+        <File Id='PICML_icon_182'
+        Name='f182'
+        LongName='security_domain.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\security_domain.bmp' />
+
+        <File Id='PICML_icon_183'
+        Name='f183'
+        LongName='security_policy.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\security_policy.bmp' />
+
+        <File Id='PICML_icon_184'
+        Name='f184'
+        LongName='setexception.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\setexception.bmp' />
+
+        <File Id='PICML_icon_185'
+        Name='f185'
+        LongName='setexceptionref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\setexceptionref.bmp' />
+
+        <File Id='PICML_icon_186'
+        Name='f186'
+        LongName='short.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\short.bmp' />
+
+        <File Id='PICML_icon_187'
+        Name='f187'
+        LongName='string.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\string.bmp' />
+
+        <File Id='PICML_icon_188'
+        Name='f188'
+        LongName='supports.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\supports.bmp' />
+
+        <File Id='PICML_icon_189'
+        Name='f189'
+        LongName='switchedaggregate.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\switchedaggregate.bmp' />
+
+        <File Id='PICML_icon_190'
+        Name='f190'
+        LongName='switchedaggregateref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\switchedaggregateref.bmp' />
+
+        <File Id='PICML_icon_191'
+        Name='f191'
+        LongName='task.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\task.bmp' />
+
+        <File Id='PICML_icon_192'
+        Name='f192'
+        LongName='taskset.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\taskset.bmp' />
+
+        <File Id='PICML_icon_193'
+        Name='f193'
+        LongName='timer.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\timer.bmp' />
+
+        <File Id='PICML_icon_194'
+        Name='f194'
+        LongName='twoway.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\twoway.bmp' />
+
+        <File Id='PICML_icon_195'
+        Name='f195'
+        LongName='typeencoding.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\typeencoding.bmp' />
+
+        <File Id='PICML_icon_196'
+        Name='f196'
+        LongName='typekind.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\typekind.bmp' />
+
+        <File Id='PICML_icon_197'
+        Name='f197'
+        LongName='user.gif'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\user.gif' />
+
+        <File Id='PICML_icon_198'
+        Name='f198'
+        LongName='value.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\value.bmp' />
+
+        <File Id='PICML_icon_199'
+        Name='f199'
+        LongName='valueref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\valueref.bmp' />
+
+        <File Id='PICML_icon_200'
+        Name='f200'
+        LongName='variablecollection.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\variablecollection.bmp' />
+
+        <File Id='PICML_icon_201'
+        Name='f201'
+        LongName='variablecollectionref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\variablecollectionref.bmp' />
+
+        <File Id='PICML_icon_202'
+        Name='f202'
+        LongName='vertex.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\vertex.bmp' />
+
+        <File Id='PICML_icon_203'
+        Name='f203'
+        LongName='worker.gif'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\worker.gif' />
+
+        <File Id='PICML_icon_204'
+        Name='f204'
+        LongName='workerref.gif'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\workerref.gif' />
+
+        <File Id='PICML_icon_205'
+        Name='f205'
+        LongName='workspace.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\workspace.bmp' />
+
+      </Component>
+    </DirectoryRef>
+
+    <Feature Id='PICMLParadigmFeature' Level='1'>
+      <ComponentRef Id='PICML_Paradigm' />
+      <ComponentRef Id='PICML_Paradigm_icons' />
+    </Feature>
+
+  </Fragment>
+</Wix>

@@ -5,8 +5,8 @@
   <?define UDM_PATH = "$(env.UDM_PATH)" ?>
   <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
 
-  <Fragment Id="FaultToleranceComponentReg">
-    <DirectoryRef Id="CoSMIC_bin">
+  <Fragment Id="FaultToleranceComponentFrag">
+    <DirectoryRef Id="CoSMIC_bin_dir">
       <Component Id='FaultToleranceLibrary' Guid='5F7DFE91-4A8E-4B64-BED2-F446EE670EBC'>
         <File Id='FaultToleranceDLL'
               Name='FT.dll'
@@ -45,5 +45,11 @@
         </Registry>
       </Component>
     </DirectoryRef>
+
+    <Feature Id='FaultToleranceFeature' Level='1'>
+      <ComponentRef Id='FaultToleranceLibrary' />
+      <ComponentRef Id='FaultToleranceComponentLibrary' />
+    </Feature>
+
   </Fragment>
 </Wix>

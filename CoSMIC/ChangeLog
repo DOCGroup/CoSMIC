@@ -1,3 +1,33 @@
+Thu Mar 15 04:53:01 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/Directories.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+        * Installer/PICMLParadigm.wxs:
+        * Installer/README.txt:
+        * Installer/list_icons.sh:
+          
+          list_icons.sh creates a list of "File" tags as WiX source 
+          of all the icons in a given directory. Please see the README
+          for more information.
+
+          Updates to the CoSMIC installer. It is now 
+          split into multiple WiX source files and fragments.
+
+Thu Mar 15 04:45:56 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/Directories.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+        * Installer/PICMLParadigm.wxs:
+        * Installer/list_icons.sh:
+
+          Creates a list of "File" tags as WiX source of all the icons
+          in a given directory.
+
+          Updates to the CoSMIC installer. It is now
+          split into multiple WiX source files and fragments.
+
 Thu Mar 15 01:47:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer.wxs:

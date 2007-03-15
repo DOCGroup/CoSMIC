@@ -9,7 +9,6 @@
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
     Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='ISIS'>
 
-
     <Package Id='B0892B09-E422-4B62-A080-95CCBCBAC7C4' Keywords='Installer'
       Description="ISIS's CoSMIC Installer"
       Comments='CoSMIC is open-source.' Manufacturer='ISIS'
@@ -22,51 +21,10 @@
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
 
-    <Directory Id='TARGETDIR' Name='SourceDir'>
-      <Directory Id='ProgramFilesFolder' Name='PFiles'>
-        <Directory Id='ISIS' Name='ISIS'>
-          <Directory Id='INSTALLDIR' Name='CoSMIC'>
-            <Directory Id='CoSMIC_bin' Name='bin' src='[INSTALLDIR]bin'>
-              <!--
-            <Component Id='MainExecutable' Guid='509F64BB-BFD9-4348-82DA-AA44958B0E23'>
-              <File Id='FoobarEXE' Name='Foobar10.exe' LongName='FoobarAppl10.exe' DiskId='1'
-                Source='FoobarAppl10.exe' Vital='yes'>
-                <Shortcut Id="startmenuFoobar10" Directory="ProgramMenuDir" Name="Foobar10" 
-                  LongName="CoSMIC" WorkingDirectory='INSTALLDIR' Icon="Foobar10.exe" IconIndex="0" />
-                <Shortcut Id="desktopFoobar10" Directory="DesktopFolder" Name="Foobar10"
-                  LongName="CoSMIC" WorkingDirectory='INSTALLDIR' Icon="Foobar10.exe" IconIndex="0" />
-              </File>
-              <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
-            </Component>
--->
+    <FragmentRef Id='DirectoriesFrag' /> 
 
-<!--
-            <Component Id='Manual' Guid='3D1384BD-A8A4-4D28-9B04-D9BC662367EA'>
-              <File Id='Manual' Name='Manual.pdf' DiskId='1' Source='Manual.pdf'>
-                <Shortcut Id="startmenuManual" Directory="ProgramMenuDir" Name="Manual" LongName="Instruction Manual" />
-              </File>
-            </Component>
--->
-            </Directory>
-          </Directory>
-        </Directory>
-      </Directory>
-      <!--
-      <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
-        <Directory Id="ProgramMenuDir" Name='CoSMIC' LongName="CoSMIC" />
-      </Directory>
+    <FeatureRef Id="FaultToleranceFeature" />
+    <FeatureRef Id="PICMLParadigmFeature" />
 
-     <Directory Id="DesktopFolder" Name="Desktop" /> -->
-    </Directory>
-
-    <Feature Id='Complete' Level='1'>
-      <!--      <ComponentRef Id='MainExecutable' /> -->
-      <ComponentRef Id='FaultToleranceLibrary' />
-      <ComponentRef Id='FaultToleranceComponentLibrary' />
-      <!--      <ComponentRef Id='Manual' /> -->
-    </Feature>
-    <!--
-    <Icon Id="Foobar10.exe" SourceFile="FoobarAppl10.exe" />
--->
   </Product>
 </Wix>
