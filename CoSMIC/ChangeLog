@@ -1,3 +1,26 @@
+Fri Mar 16 21:38:27 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/RTConfig:
+
+        * PSM/CQML/interpreters/RTConfig/BON2Component.h:
+        * PSM/CQML/interpreters/RTConfig/BON2Component.cpp:
+        * PSM/CQML/interpreters/RTConfig/Component.rc:
+        * PSM/CQML/interpreters/RTConfig/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfig/RTConfig.mpc:
+        * PSM/CQML/interpreters/RTConfig/RTConfig.reg:
+        * PSM/CQML/interpreters/RTConfig/RTConfigVisitor.h:
+        * PSM/CQML/interpreters/RTConfig/RTConfigVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfig/RTConfigd.reg:
+        * PSM/CQML/interpreters/RTConfig/RTConfiguration.ico:
+        * PSM/CQML/interpreters/RTConfig/Resource.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTConfig/component.def:
+          
+          Added the RTConfig interpreter for the new RTConfiguration
+          defined in CQML.
+
 Thu Mar 15 04:53:01 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer.wxs:
@@ -6,12 +29,12 @@ Thu Mar 15 04:53:01 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * Installer/PICMLParadigm.wxs:
         * Installer/README.txt:
         * Installer/list_icons.sh:
-          
-          list_icons.sh creates a list of "File" tags as WiX source 
+
+          list_icons.sh creates a list of "File" tags as WiX source
           of all the icons in a given directory. Please see the README
           for more information.
 
-          Updates to the CoSMIC installer. It is now 
+          Updates to the CoSMIC installer. It is now
           split into multiple WiX source files and fragments.
 
 Thu Mar 15 04:45:56 UTC 2007  Sumant Tambe  <sutambe@nospam>
