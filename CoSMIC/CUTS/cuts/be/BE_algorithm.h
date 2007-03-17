@@ -116,7 +116,7 @@ namespace CUTS_BE
 
 /// Helper macro for defining the trait to ingore all types
 /// when parsing the model.
-#define CUTS_BE_NO_VISIT_ALL(strategy) \
+#define CUTS_BE_NOT_VISIT_ALL(strategy) \
   template <typename TYPE> \
   struct visit_type <strategy, TYPE> \
   { \
