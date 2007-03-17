@@ -14,6 +14,8 @@
 #define _CUTS_CIAO_EXEC_HEADER_TRAITS_H_
 
 #include "CIAO_Header_Traits.h"
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
 
 //=============================================================================
 /**
@@ -42,9 +44,6 @@ public:
 
   virtual void write_epilogue (
     const PICML::ComponentImplementationContainer & container);
-
-  virtual void write_includes (
-    const CUTS_String_Set & includes);
 
   void write_impl_begin (
     const PICML::MonolithicImplementation & monoimpl,
@@ -85,6 +84,15 @@ private:
   /// Global jump table for the environment writers.
   static Environment_Table env_table_;
 };
+
+// Singleton declaration.
+CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
+                                 CUTS_CIAO_Exec_Header_Traits,
+                                 ACE_Null_Mutex);
+// Singleton definition.
+#define CIAO_EXEC_HEADER_GENERATOR() \
+  ACE_Singleton <CUTS_CIAO_Exec_Header_Traits, \
+                 ACE_Null_Mutex>::instance ()
 
 #if defined (__CUTS_INLINE__)
 #include "CIAO_Exec_Header_Traits.inl"

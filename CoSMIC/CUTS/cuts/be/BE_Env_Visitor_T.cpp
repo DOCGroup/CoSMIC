@@ -7,10 +7,8 @@
 //
 // CUTS_BE_Env_Visitor_T
 //
-template <typename BE_STRATEGY>
-CUTS_BE_Env_Visitor_T <BE_STRATEGY>::
-CUTS_BE_Env_Visitor_T (BE_STRATEGY & traits)
-: traits_ (traits)
+template <typename IMPL_STRATEGY>
+CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::CUTS_BE_Env_Visitor_T (void)
 {
 
 }
@@ -18,8 +16,8 @@ CUTS_BE_Env_Visitor_T (BE_STRATEGY & traits)
 //
 // ~CUTS_BE_Env_Visitor_T
 //
-template <typename BE_STRATEGY>
-CUTS_BE_Env_Visitor_T <BE_STRATEGY>::~CUTS_BE_Env_Visitor_T (void)
+template <typename IMPL_STRATEGY>
+CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::~CUTS_BE_Env_Visitor_T (void)
 {
 
 }
@@ -27,8 +25,8 @@ CUTS_BE_Env_Visitor_T <BE_STRATEGY>::~CUTS_BE_Env_Visitor_T (void)
 //
 // Visit_Environment
 //
-template <typename BE_STRATEGY>
-void CUTS_BE_Env_Visitor_T <BE_STRATEGY>::
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::
 Visit_Environment (const PICML::Environment & env)
 {
   typedef std::set <PICML::MultiInput> MultiInput_Set;
@@ -44,8 +42,8 @@ Visit_Environment (const PICML::Environment & env)
 //
 // Visit_MulitInput
 //
-template <typename BE_STRATEGY>
-void CUTS_BE_Env_Visitor_T <BE_STRATEGY>::
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::
 Visit_MultiInput (const PICML::MultiInput & input)
 {
   PICML::InputAction action =
@@ -57,14 +55,14 @@ Visit_MultiInput (const PICML::MultiInput & input)
 //
 // Visit_InputAction
 //
-template <typename BE_STRATEGY>
-void CUTS_BE_Env_Visitor_T <BE_STRATEGY>::
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::
 Visit_InputAction (const PICML::InputAction & action)
 {
-  this->traits_.write_environment_method_begin (action);
+  CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_Begin> (action);
 
-  CUTS_BE_Execution_Visitor_T <BE_STRATEGY> exec_visitor (this->traits_);
-  PICML::InputAction (action).Accept (exec_visitor);
+  //CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
+  //PICML::InputAction (action).Accept (exec_visitor);
 
-  this->traits_.write_environment_method_end (action);
+  CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_End> (action);
 }

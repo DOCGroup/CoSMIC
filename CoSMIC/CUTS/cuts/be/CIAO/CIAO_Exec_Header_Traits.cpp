@@ -143,24 +143,6 @@ write_epilogue (const PICML::ComponentImplementationContainer & container)
 }
 
 //
-// write_includes
-//
-void CUTS_CIAO_Exec_Header_Traits::
-write_includes (const CUTS_String_Set & includes)
-{
-  if (!this->outfile ().is_open ())
-    return;
-
-  for (CUTS_String_Set::const_iterator iter = includes.begin ();
-      iter != includes.end ();
-      iter ++)
-  {
-    this->outfile ()
-      << include (*iter);
-  }
-}
-
-//
 // write_impl_begin
 //
 void CUTS_CIAO_Exec_Header_Traits::

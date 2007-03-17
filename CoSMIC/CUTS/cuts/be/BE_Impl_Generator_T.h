@@ -114,12 +114,19 @@ protected:
   void Visit_FactoryOperation (
     const PICML::FactoryOperation & factory_op);
 
+protected:
+  void Visit_Include (
+    const std::string & include);
+
+  void Visit_ReadonlyAttribute_Variable (
+    const PICML::ReadonlyAttribute & attr);
+
+  void Visit_PeriodicEvent_Variable (
+    const PICML::PeriodicEvent & periodic);
+
 private:
   bool get_component_factory (const PICML::Component & component,
                               PICML::ComponentFactory & factory);
-
-  /// The traits for the generators.
-  IMPL_STRATEGY traits_;
 
   // prevent the following operations
   CUTS_BE_Impl_Generator_T (const CUTS_BE_Impl_Generator_T &);

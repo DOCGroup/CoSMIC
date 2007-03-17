@@ -14,6 +14,8 @@
 #define _CUTS_CIAO_PROXY_HEADER_TRAITS_H_
 
 #include "CIAO_Header_Traits.h"
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
 
 //=============================================================================
 /**
@@ -42,9 +44,6 @@ public:
 
   virtual void write_epilogue (
     const PICML::ComponentImplementationContainer & container);
-
-  virtual void write_includes (
-    const CUTS_String_Set & includes);
 
   // @@ begin component impl.
   void write_impl_begin (
@@ -101,5 +100,15 @@ private:
 #if defined (__CUTS_INLINE__)
 #include "CIAO_Proxy_Header_Traits.inl"
 #endif
+
+
+// Singleton declaration.
+CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
+                                 CUTS_CIAO_Proxy_Header_Traits,
+                                 ACE_Null_Mutex);
+// Singleton definition.
+#define CIAO_PROXY_HEADER_GENERATOR() \
+  ACE_Singleton <CUTS_CIAO_Proxy_Header_Traits, \
+                 ACE_Null_Mutex>::instance ()
 
 #endif  // !defined _CUTS_CIAO_PROXY_HEADER_TRAITS_H_

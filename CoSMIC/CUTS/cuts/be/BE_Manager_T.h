@@ -21,9 +21,7 @@
  */
 //=============================================================================
 
-template <typename WORKSPACE_STRATEGY,
-          typename PROJECT_STRATEGY,
-          typename EXECUTOR_STRATEGY>
+template <typename WORKSPACE, typename PROJECT,  typename EXECUTOR>
 class CUTS_BE_Manager_T : public CUTS_BE_Manager
 {
 public:

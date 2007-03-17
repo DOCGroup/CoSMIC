@@ -89,7 +89,13 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << "#include /**/ \"ace/pre.h\"" << std::endl
     << std::endl
     << single_line_comment ("servant header")
-    << "#include \"" << container.name () << "_svnt.h\"" << std::endl;
+    << "#include \"" << container.name () << "_svnt.h\"" << std::endl
+    << std::endl
+    << single_line_comment ("proxy header file")
+    << include ("cuts/CCM_CoWorkEr_Proxy_T")
+    << include ("cuts/CCM_Context_T")
+    << include ("cuts/Event_Handler_Manager_T")
+    << std::endl;
 }
 
 //
@@ -113,24 +119,6 @@ write_epilogue (const PICML::ComponentImplementationContainer & container)
     << "#include /**/ \"ace/post.h\"" << std::endl
     << std::endl
     << "#endif  // !defined _" << hashdef << "_H_" << std::endl;
-}
-
-//
-// write_includes
-//
-void CUTS_CIAO_Proxy_Header_Traits::
-write_includes (const CUTS_String_Set & includes)
-{
-  if (!this->outfile ().is_open ())
-    return;
-
-  this->outfile ()
-    << std::endl
-    << single_line_comment ("proxy header file")
-    << include ("cuts/CCM_CoWorkEr_Proxy_T")
-    << include ("cuts/CCM_Context_T")
-    << include ("cuts/Event_Handler_Manager_T")
-    << std::endl;
 }
 
 //

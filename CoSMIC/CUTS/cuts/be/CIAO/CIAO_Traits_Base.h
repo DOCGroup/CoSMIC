@@ -94,6 +94,8 @@ public:
   virtual void write_FactoryOperation_end (
     const PICML::FactoryOperation & factory_op);
 
+  void write_include (const std::string & include);
+
 protected:
   void write_OperationBase_begin (
     const PICML::OperationBase & operation_base);

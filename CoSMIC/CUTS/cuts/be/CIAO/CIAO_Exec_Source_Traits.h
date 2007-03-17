@@ -15,6 +15,8 @@
 
 #include "CIAO_Source_Traits.h"
 #include "Port_Manager_T.h"
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
 
 //=============================================================================
 /**
@@ -137,6 +139,15 @@ private:
   /// Manager for mapping port types to their scoped name.
   CUTS_UDM_Port_Manager_T <const PICML::OutEventPort> outevent_mgr_;
 };
+
+// Singleton declaration.
+CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
+                                 CUTS_CIAO_Exec_Source_Traits,
+                                 ACE_Null_Mutex);
+// Singleton definition.
+#define CIAO_EXEC_SOURCE_GENERATOR() \
+  ACE_Singleton <CUTS_CIAO_Exec_Source_Traits, \
+                 ACE_Null_Mutex>::instance ()
 
 #if defined (__CUTS_INLINE__)
 #include "CIAO_Exec_Source_Traits.inl"

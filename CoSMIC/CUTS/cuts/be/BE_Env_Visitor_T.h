@@ -1,15 +1,36 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      BE_Env_Visitor_T.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _CUTS_BE_ENV_VISITOR_H_
 #define _CUTS_BE_ENV_VISITOR_H_
 
 #include "PICML/PICML.h"
 
-template <typename BE_STRATEGY>
+//=============================================================================
+/**
+ * @class CUTS_BE_Env_Visitor_T
+ *
+ * Visitor for the environment portions of the model.
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
 class CUTS_BE_Env_Visitor_T : public PICML::Visitor
 {
 public:
-  /// Initalizing constructor.
-  CUTS_BE_Env_Visitor_T (BE_STRATEGY & traits);
+  /// Constructor.
+  CUTS_BE_Env_Visitor_T (void);
 
+  /// Destructor.
   virtual ~CUTS_BE_Env_Visitor_T (void);
 
 protected:
@@ -21,10 +42,6 @@ protected:
 
   void Visit_InputAction (
     const PICML::InputAction & input);
-
-private:
-  /// The traits for the visitor.
-  BE_STRATEGY & traits_;
 };
 
 #include "BE_Env_Visitor_T.cpp"

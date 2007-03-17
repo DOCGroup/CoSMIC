@@ -59,9 +59,8 @@ struct Is_Finish_Connection
 //
 template <typename BE_STRATEGY>
 CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
-CUTS_BE_Execution_Visitor_T (BE_STRATEGY & traits)
-: traits_ (traits),
-  ignore_effects_ (false),
+CUTS_BE_Execution_Visitor_T (void)
+: ignore_effects_ (false),
   depth_ (0)
 {
 
@@ -181,7 +180,7 @@ Visit_InputEffect (const PICML::InputEffect & effect)
   std::string postcondition = effect.Postcondition ();
 
   if (!postcondition.empty ())
-    this->traits_.write_postcondition (postcondition);
+    CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
 
   // Visit the next state in the chain.
   PICML::State state = effect.dstInputEffect_end ();
@@ -199,7 +198,7 @@ Visit_Effect (const PICML::Effect & effect)
   std::string postcondition = effect.Postcondition ();
 
   if (!postcondition.empty ())
-    this->traits_.write_postcondition (postcondition);
+    CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
 
   // Visit the next state in the chain.
   PICML::State state = effect.dstEffect_end ();
@@ -296,16 +295,16 @@ Visit_Transition (const PICML::Transition & transition)
   std::string precondition = transition.Precondition ();
 
   if (!precondition.empty ())
-    this->traits_.write_precondition (precondition);
+    CUTS_BE::generate <BE_STRATEGY::Precondition> (precondition);
 
   // Get the action connected to the end of the transaction.
   PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
-  std::string _typename = action_base.type ().name ();
+  Uml::Class type = action_base.type ();
 
   // We are placing the order of the action types in fast path
   // order. We know there will be far more <Action> elements
   // than any type.
-  if (_typename == (std::string)PICML::Action::meta.name ())
+  if (type == PICML::Action::meta)
   {
     PICML::Action action = PICML::Action::Cast (action_base);
     long reps = static_cast <long> (action.Repetitions ());
@@ -313,11 +312,11 @@ Visit_Transition (const PICML::Transition & transition)
     if (reps > 0)
       PICML::Action::Cast (action).Accept (*this);
   }
-  else if (_typename == (std::string) PICML::OutputAction::meta.name ())
+  else if (type == PICML::OutputAction::meta)
   {
     PICML::OutputAction::Cast (action_base).Accept (*this);
   }
-  else if (_typename == (std::string) PICML::CompositeAction::meta.name ())
+  else if (type == PICML::CompositeAction::meta)
   {
     PICML::CompositeAction::Cast (action_base).Accept (*this);
   }
@@ -334,7 +333,7 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_Property (const PICML::Property & property)
 {
-  this->traits_.write_action_property (property);
+  CUTS_BE::generate <BE_STRATEGY::Action_Property> (property);
 }
 
 //
@@ -353,7 +352,7 @@ Visit_Action (const PICML::Action & action)
 
   // Let's tell the <traits_> to begin generating an action.
   PICML::Worker worker = action_type.Worker_parent ();
-  this->traits_.write_WorkerAction_begin (worker, action);
+  CUTS_BE::generate <BE_STRATEGY::WorkerAction_Begin> (worker, action);
 
   // Generate the parameters for the action.
   typedef std::set <PICML::Property,
@@ -369,7 +368,7 @@ Visit_Action (const PICML::Action & action)
                               boost::ref (*this)));
 
   // Let's tell the <traits_> to end generating an action.
-  this->traits_.write_action_end ();
+  CUTS_BE::generate <BE_STRATEGY::Action_End> ();
 }
 
 //
@@ -379,9 +378,9 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_OutputAction (const PICML::OutputAction & action)
 {
-  this->traits_.write_OutputAction_begin (action);
+  CUTS_BE::generate <BE_STRATEGY::OutputAction_Begin> (action);
 
-  this->traits_.write_action_end ();
+  CUTS_BE::generate <BE_STRATEGY::Action_End> ();
 }
 
 //

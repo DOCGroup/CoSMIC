@@ -31,21 +31,13 @@ namespace CUTS_BE
   {
     /// Dummy generate method to satisfy the generator. We use variatric
     /// parameters so the method can be used with any number of parameters.
-    /// Since we ignore the parameters, it really doesn't matter how many
-    /// the client passes to this method.
     static inline bool generate (...)
-    {
-      return false;
-    }
+      { return false; }
 
     /// Dummy execute method to satisfy the generator. We use variatric
     /// parameters so the method can be used with any number of parameters.
-    /// Since we ignore the parameters, it really doesn't matter how many
-    /// the client passes to this method.
     static inline bool execute (...)
-    {
-      return false;
-    }
+      { return false; }
   };
 
   //===========================================================================
@@ -62,7 +54,7 @@ namespace CUTS_BE
   struct is_nil
   {
     /// By default, all generators are not nil.
-    static bool result_type = false;
+    static const bool result_type = false;
   };
 
   //===========================================================================
@@ -77,7 +69,7 @@ namespace CUTS_BE
   template < >
   struct CUTS_BE_Export is_nil <NIL>
   {
-    static bool result_type = true;
+    static const bool result_type = true;
   };
 
   //===========================================================================
@@ -93,7 +85,7 @@ namespace CUTS_BE
   template <typename T>
   struct not_is_nil
   {
-    static bool result_type = true;
+    static const bool result_type = true;
   };
 
   //===========================================================================
@@ -108,7 +100,7 @@ namespace CUTS_BE
   template < >
   struct CUTS_BE_Export not_is_nil <NIL>
   {
-    static bool result_type = false;
+    static const bool result_type = false;
   };
 }
 

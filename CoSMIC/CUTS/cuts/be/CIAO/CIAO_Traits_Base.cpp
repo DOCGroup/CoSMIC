@@ -645,3 +645,11 @@ get_impl_entry_point (const PICML::
     }
   }
 }
+
+//
+// write_include
+//
+void CIAO_Traits_Base::write_include (const std::string & file)
+{
+  this->outfile () << include (file);
+}

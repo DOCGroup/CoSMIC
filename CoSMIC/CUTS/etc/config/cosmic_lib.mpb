@@ -1,6 +1,6 @@
 // $Id$
 
-project : cuts_base {
+project : cutslib {
   requires += modeling
 
   libout = $(COSMIC_ROOT)/lib

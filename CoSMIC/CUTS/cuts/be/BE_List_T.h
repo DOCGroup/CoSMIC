@@ -13,208 +13,136 @@
 #ifndef _CUTS_BE_LIST_T_H_
 #define _CUTS_BE_LIST_T_H_
 
-#include "BE_Traits.h"
-
-/// Type definition for the nil backend generator. Right now, this is a
-/// temporary solution until create distinguish between a nil generator
-/// and the strategy used by all generators.
-typedef CUTS_BE_Traits _traits_nil;
-
-//=============================================================================
-/**
- * @class CUTS_BE_List_T
- *
- * Static list of backend traits. This list uses generator programming
- * techniques to create the most optimal (in terms of speed) generator
- * for a particular backend.
- *
- * This list object is used by parameterizing the first parameter with
- * backend trait that derives from CUTS_BE_Traits. The second parameter
- * is a CUTS_BE_List_T with that is parameterized with another class
- * that derives from CUTS_BE_Traits. This process continues until all
- * traits included. To end the list specification, the second parameter
- * of the last node is left blank.
- *
- * @todo Create a specialization of this class for the last trait in
- *       the list. Right now we are depending on _traits_nil, which is
- *       a type definition for CUTS_BE_Traits. During iteration an extra
- *       node is parsed, i.e., CUTS_BE_Traits, everytime even when this
- *       is really not necessary. It does help that CUTS_BE_Traits has
- *       everything inlined, but this issue still needs to be addressed.
- */
-//=============================================================================
-
-template <typename BE_STRATEGY, typename BE_NEXT = _traits_nil>
-class CUTS_BE_List_T : public CUTS_BE_Traits
+namespace CUTS_BE
 {
-public:
-  /// Default constructor.
-  CUTS_BE_List_T (void);
+  /// End of list marker.
+  struct EOL;
 
-  /// Destructor.
-  virtual ~CUTS_BE_List_T (void);
+  //===========================================================================
+  /**
+   * @class List_T
+   *
+   * Metaprogrammable implementation of a linked list. The linked-list
+   * allows programmers to create a chain of generators that are to
+   * be executed using the same parameters. This solves the problem of
+   * iterating the entire multiple times to generate multiple files based
+   * on the same parsing algorithm. Currently, the list can handle generators
+   * that accept up to 5 parameters.
+   */
+  //===========================================================================
 
-  virtual bool open_file (
-    const PICML::ComponentImplementationContainer & container);
+  template <typename STRATEGY_GENERATOR, typename NEXT = EOL>
+  class List_T
+  {
+  public:
+    /// 0-paremeter generate method.
+    static inline bool generate (void)
+    {
+      return
+        STRATEGY_GENERATOR::generate () |
+        NEXT::generate ();
+    }
 
-  virtual void close_file (
-    const PICML::ComponentImplementationContainer & container);
+    /// 1-parameter generate method.
+    template <typename P1>
+    static inline bool generate (P1 p1)
+    {
+      return
+        STRATEGY_GENERATOR::generate (p1) |
+        NEXT::generate (p1);
+    }
 
-  virtual void write_prologue (
-    const PICML::ComponentImplementationContainer & container);
+    /// 2-parameter generate method.
+    template <typename P1, typename P2>
+    static inline bool generate (P1 p1, P2 p2)
+    {
+      return
+        STRATEGY_GENERATOR::generate (p1, p2) |
+        NEXT::generate (p1, p2);
+    }
 
-  virtual void write_epilogue (
-    const PICML::ComponentImplementationContainer & container);
+    /// 3-parameter generate method.
+    template <typename P1, typename P2, typename P3>
+    static inline bool generate (P1 p1, P2 p2, P3 p3)
+    {
+      return
+        STRATEGY_GENERATOR::generate (p1, p2, p3) |
+        NEXT::generate (p1, p2, p3);
+    }
 
-  virtual void write_includes (
-    const CUTS_String_Set & includes);
+    /// 4-parameter generate method.
+    template <typename P1, typename P2, typename P3, typename P4>
+    static inline bool generate (P1 p1, P2 p2, P3 p3, P4 p4)
+    {
+      return
+        STRATEGY_GENERATOR::generate (p1, p2, p3, p4) |
+        NEXT::generate (p1, p2, p3, p4);
+    }
 
-  // @@ begin component implementation
+    /// 5-parameter generate method.
+    template <typename P1, typename P2, typename P3, typename P4, typename P5>
+    static inline bool generate (P1 p1, P2 p2, P3 p3, P4 p4, P5 p5)
+    {
+      return
+        STRATEGY_GENERATOR::generate (p1, p2, p3, p4, p5) |
+        NEXT::generate (p1, p2, p3, p4, p5);
+    }
+  };
 
-  virtual void write_impl_begin (
-    const PICML::MonolithicImplementation & monoimpl,
-    const PICML::Component & type);
+  //===========================================================================
+  /**
+   * @class List_T
+   *
+   * Specialization of the CUTS_BE::List_T for the CUTS_BE::NIL
+   * generator. This shortcuts the
+   */
+  //===========================================================================
 
-  virtual void write_InEventPort_begin (
-    const PICML::InEventPort & sink);
+  template <typename STRATEGY_GENERATOR>
+  class List_T <STRATEGY_GENERATOR, EOL>
+  {
+  public:
+    /// 0-paremeter generate method.
+    static inline bool generate (void)
+    {
+      return STRATEGY_GENERATOR::generate ();
+    }
 
-  virtual void write_InEventPort_end (
-    const PICML::InEventPort & sink);
+    /// 1-parameter generate method.
+    template <typename P1>
+    static inline bool generate (P1 p1)
+    {
+      return STRATEGY_GENERATOR::generate (p1);
+    }
 
-  virtual void write_ProvidedRequestPort_begin (
-    const PICML::ProvidedRequestPort & facet);
+    /// 2-parameter generate method.
+    template <typename P1, typename P2>
+    static inline bool generate (P1 p1, P2 p2)
+    {
+      return STRATEGY_GENERATOR::generate (p1, p2);
+    }
 
-  virtual void write_ProvidedRequestPort_end (
-    const PICML::ProvidedRequestPort & facet);
+    /// 3-parameter generate method.
+    template <typename P1, typename P2, typename P3>
+    static inline bool generate (P1 p1, P2 p2, P3 p3)
+    {
+      return STRATEGY_GENERATOR::generate (p1, p2, p3);
+    }
 
-  virtual void write_Attribute_begin (
-    const PICML::Attribute & attr);
+    /// 4-parameter generate method.
+    template <typename P1, typename P2, typename P3, typename P4>
+    static inline bool generate (P1 p1, P2 p2, P3 p3, P4 p4)
+    {
+      return STRATEGY_GENERATOR::generate (p1, p2, p3, p4);
+    }
 
-  virtual void write_Attribute_end (
-    const PICML::Attribute & attr);
-
-  virtual void write_ReadonlyAttribute_begin (
-    const PICML::ReadonlyAttribute & ro_attr);
-
-  virtual void write_ReadonlyAttribute_end (
-    const PICML::ReadonlyAttribute & ro_attr);
-
-  virtual void write_PeriodicEvent_begin (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_PeriodicEvent_end (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_environment_begin (
-    const PICML::Component & component);
-
-  virtual void write_environment_method_begin (
-    const PICML::InputAction &);
-
-  virtual void write_environment_method_end (
-    const PICML::InputAction &);
-
-  virtual void write_environment_end (
-    const PICML::Component & component);
-
-  virtual void write_impl_end (
-    const PICML::MonolithicImplementation &,
-    const PICML::Component & type);
-
-  // @@ end component implementation
-
-  // @@ begin facet implementation
-
-  virtual void write_object_impl_begin (
-    const PICML::Component & component,
-    const PICML::ProvidedRequestPort & facet);
-
-  virtual void write_OnewayOperation_begin (
-    const PICML::OnewayOperation & oneway);
-
-  virtual void write_OnewayOperation_end (
-    const PICML::OnewayOperation & oneway);
-
-  virtual void write_TwowayOperation_begin (
-    const PICML::TwowayOperation & twoway);
-
-  virtual void write_TwowayOperation_end (
-    const PICML::TwowayOperation & twoway);
-
-  virtual void write_object_impl_end (
-    const PICML::Component & component,
-    const PICML::ProvidedRequestPort & facet);
-
-  // @@ end facet implementation
-
-  // @@ begin home implementation
-
-  virtual void write_factory_impl_begin (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  virtual void write_FactoryOperation_begin (
-    const PICML::FactoryOperation & factory_op);
-
-  virtual void write_FactoryOperation_end (
-    const PICML::FactoryOperation & factory_op);
-
-  virtual void write_factory_impl_end (
-    const PICML::ComponentFactory & factory,
-    const PICML::MonolithicImplementation & impl,
-    const PICML::Component & type);
-
-  // @@ end home implementation
-
-  virtual void write_variables_begin (
-    const PICML::Component & component);
-
-  virtual void write_variable (
-    const PICML::Variable & variable);
-
-  virtual void write_worker_variable (
-    const PICML::WorkerType & type,
-    const PICML::Worker & worker);
-
-  virtual void write_ReadonlyAttribute_variable (
-    const PICML::ReadonlyAttribute & readonly);
-
-  virtual void write_PeriodicEvent_variable (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_variables_end (void);
-
-  virtual void write_precondition (
-    const std::string & precondition);
-
-  virtual void write_postcondition (
-    const std::string & precondition);
-
-  virtual void write_WorkerAction_begin (
-    const PICML::Worker & worker,
-    const PICML::Action & action);
-
-  virtual void write_OutputAction_begin (
-    const PICML::OutputAction & action);
-
-  virtual void write_action_property (
-    const PICML::Property & property);
-
-  virtual void write_action_end (void);
-
-private:
-  /// The traits for this node.
-  BE_STRATEGY traits_;
-
-  /// The next set of traits.
-  BE_NEXT next_;
-};
-
-#if defined (__CUTS_INLINE__)
-#include "BE_List_T.inl"
-#endif
-
-#include "BE_List_T.cpp"
+    /// 5-parameter generate method.
+    template <typename P1, typename P2, typename P3, typename P4, typename P5>
+    static inline bool generate (P1 p1, P2 p2, P3 p3, P4 p4, P5 p5)
+    {
+      return STRATEGY_GENERATOR::generate (p1, p2, p3, p4, p5);
+    }
+  };
+}
 
 #endif  // !defined _CUTS_BE_LIST_T_H_

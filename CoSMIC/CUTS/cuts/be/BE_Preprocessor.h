@@ -16,6 +16,8 @@
 #include "BE_export.h"
 #include "BE_IDL_Graph.h"
 #include "BE_Impl_Graph.h"
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
 
 //=============================================================================
 /**
@@ -32,15 +34,11 @@ class CUTS_BE_Export CUTS_BE_Preprocessor :
   public PICML::Visitor
 {
 public:
-  /**
-   * Get a pointer to the singleton.
-   *
-   * @return    Pointer to singleton instance.
-   */
-  static CUTS_BE_Preprocessor * instance (void);
+  /// Default constructor.
+  CUTS_BE_Preprocessor (void);
 
-  /// Close the singleton instance.
-  static void close_singleton (void);
+  /// Destructor.
+  ~CUTS_BE_Preprocessor (void);
 
   /**
    * Preprocess a file.
@@ -62,6 +60,14 @@ public:
     const PICML::ComponentImplementationContainer & container);
 
   /**
+   * Remove an implementation from the proprocessor.
+   *
+   * @param[in]     container       The target containe to remove.
+   */
+  void remove (
+    const PICML::ComponentImplementationContainer & container);
+
+  /**
    * Get a reference to the preprocessed implementations. Clients
    * are not able to modify the implementation graph.
    *
@@ -79,19 +85,13 @@ public:
   const CUTS_BE_IDL_Graph & stubs (void) const;
 
 private:
-  /// Default constructor.
-  CUTS_BE_Preprocessor (void);
-
-  /// Destructor.
-  ~CUTS_BE_Preprocessor (void);
-
-  /// Pointer to the singleton.
-  static CUTS_BE_Preprocessor * instance_;
-
+  /// The IDL graph.
   CUTS_BE_IDL_Graph idl_graph_;
 
+  /// The implementation graph.
   CUTS_BE_Impl_Graph impl_graph_;
 
+  /// The current implementation being preprocessed.
   CUTS_BE_Impl_Node * current_impl_;
 
   // prevent the following operations
@@ -99,8 +99,13 @@ private:
   const CUTS_BE_Preprocessor & operator = (const CUTS_BE_Preprocessor &);
 };
 
+CUTS_BE_SINGLETON_DECLARE(ACE_Singleton,
+                          CUTS_BE_Preprocessor,
+                          ACE_Null_Mutex);
+
 #define CUTS_BE_PREPROCESSOR() \
-  CUTS_BE_Preprocessor::instance ()
+  ACE_Singleton <CUTS_BE_Preprocessor, \
+                 ACE_Null_Mutex>::instance ()
 
 #if defined (__CUTS_INLINE__)
 #include "BE_Preprocessor.inl"

@@ -79,3 +79,18 @@ find (const std::string & name, const T * &node) const
   node = iter->second;
   return true;
 }
+
+//
+// remove
+//
+template <typename T>
+void CUTS_BE_Depend_Graph_T <T>::remove (const std::string & name)
+{
+  Node_Map::iterator iter = this->graph_.find (name);
+
+  if (iter != this->graph_.end ())
+  {
+    delete iter->second;
+    this->graph_.erase (iter);
+  }
+}

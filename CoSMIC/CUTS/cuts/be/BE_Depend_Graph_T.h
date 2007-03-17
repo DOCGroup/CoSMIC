@@ -62,6 +62,13 @@ public:
   bool find (const std::string & name, const T * &node) const;
 
   /**
+   * Remove a node from the graph.
+   *
+   * @param[in]       name        Name of the node.
+   */
+  void remove (const std::string & name);
+
+  /**
    * Get a reference to the underlying graph.
    *
    * @return      Reference to the underlying graph.

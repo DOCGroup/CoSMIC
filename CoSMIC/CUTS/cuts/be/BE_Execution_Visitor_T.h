@@ -34,7 +34,7 @@ public:
    *
    * @param[in]       generators      Reference to target generators.
    */
-  CUTS_BE_Execution_Visitor_T (BE_STRATEGY & traits);
+  CUTS_BE_Execution_Visitor_T (void);
 
   /// Destructor.
   virtual ~CUTS_BE_Execution_Visitor_T (void);
@@ -44,8 +44,10 @@ public:
   void generate (const PICML::MultiInputBase & input);
 
 protected:
+  /// Visit an MultiInput element.
   void Visit_MultiInput (const PICML::MultiInput & input);
 
+  /// Visit an InputAction element.
   void Visit_Input (const PICML::Input & input);
 
   /// Visit an InputAction element.
@@ -76,9 +78,6 @@ protected:
   void Visit_CompositeAction (const PICML::CompositeAction &);
 
 private:
-  /// Pointer to the backend traits.
-  BE_STRATEGY & traits_;
-
   /// Flag that determines if effects should be ignored.
   bool ignore_effects_;
 

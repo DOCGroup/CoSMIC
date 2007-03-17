@@ -1,3 +1,106 @@
+Sat Mar 17 20:01:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+
+          Removed the BE_List_T.cpp template file and replaced it with
+          BE_List_T.h.
+
+        * cuts/be/BE_algorithm.h:
+
+          - All the integral traits where missing a 'const' modifier.
+          - Changed the generate_if trait to generate (), which is a
+            factory function that uses generative programming to
+            derive the correct generate functor.
+
+        * cuts/be/CIAO/UDM_CIAO_Export.h:
+        * cuts/be/BE_export.h:
+
+          Regenerated the export files with support for ACE.
+
+        * cuts/be/BE_Depend_Graph_T.h:
+        * cuts/be/BE_Depend_Graph_T.cpp:
+
+          Added support for removing existing nodes from the
+          graph.
+
+        * cuts/be/BE_Preprocessor.h:
+        * cuts/be/BE_Preprocessor.inl:
+        * cuts/be/BE_Preprocessor.cpp:
+
+          - Added support for removing preprocessed implementations
+            from the graph.
+          - Replaced all integrated singleton implementation with
+            ACE_Singleton.
+
+        * cuts/be/BE_Impl_Generator_T.h:
+        * cuts/be/BE_Impl_Generator_T.inl:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/BE_Env_Visitor_T.h:
+        * cuts/be/BE_Env_Visitor_T.cpp:
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+
+          Reimplemented the entire backend using the generative
+          programming approach. All the point-of-generation in the
+          source code where a 'traits_' method was invoked was replaced
+          with the generate factory method.
+
+        * cuts/be/BE_List_T.h:
+
+          Replaced the specialized list with a more generic list that
+          can be used with any backend generate outside of CUTS.
+
+        * cuts/be/BE_Manager_T.h:
+
+          Made aesthetic changes to the template parameter names.
+
+        * cuts/be/BE_nil.h:
+
+          All the integral traits were missing the 'const' modifier.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+
+          Removed the write_includes () method.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+
+          Added a ACE_Singleton variable to each class.
+
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          Added a write_include () method, which writes the value of a
+          single include file to the output file.
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+
+          Added CIAO_Traits.cpp to the project.
+
+        * cuts/be/CIAO/CIAO_Traits.h:
+        * cuts/be/CIAO/CIAO_Traits.h:
+
+          CIAO traits for the metaprogrammable backend of the
+          CUTS interpreters.
+
+        * cuts/be/CIAO/CIAO_Manager.h:
+
+          Use CUTS_BE::CIAO_Traits as the EXECUTOR template parameter
+          in support of the new backend's implementation/architecture.
+
+        * etc/config/cosmic_lib.mpb:
+
+          Replaced cuts_base with cutslib as the base project so we
+          can use ACE within the interpreters.
+
+        * cuts/be/BE_List_T.inl:
+        * cuts/be/BE_List_T.cpp:
+
+          Removed these files.
+
 Sat Mar 17 19:47:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/natural-lang/Natural_Lang_Generator.cpp (open_file):

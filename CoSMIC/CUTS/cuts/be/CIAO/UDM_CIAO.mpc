@@ -18,6 +18,7 @@ project (CUTS_BE_CIAO) : cosmic_lib, boost_base, picml_udm {
     CIAO_Retn_Type.cpp
     CIAO_Var_Type.cpp
 
+    CIAO_Traits.cpp
     CIAO_Traits_Base.cpp
     CIAO_Header_Traits.cpp
     CIAO_Source_Traits.cpp
