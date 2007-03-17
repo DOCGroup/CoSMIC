@@ -23,7 +23,7 @@ open_file (const PICML::ComponentImplementationContainer & container)
   // Locate the preprocessing of the implementation. If this is a
   // proxy implementation, then we ignore it. It's going to cause
   // more problems than we would like.
-  CUTS_BE_Impl_Node * node = 0;
+  const CUTS_BE_Impl_Node * node = 0;
   CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node);
 
   if (node != 0 && node->is_proxy_)

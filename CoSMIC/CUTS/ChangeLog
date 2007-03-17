@@ -1,3 +1,9 @@
+Sat Mar 17 19:47:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/natural-lang/Natural_Lang_Generator.cpp (open_file):
+
+          CUTS_BE_Impl_Node pointer was missing the 'const' keyword.
+
 Tue Mar 13 23:20:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Collector_Visitor.cpp:
