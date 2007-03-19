@@ -1,3 +1,72 @@
+Mon Mar 19 22:54:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cosmic.mwc
+
+          The main workspace now build everything under the 'Utils'
+          directory.
+
+        * Utils/gme:
+        * Utils/gme/Application.h:
+        * Utils/gme/Application.cpp:
+        * Utils/gme/Atom.h:
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Component.h:
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.h:
+        * Utils/gme/ComponentEx.cpp:
+        * Utils/gme/Exception.h:
+        * Utils/gme/Exception.inl:
+        * Utils/gme/Exception.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/Folder_Model_T.h:
+        * Utils/gme/Folder_Model_T.inl:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/GME.h:
+        * Utils/gme/GME.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_export.h:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/Interpreter.h:
+        * Utils/gme/Interpreter.cpp:
+        * Utils/gme/MetaBase.h:
+        * Utils/gme/MetaBase.cpp:
+        * Utils/gme/MetaFCO.h:
+        * Utils/gme/MetaFCO.inl:
+        * Utils/gme/MetaFCO.cpp:
+        * Utils/gme/MetaFolder.h:
+        * Utils/gme/MetaFolder.inl:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/MetaModel.h:
+        * Utils/gme/MetaModel.inl:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/MetaRole.h:
+        * Utils/gme/MetaRole.inl:
+        * Utils/gme/MetaRole.cpp:
+        * Utils/gme/Model.h:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+        * Utils/gme/Reference.h:
+        * Utils/gme/Reference.inl:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/RegistryNode.inl:
+        * Utils/gme/RegistryNode.cpp:
+        * Utils/gme/Set.h:
+        * Utils/gme/Set.cpp:
+        * Utils/gme/Territory.h:
+        * Utils/gme/Territory.cpp:
+
+          This is a utility library pushed down from the CUTS workspace.
+          It is a set of wrappers for GME (which are still a work in
+          progress) to provide a programmatic front-end to GME and its
+          interpreters for any project/paradigm.
+
 Mon Mar 19 07:27:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer:
@@ -13,7 +82,7 @@ Mon Mar 19 07:27:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
         * Installer/CoSMIC_Installer/README.txt:
 
-          Created a separate directory for the CoSMIC installer and 
+          Created a separate directory for the CoSMIC installer and
           the WiX project files.
 
         * Installer/RegisterParadigm/RegisterParadigm.cpp:

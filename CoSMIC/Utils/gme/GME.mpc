@@ -1,0 +1,54 @@
+// $Id$
+
+project (GME) : gme_base, cutslib {
+  sharedname = GME
+
+  requires += modeling
+
+  // remove the unnecessary libraries
+  after -= CUTS
+  libs  -= CUTS
+
+  macros += _WIN32_DCOM
+  dynamicflags += GME_BUILD_DLL
+
+  specific {
+     midl_includes += $(GME_ROOT)/Interfaces
+     midl_notlb     = 1
+     midl_flags    += /server none /client none
+  }
+
+  Source_Files {
+    $(GME_ROOT)/Interfaces/Meta.idl
+    $(GME_ROOT)/Interfaces/Mga.idl
+    Atom.cpp
+    Component.cpp
+    ComponentEx.cpp
+    Exception.cpp
+    FCO.cpp
+    Folder.cpp
+    GME.cpp
+    Interpreter.cpp
+    Object.cpp
+    MetaBase.cpp
+    MetaFolder.cpp
+    MetaFCO.cpp
+    MetaModel.cpp
+    MetaRole.cpp
+    Model.cpp
+    Project.cpp
+    Reference.cpp
+    RegistryNode.cpp
+    Set.cpp
+    Territory.cpp
+  }
+
+  Template_Files {
+    Folder_Model_T.cpp
+  }
+
+  Header_Files {
+    GME_export.h
+    GME_fwd.h
+  }
+}

@@ -1,7 +1,9 @@
 workspace {
   cmdline += -feature_file default.features
 
-  Utils/Utils.mpc
+  // -- build everything in the Utils directory
+  Utils
+
   $(ACE_ROOT)/contrib/minizip/minizip.mpc
   PIM/PICML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
