@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{A49CE20D-CE64-4A08-9F24-92A6443D6699}") = "CoSMIC_Installer", "CoSMIC_Installer.wixproj", "{91E577E1-52F0-481D-A4E0-D497CE98FA84}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91E577E1-52F0-481D-A4E0-D497CE98FA84}.Debug|Default.ActiveCfg = Debug
+		{91E577E1-52F0-481D-A4E0-D497CE98FA84}.Debug|Default.Build.0 = Debug
+		{91E577E1-52F0-481D-A4E0-D497CE98FA84}.Release|Default.ActiveCfg = Release
+		{91E577E1-52F0-481D-A4E0-D497CE98FA84}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wix'>
+  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
+  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
+  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
+  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+
+  <Fragment Id="CustomActionsFrag">
+    <CustomAction Id='ParadigmRegister'
+                  BinaryKey='RegistrationBinary'
+                  DllEntry='RegisterParadigms'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='check' />
+    <CustomAction Id='TargetDirRegFailed'
+                  Error='TargetDir registry key could not be accessed. Installation aborted.' />
+    <!--    <CustomAction Id='ParadigmUnRegister' 
+                  BinaryKey='RegistrationBinary' 
+                  DllEntry='UnRegisterParadigms' /> -->
+    <Binary Id='RegistrationBinary' SourceFile='$(var.COSMIC_ROOT)\bin\RegisterParadigm.dll' />
+  </Fragment>
+</Wix>

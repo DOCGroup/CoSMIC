@@ -43,7 +43,7 @@
         LongName='Any.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Any.bmp' />
-
+        <!--
         <File Id='PICML_icon_2'
         Name='f2'
         LongName='Assembly.bmp'
@@ -1267,7 +1267,7 @@
         LongName='workspace.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\workspace.bmp' />
-
+-->
       </Component>
     </DirectoryRef>
 

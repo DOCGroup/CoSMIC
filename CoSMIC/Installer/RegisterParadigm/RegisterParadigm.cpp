@@ -14,6 +14,8 @@
 #include "mgautil.h"
 
 #define PARADIGMCOST 30000
+//#pragma comment(linker, "/EXPORT:RegisterParadigms")
+//#pragma comment(linker, "/EXPORT:UnRegisterParadigms")
 
 
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  ul_reason_for_call,
@@ -163,7 +165,7 @@ bool RegisterParadigm (const std::string& paradigm)
 
 
 
-UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
+/*extern "C" */UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -179,11 +181,15 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
     {
       SendErrorMsg (hInstall, "Unable to access Registry Key "
                     "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
-      return 0;
+	  MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "0");
+      return ERROR_INSTALL_FAILURE;
     }
 
+  MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "1");
+
   std::vector<std::string> paradigms;
-  paradigms.push_back ("PICML.xmp");
+  paradigms.push_back ("PICML");
+  std::string paradigm_ext (".xmp");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();
@@ -193,18 +199,19 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
       std::string svParadigmName = *iter;
       SendMsgToProgressBar(hInstall, svParadigmName.c_str());
       std::string targetParadigm ("XML=");
-      targetParadigm += std::string(value) + "\\paradigms\\" + svParadigmName;
+      targetParadigm += std::string(value) + "\\paradigms\\" 
+		             + svParadigmName + "\\" + svParadigmName + paradigm_ext;
       if (!RegisterParadigm (targetParadigm))
       {
         std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
         errorMsg += ". Please check if you have a valid GME installation. \n";
         errorMsg += LastError();
         SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-        return 0;
+        return ERROR_INSTALL_FAILURE;
       }
     }
   // Don't change this return value or BAD THINGS[TM] will happen.
-  return 1;
+  return ERROR_SUCCESS;
 }
 
 bool UnRegisterParadigm (const std::string& paradigmName)
@@ -246,7 +253,7 @@ bool UnRegisterParadigm (const std::string& paradigmName)
   return true;
 }
 
-UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
+/*extern "C" */UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -272,9 +279,9 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
                                 svParadigmName);
           errorMsg += LastError();
           SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-          return 0;
+          return ERROR_INSTALL_FAILURE;
         }
     }
   // Don't change this return value or BAD THINGS[TM] will happen.
-  return 1;
+  return ERROR_SUCCESS;
 }
