@@ -1,3 +1,69 @@
+Mon Mar 19 22:52:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_gme.mpb:
+
+          Updated the 'includes' specification to point to the new
+          location of the GME utility library.
+
+        * MDE/GME/gme:
+        * MDE/GME/gme/Application.h:
+        * MDE/GME/gme/Application.cpp:
+        * MDE/GME/gme/Atom.h:
+        * MDE/GME/gme/Atom.cpp:
+        * MDE/GME/gme/Component.h:
+        * MDE/GME/gme/Component.cpp:
+        * MDE/GME/gme/ComponentEx.h:
+        * MDE/GME/gme/ComponentEx.cpp:
+        * MDE/GME/gme/Exception.h:
+        * MDE/GME/gme/Exception.inl:
+        * MDE/GME/gme/Exception.cpp:
+        * MDE/GME/gme/FCO.h:
+        * MDE/GME/gme/FCO.cpp:
+        * MDE/GME/gme/Folder.h:
+        * MDE/GME/gme/Folder.cpp:
+        * MDE/GME/gme/Folder_Model_T.h:
+        * MDE/GME/gme/Folder_Model_T.inl:
+        * MDE/GME/gme/Folder_Model_T.cpp:
+        * MDE/GME/gme/GME.h:
+        * MDE/GME/gme/GME.cpp:
+        * MDE/GME/gme/GME.mpc:
+        * MDE/GME/gme/GME_export.h:
+        * MDE/GME/gme/GME_fwd.h:
+        * MDE/GME/gme/Interpreter.h:
+        * MDE/GME/gme/Interpreter.cpp:
+        * MDE/GME/gme/MetaBase.h:
+        * MDE/GME/gme/MetaBase.cpp:
+        * MDE/GME/gme/MetaFCO.h:
+        * MDE/GME/gme/MetaFCO.inl:
+        * MDE/GME/gme/MetaFCO.cpp:
+        * MDE/GME/gme/MetaFolder.h:
+        * MDE/GME/gme/MetaFolder.inl:
+        * MDE/GME/gme/MetaFolder.cpp:
+        * MDE/GME/gme/MetaModel.h:
+        * MDE/GME/gme/MetaModel.inl:
+        * MDE/GME/gme/MetaModel.cpp:
+        * MDE/GME/gme/MetaRole.h:
+        * MDE/GME/gme/MetaRole.inl:
+        * MDE/GME/gme/MetaRole.cpp:
+        * MDE/GME/gme/Model.h:
+        * MDE/GME/gme/Model.cpp:
+        * MDE/GME/gme/Object.h:
+        * MDE/GME/gme/Object.cpp:
+        * MDE/GME/gme/Project.h:
+        * MDE/GME/gme/Project.cpp:
+        * MDE/GME/gme/Reference.h:
+        * MDE/GME/gme/Reference.inl:
+        * MDE/GME/gme/Reference.cpp:
+        * MDE/GME/gme/RegistryNode.h:
+        * MDE/GME/gme/RegistryNode.inl:
+        * MDE/GME/gme/RegistryNode.cpp:
+        * MDE/GME/gme/Set.h:
+        * MDE/GME/gme/Set.cpp:
+        * MDE/GME/gme/Territory.h:
+        * MDE/GME/gme/Territory.cpp:
+
+          Removed these files and placed them in CoSMIC.
+
 Sat Mar 17 20:43:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_algorithm.h:
