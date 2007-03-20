@@ -1,19 +1,14 @@
 // $Id$
 
-project (GME) : gme_base, cutslib {
+project (GME) : cosmic_common {
   sharedname = GME
-
-  requires += modeling
-
-  // remove the unnecessary libraries
-  after -= CUTS
-  libs  -= CUTS
 
   macros += _WIN32_DCOM
   dynamicflags += GME_BUILD_DLL
 
   specific {
-     midl_includes += $(GME_ROOT)/Interfaces
+    compile_flags  += /wd4290 /wd4251
+     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
      midl_notlb     = 1
      midl_flags    += /server none /client none
   }
