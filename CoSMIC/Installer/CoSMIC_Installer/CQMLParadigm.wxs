@@ -35,6 +35,8 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQMLTemplate.xme' />
 -->
+        <RemoveFile Id='CQMLMTA' Name='CQML.mta' 
+                    LongName='CQML.mta' On='uninstall' />
       </Component>
     </DirectoryRef>
     <DirectoryRef Id="CQMLIconsDir">
@@ -1265,10 +1267,22 @@
 -->
       </Component>
     </DirectoryRef>
-
+    
+    <FragmentRef Id='FaultToleranceComponentFrag' />
+    <FragmentRef Id='NetQoSComponentFrag' />
+    <FragmentRef Id='SecurityQoSComponentFrag' />
+    <FragmentRef Id='BIRSpecificationComponentFrag' />
+    
     <Feature Id='CQMLParadigmFeature' Level='1'>
       <ComponentRef Id='CQMLParadigm' />
       <ComponentRef Id='CQMLParadigmIcons' />
+      <ComponentRef Id='CQMLLibrary'/>
+      <ComponentRef Id='UtilsLibrary'/>
+      <ComponentRef Id='DeploymentPlanFrameworkLibrary'/>
+      <ComponentRef Id='FaultToleranceComponentLibrary' />
+      <ComponentRef Id='NetQoSComponentLibrary' />
+      <ComponentRef Id='SecurityQoSComponentLibrary' />
+      <ComponentRef Id='BIRSpecificationComponentLibrary' />
     </Feature>
 
   </Fragment>

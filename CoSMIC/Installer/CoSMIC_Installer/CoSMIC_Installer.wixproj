@@ -46,7 +46,25 @@
                 RelativePath="FaultToleranceComponent.wxs"
             />
             <File
+                RelativePath="NetQoSComponent.wxs"
+            />
+            <File
+                RelativePath="SecurityQoSComponent.wxs"
+            />
+            <File
+                RelativePath="BIRSpecificationComponent.wxs"
+            />
+            <File
                 RelativePath="PICMLParadigm.wxs"
+            />
+            <File
+                RelativePath="CQML.wxs"
+            />
+            <File
+                RelativePath="Utils.wxs"
+            />
+            <File
+                RelativePath="DeploymentPlanFramework.wxs"
             />
         </Files>
     </WindowsInstallerXML>

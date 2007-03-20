@@ -1,3 +1,20 @@
+Tue Mar 20 18:49:05 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+          Few more components for the CoSMIC installer. Now it removes
+          the <paradigm>.mta file also if the product is uninstallled.
+
 Tue Mar 20 17:43:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/GME.mpc:

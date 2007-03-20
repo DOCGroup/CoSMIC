@@ -1,0 +1,20 @@
+<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
+  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
+  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
+  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
+  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+  
+  <Fragment Id="UtilsFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='UtilsLibrary' Guid='1D24942F-95E3-42E4-90F6-50555396D813'>
+        <File Id='UtilsDLL'
+              Name='Utils.dll'
+              LongName='Utils.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\Utils.dll' />
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

@@ -34,6 +34,10 @@
               LongName='PICML-Template.xme'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICMLTemplate.xme' />
+
+        <RemoveFile Id='PICMLMTA' Name='PICML.mta'
+                    LongName='PICML.mta' On='uninstall' />
+
       </Component>
     </DirectoryRef>
     <DirectoryRef Id="PICMLIconsDir">

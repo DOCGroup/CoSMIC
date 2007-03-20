@@ -38,15 +38,10 @@
           <Registry Name="Type" Value="1" Type="integer" />
           <Registry Name="Description" Value="FaultToleranceComponent" Type="string" />
         </Registry>
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent\Associated">
-          <Registry Name="CQML" Type="string" />
-        </Registry>
+        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent\Associated"
+                  Name="CQML" Type="string" />
       </Component>
     </DirectoryRef>
-
-    <Feature Id='FaultToleranceFeature' Level='1'>
-      <ComponentRef Id='FaultToleranceComponentLibrary' />
-    </Feature>
 
   </Fragment>
 </Wix>

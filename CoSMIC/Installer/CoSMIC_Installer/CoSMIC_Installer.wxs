@@ -31,17 +31,16 @@
     <FragmentRef Id='PICMLParadigmFrag' />
     <FragmentRef Id='CQMLParadigmFrag' />
     <FragmentRef Id='CustomActionsFrag' />
-    <FragmentRef Id='FaultToleranceComponentFrag' />
+
 
     <!-- Features -->
-    <FeatureRef Id="FaultToleranceFeature" />
     <FeatureRef Id="CoSMICRegistryFeature" />
     <FeatureRef Id="PICMLParadigmFeature" />
     <FeatureRef Id="CQMLParadigmFeature" />
-
+<!--
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
-
+-->
     <InstallExecuteSequence>
       <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
@@ -50,7 +49,7 @@
         TARGETDIRACCEPTED = "0" AND NOT Installed
       </Custom>
       <Custom Action='ParadigmUnRegisterIfFailure' Before='ParadigmRegister' />
-      <Custom Action='ParadigmUnRegisterWhenUninstall' After='ParadigmRegister' >
+      <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveFiles' >
         Installed
       </Custom>
     </InstallExecuteSequence>
