@@ -23,7 +23,7 @@
         </Configurations>
         <WixlibReferences>
             <WixlibReference
-                RelativePath="..\..\..\..\Program%20Files\Windows%20Installer%20XML\bin\WixUI.wixlib"
+                RelativePath="..\..\..\..\Program Files\Windows Installer XML\bin\WixUI.wixlib"
             />
         </WixlibReferences>
         <Files>
@@ -32,6 +32,9 @@
             />
             <File
                 RelativePath="CoSMICRegistry.wxs"
+            />
+            <File
+                RelativePath="CQMLParadigm.wxs"
             />
             <File
                 RelativePath="CustomActions.wxs"

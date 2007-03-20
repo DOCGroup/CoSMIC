@@ -17,6 +17,18 @@
                   Action='write'
                   Type='string'
                   Value='[INSTALLDIR]'  />
+        <Environment Id='UpdatePath'
+                     Name='PATH'
+                     Action='create'
+                     System='yes'
+                     Part='last'
+                     Value='[CoSMICBinDir]' />
+        <Environment Id='COSMIC_ROOT_Var'
+                     Name='COSMIC_ROOT'
+                     Action='create'
+                     System='yes'
+                     Part='last'
+                     Value='[INSTALLDIR]' />
       </Component>
     </DirectoryRef>
 

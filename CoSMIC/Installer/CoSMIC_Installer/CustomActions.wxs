@@ -15,9 +15,14 @@
                   Return='check' />
     <CustomAction Id='TargetDirRegFailed'
                   Error='TargetDir registry key could not be accessed. Installation aborted.' />
-    <!--    <CustomAction Id='ParadigmUnRegister' 
-                  BinaryKey='RegistrationBinary' 
-                  DllEntry='UnRegisterParadigms' /> -->
+    <CustomAction Id='ParadigmUnRegisterIfFailure'
+                  BinaryKey='RegistrationBinary'
+                  DllEntry='UnRegisterParadigms'
+                  Execute='rollback' />
+    <CustomAction Id='ParadigmUnRegisterWhenUninstall'
+                  BinaryKey='RegistrationBinary'
+                  DllEntry='UnRegisterParadigms'
+                  Execute='deferred' />
     <Binary Id='RegistrationBinary' SourceFile='$(var.COSMIC_ROOT)\bin\RegisterParadigm.dll' />
   </Fragment>
 </Wix>

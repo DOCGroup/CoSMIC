@@ -7,7 +7,7 @@
   <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
-    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='ISIS' 
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='ISIS'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
     <Package Id='B0892B09-E422-4B62-A080-95CCBCBAC7C4' Keywords='Installer'
@@ -18,6 +18,9 @@
     <Condition Message='CoSMIC Installer is not suported on Windows 95/98/ME.'>
       NOT Version9X
     </Condition>
+    <Condition Message="You need to be an administrator to install this product.">
+      Privileged
+    </Condition>
 
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
@@ -26,6 +29,7 @@
     <FragmentRef Id='DirectoriesFrag' />
     <FragmentRef Id='CoSMICRegistryFrag' />
     <FragmentRef Id='PICMLParadigmFrag' />
+    <FragmentRef Id='CQMLParadigmFrag' />
     <FragmentRef Id='CustomActionsFrag' />
     <FragmentRef Id='FaultToleranceComponentFrag' />
 
@@ -33,20 +37,22 @@
     <FeatureRef Id="FaultToleranceFeature" />
     <FeatureRef Id="CoSMICRegistryFeature" />
     <FeatureRef Id="PICMLParadigmFeature" />
+    <FeatureRef Id="CQMLParadigmFeature" />
 
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
-    
+
     <InstallExecuteSequence>
-    <Custom Action='ParadigmRegister' After='PublishProduct' >
+      <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
       </Custom>
       <Custom Action='TargetDirRegFailed' After='ParadigmRegister'>
         TARGETDIRACCEPTED = "0" AND NOT Installed
       </Custom>
-      <!--      <Custom Action='ParadigmUnRegister' Before='RemoveRegistryValues' >
+      <Custom Action='ParadigmUnRegisterIfFailure' Before='ParadigmRegister' />
+      <Custom Action='ParadigmUnRegisterWhenUninstall' After='ParadigmRegister' >
         Installed
-      </Custom>-->
+      </Custom>
     </InstallExecuteSequence>
 
   </Product>

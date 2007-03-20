@@ -14,9 +14,6 @@
 #include "mgautil.h"
 
 #define PARADIGMCOST 30000
-//#pragma comment(linker, "/EXPORT:RegisterParadigms")
-//#pragma comment(linker, "/EXPORT:UnRegisterParadigms")
-
 
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  ul_reason_for_call,
                       LPVOID lpReserved)
@@ -165,7 +162,7 @@ bool RegisterParadigm (const std::string& paradigm)
 
 
 
-/*extern "C" */UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
+UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -189,6 +186,7 @@ bool RegisterParadigm (const std::string& paradigm)
 
   std::vector<std::string> paradigms;
   paradigms.push_back ("PICML");
+  paradigms.push_back ("CQML");
   std::string paradigm_ext (".xmp");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
@@ -199,7 +197,7 @@ bool RegisterParadigm (const std::string& paradigm)
       std::string svParadigmName = *iter;
       SendMsgToProgressBar(hInstall, svParadigmName.c_str());
       std::string targetParadigm ("XML=");
-      targetParadigm += std::string(value) + "\\paradigms\\" 
+      targetParadigm += std::string(value) + "paradigms\\" 
 		             + svParadigmName + "\\" + svParadigmName + paradigm_ext;
       if (!RegisterParadigm (targetParadigm))
       {
@@ -253,7 +251,7 @@ bool UnRegisterParadigm (const std::string& paradigmName)
   return true;
 }
 
-/*extern "C" */UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
+UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -265,6 +263,7 @@ bool UnRegisterParadigm (const std::string& paradigmName)
 
   std::vector<std::string> paradigms;
   paradigms.push_back ("PICML");
+  paradigms.push_back ("CQML");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();

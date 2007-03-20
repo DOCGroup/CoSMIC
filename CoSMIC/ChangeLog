@@ -1,3 +1,22 @@
+Tue Mar 20 07:13:38 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+
+          Updated the CoSMIC installer. Now installs, registers and
+          unregisters PICML and CQML.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Removed "\\" before paradigms directory because TargetDir 
+          registry entry has a '\' already.
+
 Mon Mar 19 22:54:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cosmic.mwc

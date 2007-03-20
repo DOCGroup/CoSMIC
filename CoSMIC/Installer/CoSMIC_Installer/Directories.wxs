@@ -9,14 +9,17 @@
   <Fragment Id="DirectoriesFrag">
     <Directory Id='TARGETDIR' Name='SourceDir' >
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
-        <Directory Id='ISIS_dir' Name='ISIS'>
+        <Directory Id='ISISDir' Name='ISIS'>
           <Directory Id='INSTALLDIR' Name='CoSMIC'>
-            <Directory Id='CoSMIC_bin_dir' Name='bin' src='[INSTALLDIR]bin' />
-            <Directory Id='CoSMIC_docs_dir' Name='docs' src='[INSTALLDIR]docs' />
-            <Directory Id='CoSMIC_examples_dir' Name='examples' src='[INSTALLDIR]examples' />
-            <Directory Id='CoSMIC_paradigms_dir' Name='paras' LongName='paradigms' src='[INSTALLDIR]paradigms' >
-              <Directory Id='PICML_paradigm_dir' Name='PICML' src='[CoSMIC_paradigms_dir]PICML' >
-                <Directory Id='PICML_icons_dir' Name='PICMLICO' LongName='icons' src='[PICML_paradigm_dir]icons' />
+            <Directory Id='CoSMICBinDir' Name='bin' src='[INSTALLDIR]bin' />
+            <Directory Id='CoSMICDocsDir' Name='docs' src='[INSTALLDIR]docs' />
+            <Directory Id='CoSMICExamplesDir' Name='examples' src='[INSTALLDIR]examples' />
+            <Directory Id='CoSMICParadigmsDir' Name='paras' LongName='paradigms' src='[INSTALLDIR]paradigms' >
+              <Directory Id='PICMLParadigmDir' Name='PICML' src='[CoSMICParadigmsDir]PICML' >
+                <Directory Id='PICMLIconsDir' Name='PICMLICO' LongName='icons' src='[PICMLParadigmDir]icons' />
+              </Directory>
+              <Directory Id='CQMLParadigmDir' Name='CQML' src='[CoSMICParadigmsDir]CQML' >
+                <Directory Id='CQMLIconsDir' Name='CQMLICO' LongName='icons' src='[CQMLParadigmDir]icons' />
               </Directory>
             </Directory>
           </Directory>
