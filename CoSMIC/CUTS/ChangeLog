@@ -1,3 +1,10 @@
+Wed Mar 21 18:23:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cuts_gme.mpb:
+
+          Changed the include location for the GME C++ programmable
+          backend since it was pushed down into the CoSMIC repo.
+
 Wed Mar 21 18:03:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.cpp:

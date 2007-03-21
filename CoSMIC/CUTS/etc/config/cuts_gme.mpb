@@ -7,6 +7,6 @@
 project : gme_base {
   after    += GME
 
-  includes += $(CUTS_ROOT)/MDE/GME
+  includes += $(COSMIC_ROOT)/Utils
   libs     += GME
 }
