@@ -60,25 +60,28 @@ void Main_Dialog::DoDataExchange (CDataExchange * pDX)
 
   DDX_Text (pDX, IDC_OUTPUTDIR, outdir);
 
-  // We need to validate the output directory. The output directory
-  // is invalid if it is empty. Eventually, we want to make sure
-  // the output directory exists.
-
-  outdir.Trim ();
-
-  if (pDX->m_bSaveAndValidate && outdir.GetLength () == 0)
+  if (pDX->m_bSaveAndValidate)
   {
-    ::AfxMessageBox ("Please select a valid output directory",
-                     MB_ICONEXCLAMATION);
+    // We need to validate the output directory. The output directory
+    // is invalid if it is empty. Eventually, we want to make sure
+    // the output directory exists.
+    outdir.Trim ();
 
-    // Set the focus of the control and change to fail state.
-    this->GetDlgItem (IDC_OUTPUTDIR)->SetFocus ();
-    pDX->Fail ();
-    return;
+    if (option == CUTS_BE_Options::OPT_GENERATE_SOURCE &&
+        outdir.GetLength () == 0)
+    {
+      ::AfxMessageBox ("Please select a valid output directory",
+                      MB_ICONEXCLAMATION);
+
+      // Set the focus of the control and change to fail state.
+      this->GetDlgItem (IDC_OUTPUTDIR)->SetFocus ();
+      pDX->Fail ();
+      return;
+    }
+
+    // Save the output directory in the cache.
+    CUTS_BE_OPTIONS ()->output_directory_ = outdir;
   }
-
-  // Save the output directory in the cache.
-  CUTS_BE_OPTIONS ()->output_directory_ = outdir;
 }
 
 //

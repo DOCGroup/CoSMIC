@@ -1,3 +1,11 @@
+Wed Mar 21 18:03:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.cpp:
+
+          Fixed bug that was prevent the main dialog from closing if
+          a valid directory was not specified when model generation
+          was selected, instead of model interpretation.
+
 Mon Mar 19 22:52:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_gme.mpb:
