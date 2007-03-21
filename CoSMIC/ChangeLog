@@ -1,3 +1,11 @@
+Wed Mar 21 20:59:28 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+
+          Removed these files because those are now generated using
+          MPC.
+
 Wed Mar 21 20:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
@@ -25,7 +33,7 @@ Wed Mar 21 20:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
           now conform with wiX 3.
 
         * Installer/list_icons.sh:
- 
+
           Edited the script to conform with WiX 3 sources.
 
         * MPC:
