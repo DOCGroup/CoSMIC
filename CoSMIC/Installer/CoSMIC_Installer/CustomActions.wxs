@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='Windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wix'>
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="CustomActionsFrag">
     <CustomAction Id='ParadigmRegister'

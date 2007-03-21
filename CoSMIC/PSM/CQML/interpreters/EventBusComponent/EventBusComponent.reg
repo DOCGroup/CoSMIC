@@ -4,20 +4,20 @@ REGEDIT4
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID]
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{d019f067-40e2-445f-833c-439eb3878ba5}]
 @="MGA.Interpreter.EventBusComponent"
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\ProgID]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{d019f067-40e2-445f-833c-439eb3878ba5}\ProgID]
 @="MGA.Interpreter.EventBusComponent"
 
-[HKEY_CURRENT_USER\Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\InProcServer32]
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{d019f067-40e2-445f-833c-439eb3878ba5}\InProcServer32]
 @="EventBusComponent.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.EventBusComponent]
 @="MGA.Interpreter.EventBusComponent"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.EventBusComponent\CLSID]
-@="{99D69971-71E1-44D8-926F-B3B8EF93DB28}"
+@="{d019f067-40e2-445f-833c-439eb3878ba5}"
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.EventBusComponent]
 "Tooltip"="EventBusComponent Interpreter"

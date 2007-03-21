@@ -1,36 +1,33 @@
 <?xml version='1.0' encoding='Windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="DirectoriesFrag">
     <Directory Id='TARGETDIR' Name='SourceDir' >
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='ISISDir' Name='ISIS'>
           <Directory Id='INSTALLDIR' Name='CoSMIC'>
-            <Directory Id='CoSMICBinDir' Name='bin' src='[INSTALLDIR]bin' />
-            <Directory Id='CoSMICDocsDir' Name='docs' src='[INSTALLDIR]docs' />
-            <Directory Id='CoSMICExamplesDir' Name='examples' src='[INSTALLDIR]examples' />
-            <Directory Id='CoSMICParadigmsDir' Name='paras' LongName='paradigms' src='[INSTALLDIR]paradigms' >
-              <Directory Id='PICMLParadigmDir' Name='PICML' src='[CoSMICParadigmsDir]PICML' >
-                <Directory Id='PICMLIconsDir' Name='PICMLICO' LongName='icons' src='[PICMLParadigmDir]icons' />
+            <Directory Id='CoSMICBinDir' Name='bin' FileSource='[INSTALLDIR]bin' />
+            <Directory Id='CoSMICDocsDir' Name='docs' FileSource='[INSTALLDIR]docs' />
+            <Directory Id='CoSMICExamplesDir' Name='examples' FileSource='[INSTALLDIR]examples' />
+            <Directory Id='CoSMICParadigmsDir' Name='paradigms' FileSource='[INSTALLDIR]paradigms' >
+              <Directory Id='PICMLParadigmDir' Name='PICML' FileSource='[CoSMICParadigmsDir]PICML' >
+                <Directory Id='PICMLIconsDir' Name='icons' FileSource='[PICMLParadigmDir]icons' />
               </Directory>
-              <Directory Id='CQMLParadigmDir' Name='CQML' src='[CoSMICParadigmsDir]CQML' >
-                <Directory Id='CQMLIconsDir' Name='CQMLICO' LongName='icons' src='[CQMLParadigmDir]icons' />
+              <Directory Id='CQMLParadigmDir' Name='CQML' FileSource='[CoSMICParadigmsDir]CQML' >
+                <Directory Id='CQMLIconsDir' Name='icons' FileSource='[CQMLParadigmDir]icons' />
               </Directory>
             </Directory>
           </Directory>
         </Directory>
       </Directory>
-
+<!--
       <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
         <Directory Id="ProgramMenuDir" Name='CoSMIC' >
           <Directory Id="ProgramMenuDocumentation" Name='Doc' LongName="Documentation" />
         </Directory>
       </Directory>
+-->
     </Directory>
   </Fragment>
 </Wix>

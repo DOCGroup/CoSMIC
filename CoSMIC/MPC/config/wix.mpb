@@ -1,0 +1,33 @@
+// $Id: wix.mpb 1202 2007-02-26 06:42:29Z hillj $
+
+project {
+  custom_only = 1
+
+  Define_Custom (WXS) {
+    automatic             = 1
+    command               = <%quote%>$(WIX_ROOT)/bin/candle.exe<%quote%>
+
+    inputext              = .wxs
+    output_option         = -out
+    commandflags          = -nologo
+    source_outputext      = .wixobj
+    keyword wix_flags     = commandflags
+  }
+
+  Define_Custom (WXI) {
+    automatic             = 1
+    inputext              = .wxi
+  }
+
+  postbuild = \
+    <%quote%>$(WIX_ROOT)/bin/light.exe<%quote%> -out <%project_name%>.msi \
+    <%light_flags%> <%foreach(wxs_files)%>wixobj/<%noextension(wxs_file)%>.wixobj <%endfor%>
+
+  specific(vc71) {
+    wix_flags += -dtype=vc71
+  }
+
+  specific(vc8) {
+    wix_flags += -dtype=vc8
+  }
+}

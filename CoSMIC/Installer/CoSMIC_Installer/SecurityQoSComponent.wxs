@@ -1,45 +1,56 @@
-<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="SecurityQoSComponentFrag">
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='SecurityQoSComponentLibrary' Guid='EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A'>
         <File Id='SecurityQoSDLL'
-              Name='SQ.dll'
-              LongName='SecurityQoS.dll'
+              Name='SecurityQoS.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\SecurityQoS.dll' />
         <File Id='SecurityQoSComponentDLL'
-              Name='SQC.dll'
-              LongName='SecurityQoSComponent.dll'
+              Name='SecurityQoSComponent.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\SecurityQoSComponent.dll' />
 
-        <Registry Root="HKCU" Key="Software\Classes" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}"
-                  Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}\ProgID"
-                  Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}\InProcServer32"
-                  Value="SecurityQoSComponent.dll" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.SecurityQoSComponent"
-                  Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.SecurityQoSComponent\CLSID"
-                  Value="{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}" Type="string" />
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.SecurityQoSComponent">
-          <Registry Name="Tooltip" Value="Generate Security QoS Descriptors" Type="string" />
-          <Registry Name="Icon" Value=",IDI_COMPICON" Type="string" />
-          <Registry Name="Paradigm" Value="CQML" Type="string" />
-          <Registry Name="Type" Value="1" Type="integer" />
-          <Registry Name="Description" Value="SecurityQoSComponent" Type="string" />
-        </Registry>
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.SecurityQoSComponent\Associated"
-                  Name="CQML" Type="string" />
+        <RegistryKey Root="HKLM" Key="Software\Classes"
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" 
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="SecurityQoSComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.SecurityQoSComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.SecurityQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.SecurityQoSComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.SecurityQoSComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate Security QoS Descriptors" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="CQML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="SecurityQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.SecurityQoSComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CQML" Value="" Type="string" />
+        </RegistryKey>
+
       </Component>
     </DirectoryRef>
   </Fragment>

@@ -1,33 +1,29 @@
 <?xml version='1.0' encoding='Windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="CoSMICRegistryFrag">
     <DirectoryRef Id="INSTALLDIR">
       <Component Id='CoSMICRegistry' Guid='C4DA0B16-D93C-407A-AFFD-E4C918C2884D'>
-        <Registry Root='HKLM' Key='Software\ISIS' />
-        <Registry Id='CoSMICTargetDir'
-                  Root='HKLM'
-                  Key='SOFTWARE\ISIS\CoSMIC'
-                  Name='TargetDir'
-                  Action='write'
-                  Type='string'
-                  Value='[INSTALLDIR]'  />
+        <RegistryKey Root='HKLM' Key='Software\ISIS' 
+                     Action="create"/>
+        <RegistryValue Id='CoSMICTargetDir'
+                       Root='HKLM'
+                       Key='SOFTWARE\ISIS\CoSMIC'
+                       Name='TargetDir'
+                       Action='write'
+                       Type='string'
+                       Value='[INSTALLDIR]' />
         <Environment Id='UpdatePath'
-                     Name='PATH'
-                     Action='create'
+                     Name='Path'
                      System='yes'
                      Part='last'
-                     Value='[CoSMICBinDir]' />
-        <Environment Id='COSMIC_ROOT_Var'
+                     Value='[CoSMICBinDir]'
+                     Action='set' />
+        <Environment Id='COSMIC_ROOTVar'
                      Name='COSMIC_ROOT'
                      Action='create'
                      System='yes'
-                     Part='last'
                      Value='[INSTALLDIR]' />
       </Component>
     </DirectoryRef>

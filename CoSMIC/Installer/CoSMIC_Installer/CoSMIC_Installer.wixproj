@@ -52,6 +52,9 @@
                 RelativePath="SecurityQoSComponent.wxs"
             />
             <File
+                RelativePath="EventBusComponent.wxs"
+            />
+            <File
                 RelativePath="BIRSpecificationComponent.wxs"
             />
             <File
@@ -65,6 +68,9 @@
             />
             <File
                 RelativePath="DeploymentPlanFramework.wxs"
+            />
+            <File
+                RelativePath="EnvironmentVars.wxi"
             />
         </Files>
     </WindowsInstallerXML>

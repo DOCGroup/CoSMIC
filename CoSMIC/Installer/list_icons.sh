@@ -4,9 +4,7 @@ icon=_icon_
 for f in $( ls $2 ); do
   str="<File Id='$1$icon$count'"
   echo $str
-  str="      Name='f$count'"
-  echo $str
-  str="      LongName='$f'"
+  str="      Name='$f'"
   echo $str
   str="      DiskId='1'"
   echo $str

@@ -1,3 +1,45 @@
+Wed Mar 21 20:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer/EventBusComponent.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+          Updates to the CoSMIC installer using WiX 3. The sources
+          now conform with wiX 3.
+
+        * Installer/list_icons.sh:
+ 
+          Edited the script to conform with WiX 3 sources.
+
+        * MPC:
+
+        * MPC/config:
+
+        * MPC/config/wix.mpb:
+
+          MPC base project to to generate wiX solution for VS.
+
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.reg:
+
+          Fixed the GUID.
+
 Tue Mar 20 18:49:05 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:

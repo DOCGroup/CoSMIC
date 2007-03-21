@@ -1,0 +1,9 @@
+// $Id$
+
+workspace (CoSMIC_Installer) {
+  cmdline += -include $COSMIC_ROOT/MPC/config
+
+  exclude (!vc71, !vc8) {
+    CoSMIC_Installer.mpc
+  }
+}

@@ -1,45 +1,55 @@
-<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
-
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Fragment Id="FaultToleranceComponentFrag">
+    <?include EnvironmentVars.wxi ?>
+
     <DirectoryRef Id="CoSMICBinDir">
-      <Component Id='FaultToleranceComponentLibrary' Guid='6e84cd34-4808-4880-b22a-60752e49a589'>
+      <Component Id='FaultToleranceComponentLibrary'
+                 Guid='6e84cd34-4808-4880-b22a-60752e49a589'>
         <File Id='FaultToleranceDLL'
-              Name='FT.dll'
-              LongName='FaultTolerance.dll'
+              Name='FaultTolerance.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\FaultTolerance.dll' />
         <File Id='FaultToleranceComponentDLL'
-              Name='FTC.dll'
-              LongName='FaultToleranceComponent.dll'
+              Name='FaultToleranceComponent.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\FaultToleranceComponent.dll' />
-
-        <Registry Root="HKCU" Key="Software\Classes" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}"
-                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\ProgID"
-                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\InProcServer32"
-                  Value="[CoSMICBinDir]FaultToleranceComponent.dll" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent"
-                  Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent\CLSID"
-                  Value="{6e84cd34-4808-4880-b22a-60752e49a589}" Type="string" />
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent">
-          <Registry Name="Tooltip" Value="FaultToleranceComponent Interpreter" Type="string" />
-          <Registry Name="Icon" Value=",IDI_COMPICON" Type="string" />
-          <Registry Name="Paradigm" Value="CQML" Type="string" />
-          <Registry Name="Type" Value="1" Type="integer" />
-          <Registry Name="Description" Value="FaultToleranceComponent" Type="string" />
-        </Registry>
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent\Associated"
-                  Name="CQML" Type="string" />
+        <RegistryKey Root="HKLM" Key="Software\Classes"
+                     Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID"
+                     Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="FaultToleranceComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent"
+                     Action="createAndRemoveOnUninstall" >
+          <RegistryValue Value="MGA.Interpreter.FaultToleranceComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{6e84cd34-4808-4880-b22a-60752e49a589}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="FaultToleranceComponent Interpreter" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="CQML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="FaultToleranceComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.FaultToleranceComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CQML" Value="" Type="string" />
+        </RegistryKey>
       </Component>
     </DirectoryRef>
 

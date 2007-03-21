@@ -1,45 +1,56 @@
-<Wix xmlns="http://schemas.microsoft.com/wix/2003/01/wi">
-  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="NetQoSComponentFrag">
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='NetQoSComponentLibrary' Guid='99D69971-71E1-44D8-926F-B3B8EF93DB28'>
         <File Id='NetQoSDLL'
               Name='NetQoS.dll'
-              LongName='NetQoS.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\NetQoS.dll' />
         <File Id='NetQoSComponentDLL'
-              Name='NQC.dll'
-              LongName='NetQoSComponent.dll'
+              Name='NetQoSComponent.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\NetQoSComponent.dll' />
 
-        <Registry Root="HKCU" Key="Software\Classes" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}"
-                  Value="MGA.Interpreter.NetQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\ProgID"
-                  Value="MGA.Interpreter.NetQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\InProcServer32"
-                  Value="NetQoSComponent.dll" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.NetQoSComponent"
-                  Value="MGA.Interpreter.NetQoSComponent" Type="string" />
-        <Registry Root="HKCU" Key="Software\Classes\MGA.Interpreter.NetQoSComponent\CLSID"
-                  Value="{99D69971-71E1-44D8-926F-B3B8EF93DB28}" Type="string" />
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.NetQoSComponent">
-          <Registry Name="Tooltip" Value="NetQoSComponent Interpreter" Type="string" />
-          <Registry Name="Icon" Value=",IDI_COMPICON" Type="string" />
-          <Registry Name="Paradigm" Value="CQML" Type="string" />
-          <Registry Name="Type" Value="1" Type="integer" />
-          <Registry Name="Description" Value="NetQoSComponent" Type="string" />
-        </Registry>
-        <Registry Root="HKCU" Key="Software\GME\Components\MGA.Interpreter.NetQoSComponent\Associated"
-                  Name="CQML" Type="string" />
+        <RegistryKey Root="HKLM" Key="Software\Classes" 
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID"
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.NetQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.NetQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="NetQoSComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.NetQoSComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.NetQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.NetQoSComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{99D69971-71E1-44D8-926F-B3B8EF93DB28}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.NetQoSComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="NetQoSComponent Interpreter" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="CQML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="NetQoSComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.NetQoSComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CQML" Value="" Type="string" />
+        </RegistryKey>
+
       </Component>
     </DirectoryRef>
 
