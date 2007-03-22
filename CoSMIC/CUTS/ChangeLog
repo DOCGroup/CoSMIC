@@ -1,3 +1,10 @@
+Thu Mar 22 17:02:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/wix.mpb:
+
+          Removed this file since it's now located in
+          $(COSMIC_ROOT)/MPC/config
+
 Wed Mar 21 18:23:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_gme.mpb:
