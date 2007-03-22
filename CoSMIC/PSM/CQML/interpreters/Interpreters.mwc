@@ -3,16 +3,18 @@ workspace {
              -include $COSMIC_ROOT
 
   CQML
-  NetQoS  
+  NetQoS
   NetQoSComponent
-  BIRSpecification  
+  BIRSpecification
   BIRSpecificationComponent
-  SecurityQoS  
+  SecurityQoS
   SecurityQoSComponent
   DeploymentPlanFramework
   FaultTolerance
   FaultToleranceComponent
-  EventBus  
+  EventBus
   EventBusComponent
   RTConfig
+  RTSchedulability
+  RTSchedulabilityComponent
 }

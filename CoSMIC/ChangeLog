@@ -1,3 +1,52 @@
+Thu Mar 22 16:29:13 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/RTSchedulability:
+
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability.mpc:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability_Export.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent:
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.aps:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.def:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.rc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib.tlb:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_i.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_p.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.reg:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponentd.reg:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RawComponent.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/dlldata.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/resource.h:
+
+          Added a new interpreter that generates RT Schedulability Data. It takes the
+          RT Config Info, Behavior Model and interprets them into a equivalent Timed
+          Automaton for analysis, model checking, simulation and verfication by the
+          Times Tool (http://www.timestool.com).
+
+          P.S.: It's work in progress. Currently it's just a copy of SecurityQoS.
+
 Thu Mar 22 02:26:09 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
@@ -61,7 +110,7 @@ Thu Mar 22 02:26:09 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * Installer/CoSMIC_common.wxs:
         * Installer/list_icons.sh:
 
-          The CoSMIC installer sources were distributed to the respective 
+          The CoSMIC installer sources were distributed to the respective
           directories. Merge modules were added. CoSMIC's common dependencies
           were added.
 
