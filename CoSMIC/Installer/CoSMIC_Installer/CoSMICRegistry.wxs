@@ -3,6 +3,14 @@
   <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="CoSMICRegistryFrag">
+
+    <Feature Id='CoSMICRegistryFeature'
+             Display="hidden"
+             TypicalDefault="install"
+             Level='1'>
+      <ComponentRef Id='CoSMICRegistry' />
+    </Feature>
+
     <DirectoryRef Id="INSTALLDIR">
       <Component Id='CoSMICRegistry' Guid='C4DA0B16-D93C-407A-AFFD-E4C918C2884D'>
         <RegistryKey Root='HKLM' Key='Software\ISIS' 
@@ -27,10 +35,6 @@
                      Value='[INSTALLDIR]' />
       </Component>
     </DirectoryRef>
-
-    <Feature Id='CoSMICRegistryFeature' Level='1'>
-      <ComponentRef Id='CoSMICRegistry' />
-    </Feature>
-
+    
   </Fragment>
 </Wix>

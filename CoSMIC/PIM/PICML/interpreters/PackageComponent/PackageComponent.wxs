@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PackageComponentFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PackageComponentLibrary' Guid='61C41FFD-3A5E-468D-9B1E-BD2A89FED148'>
+        <File Id='PackageDLL'
+              Name='Package.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\Package.dll' />
+        <File Id='MinizipDLL'
+              Name='minizip.dll'
+              DiskId='1'
+              Source='$(var.ACE_ROOT)\lib\minizip.dll' />
+        <File Id='PackageComponentDLL'
+              Name='PackageComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PackageComponent.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{61C41FFD-3A5E-468D-9B1E-BD2A89FED148}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PackageComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{61C41FFD-3A5E-468D-9B1E-BD2A89FED148}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PackageComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{61C41FFD-3A5E-468D-9B1E-BD2A89FED148}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="PackageComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PackageComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PackageComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PackageComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{61C41FFD-3A5E-468D-9B1E-BD2A89FED148}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.PackageComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate Package Descriptors" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="PackageComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.PackageComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

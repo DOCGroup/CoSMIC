@@ -21,7 +21,7 @@ project {
 
   postbuild = \
     <%quote%>$(WIX_ROOT)/bin/light.exe<%quote%> -out <%project_name%>.msi \
-    <%light_flags%> <%foreach(wxs_files)%>wixobj/<%noextension(wxs_file)%>.wixobj <%endfor%>
+    <%light_flags%> <%foreach(wxs_files)%><%noextension(wxs_file)%>.wixobj <%endfor%>
 
   specific(vc71) {
     wix_flags += -dtype=vc71

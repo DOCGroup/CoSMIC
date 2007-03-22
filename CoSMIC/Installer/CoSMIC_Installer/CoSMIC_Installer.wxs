@@ -27,12 +27,13 @@
     <FeatureRef Id="CoSMICRegistryFeature" />
     <FeatureRef Id="PICMLParadigmFeature" />
     <FeatureRef Id="CQMLParadigmFeature" />
-
+    <FeatureRef Id="CoSMICCommonFeature" />
+    <FeatureRef Id="vc_merge_modules" />
+    
     <!-- UI -->
-<!--
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
--->
+
     <InstallExecuteSequence>
       <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed

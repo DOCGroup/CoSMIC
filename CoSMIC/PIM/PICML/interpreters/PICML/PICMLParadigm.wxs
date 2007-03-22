@@ -1,12 +1,28 @@
 <?xml version='1.0' encoding='Windows-1252'?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?include EnvironmentVars.wxi ?>
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
 
   <Fragment Id="PICMLParadigmFrag">
 
-    <Feature Id='PICMLParadigmFeature' Level='1'>
+    <Feature Id='PICMLParadigmFeature' 
+             Level='1'
+             Title='PICML Paradigm and interpreters'
+             TypicalDefault="install">
+      
       <ComponentRef Id='PICMLParadigm' />
       <ComponentRef Id='PICMLParadigmIcons' />
+      <ComponentRef Id='PICMLLibrary'/>
+      <ComponentRef Id='UtilsLibrary'/>
+      <ComponentRef Id='PICMLDecoratorLibrary' />
+      <ComponentRef Id='UUIDManagerLibrary' />
+
+      <ComponentRef Id='PackageComponentLibrary' />
+      <ComponentRef Id='DomainComponentLibrary' />
+      <ComponentRef Id='DeploymentPlanComponentLibrary' />
+      <ComponentRef Id='BGMLComponentLibrary' />
+      <ComponentRef Id='MPCComponentLibrary' />
+      <ComponentRef Id='CIDLComponentLibrary' />
+      <ComponentRef Id='PathComponentLibrary' />
     </Feature>
 
     <DirectoryRef Id="PICMLParadigmDir">

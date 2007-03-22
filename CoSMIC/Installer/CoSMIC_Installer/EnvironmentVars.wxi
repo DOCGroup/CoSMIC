@@ -5,4 +5,5 @@
      <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
      <?define UDM_PATH = "$(env.UDM_PATH)" ?>
      <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
- </Include>
+     <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
+</Include>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="DeploymentPlanComponentFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='DeploymentPlanComponentLibrary' Guid='44E85E1D-2D5F-4FC2-963F-2DF070BBC577'>
+        <File Id='DeploymentPlanDLL'
+              Name='DeploymentPlan.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\DeploymentPlan.dll' />
+        <File Id='DeploymentPlanComponentDLL'
+              Name='DeploymentPlanComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\DeploymentPlanComponent.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{44E85E1D-2D5F-4FC2-963F-2DF070BBC577}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.DeploymentPlan" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{44E85E1D-2D5F-4FC2-963F-2DF070BBC577}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.DeploymentPlan" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{44E85E1D-2D5F-4FC2-963F-2DF070BBC577}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="DeploymentPlanComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.DeploymentPlan"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.DeploymentPlan" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.DeploymentPlan\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{44E85E1D-2D5F-4FC2-963F-2DF070BBC577}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.DeploymentPlan"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate Deployment Plan" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="DeploymentPlan" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.DeploymentPlan\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

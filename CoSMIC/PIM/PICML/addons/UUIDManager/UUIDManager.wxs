@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="UUIDManagerFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='UUIDManagerLibrary' Guid='B744B044-436A-4463-AF72-41D1D94815D9'>
+        <File Id='UUIDManagerDLL'
+              Name='UUIDManager.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\UUIDManager.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.UUIDManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.UUIDManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="UUIDManager.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.UUIDManager"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.AddOn.UUIDManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.UUIDManager\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{B744B044-436A-4463-AF72-41D1D94815D9}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.UUIDManager"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Manage UUID attributes of elements" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="2" Type="integer" />
+          <RegistryValue Name="Description" Value="UUIDManager" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.UUIDManager\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

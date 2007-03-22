@@ -1,22 +1,29 @@
 <?xml version='1.0' encoding='Windows-1252'?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?include EnvironmentVars.wxi ?>
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
 
   <Fragment Id="CQMLParadigmFrag">
 
-    <Feature Id='CQMLParadigmFeature' Level='1'>
+    <Feature Id='CQMLParadigmFeature' 
+             Level='1' 
+             Title='CQML Paradigm and the interpreters'
+             TypicalDefault="install" >
+
       <ComponentRef Id='CQMLParadigm' />
       <ComponentRef Id='CQMLParadigmIcons' />
       <ComponentRef Id='CQMLLibrary'/>
       <ComponentRef Id='UtilsLibrary'/>
+      <ComponentRef Id='PICMLDecoratorLibrary' />
+      <ComponentRef Id='UUIDManagerLibrary' />
+      
       <ComponentRef Id='DeploymentPlanFrameworkLibrary'/>
       <ComponentRef Id='FaultToleranceComponentLibrary' />
       <ComponentRef Id='NetQoSComponentLibrary' />
       <ComponentRef Id='SecurityQoSComponentLibrary' />
       <ComponentRef Id='BIRSpecificationComponentLibrary' />
-      <ComponentRef Id='EventBusComponentLibrary' />
+<!--      <ComponentRef Id='EventBusComponentLibrary' /> -->
     </Feature>
-
+    
     <DirectoryRef Id="CQMLParadigmDir">
       <Component Id='CQMLParadigm' Guid='15FC9A31-EA8F-4406-B2D3-1E6210CB6248'>
         <File Id='CQMLUML'

@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-  <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
-
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+  
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='TARGETDIR'>
 <?if $(var.type) = vc71 ?>
@@ -48,35 +47,51 @@
 <?endif ?>
     </DirectoryRef>
 
-    <DirectoryRef Id='bin'>
-      <!-- PICML UDM project -->
-      <Component Id='PICML' Guid='8661d861-25C1-437E-921F-50D97FD61529'>
+    <DirectoryRef Id='CoSMICBinDir'>
+      <!-- PICML UDM project Please use ComponentRef=PICMLLibrary in $COSMIC_ROOT\PIM\PICML\interpreters\PICML\PICML.wxs -->
+<!--      <Component Id='PICML' Guid='8661d861-25C1-437E-921F-50D97FD61529'>
         <File Id="PICML.dll" Name="PICML.DLL"
               Source="$(env.COSMIC_ROOT)\bin\PICML.dll"
               DiskId="1" />
       </Component>
-
-      <!-- CoSMIC utils -->
-      <Component Id="CoSMIC_utils" Guid="817bc762-4da0-4da7-8f46-e8240bf6e960">
+-->
+      <!-- CoSMIC utils Please use ComponentRef=UtilsLibrary in $COSMIC_ROOT\Utils\Utils.wxs  -->
+<!--      <Component Id="CoSMIC_utils" Guid="817bc762-4da0-4da7-8f46-e8240bf6e960">
         <File Id="Utils.dll" Name="Utils.dll"
               Source="$(env.COSMIC_ROOT)\bin\Utils.dll" DiskId="1" />
       </Component>
-
+-->
       <!-- UDM 3.0.1 -->
       <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
         <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL_3_1_1.DLL"
-              Source="$(env.UDM_PATH)\bin\UDMDLL_3_1_1.DLL"
+              Source="$(var.UDM_PATH)\bin\UDMDLL_3_1_1.DLL"
               DiskId="1" />
 
         <File Id="XERCES_C_2_5_0.DLL" Name="XERCES-C_2_5_0.DLL"
               Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"
               DiskId="1" />
       </Component>
+      <Component Id="CoSMICCommon" Guid="5B59328D-54CE-4A0D-AABF-0FF22CD5781C">
+        <File Id='ACEDLL'
+              Name='ACE.dll'
+              DiskId='1'
+              Source='$(var.ACE_ROOT)\lib\ACE.dll'  />
+        <File Id='XERCESCDLL'
+              Name='xerces-c_2_7.dll'
+              DiskId='1'
+              Source='$(var.XERCESCROOT)\bin\xerces-c_2_7.dll'  />
+      </Component>
     </DirectoryRef>
 
+    <Feature Id="CoSMICCommonFeature" Display="hidden"
+         TypicalDefault="install" Level="1">
+      <ComponentRef Id="CoSMICCommon" />
+      <ComponentRef Id="UDM_3_1_1" />
+    </Feature>
+    
     <!-- Visual Studio merge modules -->
     <Feature Id="vc_merge_modules" Display="hidden"
-             TypicalDefault="install" Level="1">
+             TypicalDefault="install"  Level="1">
 <?if $(var.type) = vc71 ?>
       <MergeRef Id="VC_User_CRT71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_STL71_RTL_X86_---.msm" />

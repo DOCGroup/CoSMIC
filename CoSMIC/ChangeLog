@@ -1,3 +1,70 @@
+Thu Mar 22 02:26:09 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer/list_icons.sh:
+
+        * MPC/config/wix.mpb:
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.wxs:
+
+        * PIM/PICML/decorators/PICMLDecorator.wxs:
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.wxs:
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.wxs:
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs:
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs:
+
+        * PIM/PICML/interpreters/PathComponent/PathComponent.wxs:
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.wxs:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.wxs:
+
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.wxs:
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs:
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs:
+
+        * Utils/Utils.wxs:
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/EventBusComponent.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+        * Installer/CoSMIC_common.wxs:
+        * Installer/list_icons.sh:
+
+          The CoSMIC installer sources were distributed to the respective 
+          directories. Merge modules were added. CoSMIC's common dependencies
+          were added.
+
 Wed Mar 21 20:59:28 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:

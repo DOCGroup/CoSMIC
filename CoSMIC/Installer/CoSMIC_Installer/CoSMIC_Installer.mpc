@@ -8,22 +8,39 @@ project (CoSMIC_Installer) : wix {
 
   Wxs_Files {
 
-    gendir = wixobj
+    ./CoSMICRegistry.wxs
+    ./CoSMIC_Installer.wxs
+    ./CustomActions.wxs
+    ./Directories.wxs
+    ./CoSMIC_common.wxs
 
-    BIRSpecificationComponent.wxs
-    CQML.wxs
-    CQMLParadigm.wxs
-    CoSMICRegistry.wxs
-    CoSMIC_Installer.wxs
-    CustomActions.wxs
-    DeploymentPlanFramework.wxs
-    Directories.wxs
-    EventBusComponent.wxs
-    FaultToleranceComponent.wxs
-    NetQoSComponent.wxs
-    PICMLParadigm.wxs
-    SecurityQoSComponent.wxs
-    Utils.wxs
+    $(COSMIC_ROOT)/Utils/Utils.wxs
+
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs    
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICMLParadigm.wxs
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
+    $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager/UUIDManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
+    $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
+    $(COSMIC_ROOT)/pim/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs
+//    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator
+//    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLImporter
+    $(COSMIC_ROOT)/pim/PICML/interpreters/BGMLComponent/BGMLComponent.wxs
+    $(COSMIC_ROOT)/pim/PICML/interpreters/MPCComponent/MPCComponent.wxs
+    $(COSMIC_ROOT)/pim/PICML/interpreters/CIDLComponent/CIDLComponent.wxs
+    $(COSMIC_ROOT)/pim/PICML/interpreters/PathComponent/PathComponent.wxs
+
+
+
+    $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQML.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQMLParadigm.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.wxs
+//    $(COSMIC_ROOT)/psm/CQML/interpreters/EventBusComponent/EventBusComponent.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs
+//    $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfig/RTConfig.wxs
   }
 
   Wxi_Files {

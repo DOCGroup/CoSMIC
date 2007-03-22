@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PICMLDecoratorFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PICMLDecoratorLibrary' Guid='07C59323-16B3-452a-AE8E-980203BB524F'>
+        <File Id='PICMLDecoratorDLL'
+              Name='PICMLDecorator.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PICMLDecorator.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{07C59323-16B3-452a-AE8E-980203BB524F}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Decorator.IDMLDecorator" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{07C59323-16B3-452a-AE8E-980203BB524F}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Decorator.IDMLDecorator" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{07C59323-16B3-452a-AE8E-980203BB524F}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="PICMLDecorator.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Decorator.IDMLDecorator"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Decorator.IDMLDecorator" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Decorator.IDMLDecorator\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{07C59323-16B3-452a-AE8E-980203BB524F}" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

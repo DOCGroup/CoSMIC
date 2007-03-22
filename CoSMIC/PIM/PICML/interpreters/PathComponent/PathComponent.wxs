@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PathComponentFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PathComponentLibrary' Guid='190B51F0-06ED-4EF2-B425-71B36FA2C219'>
+        <File Id='PathDLL'
+              Name='Path.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\Path.dll' />
+        <File Id='PathComponentDLL'
+              Name='PathComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PathComponent.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{190B51F0-06ED-4EF2-B425-71B36FA2C219}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PathComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{190B51F0-06ED-4EF2-B425-71B36FA2C219}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PathComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{190B51F0-06ED-4EF2-B425-71B36FA2C219}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="PathComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PathComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.PathComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PathComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{190B51F0-06ED-4EF2-B425-71B36FA2C219}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.PathComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="Generate Path Diagrams" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="PathComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.PathComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>
