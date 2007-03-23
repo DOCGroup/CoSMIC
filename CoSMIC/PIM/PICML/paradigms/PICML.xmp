@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{54274123-9B37-40AE-A16E-5548053B8307}" cdate="Tue Feb 20 00:41:12 2007" mdate="Tue Feb 20 00:41:12 2007" >
+<paradigm name="PICML" guid="{CD9D9D9A-1756-4782-8774-7309BE35AD99}" cdate="Wed Mar 21 17:16:00 2007" mdate="Wed Mar 21 17:16:00 2007" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -516,6 +516,13 @@ let version = self.artifactVersion.trim() in
             i.name().trim() = j.name().trim() => i = j and 
             i.refersTo() = j.refersTo() => i = j )]]>
 				<dispname>Primary Artifacts of a MonolithicImplementation should be unique</dispname>
+			</constraint>
+			<constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let mimpls = project.allInstancesOf (MonolithicImplementation) in
+   mimpls->forAll (x : MonolithicImplementation |  
+          self.UUID.trim() = x.UUID.trim() => self = x)
+   ]]>
+				<dispname>Every ComponentImplementation should have a unique UUID</dispname>
 			</constraint>
 			<constraint name="ValidImplementsdstCardinality68" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Implements ) -> size in
@@ -3506,18 +3513,13 @@ referenceParts (RequiredRequestPort)->forAll (a, b : gme::Reference | a <> b imp
                            x.name() = attr.name() )) ]]>
 				<dispname>A Property has the same name as an Attribute of the Component.  To specify values for the Component&apos;s attributes, connect the Property direcly to the attribute available as a port.</dispname>
 			</constraint>
-			<constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[let components = project.allInstancesOf (Component) in
-   components->forAll  (x : Component | 
-                         (self <> x)  
-                            implies
-                         (
-                            (  x.UUID.trim() <> self.UUID.trim()  )
-                              or
-                            (  x.UUID.trim() = ""  or  self.UUID.trim() = ""   )
-                         )
-              )
-                         ]]>
+			<constraint name="UniqueComponentInstanceIds" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let components = project.allInstancesOf(Component) in
+let instances = components->select (x : Component | x.isInstance()) in
+    instances->forAll (x : Component | 
+             self.UUID.trim() = x.UUID.trim() => self = x)
+           
+           ]]>
 				<dispname>Every Component instance should have a unique UUID</dispname>
 			</constraint>
 			<constraint name="UniqueWorkerType" eventmask = "0x0" depth = "1" priority = "2">
@@ -3631,6 +3633,12 @@ instances->forAll (x : Component |
 				<![CDATA[let components = self.modelParts(Component) in
           components->isUnique (i : Component | i.name.trim())]]>
 				<dispname>Components of an Assembly should have unique names</dispname>
+			</constraint>
+			<constraint name="UniqueUUID" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[let assemblies = project.allInstancesOf(ComponentAssembly) in 
+   assemblies->forAll (a : ComponentAssembly |  
+            self.UUID.trim() = a.UUID.trim() => self = a)]]>
+				<dispname>Every ComponentImplementation should have a unique UUID</dispname>
 			</constraint>
 			<constraint name="ValidAttributeMappingHierarchy" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let mappings = self.referenceParts (AttributeMapping) in
@@ -3843,7 +3851,7 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality151" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -3853,7 +3861,7 @@ instances->forAll (x : Component |
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality153" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4668,12 +4676,12 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4775,12 +4783,12 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 			<constraint name="ValidRTConfigurationPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Connections" ) -> size in
+				<![CDATA[let partCount = self.parts( "Multithreading" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTConfiguration, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidRTConfigurationPartCardinality168" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Multithreading" ) -> size in
+				<![CDATA[let partCount = self.parts( "Connections" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTConfiguration, has to match 1..*.</dispname>
 			</constraint>
@@ -4988,12 +4996,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality175" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>

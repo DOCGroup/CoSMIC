@@ -1,3 +1,22 @@
+Fri Mar 23 22:10:21 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated paradigm to remove warnings during meta-interpretation.
+          Fixed constraints that checked the validity of the UUID in
+          ComponentAssembly, Component and MonolithicImplementation.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updates to sync up to changes in PICML.
+
+        * cosmic.mwc:  Explicitly add the list of MPC files under Utils to
+          build.
+
 Fri Mar 23 10:45:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
@@ -6,14 +25,14 @@ Fri Mar 23 10:45:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/RegisterParadigm/RegisterParadigm.cpp:
 
-          Now supports selection of features like PICML, CQML and 
+          Now supports selection of features like PICML, CQML and
           combinations of them at the time of installation. Changing
           the installation afterwards needs manual registration of
           paradigms. This needs to be fixed.
 
         * PIM/PICML/interpreters/PICML/PICML.wxs:
         * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
-          
+
           Added a registry entry in HKLM\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm
 
         * PSM/CQML/interpreters/CQML/CQML.wxs:
