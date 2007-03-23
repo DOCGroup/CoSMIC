@@ -10,6 +10,7 @@
 #include <string.h>
 #include <string>
 #include <vector>
+#include <sstream>
 
 #include "mgautil.h"
 
@@ -119,6 +120,41 @@ char* GetRegistryValue (HKEY key, const char* keyName, const char* name)
   return (char*)buf;
 }
 
+std::vector <std::string> create_paradigms_vector ()
+{
+  std::vector <std::string> paradigms;
+  paradigms.push_back ("PICML");
+  paradigms.push_back ("CQML");
+
+  return paradigms;
+}
+
+std::vector <std::string>
+filter_unregistered_paradigms (const std::vector <std::string> &paradigms)
+{
+  // Only leave those paradigms in the vector that are installed.
+  // E.g., If PICML is installed then 
+  // "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm"
+  // will be set.
+  std::vector <std::string> temp;
+  for (std::vector <std::string>::const_iterator iter (paradigms.begin());
+	   iter != paradigms.end ();
+	   ++iter)
+  {
+	  std::ostringstream ostr;
+	  ostr << *iter << "Paradigm";
+	  char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
+		                              "SOFTWARE\\ISIS\\CoSMIC",
+									  ostr.str().c_str());
+      if (value != 0)
+	  {   
+		  // It the registry entry is found then select the 
+		  // paradigm for registration.
+		  temp.push_back (*iter);
+	  }
+  }
+  return temp;
+}
 
 bool RegisterParadigm (const std::string& paradigm)
 {
@@ -184,9 +220,9 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
 
   MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "1");
 
-  std::vector<std::string> paradigms;
-  paradigms.push_back ("PICML");
-  paradigms.push_back ("CQML");
+  std::vector<std::string> paradigms 
+	  = filter_unregistered_paradigms (create_paradigms_vector());
+
   std::string paradigm_ext (".xmp");
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
@@ -261,9 +297,8 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
                   "Paradigm Uninstall",
                   "UnRegistering Paradigms from GME.", "UnRegistering [1]");
 
-  std::vector<std::string> paradigms;
-  paradigms.push_back ("PICML");
-  paradigms.push_back ("CQML");
+  std::vector<std::string> paradigms 
+	  = filter_unregistered_paradigms (create_paradigms_vector());
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();
@@ -284,3 +319,4 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
   // Don't change this return value or BAD THINGS[TM] will happen.
   return ERROR_SUCCESS;
 }
+

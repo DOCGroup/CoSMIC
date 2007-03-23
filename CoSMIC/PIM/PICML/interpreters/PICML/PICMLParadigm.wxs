@@ -28,6 +28,7 @@
 
       <ComponentRef Id='PICMLDocs' />
       <ComponentRef Id='PICMLExamples' />
+      <ComponentRef Id="PICMLRegistryComponent" />
     </Feature>
 
     <DirectoryRef Id="PICMLParadigmDir">

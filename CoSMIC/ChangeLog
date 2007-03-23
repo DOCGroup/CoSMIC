@@ -1,3 +1,26 @@
+Fri Mar 23 10:45:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Fixed the location of License.rtf
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Now supports selection of features like PICML, CQML and 
+          combinations of them at the time of installation. Changing
+          the installation afterwards needs manual registration of
+          paradigms. This needs to be fixed.
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+          
+          Added a registry entry in HKLM\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added a registry entry in HKLM\\SOFTWARE\\ISIS\\CoSMIC\\CQMLParadigm
+
 Fri Mar 23 09:09:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:

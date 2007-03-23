@@ -4,7 +4,7 @@ project (CoSMIC_Installer) : wix {
   specific {
     wix_flags += -ext WixUIExtension
     light_flags += -ext WixUIExtension -cultures:en-us \
-                   -dWixUILicenseRtf=$(COSMIC_ROOT)/PIM/PICML/License.rtf
+                   -dWixUILicenseRtf=$(COSMIC_ROOT)/Installer/License.rtf
   }
 
   Wxs_Files {

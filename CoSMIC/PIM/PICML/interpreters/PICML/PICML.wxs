@@ -10,6 +10,14 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\PICML.dll' />
       </Component>
+      <Component Id="PICMLRegistryComponent"
+                 Guid="F4D4FEA4-1998-4222-A9E0-CBDF320C5388" >
+        <RegistryKey Root="HKLM" Key="Software\ISIS\CoSMIC"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICMLParadigm" Value="[PICMLParadigmDir]"
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
     </DirectoryRef>
 </Fragment>
 </Wix>

@@ -25,6 +25,7 @@
 
       <ComponentRef Id='CQMLDocs' />
       <ComponentRef Id='CQMLExamples' />
+      <ComponentRef Id="CQMLRegistryComponent" />
     </Feature>
     
     <DirectoryRef Id="CQMLParadigmDir">
