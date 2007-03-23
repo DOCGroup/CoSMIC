@@ -9,7 +9,7 @@
               Name='BGML.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\BGML.dll' />
-         <File Id='BGMLComponentDLL'
+        <File Id='BGMLComponentDLL'
               Name='BGMLComponent.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\BGMLComponent.dll' />

@@ -7,7 +7,7 @@
 <?if $(var.type) = vc71 ?>
       <!-- C runtime for VC71 -->
       <Merge Id='VC_User_CRT71_RTL_X86_---.msm'
-             DiskId='1' Language='0'
+             DiskId='1' Language='0' 
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_CRT71_RTL_X86_---.msm' />
 
       <!-- STL runtime for VC71 -->
@@ -84,9 +84,13 @@
     </DirectoryRef>
 
     <Feature Id="CoSMICCommonFeature" Display="hidden"
-         TypicalDefault="install" Level="1">
-      <ComponentRef Id="CoSMICCommon" />
+             TypicalDefault="install" Level="1" >
       <ComponentRef Id="UDM_3_1_1" />
+      <ComponentRef Id="CoSMICCommon" />
+      <ComponentRef Id="CoSMICNotes" />
+      <ComponentRef Id="CoSMICReadme" />
+      <ComponentRef Id="CoSMICLicense" />
+      <ComponentRef Id="Uninstaller" />
     </Feature>
     
     <!-- Visual Studio merge modules -->

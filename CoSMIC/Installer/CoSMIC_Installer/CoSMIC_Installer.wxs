@@ -3,7 +3,7 @@
   <?include EnvironmentVars.wxi ?>
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
-    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='ISIS'
+    Language='1033' Codepage='1252' Version='0.6.0' Manufacturer='ISIS'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
     <Package Keywords='Installer'
@@ -21,15 +21,13 @@
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
 
-    <DirectoryRef Id='TARGETDIR' />  
-    
     <!-- Features -->
     <FeatureRef Id="CoSMICRegistryFeature" />
     <FeatureRef Id="PICMLParadigmFeature" />
     <FeatureRef Id="CQMLParadigmFeature" />
     <FeatureRef Id="CoSMICCommonFeature" />
     <FeatureRef Id="vc_merge_modules" />
-    
+
     <!-- UI -->
     <UIRef Id="WixUI_Mondo" />
     <UIRef Id="WixUI_ErrorProgressText" />
@@ -45,6 +43,7 @@
       <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveFiles' >
         Installed
       </Custom>
+      <Custom Action="SetUninstallCmd" Before="FindRelatedProducts" />
     </InstallExecuteSequence>
 
   </Product>

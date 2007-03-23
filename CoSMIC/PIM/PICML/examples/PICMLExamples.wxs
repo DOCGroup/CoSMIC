@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PICMLExamplesFrag">
+    <DirectoryRef Id="PICMLExamplesDir">
+      <Component Id='PICMLExamples' Guid='573A07EB-CBA8-47B1-94F0-FDCB2FD2F66D'>
+
+        <File Id='BasicSP.xme'
+              Name='BasicSP.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\PICML\examples\BasicSP.xme' />
+        <File Id='RobotAssembly.xme'
+              Name='RobotAssembly.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\PICML\examples\RobotAssembly.xme' />
+        <File Id='RACE.xme'
+              Name='RACE.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\PICML\examples\RACE.xme' />
+        <File Id='SLICE.xme'
+              Name='SLICE.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\PICML\examples\SLICE.xme' />
+
+      </Component>
+    </DirectoryRef>
+</Fragment>
+</Wix>

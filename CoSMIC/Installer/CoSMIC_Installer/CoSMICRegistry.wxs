@@ -9,11 +9,13 @@
              TypicalDefault="install"
              Level='1'>
       <ComponentRef Id='CoSMICRegistry' />
+      <ComponentRef Id='NotesShortcutComponent' />
+      <ComponentRef Id="DocsShortcutComponent" />
     </Feature>
 
     <DirectoryRef Id="INSTALLDIR">
       <Component Id='CoSMICRegistry' Guid='C4DA0B16-D93C-407A-AFFD-E4C918C2884D'>
-        <RegistryKey Root='HKLM' Key='Software\ISIS' 
+        <RegistryKey Root='HKLM' Key='Software\ISIS'
                      Action="create"/>
         <RegistryValue Id='CoSMICTargetDir'
                        Root='HKLM'
@@ -35,6 +37,47 @@
                      Value='[INSTALLDIR]' />
       </Component>
     </DirectoryRef>
+
+    <DirectoryRef Id="CoSMICProgramMenuDir">
+      <Component Id="NotesShortcutComponent" Guid="4A277173-A911-4F1F-B506-993573708189">
+        
+        <RemoveFolder Id="CleanupShortcutNotesFolder" On="uninstall" />
+
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="INSTALLDIR" Value="[INSTALLDIR]" 
+                         Type="string" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+
+    <DirectoryRef Id="CoSMICProgramMenuDocsDir">
+      <Component Id="DocsShortcutComponent" Guid="D9B0D77F-C3EF-4AAA-97F4-D248A8068551">
+        <RemoveFolder Id="CleanupShortcutDocsFolder" On="uninstall" />
+
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="DOCSDIR" Value="[CoSMICDocsDir]" 
+                         Type="string" KeyPath="yes"/>
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
     
+    <DirectoryRef Id="CoSMICProgramMenuDir">
+      <Component Id="Uninstaller"
+                 Guid="C981D60E-18DF-4F53-B6D3-2160B5B1A68B" >
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Uninstaller" Value="msiexec.exe /x {product GUID}" 
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+        <Shortcut Id="CoSMICUninstallShortCut" Directory="CoSMICProgramMenuDir"
+                  Name="Uninstall CoSMIC" WorkingDirectory='SystemDir'
+                  Target="[UNINSTALLCMD]"
+                  Arguments="/x {A91C0917-9925-4B7E-AA7E-4FCD294CC5EC}"
+                  Description="Uninstalls CoSMIC from this computer." />
+      </Component>
+    </DirectoryRef>
+
   </Fragment>
 </Wix>

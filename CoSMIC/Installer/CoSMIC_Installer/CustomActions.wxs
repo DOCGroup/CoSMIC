@@ -19,6 +19,11 @@
                   BinaryKey='RegistrationBinary'
                   DllEntry='UnRegisterParadigms'
                   Execute='deferred' />
+
+    <CustomAction Id="SetUninstallCmd" 
+                  Property="UNINSTALLCMD" 
+                  Value="MSIEXEC.EXE" />
+
     <Binary Id='RegistrationBinary' SourceFile='$(var.COSMIC_ROOT)\bin\RegisterParadigm.dll' />
   </Fragment>
 </Wix>

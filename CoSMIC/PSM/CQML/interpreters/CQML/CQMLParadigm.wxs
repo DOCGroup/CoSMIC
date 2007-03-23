@@ -22,6 +22,9 @@
       <ComponentRef Id='SecurityQoSComponentLibrary' />
       <ComponentRef Id='BIRSpecificationComponentLibrary' />
 <!--      <ComponentRef Id='EventBusComponentLibrary' /> -->
+
+      <ComponentRef Id='CQMLDocs' />
+      <ComponentRef Id='CQMLExamples' />
     </Feature>
     
     <DirectoryRef Id="CQMLParadigmDir">
@@ -57,7 +60,7 @@
         Name='Any.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Any.bmp' />
-<!--
+
         <File Id='CQML_icon_2'
         Name='Assembly.bmp'
         DiskId='1'
@@ -1077,7 +1080,7 @@
         Name='workspace.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\workspace.bmp' />
--->
+
       </Component>
     </DirectoryRef>
 

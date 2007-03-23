@@ -7,27 +7,29 @@
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='ISISDir' Name='ISIS'>
           <Directory Id='INSTALLDIR' Name='CoSMIC'>
-            <Directory Id='CoSMICBinDir' Name='bin' FileSource='[INSTALLDIR]bin' />
             <Directory Id='CoSMICDocsDir' Name='docs' FileSource='[INSTALLDIR]docs' />
-            <Directory Id='CoSMICExamplesDir' Name='examples' FileSource='[INSTALLDIR]examples' />
+            <Directory Id='CoSMICBinDir' Name='bin' FileSource='[INSTALLDIR]bin' />
             <Directory Id='CoSMICParadigmsDir' Name='paradigms' FileSource='[INSTALLDIR]paradigms' >
               <Directory Id='PICMLParadigmDir' Name='PICML' FileSource='[CoSMICParadigmsDir]PICML' >
+                <Directory Id='PICMLExamplesDir' Name='examples' FileSource='[PICMLParadigmDir]examples' />
                 <Directory Id='PICMLIconsDir' Name='icons' FileSource='[PICMLParadigmDir]icons' />
               </Directory>
               <Directory Id='CQMLParadigmDir' Name='CQML' FileSource='[CoSMICParadigmsDir]CQML' >
+                <Directory Id='CQMLExamplesDir' Name='examples' FileSource='[CQMLParadigmDir]examples' />
                 <Directory Id='CQMLIconsDir' Name='icons' FileSource='[CQMLParadigmDir]icons' />
               </Directory>
             </Directory>
           </Directory>
         </Directory>
       </Directory>
-<!--
-      <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
-        <Directory Id="ProgramMenuDir" Name='CoSMIC' >
-          <Directory Id="ProgramMenuDocumentation" Name='Doc' LongName="Documentation" />
+
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="CoSMICProgramMenuDir" Name='CoSMIC' >
+          <Directory Id="CoSMICProgramMenuDocsDir" Name="Documentation" />
         </Directory>
       </Directory>
--->
+
     </Directory>
+
   </Fragment>
 </Wix>

@@ -3,7 +3,8 @@
 project (CoSMIC_Installer) : wix {
   specific {
     wix_flags += -ext WixUIExtension
-    light_flags += -ext WixUIExtension -cultures:en-us
+    light_flags += -ext WixUIExtension -cultures:en-us \
+                   -dWixUILicenseRtf=$(COSMIC_ROOT)/PIM/PICML/License.rtf
   }
 
   Wxs_Files {
@@ -13,8 +14,17 @@ project (CoSMIC_Installer) : wix {
     ./CustomActions.wxs
     ./Directories.wxs
     ./CoSMIC_common.wxs
+    ./CoSMICNotes.wxs
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
+
+
+/////////////////////////////////////////////////////////////////////////
+/////////////// PICML
+/////////////////////////////////////////////////////////////////////////
+
+    $(COSMIC_ROOT)/PIM/PICML/docs/PICMLDocs.wxs
+    $(COSMIC_ROOT)/PIM/PICML/examples/PICMLExamples.wxs
 
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs    
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICMLParadigm.wxs
@@ -23,14 +33,19 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs
-//    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator
-//    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLImporter
+    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator
+    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLImporter
     $(COSMIC_ROOT)/pim/PICML/interpreters/BGMLComponent/BGMLComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/MPCComponent/MPCComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/CIDLComponent/CIDLComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/PathComponent/PathComponent.wxs
 
+/////////////////////////////////////////////////////////////////////////
+/////////////// CQML
+/////////////////////////////////////////////////////////////////////////
 
+    $(COSMIC_ROOT)/PSM/CQML/docs/CQMLDocs.wxs
+    $(COSMIC_ROOT)/PSM/CQML/examples/CQMLExamples.wxs
 
     $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQML.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQMLParadigm.wxs

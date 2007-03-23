@@ -1,3 +1,52 @@
+Fri Mar 23 09:09:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/list_icons.sh:
+
+          Updates to the installer. New shortcuts and registry entries.
+
+        * Installer/License.rtf:
+        * Installer/README.rtf:
+        * Installer/ReleaseNotes.rtf:
+
+          Moved all to the Installer directory.
+
+        * PIM/PICML/docs/PICMLDocs.wxs:
+
+        * PIM/PICML/examples/PICMLExamples.wxs:
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.wxs:
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+          Updates to the installer. New shortcuts and registry entries.
+
+        * PSM/CQML/docs/CQMLDocs.wxs:
+        * PSM/CQML/docs/SQML - Project Report.pdf:
+
+        * PSM/CQML/examples/CQMLExamples.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added examples and documentation.
+
+        * Installer/CoSMIC_Installer/README.txt:
+
+        * PIM/PICML/License.rtf:
+
+          Removed the license file from PICML to Installer.
+
 Thu Mar 22 16:29:13 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/CQML/interpreters/Interpreters.mwc:

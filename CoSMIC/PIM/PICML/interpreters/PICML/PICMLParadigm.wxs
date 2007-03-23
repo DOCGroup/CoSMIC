@@ -23,6 +23,11 @@
       <ComponentRef Id='MPCComponentLibrary' />
       <ComponentRef Id='CIDLComponentLibrary' />
       <ComponentRef Id='PathComponentLibrary' />
+      <ComponentRef Id='IDLGeneratorLibrary' />
+      <ComponentRef Id='IDLImporterExecutable' />
+
+      <ComponentRef Id='PICMLDocs' />
+      <ComponentRef Id='PICMLExamples' />
     </Feature>
 
     <DirectoryRef Id="PICMLParadigmDir">
@@ -58,7 +63,7 @@
         Name='Any.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Any.bmp' />
-<!--
+
         <File Id='PICML_icon_2'
         Name='Assembly.bmp'
         DiskId='1'
@@ -973,7 +978,7 @@
         Name='workspace.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\workspace.bmp' />
--->
+
       </Component>
     </DirectoryRef>
 
