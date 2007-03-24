@@ -1,3 +1,12 @@
+Sat Mar 24 01:20:53 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+          Now integrates the CoSMIC_Installer project. You need WiX and Votive 
+          (both version 3 or better) to build the installer. WIX_ROOT also
+          needs to be set.
+           
+
 Sat Mar 24 01:07:46 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/PICML/examples/RobotAssembly.xme:
