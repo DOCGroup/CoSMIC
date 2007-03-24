@@ -13,7 +13,7 @@
   }
 
 /// Base registry path of the cached output directory.
-#define REGISTRY_PATH_OUTDIR      "/__OutDir__/"
+#define REGISTRY_PATH_OUTDIR      "__OutputDir__/"
 
 namespace Utils
 {

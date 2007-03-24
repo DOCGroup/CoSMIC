@@ -1,11 +1,20 @@
+Sat Mar 24 05:17:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Project.cpp:
+
+          Fixed bug in __OutputDir__ stored in the model's registry. The
+          path contained a leading forward slash, which resulted in a
+          registry node with an empty name. This would cause GME not to
+          import any .xme files.
+
 Sat Mar 24 01:20:53 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Release.mwc:
 
-          Now integrates the CoSMIC_Installer project. You need WiX and Votive 
+          Now integrates the CoSMIC_Installer project. You need WiX and Votive
           (both version 3 or better) to build the installer. WIX_ROOT also
           needs to be set.
-           
+
 
 Sat Mar 24 01:07:46 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
