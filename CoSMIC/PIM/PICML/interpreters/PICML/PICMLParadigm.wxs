@@ -4,11 +4,11 @@
 
   <Fragment Id="PICMLParadigmFrag">
 
-    <Feature Id='PICMLParadigmFeature' 
+    <Feature Id='PICMLParadigmFeature'
              Level='1'
              Title='PICML Paradigm and interpreters'
              TypicalDefault="install">
-      
+
       <ComponentRef Id='PICMLParadigm' />
       <ComponentRef Id='PICMLParadigmIcons' />
       <ComponentRef Id='PICMLLibrary'/>
@@ -45,14 +45,37 @@
               Name='PICML.xml'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xml' />
+
+        <!-- The GUID in the CQML.xmp has to match exactly here for the registry entries. 
+      This needs to be done everytime the paradigm is freshly interpreted. -->
+        
         <File Id='PICMLXMP'
               Name='PICML.xmp'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xmp' />
-        <File Id='PICMLTemplate'
-              Name='PICML-Template.xme'
+
+        <!-- The registry writing way of registring paradims is disabled now because
+             it does not seem work reliably. We use CustomActionDLL instead. Therefore,
+             no need to ship the .mta file. -->
+        <!--
+        <File Id='PICMLMTA'
+              Name='PICML.mta'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICMLTemplate.xme' />
+              Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.mta' />
+
+        <RegistryKey Root="HKLM" Key="Software\GME\Paradigms\PICML"
+                    Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CurrentVersion" Value="{54274123-9B37-40AE-A16E-5548053B8307}"
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="Software\GME\Paradigms\PICML\{54274123-9B37-40AE-A16E-5548053B8307}"
+                    Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="ConnStr" Value="[PICMLParadigmDir]PICML.mta"
+                         Type="string"  />
+        </RegistryKey>
+        -->
+        <!-- GUID match Warning ends here. -->
 
         <RemoveFile Id='PICMLMTA' Name='PICML.mta' On='uninstall' />
 

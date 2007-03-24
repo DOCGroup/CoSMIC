@@ -3,7 +3,7 @@
   <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
   
   <Fragment Id='CoSMIC_common'>
-    <DirectoryRef Id='TARGETDIR'>
+    <DirectoryRef Id='CoSMICBinDir'>
 <?if $(var.type) = vc71 ?>
       <!-- C runtime for VC71 -->
       <Merge Id='VC_User_CRT71_RTL_X86_---.msm'
@@ -33,18 +33,32 @@
       <!-- C runtime for VC8 -->
       <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
-
+      
+      <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_CRT_x86.msm' />
+      
       <!-- ATL for VC8 -->
       <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
          SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_ATL_x86.msm' />
 
-      <!-- MFC for VC8 -->
-      <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
-             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
+      <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_ATL_x86.msm' />
 
+      <!-- MFC for VC8 -->
+     <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
+      
+      <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFC_x86.msm' />
+
+      <!-- MFC for Localization -->
       <Merge Id='Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFCLOC_x86.msm' />
-<?endif ?>
+      
+      <Merge Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
+ 
+      <?endif ?>
     </DirectoryRef>
 
     <DirectoryRef Id='CoSMICBinDir'>
@@ -104,9 +118,13 @@
       <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
 <?elseif $(var.type) = vc8 ?>
       <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
+      <MergeRef Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' />
       <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
+      <MergeRef Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' />
       <MergeRef Id="Microsoft_VC80_MFC_x86.msm" />
+      <MergeRef Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' />
       <MergeRef Id="Microsoft_VC80_MFCLOC_x86.msm" />
+      <MergeRef Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
 <?endif ?>
     </Feature>
 

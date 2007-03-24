@@ -1,3 +1,41 @@
+Fri Mar 23 23:54:16 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+
+          Updates in conditions, registry, merge-modules, and mpc.
+
+        * License.rtf:
+
+          Moved from PIM/PICML.
+
+        * PIM/PICML/docs/PICMLDocs.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PSM/CQML/docs/CQMLDocs.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Moved from PIM/PICML.
+
+        * Installer/License.rtf:
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:
+
+          Move the rtf files from PICML directory to the COSMIC_ROOT
+          directory. This checkin marks the first full-fledged version of the 
+          WiX based CoSMIC installer that can be built using WiX 3
+          and Votive 3. It creates two features: PICML and CQML, which can
+          be optionally selected to install.
+
 Fri Mar 23 22:10:21 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

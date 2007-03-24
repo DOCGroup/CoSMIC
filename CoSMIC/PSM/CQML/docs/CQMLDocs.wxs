@@ -8,11 +8,12 @@
         <File Id='SQMLProjectReport.pdf'
               Name='SQML - Project Report.pdf'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\psm\CQML\docs\SQML - Project Report.pdf' />
-        
-        <Shortcut Id="SQMLProjectReportShortCut" Directory="CoSMICProgramMenuDocsDir" 
-                  Name="SQML - Project Report" WorkingDirectory='CoSMICDocsDir'
-                  Advertise="yes" />
+              Source='$(var.COSMIC_ROOT)\psm\CQML\docs\SQML - Project Report.pdf' >
+
+          <Shortcut Id="SQMLProjectReportShortCut" Directory="CoSMICProgramMenuDocsDir"
+                    Name="SQML - Project Report" WorkingDirectory='CoSMICDocsDir'
+                    Advertise="yes" />
+        </File>
 
         <RemoveFolder Id='CQMLDocsDirRemover' On='uninstall' />
       

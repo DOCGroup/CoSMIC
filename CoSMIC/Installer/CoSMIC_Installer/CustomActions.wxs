@@ -18,7 +18,9 @@
     <CustomAction Id='ParadigmUnRegisterWhenUninstall'
                   BinaryKey='RegistrationBinary'
                   DllEntry='UnRegisterParadigms'
-                  Execute='deferred' />
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='check'/>
 
     <CustomAction Id="SetUninstallCmd" 
                   Property="UNINSTALLCMD" 

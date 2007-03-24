@@ -4,8 +4,8 @@
 
   <Fragment Id="CQMLParadigmFrag">
 
-    <Feature Id='CQMLParadigmFeature' 
-             Level='1' 
+    <Feature Id='CQMLParadigmFeature'
+             Level='1'
              Title='CQML Paradigm and the interpreters'
              TypicalDefault="install" >
 
@@ -15,19 +15,19 @@
       <ComponentRef Id='UtilsLibrary'/>
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='UUIDManagerLibrary' />
-      
+
       <ComponentRef Id='DeploymentPlanFrameworkLibrary'/>
       <ComponentRef Id='FaultToleranceComponentLibrary' />
       <ComponentRef Id='NetQoSComponentLibrary' />
       <ComponentRef Id='SecurityQoSComponentLibrary' />
       <ComponentRef Id='BIRSpecificationComponentLibrary' />
-<!--      <ComponentRef Id='EventBusComponentLibrary' /> -->
+      <!--      <ComponentRef Id='EventBusComponentLibrary' /> -->
 
       <ComponentRef Id='CQMLDocs' />
       <ComponentRef Id='CQMLExamples' />
       <ComponentRef Id="CQMLRegistryComponent" />
     </Feature>
-    
+
     <DirectoryRef Id="CQMLParadigmDir">
       <Component Id='CQMLParadigm' Guid='15FC9A31-EA8F-4406-B2D3-1E6210CB6248'>
         <File Id='CQMLUML'
@@ -42,15 +42,39 @@
               Name='CQML.xml'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQML.xml' />
+
+        <!-- The GUID in the CQML.xmp has to match exactly here for the registry entries. 
+      This needs to be done everytime the paradigm is freshly interpreted. -->
+
         <File Id='CQMLXMP'
               Name='CQML.xmp'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQML.xmp' />
-        <!--        <File Id='CQMLTemplate'
-              Name='CQML-Template.xme'
+
+        <!-- The registry writing way of registring paradims is disabled now because
+             it does not seem work reliably. We use CustomActionDLL instead. Therefore,
+             no need to ship the .mta file. -->
+        <!--
+
+        <File Id='CQMLMTA'
+              Name='CQML.mta'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQMLTemplate.xme' />
--->
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQML.mta' />
+
+        <RegistryKey Root="HKLM" Key="Software\GME\Paradigms\CQML"
+                    Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CurrentVersion" Value="{0CCE0E61-D17B-4C57-8723-E6232DECCD97}"
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKLM" Key="Software\GME\Paradigms\CQML\{0CCE0E61-D17B-4C57-8723-E6232DECCD97}"
+                    Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="ConnStr" Value="[CQMLParadigmDir]CQML.mta"
+                         Type="string"  />
+        </RegistryKey>
+        -->
+        <!-- GUID match Warning ends here. -->
+
         <RemoveFile Id='CQMLMTA' Name='CQML.mta' On='uninstall' />
       </Component>
     </DirectoryRef>

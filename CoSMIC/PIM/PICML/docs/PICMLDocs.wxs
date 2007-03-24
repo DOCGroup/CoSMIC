@@ -8,29 +8,32 @@
         <File Id='BGML_Documentation_Guide.pdf'
               Name='BGML_Documentation_Guide.pdf'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\BGML_Documentation_Guide.pdf' />
+              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\BGML_Documentation_Guide.pdf' >
 
-        <Shortcut Id="BGML_Documentation_GuideShortCut" Directory="CoSMICProgramMenuDocsDir"
-                  Name="BGML_Documentation_Guide" WorkingDirectory='CoSMICDocsDir'
-                  Advertise="yes" />
+          <Shortcut Id="BGML_Documentation_GuideShortCut" Directory="CoSMICProgramMenuDocsDir"
+                    Name="BGML_Documentation_Guide" WorkingDirectory='CoSMICDocsDir'
+                    Advertise="yes" />
+        </File>
 
         <File Id='Importing_IDL.pdf'
               Name='Importing_IDL.pdf'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\Importing_IDL.pdf' />
+              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\Importing_IDL.pdf' >
 
-        <Shortcut Id="Importing_IDLShortCut" Directory="CoSMICProgramMenuDocsDir"
-                  Name="Importing_IDL" WorkingDirectory='CoSMICDocsDir'
-                  Advertise="yes" />
+          <Shortcut Id="Importing_IDLShortCut" Directory="CoSMICProgramMenuDocsDir"
+                    Name="Importing_IDL" WorkingDirectory='CoSMICDocsDir'
+                    Advertise="yes" />
+        </File>
 
         <File Id='Interface_Definitions.pdf'
               Name='Interface_Definitions.pdf'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\Interface_Definitions.pdf' />
+              Source='$(var.COSMIC_ROOT)\pim\PICML\docs\Interface_Definitions.pdf' >
 
-        <Shortcut Id="Interface_DefinitionsShortCut" Directory="CoSMICProgramMenuDocsDir"
-                  Name="Interface_Definitions" WorkingDirectory='CoSMICDocsDir'
-                  Advertise="yes" />
+          <Shortcut Id="Interface_DefinitionsShortCut" Directory="CoSMICProgramMenuDocsDir"
+                    Name="Interface_Definitions" WorkingDirectory='CoSMICDocsDir'
+                    Advertise="yes" />
+        </File>
 
         <RemoveFolder Id='PICMLDocsDirRemover' On='uninstall' />
       

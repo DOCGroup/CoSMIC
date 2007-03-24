@@ -5,28 +5,31 @@
   <Fragment Id="CoSMICNotesFrag">
     <DirectoryRef Id="INSTALLDIR">
       <Component Id='CoSMICReadme' Guid='5DDD4E5E-55F7-4AF3-A334-77F6610A9D67'>
-        <File Id='README.rtf' Name='README.rtf'
-              DiskId='1' Source='$(var.COSMIC_ROOT)\installer\README.rtf' KeyPath="yes"/>
+        <File Id='Readme.rtf' Name='Readme.rtf'
+              DiskId='1' Source='$(var.COSMIC_ROOT)/Readme.rtf' KeyPath="yes" >
 
-        <Shortcut Id="READMEShortCut" Directory="CoSMICProgramMenuDir"
-                  Name="README" WorkingDirectory='INSTALLDIR'
-                  Advertise="yes" />
+          <Shortcut Id="READMEShortCut" Directory="CoSMICProgramMenuDir"
+                    Name="README" WorkingDirectory='INSTALLDIR'
+                    Advertise="yes" />
+        </File>
       </Component>
       <Component Id='CoSMICLicense' Guid='136E61E7-6B7B-4BAD-A9C1-C77BBC030678'>
         <File Id='License.rtf' Name='License.rtf'
-              DiskId='1' Source='$(var.COSMIC_ROOT)\Installer\License.rtf' KeyPath="yes"/>
+              DiskId='1' Source='$(var.COSMIC_ROOT)/License.rtf' KeyPath="yes">
 
-        <Shortcut Id="LicenseShortCut" Directory="CoSMICProgramMenuDir"
-                  Name="License" WorkingDirectory='INSTALLDIR'
-                  Advertise="yes" />
+          <Shortcut Id="LicenseShortCut" Directory="CoSMICProgramMenuDir"
+                    Name="License" WorkingDirectory='INSTALLDIR'
+                    Advertise="yes" />
+        </File>
       </Component>
       <Component Id='CoSMICNotes' Guid='FB90E9A6-D0BE-46EE-9440-1FBFC0353112'>
         <File Id='ReleaseNotes.rtf' Name='ReleaseNotes.rtf'
-              DiskId='1' Source='$(var.COSMIC_ROOT)\installer\ReleaseNotes.rtf' />
+              DiskId='1' Source='$(var.COSMIC_ROOT)/ReleaseNotes.rtf' >
 
-        <Shortcut Id="ReleaseNotesShortCut" Directory="CoSMICProgramMenuDir"
-                  Name="Release Notes" WorkingDirectory='INSTALLDIR'
-                  Advertise="yes" />
+          <Shortcut Id="ReleaseNotesShortCut" Directory="CoSMICProgramMenuDir"
+                    Name="Release Notes" WorkingDirectory='INSTALLDIR'
+                    Advertise="yes" />
+        </File>
 
         <RemoveFolder Id='CQMLNotesDirRemover' On='uninstall' />
 

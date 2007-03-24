@@ -17,6 +17,15 @@
     <Condition Message="You need to be an administrator to install this product.">
       Privileged
     </Condition>
+    <Condition Message="Could not find GME on your machine. Please install GME before installing CoSMIC.">
+      GMEINSTALLED
+    </Condition>
+    
+    <Property Id="GMEINSTALLED">
+      <RegistrySearch Id="GMEInstalledRegSearch" 
+                      Root="HKLM" Key="SOFTWARE\GME\Paradigms\MetaGME" 
+                      Name="CurrentVersion" Type="raw" />
+    </Property>
 
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
@@ -33,14 +42,14 @@
     <UIRef Id="WixUI_ErrorProgressText" />
 
     <InstallExecuteSequence>
-      <Custom Action='ParadigmRegister' After='PublishProduct' >
+    <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
       </Custom>
       <Custom Action='TargetDirRegFailed' After='ParadigmRegister'>
         TARGETDIRACCEPTED = "0" AND NOT Installed
       </Custom>
       <Custom Action='ParadigmUnRegisterIfFailure' Before='ParadigmRegister' />
-      <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveFiles' >
+      <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveRegistryValues' >
         Installed
       </Custom>
       <Custom Action="SetUninstallCmd" Before="FindRelatedProducts" />
