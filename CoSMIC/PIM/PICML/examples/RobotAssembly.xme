@@ -6651,8 +6651,8 @@
 					<attribute kind="artifactVersion" status="meta">
 						<value>0.0.0.0</value>
 					</attribute>
-					<attribute kind="configuration">
-						<value>&lt;OptionCategory name=&quot;ORB_Configuration_Options&quot;&gt;&lt;OptionCategory name=&quot;Service_Configurator_File&quot;&gt;&lt;OptionCategory name=&quot;Server_Strategy_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBAllowReactivationOfSystemids&quot;&gt;0&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBPOALock&quot;&gt;null&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;</value>
+					<attribute kind="configuration" status="meta">
+						<value></value>
 					</attribute>
 					<attribute kind="label">
 						<value>WatchSettingManager Executor</value>
@@ -6935,8 +6935,8 @@
 					<attribute kind="artifactVersion" status="meta">
 						<value>0.0.0.0</value>
 					</attribute>
-					<attribute kind="configuration">
-						<value>&lt;OptionCategory name=&quot;ORB_Configuration_Options&quot;&gt;&lt;OptionCategory name=&quot;Service_Configurator_File&quot;&gt;&lt;OptionCategory name=&quot;Client_Strategy_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBClientConnectionHandler&quot;&gt;ST&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBConnectionStrategy&quot;&gt;leader_follower&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBTransportMuxStrategy&quot;&gt;EXCLUSIVE&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;OptionCategory name=&quot;Resource_Factories&quot;&gt;&lt;OptionCategory name=&quot;Advanced_Resource_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBInputCDRAllocator&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBReactorType&quot;&gt;select_st&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;OptionCategory name=&quot;Default_Resource_Factory&quot;&gt;&lt;EnumOption name=&quot;ORBConnectionCacheLock&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBConnectionPurgingStrategy&quot;&gt;lfu&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBCorbaObjectLock&quot;&gt;null&lt;/EnumOption&gt;&lt;EnumOption name=&quot;ORBReactorMaskSignals&quot;&gt;0&lt;/EnumOption&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;&lt;/OptionCategory&gt;</value>
+					<attribute kind="configuration" status="meta">
+						<value></value>
 					</attribute>
 					<attribute kind="label">
 						<value>HumanMachineInterface Executor</value>

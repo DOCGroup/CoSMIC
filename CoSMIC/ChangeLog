@@ -1,3 +1,19 @@
+Sat Mar 24 01:07:46 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Removed configuration attribute XML values of the Implementation Artifact
+          and fixed them to have the property status="meta". Now RobotAssembly Should work.
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added Robot Assembly example to CQML examples for a scenario and
+          performing RT Schedulability analysis.
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.aps:
+
+          Removed this file.
+
 Fri Mar 23 23:54:16 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
@@ -31,7 +47,7 @@ Fri Mar 23 23:54:16 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/ReleaseNotes.rtf:
 
           Move the rtf files from PICML directory to the COSMIC_ROOT
-          directory. This checkin marks the first full-fledged version of the 
+          directory. This checkin marks the first full-fledged version of the
           WiX based CoSMIC installer that can be built using WiX 3
           and Votive 3. It creates two features: PICML and CQML, which can
           be optionally selected to install.
