@@ -1,4 +1,5 @@
-// $Id: SecurityQoSVisitor.h 587 2005-12-14 21:39:34Z sutambe $
+// -*- C++ -*-
+// $Id:$
 
 #ifndef SECURITYQOS_VISITOR_H
 #define SECURITYQOS_VISITOR_H

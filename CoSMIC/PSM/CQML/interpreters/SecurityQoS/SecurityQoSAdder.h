@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #ifndef SECURITYQOS_req_H
 #define SECURITYQOS_req_H
 

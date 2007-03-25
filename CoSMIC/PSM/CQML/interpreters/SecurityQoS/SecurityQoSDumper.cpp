@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #include "SecurityQoSDumper.h"
 
 #include <algorithm>

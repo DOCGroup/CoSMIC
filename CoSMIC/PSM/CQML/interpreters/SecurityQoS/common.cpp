@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #include "common.h"
 
 namespace CQML

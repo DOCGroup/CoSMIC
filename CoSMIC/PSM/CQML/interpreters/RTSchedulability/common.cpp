@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #include "common.h"
 
 namespace CQML
@@ -91,7 +93,7 @@ namespace CQML
         this->doc_->release();
       // Create the document
       this->doc_ =
-        this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements"),
+        this->impl_->createDocument (XStr ("http://www.dre.vanderbilt.edu/RTSchedulabilityRequirements"),
                                      XStr (rootName.c_str()),
                                      0);
     }
@@ -106,7 +108,7 @@ namespace CQML
                                    XStr ("xmlns:xsi"),
                                    XStr ("http://www.w3.org/2001/XMLSchema-instance"));
       this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                                 XStr ("http://www.dre.vanderbilt.edu/SecurityQoSRequirements SecurityQoSRequirements.xsd"));
+                                 XStr ("http://www.dre.vanderbilt.edu/RTSchedulabilityRequirements RTSchedulabilityRequirements.xsd"));
       std::string id = std::string ("_") + Utils::CreateUuid();
       this->root_->setAttribute (XStr("id"), XStr (id));
       this->curr_ = this->root_;

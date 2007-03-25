@@ -1,5 +1,7 @@
-#ifndef SECURITYQOS_INJECTOR_H
-#define SECURITYQOS_INJECTOR_H
+// -*- C++ -*-
+// $Id:$
+#ifndef RTSCHEDULABILITY_INJECTOR_H
+#define RTSCHEDULABILITY_INJECTOR_H
 
 #include "RTSchedulabilityAdder.h"
 
@@ -15,4 +17,4 @@ namespace CQML
       };
 
   }
-#endif //SECURITYQOS_INJECTOR_H
+#endif //RTSCHEDULABILITY_INJECTOR_H

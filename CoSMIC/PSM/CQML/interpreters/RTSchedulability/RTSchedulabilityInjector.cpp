@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #include "RTSchedulabilityInjector.h"
 
 #include "RTSchedulabilityAdder.h"

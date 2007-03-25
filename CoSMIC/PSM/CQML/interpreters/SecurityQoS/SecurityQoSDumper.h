@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #ifndef SECURITYQOS_DUMPER_H
 #define SECURITYQOS_DUMPER_H
 

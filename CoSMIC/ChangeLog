@@ -1,3 +1,45 @@
+Sun Mar 25 06:44:20 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+        * PSM/CQML/examples/SLICE.xme:
+
+          Synchronized Aspects.
+
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability.mpc:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability_Export.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+
+          Removed Security QoS code. Now its an empty interpreter that does
+          nothing. Added id tags too.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSInjector.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+
+          Added id tags.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Ensured the CQML models work. Just checking in the regenerated files.
+
 Sat Mar 24 05:17:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/Project.cpp:

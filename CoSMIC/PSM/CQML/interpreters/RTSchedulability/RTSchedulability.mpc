@@ -2,7 +2,7 @@ project(RTSchedulability): cqmllib {
 
    after += DeploymentPlanFramework
    sharedname = RTSchedulability
-   macros += SECURITYQOS_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
+   macros += RTSCHEDULABILITY_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
    libs += DeploymentPlanFramework
 
    Source_Files {

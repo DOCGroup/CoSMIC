@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #ifndef SECURITYQOS_INJECTOR_H
 #define SECURITYQOS_INJECTOR_H
 

@@ -1,3 +1,5 @@
+// -*- C++ -*-
+// $Id:$
 #ifndef __COMMON_H_
 #define __COMMON_H_
 
@@ -84,9 +86,8 @@ namespace CQML
       std::string server, server_port_name;
     };
 
-  struct SharedSecurityQoS
+  struct SharedRTSchedulability
     {
-      CQML::SecurityQoS securityqos;
       std::set <ConnectionInfo> conn_set;
     };
 
@@ -96,7 +97,7 @@ namespace CQML
       std::string dest;
     };
   
-  //typedef std::multimap <SecurityQoS, ConnectionInfo> SecurityQoSRequirements;
+  //typedef std::multimap <RTSchedulability, ConnectionInfo> RTSchedulabilityRequirements;
   
   }
 
