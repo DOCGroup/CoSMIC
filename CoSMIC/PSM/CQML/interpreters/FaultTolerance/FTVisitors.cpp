@@ -175,7 +175,7 @@ namespace CQML
   void FTRequirementsVisitor::failoverunit_visit (const FailOverUnit &fou, const ComponentQoS & cq)
   {
 		this->attached_FOU_ = true;
-		this->current_req_replica_ = fou.Replica ();
+		this->current_req_replica_ = (int)fou.Replica ();
 		ComponentBase comp_base = cq.srcComponentQoS_end ();
 		if (Udm::IsDerivedFrom (comp_base.type(), ComponentRef::meta))
 		{
@@ -197,20 +197,20 @@ namespace CQML
 	{
 		this->attached_FOU_ = true;
 		FailOverUnit fou = FailOverUnit::Cast (qos_char);
-		this->current_req_replica_ = fou.Replica ();
+		this->current_req_replica_ = (int)fou.Replica ();
 		ComponentAssemblyBase assembly_base = caq.srcComponentAssemblyQoS_end ();
 		if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssemblyReference::meta))
 		{
 			ComponentAssemblyReference assembly_ref 
 				= ComponentAssemblyReference::Cast (assembly_base);
 			ComponentAssembly assembly = assembly_ref.ref ();
-			this->current_req_replica_ = fou.Replica();
+			this->current_req_replica_ = (int)fou.Replica();
 			this->assembly_visit (assembly);
 		}
 		else if (Udm::IsDerivedFrom (assembly_base.type(), ComponentAssembly::meta))
 		{
 			ComponentAssembly assembly = ComponentAssembly::Cast (assembly_base);
-			this->current_req_replica_ = fou.Replica();
+			this->current_req_replica_ = (int)fou.Replica();
 			this->assembly_visit (assembly);
 		}
 	}
