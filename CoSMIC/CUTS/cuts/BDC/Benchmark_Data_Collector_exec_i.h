@@ -46,58 +46,54 @@ namespace CUTS
       /// Destructor.
       virtual ~Benchmark_Data_Collector_exec_i (void);
 
-      virtual void
-        set_session_context (Components::SessionContext_ptr ctx
-        ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      virtual void set_session_context (Components::SessionContext_ptr ctx)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
-      virtual void
-        ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual void ciao_preactivate (void)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
-      virtual void
-        ciao_postactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual void ciao_postactivate (void)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
-      virtual void ccm_activate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual void ccm_activate (void)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
-      virtual void
-        ccm_passivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual void ccm_passivate (void)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
-      virtual void
-        ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual void ccm_remove (void)
         ACE_THROW_SPEC ((CORBA::SystemException,
                          Components::CCMException));
 
       virtual ::CUTS::CCM_Testing_Service_ptr
-        get_testing_service (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+        get_testing_service (void)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
       virtual ::CUTS::CCM_BDC_Control_Handle_ptr
-        get_controls (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+        get_controls (void)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
-      virtual void
-        timeout (::CORBA::Long tm ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      virtual void timeout (::CORBA::Long tm)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
-      virtual ::CORBA::Long
-        timeout (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual ::CORBA::Long timeout (void)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
-      virtual void
-        service (const char * svc ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+      virtual void service (const char * svc)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
-      virtual char *
-        service (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual char * service (void)
+        ACE_THROW_SPEC ((::CORBA::SystemException));
+
+      virtual void test_uuid (const char * uuid)
+        ACE_THROW_SPEC ((::CORBA::SystemException));
+
+      virtual char * test_uuid (void)
         ACE_THROW_SPEC ((::CORBA::SystemException));
 
     private:
@@ -147,8 +143,7 @@ namespace CUTS
        *
        * @return Newly created Benchmark_Data_Collector component.
        */
-      virtual ::Components::EnterpriseComponent_ptr
-        create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      virtual ::Components::EnterpriseComponent_ptr create (void)
         ACE_THROW_SPEC ((::CORBA::SystemException,
                          ::Components::CCMException));
     };

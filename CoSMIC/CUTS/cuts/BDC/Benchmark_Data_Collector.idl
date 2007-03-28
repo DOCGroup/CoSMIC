@@ -80,6 +80,8 @@ module CUTS
     attribute long timeout;
 
     attribute string service;
+
+    attribute string test_uuid;
   };
 
   //===========================================================================

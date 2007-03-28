@@ -50,8 +50,8 @@ namespace CUTS
     //
     // set_session_context
     //
-    void Benchmark_Data_Collector_exec_i::set_session_context (
-      ::Components::SessionContext_ptr ctx ACE_ENV_ARG_DECL)
+    void Benchmark_Data_Collector_exec_i::
+      set_session_context (::Components::SessionContext_ptr ctx)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -74,8 +74,7 @@ namespace CUTS
     //
     // ciao_preactivate
     //
-    void Benchmark_Data_Collector_exec_i::ciao_preactivate (
-      ACE_ENV_SINGLE_ARG_DECL_NOT_USED)
+    void Benchmark_Data_Collector_exec_i::ciao_preactivate (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -90,8 +89,7 @@ namespace CUTS
     //
     // ciao_postactivate
     //
-    void Benchmark_Data_Collector_exec_i::ciao_postactivate (
-      ACE_ENV_SINGLE_ARG_DECL_NOT_USED)
+    void Benchmark_Data_Collector_exec_i::ciao_postactivate (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -101,8 +99,7 @@ namespace CUTS
     //
     // ccm_activate
     //
-    void Benchmark_Data_Collector_exec_i::ccm_activate (
-      ACE_ENV_SINGLE_ARG_DECL_NOT_USED)
+    void Benchmark_Data_Collector_exec_i::ccm_activate (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -120,8 +117,7 @@ namespace CUTS
     //
     // ccm_passivate
     //
-    void Benchmark_Data_Collector_exec_i::ccm_passivate (
-      ACE_ENV_SINGLE_ARG_DECL_NOT_USED)
+    void Benchmark_Data_Collector_exec_i::ccm_passivate (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -131,8 +127,7 @@ namespace CUTS
     //
     // ccm_remove
     //
-    void Benchmark_Data_Collector_exec_i::ccm_remove (
-      ACE_ENV_SINGLE_ARG_DECL_NOT_USED)
+    void Benchmark_Data_Collector_exec_i::ccm_remove (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
@@ -148,8 +143,7 @@ namespace CUTS
     //
     // timeout
     //
-    void Benchmark_Data_Collector_exec_i::timeout (
-      ::CORBA::Long tm ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    void Benchmark_Data_Collector_exec_i::timeout (::CORBA::Long tm)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       this->timeout_ = tm;
@@ -161,8 +155,7 @@ namespace CUTS
     //
     // timeout
     //
-    ::CORBA::Long Benchmark_Data_Collector_exec_i::
-      timeout (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    ::CORBA::Long Benchmark_Data_Collector_exec_i::timeout (void)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return this->timeout_;
@@ -172,8 +165,7 @@ namespace CUTS
     // get_testing_service
     //
     ::CUTS::CCM_Testing_Service_ptr
-      Benchmark_Data_Collector_exec_i::
-      get_testing_service (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      Benchmark_Data_Collector_exec_i::get_testing_service (void)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return ::CUTS::CCM_Testing_Service::_duplicate (this->tsvc_.get ());
@@ -183,18 +175,37 @@ namespace CUTS
     // get_controls
     //
     ::CUTS::CCM_BDC_Control_Handle_ptr
-      Benchmark_Data_Collector_exec_i::
-      get_controls (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+      Benchmark_Data_Collector_exec_i::get_controls (void)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return ::CUTS::CCM_BDC_Control_Handle::_duplicate (this->controller_.get ());
     }
 
     //
+    // test_uuid
+    //
+    void Benchmark_Data_Collector_exec_i::test_uuid (const char * uuid)
+      ACE_THROW_SPEC ((::CORBA::SystemException))
+    {
+      CUTS_BDC_SVC_MANAGER ()->set_uuid (uuid);
+    }
+
+    //
+    // test_uuid
+    //
+    char * Benchmark_Data_Collector_exec_i::test_uuid (void)
+      ACE_THROW_SPEC ((::CORBA::SystemException))
+    {
+      CORBA::String_var str =
+        CORBA::string_dup (CUTS_BDC_SVC_MANAGER ()->get_uuid ().c_str ());
+
+      return str._retn ();
+    }
+
+    //
     // service
     //
-    void Benchmark_Data_Collector_exec_i::
-      service (const char * svc ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    void Benchmark_Data_Collector_exec_i::service (const char * svc)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       // Save the service attribute.
@@ -244,8 +255,7 @@ namespace CUTS
     //
     // service
     //
-    char * Benchmark_Data_Collector_exec_i::
-      service (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    char * Benchmark_Data_Collector_exec_i::service (void)
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       ::CORBA::String_var svcs =
@@ -280,8 +290,7 @@ namespace CUTS
     // create
     //
     ::Components::EnterpriseComponent_ptr
-      Benchmark_Data_Collector_Home_exec_i::
-      create (ACE_ENV_SINGLE_ARG_DECL)
+      Benchmark_Data_Collector_Home_exec_i::create (void)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {

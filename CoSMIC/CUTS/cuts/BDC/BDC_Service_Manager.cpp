@@ -12,6 +12,7 @@
 #include "ace/Dynamic_Service.h"
 #include "ace/Event.h"
 #include "ace/Service_Types.h"
+#include "ace/UUID.h"
 #include <sstream>
 
 //
@@ -69,7 +70,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
   }
 
   // Reset the <uuid_> of the service manager.
-  this->uuid_.reset ();
+  this->uuid_.clear ();
   return 0;
 }
 
@@ -257,11 +258,14 @@ int CUTS_BDC_Service_Manager::activate (void)
   if (!this->is_opened ())
     return -1;
 
-  // Generate the UUID. We need to place around with the parameters
-  // of this generator so we generate the most unique UUID possible.
-  ACE_Utils::UUID * uuid =
-    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID ();
-  this->uuid_.reset (uuid);
+  if (this->uuid_.is_empty ())
+  {
+    // Since the <uuid_> is empty, we need to generate one.
+    ACE_Utils::UUID uuid;
+    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID (uuid);
+
+    this->uuid_ = *uuid.to_string ();
+  }
 
   // Iterate over every service in the repository.
   ACE_Service_Repository_Iterator iter (*this->repo_, 1);
@@ -324,7 +328,7 @@ int CUTS_BDC_Service_Manager::deactivate (void)
   }
 
   // Release the current UUID.
-  this->uuid_.reset ();
+  this->uuid_.clear ();
   return 0;
 }
 
@@ -364,6 +368,6 @@ handle_metrics (const CUTS_System_Metric & metrics)
   }
 
   // Release the current UUID.
-  this->uuid_.reset ();
+  this->uuid_.clear ();
   return 0;
 }

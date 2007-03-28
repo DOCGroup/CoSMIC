@@ -1,3 +1,18 @@
+Wed Mar 28 18:16:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.inl:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          Changed the UUID from a valid uuid to any arbitrary unique
+          string that can be set by the client.
+
+        * cuts/BDC/Benchmark_Data_Collector.idl:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          Added a test_uuid attribute to the BDC component's interface.
+
 Thu Mar 22 17:02:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/wix.mpb:

@@ -20,7 +20,6 @@
 #include "ace/Service_Gestalt.h"
 #include "ace/Singleton.h"
 #include "ace/Vector_T.h"
-#include "ace/UUID.h"
 
 // Forward decl.
 class CUTS_BDC_Service;
@@ -168,11 +167,24 @@ public:
   CUTS_Testing_Service * testing_service (void) const;
 
   /**
-   * Get a pointer to the UUID for this manager.
+   * Get the unique id for the testing service. This UUID does not
+   * necessarily have to be a valid UUID. Instead, it can be any
+   * auto-generated unique id that will allow users to differentiate
+   * between two test's data.
    *
    * @return        Pointer to the UUID for the manager.
    */
-  const ACE_Utils::UUID * get_uuid (void) const;
+  const ACE_CString & get_uuid (void) const;
+
+  /**
+   * Set the unique id for the testing service. This UUID does not
+   * necessarily have to be a valid UUID. Instead, it can be any
+   * auto-generated unique id that will allow users to differentiate
+   * between two test's data.
+   *
+   * @param[in]     uuid        The unique id.
+   */
+  void set_uuid (const ACE_CString & uuid);
 
 private:
   /// The main ORB for this manager.
@@ -185,7 +197,7 @@ private:
   CUTS_Testing_Service * tsvc_;
 
   /// UUID for the service manager.
-  ACE_Auto_Ptr <ACE_Utils::UUID> uuid_;
+  ACE_CString uuid_;
 };
 
 // Singlton export decl.

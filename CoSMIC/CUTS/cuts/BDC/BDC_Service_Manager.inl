@@ -44,7 +44,16 @@ testing_service (void) const
 // get_uuid
 //
 CUTS_INLINE
-const ACE_Utils::UUID * CUTS_BDC_Service_Manager::get_uuid (void) const
+const ACE_CString & CUTS_BDC_Service_Manager::get_uuid (void) const
 {
-  return this->uuid_.get ();
+  return this->uuid_;
+}
+
+//
+// set_uuid
+//
+CUTS_INLINE
+void CUTS_BDC_Service_Manager::set_uuid (const ACE_CString & uuid)
+{
+  this->uuid_ = uuid;
 }
