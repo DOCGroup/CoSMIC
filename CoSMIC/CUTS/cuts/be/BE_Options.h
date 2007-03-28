@@ -48,8 +48,11 @@ struct CUTS_BE_Export CUTS_BE_Options
     /// Generate CoWorkEr models.
     OPT_GENERATE_MODELS = 0,
 
+    /// Generate CoWorkEr proxy assemblies.
+    OPT_GENERATE_PROXY_ASSEMBLIES = 1,
+
     /// Generate source files from the model.
-    OPT_GENERATE_SOURCE = 1
+    OPT_GENERATE_SOURCE = 2
   };
 
   /// Menu options for the backend.

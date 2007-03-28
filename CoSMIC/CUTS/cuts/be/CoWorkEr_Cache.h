@@ -42,7 +42,7 @@ public:
    * @retval        true            The component is a CoWorkEr.
    * @retval        false           The component is not a CoWorkEr.
    */
-  bool is_coworker (const PICML::Component & component);
+  static bool is_coworker (const PICML::Component & component);
 
 private:
   /// Constructor.

@@ -107,9 +107,9 @@ namespace CUTS_BE
 
 /// Helper macro for defining the trait to ingore a single type
 /// when parsing the model.
-#define CUTS_BE_NO_VISIT(strategy, type) \
-  template <typename STRATEGY, typename TYPE> \
-  struct visit_type \
+#define CUTS_BE_NOT_VISIT(strategy, type) \
+  template < > \
+  struct visit_type <strategy, type> \
   { \
     static const bool result_type = false; \
   }
@@ -125,6 +125,25 @@ namespace CUTS_BE
 
   //=============================================================================
   /**
+   * @struct iterate_all_t
+   *
+   * Implementation of the std::for_each method. This functor conforms it
+   * to the function signature expected by the metaprogrammable templates.
+   */
+  //=============================================================================
+
+  template <typename CONTAINER, typename FUNCTOR>
+  struct iterate_all_t
+  {
+    static inline bool execute (CONTAINER container, FUNCTOR func)
+    {
+      std::for_each (container.begin (), container.end (), func);
+      return true;
+    }
+  };
+
+  //=============================================================================
+  /**
    * @struct iterate_all
    *
    * Implementation of the std::for_each method. This functor conforms it
@@ -132,18 +151,16 @@ namespace CUTS_BE
    */
   //=============================================================================
 
-  template <typename COLLECTION, typename FUNCTOR>
-  struct iterate_all
+  template <typename STRATEGY, typename CONTAINER, typename FUNCTOR>
+  inline bool iterate_all (const CONTAINER & container, FUNCTOR func)
   {
-    /**
-     * Execute the functor's logic.
-     *
-     * @param[in]     coll        The target collection.
-     * @param[in]     func        The functor.
-     */
-    static inline void execute (COLLECTION & coll, FUNCTOR func)
-      { std::for_each (coll.begin (), coll.end (), func); }
-  };
+    typedef CUTS_BE::if_then <
+      CUTS_BE::visit_type <STRATEGY, typename CONTAINER::value_type>::result_type,
+      CUTS_BE::iterate_all_t <CONTAINER, FUNCTOR>
+    >::result_type result_type;
+
+    return result_type::execute (container, func);
+  }
 
   //=============================================================================
   /**

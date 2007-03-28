@@ -23,11 +23,9 @@ Visit_RootFolder (const PICML::RootFolder & root)
   typedef std::vector <PICML::ComponentImplementations> Folder_Set;
   Folder_Set folders = root.ComponentImplementations_children ();
 
-  std::for_each (folders.begin (),
-                 folders.end (),
-                 boost::bind (&Folder_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate_all <IMPL_STRATEGY> (
+    folders,
+    boost::bind (&Folder_Set::value_type::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -41,11 +39,9 @@ const PICML::ComponentImplementations & impls)
   typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
   Container_Set container = impls.ComponentImplementationContainer_children ();
 
-  std::for_each (container.begin (),
-                 container.end (),
-                 boost::bind (&Container_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate_all <IMPL_STRATEGY> (
+    container,
+    boost::bind (&Container_Set::value_type::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -85,16 +81,10 @@ const PICML::ComponentImplementationContainer & container)
                                 boost::ref (this),
                                 _1));
 
-    /**
-     * CUTS_BE::if_then <CUTS_BE::visit_type <STRATEGY, PICML::MonolithicImplementation>::result_type,
-     *                   CUTS_BE::iterate_all>::
-     *                   result_type::execute (monos, functor);
-     */
-    std::for_each (monos.begin (),
-                   monos.end (),
-                   boost::bind (&MonoImpl_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
+    CUTS_BE::iterate_all <IMPL_STRATEGY> (
+      monos, boost::bind (&MonoImpl_Set::value_type::Accept,
+                          _1,
+                          boost::ref (*this)));
 
     // Write the epilogue for the file, then close it.
     CUTS_BE::generate <IMPL_STRATEGY::Epilogue> (container);
@@ -138,12 +128,11 @@ const PICML::MonolithicImplementation & monoimpl)
     typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
     Facet_Set facets = component.ProvidedRequestPort_kind_children ();
 
-    std::for_each (facets.begin (),
-                   facets.end (),
-                   boost::bind (&CUTS_BE_Impl_Generator_T::
-                                Visit_ProvidedRequestPort_impl,
-                                boost::ref (this),
-                                _1));
+    CUTS_BE::iterate_all <IMPL_STRATEGY> (
+      facets, boost::bind (&CUTS_BE_Impl_Generator_T::
+                          Visit_ProvidedRequestPort_impl,
+                          boost::ref (this),
+                          _1));
 
     PICML::ComponentFactory factory;
 
@@ -173,11 +162,9 @@ Visit_Component (const PICML::Component & component)
   typedef std::vector <PICML::Supports> Supports_Set;
   Supports_Set supports = component.Supports_kind_children ();
 
-  std::for_each (supports.begin (),
-                 supports.end (),
-                 boost::bind (&Supports_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate_all <IMPL_STRATEGY> (
+    supports,
+    boost::bind (&Supports_Set::value_type::Accept, _1, boost::ref (*this)));
 
   // Visit all the InEventPort elements of the <component>.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;

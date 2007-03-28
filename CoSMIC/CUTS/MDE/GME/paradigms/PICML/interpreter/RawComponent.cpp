@@ -367,7 +367,7 @@ int RawComponent::preprocess (IMgaProject * proj)
   // Initialize the output directory.
   GME::Folder root = project.root_folder ();
   CUTS_BE_OPTIONS ()->output_directory_ =
-    root.registry_value ("/__OutputDir__/CUTS_PICML");
+    root.registry_value ("__OutputDir__/CUTS_PICML");
 
   return 0;
 }
@@ -382,7 +382,7 @@ int RawComponent::postprocess (IMgaProject * proj)
   GME::Folder root = project.root_folder ();
 
   // Cache the output directory for future use.
-  root.registry_value ("/__OutputDir__/CUTS_PICML",
+  root.registry_value ("__OutputDir__/CUTS_PICML",
                        CUTS_BE_OPTIONS ()->output_directory_);
 
   return 0;

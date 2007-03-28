@@ -61,8 +61,8 @@ Visit_InputAction (const PICML::InputAction & action)
 {
   CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_Begin> (action);
 
-  //CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
-  //PICML::InputAction (action).Accept (exec_visitor);
+  CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
+  PICML::InputAction (action).Accept (exec_visitor);
 
   CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_End> (action);
 }

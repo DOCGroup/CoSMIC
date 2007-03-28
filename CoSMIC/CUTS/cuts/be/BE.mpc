@@ -14,8 +14,7 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     CoWorkEr_Cache.cpp
     CoWorkEr_Generator.cpp
 
-    BE_Set.cpp
-    BE_Traits.cpp
+    BE_Assembly_Generator.cpp
     BE_File_Traits.cpp
     BE_IDL_Graph.cpp
     BE_IDL_Node.cpp
@@ -23,10 +22,13 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Impl_Graph.cpp
     BE_Manager.cpp
     BE_MPC_Workspace.cpp
+    BE_nil.cpp
     BE_Options.cpp
+    BE_Position.cpp
     BE_Preprocessor.cpp
     BE_Project_Generator.cpp
     BE_Scope_Manager.cpp
+    BE_Traits.cpp
     BE_Type_Map.cpp
     BE_Workspace_Strategy.cpp
     Export_File_Generator.cpp
@@ -34,7 +36,6 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
 
   Header_Files {
     BE_algorithm.h
-    BE_nil.h
     BE_List_T.h
   }
 

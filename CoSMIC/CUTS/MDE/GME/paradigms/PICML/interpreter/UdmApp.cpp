@@ -8,6 +8,7 @@
 #include "cuts/be/CUTS_Project.h"
 #include "cuts/be/CoWorkEr_Cache.h"
 #include "cuts/be/CoWorkEr_Generator.h"
+#include "cuts/be/BE_Assembly_Generator.h"
 
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/CIAO/CIAO_Manager.h"
@@ -57,7 +58,21 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
       CUTS_CoWorkEr_Generator coworker_generator;
       root.Accept (coworker_generator);
 
-      ::AfxMessageBox ("Successfully generated CoWorkEr models");
+      ::AfxMessageBox ("Successfully generated CUTS proxy components",
+                       MB_ICONINFORMATION | MB_OK);
+    }
+    break;
+
+  case CUTS_BE_Options::OPT_GENERATE_PROXY_ASSEMBLIES:
+    {
+      // Generate the CUTS project.
+      root.Accept (*CUTS_Project::instance ());
+
+      CUTS_BE_Assembly_Generator generator;
+      root.Accept (generator);
+
+      ::AfxMessageBox ("Successfully generated CUTS proxy assemblies",
+                       MB_ICONINFORMATION | MB_OK);
     }
     break;
 
