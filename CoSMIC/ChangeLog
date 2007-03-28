@@ -1,3 +1,9 @@
+Wed Mar 28 22:34:25 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/RTConfig/ComponentConfig.h:
+        
+          Removed the hard-coded path.
+
 Mon Mar 26 23:11:38 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
