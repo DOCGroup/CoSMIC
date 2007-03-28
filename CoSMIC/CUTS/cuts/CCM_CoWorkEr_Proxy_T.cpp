@@ -91,7 +91,7 @@ load_implementation (const char * dllname, const char * entry)
   if (module.open (dllname, ACE_DEFAULT_SHLIB_MODE, 0) != 0)
   {
     ACE_ERROR_RETURN ((LM_ERROR,
-                       "error: %s\n",
+                       "*** error (load_implementation) : %s\n",
                        module.error ()),
                        -1);
   }
@@ -102,6 +102,7 @@ load_implementation (const char * dllname, const char * entry)
   if (symbol == 0)
   {
     ACE_ERROR_RETURN ((LM_ERROR,
+                       "*** error (load_implementation): "
                        "failed to locate entry point '%s' in %s\n",
                        entry,
                        module.dll_name_),
@@ -110,7 +111,7 @@ load_implementation (const char * dllname, const char * entry)
 
   // Convert to function pointer that returns to correct type.
   typedef ::Components::HomeExecutorBase_ptr (* ENTRY_POINT) (void);
-  ENTRY_POINT entry_point = ACE_reinterpret_cast (ENTRY_POINT, symbol);
+  ENTRY_POINT entry_point = reinterpret_cast <ENTRY_POINT> (symbol);
 
   // Create the base home executor from the entry point, then
   // narrow it to the correct home to created the executor.
@@ -120,7 +121,8 @@ load_implementation (const char * dllname, const char * entry)
   if (::CORBA::is_nil (home_impl.in ()))
   {
     ACE_ERROR_RETURN ((LM_ERROR,
-                       "failed to extract component home\n"),
+                       "*** error (load_implemenation): failed to "
+                       "extract component home\n"),
                        -1);
   }
 
@@ -131,7 +133,8 @@ load_implementation (const char * dllname, const char * entry)
   if (::CORBA::is_nil (this->type_impl_.in ()))
   {
     ACE_ERROR_RETURN ((LM_ERROR,
-                       "failed to create component\n"),
+                       "*** error (load_implemenation): failed to "
+                       "create component\n"),
                        -1);
   }
 
@@ -144,7 +147,8 @@ load_implementation (const char * dllname, const char * entry)
   if (::CORBA::is_nil (this->sc_.in ()))
   {
     ACE_ERROR_RETURN ((LM_ERROR,
-                       "loaded component is not a session component\n"),
+                       "*** error (load_implemenation): loaded component "
+                       "is not a session component\n"),
                        -1);
   }
 
@@ -212,10 +216,12 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
           ACE_ERROR ((LM_ERROR,
                       "[%M] (preactivate) -%T - unknown exception has occurred\n"));
         }
-
-      if (!::CORBA::is_nil (this->sc_.in ()))
-        this->sc_->ciao_preactivate ();
     }
+
+  // We still need to invoke the preactivate method for the
+  // hosted component regardless of it is connected to the BDC.
+  if (!::CORBA::is_nil (this->sc_.in ()))
+    this->sc_->ciao_preactivate ();
 }
 
 //
