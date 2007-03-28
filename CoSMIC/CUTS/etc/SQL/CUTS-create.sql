@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS tests
 (
   test_number   INT             NOT NULL auto_increment,
   test_name     VARCHAR(255),
+  test_uuid     VARCHAR(255),
 
   start_time    DATETIME,
   stop_time     DATETIME,
