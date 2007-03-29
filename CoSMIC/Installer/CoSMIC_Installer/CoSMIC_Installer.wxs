@@ -3,13 +3,13 @@
   <?include EnvironmentVars.wxi ?>
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
-    Language='1033' Codepage='1252' Version='0.6.0' Manufacturer='ISIS'
+           Language='1033' Codepage='1252' Version='0.5.7' Manufacturer='ISIS'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
     <Package Keywords='Installer'
-      Description="ISIS's CoSMIC Installer"
-      Comments='CoSMIC is open-source.' Manufacturer='ISIS'
-      InstallerVersion='150' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+             Description="ISIS's CoSMIC Installer" 
+             Comments='CoSMIC is open-source.' Manufacturer='ISIS'
+             InstallerVersion='150' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
     <!-- Wix variables -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.COSMIC_ROOT)/License.rtf" />
@@ -20,7 +20,7 @@
     <Condition Message="You need to be an administrator to install this product.">
       Privileged
     </Condition>
-    <Condition Message="Could not find GME on your machine. Please install GME before installing CoSMIC.">
+    <Condition Message="Could not find GME on your machine. Please install GME (6.11.9 or better) before installing CoSMIC.">
       GMEINSTALLED
     </Condition>
     

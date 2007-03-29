@@ -94,6 +94,18 @@
               Name='xerces-c_2_7.dll'
               DiskId='1'
               Source='$(var.XERCESCROOT)\bin\xerces-c_2_7.dll'  />
+        <File Id='MSVCP80.dll'
+              Name='MSVCP80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\MSVCP80.dll' />
+        <File Id='MSVCR80.dll'
+              Name='MSVCR80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\MSVCR80.dll' />
+        <File Id='MFC80.dll'
+              Name='MFC80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\MFC80.dll' />
       </Component>
     </DirectoryRef>
 
