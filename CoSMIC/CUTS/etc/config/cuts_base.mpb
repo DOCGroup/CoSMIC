@@ -6,7 +6,7 @@ project {
   }
 
   includes += $(CUTS_ROOT) $(CUTS_ROOT)/MDE
-  libpaths += $(COSMIC_ROOT)/lib
+  libpaths += $(CUTS_ROOT)/lib
 }
 
 //=============================================================================

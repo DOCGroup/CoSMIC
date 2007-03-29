@@ -14,7 +14,7 @@
 #define _CUTS_GEMS2PICML_APP_H_
 
 #include "G2P_Options.h"
-#include "GME/gme/GME.h"
+#include "gme/GME.h"
 #include "GEMS/GEMS.h"
 #include <memory>
 

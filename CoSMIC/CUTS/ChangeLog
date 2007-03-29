@@ -1,3 +1,86 @@
+Thu Mar 29 22:01:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/config/cosmic_lib.mpb:
+
+          Removed libout and dllout keywords.
+
+        * etc/config/cuts_base.mpb:
+
+          Changed libpaths from $(COSMIC_ROOT)/lib to $(CUTS_ROOT)/lib
+
+        * etc/config/cuts_gme.mpb:
+
+          Added $(COSMIC_ROOT)/lib to the libpaths.
+
+        * etc/config/cutslib.mpb:
+
+          Changed the location of libout and dllout to $(CUTS_ROOT)/lib
+          and $(CUTS_ROOT)/bin, respectively.
+
+        * utils/GUTS/gems2picml_App.h:
+
+          Fixed build error related to moving the GME C++ programmatic
+          library to CoSMIC/utils.
+
+Wed Mar 28 21:30:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/RawComponent.cpp:
+
+          Fix bug that would prevent .xme files from importing because
+          the output directory was store incorrectly in the model registry.
+
+        * MDE/GME/paradigms/PICML/interpreter/Component.rc:
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+
+          Added a new option for generating CUTS proxy models.
+
+        * MDE/GME/paradigms/PICML/interpreter/resource.h:
+
+          Added a missing file that contains the ids for all the
+          resouce elements.
+
+        * cuts/be/BE.mpc:
+
+          Added new source files to the project.
+
+        * cuts/be/BE_Assembly_Generator.h:
+        * cuts/be/BE_Assembly_Generator.inl:
+        * cuts/be/BE_Assembly_Generator.cpp:
+
+          Implemented a class that auto-generates CUTS proxies for the
+          modeler.
+
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/BE_Env_Visitor_T.cpp:
+
+          Enabled the generation of environment behavior using the
+          generative programming technique.
+
+        * cuts/be/BE_Options.h:
+
+          Added a new option to allow generation of the CUTS proxy
+          model elements.
+
+        * cuts/be/BE_Position.h:
+        * cuts/be/BE_Position.inl:
+        * cuts/be/BE_Position.cpp:
+
+          Implemented a helper class to simplify working with position's
+          on modeling elements.
+
+        * cuts/be/BE_algorithm.h:
+
+          - Fixed bug in CUTS_BE_NOT_VISIT macro that was generating invalid
+            trait class for not visiting elements.
+
+        * cuts/be/BE_nil.cpp:
+
+          The source file was need to fix linking problems.
+
+        * cuts/be/CoWorkEr_Cache.h (is_coworker):
+
+          Changed this to a static method.
+
 Wed Mar 28 21:27:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-create.sql:

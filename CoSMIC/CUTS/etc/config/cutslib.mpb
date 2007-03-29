@@ -4,10 +4,11 @@ project : acelib, cuts_base {
   libs  += CUTS
   after += CUTS
 
+  libout = $(CUTS_ROOT)/lib
+
   specific (vc6, vc7, vc71, vc8, nmake) {
-    dllout = $(COSMIC_ROOT)/bin
-    libout = $(COSMIC_ROOT)/lib
+    dllout = $(CUTS_ROOT)/bin
   } else {
-    dllout = $(COSMIC_ROOT)/lib
+    dllout = $(CUTS_ROOT)/lib
   }
 }
