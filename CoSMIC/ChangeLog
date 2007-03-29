@@ -1,7 +1,22 @@
+Thu Mar 29 08:00:31 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+          Uses WiX variables now instead of command line arguments.
+
+        * PSM/CQML/docs/robotmodel422-0001.ppt:
+
+          Activity diagram of the Robot Assembly.
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added QoS examples and behavior for the WatchSettingManager component.
+
 Wed Mar 28 22:34:25 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
 
         * PSM/CQML/interpreters/RTConfig/ComponentConfig.h:
-        
+
           Removed the hard-coded path.
 
 Mon Mar 26 23:11:38 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>

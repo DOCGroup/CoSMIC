@@ -11,6 +11,9 @@
       Comments='CoSMIC is open-source.' Manufacturer='ISIS'
       InstallerVersion='150' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
+    <!-- Wix variables -->
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.COSMIC_ROOT)/License.rtf" />
+    
     <Condition Message='CoSMIC Installer is not suported on Windows 95/98/ME.'>
       NOT Version9X
     </Condition>
@@ -21,14 +24,21 @@
       GMEINSTALLED
     </Condition>
     
-    <Property Id="GMEINSTALLED">
-      <RegistrySearch Id="GMEInstalledRegSearch" 
-                      Root="HKLM" Key="SOFTWARE\GME\Paradigms\MetaGME" 
-                      Name="CurrentVersion" Type="raw" />
-    </Property>
-
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
+
+    <Property Id="GMEINSTALLED">
+      <RegistrySearch Id="GMEInstalledRegSearch"
+                      Root="HKLM" Key="SOFTWARE\GME\Paradigms\MetaGME"
+                      Name="CurrentVersion" Type="raw" />
+    </Property>
+    
+    <!-- UI -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+    <!-- <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_FeatureTree" /> -->
+    <UIRef Id="WixUI_Mondo" /> 
+    <UIRef Id="WixUI_ErrorProgressText" />
 
     <!-- Features -->
     <FeatureRef Id="CoSMICRegistryFeature" />
@@ -36,11 +46,7 @@
     <FeatureRef Id="CQMLParadigmFeature" />
     <FeatureRef Id="CoSMICCommonFeature" />
     <FeatureRef Id="vc_merge_modules" />
-
-    <!-- UI -->
-    <UIRef Id="WixUI_Mondo" />
-    <UIRef Id="WixUI_ErrorProgressText" />
-
+    
     <InstallExecuteSequence>
     <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
