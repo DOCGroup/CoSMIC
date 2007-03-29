@@ -1,3 +1,17 @@
+Thu Mar 29 17:47:49 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+        * PSM/CQML/paradigms/icons/BandedConnection.bmp:
+        * PSM/CQML/paradigms/icons/Lanes.bmp:
+        * PSM/CQML/paradigms/icons/ThreadPool.bmp:
+
+          Reduced the icon size, fixed CQML so that RTModel elements show up
+          in final CQML model.
+
 Thu Mar 29 08:00:31 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
