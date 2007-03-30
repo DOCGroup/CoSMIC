@@ -1,3 +1,24 @@
+Fri Mar 30 05:10:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * docs/License.rtf:
+
+          Moved from $CUTS_ROOT/install
+
+        * install/CUTS_CoSMIC.wxs:
+
+          Updated user interface Wix variables.
+
+        * install/images:
+
+          The old Bitmaps directory.
+
+        * install/Bitmaps:
+        * install/Bitmaps/bannrbmp.bmp:
+        * install/Bitmaps/dlgbmp.bmp:
+        * install/License.rtf:
+
+          Removed these files.
+
 Fri Mar 30 05:01:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW_installers.mpc:

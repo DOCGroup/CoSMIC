@@ -14,9 +14,9 @@
              SummaryCodepage='1252' />
 
     <!-- Wix variables -->
-    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
-    <WixVariable Id="WixUIBannerBmp"  Value="Bitmaps\bannrbmp.bmp" />
-    <WixVariable Id="WixUIDialogBmp"  Value="Bitmaps\dlgbmp.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(env.CUTS_ROOT)\docs\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp"  Value="images\bannrbmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp"  Value="images\dlgbmp.bmp" />
 
 <!--
     <Property Id="PICML_INSTALLED">
