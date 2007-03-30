@@ -1,3 +1,21 @@
+USER VISIBLE CHANGES IN CUTS AFTER REVISION 1287
+====================================================
+
+. On non-Windows environments, all library files are
+  placed in $CUTS_ROOT/lib. On Windows environments,
+  all .dll files are placed in $CUTS_ROOT/bin and all
+  .lib files are placed in $CUTS_ROOT/lib.
+
+. The libraries files for all appstrings built using
+  CUTS are placed in $APP_ROOT/lib, where APP_ROOT is
+  the root directory for the generated source files.
+  This is also the same directory where the .mwc file
+  for the appstring(s) is generated.
+
+. Added a new menu option to the CUTS interpreter that
+  allows auto-generation of all the proxy components and
+  assemblies in a PICML model.
+
 USER VISIBLE CHANGES IN CUTS AFTER REVISION 1200
 ====================================================
 

@@ -1,3 +1,9 @@
+Fri Mar 30 00:29:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * NEWS:
+
+          Updated the NEWS file.
+
 Fri Mar 30 00:19:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.inl:
