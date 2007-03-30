@@ -1,3 +1,21 @@
+Fri Mar 30 19:24:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added QoS characteristics and behavior in the WSM component type.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+
+          Fixed a use of local classes inside a function, which VC71 does
+          not seem to like.
+
+        * PSM/CQML/paradigms/icons/assembly_qos.bmp:
+        * PSM/CQML/paradigms/icons/component_qos.bmp:
+        * PSM/CQML/paradigms/icons/ns_qos.bmp:
+        * PSM/CQML/paradigms/icons/port_qos.bmp:
+
+          Added cool icons for SecurityQoS and NetQoS.
+
 Fri Mar 30 02:49:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

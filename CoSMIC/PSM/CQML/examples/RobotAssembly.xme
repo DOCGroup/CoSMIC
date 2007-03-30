@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{24CFAAD8-F1A4-42B2-B86D-3C6FAC16B5A4}" cdate="Wed Mar 28 17:22:19 2007" mdate="Wed Mar 28 17:22:19 2007" version="" metaguid="{AAF4FD65-3993-441B-929B-7C00DC9D63B3}" metaversion="" metaname="CQML">
+<project guid="{E8C45F0F-13E3-4957-895E-4052B487F8A7}" cdate="Wed Mar 28 17:22:19 2007" mdate="Wed Mar 28 17:22:19 2007" version="" metaguid="{D468514E-9372-4876-813F-D3BB5E7C5402}" metaversion="" metaname="CQML">
 	<name>RobotAssembly</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x13" kind="RootFolder" guid="{90436B6F-88E4-4c18-B251-7539622C12D1}">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x14" kind="RootFolder" guid="{90436B6F-88E4-4c18-B251-7539622C12D1}">
 		<name>RobotAssembly</name>
 		<folder id="id-006a-00000002" relid="0x3" childrelidcntr="0x2" kind="InterfaceDefinitions" guid="{0A9BD48F-FBA6-4e61-ACD9-6623D10A6ACA}">
 			<name>InterfaceDefinitions</name>
@@ -2815,7 +2815,7 @@
 							</attribute>
 						</reference>
 					</model>
-					<model id="id-0065-00000049" kind="Component" role="Component" guid="{BC6DFC5C-7967-4fd3-801A-238DC602AFCD}" relid="0x2" childrelidcntr="0x4f">
+					<model id="id-0065-00000049" kind="Component" role="Component" guid="{BC6DFC5C-7967-4fd3-801A-238DC602AFCD}" relid="0x2" childrelidcntr="0x50">
 						<name>WatchSettingManager</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -4179,7 +4179,7 @@
 			<name>Implementations</name>
 			<model id="id-0065-00000053" kind="ComponentImplementationContainer" guid="{CA9F7BAC-8DDE-41af-B0DB-003B9B714883}" relid="0x1" childrelidcntr="0x2">
 				<name>RobotAssemblyImplementation</name>
-				<model id="id-0065-00000054" kind="ComponentAssembly" role="ComponentAssembly" guid="{FF02C1C1-332B-4e6b-9E2C-97F549D6BBE0}" relid="0x2" childrelidcntr="0x4d">
+				<model id="id-0065-00000054" kind="ComponentAssembly" role="ComponentAssembly" guid="{FF02C1C1-332B-4e6b-9E2C-97F549D6BBE0}" relid="0x2" childrelidcntr="0x4f">
 					<name>RobotAssembly</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4205,14 +4205,16 @@
 					<regnode name="annotations" status="undefined">
 						<value></value>
 						<regnode name="Annotation0" isopaque="yes">
-							<value>Dependability QoS characteristic</value>
+							<value>Dependability QoS 
+Characteristics
+# of Replica = 2</value>
 							<regnode name="aspects" isopaque="yes">
 								<value>667,61</value>
 								<regnode name="*" isopaque="yes">
 									<value>DefaultVisibility</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>580,132</value>
+									<value>616,59</value>
 								</regnode>
 							</regnode>
 							<regnode name="bgcolor" isopaque="yes">
@@ -4226,14 +4228,16 @@
 							</regnode>
 						</regnode>
 						<regnode name="Annotation1" isopaque="yes">
-							<value>Network QoS characteristic</value>
+							<value>Network QoS 
+Characteristics
+Traffic = High Priority</value>
 							<regnode name="aspects" isopaque="yes">
 								<value>656,481</value>
 								<regnode name="*" isopaque="yes">
 									<value>DefaultVisibility</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>547,438</value>
+									<value>653,434</value>
 								</regnode>
 							</regnode>
 							<regnode name="bgcolor" isopaque="yes">
@@ -4247,14 +4251,40 @@
 							</regnode>
 						</regnode>
 						<regnode name="Annotation2" isopaque="yes">
-							<value>Security QoS for a port</value>
+							<value>Security QoS
+Characteristics
+KeyLength = 1024</value>
 							<regnode name="aspects" isopaque="yes">
 								<value>175,517</value>
 								<regnode name="*" isopaque="yes">
 									<value>DefaultVisibility</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>111,494</value>
+									<value>93,492</value>
+								</regnode>
+							</regnode>
+							<regnode name="bgcolor" isopaque="yes">
+								<value>0xffff00</value>
+							</regnode>
+							<regnode name="hidden" isopaque="yes">
+								<value>0</value>
+							</regnode>
+							<regnode name="inheritable" isopaque="yes">
+								<value>0</value>
+							</regnode>
+						</regnode>
+						<regnode name="Annotation3" isopaque="yes">
+							<value>Timeliness 
+Characteristics
+WCET = 500ms
+Priority = 1</value>
+							<regnode name="aspects" isopaque="yes">
+								<value>139,79</value>
+								<regnode name="*" isopaque="yes">
+									<value>DefaultVisibility</value>
+								</regnode>
+								<regnode name="QoS" isopaque="yes">
+									<value>109,57</value>
 								</regnode>
 							</regnode>
 							<regnode name="bgcolor" isopaque="yes">
@@ -4398,7 +4428,7 @@
 							<regnode name="QoS" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>383,68</value>
+									<value>383,54</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -4535,7 +4565,7 @@
 								<regnode name="Behavior" status="undefined">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>230,349</value>
+										<value>202,321</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -4733,7 +4763,7 @@
 								<regnode name="Behavior" status="undefined">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>258,377</value>
+										<value>230,349</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -4814,7 +4844,7 @@
 								<regnode name="Behavior" status="undefined">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>223,125</value>
+										<value>230,118</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -5220,7 +5250,7 @@
 							<regnode name="QoS" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>593,173</value>
+									<value>677,159</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -5270,7 +5300,7 @@
 							<regnode name="QoS" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>135,436</value>
+									<value>135,411</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -5298,6 +5328,36 @@
 						<attribute kind="SecurityPolicy" status="meta">
 							<value>SecureInvocationPolicy</value>
 						</attribute>
+					</model>
+					<model id="id-0065-000000bf" kind="RealTimeConfiguration" role="RealTimeConfiguration" guid="{10565961-D713-4f04-818F-7FDA9045AB65}" relid="0x4e" childrelidcntr="0x1">
+						<name>RealTimeConfiguration</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>137,158</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<atom id="id-0066-00000078" kind="PriorityModelPolicy" role="PriorityModelPolicy" guid="{B4604FF3-6DCD-4124-991E-548488010470}" relid="0x1">
+							<name>PriorityModelPolicy</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="QoS" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>240,268</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="priority_model" status="meta">
+								<value>CLIENT_PROPAGATED</value>
+							</attribute>
+							<attribute kind="priority_value" status="meta">
+								<value>0</value>
+							</attribute>
+						</atom>
 					</model>
 					<atom id="id-0066-00000055" kind="QoSConnector" role="QoSConnector" guid="{5084F053-51D3-42eb-AED3-870E8CED16D1}" relid="0x2f">
 						<name>QoSConnector</name>
@@ -5402,7 +5462,7 @@
 							<regnode name="QoS" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>559,384</value>
+									<value>580,433</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -5615,6 +5675,14 @@
 						</regnode>
 						<connpoint role="dst" target="id-0065-000000a0"/>
 						<connpoint role="src" target="id-0067-00000041"/>
+					</connection>
+					<connection id="id-0068-000000bd" kind="ComponentQoS" role="ComponentQoS" guid="{45117740-846B-448f-B96D-4DF097A0B17D}" relid="0x4f">
+						<name>ComponentQoS</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>Ne</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000058"/>
+						<connpoint role="dst" target="id-0065-000000bf"/>
 					</connection>
 				</model>
 			</model>
