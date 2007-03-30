@@ -14,7 +14,7 @@ workspace {
   FaultToleranceComponent
   EventBus
   EventBusComponent
-  RTConfig
+//  RTConfig
   RTSchedulability
   RTSchedulabilityComponent
 }
