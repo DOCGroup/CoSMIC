@@ -465,3 +465,43 @@ bool CUTS_DB_Service::get_component_typeid (const char * type,
 
   return false;
 }
+
+//
+// set_test_uuid
+//
+bool CUTS_DB_Service::set_test_uuid (long test, const char * uuid)
+{
+  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
+
+  if (query.get () == 0)
+    return false;
+
+  try
+  {
+    // Prepare a SQL query for execution.
+    const char * query_stmt =
+      "UPDATE tests SET test_uuid = ? WHERE test_number = ?";
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (const_cast <char *> (uuid), 0);
+    query->parameter (1)->bind (&test);
+
+    // Execute the query.
+    query->execute_no_record ();
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_test_uuid): %s\n",
+                ex.message ().c_str ()));
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_test_uuid): caught unknown exception\n"));
+  }
+
+  return false;
+}
+

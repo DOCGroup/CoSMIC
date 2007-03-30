@@ -476,3 +476,20 @@ handle_component (const CUTS_Component_Info & info)
 
   return 0;
 }
+
+//
+// handle_activate
+//
+int CUTS_Database_Service::handle_activate (void)
+{
+  // Create a new test in the database.
+  if (!this->create_new_test ())
+    return -1;
+
+  // Associate that test with the UUID of the service manager.
+  bool retval = this->set_test_uuid (this->test_number_,
+                                     this->svc_mgr ()->get_uuid ().c_str ());
+
+  return retval ? 0 : -1;
+}
+

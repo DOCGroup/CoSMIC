@@ -150,6 +150,16 @@ public:
   bool get_hostid_by_hostname (const char * hostname,
                                long * hostid);
 
+  /**
+   * Set the UUID for the current test.
+   *
+   * @param[in]     test        The target test number.
+   * @param[in]     uuid        The UUID for the test.
+   * @retval        true        Succeeded to set the UUID.
+   * @retval        false       Failed to set the UUID.
+   */
+  bool set_test_uuid (long test, const char * uuid);
+
 protected:
   ODBC_Query * create_query (void);
 

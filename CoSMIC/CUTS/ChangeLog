@@ -1,3 +1,18 @@
+Fri Mar 30 00:19:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.inl:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          The UUID of the service manager is stored in the target
+          database (i.e., associated with the current test) after the
+          service is activated.
+
+        * cuts/svcs/dbase/DB_Service.h:
+        * cuts/svcs/dbase/DB_Service.cpp:
+
+          Added method (set_test_uuid) for associating a UUID with a
+          particular test number.
+
 Thu Mar 29 22:01:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cosmic_lib.mpb:
