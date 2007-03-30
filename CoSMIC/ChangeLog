@@ -1,3 +1,12 @@
+Fri Mar 30 19:44:15 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Removed RTConfig interpreter from CQML Interpreters build.
+          This interpreter requires namespace support in CQML, which
+          will cause other interpreters to fail.
+
+
 Fri Mar 30 19:24:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/examples/RobotAssembly.xme:
