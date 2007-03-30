@@ -1,3 +1,36 @@
+Fri Mar 30 05:01:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW_installers.mpc:
+
+          - Changed Wix_Files to Wxs_Files.
+          - Added Merge_Modules.wxs to the project.
+
+        * install/CUTS_CoSMIC_installers.mpc:
+
+          Changed Wix_Files to Wxs_Files.
+
+        * install/CUTS_CoSMIC.wxs:
+
+          - Changed the installer version to 150.
+          - Remove the component references to UDM and Xerces.
+
+        * install/CUTS_PICML.wxs:
+
+          - Removed all merge module features.
+          - Compressed the registry specifications.
+
+        * install/Merge_Modules.wxs:
+
+          Added a file for the merge modules.
+
+        * install/installers.mwc:
+
+          This was the old CUTS_installer.mwc file.
+
+        * install/CUTS_installers.mwc:
+
+          Removed this file.
+
 Fri Mar 30 00:29:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * NEWS:

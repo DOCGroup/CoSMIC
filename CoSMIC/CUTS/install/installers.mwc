@@ -1,7 +1,7 @@
 // $Id$
 
-workspace (CUTS_installers) {
-  cmdline += -include $CUTS_ROOT/etc/config
+workspace (installers) {
+  cmdline += -include $COSMIC_ROOT/MPC/config
 
   exclude (!vc71, !vc8) {
     CUTS_CoSMIC_installers.mpc

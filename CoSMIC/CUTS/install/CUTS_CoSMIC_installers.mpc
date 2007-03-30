@@ -2,13 +2,13 @@
 
 project (CUTS_CoSMIC) : wix {
   specific {
-    wix_flags += -ext WixUIExtension
+    wix_flags   += -ext WixUIExtension
     light_flags += -ext WixUIExtension -cultures:en-us
   }
 
-  Wix_Files {
+  Wxs_Files {
     CUTS_PICML.wxs
     CUTS_CoSMIC.wxs
-    $(COSMIC_ROOT)/Installer/CoSMIC_common.wxs
+    Merge_Modules.wxs
   }
 }

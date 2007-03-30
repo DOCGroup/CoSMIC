@@ -10,7 +10,7 @@
     <Package Keywords='Installer'
              Description='CUTS Modeling Tools for CoSMIC'
              Manufacturer='DOC Group, ISIS, Vanderbilt University'
-             InstallerVersion='100' Languages='1033' Compressed='yes'
+             InstallerVersion='150' Languages='1033' Compressed='yes'
              SummaryCodepage='1252' />
 
     <!-- Wix variables -->
@@ -18,24 +18,28 @@
     <WixVariable Id="WixUIBannerBmp"  Value="Bitmaps\bannrbmp.bmp" />
     <WixVariable Id="WixUIDialogBmp"  Value="Bitmaps\dlgbmp.bmp" />
 
-    <!-- properties -->
+<!--
     <Property Id="PICML_INSTALLED">
-      <RegistrySearch Id="PICML_version" Root="HKLM" Type="raw"
+      <RegistrySearch Id="PICML_version" Root="HKCU" Type="raw"
                       Key="SOFTWARE\GME\Paradigms\PICML" Name="CurrentVersion" />
     </Property>
 
-    <!-- installation conditions -->
-    <Condition Message='CUTS modeling tools requires CoSMIC to be installed'>
+    <Condition Message='CUTS modeling tools requires CoSMIC to be installed first'>
       PICML_INSTALLED</Condition>
+-->
 
     <!-- installation media -->
     <Media Id="1" Cabinet="CUTS_CoSMIC.cab" EmbedCab="yes" />
 
     <Directory Id='TARGETDIR' Name='SourceDir'>
-      <Directory Id="WindowsFolder" Name="WINDOWS" />
+      <Directory Id="SystemFolder" />
+
       <Directory Id="ProgramFilesFolder" Name="PFiles">
-        <Directory Id="INSTALLDIR" Name="CoSMIC">
-          <Directory Id="bin" Name="bin">
+        <Directory Id="ISIS" Name="ISIS">
+          <Directory Id="CoSMIC" Name="CoSMIC">
+            <Directory Id="INSTALLDIR" Name="CUTS">
+              <Directory Id="bin" Name="bin" />
+            </Directory>
           </Directory>
         </Directory>
       </Directory>
@@ -47,13 +51,12 @@
              Description="Installs the default CUTS modeling tools for CoSMIC"
              Level="1" ConfigurableDirectory="INSTALLDIR"
              AllowAdvertise="no">
+
       <!-- gather all the CUTS related components -->
       <ComponentRef Id="CUTS_PICML" />
 
       <!-- components from CoSMIC_common -->
-      <ComponentRef Id="CoSMIC_utils" />
-      <ComponentRef Id="PICML" />
-      <ComponentRef Id="UDM_3_1_1" />
+      <ComponentRef Id="CoSMIC_common" />
 
       <!-- include the VC merge modules -->
       <FeatureRef Id="vc_merge_modules" />

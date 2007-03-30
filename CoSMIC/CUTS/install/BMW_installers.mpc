@@ -10,7 +10,7 @@ project (BMW) : wix {
     light_flags += -ext WixUIExtension -ext WixIisExtension -cultures:en-us
   }
 
-  Wix_Files {
+  Wxs_Files {
     BMW.wxs
   }
 }
