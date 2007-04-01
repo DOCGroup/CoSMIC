@@ -168,7 +168,7 @@ namespace CQML
 
   void NetQoSVisitor::Visit_QoSCharRef(const QoSCharRef &qc_ref)
     {
-      QoSCharacteristic qos_char = recursive_dereference(qc_ref);
+      QoSCharacteristicBase qos_char = recursive_dereference(qc_ref);
       if (Udm::null != qos_char && 
 		  Udm::IsDerivedFrom (qos_char.type(), NetQoS::meta))
         {
@@ -178,7 +178,7 @@ namespace CQML
         }
      }
 
-  QoSCharacteristic NetQoSVisitor::recursive_dereference (const QoSCharacteristic &qos_char, int depth)
+  QoSCharacteristicBase NetQoSVisitor::recursive_dereference (const QoSCharacteristicBase &qos_char, int depth)
   {
 	  // CQML's generic QoSModeling makes cycles of references possible including
 	  // self-referencing. This is actually unfortunate but I am living it for now!
@@ -191,7 +191,7 @@ namespace CQML
 	  if (Udm::IsDerivedFrom (qos_char.type(), QoSCharRef::meta))
 	  {
 		  QoSCharRef qos_char_ref = QoSCharRef::Cast (qos_char);
-		  QoSCharacteristic qc = qos_char_ref.ref();
+		  QoSCharacteristicBase qc = qos_char_ref.ref();
 		  // Self-refereing references are also possible in CQML.
 		  // This is actually unfortunate but I am living it for now!
 		  // Therefore, a sanity-check is necessary below.
@@ -261,24 +261,12 @@ namespace CQML
         }
   }
 
-  void NetQoSVisitor::conn_qoschar_visit (const ConnectionQoSCharacteristic & conn_qoschar)
+  template <class ConnQoS>
+  void NetQoSVisitor::conn_qoschar_visit (const ConnQoS &cq)
     {
-/*		QoSCharacteristicBase base_qos;
-		if (Udm::IsDerivedFrom (qoschar_base.type (), QoSCharRef::meta ))
-		{
-			QoSCharRef qos_char_ref = QoSCharRef::Cast (qoschar_base);
-			QoSCharacteristic qos_char = qos_char_ref.ref ();
-			base_qos = QoSCharacteristicBase::Cast (qos_char);
-		}
-		else
-			base_qos = qoschar_base;
-*/
-		if (Udm::IsDerivedFrom (conn_qoschar.type (), ConnectionQoSCharacteristic::meta ))
-		  {
-  			  accept_each_src (conn_qoschar, QoSReq, QoSConnector, *this);
-			  std::set <PortQoS> port_qos_set = conn_qoschar.srcPortQoS ();
-			  accept_each (port_qos_set, *this);
-		  }
+		accept_each_src (cq, QoSReq, QoSConnector, *this);
+    	std::set <PortQoS> port_qos_set = cq.srcPortQoS ();
+		accept_each (port_qos_set, *this);
     }
 
   template <typename PortType, typename ConnectionType, typename QoSConnectorRet, typename ConnSetRet>
