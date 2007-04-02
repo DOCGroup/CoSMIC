@@ -1,3 +1,22 @@
+Mon Apr  2 18:49:54 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed RTRequirements sheet, separated client and
+          server component requirements. Requirements expressed
+          as more abstract models.
+
+        * PIM/PICML/paradigms/icons/consumer.bmp:
+        * PIM/PICML/paradigms/icons/multiinvocations.bmp:
+        * PIM/PICML/paradigms/icons/provider.bmp:
+        * PIM/PICML/paradigms/icons/rtrequirements.bmp:
+        * PIM/PICML/paradigms/icons/servicelevels.bmp:
+
+          Added icons for the newly added RtRequirements elements.
+
 Sun Apr  1 07:10:37 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
@@ -10,7 +29,7 @@ Sun Apr  1 07:10:37 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-          Fixed the redundant inheritance of QoSCharacteristicBase and 
+          Fixed the redundant inheritance of QoSCharacteristicBase and
           connections to ComponentQoS, AssemblyQoS, PortQoS, and ConnectionQoS.
 
         * PSM/CQML/paradigms/icons/port_qos.bmp:
