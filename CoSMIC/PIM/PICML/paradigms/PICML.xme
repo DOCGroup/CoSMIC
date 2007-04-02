@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1287EBC6-A65A-4B96-A810-C13CBF9BF554}" cdate="Wed Mar 21 17:16:00 2007" mdate="Wed Mar 21 17:16:00 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{9DB8ED3C-96B5-4F92-B70E-BD50467D7428}" cdate="Mon Apr 02 08:47:21 2007" mdate="Mon Apr 02 08:47:21 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2147,8 +2147,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -9665,6 +9665,9 @@ dName = dstMultiInput</value>
 						<regnode name="RTConfiguration" isopaque="yes">
 							<value>3878</value>
 						</regnode>
+						<regnode name="RTRequirements" isopaque="yes">
+							<value>3959</value>
+						</regnode>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>2909</value>
 						</regnode>
@@ -9928,12 +9931,30 @@ dName = dstMultiInput</value>
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="RTReq" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="RTRequirements" isopaque="yes">
+							<value>3961</value>
+						</regnode>
+						<regnode name="ServiceProvider" isopaque="yes">
+							<value>3964</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="RealTimeRequirement" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" status="undefined">
 						<value></value>
 						<regnode name="RTConfiguration" isopaque="yes">
 							<value>3880</value>
+						</regnode>
+						<regnode name="ServiceConsumer" isopaque="yes">
+							<value>3941</value>
+						</regnode>
+						<regnode name="ServiceProvider" isopaque="yes">
+							<value>3945</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -10049,7 +10070,7 @@ dName = dstMultiInput</value>
 					<value>12</value>
 				</regnode>
 				<regnode name="EventChannelRequirement" isopaque="yes">
-					<value>13</value>
+					<value>12</value>
 				</regnode>
 				<regnode name="FT" isopaque="yes">
 					<value>14</value>
@@ -10101,6 +10122,9 @@ dName = dstMultiInput</value>
 				</regnode>
 				<regnode name="QosModelAspectProxy" isopaque="yes">
 					<value>16</value>
+				</regnode>
+				<regnode name="RTReq" isopaque="yes">
+					<value>13</value>
 				</regnode>
 				<regnode name="RealTimeRequirement" isopaque="yes">
 					<value>12</value>
@@ -15339,6 +15363,12 @@ dName = dstMultiInput</value>
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="RTRequirements:Property" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="RepGRequirement:Property" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -15684,6 +15714,15 @@ dName = dstMultiInput</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Property" isopaque="yes">
+							<value>3956</value>
+							<regnode name="Packaging" isopaque="yes">
+								<value>3960</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="RepGRequirement" status="undefined">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
@@ -15954,6 +15993,12 @@ dName = dstMultiInput</value>
 							<value>yes</value>
 						</regnode>
 						<regnode name="PkgConfPackaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="RTRequirements:Property" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
 							<value>yes</value>
 						</regnode>
 					</regnode>
@@ -34382,6 +34427,36 @@ dName = dstMultiInput</value>
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="MultipleServiceRequests-19-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3936</value>
+					<regnode name="RTConfiguration" status="undefined">
+						<value></value>
+						<regnode name="MultipleServiceRequests" isopaque="yes">
+							<value>3946</value>
+						</regnode>
+					</regnode>
+					<regnode name="ServiceProvider" status="undefined">
+						<value></value>
+						<regnode name="MultipleServiceRequests" isopaque="yes">
+							<value>3943</value>
+							<regnode name="RTReq" isopaque="yes">
+								<value>3965</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="ServiceProvider:MultipleServiceRequests" status="undefined">
+						<value></value>
+						<regnode name="RTReq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="Multithreading-2-Atom" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
@@ -34499,10 +34574,208 @@ dName = dstMultiInput</value>
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="RTRequirements-4-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="ArtifactContainer:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="ComponentAssembly:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="PackageConfigurationContainer:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3955</value>
+					<regnode name="ArtifactContainer" status="undefined">
+						<value></value>
+						<regnode name="RTRequirements" isopaque="yes">
+							<value>3949</value>
+							<regnode name="Packaging" isopaque="yes">
+								<value>3950</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="ComponentAssembly" status="undefined">
+						<value></value>
+						<regnode name="RTRequirements" isopaque="yes">
+							<value>3951</value>
+							<regnode name="Packaging" isopaque="yes">
+								<value>3952</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="PackageConfigurationContainer" status="undefined">
+						<value></value>
+						<regnode name="RTRequirements" isopaque="yes">
+							<value>3953</value>
+							<regnode name="Packaging" isopaque="yes">
+								<value>3954</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="ArtifactContainer:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="ComponentAssembly:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="PackageConfigurationContainer:RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="ServiceConsumer-15-Model" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3940</value>
+					<regnode name="RTConfiguration" status="undefined">
+						<value></value>
+						<regnode name="ServiceConsumer" isopaque="yes">
+							<value>3938</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="ServiceConsumer-38-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3948</value>
+					<regnode name="RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="ServiceConsumer" isopaque="yes">
+							<value>3957</value>
+							<regnode name="RTReq" isopaque="yes">
+								<value>3962</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="RTRequirements:ServiceConsumer" status="undefined">
+						<value></value>
+						<regnode name="RTReq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="ServiceLevels-1a-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3937</value>
+					<regnode name="RTConfiguration" status="undefined">
+						<value></value>
+						<regnode name="ServiceLevels" isopaque="yes">
+							<value>3947</value>
+						</regnode>
+					</regnode>
+					<regnode name="ServiceProvider" status="undefined">
+						<value></value>
+						<regnode name="ServiceLevels" isopaque="yes">
+							<value>3944</value>
+							<regnode name="RTReq" isopaque="yes">
+								<value>3966</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="ServiceProvider:ServiceLevels" status="undefined">
+						<value></value>
+						<regnode name="RTReq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="ServiceProvider-16-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="RTRequirements:ServiceProvider" status="undefined">
+						<value></value>
+						<regnode name="RTReq" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3942</value>
+					<regnode name="RTConfiguration" status="undefined">
+						<value></value>
+						<regnode name="ServiceProvider" isopaque="yes">
+							<value>3939</value>
+						</regnode>
+					</regnode>
+					<regnode name="RTRequirements" status="undefined">
+						<value></value>
+						<regnode name="ServiceProvider" isopaque="yes">
+							<value>3958</value>
+							<regnode name="RTReq" isopaque="yes">
+								<value>3963</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="RTRequirements:ServiceProvider" status="undefined">
+						<value></value>
+						<regnode name="RTReq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="buffer_service_requests-22-BooleanAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3929</value>
+				</regnode>
+			</regnode>
+			<regnode name="fixed_prioirty_service_execution-1d-BooleanAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3930</value>
+				</regnode>
+			</regnode>
 			<regnode name="initial_thread_number-6-FieldAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3826</value>
+				</regnode>
+			</regnode>
+			<regnode name="maximum_simultaneous_service_level-5-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3931</value>
 				</regnode>
 			</regnode>
 			<regnode name="maximum_thread_number-7-FieldAttribute" status="undefined">
@@ -34511,16 +34784,40 @@ dName = dstMultiInput</value>
 					<value>3827</value>
 				</regnode>
 			</regnode>
+			<regnode name="minimum_simultaneous_service_level-7-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3932</value>
+				</regnode>
+			</regnode>
+			<regnode name="prioritize_service_invocations-8-BooleanAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3933</value>
+				</regnode>
+			</regnode>
 			<regnode name="require_banding-8-BooleanAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3828</value>
 				</regnode>
 			</regnode>
+			<regnode name="simultaneous_service_execution-21-BooleanAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3934</value>
+				</regnode>
+			</regnode>
 			<regnode name="thread_priority-5-FieldAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3829</value>
+				</regnode>
+			</regnode>
+			<regnode name="varying_service_levels-1f-BooleanAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>3935</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -41874,8 +42171,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000064"/>
 				<connpoint role="src" target="id-0066-00000064"/>
+				<connpoint role="dst" target="id-0066-00000064"/>
 			</connection>
 			<connection id="id-0068-000000a7" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -85185,8 +85482,8 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000227"/>
 				<connpoint role="dst" target="id-0066-00000227"/>
+				<connpoint role="src" target="id-0066-00000227"/>
 			</connection>
 			<connection id="id-0068-0000037c" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>
@@ -87225,7 +87522,7 @@ GroupAND</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000001f" kind="ParadigmSheet" guid="{D0D69091-4D99-4e14-88EB-8FEE461ADF25}" relid="0xb" childrelidcntr="0x13">
+		<model id="id-0065-0000001f" kind="ParadigmSheet" guid="{D0D69091-4D99-4e14-88EB-8FEE461ADF25}" relid="0xb" childrelidcntr="0x3b">
 			<name>RealTimeRequirements</name>
 			<atom id="id-0066-0000024a" kind="Inheritance" role="Inheritance" guid="{5CE40A5C-DC6B-4371-8EAE-2E15C34C0585}" relid="0x1">
 				<name>Inheritance</name>
@@ -87240,193 +87537,49 @@ GroupAND</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>493,166</value>
+							<value>493,89</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>471,296</value>
+							<value>444,271</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>458,285</value>
+							<value>444,271</value>
 						</regnode>
 					</regnode>
 				</regnode>
-			</atom>
-			<atom id="id-0066-0000024b" kind="Atom" role="Atom" guid="{4AD3CF96-9858-4ab3-AE55-EC90789B00F1}" relid="0x2">
-				<name>Multithreading</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>652,109</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>582,347</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>484,277</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>484,277</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-0000024c" kind="Atom" role="Atom" guid="{024DF5BA-B1A8-4383-8D9A-92C7E355C215}" relid="0x3">
-				<name>Connections</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>99,153</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>281,348</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>162,257</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>170,268</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
 			</atom>
 			<atom id="id-0066-0000024d" kind="Model" role="Model" guid="{E9145D02-01BA-46e3-89F5-2F4385B3430A}" relid="0x4">
-				<name>RTConfiguration</name>
+				<name>RTRequirements</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>464,240</value>
+							<value>407,181</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>449,216</value>
+							<value>449,139</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>464,240</value>
+							<value>407,181</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,209</value>
+							<value>407,181</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -87439,8 +87592,8 @@ GroupAND</value>
 				<attribute kind="GeneralPreferences" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
+				<attribute kind="Icon">
+					<value>rtrequirements.bmp</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -87477,13 +87630,13 @@ GroupAND</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-0000024e" kind="FieldAttribute" role="FieldAttribute" guid="{73DB207A-1931-4a97-8DC5-169AA875FB40}" relid="0x5">
-				<name>thread_priority</name>
+				<name>maximum_simultaneous_service_level</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>834,251</value>
+							<value>659,818</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -87519,7 +87672,7 @@ GroupAND</value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>617,244</value>
+							<value>554,181</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -87549,13 +87702,13 @@ GroupAND</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000250" kind="FieldAttribute" role="FieldAttribute" guid="{1E321EAE-0E1B-4efc-B1C6-117F09A61F67}" relid="0x7">
-				<name>maximum_thread_number</name>
+				<name>minimum_simultaneous_service_level</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>694,335</value>
+							<value>463,748</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -87581,17 +87734,263 @@ GroupAND</value>
 					<value>1</value>
 				</attribute>
 				<attribute kind="Prompt">
-					<value>The maximum number of threads </value>
+					<value></value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000251" kind="BooleanAttribute" role="BooleanAttribute" guid="{88522CDE-4E41-4f15-99C9-52B6311E673E}" relid="0x8">
-				<name>require_banding</name>
+				<name>prioritize_service_invocations</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>43,293</value>
+							<value>274,447</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="BooleanDefault">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000254" kind="Model" role="Model" guid="{4F345263-FC7D-473a-9A90-D9F7AA67EFD2}" relid="0x16">
+				<name>ServiceProvider</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>667,352</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>666,264</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>667,352</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>667,352</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>provider.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000257" kind="Atom" role="Atom" guid="{3FC0C736-9958-45a1-AF2A-632E823ECCF4}" relid="0x19">
+				<name>MultipleServiceRequests</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>519,544</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>561,424</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>576,492</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>519,543</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>multiinvocations.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000258" kind="Atom" role="Atom" guid="{38D15311-D8BA-40c2-BE7B-0ADEE57CCC19}" relid="0x1a">
+				<name>ServiceLevels</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>758,478</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>883,383</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>758,478</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>758,478</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>servicelevels.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000025a" kind="BooleanAttribute" role="BooleanAttribute" guid="{814D1AED-F5B8-4a82-B2F6-454F2C4DAD2B}" relid="0x1d">
+				<name>fixed_prioirty_service_execution</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>372,657</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -87607,8 +88006,161 @@ GroupAND</value>
 				<attribute kind="IsViewable" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="Prompt">
-					<value>Clients require banded connections, i.e. separate connection for a request.</value>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000025b" kind="BooleanAttribute" role="BooleanAttribute" guid="{2A4DFABD-8A19-403a-B317-390599F05AB2}" relid="0x1f">
+				<name>varying_service_levels</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>785,559</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="BooleanDefault">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000025c" kind="BooleanAttribute" role="BooleanAttribute" guid="{0D477AEE-1B6C-45ab-92A8-20E8D4E67E28}" relid="0x21">
+				<name>simultaneous_service_execution</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>611,681</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="BooleanDefault">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000025d" kind="BooleanAttribute" role="BooleanAttribute" guid="{DD9364E4-51EF-42f9-BB57-709F08F49AD4}" relid="0x22">
+				<name>buffer_service_requests</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>715,748</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="BooleanDefault">
+					<value>true</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000025e" kind="Atom" role="Atom" guid="{70D00F6C-16E0-4e11-BACE-A605965D8BD9}" relid="0x38">
+				<name>ServiceConsumer</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>338,373</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>330,265</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>338,373</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>338,373</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>consumer.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
 				</attribute>
 			</atom>
 			<reference id="id-0067-00000061" kind="ModelProxy" role="ModelProxy" guid="{9E59012A-55BE-4129-983B-1A2F1E0A5FE7}" relid="0x9" referred="id-0066-0000010f">
@@ -87624,7 +88176,7 @@ GroupAND</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>442,62</value>
+							<value>442,20</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -87702,72 +88254,6 @@ GroupAND</value>
 				<connpoint role="src" target="id-0066-0000024a"/>
 				<connpoint role="dst" target="id-0066-0000024d"/>
 			</connection>
-			<connection id="id-0068-000003c6" kind="Containment" role="Containment" guid="{D5AA8425-DCE9-4528-A515-4B5D750EDEB7}" relid="0xc">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-0000024c"/>
-				<connpoint role="dst" target="id-0066-0000024d"/>
-			</connection>
-			<connection id="id-0068-000003c7" kind="Containment" role="Containment" guid="{DC72509C-807C-481e-B571-5A49A218DD7E}" relid="0xd">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-0000024b"/>
-				<connpoint role="dst" target="id-0066-0000024d"/>
-			</connection>
-			<connection id="id-0068-000003c8" kind="HasAttribute" role="HasAttribute" guid="{E9779930-C766-4b1d-A9AF-C183E18C030F}" relid="0xe">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000024c"/>
-				<connpoint role="src" target="id-0066-00000251"/>
-			</connection>
-			<connection id="id-0068-000003c9" kind="HasAttribute" role="HasAttribute" guid="{B7123D0B-75BE-4c24-B670-7314D35840E9}" relid="0xf">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000024b"/>
-				<connpoint role="src" target="id-0066-00000250"/>
-			</connection>
-			<connection id="id-0068-000003ca" kind="HasAttribute" role="HasAttribute" guid="{644B80DC-51C6-4b66-862F-1E5BE0683979}" relid="0x10">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>s</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000024b"/>
-				<connpoint role="src" target="id-0066-0000024f"/>
-			</connection>
-			<connection id="id-0068-000003cb" kind="HasAttribute" role="HasAttribute" guid="{2DF79105-3489-41db-BD02-63C9BBBB47BA}" relid="0x11">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000024b"/>
-				<connpoint role="src" target="id-0066-0000024e"/>
-			</connection>
 			<connection id="id-0068-000003cc" kind="HasAspect" role="HasAspect" guid="{0AACF669-E908-448e-BBF2-0DD627E05DFA}" relid="0x12">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -87776,8 +88262,125 @@ GroupAND</value>
 				<connpoint role="dst" target="id-0066-0000024d"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<set id="id-0069-00000014" kind="Aspect" role="Aspect" guid="{E0F48A0E-E33D-4cc6-A6C5-E1DF98512526}" relid="0x13" members="id-0066-0000024b id-0066-0000024c id-0066-0000024d">
-				<name>RealTimeRequirement</name>
+			<connection id="id-0068-000003cf" kind="HasAttribute" role="HasAttribute" guid="{58C22C5D-E55E-4a18-976F-C5768F1C25CA}" relid="0x20">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>s</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000258"/>
+				<connpoint role="src" target="id-0066-0000025b"/>
+			</connection>
+			<connection id="id-0068-000003d0" kind="HasAttribute" role="HasAttribute" guid="{5A4F0EB7-5E70-4bd1-9653-0586F8114773}" relid="0x23">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000250"/>
+				<connpoint role="dst" target="id-0066-00000257"/>
+			</connection>
+			<connection id="id-0068-000003d1" kind="HasAttribute" role="HasAttribute" guid="{DF96DA56-2B78-4f6f-BF84-1FF5E944A95D}" relid="0x24">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000257"/>
+				<connpoint role="src" target="id-0066-0000025c"/>
+			</connection>
+			<connection id="id-0068-000003d2" kind="HasAttribute" role="HasAttribute" guid="{454F4141-132E-47fc-B525-2C531EA57B6C}" relid="0x25">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000257"/>
+				<connpoint role="src" target="id-0066-0000025d"/>
+			</connection>
+			<connection id="id-0068-000003d3" kind="HasAttribute" role="HasAttribute" guid="{8CA09442-35AD-43db-B105-7E050A287BA0}" relid="0x26">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000024e"/>
+				<connpoint role="dst" target="id-0066-00000257"/>
+			</connection>
+			<connection id="id-0068-000003d4" kind="HasAttribute" role="HasAttribute" guid="{5D367DCB-8AB9-48c6-BCC8-553A43904AD8}" relid="0x27">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0066-0000025a"/>
+			</connection>
+			<connection id="id-0068-000003d8" kind="Containment" role="Containment" guid="{0CF1C57A-D5B6-4827-B6C1-0EDA41687D77}" relid="0x2b">
+				<name>Containment</name>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0066-00000257"/>
+			</connection>
+			<connection id="id-0068-000003db" kind="Containment" role="Containment" guid="{E10DFAAF-83CF-4ce2-AB92-9C4390C06458}" relid="0x2e">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0066-00000258"/>
+			</connection>
+			<connection id="id-0068-000003dd" kind="HasAspect" role="HasAspect" guid="{F18F6FC0-A39F-42ae-B351-3D0D8662E671}" relid="0x30">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Wn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="src" target="id-0069-00000014"/>
+			</connection>
+			<connection id="id-0068-000003e4" kind="Containment" role="Containment" guid="{A9BB6DFF-3938-4ccb-A742-30F6C740C3AD}" relid="0x37">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000024d"/>
+				<connpoint role="src" target="id-0066-00000254"/>
+			</connection>
+			<connection id="id-0068-000003e5" kind="Containment" role="Containment" guid="{678C9745-0186-40e3-919F-10533187D8A6}" relid="0x39">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000024d"/>
+				<connpoint role="src" target="id-0066-0000025e"/>
+			</connection>
+			<connection id="id-0068-000003e7" kind="HasAttribute" role="HasAttribute" guid="{30C54E04-27F8-4309-AAD0-D841E5F9D5C6}" relid="0x3a">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000251"/>
+				<connpoint role="dst" target="id-0066-0000025e"/>
+			</connection>
+			<set id="id-0069-00000014" kind="Aspect" role="Aspect" guid="{E0F48A0E-E33D-4cc6-A6C5-E1DF98512526}" relid="0x13" members="id-0066-0000024d id-0066-00000254 id-0066-00000257 id-0066-00000258 id-0066-0000025e">
+				<name>RTReq</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Visualization" status="undefined">
