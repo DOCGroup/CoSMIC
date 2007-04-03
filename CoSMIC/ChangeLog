@@ -1,3 +1,11 @@
+Tue Apr  3 19:11:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Utils/Utils.mpc:
+        
+          Changed project name from Utils to CoSMIC_Utils to avoid namespace
+          pollution, since MPC doesn't accept duplicate project names
+          anywhere in the tree where it is generating.
+
 Mon Apr  2 18:49:54 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
