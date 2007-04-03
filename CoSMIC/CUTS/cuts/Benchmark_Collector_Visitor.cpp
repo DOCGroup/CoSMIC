@@ -33,6 +33,7 @@ visit_benchmark_agent (const CUTS_Benchmark_Agent & agent)
 
   // Set the size of the sequence.
   this->data_.ports.length (agent.port_agents ().size ());
+
   ::CORBA::ULong index = 0;
 
   for (CUTS_Port_Agent_Set::const_iterator iter = agent.port_agents ().begin ();
@@ -40,7 +41,10 @@ visit_benchmark_agent (const CUTS_Benchmark_Agent & agent)
        iter ++)
   {
     this->active_pm_ = &this->data_.ports[index ++];
+
+    // Visit the port agent then reset it.
     (*iter)->accept (*this);
+    (*iter)->reset ();
   }
 }
 
@@ -50,12 +54,16 @@ visit_benchmark_agent (const CUTS_Benchmark_Agent & agent)
 void CUTS_Benchmark_Collector_Visitor::
 visit_port_agent (const CUTS_Port_Agent & agent)
 {
-  const CUTS_Port_Measurement_Map & pmm = agent.port_measurements ();
+  // Get the current port measurement map.
+  const CUTS_Port_Measurement_Map & pmm =
+    agent.port_measurement_pool ().current ();
 
-  this->active_pm_->port = ::CORBA::string_dup (agent.name ());
-  this->active_pm_->measurements.length (pmm.current_size ());
+  // Initialize the package with information about the port
+  // agent and the number of senders it collected metrics for.
+  this->active_pm_->port = ::CORBA::string_dup (agent.name ().c_str ());
+  this->active_pm_->measurements.length (pmm.size ());
 
-  CUTS_Port_Measurement_Map::const_iterator pmm_iter (pmm);
+  CUTS_Port_Measurement_Map::CONST_ITERATOR pmm_iter (pmm.hash_map ());
 
   ::CORBA::ULong index = 0;
 
@@ -79,7 +87,7 @@ visit_port_measurement (const CUTS_Port_Measurement & measurement)
 {
   // Collect the process and transit times for the port.
   this->active_mpm_->process_time << measurement.process_time ();
-  this->active_mpm_->transit_time << measurement.transit_time ();
+  this->active_mpm_->transit_time << measurement.queuing_time ();
 
   // Collect the exit times for the port.
   this->active_mpm_->exit_times.length (measurement.exit_points ().size ());
@@ -88,7 +96,7 @@ visit_port_measurement (const CUTS_Port_Measurement & measurement)
   ::CORBA::ULong index = 0;
   CUTS_Port_Measurement::Exit_Points::const_iterator iter;
 
-  for (iter = measurement.exit_points ().begin ();
+  for (iter  = measurement.exit_points ().begin ();
        iter != measurement.exit_points ().end ();
        iter ++)
   {

@@ -156,7 +156,6 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
     << function_header (this->object_impl_)
     << this->object_impl_ << "::" << this->object_impl_ << " (void)"
     << "{"
-    << "CUTS_Thread_Activation_Record::init_singleton ();"
     << "}"
 
     << function_header (destructor)
@@ -346,10 +345,8 @@ write_set_session_context (const PICML::Component & component)
     << "  " << scope (component, "::")
     << "CCM_" << component.name () << "_Context::_narrow (ctx);"
     << std::endl
-    << "ACE_CHECK;"
-    << std::endl
     << "if (this->context_ == 0)" << std::endl
-    << "  ACE_THROW (::CORBA::INTERNAL ());"
+    << "  throw ::CORBA::INTERNAL ();"
     << "}";
 }
 
@@ -473,7 +470,6 @@ write_ccm_remove (const PICML::Component & component)
   if (this->auto_env_)
   {
     this->outfile ()
-      << "CUTS_Thread_Activation_Record::fini_singleton ();"
       << "}";
   }
 }
@@ -540,18 +536,7 @@ write_environment_method_end (const PICML::InputAction & action)
     this->env_table_.find (action.name ());
 
   if (iter != this->env_table_.end ())
-  {
-    // The "remove" method has a special operation it must complete
-    // after the component finishes it's regular operations.
-    if ((std::string)action.name () == "remove")
-    {
-      this->outfile ()
-        << "CUTS_Thread_Activation_Record::fini_singleton ();";
-    }
-
-    this->outfile ()
-      << "}";
-  }
+    this->outfile ()  << "}";
 }
 
 //

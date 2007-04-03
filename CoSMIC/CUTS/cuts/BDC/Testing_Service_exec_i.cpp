@@ -30,9 +30,8 @@ namespace CUTS
   //
   // register_component
   //
-  ::CORBA::Long Testing_Service_exec_i::register_component (
-    const ::CUTS::Component_Registration & creg
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  ::CORBA::Long Testing_Service_exec_i::
+    register_component (const ::CUTS::Component_Registration & creg)
     ACE_THROW_SPEC ((::CORBA::SystemException,
                      ::CUTS::Registration_Failed,
                      ::CUTS::Registration_Limit))
@@ -79,8 +78,7 @@ namespace CUTS
   // unregister_component
   //
   void Testing_Service_exec_i::
-    unregister_component (const ::CUTS::Component_Registration & creg
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    unregister_component (const ::CUTS::Component_Registration & creg)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     this->registry_.unregister_component (creg.name.in ());

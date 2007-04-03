@@ -26,7 +26,7 @@ ODBC_Date_Time::ODBC_Date_Time (const ACE_Date_Time & datetime)
 CUTS_INLINE
 void ODBC_Date_Time::month (long value)
 {
-  this->datetime_.month = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.month = static_cast <SQLUSMALLINT> (value);
 }
 
 //
@@ -44,7 +44,7 @@ long ODBC_Date_Time::month (void) const
 CUTS_INLINE
 void ODBC_Date_Time::day (long value)
 {
-  this->datetime_.day = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.day = static_cast <SQLUSMALLINT> (value);
 }
 
 //
@@ -62,7 +62,7 @@ long ODBC_Date_Time::day (void) const
 CUTS_INLINE
 void ODBC_Date_Time::year (long value)
 {
-  this->datetime_.year = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.year = static_cast <SQLUSMALLINT> (value);
 }
 
 //
@@ -80,7 +80,7 @@ long ODBC_Date_Time::year (void) const
 CUTS_INLINE
 void ODBC_Date_Time::hour (long value)
 {
-  this->datetime_.hour = ACE_static_cast (SQLSMALLINT, value);
+  this->datetime_.hour = static_cast <SQLSMALLINT> (value);
 }
 
 //
@@ -98,7 +98,7 @@ long ODBC_Date_Time::hour (void) const
 CUTS_INLINE
 void ODBC_Date_Time::minute (long value)
 {
-  this->datetime_.minute = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.minute = static_cast <SQLUSMALLINT> (value);
 }
 
 //
@@ -116,7 +116,7 @@ long ODBC_Date_Time::minute (void) const
 CUTS_INLINE
 void ODBC_Date_Time::second (long value)
 {
-  this->datetime_.second = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.second = static_cast <SQLUSMALLINT> (value);
 }
 
 //
@@ -134,7 +134,7 @@ long ODBC_Date_Time::second (void) const
 CUTS_INLINE
 void ODBC_Date_Time::fraction (long value)
 {
-  this->datetime_.fraction = ACE_static_cast (SQLUSMALLINT, value);
+  this->datetime_.fraction = static_cast <SQLUSMALLINT> (value);
 }
 
 //

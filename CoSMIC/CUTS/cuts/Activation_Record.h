@@ -17,9 +17,11 @@
 #define _CUTS_ACTIVATION_RECORD_H_
 
 #include "cuts/Time_Measurement.h"
+#include "cuts/Time_Value_History.h"
 #include "cuts/Activation_Record_Entry.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
+#include "ace/OS_NS_sys_time.h"
 #include <list>
 
 /// Type defintion for a list of entries.
@@ -57,7 +59,21 @@ public:
   CUTS_Activation_Record (void);
 
   /// Destructor.
-  ~CUTS_Activation_Record (void);
+  virtual ~CUTS_Activation_Record (void);
+
+  /**
+   * Copy constructor.
+   *
+   * @param[in]       rec       Source record.
+   */
+  CUTS_Activation_Record (const CUTS_Activation_Record & rec);
+
+  /**
+   * Assignment operator.
+   *
+   * @param[in]       rec       Source record.
+   */
+  const CUTS_Activation_Record & operator = (const CUTS_Activation_Record & rec);
 
   /// Activate the activation record.
   void open (void);
@@ -186,7 +202,16 @@ public:
    */
   void log_endpoint (size_t uid);
 
+  void get_duration (ACE_Time_Value & duration) const;
+
 private:
+  /**
+   * Helper method to copy the endpoints.
+   *
+   * @param[in]     endpoints       The source endpoints.
+   */
+  void copy_endpoints (const CUTS_Activation_Record_Endpoints & endpoints);
+
   /// Log the timing measurement.
   void log_time_measurement (size_t reps, long worker_id, long action_id);
 
@@ -196,11 +221,8 @@ private:
   /// Owner of the record.
   size_t owner_;
 
-  /// The start for the activation record.
-  ACE_Time_Value start_time_;
-
-  /// The stop time for the activation record.
-  ACE_Time_Value stop_time_;
+  /// The timing stop watch for the activation record.
+  CUTS_Time_Value_Ex stopwatch_;
 
   /// Start time of the operation.
   ACE_Time_Value action_state_time_;
@@ -216,10 +238,41 @@ private:
 
   /// Collection of exit points
   CUTS_Activation_Record_Endpoints endpoints_;
+};
 
-  // prevent the following operations
-  CUTS_Activation_Record (const CUTS_Activation_Record &);
-  const CUTS_Activation_Record & operator = (const CUTS_Activation_Record &);
+//=============================================================================
+/**
+ * @class CUTS_Cached_Activation_Record
+ */
+//=============================================================================
+
+class CUTS_Export CUTS_Cached_Activation_Record :
+  public CUTS_Activation_Record
+{
+public:
+  /// Default constructor.
+  CUTS_Cached_Activation_Record (void);
+
+  /// Destructor.
+  virtual ~CUTS_Cached_Activation_Record (void);
+
+  /**
+   * Add a new node onto the chain.
+   *
+   * @param[in]       next        Pointer to the next node.
+   */
+  void set_next (CUTS_Cached_Activation_Record * next);
+
+  /**
+   * Get the next node on the chain.
+   *
+   * @return          Pointer to the next record.
+   */
+  CUTS_Cached_Activation_Record * get_next (void);
+
+private:
+  /// Pointer to the next record.
+  CUTS_Cached_Activation_Record * next_;
 };
 
 #if defined (__CUTS_INLINE__)

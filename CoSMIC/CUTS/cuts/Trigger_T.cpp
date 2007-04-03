@@ -70,9 +70,25 @@ int CUTS_Periodic_Trigger_T <COMPONENT>::handle_timeout (
   double score = (double) ACE_OS::rand () / (double) RAND_MAX;
 
   // invoke the method if the score is within the <probability_>
-  if (score <= this->probability_)
+  if (this->component_ != 0 && this->method_ != 0)
   {
-    (this->component_->*this->method_) ();
+    if (score <= this->probability_)
+      (this->component_->*this->method_) ();
+  }
+  else
+  {
+    if (this->component_ == 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (Periodic_Trigger): target "
+                  "component is not set; ignoring event\n"));
+    }
+    else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (Periodic_Trigger): target method "
+                  "is not set; ignoring event\n"));
+    }
   }
 
   return 0;

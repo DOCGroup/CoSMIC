@@ -56,12 +56,10 @@ namespace CUTS
                        ::Components::CCMException))
     {
       this->context_ =
-        Benchmark_Data_Collector_Context::_narrow (ctx ACE_ENV_ARG_PARAMETER);
-
-      ACE_CHECK;
+        Benchmark_Data_Collector_Context::_narrow (ctx);
 
       if (this->context_ == 0)
-        ACE_THROW (::CORBA::INTERNAL ());
+        throw ::CORBA::INTERNAL ();
 
       CORBA::ORB_var orb =
         this->context_->_ciao_the_Container ()->the_ORB ();
@@ -103,14 +101,15 @@ namespace CUTS
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::Components::CCMException))
     {
-      ACE_Time_Value delay (this->timeout_);
+      ACE_Time_Value delay (this->timeout_, 0);
 
       if (!this->task_.activate (delay,
                                  delay,
                                  this->tsvc_.get (),
                                  &this->metrics_))
       {
-        CUTS_ERROR (LM_ERROR, "failed to activate data collector\n");
+        ACE_ERROR ((LM_ERROR,
+                    "*** error (BDC): failed to activate data collector\n"));
       }
     }
 
@@ -148,8 +147,9 @@ namespace CUTS
     {
       this->timeout_ = tm;
 
-      // TODO if the object is already active, we need to reshedule
-      // the timer to the new timeout value.
+      ACE_DEBUG ((LM_DEBUG,
+                  "*** info (BDC): setting timeout value to %d second(s)\n",
+                  this->timeout_));
     }
 
     //
@@ -300,8 +300,6 @@ namespace CUTS
       ACE_NEW_THROW_EX (retval,
                         Benchmark_Data_Collector_exec_i,
                         ::CORBA::NO_MEMORY ());
-
-      ACE_CHECK_RETURN (::Components::EnterpriseComponent::_nil ());
 
       return retval;
     }

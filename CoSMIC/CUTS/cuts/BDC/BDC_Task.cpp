@@ -113,6 +113,9 @@ namespace CUTS
   //
   void BDC_Task::collect_data (void)
   {
+    ACE_DEBUG ((LM_ERROR,
+                "*** (BDC): collecting performance metrics\n"));
+
     if (this->testing_service_ == 0)
     {
       ACE_ERROR ((LM_ERROR,
@@ -179,6 +182,9 @@ namespace CUTS
       if (count == 0)
         this->finalize_collection ();
     }
+
+    ACE_DEBUG ((LM_ERROR,
+                "*** (BDC): finish collecting performance metrics\n"));
   }
 
   //

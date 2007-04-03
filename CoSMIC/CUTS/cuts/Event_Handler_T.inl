@@ -59,5 +59,5 @@ CUTS_INLINE
 const char *
 CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::name (void) const
 {
-  return this->config_.port_agent_.name ();
+  return this->config_.port_agent_.name ().c_str ();
 }

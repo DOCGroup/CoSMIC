@@ -102,18 +102,21 @@ void write_ior_to_file (const char * ior)
     }
     else
     {
-      ACE_DEBUG ((LM_DEBUG,
-                  "failed to open %s for writing\n",
+      ACE_DEBUG ((LM_ERROR,
+                  "*** error: failed to open %s for writing\n",
                   SERVER_OPTIONS ()->ior_file_.c_str ()));
     }
   }
-  catch (::CORBA::Exception & ex)
+  catch (CORBA::Exception & ex)
   {
-    ACE_PRINT_TAO_EXCEPTION (ex, "(%N:%l) caught CORBA exception");
+    ACE_ERROR ((LM_ERROR,
+                "*** %s\n",
+                ex._info ().c_str ()));
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR, "(%N:%l) caught unknown exception\n"));
+    ACE_ERROR ((LM_ERROR,
+                "*** error: caught unknown exception\n"));
   }
 }
 
@@ -211,11 +214,14 @@ int main (int argc, char * argv [])
   }
   catch (::CORBA::Exception & ex)
   {
-    ACE_PRINT_TAO_EXCEPTION (ex, "(%N:%l) caught CORBA exception");
+    ACE_ERROR ((LM_ERROR,
+                "%s\n",
+                ex._info ().c_str ()));
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR, "(%N:%l) caught unknown exception\n"));
+    ACE_ERROR ((LM_ERROR,
+                "*** error: caught unknown exception\n"));
   }
 
   return 1;

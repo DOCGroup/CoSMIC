@@ -1,6 +1,5 @@
 // $Id$
 
 project : ciao_component_dnc, cutslib {
-  //-- additional libraries
-  libs += CIAO_DnC_Server
+
 }

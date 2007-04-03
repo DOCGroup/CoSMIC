@@ -99,9 +99,7 @@ namespace CUTS
   //
   // spawn
   //
-  ::CORBA::ULong Node_Daemon_i::spawn (
-    const ::CUTS::Spawn_Detail & detail
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  ::CORBA::ULong Node_Daemon_i::spawn (const ::CUTS::Spawn_Detail & detail)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
@@ -173,9 +171,7 @@ namespace CUTS
   //
   // kill
   //
-  ::CORBA::ULong Node_Daemon_i::kill (
-    const ::CUTS::Node_Bindings & nodes
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+  ::CORBA::ULong Node_Daemon_i::kill (const ::CUTS::Node_Bindings & nodes)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
@@ -221,8 +217,8 @@ namespace CUTS
   //
   // is_available
   //
-  bool Node_Daemon_i::is_port_available (u_short port,
-                                         bool localhost) const
+  bool Node_Daemon_i::
+    is_port_available (u_short port, bool localhost) const
   {
     return
       localhost ?
@@ -498,8 +494,7 @@ namespace CUTS
   //
   // details
   //
-  ::CUTS::Node_Bindings * Node_Daemon_i::details (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  ::CUTS::Node_Bindings * Node_Daemon_i::details (void)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
@@ -543,7 +538,7 @@ namespace CUTS
   //
   // shutdown
   //
-  void Node_Daemon_i::shutdown (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  void Node_Daemon_i::shutdown (void)
     ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     VERBOSE_MESSAGE ((LM_DEBUG,

@@ -46,28 +46,23 @@ namespace CUTS
      * in the system. This is a blocking method and does not return until
      * all components are handled.
      */
-    virtual void collect_performance_data (
-      ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    virtual void collect_performance_data (void)
       ACE_THROW_SPEC ((CORBA::SystemException));
 
-    virtual ::CORBA::ULong load_services (
-      const CUTS::BDC_Service_Descriptors & svcs
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual ::CORBA::ULong 
+      load_services (const CUTS::BDC_Service_Descriptors & svcs)
       ACE_THROW_SPEC ((CORBA::SystemException));
 
-    virtual void unload_services (
-      const CUTS::BDC_Service_Names & names
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual void 
+      unload_services (const CUTS::BDC_Service_Names & names)
       ACE_THROW_SPEC ((CORBA::SystemException));
 
-    virtual CUTS::BDC_Service_ptr get_service (
-      const char * name
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual CUTS::BDC_Service_ptr 
+      get_service (const char * name)
       ACE_THROW_SPEC ((CORBA::SystemException,
                        CUTS::Service_Not_Found));
 
-    virtual void list_services (
-      CUTS::BDC_Service_Names_out)
+    virtual void list_services (CUTS::BDC_Service_Names_out)
       ACE_THROW_SPEC ((CORBA::SystemException));
 
   private:

@@ -49,7 +49,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
     const ACE_Service_Type_Impl * type = svc_type->type ();
 
     CUTS_BDC_Service * svc =
-      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+      reinterpret_cast <CUTS_BDC_Service *> (type->object ());
 
     // Signal the service thread to exit and advance to the
     // next service in the repo.
@@ -77,9 +77,10 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
 //
 // open
 //
-int CUTS_BDC_Service_Manager::open (::CORBA::ORB_ptr orb,
-                                    CUTS_System_Metric * metrics,
-                                    CUTS_Testing_Service * tsvc)
+int CUTS_BDC_Service_Manager::
+open (::CORBA::ORB_ptr orb,
+      CUTS_System_Metric * metrics,
+      CUTS_Testing_Service * tsvc)
 {
   if (this->is_opened ())
     return 1;
@@ -192,7 +193,7 @@ handle_component (const CUTS_Component_Info & info)
     const ACE_Service_Type_Impl * type = svc_type->type ();
 
     CUTS_BDC_Service * svc =
-      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+      reinterpret_cast <CUTS_BDC_Service *> (type->object ());
 
     // Signal the service thread to exit and advance to the
     // next service in the repo.
@@ -277,7 +278,7 @@ int CUTS_BDC_Service_Manager::activate (void)
     const ACE_Service_Type_Impl * type = svc_type->type ();
 
     CUTS_BDC_Service * svc =
-      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+      reinterpret_cast <CUTS_BDC_Service *> (type->object ());
 
     if (svc == 0 &&
         svc->handle_activate () != 0)
@@ -312,7 +313,7 @@ int CUTS_BDC_Service_Manager::deactivate (void)
     const ACE_Service_Type_Impl * type = svc_type->type ();
 
     CUTS_BDC_Service * svc =
-      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+      reinterpret_cast <CUTS_BDC_Service *> (type->object ());
 
     // Signal the service thread to exit and advance to the
     // next service in the repo.
@@ -352,7 +353,7 @@ handle_metrics (const CUTS_System_Metric & metrics)
     const ACE_Service_Type_Impl * type = svc_type->type ();
 
     CUTS_BDC_Service * svc =
-      ACE_reinterpret_cast (CUTS_BDC_Service *, type->object ());
+      reinterpret_cast <CUTS_BDC_Service *> (type->object ());
 
     // Signal the service thread to exit and advance to the
     // next service in the repo.

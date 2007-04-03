@@ -15,7 +15,6 @@
 
 #include "cuts/CUTS_export.h"
 #include "ace/Time_Value.h"
-#include "ace/RW_Thread_Mutex.h"
 
 // Forward decl.
 class CUTS_System_Metrics_Visitor;
@@ -112,9 +111,6 @@ private:
 
   /// Total execution timing metric.
   ACE_Time_Value total_time_;
-
-  /// Locking mechanism for sychronization.
-  ACE_RW_Thread_Mutex lock_;
 
   /// The timestamp of the metrics.
   ACE_Time_Value timestamp_;

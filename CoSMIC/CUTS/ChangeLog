@@ -1,3 +1,120 @@
+Tue Apr  3 15:33:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GEMS/GEMS_CRN.mpc:
+        * cuts/CUTS.mpc:
+        * etc/config/cuts_bdcsvc.mpb:
+        * etc/config/cuts_client_dnc.mpb:
+        * etc/config/cuts_component_dnc.mpb:
+
+          Fixed compilation errors with ACE+TAO+CIAO 5.5.7 related to
+          invalid project specifications.
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record.inl:
+        * cuts/Activation_Record.cpp:
+
+          Moved the copy constructor and assignment operator to the
+          public section and implemented both methods.
+
+        * cuts/Activation_Record_Log.h:
+        * cuts/Activation_Record_Log.inl:
+        * cuts/Activation_Record_Log.cpp:
+
+          Implementation of a class for pre-allocated activation records
+          for minimizing dynamic allocations and memory copying.
+
+        * cuts/CUTS.idl:
+
+          Added the generic_object member to the Component_Registration
+          structure.
+
+        * cuts/Benchmark_Agent_i.h:
+        * cuts/Benchmark_Agent_i.cpp:
+        * cuts/BDC/BDC_Control_Handle_exec_i.h:
+        * cuts/BDC/BDC_Control_Handle_exec_i.cpp:
+        * cuts/BDC/BDC_Service.h:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+        * cuts/BDC/BDC_Task.cpp:
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+        * cuts/BDC/Testing_Service_exec_i.h:
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+        * cuts/Trigger_T.cpp:
+        * cuts/Worker_T.cpp:
+        * cuts/utils/ODBC/ODBC_Parameter_List.cpp:
+        * cuts/utils/ODBC/ODBC_Types.inl:
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          Removed deprecated macros
+
+        * cuts/Event_Handler_Manager_T.inl:
+
+          The name setter/getter method uses const ACE_CString & instead
+          of a const char * now.
+
+        * cuts/Benchmark_Collector_Visitor.cpp:
+        * cuts/IDL_Streams.cpp:
+
+          Removed (un)packing code for the history values.
+
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          The proxy now sends the object reference for its component when
+          registering a component with the testing service.
+
+        * cuts/Event_Handler_T.inl:
+        * cuts/Event_Handler_T.cpp:
+
+          The event handle now requests an activation record from the
+          contained port agent, and stores this in the TSS for later
+          access.
+
+        * cuts/Port_Agent.h:
+        * cuts/Port_Agent.inl:
+        * cuts/Port_Agent.cpp:
+
+          The port agent now contains a set of pre-allocated activation
+          records to minimize memory allocation/deallocation, and allow
+          preservation of historical performance metrics.
+
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.inl:
+        * cuts/Port_Measurement.cpp:
+        * cuts/Port_Measurement_Map.h:
+        * cuts/Port_Measurement_Map.inl:
+        * cuts/Port_Measurement_Map.cpp:
+        * cuts/Port_Measurement_Pool.h:
+        * cuts/Port_Measurement_Pool.inl:
+        * cuts/Port_Measurement_Pool.cpp:
+
+        * cuts/Thread_Activation_Record.h:
+        * cuts/Thread_Activation_Record.inl:
+        * cuts/Thread_Activation_Record.cpp:
+
+          Client applications are no longer required to initialize and
+          finalize the thread activation record.
+
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Measurement.inl:
+        * cuts/Time_Measurement.cpp:
+        * cuts/Time_Metric.h:
+        * cuts/Time_Metric.cpp:
+
+          Removed the code that keeps track of historical values.
+
+        * cuts/Time_Value_History.h:
+
+          Implemented helper methods for timing.
+
+        * cuts/performance.idl:
+
+          Added an history element to the Time_Info structure. This
+          will be removed soon for a different design choice.
+
 Fri Mar 30 05:10:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * docs/License.rtf:

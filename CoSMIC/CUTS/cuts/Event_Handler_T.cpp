@@ -48,9 +48,13 @@ CUTS_Event_Handler_Base_T <COMPONENT, EVENTTYPE>::
 handle_event_i (EVENTTYPE * ev,
                 const ACE_Time_Value & queue_time)
 {
-  // Get the activation record for the thread and open
-  // it for logging metrics at the application level.
-  CUTS_Activation_Record * record = CUTS_THR_ACTIVATION_RECORD ();
+  // Get a new record and assign it to this thread.
+  CUTS_Activation_Record * record = this->port_agent ().record_alloc ();
+
+  CUTS_Activation_Record * old_record =
+    CUTS_Thread_Activation_Record::set_record (record);
+
+  // Open the record.
   record->open ();
 
   // Make an upcall to the callback
@@ -65,6 +69,6 @@ handle_event_i (EVENTTYPE * ev,
   record->queue_time (queue_time);
 
   // We should now update the port agent.
-  this->port_agent ().update (record);
-  record->reset ();
+  CUTS_Thread_Activation_Record::set_record (old_record);
+  this->port_agent ().record_free (record);
 }

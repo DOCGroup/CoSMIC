@@ -55,13 +55,16 @@ module CUTS
 
   struct Component_Registration
   {
+    /// The stringified version of the object.
+    Object generic_object;
+
     /// Benchmark agent of the component.
     Benchmark_Agent agent;
 
     /// UUID of the CoWorkEr.
     string name;
 
-    /// The type of CoWorkEr.
+    /// The object's type.
     string type;
 
     /// IP address of the CoWorkEr.

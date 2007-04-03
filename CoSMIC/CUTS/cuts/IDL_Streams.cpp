@@ -96,11 +96,13 @@ void operator >> (const ::CUTS::Mapped_Port_Measurement & port_measurement,
 void operator >> (const ::CUTS::Time_Sample & time_sample,
                   CUTS_Time_Metric & time_metric)
 {
+  CUTS::Time_Info time_info = time_sample.time;
+
   // Update the timing information.
   time_metric.update (time_sample.count,
-                      time_sample.time.total,
-                      time_sample.time.min,
-                      time_sample.time.max);
+                      time_info.total,
+                      time_info.min,
+                      time_info.max);
 }
 
 //===========================================================================
@@ -117,19 +119,4 @@ void operator << (::CUTS::Time_Sample & sample,
   sample.time.min = pm.minimum ().msec ();
   sample.time.max = pm.maximum ().msec ();
   sample.time.total = pm.accumulation ().msec ();
-
-  // Determine if the number of sample collected is less than the
-  // size of the history. We only want to collect valid metrics
-  // and ignore all the left over metrics.
-  const CUTS_Time_Value_History & history = pm.history ();
-  size_t history_size = history.size ();
-
-  if (sample_count < history_size)
-    history_size = sample_count;
-
-  // Set the size of the history
-  sample.time.history.length (history_size);
-
-  for (size_t i = 0; i < history_size; i ++)
-    sample.time.history[i] = history[i].msec ();
 }

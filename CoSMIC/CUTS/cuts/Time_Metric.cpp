@@ -47,8 +47,6 @@ CUTS_Time_Metric::~CUTS_Time_Metric (void)
 const CUTS_Time_Metric &
 CUTS_Time_Metric::operator = (const CUTS_Time_Metric & tm)
 {
-  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
-
   this->count_ = tm.count_;
   this->total_time_ = tm.total_time_;
   this->best_time_ = tm.best_time_;
@@ -65,8 +63,6 @@ void CUTS_Time_Metric::update (size_t count,
                                long best,
                                long worse)
 {
-  ACE_WRITE_GUARD (ACE_RW_Thread_Mutex, guard, this->lock_);
-
   this->count_ = count;
   this->total_time_.msec (total);
   this->best_time_.msec (best);
@@ -78,8 +74,6 @@ void CUTS_Time_Metric::update (size_t count,
 //
 void CUTS_Time_Metric::reset (void)
 {
-  ACE_WRITE_GUARD (ACE_RW_Thread_Mutex, guard, this->lock_);
-
   this->count_ = 0;
   this->best_time_ = ACE_Time_Value::zero;
   this->worse_time_ = ACE_Time_Value::zero;
@@ -104,8 +98,6 @@ const CUTS_Time_Metric operator + (const CUTS_Time_Metric & lhs,
 const CUTS_Time_Metric &
 CUTS_Time_Metric::operator += (const CUTS_Time_Metric & rhs)
 {
-  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, *this);
-
   // We need to sum the source with this object.
   this->count_ += rhs.count_;
   this->total_time_ += rhs.total_time_;

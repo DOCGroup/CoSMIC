@@ -15,9 +15,10 @@
 
 module CUTS
 {
-  /// type definition for the time
+  /// Type definition for the time.
   typedef long Time_Stamp;
 
+  /// Type definition for the timing history.
   typedef sequence <long> Time_Stamp_History;
 
   //===========================================================================
@@ -43,14 +44,15 @@ module CUTS
     Time_Stamp_History history;
   };
 
-  struct Event_Time_Info
-  {
-    Time_Info time;
-
-    long max_events;
-
-    long min_events;
-  };
+  //===========================================================================
+  /**
+   * @struct Time_Sample
+   *
+   * The timing information for a single sample. This structure contains
+   * the number of measurements collected in a sample, as well as the
+   * statistical information about each metrics in the sample.
+   */
+  //===========================================================================
 
   struct Time_Sample
   {
@@ -61,6 +63,14 @@ module CUTS
     Time_Info time;
   };
 
+  //===========================================================================
+  /**
+   * @struct Action_Measurement
+   *
+   * Soon to be obsolete.
+   */
+  //===========================================================================
+
   struct Action_Measurement
   {
     long type;
@@ -68,30 +78,49 @@ module CUTS
     Time_Sample time;
   };
 
+  /// Type definition for a collection of action metrics.
   typedef sequence <Action_Measurement> Action_Measurement_Seq;
 
+  //===========================================================================
   /**
-   * Collection of information relating to a type of sample
-   * taken during a port operation.
+   * @struct Worker_Measurement
+   *
+   * Collection of information relating to a type of sample taken
+   * during a port operation.
    */
+  //===========================================================================
+
   struct Worker_Measurement
   {
     /// Type of sample collected
     long type;
 
+    /// Collection of action timing metrics.
     Action_Measurement_Seq actions;
   };
 
   /// Type definition for a <Data_Sample> sequence.
   typedef sequence <Worker_Measurement> Worker_Measurement_Seq;
 
+  //===========================================================================
+  /**
+   * @struct Exit_Point_Time
+   *
+   * Timing information for transmitting metrics related to an exit
+   * point.
+   */
+  //===========================================================================
+
   struct Exit_Point_Time
   {
+    /// The human readable name of the exit point.
     string exit_point_;
 
+    /// The timing metrics for this exit point.
     Time_Sample time_sample_;
   };
 
+  /// Type definition for a collection of exit point metrics.
   typedef sequence <Exit_Point_Time> Exit_Point_Time_Seq;
 
   struct Mapped_Port_Measurement
@@ -107,7 +136,7 @@ module CUTS
     /// Exit point times for this port.
     Exit_Point_Time_Seq exit_times;
 
-    /// data samples associated with this benchmark sample
+    /// Data samples associated with this benchmark sample
     Worker_Measurement_Seq workers;
   };
 

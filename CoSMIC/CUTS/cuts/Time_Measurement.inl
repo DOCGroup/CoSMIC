@@ -4,9 +4,8 @@
 // CUTS_Timing_Measurement
 //
 CUTS_INLINE
-CUTS_Time_Measurement::CUTS_Time_Measurement (size_t history_size)
-: count_ (0),
-  history_ (history_size)
+CUTS_Time_Measurement::CUTS_Time_Measurement (void)
+: count_ (0)
 {
 
 }
@@ -54,14 +53,4 @@ CUTS_INLINE
 size_t CUTS_Time_Measurement::count (void) const
 {
   return this->count_;
-}
-
-//
-// history
-//
-CUTS_INLINE
-const CUTS_Time_Value_History &
-CUTS_Time_Measurement::history (void) const
-{
-  return this->history_;
 }

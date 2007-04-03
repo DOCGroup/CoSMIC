@@ -31,8 +31,7 @@ namespace CUTS
   //
   // collect_performance_data
   //
-  void BDC_Control_Handle_exec_i::collect_performance_data (
-    ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  void BDC_Control_Handle_exec_i::collect_performance_data (void)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
     if (this->task_ != 0)
@@ -60,8 +59,7 @@ namespace CUTS
   // load_services
   //
   ::CORBA::ULong BDC_Control_Handle_exec_i::
-    load_services (const CUTS::BDC_Service_Descriptors & svcs
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    load_services (const CUTS::BDC_Service_Descriptors & svcs)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
     size_t success = 0;
@@ -95,8 +93,7 @@ namespace CUTS
   // unload_services
   //
   void BDC_Control_Handle_exec_i::
-    unload_services (const CUTS::BDC_Service_Names & names
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    unload_services (const CUTS::BDC_Service_Names & names)
     ACE_THROW_SPEC ((CORBA::SystemException))
   {
     size_t length = names.length ();
@@ -116,8 +113,7 @@ namespace CUTS
   // get_service
   //
   CUTS::BDC_Service_ptr BDC_Control_Handle_exec_i::
-    get_service (const char * name
-    ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    get_service (const char * name)
     ACE_THROW_SPEC ((CORBA::SystemException,
                      CUTS::Service_Not_Found))
   {
@@ -126,7 +122,7 @@ namespace CUTS
     int retval = this->svc_mgr_->get_service (name, svc);
 
     if (retval == -1 || svc == 0)
-      ACE_THROW (CUTS::Service_Not_Found ());
+      throw CUTS::Service_Not_Found ();
 
     // Get the remote object from the service.
     return svc->get_remote_object ();

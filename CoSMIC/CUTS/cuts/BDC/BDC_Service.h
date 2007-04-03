@@ -112,7 +112,7 @@ private:
   void _gobble_CUTS_BDC_Service (void * arg) \
   { \
     ACE_Service_Object * svcobj = \
-      ACE_reinterpret_cast (ACE_Service_Object *, arg); \
+      reinterpret_cast <ACE_Service_Object *> (arg); \
     delete svcobj; \
   } \
   ACE_Service_Object  * \

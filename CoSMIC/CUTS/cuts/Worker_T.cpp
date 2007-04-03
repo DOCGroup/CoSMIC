@@ -42,7 +42,7 @@ CUTS_Action * CUTS_Worker_T <WORKER_TYPE>::create_action (
   WORKER_TYPE * worker = 0;
 
   // Create the correct type of worker object.
-  worker = ACE_dynamic_cast (WORKER_TYPE *, this);
+  worker = dynamic_cast <WORKER_TYPE *> (this);
 
   if (worker != 0)
   {
@@ -71,7 +71,7 @@ CUTS_Action_Iterator * CUTS_Worker_T <WORKER_TYPE>::begin (void)
 
   ACE_NEW_RETURN (
     iter,
-    iterator (ACE_dynamic_cast (WORKER_TYPE *, this),
+    iterator (dynamic_cast <WORKER_TYPE *> (this),
               CUTS_Worker_T <WORKER_TYPE>::action_table_.begin ()),
     0);
 

@@ -50,9 +50,7 @@ namespace CUTS
      * @param[in]     nodes       Details of nodes to spawn.
      * @return        Number of nodes successfully spawned.
      */
-    virtual ::CORBA::ULong spawn (
-      const ::CUTS::Spawn_Detail & detail
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual ::CORBA::ULong spawn (const ::CUTS::Spawn_Detail & detail)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /**
@@ -61,18 +59,15 @@ namespace CUTS
      * @param[in]     nodes       Node bindings to kill.
      * @return        Number of nodes successfully killed.
      */
-    virtual ::CORBA::ULong kill (
-      const ::CUTS::Node_Bindings & nodes
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual ::CORBA::ULong kill (const ::CUTS::Node_Bindings & nodes)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /// Get the details of the spawned node managers.
-    virtual ::CUTS::Node_Bindings * details (
-      ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    virtual ::CUTS::Node_Bindings * details (void)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /// Shutdown the node daemon server.
-    virtual void shutdown (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+    virtual void shutdown (void)
       ACE_THROW_SPEC ((::CORBA::SystemException));
 
     /**

@@ -284,11 +284,14 @@ int main (int argc, char * argv [])
   }
   catch (::CORBA::Exception & ex)
   {
-    ACE_PRINT_TAO_EXCEPTION (ex, "caught exception");
+    ACE_ERROR ((LM_ERROR,
+                "%s\n",
+                ex._info ().c_str ()));
   }
   catch (...)
   {
-    ACE_ERROR ((LM_ERROR, "caught unknown exception\n"));
+    ACE_ERROR ((LM_ERROR,
+                "*** error: caught unknown exception\n"));
   }
 
   return 1;

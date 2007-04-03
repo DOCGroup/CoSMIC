@@ -1,6 +1,6 @@
 // $Id$
 
-project : ciao_events_base_dnc, ciao_client_dnc, cutslib {
+project : ciao_servant_dnc, cutslib {
   idlflags += -I $(CUTS_ROOT)
 
   //-- project dependencies

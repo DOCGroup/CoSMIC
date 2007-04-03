@@ -1,6 +1,6 @@
 // $Id$
 
-project : cutslib, taolib {
+project : taolib, cutslib {
   after += CUTS_BDC
   libs  += CUTS_BDC
 }

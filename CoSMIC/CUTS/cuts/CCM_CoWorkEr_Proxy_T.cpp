@@ -14,7 +14,7 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
 CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 CUTS_CCM_CoWorkEr_Proxy_T (void)
 {
-  CUTS_Thread_Activation_Record::init_singleton ();
+
 }
 
 //
@@ -187,9 +187,11 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
       try
         {
           ::CUTS::Component_Registration reg;
-          reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
+          reg.name = ::CORBA::string_dup (this->instance_.c_str ());
+          reg.type = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
+
+          reg.generic_object = this->context_->get_CCM_object ();
           reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
-          reg.type  = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
 
           // Pass control to the base class to finish the registration.
           size_t regid = this->register_i (tsvc.in (), reg);
@@ -294,8 +296,6 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
     this->sc_->ccm_remove ();
 
   this->reset ();
-
-  CUTS_Thread_Activation_Record::fini_singleton ();
 }
 
 //

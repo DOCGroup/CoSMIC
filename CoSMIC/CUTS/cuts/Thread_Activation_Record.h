@@ -24,53 +24,45 @@
  * Stores activation records for each thread. This class can only be used
  * as a pure singleton. It guarantees that any activation record accessed
  * is specific to that thread and not modifiable by other threads. There
- * is no overhead is locking. Lastly, it must be explicitly initialized and
- * finalized.
+ * is no overhead is locking.
  */
 //=============================================================================
 
 class CUTS_Export CUTS_Thread_Activation_Record
 {
 public:
-  /// Initialize the singleton. This should be invoked from the
-  /// main thread of control.
-  static int init_singleton (void);
+  /**
+   * Set the activation record for the calling thread. If there is
+   * already a record in the TSS, then it is returned to the caller
+   * to do whatever it wants with it.
+   *
+   * @param[in]     record        Pointer to the record.
+   * @return        Pointer to the previously stored record.
+   */
+  static CUTS_Activation_Record *
+    set_record (CUTS_Activation_Record * record);
 
-  /// Finalize the singleton. This should be invoked from the
-  /// main thread of control after all threads are gone.
-  static int fini_singleton (void);
-
-  /// Get the activation record for a specific thread.
-  static CUTS_Activation_Record * instance (void);
+  /**
+   * Get the activation record for the calling thread.
+   *
+   * @return        Pointer to the activation record.
+   */
+  static CUTS_Activation_Record * get_record (void);
 
 private:
-  /// Default constructor.
-  CUTS_Thread_Activation_Record (void);
-
-  /// Destructor.
-  ~CUTS_Thread_Activation_Record (void);
-
-  /// Singleton instance for thread-specific storage.
-  typedef ACE_TSS <CUTS_Activation_Record> Thread_Record;
-
   /// Singleton instance.
-  static Thread_Record * instance_;
-
-  /// Number of threads accessing this object.
-  static ACE_Thread_Mutex lock_;
-
-  static size_t count_;
+  static ACE_TSS <CUTS_Activation_Record> tss_;
 
   // prevent the following operations
+  CUTS_Thread_Activation_Record (void);
   CUTS_Thread_Activation_Record (const CUTS_Thread_Activation_Record &);
-
   const CUTS_Thread_Activation_Record &
     operator = (const CUTS_Thread_Activation_Record &);
 };
 
 /// macro to simplify accessing activation record for a thread.
 #define CUTS_THR_ACTIVATION_RECORD() \
-  CUTS_Thread_Activation_Record::instance ()
+  CUTS_Thread_Activation_Record::get_record ()
 
 #if defined (__CUTS_INLINE__)
 #include "Thread_Activation_Record.inl"

@@ -14,8 +14,7 @@ CUTS_Time_Measurement (const CUTS_Time_Measurement &tm)
 : count_ (tm.count_),
   sum_ (tm.sum_),
   max_ (tm.max_),
-  min_ (tm.min_),
-  history_ (tm.history_)
+  min_ (tm.min_)
 {
 
 }
@@ -37,33 +36,23 @@ void CUTS_Time_Measurement::reset (void)
 //
 // operator +=
 //
-void CUTS_Time_Measurement::operator += (const ACE_Time_Value & time_value)
+void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
 {
-  // If the <reset_> flag is set, then this is the time value in
-  // the timing measurement.
   if (this->count_ != 0)
   {
     // Determine if this is either the <min_> of <max_> value.
-    if (time_value > this->max_)
-      this->max_ = time_value;
-    else if (time_value < this->min_)
-      this->min_ = time_value;
+    if (timing > this->max_)
+      this->max_ = timing;
+    else if (timing < this->min_)
+      this->min_ = timing;
   }
   else
   {
-    // This is the first time measurement. Therefore, set both the
-    // <min_> and <max_> time values to this <time_value>.
-    this->max_ = time_value;
-    this->min_ = time_value;
+    // This is the first time measurement.
+    this->max_ = timing;
+    this->min_ = timing;
   }
 
   // Accumulate the new time value.
-  this->sum_ += time_value;
-
-  // Save the <time_value> in the <history_> table.
-  if (this->count_ < this->history_.size ())
-    this->history_[this->count_] = time_value;
-
-  // Increment the count.
-  this->count_ ++;
+  this->sum_ += timing;
 }

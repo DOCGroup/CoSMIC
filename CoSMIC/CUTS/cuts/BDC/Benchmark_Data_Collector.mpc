@@ -1,12 +1,13 @@
 // $Id$
 
-project (CUTS_BDC) : cutslib, portableserver {
+project (CUTS_BDC) : portableserver, cutslib {
   sharedname = CUTS_BDC
 
   dynamicflags += CUTS_BDC_BUILD_DLL
 
   idlflags += -Wb,export_macro=CUTS_BDC_Export \
-              -Wb,export_include=BDC_export.h
+              -Wb,export_include=BDC_export.h \
+              -Sal -Sa
 
   Source_Files {
     BDC_Service.cpp
@@ -26,7 +27,8 @@ project (Benchmark_Data_Collector_stub): cuts_bdcsvc, cuts_client_dnc {
   sharedname = Benchmark_Data_Collector_stub
 
   idlflags += -Wb,export_macro=BENCHMARK_DATA_COLLECTOR_STUB_Export \
-              -Wb,export_include=Benchmark_Data_Collector_stub_export.h
+              -Wb,export_include=Benchmark_Data_Collector_stub_export.h \
+              -Sa -Sal
 
   dynamicflags = BENCHMARK_DATA_COLLECTOR_STUB_BUILD_DLL
 

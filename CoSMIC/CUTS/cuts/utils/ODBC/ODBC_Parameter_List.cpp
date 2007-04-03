@@ -67,8 +67,7 @@ ODBC_Parameter * ODBC_Parameter_List::get (size_t index)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (!this->in_range (index))
-    ACE_THROW_RETURN (CUTS_DB_Exception ("parameter index out of range"),
-                      0);
+    throw CUTS_DB_Exception ("parameter index out of range");
 
   return this->array_[index];
 }

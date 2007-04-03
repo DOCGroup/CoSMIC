@@ -11,14 +11,6 @@
 //
 // CUTS_Port_Measurement_Pool
 //
-CUTS_Port_Measurement_Pool::CUTS_Port_Measurement_Pool (void)
-{
-  this->curr_ = this->head_;
-}
-
-//
-// CUTS_Port_Measurement_Pool
-//
 CUTS_Port_Measurement_Pool::CUTS_Port_Measurement_Pool (size_t size)
 {
   // Initialize the <curr_> pointer to the <head_> of the
@@ -26,25 +18,15 @@ CUTS_Port_Measurement_Pool::CUTS_Port_Measurement_Pool (size_t size)
   this->curr_ = this->head_;
 
   // Initialize the size of the pool.
-  CUTS_Port_Measurement_Node * node = 0;
+  CUTS_Port_Measurement_Pool_Node * node = 0;
 
   for (size_t i = 1; i < size; i ++)
   {
-    ACE_NEW (node, CUTS_Port_Measurement_Node);
+    ACE_NEW (node, CUTS_Port_Measurement_Pool_Node);
 
     if (node != 0)
-    {
       this->insert_tail (node);
-    }
   }
-}
-
-//
-// ~CUTS_Port_Measurement_Pool
-//
-CUTS_Port_Measurement_Pool::~CUTS_Port_Measurement_Pool (void)
-{
-
 }
 
 //
@@ -58,7 +40,7 @@ CUTS_Port_Measurement_Map & CUTS_Port_Measurement_Pool::advance (void)
                           this->curr_->item_);
 
   // Advance the <curr_> pointer to the next node.
-  CUTS_Port_Measurement_Node * curr = this->curr_;
+  CUTS_Port_Measurement_Pool_Node * curr = this->curr_;
   this->curr_ = this->curr_->next_;
 
   // Return the item of the previously active node.
@@ -68,7 +50,7 @@ CUTS_Port_Measurement_Map & CUTS_Port_Measurement_Pool::advance (void)
 //
 // current
 //
-CUTS_Port_Measurement_Map & CUTS_Port_Measurement_Pool::current (void)
+CUTS_Port_Measurement_Map & CUTS_Port_Measurement_Pool::current (void) const
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex,
                          guard,

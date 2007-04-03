@@ -79,6 +79,7 @@ project (CUTS) : cutslib {
     CUTS_export.h
     Host_Table_Entry.h
     Log_Msg.h
+    Time_Value_History.h
     WML_Macros.h
   }
 
@@ -88,6 +89,7 @@ project (CUTS) : cutslib {
     Activation_Record.cpp
     Activation_Record_Entry.cpp
     Activation_Record_Endpoint.cpp
+    Activation_Record_Log.cpp
     Benchmark_Agent.cpp
     Benchmark_Visitor.cpp
     Component_Metric.cpp
@@ -101,6 +103,7 @@ project (CUTS) : cutslib {
     Operation_Measurement.cpp
     Port_Agent.cpp
     Port_Measurement.cpp
+    Port_Measurement_Map.cpp
     Port_Measurement_Pool.cpp
     Port_Metric.cpp
     Component_Registry.cpp

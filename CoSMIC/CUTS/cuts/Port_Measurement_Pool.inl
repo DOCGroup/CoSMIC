@@ -1,6 +1,15 @@
 // $Id$
 
 //
+// ~CUTS_Port_Measurement_Pool
+//
+CUTS_INLINE
+CUTS_Port_Measurement_Pool::~CUTS_Port_Measurement_Pool (void)
+{
+
+}
+
+//
 // size
 //
 CUTS_INLINE

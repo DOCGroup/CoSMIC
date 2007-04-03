@@ -1,6 +1,26 @@
 // $Id$
 
 //
+// CUTS_Activation_Record
+//
+CUTS_INLINE
+CUTS_Activation_Record::CUTS_Activation_Record (void)
+: active_ (false),
+  owner_ (CUTS_UNKNOWN_IMPL)
+{
+
+}
+
+//
+// ~CUTS_Activation_Record
+//
+CUTS_INLINE
+CUTS_Activation_Record::~CUTS_Activation_Record (void)
+{
+
+}
+
+//
 // owner
 //
 CUTS_INLINE
@@ -25,7 +45,7 @@ CUTS_INLINE
 const ACE_Time_Value &
 CUTS_Activation_Record::start_time (void) const
 {
-  return this->start_time_;
+  return this->stopwatch_.start_;
 }
 
 //
@@ -35,7 +55,7 @@ CUTS_INLINE
 const ACE_Time_Value &
 CUTS_Activation_Record::stop_time (void) const
 {
-  return this->stop_time_;
+  return this->stopwatch_.stop_;
 }
 
 //
@@ -53,9 +73,7 @@ CUTS_Activation_Record::entries (void) const
 //
 CUTS_INLINE
 void CUTS_Activation_Record::
-log_time_measurement (size_t reps,
-                      long worker_id,
-                      long action_id)
+log_time_measurement (size_t reps, long worker_id, long action_id)
 {
   this->entries_.push_back (
     CUTS_Activation_Record_Entry (reps, worker_id, action_id,
@@ -107,7 +125,7 @@ CUTS_INLINE
 void CUTS_Activation_Record::open (void)
 {
   this->active_ = true;
-  this->start_time_ = ACE_OS::gettimeofday ();
+  this->stopwatch_.start_ = ACE_OS::gettimeofday ();
 }
 
 //
@@ -116,7 +134,7 @@ void CUTS_Activation_Record::open (void)
 CUTS_INLINE
 void CUTS_Activation_Record::close (void)
 {
-  this->stop_time_ = ACE_OS::gettimeofday ();
+  this->stopwatch_.stop_ = ACE_OS::gettimeofday ();
   this->active_ = false;
 }
 
@@ -127,5 +145,54 @@ CUTS_INLINE
 void CUTS_Activation_Record::log_endpoint (size_t uid)
 {
   this->endpoints_.rebind (uid, ACE_OS::gettimeofday ());
+}
+
+//
+// duration
+//
+CUTS_INLINE
+void CUTS_Activation_Record::
+get_duration (ACE_Time_Value & duration) const
+{
+  duration = this->stopwatch_.stop_ - this->stopwatch_.start_;
+}
+
+//
+// CUTS_Cached_Activation_Record
+//
+CUTS_INLINE
+CUTS_Cached_Activation_Record::CUTS_Cached_Activation_Record (void)
+: next_ (0)
+{
+
+}
+
+//
+// CUTS_Cached_Activation_Record
+//
+CUTS_INLINE
+CUTS_Cached_Activation_Record::~CUTS_Cached_Activation_Record (void)
+{
+
+}
+
+//
+// get_next
+//
+CUTS_INLINE
+CUTS_Cached_Activation_Record *
+CUTS_Cached_Activation_Record::get_next (void)
+{
+  return this->next_;
+}
+
+//
+// get_next
+//
+CUTS_INLINE
+void CUTS_Cached_Activation_Record::
+set_next (CUTS_Cached_Activation_Record * next)
+{
+  this->next_ = next;
 }
 

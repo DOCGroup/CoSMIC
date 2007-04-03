@@ -34,9 +34,8 @@ Benchmark_Agent_i::~Benchmark_Agent_i (void)
 // performance_data
 //
 void Benchmark_Agent_i::
-collect_performance_data (::CUTS::Benchmark_Data_out data
-                          ACE_ENV_ARG_DECL_WITH_DEFAULTS)
-                          ACE_THROW_SPEC ((CORBA::SystemException))
+collect_performance_data (::CUTS::Benchmark_Data_out data)
+ACE_THROW_SPEC ((CORBA::SystemException))
 {
   // Allocate a new <CUTS::Benchmark_Data> object.
   ACE_NEW_THROW_EX (data,

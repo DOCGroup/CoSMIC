@@ -6,9 +6,6 @@
  *
  * $Id$
  *
- * This file contains the classes measuring performance of port operations
- * of a component.
- *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
  */
 //=============================================================================
@@ -47,24 +44,28 @@ public:
   ~CUTS_Port_Measurement (void);
 
   /// Update the time data for processing an event.
-  void process_time (const ACE_Time_Value &tv);
+  void process_time (const ACE_Time_Value & timing);
 
   /// Update the time data for receiving a transmitted event.
-  void transit_time (const ACE_Time_Value &tv);
+  void queuing_time (const ACE_Time_Value & timing);
 
   /// Get the time data for processing an event.
   const CUTS_Time_Measurement & process_time (void) const;
 
   /// Get the time data for receiving a transitted event.
-  const CUTS_Time_Measurement & transit_time (void) const;
+  const CUTS_Time_Measurement & queuing_time (void) const;
 
   /// Record an entry into the port measurements
   void record_entry (size_t reps, long worker, long opid,
                      const ACE_Time_Value & tm);
 
-  /// Record an exit point entry.
-  void record_exit_point_time (size_t uid,
-                               const ACE_Time_Value & tv);
+  /**
+   * Record an exit point measurement for this port.
+   *
+   * @param[in]       uid       The target uid.
+   * @param[in]       tv        The timing value.
+   */
+  void record_exitpoint (size_t uid, const ACE_Time_Value & tv);
 
   /// Reset all the collected data.
   void reset (void);
@@ -88,13 +89,13 @@ private:
   CUTS_Time_Measurement process_time_;
 
   /// Time taken to begin processing a port operation.
-  CUTS_Time_Measurement transit_time_;
+  CUTS_Time_Measurement queuing_time_;
 
   /// Collection of operation measurement data.
   Worker_Map workers_;
 
   /// Collection of exit times.
-  Exit_Points exit_points_;
+  Exit_Points exitpoints_;
 };
 
 #if defined (__CUTS_INLINE__)

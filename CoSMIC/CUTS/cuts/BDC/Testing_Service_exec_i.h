@@ -76,9 +76,8 @@ namespace CUTS
       * @exception      CUTS::Registration_Limit
       *    Reached the maximum number of components allows to register.
       */
-    virtual ::CORBA::Long register_component (
-      const ::CUTS::Component_Registration & creg
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual ::CORBA::Long
+      register_component (const ::CUTS::Component_Registration & creg)
       ACE_THROW_SPEC ((::CORBA::SystemException,
                        ::CUTS::Registration_Failed,
                        ::CUTS::Registration_Limit));
@@ -93,9 +92,8 @@ namespace CUTS
       * @exception      CUTS::ID_Not_Found
       *    Specified registration ID was not found.
       */
-    virtual void unregister_component (
-      const ::CUTS::Component_Registration & creg
-      ACE_ENV_ARG_DECL_WITH_DEFAULTS)
+    virtual void
+      unregister_component (const ::CUTS::Component_Registration & creg)
       ACE_THROW_SPEC ((::CORBA::SystemException));
   };
 }
