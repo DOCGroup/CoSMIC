@@ -113,8 +113,10 @@ int CUTS_BDC_Service_Manager::load_service (const char * name,
   std::ostringstream dir;
   dir
     << "dynamic " << name << " Service_Object * "
-    << path << ":_make_CUTS_BDC_Service() active "
-    << "\"" << args << "\"";
+    << path << ":_make_CUTS_BDC_Service() active ";
+
+  if (args != 0)
+    dir << "\"" << args << "\"";
 
   // Let the configurator load the service.
   int error_count =

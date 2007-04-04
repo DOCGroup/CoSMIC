@@ -207,45 +207,71 @@ namespace CUTS
       // Save the service attribute.
       this->svcs_ = svc;
 
-      if (this->svcs_.length () > 0)
+      // Create a tokenizer for separating each service. We need to create
+      // a temporary copy of the source string.
+      ACE_Auto_String_Free tempstr (ACE_OS::strdup (svc));
+      ACE_Tokenizer services_str (tempstr.get ());
+      services_str.delimiter_replace (';', 0);
+
+      size_t loaded_svcs = 0, failed_svcs = 0;
+      char * svc_next = 0, * svc_name = 0, * svc_path = 0, * svc_args = 0;
+
+      while ((svc_next = services_str.next ()) != 0)
       {
-        // Create a copy so we can butcher it accordingly.
-        char * svc_temp = ACE_OS::strdup (svc);
-        char * next_svc = svc_temp;
+        // Parse the next service to extract its name, path, and
+        // command-line arguments. The name and path are not allowed
+        // to have spaces right now.
+        ACE_Tokenizer svc_token (svc_next);
+        svc_token.delimiter_replace (' ', 0);
 
-        do
+        svc_name = svc_token.next ();
+        svc_path = svc_token.next ();
+        svc_args = svc_token.next ();
+
+        if (svc_name != 0 && svc_path != 0)
         {
-          // Save the name of the service and locate where the
-          // path begins the seperate the path from the name.
-          char * svc_name = next_svc;
-          char * svc_path = ACE_OS::strchr (next_svc, ' ');
-          *svc_path ++ = '\0';
-
-          // Locate where the service path ends and seperate
-          // the path from the arguments. We need to save the
-          // old value before we continue as well.
-          char * svc_args = ACE_OS::strchr (svc_path, ' ');
-          *svc_args ++ = '\0';
-
-          // Locate the end of the service declaration and
-          // seperate it from the next service declaration,
-          // if applicable.
-          next_svc = ACE_OS::strchr (svc_args, ';');
-          *next_svc ++ = '\0';
-
+          // Attempt to load the service into the BDC service
+          // manager.
           if (CUTS_BDC_SVC_MANAGER ()->load_service (svc_name,
                                                      svc_path,
-                                                     svc_args) != 0)
+                                                     svc_args) == 0)
+          {
+            ++ loaded_svcs;
+          }
+          else
           {
             ACE_ERROR ((LM_ERROR,
-                        "failed to load service '%s'\n",
+                        "*** error (BDC): failed to load "
+                        "service '%s' from %s\n",
+                        svc_name,
+                        svc_path));
+
+            ++ failed_svcs;
+          }
+        }
+        else
+        {
+          if (svc_name == 0)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "*** error (BDC): service is missing name\n"));
+          }
+
+          if (svc_path == 0)
+          {
+            ACE_ERROR ((LM_ERROR,
+                        "*** error (BDC): service %s is missing path\n",
                         svc_name));
           }
-        } while (*next_svc != '\0');
-
-        // Delete the temporary string.
-        delete [] svc_temp;
+        }
       }
+
+      // Display a useful message to the
+      ACE_DEBUG ((LM_INFO,
+                  "*** info (BDC): successfully loaded %u service(s); "
+                  "failed to %u service(s)\n",
+                  loaded_svcs,
+                  failed_svcs));
     }
 
     //

@@ -1,3 +1,20 @@
+Wed Apr  4 21:56:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.cpp:
+
+          Fixed a bug that would crash the BDC is a service did not
+          have any command-line arguments (i.e., token parser returned
+          0 for the service's arguments).
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          - Removed constraint that the listing of services for the service
+            attribute had to end in a semi-colon. Also, services are not
+            required to specifiy any command-line arguments.
+
+          - The BDC now displays how many services loaded successfully
+            and how many services failed to load.
+
 Wed Apr  4 21:24:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
