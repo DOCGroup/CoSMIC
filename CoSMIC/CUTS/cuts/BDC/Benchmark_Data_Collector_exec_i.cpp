@@ -146,10 +146,6 @@ namespace CUTS
       ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       this->timeout_ = tm;
-
-      ACE_DEBUG ((LM_DEBUG,
-                  "*** info (BDC): setting timeout value to %d second(s)\n",
-                  this->timeout_));
     }
 
     //

@@ -1,3 +1,9 @@
+Wed Apr  4 21:24:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+
+          Removed unnessary output messages.
+
 Wed Apr  4 21:17:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/cuts_manager.pl:
