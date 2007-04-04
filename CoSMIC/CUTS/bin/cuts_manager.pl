@@ -20,7 +20,7 @@ while ($arg = shift)
 }
 
 # spawn a new Execution_Manager
-$em = "$CIAO_ROOT/DAnCE/ExecutionManager/Execution_Manager";
+$em = "$CIAO_ROOT/bin/Execution_Manager";
 $em_args = "-o EM.ior -i $datfile";
 
 $manager = new PerlACE::Process ($em, $em_args);

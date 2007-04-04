@@ -24,7 +24,7 @@ while ($arg = shift)
 !defined($plan) and die "*** syntax error: you must specify a plan\n";
 
 # spawn the an instance of the executor
-$planner = "$CIAO_ROOT/DAnCE/Plan_Launcher/plan_launcher";
+$planner = "$CIAO_ROOT/bin/plan_launcher";
 $planner_args = "-p $plan -k file://EM.ior -o DAM.ior";
 
 if (defined ($startup) and $startup == 0)

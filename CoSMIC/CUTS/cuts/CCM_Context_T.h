@@ -50,6 +50,8 @@ public:
     ACE_THROW_SPEC ((::CORBA::SystemException,
                      ::Components::IllegalState));
 
+  ::CORBA::Object_ptr resolve_service_reference (const char * service_id);
+
 protected:
   /**
    * Initializing constuctor.

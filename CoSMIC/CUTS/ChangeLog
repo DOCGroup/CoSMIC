@@ -1,3 +1,17 @@
+Wed Apr  4 21:17:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/cuts_manager.pl:
+        * bin/cuts_node.pl:
+        * bin/cuts_planner.pl:
+        * bin/cuts_test.pl:
+
+          Changed the location of the binaries to $CIAO_ROOT/bin
+
+        * cuts/CCM_Context_T.h:
+        * cuts/CCM_Context_T.inl:
+
+          Implemented resolve_service_reference () method.
+
 Tue Apr  3 15:33:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GEMS/GEMS_CRN.mpc:

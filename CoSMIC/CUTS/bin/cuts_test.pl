@@ -24,8 +24,8 @@ while ($arg = shift)
 !defined($plan) and die "*** syntax error: you must specify a plan\n";
 
 # spawn the an instance of the executor
-$planner = "$CIAO_ROOT/DAnCE/Plan_Launcher/plan_launcher";
-$planner_args = "-p $plan -k file://EM.ior -o DAM.ior";
+$planner = "$CIAO_ROOT/bin/plan_launcher";
+$planner_args = "-p $plan -k file://EM.ior -o DAM.ior -z CLIENT_PROPAGATED";
 $planner_start = new PerlACE::Process ($planner, $planner_args);
 $planner_start->SpawnWaitKill (5000);
 
