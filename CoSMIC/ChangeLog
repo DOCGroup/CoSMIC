@@ -1,3 +1,21 @@
+Wed Apr  4 19:36:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PackageComponent/Component.rc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageMainDialog.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageMainDialog.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageOptions.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageOptions.cpp:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/resource.h:
+
+          Added a new front-end dialog to the package interpreter that
+          allows the user to select the different output/input directories
+          from a single dialog instead of 3 separate dialogs.
+
 Wed Apr  4 00:27:57 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/QUICKER/README:
@@ -13,7 +31,7 @@ Wed Apr  4 00:27:57 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 Tue Apr  3 19:11:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Utils/Utils.mpc:
-        
+
           Changed project name from Utils to CoSMIC_Utils to avoid namespace
           pollution, since MPC doesn't accept duplicate project names
           anywhere in the tree where it is generating.

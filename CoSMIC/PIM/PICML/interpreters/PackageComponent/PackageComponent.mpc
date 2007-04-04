@@ -1,6 +1,6 @@
 project (PackageComponent): acedefaults, mfc, picmllib, register {
   after += Package
-  libpaths    += $(ACE_ROOT)/lib 
+  libpaths    += $(ACE_ROOT)/lib
   libs += ACE
 
   macros +=  _USRDLL _WINDLL
@@ -20,6 +20,8 @@ project (PackageComponent): acedefaults, mfc, picmllib, register {
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
     Component.rc
     Component.def
+    PackageMainDialog.cpp
+    PackageOptions.cpp
     RawComponent.cpp
     UdmApp.cpp
   }

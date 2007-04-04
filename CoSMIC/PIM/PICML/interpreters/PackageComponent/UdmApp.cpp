@@ -38,6 +38,7 @@
 #include "PICML/PICML.h"
 #include "Package/PackageVisitor.h"
 #include "Package/PackagerVisitor.h"
+#include "PackageMainDialog.h"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -49,6 +50,8 @@ extern PICML_Export bool Utils::getPath (const std::string& description,
                                          std::string& path);
 
 extern void dummy(void); // Dummy function for UDM meta initialization
+
+PackageOptions CUdmApp::options_;
 
 // Initialization function. The framework calls it before preparing the
 // backend. Initialize here the settings in the config static object.
@@ -69,14 +72,14 @@ int CUdmApp::Initialize()
 
   2. The possible values for param (from GME DecoratorLib.h
   component_startmode_enum):
-  GME_MAIN_START		=   0,
-  GME_BROWSER_START		=   1,
-  GME_CONTEXT_START		=   2,
-  GME_EMBEDDED_START		=   3,
-  GME_MENU_START		=  16,
-  GME_BGCONTEXT_START	=  18,
-  GME_ICON_START		=  32,
-  METAMODEL_CHECK_SYNTAX	= 101
+  GME_MAIN_START    =   0,
+  GME_BROWSER_START    =   1,
+  GME_CONTEXT_START    =   2,
+  GME_EMBEDDED_START    =   3,
+  GME_MENU_START    =  16,
+  GME_BGCONTEXT_START  =  18,
+  GME_ICON_START    =  32,
+  METAMODEL_CHECK_SYNTAX  = 101
 
   3. The framework catches all the exceptions and reports the error in a
   message box, clean up and close the transactions aborting the changes.
@@ -88,50 +91,57 @@ int CUdmApp::Initialize()
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
 
-void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
+void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,      // Backend pointer
                                                         // (already open!)
-                      Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,	// Selected objects
-                      long param)			// Parameters
+                       Udm::Object focusObject,          // Focus object
+                       set <Udm::Object> selectedObjects,  // Selected objects
+                       long param)      // Parameters
 {
   std::string descriptorDir;
   try
     {
-      XMLPlatformUtils::Initialize();
+      XMLPlatformUtils::Initialize ();
+
       try
         {
-          std::string message = "Please specify the Output Directory of the descriptor files";
-          if (!::Utils::getPath (message, descriptorDir))
-            return;
-          PICML::PackageVisitor package_visitor (descriptorDir);
-          PICML::RootFolder
-            package_start = PICML::RootFolder::Cast (p_backend->GetRootObject());
-          package_start.Accept (package_visitor);
+          // Display the dialog box that allows the user to determine
+          // which options to execute.
+          PackageMainDialog dialog (CUdmApp::options_, ::AfxGetMainWnd ());
 
-          AfxMessageBox ("Descriptor files were successfully generated!",
-                         MB_OK| MB_ICONINFORMATION);
+          if (dialog.DoModal () == IDOK)
+          {
+            if (CUdmApp::options_.generate_descriptors_)
+            {
+              // The user has elected to generate the descriptors.
+              PICML::PackageVisitor
+                package_visitor (CUdmApp::options_.descriptor_directory_);
 
-          std::string outputPath;
-          std::string implementationDir;
+              PICML::RootFolder
+                package_start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+              package_start.Accept (package_visitor);
 
-          message = "Please specify the Input Directory of the implementation files";
-          if (!::Utils::getPath (message, implementationDir))
-            return;
+              ::AfxMessageBox ("Descriptor files were successfully generated!",
+                              MB_OK| MB_ICONINFORMATION);
+            }
 
-          message = "Please specify the Output Directory of the packages";
+            if (CUdmApp::options_.generate_packages_)
+            {
+              // The user has elected to generate the packages.
+              PICML::PackagerVisitor
+                packager_visitor (CUdmApp::options_.descriptor_directory_,
+                                  CUdmApp::options_.implementation_directory_,
+                                  CUdmApp::options_.package_directory_);
 
-          if (!::Utils::getPath (message, outputPath))
-            return;
+              PICML::RootFolder
+                packager_start =
+                PICML::RootFolder::Cast (p_backend->GetRootObject());
 
-          PICML::PackagerVisitor packager_visitor (descriptorDir, implementationDir, outputPath);
+              packager_start.Accept (packager_visitor);
 
-          PICML::RootFolder
-            packager_start = PICML::RootFolder::Cast (p_backend->GetRootObject());
-          packager_start.Accept (packager_visitor);
-
-          AfxMessageBox ("Packages files were successfully generated!",
-                 MB_OK| MB_ICONINFORMATION);
-
+              ::AfxMessageBox ("Packages files were successfully generated!",
+                              MB_OK| MB_ICONINFORMATION);
+            }
+          }
         }
       catch(udm_exception &e)
         {

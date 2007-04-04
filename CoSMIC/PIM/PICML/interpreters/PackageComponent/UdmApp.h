@@ -23,25 +23,25 @@
 #include "UmlExt.h"
 
 #ifdef _USE_DOM
-	#include "UdmDOM.h"
+  #include "UdmDOM.h"
 #endif
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
-
+#include "PackageOptions.h"
 
 class CUdmApp
 {
 
 public:
-	static int Initialize();
-	static void UdmMain(Udm::DataNetwork* p_backend,Udm::Object currentObject, set<Udm::Object> selectedObjects, long param);
+  static int Initialize (void);
+  static void UdmMain(Udm::DataNetwork* p_backend,Udm::Object currentObject, set<Udm::Object> selectedObjects, long param);
 
 #ifdef _DEBUG
-	static string ExtractName(Udm::Object ob);
+  static string ExtractName(Udm::Object ob);
 #endif
 
-
+  static PackageOptions options_;
 };
 
 #endif // !defined(AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_)
