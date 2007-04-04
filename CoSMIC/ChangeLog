@@ -1,3 +1,10 @@
+Wed Apr  4 22:32:48 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Change ComponentBuild rules such that correct number of
+          projects get created in the output model.
+
 Wed Apr  4 19:36:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PackageComponent/Component.rc:
