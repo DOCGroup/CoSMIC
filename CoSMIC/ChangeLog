@@ -1,3 +1,15 @@
+Wed Apr  4 00:27:57 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/README:
+        * Transformations/QUICKER/examples/BasicSP.xme:
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Added a README file for running the GReAT transformation project.
+          Added BasicSP in example annotated with RTRequirements which can
+          be used for QUICKER transformations.
+          Updated QoSMapping.xme with new rules, as per changes in PICML
+          RtRequirements.
+
 Tue Apr  3 19:11:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Utils/Utils.mpc:
