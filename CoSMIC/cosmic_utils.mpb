@@ -1,6 +1,6 @@
 // MPC file to generate base Utils library
 project {
-   after += Utils
+   after += CoSMIC_Utils
    macros += UTILS_HAS_DLL
    libs += Utils
 }
