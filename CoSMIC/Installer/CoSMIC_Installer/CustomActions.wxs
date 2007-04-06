@@ -26,6 +26,7 @@
                   Property="UNINSTALLCMD" 
                   Value="MSIEXEC.EXE" />
 
-    <Binary Id='RegistrationBinary' SourceFile='$(var.COSMIC_ROOT)\bin\RegisterParadigm.dll' />
+    <Binary Id='RegistrationBinary' 
+            SourceFile='$(var.COSMIC_ROOT)\bin\RegisterParadigm.dll' />
   </Fragment>
 </Wix>

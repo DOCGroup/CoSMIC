@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
   <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
-  
+
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='CoSMICBinDir'>
 <?if $(var.type) = vc71 ?>
       <!-- C runtime for VC71 -->
       <Merge Id='VC_User_CRT71_RTL_X86_---.msm'
-             DiskId='1' Language='0' 
+             DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_CRT71_RTL_X86_---.msm' />
 
       <!-- STL runtime for VC71 -->
@@ -31,50 +31,37 @@
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_ATL71_RTL_X86_---.msm' />
 <?elseif $(var.type) = vc8 ?>
       <!-- C runtime for VC8 -->
-      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0'
+      <!--      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0' 
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_CRT_x86.msm' />
-      
+-->
       <!-- ATL for VC8 -->
-      <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
+      <!--<Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
          SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_ATL_x86.msm' />
 
       <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_ATL_x86.msm' />
-
+-->
       <!-- MFC for VC8 -->
-     <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
+      <!--<Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFC_x86.msm' />
-
+-->
       <!-- MFC for Localization -->
-      <Merge Id='Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
+      <!--<Merge Id='Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFCLOC_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
- 
-      <?endif ?>
+-->
+<?endif ?>
     </DirectoryRef>
 
     <DirectoryRef Id='CoSMICBinDir'>
-      <!-- PICML UDM project Please use ComponentRef=PICMLLibrary in $COSMIC_ROOT\PIM\PICML\interpreters\PICML\PICML.wxs -->
-<!--      <Component Id='PICML' Guid='8661d861-25C1-437E-921F-50D97FD61529'>
-        <File Id="PICML.dll" Name="PICML.DLL"
-              Source="$(env.COSMIC_ROOT)\bin\PICML.dll"
-              DiskId="1" />
-      </Component>
--->
-      <!-- CoSMIC utils Please use ComponentRef=UtilsLibrary in $COSMIC_ROOT\Utils\Utils.wxs  -->
-<!--      <Component Id="CoSMIC_utils" Guid="817bc762-4da0-4da7-8f46-e8240bf6e960">
-        <File Id="Utils.dll" Name="Utils.dll"
-              Source="$(env.COSMIC_ROOT)\bin\Utils.dll" DiskId="1" />
-      </Component>
--->
       <!-- UDM 3.0.1 -->
       <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
         <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL_3_1_1.DLL"
@@ -94,18 +81,6 @@
               Name='xerces-c_2_7.dll'
               DiskId='1'
               Source='$(var.XERCESCROOT)\bin\xerces-c_2_7.dll'  />
-        <File Id='MSVCP80.dll'
-              Name='MSVCP80.dll'
-              DiskId='1'
-              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\MSVCP80.dll' />
-        <File Id='MSVCR80.dll'
-              Name='MSVCR80.dll'
-              DiskId='1'
-              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\MSVCR80.dll' />
-        <File Id='MFC80.dll'
-              Name='MFC80.dll'
-              DiskId='1'
-              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\MFC80.dll' />
       </Component>
     </DirectoryRef>
 
@@ -118,7 +93,7 @@
       <ComponentRef Id="CoSMICLicense" />
       <ComponentRef Id="Uninstaller" />
     </Feature>
-    
+
     <!-- Visual Studio merge modules -->
     <Feature Id="vc_merge_modules" Display="hidden"
              TypicalDefault="install"  Level="1">
@@ -129,7 +104,11 @@
       <MergeRef Id="VC_User_MFC71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
 <?elseif $(var.type) = vc8 ?>
-      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
+      <ComponentRef Id='VC8ATLAssemblies' />
+      <ComponentRef Id='VC8CRTAssemblies' />
+      <ComponentRef Id='VC8MFCAssemblies' />
+
+      <!--      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' />
       <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' />
@@ -137,6 +116,7 @@
       <MergeRef Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' />
       <MergeRef Id="Microsoft_VC80_MFCLOC_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
+-->
 <?endif ?>
     </Feature>
 

@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+  <?if $(var.type) = vc8 ?>
+  <?include EnvironmentVars.wxi ?>
+
+  <Fragment Id='VC8AssemblyFrag'>
+    <DirectoryRef Id='CoSMICMicrosoft.VC80.ATLDir'>
+      <Component Id='VC8ATLAssemblies'
+                 Guid='D3AD1868-D63A-4D68-8189-2B262469E8BF'>
+        <File Id='atl80.dll'
+              Name='atl80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.ATL\atl80.dll' />
+        <File Id='Microsoft.VC80.ATL.manifest'
+              Name='Microsoft.VC80.ATL.manifest'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.ATL\Microsoft.VC80.ATL.manifest' />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id='CoSMICMicrosoft.VC80.CRTDir'>
+      <Component Id='VC8CRTAssemblies'
+                 Guid='6B26B51E-6149-4202-ABD5-246B4C26E44E'>
+        <File Id='msvcm80.dll'
+              Name='msvcm80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\msvcm80.dll' />
+        <File Id='msvcp80.dll'
+              Name='msvcp80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\msvcp80.dll' />
+        <File Id='msvcr80.dll'
+              Name='msvcr80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\msvcr80.dll' />
+        <File Id='Microsoft.VC80.CRT.manifest'
+              Name='Microsoft.VC80.CRT.manifest'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.CRT\Microsoft.VC80.CRT.manifest' />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id='CoSMICMicrosoft.VC80.MFCDir'>
+      <Component Id='VC8MFCAssemblies'
+                 Guid='2A76CDD0-DF91-4AFF-8962-FAA0F3140180'>
+        <File Id='mfc80.dll'
+              Name='mfc80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\mfc80.dll' />
+        <File Id='mfc80u.dll'
+              Name='mfc80u.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\mfc80u.dll' />
+        <File Id='mfcm80.dll'
+              Name='mfcm80.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\mfcm80.dll' />
+        <File Id='mfcm80u.dll'
+              Name='mfcm80u.dll'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\mfcm80u.dll' />
+        <File Id='Microsoft.VC80.MFC.manifest'
+              Name='Microsoft.VC80.MFC.manifest'
+              DiskId='1'
+              Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\Microsoft.VC80.MFC.manifest' />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <?endif ?>
+</Wix>

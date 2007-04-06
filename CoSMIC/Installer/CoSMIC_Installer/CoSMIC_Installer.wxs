@@ -48,7 +48,7 @@
     <FeatureRef Id="vc_merge_modules" />
     
     <InstallExecuteSequence>
-    <Custom Action='ParadigmRegister' After='PublishProduct' >
+      <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
       </Custom>
       <Custom Action='TargetDirRegFailed' After='ParadigmRegister'>

@@ -14,6 +14,7 @@ project (CoSMIC_Installer) : wix {
     ./Directories.wxs
     ./CoSMIC_common.wxs
     ./CoSMICNotes.wxs
+    ./vc8_assemblies.wxs
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
 
