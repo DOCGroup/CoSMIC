@@ -454,17 +454,14 @@ write_factory_impl_begin (const PICML::ComponentFactory & factory,
     << function_header ("create")
     << "::Components::EnterpriseComponent_ptr " << std::endl
     << "  " << factory_name
-    << "::create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "::create (void)" << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException)) {"
     << "::Components::EnterpriseComponent_ptr retval =" << std::endl
     << "  ::Components::EnterpriseComponent::_nil ();"
     << std::endl
-    << "ACE_NEW_THROW_EX (retval," << std::endl
-    << type.name () << "," << std::endl
-    << "::CORBA::NO_MEMORY ());"
+    << "throw ::CORBA::NO_MEMORY ();"
     << std::endl
-    << "ACE_CHECK_RETURN (::Components::EnterpriseComponent::_nil ());"
     << "return retval;"
     << "}";
 }

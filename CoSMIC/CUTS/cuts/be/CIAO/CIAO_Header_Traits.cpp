@@ -476,8 +476,8 @@ write_factory_impl_begin (const PICML::ComponentFactory & factory,
     << "virtual ~" << factory_impl << " (void);"
     << std::endl
     << single_line_comment ("default creation method")
-    << "virtual ::Components::EnterpriseComponent_ptr" << std::endl
-    << "  create (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)" << std::endl
+    << "virtual ::Components::EnterpriseComponent_ptr create (void)"
+    << std::endl
     << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
     << "::Components::CCMException));" << std::endl;
 }

@@ -1,3 +1,11 @@
+Mon Apr  9 20:44:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+
+          Code generator still was generating source code that contained
+          deprecated macros.
+
 Wed Apr  4 21:56:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service_Manager.cpp:
