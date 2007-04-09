@@ -35,7 +35,8 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (const char * impl)
-ACE_THROW_SPEC ((::CORBA::SystemException))
+ACE_THROW_SPEC ((::CORBA::SystemException,
+                 ::Components::CCMException))
 {
   // This method can only be called once during the lifetime of
   // the proxy if it has already been contaminated.
@@ -70,7 +71,8 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 char * CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (void)
-ACE_THROW_SPEC ((::CORBA::SystemException))
+ACE_THROW_SPEC ((::CORBA::SystemException,
+                 ::Components::CCMException))
 {
   ::CORBA::String_var str =
     ::CORBA::string_dup (this->cuts_proxy_impl_.c_str ());
@@ -161,7 +163,7 @@ load_implementation (const char * dllname, const char * entry)
 template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
-ciao_preactivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+ciao_preactivate (void)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {
@@ -232,7 +234,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
 template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
-ccm_passivate (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+ccm_passivate (void)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {
@@ -288,7 +290,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
 template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
-ccm_remove (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+ccm_remove (void)
 ACE_THROW_SPEC ((::CORBA::SystemException,
                  ::Components::CCMException))
 {

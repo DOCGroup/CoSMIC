@@ -1,3 +1,11 @@
+Mon Apr  9 22:28:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.inl:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Agh!!! Template code still contained deprecated macros.
+
 Mon Apr  9 20:52:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:
