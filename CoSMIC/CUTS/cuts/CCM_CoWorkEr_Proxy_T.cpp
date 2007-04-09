@@ -54,13 +54,13 @@ ACE_THROW_SPEC ((::CORBA::SystemException))
                 "failed to located entry point in %s\n",
                 this->cuts_proxy_impl_.c_str ()));
 
-    ACE_THROW ((::CORBA::BAD_PARAM ()));
+    throw ::CORBA::BAD_PARAM ();
   }
 
   *entry ++ = '\0';
 
   if (this->load_implementation (impl, entry) == -1)
-    ACE_THROW (::CORBA::BAD_PARAM ());
+    throw ::CORBA::BAD_PARAM ();
 }
 
 //
