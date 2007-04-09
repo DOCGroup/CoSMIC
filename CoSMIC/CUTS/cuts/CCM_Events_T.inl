@@ -37,7 +37,7 @@ CUTS_CCM_Event_T <OBV_TYPE>::operator -> (void) const
 
 template <typename EVENTTYPE>
 CUTS_INLINE
-::CORBA::Long CUTS_Event_T <EVENTTYPE>::event_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+::CORBA::Long CUTS_Event_T <EVENTTYPE>::event_id (void)
 ACE_THROW_SPEC ((::CORBA::SystemException))
 {
   return CUTS_Event_Info <EVENTTYPE>::event_id_;

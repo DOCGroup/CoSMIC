@@ -62,7 +62,7 @@ CUTS_Event_init_T <EVENTTYPE>::~CUTS_Event_init_T (void)
 
 template <typename EVENTTYPE>
 CORBA::ValueBase *
-CUTS_Event_init_T <EVENTTYPE>::create_for_unmarshal (ACE_ENV_SINGLE_ARG_DECL)
+CUTS_Event_init_T <EVENTTYPE>::create_for_unmarshal (void)
 {
   CORBA::ValueBase *ret_val = 0;
   ACE_NEW_THROW_EX (ret_val, EVENTTYPE, ::CORBA::NO_MEMORY ());

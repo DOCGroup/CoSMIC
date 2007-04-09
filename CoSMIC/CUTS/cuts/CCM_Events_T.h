@@ -117,7 +117,7 @@ public:
   virtual ~CUTS_Event_T (void);
 
   /// Get the <event_id_> for the <eventtype>
-  virtual ::CORBA::Long event_id (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS)
+  virtual ::CORBA::Long event_id (void)
     ACE_THROW_SPEC ((::CORBA::SystemException));
 };
 
@@ -142,7 +142,7 @@ public:
   static CUTS_Event_init_T * _downcast (CORBA::ValueFactoryBase *);
 
   /// Create an instance of the <eventtype>.
-  virtual CORBA::ValueBase * create_for_unmarshal (ACE_ENV_SINGLE_ARG_DECL_WITH_DEFAULTS);
+  virtual CORBA::ValueBase * create_for_unmarshal (void);
 
   /// Repository ID of the <eventtype>.
   virtual const char * tao_repository_id (void);
