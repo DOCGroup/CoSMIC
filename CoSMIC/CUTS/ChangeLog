@@ -1,3 +1,10 @@
+Tue Apr 10 02:31:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Async_Event_Handler_T.cpp:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Agh!!! Template code still contained deprecated macros!!
+
 Mon Apr  9 22:28:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.h:

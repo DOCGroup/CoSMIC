@@ -47,7 +47,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
   // to seperate the module from the entry point. The <impl>
   // string is in the format [module:entry]
   this->cuts_proxy_impl_.set (impl);
-  char * entry = ACE_OS::strchr (ACE_const_cast (char *, impl), ':');
+  char * entry = ACE_OS::strchr (const_cast <char *> (impl), ':');
 
   if (entry == 0)
   {

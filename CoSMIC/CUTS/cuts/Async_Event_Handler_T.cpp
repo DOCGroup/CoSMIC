@@ -41,7 +41,7 @@ ACE_THR_FUNC_RETURN
 CUTS_Async_Event_Handler_T <COMPONENT, EVENTTYPE>::event_loop (void * param)
 {
   bool active = true;
-  THIS * _this = ACE_reinterpret_cast (THIS *, param);
+  THIS * _this = reinterpret_cast <THIS *> (param);
 
   // Register the thread with the event handler.
   if (_this->register_thread (&active) == -1)
