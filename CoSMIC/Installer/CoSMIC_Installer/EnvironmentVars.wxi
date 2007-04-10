@@ -7,4 +7,5 @@
      <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
      <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
      <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
+     <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
 </Include>
