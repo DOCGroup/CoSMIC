@@ -1,8 +1,6 @@
 // $Id$
 
 #include "BE_Execution_Visitor_T.h"
-#include "boost/bind.hpp"
-#include <algorithm>
 
 //
 // CUTS_BE_Env_Visitor_T
@@ -32,11 +30,9 @@ Visit_Environment (const PICML::Environment & env)
   typedef std::set <PICML::MultiInput> MultiInput_Set;
   MultiInput_Set inputs = env.dstMultiInput ();
 
-  std::for_each (inputs.begin (),
-                 inputs.end (),
-                 boost::bind (&MultiInput_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::visit <IMPL_STRATEGY> (inputs,
+    boost::bind (&MultiInput_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 }
 
 //
@@ -49,7 +45,8 @@ Visit_MultiInput (const PICML::MultiInput & input)
   PICML::InputAction action =
     PICML::InputAction::Cast (input.dstMultiInput_end ());
 
-  action.Accept (*this);
+  CUTS_BE::visit <IMPL_STRATEGY> (action,
+    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -62,7 +59,10 @@ Visit_InputAction (const PICML::InputAction & action)
   CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_Begin> (action);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
-  PICML::InputAction (action).Accept (exec_visitor);
+  PICML::InputAction input_action (action);
+
+  CUTS_BE::visit <IMPL_STRATEGY> (input_action,
+    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
 
   CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_End> (action);
 }

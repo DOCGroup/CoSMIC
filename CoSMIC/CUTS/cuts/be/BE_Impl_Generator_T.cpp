@@ -112,7 +112,8 @@ const PICML::MonolithicImplementation & monoimpl)
     CUTS_BE::generate <IMPL_STRATEGY::Component_Impl_Begin> (monoimpl, component);
 
     // Visit the component.
-    component.Accept (*this);
+    CUTS_BE::visit <IMPL_STRATEGY> (component,
+      boost::bind (&PICML::Component::Accept, _1, boost::ref (*this)));
 
     // Write the end of the component's implementation.
     CUTS_BE::generate <IMPL_STRATEGY::Component_Impl_End> (monoimpl, component);
@@ -217,7 +218,10 @@ Visit_Component (const PICML::Component & component)
   if (env != Udm::null)
   {
     CUTS_BE_Env_Visitor_T <IMPL_STRATEGY> env_visitor;
-    env.Accept (env_visitor);
+
+    CUTS_BE::visit <IMPL_STRATEGY> (env,
+      boost::bind (&PICML::Environment::Accept,
+      _1, boost::ref (env_visitor)));
   }
 
   // End generating environment related metadata.
@@ -304,7 +308,8 @@ Visit_ProvidedRequestPort_impl (const PICML::ProvidedRequestPort & facet)
     // Write the beginning of the facet's implementation.
     CUTS_BE::generate <IMPL_STRATEGY::Object_Impl_Begin> (component, facet);
 
-    object.Accept (*this);
+    CUTS_BE::visit <IMPL_STRATEGY> (object,
+      boost::bind (&PICML::Object::Accept, _1, boost::ref (*this)));
 
     // Write the end of the facet's implementation.
     CUTS_BE::generate <IMPL_STRATEGY::Object_Impl_End> (component, facet);
@@ -463,7 +468,8 @@ Visit_ComponentFactory_inherits (const PICML::Inherits & inherits)
   PICML::ComponentFactory factory =
     PICML::ComponentFactory::Cast (inherits.ref ());
 
-  factory.Accept (*this);
+  CUTS_BE::visit <IMPL_STRATEGY> (factory,
+    boost::bind (&PICML::ComponentFactory::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -488,7 +494,10 @@ Visit_Supports (const PICML::Supports & supports)
   PICML::Object object = supports.ref ();
 
   if (object != Udm::null)
-    object.Accept (*this);
+  {
+    CUTS_BE::visit <IMPL_STRATEGY> (object,
+      boost::bind (&PICML::Object::Accept, _1, boost::ref (*this)));
+  }
 }
 
 //

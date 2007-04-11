@@ -111,14 +111,14 @@ namespace CUTS_BE
     static const bool result_type = false;
   };
 
-  template <typename T>
-  struct is_container <std::vector <T> >
+  template <typename T, typename A>
+  struct is_container <std::vector <T, A> >
   {
     static const bool result_type = true;
   };
 
-  template <typename T>
-  struct is_container <std::set <T> >
+  template <typename K, typename T, typename A>
+  struct is_container <std::set <K, T, A> >
   {
     static const bool result_type = true;
   };

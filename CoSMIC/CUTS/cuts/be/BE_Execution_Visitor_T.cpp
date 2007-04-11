@@ -1,6 +1,7 @@
 // $Id$
 
 #include "UDM_Utility_T.h"
+#include "BE_algorithm.h"
 
 // BOOST headers
 #include "boost/bind.hpp"
@@ -86,7 +87,10 @@ generate (const PICML::SingleInputBase & base)
   PICML::Input input = base.dstInput ();
 
   if (input != Udm::null)
-    input.Accept (*this);
+  {
+    CUTS_BE::visit <BE_STRATEGY> (input,
+      boost::bind (&PICML::Input::Accept, _1, boost::ref (*this)));
+  }
 }
 
 
@@ -102,11 +106,9 @@ generate (const PICML::MultiInputBase & base)
 
   if (!inputs.empty ())
   {
-    std::for_each (inputs.begin (),
-                   inputs.end (),
-                   boost::bind (&MultiInput_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
+    CUTS_BE::visit <BE_STRATEGY> (inputs,
+      boost::bind (&MultiInput_Set::value_type::Accept,
+      _1, boost::ref (*this)));
   }
 }
 
@@ -120,7 +122,8 @@ Visit_Input (const PICML::Input & input)
   PICML::InputAction action =
     PICML::InputAction::Cast (input.dstInput_end ());
 
-  action.Accept (*this);
+  CUTS_BE::visit <BE_STRATEGY> (action,
+    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
 }
 
 
@@ -134,7 +137,8 @@ Visit_MultiInput (const PICML::MultiInput & input)
   PICML::InputAction action =
     PICML::InputAction::Cast (input.dstMultiInput_end ());
 
-  action.Accept (*this);
+  CUTS_BE::visit <BE_STRATEGY> (action,
+    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -151,18 +155,18 @@ Visit_InputAction (const PICML::InputAction & action)
   typedef std::vector <PICML::Property> Property_Set;
   Property_Set props = action.Property_children ();
 
-  std::for_each (props.begin (),
-                 props.end (),
-                 boost::bind (&Property_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::visit <BE_STRATEGY> (props,
+    boost::bind (&Property_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit the effect.
   PICML::InputEffect input_effect = action.dstInputEffect ();
 
-
   if (input_effect != Udm::null)
-    input_effect.Accept (*this);
+  {
+    CUTS_BE::visit <BE_STRATEGY> (input_effect,
+      boost::bind (&PICML::InputEffect::Accept, _1, boost::ref (*this)));
+  }
 
   // Remove the <action> from the stack since we have
   // completed its behavior.
@@ -184,7 +188,8 @@ Visit_InputEffect (const PICML::InputEffect & effect)
 
   // Visit the next state in the chain.
   PICML::State state = effect.dstInputEffect_end ();
-  state.Accept (*this);
+  CUTS_BE::visit <BE_STRATEGY> (state,
+    boost::bind (&PICML::State::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -202,7 +207,9 @@ Visit_Effect (const PICML::Effect & effect)
 
   // Visit the next state in the chain.
   PICML::State state = effect.dstEffect_end ();
-  state.Accept (*this);
+
+  CUTS_BE::visit <BE_STRATEGY> (state,
+    boost::bind (&PICML::State::Accept, _1, boost::ref (*this)));
 }
 
 //
@@ -259,11 +266,9 @@ Visit_State (const PICML::State & state)
   if (transition_count > 1)
     ++ this->depth_;
 
-  std::for_each (transitions.begin (),
-                 transitions.end (),
-                 boost::bind (&Transition_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::visit <BE_STRATEGY> (transitions,
+    boost::bind (&Transition_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Now that we have visited all the transitions from the
   // state, we can jump to the state were all the branching
@@ -361,11 +366,9 @@ Visit_Action (const PICML::Action & action)
   Property_Set properties =
     action.Property_kind_children_sorted (Sort_By_Position <PICML::Property> ());
 
-  std::for_each (properties.begin (),
-                 properties.end (),
-                 boost::bind (&Property_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::visit <BE_STRATEGY> (properties,
+    boost::bind (&Property_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Let's tell the <traits_> to end generating an action.
   CUTS_BE::generate <BE_STRATEGY::Action_End> ();
@@ -394,5 +397,8 @@ Visit_CompositeAction (const PICML::CompositeAction & action)
   InputAction_Set actions = action.InputActionBase_children ();
 
   if (!actions.empty ())
-    PICML::InputAction::Cast (actions.front ()).Accept (*this);
+  {
+    CUTS_BE::visit <BE_STRATEGY> (PICML::InputAction::Cast (actions.front ()),
+      boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
+  }
 }
