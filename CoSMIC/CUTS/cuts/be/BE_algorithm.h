@@ -105,6 +105,39 @@ namespace CUTS_BE
     static const bool result_type = true;
   };
 
+  template <typename T>
+  struct is_container
+  {
+    static const bool result_type = false;
+  };
+
+  template <typename T>
+  struct is_container <std::vector <T> >
+  {
+    static const bool result_type = true;
+  };
+
+  template <typename T>
+  struct is_container <std::set <T> >
+  {
+    static const bool result_type = true;
+  };
+
+  template <typename T, bool is_a_container>
+  struct get_type { };
+
+  template <typename T>
+  struct get_type <T, false>
+  {
+    typedef T result_type;
+  };
+
+  template <typename T>
+  struct get_type <T, true>
+  {
+    typedef typename T::value_type result_type;
+  };
+
 /// Helper macro for defining the trait to ingore a single type
 /// when parsing the model.
 #define CUTS_BE_NOT_VISIT(strategy, type) \
@@ -132,7 +165,7 @@ namespace CUTS_BE
    */
   //=============================================================================
 
-  template <typename CONTAINER, typename FUNCTOR>
+  template <typename STRATEGY, typename CONTAINER, typename FUNCTOR>
   struct iterate_all_t
   {
     static inline bool execute (CONTAINER container, FUNCTOR func)
@@ -144,27 +177,67 @@ namespace CUTS_BE
 
   //=============================================================================
   /**
-   * @struct iterate_all
+   * @struct iterate_single_t
+   */
+  //=============================================================================
+
+  template <typename STRATEGY, typename TYPE, typename FUNCTOR>
+  struct iterate_single_t
+  {
+    static inline bool execute (TYPE type, FUNCTOR func)
+    {
+      func (type);
+      return true;
+    }
+  };
+
+  //=============================================================================
+  /**
+   * @struct iterate_t
    *
-   * Implementation of the std::for_each method. This functor conforms it
-   * to the function signature expected by the metaprogrammable templates.
+   * Trait class that determines the default iteration method. The
+   * default method is to iterate over all the element in the container
+   * using the iterate_all_t functor.
    */
   //=============================================================================
 
   template <typename STRATEGY, typename CONTAINER, typename FUNCTOR>
-  inline bool iterate_all (const CONTAINER & container, FUNCTOR func)
+  struct iterate_t
   {
-    typedef CUTS_BE::if_then <
-      CUTS_BE::visit_type <STRATEGY, typename CONTAINER::value_type>::result_type,
-      CUTS_BE::iterate_all_t <CONTAINER, FUNCTOR>
-    >::result_type result_type;
+    typedef typename
+      if_then_else <is_container <CONTAINER>::result_type,
+      iterate_all_t <STRATEGY, CONTAINER, FUNCTOR>,
+      iterate_single_t <STRATEGY, CONTAINER, FUNCTOR> >::result_type
+      result_type;
+  };
 
-    return result_type::execute (container, func);
+  //=============================================================================
+  /**
+   * @function iterate
+   *
+   * Factory function that generates the correct iteration method. The
+   * iteration method is defined by the trait iterate_t. This factory
+   * also uses the visit_type trait class to determine if the elements
+   * in \a container are visitable.
+   */
+  //=============================================================================
+
+  template <typename STRATEGY, typename TYPE, typename FUNCTOR>
+  inline bool iterate (TYPE type, FUNCTOR func)
+  {
+    typedef typename CUTS_BE::if_then <
+      CUTS_BE::visit_type <STRATEGY,
+        get_type <TYPE, is_container <TYPE>::result_type>::
+        result_type>::result_type,
+      CUTS_BE::iterate_t <STRATEGY, TYPE, FUNCTOR>::result_type>::
+      result_type result_type;
+
+    return result_type::execute (type, func);
   }
 
   //=============================================================================
   /**
-   * @struct generate
+   * @function generate
    *
    * Metaprogrammable template that determines if a \a STRATEGY_GENERATOR
    * should be invoked. If the \a STRATEGY_GENERATOR is not NIL,

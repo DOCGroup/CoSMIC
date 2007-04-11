@@ -23,8 +23,7 @@ Visit_RootFolder (const PICML::RootFolder & root)
   typedef std::vector <PICML::ComponentImplementations> Folder_Set;
   Folder_Set folders = root.ComponentImplementations_children ();
 
-  CUTS_BE::iterate_all <IMPL_STRATEGY> (
-    folders,
+  CUTS_BE::iterate <IMPL_STRATEGY> (folders,
     boost::bind (&Folder_Set::value_type::Accept, _1, boost::ref (*this)));
 }
 
@@ -39,8 +38,7 @@ const PICML::ComponentImplementations & impls)
   typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
   Container_Set container = impls.ComponentImplementationContainer_children ();
 
-  CUTS_BE::iterate_all <IMPL_STRATEGY> (
-    container,
+  CUTS_BE::iterate <IMPL_STRATEGY> (container,
     boost::bind (&Container_Set::value_type::Accept, _1, boost::ref (*this)));
 }
 
@@ -75,16 +73,12 @@ const PICML::ComponentImplementationContainer & container)
     CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), impl);
 
     // Write the include files for this implementation.
-    std::for_each (impl->include_.begin (),
-                   impl->include_.end (),
-                   boost::bind (&CUTS_BE_Impl_Generator_T::Visit_Include,
-                                boost::ref (this),
-                                _1));
+    CUTS_BE::iterate <IMPL_STRATEGY> (impl->include_,
+      boost::bind (&CUTS_BE_Impl_Generator_T::Visit_Include,
+      boost::ref (this), _1));
 
-    CUTS_BE::iterate_all <IMPL_STRATEGY> (
-      monos, boost::bind (&MonoImpl_Set::value_type::Accept,
-                          _1,
-                          boost::ref (*this)));
+    CUTS_BE::iterate <IMPL_STRATEGY> (monos,
+      boost::bind (&MonoImpl_Set::value_type::Accept, _1, boost::ref (*this)));
 
     // Write the epilogue for the file, then close it.
     CUTS_BE::generate <IMPL_STRATEGY::Epilogue> (container);
@@ -128,11 +122,9 @@ const PICML::MonolithicImplementation & monoimpl)
     typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
     Facet_Set facets = component.ProvidedRequestPort_kind_children ();
 
-    CUTS_BE::iterate_all <IMPL_STRATEGY> (
-      facets, boost::bind (&CUTS_BE_Impl_Generator_T::
-                          Visit_ProvidedRequestPort_impl,
-                          boost::ref (this),
-                          _1));
+    CUTS_BE::iterate <IMPL_STRATEGY> (facets,
+      boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ProvidedRequestPort_impl,
+      boost::ref (this), _1));
 
     PICML::ComponentFactory factory;
 
@@ -142,7 +134,9 @@ const PICML::MonolithicImplementation & monoimpl)
       CUTS_BE::generate <
         IMPL_STRATEGY::Factory_Impl_Begin> (factory, monoimpl, component);
 
-      factory.Accept (*this);
+      CUTS_BE::iterate <IMPL_STRATEGY> (factory,
+        boost::bind (&PICML::ComponentFactory::Accept,
+        _1, boost::ref (*this)));
 
       // Write the end of the factory's implementation.
       CUTS_BE::generate <
@@ -162,49 +156,41 @@ Visit_Component (const PICML::Component & component)
   typedef std::vector <PICML::Supports> Supports_Set;
   Supports_Set supports = component.Supports_kind_children ();
 
-  CUTS_BE::iterate_all <IMPL_STRATEGY> (
-    supports,
-    boost::bind (&Supports_Set::value_type::Accept, _1, boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (supports,
+    boost::bind (&Supports_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the InEventPort elements of the <component>.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set sinks = component.InEventPort_kind_children ();
 
-  std::for_each (sinks.begin (),
-                 sinks.end (),
-                 boost::bind (&InEventPort_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (sinks,
+    boost::bind (&InEventPort_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the ProvidedRequestPort elements of the <component>.
   typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
   Facet_Set facets = component.ProvidedRequestPort_kind_children ();
 
-  std::for_each (facets.begin (),
-                 facets.end (),
-                 boost::bind (&Facet_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (facets,
+    boost::bind (&Facet_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the PeriodicEvent elements of the <component>.
   typedef std::vector <PICML::PeriodicEvent> PeriodicEvent_Set;
   PeriodicEvent_Set periodics = component.PeriodicEvent_kind_children ();
 
-  std::for_each (periodics.begin (),
-                 periodics.end (),
-                 boost::bind (&PeriodicEvent_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (periodics,
+    boost::bind (&PeriodicEvent_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the Attribute elements of the <component>.
   typedef std::vector <PICML::Attribute> Attribute_Set;
   Attribute_Set attrs = component.Attribute_kind_children ();
 
-  std::for_each (attrs.begin (),
-                 attrs.end (),
-                 boost::bind (&Attribute_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (attrs,
+    boost::bind (&Attribute_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the ReadonlyAttribute elements of the <component>.
   typedef std::vector <PICML::ReadonlyAttribute> ReadonlyAttribute_Set;
@@ -246,36 +232,25 @@ Visit_Component (const PICML::Component & component)
   typedef std::vector <PICML::Variable> Variable_Set;
   Variable_Set vars = component.Variable_kind_children ();
 
-  std::for_each (vars.begin (),
-                 vars.end (),
-                 boost::bind (&Variable_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (vars,
+    boost::bind (&Variable_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   typedef std::vector <PICML::WorkerType> WorkerType_Set;
   WorkerType_Set workers = component.WorkerType_kind_children ();
 
-  std::for_each (workers.begin (),
-                 workers.end (),
-                 boost::bind (&WorkerType_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (workers,
+    boost::bind (&WorkerType_Set::value_type::Accept, _1, boost::ref (*this)));
 
   // Write the attribute variables.
-  std::for_each (ro_attrs.begin (),
-                 ro_attrs.end (),
-                 boost::bind (&CUTS_BE_Impl_Generator_T::
-                              Visit_ReadonlyAttribute_Variable,
-                              boost::ref (this),
-                              _1));
+  CUTS_BE::iterate <IMPL_STRATEGY> (ro_attrs,
+    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ReadonlyAttribute_Variable,
+    boost::ref (this), _1));
 
   // Write the periodic event variables.
-  std::for_each (periodics.begin (),
-                 periodics.end (),
-                 boost::bind (&CUTS_BE_Impl_Generator_T::
-                              Visit_PeriodicEvent_Variable,
-                              boost::ref (this),
-                              _1));
+  CUTS_BE::iterate <IMPL_STRATEGY> (periodics,
+    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_PeriodicEvent_Variable,
+    boost::ref (this), _1));
 
   // End the generation of the variables.
   CUTS_BE::generate <IMPL_STRATEGY::Variables_End> (component);
@@ -464,23 +439,18 @@ Visit_ComponentFactory (const PICML::ComponentFactory & factory)
   typedef std::vector <PICML::FactoryOperation> FactoryOperation_Set;
   FactoryOperation_Set operations = factory.FactoryOperation_children ();
 
-  std::for_each (operations.begin (),
-                 operations.end (),
-                 boost::bind (&FactoryOperation_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (operations,
+    boost::bind (&FactoryOperation_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   // Visit all the base factories, so we can generate to
   // correct methods for this component's factory.
   typedef std::vector <PICML::Inherits> Inherits_Set;
   Inherits_Set inherits = factory.Inherits_kind_children ();
 
-  std::for_each (inherits.begin (),
-                 inherits.end (),
-                 boost::bind (&CUTS_BE_Impl_Generator_T::
-                              Visit_ComponentFactory_inherits,
-                              this,
-                              _1));
+  CUTS_BE::iterate <IMPL_STRATEGY> (inherits,
+    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ComponentFactory_inherits,
+    this, _1));
 }
 
 //
@@ -532,18 +502,14 @@ Visit_Object (const PICML::Object & object)
   typedef std::vector <PICML::OnewayOperation> OnewayOperation_Set;
   OnewayOperation_Set oneways = object.OnewayOperation_kind_children ();
 
-  std::for_each (oneways.begin (),
-                 oneways.end (),
-                 boost::bind (&OnewayOperation_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (oneways,
+    boost::bind (&OnewayOperation_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 
   typedef std::vector <PICML::TwowayOperation> TwowayOperation_Set;
   TwowayOperation_Set twoways = object.TwowayOperation_kind_children ();
 
-  std::for_each (twoways.begin (),
-                 twoways.end (),
-                 boost::bind (&TwowayOperation_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  CUTS_BE::iterate <IMPL_STRATEGY> (twoways,
+    boost::bind (&TwowayOperation_Set::value_type::Accept,
+    _1, boost::ref (*this)));
 }

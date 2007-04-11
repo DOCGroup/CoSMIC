@@ -1,3 +1,16 @@
+Wed Apr 11 15:16:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Impl_Generator_T.cpp:
+
+          Replaced the remaining container visits with iterate
+          templates that can be specialized.
+
+        * cuts/be/BE_algorithm.h:
+
+          - Added templates to check if a type is a contain.
+          - The iterate template now can handle single element
+            types and contain types.
+
 Tue Apr 10 02:31:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Async_Event_Handler_T.cpp:
