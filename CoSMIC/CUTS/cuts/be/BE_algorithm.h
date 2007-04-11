@@ -158,7 +158,7 @@ namespace CUTS_BE
 
   //=============================================================================
   /**
-   * @struct iterate_all_t
+   * @struct visit_all_t
    *
    * Implementation of the std::for_each method. This functor conforms it
    * to the function signature expected by the metaprogrammable templates.
@@ -166,7 +166,7 @@ namespace CUTS_BE
   //=============================================================================
 
   template <typename STRATEGY, typename CONTAINER, typename FUNCTOR>
-  struct iterate_all_t
+  struct visit_all_t
   {
     static inline bool execute (CONTAINER container, FUNCTOR func)
     {
@@ -177,12 +177,12 @@ namespace CUTS_BE
 
   //=============================================================================
   /**
-   * @struct iterate_single_t
+   * @struct visit_single_t
    */
   //=============================================================================
 
   template <typename STRATEGY, typename TYPE, typename FUNCTOR>
-  struct iterate_single_t
+  struct visit_single_t
   {
     static inline bool execute (TYPE type, FUNCTOR func)
     {
@@ -193,7 +193,7 @@ namespace CUTS_BE
 
   //=============================================================================
   /**
-   * @struct iterate_t
+   * @struct visit_t
    *
    * Trait class that determines the default iteration method. The
    * default method is to iterate over all the element in the container
@@ -202,12 +202,12 @@ namespace CUTS_BE
   //=============================================================================
 
   template <typename STRATEGY, typename CONTAINER, typename FUNCTOR>
-  struct iterate_t
+  struct visit_t
   {
     typedef typename
       if_then_else <is_container <CONTAINER>::result_type,
-      iterate_all_t <STRATEGY, CONTAINER, FUNCTOR>,
-      iterate_single_t <STRATEGY, CONTAINER, FUNCTOR> >::result_type
+      visit_all_t <STRATEGY, CONTAINER, FUNCTOR>,
+      visit_single_t <STRATEGY, CONTAINER, FUNCTOR> >::result_type
       result_type;
   };
 
@@ -223,13 +223,13 @@ namespace CUTS_BE
   //=============================================================================
 
   template <typename STRATEGY, typename TYPE, typename FUNCTOR>
-  inline bool iterate (TYPE type, FUNCTOR func)
+  inline bool visit (TYPE type, FUNCTOR func)
   {
     typedef typename CUTS_BE::if_then <
       CUTS_BE::visit_type <STRATEGY,
         get_type <TYPE, is_container <TYPE>::result_type>::
         result_type>::result_type,
-      CUTS_BE::iterate_t <STRATEGY, TYPE, FUNCTOR>::result_type>::
+      CUTS_BE::visit_t <STRATEGY, TYPE, FUNCTOR>::result_type>::
       result_type result_type;
 
     return result_type::execute (type, func);
