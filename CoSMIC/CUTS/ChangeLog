@@ -1,3 +1,10 @@
+Wed Apr 11 20:58:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Env_Visitor_T.cpp (Visit_InputAction):
+
+          Fixed runtime bug that was caused by using the wrong
+          visitor object to parse the behavior.
+
 Wed Apr 11 16:03:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_algorithm.h:

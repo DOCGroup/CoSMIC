@@ -62,7 +62,7 @@ Visit_InputAction (const PICML::InputAction & action)
   PICML::InputAction input_action (action);
 
   CUTS_BE::visit <IMPL_STRATEGY> (input_action,
-    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
+    boost::bind (&PICML::InputAction::Accept, _1, boost::ref (exec_visitor)));
 
   CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_End> (action);
 }
