@@ -62,9 +62,11 @@ void CFile::close_file()
 
 BOOL CFile::open_file()
 {
-  this->aspect_file_.open (file_name_.c_str ());
+  this->save_file();   
+  this->aspect_file_.open (this->file_name_.c_str ());
   return this->aspect_file_.is_open();
 }
+
 
 void CFile::add_content(const std::string data)
 {
@@ -74,7 +76,7 @@ void CFile::add_content(const std::string data)
 
 void CFile::put_in_file()
 {
-  AfxMessageBox(this->file_data_.c_str());
+  //AfxMessageBox(this->file_data_.c_str());
   this->aspect_file_ << this->file_data_.c_str();
 }
 

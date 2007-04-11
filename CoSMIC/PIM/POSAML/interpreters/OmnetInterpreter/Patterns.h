@@ -5,6 +5,9 @@
 #include "Interpreter.h"
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <set>
+
 
 class Reactor:public Pattern
 {

@@ -54,7 +54,10 @@ BOOL CAOP::iterate_model(std::set<BON::Model> &model_set)
       if(this->setup_aspect_file(modelName))
       {
         this->process_aspect_feature(modelName);
-        this->close_aspect_file();      
+        this->close_aspect_file();  
+        std::string tmp_msg ="Aspect file "+modelName+" saved";
+        AfxMessageBox(tmp_msg.c_str());
+
       }
   
     }
@@ -244,15 +247,22 @@ BOOL CAOP::getMembersOfSet(BON::FCO &dst, BON::Model &model)
         std::string elementName = iterObj->getName();
         if(elementType == "Jointpoint")
         {
-          if(count == 0)
-            this->jointPoint_.append("(");
-          count++;
           std::string pointcutType= iterObj->getAttribute("TypeOfJointPoint")->getStringValue();
           std::string setOfJointPoint = iterObj->getAttribute("SetOfJointPoint")->getStringValue();
+          if(!pointcutType.empty())
+          {
+            if(count == 0)
+              this->jointPoint_.append("(");
+          }
+          count++;
+
           this->jointPoint_.append(pointcutType);
-          this->jointPoint_.append("(");
-          this->jointPoint_.append(setOfJointPoint);
-          this->jointPoint_.append(")");
+          if(!setOfJointPoint.empty())
+          {
+            this->jointPoint_.append("(");
+            this->jointPoint_.append(setOfJointPoint);
+            this->jointPoint_.append(")");
+          }
           std::string relation;
           if((set_type == "JointPointOrSet")||(set_type == "PointcutOrSet"))
             relation = " || ";

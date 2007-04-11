@@ -4,16 +4,12 @@
 #include "BON2Component.h"
 #include <iostream>
 #include <fstream>
-//template <typename T> 
+
 class Pattern
 {
 public:
- // typedef T TYPE;
-  //Pattern (const BON::Project &project);
   virtual int create_init_file () = 0;
-  //~Pattern ();
-//private:
- // T *pattern_;
+  virtual ~Pattern ();
 };
 
 
@@ -26,6 +22,4 @@ private:
   BON::Project project_;
 };
 
-
-//#include "Interpreter.cpp"
 #endif;

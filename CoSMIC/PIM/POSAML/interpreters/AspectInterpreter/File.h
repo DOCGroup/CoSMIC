@@ -17,6 +17,7 @@ public:
   
   BOOL set_path (const std::string& description);
   void add_content(const std::string data);
+  BOOL save_file();
   BOOL open_file();
   void close_file();
   void add_include();
@@ -30,7 +31,6 @@ public:
   static const std::string semi_colon_;
 
 private:
-  BOOL save_file ();
   void set_file_name(std::string file_name);
   void put_in_file();
   std::ofstream aspect_file_;

@@ -108,8 +108,13 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 		  {
 			pattern.reset (pattern_factory.get_pattern (*pattern_iter));
 			if (pattern.get ())
-			  pattern->create_init_file ();
+			{
+			  project->consoleMsg ("Creating initialization file...!",msgtype_enum(1));
+			  if (pattern->create_init_file () != 0)
+				project->consoleMsg ("Initialization file created!",msgtype_enum(1));
+			}
 		  }
+		  break;
 		}
 	  }
    }
