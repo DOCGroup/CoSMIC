@@ -5,7 +5,7 @@
   <?include EnvironmentVars.wxi ?>
 
   <Fragment Id='VC8AssemblyFrag'>
-    <DirectoryRef Id='CoSMICMicrosoft.VC80.ATLDir'>
+<!--    <DirectoryRef Id='CoSMICMicrosoft.VC80.ATLDir'>
       <Component Id='VC8ATLAssemblies'
                  Guid='D3AD1868-D63A-4D68-8189-2B262469E8BF'>
         <File Id='atl80.dll'
@@ -63,7 +63,7 @@
               DiskId='1'
               Source='$(var.VS80COMNTOOLS)..\..\vc\redist\x86\Microsoft.VC80.MFC\Microsoft.VC80.MFC.manifest' />
       </Component>
-    </DirectoryRef>
+    </DirectoryRef>-->
   </Fragment>
 
   <?endif ?>

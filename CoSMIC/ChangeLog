@@ -1,3 +1,18 @@
+Wed Apr 11 14:13:02 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          Updated the documentation.
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          Added the merge modules back again. Removed the private assembly
+          approach.
+
+        * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
+          
+          This file is linked in but most of the part is commented out.
+
 Tue Apr 10 05:48:18 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
@@ -8,7 +23,7 @@ Tue Apr 10 05:48:18 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
           Added zlib1.dll to be included with the PackageComponent.
           CoSMIC_Installer generated with the sources with this revision
-          works fine. ALL interpreters were able to run on the test 
+          works fine. ALL interpreters were able to run on the test
           target machine (Win XP)
 
 Fri Apr  6 06:28:53 UTC 2007  Sumant Tambe  <sutambe@nospam>

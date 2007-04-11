@@ -31,33 +31,33 @@
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_ATL71_RTL_X86_---.msm' />
 <?elseif $(var.type) = vc8 ?>
       <!-- C runtime for VC8 -->
-      <!--      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0' 
+      <Merge Id='Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0' 
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_CRT_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_CRT_x86.msm' />
--->
+
       <!-- ATL for VC8 -->
-      <!--<Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
+      <Merge Id='Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
          SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_ATL_x86.msm' />
 
       <Merge Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_ATL_x86.msm' />
--->
+
       <!-- MFC for VC8 -->
-      <!--<Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
+      <Merge Id='Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFC_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFC_x86.msm' />
--->
+
       <!-- MFC for Localization -->
-      <!--<Merge Id='Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
+      <Merge Id='Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC80_MFCLOC_x86.msm' />
       
       <Merge Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
--->
+
 <?endif ?>
     </DirectoryRef>
 
@@ -104,11 +104,11 @@
       <MergeRef Id="VC_User_MFC71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
 <?elseif $(var.type) = vc8 ?>
-      <ComponentRef Id='VC8ATLAssemblies' />
+<!--      <ComponentRef Id='VC8ATLAssemblies' />
       <ComponentRef Id='VC8CRTAssemblies' />
       <ComponentRef Id='VC8MFCAssemblies' />
-
-      <!--      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
+-->
+      <MergeRef Id="Microsoft_VC80_CRT_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_CRT_x86.msm' />
       <MergeRef Id="Microsoft_VC80_ATL_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_ATL_x86.msm' />
@@ -116,7 +116,7 @@
       <MergeRef Id='policy_8_0_Microsoft_VC80_MFC_x86.msm' />
       <MergeRef Id="Microsoft_VC80_MFCLOC_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
--->
+
 <?endif ?>
     </Feature>
 
