@@ -17,7 +17,7 @@
 #define _CUTS_IDL_
 
 #include "cuts/performance.idl"
-#include <Components.idl>
+#include "cuts/events.idl"
 
 module CUTS
 {

@@ -1,3 +1,18 @@
+Wed Apr 11 22:32:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.mpc:
+
+          Added new IDL files to the CUTS_stub project.
+
+        * cuts/CUTS.idl:
+        * cuts/events.idl:
+        * cuts/events_i.h:
+        * cuts/events_i.inl:
+        * cuts/events_i.cpp:
+
+          Added support for generating dummy events with no payload
+          and with payload.
+
 Wed Apr 11 20:58:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Env_Visitor_T.cpp (Visit_InputAction):

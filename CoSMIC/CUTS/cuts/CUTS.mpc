@@ -14,6 +14,7 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
   dynamicflags   = CUTS_STUB_BUILD_DLL
 
   IDL_Files {
+    events.idl
     CUTS.idl
     performance.idl
   }
@@ -25,6 +26,7 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
   Source_Files {
     Benchmark_Agent_i.cpp
     Benchmark_Collector_Visitor.cpp
+    events_i.cpp
     IDL_Streams.cpp
   }
 }
