@@ -177,6 +177,10 @@ adding_visitor::visit_module (AST_Module *node)
 
           this->insert_element (elem, node);
           be_global->emit_diagnostic (elem);
+
+          // Keep track of where we are in the DOM tree so the next
+          // new element can be inserted in the correct position.
+          this->previous_ = elem;
         }
     }
 
@@ -192,10 +196,6 @@ adding_visitor::visit_module (AST_Module *node)
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   adding_visitor scope_visitor (elem);
   if (scope_visitor.visit_scope (node) == -1)
@@ -285,16 +285,16 @@ adding_visitor::visit_interface (AST_Interface *node)
       this->add_abstract_element (elem, node);
       this->add_local_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -419,16 +419,16 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
                                     node->supports (),
                                     node->n_supports ());
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -558,16 +558,16 @@ adding_visitor::visit_component (AST_Component *node)
                                     node->supports (),
                                     node->n_supports ());
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   unsigned long start_id =
     (0 == node->base_component () ? 0UL : 1UL)
@@ -679,16 +679,16 @@ adding_visitor::visit_home (AST_Home *node)
       this->add_home_factories (elem, node);
       this->add_finders (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // element can be inserted in the correct position.
-  this->previous_ = elem;
 
   unsigned long start_id = (0 == node->base_home () ? 0UL : 1UL)
                            + static_cast<unsigned long> (node->n_supports ())
@@ -828,16 +828,16 @@ adding_visitor::visit_structure (AST_Structure *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -973,16 +973,16 @@ adding_visitor::visit_exception (AST_Exception *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -1065,16 +1065,16 @@ adding_visitor::visit_enum (AST_Enum *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (!node->imported () && be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -1522,16 +1522,16 @@ adding_visitor::visit_union (AST_Union *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   // If in_recursion() returns TRUE and this node is already in the
   // decl id table, we are in the first level of recursion and do
@@ -1726,6 +1726,10 @@ adding_visitor::visit_constant (AST_Constant *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
@@ -1733,10 +1737,6 @@ adding_visitor::visit_constant (AST_Constant *node)
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -1924,16 +1924,16 @@ adding_visitor::visit_typedef (AST_Typedef *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {
@@ -2117,16 +2117,16 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
 
+      // Keep track of where we are in the DOM tree so the next
+      // new element can be inserted in the correct position.
+      this->previous_ = elem;
+
       // Add to list used in check for removed IDL decls.
       if (be_global->input_xme () != 0)
         {
           be_global->gme_id_set ().insert (elem->getAttribute (X ("id")));
         }
     }
-
-  // Keep track of where we are in the DOM tree so the next
-  // new element can be inserted in the correct position.
-  this->previous_ = elem;
 
   if (0 != result)
     {

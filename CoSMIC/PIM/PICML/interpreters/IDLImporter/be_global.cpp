@@ -26,6 +26,7 @@
 #include "ast_module.h"
 #include "ast_sequence.h"
 #include "utl_identifier.h"
+#include "utl_string.h"
 #include "fe_extern.h"
 #include "global_extern.h"
 #include "nr_extern.h"
@@ -975,9 +976,14 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
       // There should be only one "name" node.
       DOMNodeList *namelist =
         compared_elem->getElementsByTagName (X ("name"));
+        
+      // But if there aren't any, skip this iteration.  
+      if (namelist->getLength () == 0)
+        {
+          continue;
+        }
 
       DOMNode *name_elem = namelist->item (0);
-
       DOMNode *name_item = name_elem->getFirstChild ();
       DOMText *name = (DOMText *) name_item;
       const XMLCh *text = name->getData ();
@@ -1610,7 +1616,87 @@ BE_GlobalData::get_first_picml_element (DOMElement *scope)
 }
 
 bool
-BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
+BE_GlobalData::match_module_opening (DOMElement *elem, AST_Module *m)
+{
+  // This call first matches names at the current scope,
+  // then moves up recursively to global scope.
+  if (! this->match_module_opening_upscope (elem, m))
+    {
+      return false;
+    }
+    
+  // This call matches the names of the first child in the scope
+  // recursively.  
+  return this->match_module_opening_downscope (elem, m);
+}
+
+bool
+BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
+                                             AST_Decl *d)
+{
+  char *elem_name = this->get_name (elem);
+  char *node_name = d->local_name ()->get_string ();
+  int match = ACE_OS::strcmp (node_name, elem_name);
+  XMLString::release (&elem_name);
+  
+  if (0 != match)
+    {
+      return false;
+    }
+    
+  // This can't be 0, if the previous recursion gave AST_Root here,
+  // this recursion wouldn't happen (see below).  
+  AST_Decl *p = ScopeAsDecl (d->defined_in ());
+  
+  AST_Decl::NodeType nt = p->node_type ();
+  DOMElement *parent = dynamic_cast<DOMElement *> (elem->getParentNode ());
+  
+  if (0 == parent)
+    {
+      return false;
+    }
+    
+  const XMLCh *parent_kind = parent->getAttribute (X ("kind"));
+  
+  // If we're at IDL global scope, the file names must match.
+  // Either way, recursion stops if we enter tihs block.
+  if (AST_Decl::NT_root == nt)
+    {
+      if (X ("File") == parent_kind)
+        {
+          char *parent_name = this->get_name (parent);
+          size_t len = ACE_OS::strlen (parent_name);
+          ACE_CString file_name (d->file_name ());
+          
+          // Strip off the trailing .idl or .pidl
+          file_name = file_name.substr (0, file_name.rfind ('.'));
+          
+          // Strip off the path and leave the local name.
+          file_name = file_name.substr (file_name.length () - len);
+          
+          match = ACE_OS::strcmp (file_name.c_str (), parent_name);
+          XMLString::release (&parent_name);
+          return (match == 0);
+        }
+      
+      return false;
+    }
+    
+  if (AST_Decl::NT_module == nt)
+    {
+      if (X ("Package") == parent_kind)
+        {
+          // Recurse to the enclosing scope.
+          return this->match_module_opening_upscope (parent, p);
+        }
+    }
+    
+  return false;
+}
+
+bool
+BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
+                                               AST_Decl *d)
 {
   DOMElement *elem_child = this->get_first_picml_element (elem);
 
@@ -1622,13 +1708,38 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
     }
 
   char *elem_child_name = this->get_name (elem_child);
-  UTL_ScopeActiveIterator iter (DeclAsScope (node), UTL_Scope::IK_decls);
-  AST_Decl *node_child = iter.item ();
-  char *node_child_name = node_child->local_name ()->get_string ();
-  int match = ACE_OS::strcmp (node_child_name, elem_child_name);
+  AST_Decl *node_child = 0;
+  bool match = false;
+  
+  for (UTL_ScopeActiveIterator iter (DeclAsScope (d), UTL_Scope::IK_decls);
+       !iter.is_done ();
+       iter.next ())
+    {
+      node_child = iter.item ();
+      AST_Decl::NodeType nt = node_child->node_type ();
+      
+      if (nt == AST_Decl::NT_component_fwd
+          || nt == AST_Decl::NT_eventtype_fwd
+          || nt == AST_Decl::NT_interface_fwd
+          || nt == AST_Decl::NT_struct_fwd
+          || nt == AST_Decl::NT_union_fwd
+          || nt == AST_Decl::NT_valuetype_fwd)
+        {
+          continue;
+        }
+        
+      char *node_child_name = node_child->local_name ()->get_string ();
+      match = (ACE_OS::strcmp (node_child_name, elem_child_name) == 0);
+      
+      if (match)
+        {
+          break;
+        }
+    }
+    
   XMLString::release (&elem_child_name);
 
-  if (0 != match)
+  if (! match)
     {
       return false;
     }
@@ -1638,7 +1749,8 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
 
   if (X ("Package") == kind && AST_Decl::NT_module == nt)
     {
-      return this->match_module_opening (elem_child, node_child);
+      return this->match_module_opening_downscope (elem_child,
+                                                   node_child);
     }
   else
     {

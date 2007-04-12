@@ -339,9 +339,12 @@ private:
 
   DOMElement *get_first_picml_element (DOMElement *scope);
   // Skip name, regnodes, GME attributes.
-
-  bool match_module_opening (DOMElement *elem, AST_Decl *node);
-  // Checks local name of first member, recursively if necessary.
+  
+  bool match_module_opening (DOMElement *elem, AST_Module *m);
+  bool match_module_opening_upscope (DOMElement *elem, AST_Decl *d);
+  bool match_module_opening_downscope (DOMElement *elem, AST_Decl *d);
+  // Check if a module opening in the AST and one in the DOM tree
+  // refer to the same thing.
 
 private:
   char *filename_;

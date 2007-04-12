@@ -1,3 +1,26 @@
+Thu Apr 12 22:08:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        
+          Changed location of update to 'previous_' member variable
+          (used to facilitate ordered insertion of new elements into
+          the DOM tree) so the update will happen only for IDL
+          declarations that aren't from an included IDL file, since
+          the insertion of elements into the DOM tree happens only
+          for elements created from IDL that is in the main file.
+          
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        
+          Fixed a bug in the matching of nodes in the AST corresponding
+          to IDL modules with corresponding nodes in the DOM tree
+          (which have a 'kind' attribute of "Package"). When there
+          are nested multiple openings of such modules in the IDL,
+          sometimes the matching DOM tree node was not found. Thanks
+          to Nishanth Shankaran <nshankar at dre dot vanderbilt dot edu>
+          and John Kinnebrew <john dot s dot kinnebrew at vanderbilt dot edu>
+          for supplying the IDL that uncovered the bug.
+
 Thu Apr 12 20:50:15 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
