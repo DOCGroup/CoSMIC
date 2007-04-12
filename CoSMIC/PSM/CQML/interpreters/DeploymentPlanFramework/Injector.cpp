@@ -30,4 +30,10 @@ std::map <std::string, std::string> Injector::assign_node_mappings (const std::s
     return std::map <std::string, std::string> ();
   }
 
+std::string Injector::get_deployed_resource (const CQML::Component& comp)
+  {
+	  return std::string ();
+  }
+
+
 
