@@ -272,7 +272,7 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void create_component_readonly_attributes (Component& comp);
 	DeploymentPlanFramework_Export virtual void update_monolith_impl (Component& comp);
 	DeploymentPlanFramework_Export virtual void create_component_config_properties (MonolithicImplementation& mimpl);
-	DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (void);
+	DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (const std::string& plan_name);
 	DeploymentPlanFramework_Export virtual void generate_assembly_instance_deployment_descriptions (void);
 	DeploymentPlanFramework_Export virtual void generate_artifact_descriptions (void);
     DeploymentPlanFramework_Export virtual void generate_infoproperties (const DeploymentPlan &);
@@ -284,6 +284,9 @@ namespace CQML
 	DeploymentPlanFramework_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
 	DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
     DeploymentPlanFramework_Export virtual void clear_private_variables (void);
+	DeploymentPlanFramework_Export virtual void create_component_deployed_resources (const std::string& plan_name, const Component& comp);
+	
+	
 
   public:
     template <typename T>
