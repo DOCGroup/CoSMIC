@@ -1,0 +1,18 @@
+project(RTConfiguration): cqmllib {
+
+   after += DeploymentPlanFramework
+   sharedname = RTConfiguration
+   macros += RTCONFIGURATION_BUILD_DLL DEPLOYMENTPLANFRAMEWORK_HAS_DLL
+   libs += DeploymentPlanFramework
+
+   Source_Files {
+     RTConfigurationVisitor.cpp
+     RTInjector.cpp
+   }
+
+   Header_Files {
+     RTConfigurationVisitor.h
+     RTConfiguration_Export.h
+     RTInjector.h
+   }
+}
