@@ -275,7 +275,7 @@ namespace CQML
         {
           Property property = *iter;
           property.Accept (*this);
-        }
+        }	  
       this->pop ();
     }
 
@@ -1144,13 +1144,14 @@ namespace CQML
 			  }
 	      }
 
-	    this->generate_instance_deployment_descriptions ();
+	    this->generate_instance_deployment_descriptions (plan_name);
 	    this->generate_assembly_instance_deployment_descriptions ();
 	    this->generate_parent_connections ();
 	    this->generate_child_connections ();
 
         Injector::ConnectionMap replica_connections;
 
+		
         if (this->injectors_.find (plan_name) != this->injectors_.end ())
           {
             injector = this->injectors_[plan_name];
@@ -1430,7 +1431,7 @@ namespace CQML
       }
   }
 
-  void DeploymentPlanFrameworkVisitor::generate_instance_deployment_descriptions (void)
+  void DeploymentPlanFrameworkVisitor::generate_instance_deployment_descriptions (const std::string& plan_name)
   {
 	  for (std::map<std::string, CQML::Component>::const_iterator instance_iterator =
 	       this->instance_monolith_components_.begin ();
@@ -1444,6 +1445,7 @@ namespace CQML
 		    create_component_instance (instance_component, instance_component_name);
 		    create_component_config_properties (this->mimpl_);
 		    create_component_readonly_attributes (instance_component);
+			create_component_deployed_resources (plan_name, instance_component);
 		    this->pop ();
 	    }
   }
@@ -1641,6 +1643,73 @@ namespace CQML
         this->deployed_instances_.insert (make_pair (comp_instance_name, nodeRefName));
       }
   }
+
+ 
+
+ void DeploymentPlanFrameworkVisitor::create_component_deployed_resources (const std::string& plan_name, const Component& comp)
+ {	 	 
+	 Injector* injector;
+	 std::string comp_name = comp.name ();
+	 if (this->injectors_.find (plan_name) != this->injectors_.end ())
+	 {
+		 injector = this->injectors_[plan_name];
+		 std::string resource_name = injector->get_deployed_resource (comp);		 
+
+		 std::string name ("InstanceUsesResource");
+		 std::string requirement_name ("CIAO::PolicySet");
+		 std::string set_name ("CIAO::PolicySetName");
+
+		 this->push();
+		 DOMElement* ele = this->doc_->createElement (XStr ("deployedResource"));
+		 this->curr_->appendChild (ele);
+		 this->curr_ = ele;
+
+		 this->push();
+
+		 this->curr_->appendChild (this->createSimpleContent ("resourceUsage", name));
+		 this->curr_->appendChild (this->createSimpleContent ("requirementName", 
+			 requirement_name));
+
+		 this->curr_->appendChild (this->createSimpleContent ("resourceName", 
+			 resource_name));
+
+
+		 DOMElement* property = this->doc_->createElement (XStr ("property"));
+		 this->curr_->appendChild (property);
+		 this->curr_ = property;
+
+		 this->push ();
+		 this->curr_->appendChild (this->createSimpleContent ("name", set_name));
+
+		 this->push ();
+		 DOMElement* value = this->doc_->createElement (XStr ("value"));
+		 this->curr_->appendChild (value);
+		 this->curr_ = value;
+
+		 this->push ();
+		 DOMElement* type = this->doc_->createElement (XStr ("type"));
+		 this->curr_->appendChild (type);
+		 this->curr_ = type;
+		 this->curr_->appendChild (this->createSimpleContent ("kind",
+			 "tk_string"));
+		 this->pop();
+
+		 // Property's type's value
+		 DOMElement* val = this->doc_->createElement (XStr ("value"));
+		 this->curr_->appendChild (val);
+		 this->curr_ = val;
+		 this->curr_->appendChild (this->createSimpleContent ("string",
+			 resource_name));
+		 this->pop();
+		 this->pop();
+		 this->pop();
+		 this->pop();
+
+	 }
+	 // Get the RT Config deployed resource name from the corresponding injector.
+
+	 // insert the reference to deployed resource here.
+ }
 
   void DeploymentPlanFrameworkVisitor::create_component_instance (Component& comp, std::string& instance_name)
   {
