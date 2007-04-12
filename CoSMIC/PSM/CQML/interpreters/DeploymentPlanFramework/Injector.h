@@ -26,7 +26,9 @@ namespace CQML
           virtual std::map<std::string, CQML::Component> add_monolith_instances (const std::string& plan_name);
           virtual std::map<std::string, CQML::Component> add_assembly_instances (const std::string& plan_name);
           virtual ConnectionMap add_connections (const std::string& plan_name, const ConnectionMap &);
-          virtual std::map <std::string, std::string> assign_node_mappings (const std::string& plan_name, const std::map <std::string, std::string> &);
+          virtual std::map <std::string, std::string> assign_node_mappings (const std::string& plan_name, const std::map <std::string, std::string> &);		  
+		  virtual std::string get_deployed_resource(const CQML::Component& comp);
+		  
       };
   } // namespace CQML
 
