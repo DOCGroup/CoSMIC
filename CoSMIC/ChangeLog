@@ -1,7 +1,50 @@
+Thu Apr 12 20:50:15 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp:
+
+          Modified injector interface, DPFramework such that it has references
+          to appropriate policy sets.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Added RtConfiguration entry.
+
+        * PSM/CQML/interpreters/RTConfiguration:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfiguration.mpc:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfiguration_Export.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.cpp:
+
+        * PSM/CQML/interpreters/RTConfigurationComponent:
+        * PSM/CQML/interpreters/RTConfigurationComponent/Component.def:
+        * PSM/CQML/interpreters/RTConfigurationComponent/Component.rc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfiguration.ico:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.reg:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponentd.reg:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/resource.h:
+
+          Added new RtConfiguration interpreter, that uses UDM. Changed the
+         DPFramework such that it can read the new rt injectors at appropriate
+         locations and adds policy sets in the deployedResources tag.
+
 Wed Apr 11 19:01:26 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/examples/Test_Model.xme:
-          
+
           Added new test model
 
 
@@ -23,7 +66,7 @@ Wed Apr 11 19:01:26 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/paradigms/POSAML.xme:
 
-          Merged Aspect, Bridge, Active Object and Simulation paradigms. 
+          Merged Aspect, Bridge, Active Object and Simulation paradigms.
 
         * PIM/POSAML/examples/test_model_arun.xme:
         * PIM/POSAML/examples/test_model_dk.xme:
@@ -42,7 +85,7 @@ Wed Apr 11 14:13:02 UTC 2007  Sumant Tambe  <sutambe@nospam>
           approach.
 
         * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
-          
+
           This file is linked in but most of the part is commented out.
 
 Tue Apr 10 05:48:18 UTC 2007  Sumant Tambe  <sutambe@nospam>
