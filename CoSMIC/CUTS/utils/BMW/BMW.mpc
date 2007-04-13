@@ -1,8 +1,6 @@
 // $Id$
 
 project (BMW) {
-  requires += bmw
-
   // specify this as a web project
   webapp = 1
 }

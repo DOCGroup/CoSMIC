@@ -13,10 +13,6 @@
 ///=============================================================================
 
 workspace (CUTS) : CUTS_CoSMIC {
-  cmdline += -include $CUTS_ROOT/etc/config \
-             -include $COSMIC_ROOT \
-             -feature_file default.features
-
   // -- explicitly specify which project to build since
   // -- we do not want to have any duplicates from the
   // -- base workspace.
@@ -30,10 +26,11 @@ workspace (CUTS) : CUTS_CoSMIC {
   //-- utility applications
   utils/BDC
   utils/calibrate
-  utils/GUTS
   utils/Node_Daemon
 
   exclude (!vc8) {
+    cmdline += -base requires_bmw
+
     utils/BMW/BMW.mwc
   }
 

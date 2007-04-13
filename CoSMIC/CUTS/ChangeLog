@@ -1,3 +1,24 @@
+Fri Apr 13 19:42:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+        * CUTS_CoSMIC.mwc:
+
+          - Moved the cmdline statement to the base workspace since it
+            was redundant.
+          - Moved the modeling related projects from CUTS.mwc to
+            CUTS_CoSMIC.mwc
+
+        * utils/BMW/BMW.mpc:
+        * etc/config/requires_bmw.mpb:
+
+          Move the bmw required feature to the base project.
+
+
+        * cuts/be/CIAO/UDM_CIAO.mpc:
+        * cuts/be/CIAO/BE_CIAO.mpc:
+
+          Renamed the primer to the latter.
+
 Fri Apr 13 19:23:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.h:
