@@ -77,6 +77,14 @@ public:
    */
   virtual CUTS_Action_Iterator * begin (void);
 
+  /**
+   * Signal the worker to calibrate itself.
+   *
+   * @retval      true      Successfully calibrated itself.
+   * @retval      false     Failed to calibrate itself.
+   */
+  virtual bool calibrate (void);
+
 protected:
   /// Constructor.
   CUTS_Worker (void);

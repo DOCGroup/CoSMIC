@@ -79,21 +79,37 @@ public:
    * @param[in]     msec      Number of msec to occupy the CPU
    * @return        Number of cycles executed.
    */
-  size_t run (size_t msec);
+  void run (size_t msec);
+
+  // Calibrate the CPU worker.
+  bool calibrate (void);
 
 private:
+  bool init (void);
+
   void run_i (size_t count);
+
+  size_t calibrate_i (void);
+
+  void verify_calibration (void);
+
+  void work (size_t count);
+
+  void make_calibration_filename (ACE_CString & filename);
 
   CUTS_ACTION_TABLE_DECLARE ();
 
   /// Number of visits completed by the CPU worker.
   long visits_;
 
-  /// The granularity of the counter in msec.
-  suseconds_t calib_;
+  /// The target calibration time.
+  const size_t target_;
 
-  /// Number of counts executed per run.
-  const size_t counts_per_run_;
+  /// The margin of error allowed in timing.
+  const size_t margin_;
+
+  /// Number of counts per millisecond.
+  double count_per_msec_;
 };
 
 //=============================================================================

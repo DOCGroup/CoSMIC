@@ -1,3 +1,23 @@
+Fri Apr 13 05:27:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Worker.h:
+        * cuts/Worker.inl:
+
+          Added an calibration method that concrete workers can
+          overload to perform calibration any operations.
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.cpp:
+
+          Added calibration mechanisms to the CPU worker. This will
+          enable clients to use the run () method, which honors execution
+          times up to 1 second.
+
+        * etc/calibration:
+
+          Directory for holding the calibration files for different
+          workload generators.
+
 Thu Apr 12 15:19:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Activation_Record.h:

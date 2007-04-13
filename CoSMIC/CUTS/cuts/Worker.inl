@@ -53,3 +53,12 @@ void CUTS_Worker::init_action_table (void)
 {
 
 }
+
+//
+// calibrate
+//
+CUTS_INLINE
+bool CUTS_Worker::calibrate (void)
+{
+  return true;
+}
