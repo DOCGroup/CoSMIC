@@ -24,7 +24,7 @@ CUTS_UNIT_TEST (Unit_Test_CPU_run)
     size_t cycles;
 
     timer.start ();
-    cycles = worker.run (msec);
+    worker.run (msec);
     timer.stop ();
 
     timer.elapsed_time (elapsed);

@@ -160,7 +160,7 @@ write_InEventPort_begin (const PICML::InEventPort & sink)
   if (event != Udm::null)
   {
     this->outfile ()
-      << "push_" << sink.name () << " (" << std::endl
+      << "push_" << sink.name () << " ("
       << scope (event, "::") << event.name () << " * ev)" << std::endl
       << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
   }

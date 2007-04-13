@@ -56,12 +56,6 @@ public:
   virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 
-  virtual void write_PeriodicEvent_begin (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_PeriodicEvent_end (
-    const PICML::PeriodicEvent & periodic);
-
   virtual void write_Attribute_begin (
     const PICML::Attribute & sink);
 
@@ -70,33 +64,6 @@ public:
 
   virtual void write_ReadonlyAttribute_begin (
     const PICML::ReadonlyAttribute & sink);
-
-  virtual void write_environment_method_begin (
-    const PICML::InputAction & action);
-
-  virtual void write_environment_method_end (
-    const PICML::InputAction & action);
-
-  virtual void write_environment_end (
-    const PICML::Component & component);
-
-  virtual void write_precondition (
-    const std::string & precondition);
-
-  virtual void write_postcondition (
-    const std::string & precondition);
-
-  virtual void write_action_property (
-    const PICML::Property & property);
-
-  virtual void write_WorkerAction_begin (
-    const PICML::Worker & worker,
-    const PICML::Action & action);
-
-  virtual void write_OutputAction_begin (
-    const PICML::OutputAction & action);
-
-  virtual void write_action_end (void);
 
 protected:
   void write_event_handler_bind (

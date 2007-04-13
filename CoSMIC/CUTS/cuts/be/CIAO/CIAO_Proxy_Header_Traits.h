@@ -50,39 +50,11 @@ public:
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & type);
 
-  void write_PeriodicEvent_begin (
-    const PICML::PeriodicEvent & periodic);
-
-  void write_PeriodicEvent_end (
-    const PICML::PeriodicEvent & periodic);
-
   void write_impl_end (
     const PICML::MonolithicImplementation &,
     const PICML::Component & type);
 
   virtual void write_variables_begin (
-    const PICML::Component & component);
-
-  virtual void write_variable (
-    const PICML::Variable & variable);
-
-  virtual void write_worker_variable (
-    const PICML::WorkerType & type,
-    const PICML::Worker & worker);
-
-  virtual void write_ReadonlyAttribute_variable (
-    const PICML::ReadonlyAttribute & readonly);
-
-  virtual void write_PeriodicEvent_variable (
-    const PICML::PeriodicEvent & periodic);
-
-  virtual void write_environment_method_begin (
-    const PICML::InputAction &);
-
-  virtual void write_environment_method_end (
-    const PICML::InputAction &);
-
-  virtual void write_environment_end (
     const PICML::Component & component);
 
 private:

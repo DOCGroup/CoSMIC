@@ -97,6 +97,13 @@ public:
   virtual void write_OutputAction_begin (
     const PICML::OutputAction & action);
 
+  virtual void write_OuputAction_Property (
+    const PICML::OutputAction & action,
+    const PICML::Property & property);
+
+  virtual void write_OutputAction_end (
+    const PICML::OutputAction & action);
+
   virtual void write_action_end (void);
 
 protected:

@@ -1,3 +1,36 @@
+Fri Apr 13 19:23:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+
+          Added support for setting the properties of output action,
+          i.e., the values of an output actions members, in generated
+          C++ source code.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Traits.h:
+
+          Removed unncessary method class on the CoWorkEr proxy
+          code generator.
+
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp (write_InEventPort_begin):
+
+          Fixed source code formatting.
+
+        * tests/cuts/workers/CPU_Worker_Test.cpp:
+
+          Fixed compilation errors.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.inl:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.inl:
+
+          Removed these files.
+
 Fri Apr 13 07:39:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:

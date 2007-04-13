@@ -77,6 +77,9 @@ protected:
   /// Visit a CompositeAction element.
   void Visit_CompositeAction (const PICML::CompositeAction &);
 
+protected:
+  void Visit_OutputAction_Property (const PICML::Property & property);
+
 private:
   /// Flag that determines if effects should be ignored.
   bool ignore_effects_;

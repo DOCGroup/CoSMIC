@@ -186,9 +186,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_environment_method_begin (action);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_environment_method_begin (action);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_environment_method_begin (action);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_environment_method_begin (action);
         return true;
       }
     };
@@ -200,9 +197,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_environment_method_end (action);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_environment_method_end (action);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_environment_method_end (action);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_environment_method_end (action);
         return true;
       }
     };
@@ -240,9 +234,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_variable  (variable);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_variable  (variable);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_variable  (variable);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_variable  (variable);
         return true;
       }
     };
@@ -256,9 +247,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_worker_variable (type, worker);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_worker_variable (type, worker);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_worker_variable (type, worker);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_worker_variable (type, worker);
         return true;
       }
     };
@@ -271,9 +259,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_PeriodicEvent_variable (periodic);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_PeriodicEvent_variable (periodic);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_PeriodicEvent_variable (periodic);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_PeriodicEvent_variable (periodic);
         return true;
       }
     };
@@ -286,9 +271,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_ReadonlyAttribute_variable (attr);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_ReadonlyAttribute_variable (attr);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_ReadonlyAttribute_variable (attr);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_ReadonlyAttribute_variable (attr);
         return true;
       }
     };
@@ -300,9 +282,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_variables_end ();
         CIAO_EXEC_SOURCE_GENERATOR ()->write_variables_end ();
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_variables_end ();
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_variables_end ();
         return true;
       }
     };
@@ -375,9 +354,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_PeriodicEvent_begin (periodic);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_PeriodicEvent_begin (periodic);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_PeriodicEvent_begin (periodic);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_PeriodicEvent_begin (periodic);
         return true;
       }
     };
@@ -390,9 +366,6 @@ namespace CUTS_BE
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_PeriodicEvent_end  (periodic);
         CIAO_EXEC_SOURCE_GENERATOR ()->write_PeriodicEvent_end  (periodic);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_PeriodicEvent_end  (periodic);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_PeriodicEvent_end  (periodic);
         return true;
       }
     };
@@ -641,6 +614,29 @@ namespace CUTS_BE
       static inline bool generate (const PICML::OutputAction & action)
       {
         CIAO_EXEC_SOURCE_GENERATOR ()->write_OutputAction_begin (action);
+        return true;
+      }
+    };
+
+    // POG: OuputAction_Property
+    struct CUTS_UDM_CIAO_Export OutputAction_Property
+    {
+      static inline bool generate (
+        const PICML::OutputAction & action,
+        const PICML::Property & property)
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->
+          write_OuputAction_Property (action, property);
+        return true;
+      }
+    };
+
+    // POG: OuputAction_End
+    struct CUTS_UDM_CIAO_Export OutputAction_End
+    {
+      static inline bool generate (const PICML::OutputAction & action)
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->write_OutputAction_end (action);
         return true;
       }
     };

@@ -642,7 +642,7 @@ write_action_property (const PICML::Property & property)
 }
 
 //
-// write_action_begin
+// write_OutputAction_begin
 //
 void CUTS_CIAO_Exec_Source_Traits::
 write_OutputAction_begin (const PICML::OutputAction & action)
@@ -656,12 +656,41 @@ write_OutputAction_begin (const PICML::OutputAction & action)
   {
     this->outfile ()
       << "CUTS_CCM_Event_T <OBV_" << scoped_name
-      << "> __event_" << action.uniqueId () << "__;"
+      << "> __event_" << action.uniqueId () << "__;";
+
+    this->skip_action_ = false;
+  }
+}
+
+//
+// write_OuputAction_Property
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_OuputAction_Property (const PICML::OutputAction & action,
+                            const PICML::Property & property)
+{
+  this->outfile ()
+    << "__event_" << action.uniqueId () << "__->"
+    << property.name () << " (" << property.DataValue () << ");";
+}
+
+//
+// write_OutputAction_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_OutputAction_end (const PICML::OutputAction & action)
+{
+  if (!this->outfile ().is_open ())
+    return;
+
+  std::string scoped_name;
+
+  if (!this->skip_action_)
+  {
+    this->outfile ()
       << "this->context_->push_"
       << action.name () << " (__event_" << action.uniqueId () << "__.in ());"
       << std::endl;
-
-    this->skip_action_ = true;
   }
 }
 

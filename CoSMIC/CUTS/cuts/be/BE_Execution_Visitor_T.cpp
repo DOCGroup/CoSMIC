@@ -383,7 +383,14 @@ Visit_OutputAction (const PICML::OutputAction & action)
 {
   CUTS_BE::generate <BE_STRATEGY::OutputAction_Begin> (action);
 
-  CUTS_BE::generate <BE_STRATEGY::Action_End> ();
+  typedef std::vector <PICML::Property> Property_Set;
+  Property_Set properties = action.Property_kind_children ();
+
+  CUTS_BE::visit <BE_STRATEGY> (properties,
+    boost::bind (CUTS_BE_Execution_Visitor_T::Visit_OutputAction_Property,
+    boost::ref (*this), _1));
+
+  CUTS_BE::generate <BE_STRATEGY::OutputAction_End> (action);
 }
 
 //
@@ -401,4 +408,17 @@ Visit_CompositeAction (const PICML::CompositeAction & action)
     CUTS_BE::visit <BE_STRATEGY> (PICML::InputAction::Cast (actions.front ()),
       boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
   }
+}
+
+//
+// Visit_OutputAction_Property
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_OutputAction_Property (const PICML::Property & property)
+{
+  PICML::OutputAction parent =
+    PICML::OutputAction::Cast (property.parent ());
+
+  CUTS_BE::generate <BE_STRATEGY::OutputAction_Property> (parent, property);
 }
