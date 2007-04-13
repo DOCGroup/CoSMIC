@@ -40,4 +40,6 @@
 
 #define CUTS_UNKNOWN_IMPL                 1
 
+#define CUTS_DEFAULT_LOG_SIZE             50
+
 #endif  // !defined _CUTS_CONFIG_H_

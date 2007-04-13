@@ -54,3 +54,21 @@ const ACE_Time_Value & CUTS_Port_Metric::timestamp (void) const
 {
   return this->timestamp_;
 }
+
+//
+// log
+//
+CUTS_INLINE
+const CUTS_Activation_Record_Log & CUTS_Port_Metric::log (void) const
+{
+  return this->log_;
+}
+
+//
+// log
+//
+CUTS_INLINE
+CUTS_Activation_Record_Log & CUTS_Port_Metric::log (void)
+{
+  return this->log_;
+}

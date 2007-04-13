@@ -2,9 +2,10 @@
 #define _CUTS_PORT_METRIC_H_
 
 #include "cuts/Time_Metric.h"
+#include "cuts/Activation_Record_Log.h"
+
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Guard_T.h"
-
 #include <map>
 #include <string>
 #include <ostream>
@@ -57,6 +58,10 @@ public:
 
   const CUTS_Port_Metric & operator += (const CUTS_Port_Metric & metric);
 
+  const CUTS_Activation_Record_Log & log (void) const;
+
+  CUTS_Activation_Record_Log & log (void);
+
 private:
   /// Time metrics for the port.
   CUTS_Endpoint_Metric_Map endpoints_;
@@ -67,6 +72,8 @@ private:
   CUTS_Time_Metric transit_time_;
 
   ACE_Time_Value timestamp_;
+
+  CUTS_Activation_Record_Log log_;
 };
 
 #if defined (__CUTS_INLINE__)

@@ -460,7 +460,9 @@ write_factory_impl_begin (const PICML::ComponentFactory & factory,
     << "::Components::EnterpriseComponent_ptr retval =" << std::endl
     << "  ::Components::EnterpriseComponent::_nil ();"
     << std::endl
-    << "throw ::CORBA::NO_MEMORY ();"
+    << "ACE_NEW_THROW_EX (retval," << std::endl
+    << type.name () << " ()," << std::endl
+    << "::CORBA::NO_MEMORY ());"
     << std::endl
     << "return retval;"
     << "}";

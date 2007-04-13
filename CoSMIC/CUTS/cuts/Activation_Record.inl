@@ -48,12 +48,26 @@ CUTS_Activation_Record::start_time (void) const
   return this->stopwatch_.start_;
 }
 
+CUTS_INLINE
+ACE_Time_Value &
+CUTS_Activation_Record::start_time (void)
+{
+  return this->stopwatch_.start_;
+}
+
 //
 // stop_time
 //
 CUTS_INLINE
 const ACE_Time_Value &
 CUTS_Activation_Record::stop_time (void) const
+{
+  return this->stopwatch_.stop_;
+}
+
+CUTS_INLINE
+ACE_Time_Value &
+CUTS_Activation_Record::stop_time (void)
 {
   return this->stopwatch_.stop_;
 }
@@ -81,11 +95,21 @@ log_time_measurement (size_t reps, long worker_id, long action_id)
 }
 
 //
-// exit_points
+// endpoints
 //
 CUTS_INLINE
 const CUTS_Activation_Record_Endpoints &
 CUTS_Activation_Record::endpoints (void) const
+{
+  return this->endpoints_;
+}
+
+//
+// endpoints
+//
+CUTS_INLINE
+CUTS_Activation_Record_Endpoints &
+CUTS_Activation_Record::endpoints (void)
 {
   return this->endpoints_;
 }

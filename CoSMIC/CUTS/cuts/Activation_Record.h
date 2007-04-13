@@ -100,6 +100,8 @@ public:
    */
   const ACE_Time_Value & start_time (void) const;
 
+  ACE_Time_Value & start_time (void);
+
   /**
    * Get the start time for the activation record. This is the
    * value stored when close () is invoked.
@@ -107,6 +109,8 @@ public:
    * @param[in]   Time value (read-only).
    */
   const ACE_Time_Value & stop_time (void) const;
+
+  ACE_Time_Value & stop_time (void);
 
   /**
    * Get the entries for the record.
@@ -121,6 +125,8 @@ public:
    * @return      Endpoints for the record.
    */
   const CUTS_Activation_Record_Endpoints & endpoints (void) const;
+
+  CUTS_Activation_Record_Endpoints & endpoints (void);
 
   /**
    * Get the owner of the record.

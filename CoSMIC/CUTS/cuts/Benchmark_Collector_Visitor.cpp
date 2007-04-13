@@ -77,6 +77,39 @@ visit_port_agent (const CUTS_Port_Agent & agent)
 
     pmm_iter.advance ();
   }
+
+  // Copy the metric log into the data structure.
+  const CUTS_Activation_Record_Log & log = agent.log ();
+  size_t used_size = log.used_size ();
+
+  this->active_pm_->log.length (used_size);
+  CUTS_Activation_Record_Log::const_iterator begin = log.begin ();
+  CUTS_Activation_Record_Log::const_iterator end = begin + used_size;
+
+  size_t i = 0;
+
+  for (begin; begin < end; begin ++)
+  {
+    CUTS::Metric_Record & record = this->active_pm_->log[i ++];
+
+    record.open_time = begin->start_time ().msec ();
+    record.close_time = begin->stop_time ().msec ();
+
+    CUTS_Activation_Record_Endpoints::
+      CONST_ITERATOR endpoints = begin->endpoints ().begin ();
+
+    record.endpoint_times.length (begin->endpoints ().current_size ());
+
+    size_t j = 0;
+    while (!endpoints.done ())
+    {
+      record.endpoint_times[j].uid = endpoints->key ();
+      record.endpoint_times[j].exittime = endpoints->item ().msec ();
+
+      endpoints.advance ();
+      ++ j;
+    }
+  }
 }
 
 //

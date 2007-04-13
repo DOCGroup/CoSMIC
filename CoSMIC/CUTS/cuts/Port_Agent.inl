@@ -7,7 +7,8 @@ CUTS_INLINE
 CUTS_Port_Agent::CUTS_Port_Agent (void)
 : name_ ("unknown"),
   active_ (false),
-  pool_ (2)
+  pool_ (2),
+  log_ (CUTS_DEFAULT_LOG_SIZE)
 {
 
 }
@@ -104,3 +105,14 @@ void CUTS_Port_Agent::record_free (CUTS_Activation_Record * record)
 {
   this->update (record);
 }
+
+//
+// reset
+//
+CUTS_INLINE
+void CUTS_Port_Agent::reset (void)
+{
+  this->pool_.advance ();
+  this->log_.reset ();
+}
+

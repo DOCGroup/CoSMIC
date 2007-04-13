@@ -345,7 +345,7 @@ write_set_session_context (const PICML::Component & component)
     << "  " << scope (component, "::")
     << "CCM_" << component.name () << "_Context::_narrow (ctx);"
     << std::endl
-    << "if (this->context_ == 0)" << std::endl
+    << "if (::CORBA::is_nil (this->context_.in ()))" << std::endl
     << "  throw ::CORBA::INTERNAL ();"
     << "}";
 }

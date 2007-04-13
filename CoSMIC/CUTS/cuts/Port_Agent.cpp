@@ -83,16 +83,6 @@ update (const CUTS_Activation_Record * record)
 }
 
 //
-// reset
-//
-void CUTS_Port_Agent::reset (void)
-{
-  // Move to the port measurement in the pool_.
-  this->pool_.advance ();
-
-}
-
-//
 // accept
 //
 void CUTS_Port_Agent::accept (CUTS_Benchmark_Visitor & visitor)

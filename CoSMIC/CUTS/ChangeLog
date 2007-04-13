@@ -1,3 +1,49 @@
+Thu Apr 12 15:19:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record.inl:
+
+          Added writeable method for start_time, stop_time, and
+          endpoints.
+
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.cpp:
+
+          Added support for print the metric history's size.
+
+        * cuts/Benchmark_Collector_Visitor.cpp:
+
+          Updated the code that packs the history metrics into the
+          data structure transmitted to the BDC.
+
+        * cuts/IDL_Streams.cpp:
+
+          Added support for unpacking the history from the performance
+          metrics that transmitted to the BDC.
+
+        * cuts/Port_Agent.inl:
+        * cuts/Port_Agent.cpp:
+
+          The metric log was not being reset when the port
+          port agent was reset.
+
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.inl:
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+
+          The generated code always threw CORBA::NO_MEMORY () exception
+          when the component was created by the factory.
+
+        * cuts/config.h:
+
+          Added a default configuration parameter for the size of
+          the metric log.
+
+        * cuts/performance.idl:
+
+          Updated the packing structure for the history metrics.
+
 Wed Apr 11 22:32:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:

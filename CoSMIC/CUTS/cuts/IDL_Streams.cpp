@@ -52,6 +52,35 @@ void operator >> (const ::CUTS::Benchmark_Data_var & data,
         mapped_measurement >> (*port_metric);
       }
     }
+
+    // Copy the log from the port measurement structure.
+    CUTS_Port_Metric * port_metric =
+      metric->port_metrics (port_measurement.port);
+
+    CUTS_Activation_Record_Log & dest_log = port_metric->log ();
+    CUTS::Metric_Log & src_log = port_measurement.log;
+
+    size_t length = src_log.length ();
+    dest_log.size (length);
+
+    ACE_Time_Value tv;
+
+    for (size_t i = 0; i < length; i ++)
+    {
+      dest_log[i].start_time ().msec (src_log[i].open_time);
+      dest_log[i].stop_time ().msec (src_log[i].close_time);
+
+      size_t endpoint_count = src_log[i].endpoint_times.length ();
+      CUTS_Activation_Record_Endpoints & endpoints = dest_log[i].endpoints ();
+
+      for (size_t j = 0; j < endpoint_count; j ++)
+      {
+        CUTS::Endpoint_Time & endpoint_time = src_log[i].endpoint_times[j];
+
+        tv.msec (endpoint_time.exittime);
+        endpoints.rebind (endpoint_time.uid, tv);
+      }
+    }
   }
 }
 

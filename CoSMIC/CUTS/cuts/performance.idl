@@ -21,6 +21,25 @@ module CUTS
   /// Type definition for the timing history.
   typedef sequence <long> Time_Stamp_History;
 
+  struct Endpoint_Time
+  {
+    long uid;
+
+    Time_Stamp exittime;
+  };
+
+  typedef sequence <Endpoint_Time> Endpoint_Time_Log;
+
+  struct Metric_Record
+  {
+    Time_Stamp open_time;
+    Time_Stamp close_time;
+
+    Endpoint_Time_Log endpoint_times;
+  };
+
+  typedef sequence <Metric_Record> Metric_Log;
+
   //===========================================================================
   /**
    * @struct Time_Info
@@ -39,9 +58,6 @@ module CUTS
 
     /// Minimum time to process an event during the sample period
     Time_Stamp min;
-
-    /// The history of all the time metrics collected.
-    Time_Stamp_History history;
   };
 
   //===========================================================================
@@ -135,9 +151,6 @@ module CUTS
 
     /// Exit point times for this port.
     Exit_Point_Time_Seq exit_times;
-
-    /// Data samples associated with this benchmark sample
-    Worker_Measurement_Seq workers;
   };
 
   typedef sequence <Mapped_Port_Measurement> Mapped_Port_Measurement_Seq;
@@ -148,6 +161,8 @@ module CUTS
     string port;
 
     Mapped_Port_Measurement_Seq measurements;
+
+    Metric_Log log;
   };
 
   typedef sequence <Port_Measurement> Port_Measurement_Seq;
