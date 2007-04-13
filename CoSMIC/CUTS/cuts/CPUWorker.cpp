@@ -157,7 +157,7 @@ bool CUTS_CPU_Worker::calibrate (void)
               
   if (outfile.is_open ())
   {
-    outfile << this->count_per_msec_;
+    outfile << this->count_per_msec_ << std::endl;
     outfile.close ();
   }
   else

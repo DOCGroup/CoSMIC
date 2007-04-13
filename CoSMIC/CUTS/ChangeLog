@@ -1,14 +1,20 @@
-Fri Apr 13 07:25:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+Fri Apr 13 07:29:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:
         
+          Added an end-line to the generated file.
+
+Fri Apr 13 07:25:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.cpp:
+
           Fixed bug that was caused by using ACE_Env_Value i
-          incorrectly. This class was removed from code and 
+          incorrectly. This class was removed from code and
           ACE_OS::getenv is used directly.
 
         * utils/calibrate/calibrate.cpp:
-        
-          Added debug messages. These are going to become 
+
+          Added debug messages. These are going to become
           verbose messages.
 
 Fri Apr 13 06:34:56 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
