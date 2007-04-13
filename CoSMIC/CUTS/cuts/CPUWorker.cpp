@@ -1,7 +1,6 @@
 // $Id$
 
 #include "cuts/CPUWorker.h"
-#include "ace/Env_Value_T.h"
 #include "ace/Guard_T.h"
 #include "ace/High_Res_Timer.h"
 #include "ace/Log_Msg.h"
@@ -152,11 +151,22 @@ bool CUTS_CPU_Worker::calibrate (void)
   std::ofstream outfile;
   outfile.open (filename.c_str ());
 
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): saving calibration to %s\n",
+              filename.c_str ()));
+              
   if (outfile.is_open ())
   {
     outfile << this->count_per_msec_;
     outfile.close ();
   }
+  else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_CPU_Worker): failed to open %s "
+                  "for writing\n",
+                  filename.c_str ()));
+    }
 
   return outfile.good ();
 }
@@ -279,7 +289,7 @@ void CUTS_CPU_Worker::
 make_calibration_filename (ACE_CString & filename)
 {
   // Store the calibration scale.
-  ACE_Env_Value <char *> cuts_root ("CUTS_ROOT", "/");
+  ACE_CString cuts_root = ACE_OS::getenv ("CUTS_ROOT");
 
   ACE_OS::macaddr_node_t macaddr;
   ACE_OS::getmacaddress (&macaddr);
@@ -288,7 +298,7 @@ make_calibration_filename (ACE_CString & filename)
 
   ACE_OS::sprintf (temp_filename,
                    "%s/etc/calibration/%s.%02X-%02X-%02X-%02X-%02X-%02X",
-                   cuts_root,
+                   cuts_root.c_str (),
                    "CUTS_CPU_Worker",
                    macaddr.node[0],
                    macaddr.node[1],
