@@ -156,8 +156,4 @@ CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
   ACE_Singleton <CUTS_CIAO_Exec_Source_Traits, \
                  ACE_Null_Mutex>::instance ()
 
-#if defined (__CUTS_INLINE__)
-#include "CIAO_Exec_Source_Traits.inl"
-#endif
-
 #endif  // !defined _CUTS_CIAO_EXEC_SOURCE_TRAITS_H_

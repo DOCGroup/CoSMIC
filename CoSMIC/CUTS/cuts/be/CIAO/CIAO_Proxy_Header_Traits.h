@@ -69,11 +69,6 @@ private:
     const PICML::OutEventPort & source);
 };
 
-#if defined (__CUTS_INLINE__)
-#include "CIAO_Proxy_Header_Traits.inl"
-#endif
-
-
 // Singleton declaration.
 CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
                                  CUTS_CIAO_Proxy_Header_Traits,

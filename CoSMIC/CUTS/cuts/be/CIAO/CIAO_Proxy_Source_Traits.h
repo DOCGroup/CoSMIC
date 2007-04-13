@@ -95,10 +95,6 @@ private:
   EventType_Set in_events_;
 };
 
-#if defined (__CUTS_INLINE__)
-#include "CIAO_Proxy_Source_Traits.inl"
-#endif
-
 // Singleton declaration.
 CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
                                  CUTS_CIAO_Proxy_Source_Traits,

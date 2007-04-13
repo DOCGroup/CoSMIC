@@ -387,7 +387,7 @@ Visit_OutputAction (const PICML::OutputAction & action)
   Property_Set properties = action.Property_kind_children ();
 
   CUTS_BE::visit <BE_STRATEGY> (properties,
-    boost::bind (CUTS_BE_Execution_Visitor_T::Visit_OutputAction_Property,
+    boost::bind (&CUTS_BE_Execution_Visitor_T::Visit_OutputAction_Property,
     boost::ref (*this), _1));
 
   CUTS_BE::generate <BE_STRATEGY::OutputAction_End> (action);

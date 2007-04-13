@@ -2,10 +2,6 @@
 
 #include "CIAO_Exec_Header_Traits.h"
 
-#if !defined (__CUTS_INLINE__)
-#include "CIAO_Exec_Header_Traits.inl"
-#endif
-
 #include "CIAO_Var_Type.h"
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
