@@ -119,13 +119,13 @@ bool CUTS_CPU_Worker::init_calibrate (void)
 //
 bool CUTS_CPU_Worker::calibrate (void)
 {
-  // Initialize the calibration of the worker.
-  if (!this->init_calibrate ())
-    return false;
-
   ACE_DEBUG ((LM_INFO,
               "*** info (CUTS_CPU_Worker): running calibration; "
               "please be patient...\n"));
+
+  // Initialize the calibration of the worker.
+  if (!this->init_calibrate ())
+    return false;
 
   // Run the calibration
   size_t calib_loop_factor = this->calibrate_i ();
@@ -154,7 +154,7 @@ bool CUTS_CPU_Worker::calibrate (void)
   ACE_DEBUG ((LM_INFO,
               "*** info (CUTS_CPU_Worker): saving calibration to %s\n",
               filename.c_str ()));
-              
+
   if (outfile.is_open ())
   {
     outfile << this->count_per_msec_ << std::endl;

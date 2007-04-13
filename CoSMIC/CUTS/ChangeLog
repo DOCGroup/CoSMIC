@@ -1,7 +1,15 @@
+Fri Apr 13 07:39:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.cpp:
+
+          Moved the location of a info message before the calibration
+          method changes the thread priority. This will allow to be
+          printed to the screen.
+
 Fri Apr 13 07:29:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:
-        
+
           Added an end-line to the generated file.
 
 Fri Apr 13 07:25:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
