@@ -89,6 +89,8 @@ private:
 
   void run_i (size_t count);
 
+  bool init_calibrate (void);
+
   size_t calibrate_i (void);
 
   void verify_calibration (void);
@@ -111,6 +113,8 @@ private:
   /// Number of counts per millisecond.
   double count_per_msec_;
 };
+
+CUTS_WORKER_FACTORY_EXPORT_DECL (CUTS_Export);
 
 //=============================================================================
 /*

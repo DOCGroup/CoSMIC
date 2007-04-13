@@ -1,6 +1,15 @@
 // $Id$
 
 //
+// release
+//
+CUTS_INLINE
+void CUTS_Worker::release (void)
+{
+  delete this;
+}
+
+//
 // parent
 //
 CUTS_INLINE

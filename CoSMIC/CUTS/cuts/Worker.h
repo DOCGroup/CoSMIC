@@ -36,6 +36,9 @@ class CUTS_Action_Iterator;
 class CUTS_Export CUTS_Worker
 {
 public:
+  /// Release the workers resources.
+  void release (void);
+
   /// Get the parent of the worker.
   long parent (void) const;
 
@@ -104,6 +107,16 @@ private:
   CUTS_Worker (const CUTS_Worker &);
   const CUTS_Worker & operator = (const CUTS_Worker &);
 };
+
+#define CUTS_WORKER_FACTORY_EXPORT_DECL(export_macro) \
+  extern "C" export_macro \
+  CUTS_Worker * create_cuts_worker (void)
+
+#define CUTS_WORKER_FACTORY_EXPORT_IMPL(worker) \
+  CUTS_Worker * create_cuts_worker (void) \
+  { \
+    return new worker (); \
+  }
 
 //=============================================================================
 /**

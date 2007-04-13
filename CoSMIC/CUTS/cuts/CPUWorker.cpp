@@ -8,6 +8,7 @@
 #include "ace/OS_NS_netdb.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/OS_NS_sys_time.h"
+#include "ace/Sched_Params.h"
 
 #if !defined (__CUTS_INLINE__)
 #include "cuts/CPUWorker.inl"
@@ -25,6 +26,8 @@ CUTS_ACTION_TABLE_END (CUTS_CPU_Worker)
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000
 #define TEST_INC_MSEC    10
+
+CUTS_WORKER_FACTORY_EXPORT_IMPL (CUTS_CPU_Worker);
 
 //
 // CUTS_CPU_Worker
@@ -76,15 +79,68 @@ void CUTS_CPU_Worker::run (size_t msec)
 }
 
 //
+// init_calibrate
+//
+bool CUTS_CPU_Worker::init_calibrate (void)
+{
+  int scope = ACE_SCOPE_THREAD;
+  int ctrlprio =
+    ACE_Sched_Params::priority_max (ACE_SCHED_FIFO,
+                                    scope);
+
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): setting FIFO thread "
+              "priority to %d\n",
+              ctrlprio));
+
+  if (ACE_OS::sched_params (ACE_Sched_Params (ACE_SCHED_FIFO,
+                                              ctrlprio,
+                                              scope)) != ESUCCESS)
+  {
+    if (ACE_OS::last_error () == EPERM)
+    {
+      ACE_DEBUG ((LM_ERROR,
+                  "*** error (CUTS_CPU_Worker): user is not superuser, "
+                  "calibration in time-shared class\n"));
+    }
+    else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_CPU_Worker): sched_params failed\n"));
+    }
+
+    return false;
+  }
+
+  return true;
+}
+
+//
 // calibrate
 //
 bool CUTS_CPU_Worker::calibrate (void)
 {
+  // Initialize the calibration of the worker.
+  if (!this->init_calibrate ())
+    return false;
+
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): running calibration; "
+              "please be patient...\n"));
+
   // Run the calibration
-  size_t calib_loop_factor = calibrate ();
+  size_t calib_loop_factor = this->calibrate_i ();
+
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): calibration loop factor = %u\n",
+              calib_loop_factor));
 
   this->count_per_msec_ =
     ((double) calib_loop_factor * 1000.0) / (double) this->target_;
+
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): counts per msec = %d\n",
+              this->count_per_msec_));
 
   // Verify the calibration.
   verify_calibration ();
@@ -127,7 +183,7 @@ size_t CUTS_CPU_Worker::calibrate_i (void)
     count = (upper + lower) / 2;
 
     ACE_DEBUG ((LM_DEBUG,
-                "*** lower|count|upper = %u|%u|%u\n",
+                "--- lower|count|upper = %u|%u|%u\n",
                 lower,
                 count,
                 upper));
@@ -175,6 +231,9 @@ void CUTS_CPU_Worker::work (size_t count)
 //
 void CUTS_CPU_Worker::verify_calibration (void)
 {
+  ACE_DEBUG ((LM_INFO,
+              "*** info (CUTS_CPU_Worker): verify counts per msec\n"));
+
   ACE_Time_Value start, stop, duration;
   std::vector <size_t> calib_timings (TEST_RUNS);
 
@@ -184,8 +243,8 @@ void CUTS_CPU_Worker::verify_calibration (void)
        msec <= TEST_MAX_MSEC;
        msec += TEST_INC_MSEC, index ++)
   {
-    ACE_DEBUG ((LM_DEBUG,
-                "*** running calibration test for %u msec...\n",
+    ACE_DEBUG ((LM_INFO,
+                "--- running calibration test for %u msec...\n",
                 msec));
 
     for (size_t run = 0; run < TEST_RUNS; run ++)

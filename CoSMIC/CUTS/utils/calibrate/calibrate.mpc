@@ -1,0 +1,9 @@
+// $Id$
+
+project (CUTS_calibrate) : cutsexe {
+  exename = calibrate
+
+  Source_Files {
+    calibrate.cpp
+  }
+}

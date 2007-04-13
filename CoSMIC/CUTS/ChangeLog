@@ -1,7 +1,31 @@
+Fri Apr 13 06:34:56 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added utils/calibrate to the workspace build.
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.cpp:
+
+          Calibration was missing initialization phase to set the
+          priority to the highest possible to prevent any interruptions.
+
+        * cuts/Worker.h:
+        * cuts/Worker.inl:
+
+          Added release () method for dynamic deallocation purposes.
+
+        * utils/calibrate:
+        * utils/calibrate/calibrate.cpp:
+        * utils/calibrate/calibrate.mpc:
+
+          Utility application that is used to calibrate workload
+          generators.
+
 Fri Apr 13 05:41:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp (make_calibration_filename):
-        
+
           Changed MAX_PATH to 1024
 
 Fri Apr 13 05:27:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
