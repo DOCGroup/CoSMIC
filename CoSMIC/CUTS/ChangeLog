@@ -1,3 +1,9 @@
+Fri Apr 13 05:41:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.cpp (make_calibration_filename):
+        
+          Changed MAX_PATH to 1024
+
 Fri Apr 13 05:27:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Worker.h:

@@ -225,7 +225,7 @@ make_calibration_filename (ACE_CString & filename)
   ACE_OS::macaddr_node_t macaddr;
   ACE_OS::getmacaddress (&macaddr);
 
-  char temp_filename [MAX_PATH];
+  char temp_filename [1024];
 
   ACE_OS::sprintf (temp_filename,
                    "%s/etc/calibration/%s.%02X-%02X-%02X-%02X-%02X-%02X",
