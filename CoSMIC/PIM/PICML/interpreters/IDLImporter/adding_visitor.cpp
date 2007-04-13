@@ -59,7 +59,8 @@ adding_visitor::adding_visitor (DOMElement *sub_tree,
 
       for (XMLSize_t index = 0; index < children->getLength (); ++index)
         {
-          DOMElement *child = (DOMElement *) children->item (index);
+          DOMElement *child =
+            dynamic_cast<DOMElement *> (children->item (index));
 
           if (child == 0)
             {
@@ -1144,7 +1145,8 @@ adding_visitor::visit_operation (AST_Operation *node)
 
       for (XMLSize_t i = 0; i < children->getLength (); ++i)
         {
-          DOMElement *child = (DOMElement *) children->item (i);
+          DOMElement *child =
+            dynamic_cast<DOMElement *> (children->item (i));
 
           if (0 == child)
             {
@@ -1447,7 +1449,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
   // Get the AttributeMember and set its referenced type outside the
   // IF block so we can pick up a change from IDL.
   DOMNodeList *ref = elem->getElementsByTagName (X ("reference"));
-  member = (DOMElement *) ref->item (0);
+  member = dynamic_cast<DOMElement *> (ref->item (0));
   AST_Type *ft = node->field_type ();
   const XMLCh *gme_id = be_global->lookup_id (ft);
   be_global->type_change_diagnostic (member, gme_id);
@@ -2613,7 +2615,8 @@ adding_visitor::add_tag_common (const char *value,
   else
     {
       // Just replace whether the value has changed or not.
-      value_elem = (DOMElement *) tag_elem->getFirstChild ();
+      value_elem =
+        dynamic_cast<DOMElement *> (tag_elem->getFirstChild ());
       old_tag_value = (DOMText *) value_elem->getFirstChild ();
       new_tag_value = this->doc_->createTextNode (X (value));
 
@@ -3233,7 +3236,8 @@ adding_visitor::add_private (AST_Field *f,
 
       for (XMLSize_t index = 0; index < endpoints->getLength (); ++index)
         {
-          DOMElement *endpoint = (DOMElement *) endpoints->item (index);
+          DOMElement *endpoint =
+            dynamic_cast<DOMElement *> (endpoints->item (index));
           const XMLCh *role = endpoint->getAttribute (X ("role"));
           const XMLCh *target = endpoint->getAttribute (X ("target"));
 
@@ -3324,17 +3328,20 @@ adding_visitor::find_connection (const XMLCh *endpoint_id,
   DOMNodeList *connections =
     this->sub_tree_->getElementsByTagName (X ("connection"));
 
-  for (XMLSize_t index = 0; index < connections->getLength (); ++ index)
+  for (XMLSize_t index = 0; index < connections->getLength (); ++index)
     {
-      connection = (DOMElement *) connections->item (index);
+      connection =
+        dynamic_cast<DOMElement *> (connections->item (index));
 
       DOMNodeList *endpoints =
         connection->getElementsByTagName (X ("connpoint"));
 
       for (XMLSize_t i = 0; i < endpoints->getLength (); ++i)
         {
-          DOMElement *endpoint = (DOMElement *) endpoints->item (i);
-          const XMLCh *target_attr = endpoint->getAttribute (X ("target"));
+          DOMElement *endpoint =
+            dynamic_cast<DOMElement *> (endpoints->item (i));
+          const XMLCh *target_attr =
+            endpoint->getAttribute (X ("target"));
           const XMLCh *role_attr = endpoint->getAttribute (X ("role"));
 
           if (X (role) == role_attr && X (endpoint_id) == target_attr)
@@ -3676,7 +3683,8 @@ adding_visitor::add_manages (AST_Home *node)
 
   for (XMLSize_t index = 0; index < connections->getLength (); ++index)
     {
-      DOMElement *holder = (DOMElement *) connections->item (index);
+      DOMElement *holder =
+        dynamic_cast<DOMElement *> (connections->item (index));
 
       if (0 == holder)
         {
@@ -3684,7 +3692,8 @@ adding_visitor::add_manages (AST_Home *node)
         }
 
       // This depends on the "src" connpoint being added last.
-      DOMElement *src = (DOMElement *) holder->getLastChild ();
+      DOMElement *src =
+        dynamic_cast<DOMElement *> (holder->getLastChild ());
       const XMLCh *target = src->getAttribute (X ("target"));
 
       // A ComponentFactory has exactly one connection.
@@ -3794,7 +3803,8 @@ adding_visitor::add_lookup_key (DOMElement *parent, AST_Home *node)
 
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
-      DOMElement *child = (DOMElement *) children->item (i);
+      DOMElement *child =
+        dynamic_cast<DOMElement *> (children->item (i));
 
       if (0 == child)
         {
@@ -5029,7 +5039,8 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
       for (XMLSize_t i = 0; i < children->getLength (); ++i)
         {
 
-          DOMElement *child = (DOMElement *) children->item (i);
+          DOMElement *child =
+            dynamic_cast<DOMElement *> (children->item (i));
 
           if (0 == child)
             {
@@ -5051,7 +5062,8 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
     }
   else
     {
-      next = (DOMElement *) this->previous_->getNextSibling ();
+      next =
+        dynamic_cast<DOMElement *> (this->previous_->getNextSibling ());
     }
 
   if (elem == next)

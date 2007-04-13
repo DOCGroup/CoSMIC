@@ -53,11 +53,13 @@ removing_closure_visitor::visit_gme_connection (DOMElement *node)
   // If the id of either endpoint matches our member id, 'node'
   // is removed.
   
-  DOMElement *dst = (DOMElement *) node->getLastChild ();
+  DOMElement *dst =
+    dynamic_cast<DOMElement *> (node->getLastChild ());
   this->check_endpoint (dst, node);
 
   // The called method checks if 'node' has already been released.
-  DOMElement *src = (DOMElement *) dst->getPreviousSibling ();
+  DOMElement *src =
+    dynamic_cast<DOMElement *> (dst->getPreviousSibling ());
   this->check_endpoint (src, node);
 
   return true;

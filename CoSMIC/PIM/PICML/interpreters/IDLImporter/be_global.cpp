@@ -906,7 +906,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
           // Iterate over the list of Files.
           for (XMLSize_t i = 0; i < files->getLength (); ++i)
             {
-              file = (DOMElement *) files->item (i);
+              file = dynamic_cast<DOMElement *> (files->item (i));
 
               // Skip any other children, like <name>.
               if (X ("model") == file->getTagName ())
@@ -952,7 +952,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMElement *child =
-        (DOMElement *) children->item (index);
+        dynamic_cast<DOMElement *> (children->item (index));
 
       if (tag != X (child->getTagName ()))
         {
@@ -1012,7 +1012,7 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
 
   for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *model = (DOMElement *) models->item (i);
+      DOMElement *model = dynamic_cast<DOMElement *> (models->item (i));
       const XMLCh *kind = model->getAttribute (X ("kind"));
 
       if (X ("Package") != X (kind))
@@ -1044,7 +1044,8 @@ BE_GlobalData::set_working_folders (void)
   DOMNodeList *folders =
     root->getElementsByTagName (X ("folder"));
 
-  DOMElement *root_folder = (DOMElement *) folders->item (0);
+  DOMElement *root_folder =
+    dynamic_cast<DOMElement *> (folders->item (0));
   this->root_folder_ = root_folder;
 
   this->interface_definitions_folder_ =
@@ -1062,7 +1063,8 @@ BE_GlobalData::lookup_by_tag_and_kind (DOMElement *scope,
 
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
-      DOMElement *child = (DOMElement *) children->item (i);
+      DOMElement *child =
+        dynamic_cast<DOMElement *> (children->item (i));
       const XMLCh *kind = child->getAttribute (X ("kind"));
 
       if (X (kind_name) == kind)
@@ -1125,7 +1127,8 @@ BE_GlobalData::init_ids (DOMElement *sub_tree)
 
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
-      this->init_ids ((DOMElement *) children->item (index));
+      this->init_ids (
+        dynamic_cast<DOMElement *> (children->item (index)));
     }
 }
 
@@ -1177,7 +1180,8 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       char *r_name = this->get_name (referred);
 
       char *r_kind = 0;
-      DOMElement *parent = (DOMElement *) referred->getParentNode ();
+      DOMElement *parent =
+        dynamic_cast<DOMElement *> (referred->getParentNode ());
       const XMLCh *parent_kind = parent->getAttribute (X ("kind"));
       ACE_CString r_kind_str;
 
@@ -1207,7 +1211,8 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       XMLString::release (&r_name);
     }
 
-  DOMElement *parent = (DOMElement *) node->getParentNode ();
+  DOMElement *parent =
+    dynamic_cast<DOMElement *> (node->getParentNode ());
   kindX = parent->getAttribute (X ("kind"));
   char *p_kind = XMLString::transcode (kindX);
   tagX = parent->getTagName ();
@@ -1420,7 +1425,8 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
     }
 
   DOMElement *new_type = this->doc_->getElementById (new_ref);
-  DOMElement *parent = (DOMElement *) node->getParentNode ();
+  DOMElement *parent =
+    dynamic_cast<DOMElement *> (node->getParentNode ());
 
   char *new_type_name = this->get_name (new_type);
   char *child_name = this->get_name (node);
@@ -1494,7 +1500,8 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
     }
 
   const char *node_name = node->local_name ()->get_string ();
-  DOMElement *parent = (DOMElement *) elem->getParentNode ();
+  DOMElement *parent =
+    dynamic_cast<DOMElement *> (elem->getParentNode ());
   char *parent_name = be_global->get_name (parent);
   const XMLCh *parent_kindX = parent->getAttribute (X ("kind"));
   char *parent_kind = XMLString::transcode (parent_kindX);
@@ -1513,7 +1520,8 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
       char *tmp = XMLString::transcode (base_id);
       base_elem = this->doc_->getElementById (base_id);
       base_name = this->get_name (base_elem);
-      base_parent = (DOMElement *) base_elem->getParentNode ();
+      base_parent =
+        dynamic_cast<DOMElement *> (base_elem->getParentNode ());
       base_parent_name = this->get_name (base_parent);
       base_parent_kindX = base_parent->getAttribute (X ("kind"));
       base_parent_kind = XMLString::transcode (base_parent_kindX);
@@ -1536,7 +1544,7 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
   DOMElement *new_base =
     this->doc_->getElementById (base_id_from_idl);
   DOMElement *new_base_parent =
-    (DOMElement *) new_base->getParentNode ();
+    dynamic_cast<DOMElement *> (new_base->getParentNode ());
   const XMLCh *new_base_parent_kindX =
     new_base_parent->getAttribute (X ("kind"));
   char *new_base_parent_kind = XMLString::transcode (new_base_parent_kindX);
@@ -1597,7 +1605,8 @@ BE_GlobalData::get_first_picml_element (DOMElement *scope)
 
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
-      DOMElement *child = (DOMElement *) children->item (i);
+      DOMElement *child =
+        dynamic_cast<DOMElement *> (children->item (i));
 
       if (0 == child)
         {
@@ -1649,7 +1658,8 @@ BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
   AST_Decl *p = ScopeAsDecl (d->defined_in ());
   
   AST_Decl::NodeType nt = p->node_type ();
-  DOMElement *parent = dynamic_cast<DOMElement *> (elem->getParentNode ());
+  DOMElement *parent =
+    dynamic_cast<DOMElement *> (elem->getParentNode ());
   
   if (0 == parent)
     {

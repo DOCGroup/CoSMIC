@@ -30,13 +30,16 @@ xme_dom_visitor::visit_children (DOMElement *node)
       switch (child->getNodeType ())
         {
           case DOMNode::ELEMENT_NODE:
-            is_good = this->visit_dom_element ((DOMElement *) child);
+            is_good =
+              this->visit_dom_element (dynamic_cast<DOMElement *> (child));
             break;
           case DOMNode::ATTRIBUTE_NODE:
-            is_good = this->visit_dom_attribute ((DOMAttr *) child);
+            is_good =
+              this->visit_dom_attribute (dynamic_cast<DOMAttr *> (child));
             break;
           case DOMNode::TEXT_NODE:
-            is_good = this->visit_dom_text ((DOMText *) child);
+            is_good =
+              this->visit_dom_text (dynamic_cast<DOMText *> (child));
             break;
           default:
             ACE_ERROR_RETURN ((LM_ERROR,
