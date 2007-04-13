@@ -17,10 +17,30 @@
 #define _CUTS_IDL_
 
 #include "cuts/performance.idl"
-#include "cuts/events.idl"
+#include <Components.idl>
 
 module CUTS
 {
+  /**
+   * Dummy event with no payload. This event can serve as a placeholder
+   * during emulation until more is learned about the event types.
+   */
+  eventtype Empty_Event { };
+
+  /**
+   * Dummy event with a payload. It allows experiments to transmit events
+   * with dummy data associated with it. This event can serve as a placeholder
+   * during emulation until more is learned about the event types.
+   */
+  eventtype Payload_Event
+  {
+    /// Size of the events payload.
+    public long size;
+
+    /// The payload for the event.
+    public string payload;
+  };
+
   exception Registration_Failed   { };
   exception Registration_Limit    { };
 

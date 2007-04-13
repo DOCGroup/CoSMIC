@@ -6,19 +6,17 @@
 #include "cuts/events_i.inl"
 #endif
 
-namespace CUTS
+namespace OBV_CUTS
 {
   //
   // size
   //
-  CUTS_INLINE
   void Payload_Event_i::size (const ::CORBA::Long size)
   {
-    // Set the payload size.
-    OBV_CUTS::Payload_Event::size (size);
-
     // Allocate a payload for the specified size.
-    char * temp = ::CORBA::string_alloc (size - sizeof (::CORBA::ULong));
+    char * temp = ::CORBA::string_alloc (size);
     OBV_CUTS::Payload_Event::payload (temp);
+
+    OBV_CUTS::Payload_Event::size (size);
   }
 }

@@ -1,3 +1,46 @@
+Fri Apr 13 23:41:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS_stub_export.h:
+
+          Added cuts/config.h to the include statements.
+
+        * cuts/CCM_Events_T.h:
+
+          Added cuts/events_i.h to the include statements.
+
+        * cuts/CUTS.idl:
+
+          Moved the events from events.idl here.
+
+        * cuts/CUTS.mpc:
+
+          Removed cuts/events.idl.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp (write_OutputAction_begin):
+
+          If the event type is an CUTS::Payload_Event, then we generate
+          personal implemenation that will create a payload of the right
+          size.
+
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Removed code that registers value type factories. This is
+          handle by the servant. Moreover, we do not support valuetypes
+          that have methods.
+
+        * cuts/events_i.h:
+        * cuts/events_i.inl:
+        * cuts/events_i.cpp:
+
+          Implementation of the Payload_Event OBV that will create
+          and payload of the correct size with size () method is
+          invoked.
+
+        * cuts/events.idl:
+
+          Removed this file.
+
 Fri Apr 13 20:00:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.cpp (Visit_OutputAction):

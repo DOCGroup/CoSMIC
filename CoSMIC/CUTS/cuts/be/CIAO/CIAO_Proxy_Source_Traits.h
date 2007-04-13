@@ -78,9 +78,6 @@ protected:
   void write_set_session_context (
     const PICML::Component & component);
 
-  void write_register_obv_factory (
-    const PICML::Event & event);
-
   virtual void write_method (
     const PICML::OutEventPort & source);
 

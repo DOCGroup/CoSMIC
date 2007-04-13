@@ -412,35 +412,7 @@ write_set_session_context (const PICML::Component & component)
     << single_line_comment ("cache the instance name of hosted component")
     << context << " * ciao_ctx = " << context << "::_narrow (ctx);"
     << "this->instance_ = ciao_ctx->_ciao_instance_id ();"
-    << std::endl;
-
-  std::for_each (
-    this->in_events_.begin (),
-    this->in_events_.end (),
-    boost::bind (&CUTS_CIAO_Proxy_Source_Traits::write_register_obv_factory,
-                 this,
-                 _1));
-
-  // Close off the function.
-  this->outfile ()
     << "}";
-}
-
-//
-// write_register_obv_factory
-//
-void CUTS_CIAO_Proxy_Source_Traits::
-write_register_obv_factory (const PICML::Event & event)
-{
-  std::string name = event.name ();
-  std::string event_scope = scope (event, "::");
-
-  this->outfile ()
-    << single_line_comment ("Event Registration: " + name)
-    << "CUTS_REGISTER_OBV_FACTORY (ciao_ctx," << std::endl
-    << event_scope << name << "_init," << std::endl
-    << event_scope << name << ");"
-    << std::endl;
 }
 
 //

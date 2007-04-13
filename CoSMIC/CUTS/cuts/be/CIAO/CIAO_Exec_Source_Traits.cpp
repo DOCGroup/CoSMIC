@@ -650,6 +650,12 @@ write_OutputAction_begin (const PICML::OutputAction & action)
 
   if (this->outevent_mgr_.get_scoped_typename (action.name (), scoped_name))
   {
+    // We are going to use a special event for CUTS::Payload_Event. This
+    // object will actually create a payload of the correct size with the
+    // size () setter method is invoked.
+    if (scoped_name == "CUTS::Payload_Event")
+      scoped_name += "_i";
+
     this->outfile ()
       << "CUTS_CCM_Event_T <OBV_" << scoped_name
       << "> __event_" << action.uniqueId () << "__;";
