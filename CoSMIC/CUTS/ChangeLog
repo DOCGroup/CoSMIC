@@ -1,3 +1,11 @@
+Sat Apr 14 00:56:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.h:
+
+          Added a new named functor for invoking the run () method
+          of the CPU worker. This is temporary until I finish the
+          unnamed functor generator.
+
 Fri Apr 13 23:41:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS_stub_export.h:

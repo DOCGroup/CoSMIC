@@ -54,6 +54,36 @@ public:
     CUTS_ACTION_EXECUTE_NO_ARGS (process);
     CUTS_DECLARE_ACTION_FACTORY (CUTS_CPU_Worker, Run_Processor);
   };
+
+  CUTS_ACTION_DECLARE (CUTS_CPU_Worker, Run_Processor_Ex)
+  {
+  public:
+    CUTS_ACTION_DEFAULT_CONSTRUCTOR (CUTS_CPU_Worker, Run_Processor_Ex)
+    {
+
+    }
+
+    CUTS_ACTION_INIT_CONSTRUCTOR_BEGIN (CUTS_CPU_Worker, Run_Processor_Ex)
+      CUTS_ACTION_ARGUMENT (size_t, cputime)
+      CUTS_ACTION_INIT_CONSTRUCTOR_END (CUTS_CPU_Worker)
+      CUTS_ACTION_PARAMETER_INIT (cputime_, cputime)
+    {
+
+    }
+
+    CUTS_ACTION_DESTRUCTOR (Run_Processor_Ex)
+    {
+
+    }
+
+    CUTS_ACTION_EXECUTE (run, (this->cputime_));
+
+    CUTS_DECLARE_ACTION_FACTORY (CUTS_CPU_Worker, Run_Processor_Ex);
+
+    CUTS_ACTION_PARAMETER_LIST_BEGIN
+    CUTS_ACTION_PARAMETER_DECLARE (size_t, cputime_);
+    CUTS_ACTION_PARAMETER_LIST_END
+  };
   //===========================================================================
   //@@CUTS::WML
 
