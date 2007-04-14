@@ -40,6 +40,9 @@ namespace OBV_CUTS
      * payload equal to \a size in bytes.
      */
     virtual void size (const ::CORBA::Long size);
+
+  private:
+    void fill (char * buf, size_t size);
   };
 }
 

@@ -1,3 +1,11 @@
+Sat Apr 14 22:03:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/events_i.h:
+        * cuts/events_i.cpp (size):
+
+          The payload event now fills the payload with a dummy value
+          to force the middleware to send the payload.
+
 Sat Apr 14 00:56:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.h:
