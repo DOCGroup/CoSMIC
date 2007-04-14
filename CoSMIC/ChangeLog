@@ -1,26 +1,35 @@
+Sat Apr 14 01:43:16 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed the Period and Probability attribute to string types.
+
 Fri Apr 13 17:10:42 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/xme_dom_visitor.cpp:
-        
+
           Replaced C-style downcasts of DOMNode* with dynamic_cast<>.
 
 Thu Apr 12 22:08:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
-        
+
           Changed location of update to 'previous_' member variable
           (used to facilitate ordered insertion of new elements into
           the DOM tree) so the update will happen only for IDL
           declarations that aren't from an included IDL file, since
           the insertion of elements into the DOM tree happens only
           for elements created from IDL that is in the main file.
-          
+
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
+
           Fixed a bug in the matching of nodes in the AST corresponding
           to IDL modules with corresponding nodes in the DOM tree
           (which have a 'kind' attribute of "Package"). When there

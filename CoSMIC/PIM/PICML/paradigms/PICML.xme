@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{9DB8ED3C-96B5-4F92-B70E-BD50467D7428}" cdate="Mon Apr 02 08:47:21 2007" mdate="Mon Apr 02 08:47:21 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{BD1D9B41-1C84-4986-957D-9C3DF95699B1}" cdate="Fri Apr 13 20:04:02 2007" mdate="Fri Apr 13 20:04:02 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2147,8 +2147,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000a"/>
 					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -7295,7 +7295,7 @@ inputs.size () = 1
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>integer</value>
+						<value>string</value>
 					</attribute>
 					<attribute kind="FieldDefault">
 						<value>1000</value>
@@ -7331,7 +7331,7 @@ inputs.size () = 1
 						<value></value>
 					</attribute>
 					<attribute kind="DataType">
-						<value>double</value>
+						<value>string</value>
 					</attribute>
 					<attribute kind="FieldDefault">
 						<value>1.0</value>
@@ -7818,6 +7818,12 @@ inputs.size () = 1
 					<name>TopLevelBehavior</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,13</value>
+							</regnode>
+						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -42171,8 +42177,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000064"/>
 				<connpoint role="dst" target="id-0066-00000064"/>
+				<connpoint role="src" target="id-0066-00000064"/>
 			</connection>
 			<connection id="id-0068-000000a7" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -85482,8 +85488,8 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000227"/>
 				<connpoint role="src" target="id-0066-00000227"/>
+				<connpoint role="dst" target="id-0066-00000227"/>
 			</connection>
 			<connection id="id-0068-0000037c" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>
@@ -87554,7 +87560,7 @@ GroupAND</value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000024d" kind="Model" role="Model" guid="{E9145D02-01BA-46e3-89F5-2F4385B3430A}" relid="0x4">
+			<atom id="id-0066-0000024b" kind="Model" role="Model" guid="{E9145D02-01BA-46e3-89F5-2F4385B3430A}" relid="0x4">
 				<name>RTRequirements</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87629,7 +87635,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000024e" kind="FieldAttribute" role="FieldAttribute" guid="{73DB207A-1931-4a97-8DC5-169AA875FB40}" relid="0x5">
+			<atom id="id-0066-0000024c" kind="FieldAttribute" role="FieldAttribute" guid="{73DB207A-1931-4a97-8DC5-169AA875FB40}" relid="0x5">
 				<name>maximum_simultaneous_service_level</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87665,7 +87671,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000024f" kind="FieldAttribute" role="FieldAttribute" guid="{547F2BEF-863E-49ab-BD07-10DFE305E581}" relid="0x6">
+			<atom id="id-0066-0000024d" kind="FieldAttribute" role="FieldAttribute" guid="{547F2BEF-863E-49ab-BD07-10DFE305E581}" relid="0x6">
 				<name>initial_thread_number</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87701,7 +87707,7 @@ GroupAND</value>
 					<value>Steady state number of threads</value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000250" kind="FieldAttribute" role="FieldAttribute" guid="{1E321EAE-0E1B-4efc-B1C6-117F09A61F67}" relid="0x7">
+			<atom id="id-0066-0000024e" kind="FieldAttribute" role="FieldAttribute" guid="{1E321EAE-0E1B-4efc-B1C6-117F09A61F67}" relid="0x7">
 				<name>minimum_simultaneous_service_level</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87737,7 +87743,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000251" kind="BooleanAttribute" role="BooleanAttribute" guid="{88522CDE-4E41-4f15-99C9-52B6311E673E}" relid="0x8">
+			<atom id="id-0066-0000024f" kind="BooleanAttribute" role="BooleanAttribute" guid="{88522CDE-4E41-4f15-99C9-52B6311E673E}" relid="0x8">
 				<name>prioritize_service_invocations</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87764,7 +87770,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000254" kind="Model" role="Model" guid="{4F345263-FC7D-473a-9A90-D9F7AA67EFD2}" relid="0x16">
+			<atom id="id-0066-00000250" kind="Model" role="Model" guid="{4F345263-FC7D-473a-9A90-D9F7AA67EFD2}" relid="0x16">
 				<name>ServiceProvider</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87839,7 +87845,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000257" kind="Atom" role="Atom" guid="{3FC0C736-9958-45a1-AF2A-632E823ECCF4}" relid="0x19">
+			<atom id="id-0066-00000251" kind="Atom" role="Atom" guid="{3FC0C736-9958-45a1-AF2A-632E823ECCF4}" relid="0x19">
 				<name>MultipleServiceRequests</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87911,7 +87917,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000258" kind="Atom" role="Atom" guid="{38D15311-D8BA-40c2-BE7B-0ADEE57CCC19}" relid="0x1a">
+			<atom id="id-0066-00000252" kind="Atom" role="Atom" guid="{38D15311-D8BA-40c2-BE7B-0ADEE57CCC19}" relid="0x1a">
 				<name>ServiceLevels</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -87983,7 +87989,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000025a" kind="BooleanAttribute" role="BooleanAttribute" guid="{814D1AED-F5B8-4a82-B2F6-454F2C4DAD2B}" relid="0x1d">
+			<atom id="id-0066-00000253" kind="BooleanAttribute" role="BooleanAttribute" guid="{814D1AED-F5B8-4a82-B2F6-454F2C4DAD2B}" relid="0x1d">
 				<name>fixed_prioirty_service_execution</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -88010,7 +88016,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000025b" kind="BooleanAttribute" role="BooleanAttribute" guid="{2A4DFABD-8A19-403a-B317-390599F05AB2}" relid="0x1f">
+			<atom id="id-0066-00000254" kind="BooleanAttribute" role="BooleanAttribute" guid="{2A4DFABD-8A19-403a-B317-390599F05AB2}" relid="0x1f">
 				<name>varying_service_levels</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -88037,7 +88043,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000025c" kind="BooleanAttribute" role="BooleanAttribute" guid="{0D477AEE-1B6C-45ab-92A8-20E8D4E67E28}" relid="0x21">
+			<atom id="id-0066-00000255" kind="BooleanAttribute" role="BooleanAttribute" guid="{0D477AEE-1B6C-45ab-92A8-20E8D4E67E28}" relid="0x21">
 				<name>simultaneous_service_execution</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -88064,7 +88070,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000025d" kind="BooleanAttribute" role="BooleanAttribute" guid="{DD9364E4-51EF-42f9-BB57-709F08F49AD4}" relid="0x22">
+			<atom id="id-0066-00000256" kind="BooleanAttribute" role="BooleanAttribute" guid="{DD9364E4-51EF-42f9-BB57-709F08F49AD4}" relid="0x22">
 				<name>buffer_service_requests</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -88091,7 +88097,7 @@ GroupAND</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-0000025e" kind="Atom" role="Atom" guid="{70D00F6C-16E0-4e11-BACE-A605965D8BD9}" relid="0x38">
+			<atom id="id-0066-00000257" kind="Atom" role="Atom" guid="{70D00F6C-16E0-4e11-BACE-A605965D8BD9}" relid="0x38">
 				<name>ServiceConsumer</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -88252,53 +88258,53 @@ GroupAND</value>
 					<value>n</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-0000024a"/>
-				<connpoint role="dst" target="id-0066-0000024d"/>
+				<connpoint role="dst" target="id-0066-0000024b"/>
 			</connection>
-			<connection id="id-0068-000003cc" kind="HasAspect" role="HasAspect" guid="{0AACF669-E908-448e-BBF2-0DD627E05DFA}" relid="0x12">
+			<connection id="id-0068-000003c6" kind="HasAspect" role="HasAspect" guid="{0AACF669-E908-448e-BBF2-0DD627E05DFA}" relid="0x12">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-0000024d"/>
+				<connpoint role="dst" target="id-0066-0000024b"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-000003cf" kind="HasAttribute" role="HasAttribute" guid="{58C22C5D-E55E-4a18-976F-C5768F1C25CA}" relid="0x20">
+			<connection id="id-0068-000003c7" kind="HasAttribute" role="HasAttribute" guid="{58C22C5D-E55E-4a18-976F-C5768F1C25CA}" relid="0x20">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>s</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000258"/>
-				<connpoint role="src" target="id-0066-0000025b"/>
+				<connpoint role="dst" target="id-0066-00000252"/>
+				<connpoint role="src" target="id-0066-00000254"/>
 			</connection>
-			<connection id="id-0068-000003d0" kind="HasAttribute" role="HasAttribute" guid="{5A4F0EB7-5E70-4bd1-9653-0586F8114773}" relid="0x23">
-				<name>HasAttribute</name>
-				<connpoint role="src" target="id-0066-00000250"/>
-				<connpoint role="dst" target="id-0066-00000257"/>
-			</connection>
-			<connection id="id-0068-000003d1" kind="HasAttribute" role="HasAttribute" guid="{DF96DA56-2B78-4f6f-BF84-1FF5E944A95D}" relid="0x24">
-				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-00000257"/>
-				<connpoint role="src" target="id-0066-0000025c"/>
-			</connection>
-			<connection id="id-0068-000003d2" kind="HasAttribute" role="HasAttribute" guid="{454F4141-132E-47fc-B525-2C531EA57B6C}" relid="0x25">
-				<name>HasAttribute</name>
-				<connpoint role="dst" target="id-0066-00000257"/>
-				<connpoint role="src" target="id-0066-0000025d"/>
-			</connection>
-			<connection id="id-0068-000003d3" kind="HasAttribute" role="HasAttribute" guid="{8CA09442-35AD-43db-B105-7E050A287BA0}" relid="0x26">
+			<connection id="id-0068-000003c8" kind="HasAttribute" role="HasAttribute" guid="{5A4F0EB7-5E70-4bd1-9653-0586F8114773}" relid="0x23">
 				<name>HasAttribute</name>
 				<connpoint role="src" target="id-0066-0000024e"/>
-				<connpoint role="dst" target="id-0066-00000257"/>
+				<connpoint role="dst" target="id-0066-00000251"/>
 			</connection>
-			<connection id="id-0068-000003d4" kind="HasAttribute" role="HasAttribute" guid="{5D367DCB-8AB9-48c6-BCC8-553A43904AD8}" relid="0x27">
+			<connection id="id-0068-000003c9" kind="HasAttribute" role="HasAttribute" guid="{DF96DA56-2B78-4f6f-BF84-1FF5E944A95D}" relid="0x24">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000251"/>
+				<connpoint role="src" target="id-0066-00000255"/>
+			</connection>
+			<connection id="id-0068-000003ca" kind="HasAttribute" role="HasAttribute" guid="{454F4141-132E-47fc-B525-2C531EA57B6C}" relid="0x25">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-00000251"/>
+				<connpoint role="src" target="id-0066-00000256"/>
+			</connection>
+			<connection id="id-0068-000003cb" kind="HasAttribute" role="HasAttribute" guid="{8CA09442-35AD-43db-B105-7E050A287BA0}" relid="0x26">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-0000024c"/>
+				<connpoint role="dst" target="id-0066-00000251"/>
+			</connection>
+			<connection id="id-0068-000003cc" kind="HasAttribute" role="HasAttribute" guid="{5D367DCB-8AB9-48c6-BCC8-553A43904AD8}" relid="0x27">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000254"/>
-				<connpoint role="src" target="id-0066-0000025a"/>
+				<connpoint role="dst" target="id-0066-00000250"/>
+				<connpoint role="src" target="id-0066-00000253"/>
 			</connection>
-			<connection id="id-0068-000003d8" kind="Containment" role="Containment" guid="{0CF1C57A-D5B6-4827-B6C1-0EDA41687D77}" relid="0x2b">
+			<connection id="id-0068-000003cd" kind="Containment" role="Containment" guid="{0CF1C57A-D5B6-4827-B6C1-0EDA41687D77}" relid="0x2b">
 				<name>Containment</name>
 				<attribute kind="Cardinality">
 					<value>0..1</value>
@@ -88309,10 +88315,10 @@ GroupAND</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000254"/>
-				<connpoint role="src" target="id-0066-00000257"/>
+				<connpoint role="dst" target="id-0066-00000250"/>
+				<connpoint role="src" target="id-0066-00000251"/>
 			</connection>
-			<connection id="id-0068-000003db" kind="Containment" role="Containment" guid="{E10DFAAF-83CF-4ce2-AB92-9C4390C06458}" relid="0x2e">
+			<connection id="id-0068-000003ce" kind="Containment" role="Containment" guid="{E10DFAAF-83CF-4ce2-AB92-9C4390C06458}" relid="0x2e">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -88326,18 +88332,18 @@ GroupAND</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000254"/>
-				<connpoint role="src" target="id-0066-00000258"/>
+				<connpoint role="dst" target="id-0066-00000250"/>
+				<connpoint role="src" target="id-0066-00000252"/>
 			</connection>
-			<connection id="id-0068-000003dd" kind="HasAspect" role="HasAspect" guid="{F18F6FC0-A39F-42ae-B351-3D0D8662E671}" relid="0x30">
+			<connection id="id-0068-000003cf" kind="HasAspect" role="HasAspect" guid="{F18F6FC0-A39F-42ae-B351-3D0D8662E671}" relid="0x30">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Wn</value>
 				</regnode>
-				<connpoint role="dst" target="id-0066-00000254"/>
+				<connpoint role="dst" target="id-0066-00000250"/>
 				<connpoint role="src" target="id-0069-00000014"/>
 			</connection>
-			<connection id="id-0068-000003e4" kind="Containment" role="Containment" guid="{A9BB6DFF-3938-4ccb-A742-30F6C740C3AD}" relid="0x37">
+			<connection id="id-0068-000003d0" kind="Containment" role="Containment" guid="{A9BB6DFF-3938-4ccb-A742-30F6C740C3AD}" relid="0x37">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -88351,10 +88357,10 @@ GroupAND</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000024d"/>
-				<connpoint role="src" target="id-0066-00000254"/>
+				<connpoint role="dst" target="id-0066-0000024b"/>
+				<connpoint role="src" target="id-0066-00000250"/>
 			</connection>
-			<connection id="id-0068-000003e5" kind="Containment" role="Containment" guid="{678C9745-0186-40e3-919F-10533187D8A6}" relid="0x39">
+			<connection id="id-0068-000003d1" kind="Containment" role="Containment" guid="{678C9745-0186-40e3-919F-10533187D8A6}" relid="0x39">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -88368,18 +88374,18 @@ GroupAND</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000024d"/>
-				<connpoint role="src" target="id-0066-0000025e"/>
+				<connpoint role="dst" target="id-0066-0000024b"/>
+				<connpoint role="src" target="id-0066-00000257"/>
 			</connection>
-			<connection id="id-0068-000003e7" kind="HasAttribute" role="HasAttribute" guid="{30C54E04-27F8-4309-AAD0-D841E5F9D5C6}" relid="0x3a">
+			<connection id="id-0068-000003d2" kind="HasAttribute" role="HasAttribute" guid="{30C54E04-27F8-4309-AAD0-D841E5F9D5C6}" relid="0x3a">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
 				</regnode>
-				<connpoint role="src" target="id-0066-00000251"/>
-				<connpoint role="dst" target="id-0066-0000025e"/>
+				<connpoint role="src" target="id-0066-0000024f"/>
+				<connpoint role="dst" target="id-0066-00000257"/>
 			</connection>
-			<set id="id-0069-00000014" kind="Aspect" role="Aspect" guid="{E0F48A0E-E33D-4cc6-A6C5-E1DF98512526}" relid="0x13" members="id-0066-0000024d id-0066-00000254 id-0066-00000257 id-0066-00000258 id-0066-0000025e">
+			<set id="id-0069-00000014" kind="Aspect" role="Aspect" guid="{E0F48A0E-E33D-4cc6-A6C5-E1DF98512526}" relid="0x13" members="id-0066-0000024b id-0066-00000250 id-0066-00000251 id-0066-00000252 id-0066-00000257">
 				<name>RTReq</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
