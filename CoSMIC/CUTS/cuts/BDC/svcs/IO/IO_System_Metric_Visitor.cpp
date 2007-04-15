@@ -129,9 +129,6 @@ visit_port_metrics (const CUTS_Port_Metric & metrics)
     std::cout << "  to " << iter->first.c_str () << " ";
     iter->second->accept (*this);
   }
-
-  std::cout
-    << "  Metric Log Size: " << metrics.log ().size () << std::endl;
 }
 
 //

@@ -110,6 +110,7 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
   OutEventPort_Set sources = component.OutEventPort_kind_children ();
 
   this->outfile ()
+    << std::endl
     << "namespace CIDL_" << monoimpl.name () << "{"
     << function_header (ctx_proxy)
     << ctx_proxy << "::" << std::endl
@@ -277,10 +278,25 @@ write_method (const PICML::OutEventPort & source)
 
   std::string name = source.name ();
 
+  PICML::Event event = source.ref ();
+  std::string event_type =
+    this->scope (event, "::") + (std::string) event.name ();
+
   this->outfile ()
     << single_line_comment ("record time of exit for event")
     << "CUTS_Activation_Record * record = CUTS_THR_ACTIVATION_RECORD ();"
-    << "record->log_endpoint (this->" << name << "_id_);"
+    << "record->log_endpoint (this->" << name << "_id_);";
+
+  if (event_type == "CUTS::Empty_Event" ||
+      event_type == "CUTS::Payload_Event")
+  {
+    this->outfile ()
+      << std::endl
+      << single_line_comment ("tag event with component's id")
+      << "ev->sender (this->agent_->parent ());";
+  }
+
+  this->outfile ()
     << std::endl
     << single_line_comment ("continue sending event")
     << "this->ctx_->push_" << name << " (ev);"

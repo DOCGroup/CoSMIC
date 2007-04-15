@@ -184,6 +184,169 @@ private:
   Config_Type & config_;
 };
 
+//=============================================================================
+/**
+ * @class CUTS_Event_Handler_Base_T
+ *
+ * Specialization of the base implemetatation for all event handlers when
+ * the event type is CUTS::Empty_Event. The main difference is this
+ * event handler leverages the sender member of CUTS::Empty_Event.
+ */
+//=============================================================================
+
+template <typename COMPONENT>
+class CUTS_Event_Handler_Base_T <COMPONENT, ::CUTS::Empty_Event> :
+  public CUTS_Event_Handler_T <COMPONENT, ::CUTS::Empty_Event>
+{
+public:
+  /// Type definition of the event handler configuration.
+  typedef
+    CUTS_Event_Handler_Config_T <
+    COMPONENT, ::CUTS::Empty_Event> Config_Type;
+
+  /// Type definition for the component owning the event handler.
+  typedef typename Config_Type::Component_Type Component_Type;
+
+  /// Type definition for the event type.
+  typedef typename Config_Type::Event_Type Event_Type;
+
+  /// Type definition for the callback method.
+  typedef typename Config_Type::Event_Method Event_Method;
+
+  /// Destructor.
+  virtual ~CUTS_Event_Handler_Base_T (void);
+
+  /**
+   * Handle an event.
+   *
+   * @param[in]       ev      Pointer to the event.
+   */
+  virtual void handle_event (::CUTS::Empty_Event * ev) = 0;
+
+protected:
+  /**
+   * Constructor.
+   *
+   * @param[in]     agent       Port agent for the event handler.
+   */
+  CUTS_Event_Handler_Base_T (Config_Type & config);
+
+  /**
+   * Shared implementation for handing an event. This method performs
+   * the necessary operations to benchmark the event handling method.
+   *
+   * @param[in]     ev            Pointer to the event.
+   * @param[in]     queue_time    Amount of time the event was queued.
+   */
+  void handle_event_i (::CUTS::Empty_Event * ev,
+                       const ACE_Time_Value & queue_time);
+
+  /// Pointer to the component that owns the event handler.
+  Component_Type * component_;
+
+  /// Method invoked when an event is received.
+  Event_Method method_;
+
+  /**
+   * Get the contained port agent.
+   *
+   * @return      Reference to the port agent.
+   */
+  CUTS_Port_Agent & port_agent (void);
+
+  /**
+   * Get the name of the event handler.
+   *
+   * @return      Name of the event handler.
+   */
+  const char * name (void) const;
+
+private:
+  /// Reference to the configuration type.
+  Config_Type & config_;
+};
+
+//=============================================================================
+/**
+ * @class CUTS_Event_Handler_Base_T
+ *
+ * Specialization of the base implemetatation for all event handlers when
+ * the event type is CUTS::Payload_Event. The main difference is this
+ * event handler leverages the sender member of CUTS::Payload_Event.
+ */
+//=============================================================================
+
+template <typename COMPONENT>
+class CUTS_Event_Handler_Base_T <COMPONENT, ::CUTS::Payload_Event> :
+  public CUTS_Event_Handler_T <COMPONENT, ::CUTS::Payload_Event>
+{
+public:
+  /// Type definition of the event handler configuration.
+  typedef CUTS_Event_Handler_Config_T <
+    COMPONENT, ::CUTS::Payload_Event> Config_Type;
+
+  /// Type definition for the component owning the event handler.
+  typedef typename Config_Type::Component_Type Component_Type;
+
+  /// Type definition for the event type.
+  typedef typename Config_Type::Event_Type Event_Type;
+
+  /// Type definition for the callback method.
+  typedef typename Config_Type::Event_Method Event_Method;
+
+  /// Destructor.
+  virtual ~CUTS_Event_Handler_Base_T (void);
+
+  /**
+   * Handle an event.
+   *
+   * @param[in]       ev      Pointer to the event.
+   */
+  virtual void handle_event (::CUTS::Payload_Event * ev) = 0;
+
+protected:
+  /**
+   * Constructor.
+   *
+   * @param[in]     agent       Port agent for the event handler.
+   */
+  CUTS_Event_Handler_Base_T (Config_Type & config);
+
+  /**
+   * Shared implementation for handing an event. This method performs
+   * the necessary operations to benchmark the event handling method.
+   *
+   * @param[in]     ev            Pointer to the event.
+   * @param[in]     queue_time    Amount of time the event was queued.
+   */
+  void handle_event_i (::CUTS::Payload_Event * ev,
+                       const ACE_Time_Value & queue_time);
+
+  /// Pointer to the component that owns the event handler.
+  Component_Type * component_;
+
+  /// Method invoked when an event is received.
+  Event_Method method_;
+
+  /**
+   * Get the contained port agent.
+   *
+   * @return      Reference to the port agent.
+   */
+  CUTS_Port_Agent & port_agent (void);
+
+  /**
+   * Get the name of the event handler.
+   *
+   * @return      Name of the event handler.
+   */
+  const char * name (void) const;
+
+private:
+  /// Reference to the configuration type.
+  Config_Type & config_;
+};
+
 #if defined (__CUTS_INLINE__)
 #include "cuts/Event_Handler_T.inl"
 #endif

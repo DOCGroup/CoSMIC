@@ -13,8 +13,6 @@
 #ifndef _CUTS_CCM_EVENTS_T_H_
 #define _CUTS_CCM_EVENTS_T_H_
 
-#include "cuts/events_i.h"
-
 //=============================================================================
 /**
  * @class CUTS_CCM_Event_T

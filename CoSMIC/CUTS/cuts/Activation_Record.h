@@ -75,8 +75,15 @@ public:
    */
   const CUTS_Activation_Record & operator = (const CUTS_Activation_Record & rec);
 
-  /// Activate the activation record.
+  /// Open the record.
   void open (void);
+
+  /**
+   * Open the record an set its owner.
+   *
+   * @param[in]       owner     Owner of the record.
+   */
+  void open (size_t owner);
 
   /// Close the activation record.
   void close (void);

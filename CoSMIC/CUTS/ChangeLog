@@ -1,3 +1,42 @@
+Sun Apr 15 05:12:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record.inl:
+
+          Overloaded the open () method so event handlers have the option
+          of setting the record's owner. This is handy for event handlers
+          that are parameterized by CUTS::Payload_Event and CUTS::Empty_Event.
+
+        * cuts/CCM_Events_T.h:
+
+          Removed the cuts/events_i.h header file because it was pulling
+          in unnecessary libraries.
+
+        * cuts/CUTS.idl:
+
+          - Added sender member to CUTS::Empty_Event.
+          - CUTS::Payload_Event is now a subclass of CUTS::Empty_Event.
+
+        * cuts/Event_Handler_T.h:
+        * cuts/Event_Handler_T.inl:
+        * cuts/Event_Handler_T.cpp:
+
+          Specialized the CUTS_Event_Handler_Base_T class for CUTS::Empty_Event
+          and CUTS::Payload_Event event types. The specialized classes leverage
+          the sender () member to tag the event with the sending component's id.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp (write_impl_begin):
+
+          Added a preprocessing step to determine if the executor file needs
+          to include "cuts/events_i.h". This is determined by the presence of
+          an event source with an event type of CUTS::Payload_Event.
+
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp (write_impl_begin):
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp (write_impl_begin):
+
+          Added an extra blank line before the generated 'namespace'
+          statement.
+
 Sat Apr 14 22:03:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/events_i.h:

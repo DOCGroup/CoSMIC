@@ -148,6 +148,7 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
   std::string ctx_proxy = name + "_Context_Proxy";
 
   this->outfile ()
+    << std::endl
     << "namespace CIDL_" << monoimpl.name () << "{"
 
     // Generate the context proxy for the component.
@@ -322,7 +323,7 @@ write_eventsink_variable (const PICML::InEventPort & sink)
     << single_line_comment ((std::string)sink.name () + " event handler")
     << "CUTS_Event_Handler_Manager_T <" << std::endl
     << "  _proxy_type::_impl_type," << std::endl
-    << "  " << scope (event, "::") << event.name () << "> "
+    << "  ::" << scope (event, "::") << event.name () << "> "
     << "push_" << sink.name () << "_;"
     << std::endl;
 }

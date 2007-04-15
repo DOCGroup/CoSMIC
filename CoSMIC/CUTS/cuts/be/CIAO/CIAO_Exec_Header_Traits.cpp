@@ -152,7 +152,34 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
   PeriodicEvent_Set periodics = component.PeriodicEvent_kind_children ();
 
   if (!periodics.empty ())
+  {
     this->outfile () << include ("cuts/Trigger_T");
+  }
+
+  // We need to determine if any of the events sources has a
+  // CUTS::Payload_Event type. This is necessary because we will
+  // have to include a special header.
+  //
+  // @note Checking for a CUTS::Payload_Event should be done by
+  //       the preprocessor.
+
+  typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
+  OutEventPort_Set outevents = component.OutEventPort_kind_children ();
+
+  for (OutEventPort_Set::iterator iter = outevents.begin ();
+       iter != outevents.end ();
+       iter ++)
+  {
+    PICML::Event event = iter->ref ();
+    std::string eventtype =
+      this->scope (event, "::") + (std::string) event.name ();
+
+    if (eventtype == "CUTS::Payload_Event")
+    {
+      this->outfile () << include ("cuts/events_i");
+      break;
+    }
+  }
 
   // Write the class declaration for the component.
   _super::write_impl_begin (monoimpl, component);

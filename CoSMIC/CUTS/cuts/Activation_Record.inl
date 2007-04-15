@@ -153,6 +153,16 @@ void CUTS_Activation_Record::open (void)
 }
 
 //
+// open
+//
+CUTS_INLINE
+void CUTS_Activation_Record::open (size_t owner)
+{
+  this->owner_ = owner;
+  this->open ();
+}
+
+//
 // close
 //
 CUTS_INLINE
