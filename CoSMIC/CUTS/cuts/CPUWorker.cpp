@@ -125,7 +125,15 @@ bool CUTS_CPU_Worker::calibrate (void)
 
   // Initialize the calibration of the worker.
   if (!this->init_calibrate ())
-    return false;
+  {
+    ACE_ERROR ((LM_CRITICAL,
+                "*** critical (CUTS_CPU_Worker): failed to initialize "
+                "calibration\n"));
+    ACE_ERROR ((LM_WARNING,
+                "*** warning (CUTS_CPU_Worker): calibration may not be "
+                " accurate\n"));
+  }
+
 
   // Run the calibration
   size_t calib_loop_factor = this->calibrate_i ();

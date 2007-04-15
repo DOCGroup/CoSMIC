@@ -1,8 +1,16 @@
+Sun Apr 15 17:58:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.cpp:
+
+          Removed the restriction that calibration must be run as
+          root on non-Windows systems. Now, it just prints a nice
+          warning message.
+
 Sun Apr 15 06:06:05 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/GEMS/CUTS_GEMS.cpp:
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:
-        
+
           Fixed compilation errors on Linux.
 
 Sun Apr 15 05:12:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
