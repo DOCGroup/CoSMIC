@@ -35,8 +35,8 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (const char * impl)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
+ACE_THROW_SPEC ((::CORBA::SystemException))
+
 {
   // This method can only be called once during the lifetime of
   // the proxy if it has already been contaminated.
@@ -71,8 +71,8 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 char * CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
+ACE_THROW_SPEC ((::CORBA::SystemException))
+
 {
   ::CORBA::String_var str =
     ::CORBA::string_dup (this->cuts_proxy_impl_.c_str ());
@@ -118,7 +118,7 @@ load_implementation (const char * dllname, const char * entry)
   // Create the base home executor from the entry point, then
   // narrow it to the correct home to created the executor.
   ::Components::HomeExecutorBase_var home_base = entry_point ();
-  CCM_HOME::_var_type home_impl = CCM_HOME::_narrow (home_base.in ());
+  typename CCM_HOME::_var_type home_impl = CCM_HOME::_narrow (home_base.in ());
 
   if (::CORBA::is_nil (home_impl.in ()))
   {

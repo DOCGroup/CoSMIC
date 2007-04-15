@@ -23,9 +23,14 @@
 #undef max
 #endif
 
+#if defined (min)
+#undef min
+#endif
+
 #include <limits>
 #include <sstream>
 #include <cmath>
+#include <algorithm>
 
 #define MAX_RESOURCE_VALUE  100
 #define MAX_VARCHAR_LENGTH  256
@@ -406,7 +411,7 @@ int CUTS_GEMS_Service::handle_deactivate (void)
             old_value + ((MAX_RESOURCE_VALUE - old_value) * percentage);
 
           long new_value =
-            min (MAX_RESOURCE_VALUE, static_cast <long> (ceil (tempval)));
+            std::min ((long) MAX_RESOURCE_VALUE, static_cast <long> (ceil (tempval)));
 
           // Convert the value back into a string. We are taking the absolute
           // value just to be safe, however, this shouldn't be necessary. The
