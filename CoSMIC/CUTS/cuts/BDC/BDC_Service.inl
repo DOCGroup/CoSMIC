@@ -50,7 +50,7 @@ bool CUTS_BDC_Service::is_active (void) const
 // svc_mgr
 //
 CUTS_INLINE
-CUTS_BDC_Service_Manager * CUTS_BDC_Service::svc_mgr (void)
+const CUTS_BDC_Service_Manager * CUTS_BDC_Service::svc_mgr (void)
 {
   return this->svc_mgr_;
 }

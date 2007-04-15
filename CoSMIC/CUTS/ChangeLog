@@ -1,3 +1,21 @@
+Sun Apr 15 18:15:27 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service.h:
+        * cuts/BDC/BDC_Service.inl (svc_mgr):
+
+          Changed return type to a 'const' to prevent loaded services from
+          modifying the service manager.
+
+        * cuts/BDC/BDC_Service_Manager.cpp (handle_metrics):
+
+          Bug fix that was causing the UUID of the service manager
+          to be reset.
+
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp (service):
+
+          Bug fix that was causing services with more than one argument
+          only receive the first argument.
+
 Sun Apr 15 17:58:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:

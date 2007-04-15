@@ -105,9 +105,8 @@ open (::CORBA::ORB_ptr orb,
 //
 // load_service
 //
-int CUTS_BDC_Service_Manager::load_service (const char * name,
-                                            const char * path,
-                                            const char * args)
+int CUTS_BDC_Service_Manager::
+load_service (const char * name, const char * path,  const char * args)
 {
   // Create the directive for the ACE service configurator.
   std::ostringstream dir;
@@ -370,7 +369,5 @@ handle_metrics (const CUTS_System_Metric & metrics)
     iter.advance ();
   }
 
-  // Release the current UUID.
-  this->uuid_.clear ();
   return 0;
 }

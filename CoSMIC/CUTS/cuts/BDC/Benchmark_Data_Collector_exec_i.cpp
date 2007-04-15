@@ -221,12 +221,19 @@ namespace CUTS
         // Parse the next service to extract its name, path, and
         // command-line arguments. The name and path are not allowed
         // to have spaces right now.
-        ACE_Tokenizer svc_token (svc_next);
-        svc_token.delimiter_replace (' ', 0);
+        svc_name = svc_next;
 
-        svc_name = svc_token.next ();
-        svc_path = svc_token.next ();
-        svc_args = svc_token.next ();
+        // Get the path.
+        svc_path = ACE_OS::strchr (svc_name, ' ');
+
+        if (svc_path != 0)
+          *svc_path ++ = '\0';
+
+        // Get the arguments.
+        svc_args = ACE_OS::strchr (svc_path, ' ');
+
+        if (svc_args != 0)
+          *svc_args ++ = '\0';
 
         if (svc_name != 0 && svc_path != 0)
         {

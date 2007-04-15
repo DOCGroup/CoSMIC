@@ -82,7 +82,7 @@ protected:
    *
    * @return      Pointer to the service manager.
    */
-  CUTS_BDC_Service_Manager * svc_mgr (void);
+  const CUTS_BDC_Service_Manager * svc_mgr (void);
 
 private:
   /// Pointer to the parent service manager.
