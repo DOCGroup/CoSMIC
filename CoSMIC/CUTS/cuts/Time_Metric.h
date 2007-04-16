@@ -56,7 +56,10 @@ public:
   double avg_time (void) const;
 
   /// Set the execution timing metrics.
-  void update (size_t count, long total, long best, long worse);
+  void update (size_t count,
+               const ACE_Time_Value & total,
+               const ACE_Time_Value & best,
+               const ACE_Time_Value & worse);
 
   /// Reset all the timing metrics.
   void reset (void);

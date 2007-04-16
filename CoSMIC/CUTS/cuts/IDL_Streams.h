@@ -36,20 +36,26 @@ class CUTS_System_Metric;
 //===========================================================================
 // extraction operations
 
-void CUTS_STUB_Export operator >> (const ::CUTS::Time_Sample &,
+void CUTS_STUB_Export operator >> (const CUTS::Time_Sample &,
                                    CUTS_Time_Metric &);
 
-void CUTS_STUB_Export operator >> (const ::CUTS::Mapped_Port_Measurement &,
+void CUTS_STUB_Export operator >> (const CUTS::Mapped_Port_Measurement &,
                                    CUTS_Port_Metric &);
 
-void CUTS_STUB_Export operator >> (const ::CUTS::Benchmark_Data_var &,
+void CUTS_STUB_Export operator >> (const CUTS::Benchmark_Data_var &,
                                    CUTS_System_Metric &);
+
+void CUTS_STUB_Export operator >> (const CUTS::Time_Stamp &,
+                                   ACE_Time_Value & tv);
 
 //===========================================================================
 // insertion operations
 
-void CUTS_STUB_Export operator << (::CUTS::Time_Sample &,
+void CUTS_STUB_Export operator << (CUTS::Time_Sample &,
                                    const CUTS_Time_Measurement &);
+
+void CUTS_STUB_Export operator << (CUTS::Time_Stamp & timestamp,
+                                   const ACE_Time_Value & tv);
 
 #include /**/ "ace/post.h"
 

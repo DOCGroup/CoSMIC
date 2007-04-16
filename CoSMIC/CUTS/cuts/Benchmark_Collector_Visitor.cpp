@@ -78,6 +78,23 @@ visit_port_agent (const CUTS_Port_Agent & agent)
     pmm_iter.advance ();
   }
 
+  // Copy the endpoints to the data structure.
+  this->active_pm_->endpoints.length (this->agent_->endpoints ().size ());
+
+  CUTS_Benchmark_Agent::Endpoint_Map::
+    const_iterator ep_begin = this->agent_->endpoints ().begin ();
+  CUTS_Benchmark_Agent::Endpoint_Map::
+    const_iterator ep_end = this->agent_->endpoints ().end ();
+
+  index = 0;
+  for (ep_begin; ep_begin != ep_end; ep_begin ++)
+  {
+    this->active_pm_->endpoints[index].uid = ep_begin->second;
+
+    this->active_pm_->endpoints[index].name =
+      ::CORBA::string_dup (ep_begin->first.c_str ());
+  }
+
   // Copy the metric log into the data structure.
   const CUTS_Activation_Record_Log & log = agent.log ();
   size_t used_size = log.used_size ();
@@ -92,8 +109,10 @@ visit_port_agent (const CUTS_Port_Agent & agent)
   {
     CUTS::Metric_Record & record = this->active_pm_->log[i ++];
 
-    record.open_time = begin->start_time ().msec ();
-    record.close_time = begin->stop_time ().msec ();
+    record.sender = begin->owner ();
+    record.open_time << begin->start_time ();
+    record.close_time << begin->stop_time ();
+    record.queue_time << begin->queue_time ();
 
     CUTS_Activation_Record_Endpoints::
       CONST_ITERATOR endpoints = begin->endpoints ().begin ();
@@ -104,7 +123,7 @@ visit_port_agent (const CUTS_Port_Agent & agent)
     while (!endpoints.done ())
     {
       record.endpoint_times[j].uid = endpoints->key ();
-      record.endpoint_times[j].exittime = endpoints->item ().msec ();
+      record.endpoint_times[j].exittime << endpoints->item ();
 
       endpoints.advance ();
       ++ j;

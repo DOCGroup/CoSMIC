@@ -39,6 +39,7 @@
 #define CUTS_UNKNOWN_TYPE                 1
 
 #define CUTS_UNKNOWN_IMPL                 1
+#define CUTS_SYSTEM_ID                    2
 
 #define CUTS_DEFAULT_LOG_SIZE             50
 

@@ -58,15 +58,15 @@ CUTS_Time_Metric::operator = (const CUTS_Time_Metric & tm)
 //
 // update
 //
-void CUTS_Time_Metric::update (size_t count,
-                               long total,
-                               long best,
-                               long worse)
+void CUTS_Time_Metric::
+update (size_t count, const ACE_Time_Value & total,
+        const ACE_Time_Value & best, const ACE_Time_Value & worse)
 {
   this->count_ = count;
-  this->total_time_.msec (total);
-  this->best_time_.msec (best);
-  this->worse_time_.msec (worse);
+
+  this->total_time_ = total;
+  this->best_time_ = best;
+  this->worse_time_ = worse;
 }
 
 //

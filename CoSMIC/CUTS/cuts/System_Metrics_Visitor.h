@@ -1,7 +1,6 @@
 #ifndef _CUTS_SYSTEM_METRICS_VISITOR_H_
 #define _CUTS_SYSTEM_METRICS_VISITOR_H_
 
-#include "cuts/config.h"
 #include "cuts/CUTS_export.h"
 
 // forward declarations

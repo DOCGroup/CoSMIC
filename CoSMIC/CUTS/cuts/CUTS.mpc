@@ -120,6 +120,7 @@ project (CUTS) : cutslib {
     Worker.cpp
     Worker_Library.cpp
     Worker_Measurement.cpp
+    XML_Metrics_Writer.cpp
   }
 
   Template_Files {

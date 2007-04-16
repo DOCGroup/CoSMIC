@@ -38,7 +38,7 @@ void CUTS_Time_Measurement::reset (void)
 //
 void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
 {
-  if (this->count_ != 0)
+  if (this->count_ ++ != 0)
   {
     // Determine if this is either the <min_> of <max_> value.
     if (timing > this->max_)

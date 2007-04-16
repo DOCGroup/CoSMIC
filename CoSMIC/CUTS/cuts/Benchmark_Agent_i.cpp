@@ -10,6 +10,7 @@
 #include "cuts/Port_Measurement.h"
 #include "cuts/Activation_Record.h"
 #include "cuts/Benchmark_Collector_Visitor.h"
+#include "cuts/IDL_Streams.h"
 #include "ace/Time_Value.h"
 #include "ace/OS_NS_time.h"
 #include <algorithm>
@@ -34,7 +35,7 @@ Benchmark_Agent_i::~Benchmark_Agent_i (void)
 // performance_data
 //
 void Benchmark_Agent_i::
-collect_performance_data (::CUTS::Benchmark_Data_out data)
+collect_performance_data (CUTS::Benchmark_Data_out data)
 ACE_THROW_SPEC ((CORBA::SystemException))
 {
   // Allocate a new <CUTS::Benchmark_Data> object.
@@ -45,7 +46,7 @@ ACE_THROW_SPEC ((CORBA::SystemException))
   // Initialize the <benchmark_data> object with informantion
   // from this compenent, e.g., ID.
   data->owner = this->parent ();
-  data->timestamp = ACE_OS::gettimeofday ().msec ();
+  data->timestamp << ACE_OS::gettimeofday ();
 
   // Gather all the data from the agents.
   CUTS_Benchmark_Collector_Visitor visitor (*data);

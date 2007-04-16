@@ -40,6 +40,9 @@ typedef std::set <CUTS_Port_Agent *> CUTS_Port_Agent_Set;
 class CUTS_Export CUTS_Benchmark_Agent
 {
 public:
+  /// Type definition for mapping exit point UUIDs to names.
+  typedef std::map <ACE_CString, size_t> Endpoint_Map;
+
   /// Constructor.
   CUTS_Benchmark_Agent (void);
 
@@ -69,15 +72,14 @@ public:
   /// Get the collection of port agents.
   const CUTS_Port_Agent_Set & port_agents (void) const;
 
+  const Endpoint_Map & endpoints (void) const;
+
 protected:
   /// Get the collection of port agents.
   CUTS_Port_Agent_Set & port_agents (void);
 
   /// Owner of this object.
   long parent_;
-
-  /// Type definition for mapping exit point UUIDs to names.
-  typedef std::map <ACE_CString, size_t> Endpoint_Map;
 
   /// Collection of exit points available to the agent.
   Endpoint_Map endpoints_;

@@ -5,9 +5,11 @@
 // CUTS_Activation_Record_Log
 //
 CUTS_INLINE
-CUTS_Activation_Record_Log::CUTS_Activation_Record_Log (size_t size)
+CUTS_Activation_Record_Log::
+CUTS_Activation_Record_Log (size_t size, bool auto_grow)
 : ACE_Array_Base <CUTS_Activation_Record> (size),
-  used_ (0)
+  used_ (0),
+  auto_grow_ (auto_grow)
 {
 
 }
@@ -46,13 +48,4 @@ CUTS_INLINE
 void CUTS_Activation_Record_Log::reset (void)
 {
   this->used_ = 0;
-}
-
-//
-// next_free_record
-//
-CUTS_INLINE
-CUTS_Activation_Record * CUTS_Activation_Record_Log::next_free_record (void)
-{
-  return this->used_ < this->cur_size_ ? &(this->array_[this->used_ ++]) : 0;
 }

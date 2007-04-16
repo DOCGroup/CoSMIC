@@ -1,0 +1,15 @@
+// $Id$
+
+project (CUTS_BDC_XML) : cuts_bdcsvc {
+  sharedname = CUTS_XML
+
+  dynamicflags = CUTS_XML_BUILD_DLL
+
+  Source_Files {
+    CUTS_XML.cpp
+  }
+
+  Header_Files {
+
+  }
+}

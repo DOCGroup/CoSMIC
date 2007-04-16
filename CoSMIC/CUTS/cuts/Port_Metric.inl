@@ -72,3 +72,24 @@ CUTS_Activation_Record_Log & CUTS_Port_Metric::log (void)
 {
   return this->log_;
 }
+
+//
+// endpoint_name
+//
+CUTS_INLINE
+ACE_CString CUTS_Port_Metric::endpoint_name (long id) const
+{
+  CUTS_Endpoint_Name_Map::const_iterator iter;
+  iter = this->name_map_.find (id);
+
+  return iter != this->name_map_.end () ? iter->second : "";
+}
+
+//
+// endpoint_name
+//
+CUTS_INLINE
+void CUTS_Port_Metric::endpoint_name (long id, const ACE_CString & name)
+{
+  this->name_map_[id] = name;
+}

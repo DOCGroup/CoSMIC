@@ -37,7 +37,11 @@ CUTS_CPU_Worker::CUTS_CPU_Worker (void)
   margin_ (100),
   count_per_msec_ (0.0)
 {
-  this->init ();
+  if (!this->init ())
+  {
+    ACE_ERROR ((LM_CRITICAL,
+                "*** critical (CUTS_CPU_Worker): worker not calibrated!!\n"));
+  }
 }
 
 //
@@ -66,13 +70,6 @@ void CUTS_CPU_Worker::process (void)
 //
 void CUTS_CPU_Worker::run (size_t msec)
 {
-  if (this->count_per_msec_ == 0.0)
-  {
-    ACE_ERROR ((LM_CRITICAL,
-                "*** critical (CUTS_CPU_Worker): "
-                "worker not calibrated!!\n"));
-  }
-
   double count = static_cast <double> (msec) * this->count_per_msec_;
   this->work (static_cast <size_t> (count));
 }

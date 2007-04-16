@@ -53,9 +53,9 @@ void operator >> (const ::CUTS::Benchmark_Data_var & data,
       }
     }
 
-    // Copy the log from the port measurement structure.
-    CUTS_Port_Metric * port_metric =
-      metric->port_metrics (port_measurement.port);
+    // Copy the log from the port measurement structure. Right now, its
+    // stored under the CUTS_UNKNOWN_IMPL sender.
+    CUTS_Port_Metric * port_metric = metric->port_metrics (port_measurement.port);
 
     CUTS_Activation_Record_Log & dest_log = port_metric->log ();
     CUTS::Metric_Log & src_log = port_measurement.log;
@@ -67,8 +67,12 @@ void operator >> (const ::CUTS::Benchmark_Data_var & data,
 
     for (size_t i = 0; i < length; i ++)
     {
-      dest_log[i].start_time ().msec (src_log[i].open_time);
-      dest_log[i].stop_time ().msec (src_log[i].close_time);
+      dest_log[i].owner (src_log[i].sender);
+      src_log[i].open_time >> dest_log[i].start_time ();
+      src_log[i].close_time >> dest_log[i].stop_time ();
+
+      src_log[i].queue_time >> tv;
+      dest_log[i].queue_time (tv);
 
       size_t endpoint_count = src_log[i].endpoint_times.length ();
       CUTS_Activation_Record_Endpoints & endpoints = dest_log[i].endpoints ();
@@ -77,9 +81,18 @@ void operator >> (const ::CUTS::Benchmark_Data_var & data,
       {
         CUTS::Endpoint_Time & endpoint_time = src_log[i].endpoint_times[j];
 
-        tv.msec (endpoint_time.exittime);
+        endpoint_time.exittime >> tv;
         endpoints.rebind (endpoint_time.uid, tv);
       }
+    }
+
+    // Copy the endpoints in the port metrics as well.
+    for (::CORBA::ULong i = 0;
+         i < port_measurement.endpoints.length ();
+         i ++)
+    {
+      port_metric->endpoint_name (port_measurement.endpoints[i].uid,
+                                  port_measurement.endpoints[i].name.in ());
     }
   }
 }
@@ -106,8 +119,7 @@ void operator >> (const ::CUTS::Mapped_Port_Measurement & port_measurement,
     const ::CUTS::Exit_Point_Time & exit_point = port_measurement.exit_times[i];
 
     // Locate the <endpoint> in the <port_metric>.
-    CUTS_Time_Metric * time_metric =
-      port_metric.endpoint (exit_point.exit_point_);
+    CUTS_Time_Metric * time_metric = port_metric.endpoint (exit_point.exit_point_);
 
     if (time_metric)
     {
@@ -122,30 +134,45 @@ void operator >> (const ::CUTS::Mapped_Port_Measurement & port_measurement,
 //
 // operator >>
 //
-void operator >> (const ::CUTS::Time_Sample & time_sample,
+void operator >> (const CUTS::Time_Sample & time_sample,
                   CUTS_Time_Metric & time_metric)
 {
   CUTS::Time_Info time_info = time_sample.time;
 
   // Update the timing information.
-  time_metric.update (time_sample.count,
-                      time_info.total,
-                      time_info.min,
-                      time_info.max);
+  ACE_Time_Value min, total, max;
+
+  time_info.total >> total;
+  time_info.min >> min;
+  time_info.max >> max;
+
+  time_metric.update (time_sample.count, total, min, max);
+}
+
+//
+// operator >>
+//
+void CUTS_STUB_Export operator >> (const CUTS::Time_Stamp & timestamp,
+                                   ACE_Time_Value & tv)
+{
+  tv.set (timestamp.sec, timestamp.usec);
 }
 
 //===========================================================================
-// insertion operations
+// @@ insertion operations
 
-void operator << (::CUTS::Time_Sample & sample,
-                  const CUTS_Time_Measurement & pm)
+void operator << (CUTS::Time_Sample & sample, const CUTS_Time_Measurement & pm)
 {
-  // Cache the number of samples collected.
-  size_t sample_count = pm.count ();
-
   // Save the time meaasurement in the IDL structure.
-  sample.count = sample_count;
-  sample.time.min = pm.minimum ().msec ();
-  sample.time.max = pm.maximum ().msec ();
-  sample.time.total = pm.accumulation ().msec ();
+  sample.count = pm.count ();
+
+  sample.time.min << pm.minimum ();
+  sample.time.max << pm.maximum ();
+  sample.time.total << pm.accumulation ();
+}
+
+void operator << (CUTS::Time_Stamp & timestamp, const ACE_Time_Value & tv)
+{
+  timestamp.sec = tv.sec ();
+  timestamp.usec = tv.usec ();
 }

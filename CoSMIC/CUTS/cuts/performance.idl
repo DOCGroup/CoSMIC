@@ -16,7 +16,11 @@
 module CUTS
 {
   /// Type definition for the time.
-  typedef long Time_Stamp;
+  struct Time_Stamp
+  {
+    unsigned long sec;
+    unsigned long usec;
+  };
 
   /// Type definition for the timing history.
   typedef sequence <long> Time_Stamp_History;
@@ -32,8 +36,13 @@ module CUTS
 
   struct Metric_Record
   {
+    long sender;
+
     Time_Stamp open_time;
+
     Time_Stamp close_time;
+
+    Time_Stamp queue_time;
 
     Endpoint_Time_Log endpoint_times;
   };
@@ -155,6 +164,14 @@ module CUTS
 
   typedef sequence <Mapped_Port_Measurement> Mapped_Port_Measurement_Seq;
 
+  struct Endpoint_Id
+  {
+    long uid;
+    string name;
+  };
+
+  typedef sequence <Endpoint_Id> Endpoint_Ids;
+
   struct Port_Measurement
   {
     /// event id associated with the data samples
@@ -163,6 +180,8 @@ module CUTS
     Mapped_Port_Measurement_Seq measurements;
 
     Metric_Log log;
+
+    Endpoint_Ids endpoints;
   };
 
   typedef sequence <Port_Measurement> Port_Measurement_Seq;

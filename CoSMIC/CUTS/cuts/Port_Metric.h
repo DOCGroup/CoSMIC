@@ -15,6 +15,8 @@ class CUTS_System_Metrics_Visitor;
 typedef std::map <
   std::string, CUTS_Time_Metric *> CUTS_Endpoint_Metric_Map;
 
+typedef std::map <long, ACE_CString> CUTS_Endpoint_Name_Map;
+
 //=============================================================================
 /**
  * @class CUTS_Port_Metric
@@ -62,6 +64,10 @@ public:
 
   CUTS_Activation_Record_Log & log (void);
 
+  void endpoint_name (long id, const ACE_CString & name);
+
+  ACE_CString endpoint_name (long id) const;
+
 private:
   /// Time metrics for the port.
   CUTS_Endpoint_Metric_Map endpoints_;
@@ -74,6 +80,8 @@ private:
   ACE_Time_Value timestamp_;
 
   CUTS_Activation_Record_Log log_;
+
+  CUTS_Endpoint_Name_Map name_map_;
 };
 
 #if defined (__CUTS_INLINE__)

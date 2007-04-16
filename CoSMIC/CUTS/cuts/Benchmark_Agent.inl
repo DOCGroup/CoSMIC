@@ -50,3 +50,10 @@ const CUTS_Port_Agent_Set & CUTS_Benchmark_Agent::port_agents (void) const
 {
   return this->port_agents_;
 }
+
+CUTS_INLINE
+const CUTS_Benchmark_Agent::Endpoint_Map &
+CUTS_Benchmark_Agent::endpoints (void) const
+{
+  return this->endpoints_;
+}

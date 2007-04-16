@@ -1,9 +1,90 @@
+Mon Apr 16 20:32:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Activation_Record_Log.h:
+        * cuts/Activation_Record_Log.inl:
+        * cuts/Activation_Record_Log.cpp:
+
+          Added support for optional dynamic grow of the log.
+
+        * cuts/BDC/svcs/XML:
+        * cuts/BDC/svcs/XML/CUTS_XML.h:
+        * cuts/BDC/svcs/XML/CUTS_XML.inl:
+        * cuts/BDC/svcs/XML/CUTS_XML.mpc:
+        * cuts/BDC/svcs/XML/CUTS_XML.cpp:
+        * cuts/BDC/svcs/XML/CUTS_XML_export.h:
+
+          BDC service that writes collected performance metrics to
+          and XML file.
+
+        * cuts/CPUWorker.cpp:
+
+          Moved the calibration error message to the constructor.
+
+        * cuts/CUTS.mpc:
+
+          Added the XML metrics source files.
+
+        * cuts/Benchmark_Agent_i.cpp (collect_performance_data):
+
+          Update the timestamp packaging to use the insertion
+          operation.
+
+        * cuts/Benchmark_Collector_Visitor.cpp:
+        * cuts/IDL_Streams.h:
+        * cuts/IDL_Streams.cpp:
+
+          Updated the packaging code to handle the new representation
+          of the CUTS::Time_Stamp type.
+
+        * cuts/Port_Agent.inl (record_alloc):
+
+          The agent now returns the default record if it does not receive
+          and record from the log.
+
+        * cuts/Benchmark_Agent.h:
+        * cuts/Benchmark_Agent.inl:
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.inl:
+
+          Added support for storing the names of the output ports for
+          this input port.
+
+        * cuts/System_Metrics_Visitor.h:
+
+          Removed the 'cuts/config.h' include statement.
+
+        * cuts/Time_Measurement.cpp (operator +=):
+
+          Bug fix that was causing the count_ not to be increamented
+          when a new time was added.
+
+        * cuts/Time_Metric.h (update):
+        * cuts/Time_Metric.cpp:
+
+          Changed the time parameters to ACE_Time_Value.
+
+        * cuts/XML_Metrics_Writer.h:
+        * cuts/XML_Metrics_Writer.inl:
+        * cuts/XML_Metrics_Writer.cpp:
+
+          Implementation of a metrics visitor that writes the performance
+          metrics to an XML file.
+
+        * cuts/config.h:
+
+          Added an id for senders of type system.
+
+        * cuts/performance.idl:
+
+          The Time_Stamp is now a structure that has a sec and
+          usec attribute.
+
 Mon Apr 16 03:59:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.cpp:
 
           Fixed compilation error on gcc 3.4.4
-        
+
 Mon Apr 16 03:19:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/calibrate/calibrate.cpp:

@@ -28,8 +28,14 @@ class CUTS_Export CUTS_Activation_Record_Log :
   public ACE_Array_Base <CUTS_Activation_Record>
 {
 public:
-  /// Constructor
-  CUTS_Activation_Record_Log (size_t size = 0);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]         size        Initial size of the log.
+   * @param[in]         grow        Allow the log to grow as needed.
+   */
+  CUTS_Activation_Record_Log (size_t size = 0,
+                              bool auto_grow = true);
 
   /// Destructor
   ~CUTS_Activation_Record_Log (void);
@@ -58,6 +64,9 @@ public:
 private:
   /// Number of used records in the log.
   size_t used_;
+
+  /// Flag that determines if the log can grow when needed.
+  bool auto_grow_;
 };
 
 #if defined (__CUTS_INLINE__)

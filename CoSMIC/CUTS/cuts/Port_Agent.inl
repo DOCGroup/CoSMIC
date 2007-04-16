@@ -92,9 +92,8 @@ const CUTS_Activation_Record_Log & CUTS_Port_Agent::log (void) const
 CUTS_INLINE
 CUTS_Activation_Record * CUTS_Port_Agent::record_alloc (void)
 {
-  return
-    this->log_.free_size () > 0 ?
-    this->log_.next_free_record () : &this->fallback_record_;
+  CUTS_Activation_Record * record = this->log_.next_free_record ();
+  return record != 0 ? record : &this->fallback_record_;
 }
 
 //
