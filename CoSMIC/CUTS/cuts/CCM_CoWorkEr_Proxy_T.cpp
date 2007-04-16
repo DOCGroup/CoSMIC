@@ -113,7 +113,7 @@ load_implementation (const char * dllname, const char * entry)
 
   // Convert to function pointer that returns to correct type.
   typedef ::Components::HomeExecutorBase_ptr (* ENTRY_POINT) (void);
-  ENTRY_POINT entry_point = reinterpret_cast <ENTRY_POINT> (symbol);
+  ENTRY_POINT entry_point = (ENTRY_POINT) symbol;
 
   // Create the base home executor from the entry point, then
   // narrow it to the correct home to created the executor.
