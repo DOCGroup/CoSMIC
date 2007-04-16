@@ -64,8 +64,8 @@ int main (int argc, char * argv [])
 
     typedef CUTS_Worker * (* CUTS_WORKER_EXPORT_SYMBOL) (void);
 
-    CUTS_WORKER_EXPORT_SYMBOL worker_factory = 
-      reinterpret_cast <CUTS_WORKER_EXPORT_SYMBOL> (symbol);
+    CUTS_WORKER_EXPORT_SYMBOL worker_factory =
+      (CUTS_WORKER_EXPORT_SYMBOL) symbol;
 
     CUTS_Worker * worker = worker_factory ();
 
