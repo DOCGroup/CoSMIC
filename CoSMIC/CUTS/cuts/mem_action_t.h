@@ -24,7 +24,7 @@ struct CUTS_mem_action0_t
 {
   typedef R (T::*method_type) (void);
 
-  inline CUTS_mem_action0_t (typename method_type method, T & object)
+  inline CUTS_mem_action0_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -36,7 +36,7 @@ struct CUTS_mem_action0_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };
@@ -52,8 +52,7 @@ struct CUTS_mem_action1_t
 {
   typedef R (T::*method_type) (P1);
 
-  inline CUTS_mem_action1_t (typename method_type method,
-                             T & object)
+  inline CUTS_mem_action1_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -67,7 +66,7 @@ struct CUTS_mem_action1_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };
@@ -83,7 +82,7 @@ struct CUTS_mem_action2_t
 {
   typedef R (T::*method_type) (P1, P2);
 
-  inline CUTS_mem_action2_t (typename method_type method, T & object)
+  inline CUTS_mem_action2_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -97,7 +96,7 @@ struct CUTS_mem_action2_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };
@@ -114,7 +113,7 @@ struct CUTS_mem_action3_t
 {
   typedef R (T::*method_type) (P1, P2, P3);
 
-  inline CUTS_mem_action3_t (typename method_type method, T & object)
+  inline CUTS_mem_action3_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -128,7 +127,7 @@ struct CUTS_mem_action3_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };
@@ -145,7 +144,7 @@ struct CUTS_mem_action4_t
 {
   typedef R (T::*method_type) (P1, P2, P3, P4);
 
-  inline CUTS_mem_action4_t (typename method_type method, T & object)
+  inline CUTS_mem_action4_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -159,7 +158,7 @@ struct CUTS_mem_action4_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };
@@ -176,7 +175,7 @@ struct CUTS_mem_action5_t
 {
   typedef R (T::*method_type) (P1, P2, P3, P4, P5);
 
-  inline CUTS_mem_action5_t (typename method_type method, T & object)
+  inline CUTS_mem_action5_t (method_type method, T & object)
   : method_ (method),
     object_ (object)
   {
@@ -191,7 +190,7 @@ struct CUTS_mem_action5_t
   }
 
 private:
-  typename method_type method_;
+  method_type method_;
 
   T & object_;
 };

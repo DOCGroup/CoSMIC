@@ -1,3 +1,9 @@
+Tue Apr 17 19:19:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/mem_action_t.h:
+        
+          Fixed compilation errors on Linux environments.
+
 Tue Apr 17 19:36:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.h:
