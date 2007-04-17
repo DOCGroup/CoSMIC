@@ -9,8 +9,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
 CUTS_INLINE
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 ccm_activate (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
 {
   if (!::CORBA::is_nil (this->sc_.in ()))
     this->sc_->ccm_activate ();
@@ -24,8 +22,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
 CUTS_INLINE
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 ciao_postactivate (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
 {
   if (!::CORBA::is_nil (this->sc_.in ()))
     this->sc_->ciao_postactivate ();

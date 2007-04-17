@@ -59,36 +59,24 @@ public:
    *
    * @param[in]       impl        Implementation to load.
    */
-  virtual void cuts_proxy_impl (const char * impl)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  virtual void cuts_proxy_impl (const char * impl);
 
   /**
    * Get the implementation string used during deployment time.
    *
    * @return    The orginal string.
    */
-  virtual char * cuts_proxy_impl (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  virtual char * cuts_proxy_impl (void);
 
-  virtual void ciao_preactivate (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::CCMException));
+  virtual void ciao_preactivate (void);
 
-  virtual void ccm_activate (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::CCMException));
+  virtual void ccm_activate (void);
 
-  virtual void ciao_postactivate (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::CCMException));
+  virtual void ciao_postactivate (void);
 
-  virtual void ccm_passivate (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::CCMException));
+  virtual void ccm_passivate (void);
 
-  virtual void ccm_remove (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::CCMException));
+  virtual void ccm_remove (void);
 
 protected:
   /// Default constructor.
@@ -132,19 +120,6 @@ private:
   CUTS_CCM_CoWorkEr_Proxy_T (const CUTS_CCM_CoWorkEr_Proxy_T &);
   CUTS_CCM_CoWorkEr_Proxy_T & operator = (const CUTS_CCM_CoWorkEr_Proxy_T &);
 };
-
-#define CUTS_REGISTER_OBV_FACTORY(CONTEXT, FACTORY, VALUETYPE) \
-  {  \
-    CORBA::ValueFactory factory = new FACTORY; \
-    CORBA::ORB_ptr orb = \
-      CONTEXT->_ciao_the_Container ()->the_ORB (); \
-    CORBA::ValueFactory prev_factory = \
-      orb->register_value_factory ( \
-                VALUETYPE::_tao_obv_static_repository_id (), \
-                factory); \
-    CORBA::remove_ref (prev_factory); \
-    CORBA::add_ref (factory);  \
-  }
 
 #if defined (__CUTS_INLINE__)
 #include "CCM_CoWorkEr_Proxy_T.inl"

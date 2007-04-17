@@ -35,8 +35,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (const char * impl)
-ACE_THROW_SPEC ((::CORBA::SystemException))
-
 {
   // This method can only be called once during the lifetime of
   // the proxy if it has already been contaminated.
@@ -71,8 +69,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 char * CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 cuts_proxy_impl (void)
-ACE_THROW_SPEC ((::CORBA::SystemException))
-
 {
   ::CORBA::String_var str =
     ::CORBA::string_dup (this->cuts_proxy_impl_.c_str ());
@@ -164,8 +160,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 ciao_preactivate (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
 {
   // Let's get the testing service so that we can go ahead
   // and get a registration id for this component we are hosting.
@@ -235,8 +229,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 ccm_passivate (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
 {
   // We need to let the real component passivate itself before
   // we try to do anything. This is just in case the real component
@@ -291,8 +283,6 @@ template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
 void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 ccm_remove (void)
-ACE_THROW_SPEC ((::CORBA::SystemException,
-                 ::Components::CCMException))
 {
   if (!::CORBA::is_nil (this->sc_.in ()))
     this->sc_->ccm_remove ();
@@ -305,8 +295,7 @@ ACE_THROW_SPEC ((::CORBA::SystemException,
 //
 template <typename PROXY_EXEC, typename CTX_TYPE,
           typename CCM_TYPE, typename CCM_HOME>
-void CUTS_CCM_CoWorkEr_Proxy_T <
-PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
+void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
 reset (void)
 {
   this->type_impl_ = CCM_TYPE::_nil ();

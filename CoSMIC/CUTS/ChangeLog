@@ -1,3 +1,11 @@
+Tue Apr 17 19:36:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.inl:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          Removed all ACE_THROW_SPEC statements.
+
 Tue Apr 17 19:00:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Activation_Record.h:
