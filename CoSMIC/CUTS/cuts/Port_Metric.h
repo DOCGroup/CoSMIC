@@ -3,7 +3,7 @@
 
 #include "cuts/Time_Metric.h"
 #include "cuts/Activation_Record_Log.h"
-
+#include "ace/SString.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Guard_T.h"
 #include <map>

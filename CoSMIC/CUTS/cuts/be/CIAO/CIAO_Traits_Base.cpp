@@ -161,8 +161,7 @@ write_InEventPort_begin (const PICML::InEventPort & sink)
   {
     this->outfile ()
       << "push_" << sink.name () << " ("
-      << scope (event, "::") << event.name () << " * ev)" << std::endl
-      << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+      << scope (event, "::") << event.name () << " * ev)";
   }
 }
 
@@ -183,8 +182,7 @@ void CIAO_Traits_Base::
 write_ProvidedRequestPort_begin (const PICML::ProvidedRequestPort & facet)
 {
   this->outfile ()
-    << "get_" << facet.name () << " (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+    << "get_" << facet.name () << " (void)";
 }
 
 //
@@ -194,8 +192,7 @@ void CIAO_Traits_Base::
 write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & ro_attr)
 {
   this->outfile ()
-    << ro_attr.name () << " (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+    << ro_attr.name () << " (void)";
 }
 
 //
@@ -210,8 +207,7 @@ write_Attribute_begin (const PICML::Attribute & attr)
 
   this->outfile ()
     << attr_name << " (" << CIAO_IN_TYPE (mtype)
-    << " " << attr_name << ")" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+    << " " << attr_name << ")";
 }
 
 //
@@ -226,8 +222,7 @@ write_method (const PICML::OutEventPort & source)
   {
     this->outfile ()
       << "push_" << source.name () << " (" << std::endl
-      << scope (event, "::") << event.name () << " * ev)" << std::endl
-      << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+      << scope (event, "::") << event.name () << " * ev)";
   }
 }
 
@@ -238,8 +233,7 @@ void CIAO_Traits_Base::
 write_method (const PICML::RequiredRequestPort & receptacle)
 {
   this->outfile ()
-    << "get_connection_" << receptacle.name () << " (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+    << "get_connection_" << receptacle.name () << " (void)";
 }
 
 //
@@ -296,10 +290,7 @@ write_set_session_context (const PICML::Component & component)
   this->env_bits_[ENV_SET_SESSION_CONTEXT] = true;
 
   this->outfile ()
-    << "set_session_context (" << std::endl
-    << "::Components::SessionContext_ptr ctx)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+    << "set_session_context (::Components::SessionContext_ptr ctx)";
 }
 
 //
@@ -309,11 +300,7 @@ void CIAO_Traits_Base::
 write_ciao_preactivate (const PICML::Component & component)
 {
   this->env_bits_[ENV_PREACTIVATE] = true;
-
-  this->outfile ()
-    << "ciao_preactivate (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+  this->outfile () << "ciao_preactivate (void)";
 }
 
 //
@@ -323,11 +310,7 @@ void CIAO_Traits_Base::
 write_ccm_activate (const PICML::Component & component)
 {
   this->env_bits_[ENV_ACTIVATE] = true;
-
-  this->outfile ()
-    << "ccm_activate (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+  this->outfile () << "ccm_activate (void)";
 }
 
 //
@@ -337,22 +320,14 @@ void CIAO_Traits_Base::
 write_ciao_postactivate (const PICML::Component & component)
 {
   this->env_bits_[ENV_POSTACTIVATE] = true;
-
-  this->outfile ()
-    << "ciao_postactivate (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+  this->outfile () << "ciao_postactivate (void)";
 }
 
 void CIAO_Traits_Base::
 write_ccm_passivate (const PICML::Component & component)
 {
   this->env_bits_[ENV_PASSIVATE] = true;
-
-  this->outfile ()
-    << "ccm_passivate (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+  this->outfile () << "ccm_passivate (void)";
 }
 
 //
@@ -362,11 +337,7 @@ void CIAO_Traits_Base::
 write_ccm_remove (const PICML::Component & component)
 {
   this->env_bits_[ENV_REMOVE] = true;
-
-  this->outfile ()
-    << "ccm_remove (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException))";
+  this->outfile () << "ccm_remove (void)";
 }
 
 //
@@ -399,22 +370,7 @@ write_TwowayOperation_begin (const PICML::TwowayOperation & twoway)
     // Print the correct trailing macro for no arguments.
     this->outfile () << "void";
 
-  this->outfile ()
-    << ")" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException";
-
-  // Write all the exceptions thrown by this method.
-  typedef std::vector <PICML::ExceptionRef> ExceptionRef_Set;
-  ExceptionRef_Set exceptions = twoway.ExceptionRef_kind_children ();
-
-  std::for_each (exceptions.begin (),
-                 exceptions.end (),
-                 boost::bind (&CIAO_Traits_Base::write_exception_spec,
-                              this,
-                              _1));
-
-  this->outfile ()
-    << "))";
+  this->outfile () << ")";
 }
 
 //
@@ -602,9 +558,7 @@ write_OperationBase_begin (const PICML::OperationBase & operation_base)
     this->outfile () << "void";
 
   // Close the method declaration and write the exception.
-  this->outfile ()
-    << ")" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException))";
+  this->outfile () << ")";
 }
 
 //

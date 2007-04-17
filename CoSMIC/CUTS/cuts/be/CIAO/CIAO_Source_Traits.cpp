@@ -454,9 +454,7 @@ write_factory_impl_begin (const PICML::ComponentFactory & factory,
     << function_header ("create")
     << "::Components::EnterpriseComponent_ptr " << std::endl
     << "  " << factory_name
-    << "::create (void)" << std::endl
-    << "  ACE_THROW_SPEC ((::CORBA::SystemException," << std::endl
-    << "::Components::CCMException)) {"
+    << "::create (void) {"
     << "::Components::EnterpriseComponent_ptr retval =" << std::endl
     << "  ::Components::EnterpriseComponent::_nil ();"
     << std::endl

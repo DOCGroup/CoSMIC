@@ -558,10 +558,6 @@ namespace CUTS_BE
       static inline bool generate (const std::string & include)
       {
         CIAO_EXEC_HEADER_GENERATOR ()->write_include (include);
-        CIAO_EXEC_SOURCE_GENERATOR ()->write_include (include);
-
-        CIAO_PROXY_HEADER_GENERATOR ()->write_include (include);
-        CIAO_PROXY_SOURCE_GENERATOR ()->write_include (include);
         return true;
       }
     };

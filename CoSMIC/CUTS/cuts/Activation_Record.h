@@ -19,6 +19,7 @@
 #include "cuts/Time_Measurement.h"
 #include "cuts/Time_Value_History.h"
 #include "cuts/Activation_Record_Entry.h"
+#include "cuts/mem_action_t.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 #include "ace/OS_NS_sys_time.h"
@@ -167,45 +168,156 @@ public:
    * Perform the specified action without any logging. The \a action
    * is a functor that defines the method operator ().
    *
-   * @param[in]     action          The action to execute.
+   * @param[in]     action          The action (functor) to execute.
    */
   template <typename ACTION>
-  void perform_action_no_logging (const ACTION & action);
+  void perform_action_no_logging (ACTION action);
 
   /**
-   * Perform the specified action without any logging. This version
-   * of the method has a \a repetitions parameter that allows
-   * the action to be executed multiple times before returning.
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
    *
-   * @param[in]     repetitions     Number of repetitions
-   * @param[in]     action          The action to execute.
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
    */
-  template <typename ACTION>
-  void perform_action_no_logging (size_t repetitions,
-                                  const ACTION & action);
+  template <typename ACTION, typename A1>
+  void perform_action_no_logging (ACTION action, A1 arg1);
 
   /**
-   * Perform the specified action and log its performance. Logging
-   * the performance of the action entails recording the amount
-   * of time it takes to execute the \a action.
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
    *
-   * @param[in]     action          The action to execute.
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
    */
-  template <typename ACTION>
-  void perform_action (const ACTION & action);
+  template <typename ACTION, typename A1, typename A2>
+  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2);
 
   /**
-   * Perform the specified action and log its performance. Logging
-   * the performance of the action entails recording the amount of
-   * time it takes to execute the \a action. This version of the
-   * method also has a \a repetitions parameter to specify how many
-   * times to execute the \a action.
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
    *
-   * @param[in]     repetitions     Number of times to execute action.
-   * @param[in]     action          The action to execute.
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3>
+  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3);
+
+  /**
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   * @param[in]     arg4            The fourth argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3,
+            typename A4>
+  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3,
+                                  A4 arg4);
+
+  /**
+   * Perform the specified action without any logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   * @param[in]     arg4            The fourth argument.
+   * @param[in]     arg5            The fifth argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3,
+            typename A4, typename A5>
+  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3,
+                                  A4 arg4, A5 arg5);
+
+  /**
+   * Perform the specified action with logging. The \a action
+   * is a functor that defines the method operator ().
+   *
+   * @param[in]     action          The action (functor) to execute.
    */
   template <typename ACTION>
-  void perform_action (size_t repetitions, const ACTION & action);
+  void perform_action (ACTION action);
+
+  /**
+   * Perform the specified action with logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   */
+  template <typename ACTION, typename A1>
+  void perform_action (ACTION action, A1 arg1);
+
+  /**
+   * Perform the specified action with logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   */
+  template <typename ACTION, typename A1, typename A2>
+  void perform_action (ACTION action, A1 arg1, A2 arg2);
+
+  /**
+   * Perform the specified action with logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3>
+  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3);
+
+  /**
+   * Perform the specified action with logging. The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   * @param[in]     arg4            The fourth argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3,
+            typename A4>
+  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3, A4 arg4);
+
+  /**
+   * Perform the specified action with logging . The \a action
+   * is a functor that defines the method operator (). The \a action
+   * also accepts 1 parameter.
+   *
+   * @param[in]     action          The action (functor) to execute.
+   * @param[in]     arg1            The first argument
+   * @param[in]     arg2            The second argument
+   * @param[in]     arg3            The third argument.
+   * @param[in]     arg4            The fourth argument.
+   * @param[in]     arg5            The fifth argument.
+   */
+  template <typename ACTION, typename A1, typename A2, typename A3,
+            typename A4, typename A5>
+  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3, A4 arg4,
+                       A5 arg5);
 
   /**
    * Log an endpoint to the activation record. This will store the

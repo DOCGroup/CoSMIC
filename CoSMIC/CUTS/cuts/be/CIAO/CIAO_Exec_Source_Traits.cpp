@@ -104,7 +104,6 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << single_line_comment ("$Id$")
     << std::endl
     << include (basename + CUTS_BE_OPTIONS ()->exec_suffix_)
-    << include ("cuts/Activation_Record")
     << include ("cuts/CCM_Events_T")
     << include ("cuts/Thread_Activation_Record");
 }
@@ -571,38 +570,53 @@ write_WorkerAction_begin (const PICML::Worker & parent,
     // need to invoke the non-logging method.
 
     if (action.LogAction ())
-      this->outfile () << "record->perform_action (" << std::endl;
+    {
+      this->outfile ()
+        << "record->perform_action (" << std::endl
+        << "CUTS_action (";
+    }
     else
-      this->outfile () << "record->perform_action_no_logging (" << std::endl;
+    {
+      this->outfile ()
+        << "record->perform_action_no_logging (" << std::endl
+        << "CUTS_action (";
+    }
 
     // Since we have overloaded the methods based on the number of
     // repetitions specified for an action, let's call the appropriate
     // one. This is a minor optimization.
 
-    if (repetitions > 1)
-      this->outfile () << repetitions << ", ";
+    //if (repetitions > 1)
+    //  this->outfile () << repetitions << ", ";
 
     PICML::Action action_type =
       const_cast <PICML::Action &> (action).Archetype ();
 
-    std::string name = action_type.name ();
+    //this->outfile ()
+    //  << "this->" << action.name () << ","
+    //std::string name = action_type.name ();
 
-    // Print the fully qualifies name of the action.
-    std::string tempstr = parent.name ();
-    PICML::MgaObject parent_action = parent.parent ();
+    //// Print the fully qualifies name of the action.
+    //std::string tempstr = parent.name ();
 
-    while (parent_action.type () != PICML::WorkerFile::meta)
-    {
-      tempstr.insert (0, "::");
-      tempstr.insert (0, parent_action.name ());
-
-      parent_action = PICML::MgaObject::Cast (parent_action.parent ());
-    }
-
-    // Print the action and it's worker.
     this->outfile ()
-      << tempstr << "::" << action_type.name ()
-      << " (this->" << action.name () << "_";
+      << "&" << parent.name () << "::" << action_type.name ()
+      << ", this->" << action.name () << "_)";
+
+    //PICML::MgaObject parent_action = parent.parent ();
+
+    //while (parent_action.type () != PICML::WorkerFile::meta)
+    //{
+    //  tempstr.insert (0, "::");
+    //  tempstr.insert (0, parent_action.name ());
+
+    //  parent_action = PICML::MgaObject::Cast (parent_action.parent ());
+    //}
+
+    //// Print the action and it's worker.
+    //this->outfile ()
+    //  << tempstr << "::" << action_type.name ()
+    //  << " (this->" << action.name () << "_";
   }
   else
     this->skip_action_ = true;
@@ -618,7 +632,7 @@ write_action_end (void)
     return;
 
   if (!this->skip_action_)
-    this->outfile () << "));" << std::endl;
+    this->outfile () << ");" << std::endl;
 }
 
 //

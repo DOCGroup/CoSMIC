@@ -1,3 +1,33 @@
+Tue Apr 17 19:00:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record_T.inl:
+        * cuts/Activation_Record_T.cpp:
+
+          Updated perform_action () and perform_action_no_logging () so
+          that it takes a functor and up to 5 arguments. The arguments are
+          then passed to the functor to perform some operations.
+
+        * cuts/CUTS.mpc:
+        * cuts/mem_action_t.h:
+
+          Implemented unnamed functor generators object methods with
+          up the five parameters.
+
+        * cuts/Port_Metric.h:
+
+          Missing an include file.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          - Removed all ACE_THROW_SPEC statements.
+          - Worker actions are now generated to create unnamed functor
+            objects.
+
 Mon Apr 16 20:32:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Activation_Record_Log.h:

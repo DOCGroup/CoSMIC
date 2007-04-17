@@ -80,6 +80,7 @@ project (CUTS) : cutslib {
     CUTS_export.h
     Host_Table_Entry.h
     Log_Msg.h
+    mem_action_t.h
     Time_Value_History.h
     WML_Macros.h
   }
@@ -135,7 +136,6 @@ project (CUTS) : cutslib {
     Event_Guard_T.cpp
     Event_Handler_T.cpp
     Event_Handler_Manager_T.cpp
-    // mem_action_t.cpp
     Pending_Op_T.cpp
     Pending_Op_List_T.cpp
     Trigger_T.cpp
