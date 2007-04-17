@@ -84,6 +84,10 @@ BE_GlobalData::BE_GlobalData (void)
       // GME versions from 5.9.21 no longer install mga.dtd
       // in $GME_ROOT/bin, but in $GME_ROOT.
       this->schema_path_ = path_str;
+      
+      // In case it isn't at the end of the environment variable,
+      // otherwise idempotent.
+      this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
     }
 }
 
@@ -468,6 +472,9 @@ BE_GlobalData::parse_args (long &i, char **av)
           {
             this->schema_path_ = av[i] + 2;
           }
+        // In case it isn't at the end of the command line option,
+        // otherwise idempotent.
+        this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
         break;
       case 'S':
         if (av[i][2] == 'p')
