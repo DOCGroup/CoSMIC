@@ -11,8 +11,6 @@ workspace {
   DeploymentPlanComponent
   IDLGenerator
   IDLImporter
-  BGML
-  BGMLComponent
   MPC
   MPCComponent
   CIDL

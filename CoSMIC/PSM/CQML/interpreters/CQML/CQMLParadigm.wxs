@@ -21,6 +21,7 @@
       <ComponentRef Id='NetQoSComponentLibrary' />
       <ComponentRef Id='SecurityQoSComponentLibrary' />
       <ComponentRef Id='BIRSpecificationComponentLibrary' />
+      <ComponentRef Id='RTConfigurationComponentLibrary' />
       <!--      <ComponentRef Id='EventBusComponentLibrary' /> -->
 
       <ComponentRef Id='CQMLDocs' />

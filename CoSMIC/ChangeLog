@@ -1,7 +1,36 @@
+Wed Apr 18 04:57:12 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Added RTConfigurationComponent
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Removed BGML
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+          Removed BGML
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added RTConfigurationComponent
+
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Updated notes for 0.5.7 release
+
+        * cosmic.mwc:
+
+          Added POSAML interpreters.
+
 Tue Apr 17 17:02:33 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           Appended ACE_DIRECTORY_SEPARATOR_CHAR_A to the path to mga.dtd,
           whether it is set from the command line or by checking GME_ROOT.
           This change makes composition of the full path to mga.dtd more

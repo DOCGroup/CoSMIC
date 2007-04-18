@@ -7,4 +7,5 @@ workspace {
   PSM/CQML/interpreters/Interpreters.mwc
   PIM/PICML/addons/UUIDManager
   PIM/PICML/decorators/Decorators.mwc
+  PIM/POSAML/interpreters/interpreters.mwc
 }

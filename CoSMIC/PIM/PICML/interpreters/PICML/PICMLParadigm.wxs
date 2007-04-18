@@ -19,7 +19,6 @@
       <ComponentRef Id='PackageComponentLibrary' />
       <ComponentRef Id='DomainComponentLibrary' />
       <ComponentRef Id='DeploymentPlanComponentLibrary' />
-      <ComponentRef Id='BGMLComponentLibrary' />
       <ComponentRef Id='MPCComponentLibrary' />
       <ComponentRef Id='CIDLComponentLibrary' />
       <ComponentRef Id='PathComponentLibrary' />
