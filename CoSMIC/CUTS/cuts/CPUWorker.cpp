@@ -331,6 +331,12 @@ bool CUTS_CPU_Worker::init (void)
     infile >> this->count_per_msec_;
     infile.close ();
   }
-
+  else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_CPU_Worker): failed to open %s\n",
+                  filename.c_str ()));
+    }
+               
   return this->count_per_msec_ != 0.0;
 }
