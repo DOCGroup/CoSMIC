@@ -1,7 +1,20 @@
+Wed Apr 18 16:27:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.cpp:
+        
+          Bug fix that was causing the service manager for each service
+          loaded in the BDC to not be initialized. The result was it
+          caused the BDC to crash.
+        
+        * cuts/BDC/BDC_Task.cpp:
+
+          Improved the output messages to reflect the actually 
+          behavior of the task when collecting metrics.
+        
 Wed Apr 18 14:55:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:
-        
+
           Added an error message if the calibration file fail to open.
 
 Tue Apr 17 19:19:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>

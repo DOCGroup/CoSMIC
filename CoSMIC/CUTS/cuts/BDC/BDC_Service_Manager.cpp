@@ -72,6 +72,8 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
   // Reset the <uuid_> of the service manager.
   this->uuid_.clear ();
   return 0;
+
+  ACE_UNUSED_ARG (timeout);
 }
 
 //
@@ -123,25 +125,39 @@ load_service (const char * name, const char * path,  const char * args)
 
   if (error_count == 0)
   {
+    const ACE_Service_Type * svc_type = 0;
+
     // We need to locate the service that we just loaded.
-    CUTS_BDC_Service * svc =
-      ACE_Dynamic_Service <CUTS_BDC_Service>::instance (this, name);
-
-    if (svc != 0)
-    {
-      // Initialize the parent of the service. Then try to activate
-      // the service.
-      svc->svc_mgr_ = this;
-
-      if (svc->handle_activate () != 0)
+    if (this->find (name, &svc_type) == 0)
       {
-        ACE_ERROR ((LM_ERROR,
-                    "%s service failed during handle_activate ()\n",
-                    name));
+        const ACE_Service_Type_Impl * type = svc_type->type ();
 
-        ++ error_count;
+        CUTS_BDC_Service * svc =
+          reinterpret_cast <CUTS_BDC_Service *> (type->object ());
+
+        if (svc != 0)
+          {
+            // Initialize the parent of the service. Then try to activate
+            // the service.
+            svc->svc_mgr_ = this;
+            
+            if (svc->handle_activate () != 0)
+              {
+                ACE_ERROR ((LM_ERROR,
+                            "%s service failed during handle_activate ()\n",
+                            name));
+                
+                ++ error_count;
+              }
+          }
       }
-    }
+    else
+      {
+        ACE_ERROR ((LM_DEBUG,
+                    "*** error (BDC): failed to locate service %s "
+                    "for initialization\n",
+                    name));
+      }
   }
 
   // Return the number of errors that occured.

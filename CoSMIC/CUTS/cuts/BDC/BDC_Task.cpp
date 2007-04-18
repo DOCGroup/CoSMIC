@@ -182,9 +182,6 @@ namespace CUTS
       if (count == 0)
         this->finalize_collection ();
     }
-
-    ACE_DEBUG ((LM_ERROR,
-                "*** (BDC): finish collecting performance metrics\n"));
   }
 
   //
@@ -210,6 +207,10 @@ namespace CUTS
     if (this->metrics_ == 0)
       return;
 
+    ACE_DEBUG ((LM_ERROR,
+                "*** (BDC): finish collecting performance metrics\n"
+                "*** (BDC): notifying each service\n"));
+
     // Let's iterate over all the registered handlers and notify
     // them that the metrics have been updated.
     CUTS_Handler_Set::ITERATOR iter (this->handles_);
@@ -221,9 +222,13 @@ namespace CUTS
       if (iter.next (handle) != 0 && handle != 0)
         (*handle)->handle_metrics (*this->metrics_);
 
+      ACE_DEBUG ((LM_DEBUG, "ok...\n"));
       // Move to the next item.
       iter.advance ();
     }
+
+    ACE_DEBUG ((LM_INFO,
+                "*** info (BDC): finished notifying each service\n"));
   }
 
   //
