@@ -1,3 +1,10 @@
+Wed Apr 18 13:36:37 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          Fixed warnings due to _itoa. The visit functions now use 
+          ostringstream instead.
+
 Wed Apr 18 04:57:12 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
