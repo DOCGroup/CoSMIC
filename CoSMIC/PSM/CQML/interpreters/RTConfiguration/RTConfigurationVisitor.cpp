@@ -1,4 +1,4 @@
-//$Id:$
+//$Id$
 #include <algorithm>
 #include <functional>
 #include <sstream>
@@ -493,27 +493,29 @@ namespace CQML
 	{
 		//static, dynamic and lane priority elements from lane.
 		std::set<CQML::Lanes>::iterator iter = lanes.begin ();
-		CQML::Lanes lane = *iter;
-
-		char temp[256];
+		CQML::Lanes lane = *iter;		
 
 		//output static threads
 		long st = (long)lane.static_threads ();
-		_itoa (st, temp, 10);
+		std::ostringstream temp;
+		temp << st;		
+		
 		//Add the <static_threads>
-		this->curr_->appendChild (this->createSimpleContent ("static_threads", temp));
+		this->curr_->appendChild (this->createSimpleContent ("static_threads", temp.str ()));
 
 		//output dynamic threads
 		long dt = (long)lane.dynamic_threads ();
-		_itoa (dt, temp, 10);
+		temp.str("");
+		temp<<dt;
 		//Add the <dynamic_threads>
-		this->curr_->appendChild (this->createSimpleContent ("dynamic_threads", temp));
+		this->curr_->appendChild (this->createSimpleContent ("dynamic_threads", temp.str ()));
 
 		//output default priority
 		long prio = (long)lane.lane_priority ();
-		_itoa (prio, temp, 10);
+		temp.str ("");
+		temp << prio;
 		//Add the <default_priority>
-		this->curr_->appendChild (this->createSimpleContent ("default_priority", temp));
+		this->curr_->appendChild (this->createSimpleContent ("default_priority", temp.str ()));
 
 	}
 	
@@ -557,14 +559,15 @@ namespace CQML
 			this->add_threadpool_with_lanes (lanes);
 
 
-		//temp char array to hold the output of itoa
-		char temp [256];
+		
+		std::ostringstream temp;
 
 		//output stack size
 		long ss = (long)tp.stacksize ();
-		_itoa (ss, temp, 10);
+		temp << ss;
+		
 		//Add the <static_threads>
-		this->curr_->appendChild (this->createSimpleContent ("stacksize", temp));
+		this->curr_->appendChild (this->createSimpleContent ("stacksize", temp.str ()));
 
 
 		if (lanes.size () == 1)
@@ -595,17 +598,19 @@ namespace CQML
 
 		//output max buffered requests
 		long mbr = (long)tp.max_buffered_requests ();
-		_itoa (mbr, temp, 10);
+		temp.str ("");
+		temp << mbr;
 		//Add the <max_buffered_requests>
 		this->curr_->appendChild
-			(this->createSimpleContent ("max_buffered_requests", temp));
+			(this->createSimpleContent ("max_buffered_requests", temp.str ()));
 
 		//output max request buffer size
 		long mbrs = (long)tp.max_buffer_size ();
-		_itoa (mbrs, temp, 10);
+		temp.str ("");
+		temp << mbrs;		
 		//Add the <max_request_buffered_size>
 		this->curr_->appendChild
-			(this->createSimpleContent ("max_request_buffered_size", temp));
+			(this->createSimpleContent ("max_request_buffered_size", temp.str ()));
 
 		//add the threadpool to the list of elements that have been added
 		if (lanes.size () == 1)
@@ -631,20 +636,23 @@ namespace CQML
 		this->curr_->appendChild (band);
 		this->curr_ = band;
 
-		//temp char array to hold the output of itoa
-		char temp [256];
+		
+		std::ostringstream temp;
 
 		//output low
 		long low = (long)bc.low ();
-		_itoa (low, temp, 10);
+		temp << low;
+		
 		//Add the <low>
-		this->curr_->appendChild (this->createSimpleContent ("low", temp));
+		this->curr_->appendChild (this->createSimpleContent ("low", temp.str ()));
 
 		//output high
 		long high = (long)bc.high ();
-		_itoa (high, temp, 10);
+		temp.str ("");
+		temp << high;
+		
 		//Add the <high>
-		this->curr_->appendChild (this->createSimpleContent ("high", temp));
+		this->curr_->appendChild (this->createSimpleContent ("high", temp.str ()));
 
 		//restore curr
 		this->connections_.insert (make_pair (bc.name (), true));
@@ -665,26 +673,30 @@ namespace CQML
 		this->curr_->appendChild (lane);
 		this->curr_ = lane;
 
-		//temp char array to hold the output of itoa
-		char temp [256];
+		std::ostringstream temp;
 
 		//output static threads
 		long st = (long)lns.static_threads ();
-		_itoa (st, temp, 10);
+		temp << st;
+		
 		//Add the <static_threads>
-		this->curr_->appendChild (this->createSimpleContent ("static_threads", temp));
+		this->curr_->appendChild (this->createSimpleContent ("static_threads", temp.str ()));
 
 		//output dynamic threads
 		long dt = (long)lns.dynamic_threads ();
-		_itoa (dt, temp, 10);
+		temp.str ("");
+		temp << dt;
+		
 		//Add the <dynamic_threads>
-		this->curr_->appendChild (this->createSimpleContent ("dynamic_threads", temp));
+		this->curr_->appendChild (this->createSimpleContent ("dynamic_threads", temp.str ()));
 
 		//output lane priority
 		long prio = (long)lns.lane_priority ();
-		_itoa (prio, temp, 10);
+		temp.str ("");
+		temp << prio;
+		
 		//Add the <priority>
-		this->curr_->appendChild (this->createSimpleContent ("priority", temp));
+		this->curr_->appendChild (this->createSimpleContent ("priority", temp.str ()));
 
 		//restore curr
 		this->pop ();
@@ -700,12 +712,12 @@ namespace CQML
 		//Create the <priorityModel> element
 		DOMElement* e = this->doc_->createElement (XStr ("priorityModel"));
 
-		char temp[256];
+		std::ostringstream temp;
 
 		long pv = (long)pmp.priority_value ();
-		_itoa (pv, temp, 10);
-
-		e->setAttribute (XStr ("server_priority"), XStr (temp));
+		temp << pv;
+		
+		e->setAttribute (XStr ("server_priority"), XStr (temp.str ()));
 
 		this->curr_->appendChild (e);
 		this->curr_ = e;
