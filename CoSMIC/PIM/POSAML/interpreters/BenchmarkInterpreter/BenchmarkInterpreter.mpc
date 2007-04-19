@@ -7,11 +7,7 @@ project (BenchmarkInterpreter): bon, register {
    libpaths += $(XERCESCROOT)/lib
    libs += xerces-c_2
 
-   specific {
-     use_lib_modifier =
-   }
-
-   specific(nmake, vc71, vc8) {
+    specific(nmake, vc71, vc8) {
     compile_flags += /wd4290 /wd4800 /wd4250 /wd4355
    }
 
