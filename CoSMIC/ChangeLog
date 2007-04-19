@@ -1,3 +1,37 @@
+Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
+
+          Minor modifications in .mpc file for Benchmark Interpreter
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.reg:
+
+          Added this file for registering benchmark interpreter in Release           
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
+
+          Added this file to integrate it with the Installer
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreterd.reg:
+
+          Added this file for registering benchmark interpreter in Debug           
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.reg:
+
+          Added this file for registering OMNeT++ interpreter in Release 
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
+
+          Added this file to integrate it with the Installer
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreterd.reg:
+
+          Added this file for registering OMNeT++ interpreter in Debug 
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+
+          Minor modifications in .mpc file for OMNeT++ Interpreter
+
 Thu Apr 19 19:33:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
