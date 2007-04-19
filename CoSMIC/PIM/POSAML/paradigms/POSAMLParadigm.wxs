@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="POSAMLParadigmFrag">
+
+    <Feature Id='POSAMLParadigmFeature'
+             Level='1'
+             Title='POSAML Paradigm and the interpreters'
+             TypicalDefault="install" >
+
+      <ComponentRef Id='POSAMLParadigm' />
+      <ComponentRef Id='POSAMLParadigmIcons' />
+      <ComponentRef Id='POSAMLLibrary'/>
+      <ComponentRef Id='UtilsLibrary'/>
+
+      <ComponentRef Id='AspectInterpreterLibrary'/>
+      <ComponentRef Id='BenchmarkInterpreterLibrary' />
+      <ComponentRef Id='ConfiguratorInterpreterLibrary' />
+      <ComponentRef Id='OMNeTInterpreterLibrary' />
+      
+      <ComponentRef Id='POSAMLDocs' />
+      <ComponentRef Id='POSAMLExamples' />
+      <ComponentRef Id="POSAMLRegistryComponent" />
+    </Feature>
+
+    <DirectoryRef Id="POSAMLParadigmDir">
+      <Component Id='POSAMLParadigm' Guid='15FC9A31-EA8F-4406-B2D3-1E6210CB6248'>
+        <File Id='POSAMLXME'
+              Name='POSAML.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\POSAML.xme' />
+       
+        <!-- The GUID in the POSAML.xmp has to match exactly here for the registry entries. 
+      This needs to be done everytime the paradigm is freshly interpreted. -->
+
+        <File Id='POSAMLXMP'
+              Name='POSAML.xmp'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\POSAML.xmp' />
+
+        <RemoveFile Id='POSAMLMTA' Name='POSAML.mta' On='uninstall' />
+      </Component>
+    </DirectoryRef>
+    <DirectoryRef Id="POSAMLIconsDir">
+      <Component Id='POSAMLParadigmIcons' Guid='{860B9369-EDAF-4eb0-9094-7ECDE99280C8}'>
+
+        <File Id='POSAML_icon_1'
+        Name='abstract.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\abstract.bmp' />
+
+        <File Id='POSAML_icon_2'
+        Name='Acceptor.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Acceptor.bmp' />
+
+        <File Id='POSAML_icon_3'
+        Name='Acceptor_Connector.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Acceptor_Connector.bmp' />
+
+        <File Id='POSAML_icon_4'
+        Name='activation_queue.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\activation_queue.bmp' />
+
+        <File Id='POSAML_icon_5'
+        Name='active_object.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\active_object.bmp' />
+
+        <File Id='POSAML_icon_6'
+        Name='advice.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\advice.bmp' />
+
+        <File Id='POSAML_icon_7'
+        Name='and.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\and.bmp' />
+
+        <File Id='POSAML_icon_8'
+        Name='concurrency.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\concurrency.bmp' />
+
+        <File Id='POSAML_icon_9'
+        Name='Connector.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Connector.bmp' />
+
+        <File Id='POSAML_icon_10'
+        Name='Dispatcher.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Dispatcher.bmp' />
+
+        <File Id='POSAML_icon_11'
+        Name='equation.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\equation.bmp' />
+
+        <File Id='POSAML_icon_12'
+        Name='event_handler.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\event_handler.bmp' />
+
+        <File Id='POSAML_icon_13'
+        Name='handle.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\handle.bmp' />
+
+        <File Id='POSAML_icon_14'
+        Name='handle_set.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\handle_set.bmp' />
+
+        <File Id='POSAML_icon_15'
+        Name='Implementation.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Implementation.bmp' />
+
+        <File Id='POSAML_icon_16'
+        Name='Latency.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Latency.bmp' />
+
+        <File Id='POSAML_icon_17'
+        Name='method_request.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\method_request.bmp' />
+
+        <File Id='POSAML_icon_18'
+        Name='myaspect.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\myaspect.bmp' />
+
+        <File Id='POSAML_icon_19'
+        Name='myclass.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\myclass.bmp' />
+
+        <File Id='POSAML_icon_20'
+        Name='not.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\not.bmp' />
+
+        <File Id='POSAML_icon_21'
+        Name='or.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\or.bmp' />
+
+        <File Id='POSAML_icon_22'
+        Name='Pointcut.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Pointcut.bmp' />
+
+        <File Id='POSAML_icon_23'
+        Name='Port.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Port.bmp' />
+
+        <File Id='POSAML_icon_24'
+        Name='PortEndPoint.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\PortEndPoint.bmp' />
+
+        <File Id='POSAML_icon_25'
+        Name='PortSmall.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\PortSmall.bmp' />
+
+        <File Id='POSAML_icon_26'
+        Name='Property.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Property.bmp' />
+
+        <File Id='POSAML_icon_27'
+        Name='proxy.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\proxy.bmp' />
+
+        <File Id='POSAML_icon_28'
+        Name='Queue.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Queue.bmp' />
+
+        <File Id='POSAML_icon_29'
+        Name='Reactor.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Reactor.bmp' />
+
+        <File Id='POSAML_icon_30'
+        Name='reactor_pattern.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\reactor_pattern.bmp' />
+
+        <File Id='POSAML_icon_31'
+        Name='Reactor_Type.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Reactor_Type.bmp' />
+
+        <File Id='POSAML_icon_32'
+        Name='scheduler.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\scheduler.bmp' />
+
+        <File Id='POSAML_icon_33'
+        Name='servant.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\servant.bmp' />
+
+        <File Id='POSAML_icon_34'
+        Name='Service.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Service.bmp' />
+
+        <File Id='POSAML_icon_35'
+        Name='service_time.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\service_time.bmp' />
+
+        <File Id='POSAML_icon_36'
+        Name='sync_event.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\sync_event.bmp' />
+
+        <File Id='POSAML_icon_37'
+        Name='threads.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\threads.bmp' />
+
+        <File Id='POSAML_icon_38'
+        Name='Throughput.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Throughput.bmp' />
+
+        <File Id='POSAML_icon_39'
+        Name='Transport_Handle.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Transport_Handle.bmp' />
+
+        <File Id='POSAML_icon_40'
+        Name='Transport_HandleA.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Transport_HandleA.bmp' />
+
+        <File Id='POSAML_icon_41'
+        Name='Transport_HandleC.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\icons\Transport_HandleC.bmp' />
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

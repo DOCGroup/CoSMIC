@@ -1,0 +1,1631 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="POSAML" guid="{E06AF5F9-FD12-438A-AF78-1A1D6BE193B6}" cdate="Wed Apr 18 14:50:11 2007" mdate="Wed Apr 18 14:50:11 2007" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "Middleware" >
+		<attrdef name="AdviceDefinition" metaref = "1765" valuetype = "string" defvalue = "">
+			<dispname>Enter code for advice</dispname>
+			<regnode name="multiLine" value = "90"></regnode>
+		</attrdef>
+		<attrdef name="AndOr" metaref = "1766" valuetype = "enum" defvalue = "AND">
+			<dispname>And/OR</dispname>
+			<enumitem dispname = "AND" value = "AND"></enumitem>
+			<enumitem dispname = "OR" value = "OR"></enumitem>
+		</attrdef>
+		<attrdef name="Concurrency_Options" metaref = "1109" valuetype = "enum" defvalue = "reactive">
+			<dispname>Specify which concurrency strategy to use</dispname>
+			<enumitem dispname = "reactive" value = "reactive"></enumitem>
+			<enumitem dispname = "thread_per_connection" value = "thread_per_connection"></enumitem>
+		</attrdef>
+		<attrdef name="Connect_Mode" metaref = "1319" valuetype = "enum" defvalue = "SYNC">
+			<dispname>Connection Mode</dispname>
+			<enumitem dispname = "SYNC" value = "SYNC"></enumitem>
+			<enumitem dispname = "ASYNC" value = "ASYNC"></enumitem>
+		</attrdef>
+		<attrdef name="DemultiplexerType" metaref = "1001" viewable = "no" valuetype = "enum" defvalue = "select">
+			<enumitem dispname = "select" value = "select"></enumitem>
+			<enumitem dispname = "WaitForMultipleObjects" value = "WaitForMultipleObjects"></enumitem>
+			<enumitem dispname = "poll" value = "poll"></enumitem>
+		</attrdef>
+		<attrdef name="Dispatch_Types" metaref = "1320" valuetype = "enum" defvalue = "Reactive">
+			<dispname>Types of Dispatcher</dispname>
+			<enumitem dispname = "Reactive" value = "Reactive"></enumitem>
+			<enumitem dispname = "Proactive" value = "Proactive"></enumitem>
+			<enumitem dispname = "Multi_Threaded" value = "Multi_Threaded"></enumitem>
+		</attrdef>
+		<attrdef name="Distribution" metaref = "1166" valuetype = "enum" defvalue = "Uniform">
+			<enumitem dispname = "Uniform" value = "Uniform"></enumitem>
+			<enumitem dispname = "Exponential" value = "Exponential"></enumitem>
+		</attrdef>
+		<attrdef name="EventType" metaref = "1002" valuetype = "enum" defvalue = "Read">
+			<enumitem dispname = "Read" value = "Read"></enumitem>
+			<enumitem dispname = "Write" value = "Write"></enumitem>
+			<enumitem dispname = "Except" value = "Except"></enumitem>
+			<enumitem dispname = "Accept" value = "Accept"></enumitem>
+			<enumitem dispname = "Connect" value = "Connect"></enumitem>
+		</attrdef>
+		<attrdef name="HandleName" metaref = "1003" viewable = "no" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="HostName" metaref = "1110" valuetype = "string" defvalue = "127.0.0.1">
+			<dispname>Enter Host Name (default localhost)</dispname>
+		</attrdef>
+		<attrdef name="Ini_File_Name" metaref = "1764" valuetype = "string" defvalue = "*.ini">
+		</attrdef>
+		<attrdef name="No_Of_Runs" metaref = "1727" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="Output_Scalar_File" metaref = "1728" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Port" metaref = "1111" valuetype = "integer" defvalue = "">
+			<dispname>Enter port number</dispname>
+		</attrdef>
+		<attrdef name="Protocol" metaref = "1112" valuetype = "enum" defvalue = "TCP">
+			<dispname>Enter Protocol</dispname>
+			<enumitem dispname = "TCP" value = "TCP"></enumitem>
+			<enumitem dispname = "UDP" value = "UDP"></enumitem>
+			<enumitem dispname = "Shared_Memory" value = "Shared_Memory"></enumitem>
+		</attrdef>
+		<attrdef name="Reactor_Type_Options" metaref = "1113" valuetype = "enum" defvalue = "tp">
+			<dispname>Specify what kind of reactor</dispname>
+			<enumitem dispname = "select_mt" value = "select_mt"></enumitem>
+			<enumitem dispname = "select_st" value = "select_st"></enumitem>
+			<enumitem dispname = "wfmo" value = "wfmo"></enumitem>
+			<enumitem dispname = "msg_wfmo" value = "msg_wfmo"></enumitem>
+			<enumitem dispname = "tp" value = "tp"></enumitem>
+		</attrdef>
+		<attrdef name="SetOfJointPoint" metaref = "1767" valuetype = "string" defvalue = "">
+			<dispname>Equation for set of jointpoint</dispname>
+			<regnode name="multiLine" value = "90"></regnode>
+		</attrdef>
+		<attrdef name="Sim_Time_Limit" metaref = "1757" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="StringData" metaref = "1165" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Thread_Queue_Options" metaref = "1114" valuetype = "enum" defvalue = "LIFO">
+			<enumitem dispname = "LIFO" value = "LIFO"></enumitem>
+			<enumitem dispname = "FIFO" value = "FIFO"></enumitem>
+		</attrdef>
+		<attrdef name="TypeOfAdvice" metaref = "1570" valuetype = "enum" defvalue = "around()">
+			<dispname>Select  type of advice</dispname>
+			<enumitem dispname = "before()" value = "before()"></enumitem>
+			<enumitem dispname = "after()" value = "after()"></enumitem>
+			<enumitem dispname = "around()" value = "around()"></enumitem>
+			<regnode name="help" value = "Types of Advice"></regnode>
+		</attrdef>
+		<attrdef name="TypeOfAspect" metaref = "1571" valuetype = "enum" defvalue = "Logging">
+			<enumitem dispname = "Logging" value = "Logging"></enumitem>
+			<enumitem dispname = "VerifyAccess" value = "VerifyAccess"></enumitem>
+			<enumitem dispname = "RemoveVirtualness" value = "RemoveVirtualness"></enumitem>
+			<regnode name="help" value = "Some default types of aspect"></regnode>
+		</attrdef>
+		<attrdef name="TypeOfJointPoint" metaref = "1768" valuetype = "enum" defvalue = "call">
+			<dispname>Type of JointPoint</dispname>
+			<enumitem dispname = "call" value = "call"></enumitem>
+			<enumitem dispname = "execute" value = "execute"></enumitem>
+			<enumitem dispname = "construction" value = "construction"></enumitem>
+			<enumitem dispname = "destruction" value = "destruction"></enumitem>
+		</attrdef>
+		<attrdef name="Value" metaref = "1115" valuetype = "integer" defvalue = "64">
+			<dispname>Specify the size of the active object map</dispname>
+		</attrdef>
+		<attrdef name="data_exchanges" metaref = "1080" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="max_param_value" metaref = "1729" valuetype = "double" defvalue = "">
+		</attrdef>
+		<attrdef name="min_param_value" metaref = "1730" valuetype = "double" defvalue = "">
+		</attrdef>
+		<attrdef name="num_handles" metaref = "1004" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="number_of_threads" metaref = "1081" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="param_type" metaref = "1731" valuetype = "enum" defvalue = "Constant">
+			<enumitem dispname = "Constant" value = "Constant"></enumitem>
+			<enumitem dispname = "Variable" value = "Variable"></enumitem>
+		</attrdef>
+		<attrdef name="param_value" metaref = "1732" valuetype = "double" defvalue = "">
+		</attrdef>
+		<atom name = "AbstractMethodRequest" metaref = "1370" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method_request.bmp"></regnode>
+		</atom>
+		<atom name = "Acceptor" metaref = "1348" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidActivate_AcceptordstCardinality2" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Activate_Acceptor ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Abstract_Acceptor as &quot;dst&quot; over Activate_Acceptor, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidCreates_ConnectiondstCardinality36" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Creates_Connection ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Abstract_Acceptor as &quot;dst&quot; over Creates_Connection, has to match 1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+				<regnode name = "icon" value ="Acceptor.bmp"></regnode>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+		</atom>
+		<atom name = "Activation_Queue" metaref = "1371" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="activation_queue.bmp"></regnode>
+		</atom>
+		<atom name = "Active_Rate" metaref = "1758"  attributes = "param_value max_param_value min_param_value param_type">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Advice" metaref = "1572"  attributes = "AdviceDefinition TypeOfAdvice">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="advice.bmp"></regnode>
+		</atom>
+		<atom name = "Client" metaref = "1372" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Concurrency" metaref = "1116"  attributes = "Concurrency_Options">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidReactor_Concurrency_ConnectiondstCardinality104" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Reactor_Concurrency_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Concurrency as &quot;dst&quot; over Reactor_Concurrency_Connection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="concurrency.bmp"></regnode>
+		</atom>
+		<atom name = "Connector" metaref = "1349"  attributes = "Connect_Mode">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidUses_ConnectordstCardinality126" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Uses_Connector ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Abstract_Connector as &quot;dst&quot; over Uses_Connector, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+				<regnode name = "icon" value ="Connector.bmp"></regnode>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+		</atom>
+		<atom name = "End_Points" metaref = "1344"  attributes = "Protocol Port HostName">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidEnd_Point_ConnectiondstCardinality40" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::End_Point_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to End_Points as &quot;dst&quot; over End_Point_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidEnd_Point_ConnectiondstCardinality46" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::End_Point_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to End_Points as &quot;dst&quot; over End_Point_Connection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="PortEndPoint"></regnode>
+		</atom>
+		<atom name = "EventHandler" metaref = "1006"  attributes = "EventType">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+		</atom>
+		<atom name = "FinalJointPoint" metaref = "1769" >
+				<regnode name = "namePosition" value ="0"></regnode>
+		</atom>
+		<atom name = "Future" metaref = "1373" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Handle" metaref = "1007"  attributes = "HandleName">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="handle.bmp"></regnode>
+		</atom>
+		<atom name = "Jointpoint" metaref = "1770"  attributes = "TypeOfJointPoint SetOfJointPoint">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="equation.bmp"></regnode>
+		</atom>
+		<atom name = "MainPointcut" metaref = "1771" >
+				<regnode name = "namePosition" value ="0"></regnode>
+		</atom>
+		<atom name = "MethodRequest" metaref = "1374" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method_request.bmp"></regnode>
+		</atom>
+		<atom name = "Proxy" metaref = "1375" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="proxy.bmp"></regnode>
+		</atom>
+		<atom name = "Queue" metaref = "1725"  attributes = "param_value max_param_value min_param_value param_type">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Reactor" metaref = "1008"  attributes = "Dispatch_Types">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidUsesdstCardinality120" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Uses ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Reactor as &quot;dst&quot; over Uses, has to match 1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Reactor.bmp"></regnode>
+		</atom>
+		<atom name = "Reactor_Type" metaref = "1118"  attributes = "Reactor_Type_Options">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidReactor_Type_ConnectiondstCardinality108" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Reactor_Type_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Reactor_Type as &quot;dst&quot; over Reactor_Type_Connection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Reactor_Type.bmp"></regnode>
+		</atom>
+		<atom name = "RoundtripLatency" metaref = "1070"  attributes = "data_exchanges StringData">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Latency.bmp"></regnode>
+		</atom>
+		<atom name = "Scheduler" metaref = "1376" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="scheduler.bmp"></regnode>
+		</atom>
+		<atom name = "Servant" metaref = "1377" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="servant.bmp"></regnode>
+		</atom>
+		<atom name = "Service_Handler" metaref = "1263" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidActivate_AcceptorsrcCardinality1" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Activate_Acceptor ) -> size in
+                     (srcCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Service_Handler as &quot;src&quot; over Activate_Acceptor, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidActivate_ConnectorsrcCardinality3" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Activate_Connector ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Service_Handler as &quot;src&quot; over Activate_Connector, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidOwns_AcceptordstCardinality80" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Owns_Acceptor ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Service_Handler as &quot;dst&quot; over Owns_Acceptor, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+				<regnode name = "icon" value ="Service.bmp"></regnode>
+				<regnode name = "icon" value ="event_handler.bmp"></regnode>
+				<regnode name = "icon" value ="Service.bmp"></regnode>
+		</atom>
+		<atom name = "Service_Rate" metaref = "1726"  attributes = "param_value max_param_value min_param_value param_type">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "Service_Time" metaref = "1362"  attributes = "Distribution">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="service_time.bmp"></regnode>
+		</atom>
+		<atom name = "Simulation" metaref = "1751"  attributes = "No_Of_Runs Output_Scalar_File Sim_Time_Limit Ini_File_Name">
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "SynchronousEventDemultiplexer" metaref = "1009"  attributes = "DemultiplexerType">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidUsessrcCardinality119" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Uses ) -> size in
+                     (srcCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SynchronousEventDemultiplexer as &quot;src&quot; over Uses, has to match 1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="sync_event.bmp"></regnode>
+		</atom>
+		<atom name = "Thread_Queue" metaref = "1119"  attributes = "Thread_Queue_Options">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidReactor_Thread_Queue_ConnectiondstCardinality106" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Reactor_Thread_Queue_Connection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Thread_Queue as &quot;dst&quot; over Reactor_Thread_Queue_Connection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Queue.bmp"></regnode>
+		</atom>
+		<atom name = "Threads" metaref = "1082"  attributes = "number_of_threads">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="threads.bmp"></regnode>
+		</atom>
+		<atom name = "Throughput" metaref = "1072"  attributes = "data_exchanges StringData">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Throughput.bmp"></regnode>
+		</atom>
+		<atom name = "Transport_Handle" metaref = "1264" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidCreates_ConnectionsrcCardinality35" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Creates_Connection ) -> size in
+                     (srcCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Transport_Handle as &quot;src&quot; over Creates_Connection, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidOwns_AcceptorsrcCardinality79" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Owns_Acceptor ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Transport_Handle as &quot;src&quot; over Owns_Acceptor, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidUses_AcceptorsrcCardinality123" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Uses_Acceptor ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Transport_Handle as &quot;src&quot; over Uses_Acceptor, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Transport_Handle.bmp"></regnode>
+		</atom>
+		<atom name = "Transport_Handle_Acceptor" metaref = "1265" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidUses_AcceptorsrcCardinality121" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Uses_Acceptor ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Transport_Handle_Acceptor as &quot;src&quot; over Uses_Acceptor, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Transport_HandleA.bmp"></regnode>
+		</atom>
+		<atom name = "Transport_Handle_Connector" metaref = "1266" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidUses_ConnectorsrcCardinality125" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Uses_Connector ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Transport_Handle_Connector as &quot;src&quot; over Uses_Connector, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Transport_HandleC.bmp"></regnode>
+		</atom>
+		<atom name = "and" metaref = "1772" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="and.bmp"></regnode>
+		</atom>
+		<atom name = "or" metaref = "1773" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="or.bmp"></regnode>
+		</atom>
+		<set name = "Handle_Set" metaref = "1010" attributes = "num_handles" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="handle_set.bmp"></regnode>
+			<pointerspec name = "set">
+				<pointeritem desc = "Handle"></pointeritem>
+			</pointerspec>
+		</set>
+		<set name = "JointPointAndSet" metaref = "1774" >
+				<regnode name = "namePosition" value ="0"></regnode>
+			<constraint name="ValidJPAndOr_Connection1dstCardinality56" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::JPAndOr_Connection1 ) -> size in
+                     (dstCount = 1)]]>
+				<dispname>Multiplicity of objects, which are associated to JointPointAndSet as &quot;dst&quot; over JPAndOr_Connection1, has to match 1.</dispname>
+			</constraint>
+			<pointerspec name = "set">
+				<pointeritem desc = "Jointpoint"></pointeritem>
+			</pointerspec>
+		</set>
+		<set name = "JointPointOrSet" metaref = "1775" >
+				<regnode name = "namePosition" value ="0"></regnode>
+			<pointerspec name = "set">
+				<pointeritem desc = "Jointpoint"></pointeritem>
+			</pointerspec>
+		</set>
+		<set name = "PointcutAndSet" metaref = "1776" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<pointerspec name = "set">
+				<pointeritem desc = "FinalJointPoint"></pointeritem>
+			</pointerspec>
+		</set>
+		<set name = "PointcutOrSet" metaref = "1777" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<pointerspec name = "set">
+				<pointeritem desc = "FinalJointPoint"></pointeritem>
+			</pointerspec>
+		</set>
+		<connection name = "Activate_Acceptor" metaref = "1267" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "dstLabel1" value="activate"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Acceptor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Activate_Connector" metaref = "1268" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "dstLabel1" value="activate"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Connector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Activation_Method_Connection" metaref = "1378" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Activation_Queue"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "AbstractMethodRequest"></pointeritem>
+					<pointeritem desc = "MethodRequest"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Activation_Scheduler_Connection" metaref = "1554" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Activation_Queue"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Scheduler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Active_Active_Connection" metaref = "1560" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Active_Object"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Active_Object"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Active_Rate_Handle_Connection" metaref = "1759" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Active_Rate"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "AddJointPointsConnection" metaref = "1778" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "JointPointOrSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FinalJointPoint"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "JointPointAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FinalJointPoint"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "AddPointCutConnection" metaref = "1779" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "PointcutOrSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "MainPointcut"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "PointcutAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "MainPointcut"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Advice_Pointcut_Connection" metaref = "1780" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Pointcut"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Advice"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "AssociatedWith" metaref = "1083" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RoundtripLatency"></pointeritem>
+					<pointeritem desc = "Throughput"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Client_Future_Connection" metaref = "1379" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Invoke"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Client"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Future"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Client_Proxy_Connection" metaref = "1380" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Client"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Proxy"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Connection" metaref = "1575" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RefinedAbstraction"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "ConcreteImplementation"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ConnectionAspectAbstract" metaref = "1576" >
+			<dispname>verify_access</dispname>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="arrow"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RefinedAbstraction"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "AspectFeature"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ConnectionAspectImplement" metaref = "1577" >
+			<dispname>verify_access</dispname>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="arrow"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "AspectFeature"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "ConcreteImplementation"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Creates_Connection" metaref = "1269" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "dstLabel1" value="creates"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Acceptor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Dispatches" metaref = "1011" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Acceptor"></pointeritem>
+					<pointeritem desc = "Connector"></pointeritem>
+					<pointeritem desc = "EventHandler"></pointeritem>
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "End_Point_Connection" metaref = "1120" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "End_Points"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Acceptor_Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "End_Points"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "End_Points"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "End_Points"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "End_Points"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "FinalPointCutConnection" metaref = "1781" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "FinalJointPoint"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "PointcutOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "FinalJointPoint"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "PointcutAndSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "JPAndOr_Connection1" metaref = "1782" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "JointPointAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "and"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "JointPointAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "or"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "JPAndOr_Connection2" metaref = "1783" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "or"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "JointPointOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "and"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "JointPointOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "JPSet_Connection" metaref = "1784" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Jointpoint"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "JointPointOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Jointpoint"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "JointPointAndSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "JointPointAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Jointpoint"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Method_Future_Connection" metaref = "1381" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "AbstractMethodRequest"></pointeritem>
+					<pointeritem desc = "MethodRequest"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Future"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Method_Servant_Connection" metaref = "1382" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "AbstractMethodRequest"></pointeritem>
+					<pointeritem desc = "MethodRequest"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Servant"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Notifies" metaref = "1012" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "SynchronousEventDemultiplexer"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Notify_Acceptor" metaref = "1270" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "dstLabel1" value="notifies"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Acceptor"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Notify_Connector" metaref = "1271" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+				<regnode name= "dstLabel1" value="notifies"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Owns_Acceptor" metaref = "1272" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "dstLabel1" value="owns"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Acceptor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle_Acceptor"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Owns_Connector" metaref = "1273" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "dstLabel1" value="owns"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle_Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Param_Sim_Connection" metaref = "1752" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="dash"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Active_Rate"></pointeritem>
+					<pointeritem desc = "Queue"></pointeritem>
+					<pointeritem desc = "Service_Rate"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Simulation"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "PointCutAndOrConnection1" metaref = "1785" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "PointcutAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "or"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "PointcutAndSet"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "and"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "PointCutAndOrConnection2" metaref = "1786" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "or"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "PointcutOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "and"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "PointcutOrSet"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Proxy_Future_Connection" metaref = "1383" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Proxy"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Future"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Proxy_Method_Connection" metaref = "1384" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Proxy"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "AbstractMethodRequest"></pointeritem>
+					<pointeritem desc = "MethodRequest"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Proxy_Scheduler_Connection" metaref = "1385" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Proxy"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Scheduler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Queue_EventHandler_Connection" metaref = "1733" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Queue"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EventHandler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Reactor_Acceptor_Connector_Connection" metaref = "1365" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Acceptor_Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Reactor_Concurrency_Connection" metaref = "1121" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Concurrency"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Reactor_Thread_Queue_Connection" metaref = "1122" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Thread_Queue"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Reactor_Type_Connection" metaref = "1123" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor_Type"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Scheduler_Activation_Connection" metaref = "1386" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Scheduler"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Activation_Queue"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Scheduler_Method_Connection" metaref = "1387" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Scheduler"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "AbstractMethodRequest"></pointeritem>
+					<pointeritem desc = "MethodRequest"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Servant_ClientReference_Connection" metaref = "1563" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Servant"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "ClientReference"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Servant_Client_Connection" metaref = "1555" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Servant"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Client"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Service_Rate_EventHandler_Connection" metaref = "1734" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Service_Rate"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EventHandler"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Uses" metaref = "1013" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "SynchronousEventDemultiplexer"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Uses_Acceptor" metaref = "1274" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "dstLabel1" value="uses"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle_Acceptor"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Uses_Connector" metaref = "1275" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "dstLabel1" value="uses"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Connector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle_Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Transport_Handle_Connector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "handler_conn" metaref = "1168" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Service_Time"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Reactor_Pattern"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "has_registered" metaref = "1014" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Reactor"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Handle_Set"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "owns" metaref = "1015" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Acceptor"></pointeritem>
+					<pointeritem desc = "Connector"></pointeritem>
+					<pointeritem desc = "EventHandler"></pointeritem>
+					<pointeritem desc = "Service_Handler"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Handle"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<reference name = "ClientReference" metaref = "1564">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "Client"></pointeritem>
+			</pointerspec>
+		</reference>
+		<model name = "Acceptor_Connector" metaref = "1236" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Acceptor_Connector.bmp"></regnode>
+			<constraint name="ValidEnd_Point_ConnectionsrcCardinality39" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::End_Point_Connection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Acceptor_Connector as &quot;src&quot; over End_Point_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "Acceptor" metaref = "1350" kind = "Acceptor"></role>
+			<role name = "Activate_Acceptor" metaref = "1278" kind = "Activate_Acceptor"></role>
+			<role name = "Activate_Connector" metaref = "1279" kind = "Activate_Connector"></role>
+			<role name = "Connector" metaref = "1351" kind = "Connector"></role>
+			<role name = "Creates_Connection" metaref = "1281" kind = "Creates_Connection"></role>
+			<role name = "End_Points" metaref = "1345" kind = "End_Points"></role>
+			<role name = "Notify_Acceptor" metaref = "1283" kind = "Notify_Acceptor"></role>
+			<role name = "Notify_Connector" metaref = "1284" kind = "Notify_Connector"></role>
+			<role name = "Owns_Acceptor" metaref = "1285" kind = "Owns_Acceptor"></role>
+			<role name = "Owns_Connector" metaref = "1286" kind = "Owns_Connector"></role>
+			<role name = "Reactor" metaref = "1360" kind = "Reactor"></role>
+			<role name = "Service_Handler" metaref = "1287" kind = "Service_Handler"></role>
+			<role name = "Transport_Handle" metaref = "1288" kind = "Transport_Handle"></role>
+			<role name = "Transport_Handle_Acceptor" metaref = "1289" kind = "Transport_Handle_Acceptor"></role>
+			<role name = "Transport_Handle_Connector" metaref = "1290" kind = "Transport_Handle_Connector"></role>
+			<role name = "Uses_Acceptor" metaref = "1291" kind = "Uses_Acceptor"></role>
+			<role name = "Uses_Connector" metaref = "1292" kind = "Uses_Connector"></role>
+			<aspect name = "Acceptor_Connector_Aspect" metaref = "1452" >
+				<part metaref = "1453" role = "Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1454" role = "Activate_Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1455" role = "Activate_Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1456" role = "Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1457" role = "Creates_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1458" role = "Notify_Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1459" role = "Notify_Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1460" role = "Owns_Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1461" role = "Owns_Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1462" role = "Reactor" primary = "yes" linked = "no"></part>
+				<part metaref = "1463" role = "Service_Handler" primary = "yes" linked = "no"></part>
+				<part metaref = "1464" role = "Transport_Handle" primary = "yes" linked = "no"></part>
+				<part metaref = "1465" role = "Transport_Handle_Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1466" role = "Transport_Handle_Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1467" role = "Uses_Acceptor" primary = "yes" linked = "no"></part>
+				<part metaref = "1468" role = "Uses_Connector" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Active_Object" metaref = "1388" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="active_object.bmp"></regnode>
+			<role name = "AbstractMethodRequest" metaref = "1389" kind = "AbstractMethodRequest"></role>
+			<role name = "Activation_Method_Connection" metaref = "1390" kind = "Activation_Method_Connection"></role>
+			<role name = "Activation_Queue" metaref = "1391" kind = "Activation_Queue"></role>
+			<role name = "Activation_Scheduler_Connection" metaref = "1556" kind = "Activation_Scheduler_Connection"></role>
+			<role name = "Client" metaref = "1392" kind = "Client"></role>
+			<role name = "ClientReference" metaref = "1565" kind = "ClientReference"></role>
+			<role name = "Client_Future_Connection" metaref = "1393" kind = "Client_Future_Connection"></role>
+			<role name = "Client_Proxy_Connection" metaref = "1394" kind = "Client_Proxy_Connection"></role>
+			<role name = "Future" metaref = "1395" kind = "Future"></role>
+			<role name = "MethodRequest" metaref = "1396" kind = "MethodRequest"></role>
+			<role name = "Method_Future_Connection" metaref = "1397" kind = "Method_Future_Connection"></role>
+			<role name = "Method_Servant_Connection" metaref = "1398" kind = "Method_Servant_Connection"></role>
+			<role name = "Proxy" metaref = "1399" kind = "Proxy"></role>
+			<role name = "Proxy_Future_Connection" metaref = "1400" kind = "Proxy_Future_Connection"></role>
+			<role name = "Proxy_Method_Connection" metaref = "1401" kind = "Proxy_Method_Connection"></role>
+			<role name = "Proxy_Scheduler_Connection" metaref = "1402" kind = "Proxy_Scheduler_Connection"></role>
+			<role name = "Scheduler" metaref = "1403" kind = "Scheduler"></role>
+			<role name = "Scheduler_Activation_Connection" metaref = "1404" kind = "Scheduler_Activation_Connection"></role>
+			<role name = "Scheduler_Method_Connection" metaref = "1405" kind = "Scheduler_Method_Connection"></role>
+			<role name = "Servant" metaref = "1406" kind = "Servant"></role>
+			<role name = "Servant_ClientReference_Connection" metaref = "1566" kind = "Servant_ClientReference_Connection"></role>
+			<role name = "Servant_Client_Connection" metaref = "1557" kind = "Servant_Client_Connection"></role>
+			<aspect name = "Active_Object_Aspect" metaref = "1429" >
+				<part metaref = "1431" role = "Activation_Method_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1432" role = "Activation_Queue" primary = "yes" linked = "no"></part>
+				<part metaref = "1558" role = "Activation_Scheduler_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1433" role = "Client" primary = "yes" linked = "yes"></part>
+				<part metaref = "1567" role = "ClientReference" primary = "yes" linked = "no"></part>
+				<part metaref = "1434" role = "Client_Future_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1435" role = "Client_Proxy_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1436" role = "Future" primary = "yes" linked = "no"></part>
+				<part metaref = "1437" role = "MethodRequest" primary = "yes" linked = "no"></part>
+				<part metaref = "1438" role = "Method_Future_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1439" role = "Method_Servant_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1440" role = "Proxy" primary = "yes" linked = "no"></part>
+				<part metaref = "1441" role = "Proxy_Future_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1442" role = "Proxy_Method_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1443" role = "Proxy_Scheduler_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1444" role = "Scheduler" primary = "yes" linked = "no"></part>
+				<part metaref = "1445" role = "Scheduler_Activation_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1446" role = "Scheduler_Method_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1447" role = "Servant" primary = "yes" linked = "no"></part>
+				<part metaref = "1568" role = "Servant_ClientReference_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1559" role = "Servant_Client_Connection" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "AspectFeature" metaref = "1580" attributes = "TypeOfAspect" >
+			<dispname>Aspect</dispname>
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="myaspect.bmp"></regnode>
+			<role name = "Advice" metaref = "1581" kind = "Advice"></role>
+			<role name = "Advice_Pointcut_Connection" metaref = "1787" kind = "Advice_Pointcut_Connection"></role>
+			<role name = "ConnectionAspectImplement" metaref = "1788" kind = "ConnectionAspectImplement"></role>
+			<role name = "Pointcut" metaref = "1789" kind = "Pointcut"></role>
+			<aspect name = "AOP" metaref = "1659" attributes = "TypeOfAspect" >
+				<part metaref = "1660" role = "Advice" primary = "yes" linked = "no"></part>
+				<part metaref = "1790" role = "Advice_Pointcut_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1791" role = "ConnectionAspectImplement" primary = "yes" linked = "no"></part>
+				<part metaref = "1792" role = "Pointcut" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Bridge" metaref = "1793" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="myclass.bmp"></regnode>
+			<role name = "AspectFeature" metaref = "1590" kind = "AspectFeature"></role>
+			<role name = "ConcreteImplementation" metaref = "1591" kind = "ConcreteImplementation"></role>
+			<role name = "Connection" metaref = "1592" kind = "Connection"></role>
+			<role name = "ConnectionAspectAbstract" metaref = "1593" kind = "ConnectionAspectAbstract"></role>
+			<role name = "ConnectionAspectImplement" metaref = "1594" kind = "ConnectionAspectImplement"></role>
+			<role name = "Implementor" metaref = "1595" kind = "Implementor"></role>
+			<role name = "RefinedAbstraction" metaref = "1596" kind = "RefinedAbstraction"></role>
+			<aspect name = "Bridge_Aspect" metaref = "1639" >
+				<part metaref = "1794" role = "AspectFeature" primary = "no" linked = "no"></part>
+				<part metaref = "1641" role = "ConcreteImplementation" primary = "yes" linked = "no"></part>
+				<part metaref = "1642" role = "Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1795" role = "ConnectionAspectAbstract" primary = "no" linked = "no"></part>
+				<part metaref = "1796" role = "ConnectionAspectImplement" primary = "no" linked = "no"></part>
+				<part metaref = "1643" role = "RefinedAbstraction" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "AOP" metaref = "1663" >
+				<part metaref = "1665" role = "AspectFeature" primary = "yes" linked = "no"></part>
+				<part metaref = "1666" role = "ConcreteImplementation" primary = "no" linked = "no"></part>
+				<part metaref = "1667" role = "Connection" primary = "no" linked = "no"></part>
+				<part metaref = "1668" role = "ConnectionAspectAbstract" primary = "yes" linked = "no"></part>
+				<part metaref = "1669" role = "ConnectionAspectImplement" primary = "yes" linked = "no"></part>
+				<part metaref = "1670" role = "RefinedAbstraction" primary = "no" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "ConcreteImplementation" metaref = "1606" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Implementation.bmp"></regnode>
+			<role name = "RefinedAbstraction" metaref = "1609" kind = "RefinedAbstraction"></role>
+			<aspect name = "Bridge_Aspect" metaref = "1652" >
+				<part metaref = "1654" role = "RefinedAbstraction" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Implementor" metaref = "1614" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "RefinedAbstraction" metaref = "1616" kind = "RefinedAbstraction"></role>
+			<aspect name = "Bridge_Aspect" metaref = "1655" >
+				<part metaref = "1657" role = "RefinedAbstraction" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Middleware" metaref = "1341" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidMiddlewarePartCardinality135" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Concurrency" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality136" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Acceptor_Connector" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality137" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Reactor_Type" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality138" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Thread_Queue" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality139" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Reactor_Concurrency_Connection" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMiddlewarePartCardinality140" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Reactor_Type_Connection" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Middleware, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "Acceptor_Connector" metaref = "1253" kind = "Acceptor_Connector"></role>
+			<role name = "Active_Active_Connection" metaref = "1561" kind = "Active_Active_Connection"></role>
+			<role name = "Active_Object" metaref = "1428" kind = "Active_Object"></role>
+			<role name = "AssociatedWith" metaref = "1096" kind = "AssociatedWith"></role>
+			<role name = "Bridge" metaref = "1797" kind = "Bridge"></role>
+			<role name = "Concurrency" metaref = "1125" kind = "Concurrency"></role>
+			<role name = "End_Point_Connection" metaref = "1126" kind = "End_Point_Connection"></role>
+			<role name = "End_Points" metaref = "1346" kind = "End_Points"></role>
+			<role name = "Reactor_Acceptor_Connector_Connection" metaref = "1366" kind = "Reactor_Acceptor_Connector_Connection"></role>
+			<role name = "Reactor_Concurrency_Connection" metaref = "1128" kind = "Reactor_Concurrency_Connection"></role>
+			<role name = "Reactor_Pattern" metaref = "1104" kind = "Reactor_Pattern"></role>
+			<role name = "Reactor_Thread_Queue_Connection" metaref = "1129" kind = "Reactor_Thread_Queue_Connection"></role>
+			<role name = "Reactor_Type" metaref = "1130" kind = "Reactor_Type"></role>
+			<role name = "Reactor_Type_Connection" metaref = "1131" kind = "Reactor_Type_Connection"></role>
+			<role name = "RoundtripLatency" metaref = "1086" kind = "RoundtripLatency"></role>
+			<role name = "Service_Time" metaref = "1363" kind = "Service_Time"></role>
+			<role name = "Thread_Queue" metaref = "1132" kind = "Thread_Queue"></role>
+			<role name = "Threads" metaref = "1088" kind = "Threads"></role>
+			<role name = "Throughput" metaref = "1089" kind = "Throughput"></role>
+			<role name = "handler_conn" metaref = "1173" kind = "handler_conn"></role>
+			<aspect name = "Pattern" metaref = "1105" >
+				<part metaref = "1254" role = "Acceptor_Connector" primary = "yes" linked = "no"></part>
+				<part metaref = "1562" role = "Active_Active_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1450" role = "Active_Object" primary = "yes" linked = "no"></part>
+				<part metaref = "1798" role = "Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "1367" role = "Reactor_Acceptor_Connector_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1016" role = "Reactor_Pattern" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "Feature" metaref = "1017" >
+				<part metaref = "1255" role = "Acceptor_Connector" primary = "no" linked = "no"></part>
+				<part metaref = "1799" role = "Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "1133" role = "Concurrency" primary = "yes" linked = "no"></part>
+				<part metaref = "1134" role = "End_Point_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1347" role = "End_Points" primary = "yes" linked = "no"></part>
+				<part metaref = "1368" role = "Reactor_Acceptor_Connector_Connection" primary = "no" linked = "no"></part>
+				<part metaref = "1136" role = "Reactor_Concurrency_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1019" role = "Reactor_Pattern" primary = "no" linked = "no"></part>
+				<part metaref = "1137" role = "Reactor_Thread_Queue_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1138" role = "Reactor_Type" primary = "yes" linked = "no"></part>
+				<part metaref = "1139" role = "Reactor_Type_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1140" role = "Thread_Queue" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "Benchmarking" metaref = "1027" >
+				<part metaref = "1256" role = "Acceptor_Connector" primary = "no" linked = "no"></part>
+				<part metaref = "1097" role = "AssociatedWith" primary = "yes" linked = "no"></part>
+				<part metaref = "1800" role = "Bridge" primary = "yes" linked = "no"></part>
+				<part metaref = "1369" role = "Reactor_Acceptor_Connector_Connection" primary = "no" linked = "no"></part>
+				<part metaref = "1108" role = "Reactor_Pattern" primary = "no" linked = "no"></part>
+				<part metaref = "1091" role = "RoundtripLatency" primary = "yes" linked = "no"></part>
+				<part metaref = "1364" role = "Service_Time" primary = "yes" linked = "no"></part>
+				<part metaref = "1093" role = "Threads" primary = "yes" linked = "no"></part>
+				<part metaref = "1094" role = "Throughput" primary = "yes" linked = "no"></part>
+				<part metaref = "1175" role = "handler_conn" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Pointcut" metaref = "1801" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Pointcut.bmp"></regnode>
+			<role name = "AddJointPointsConnection" metaref = "1802" kind = "AddJointPointsConnection"></role>
+			<role name = "AddPointCutConnection" metaref = "1803" kind = "AddPointCutConnection"></role>
+			<role name = "FinalJointPoint" metaref = "1804" kind = "FinalJointPoint"></role>
+			<role name = "FinalPointCutConnection" metaref = "1805" kind = "FinalPointCutConnection"></role>
+			<role name = "JPAndOr_Connection1" metaref = "1806" kind = "JPAndOr_Connection1"></role>
+			<role name = "JPAndOr_Connection2" metaref = "1807" kind = "JPAndOr_Connection2"></role>
+			<role name = "JPSet_Connection" metaref = "1808" kind = "JPSet_Connection"></role>
+			<role name = "JointPointAndSet" metaref = "1809" kind = "JointPointAndSet"></role>
+			<role name = "JointPointOrSet" metaref = "1810" kind = "JointPointOrSet"></role>
+			<role name = "Jointpoint" metaref = "1811" kind = "Jointpoint"></role>
+			<role name = "MainPointcut" metaref = "1812" kind = "MainPointcut"></role>
+			<role name = "PointCutAndOrConnection1" metaref = "1813" kind = "PointCutAndOrConnection1"></role>
+			<role name = "PointCutAndOrConnection2" metaref = "1814" kind = "PointCutAndOrConnection2"></role>
+			<role name = "PointcutAndSet" metaref = "1815" kind = "PointcutAndSet"></role>
+			<role name = "PointcutOrSet" metaref = "1816" kind = "PointcutOrSet"></role>
+			<role name = "and" metaref = "1817" kind = "and"></role>
+			<role name = "or" metaref = "1818" kind = "or"></role>
+			<aspect name = "Pointcut_Aspect" metaref = "1819" >
+				<part metaref = "1820" role = "AddJointPointsConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1821" role = "AddPointCutConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1822" role = "FinalJointPoint" primary = "yes" linked = "no"></part>
+				<part metaref = "1823" role = "FinalPointCutConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1824" role = "JPAndOr_Connection1" primary = "yes" linked = "no"></part>
+				<part metaref = "1825" role = "JPAndOr_Connection2" primary = "yes" linked = "no"></part>
+				<part metaref = "1826" role = "JPSet_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1827" role = "JointPointAndSet" primary = "yes" linked = "no"></part>
+				<part metaref = "1828" role = "JointPointOrSet" primary = "yes" linked = "no"></part>
+				<part metaref = "1829" role = "Jointpoint" primary = "yes" linked = "no"></part>
+				<part metaref = "1830" role = "MainPointcut" primary = "yes" linked = "no"></part>
+				<part metaref = "1831" role = "PointCutAndOrConnection1" primary = "yes" linked = "no"></part>
+				<part metaref = "1832" role = "PointCutAndOrConnection2" primary = "yes" linked = "no"></part>
+				<part metaref = "1833" role = "PointcutAndSet" primary = "yes" linked = "no"></part>
+				<part metaref = "1834" role = "PointcutOrSet" primary = "yes" linked = "no"></part>
+				<part metaref = "1835" role = "and" primary = "yes" linked = "no"></part>
+				<part metaref = "1836" role = "or" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Reactor_Pattern" metaref = "1020" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="reactor_pattern.bmp"></regnode>
+			<constraint name="ValidReactor_Concurrency_ConnectionsrcCardinality103" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Reactor_Concurrency_Connection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Reactor_Pattern as &quot;src&quot; over Reactor_Concurrency_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidReactor_Thread_Queue_ConnectionsrcCardinality105" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Reactor_Thread_Queue_Connection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Reactor_Pattern as &quot;src&quot; over Reactor_Thread_Queue_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidReactor_Type_ConnectionsrcCardinality107" eventmask = "0x800000" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Reactor_Type_Connection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Reactor_Pattern as &quot;src&quot; over Reactor_Type_Connection, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "Acceptor" metaref = "1353" kind = "Acceptor"></role>
+			<role name = "Active_Rate" metaref = "1760" kind = "Active_Rate"></role>
+			<role name = "Active_Rate_Handle_Connection" metaref = "1761" kind = "Active_Rate_Handle_Connection"></role>
+			<role name = "Connector" metaref = "1354" kind = "Connector"></role>
+			<role name = "Dispatches" metaref = "1028" kind = "Dispatches"></role>
+			<role name = "EventHandler" metaref = "1029" kind = "EventHandler"></role>
+			<role name = "Handle" metaref = "1030" kind = "Handle"></role>
+			<role name = "Handle_Set" metaref = "1031" kind = "Handle_Set"></role>
+			<role name = "Notifies" metaref = "1032" kind = "Notifies"></role>
+			<role name = "Param_Sim_Connection" metaref = "1753" kind = "Param_Sim_Connection"></role>
+			<role name = "Queue" metaref = "1735" kind = "Queue"></role>
+			<role name = "Queue_EventHandler_Connection" metaref = "1736" kind = "Queue_EventHandler_Connection"></role>
+			<role name = "Reactor" metaref = "1033" kind = "Reactor"></role>
+			<role name = "Service_Handler" metaref = "1310" kind = "Service_Handler"></role>
+			<role name = "Service_Rate" metaref = "1737" kind = "Service_Rate"></role>
+			<role name = "Service_Rate_EventHandler_Connection" metaref = "1738" kind = "Service_Rate_EventHandler_Connection"></role>
+			<role name = "Simulation" metaref = "1754" kind = "Simulation"></role>
+			<role name = "SynchronousEventDemultiplexer" metaref = "1034" kind = "SynchronousEventDemultiplexer"></role>
+			<role name = "Uses" metaref = "1035" kind = "Uses"></role>
+			<role name = "has_registered" metaref = "1036" kind = "has_registered"></role>
+			<role name = "owns" metaref = "1037" kind = "owns"></role>
+			<aspect name = "Reactor_Aspect" metaref = "1050" >
+				<dispname>Reactor</dispname>
+				<part metaref = "1051" role = "Dispatches" primary = "yes" linked = "no"></part>
+				<part metaref = "1052" role = "EventHandler" primary = "yes" linked = "no"></part>
+				<part metaref = "1053" role = "Handle" primary = "yes" linked = "no"></part>
+				<part metaref = "1054" role = "Handle_Set" primary = "yes" linked = "no"></part>
+				<part metaref = "1055" role = "Notifies" primary = "yes" linked = "no"></part>
+				<part metaref = "1056" role = "Reactor" primary = "yes" linked = "no"></part>
+				<part metaref = "1057" role = "SynchronousEventDemultiplexer" primary = "yes" linked = "no"></part>
+				<part metaref = "1058" role = "Uses" primary = "yes" linked = "no"></part>
+				<part metaref = "1059" role = "has_registered" primary = "yes" linked = "no"></part>
+				<part metaref = "1060" role = "owns" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "Simulation_Aspect" metaref = "1704" >
+				<dispname>Simulation</dispname>
+				<part metaref = "1762" role = "Active_Rate" primary = "yes" linked = "no"></part>
+				<part metaref = "1763" role = "Active_Rate_Handle_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1705" role = "EventHandler" primary = "no" linked = "no"></part>
+				<part metaref = "1706" role = "Handle" primary = "no" linked = "no"></part>
+				<part metaref = "1755" role = "Param_Sim_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1740" role = "Queue" primary = "yes" linked = "no"></part>
+				<part metaref = "1741" role = "Queue_EventHandler_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1742" role = "Service_Rate" primary = "yes" linked = "no"></part>
+				<part metaref = "1743" role = "Service_Rate_EventHandler_Connection" primary = "yes" linked = "no"></part>
+				<part metaref = "1756" role = "Simulation" primary = "yes" linked = "no"></part>
+				<part metaref = "1709" role = "owns" primary = "no" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RefinedAbstraction" metaref = "1628" >
+				<regnode name = "namePosition" value ="0"></regnode>
+				<regnode name = "icon" value ="abstract.bmp"></regnode>
+				<regnode name = "icon" value ="abstract.bmp"></regnode>
+			<aspect name = "Bridge_Aspect" metaref = "1658" >
+			</aspect>
+		</model>
+	</folder>
+</paradigm>
