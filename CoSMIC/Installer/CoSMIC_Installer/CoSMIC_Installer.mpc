@@ -27,7 +27,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PIM/PICML/examples/PICMLExamples.wxs
 
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs    
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICMLParadigm.wxs
+    $(COSMIC_ROOT)/PIM/PICML/paradigms/PICMLParadigm.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager/UUIDManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
@@ -48,15 +48,15 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PSM/CQML/examples/CQMLExamples.wxs
 
     $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQML.wxs
-    $(COSMIC_ROOT)/psm/CQML/interpreters/CQML/CQMLParadigm.wxs
+    $(COSMIC_ROOT)/psm/CQML/paradigms/CQMLParadigm.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.wxs
-//    $(COSMIC_ROOT)/psm/CQML/interpreters/EventBusComponent/EventBusComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs
 //    $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfig/RTConfig.wxs
+//    $(COSMIC_ROOT)/psm/CQML/interpreters/EventBusComponent/EventBusComponent.wxs
   }
 
   Wxi_Files {

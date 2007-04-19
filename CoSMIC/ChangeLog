@@ -1,59 +1,77 @@
+Thu Apr 19 19:33:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Updated the mpc file to include *Paradigm.wxs from paradigms.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Moved the above two files from .../interpreters/PICML/
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Removed these files.
+
 Thu Apr 19 18:49:46 UTC 2007  dkaul  <dkaul@dre.vanderbilt.edu>
 
         * PIM/POSAML/docs:
 
-	  Directory created to store documents for POSAML paradigm
-	
+          Directory created to store documents for POSAML paradigm
+
         * PIM/POSAML/examples/POSAMLExamples.wxs:
-        
+
           WXS file for example directory
-          
+
         * PIM/POSAML/examples/Test_Model.xme:
-          
+
           Corrected Acceptor-Connector in example model
 
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
-        
+
           Added File.cpp and File.h file in mpc
-          
+
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.reg:
-          
+
           Added this file to register this interpreter
-          
+
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs:
-        
+
           Added new WXS file for Aspect Interpreter
-          
+
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreterd.reg:
-        
+
           Added this file to register debug version of this interpreter
-          
+
         * PIM/POSAML/interpreters/AspectInterpreter/Component.rc:
 
-          Added missing file 
-          
+          Added missing file
+
         * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
-        
+
           Some minor modifications in mpc file
-          
+
         * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.reg:
-          
+
           Added this file to register this interpreter
-        
+
         * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs:
-        
+
           Added new WXS file for Configurator Interpreter
-          
+
         * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreterd.reg:
 
-	  Added this file to register this interpreter
-	  
+          Added this file to register this interpreter
+
         * PIM/POSAML/paradigms/POSAML.xmp:
-          
+
           Added XMP file of POSAML
-          
+
         * PIM/POSAML/paradigms/POSAMLParadigm.wxs:
-        
+
           Main WXS file of POSAML paradigm
 
 Wed Apr 18 13:36:37 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
