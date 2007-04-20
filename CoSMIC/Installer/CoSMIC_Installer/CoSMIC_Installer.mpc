@@ -57,6 +57,15 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs
 //    $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfig/RTConfig.wxs
 //    $(COSMIC_ROOT)/psm/CQML/interpreters/EventBusComponent/EventBusComponent.wxs
+
+
+/////////////////////////////////////////////////////////////////////////
+/////////////// Transformations
+/////////////////////////////////////////////////////////////////////////
+
+    $(COSMIC_ROOT)/Transformations/QUICKER/QUICKER.wxs
+
+
   }
 
   Wxi_Files {

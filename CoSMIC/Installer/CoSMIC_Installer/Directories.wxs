@@ -23,6 +23,12 @@
                 <Directory Id='CQMLIconsDir' Name='icons' FileSource='[CQMLParadigmDir]icons' />
               </Directory>
             </Directory>
+            <Directory Id='CoSMICTransformationsDir' Name='transformations' FileSource='[INSTALLDIR]transformations' >
+              <Directory Id='QUICKERTransDir' Name='QUICKER' FileSource='[CoSMICTransformationsDir]QUICKER' >
+                <Directory Id='QUICKERExamplesDir' Name='examples' FileSource='[QUICKERTransDir]examples' />
+                <Directory Id='QUICKERParadigmsDir' Name='paradigms' FileSource='[QUICKERTransDir]paradigms' />
+              </Directory>
+            </Directory>
           </Directory>
         </Directory>
       </Directory>

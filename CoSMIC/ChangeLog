@@ -1,3 +1,13 @@
+Fri Apr 20 20:32:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Transformations/QUICKER/QUICKER.wxs:
+
+          Added QUICKER transformations project to the CoSMIC installer.
+
 Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
@@ -6,7 +16,7 @@ Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.reg:
 
-          Added this file for registering benchmark interpreter in Release           
+          Added this file for registering benchmark interpreter in Release
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
 
@@ -14,11 +24,11 @@ Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreterd.reg:
 
-          Added this file for registering benchmark interpreter in Debug           
+          Added this file for registering benchmark interpreter in Debug
 
         * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.reg:
 
-          Added this file for registering OMNeT++ interpreter in Release 
+          Added this file for registering OMNeT++ interpreter in Release
 
         * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
 
@@ -26,7 +36,7 @@ Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreterd.reg:
 
-          Added this file for registering OMNeT++ interpreter in Debug 
+          Added this file for registering OMNeT++ interpreter in Debug
 
         * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
 
