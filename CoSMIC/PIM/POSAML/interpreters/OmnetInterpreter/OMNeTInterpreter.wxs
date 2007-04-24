@@ -36,15 +36,15 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.OMNeTInterpreter"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="Tooltip" Value="OMNeTInterpreter Interpreter" Type="string" />
+          <RegistryValue Name="Tooltip" Value="OMNeT Interpreter" Type="string" />
           <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
-          <RegistryValue Name="Paradigm" Value="CQML" Type="string" />
+          <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
           <RegistryValue Name="Type" Value="1" Type="integer" />
-          <RegistryValue Name="Description" Value="OMNeTInterpreter" Type="string" />
+          <RegistryValue Name="Description" Value="OMNeT Interpreter" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.OMNeTInterpreter\Associated"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="CQML" Value="" Type="string" />
+          <RegistryValue Name="POSAML" Value="" Type="string" />
         </RegistryKey>
       </Component>
     </DirectoryRef>

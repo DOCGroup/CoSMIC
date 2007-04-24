@@ -122,9 +122,15 @@ char* GetRegistryValue (HKEY key, const char* keyName, const char* name)
 
 std::vector <std::string> create_paradigms_vector ()
 {
+  /* Add any new DSML paradigm names here. 
+     You should not need to modify any other
+	 parts of this source file.
+  */
+
   std::vector <std::string> paradigms;
   paradigms.push_back ("PICML");
   paradigms.push_back ("CQML");
+  paradigms.push_back ("POSAML");
 
   return paradigms;
 }

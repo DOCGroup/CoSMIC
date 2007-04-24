@@ -1,3 +1,39 @@
+Tue Apr 24 00:30:54 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          Updated the documentation.        
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Refactored the PICML wxs files to better capture the WiX components.
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
+
+        * PIM/POSAML/paradigms/POSAMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Refactored the CQML WiX files to better capture the WiX components.
+
+        * ReleaseNotes.rtf:
+
+          Included POSAML and its interpreters into the CoSMIC installer.
+
 Fri Apr 20 20:32:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:

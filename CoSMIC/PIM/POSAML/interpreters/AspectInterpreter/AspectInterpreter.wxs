@@ -39,7 +39,7 @@
           <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
           <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
           <RegistryValue Name="Type" Value="1" Type="integer" />
-          <RegistryValue Name="Description" Value="AspectInterpreter" Type="string" />
+          <RegistryValue Name="Description" Value="Aspect Interpreter" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.AspectInterpreter\Associated"
                      Action="createAndRemoveOnUninstall">

@@ -11,37 +11,49 @@
 
       <ComponentRef Id='POSAMLParadigm' />
       <ComponentRef Id='POSAMLParadigmIcons' />
-      <ComponentRef Id='POSAMLLibrary'/>
       <ComponentRef Id='UtilsLibrary'/>
 
       <ComponentRef Id='AspectInterpreterLibrary'/>
       <ComponentRef Id='BenchmarkInterpreterLibrary' />
       <ComponentRef Id='ConfiguratorInterpreterLibrary' />
       <ComponentRef Id='OMNeTInterpreterLibrary' />
-      
-      <ComponentRef Id='POSAMLDocs' />
+
       <ComponentRef Id='POSAMLExamples' />
       <ComponentRef Id="POSAMLRegistryComponent" />
     </Feature>
 
     <DirectoryRef Id="POSAMLParadigmDir">
-      <Component Id='POSAMLParadigm' Guid='15FC9A31-EA8F-4406-B2D3-1E6210CB6248'>
+      <Component Id='POSAMLParadigm' Guid='3FB48C0F-2C90-4b56-8D7D-7BBF1A93B93B'>
         <File Id='POSAMLXME'
               Name='POSAML.xme'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\POSAML.xme' />
        
-        <!-- The GUID in the POSAML.xmp has to match exactly here for the registry entries. 
-      This needs to be done everytime the paradigm is freshly interpreted. -->
-
         <File Id='POSAMLXMP'
               Name='POSAML.xmp'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PIM\POSAML\paradigms\POSAML.xmp' />
 
+        <!-- No matter which paradigm registration technique you 
+             use, .mta file should be removed while uninstalling. -->
         <RemoveFile Id='POSAMLMTA' Name='POSAML.mta' On='uninstall' />
+
       </Component>
     </DirectoryRef>
+    
+    
+    <DirectoryRef Id='POSAMLParadigmDir'>
+      <Component Id="POSAMLRegistryComponent"
+                 Guid="18F38F86-55F0-441a-83FA-20BAE81E53DC" >
+        <RegistryKey Root="HKLM" Key="Software\ISIS\CoSMIC"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="POSAMLParadigm" Value="[POSAMLParadigmDir]"
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+    
+    
     <DirectoryRef Id="POSAMLIconsDir">
       <Component Id='POSAMLParadigmIcons' Guid='{860B9369-EDAF-4eb0-9094-7ECDE99280C8}'>
 

@@ -18,6 +18,10 @@
                 <Directory Id='PICMLExamplesDir' Name='examples' FileSource='[PICMLParadigmDir]examples' />
                 <Directory Id='PICMLIconsDir' Name='icons' FileSource='[PICMLParadigmDir]icons' />
               </Directory>
+              <Directory Id='POSAMLParadigmDir' Name='POSAML' FileSource='[CoSMICParadigmsDir]POSAML' >
+                <Directory Id='POSAMLExamplesDir' Name='examples' FileSource='[POSAMLParadigmDir]examples' />
+                <Directory Id='POSAMLIconsDir' Name='icons' FileSource='[POSAMLParadigmDir]icons' />
+              </Directory>
               <Directory Id='CQMLParadigmDir' Name='CQML' FileSource='[CoSMICParadigmsDir]CQML' >
                 <Directory Id='CQMLExamplesDir' Name='examples' FileSource='[CQMLParadigmDir]examples' />
                 <Directory Id='CQMLIconsDir' Name='icons' FileSource='[CQMLParadigmDir]icons' />

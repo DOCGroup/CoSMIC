@@ -45,16 +45,19 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xml' />
 
-        <!-- The GUID in the CQML.xmp has to match exactly here for the registry entries. 
-      This needs to be done everytime the paradigm is freshly interpreted. -->
-        
-        <File Id='PICMLXMP'
+         <File Id='PICMLXMP'
               Name='PICML.xmp'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\pim\picml\paradigms\PICML.xmp' />
 
-        <!-- The registry writing way of registring paradims is disabled now because
-             it does not seem work reliably. We use CustomActionDLL instead. Therefore,
+        <!-- GUID match warning begins here. -->
+        <!-- The GUID in the .xmp has to match exactly here 
+             for the registry entries. This needs to be done 
+             everytime the paradigm is freshly interpreted. -->
+        
+        <!-- The registry writing way of registring paradims is 
+             disabled now because it does not seem work reliably. 
+             We use CustomActionDLL instead. Therefore, 
              no need to ship the .mta file. -->
         <!--
         <File Id='PICMLMTA'
@@ -74,12 +77,28 @@
                          Type="string"  />
         </RegistryKey>
         -->
-        <!-- GUID match Warning ends here. -->
+        <!-- GUID match warning ends here. -->
 
+        <!-- No matter which paradigm registration technique you 
+             use, .mta file should be removed while uninstalling. -->
         <RemoveFile Id='PICMLMTA' Name='PICML.mta' On='uninstall' />
 
       </Component>
     </DirectoryRef>
+    
+    
+    <DirectoryRef Id='PICMLParadigmDir'>
+      <Component Id="PICMLRegistryComponent"
+                 Guid="F4D4FEA4-1998-4222-A9E0-CBDF320C5388" >
+        <RegistryKey Root="HKLM" Key="Software\ISIS\CoSMIC"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="PICMLParadigm" Value="[PICMLParadigmDir]"
+                         Type="string" KeyPath="yes" />
+        </RegistryKey>
+      </Component>
+    </DirectoryRef>
+    
+    
     <DirectoryRef Id="PICMLIconsDir">
       <Component Id='PICMLParadigmIcons' Guid='2AE68EFF-5F6D-4607-9D3C-485D499E0C21'>
         <File Id='PICML_icon_1'

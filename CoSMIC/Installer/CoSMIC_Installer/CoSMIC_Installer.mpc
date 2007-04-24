@@ -17,7 +17,8 @@ project (CoSMIC_Installer) : wix {
     ./vc8_assemblies.wxs
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
-
+    $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager/UUIDManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
 
 /////////////////////////////////////////////////////////////////////////
 /////////////// PICML
@@ -29,8 +30,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs    
     $(COSMIC_ROOT)/PIM/PICML/paradigms/PICMLParadigm.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
-    $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager/UUIDManager.wxs
-    $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
+
     $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator
@@ -65,6 +65,17 @@ project (CoSMIC_Installer) : wix {
 
     $(COSMIC_ROOT)/Transformations/QUICKER/QUICKER.wxs
 
+
+/////////////////////////////////////////////////////////////////////////
+/////////////// POSAML
+/////////////////////////////////////////////////////////////////////////
+
+    $(COSMIC_ROOT)/PIM/POSAML/paradigms/POSAMLParadigm.wxs
+    $(COSMIC_ROOT)/PIM/POSAML/examples/POSAMLExamples.wxs
+    $(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs
+    $(COSMIC_ROOT)/PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs
+    $(COSMIC_ROOT)/PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs
+    $(COSMIC_ROOT)/PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.wxs
 
   }
 

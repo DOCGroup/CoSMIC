@@ -38,7 +38,7 @@
           <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
           <RegistryValue Name="Paradigm" Value="POSAML" Type="string" />
           <RegistryValue Name="Type" Value="1" Type="integer" />
-          <RegistryValue Name="Description" Value="BenchmarkInterpreter" Type="string" />
+          <RegistryValue Name="Description" Value="Benchmark Interpreter" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.BenchmarkInterpreter\Associated"
                      Action="createAndRemoveOnUninstall">
