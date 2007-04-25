@@ -20,12 +20,22 @@ $port = 10000;
 $spawn = 1;
 
 # parse the command line arguments
-while ($arg = shift)
-{
-    $arg eq "--localhost" and $hostname = "localhost";
-    $arg eq "--port" and !($port = int (shift)) and die "*** syntax error: invalid port number\n";
-    $arg eq "--spawn" and !($spawn = int (shift)) and die "*** syntax error: invalid number of daemons to spawn\n";
-    $arg eq "--help" and print_help () and exit;
+while ($arg = shift) {
+  if ($arg eq "--localhost") {
+    $hostname = "localhost";
+  }
+  elsif ($arg eq "--port") {
+    !($port = int (shift)) and die "*** syntax error: invalid port number\n";
+  }
+  elsif ($arg eq "--spawn") {
+    !($spawn = int (shift)) and die "*** syntax error: invalid number of daemons to spawn\n";
+  }
+  elsif ($arg eq "--help") {
+    print_help () and exit;
+  }
+  else {
+    $default_node_args .= "$arg ";
+  }
 }
 
 $current_dir = cwd;
@@ -48,13 +58,16 @@ else {
 $node_daemon = "$CIAO_ROOT/bin/NodeManager";
 @daemons = ();
 for (1..$spawn) {
-    $node_args = "-ORBEndpoint iiop://$hostname:$port -s $CIAO_ROOT/bin/NodeApplication";
-    $port ++;
+    $node_args = $default_node_args .
+      "-ORBEndpoint iiop://$hostname:$port -s $CIAO_ROOT/bin/NodeApplication";
 
     $temp = new PerlACE::Process ($node_daemon, $node_args);
     if ($temp->Spawn () != -1) {
-  push @daemons, $temp;
+      push @daemons, $temp;
     }
+
+    # go to the next port
+    $port ++;
 }
 
 # sleep indefinitely
@@ -76,7 +89,7 @@ sub print_help
 
     print "SYNTAX: $syntax\n\n";
     while (($key, $value) = each %help) {
-  print "  --$key       $value\n";
+      print "  --$key       $value\n";
     }
     1;
 }

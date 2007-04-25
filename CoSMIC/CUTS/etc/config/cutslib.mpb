@@ -5,10 +5,5 @@ project : acelib, cuts_base {
   after += CUTS
 
   libout = $(CUTS_ROOT)/lib
-
-  specific (vc6, vc7, vc71, vc8, nmake) {
-    dllout = $(CUTS_ROOT)/bin
-  } else {
-    dllout = $(CUTS_ROOT)/lib
-  }
+  dllout = $(CUTS_ROOT)/lib
 }

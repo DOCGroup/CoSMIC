@@ -1,16 +1,27 @@
+Wed Apr 25 23:08:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * bin/cuts_node.pl:
+
+          Added support for passing parameters to the NodeManager.
+
+        * etc/config/cutslib.mpb:
+
+          Changed the output location of .dll to $CUTS_ROOT/lib
+          on Windows machines.
+
 Wed Apr 18 16:27:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service_Manager.cpp:
-        
+
           Bug fix that was causing the service manager for each service
           loaded in the BDC to not be initialized. The result was it
           caused the BDC to crash.
-        
+
         * cuts/BDC/BDC_Task.cpp:
 
-          Improved the output messages to reflect the actually 
+          Improved the output messages to reflect the actually
           behavior of the task when collecting metrics.
-        
+
 Wed Apr 18 14:55:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:
