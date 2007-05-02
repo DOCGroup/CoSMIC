@@ -15,11 +15,7 @@
 #ifndef _CUTS_CPU_WORKER_H_
 #define _CUTS_CPU_WORKER_H_
 
-#include "cuts/Action.h"
-#include "cuts/Action_T.h"
-#include "cuts/Worker_T.h"
 #include "cuts/Worker.h"
-#include "cuts/WML_Macros.h"
 #include "ace/Thread_Mutex.h"
 #include <vector>
 
@@ -31,62 +27,9 @@
  */
 //=============================================================================
 
-class CUTS_Export CUTS_CPU_Worker :
-  public CUTS_Worker_T <CUTS_CPU_Worker>,
-  public CUTS_Worker
+class CUTS_Export CUTS_CPU_Worker : public CUTS_Worker
 {
 public:
-  //@@CUTS::WML
-  //===========================================================================
-  CUTS_ACTION_DECLARE (CUTS_CPU_Worker, Run_Processor)
-  {
-  public:
-    CUTS_ACTION_DEFAULT_CONSTRUCTOR (CUTS_CPU_Worker, Run_Processor)
-    {
-
-    }
-
-    CUTS_ACTION_DESTRUCTOR (Run_Processor)
-    {
-
-    }
-
-    CUTS_ACTION_EXECUTE_NO_ARGS (process);
-    CUTS_DECLARE_ACTION_FACTORY (CUTS_CPU_Worker, Run_Processor);
-  };
-
-  CUTS_ACTION_DECLARE (CUTS_CPU_Worker, Run_Processor_Ex)
-  {
-  public:
-    CUTS_ACTION_DEFAULT_CONSTRUCTOR (CUTS_CPU_Worker, Run_Processor_Ex)
-    {
-
-    }
-
-    CUTS_ACTION_INIT_CONSTRUCTOR_BEGIN (CUTS_CPU_Worker, Run_Processor_Ex)
-      CUTS_ACTION_ARGUMENT (size_t, cputime)
-      CUTS_ACTION_INIT_CONSTRUCTOR_END (CUTS_CPU_Worker)
-      CUTS_ACTION_PARAMETER_INIT (cputime_, cputime)
-    {
-
-    }
-
-    CUTS_ACTION_DESTRUCTOR (Run_Processor_Ex)
-    {
-
-    }
-
-    CUTS_ACTION_EXECUTE (run, (this->cputime_));
-
-    CUTS_DECLARE_ACTION_FACTORY (CUTS_CPU_Worker, Run_Processor_Ex);
-
-    CUTS_ACTION_PARAMETER_LIST_BEGIN
-    CUTS_ACTION_PARAMETER_DECLARE (size_t, cputime_);
-    CUTS_ACTION_PARAMETER_LIST_END
-  };
-  //===========================================================================
-  //@@CUTS::WML
-
 public:
   /// Constructor.
   CUTS_CPU_Worker (void);
@@ -129,8 +72,6 @@ private:
 
   void make_calibration_filename (ACE_CString & filename);
 
-  CUTS_ACTION_TABLE_DECLARE ();
-
   /// Number of visits completed by the CPU worker.
   long visits_;
 
@@ -145,34 +86,6 @@ private:
 };
 
 CUTS_WORKER_FACTORY_EXPORT_DECL (CUTS_Export);
-
-//=============================================================================
-/*
- * template <>
- * CUTS_Worker_Traits <CUTS_CPU_Worker>
- */
-//=============================================================================
-
-template <>
-class CUTS_Worker_Traits <CUTS_CPU_Worker>
-{
-public:
-  static const long worker_id_ = 2;
-};
-
-//=============================================================================
-/*
- * template <>
- * CUTS_Action_Traits <CUTS_CPU_Worker::*>
- */
-//=============================================================================
-
-template <>
-class CUTS_Action_Traits <CUTS_CPU_Worker::Run_Processor>
-{
-public:
-  static const long action_id_ = 1;
-};
 
 #if defined (__CUTS_INLINE__)
 #include "cuts/CPUWorker.inl"

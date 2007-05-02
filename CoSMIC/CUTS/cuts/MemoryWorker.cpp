@@ -9,13 +9,6 @@
 #include "cuts/MemoryWorker.inl"
 #endif
 
-CUTS_ACTION_TABLE_BEGIN (CUTS_Memory_Worker, CUTS_Worker)
-CUTS_ACTION_TABLE_ENTRY ("Allocate_Memory",
-                         CUTS_Memory_Worker::Allocate_Memory);
-CUTS_ACTION_TABLE_ENTRY ("Deallocate_Memory",
-                         CUTS_Memory_Worker::Deallocate_Memory);
-CUTS_ACTION_TABLE_END (CUTS_Memory_Worker)
-
 //
 // CUTS_Memory_Worker
 //

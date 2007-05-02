@@ -1,3 +1,24 @@
+Wed May  2 19:43:23 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.cpp:
+        * cuts/CUTS.mpc:
+        * cuts/DatabaseWorker.h:
+        * cuts/DatabaseWorker.cpp:
+        * cuts/MemoryWorker.h:
+        * cuts/MemoryWorker.cpp:
+
+          Removed all occurences of WML macros for creating and
+          using functors. Now, we generate unnamed functors that
+          are used with the benchmarking framework.
+
+        * cuts/WML_Macros.h:
+        * cuts/Worker_T.h:
+        * cuts/Worker_T.cpp:
+        * cuts/Worker_T.inl:
+
+          Removed this file.
+
 Wed May  2 18:02:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Activation_Record_Log.h:

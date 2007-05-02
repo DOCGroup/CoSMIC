@@ -18,10 +18,6 @@
 
 #define CUTS_CPU_CYCLES 25
 
-CUTS_ACTION_TABLE_BEGIN (CUTS_CPU_Worker, CUTS_Worker)
-  CUTS_ACTION_TABLE_ENTRY("Run_Processor", CUTS_CPU_Worker::Run_Processor);
-CUTS_ACTION_TABLE_END (CUTS_CPU_Worker)
-
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000
 #define TEST_INC_MSEC    10
@@ -337,6 +333,6 @@ bool CUTS_CPU_Worker::init (void)
                   "*** error (CUTS_CPU_Worker): failed to open %s\n",
                   filename.c_str ()));
     }
-               
+
   return this->count_per_msec_ != 0.0;
 }

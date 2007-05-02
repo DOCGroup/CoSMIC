@@ -16,17 +16,6 @@
 
 #define MAX_DATA_SIZE 255
 
-//@@ CUTS [WORKER_TABLE]
-CUTS_ACTION_TABLE_BEGIN (CUTS_Database_Worker, CUTS_Worker)
-CUTS_ACTION_TABLE_ENTRY ("Create_Connection",
-                         CUTS_Database_Worker::Create_Connection);
-CUTS_ACTION_TABLE_ENTRY ("Destroy_Connection",
-                         CUTS_Database_Worker::Destroy_Connection);
-CUTS_ACTION_TABLE_ENTRY ("Process",
-                         CUTS_Database_Worker::Process);
-CUTS_ACTION_TABLE_END (CUTS_Database_Worker)
-//@@ CUTS [WORKER_TABLE]
-
 //
 // CUTS_DatabaseWorker
 //

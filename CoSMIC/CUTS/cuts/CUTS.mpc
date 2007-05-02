@@ -83,7 +83,6 @@ project (CUTS) : cutslib {
     Log_Msg.h
     mem_action_t.h
     Time_Value_History.h
-    WML_Macros.h
   }
 
   Source_Files {
