@@ -1,3 +1,17 @@
+Wed May  2 21:55:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Worker.h:
+
+          Added macro that contains the string version of the
+          factory symbol for dynamically loading workers.
+
+        * utils/calibrate/Calibrate_Options.h:
+        * utils/calibrate/calibrate.cpp:
+        * utils/calibrate/calibrate.mpc:
+
+          Added commandline options for using verbose messages
+          and specifying the location of a worker to calibrate.
+
 Wed May  2 20:18:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:

@@ -108,10 +108,18 @@ private:
   const CUTS_Worker & operator = (const CUTS_Worker &);
 };
 
+/// Stringified version of the factory function for a worker. This
+/// useful when trying to load the factory symbol from a shared library.
+#define CUTS_WORKER_FACTORY_SYMBOL_NAME     "create_cuts_worker"
+
+/// Declares the factory method for dynamically loading the worker
+/// at runtime. There can only be one declaration per library.
 #define CUTS_WORKER_FACTORY_EXPORT_DECL(export_macro) \
   extern "C" export_macro \
   CUTS_Worker * create_cuts_worker (void)
 
+/// Implements the factory method for dynamically loading the worker
+/// at runtime. There can only be one declaration per library.
 #define CUTS_WORKER_FACTORY_EXPORT_IMPL(worker) \
   CUTS_Worker * create_cuts_worker (void) \
   { \

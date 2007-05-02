@@ -6,4 +6,8 @@ project (CUTS_calibrate) : cutsexe {
   Source_Files {
     calibrate.cpp
   }
+
+  Header_Files {
+    Calibrate_Options.h
+  }
 }
