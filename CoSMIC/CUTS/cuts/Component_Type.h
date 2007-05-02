@@ -26,7 +26,7 @@ typedef
 
 //=============================================================================
 /**
- * @struct      CUTS_Component_Type
+ * @struct CUTS_Component_Type
  *
  * Contains information about a components type. The type information
  * includes its typename and the names of its ports.
