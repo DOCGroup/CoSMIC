@@ -1,3 +1,9 @@
+Wed May  2 22:26:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Benchmark_Agent.h:
+
+          Updated Doxygen documentation.
+
 Wed May  2 22:11:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Agent.h:
