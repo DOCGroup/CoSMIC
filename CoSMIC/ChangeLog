@@ -1,8 +1,14 @@
+Wed May  2 19:11:11 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * ReleaseNotes.rtf:
+
+          Added release notes for Security QoS interpreter.
+
 Tue Apr 24 00:30:54 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
 
-          Updated the documentation.        
+          Updated the documentation.
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
