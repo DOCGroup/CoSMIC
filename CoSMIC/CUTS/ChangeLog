@@ -1,3 +1,9 @@
+Wed May  2 22:48:05 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Component_Type.h:
+
+          Updated Doxygen documentation.
+
 Wed May  2 22:26:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Benchmark_Agent.h:
