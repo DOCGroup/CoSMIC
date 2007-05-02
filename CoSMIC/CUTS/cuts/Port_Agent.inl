@@ -44,6 +44,16 @@ void CUTS_Port_Agent::name (const ACE_CString & name)
 // port_measurement_pool
 //
 CUTS_INLINE
+CUTS_Port_Measurement_Pool &
+CUTS_Port_Agent::port_measurement_pool (void)
+{
+  return this->pool_;
+}
+
+//
+// port_measurement_pool
+//
+CUTS_INLINE
 const CUTS_Port_Measurement_Pool &
 CUTS_Port_Agent::port_measurement_pool (void) const
 {
@@ -82,6 +92,15 @@ bool CUTS_Port_Agent::is_active (void) const
 //
 CUTS_INLINE
 const CUTS_Activation_Record_Log & CUTS_Port_Agent::log (void) const
+{
+  return this->log_;
+}
+
+//
+// log
+//
+CUTS_INLINE
+CUTS_Activation_Record_Log & CUTS_Port_Agent::log (void)
 {
   return this->log_;
 }

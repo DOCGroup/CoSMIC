@@ -8,6 +8,7 @@
 
 #include "cuts/Component_Registry_Node.h"
 #include "cuts/Component_Registry_Handler.h"
+#include "cuts/Component_Type.h"
 #include "ace/Guard_T.h"
 #include "ace/Thread_Manager.h"
 
@@ -26,10 +27,15 @@ CUTS_Component_Registry::CUTS_Component_Registry (void)
 //
 CUTS_Component_Registry::~CUTS_Component_Registry (void)
 {
-  Component_Registry_Map::iterator iter (this->registry_);
+  // Delete all the instances in the registry.
+  Component_Registry_Map::iterator reg_iter (this->registry_);
+  for (reg_iter; !reg_iter.done (); reg_iter.advance ())
+    delete reg_iter->int_id_;
 
-  for (iter; !iter.done (); iter.advance ())
-    delete iter->int_id_;
+  // Delete all the types in the registry.
+  CUTS_Component_Type_Map::CONST_ITERATOR type_iter (this->component_types_);
+  for (type_iter; !type_iter.done (); type_iter ++)
+    delete type_iter->item ();
 }
 
 //

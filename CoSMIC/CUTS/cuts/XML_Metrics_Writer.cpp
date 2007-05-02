@@ -6,12 +6,13 @@
 #include "cuts/XML_Metrics_Writer.inl"
 #endif
 
-#include "cuts/Component_Registry.h"
-#include "cuts/Time.h"
-#include "cuts/System_Metric.h"
+#include "cuts/Component_Info.h"
 #include "cuts/Component_Metric.h"
+#include "cuts/Component_Registry.h"
+#include "cuts/Component_Type.h"
 #include "cuts/Port_Metric.h"
-#include "cuts/Time_Metric.h"
+#include "cuts/System_Metric.h"
+#include "cuts/Time.h"
 
 //
 // ~CUTS_XML_Metrics_Writer
@@ -37,7 +38,7 @@ CUTS_XML_Metrics_Writer::~CUTS_XML_Metrics_Writer (void)
 // visit_system_metrics
 //
 void CUTS_XML_Metrics_Writer::
-visit_system_metrics (const CUTS_System_Metric & metrics)
+visit_system_metric (const CUTS_System_Metric & system_metric)
 {
   // Clear the flag just in case this this method was invoked
   // and things didn't end on a nice note!!
@@ -50,46 +51,50 @@ visit_system_metrics (const CUTS_System_Metric & metrics)
 
   // Save the timestamp for future reference. We will need this to
   // determine which components were updated.
-  this->timestamp_ = metrics.get_timestamp ();
+  this->timestamp_ = system_metric.get_timestamp ();
 
   this->output_
-    << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << std::endl
+    << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>" << std::endl
     << "<SystemMetrics>" << std::endl;
 
+  // Generate the UUID for the system metrics. This is dependent
+  // on if the UUID was set before the generation started.
   if (!this->uuid_.empty ())
   {
     this->output_
       <<  "  <UUID>" << this->uuid_.c_str () << "</UUID>" << std::endl;
   }
+  else
+  {
+    this->output_
+      <<  "  <UUID />" << std::endl;
+  }
 
+  // Print the timestamp for this XML log file.
   this->output_
     << "  <TimeStamp>"
     << CUTS_string_time (this->timestamp_.sec (), "%m-%d-%Y %H:%M:%S")
     << "</TimeStamp>" << std::endl;
 
-  CUTS_Component_Metric_Map::const_iterator iter;
-  for (iter  = metrics.component_metrics ().begin ();
-       iter != metrics.component_metrics ().end ();
-       iter ++)
+  CUTS_Component_Metric_Map::
+    CONST_ITERATOR iter (system_metric.component_metrics ());
+
+  for (iter; !iter.done (); iter ++)
   {
     // There is no need to continue if there isn't any
     // up-to-date information.
-    if (iter->second->timestamp () != this->timestamp_)
-    {
+    if (iter->item ()->timestamp () != this->timestamp_)
       continue;
-    }
 
     // Generate the open tag for the <ComponentMetrics>
-    const CUTS_Component_Info * info = 0;
-
-    if (this->registry_.get_component_info (iter->first, &info) == 0)
+    if (this->registry_.get_component_info (iter->key (), &this->myinfo_) == 0)
     {
       this->output_
         << "  " << "<ComponentMetrics id=\""
-        << info->inst_.c_str ()   << "\">" << std::endl;
+        << this->myinfo_->inst_.c_str ()   << "\">" << std::endl;
 
       // Visit the component's metric.
-      iter->second->accept (*this);
+      iter->item ()->accept (*this);
 
       // Generate the closing tag for the <ComponentMetrics>.
       this->output_
@@ -103,111 +108,34 @@ visit_system_metrics (const CUTS_System_Metric & metrics)
 }
 
 //
-// visit_component_metrics
+// visit_component_metric
 //
 void CUTS_XML_Metrics_Writer::
-visit_component_metrics (const CUTS_Component_Metric & metrics)
+visit_component_metric (const CUTS_Component_Metric & metrics)
 {
-  CUTS_Port_Metric_Map::const_iterator iter;
+  ACE_CString portname;
+  CUTS_Port_Metric_Map::CONST_ITERATOR iter (metrics.port_metrics ());
 
-  for (iter  = metrics.port_metrics ().begin ();
-       iter != metrics.port_metrics ().end ();
-       iter ++)
+  for (iter; !iter.done (); iter ++)
   {
+    // There is no need to continue if metrics our out-of-date.
+    if (iter->item ()->timestamp () != this->timestamp_)
+      continue;
 
-    CUTS_Sender_Port_Map::const_iterator s_iter;
+    // Get the name of the port.
+    this->myinfo_->type_->sources_.find (iter->key (), portname);
 
-    // Generate the opening tag.
     this->output_
-      << "    <Port name=\"" << iter->first << "\">" << std::endl;
+      << "    <Port name=\"" << portname.c_str ()
+      << "\">" << std::endl;
 
-    for (s_iter  = iter->second.begin ();
-         s_iter != iter->second.end ();
-         s_iter ++)
-    {
-      // There is no need to continue if there isn't any
-      // up-to-date information.
-      if (s_iter->second->timestamp () != this->timestamp_)
-      {
-        continue;
-      }
+    iter->item ()->accept (*this);
 
-      // Generate the opening tag for the port metrics.
+    // Generate the closing tag and erase the port name.
+    this->output_
+      << "    </Port>" << std::endl;
 
-      const CUTS_Component_Info * info = 0;
-      if (this->registry_.get_component_info (s_iter->first, &info) == 0)
-      {
-        this->output_
-          << "      <PortMetric sender=\""
-          << info->inst_.c_str () << "\">" << std::endl;
-      }
-      else
-      {
-        this->output_
-          << "      <PortMetric sender=\"UNKNOWN\">" << std::endl;
-      }
-
-      // Visit the port metrics for this sender.
-      s_iter->second->accept (*this);
-
-      // Generate the closing tag.
-      this->output_
-        << "      </PortMetric>" << std::endl;
-    }
-
-    // Write the history metrics for this port. Right now, the history is
-    // stored under the CUTS_UNKNOWN_IMPL sender id.
-    s_iter = iter->second.find (CUTS_UNKNOWN_IMPL);
-
-    if (s_iter != iter->second.end ())
-    {
-      const CUTS_Port_Metric * unknown = s_iter->second;
-      const CUTS_Activation_Record_Log & log = unknown->log ();
-      size_t logsize = log.size ();
-
-      this->output_
-        << "      <PortLog count=\"" << logsize << "\">" << std::endl;
-
-      for (size_t i = 0; i < logsize; i ++)
-      {
-        const CUTS_Component_Info * info = 0;
-        this->registry_.get_component_info (log[i].owner (), &info);
-
-        this->output_
-          << "        <LogEntry sender=\""
-          << info->inst_.c_str () << "\">" << std::endl
-          << "          <QueueTime sec=\"" << log[i].queue_time ().sec ()
-          << "\" usec=\"" << log[i].queue_time ().usec ()
-          << "\" />" << std::endl
-          << "          <EnterTime sec=\"" << log[i].start_time ().sec ()
-          << "\" usec=\"" << log[i].start_time ().usec ()
-          << "\" />" << std::endl;
-
-        CUTS_Activation_Record_Endpoints::
-          CONST_ITERATOR endpoint_iter (log[i].endpoints ());
-
-        while (!endpoint_iter.done ())
-        {
-          this->output_
-            << "          <ExitTime name=\""
-            << unknown->endpoint_name (endpoint_iter->key ()).c_str ()
-            << "\" sec=\"" << endpoint_iter->item ().sec ()
-            << "\" usec=\"" << endpoint_iter->item ().usec ()
-            << "\" />" << std::endl;
-
-          endpoint_iter.advance ();
-        }
-
-        this->output_
-          << "        </LogEntry>" << std::endl;
-      }
-
-      this->output_
-        << "      </PortLog>" << std::endl;
-    }
-
-    // Generate the closing tag.
-    this->output_ << "    </Port>" << std::endl;
+    portname.clear ();
   }
 }
 
@@ -215,41 +143,135 @@ visit_component_metrics (const CUTS_Component_Metric & metrics)
 // visit_port_metrics
 //
 void CUTS_XML_Metrics_Writer::
-visit_port_metrics (const CUTS_Port_Metric & metrics)
+visit_port_metric (const CUTS_Port_Metric & metrics)
 {
-  // Generate the opening tag for the <TransitTime>.
-  this->output_
-    << "        <QueueingTime count=\""
-    << metrics.transit_time ().count () << "\">" << std::endl;
+  CUTS_Port_Measurement_Map::
+    CONST_ITERATOR sender_iter (metrics.sender_map ().hash_map ());
 
-  // Visit the time metrics for the transit time.
-  metrics.transit_time ().accept (*this);
+  const CUTS_Component_Info * sender = 0;
 
-  // Generate the closing tag for the <TransitTime>.
-  this->output_
-    << "        </QueueingTime>" << std::endl;
-
-  CUTS_Endpoint_Metric_Map::const_iterator e_iter;
-
-  for (e_iter  = metrics.endpoints ().begin ();
-       e_iter != metrics.endpoints ().end ();
-       e_iter ++)
+  for (sender_iter; !sender_iter.done (); sender_iter ++)
   {
     // There is no need to continue if there isn't any
     // up-to-date information.
-    if (e_iter->second->timestamp () != this->timestamp_)
-    {
+    if (sender_iter->item ()->timestamp () != this->timestamp_)
       continue;
+
+    // Generate the opening tag for the port metrics.
+
+    if (this->registry_.get_component_info (sender_iter->key (), &sender) == 0)
+    {
+      this->output_
+        << "      <PortSummary sender=\""
+        << sender->inst_.c_str () << "\">" << std::endl;
+    }
+    else
+    {
+      this->output_
+        << "      <PortSummary sender=\"\">" << std::endl;
     }
 
-    // Generate the opening tag.
+    // Visit the port metrics for this sender.
+    sender_iter->item ()->accept (*this);
+
+    // Generate the closing tag.
     this->output_
-      << "        <ExitPoint name=\"" << e_iter->first <<  "\" count=\""
-      << e_iter->second->count ()
+      << "      </PortSummary>" << std::endl;
+  }
+
+  // Get the log for this port. We are going to write it to
+  // the XML file as well.
+  const CUTS_Activation_Record_Log & log = metrics.log ();
+  size_t logsize = log.size ();
+
+  this->output_
+    << "      <PortLog count=\"" << logsize << "\">" << std::endl;
+
+  ACE_CString portname;
+
+  for (size_t i = 0; i < logsize; i ++)
+  {
+    this->registry_.get_component_info (log[i].owner (), &sender);
+
+    this->output_
+      << "        <LogEntry sender=\""
+      << sender->inst_.c_str () << "\">" << std::endl;
+
+    // Write the queueing time for the event.
+    this->output_ << "          ";
+    this->print_time_value ("QueueTime", log[i].queue_time ());
+
+    // Write the entry time for the event.
+    this->output_ << "          ";
+    this->print_time_value ("EntryTime", log[i].start_time ());
+
+    CUTS_Activation_Record_Endpoints::
+      CONST_ITERATOR endpoint_iter (log[i].endpoints ());
+
+    for (endpoint_iter; !endpoint_iter.done (); endpoint_iter ++)
+    {
+      this->myinfo_->type_->sources_.find (endpoint_iter->key (), portname);
+
+      this->output_
+        << "          <ExitTime name=\""
+        << portname.c_str ()
+        << "\" sec=\"" << endpoint_iter->item ().sec ()
+        << "\" usec=\"" << endpoint_iter->item ().usec ()
+        << "\" />" << std::endl;
+
+      // Move to the next endpoint and clear the port name.
+      endpoint_iter.advance ();
+      portname.clear ();
+    }
+
+    this->output_
+      << "        </LogEntry>" << std::endl;
+  }
+
+  this->output_
+    << "      </PortLog>" << std::endl;
+}
+
+//
+// visit_port_measurement
+//
+void CUTS_XML_Metrics_Writer::
+visit_port_measurement (const CUTS_Port_Measurement & pm)
+{
+  // Generate the opening tag for the queueing time.
+  this->output_
+    << "        <QueueingTime count=\""
+    << pm.queuing_time ().count () << "\">" << std::endl;
+
+  // Visit the queueing time measurements.
+  pm.queuing_time ().accept (*this);
+
+  // Generate the closing tag for the queueing time.
+  this->output_
+    << "        </QueueingTime>" << std::endl;
+
+  ACE_CString portname;
+  CUTS_Port_Measurement::Exit_Points::const_iterator endpoint_iter;
+
+  for (endpoint_iter  = pm.exit_points ().begin ();
+       endpoint_iter != pm.exit_points ().end ();
+       endpoint_iter ++)
+  {
+    // There is no need to continue if there isn't any
+    // up-to-date information.
+    if (endpoint_iter->second.timestamp () != this->timestamp_)
+      continue;
+
+    // Generate the opening tag.
+    this->myinfo_->type_->sources_.find (endpoint_iter->first, portname);
+
+    this->output_
+      << "        <ExitPoint name=\"" << portname.c_str () <<  "\" count=\""
+      << endpoint_iter->second.count ()
       << "\">" << std::endl;
 
     // Visit the time metrics for this exit point.
-    e_iter->second->accept (*this);
+    endpoint_iter->second.accept (*this);
 
     // Generate the closing tag.
     this->output_
@@ -258,18 +280,25 @@ visit_port_metrics (const CUTS_Port_Metric & metrics)
 }
 
 //
-// visit_time_metrics
+// visit_time_measurement
 //
 void CUTS_XML_Metrics_Writer::
-visit_time_metrics (const CUTS_Time_Metric & metrics)
+visit_time_measurement (const CUTS_Time_Measurement & time)
 {
+  this->output_ << "          ";
+  this->print_time_value ("BestTime", time.minimum ());
+
+  double avg_sec =
+    (double) time.total ().sec () / (double) time.count ();
+  double avg_usec =
+    (double) time.total ().usec () / (double) time.count ();
+
   this->output_
-    << "          <Best>"
-    << metrics.best_time () << "</Best>" << std::endl
-    << "          <Average>"
-    << metrics.avg_time () << "</Average>" << std::endl
-    << "          <Worst>"
-    << metrics.worse_time () << "</Worst>" << std::endl;
+    << "          <AverageTime sec=\"" << avg_sec
+    << "\" usec=\"" << avg_usec << "\" />" << std::endl;
+
+  this->output_ << "          ";
+  this->print_time_value ("WorstTime", time.maximum ());
 }
 
 //
@@ -280,5 +309,5 @@ print_time_value (const ACE_CString & heading, const ACE_Time_Value & tv)
 {
   this->output_
     << "<" << heading.c_str () << " sec=\""
-    << tv.sec () << "\" msec=\"" << tv.msec () << "\" />" << std::endl;
+    << tv.sec () << "\" usec=\"" << tv.usec () << "\" />" << std::endl;
 }

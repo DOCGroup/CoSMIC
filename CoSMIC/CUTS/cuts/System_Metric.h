@@ -15,22 +15,22 @@
 #ifndef _CUTS_SYSTEM_METRIC_H_
 #define _CUTS_SYSTEM_METRIC_H_
 
-#include "cuts/config.h"
 #include "cuts/CUTS_export.h"
+#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Null_Mutex.h"
 #include "ace/Time_Value.h"
-#include "ace/RW_Thread_Mutex.h"
-
-#include <map>
-#include <string>
 
 // Forward decl.
 class CUTS_Component_Metric;
 
 // Forward decl.
-class CUTS_System_Metrics_Visitor;
+class CUTS_Metrics_Visitor;
 
-// Typedef.
-typedef std::map <long, CUTS_Component_Metric *> CUTS_Component_Metric_Map;
+// Type definition for mapping component's to the metrics.
+typedef
+  ACE_Hash_Map_Manager <
+  long, CUTS_Component_Metric *, ACE_Null_Mutex>
+  CUTS_Component_Metric_Map;
 
 //=============================================================================
 /**
@@ -47,11 +47,41 @@ public:
   /// Destructor.
   ~CUTS_System_Metric (void);
 
-  CUTS_Component_Metric * insert_component (long regid);
+  /**
+   * Get the metrics for a component. If the component does not exist,
+   * then the caller has the option of creating a metric for the component.
+   *
+   * @param[in]     regid         Registration id for the component.
+   * @param[out]    metric        Metric container for the component.
+   * @param[in]     auto_create   Auto creation flag for the metric.
+   * @retval        -1            Failed to get component's metrics.
+   * @retval        else          Successfully got component's metrics.
+   */
+  int component_metric (long regid,
+                        CUTS_Component_Metric * & metric,
+                        bool auto_create = true);
 
-  void remove_component (long regid);
+  /**
+   * Insert metrics for a component. If the component does not exist,
+   * then the caller has the option of creating a metric for the component.
+   *
+   * @param[in]     regid         Registration id for the component.
+   * @param[out]    metric        Metric container for the component.
+   * @retval        -1            Failed to get component's metrics.
+   * @retval        else          Successfully got component's metrics.
+   */
+  int insert_component_metric (long regid,
+                               CUTS_Component_Metric * & metric);
 
-  CUTS_Component_Metric * component_metrics (long regid);
+  /**
+   * Remove a component's metrics from the system metrics. Once the
+   * metrics have been removed, all existing for that component is
+   * lost.
+   *
+   * @param[in]     regid       Registration id for the component.
+   */
+  int remove_component_metric (long regid);
+
 
   /**
    * Get the metrics of all the component in the system.
@@ -61,18 +91,11 @@ public:
   const CUTS_Component_Metric_Map & component_metrics (void) const;
 
   /**
-   * Get the locking mechanism for the object.
-   *
-   * @return      Reference to the lock for the object.
-   */
-  ACE_RW_Thread_Mutex & lock (void);
-
-  /**
    * Accept the visitor.
    *
    * @param[in]     visitor     Reference to the visitor.
    */
-  void accept (CUTS_System_Metrics_Visitor & visitor) const;
+  void accept (CUTS_Metrics_Visitor & visitor) const;
 
   /***
    * Initialize the timestamp stored in the metrics database. This
@@ -107,8 +130,6 @@ public:
    */
   const ACE_Time_Value & get_duration (void) const;
 
-  const CUTS_System_Metric & operator += (const CUTS_System_Metric & metric);
-
 private:
   /// Helper method for setting the timestamp accordingly.
   void timestamp_i (const ACE_Time_Value * timestamp = 0);
@@ -118,9 +139,6 @@ private:
 
   /// The duration between metric collections.
   ACE_Time_Value duration_;
-
-  /// Locking mechanism for the object.
-  ACE_RW_Thread_Mutex lock_;
 
   /// Component metrics for the system.
   CUTS_Component_Metric_Map component_metrics_;

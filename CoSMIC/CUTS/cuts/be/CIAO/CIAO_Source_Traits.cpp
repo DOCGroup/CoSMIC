@@ -125,8 +125,7 @@ write_method (const PICML::OutEventPort & source)
 
   this->outfile ()
     << function_header ("EventSource: " + (std::string)source.name ())
-    << "void " << parent.name () << "_Context_Proxy::" << std::endl
-    << "  ";
+    << "void " << parent.name () << "_Context_Proxy::" << std::endl;
 
   this->_super::write_method (source);
 
@@ -148,8 +147,7 @@ write_method (const PICML::RequiredRequestPort & receptacle)
   this->outfile ()
     << function_header ("Receptacle: " + (std::string)receptacle.name ())
     << scope (object, "::") << object.name () << "_ptr "
-    << parent.name () << "_Context_Proxy::" << std::endl
-    << "  ";
+    << parent.name () << "_Context_Proxy::" << std::endl;
 
   this->_super::write_method (receptacle);
 

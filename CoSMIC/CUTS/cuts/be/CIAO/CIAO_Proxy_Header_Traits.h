@@ -67,6 +67,8 @@ private:
 
   virtual void write_id_variable (
     const PICML::OutEventPort & source);
+
+  size_t endpoint_id_;
 };
 
 // Singleton declaration.

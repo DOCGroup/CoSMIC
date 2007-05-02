@@ -15,38 +15,76 @@
 
 module CUTS
 {
-  /// Type definition for the time.
+  //===========================================================================
+  /**
+   * @struct Time_Stamp
+   *
+   * Time value specified in seconds and microseconds.
+   */
+  //===========================================================================
+
   struct Time_Stamp
   {
+    /// The second time value.
     unsigned long sec;
+
+    /// The microsecond time value.
     unsigned long usec;
   };
 
-  /// Type definition for the timing history.
-  typedef sequence <long> Time_Stamp_History;
+  //===========================================================================
+  /**
+   * @struct Endpoint_Time
+   *
+   * The time value for reaching an endpoint of a component. The
+   * endpoint can be either a facet or event source. The \a uid for
+   * the endpoint is the same as the \a uid in the Port_Description.
+   */
+  //===========================================================================
 
   struct Endpoint_Time
   {
+    /// Unique id of the endpoint.
     long uid;
 
+    /// Timing information for the endpoint.
     Time_Stamp exittime;
   };
 
-  typedef sequence <Endpoint_Time> Endpoint_Time_Log;
+  /// Type defintition for a listing of endpoints.
+  typedef sequence <Endpoint_Time> Endpoint_Times;
+
+  //===========================================================================
+  /**
+   * @struct Metric_Record
+   *
+   * Record containing metrics for a single event. The record contains
+   * the sender of the event that generated this record. It also contains
+   * the queueing and processing time (close_time - open_time) for the
+   * event. Lastly, the time when the event generated new events to send
+   * to other components is captured.
+   */
+  //===========================================================================
 
   struct Metric_Record
   {
+    /// Unique id of component that sent event to create record.
     long sender;
 
+    /// Open time of the record.
     Time_Stamp open_time;
 
+    /// Close time of the record.
     Time_Stamp close_time;
 
+    /// Queueing time for the event.
     Time_Stamp queue_time;
 
-    Endpoint_Time_Log endpoint_times;
+    /// Log of the endpoints for this record.
+    Endpoint_Times ep_times;
   };
 
+  /// Type definition for a collection of Metric_Record objects.
   typedef sequence <Metric_Record> Metric_Log;
 
   //===========================================================================
@@ -59,6 +97,9 @@ module CUTS
 
   struct Time_Info
   {
+    /// Number of events in the timing info.
+    unsigned long count;
+
     /// Total time during which the sample data was processed
     Time_Stamp total;
 
@@ -71,134 +112,108 @@ module CUTS
 
   //===========================================================================
   /**
-   * @struct Time_Sample
+   * @struct Endpoint_Time_Info
    *
-   * The timing information for a single sample. This structure contains
-   * the number of measurements collected in a sample, as well as the
-   * statistical information about each metrics in the sample.
+   * Overall timing information for a endpoint.
    */
   //===========================================================================
 
-  struct Time_Sample
+  struct Endpoint_Time_Info
   {
-    /// Number of timing measurements taken.
-    long count;
-
-    /// Timing info for the sample.
-    Time_Info time;
-  };
-
-  //===========================================================================
-  /**
-   * @struct Action_Measurement
-   *
-   * Soon to be obsolete.
-   */
-  //===========================================================================
-
-  struct Action_Measurement
-  {
-    long type;
-
-    Time_Sample time;
-  };
-
-  /// Type definition for a collection of action metrics.
-  typedef sequence <Action_Measurement> Action_Measurement_Seq;
-
-  //===========================================================================
-  /**
-   * @struct Worker_Measurement
-   *
-   * Collection of information relating to a type of sample taken
-   * during a port operation.
-   */
-  //===========================================================================
-
-  struct Worker_Measurement
-  {
-    /// Type of sample collected
-    long type;
-
-    /// Collection of action timing metrics.
-    Action_Measurement_Seq actions;
-  };
-
-  /// Type definition for a <Data_Sample> sequence.
-  typedef sequence <Worker_Measurement> Worker_Measurement_Seq;
-
-  //===========================================================================
-  /**
-   * @struct Exit_Point_Time
-   *
-   * Timing information for transmitting metrics related to an exit
-   * point.
-   */
-  //===========================================================================
-
-  struct Exit_Point_Time
-  {
-    /// The human readable name of the exit point.
-    string exit_point_;
-
-    /// The timing metrics for this exit point.
-    Time_Sample time_sample_;
-  };
-
-  /// Type definition for a collection of exit point metrics.
-  typedef sequence <Exit_Point_Time> Exit_Point_Time_Seq;
-
-  struct Mapped_Port_Measurement
-  {
-    long owner;
-
-    /// Time taken to transmit an event.
-    Time_Sample transit_time;
-
-    /// Time taken to process an event.
-    Time_Sample process_time;
-
-    /// Exit point times for this port.
-    Exit_Point_Time_Seq exit_times;
-  };
-
-  typedef sequence <Mapped_Port_Measurement> Mapped_Port_Measurement_Seq;
-
-  struct Endpoint_Id
-  {
+    /// Unique id of the endpoint.
     long uid;
-    string name;
+
+    /// Timing information for the endpoint.
+    Time_Info info;
   };
 
-  typedef sequence <Endpoint_Id> Endpoint_Ids;
+  /// Type definition for collection of timing information for endpoints.
+  typedef sequence <Endpoint_Time_Info> Endpoint_Time_Infos;
 
-  struct Port_Measurement
+  //===========================================================================
+  /**
+   * @struct Port_Summary
+   *
+   * Summary of the collected timing information for a port.
+   */
+  //===========================================================================
+
+  struct Port_Summary
   {
-    /// event id associated with the data samples
-    string port;
+    /// Overall processing time for all the events.
+    Time_Info process_time;
 
-    Mapped_Port_Measurement_Seq measurements;
+    /// Overall queueing time for all the events.
+    Time_Info queue_time;
 
-    Metric_Log log;
-
-    Endpoint_Ids endpoints;
+    /// Timing information for all the endpoints.
+    Endpoint_Time_Infos endpoint_times;
   };
 
-  typedef sequence <Port_Measurement> Port_Measurement_Seq;
+  //===========================================================================
+  /**
+   * @struct Sorted_Port_Metric
+   *
+   * The timing information for a specific port. The timing information
+   * contains a summary and raw data of all the collected metrics. The
+   * \a history is optional.
+   */
+  //===========================================================================
 
-  /// The value of an invalid ID.
-  const long INVALID_ID = -1;
-
-  struct Benchmark_Data
+  struct Sorted_Port_Metric
   {
-    /// id of the CoWorkEr transmitting the data
-    long owner;
+    /// Unique id for the sorting (key value).
+    long uid;
 
-    /// time at which the data was reported
-    Time_Stamp timestamp;
+    /// Summary of the metrics collected.
+    Port_Summary summary;
+  };
 
-    /// this is the sequence of benchmark data being reported
-    Port_Measurement_Seq ports;
+  typedef sequence <Sorted_Port_Metric> Sorted_Port_Metrics;
+
+  //===========================================================================
+  /**
+   * @struct Port_Metric
+   *
+   * The timing information for a specific port. The timing information
+   * contains a summary and raw data of all the collected metrics. The
+   * \a history is optional.
+   */
+  //===========================================================================
+
+  struct Port_Metric
+  {
+    /// Unique id for the port metric.
+    long uid;
+
+    /// Summary of the collected performance metrics.
+    Sorted_Port_Metrics sorted_metrics;
+
+    /// Collection of all the records collected.
+    Metric_Log history;
+  };
+
+  /// Type definition for a collection of port metrics.
+  typedef sequence <Port_Metric> Port_Metrics;
+
+  //===========================================================================
+  /**
+   * @struct Component_Metric
+   *
+   * Timing information for a component.
+   */
+  //===========================================================================
+
+  struct Component_Metric
+  {
+    /// Unique id for the component.
+    long uid;
+
+    /// Time of collection.
+    Time_Stamp collection_time;
+
+    /// Collection of port metrics for the component.
+    Port_Metrics metrics;
   };
 };
 

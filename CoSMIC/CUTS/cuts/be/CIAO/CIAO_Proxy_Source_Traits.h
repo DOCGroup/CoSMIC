@@ -90,6 +90,8 @@ private:
 
   /// Collection of input event types.
   EventType_Set in_events_;
+
+  size_t endpoint_id_;
 };
 
 // Singleton declaration.

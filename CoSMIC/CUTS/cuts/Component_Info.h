@@ -14,7 +14,11 @@
 #define _CUTS_COMPONENT_INFO_H_
 
 #include "cuts/CUTS_export.h"
+#include "ace/RW_Thread_Mutex.h"
 #include "ace/SString.h"
+
+// Forward decl.
+struct CUTS_Component_Type;
 
 // Forward decl.
 class CUTS_Host_Table_Entry;
@@ -54,8 +58,8 @@ struct CUTS_Export CUTS_Component_Info
   /// Instance id for the component.
   ACE_CString inst_;
 
-  /// Component type id.
-  ACE_CString type_;
+  /// Type information about the component.
+  const CUTS_Component_Type * type_;
 
   /// Host information about the component.
   const CUTS_Host_Table_Entry * host_info_;

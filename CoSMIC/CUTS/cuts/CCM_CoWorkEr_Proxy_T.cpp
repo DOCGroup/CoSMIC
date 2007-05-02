@@ -5,6 +5,7 @@
 #endif
 
 #include "cuts/Thread_Activation_Record.h"
+#include "cuts/CUTS_i.h"
 
 //
 // CUTS_CCM_CoWorkEr_Proxy_T
@@ -167,54 +168,41 @@ ciao_preactivate (void)
     this->context_->get_connection_cuts_testing_service ();
 
   if (::CORBA::is_nil (tsvc.in ()))
-    {
-      ACE_DEBUG ((LM_INFO,
-                  "[%M] (preactivate) -%T - %s not connected to data collector\n",
-                  this->instance_.c_str ()));
-    }
+  {
+    ACE_DEBUG ((LM_INFO,
+                "[%M] (preactivate) -%T - %s not connected to data collector\n",
+                this->instance_.c_str ()));
+  }
   else if (::CORBA::is_nil (this->type_impl_.in ()))
-    {
-      ACE_DEBUG ((LM_WARNING,
-                  "[%M] (preactivate) -%T - %s does not have a loaded component\n",
-                  this->instance_.c_str ()));
-    }
+  {
+    ACE_DEBUG ((LM_WARNING,
+                "[%M] (preactivate) -%T - %s does not have a loaded component\n",
+                this->instance_.c_str ()));
+  }
   else
+  {
+    try
     {
-      try
-        {
-          ::CUTS::Component_Registration reg;
-          reg.name = ::CORBA::string_dup (this->instance_.c_str ());
-          reg.type = ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
+      // Initialize the component registration.
+      CUTS::Component_Registration reg;
+      this->init_component_registration (reg);
 
-          reg.generic_object = this->context_->get_CCM_object ();
-          reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
-
-          // Pass control to the base class to finish the registration.
-          size_t regid = this->register_i (tsvc.in (), reg);
-
-          if (regid == CUTS_UNKNOWN_IMPL)
-            {
-              ACE_ERROR ((LM_ERROR,
-                          "failed to register %s; setting id to %u\n",
-                          reg.name.in (),
-                          regid));
-            }
-
-          // Store registration id and pass control to hosted component.
-          this->agent_->parent (regid);
-        }
-      catch (const ::CORBA::Exception & ex)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      "[%M] (preactivate) -%T - %s\n",
-                      ex._info ().c_str ()));
-        }
-      catch (...)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      "[%M] (preactivate) -%T - unknown exception has occurred\n"));
-        }
+      // Pass control to the base class to finish the registration.
+      size_t regid = this->register_i (tsvc.in (), reg);
+      this->agent_->parent (regid);
     }
+    catch (const CORBA::Exception & ex)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] (preactivate) -%T - %s\n",
+                  ex._info ().c_str ()));
+    }
+    catch (...)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "[%M] (preactivate) -%T - unknown exception has occurred\n"));
+    }
+  }
 
   // We still need to invoke the preactivate method for the
   // hosted component regardless of it is connected to the BDC.
@@ -288,6 +276,27 @@ ccm_remove (void)
     this->sc_->ccm_remove ();
 
   this->reset ();
+}
+
+//
+// init_component_registration
+//
+template <typename PROXY_EXEC, typename CTX_TYPE,
+          typename CCM_TYPE, typename CCM_HOME>
+void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
+init_component_registration (CUTS::Component_Registration & reg)
+{
+  // Set the registration name and the agent.
+  reg.name  = ::CORBA::string_dup (this->instance_.c_str ());
+  reg.agent = ::CUTS::Benchmark_Agent::_duplicate (this->agent_->_this ());
+
+  // Initialize the type information for this component.
+  reg.component_info.type =
+    ::CORBA::string_dup (this->type_impl_->_interface_repository_id ());
+
+  // Initialize the size of the source port descriptions.
+  reg.component_info.sinks <<= this->agent_->port_agents ();
+  reg.component_info.sources <<= this->agent_->endpoints ();
 }
 
 //

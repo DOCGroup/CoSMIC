@@ -58,10 +58,41 @@ module CUTS
    */
   //===========================================================================
 
+  struct Port_Description
+  {
+    unsigned long uid;
+
+    string name;
+  };
+
+  typedef sequence <Port_Description> Port_Descriptions;
+
+  struct Component_Description
+  {
+    string type;
+
+    Port_Descriptions sinks;
+
+    Port_Descriptions sources;
+  };
+
+  struct Host_Description
+  {
+    string ipaddr;
+
+    string hostname;
+  };
+
+  //===========================================================================
+  /**
+   * @interface Benchmark_Agent
+   */
+  //===========================================================================
+
   interface Benchmark_Agent
   {
     /// Get the performance data from the agent.
-    void collect_performance_data (out Benchmark_Data data);
+    void collect_performance_data (out Component_Metric data);
   };
 
   //===========================================================================
@@ -79,23 +110,17 @@ module CUTS
 
   struct Component_Registration
   {
-    /// The stringified version of the object.
-    Object generic_object;
+    /// Name of the component.
+    string name;
+
+    /// Description of the component's type.
+    Component_Description component_info;
+
+    /// Description of the component's host.
+    Host_Description host_info;
 
     /// Benchmark agent of the component.
     Benchmark_Agent agent;
-
-    /// UUID of the CoWorkEr.
-    string name;
-
-    /// The object's type.
-    string type;
-
-    /// IP address of the CoWorkEr.
-    string ipaddr;
-
-    /// Name of the host with the CoWorkEr.
-    string hostname;
   };
 
   //===========================================================================

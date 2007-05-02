@@ -1,3 +1,218 @@
+Wed May  2 18:02:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Activation_Record_Log.h:
+        * cuts/Activation_Record_Log.inl:
+        * cuts/Activation_Record_Log.cpp:
+
+          - Added a locking mechanism to the record to prevent it from
+            being resized if another thread is iterating through the log.
+          - Implemented a new method that will allow clients to perform
+            batch iterations through the log.
+
+        * cuts/BDC/BDC_Task.cpp:
+
+          Updated the data collection routine to use the new data
+          structures and extraction operations.
+
+        * cuts/BDC/Testing_Service_exec_i.h:
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+          - Removed deprecated macros.
+          - Updated the register_component () to add the type information
+            of a component to its registry.
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.mpc.disable:
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc.disable:
+
+          Disabled compilation of the following BDC services since
+          they aren't being used and need to be updated to use the
+          new layout of the performance metrics.
+
+        * cuts/BDC/svcs/IO/BDC_IO.h:
+        * cuts/BDC/svcs/IO/BDC_IO.cpp:
+
+          Updated the formatting of the generated output and now
+          the type information (e.g., port names) is written to the
+          console during component registration.
+
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.h:
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.cpp:
+
+          Updated the visitor logic to use the new CUTS_Metrics_Visitor
+          logic and use the new layout of the metrics database.
+
+        * cuts/XML_Metrics_Writer.h:
+        * cuts/XML_Metrics_Writer.cpp:
+
+          - Updated the visitor logic to use the new CUTS_Metrics_Visitor
+            logic and use the new layout of the metrics database.
+          - Changed <PortMetric> tag to <PortSummary>, <Best> to <BestTime>,
+            <Average> to <AverageTime>, and <Worst> to <WorstTime>.
+          - All performance metrics are written as sec, usec times.
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          Updated the visitor logic to use the new CUTS_Metrics_Visitor
+          logic and use the new layout of the metrics database.
+
+        * cuts/Benchmark_Agent.h:
+        * cuts/Benchmark_Agent.inl:
+        * cuts/Benchmark_Agent.cpp:
+
+          The registration of a port agent or a endpoint now requires
+          the client to provide a unique id to be associated with the
+          entity.
+
+        * cuts/Benchmark_Agent_i.h:
+        * cuts/Benchmark_Agent_i.cpp:
+
+          Updated collect_performance_data () to use the new
+          CUTS::Component_Metric data structure for sending information
+          to the BDC.
+
+        * cuts/CCM_CoWorkEr_Proxy.cpp (register_i):
+
+          Update registration code to use the new CUTS::Host_Description
+          data structure.
+
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+
+          The proxies now submit information about its ports during the
+          registration process.
+
+        * cuts/CUTS.idl:
+
+          Sanitized/enhanced the registration data structure(s) so that
+          components can submit information about their ports.
+
+        * cuts/CUTS.mpc:
+
+          Added/removed source files from the project.
+
+        * cuts/CUTS_i.h:
+        * cuts/CUTS_i.cpp:
+
+          Helper operators for inserting/extracting component registration
+          information.
+
+        * cuts/Component_Metric.h:
+        * cuts/Component_Metric.inl:
+        * cuts/Component_Metric.cpp:
+
+          - Removed the locking mechanisms.
+          - Instead of requesting a port metric by its name and sender,
+            clients just get a reference to the entire port mapping data
+            structure.
+
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.inl:
+        * cuts/Component_Registry.cpp:
+
+          Added support for storing a component's type information in the
+          database. The type information includes the typename and the name of
+          its ports.
+
+        * cuts/Component_Info.h:
+
+          Changed type_ from a ACE_CString to a read-only pointer to
+          a CUTS_Component_Type data structure.
+
+        * cuts/Component_Type.h:
+
+          Structure that contains type information about a component.
+
+        * cuts/Metrics_Visitor.h:
+        * cuts/Metrics_Visitor.inl:
+        * cuts/Metrics_Visitor.cpp:
+
+          This was previously System_Metrics_Visitor.
+
+        * cuts/Port_Agent.h:
+        * cuts/Port_Agent.inl:
+        * cuts/Port_Agent.cpp:
+
+          Added modifiable accessor methods for log () and
+          port_measurement_pool ().
+
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.inl:
+        * cuts/Port_Measurement.cpp:
+
+          Added modifiable accessor methods for process_time ()
+          and queuing_time ().
+
+        * cuts/Port_Metric.h:
+        * cuts/Port_Metric.inl:
+        * cuts/Port_Metric.cpp:
+
+          Now contains a set of ports measurements that are mapped by
+          sender.
+
+        * cuts/System_Metric.h:
+        * cuts/System_Metric.inl:
+        * cuts/System_Metric.cpp:
+
+          Improved the management of component metrics by using a
+          ACE_Hash_Map_Manager and allowing the auto creation of component
+          metrics that may not exist.
+
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Measurement.inl:
+        * cuts/Time_Measurement.cpp:
+
+          - Added accessor methods that allow the different time structure
+            to be modified outside the class.
+          - Added timestamping support.
+
+        * cuts/Timestamp_Metric.h:
+        * cuts/Timestamp_Metric.inl:
+        * cuts/Timestamp_Metric.cpp:
+
+          Helper class that adds timestamping capability to an
+          existing class.
+
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          Update the generated code to hardcode the unique ids of the
+          different ports that are registered with the benchmark agent
+          in the proxy.
+
+        * cuts/performance.idl:
+
+          Sanitized the data structures used to transmit performance
+          metrics to the BDC.
+
+        * cuts/performance_i.h:
+        * cuts/performance_i.inl:
+        * cuts/performance_i.cpp:
+
+          Implemented insertion/extraction operators to simplify
+          marshalling and unmarshalling the performance metrics
+
+        * cuts/BDC/svcs/GEMS/CUTS_GEMS.mpc:
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc:
+        * cuts/Benchmark_Collector_Visitor.h:
+        * cuts/Benchmark_Collector_Visitor.cpp:
+        * cuts/Benchmark_Visitor.h:
+        * cuts/Benchmark_Visitor.inl:
+        * cuts/Benchmark_Visitor.cpp:
+        * cuts/IDL_Streams.h:
+        * cuts/IDL_Streams.cpp:
+        * cuts/System_Metrics_Visitor.h:
+        * cuts/System_Metrics_Visitor.inl:
+        * cuts/System_Metrics_Visitor.cpp:
+        * cuts/Time_Metric.h:
+        * cuts/Time_Metric.inl:
+        * cuts/Time_Metric.cpp:
+
+          Removed these files.
+
 Wed Apr 25 23:08:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * bin/cuts_node.pl:

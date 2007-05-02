@@ -14,11 +14,13 @@
 #define _CUTS_PORT_MEASUREMENT_H_
 
 #include "cuts/Worker_Measurement.h"
+#include "cuts/Timestamp_Metric.h"
+
 #include <map>
 #include <string>
 
 // Forward decl.
-class CUTS_Benchmark_Visitor;
+class CUTS_Metrics_Visitor;
 
 //=============================================================================
 /**
@@ -28,7 +30,7 @@ class CUTS_Benchmark_Visitor;
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Port_Measurement
+class CUTS_Export CUTS_Port_Measurement : public CUTS_Timestamp_Metric
 {
 public:
   /// Type definition for making operation ids to measurement data.
@@ -52,8 +54,12 @@ public:
   /// Get the time data for processing an event.
   const CUTS_Time_Measurement & process_time (void) const;
 
+  CUTS_Time_Measurement & process_time (void);
+
   /// Get the time data for receiving a transitted event.
   const CUTS_Time_Measurement & queuing_time (void) const;
+
+  CUTS_Time_Measurement & queuing_time (void);
 
   /// Record an entry into the port measurements
   void record_entry (size_t reps, long worker, long opid,
@@ -82,7 +88,12 @@ public:
   /// Get the collection of exit points.
   const Exit_Points & exit_points (void) const;
 
-  void accept (CUTS_Benchmark_Visitor & visitor);
+  /**
+   * Accept the CUTS_Metrics_Visitor visitor object.
+   *
+   * @param[in]     visitor     The target visitor object.
+   */
+  void accept (CUTS_Metrics_Visitor & visitor) const;
 
 private:
   /// Time taken to complete the port operation.

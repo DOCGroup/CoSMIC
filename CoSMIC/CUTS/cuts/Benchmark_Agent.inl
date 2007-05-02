@@ -1,21 +1,43 @@
 // $Id$
 
 //
-// register_agent
+// CUTS_Benchmark_Agent
 //
 CUTS_INLINE
-bool CUTS_Benchmark_Agent::register_agent (CUTS_Port_Agent * agent)
+CUTS_Benchmark_Agent::CUTS_Benchmark_Agent (void)
+: parent_ (CUTS_UNKNOWN_IMPL)
 {
-  return this->port_agents_.insert (agent).second;
+
 }
 
 //
-// unregister_agent
+// ~CUTS_Benchmark_Agent
 //
 CUTS_INLINE
-void CUTS_Benchmark_Agent::unregister_agent (CUTS_Port_Agent * agent)
+CUTS_Benchmark_Agent::~CUTS_Benchmark_Agent (void)
 {
-  this->port_agents_.erase (agent);
+
+}
+
+//
+// register_agent
+//
+CUTS_INLINE
+int CUTS_Benchmark_Agent::
+register_agent (CUTS_Port_Agent * agent, size_t agent_id)
+{
+  return this->port_agents_.bind (agent, agent_id);
+}
+
+//
+// register_endpoint
+//
+CUTS_INLINE
+int CUTS_Benchmark_Agent::
+register_endpoint (const ACE_CString & endpoint, size_t endpoint_id)
+{
+  this->endpoints_[endpoint] = endpoint_id;
+  return 0;
 }
 
 //

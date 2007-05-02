@@ -15,6 +15,7 @@
 
 #include "cuts/Activation_Record.h"
 #include "ace/Containers_T.h"
+#include "ace/RW_Thread_Mutex.h"
 
 //=============================================================================
 /**
@@ -61,12 +62,19 @@ public:
 
   CUTS_Activation_Record * next_free_record (void);
 
+  CUTS_Activation_Record * next_free_record_i (void);
+
+  ACE_RW_Thread_Mutex & lock (void);
+
 private:
   /// Number of used records in the log.
   size_t used_;
 
   /// Flag that determines if the log can grow when needed.
   bool auto_grow_;
+
+  /// Lock for the log.
+  ACE_RW_Thread_Mutex lock_;
 };
 
 #if defined (__CUTS_INLINE__)

@@ -6,13 +6,16 @@
 #include "cuts/Time_Measurement.inl"
 #endif
 
+#include "cuts/Metrics_Visitor.h"
+#include "ace/Log_Msg.h"
+
 //
 // CUTS_Time_Measurement
 //
 CUTS_Time_Measurement::
 CUTS_Time_Measurement (const CUTS_Time_Measurement &tm)
 : count_ (tm.count_),
-  sum_ (tm.sum_),
+  total_ (tm.total_),
   max_ (tm.max_),
   min_ (tm.min_)
 {
@@ -25,7 +28,7 @@ CUTS_Time_Measurement (const CUTS_Time_Measurement &tm)
 void CUTS_Time_Measurement::reset (void)
 {
   // Set all the time values to <zero>.
-  this->sum_ = ACE_Time_Value::zero;
+  this->total_ = ACE_Time_Value::zero;
   this->max_ = ACE_Time_Value::zero;
   this->min_ = ACE_Time_Value::zero;
 
@@ -38,7 +41,7 @@ void CUTS_Time_Measurement::reset (void)
 //
 void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
 {
-  if (this->count_ ++ != 0)
+  if (this->count_ != 0)
   {
     // Determine if this is either the <min_> of <max_> value.
     if (timing > this->max_)
@@ -54,5 +57,15 @@ void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
   }
 
   // Accumulate the new time value.
-  this->sum_ += timing;
+  this->total_ += timing;
+  ++ this->count_;
+}
+
+//
+// accept
+//
+void CUTS_Time_Measurement::
+accept (CUTS_Metrics_Visitor & visitor) const
+{
+  visitor.visit_time_measurement (*this);
 }

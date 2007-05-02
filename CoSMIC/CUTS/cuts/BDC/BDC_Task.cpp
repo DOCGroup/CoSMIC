@@ -8,13 +8,9 @@
 
 #include "CCM_Component_Registry.h"
 #include "Testing_Service_exec_i.h"
-#include "cuts/Time_Metric.h"
-#include "cuts/Port_Metric.h"
 #include "cuts/Component_Metric.h"
 #include "cuts/System_Metric_Handler.h"
-#include "cuts/IDL_Streams.h"
-#include "cuts/Log_Msg.h"
-#include "ace/Event.h"
+#include "cuts/performance_i.h"
 #include "ace/TP_Reactor.h"
 #include "ace/CORBA_macros.h"
 
@@ -215,16 +211,12 @@ namespace CUTS
     // them that the metrics have been updated.
     CUTS_Handler_Set::ITERATOR iter (this->handles_);
 
-    while (iter.done () == 0)
+    for (iter; !iter.done (); iter ++)
     {
       CUTS_System_Metric_Handler ** handle = 0;
 
       if (iter.next (handle) != 0 && handle != 0)
         (*handle)->handle_metrics (*this->metrics_);
-
-      ACE_DEBUG ((LM_DEBUG, "ok...\n"));
-      // Move to the next item.
-      iter.advance ();
     }
 
     ACE_DEBUG ((LM_INFO,
@@ -263,12 +255,22 @@ namespace CUTS
     {
       try
       {
-        ::CUTS::Benchmark_Data_var data;
-
-        // Collect the performance data from the component the
-        // store it in the in-memory database.
+        // Collect the performance data from the component.
+        CUTS::Component_Metric_var data;
         agent->collect_performance_data (data);
-        data >> (*this->metrics_);
+
+        // Locate the metrics for this component in the system metrics.
+        CUTS_Component_Metric * metric = 0;
+        int retval = this->metrics_->component_metric (data->uid, metric);
+
+        if (retval == 0 && metric != 0)
+        {
+          // Update the timestamp for the component metrics.
+          metric->timestamp (this->metrics_->get_timestamp ());
+
+          // Extract the collected data.
+          *data >>= *metric;
+        }
       }
       catch (const CORBA::Exception & ex)
       {

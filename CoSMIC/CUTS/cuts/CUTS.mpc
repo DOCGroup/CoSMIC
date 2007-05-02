@@ -24,9 +24,9 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
 
   Source_Files {
     Benchmark_Agent_i.cpp
-    Benchmark_Collector_Visitor.cpp
+    CUTS_i.cpp
     events_i.cpp
-    IDL_Streams.cpp
+    performance_i.cpp
   }
 }
 
@@ -77,6 +77,7 @@ project (CUTS) : cutslib {
   Header_Files {
     config.h
     Component_Info.h
+    Component_Type.h
     CUTS_export.h
     Host_Table_Entry.h
     Log_Msg.h
@@ -93,7 +94,6 @@ project (CUTS) : cutslib {
     Activation_Record_Endpoint.cpp
     Activation_Record_Log.cpp
     Benchmark_Agent.cpp
-    Benchmark_Visitor.cpp
     Component_Metric.cpp
     Component_Registry_Node.cpp
     Component_Registry_Handler.cpp
@@ -102,6 +102,7 @@ project (CUTS) : cutslib {
     Event_Handler.cpp
     Event_Handler_Message.cpp
     Host_Table.cpp
+    Metrics_Visitor.cpp
     Operation_Measurement.cpp
     Port_Agent.cpp
     Port_Measurement.cpp
@@ -112,12 +113,11 @@ project (CUTS) : cutslib {
     str.cpp
     Testing_Service.cpp
     Time.cpp
-    Time_Metric.cpp
     Time_Measurement.cpp
+    Timestamp_Metric.cpp
     Thread_Activation_Record.cpp
     System_Metric.cpp
     System_Metric_Handler.cpp
-    System_Metrics_Visitor.cpp
     Worker.cpp
     Worker_Library.cpp
     Worker_Measurement.cpp

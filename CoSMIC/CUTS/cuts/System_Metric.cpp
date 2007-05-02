@@ -7,8 +7,7 @@
 #endif
 
 #include "cuts/Component_Metric.h"
-#include "cuts/System_Metrics_Visitor.h"
-#include "ace/Guard_T.h"
+#include "cuts/Metrics_Visitor.h"
 #include "ace/Auto_Ptr.h"
 #include "ace/OS_NS_sys_time.h"
 
@@ -25,90 +24,81 @@ CUTS_System_Metric::CUTS_System_Metric (void)
 //
 CUTS_System_Metric::~CUTS_System_Metric (void)
 {
-  CUTS_Component_Metric_Map::iterator iter;
+  CUTS_Component_Metric_Map::ITERATOR iter (this->component_metrics_);
 
-  for (iter = this->component_metrics_.begin ();
-       iter != this->component_metrics_.end ();
-       iter ++)
-  {
-    delete iter->second;
-  }
+  for (iter; !iter.done (); iter ++)
+    delete iter->item ();
 }
 
 //
-// insert_component
+// insert_component_metric
 //
-CUTS_Component_Metric *
-CUTS_System_Metric::insert_component (long regid)
+int CUTS_System_Metric::
+insert_component_metric (long regid, CUTS_Component_Metric * & metric)
 {
-  // Create a new <CUTS_Component_Metric>.
-  CUTS_Component_Metric * metric = 0;
-  ACE_NEW_RETURN (metric, CUTS_Component_Metric (), 0);
+  // Create new CUTS_Component_Metric and insert it into mapping.
+  ACE_NEW_RETURN (metric,
+                  CUTS_Component_Metric (),
+                  -1);
+
   ACE_Auto_Ptr <CUTS_Component_Metric> auto_clean (metric);
+  int retval = this->component_metrics_.trybind (regid, metric);
 
-  std::pair <
-    CUTS_Component_Metric_Map::iterator, bool>
-    result;
+  // Check the return value of the operation. If the insertion
+  // was successful, then we need to release the auto_ptr. If the
+  // insertion failed, then we need to clean up the allocated memory.
+  // Otherwise, the entry already existed and we need to return
+  // the existing value and release the allocated memory.
 
-  ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
-
-  result = this->component_metrics_.insert (
-    CUTS_Component_Metric_Map::value_type (regid, metric));
-
-  // If the <component> was already in the <component_metrics_>
-  // then we can save the <metric> as the preexisting component.
-  // We do not have to worry about the previously allocated
-  // metric since the <auto_clean> will handle it.
-  if (!result.second)
-  {
-    metric = result.first->second;
-  }
-  else
+  if (retval == 0)
   {
     auto_clean.release ();
   }
+  else if (retval == -1)
+  {
+    metric = 0;
+  }
 
-  return metric;
+  return retval;
 }
 
 //
-// component_metrics
+// remove_component_metric
 //
-CUTS_Component_Metric *
-CUTS_System_Metric::component_metrics (long regid)
+int CUTS_System_Metric::remove_component_metric (long regid)
 {
   CUTS_Component_Metric * metric = 0;
-  CUTS_Component_Metric_Map::iterator result;
+  int retval = this->component_metrics_.unbind (regid, metric);
 
-  // Locate the <name> of the component in the
-  // <component_metrics_>.
-  do
-  {
-    ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
-    result = this->component_metrics_.find (regid);
-  } while (false);
+  if (retval == 0 && metric != 0)
+    delete metric;
 
-  // If we found the component the we just return it. Otherwise,
-  // we have to insert the new component into the <component_metrics_>.
-  if (result != this->component_metrics_.end ())
-  {
-    metric = result->second;
-  }
-  else
-  {
-    metric = insert_component (regid);
-  }
+  return retval;
+}
 
-  return metric;
+//
+// component_metric
+//
+int CUTS_System_Metric::
+component_metric (long regid,
+                  CUTS_Component_Metric * & metric,
+                  bool auto_create)
+{
+  int retval = this->component_metrics_.find (regid, metric);
+
+  if (retval == -1 && auto_create)
+    retval = this->insert_component_metric (regid, metric);
+
+  return retval;
 }
 
 //
 // accept
 //
 void CUTS_System_Metric::
-accept (CUTS_System_Metrics_Visitor & visitor) const
+accept (CUTS_Metrics_Visitor & visitor) const
 {
-  return visitor.visit_system_metrics (*this);
+  visitor.visit_system_metric (*this);
 }
 
 //
@@ -146,26 +136,4 @@ timestamp_i (const ACE_Time_Value * timestamp)
     this->timestamp_ = *timestamp;
   else
     this->timestamp_ = ACE_OS::gettimeofday ();
-}
-
-//
-// operator +=
-//
-const CUTS_System_Metric & CUTS_System_Metric::
-operator += (const CUTS_System_Metric & metric)
-{
-  // Add the <duration_> of the source metrics.
-  this->duration_ += metric.duration_;
-
-  CUTS_Component_Metric_Map::const_iterator iter;
-
-  for (iter  = metric.component_metrics ().begin ();
-       iter != metric.component_metrics ().end ();
-       iter ++)
-  {
-    CUTS_Component_Metric * cmetric = this->component_metrics (iter->first);
-    *cmetric += *iter->second;
-  }
-
-  return *this;
 }

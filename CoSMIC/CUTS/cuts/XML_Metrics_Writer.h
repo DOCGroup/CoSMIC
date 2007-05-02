@@ -15,13 +15,16 @@
 #ifndef _CUTS_XML_METRICS_WRITER_H_
 #define _CUTS_XML_METRICS_WRITER_H_
 
-#include "cuts/System_Metrics_Visitor.h"
+#include "cuts/Metrics_Visitor.h"
 #include "ace/SString.h"
 #include "ace/streams.h"
 #include "ace/Time_Value.h"
 
 // Forward decl.
 class CUTS_Component_Registry;
+
+// Forward decl.
+struct CUTS_Component_Info;
 
 //=============================================================================
 /**
@@ -32,7 +35,7 @@ class CUTS_Component_Registry;
 //=============================================================================
 
 class CUTS_Export CUTS_XML_Metrics_Writer :
-  public CUTS_System_Metrics_Visitor
+  public CUTS_Metrics_Visitor
 {
 public:
   /**
@@ -56,38 +59,20 @@ public:
    */
   void set_uuid (const ACE_CString & uuid);
 
-  /**
-   * Visit the component metrics. This method generates the
-   * <ComponentMetrics> section of the XML file.
-   *
-   * @param[in]     metrics     Reference to the metrics.
-   */
-  virtual void visit_system_metrics (const CUTS_System_Metric & metrics);
+  // Handle the system metric visit.
+  virtual void visit_system_metric (const CUTS_System_Metric & metrics);
 
-  /**
-   * Visit the system metrics. This method generates the
-   * <SystemMetrics> section of the XML file. It will also
-   * insert the timestamp when the generation started.
-   *
-   * @param[in]     metrics     Reference to the metrics.
-   */
-  virtual void visit_component_metrics (const CUTS_Component_Metric & metrics);
+  // Handle the component metric visit.
+  virtual void visit_component_metric (const CUTS_Component_Metric & metrics);
 
-  /**
-   * Visit the port metrics. This method generates the
-   * <ComponentMetrics> section of the XML file.
-   *
-   * @param[in]     metrics     Reference to the metrics.
-   */
-  virtual void visit_port_metrics (const CUTS_Port_Metric & metrics);
+  // Handle the port metric visit.
+  virtual void visit_port_metric (const CUTS_Port_Metric & metrics);
 
-  /**
-   * Visit the time metrics. This method generates the
-   * <ComponentMetrics> section of the XML file.
-   *
-   * @param[in]     metrics     Reference to the metrics.
-   */
-  virtual void visit_time_metrics (const CUTS_Time_Metric & metrics);
+  // Handle the port metric visit.
+  virtual void visit_port_measurement (const CUTS_Port_Measurement & pm);
+
+  // Handle the time measurement visit.
+  virtual void visit_time_measurement (const CUTS_Time_Measurement & tm);
 
 private:
   void print_time_value (const ACE_CString & header,
@@ -107,6 +92,9 @@ private:
 
   /// UUID for the generated XML file.
   ACE_CString uuid_;
+
+  /// Information about the current component.
+  const CUTS_Component_Info * myinfo_;
 };
 
 #if defined (__CUTS_INLINE__)

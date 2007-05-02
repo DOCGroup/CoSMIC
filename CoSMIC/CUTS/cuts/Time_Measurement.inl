@@ -23,6 +23,12 @@ CUTS_Time_Measurement::~CUTS_Time_Measurement (void)
 // maximum
 //
 CUTS_INLINE
+ACE_Time_Value & CUTS_Time_Measurement::maximum (void)
+{
+  return this->max_;
+}
+
+CUTS_INLINE
 const ACE_Time_Value & CUTS_Time_Measurement::maximum (void) const
 {
   return this->max_;
@@ -31,6 +37,12 @@ const ACE_Time_Value & CUTS_Time_Measurement::maximum (void) const
 //
 // minimum
 //
+CUTS_INLINE
+ACE_Time_Value & CUTS_Time_Measurement::minimum (void)
+{
+  return this->min_;
+}
+
 CUTS_INLINE
 const ACE_Time_Value & CUTS_Time_Measurement::minimum (void) const
 {
@@ -41,9 +53,15 @@ const ACE_Time_Value & CUTS_Time_Measurement::minimum (void) const
 // total
 //
 CUTS_INLINE
-const ACE_Time_Value & CUTS_Time_Measurement::accumulation (void) const
+ACE_Time_Value & CUTS_Time_Measurement::total (void)
 {
-  return this->sum_;
+  return this->total_;
+}
+
+CUTS_INLINE
+const ACE_Time_Value & CUTS_Time_Measurement::total (void) const
+{
+  return this->total_;
 }
 
 //
@@ -53,4 +71,13 @@ CUTS_INLINE
 size_t CUTS_Time_Measurement::count (void) const
 {
   return this->count_;
+}
+
+//
+// count
+//
+CUTS_INLINE
+void CUTS_Time_Measurement::count (size_t n)
+{
+  this->count_ = n;
 }

@@ -157,8 +157,7 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
     << "CCM_" << name << "_Context> {"
     << "public:" << std::endl
     << single_line_comment ("constructor")
-    << "explicit " << ctx_proxy << " (" << std::endl
-    << "::Components::SessionContext_ptr ctx," << std::endl
+    << ctx_proxy << " (::Components::SessionContext_ptr ctx," << std::endl
     << "CUTS_Benchmark_Agent * agent);"
     << std::endl
     << single_line_comment ("destructor")
@@ -198,6 +197,9 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
   // We are now ready to generate the executor.
   this->outfile ()
     << "private:" << std::endl;
+
+  // Reset the endpoint id for this iteration.
+  this->endpoint_id_ = 1;
 
   std::for_each (
     sources.begin (),
@@ -341,6 +343,6 @@ write_id_variable (const PICML::OutEventPort & source)
 
   this->outfile ()
     << single_line_comment (name + " id variable")
-    << "size_t " << name << "_id_;"
-    << std::endl;
+    << "static const size_t push_" << name << "_id_ = "
+    << this->endpoint_id_ ++ << ";" << std::endl;
 }

@@ -1,29 +1,24 @@
 #ifndef _CUTS_PORT_METRIC_H_
 #define _CUTS_PORT_METRIC_H_
 
-#include "cuts/Time_Metric.h"
 #include "cuts/Activation_Record_Log.h"
-#include "ace/SString.h"
-#include "ace/RW_Thread_Mutex.h"
-#include "ace/Guard_T.h"
-#include <map>
-#include <string>
-#include <ostream>
+#include "cuts/Port_Measurement_Map.h"
+#include "cuts/Timestamp_Metric.h"
 
-class CUTS_System_Metrics_Visitor;
-
-typedef std::map <
-  std::string, CUTS_Time_Metric *> CUTS_Endpoint_Metric_Map;
-
-typedef std::map <long, ACE_CString> CUTS_Endpoint_Name_Map;
+class CUTS_Metrics_Visitor;
 
 //=============================================================================
 /**
  * @class CUTS_Port_Metric
+ *
+ * Performance metrics for a port in a component. The metrics are
+ * stored in a map by the component that sent the input event. If
+ * metrics are not stored by sender, then all under the CUTS_UKNOWN_IMPL
+ * id.
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Port_Metric
+class CUTS_Export CUTS_Port_Metric : public CUTS_Timestamp_Metric
 {
 public:
   /// Constructor.
@@ -32,56 +27,44 @@ public:
   /// Destructor.
   ~CUTS_Port_Metric (void);
 
-  /// Get the transit time metrics for the port.
-  CUTS_Time_Metric & transit_time (void);
+  /**
+   * Get the metrics for all the senders. If the metrics are
+   * not stored by sender id, then all metrics will be located
+   * under the id of CUTS_UNKNOWN_IMPL.
+   *
+   * @return        Reference to the performance log.
+   */
+  CUTS_Port_Measurement_Map & sender_map (void);
 
-  /// Get the transit time metrics for the port.
-  const CUTS_Time_Metric & transit_time (void) const;
+  /// @overload
+  const CUTS_Port_Measurement_Map & sender_map (void) const;
 
-  /// Get the specified endpoint time metrics.
-  CUTS_Time_Metric * endpoint (const char * endpoint);
-
-  /// Insert a new endpoint into the port metrics.
-  CUTS_Time_Metric * insert_endpoint (const char * endpoint);
-
-  /// Remove a existing endpoing from the port metrics.
-  void remove_endpoint (const char * endpoint);
-
-  /// Get the locking mechanism for external usage.
-  ACE_RW_Thread_Mutex & lock (void);
-
-  const CUTS_Endpoint_Metric_Map & endpoints (void) const;
-
-  void accept (CUTS_System_Metrics_Visitor & visitor) const;
-
-  const ACE_Time_Value & timestamp (void) const;
-
-  void timestamp (const ACE_Time_Value & timestamp);
-
-  const CUTS_Port_Metric & operator += (const CUTS_Port_Metric & metric);
-
-  const CUTS_Activation_Record_Log & log (void) const;
-
+  /**
+   * Get the log of performance data for the component.
+   *
+   * @return        Reference to the performance log.
+   */
   CUTS_Activation_Record_Log & log (void);
 
-  void endpoint_name (long id, const ACE_CString & name);
+  /// @overload
+  const CUTS_Activation_Record_Log & log (void) const;
 
-  ACE_CString endpoint_name (long id) const;
+  /**
+   * Accept the system metric visitor.
+   *
+   * @param[in]       visitor       Target visitor object.
+   */
+  void accept (CUTS_Metrics_Visitor & visitor) const;
 
 private:
-  /// Time metrics for the port.
-  CUTS_Endpoint_Metric_Map endpoints_;
-
-  /// Locking mechanism for synchronizing thread access.
-  ACE_RW_Thread_Mutex lock_;
-
-  CUTS_Time_Metric transit_time_;
-
+  /// Latest time metric was updated.
   ACE_Time_Value timestamp_;
 
+  /// Log of all the records collected on this port.
   CUTS_Activation_Record_Log log_;
 
-  CUTS_Endpoint_Name_Map name_map_;
+  /// Mapping of port measurements by sender.
+  CUTS_Port_Measurement_Map sender_map_;
 };
 
 #if defined (__CUTS_INLINE__)

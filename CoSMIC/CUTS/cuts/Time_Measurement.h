@@ -19,8 +19,10 @@
 #pragma once
 #endif  // ACE_LACKS_PRAGMA_ONCE
 
-#include "cuts/CUTS_export.h"
-#include "ace/Time_Value.h"
+#include "cuts/Timestamp_Metric.h"
+
+// Forward decl.
+class CUTS_Metrics_Visitor;
 
 //=============================================================================
 /**
@@ -33,7 +35,7 @@
  */
 //=============================================================================
 
-class CUTS_Export CUTS_Time_Measurement
+class CUTS_Export CUTS_Time_Measurement : public CUTS_Timestamp_Metric
 {
 public:
   /// Constructor.
@@ -52,23 +54,36 @@ public:
   void operator += (const ACE_Time_Value & timing);
 
   /// Get the minimum time value.
+  ACE_Time_Value & minimum (void);
   const ACE_Time_Value & minimum (void) const;
 
   /// Get the maximum time value.
+  ACE_Time_Value & maximum (void);
   const ACE_Time_Value & maximum (void) const;
 
   /// Get the total time recorded in the timing measurement.
-  const ACE_Time_Value & accumulation (void) const;
+  ACE_Time_Value & total (void);
+  const ACE_Time_Value & total (void) const;
 
   /// Get the number of time measurements.
   size_t count (void) const;
+
+  /// Set the count.
+  void count (size_t n);
+
+  /**
+   * Accept the visitor object.
+   *
+   * @param[in]     visitor       The target visitor object.
+   */
+   void accept (CUTS_Metrics_Visitor & visitor) const;
 
 private:
   /// Number of timing measurements.
   size_t count_;
 
   /// Accumulation of time values.
-  ACE_Time_Value sum_;
+  ACE_Time_Value total_;
 
   /// The slowest/maximum time value.
   ACE_Time_Value max_;

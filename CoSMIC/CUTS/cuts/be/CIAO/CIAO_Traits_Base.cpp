@@ -221,7 +221,7 @@ write_method (const PICML::OutEventPort & source)
   if (event != Udm::null)
   {
     this->outfile ()
-      << "push_" << source.name () << " (" << std::endl
+      << "push_" << source.name () << " ("
       << scope (event, "::") << event.name () << " * ev)";
   }
 }

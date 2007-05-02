@@ -6,7 +6,7 @@
 #include "cuts/Port_Measurement.inl"
 #endif
 
-#include "cuts/Benchmark_Visitor.h"
+#include "cuts/Metrics_Visitor.h"
 #include <algorithm>
 
 //
@@ -39,7 +39,8 @@ void CUTS_Port_Measurement::reset (void)
 //
 // accept
 //
-void CUTS_Port_Measurement::accept (CUTS_Benchmark_Visitor & visitor)
+void CUTS_Port_Measurement::
+accept (CUTS_Metrics_Visitor & visitor) const
 {
   visitor.visit_port_measurement (*this);
 }

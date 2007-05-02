@@ -119,6 +119,8 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
     << ": CUTS_CCM_Context_T <" << scope (component, "::")
     << "CCM_" << component.name () << "_Context> (ctx, agent) {";
 
+  this->endpoint_id_ = 1;
+
   std::for_each (
     sources.begin (),
     sources.end (),
@@ -283,22 +285,23 @@ write_method (const PICML::OutEventPort & source)
     this->scope (event, "::") + (std::string) event.name ();
 
   this->outfile ()
-    << single_line_comment ("record time of exit for event")
     << "CUTS_Activation_Record * record = CUTS_THR_ACTIVATION_RECORD ();"
-    << "record->log_endpoint (this->" << name << "_id_);";
+    << std::endl;
 
   if (event_type == "CUTS::Empty_Event" ||
       event_type == "CUTS::Payload_Event")
   {
     this->outfile ()
-      << std::endl
-      << single_line_comment ("tag event with component's id")
-      << "ev->sender (this->agent_->parent ());";
+      << single_line_comment ("Tag the event with the component's id.")
+      << "ev->sender (this->agent_->parent ());"
+      << std::endl;
   }
 
   this->outfile ()
+    << single_line_comment ("Record the time of exit for event")
+    << "record->log_endpoint (this->push_" << name << "_id_);"
     << std::endl
-    << single_line_comment ("continue sending event")
+    << single_line_comment ("Continue sending event to target component.")
     << "this->ctx_->push_" << name << " (ev);"
     << "}";
 }
@@ -510,7 +513,7 @@ write_endpoint_register (const PICML::OutEventPort & source)
 {
   this->outfile ()
     << "this->agent_->register_endpoint (\"" << source.name ()
-    << "\", this->" << source.name () << "_id_);";
+    << "\", this->push_" << source.name () << "_id_);";
 }
 
 //
@@ -523,6 +526,6 @@ write_agent_register (const PICML::InEventPort & sink)
     << "this->push_" << sink.name () << "_.port_agent ().name (\""
     << sink.name () << "\");"
     << "this->agent_->register_agent (&this->push_"
-    << sink.name () << "_.port_agent ());"
-    << std::endl;
+    << sink.name () << "_.port_agent (), "
+    << this->endpoint_id_ ++ << ");" << std::endl;
 }

@@ -1,15 +1,6 @@
 // $Id$
 
 //
-// lock
-//
-CUTS_INLINE
-ACE_RW_Thread_Mutex & CUTS_System_Metric::lock (void)
-{
-  return this->lock_;
-}
-
-//
 // component_metrics
 //
 CUTS_INLINE

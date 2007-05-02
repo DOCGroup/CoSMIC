@@ -49,3 +49,21 @@ void CUTS_Activation_Record_Log::reset (void)
 {
   this->used_ = 0;
 }
+
+//
+// lock
+//
+CUTS_INLINE
+ACE_RW_Thread_Mutex & CUTS_Activation_Record_Log::lock (void)
+{
+  return this->lock_;
+}
+
+//
+// next_free_record_i
+//
+CUTS_INLINE
+CUTS_Activation_Record * CUTS_Activation_Record_Log::next_free_record_i (void)
+{
+  return &(this->array_[this->used_ ++]);
+}

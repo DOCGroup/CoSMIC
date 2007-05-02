@@ -8,11 +8,13 @@
 
 #include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
+#include "cuts/Component_Info.h"
 #include "cuts/Component_Metric.h"
+#include "cuts/Component_Type.h"
 #include "cuts/Host_Table_Entry.h"
 #include "cuts/Port_Metric.h"
 #include "cuts/Time.h"
-#include "cuts/Log_Msg.h"
+#include "cuts/Testing_Service.h"
 #include "cuts/BDC/BDC_Service_Manager.h"
 #include "cuts/utils/ODBC/ODBC_Connection.h"
 #include "cuts/utils/ODBC/ODBC_Query.h"
@@ -332,45 +334,49 @@ handle_metrics (const CUTS_System_Metric & metrics)
     query->parameter (9)->bind (&total_time);
     query->parameter (10)->bind (&worse_time);
 
-    CUTS_Component_Metric_Map::const_iterator cm_iter;
+    CUTS_Component_Metric_Map::
+      CONST_ITERATOR cm_iter (metrics.component_metrics ());
 
-    for (cm_iter  = metrics.component_metrics ().begin ();
-         cm_iter != metrics.component_metrics ().end ();
-         cm_iter ++)
+    ACE_CString portname;
+    const CUTS_Component_Info * myinfo = 0;
+
+    for (cm_iter; !cm_iter.done (); cm_iter ++)
     {
       // Determine if this component has any metrics that correspond
       // with the lastest timestamp for the system metrics. If it does
       // not then why bother going any further.
-      if (timestamp != cm_iter->second->timestamp ())
+      if (timestamp != cm_iter->item ()->timestamp ())
         continue;
 
-      component = this->id_map_[cm_iter->first];
+      this->svc_mgr ()->testing_service ()->
+        registry ().get_component_info (cm_iter->key (), &myinfo);
+
+      component = this->id_map_[cm_iter->key ()];
 
       // Iterate over all the ports in the <component_metric>.
-      CUTS_Port_Metric_Map::const_iterator pm_iter;
+      CUTS_Port_Metric_Map::
+        CONST_ITERATOR pm_iter (cm_iter->item ()->port_metrics ());
 
-      for (pm_iter  = cm_iter->second->port_metrics ().begin ();
-           pm_iter != cm_iter->second->port_metrics ().end ();
-           pm_iter ++)
+      for (pm_iter; !pm_iter.done (); pm_iter ++)
       {
-        ACE_OS::strcpy (src, pm_iter->first.c_str ());
+        myinfo->type_->sources_.find (pm_iter->key (), portname);
+        ACE_OS::strcpy (src, portname.c_str ());
 
-        CUTS_Sender_Port_Map::const_iterator spm_iter;
+        CUTS_Port_Measurement_Map::
+          CONST_ITERATOR sender_iter (pm_iter->item ()->sender_map ().hash_map ());
 
-        for (spm_iter  = pm_iter->second.begin ();
-             spm_iter != pm_iter->second.end ();
-             spm_iter ++)
+        for (sender_iter; !sender_iter.done (); sender_iter ++)
         {
           // Determine if this port has any metrics that correspond
           // with the lastest timestamp for the system metrics. If it does
           // not then why bother going any further.
-          if (timestamp != spm_iter->second->timestamp ())
+          if (timestamp != sender_iter->item ()->timestamp ())
             continue;
 
           // Copy the metrics for the process data into the appropriate
           // parameters before we execute the statement.
           ID_Map::const_iterator id_iter =
-            this->id_map_.find (spm_iter->first);
+            this->id_map_.find (sender_iter->key ());
 
           if (id_iter != this->id_map_.end ())
             sender = id_iter->second;
@@ -378,13 +384,13 @@ handle_metrics (const CUTS_System_Metric & metrics)
             sender = CUTS_UNKNOWN_IMPL;
 
           query->parameter (7)->null ();
-          metric_count = spm_iter->second->transit_time ().count ();
+          metric_count = sender_iter->item ()->queuing_time ().count ();
 
           ACE_OS::strcpy (metric_type, "queue");
 
-          best_time = spm_iter->second->transit_time ().best_time ();
-          worse_time = spm_iter->second->transit_time ().worse_time ();
-          total_time = spm_iter->second->transit_time ().total_time ();
+          best_time  = sender_iter->item ()->queuing_time ().minimum ().msec ();
+          worse_time = sender_iter->item ()->queuing_time ().maximum ().msec ();
+          total_time = sender_iter->item ()->queuing_time ().total ().msec ();
 
           // Execute the "prepared" statement using the parameters
           // we have stored.
@@ -392,29 +398,30 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
           ACE_OS::strcpy (metric_type, "process");
 
-          CUTS_Endpoint_Metric_Map::const_iterator em_iter;
+          CUTS_Port_Measurement::Exit_Points::const_iterator em_iter;
 
-          for (em_iter  = spm_iter->second->endpoints ().begin ();
-               em_iter != spm_iter->second->endpoints ().end ();
+          for (em_iter  = sender_iter->item ()->exit_points ().begin ();
+               em_iter != sender_iter->item ()->exit_points ().end ();
                em_iter ++)
           {
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (metrics.get_timestamp () != em_iter->second->timestamp ())
+            if (timestamp != em_iter->second.timestamp ())
               continue;
 
             // Copy the metrics for the process data into the appropriate
             // parameters before we execute the statement.
             query->parameter (7)->bind (dst, 0);
 
-            ACE_OS::strcpy (dst, em_iter->first.c_str ());
+            myinfo->type_->sources_.find (em_iter->first, portname);
+            ACE_OS::strcpy (dst, portname.c_str ());
 
             // Store the metrics in their parameters.
-            metric_count = em_iter->second->count ();
-            best_time = em_iter->second->best_time ();
-            worse_time = em_iter->second->worse_time ();
-            total_time = em_iter->second->total_time ();
+            metric_count = em_iter->second.count ();
+            best_time  = em_iter->second.minimum ().msec ();
+            worse_time = em_iter->second.maximum ().msec ();
+            total_time = em_iter->second.total ().msec ();
 
             query->execute_no_record ();
           }
@@ -453,7 +460,7 @@ handle_component (const CUTS_Component_Info & info)
     long inst_id = -1;
 
     if (this->register_component (info.inst_.c_str (),
-                                  info.type_.c_str (),
+                                  info.type_->name_.c_str (),
                                   &inst_id))
     {
       VERBOSE_MESSAGE ((LM_INFO,

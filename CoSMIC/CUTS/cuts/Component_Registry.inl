@@ -65,3 +65,23 @@ CUTS_Component_Registry::entries (void) const
 {
   return this->registry_;
 }
+
+//
+// component_types
+//
+CUTS_INLINE
+const CUTS_Component_Type_Map &
+CUTS_Component_Registry::component_types (void) const
+{
+  return this->component_types_;
+}
+
+//
+// component_types
+//
+CUTS_INLINE
+CUTS_Component_Type_Map &
+CUTS_Component_Registry::component_types (void)
+{
+  return this->component_types_;
+}

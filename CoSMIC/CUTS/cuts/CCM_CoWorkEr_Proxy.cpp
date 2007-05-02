@@ -106,8 +106,8 @@ register_i (CUTS::Testing_Service_ptr ts,
     ACE_OS::hostname (hostname, sizeof (hostname));
     ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
 
-    reg.ipaddr   = ::CORBA::string_dup (inet.get_host_addr ());
-    reg.hostname = ::CORBA::string_dup (inet.get_host_name ());
+    reg.host_info.ipaddr   = ::CORBA::string_dup (inet.get_host_addr ());
+    reg.host_info.hostname = ::CORBA::string_dup (inet.get_host_name ());
 
     try
     {

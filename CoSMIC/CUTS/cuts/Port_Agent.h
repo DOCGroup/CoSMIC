@@ -18,9 +18,6 @@
 #include "ace/SString.h"
 #include "ace/Containers_T.h"
 
-// Forward decl.
-class CUTS_Benchmark_Visitor;
-
 //=============================================================================
 /**
  * @class CUTS_Port_Agent
@@ -56,6 +53,7 @@ public:
    *
    * @return      Reference to the lastest port measurement map.
    */
+  CUTS_Port_Measurement_Pool & port_measurement_pool (void);
   const CUTS_Port_Measurement_Pool & port_measurement_pool (void) const;
 
   /**
@@ -65,13 +63,6 @@ public:
    * @retval      false       The port agent is not active.
    */
   bool is_active (void) const;
-
-  /**
-   * Accept the visitor object.
-   *
-   * @param[in]   visitor     Reference to the visitor.
-   */
-  void accept (CUTS_Benchmark_Visitor & visitor);
 
   /**
    * Get a free record from the port agent. The gets the next free
@@ -97,6 +88,7 @@ public:
   /// port agent.
   void reset (void);
 
+  CUTS_Activation_Record_Log & log (void);
   const CUTS_Activation_Record_Log & log (void) const;
 
 private:

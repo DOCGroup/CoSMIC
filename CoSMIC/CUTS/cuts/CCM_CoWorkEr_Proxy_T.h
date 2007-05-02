@@ -116,6 +116,8 @@ private:
   /// Reset the state of the proxy.
   void reset (void);
 
+  void init_component_registration (CUTS::Component_Registration & reg);
+
   // prevent the following operations
   CUTS_CCM_CoWorkEr_Proxy_T (const CUTS_CCM_CoWorkEr_Proxy_T &);
   CUTS_CCM_CoWorkEr_Proxy_T & operator = (const CUTS_CCM_CoWorkEr_Proxy_T &);

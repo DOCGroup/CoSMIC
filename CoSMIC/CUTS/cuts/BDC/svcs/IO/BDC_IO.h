@@ -16,6 +16,7 @@
 #include "BDC_IO_export.h"
 #include "cuts/BDC/BDC_Service.h"
 #include "cuts/svcs/dbase/DB_Service.h"
+#include "cuts/Component_Type.h"
 
 //=============================================================================
 /**
@@ -43,6 +44,9 @@ public:
   virtual int handle_component (const CUTS_Component_Info & info);
 
 private:
+  void print_port_description (const ACE_CString & title,
+                               const CUTS_Port_Description_Map & desc);
+
   static const char * state_cstr_ [2];
 };
 

@@ -15,6 +15,7 @@
 
 #include "cuts/Component_Registry_Node.h"
 #include "cuts/Host_Table.h"
+
 #include "ace/Condition_Thread_Mutex.h"
 #include "ace/RW_Thread_Mutex.h"
 #include "ace/Hash_Map_Manager_T.h"
@@ -25,6 +26,12 @@
 
 // Forward decl.
 class CUTS_Component_Registry_Handler;
+
+// Type definition for the mapping of component types.
+typedef
+  ACE_Hash_Map_Manager <
+  ACE_CString, CUTS_Component_Type *, ACE_RW_Thread_Mutex>
+  CUTS_Component_Type_Map;
 
 //=============================================================================
 /**
@@ -141,18 +148,15 @@ public:
   size_t registry_size (void) const;
 
   /**
-   * Get a read-only reference to the host table.
-   *
-   * @return      Refernce to host table.
-   */
-  const CUTS_Host_Table & hosts (void) const;
-
-  /**
-   * Get a reference to the host table.
+   * Get a reference to the host table. This table contains all the
+   * hosts that have been registered with this object.
    *
    * @return      Refernce to host table.
    */
   CUTS_Host_Table & hosts (void);
+
+  /// @overload
+  const CUTS_Host_Table & hosts (void) const;
 
   /**
    * Get a read-only reference to the entry table.
@@ -171,6 +175,17 @@ public:
    */
   int get_component_info (size_t uid,
                           const CUTS_Component_Info ** info) const;
+
+  /**
+   * Get all the component types that have been registered
+   * with this object.
+   *
+   * @return      Reference to component types.
+   */
+  CUTS_Component_Type_Map & component_types (void);
+
+  /// @overload
+  const CUTS_Component_Type_Map & component_types (void) const;
 
 protected:
   /// Type defintion of registration queue.
@@ -205,6 +220,9 @@ private:
 
   /// The host tables for the registry.
   CUTS_Host_Table hosts_;
+
+  /// Mapping of typenames to type information.
+  CUTS_Component_Type_Map component_types_;
 };
 
 #if defined (__CUTS_INLINE__)

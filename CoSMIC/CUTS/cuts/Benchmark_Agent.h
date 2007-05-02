@@ -4,8 +4,6 @@
 /**
  * @file    Benchmark_Agent.h
  *
- * @brief   Contains the benchmark agent class.
- *
  * $Id$
  *
  * @author James H. Hill <hillj@isis.vanderbilt.edu>
@@ -17,17 +15,20 @@
 
 #include "cuts/CUTS_export.h"
 #include "ace/SString.h"
+#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Null_Mutex.h"
+
 #include <map>
 #include <set>
 
 // Forward decl.
 class CUTS_Port_Agent;
 
-// Forward decl.
-class CUTS_Benchmark_Visitor;
-
 /// Type defintion for a collection of CUTS_Port_Agent objects.
-typedef std::set <CUTS_Port_Agent *> CUTS_Port_Agent_Set;
+typedef
+  ACE_Hash_Map_Manager <
+  void *, size_t, ACE_Null_Mutex>
+  CUTS_Port_Agent_Set;
 
 //=============================================================================
 /**
@@ -56,28 +57,21 @@ public:
   void parent (long parent);
 
   /// Register a port agent.
-  bool register_agent (CUTS_Port_Agent * agent);
-
-  /// Unregister a port agent.
-  void unregister_agent (CUTS_Port_Agent * agent);
+  int register_agent (CUTS_Port_Agent * agent, size_t agent_id);
 
   /// Register an exit point w/ the agent.
   int register_endpoint (const ACE_CString & endpoint,
-                         size_t & endpoint_id);
-
-  void accept (CUTS_Benchmark_Visitor & visitor);
-
-  const char * endpoint_name (size_t id) const;
+                         size_t endpoint_id);
 
   /// Get the collection of port agents.
   const CUTS_Port_Agent_Set & port_agents (void) const;
 
+  /// @overload
+  CUTS_Port_Agent_Set & port_agents (void);
+
   const Endpoint_Map & endpoints (void) const;
 
 protected:
-  /// Get the collection of port agents.
-  CUTS_Port_Agent_Set & port_agents (void);
-
   /// Owner of this object.
   long parent_;
 
