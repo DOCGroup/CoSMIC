@@ -1,3 +1,13 @@
+Wed May  2 20:18:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Source_Traits.cpp:
+
+          Place the 'record' variable declared in generate periodic
+          methods within a ACE_UNUSED_ARG () statement.
+
 Wed May  2 19:43:23 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.h:

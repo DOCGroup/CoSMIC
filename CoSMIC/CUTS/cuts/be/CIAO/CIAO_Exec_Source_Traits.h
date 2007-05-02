@@ -63,6 +63,9 @@ public:
   virtual void write_PeriodicEvent_begin (
     const PICML::PeriodicEvent & periodic);
 
+  virtual void write_PeriodicEvent_end (
+    const PICML::PeriodicEvent & periodic);
+
   virtual void write_Attribute_begin (
     const PICML::Attribute & attr);
 

@@ -186,16 +186,6 @@ write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
 }
 
 //
-// write_PeriodicEvent_end
-//
-void CUTS_CIAO_Source_Traits::
-write_PeriodicEvent_end (const PICML::PeriodicEvent & periodic)
-{
-  this->outfile ()
-    << "}";
-}
-
-//
 // write_ReadonlyAttribute_begin
 //
 void CUTS_CIAO_Source_Traits::

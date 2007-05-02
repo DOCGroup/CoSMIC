@@ -751,3 +751,15 @@ write_PeriodicEvent_begin (const PICML::PeriodicEvent & periodic)
     << "CUTS_Activation_Record * record = CUTS_THR_ACTIVATION_RECORD ();"
     << std::endl;
 }
+
+//
+// write_PeriodicEvent_end
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_PeriodicEvent_end (const PICML::PeriodicEvent & periodic)
+{
+  this->outfile ()
+    << "ACE_UNUSED_ARG (record);"
+    << "}";
+}
+
