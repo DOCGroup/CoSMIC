@@ -1,3 +1,17 @@
+Wed May  2 22:11:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Benchmark_Agent.h:
+        * cuts/Benchmark_Agent.inl:
+
+          Changed the storage class for endpoints from a STL map
+          to an ACE_Hash_Map_Manager.
+
+        * cuts/CUTS_i.h:
+        * cuts/CUTS_i.cpp:
+
+          Updated the insertion operators to use the new storage
+          class for the endpoints.
+
 Wed May  2 21:55:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Worker.h:

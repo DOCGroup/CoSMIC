@@ -30,6 +30,6 @@ void CUTS_STUB_Export operator <<= (CUTS::Port_Descriptions & desc,
                                     const CUTS_Port_Agent_Set & agents);
 
 void CUTS_STUB_Export operator <<= (CUTS::Port_Descriptions & desc,
-                                    const CUTS_Benchmark_Agent::Endpoint_Map & ends);
+                                    const CUTS_Endpoint_Map & ends);
 
 #endif  // !defined _CUTS_I_H_

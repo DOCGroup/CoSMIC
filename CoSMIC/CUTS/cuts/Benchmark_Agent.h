@@ -18,17 +18,20 @@
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 
-#include <map>
-#include <set>
-
 // Forward decl.
 class CUTS_Port_Agent;
 
-/// Type defintion for a collection of CUTS_Port_Agent objects.
+/// Type definition for a collection of CUTS_Port_Agent objects.
 typedef
   ACE_Hash_Map_Manager <
   void *, size_t, ACE_Null_Mutex>
   CUTS_Port_Agent_Set;
+
+/// Type definition for a collection of endpoint names.
+typedef
+  ACE_Hash_Map_Manager <
+  ACE_CString, size_t, ACE_Null_Mutex>
+  CUTS_Endpoint_Map;
 
 //=============================================================================
 /**
@@ -41,9 +44,6 @@ typedef
 class CUTS_Export CUTS_Benchmark_Agent
 {
 public:
-  /// Type definition for mapping exit point UUIDs to names.
-  typedef std::map <ACE_CString, size_t> Endpoint_Map;
-
   /// Constructor.
   CUTS_Benchmark_Agent (void);
 
@@ -63,20 +63,32 @@ public:
   int register_endpoint (const ACE_CString & endpoint,
                          size_t endpoint_id);
 
-  /// Get the collection of port agents.
+  /**
+   * Get the collection of port agents.
+   *
+   * @return      Reference to the registered port agents.
+   */
   const CUTS_Port_Agent_Set & port_agents (void) const;
 
   /// @overload
   CUTS_Port_Agent_Set & port_agents (void);
 
-  const Endpoint_Map & endpoints (void) const;
+  /**
+   * Get the collection of registered endpoints.
+   *
+   * @return      Reference to the registered endpoints.
+   */
+  const CUTS_Endpoint_Map & endpoints (void) const;
+
+  /// @overload
+  CUTS_Endpoint_Map & endpoints (void);
 
 protected:
   /// Owner of this object.
   long parent_;
 
   /// Collection of exit points available to the agent.
-  Endpoint_Map endpoints_;
+  CUTS_Endpoint_Map endpoints_;
 
   /// Set of port agents managed by this benchmark agent.
   CUTS_Port_Agent_Set port_agents_;

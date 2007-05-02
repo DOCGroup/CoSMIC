@@ -36,8 +36,7 @@ CUTS_INLINE
 int CUTS_Benchmark_Agent::
 register_endpoint (const ACE_CString & endpoint, size_t endpoint_id)
 {
-  this->endpoints_[endpoint] = endpoint_id;
-  return 0;
+  return this->endpoints_.bind (endpoint, endpoint_id);
 }
 
 //
@@ -73,9 +72,20 @@ const CUTS_Port_Agent_Set & CUTS_Benchmark_Agent::port_agents (void) const
   return this->port_agents_;
 }
 
+//
+// endpoints
+//
 CUTS_INLINE
-const CUTS_Benchmark_Agent::Endpoint_Map &
-CUTS_Benchmark_Agent::endpoints (void) const
+const CUTS_Endpoint_Map & CUTS_Benchmark_Agent::endpoints (void) const
+{
+  return this->endpoints_;
+}
+
+//
+// endpoints
+//
+CUTS_INLINE
+CUTS_Endpoint_Map & CUTS_Benchmark_Agent::endpoints (void)
 {
   return this->endpoints_;
 }
