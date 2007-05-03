@@ -1,3 +1,12 @@
+Thu May  3 04:38:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.cpp:
+
+          Removed the process () method, which is not obsolete, and
+          fixed debug message that was printing the count_per_msec_.
+          It was displaying the value as a integer and not a double.
+
 Wed May  2 22:48:05 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Component_Type.h:

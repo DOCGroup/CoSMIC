@@ -37,9 +37,6 @@ public:
   /// Destructor.
   virtual ~CUTS_CPU_Worker (void);
 
-  /// Run the CPU for the given number of repititions.
-  virtual void process (void);
-
   /**
    * Get the number of visits handled by this CPU worker.
    */

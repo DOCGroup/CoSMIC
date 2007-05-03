@@ -16,8 +16,6 @@
 #include <numeric>
 #include <fstream>
 
-#define CUTS_CPU_CYCLES 25
-
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000
 #define TEST_INC_MSEC    10
@@ -46,19 +44,6 @@ CUTS_CPU_Worker::CUTS_CPU_Worker (void)
 CUTS_CPU_Worker::~CUTS_CPU_Worker (void)
 {
 
-}
-
-//
-// process
-//
-void CUTS_CPU_Worker::process (void)
-{
-  ++ this->visits_;
-
-  for (int cycle = 0; cycle < CUTS_CPU_CYCLES; cycle ++)
-  {
-    ACE::is_prime (16127, 2, 16127 / 2);
-  }
 }
 
 //
@@ -139,7 +124,7 @@ bool CUTS_CPU_Worker::calibrate (void)
     ((double) calib_loop_factor * 1000.0) / (double) this->target_;
 
   ACE_DEBUG ((LM_INFO,
-              "*** info (CUTS_CPU_Worker): counts per msec = %d\n",
+              "*** info (CUTS_CPU_Worker): counts per msec = %f\n",
               this->count_per_msec_));
 
   // Verify the calibration.
