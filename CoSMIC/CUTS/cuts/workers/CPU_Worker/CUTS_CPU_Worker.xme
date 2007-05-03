@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{5FFB2BF9-FE77-4A41-B547-9BA6E659B603}" cdate="Thu May 03 17:50:57 2007" mdate="Thu May 03 17:50:57 2007" version="" metaguid="{4A29961E-7D50-47A0-8583-AA2AF04A47ED}" metaversion="" metaname="PICML">
+	<name>CUTS_CPU_Worker</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{B9064A70-58ED-4370-9704-E17572C69340}">
+		<name>CUTS_CPU_Worker</name>
+		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0x1" kind="WorkerLibraries" guid="{56A818BA-EE9E-42e4-88EA-68C27B395057}">
+			<name>CUTS_CPU_Worker</name>
+			<model id="id-0065-00000001" kind="WorkerLibrary" guid="{37B8F06B-B033-4380-8848-F7609C84A5E7}" relid="0x1" childrelidcntr="0x1">
+				<name>CUTS_CPU_Worker</name>
+				<attribute kind="Location" status="meta">
+					<value></value>
+				</attribute>
+				<model id="id-0065-00000002" kind="WorkerFile" role="WorkerFile" guid="{C1AC85C8-BB52-4c98-A7D8-DC2729FC75B5}" relid="0x1" childrelidcntr="0x1">
+					<name>CPU_Worker/CPU_Worker</name>
+					<attribute kind="Location">
+						<value>$(CUTS_ROOT)/cuts/workers</value>
+					</attribute>
+					<model id="id-0065-00000003" kind="Worker" role="Worker" guid="{72702D87-6863-4bf9-B35C-2EF4FCF05FD5}" relid="0x1" childrelidcntr="0x1">
+						<name>CUTS_CPU_Worker</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Behavior" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>184,86</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="Abstract" status="meta">
+							<value>false</value>
+						</attribute>
+						<model id="id-0065-00000004" kind="Action" role="Action" guid="{20AF54B2-4430-4ff0-815B-40BCCB7C1305}" relid="0x1" childrelidcntr="0x1">
+							<name>run</name>
+							<attribute kind="LogAction" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="Repetitions" status="meta">
+								<value>1</value>
+							</attribute>
+							<model id="id-0065-00000005" kind="Property" role="Property" guid="{290235E0-1845-4ab2-8F37-409F97369385}" relid="0x1" childrelidcntr="0x0">
+								<name>msec</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Behavior" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>177,93</value>
+										</regnode>
+									</regnode>
+								</regnode>
+								<attribute kind="DataValue">
+									<value>30</value>
+								</attribute>
+							</model>
+						</model>
+					</model>
+				</model>
+			</model>
+		</folder>
+	</folder>
+</project>

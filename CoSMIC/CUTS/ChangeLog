@@ -1,3 +1,23 @@
+Thu May  3 23:04:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.h:
+        * cuts/workers/CPU_Worker/CPU_Worker.inl:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+        * cuts/workers/CPU_Worker/CPU_Worker.mpc:
+
+          Renamed of the files below that were removed.
+
+        * cuts/workers/CPU_Worker/CUTS_CPU_Worker.xme:
+
+          WML model of the CUTS_CPU_Worker. To use it in PICML models
+          just import it, or attach it as a library.
+
+        * cuts/workers/CPU_Worker/CPUWorker.h:
+        * cuts/workers/CPU_Worker/CPUWorker.inl:
+        * cuts/workers/CPU_Worker/CPUWorker.cpp:
+
+          Removed these files.
+
 Thu May  3 22:22:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:

@@ -5,10 +5,6 @@ project (CUTS_CPU_Worker) : cutslib {
   dynamicflags += CUTS_CPU_WORKER_BUILD_DLL
 
   Source_Files {
-    CPUWorker.cpp
-  }
-
-  Template_Files {
-
+    CPU_Worker.cpp
   }
 }

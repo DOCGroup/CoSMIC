@@ -1,17 +1,17 @@
 // $Id$
 
-#include "CPUWorker.h"
+#include "CPU_Worker.h"
+
+#if !defined (__CUTS_INLINE__)
+#include "CPU_Worker.inl"
+#endif
+
 #include "ace/High_Res_Timer.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_NS_netdb.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/Sched_Params.h"
 #include "ace/streams.h"
-
-#if !defined (__CUTS_INLINE__)
-#include "CPUWorker.inl"
-#endif
-
 #include <numeric>
 #include <vector>
 

@@ -83,7 +83,7 @@ private:
 CUTS_WORKER_FACTORY_EXPORT_DECL (CUTS_CPU_WORKER_Export);
 
 #if defined (__CUTS_INLINE__)
-#include "CPUWorker.inl"
+#include "CPU_Worker.inl"
 #endif
 
 #endif  // !defined _CUTS_CPU_WORKER_H_
