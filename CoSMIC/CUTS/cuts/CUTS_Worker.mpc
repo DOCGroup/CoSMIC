@@ -31,17 +31,3 @@ project (CUTS_Memory_Worker) : cutslib {
 
   }
 }
-
-project (CUTS_CPU_Worker) : cutslib {
-  sharedname += CUTS_CPU_Worker
-
-  dynamicflags += CUTS_BUILD_DLL
-
-  Source_Files {
-    CPUWorker.cpp
-  }
-
-  Template_Files {
-
-  }
-}

@@ -1,20 +1,19 @@
 // $Id$
 
-#include "cuts/CPUWorker.h"
-#include "ace/Guard_T.h"
+#include "CPUWorker.h"
 #include "ace/High_Res_Timer.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_NS_netdb.h"
 #include "ace/OS_NS_stdio.h"
-#include "ace/OS_NS_sys_time.h"
 #include "ace/Sched_Params.h"
+#include "ace/streams.h"
 
 #if !defined (__CUTS_INLINE__)
-#include "cuts/CPUWorker.inl"
+#include "CPUWorker.inl"
 #endif
 
 #include <numeric>
-#include <fstream>
+#include <vector>
 
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000
@@ -230,7 +229,8 @@ void CUTS_CPU_Worker::verify_calibration (void)
   ACE_DEBUG ((LM_INFO,
               "*** info (CUTS_CPU_Worker): verify counts per msec\n"));
 
-  ACE_Time_Value start, stop, duration;
+  ACE_High_Res_Timer timer;
+  ACE_Time_Value tv_duration;
   std::vector <size_t> calib_timings (TEST_RUNS);
 
   size_t msec = 0;
@@ -245,12 +245,13 @@ void CUTS_CPU_Worker::verify_calibration (void)
 
     for (size_t run = 0; run < TEST_RUNS; run ++)
     {
-      start = ACE_OS::gettimeofday ();
+      timer.start ();
       this->run (msec);
-      stop = ACE_OS::gettimeofday ();
+      timer.stop ();
 
-      duration = stop - start;
-      calib_timings[run] = duration.msec ();
+      // Get the elapsed time and store it.
+      timer.elapsed_time (tv_duration);
+      calib_timings[run] = tv_duration.msec ();
     }
 
     // Determine if the test passed

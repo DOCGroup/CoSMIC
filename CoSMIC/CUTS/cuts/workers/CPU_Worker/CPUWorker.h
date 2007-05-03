@@ -16,8 +16,7 @@
 #define _CUTS_CPU_WORKER_H_
 
 #include "cuts/Worker.h"
-#include "ace/Thread_Mutex.h"
-#include <vector>
+#include "CPU_Worker_export.h"
 
 //=============================================================================
 /**
@@ -27,9 +26,8 @@
  */
 //=============================================================================
 
-class CUTS_Export CUTS_CPU_Worker : public CUTS_Worker
+class CUTS_CPU_WORKER_Export CUTS_CPU_Worker : public CUTS_Worker
 {
-public:
 public:
   /// Constructor.
   CUTS_CPU_Worker (void);
@@ -82,10 +80,10 @@ private:
   double count_per_msec_;
 };
 
-CUTS_WORKER_FACTORY_EXPORT_DECL (CUTS_Export);
+CUTS_WORKER_FACTORY_EXPORT_DECL (CUTS_CPU_WORKER_Export);
 
 #if defined (__CUTS_INLINE__)
-#include "cuts/CPUWorker.inl"
+#include "CPUWorker.inl"
 #endif
 
 #endif  // !defined _CUTS_CPU_WORKER_H_

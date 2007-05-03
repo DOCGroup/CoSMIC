@@ -22,6 +22,7 @@ workspace (CUTS) : CUTS_CoSMIC {
   cuts/BDC
   cuts/utils
   cuts/svcs
+  cuts/workers
 
   //-- utility applications
   utils/BDC

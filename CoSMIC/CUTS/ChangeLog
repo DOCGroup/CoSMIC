@@ -1,9 +1,33 @@
+Thu May  3 22:22:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Added the cuts/worker directory to the workspace.
+
+        * cuts/CUTS_Worker.mpc:
+        * cuts/workers:
+        * cuts/workers/CPU_Worker:
+        * cuts/workers/CPU_Worker/CPUWorker.h:
+        * cuts/workers/CPU_Worker/CPUWorker.inl:
+        * cuts/workers/CPU_Worker/CPUWorker.cpp:
+        * cuts/workers/CPU_Worker/CPU_Worker.mpc:
+        * cuts/workers/CPU_Worker/CPU_Worker_export.h:
+
+          Changed the location of the CUTS_CPU_Worker to
+          cuts/worker/CPU_Worker
+
+        * cuts/CPUWorker.h:
+        * cuts/CPUWorker.inl:
+        * cuts/CPUWorker.cpp:
+
+          Removed these files.
+
 Thu May  3 07:11:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.cpp:
 
-	  Changed the scope to ACE_SCOPE_PROCESS and now the percentage
-	  of error during the verfication step is printed to the screen.
+          Changed the scope to ACE_SCOPE_PROCESS and now the percentage
+          of error during the verfication step is printed to the screen.
 
 Thu May  3 04:38:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 

@@ -1,0 +1,14 @@
+// $Id$
+
+project (CUTS_CPU_Worker) : cutslib {
+  sharedname   += CUTS_CPU_Worker
+  dynamicflags += CUTS_CPU_WORKER_BUILD_DLL
+
+  Source_Files {
+    CPUWorker.cpp
+  }
+
+  Template_Files {
+
+  }
+}
