@@ -1,3 +1,10 @@
+Thu May  3 07:11:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CPUWorker.cpp:
+
+	  Changed the scope to ACE_SCOPE_PROCESS and now the percentage
+	  of error during the verfication step is printed to the screen.
+
 Thu May  3 04:38:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CPUWorker.h:

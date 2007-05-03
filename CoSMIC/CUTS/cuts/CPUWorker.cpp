@@ -60,7 +60,7 @@ void CUTS_CPU_Worker::run (size_t msec)
 //
 bool CUTS_CPU_Worker::init_calibrate (void)
 {
-  int scope = ACE_SCOPE_THREAD;
+  int scope = ACE_SCOPE_PROCESS;
   int ctrlprio =
     ACE_Sched_Params::priority_max (ACE_SCHED_FIFO,
                                     scope);
@@ -260,11 +260,12 @@ void CUTS_CPU_Worker::verify_calibration (void)
 
     double avg = (double) sum / (double) calib_timings.size ();
     double err = avg - msec;
+    double percent_error = (err / (double) msec) * 100.0;
 
     ACE_DEBUG ((LM_DEBUG,
-                "    average execution time = %f\n"
-                "    average error = %f\n",
-                avg, err));
+                "    average execution time = %f msec\n"
+                "    average error = %f msec (%f%%)\n",
+                avg, err, percent_error));
   }
 }
 
