@@ -1,3 +1,15 @@
+Fri May  4 09:01:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.h:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+
+          Calibration routine now adds details about the verification
+          process to the calibration file.
+
+        * cuts/workers/CPU_Worker/CPU_Worker.inl:
+
+          Removed this file.
+
 Thu May  3 23:04:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.h:

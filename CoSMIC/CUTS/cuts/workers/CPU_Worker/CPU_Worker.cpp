@@ -1,19 +1,17 @@
 // $Id$
 
 #include "CPU_Worker.h"
-
-#if !defined (__CUTS_INLINE__)
-#include "CPU_Worker.inl"
-#endif
-
 #include "ace/High_Res_Timer.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_NS_netdb.h"
 #include "ace/OS_NS_stdio.h"
+#include "ace/OS_NS_stdlib.h"
+#include "ace/OS_NS_unistd.h"
 #include "ace/Sched_Params.h"
 #include "ace/streams.h"
 #include <numeric>
 #include <vector>
+#include <iostream>
 
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000
@@ -25,8 +23,7 @@ CUTS_WORKER_FACTORY_EXPORT_IMPL (CUTS_CPU_Worker);
 // CUTS_CPU_Worker
 //
 CUTS_CPU_Worker::CUTS_CPU_Worker (void)
-: visits_ (0),
-  target_ (20000),
+: target_ (20000),
   margin_ (100),
   count_per_msec_ (0.0)
 {
@@ -126,8 +123,11 @@ bool CUTS_CPU_Worker::calibrate (void)
               "*** info (CUTS_CPU_Worker): counts per msec = %f\n",
               this->count_per_msec_));
 
+  ACE_CString temp_filename;
+
   // Verify the calibration.
-  verify_calibration ();
+  this->make_temp_filename (temp_filename);
+  this->verify_calibration (temp_filename);
 
   // Write the calibration to file.
   ACE_CString filename;
@@ -142,7 +142,29 @@ bool CUTS_CPU_Worker::calibrate (void)
 
   if (outfile.is_open ())
   {
-    outfile << this->count_per_msec_ << std::endl;
+    outfile
+      << this->count_per_msec_ << std::endl
+      << "=================================================" << std::endl;
+
+    std::ifstream tempfile;
+    tempfile.open (temp_filename.c_str ());
+
+    char xfer_buffer[1024];
+
+    if (tempfile.is_open ())
+    {
+      while (!tempfile.eof ())
+      {
+        tempfile.read (xfer_buffer, sizeof (xfer_buffer));
+        outfile.write (xfer_buffer, tempfile.gcount ());
+      }
+
+      // Close and delete the temporary file.
+      tempfile.close ();
+      ACE_OS::unlink (temp_filename.c_str ());
+    }
+
+    // Close the calibration file.
     outfile.close ();
   }
   else
@@ -224,18 +246,35 @@ void CUTS_CPU_Worker::work (size_t count)
 //
 // verify_calibration
 //
-void CUTS_CPU_Worker::verify_calibration (void)
+void CUTS_CPU_Worker::
+verify_calibration (const ACE_CString & temp_filename)
 {
   ACE_DEBUG ((LM_INFO,
               "*** info (CUTS_CPU_Worker): verify counts per msec\n"));
 
   ACE_High_Res_Timer timer;
   ACE_Time_Value tv_duration;
-  std::vector <size_t> calib_timings (TEST_RUNS);
 
-  size_t msec = 0;
+  typedef std::vector <size_t> timing_vector;
+  timing_vector calib_timings (TEST_RUNS);
 
-  for (size_t index = 0;
+  // Open the temporary file for writing.
+  std::ofstream tempfile;
+  tempfile.open (temp_filename.c_str ());
+
+  if (!tempfile.is_open ())
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (CUTS_CPU_Worker): failed to open '%s'; "
+                "calibration details will not be saved\n",
+                temp_filename.c_str ()));
+  }
+
+  // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are
+  // also going to write the details for the verification to the
+  // temporary file.
+
+  for (size_t index = 0, msec = 0;
        msec <= TEST_MAX_MSEC;
        msec += TEST_INC_MSEC, index ++)
   {
@@ -267,7 +306,28 @@ void CUTS_CPU_Worker::verify_calibration (void)
                 "    average execution time = %f msec\n"
                 "    average error = %f msec (%f%%)\n",
                 avg, err, percent_error));
+
+    // Write the details to the temporary file.
+    if (tempfile.is_open ())
+    {
+      // Write the current execution time.
+      tempfile << msec << " ";
+
+      // Write all the measured execution times.
+      for (timing_vector::iterator iter = calib_timings.begin ();
+           iter != calib_timings.end ();
+           iter ++)
+      {
+        tempfile << *iter << " ";
+      }
+
+      tempfile << avg << " " << percent_error << std::endl;
+    }
   }
+
+  // Close the temporary file.
+  if (tempfile.is_open ())
+    tempfile.close ();
 }
 
 //
@@ -322,4 +382,23 @@ bool CUTS_CPU_Worker::init (void)
     }
 
   return this->count_per_msec_ != 0.0;
+}
+
+//
+// make_temp_filename
+//
+void CUTS_CPU_Worker::
+make_temp_filename (ACE_CString & tempfile)
+{
+  // Get the CUTS_ROOT environment variable.
+  ACE_CString cuts_root = ACE_OS::getenv ("CUTS_ROOT");
+
+  // Create the template for the temporary file.
+  char temp_filename [1024];
+  ACE_OS::sprintf (temp_filename,
+                   "%s/etc/calibration/CUTS_CPU_Worker-XXXXXX",
+                   cuts_root.c_str ());
+
+  // Create the temporary filename.
+  tempfile = ACE_OS::mktemp (temp_filename);
 }
