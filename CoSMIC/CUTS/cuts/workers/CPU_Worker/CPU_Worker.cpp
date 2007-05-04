@@ -11,7 +11,6 @@
 #include "ace/streams.h"
 #include <numeric>
 #include <vector>
-#include <iostream>
 
 #define TEST_RUNS        10
 #define TEST_MAX_MSEC    1000

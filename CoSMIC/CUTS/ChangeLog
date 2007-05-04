@@ -1,3 +1,10 @@
+Fri May  4 09:03:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+
+          Removed 'iostream' include statement since ace/streams.h
+          is already included.
+
 Fri May  4 09:01:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.h:
