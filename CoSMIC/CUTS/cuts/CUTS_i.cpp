@@ -16,7 +16,7 @@ void operator >>= (const CUTS::Port_Descriptions & desc,
   CUTS::Port_Descriptions::const_value_type * buf = desc.get_buffer ();
   CUTS::Port_Descriptions::const_value_type * buf_stop = buf + curr_size;
 
-  for (buf; buf != buf_stop; buf ++)
+  for (; buf != buf_stop; buf ++)
     map.bind (buf->uid, buf->name.in ());
 }
 
@@ -35,7 +35,7 @@ void operator <<= (CUTS::Port_Descriptions & desc,
 
   CUTS_Port_Agent * agent = 0;
 
-  while (!iter.done ())
+  for (; !iter.done (); iter ++)
   {
     // Get the port agent.
     agent = reinterpret_cast <CUTS_Port_Agent *> (iter->key ());
@@ -46,7 +46,6 @@ void operator <<= (CUTS::Port_Descriptions & desc,
 
     // Move to the next slot in the buffer.
     buf ++;
-    iter.advance ();
   }
 }
 
@@ -63,13 +62,12 @@ void operator <<= (CUTS::Port_Descriptions & desc,
   CUTS_Endpoint_Map::CONST_ITERATOR iter (ends);
   CUTS::Port_Descriptions::value_type * buf = desc.get_buffer ();
 
-  while (!iter.done ());
+  for (; !iter.done (); iter ++)
   {
     buf->name = CORBA::string_dup (iter->key ().c_str ());
     buf->uid = iter->item ();
 
     // Goto the next slot in the buffer.
     buf ++;
-    iter.advance ();
   }
 }

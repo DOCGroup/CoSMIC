@@ -1,3 +1,12 @@
+Mon May  7 04:14:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS_i.cpp:
+        
+          Fixed bug that was caused by using a iterator from a 
+          ACE hash map in a while construct. It seem that calling
+          the done () method before using iterator resulted in an
+          infinite loop.
+
 Fri May  4 09:03:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp:
