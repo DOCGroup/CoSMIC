@@ -138,49 +138,19 @@ bool CUTS_CPU_Worker::calibrate (void)
   ACE_CString filename;
   this->make_calibration_filename (filename);
 
-  std::ofstream outfile;
-  outfile.open (filename.c_str ());
+  // Delete the target file, if it exists, and replace it with the
+  // new calibration metrics for the CPU workload generator.
+  ACE_OS::unlink (filename.c_str ());
 
-  ACE_DEBUG ((LM_INFO,
-              "*** info (CUTS_CPU_Worker): saving calibration to %s\n",
-              filename.c_str ()));
-
-  if (outfile.is_open ())
+  if (ACE_OS::rename (temp_filename.c_str (), filename.c_str ()) != 0)
   {
-    outfile
-      << this->count_per_msec_ << std::endl
-      << "=================================================" << std::endl;
-
-    std::ifstream tempfile;
-    tempfile.open (temp_filename.c_str ());
-
-    char xfer_buffer[1024];
-
-    if (tempfile.is_open ())
-    {
-      while (!tempfile.eof ())
-      {
-        tempfile.read (xfer_buffer, sizeof (xfer_buffer));
-        outfile.write (xfer_buffer, tempfile.gcount ());
-      }
-
-      // Close and delete the temporary file.
-      tempfile.close ();
-      ACE_OS::unlink (temp_filename.c_str ());
-    }
-
-    // Close the calibration file.
-    outfile.close ();
+    ACE_ERROR ((LM_ERROR,
+                "*** error (CUTS_CPU_Worker): failed to save calibration file [%m]\n"
+                "*** info (CUTS_CPU_Worker): calibration details stored in %s\n",
+                temp_filename.c_str ()));
   }
-  else
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error (CUTS_CPU_Worker): failed to open %s "
-                  "for writing\n",
-                  filename.c_str ()));
-    }
 
-  return outfile.good ();
+  return true;
 }
 
 //
@@ -273,6 +243,10 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
                 "calibration details will not be saved\n",
                 temp_filename.c_str ()));
   }
+
+  tempfile
+    << this->count_per_msec_
+    << "=================================================" << std::endl;
 
   // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are
   // also going to write the details for the verification to the

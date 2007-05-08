@@ -1,8 +1,16 @@
+Tue May  8 17:38:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp (calibrate):
+
+          Instead of copying everything from temp file to the target
+          calibration file, now everything is written to the temp file
+          and the temp file is renamed to the target file.
+
 Tue May  8 16:25:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp:
-        
-          Set the number of max tries to calibrate the CPU workload 
+
+          Set the number of max tries to calibrate the CPU workload
           generator to 10.
 
 Tue May  8 15:50:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
