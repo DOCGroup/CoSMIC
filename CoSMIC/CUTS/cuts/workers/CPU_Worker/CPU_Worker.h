@@ -77,7 +77,7 @@ private:
   size_t calibrate_i (void);
 
   /// Helper method that verifies the calibration loop factor.
-  void verify_calibration (const ACE_CString & temp_filename);
+  void verify_calibration (size_t trycount, const ACE_CString & temp_filename);
 
   /**
    * Executes the worker method for the specified \a count. The

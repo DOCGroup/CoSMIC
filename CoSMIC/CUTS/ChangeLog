@@ -1,3 +1,11 @@
+Tue May  8 15:50:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.h:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+
+          Added a counter that shows how many attempts have been made
+          to adjust and verify the counts per msec.
+
 Tue May  8 15:43:16 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp (verify_calibration):

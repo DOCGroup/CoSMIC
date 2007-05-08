@@ -134,7 +134,7 @@ bool CUTS_CPU_Worker::calibrate (void)
 
   // Verify the calibration.
   this->make_temp_filename (temp_filename);
-  this->verify_calibration (temp_filename);
+  this->verify_calibration (1, temp_filename);
 
   // Write the calibration to file.
   ACE_CString filename;
@@ -254,10 +254,11 @@ void CUTS_CPU_Worker::work (size_t count)
 // verify_calibration
 //
 void CUTS_CPU_Worker::
-verify_calibration (const ACE_CString & temp_filename)
+verify_calibration (size_t trycount, const ACE_CString & temp_filename)
 {
   ACE_DEBUG ((LM_INFO,
-              "*** info (CUTS_CPU_Worker): verify %f counts per msec\n",
+              "*** info (CUTS_CPU_Worker): [try %u] verify %f counts per msec\n",
+              trycount,
               this->count_per_msec_));
 
   ACE_High_Res_Timer timer;
@@ -364,7 +365,7 @@ verify_calibration (const ACE_CString & temp_filename)
 
     // Reset the calibration details and rerun the verification.
     CPU_CALIBRATION_DETAILS ()->reset ();
-    this->verify_calibration (temp_filename);
+    this->verify_calibration (trycount + 1, temp_filename);
   }
 }
 
