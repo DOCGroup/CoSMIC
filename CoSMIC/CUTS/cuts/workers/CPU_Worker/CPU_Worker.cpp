@@ -65,18 +65,16 @@ void CUTS_CPU_Worker::run (size_t msec)
 //
 bool CUTS_CPU_Worker::init_calibrate (void)
 {
-  int scope = ACE_SCOPE_PROCESS;
-  int ctrlprio =
-    ACE_Sched_Params::priority_max (ACE_SCHED_FIFO,
-                                    scope);
+  int scope = ACE_SCOPE_THREAD;
+  int maxprio = ACE_Sched_Params::priority_max (ACE_SCHED_FIFO, scope);
 
   ACE_DEBUG ((LM_INFO,
               "*** info (CUTS_CPU_Worker): setting FIFO thread "
               "priority to %d\n",
-              ctrlprio));
+              maxprio));
 
   if (ACE_OS::sched_params (ACE_Sched_Params (ACE_SCHED_FIFO,
-                                              ctrlprio,
+                                              maxprio,
                                               scope)) != ESUCCESS)
   {
     if (ACE_OS::last_error () == EPERM)
@@ -351,8 +349,7 @@ verify_calibration (const ACE_CString & temp_filename)
 
   // Write the information to the screen for the user.
   ACE_DEBUG ((LM_DEBUG,
-              "*** info (CUTS_CPU_Worker): min error = %f\n"
-              "                            avg error = %f\n",
+              "*** info (CUTS_CPU_Worker): error set = [%f, %f]\n",
               CPU_CALIBRATION_DETAILS ()->min_error (),
               CPU_CALIBRATION_DETAILS ()->max_error ()));
 
