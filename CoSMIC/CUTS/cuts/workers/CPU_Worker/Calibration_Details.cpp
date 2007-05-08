@@ -52,17 +52,18 @@ process (size_t msec,
     // of the collected execution times.
     CUTS_CPU_Calibration_Results::
       value_type sum = std::accumulate (results.begin (), results.end (), 0);
+
     entry->average_time_  = (double) sum / (double) results.size ();
     entry->average_error_ = entry->average_time_ - (double) msec;
     entry->percent_error_ = entry->average_error_ / (double) msec;
 
     // Update the min, max, and sum percentages.
-    if (entry->average_error_ < this->percent_error_min_)
-      this->percent_error_min_ = entry->average_error_;
-    else if (entry->average_error_ > this->percent_error_max_)
-      this->percent_error_max_ = entry->average_error_;
+    if (entry->average_error_ < this->min_error_)
+      this->min_error_ = entry->average_error_;
+    else if (entry->average_error_ > this->max_error_)
+      this->max_error_ = entry->average_error_;
 
-    this->percent_error_sum_ += entry->average_error_;
+    this->percent_error_sum_ += entry->percent_error_;
     ++ this->count_;
   }
 
@@ -75,9 +76,10 @@ process (size_t msec,
 void CUTS_CPU_Calibration_Details::reset (void)
 {
   // Reset the values.
-  this->percent_error_max_ = 0.0;
-  this->percent_error_min_ = 0.0;
+  this->max_error_ = 0.0;
+  this->min_error_ = 0.0;
   this->percent_error_sum_ = 0.0;
+  this->count_ = 0;
 
   // Delete all the entries in the log.
   CUTS_CPU_Calibration_Details_Log::ITERATOR iter (this->log_);

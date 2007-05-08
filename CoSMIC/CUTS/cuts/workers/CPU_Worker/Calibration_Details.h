@@ -95,19 +95,22 @@ public:
    */
   const CUTS_CPU_Calibration_Details_Log & log (void) const;
 
-  double min_value (void) const;
-  double max_value (void) const;
-  double avg_value (void) const;
+  double min_error (void) const;
+
+  double max_error (void) const;
+
+  double average_percent_error (void) const;
+
   size_t count (void) const;
 
   void reset (void);
 
 private:
   /// The maximum percentage of error.
-  double percent_error_max_;
+  double max_error_;
 
   /// The mininum pertantage of error.
-  double percent_error_min_;
+  double min_error_;
 
   /// The sum of the percentage error.
   double percent_error_sum_;

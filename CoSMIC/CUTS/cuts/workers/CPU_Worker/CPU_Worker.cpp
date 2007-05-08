@@ -20,8 +20,8 @@
 #define TEST_MAX_MSEC       1000
 #define TEST_INC_MSEC       10
 
-#define PERCENT_ERROR_MAX   1.0
-#define PERCENT_ERROR_MIN   (-1.0 * PERCENT_ERROR_MAX)
+#define CPU_ERROR_MAX   2.0
+#define CPU_ERROR_MIN   (-1.0 * CPU_ERROR_MAX)
 
 CUTS_WORKER_FACTORY_EXPORT_IMPL (CUTS_CPU_Worker);
 
@@ -259,7 +259,8 @@ void CUTS_CPU_Worker::
 verify_calibration (const ACE_CString & temp_filename)
 {
   ACE_DEBUG ((LM_INFO,
-              "*** info (CUTS_CPU_Worker): verify counts per msec\n"));
+              "*** info (CUTS_CPU_Worker): verify %f counts per msec\n",
+              this->count_per_msec_));
 
   ACE_High_Res_Timer timer;
   ACE_Time_Value tv_duration;
@@ -328,7 +329,8 @@ verify_calibration (const ACE_CString & temp_filename)
       // error percentage.
       tempfile
         << entry->average_time_ << " "
-        << entry->average_error_ << std::endl;
+        << entry->average_error_ << " "
+        << entry->percent_error_ << std::endl;
     }
   }
 
@@ -338,9 +340,9 @@ verify_calibration (const ACE_CString & temp_filename)
   tempfile
     << "=================================================" << std::endl
     << CPU_CALIBRATION_DETAILS ()->count () << " "
-    << CPU_CALIBRATION_DETAILS ()->min_value () << " "
-    << CPU_CALIBRATION_DETAILS ()->avg_value () << " "
-    << CPU_CALIBRATION_DETAILS ()->max_value () << std::endl;
+    << CPU_CALIBRATION_DETAILS ()->min_error () << " "
+    << CPU_CALIBRATION_DETAILS ()->max_error () << " "
+    << CPU_CALIBRATION_DETAILS ()->average_percent_error () << std::endl;
 
 
   // Close the temporary file.
@@ -350,11 +352,23 @@ verify_calibration (const ACE_CString & temp_filename)
   // Write the information to the screen for the user.
   ACE_DEBUG ((LM_DEBUG,
               "*** info (CUTS_CPU_Worker): min error = %f\n"
-              "                            avg error = %f\n"
-              "                            max error = %f\n",
-              CPU_CALIBRATION_DETAILS ()->min_value (),
-              CPU_CALIBRATION_DETAILS ()->avg_value (),
-              CPU_CALIBRATION_DETAILS ()->max_value ()));
+              "                            avg error = %f\n",
+              CPU_CALIBRATION_DETAILS ()->min_error (),
+              CPU_CALIBRATION_DETAILS ()->max_error ()));
+
+  if (CPU_CALIBRATION_DETAILS ()->min_error () < CPU_ERROR_MIN ||
+      CPU_CALIBRATION_DETAILS ()->max_error () > CPU_ERROR_MAX)
+  {
+    // Determine how much the adjust the counts per msec.
+    double adjustment =
+      this->count_per_msec_ *
+      CPU_CALIBRATION_DETAILS ()->average_percent_error ();
+    this->count_per_msec_ -= adjustment;
+
+    // Reset the calibration details and rerun the verification.
+    CPU_CALIBRATION_DETAILS ()->reset ();
+    this->verify_calibration (temp_filename);
+  }
 }
 
 //

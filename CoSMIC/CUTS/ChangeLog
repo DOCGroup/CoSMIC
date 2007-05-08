@@ -1,3 +1,16 @@
+Tue May  8 14:18:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+        * cuts/workers/CPU_Worker/Calibration_Details.h:
+        * cuts/workers/CPU_Worker/Calibration_Details.inl:
+        * cuts/workers/CPU_Worker/Calibration_Details.cpp:
+
+          Implemented adjustment logic into the calibration logic. If
+          the calibration is off by +- 2.0 msec at any points, the
+          counts per second is adjusted and run again. I still to
+          probably add a max tries to the adjustment effort so
+          the calibration doesn't run for infinite amount of time.
+
 Tue May  8 00:02:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.mpc:
