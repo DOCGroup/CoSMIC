@@ -1,3 +1,11 @@
+Tue May  8 19:00:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.h:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+
+          Refactored filename creation operations so a single function is
+          responsible for generating the basename of the calibration file.
+
 Tue May  8 17:38:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp (calibrate):

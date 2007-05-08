@@ -98,6 +98,9 @@ private:
   /// Generates a temp filename for calibration operation.
   void make_temp_filename (ACE_CString & tempfile);
 
+  /// Generate the basename of the calibration file.
+  void make_basename (ACE_CString & basename);
+
   /// The target calibration time.
   const size_t target_;
 

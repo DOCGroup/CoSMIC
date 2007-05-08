@@ -348,8 +348,9 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
 void CUTS_CPU_Worker::
 make_calibration_filename (ACE_CString & filename)
 {
-  // Store the calibration scale.
-  ACE_CString cuts_root = ACE_OS::getenv ("CUTS_ROOT");
+  // Get the basename of the temp file.
+  ACE_CString basename;
+  this->make_basename (basename);
 
   ACE_OS::macaddr_node_t macaddr;
   ACE_OS::getmacaddress (&macaddr);
@@ -357,9 +358,8 @@ make_calibration_filename (ACE_CString & filename)
   char temp_filename [1024];
 
   ACE_OS::sprintf (temp_filename,
-                   "%s/etc/calibration/%s.%02X-%02X-%02X-%02X-%02X-%02X",
-                   cuts_root.c_str (),
-                   "CUTS_CPU_Worker",
+                   "%s.%02X-%02X-%02X-%02X-%02X-%02X",
+                   basename.c_str (),
                    macaddr.node[0],
                    macaddr.node[1],
                    macaddr.node[2],
@@ -402,15 +402,25 @@ bool CUTS_CPU_Worker::init (void)
 void CUTS_CPU_Worker::
 make_temp_filename (ACE_CString & tempfile)
 {
-  // Get the CUTS_ROOT environment variable.
-  ACE_CString cuts_root = ACE_OS::getenv ("CUTS_ROOT");
+  // Get the basename of the temp file.
+  ACE_CString basename;
+  this->make_basename (basename);
 
   // Create the template for the temporary file.
   char temp_filename [1024];
   ACE_OS::sprintf (temp_filename,
-                   "%s/etc/calibration/CUTS_CPU_Worker-XXXXXX",
-                   cuts_root.c_str ());
+                   "%s-XXXXXX",
+                   basename.c_str ());
 
   // Create the temporary filename.
   tempfile = ACE_OS::mktemp (temp_filename);
+}
+
+//
+// make_basename
+//
+void CUTS_CPU_Worker::make_basename (ACE_CString & basename)
+{
+  basename = ACE_OS::getenv ("CUTS_ROOT");
+  basename += "/etc/calibration/CUTS_CPU_Worker";
 }
