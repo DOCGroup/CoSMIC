@@ -12,8 +12,6 @@
 #include "ace/Sched_Params.h"
 #include "ace/streams.h"
 #include "ace/Singleton.h"
-#include <numeric>
-#include <vector>
 
 #define TEST_RUNS           10
 #define TEST_MIN_MSEC       10
@@ -65,7 +63,7 @@ void CUTS_CPU_Worker::run (size_t msec)
 //
 bool CUTS_CPU_Worker::init_calibrate (void)
 {
-  int scope = ACE_SCOPE_THREAD;
+  int scope = ACE_SCOPE_PROCESS;
   int maxprio = ACE_Sched_Params::priority_max (ACE_SCHED_FIFO, scope);
 
   ACE_DEBUG ((LM_INFO,
@@ -279,7 +277,6 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
   // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are
   // also going to write the details for the verification to the
   // temporary file.
-  double overall_average_error = 0.0;
   CUTS_CPU_Calibration_Results results (TEST_RUNS);
 
   for (size_t msec = TEST_MIN_MSEC;
@@ -365,7 +362,9 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
 
     // Reset the calibration details and rerun the verification.
     CPU_CALIBRATION_DETAILS ()->reset ();
-    this->verify_calibration (trycount + 1, temp_filename);
+
+    if (trycount != 10)
+      this->verify_calibration (trycount + 1, temp_filename);
   }
 }
 
