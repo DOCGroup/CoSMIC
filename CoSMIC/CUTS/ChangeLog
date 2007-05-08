@@ -1,8 +1,21 @@
+Tue May  8 00:02:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.mpc:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+        * cuts/workers/CPU_Worker/Calibration_Details.h:
+        * cuts/workers/CPU_Worker/Calibration_Details.inl:
+        * cuts/workers/CPU_Worker/Calibration_Details.cpp:
+
+          - Refactored the calibration for the CPU worker so that details
+            are handled by an external class.
+          - Instead of placing the % of error at the end of execution sample
+            set in the calibration log, now the average error is stored.
+
 Mon May  7 04:14:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS_i.cpp:
-        
-          Fixed bug that was caused by using a iterator from a 
+
+          Fixed bug that was caused by using a iterator from a
           ACE hash map in a while construct. It seem that calling
           the done () method before using iterator resulted in an
           infinite loop.

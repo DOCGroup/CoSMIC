@@ -1,22 +1,32 @@
 // $Id$
 
 #include "CPU_Worker.h"
+#include "Calibration_Details.h"
 #include "ace/High_Res_Timer.h"
 #include "ace/Log_Msg.h"
+#include "ace/Null_Mutex.h"
 #include "ace/OS_NS_netdb.h"
 #include "ace/OS_NS_stdio.h"
 #include "ace/OS_NS_stdlib.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/Sched_Params.h"
 #include "ace/streams.h"
+#include "ace/Singleton.h"
 #include <numeric>
 #include <vector>
 
-#define TEST_RUNS        10
-#define TEST_MAX_MSEC    1000
-#define TEST_INC_MSEC    10
+#define TEST_RUNS           10
+#define TEST_MIN_MSEC       10
+#define TEST_MAX_MSEC       1000
+#define TEST_INC_MSEC       10
+
+#define PERCENT_ERROR_MAX   1.0
+#define PERCENT_ERROR_MIN   (-1.0 * PERCENT_ERROR_MAX)
 
 CUTS_WORKER_FACTORY_EXPORT_IMPL (CUTS_CPU_Worker);
+
+#define CPU_CALIBRATION_DETAILS() \
+  ACE_Singleton <CUTS_CPU_Calibration_Details, ACE_Null_Mutex>::instance ()
 
 //
 // CUTS_CPU_Worker
@@ -254,9 +264,6 @@ verify_calibration (const ACE_CString & temp_filename)
   ACE_High_Res_Timer timer;
   ACE_Time_Value tv_duration;
 
-  typedef std::vector <size_t> timing_vector;
-  timing_vector calib_timings (TEST_RUNS);
-
   // Open the temporary file for writing.
   std::ofstream tempfile;
   tempfile.open (temp_filename.c_str ());
@@ -272,10 +279,12 @@ verify_calibration (const ACE_CString & temp_filename)
   // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are
   // also going to write the details for the verification to the
   // temporary file.
+  double overall_average_error = 0.0;
+  CUTS_CPU_Calibration_Results results (TEST_RUNS);
 
-  for (size_t index = 0, msec = 0;
+  for (size_t msec = TEST_MIN_MSEC;
        msec <= TEST_MAX_MSEC;
-       msec += TEST_INC_MSEC, index ++)
+       msec += TEST_INC_MSEC)
   {
     ACE_DEBUG ((LM_INFO,
                 "--- running calibration test for %u msec...\n",
@@ -289,22 +298,17 @@ verify_calibration (const ACE_CString & temp_filename)
 
       // Get the elapsed time and store it.
       timer.elapsed_time (tv_duration);
-      calib_timings[run] = tv_duration.msec ();
+      results[run] = tv_duration.msec ();
     }
 
-    // Determine if the test passed
-    size_t sum = std::accumulate (calib_timings.begin (),
-                                  calib_timings.end (),
-                                  0);
-
-    double avg = (double) sum / (double) calib_timings.size ();
-    double err = avg - msec;
-    double percent_error = (err / (double) msec) * 100.0;
+    CUTS_CPU_Calibration_Details_Log_Entry * entry = 0;
+    CPU_CALIBRATION_DETAILS ()->process (msec, results, entry);
 
     ACE_DEBUG ((LM_DEBUG,
                 "    average execution time = %f msec\n"
-                "    average error = %f msec (%f%%)\n",
-                avg, err, percent_error));
+                "    average error = %f msec\n",
+                entry->average_time_,
+                entry->average_error_));
 
     // Write the details to the temporary file.
     if (tempfile.is_open ())
@@ -313,20 +317,44 @@ verify_calibration (const ACE_CString & temp_filename)
       tempfile << msec << " ";
 
       // Write all the measured execution times.
-      for (timing_vector::iterator iter = calib_timings.begin ();
-           iter != calib_timings.end ();
+      for (CUTS_CPU_Calibration_Results::iterator iter = results.begin ();
+           iter != results.end ();
            iter ++)
       {
         tempfile << *iter << " ";
       }
 
-      tempfile << avg << " " << percent_error << std::endl;
+      // Write the average measured execution time and the average
+      // error percentage.
+      tempfile
+        << entry->average_time_ << " "
+        << entry->average_error_ << std::endl;
     }
   }
+
+  // Write the summary of the calibration detail. The summary includes
+  // the number of samples processed and the min/avg/max percentage of
+  // error for each sample set (i.e., each measured execution time).
+  tempfile
+    << "=================================================" << std::endl
+    << CPU_CALIBRATION_DETAILS ()->count () << " "
+    << CPU_CALIBRATION_DETAILS ()->min_value () << " "
+    << CPU_CALIBRATION_DETAILS ()->avg_value () << " "
+    << CPU_CALIBRATION_DETAILS ()->max_value () << std::endl;
+
 
   // Close the temporary file.
   if (tempfile.is_open ())
     tempfile.close ();
+
+  // Write the information to the screen for the user.
+  ACE_DEBUG ((LM_DEBUG,
+              "*** info (CUTS_CPU_Worker): min error = %f\n"
+              "                            avg error = %f\n"
+              "                            max error = %f\n",
+              CPU_CALIBRATION_DETAILS ()->min_value (),
+              CPU_CALIBRATION_DETAILS ()->avg_value (),
+              CPU_CALIBRATION_DETAILS ()->max_value ()));
 }
 
 //

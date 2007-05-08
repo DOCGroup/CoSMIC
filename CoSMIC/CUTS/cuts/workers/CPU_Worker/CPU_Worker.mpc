@@ -5,6 +5,7 @@ project (CUTS_CPU_Worker) : cutslib {
   dynamicflags += CUTS_CPU_WORKER_BUILD_DLL
 
   Source_Files {
+    Calibration_Details.cpp
     CPU_Worker.cpp
   }
 }
