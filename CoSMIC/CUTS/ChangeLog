@@ -1,3 +1,10 @@
+Tue May  8 20:49:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp (verify_calibration):
+
+          The generated output in the calibration file was not formatted
+          correctly.
+
 Tue May  8 19:00:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.h:

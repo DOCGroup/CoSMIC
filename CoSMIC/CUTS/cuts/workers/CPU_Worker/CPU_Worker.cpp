@@ -245,7 +245,7 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
   }
 
   tempfile
-    << this->count_per_msec_
+    << this->count_per_msec_ << std::endl
     << "=================================================" << std::endl;
 
   // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are
