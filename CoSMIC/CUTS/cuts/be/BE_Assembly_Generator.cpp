@@ -6,10 +6,12 @@
 #include "BE_Assembly_Generator.inl"
 #endif
 
-#include "CUTS_Project.h"
+#include "BE_algorithm.h"
 #include "BE_Position.h"
 #include "BE_Scope_Manager.h"
 #include "CoWorkEr_Cache.h"
+#include "CUTS_Project.h"
+#include "modelgen.h"
 #include "UDM_Utility_T.h"
 
 // BOOST headers
@@ -33,16 +35,13 @@ Visit_RootFolder (const PICML::RootFolder & folder)
   // We need to locate the <CoWorkEr_ComponentImplementations> folder
   // or create one since this is where all the <CoWorkErs> will be
   // placed.
-  if (create_element_if_not_exist (folders,
-                                   Find_Element_By_Name <
-                                      PICML::ComponentImplementations> (
-                                      CoWorkEr_ComponentImplementations),
-                                   folder,
-                                   Udm::NULLCHILDROLE,
-                                   this->target_folder_))
+  if (Udm::create_if_not (folder, this->target_folder_,
+      Udm::contains (boost::bind (
+                     std::equal_to <std::string> (),
+                     CoWorkEr_ComponentImplementations,
+                     boost::bind (&PICML::ComponentImplementations::name, _1)))))
   {
-    this->target_folder_.
-      SetStrValue ("name", CoWorkEr_ComponentImplementations);
+    this->target_folder_.SetStrValue ("name", CoWorkEr_ComponentImplementations);
   }
 
   std::for_each (folders.begin (),
@@ -258,7 +257,7 @@ Visit_Component (const PICML::Component & component)
       // Create the <DataType> for the <property>. It is going to
       // reference the string type in the CUTS project.
       PICML::DataType datatype = PICML::DataType::Create (property);
-      datatype.ref () = CUTS_Project::instance ()->get_string_type ();
+      datatype.ref () = CUTS_BE_PROJECT ()->get_string_type ();
     }
   }
 }

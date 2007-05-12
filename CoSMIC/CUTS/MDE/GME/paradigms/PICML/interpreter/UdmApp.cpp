@@ -47,32 +47,32 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
   PICML::RootFolder root =
     PICML::RootFolder::Cast (p_backend->GetRootObject());
 
+  std::string message;
+
   switch (CUTS_BE_OPTIONS ()->option_)
   {
   case CUTS_BE_Options::OPT_GENERATE_MODELS:
     {
       // Generate the CUTS project.
-      root.Accept (*CUTS_Project::instance ());
+      root.Accept (*CUTS_BE_PROJECT ());
 
       // Generate the CoWorkEr models.
       CUTS_CoWorkEr_Generator coworker_generator;
       root.Accept (coworker_generator);
 
-      ::AfxMessageBox ("Successfully generated CUTS proxy components",
-                       MB_ICONINFORMATION | MB_OK);
+      message = "Successfully generated CUTS proxy components";
     }
     break;
 
   case CUTS_BE_Options::OPT_GENERATE_PROXY_ASSEMBLIES:
     {
       // Generate the CUTS project.
-      root.Accept (*CUTS_Project::instance ());
+      root.Accept (*CUTS_BE_PROJECT ());
 
       CUTS_BE_Assembly_Generator generator;
       root.Accept (generator);
 
-      ::AfxMessageBox ("Successfully generated CUTS proxy assemblies",
-                       MB_ICONINFORMATION | MB_OK);
+      message = "Successfully generated CUTS proxy assemblies";
     }
     break;
 
@@ -86,13 +86,15 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
       CIAO_BE_Manager manager;
       manager.handle (root);
 
-      // Display a useful dialog message to the user.
-      ::AfxMessageBox ("Successfully generated implementation files",
-                        MB_OK | MB_ICONINFORMATION);
+      message = "Successfully generated implementation files";
     }
     break;
+  }
 
-  default:
-    ::AfxMessageBox ("Unknown menu option", MB_OK | MB_ICONERROR);
+  // Display a status message to the user.
+  if (!message.empty ())
+  {
+    ::MessageBox (::GetActiveWindow (),
+                  message.c_str (), "CUTS", MB_ICONINFORMATION | MB_OK);
   }
 }

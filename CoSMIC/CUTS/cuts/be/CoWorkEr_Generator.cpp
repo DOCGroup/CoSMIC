@@ -3,25 +3,27 @@
 #include "CoWorkEr_Generator.h"
 #include "CUTS_Project.h"
 #include "UDM_Utility_T.h"
+#include "modelgen.h"
+
 #include "Uml.h"
 #include "boost/bind.hpp"
 #include <stack>
 #include <sstream>
 
 // Static decl.
-static const std::string COWORKER_SUFFIX ("_CoWorkEr");
+static const char * COWORKER_SUFFIX = "_CoWorkEr";
 
 // Static decl.
-static const std::string COWORKER_RECEPTACLE ("cuts_testing_service");
+static const char * COWORKER_RECEPTACLE = "cuts_testing_service";
 
 // Static decl.
-static const std::string COWORKER_PROXY_IMPL ("cuts_proxy_impl");
+static const char * COWORKER_PROXY_IMPL = "cuts_proxy_impl";
 
 // Static decl.
-static const std::string CUTS_PREFIX ("CUTS_");
+static const char * CUTS_PREFIX = "CUTS_";
 
 // Static decl.
-static const std::string CUTS_FILE ("cuts/");
+static const char * CUTS_FILE = "cuts/";
 
 // Static decl.
 static const std::string
@@ -35,6 +37,60 @@ COWORKER_IMPLEMENTATION_FOLDER ("CoWorkEr_ComponentImplementations");
 
 static const std::string
 COWORKER_PACKAGE_FOLDER ("CoWorkEr_ComponentPackages");
+
+//=============================================================================
+/**
+ * @class has_entrypoint
+ */
+//=============================================================================
+
+class has_entrypoint
+{
+public:
+  typedef std::set <
+    PICML::ArtifactExecParameter>
+    ArtifactExecParameter_Set;
+
+  has_entrypoint (const std::string & entrypoint)
+    : entrypoint_ (entrypoint)
+  {
+
+  }
+
+  bool operator () (const ArtifactExecParameter_Set & params,
+                    PICML::Property & property)
+  {
+    this->property_ = &property;
+
+    ArtifactExecParameter_Set::const_iterator iter =
+      std::find_if (params.begin (), params.end (),
+                    boost::bind (&has_entrypoint::is_valid, this, _1));
+
+    return iter != params.end ();
+  }
+
+private:
+  bool is_valid (const PICML::ArtifactExecParameter & param)
+  {
+    // Get the property at the end of this connection.
+    PICML::Property property = param.dstArtifactExecParameter_end ();
+
+    if (std::string (property.name ()) == std::string ("entryPoint") &&
+        std::string (property.DataValue ()) == this->entrypoint_)
+    {
+      // Save the property and set the saved flag.
+      *this->property_ = property;
+      return true;
+    }
+
+    return false;
+  }
+
+private:
+  const std::string & entrypoint_;
+
+  PICML::Property * property_;
+};
 
 //
 // CUTS_CoWorkEr_Generator
@@ -58,72 +114,41 @@ CUTS_CoWorkEr_Generator::~CUTS_CoWorkEr_Generator (void)
 void CUTS_CoWorkEr_Generator::
 Visit_RootFolder (const PICML::RootFolder & root)
 {
-  // Get all the <PICML::InterfaceDefinitions> elements.
-  typedef std::vector <PICML::InterfaceDefinitions> IDefs_Set;
-  IDefs_Set idefs = root.InterfaceDefinitions_children ();
-
-  // We need to locate the <CoWorkEr_InterfaceDefinitions> folder
-  // or create one since this is where all the <CoWorkErs> will be
-  // placed.
-  if (create_element_if_not_exist (idefs,
-                                   Find_Element_By_Name <
-                                      PICML::InterfaceDefinitions> (
-                                      COWORKER_INTERFACE_FOLDER),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   this->coworker_idefs_))
+  // Find or create the CoWorkEr_InterfaceDefinitions folder.
+  if (Udm::create_if_not (root, this->coworker_idefs_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_INTERFACE_FOLDER,
+                     boost::bind (&PICML::InterfaceDefinitions::name, _1)))))
   {
-    this->coworker_idefs_.SetStrValue ("name", COWORKER_INTERFACE_FOLDER);
+    this->coworker_idefs_.
+      SetStrValue ("name", COWORKER_INTERFACE_FOLDER);
   }
 
-  typedef std::vector <PICML::ImplementationArtifacts> Artifacts_Set;
-  Artifacts_Set artifacts = root.ImplementationArtifacts_children ();
-
-  // We need to locate the <CoWorkEr_InterfaceDefinitions> folder
-  // or create one since this is where all the <CoWorkErs> will be
-  // placed.
-  if (create_element_if_not_exist (artifacts,
-                                   Find_Element_By_Name <
-                                      PICML::ImplementationArtifacts> (
-                                      COWORKER_ARTIFACT_FOLDER),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   this->coworker_artifacts_))
+  // Find or create the CoWorkEr_ImplementationArtifacts folder.
+  if (Udm::create_if_not (root, this->coworker_artifacts_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_ARTIFACT_FOLDER,
+                     boost::bind (&PICML::ImplementationArtifacts::name, _1)))))
   {
-    this->coworker_artifacts_.SetStrValue ("name", COWORKER_ARTIFACT_FOLDER);
+    this->coworker_artifacts_.
+      SetStrValue ("name", COWORKER_ARTIFACT_FOLDER);
   }
 
-  typedef std::vector <PICML::ComponentImplementations> Implementations_Set;
-  Implementations_Set impls = root.ComponentImplementations_children ();
-
-  // We need to locate the <CoWorkEr_InterfaceDefinitions> folder
-  // or create one since this is where all the <CoWorkErs> will be
-  // placed.
-  if (create_element_if_not_exist (impls,
-                                   Find_Element_By_Name <
-                                      PICML::ComponentImplementations> (
-                                      COWORKER_IMPLEMENTATION_FOLDER),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   this->coworker_implementations_))
+  // Find or create the CoWorkEr_ComponentImplementations folder.
+  if (Udm::create_if_not (root, this->coworker_implementations_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_IMPLEMENTATION_FOLDER,
+                     boost::bind (&PICML::ComponentImplementations::name, _1)))))
   {
     this->coworker_implementations_.
       SetStrValue ("name", COWORKER_IMPLEMENTATION_FOLDER);
   }
 
-  typedef std::vector <PICML::ComponentPackages> Packages_Set;
-  Packages_Set packages = root.ComponentPackages_children ();
-
-  // We need to locate the <CoWorkEr_InterfaceDefinitions> folder
-  // or create one since this is where all the <CoWorkErs> will be
-  // placed.
-  if (create_element_if_not_exist (packages,
-                                   Find_Element_By_Name <
-                                      PICML::ComponentPackages> (
-                                      COWORKER_PACKAGE_FOLDER),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   this->coworker_packages_))
+  // Find or create the CoWorkEr_ComponentPackages folder.
+  if (Udm::create_if_not (root, this->coworker_packages_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_PACKAGE_FOLDER,
+                     boost::bind (&PICML::ComponentPackages::name, _1)))))
   {
     this->coworker_packages_.
       SetStrValue ("name", COWORKER_PACKAGE_FOLDER);
@@ -138,53 +163,65 @@ Visit_RootFolder (const PICML::RootFolder & root)
 void CUTS_CoWorkEr_Generator::
 Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & idefs)
 {
-  // Get all the <PICML::File> elements in this folder.
   typedef std::vector <PICML::File> File_Set;
 
+  // We need to make a duplicate copy of all the files in the project. The
+  // duplicate files will contain all the CoWorkEr components.
   File_Set files = idefs.File_children ();
   File_Set coworker_files = this->coworker_idefs_.File_children ();
+
+  std::for_each (files.begin (),
+                 files.end (),
+                 boost::bind (&CUTS_CoWorkEr_Generator::find_interface_definitions_i,
+                              boost::ref (*this),
+                              coworker_files,
+                              _1));
+}
+
+//
+// find_interface_definitions_i
+//
+void CUTS_CoWorkEr_Generator::
+find_interface_definitions_i (const std::vector <PICML::File> & fileset,
+                              const PICML::File & srcfile)
+{
+  // We ingore any string's (i.e., filenames) that begin with 'cuts/'. We
+  // assume that all files that begin w/ cuts/ are auto generated. We
+  // therefore do not want to duplicate elements we created.
+  std::string name = srcfile.name ();
+  if (name.find (CUTS_FILE) != std::string::npos)
+    return;
+
+  // Prepare the name of the file.
   PICML::File coworker_file;
+  name += COWORKER_SUFFIX;
 
-  for (File_Set::iterator iter = files.begin ();
-       iter != files.end ();
-       iter ++)
+  // Find or create the CoWorkEr IDL file.
+  if (Udm::create_if_not (this->coworker_idefs_, fileset, coworker_file,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     name,
+                     boost::bind (&PICML::File::name, _1)))))
   {
-    // We ingore any string's (i.e., filenames) that contains 'cuts/'
-    std::string name = iter->name ();
-
-    if (name.find (CUTS_FILE) != std::string::npos)
-      continue;
-
-    // Get the <CoWorkEr> equivalent <PICML::File>. If we do not
-    // find it we need to create a new one.
-    name += COWORKER_SUFFIX;
-    if (create_element_if_not_exist (coworker_files,
-                                     Find_Element_By_Name <PICML::File> (
-                                     name),
-                                     this->coworker_idefs_,
-                                     Udm::NULLCHILDROLE,
-                                     coworker_file))
-    {
-      coworker_file.SetStrValue ("name", name);
-    }
-
-    // Reset the number of <coworker_count_> before we start parsing this
-    // file. This will determine if this IDL files is necessary.
-    this->coworker_parent_ = coworker_file;
-    this->coworker_count_ = 0;
-
-    iter->Accept (*this);
-
-    // Delete the parent if there are not <coworkers_>.
-    if (this->coworker_count_ == 0)
-      this->coworker_parent_.DeleteObject ();
+    coworker_file.SetStrValue ("name", name);
   }
+
+  // Reset the number of <coworker_count_> before we start parsing this
+  // file. This will determine if this IDL files is necessary.
+  this->coworker_parent_ = coworker_file;
+  this->coworker_count_  = 0;
+
+  const_cast <PICML::File &> (srcfile).Accept (*this);
+
+  // Delete the parent if there are not <coworkers_>.
+  if (this->coworker_count_ == 0)
+    this->coworker_parent_.DeleteObject ();
 }
 
 //
 // Visit_File
 //
-void CUTS_CoWorkEr_Generator::Visit_File (const PICML::File & file)
+void CUTS_CoWorkEr_Generator::
+Visit_File (const PICML::File & file)
 {
   // Visit the contents of this file.
   this->visit_file_and_package (file);
@@ -208,7 +245,7 @@ void CUTS_CoWorkEr_Generator::Visit_File (const PICML::File & file)
     {
       file = PICML::File::Cast (iter->ref ());
 
-      if (file == CUTS_Project::instance ()->get_cuts_file ())
+      if (file == CUTS_BE_PROJECT ()->get_cuts_file ())
         break;
     }
 
@@ -218,7 +255,7 @@ void CUTS_CoWorkEr_Generator::Visit_File (const PICML::File & file)
       PICML::FileRef fileref =
         PICML::FileRef::Create (this->coworker_parent_);
 
-      fileref.ref () = CUTS_Project::instance ()->get_cuts_file ();
+      fileref.ref () = CUTS_BE_PROJECT ()->get_cuts_file ();
     }
   }
 }
@@ -249,13 +286,10 @@ Visit_Component (const PICML::Component & component)
   //    component collect metrics.
   PICML::RequiredRequestPort testing_service;
 
-  if (create_element_if_not_exist (receptacles,
-                                   Find_Element_By_Name <
-                                      PICML::RequiredRequestPort> (
-                                      COWORKER_RECEPTACLE),
-                                   this->coworker_,
-                                   Udm::NULLCHILDROLE,
-                                   testing_service))
+  if (create_if_not (component, testing_service,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_RECEPTACLE,
+                     boost::bind (&PICML::RequiredRequestPort::name, _1)))))
   {
     testing_service.SetStrValue ("name", COWORKER_RECEPTACLE);
   }
@@ -264,8 +298,8 @@ Visit_Component (const PICML::Component & component)
   // verify that is is indeed connected to a testing service object.
   PICML::Object testsvc = PICML::Object::Cast (testing_service.ref ());
 
-  if (testsvc != CUTS_Project::instance ()->get_testing_service ())
-    testing_service.ref () = CUTS_Project::instance ()->get_testing_service ();
+  if (testsvc != CUTS_BE_PROJECT ()->get_testing_service ())
+    testing_service.ref () = CUTS_BE_PROJECT ()->get_testing_service ();
 
   // 2. We need to locate the <cuts_proxy_impl> attribute. This attribute
   //    the proxy to load the correct implementation.
@@ -274,13 +308,10 @@ Visit_Component (const PICML::Component & component)
 
   PICML::Attribute proxy_impl;
 
-  if (create_element_if_not_exist (attributes,
-                                   Find_Element_By_Name <
-                                      PICML::Attribute> (
-                                      COWORKER_PROXY_IMPL),
-                                   this->coworker_,
-                                   Udm::NULLCHILDROLE,
-                                   proxy_impl))
+  if (create_if_not (component, proxy_impl,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     COWORKER_PROXY_IMPL,
+                     boost::bind (&PICML::Attribute::name, _1)))))
   {
     proxy_impl.SetStrValue ("name", COWORKER_PROXY_IMPL);
   }
@@ -293,8 +324,8 @@ Visit_Component (const PICML::Component & component)
 
   PICML::MemberType mtype = member.ref ();
 
-  if (mtype == Udm::null || mtype.type () != PICML::String::meta)
-    member.ref () = CUTS_Project::instance ()->get_string_type ();
+  if (mtype != CUTS_BE_PROJECT ()->get_string_type ())
+    member.ref () = CUTS_BE_PROJECT ()->get_string_type ();
 
   // 3. Lastly, we need to create a home for this <coworker_>. The home
   //    must be a subtype of the real components home.
@@ -325,12 +356,11 @@ Visit_Component (const PICML::Component & component)
     this->coworker_factory_ =
       PICML::ComponentFactory::Create (this->coworker_parent_);
 
-    std::string factname = (std::string)factory.name () + COWORKER_SUFFIX;
-    this->coworker_factory_.SetStrValue ("name", factname);
+    std::string factory_name = (std::string) factory.name () + COWORKER_SUFFIX;
+    this->coworker_factory_.SetStrValue ("name", factory_name);
 
     // Create the <Inherits> element to for the <coworker_factory_>.
-    PICML::Inherits inherits =
-      PICML::Inherits::Create (this->coworker_factory_);
+    PICML::Inherits inherits = PICML::Inherits::Create (this->coworker_factory_);
     inherits.SetStrValue ("name", factory.name ());
     inherits.ref () = factory;
 
@@ -343,6 +373,16 @@ Visit_Component (const PICML::Component & component)
 
     // Set the position of the factory.
     this->coworker_factory_.position () = factory.position ();
+  }
+  else
+  {
+    // Right now we are making the assumption that there is only
+    // only component factory allowed. Eventually, this will need
+    // the change once we fix the ambiguity problem w/ determining
+    // which ComponetFactory creates which MonolithicImplementation
+    // when multiple ComponentFactorys are managing the same component.
+    PICML::ManagesComponent manages = *coworker_manages.begin ();
+    this->coworker_factory_ = manages.srcManagesComponent_end ();
   }
 }
 
@@ -364,39 +404,62 @@ visit_file_and_package (const Udm::Object & object)
     Udm::ChildrenAttr <PICML::Component> (this->coworker_parent_.__impl (),
                                           Udm::NULLCHILDROLE);
 
-  for (Component_Set::iterator iter = components.begin ();
-       iter != components.end ();
-       iter ++)
+  std::for_each (components.begin (),
+                 components.end (),
+                 boost::bind (&CUTS_CoWorkEr_Generator::find_component_i,
+                              this,
+                              coworker_components,
+                              _1));
+
+  // New that we have handle all the components at this level, we can
+  // handle all the packages. So, get all the <PICML::Package> elements
+  // in <object>.
+  typedef std::vector <PICML::Package> Package_Set;
+
+  Package_Set packages =
+    Udm::ChildrenAttr <PICML::Package> (object.__impl (), Udm::NULLCHILDROLE);
+
+  // Get the current <PICML::Package> elements in <coworker_parent_>.
+  Package_Set coworker_packages =
+    Udm::ChildrenAttr <PICML::Package> (
+    this->coworker_parent_.__impl (), Udm::NULLCHILDROLE);
+
+  // Let's make sure all the package elements in <packages> exists
+  // in <coworker_parent_>.
+  std::for_each (packages.begin (),
+                 packages.end (),
+                 boost::bind (&CUTS_CoWorkEr_Generator::find_package_i,
+                              boost::ref (*this),
+                              coworker_packages,
+                              _1));
+}
+
+//
+// find_component_i
+//
+void CUTS_CoWorkEr_Generator::
+find_component_i (const std::vector <PICML::Component> & component_set,
+                  const PICML::Component & src_component)
+{
+  // Construct the name of the coworker.
+  std::string name = (std::string) src_component.name () + COWORKER_SUFFIX;
+
+  if (Udm::create_subtype_if_not (this->coworker_parent_, component_set,
+      const_cast <PICML::Component &> (src_component), this->coworker_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     name, boost::bind (&PICML::Component::name, _1)))))
   {
-    //@@ There has to be a better way to determine if the found
-    //   coworker is a subtype of <*iter>.
+    this->coworker_.SetStrValue ("name", name);
+  }
 
-    // Construct the name of the coworker.
-    std::string name = (std::string)iter->name () + COWORKER_SUFFIX;
+  if (this->coworker_ != Udm::null)
+  {
+    // Update the position of the CoWorkEr.
+    this->coworker_.position () = src_component.position ();
+    this->coworker_count_ ++;
 
-    // Try and find this element in the <coworker_components>.
-    Component_Set::iterator citer =
-      std::find_if (coworker_components.begin (),
-                    coworker_components.end (),
-                    Find_Element_By_Name <PICML::Component> (name));
-
-    if (citer == coworker_components.end ())
-    {
-      // Create the coworker element. This new element is a subtype
-      // of the actual component.
-      this->coworker_ = iter->CreateDerived (this->coworker_parent_);
-      this->coworker_.SetStrValue ("name", name);
-    }
-    else
-      this->coworker_ = *iter;
-
-    this->coworker_.position () = iter->position ();
-
-    // Increment the <coworker_count_> and visit this component. We
-    // need add the necessary elements to the component to make it a
-    // true coworker.
-    ++ this->coworker_count_;
-    iter->Accept (*this);
+    // We need to add elements to make it a true coworker.
+    const_cast <PICML::Component &> (src_component).Accept (*this);
 
     // Generate the artifacts and implemenation for <coworker_>.
     Artifact_Set artifacts;
@@ -406,59 +469,45 @@ visit_file_and_package (const Udm::Object & object)
     this->generate_monolithic_implementation (artifacts, monolithic);
     this->generate_monolithic_package (monolithic);
   }
+}
 
-  // New that we have handle all the components at this level, we can
-  // handle all the packages. So, get all the <PICML::Package> elements
-  // in <object>.
-  typedef std::vector <PICML::Package> Package_Set;
+//
+// Visit_Package_i
+//
+void CUTS_CoWorkEr_Generator::
+find_package_i (const std::vector <PICML::Package> & target_pkgset,
+                const PICML::Package & srcpkg)
+{
+  // We need to either find the correct package, or create the
+  // package if we can't find it.
+  PICML::Package package;
+  std::string package_name = srcpkg.name ();
 
-  Package_Set packages =
-    Udm::ChildrenAttr <PICML::Package> (
-    object.__impl (), Udm::NULLCHILDROLE);
-
-  // Get the current <PICML::Package> elements in <coworker_parent_>.
-  Package_Set coworker_packages =
-    Udm::ChildrenAttr <PICML::Package> (
-    this->coworker_parent_.__impl (), Udm::NULLCHILDROLE);
-
-  PICML::Package coworker_package;
-
-  // Let's make sure all the package elements in <packages> exists
-  // in <coworker_parent_>.
-  for (Package_Set::iterator package_iter = packages.begin ();
-       package_iter != packages.end ();
-       package_iter ++)
+  if (Udm::create_if_not (this->coworker_parent_, target_pkgset, package,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     package_name,
+                     boost::bind (&PICML::Package::name, _1)))))
   {
-    // We need to either find the correct package, or create the
-    // package if we can't find it.
-    std::string package_name = package_iter->name ();
-
-    if (create_element_if_not_exist (coworker_packages,
-                                     Find_Element_By_Name <PICML::Package> (
-                                     package_name),
-                                     this->coworker_parent_,
-                                     Udm::NULLCHILDROLE,
-                                     coworker_package))
-    {
-      coworker_package.SetStrValue ("name", package_name);
-    }
-
-    // Save everything before we visit this package.
-    size_t prev_coworker_count = this->coworker_count_;
-
-    Udm::Object prev_coworker_parent = this->coworker_parent_;
-    this->coworker_parent_ = coworker_package;
-
-    package_iter->Accept (*this);
-
-    // If we haven't created any new <coworker_count_>, we can delete
-    // this package.
-    if (prev_coworker_count == this->coworker_count_)
-      this->coworker_parent_.DeleteObject ();
-
-    // Restore the <coworker_parent_>.
-    this->coworker_parent_ = prev_coworker_parent;
+    package.SetStrValue ("name", package_name);
   }
+
+  // Update the position of the new package.
+  package.position () = srcpkg.position ();
+
+  // Save everything before we visit this package.
+  size_t prev_count = this->coworker_count_;
+  Udm::Object prev_parent = this->coworker_parent_;
+
+  // Set the corrent parent then visit the package.
+  this->coworker_parent_ = package;
+  const_cast <PICML::Package &> (srcpkg).Accept (*this);
+
+  // We can delete this package if we haven't recreated anything.
+  if (prev_count == this->coworker_count_)
+    this->coworker_parent_.DeleteObject ();
+
+  // Restore the previous parent, but not the count.
+  this->coworker_parent_ = prev_parent;
 }
 
 //
@@ -515,13 +564,10 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
 
   PICML::ArtifactContainer container;
 
-  if (create_element_if_not_exist (containers,
-                                   Find_Element_By_Name <
-                                   PICML::ArtifactContainer> (
-                                   container_name),
-                                   this->coworker_artifacts_,
-                                   Udm::NULLCHILDROLE,
-                                   container))
+  if (Udm::create_if_not (this->coworker_artifacts_, containers, container,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     container_name,
+                     boost::bind (&PICML::ArtifactContainer::name, _1)))))
   {
     container.SetStrValue ("name", container_name);
   }
@@ -543,36 +589,33 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
   {
     std::string artifact_name = container_name + suffix[i];
 
-    if (create_element_if_not_exist (artifacts_set,
-                                     Find_Element_By_Name <
-                                     PICML::ImplementationArtifact> (
-                                     artifact_name),
-                                     container,
-                                     Udm::NULLCHILDROLE,
-                                     artifact))
+    if (Udm::create_if_not (container, artifacts_set, artifact,
+        Udm::contains (boost::bind (std::equal_to <std::string> (),
+                       artifact_name,
+                       boost::bind (&PICML::ImplementationArtifact::name, _1)))))
     {
       artifact.SetStrValue ("name", artifact_name);
     }
 
-    // Store the artifact.
+    // Update the artifact's information and store it.
     artifact.location () = artifact_name;
     artifact.position () = positions[i];
     artifacts[i] = artifact;
 
     typedef std::set <PICML::ArtifactDependency> ArtifactDependency_Set;
-    ArtifactDependency_Set depends = artifact.srcArtifactDependency ();
 
+    ArtifactDependency_Set::iterator iter;
+    ArtifactDependency_Set depends = artifact.dstArtifactDependency ();
+
+    // Make sure the artifact has the correct dependencies.
     for (size_t j = 0; j < i; j ++)
     {
-      // Make sure the <_svnt> has the correct dependencies.
-      ArtifactDependency_Set::iterator iter;
-
       for (iter = depends.begin (); iter != depends.end (); iter ++)
       {
-        // Get the artifact we are reference and determine if this
+        // Get the artifact we are referencing and determine if this
         // artifact is the same as the one we have already created.
-        // The artifacts denend on the ones below it.
         artifact = iter->dstArtifactDependency_end ();
+
         if (artifact == artifacts[j])
           break;
 
@@ -582,7 +625,7 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
 
       if (iter == depends.end ())
       {
-        // Create the dependency _svnt -> _stub.
+        // Create the dependency.
         PICML::ArtifactDependency dependency =
           PICML::ArtifactDependency::Create (container);
 
@@ -591,38 +634,49 @@ void CUTS_CoWorkEr_Generator::generate_artifacts (Artifact_Set & artifacts)
       }
     }
 
-    // We need to create the entry point for the artifact. This is only
-    // necessry if we are working w/ a _svnt or _stub (i.e., i > 0).
     if (entrypoint[i] != 0)
     {
-      // Create the entryPoint property.
-      PICML::Property property = PICML::Property::Create (container);
-      property.SetStrValue ("name", "entryPoint");
+      // Create the entrypoint's name.
+      string entrypoint_value =
+        std::string ("create_") + scope +
+        std::string (this->coworker_factory_.name ()) + entrypoint[i];
+
+      // Determine if the artifact already has the entrypoint.
+      typedef std::set <PICML::ArtifactExecParameter> ExecParam_Set;
+      ExecParam_Set params = artifacts[i].dstArtifactExecParameter ();
+
+      PICML::Property property;
+
+      if (Udm::create_if_not (container, params, property,
+                              has_entrypoint (entrypoint_value)))
+      {
+        // Set the attributes for the entryPoint property.
+        property.name () = "entryPoint";
+        property.DataValue () = entrypoint_value;
+
+        // Connect the property to the artifact.
+        PICML::ArtifactExecParameter param =
+          PICML::ArtifactExecParameter::Create (container);
+
+        param.srcArtifactExecParameter_end () = artifacts[i];
+        param.dstArtifactExecParameter_end () = property;
+      }
+
       property.position () = entrypoint_positions[i];
-
-      // Set the entryPoint for the property.
-      std::ostringstream value;
-      value
-        << "create_"
-        << scope << (std::string) this->coworker_factory_.name ()
-        << entrypoint[i];
-
-      property.DataValue () = value.str ();
 
       // Create its datatype, which is a String. We are going to us
       // the String type provided by CUTS.
-      PICML::DataType datatype = PICML::DataType::Create (property);
-      PICML::String strtype = CUTS_Project::instance ()->get_string_type ();
+      PICML::DataType datatype = property.DataType_child ();
+      const PICML::String & string_type = CUTS_BE_PROJECT ()->get_string_type ();
 
-      datatype.ref () = strtype;
-      datatype.SetStrValue ("name", strtype.type ().name ());
+      if (datatype == Udm::null)
+      {
+        datatype = PICML::DataType::Create (property);
+        datatype.name () = string_type.name ();
+      }
 
-      // Connect the config property to the correct artifact.
-      PICML::ArtifactExecParameter param =
-        PICML::ArtifactExecParameter::Create (container);
-
-      param.srcArtifactExecParameter_end () = artifacts[i];
-      param.dstArtifactExecParameter_end () = property;
+      if (PICML::String::Cast (datatype.ref ()) != string_type)
+        datatype.ref () = string_type;
     }
   }
 }
@@ -664,9 +718,8 @@ get_scope (const Udm::Object & object, const std::string & separator)
 // generate_monolithic_implementation
 //
 void CUTS_CoWorkEr_Generator::
-generate_monolithic_implementation (
-  const Artifact_Set & artifacts,
-  PICML::MonolithicImplementation & monolithic)
+generate_monolithic_implementation (const Artifact_Set & artifacts,
+                                    PICML::MonolithicImplementation & monolithic)
 {
   // Generate the scope for this monolithic. The scope is going to
   // reflect its location on disk.
@@ -682,13 +735,11 @@ generate_monolithic_implementation (
 
   PICML::ComponentImplementationContainer container;
 
-  if (create_element_if_not_exist (containers,
-                                   Find_Element_By_Name <
-                                   PICML::ComponentImplementationContainer> (
-                                   container_name),
-                                   this->coworker_implementations_,
-                                   Udm::NULLCHILDROLE,
-                                   container))
+  if (Udm::create_if_not (this->coworker_implementations_, containers, container,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     container_name,
+                     boost::bind (PICML::ComponentImplementationContainer::name,
+                                  _1)))))
   {
     container.SetStrValue ("name", container_name);
   }
@@ -710,51 +761,19 @@ generate_monolithic_implementation (
   std::string artifact_name;
   PICML::ImplementationArtifactReference artifact_ref;
 
-  size_t artifact_position_x = 475;
-  size_t artifact_position_y = 100;
-  size_t artifact_position_delta_y = 100;
+  this->artifact_position_x_ = 475;
+  this->artifact_position_y_ = 100;
+  this->artifact_position_delta_y_ = 100;
 
   // Create reference to this implementations artifacts.
-  for (Artifact_Set::const_iterator iter = artifacts.begin ();
-       iter != artifacts.end ();
-       iter ++)
-  {
-    iter->GetStrValue ("name", artifact_name);
-
-    if (create_element_if_not_exist (artifact_refs,
-                                     Find_Element_By_Name <
-                                     PICML::ImplementationArtifactReference> (
-                                     artifact_name),
-                                     container,
-                                     Udm::NULLCHILDROLE,
-                                     artifact_ref))
-    {
-      artifact_ref.SetStrValue ("name", artifact_name);
-    }
-
-    // Make sure we are point to the correct reference.
-    PICML::ImplementationArtifact artifact = artifact_ref.ref ();
-
-    if (artifact != *iter)
-      artifact_ref.ref () = *iter;
-
-    // Position the artifact correctly on the palette.
-    std::ostringstream position;
-    position
-      << "(" << artifact_position_x << ","
-      << artifact_position_y << ")";
-
-    artifact_ref.position () = position.str ();
-    artifact_position_y += artifact_position_delta_y;
-
-    // Create the <primaryArtifact> connection between the <monolithic>
-    // and the <artifact_ref>.
-    PICML::MonolithprimaryArtifact primaryArtifact =
-      PICML::MonolithprimaryArtifact::Create (container);
-
-    primaryArtifact.srcMonolithprimaryArtifact_end () = monolithic;
-    primaryArtifact.dstMonolithprimaryArtifact_end () = artifact_ref;
-  }
+  std::for_each (artifacts.begin (),
+                 artifacts.end (),
+                 boost::bind (&CUTS_CoWorkEr_Generator::find_artifact_i,
+                              this,
+                              container,
+                              monolithic,
+                              artifact_refs,
+                              _1));
 
   // Create reference to the component that we are realizing. We need
   // to ensure that whatever reference exist in this container points
@@ -780,11 +799,53 @@ generate_monolithic_implementation (
 }
 
 //
+// find_artifact_i
+//
+void CUTS_CoWorkEr_Generator::
+find_artifact_i (PICML::ComponentImplementationContainer & container,
+                 const PICML::MonolithicImplementation & monolithic,
+                 const std::vector <PICML::ImplementationArtifactReference> & refs,
+                 const PICML::ImplementationArtifact & artifact)
+{
+  PICML::ImplementationArtifactReference artifact_ref;
+  std::string artifact_name = artifact.name ();
+
+  if (Udm::create_if_not (container, refs, artifact_ref,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     artifact_name,
+                     boost::bind (&PICML::ImplementationArtifactReference::name,
+                                  _1)))))
+  {
+    artifact_ref.SetStrValue ("name", artifact_name);
+  }
+
+  // Verify we are reference the correct artifact.
+  if (artifact != artifact_ref.ref ())
+    artifact_ref.ref () = artifact;
+
+  // Position the artifact correctly on the palette.
+  std::ostringstream position;
+  position
+    << "(" << this->artifact_position_x_ << ","
+    << this->artifact_position_y_ << ")";
+
+  artifact_ref.position () = position.str ();
+  this->artifact_position_y_ += this->artifact_position_delta_y_;
+
+  // Create the <primaryArtifact> connection between the <monolithic>
+  // and the <artifact_ref>.
+  PICML::MonolithprimaryArtifact primaryArtifact =
+    PICML::MonolithprimaryArtifact::Create (container);
+
+  primaryArtifact.srcMonolithprimaryArtifact_end () = monolithic;
+  primaryArtifact.dstMonolithprimaryArtifact_end () = artifact_ref;
+}
+
+//
 // generate_monolithic_package
 //
 void CUTS_CoWorkEr_Generator::
-generate_monolithic_package (
-  const PICML::MonolithicImplementation & monolithic)
+generate_monolithic_package (const PICML::MonolithicImplementation & monolithic)
 {
   std::string scope = this->get_scope (this->coworker_, "_");
   std::string container_name = scope + (std::string) this->coworker_.name ();

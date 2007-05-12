@@ -5,11 +5,17 @@
 
 #include "BE_export.h"
 #include "PICML/PICML.h"
+#include "ace/Singleton.h"
+#include "ace/Null_Mutex.h"
 
 class CUTS_BE_Export CUTS_Project :
   public PICML::Visitor
 {
 public:
+  CUTS_Project (void);
+
+  virtual ~CUTS_Project (void);
+
   const PICML::Object & get_testing_service (void) const;
 
   const PICML::File & get_cuts_file (void) const;
@@ -20,15 +26,7 @@ public:
 
   const std::string & message (void) const;
 
-  static CUTS_Project * instance (void);
-
-  static void close (void);
-
 private:
-  CUTS_Project (void);
-
-  virtual ~CUTS_Project (void);
-
   void Visit_RootFolder (const PICML::RootFolder &);
 
   void Visit_PredefinedTypes (const PICML::PredefinedTypes &);
@@ -48,9 +46,11 @@ private:
   bool valid_;
 
   std::string message_;
-
-  /// Singleton instance of the project.
-  static CUTS_Project * instance_;
 };
+
+CUTS_BE_SINGLETON_DECLARE (ACE_Singleton, CUTS_Project, ACE_Null_Mutex);
+
+#define CUTS_BE_PROJECT() \
+  ACE_Singleton <CUTS_Project, ACE_Null_Mutex>::instance ()
 
 #endif  /* !defined _CUTS_PROJECT_H_ */

@@ -1,39 +1,24 @@
 // $Id$
 
 #include "CUTS_Project.h"
-#include "UDM_Utility_T.h"
+#include "modelgen.h"
+#include "boost/bind.hpp"
+#include <functional>
 
 // Static decl.
-static const std::string CUTS_INTERFACE_DEFS ("CUTS_InterfaceDefinitions");
+static const char * CUTS_INTERFACE_DEFS = "CUTS_InterfaceDefinitions";
 
-static const std::string CUTS_PREDEFINED_TYPES ("CUTS_PredefinedTypes");
+// Static decl.
+static const char * CUTS_PREDEFINED_TYPES = "CUTS_PredefinedTypes";
 
-//
-// instance_
-//
-CUTS_Project * CUTS_Project::instance_ = 0;
+// Static decl.
+static const char * CUTS_IDL_FILENAME = "cuts/CUTS";
 
-//
-// instance
-//
-CUTS_Project * CUTS_Project::instance (void)
-{
-  if (CUTS_Project::instance_ == 0)
-    CUTS_Project::instance_ = new CUTS_Project ();
-  return CUTS_Project::instance_;
-}
+// Static decl.
+static const char * CUTS_PACKAGE_NAME = "CUTS";
 
-//
-// close
-//
-void CUTS_Project::close (void)
-{
-  if (CUTS_Project::instance_ != 0)
-  {
-    delete CUTS_Project::instance_;
-    CUTS_Project::instance_ = 0;
-  }
-}
+// Static decl.
+static const char * CUTS_TESTING_SERVICE_OBJECT = "Testing_Service";
 
 //
 // CUTS_Project
@@ -88,66 +73,54 @@ bool CUTS_Project::is_valid (void) const
 //
 // Visit_RootFolder
 //
-void CUTS_Project::Visit_RootFolder (const PICML::RootFolder & root)
+void CUTS_Project::
+Visit_RootFolder (const PICML::RootFolder & root)
 {
   this->valid_ = true;
 
-  typedef std::vector <PICML::InterfaceDefinitions> IDefs_Set;
-  IDefs_Set idefs = root.InterfaceDefinitions_children ();
-
   // Get the <CUTS_InterfaceDefinitions> folder. If we cannot
   // locate it, then we will create a new one.
-  PICML::InterfaceDefinitions cuts_idefs;
-  if (create_element_if_not_exist (idefs,
-                                   Find_Element_By_Name <
-                                   PICML::InterfaceDefinitions> (
-                                   CUTS_INTERFACE_DEFS),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   cuts_idefs))
+  PICML::InterfaceDefinitions cutsidefs;
+
+  if (Udm::create_if_not (root, cutsidefs,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                                  CUTS_INTERFACE_DEFS,
+                                  boost::bind (&PICML::InterfaceDefinitions::name, _1)))))
   {
-    cuts_idefs.name () = CUTS_INTERFACE_DEFS;
+    cutsidefs.SetStrValue ("name", CUTS_INTERFACE_DEFS);
   }
 
-  cuts_idefs.Accept (*this);
+  cutsidefs.Accept (*this);
 
-  typedef std::vector <PICML::PredefinedTypes> PredefinedTypes_Set;
-  PredefinedTypes_Set type_set = root.PredefinedTypes_children ();
+  // Get the CUTS_PredefinedTypes folder. If we cannot locate it, then we
+  // will create a new one.
+  PICML::PredefinedTypes ptypes;
 
-  // Get the <CUTS_PredefinedTypes> folder. If we cannot
-  // locate it, then we will create a new one.
-  PICML::PredefinedTypes predefined_types;
-  if (create_element_if_not_exist (type_set,
-                                   Find_Element_By_Name <
-                                   PICML::PredefinedTypes> (
-                                   CUTS_PREDEFINED_TYPES),
-                                   root,
-                                   Udm::NULLCHILDROLE,
-                                   predefined_types))
+  if (Udm::create_if_not (root, ptypes,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                                  CUTS_PREDEFINED_TYPES,
+                                  boost::bind (&PICML::PredefinedTypes::name, _1)))))
   {
-    predefined_types.name () = CUTS_PREDEFINED_TYPES;
+    ptypes.SetStrValue ("name", CUTS_PREDEFINED_TYPES);
   }
 
-  predefined_types.Accept (*this);
+  ptypes.Accept (*this);
 }
 
 //
 // Visit_InterfaceDefinitions
 //
-void CUTS_Project::Visit_InterfaceDefinitions (
-  const PICML::InterfaceDefinitions & idefs)
+void CUTS_Project::
+Visit_InterfaceDefinitions (const PICML::InterfaceDefinitions & idefs)
 {
-  typedef std::vector <PICML::File> File_Set;
-  File_Set files = idefs.File_children ();
-
-  if (create_element_if_not_exist (files,
-                                   Find_Element_By_Name <PICML::File> (
-                                   "cuts/CUTS"),
-                                   idefs,
-                                   Udm::NULLCHILDROLE,
-                                   this->cuts_file_))
+  // Locate the CUTS IDL file. If we are not able to find it then we
+  // need to create a new one.
+  if (Udm::create_if_not (idefs, this->cuts_file_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                                  CUTS_IDL_FILENAME,
+                                  boost::bind (&PICML::File::name, _1)))))
   {
-    this->cuts_file_.name () = "cuts/CUTS";
+    this->cuts_file_.SetStrValue ("name", CUTS_IDL_FILENAME);
   }
 
   this->cuts_file_.Accept (*this);
@@ -156,40 +129,44 @@ void CUTS_Project::Visit_InterfaceDefinitions (
 //
 // Visit_InterfaceDefinitions
 //
-void CUTS_Project::Visit_PredefinedTypes (
-  const PICML::PredefinedTypes & predefined_types)
+void CUTS_Project::
+Visit_PredefinedTypes (const PICML::PredefinedTypes & ptypes)
 {
+  // Get a listing of all the strings in the predefined types.
   typedef std::vector <PICML::String> String_Set;
-  String_Set strings = predefined_types.String_kind_children ();
+  String_Set strings = ptypes.String_kind_children ();
 
   if (strings.empty ())
   {
-    this->string_ = PICML::String::Create (predefined_types, Udm::NULLCHILDROLE);
-    this->string_.name () = "string";
+    // Since we did not find a single string type, we need to create
+    // one. It will be referenced by all auto generated elements.
+    this->string_ = PICML::String::Create (ptypes);
+    this->string_.SetStrValue ("name", "String");
   }
   else
   {
+    // So we found a string. We need to save it and delete the
+    // all the other string types.
     this->string_ = strings[0];
+
+    std::for_each (strings.begin  () + 1, strings.end (),
+                   boost::bind (PICML::String::DeleteObject, _1));
   }
 }
 
 //
-// Visit_Package
+// Visit_File
 //
 void CUTS_Project::Visit_File (const PICML::File & file)
 {
-  typedef std::vector <PICML::Package> Package_Set;
-  Package_Set packages = file.Package_children ();
-
   PICML::Package package;
-  if (create_element_if_not_exist (packages,
-                                   Find_Element_By_Name <PICML::Package> (
-                                   "CUTS"),
-                                   file,
-                                   Udm::NULLCHILDROLE,
-                                   package))
+
+  if (Udm::create_if_not (file, package,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                                  CUTS_PACKAGE_NAME,
+                                  boost::bind (&PICML::Package::name, _1)))))
   {
-    package.name () = "CUTS";
+    package.SetStrValue ("name", CUTS_PACKAGE_NAME);
   }
 
   package.Accept (*this);
@@ -200,17 +177,12 @@ void CUTS_Project::Visit_File (const PICML::File & file)
 //
 void CUTS_Project::Visit_Package (const PICML::Package & package)
 {
-  typedef std::vector <PICML::Object> Object_Set;
-  Object_Set objects = package.Object_kind_children ();
-
-  if (create_element_if_not_exist (objects,
-                                   Find_Element_By_Name <PICML::Object> (
-                                   "Testing_Service"),
-                                   package,
-                                   Udm::NULLCHILDROLE,
-                                   this->testing_service_))
+  if (Udm::create_if_not (package, this->testing_service_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                                  CUTS_TESTING_SERVICE_OBJECT,
+                                  boost::bind (&PICML::Object::name, _1)))))
   {
-    this->testing_service_.name () = "Testing_Service";
+    this->testing_service_.SetStrValue ("name", CUTS_TESTING_SERVICE_OBJECT);
   }
 }
 

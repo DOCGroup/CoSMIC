@@ -1,3 +1,25 @@
+Sat May 12 04:02:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+
+          Removed all MFC code from the interpreter.
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Assembly_Generator.cpp:
+        * cuts/be/CUTS_Project.h:
+        * cuts/be/CUTS_Project.cpp:
+        * cuts/be/CoWorkEr_Generator.h:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Update the model generators to use the new model generator functions
+          and methods.
+
+        * cuts/be/modelgen.h:
+        * cuts/be/modelgen.inl:
+        * cuts/be/modelgen.cpp:
+
+          Set of helper methods for generating model elements.
+
 Tue May  8 20:49:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp (verify_calibration):

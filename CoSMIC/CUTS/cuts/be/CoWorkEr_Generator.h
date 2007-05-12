@@ -55,6 +55,21 @@ private:
   /// Shared implementation for visiting a RootFolder.
   void Visit_RootFolder_i (const PICML::RootFolder & root);
 
+  /// Implmentation for visiting a InterfaceDefinitions element.
+  void find_interface_definitions_i (const std::vector <PICML::File> & fileset,
+                                     const PICML::File & srcfile);
+
+  void find_package_i (const std::vector <PICML::Package> & pkgset,
+                        const PICML::Package & srcpkg);
+
+  void find_component_i (const std::vector <PICML::Component> & comset,
+                         const PICML::Component & target_com);
+
+  void find_artifact_i (PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &,
+                        const std::vector <PICML::ImplementationArtifactReference> &,
+                        const PICML::ImplementationArtifact &);
+
   /// Helper method for visiting File and Package elements.
   void visit_file_and_package (const Udm::Object & obj);
 
@@ -118,6 +133,10 @@ private:
 
   /// Number of CoWorkEr in a file.
   size_t coworker_count_;
+
+  size_t artifact_position_x_;
+  size_t artifact_position_y_;
+  size_t artifact_position_delta_y_;
 };
 
 #endif  /* !defined _CUTS_COWORKER_GENERATOR_H_ */
