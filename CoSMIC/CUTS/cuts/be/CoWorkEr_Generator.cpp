@@ -41,22 +41,37 @@ COWORKER_PACKAGE_FOLDER ("CoWorkEr_ComponentPackages");
 //=============================================================================
 /**
  * @class has_entrypoint
+ *
+ * Functor that searches a collection of executor parameters to search
+ * for a particular entrypoint.
  */
 //=============================================================================
 
 class has_entrypoint
 {
 public:
+  /// Type definition for a collection of artifact executor params.
   typedef std::set <
     PICML::ArtifactExecParameter>
     ArtifactExecParameter_Set;
 
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       entrypoint        Entrypoint in question.
+   */
   has_entrypoint (const std::string & entrypoint)
     : entrypoint_ (entrypoint)
   {
 
   }
 
+  /**
+   * Functor that allows the struct to be used with Udm::contains.
+   *
+   * @param[in]       params            Source parameters.
+   * @param[out]      property          Found property.
+   */
   bool operator () (const ArtifactExecParameter_Set & params,
                     PICML::Property & property)
   {
@@ -70,6 +85,9 @@ public:
   }
 
 private:
+  /**
+   *
+   */
   bool is_valid (const PICML::ArtifactExecParameter & param)
   {
     // Get the property at the end of this connection.
@@ -78,8 +96,10 @@ private:
     if (std::string (property.name ()) == std::string ("entryPoint") &&
         std::string (property.DataValue ()) == this->entrypoint_)
     {
-      // Save the property and set the saved flag.
-      *this->property_ = property;
+      // Save the property.
+      if (this->property_ != 0)
+        *this->property_ = property;
+
       return true;
     }
 
@@ -87,9 +107,78 @@ private:
   }
 
 private:
+  /// Entrypoint in question.
   const std::string & entrypoint_;
 
+  /// Storage location of the found property.
   PICML::Property * property_;
+};
+
+//=============================================================================
+/**
+ * @class has_implementation
+ *
+ * Functor that searchs through a collection of implementation connections
+ * to determine if one is connected to a specific monolithic implementation.
+ */
+//=============================================================================
+
+class has_implementation
+{
+public:
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]     monolithic      Monolithic implementation in question.
+   */
+  has_implementation (const PICML::MonolithicImplementation & monolithic)
+    : monolithic_ (monolithic)
+  {
+
+  }
+
+
+  /**
+   * Functor for usage as a predicate in the modelgen library.
+   *
+   * @param[in]     impls           Collection of implementation connections.
+   * @param[out]    impl            Holds the located implemenation.
+   */
+  bool operator () (const std::set <PICML::Implementation> & impls,
+                    PICML::Implementation & impl)
+  {
+    std::set <PICML::Implementation>::const_iterator iter =
+      std::find_if (impls.begin (),
+                    impls.end (),
+                    boost::bind (&has_implementation::is_valid,
+                                 this,
+                                 _1));
+
+    if (iter != impls.end ())
+    {
+      impl = *iter;
+      return true;
+    }
+    else
+      return false;
+  }
+
+private:
+  /**
+   * Helper method that tests the validity of a implementation connection.
+   * The connection is valid if it's connected to a element that references
+   * the target implemenation.
+   *
+   * @param[in]         impl          Implementation in question.
+   */
+  bool is_valid (const PICML::Implementation & impl)
+  {
+    PICML::ComponentImplementationReference ref = impl.dstImplementation_end ();
+    return PICML::MonolithicImplementation::Cast (ref.ref ()) == this->monolithic_;
+  }
+
+  /// The target implementation of the search.
+  const PICML::MonolithicImplementation & monolithic_;
 };
 
 //
@@ -749,14 +838,19 @@ generate_monolithic_implementation (const Artifact_Set & artifacts,
   std::string monolithic_name =
     (std::string)this->coworker_.name () + "_Impl";
 
-  monolithic =
-    PICML::MonolithicImplementation::Create (container);
-  monolithic.SetStrValue ("name", monolithic_name);
+  if (Udm::create_if_not (container, monolithic,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     monolithic_name,
+                     boost::bind (&PICML::MonolithicImplementation::name,
+                                  _1)))))
+  {
+    monolithic.name () = monolithic_name;
+  }
+
   monolithic.position () = "(184,198)";
 
   typedef std::vector <PICML::ImplementationArtifactReference> ArtifactRef_Set;
-  ArtifactRef_Set artifact_refs =
-    container.ImplementationArtifactReference_children ();
+  ArtifactRef_Set artifact_refs = container.ImplementationArtifactReference_children ();
 
   std::string artifact_name;
   PICML::ImplementationArtifactReference artifact_ref;
@@ -775,7 +869,7 @@ generate_monolithic_implementation (const Artifact_Set & artifacts,
                               artifact_refs,
                               _1));
 
-  // Create reference to the component that we are realizing. We need
+  // Create reference to the component that we are implementing. We need
   // to ensure that whatever reference exist in this container points
   // the correct component (CoWorkEr).
   PICML::ComponentRef component_ref = container.ComponentRef_child ();
@@ -783,19 +877,27 @@ generate_monolithic_implementation (const Artifact_Set & artifacts,
   if (component_ref == Udm::null)
     component_ref = PICML::ComponentRef::Create (container);
 
-  component_ref.SetStrValue ("name", this->coworker_.name ());
-  PICML::Component component = component_ref.ref ();
-
-  if (component != this->coworker_)
-    component_ref.ref () = this->coworker_;
-
+  component_ref.name () = this->coworker_.name ();
   component_ref.position () = "(125,20)";
+
+  if (PICML::Component (component_ref.ref ()) != this->coworker_)
+    component_ref.ref () = this->coworker_;
 
   // Create the <Implements> connection between the <monolithic>
   // an the <component_ref>.
-  PICML::Implements implements = PICML::Implements::Create (container);
-  implements.srcImplements_end () = monolithic;
-  implements.dstImplements_end () = component_ref;
+  PICML::Implements implements = container.Implements_child ();
+
+  if (implements == Udm::null)
+    implements = PICML::Implements::Create (container);
+
+  PICML::MonolithicImplementation impl =
+    PICML::MonolithicImplementation::Cast (implements.srcImplements_end ());
+
+  if (impl != monolithic)
+    implements.srcImplements_end () = monolithic;
+
+  if (PICML::ComponentRef (implements.dstImplements_end ()) != component_ref)
+    implements.dstImplements_end () = component_ref;
 }
 
 //
@@ -852,25 +954,23 @@ generate_monolithic_package (const PICML::MonolithicImplementation & monolithic)
 
   // Get all the package containers.
   typedef std::vector <PICML::PackageContainer> Container_Set;
-  Container_Set packages =
-    this->coworker_packages_.PackageContainer_children ();
+  Container_Set packages = this->coworker_packages_.PackageContainer_children ();
 
   PICML::PackageContainer container;
 
-  if (create_element_if_not_exist (packages,
-                                   Find_Element_By_Name <
-                                   PICML::PackageContainer> (container_name),
-                                   this->coworker_packages_,
-                                   Udm::NULLCHILDROLE,
-                                   container))
+  if (Udm::create_if_not (this->coworker_packages_, packages, container,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     container_name,
+                     boost::bind (PICML::PackageContainer::name, _1)))))
   {
-    container.SetStrValue ("name", container_name);
+    container.name () = container_name;
   }
 
   // Create the <package> for the implementation if it does not exist.
   // Also, make sure the name of the <package> is the same as the
   // container.
   PICML::ComponentPackage package = container.ComponentPackage_child ();
+
   if (package == Udm::null)
     package = PICML::ComponentPackage::Create (container);
 
@@ -881,43 +981,25 @@ generate_monolithic_package (const PICML::MonolithicImplementation & monolithic)
   // an implementation associated with this package, then we need to
   // create one.
   typedef std::set <PICML::Implementation> Implementation_Set;
-  Implementation_Set implementation = package.dstImplementation ();
+  Implementation_Set implementations = package.dstImplementation ();
+
+  PICML::Implementation implementation;
   PICML::ComponentImplementationReference implref;
 
-  if (!implementation.empty ())
+  if (Udm::create_if_not (container, implementations, implementation,
+      has_implementation (monolithic)))
   {
-    //// Get the reference object.
-    //implref = implementation.dstImplementation_end ();
-
-    //try
-    //{
-    //  // Verify the reference is pointing to the correct
-    //  // monolithic implementation.
-    //  PICML::MonolithicImplementation mono =
-    //    PICML::MonolithicImplementation::Cast (implref.ref ());
-
-    //  if (mono != monolithic)
-    //    implref.ref () = monolithic;
-    //}
-    //catch (...)
-    //{
-    //  implref.ref () = monolithic;
-    //}
-  }
-  else
-  {
-    // Create the component implementation reference object.
     implref = PICML::ComponentImplementationReference::Create (container);
-    implref.SetStrValue ("name", monolithic.name ());
     implref.ref () = monolithic;
 
-    // We need to create a <implementation> connection.
-    PICML::Implementation impl = PICML::Implementation::Create (container);
-    impl.srcImplementation_end () = package;
-    impl.dstImplementation_end () = implref;
+    implementation.srcImplementation_end () = package;
+    implementation.dstImplementation_end () = implref;
   }
+  else
+    implref = implementation.dstImplementation_end ();
 
   // Position the monolithic implementation reference.
+  implref.name () = monolithic.name ();
   implref.position () = "(138,250)";
 
   // Make sure the package has a package interface.

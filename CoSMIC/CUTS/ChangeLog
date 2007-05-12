@@ -1,3 +1,10 @@
+Sat May 12 17:56:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Finished updating the CoWorkEr proxy generation option. Now,
+          you are able to repair the CUTS model by clicking that option.
+
 Sat May 12 04:02:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
