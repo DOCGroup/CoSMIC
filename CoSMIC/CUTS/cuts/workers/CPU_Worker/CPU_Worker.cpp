@@ -158,10 +158,10 @@ bool CUTS_CPU_Worker::calibrate (void)
 //
 size_t CUTS_CPU_Worker::calibrate_i (void)
 {
-  ACE_Time_Value start, stop;
   size_t count;
   bool done = false;
 
+  ACE_Time_Value tv_elapsed;
   ACE_High_Res_Timer timer;
 
   // Create the initial upper and lower boundaries. The upper
@@ -185,16 +185,17 @@ size_t CUTS_CPU_Worker::calibrate_i (void)
     work (count);
     timer.stop ();
 
-    ACE_Time_Value tv_elapsed;
     timer.elapsed_time (tv_elapsed);
 
     if (tv_elapsed.sec () > 0 ||
-        tv_elapsed.usec () > (this->target_ + this->margin_))
+        tv_elapsed.usec () >
+        static_cast <suseconds_t> ((this->target_ + this->margin_)))
     {
       upper = count;
     }
     else if (tv_elapsed.sec () == 0 &&
-             tv_elapsed.usec () < (this->target_ - this->margin_))
+             tv_elapsed.usec () <
+             static_cast <suseconds_t> ((this->target_ - this->margin_)))
     {
       lower = count;
     }
@@ -245,7 +246,7 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
   }
 
   tempfile
-    << this->count_per_msec_ << std::endl
+    << this->count_per_msec_ << " " << trycount << std::endl
     << "=================================================" << std::endl;
 
   // Verify the calibration factor for 0 to TEST_MAX_MSEC. We are

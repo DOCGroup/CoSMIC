@@ -1,3 +1,11 @@
+Sun May 13 19:36:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+
+          - Fixed compiler warnings.
+          - The number of calibration tries is written to the calibration
+            details file.
+
 Sat May 12 17:56:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp:
