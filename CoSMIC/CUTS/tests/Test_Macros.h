@@ -35,13 +35,12 @@
  */
 //=============================================================================
 
-#define CUTS_TEST_SUITE_BEGIN(suite, cls) \
-  class suite : public CUTS_Test_Suite \
+
+#define CUTS_TEST_SUITE_BEGIN(suite_name) \
+  int run_main (int argc, char * argv []) \
   { \
-  public: \
-    inline suite (void) \
-      : CUTS_Test_Suite (#cls) \
-    {
+    CUTS_TEST_SUITE ()->name (suite_name)
+
 
 //=============================================================================
 /**
@@ -49,11 +48,9 @@
  */
 //=============================================================================
 
-#define CUTS_TEST_SUITE_END(suite) \
-    } \
-    virtual ~suite (void) { } \
-  }; \
-  CUTS_TEST_SUITE_EXPORT (suite)
+#define CUTS_TEST_SUITE_END() \
+    return CUTS_TEST_SUITE ()->run_all_unit_test (argc, argv); \
+  }
 
 //=============================================================================
 /**
@@ -63,7 +60,7 @@
 //=============================================================================
 
 #define CUTS_ADD_UNIT_TEST(name, unit_test) \
-  this->add_unit_test (name, &unit_test);
+  CUTS_TEST_SUITE ()->add_unit_test (name, &unit_test)
 
 //=============================================================================
 /**
@@ -89,7 +86,7 @@
     std::ostringstream msg; \
     msg << __FILE__ << ":" << __LINE__ << " " \
             << errmsg << std::ends; \
-    CUTS_Msg_Log::instance ()->error_message (msg.str ()); \
+    CUTS_MSG_LOG ()->error_message (msg.str ().c_str ()); \
     return 1; \
   }
 
@@ -107,7 +104,7 @@
     std::ostringstream msg; \
     msg << __FILE__ << ":" << __LINE__ << " " \
             << errmsg << std::ends; \
-    CUTS_Msg_Log::instance ()->error_message (msg.str ()); \
+    CUTS_MSG_LOG ()->error_message (msg.str ().c_str ()); \
   }
 
 #endif  // !defined _CUTS_TEST_MACROS_H_

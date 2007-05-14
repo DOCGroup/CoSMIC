@@ -1,3 +1,47 @@
+Mon May 14 22:37:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * tests/cuts/Time_Measurement_Test.cpp:
+        * tests/cuts/workers/CPU_Worker_Test.cpp:
+        * tests/cuts/workers/workers.mpc:
+
+          Updated the unit tests to use the new testing framework. Now,
+          unit tests are executables instead of shared libraries. Granted this
+          will increase compilation time, but it will make them more stable.
+
+        * tests/Default_Msg_Log.h:
+        * tests/Default_Msg_Log.cpp:
+
+          Implemented a default logging strategy that writes to the console.
+
+        * tests/Msg_Log.h:
+        * tests/Msg_Log.cpp:
+
+          - The open () method now takes the name of the test suite as an input
+            parameter.
+          - The close () method now takes the results of the test suite, i.e.,
+            number of passed and failed unit tests.
+
+        * tests/Test_Macros.h:
+        * tests/Test_Main.cpp:
+        * tests/Test_Suite.h:
+        * tests/Test_Suite.cpp:
+        * tests/cuts/test.mpc:
+
+          Updated the testing framework so that all test suites are compiled
+          executables instead of shared libraries.
+
+        * tests/tests.mpc:
+        * tests/tests.mwc:
+
+          This was the old test.* files.
+
+        * tests/Test_Client.cpp:
+        * tests/cuts/Time_Metric_Test.cpp:
+        * tests/test.mpc:
+        * tests/test.mwc:
+
+          Removed these files.
+
 Sun May 13 19:36:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU_Worker/CPU_Worker.cpp:

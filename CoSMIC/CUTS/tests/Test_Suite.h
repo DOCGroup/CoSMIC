@@ -16,11 +16,12 @@
 #include "CUTS_Test_export.h"
 #include "Test_Macros.h"
 #include "Msg_Log.h"
+#include "ace/Null_Mutex.h"
+#include "ace/Singleton.h"
+#include "ace/SString.h"
 
 #include <list>
-#include <string>
 #include <utility>
-#include <sstream>
 
 //=============================================================================
 /**
@@ -35,52 +36,46 @@
 class CUTS_TEST_Export CUTS_Test_Suite
 {
 public:
-  /**
-   * Run the test. This involves running all the unit test.
-   *
-   * @param     argc      The number of command line arguments.
-   * @param     arvg      The command-line arguments for the test.
-   */
-  virtual void run (int argc, char * argv []);
+  typedef int (* _unit_test) (void);
+
+  /// Initializing constructor.
+  CUTS_Test_Suite (void);
+
+  CUTS_Test_Suite (const ACE_CString & name);
+
+  /// Destructor.
+  ~CUTS_Test_Suite (void);
 
   /**
    * Get the name of the test.
    *
    * @return    NULL-terminated string.
    */
-  virtual const char * name (void) const;
+  const ACE_CString & name (void) const;
 
-  /// Close the test and release all its resources.
-  virtual void close (void);
+  void name (const ACE_CString & name);
 
-  virtual size_t passed (void) const;
+  size_t passed (void) const;
 
-  virtual size_t failed (void) const;
-
-protected:
-  typedef int (* unit_test_ptr) (void);
+  size_t failed (void) const;
 
   /**
    * Add a unit test to the test.
    *
    * @param[in]     unit_test       Pointer to the unit test.
    */
-  void add_unit_test (const std::string & name,
-                      unit_test_ptr unit_test);
+  int add_unit_test (const ACE_CString & name,
+                     _unit_test unit_test);
 
-  /// Initializing constructor.
-  CUTS_Test_Suite (const char *);
-
-  /// Destructor.
-  virtual ~CUTS_Test_Suite (void);
+  int run_all_unit_test (int argc, char * argv []);
 
 private:
   // Type definition for a collection of unit tests.
-  typedef std::list <std::pair <std::string,
-                                unit_test_ptr> > Unit_Test_List;
+  typedef std::list <std::pair <ACE_CString,
+                                _unit_test> > Unit_Test_List;
 
   /// Name of the test suite.
-  std::string name_;
+  ACE_CString name_;
 
   /// Collection of unit test.
   Unit_Test_List unit_test_;
@@ -91,5 +86,12 @@ private:
   /// Number of failed test.
   size_t failed_;
 };
+
+CUTS_TEST_SINGLETON_DECLARE (ACE_Singleton,
+                             CUTS_Test_Suite,
+                             ACE_Null_Mutex);
+
+#define CUTS_TEST_SUITE() \
+  ACE_Singleton <CUTS_Test_Suite, ACE_Null_Mutex>::instance ()
 
 #endif  // !defined _CUTS_TEST_SUITE_H_

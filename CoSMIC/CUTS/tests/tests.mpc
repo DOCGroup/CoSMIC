@@ -1,0 +1,16 @@
+// $Id$
+
+project (CUTS_Test) : cutslib, cuts_test_base {
+  sharedname = CUTS_Test
+
+  Source_Files {
+    Default_Msg_Log.cpp
+    Msg_Log.cpp
+    Test_Suite.cpp
+  }
+
+  Header_Files {
+    Test_Macros.h
+  }
+}
+

@@ -2,7 +2,7 @@
 // $Id$
 
 #include "Test_Suite.h"
-#include "cuts/CPUWorker.h"
+#include "cuts/workers/CPU_Worker/CPU_Worker.h"
 #include "ace/OS_NS_sys_time.h"
 #include "ace/Log_Msg.h"
 #include "ace/Time_Value.h"
@@ -21,7 +21,6 @@ CUTS_UNIT_TEST (Unit_Test_CPU_run)
   for (size_t i = 0; i < 100; i ++)
   {
     size_t msec = 500;
-    size_t cycles;
 
     timer.start ();
     worker.run (msec);
@@ -29,12 +28,10 @@ CUTS_UNIT_TEST (Unit_Test_CPU_run)
 
     timer.elapsed_time (elapsed);
     ACE_DEBUG ((LM_DEBUG,
-                "proposed time = %d; elapsed time = %d; diff = %d msec "
-                "(cycles = %d)\n",
+                "proposed time = %d; elapsed time = %d; diff = %d msec\n",
                 msec,
                 elapsed.msec (),
-                msec - elapsed.msec (),
-                cycles));
+                msec - elapsed.msec ()));
   }
 
   return 0;
@@ -46,7 +43,7 @@ CUTS_UNIT_TEST (Unit_Test_CPU_run)
  */
 //=============================================================================
 
-CUTS_TEST_SUITE_BEGIN (CUTS_CPU_Worker_TS, CUTS_CPU_Worker)
-  CUTS_ADD_UNIT_TEST ("CPU_run", Unit_Test_CPU_run)
-CUTS_TEST_SUITE_END (CUTS_CPU_Worker_TS)
+CUTS_TEST_SUITE_BEGIN ("CUTS_CPU_Worker");
+  CUTS_ADD_UNIT_TEST ("CPU_run", Unit_Test_CPU_run);
+CUTS_TEST_SUITE_END ();
 

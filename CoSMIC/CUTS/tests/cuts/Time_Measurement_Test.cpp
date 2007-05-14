@@ -21,7 +21,7 @@ CUTS_UNIT_TEST (Time_Measurement_Constructor)
 {
   CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
                      tm_.minimum () != ACE_Time_Value::zero ||
-                     tm_.accumulation () != ACE_Time_Value::zero ||
+                     tm_.total () != ACE_Time_Value::zero ||
                      tm_.count () != 0),
                      "default constructor failed");
   return 0;
@@ -47,8 +47,8 @@ CUTS_UNIT_TEST (Time_Measurement_Add_Time)
 
     CUTS_VERIFY_TEST (tm.count () != 1,
                       "expected count = 1");
-    CUTS_VERIFY_TEST (tm.accumulation () != tv,
-                      "accumulation value is incorrect");
+    CUTS_VERIFY_TEST (tm.total () != tv,
+                      "total value is incorrect");
     CUTS_VERIFY_TEST (tm.maximum () != tv,
                       "maximum value is incorrect");
     CUTS_VERIFY_TEST (tm.minimum () != tv,
@@ -85,8 +85,8 @@ CUTS_UNIT_TEST (Time_Measurement_Add_Time)
                     "minimum () failed with multiple values");
   CUTS_VERIFY_TEST (tm_.maximum ().msec () != *max_iter,
                     "maximum () failed with multiple values");
-  CUTS_VERIFY_TEST (tm_.accumulation ().msec () != sum,
-                    "accumulation () failed with multiple values");
+  CUTS_VERIFY_TEST (tm_.total ().msec () != sum,
+                    "total () failed with multiple values");
   return 0;
 }
 
@@ -102,7 +102,7 @@ CUTS_UNIT_TEST (Time_Measurement_Reset)
 
   CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
                      tm_.minimum () != ACE_Time_Value::zero ||
-                     tm_.accumulation () != ACE_Time_Value::zero ||
+                     tm_.total () != ACE_Time_Value::zero ||
                      tm_.count () != 0),
                      "reset operation failed");
   return 0;
@@ -110,12 +110,51 @@ CUTS_UNIT_TEST (Time_Measurement_Reset)
 
 //=============================================================================
 /*
- * CUTS_Time_Measurement_Test_Suite
+ * Time_Measurement_Set
  */
 //=============================================================================
 
-CUTS_TEST_SUITE_BEGIN (CUTS_Time_Measurement_TS, CUTS_Time_Measurement)
-  CUTS_ADD_UNIT_TEST ("Constructor", Time_Measurement_Constructor)
-  CUTS_ADD_UNIT_TEST ("Add_Time", Time_Measurement_Add_Time)
-  CUTS_ADD_UNIT_TEST ("Reset", Time_Measurement_Reset)
-CUTS_TEST_SUITE_END (CUTS_Time_Measurement_TS)
+CUTS_UNIT_TEST (Time_Measurement_Set)
+{
+  // Verify setting the maximum value.
+  ACE_Time_Value tv (ACE_OS::rand (), ACE_OS::rand ());
+  tm_.maximum () = tv;
+
+  CUTS_VERIFY_TEST ((tm_.maximum () != tv),
+                     "setting maximum value failed");
+
+  // Verify setting the minimum value.
+  tv.set (ACE_OS::rand (), ACE_OS::rand ());
+  tm_.minimum () = tv;
+  CUTS_VERIFY_TEST ((tm_.minimum () != tv),
+                     "setting minimum value failed");
+
+  // Verify setting the total value.
+  tv.set (ACE_OS::rand (), ACE_OS::rand ());
+  tm_.total () = tv;
+
+  CUTS_VERIFY_TEST ((tm_.total () != tv),
+                     "setting total value failed");
+
+  // Verify setting the count value.
+  size_t n = ACE_OS::rand ();
+  tm_.count (n);
+
+  CUTS_VERIFY_TEST ((tm_.count () != n),
+                     "setting count value failed");
+
+  return 0;
+}
+
+//=============================================================================
+/*
+ * Test_Suite: CUTS_Time_Measurement
+ */
+//=============================================================================
+
+CUTS_TEST_SUITE_BEGIN ("CUTS_Time_Measurement");
+  CUTS_ADD_UNIT_TEST ("Constructor", Time_Measurement_Constructor);
+  CUTS_ADD_UNIT_TEST ("Add_Time", Time_Measurement_Add_Time);
+  CUTS_ADD_UNIT_TEST ("Reset", Time_Measurement_Reset);
+  CUTS_ADD_UNIT_TEST ("Set", Time_Measurement_Set);
+CUTS_TEST_SUITE_END ();
