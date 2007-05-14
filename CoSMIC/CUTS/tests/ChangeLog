@@ -1,3 +1,9 @@
+Mon May 14 22:53:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * tests.mwc:
+
+          Added $(CUTS_ROOT)/default.features to the workspace.
+
 Mon May 14 22:50:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/config/cuts_test.mpb:

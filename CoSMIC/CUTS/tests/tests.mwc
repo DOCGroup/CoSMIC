@@ -2,7 +2,8 @@
 
 workspace (tests) {
   cmdline += -include $CUTS_ROOT/etc/config \
-             -include $CUTS_ROOT/tests/etc/config
+             -include $CUTS_ROOT/tests/etc/config \
+             -feature_file default.features
 
   // -- explicitly specify the project directories
   tests.mpc
