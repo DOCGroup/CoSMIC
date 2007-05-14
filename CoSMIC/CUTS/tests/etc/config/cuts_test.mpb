@@ -1,0 +1,9 @@
+// $Id$
+
+project : cutsexe, cuts_test_base {
+  after += CUTS_Test
+
+  Source_Files {
+    $(CUTS_ROOT)/tests/Test_Main.cpp
+  }
+}
