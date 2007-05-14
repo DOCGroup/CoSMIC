@@ -1,3 +1,19 @@
+Mon May 14 23:45:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Time_Measurement_Test.mpc:
+        * cuts/Timestamp_Metric_Test.cpp:
+        * cuts/Timestamp_Metric_Test.mpc:
+
+          Added unit test for CUTS_Timestamp_Metric.
+
+        * tests.mwc:
+
+          Workspace was not able to locate feature's file.
+
+        * cuts/test.mpc:
+
+          Removed this file.
+
 Mon May 14 22:53:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * tests.mwc:
