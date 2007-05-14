@@ -1,3 +1,9 @@
+Mon May 14 23:50:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Time_Measurement.h:
+
+          Removed the pragma once specification.
+
 Mon May 14 23:46:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Time.h:

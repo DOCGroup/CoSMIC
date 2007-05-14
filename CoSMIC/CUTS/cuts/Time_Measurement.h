@@ -15,10 +15,6 @@
 #ifndef _CUTS_TIME_MEASUREMENT_H_
 #define _CUTS_TIME_MEASUREMENT_H_
 
-#if !defined (ACE_LACKS_PRAGMA_ONCE)
-#pragma once
-#endif  // ACE_LACKS_PRAGMA_ONCE
-
 #include "cuts/Timestamp_Metric.h"
 
 // Forward decl.
