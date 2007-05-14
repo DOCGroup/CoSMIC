@@ -88,20 +88,14 @@ Visit_ComponentImplementationContainer (
 
   if (impl.type () == PICML::ComponentAssembly::meta)
   {
+    std::string name = std::string (container.name ()) + "_CoWorkEr";
+
     // We need to find the "target" container for this container.
-    typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
-    Container_Set containers =
-      this->target_folder_.ComponentImplementationContainer_children ();
-
-    std::string name = (std::string)container.name () + "_CoWorkEr";
-
-    if (create_element_if_not_exist (containers,
-                                     Find_Element_By_Name <
-                                        PICML::ComponentImplementationContainer> (
-                                        name),
-                                     this->target_folder_,
-                                     Udm::NULLCHILDROLE,
-                                     this->target_container_))
+    if (Udm::create_if_not (this->target_folder_, this->target_container_,
+        Udm::contains (boost::bind (std::equal_to <std::string> (),
+                       name,
+                       boost::bind (&PICML::ComponentImplementationContainer::name,
+                                    _1)))))
     {
       this->target_container_.SetStrValue ("name", name);
     }
@@ -120,19 +114,12 @@ Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
 {
   if (!assembly.isInstance ())
   {
-    // Find the CoWorkEr assembly that matches this <assembly>.
-    typedef std::vector <PICML::ComponentAssembly> ComponentAssembly_Set;
-    ComponentAssembly_Set target_assemblies =
-      this->target_container_.ComponentAssembly_kind_children ();
-
     std::string name = assembly.name ();
 
-    if (create_element_if_not_exist (target_assemblies,
-                                     Find_Element_By_Name <
-                                        PICML::ComponentAssembly> (name),
-                                     this->target_container_,
-                                     Udm::NULLCHILDROLE,
-                                     this->target_assembly_))
+    if (Udm::create_if_not (this->target_container_, this->target_assembly_,
+        Udm::contains (boost::bind (std::equal_to <std::string> (),
+                       name,
+                       boost::bind (&PICML::ComponentAssembly::name, _1)))))
     {
       this->target_assembly_.SetStrValue ("name", name);
     }

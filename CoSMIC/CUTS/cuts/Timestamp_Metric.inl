@@ -6,6 +6,7 @@
 //
 CUTS_INLINE
 CUTS_Timestamp_Metric::CUTS_Timestamp_Metric (void)
+: timestamp_ (ACE_Time_Value::zero)
 {
 
 }
@@ -54,4 +55,22 @@ CUTS_INLINE
 ACE_Time_Value & CUTS_Timestamp_Metric::timestamp (void)
 {
   return this->timestamp_;
+}
+
+//
+// reset
+//
+CUTS_INLINE
+void CUTS_Timestamp_Metric::reset (void)
+{
+  this->timestamp_ = ACE_Time_Value::zero;
+}
+
+//
+// is_valid
+//
+CUTS_INLINE
+bool CUTS_Timestamp_Metric::is_valid (void) const
+{
+  return this->timestamp_ != ACE_Time_Value::zero;
 }

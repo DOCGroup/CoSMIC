@@ -59,6 +59,18 @@ public:
    */
   void timestamp (const ACE_Time_Value & tv);
 
+  /// Reset the timestamp.
+  void reset (void);
+
+  /**
+   * Determine if the time timestamp if valid. A valid timestamp
+   * is one that has been used, i.e., not equal to ACE_Time_Value::zero.
+   *
+   * @retval      true            The timestamp is valid.
+   * @retval      false           The timestamp is not valid.
+   */
+  bool is_valid (void) const;
+
 private:
   /// The actual timestamp.
   ACE_Time_Value timestamp_;

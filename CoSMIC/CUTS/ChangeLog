@@ -1,3 +1,21 @@
+Mon May 14 23:46:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Time.h:
+        * cuts/Time.cpp:
+
+          Moved ace/OS_NS_time.h include from the source file to the
+          header file.
+
+        * cuts/Timestamp_Metric.h:
+        * cuts/Timestamp_Metric.inl:
+
+          Added reset () and is_valid () methods.
+
+        * cuts/be/BE_Assembly_Generator.cpp:
+
+          Partially converted source to use the new model generation
+          methods.
+
 Mon May 14 23:05:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CUTS_Project.cpp:

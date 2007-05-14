@@ -17,6 +17,7 @@
 #define _CUTS_TIME_H_
 
 #include "cuts/CUTS_export.h"
+#include "ace/OS_NS_time.h"
 
 // Forward decl.
 class ACE_Time_Value;

@@ -2,7 +2,6 @@
 // $Id$
 
 #include "Time.h"
-#include "ace/OS_NS_time.h"
 #include "ace/Time_Value.h"
 
 //
