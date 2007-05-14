@@ -1,3 +1,10 @@
+Mon May 14 22:41:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * tests/ChangeLog:
+
+          The test directory now has its own ChangeLog. All revisions
+          related to unit test will be placed in the ChangeLog.
+
 Mon May 14 22:37:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * tests/cuts/Time_Measurement_Test.cpp:
