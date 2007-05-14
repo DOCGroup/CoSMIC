@@ -827,7 +827,7 @@ generate_monolithic_implementation (const Artifact_Set & artifacts,
   if (Udm::create_if_not (this->coworker_implementations_, containers, container,
       Udm::contains (boost::bind (std::equal_to <std::string> (),
                      container_name,
-                     boost::bind (PICML::ComponentImplementationContainer::name,
+                     boost::bind (&PICML::ComponentImplementationContainer::name,
                                   _1)))))
   {
     container.SetStrValue ("name", container_name);
@@ -961,7 +961,7 @@ generate_monolithic_package (const PICML::MonolithicImplementation & monolithic)
   if (Udm::create_if_not (this->coworker_packages_, packages, container,
       Udm::contains (boost::bind (std::equal_to <std::string> (),
                      container_name,
-                     boost::bind (PICML::PackageContainer::name, _1)))))
+                     boost::bind (&PICML::PackageContainer::name, _1)))))
   {
     container.name () = container_name;
   }

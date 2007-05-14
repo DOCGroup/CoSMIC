@@ -150,7 +150,7 @@ Visit_PredefinedTypes (const PICML::PredefinedTypes & ptypes)
     this->string_ = strings[0];
 
     std::for_each (strings.begin  () + 1, strings.end (),
-                   boost::bind (PICML::String::DeleteObject, _1));
+                   boost::bind (&PICML::String::DeleteObject, _1));
   }
 }
 
