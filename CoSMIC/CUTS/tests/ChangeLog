@@ -1,3 +1,10 @@
+Tue May 15 16:44:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Port_Measurement_Test.cpp:
+        * cuts/Port_Measurement_Test.mpc:
+
+          Created a test suite for the CUTS_Port_Measurement object.
+
 Mon May 14 23:45:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Time_Measurement_Test.mpc:

@@ -1,0 +1,9 @@
+// $Id$
+
+project (CUTS_Port_Measurement_Test) : cuts_test {
+  exename = CUTS_Port_Measurement_Test
+
+  Source_Files {
+    Port_Measurement_Test.cpp
+  }
+}
