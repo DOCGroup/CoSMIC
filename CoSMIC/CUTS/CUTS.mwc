@@ -18,6 +18,7 @@ workspace (CUTS) : CUTS_CoSMIC {
   // -- base workspace.
 
   cuts/CUTS.mpc
+  cuts/CUTS_CIAO.mpc
   cuts/CUTS_Worker.mpc
   cuts/BDC
   cuts/utils

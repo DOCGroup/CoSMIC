@@ -16,7 +16,6 @@
 #include "cuts/Port_Measurement.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
-#include "ace/RW_Thread_Mutex.h"
 
 //=============================================================================
 /**
@@ -55,7 +54,7 @@ public:
    * @param[in]         id          The id of the port measurement.
    * @return            Pointer to the port measurement.
    */
-  CUTS_Port_Measurement * operator [] (size_t id);
+  int find (size_t id, CUTS_Port_Measurement * & measure);
 
   /**
    * Get the size of the mapping.
@@ -74,9 +73,17 @@ public:
    */
   const hash_map_t & hash_map (void) const;
 
+  /// Reset the mapping.
+  void reset (void);
+
+  int register_endpoint (size_t endpoint);
+
 private:
   /// The hash map that holds the elements.
   hash_map_t hash_map_;
+
+  /// The template port measurment.
+  CUTS_Port_Measurement template_;
 };
 
 #if defined (__CUTS_INLINE__)

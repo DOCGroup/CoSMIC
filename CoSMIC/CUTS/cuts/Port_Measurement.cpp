@@ -7,19 +7,17 @@
 #endif
 
 #include "cuts/Metrics_Visitor.h"
-#include <algorithm>
 
 //
-// Reset_Exit_Times
+// ~CUTS_Port_Measurement
 //
-struct Reset_Exit_Times
+CUTS_Port_Measurement::~CUTS_Port_Measurement (void)
 {
-  inline
-  void operator () (CUTS_Port_Measurement::Exit_Points::value_type & item)
-  {
-    item.second.reset ();
-  }
-};
+  CUTS_Port_Measurement_Endpoint_Map::ITERATOR iter (this->endpoints_);
+
+  for (; !iter.done (); iter ++)
+    delete iter->item ();
+}
 
 //
 // reset
@@ -31,9 +29,10 @@ void CUTS_Port_Measurement::reset (void)
   this->queuing_time_.reset ();
 
   // Reset all the exit times via this port.
-  std::for_each (this->exitpoints_.begin (),
-                 this->exitpoints_.end (),
-                 Reset_Exit_Times ());
+  CUTS_Port_Measurement_Endpoint_Map::ITERATOR iter (this->endpoints_);
+
+  for (; !iter.done (); iter ++)
+    iter->item ()->reset ();
 }
 
 //
@@ -43,4 +42,50 @@ void CUTS_Port_Measurement::
 accept (CUTS_Metrics_Visitor & visitor) const
 {
   visitor.visit_port_measurement (*this);
+}
+
+//
+// record_exitpoint
+//
+void CUTS_Port_Measurement::
+record_exitpoint (size_t uid, const ACE_Time_Value & tv)
+{
+  CUTS_Time_Measurement * measure = 0;
+
+  if (this->endpoints_.find (uid, measure) == 0)
+  {
+    *measure += tv;
+  }
+  else
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (CUTS_Port_Measurement): unable to find port "
+                "with id = %u\n",
+                uid));
+  }
+}
+
+//
+// prepare
+//
+int CUTS_Port_Measurement::prepare (CUTS_Port_Measurement & pm)
+{
+  if (pm.endpoints ().current_size () != 0)
+  {
+    ACE_ERROR_RETURN ((LM_ERROR,
+                       "*** error (CUTS_Port_Measurement): cannot prepare "
+                       "an non-empty object\n"), -1);
+  }
+
+  CUTS_Time_Measurement * tm = 0;
+  CUTS_Port_Measurement_Endpoint_Map::ITERATOR iter (this->endpoints_);
+
+  for ( ; !iter.done (); iter ++)
+  {
+    ACE_NEW_RETURN (tm, CUTS_Time_Measurement, -1);
+
+    pm.endpoints ().bind (iter->key (), tm);
+  }
+
+  return 0;
 }

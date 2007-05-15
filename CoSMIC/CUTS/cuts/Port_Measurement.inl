@@ -10,15 +10,6 @@ CUTS_Port_Measurement::CUTS_Port_Measurement (void)
 }
 
 //
-// ~CUTS_Port_Measurement
-//
-CUTS_INLINE
-CUTS_Port_Measurement::~CUTS_Port_Measurement (void)
-{
-
-}
-
-//
 // queuing_time
 //
 CUTS_INLINE
@@ -77,55 +68,21 @@ process_time (const ACE_Time_Value & timing)
 }
 
 //
-// worker_measurements
+// endpoints
 //
 CUTS_INLINE
-const CUTS_Port_Measurement::Worker_Map &
-CUTS_Port_Measurement::worker_measurements (void) const
+CUTS_Port_Measurement_Endpoint_Map &
+CUTS_Port_Measurement::endpoints (void)
 {
-  return this->workers_;
-}
-
-CUTS_INLINE
-CUTS_Port_Measurement::Worker_Map &
-CUTS_Port_Measurement::worker_measurements (void)
-{
-  return this->workers_;
+  return this->endpoints_;
 }
 
 //
-// record_entry
+// endpoints
 //
 CUTS_INLINE
-void CUTS_Port_Measurement::
-record_entry (size_t reps, long worker, long opid, const ACE_Time_Value & tm)
+const CUTS_Port_Measurement_Endpoint_Map &
+CUTS_Port_Measurement::endpoints (void) const
 {
-  this->workers_[worker].record_operation (reps, opid, tm);
-}
-
-//
-// record_exit_time
-//
-CUTS_INLINE
-void CUTS_Port_Measurement::
-record_exitpoint (size_t uid, const ACE_Time_Value & tv)
-{
-  this->exitpoints_[uid] += tv;
-}
-
-//
-// exit_points
-//
-CUTS_INLINE
-CUTS_Port_Measurement::Exit_Points &
-CUTS_Port_Measurement::exit_points (void)
-{
-  return this->exitpoints_;
-}
-
-CUTS_INLINE
-const CUTS_Port_Measurement::Exit_Points &
-CUTS_Port_Measurement::exit_points (void) const
-{
-  return this->exitpoints_;
+  return this->endpoints_;
 }

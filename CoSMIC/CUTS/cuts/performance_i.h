@@ -36,7 +36,7 @@ void CUTS_STUB_Export operator >>= (const CUTS::Port_Summary & ps,
                                     CUTS_Port_Measurement & pm);
 
 void CUTS_STUB_Export operator >>= (const CUTS::Endpoint_Time_Infos & eti,
-                                    CUTS_Port_Measurement::Exit_Points & eps);
+                                    CUTS_Port_Measurement_Endpoint_Map & eps);
 
 void CUTS_STUB_Export operator >>= (const CUTS::Time_Info & ti,
                                     CUTS_Time_Measurement & tm);
@@ -69,7 +69,7 @@ void CUTS_STUB_Export operator <<= (CUTS::Port_Summary & ps,
                                     const CUTS_Port_Measurement & pm);
 
 void CUTS_STUB_Export operator <<= (CUTS::Endpoint_Time_Infos & eti,
-                                    const CUTS_Port_Measurement::Exit_Points & eps);
+                                    const CUTS_Port_Measurement_Endpoint_Map & eps);
 
 void CUTS_STUB_Export operator <<= (CUTS::Time_Info & ti,
                                     const CUTS_Time_Measurement & tm);

@@ -14,7 +14,7 @@
 #define _CUTS_PORT_AGENT_H_
 
 #include "cuts/Activation_Record_Log.h"
-#include "cuts/Port_Measurement_Pool.h"
+#include "cuts/Port_Measurement_Map.h"
 #include "ace/SString.h"
 #include "ace/Containers_T.h"
 
@@ -53,8 +53,10 @@ public:
    *
    * @return      Reference to the lastest port measurement map.
    */
-  CUTS_Port_Measurement_Pool & port_measurement_pool (void);
-  const CUTS_Port_Measurement_Pool & port_measurement_pool (void) const;
+  CUTS_Port_Measurement_Map & sender_map (void);
+
+  /// @overload
+  const CUTS_Port_Measurement_Map & sender_map (void) const;
 
   /**
    * Determine the active state of the port agent.
@@ -101,7 +103,7 @@ private:
   bool active_;
 
   /// Collection of port measurements used by the port agent.
-  CUTS_Port_Measurement_Pool pool_;
+  CUTS_Port_Measurement_Map sender_map_;
 
   /// Default activation record.
   CUTS_Activation_Record fallback_record_;

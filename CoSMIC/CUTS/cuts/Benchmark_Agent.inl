@@ -30,16 +30,6 @@ register_agent (CUTS_Port_Agent * agent, size_t agent_id)
 }
 
 //
-// register_endpoint
-//
-CUTS_INLINE
-int CUTS_Benchmark_Agent::
-register_endpoint (const ACE_CString & endpoint, size_t endpoint_id)
-{
-  return this->endpoints_.bind (endpoint, endpoint_id);
-}
-
-//
 // parent
 //
 CUTS_INLINE

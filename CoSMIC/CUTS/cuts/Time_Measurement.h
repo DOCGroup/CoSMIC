@@ -4,9 +4,9 @@
 /**
  * @file    Time_Measurement.h
  *
- * $Id$
+ * Mechanisms for observing and collecting statistics on time values.
  *
- * This file contains the classes for performing timing operations in CUTS.
+ * $Id$
  *
  * @author  James H. Hill <hillj@isis.vanderbilt.edu>
  */
@@ -22,12 +22,16 @@ class CUTS_Metrics_Visitor;
 
 //=============================================================================
 /**
+ * @ingroup benchmarking
  * @class CUTS_Time_Measurement
  *
  * Timing operations using collecting timing information. This class
  * contains operations that assist with collecting timing measurements such
  * as the maximum and minimum timing values. Also, this class will accumulate
  * timing values and keep track of the number of timing samples.
+ *
+ * @todo Create an init () method that allows the time values to be
+ *       initialized in a single call, instead of in a piecemeal fashion.
  */
 //=============================================================================
 
@@ -37,7 +41,11 @@ public:
   /// Constructor.
   CUTS_Time_Measurement (void);
 
-  /// Copy constructor.
+  /**
+   * Copy constructor.
+   *
+   * @param[in]       time      The source object.
+   */
   CUTS_Time_Measurement (const CUTS_Time_Measurement & time);
 
   /// Destructor.
@@ -46,25 +54,65 @@ public:
   /// Reset all the timing values.
   void reset (void);
 
-  /// Increment the timing by specified amount of milliseconds.
-  void operator += (const ACE_Time_Value & timing);
+  /**
+   * Add a new time value to the calculations.
+   *
+   * @param[in]       tv        The source time value.
+   */
+  void operator += (const ACE_Time_Value & tv);
 
-  /// Get the minimum time value.
+  /**
+   * Get the minimum observed time value during this collection
+   * period.
+   *
+   * @return          The minimun time value.
+   */
   ACE_Time_Value & minimum (void);
+
+  /**
+   * @overload
+   */
   const ACE_Time_Value & minimum (void) const;
 
-  /// Get the maximum time value.
+  /**
+   * Get the maximum observed time value during this collection
+   * period.
+   *
+   * @return          The minimun time value.
+   */
   ACE_Time_Value & maximum (void);
+
+  /**
+   * @overload
+   */
   const ACE_Time_Value & maximum (void) const;
 
-  /// Get the total time recorded in the timing measurement.
+  /**
+   * Get the total time recorded in the timing measurement. The total time
+   * is the summation of all the time values recorded using the
+   * operator += (const ACE_Time_Value & tv) method.
+   *
+   * @return      The total of all time values.
+   */
   ACE_Time_Value & total (void);
+
+  /**
+   * @overload
+   */
   const ACE_Time_Value & total (void) const;
 
-  /// Get the number of time measurements.
+  /**
+   * Get the number of time measurements.
+   *
+   * @return      The number of time measurements.
+   */
   size_t count (void) const;
 
-  /// Set the count.
+  /**
+   * Set the number of time measurements.
+   *
+   * @param[in]   n     Number of time measurements.
+   */
   void count (size_t n);
 
   /**

@@ -251,27 +251,26 @@ visit_port_measurement (const CUTS_Port_Measurement & pm)
     << "        </QueueingTime>" << std::endl;
 
   ACE_CString portname;
-  CUTS_Port_Measurement::Exit_Points::const_iterator endpoint_iter;
+  CUTS_Port_Measurement_Endpoint_Map::
+    CONST_ITERATOR endpoint_iter (pm.endpoints ());
 
-  for (endpoint_iter  = pm.exit_points ().begin ();
-       endpoint_iter != pm.exit_points ().end ();
-       endpoint_iter ++)
+  for (; !endpoint_iter.done (); endpoint_iter ++)
   {
     // There is no need to continue if there isn't any
     // up-to-date information.
-    if (endpoint_iter->second.timestamp () != this->timestamp_)
+    if (endpoint_iter->item ()->timestamp () != this->timestamp_)
       continue;
 
     // Generate the opening tag.
-    this->myinfo_->type_->sources_.find (endpoint_iter->first, portname);
+    this->myinfo_->type_->sources_.find (endpoint_iter->key (), portname);
 
     this->output_
       << "        <ExitPoint name=\"" << portname.c_str () <<  "\" count=\""
-      << endpoint_iter->second.count ()
+      << endpoint_iter->item ()->count ()
       << "\">" << std::endl;
 
     // Visit the time metrics for this exit point.
-    endpoint_iter->second.accept (*this);
+    endpoint_iter->item ()->accept (*this);
 
     // Generate the closing tag.
     this->output_

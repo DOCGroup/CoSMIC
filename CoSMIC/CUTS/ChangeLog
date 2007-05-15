@@ -1,3 +1,63 @@
+Tue May 15 16:46:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+        * cuts/CUTS_CIAO.mpc:
+        * cuts/CUTS.mpc:
+
+          Move CIAO specific projects to their own MPC file.
+
+        * cuts/Benchmark_Agent.inl:
+        * cuts/Benchmark_Agent.cpp:
+
+          When an endpoint is registered with the benchmark agent, it also
+          registers it with the sender port map.
+
+        * cuts/Port_Agent.h:
+        * cuts/Port_Agent.inl:
+        * cuts/Port_Agent.cpp:
+
+          Removed the CUTS_Port_Measurement_Pool data member. Now the
+          port agent contains one CUTS_Port_Measurement_Map.
+
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.inl:
+        * cuts/Port_Measurement.cpp:
+
+          Removed the worker measurement classes and changed all STL
+          containers to ACE containers.
+
+        * cuts/Port_Measurement_Map.h:
+        * cuts/Port_Measurement_Map.inl:
+        * cuts/Port_Measurement_Map.cpp:
+
+          - Replaced operator += () with find ().
+          - Changed the locking strategy from ACE_RW_Thread_Mutex to ACE_Null_Mutex
+            for the time being. Right now, ACE_RW_Thread_Mutex can be too heavy if
+            the workload is high. Now, everything is preallocated.
+          - The map is now able to register_endpoints () to create a template that
+            is used to initalize CUTS_Port_Measurement objects via the prepare ()
+            method.
+
+        * cuts/Time_Measurement.h:
+
+          Updated doxygen documentation.
+
+        * cuts/BDC/svcs/IO/IO_System_Metric_Visitor.cpp:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+        * cuts/XML_Metrics_Writer.cpp:
+        * cuts/performance_i.h:
+        * cuts/performance_i.inl:
+        * cuts/performance_i.cpp:
+
+          Update the iteration code to use the new typedefs and container
+          class in the port measurements.
+
+        * cuts/config.h:
+        * cuts/config-doxygen.h:
+        * docs/cuts.doxygen:
+
+          Updated the configuration for generating Doxygen documentation.
+
 Mon May 14 23:50:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Time_Measurement.h:

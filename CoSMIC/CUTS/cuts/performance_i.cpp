@@ -6,6 +6,7 @@
 #include "cuts/performance_i.inl"
 #endif
 
+#include "tao/CORBA.h"
 #include "ace/Guard_T.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -77,11 +78,16 @@ void operator >>= (const CUTS::Sorted_Port_Metrics & sps,
   CUTS::Sorted_Port_Metrics::const_value_type * iter = sps.get_buffer ();
   CUTS::Sorted_Port_Metrics::const_value_type * iter_stop = iter + curr_size;
 
-  // Empty the port measurement map.
   pmp.empty ();
 
-  for (iter; iter != iter_stop; iter ++)
-    iter->summary >>= *pmp[iter->uid];
+  // Empty the port measurement map.
+  CUTS_Port_Measurement * port_measurement = 0;
+
+  for (; iter != iter_stop; iter ++)
+  {
+    if (pmp.find (iter->uid, port_measurement) == 0)
+      iter->summary >>= *port_measurement;
+  }
 }
 
 //
@@ -93,25 +99,36 @@ void operator >>= (const CUTS::Port_Summary & ps, CUTS_Port_Measurement & pm)
 
   ps.process_time >>= pm.process_time ();
   ps.queue_time >>= pm.queuing_time ();
-  ps.endpoint_times >>= pm.exit_points ();
+  ps.endpoint_times >>= pm.endpoints ();
 }
 
 //
 // operator >>=
 //
 void operator >>= (const CUTS::Endpoint_Time_Infos & eti,
-                   CUTS_Port_Measurement::Exit_Points & eps)
+                   CUTS_Port_Measurement_Endpoint_Map & endpoints)
 {
   // Get the current size of the buffer and a pointer to it.
   CORBA::ULong curr_size = eti.length ();
   const CUTS::Endpoint_Time_Infos::value_type * buf = eti.get_buffer ();
   const CUTS::Endpoint_Time_Infos::value_type * buf_stop = buf + curr_size;
 
-  // Remove all elements from the map.
-  eps.clear ();
+  CUTS_Time_Measurement * measure = 0;
 
-  for (buf; buf != buf_stop; buf ++)
-    buf->info >>= eps[buf->uid];
+  for (; buf != buf_stop; buf ++)
+  {
+    if (endpoints.find (buf->uid, measure) != 0)
+    {
+      ACE_NEW_THROW_EX (measure,
+                        CUTS_Time_Measurement,
+                        ::CORBA::NO_MEMORY ());
+
+      endpoints.bind (buf->uid, measure);
+    }
+
+    if (measure != 0)
+      buf->info >>= *measure;
+  }
 }
 
 //
@@ -232,7 +249,6 @@ static void operator <<= (CUTS::Port_Metrics & ports,
 
     // Reset the port agent for the next collection.
     agent->reset ();
-    agent->port_measurement_pool ().advance ();
   }
 }
 
@@ -256,7 +272,7 @@ void operator <<= (CUTS::Component_Metric & cm,
 void operator <<= (CUTS::Port_Metric & pm, const CUTS_Port_Agent & agent)
 {
   // Insert the sorted port measurements and move to a new pool.
-  pm.sorted_metrics <<= agent.port_measurement_pool ().current ();
+  pm.sorted_metrics <<= agent.sender_map ();
 
   // Insert the history log.
   pm.history <<= agent.log ();
@@ -297,26 +313,25 @@ void operator <<= (CUTS::Port_Summary & ps, const CUTS_Port_Measurement & pm)
 {
   ps.process_time <<= pm.process_time ();
   ps.queue_time <<= pm.queuing_time ();
-  ps.endpoint_times <<= pm.exit_points ();
+  ps.endpoint_times <<= pm.endpoints ();
 }
 
 //
 // operator <<=
 //
 void operator <<= (CUTS::Endpoint_Time_Infos & eti,
-                   const CUTS_Port_Measurement::Exit_Points & eps)
+                   const CUTS_Port_Measurement_Endpoint_Map & endpoints)
 {
   // Set the current size of the buffer.
-  CORBA::ULong curr_size = eps.size ();
+  CORBA::ULong curr_size = endpoints.current_size ();
   eti.length (curr_size);
 
   // Get a pointer to the buffer.
   CUTS::Endpoint_Time_Infos::value_type * buf = eti.get_buffer ();
 
-  CUTS_Port_Measurement::Exit_Points::const_iterator iter = eps.begin ();
-  CUTS_Port_Measurement::Exit_Points::const_iterator iter_stop = eps.end ();
+  CUTS_Port_Measurement_Endpoint_Map::CONST_ITERATOR iter (endpoints);
 
-  for (iter; iter != iter_stop; iter ++)
+  for (; !iter.done (); iter ++)
     *buf ++ <<= *iter;
 }
 

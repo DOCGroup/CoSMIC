@@ -22,10 +22,10 @@ void operator >>= (const CUTS::Time_Stamp & ts, ACE_Time_Value & tm)
 //
 CUTS_INLINE
 void operator <<= (CUTS::Endpoint_Time_Info & eti,
-                   const CUTS_Port_Measurement::Exit_Points::value_type & ep)
+                   CUTS_Port_Measurement_Endpoint_Map::ENTRY & entry)
 {
-  eti.uid = ep.first;
-  eti.info <<= ep.second;
+  eti.uid = entry.key ();
+  eti.info <<= *entry.item ();
 }
 
 //

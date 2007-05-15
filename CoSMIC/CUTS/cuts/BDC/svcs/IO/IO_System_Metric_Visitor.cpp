@@ -127,25 +127,23 @@ visit_port_measurement (const CUTS_Port_Measurement & port)
   port.process_time  ().accept (*this);
 
   ACE_CString portname;
-  CUTS_Port_Measurement::Exit_Points::const_iterator iter;
+  CUTS_Port_Measurement_Endpoint_Map::CONST_ITERATOR iter (port.endpoints ());
 
-  for (iter  = port.exit_points ().begin ();
-       iter != port.exit_points ().end ();
-       iter ++)
+  for ( ; !iter.done (); iter ++)
   {
     // Write the information about the exitpoint.
-    int retval = this->myinfo_->type_->sources_.find (iter->first, portname);
+    int retval = this->myinfo_->type_->sources_.find (iter->key (), portname);
     std::cout << "    to ";
 
     if (retval == 0)
       std::cout << portname.c_str ();
     else
-      std::cout << "<unknown> (" << iter->first << ")";
+      std::cout << "<unknown> (" << iter->key () << ")";
 
     std::cout << " ";
 
     // Visit the time measurement.
-    iter->second.accept (*this);
+    iter->item ()->accept (*this);
   }
 }
 

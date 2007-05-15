@@ -32,15 +32,16 @@
 
 #define CUTS_DEFAULT_EVENT_COUNT          20
 
-#define CUTS_PORT_AGENT_THREAD_COUNT      1
-
 #define CUTS_EVENT_HANDLER_THREAD_COUNT   1
 
 #define CUTS_UNKNOWN_TYPE                 1
 
 #define CUTS_UNKNOWN_IMPL                 1
-#define CUTS_SYSTEM_ID                    2
 
 #define CUTS_DEFAULT_LOG_SIZE             50
+
+#if defined (CUTS_HAS_DOXYGEN)
+#include "config-doxygen.h"
+#endif
 
 #endif  // !defined _CUTS_CONFIG_H_

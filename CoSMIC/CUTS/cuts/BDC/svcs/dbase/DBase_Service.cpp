@@ -398,30 +398,29 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
           ACE_OS::strcpy (metric_type, "process");
 
-          CUTS_Port_Measurement::Exit_Points::const_iterator em_iter;
+          CUTS_Port_Measurement_Endpoint_Map::
+            CONST_ITERATOR em_iter (sender_iter->item ()->endpoints ());
 
-          for (em_iter  = sender_iter->item ()->exit_points ().begin ();
-               em_iter != sender_iter->item ()->exit_points ().end ();
-               em_iter ++)
+          for (; !em_iter.done (); em_iter ++)
           {
             // Determine if this port has any metrics that correspond
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
-            if (timestamp != em_iter->second.timestamp ())
+            if (timestamp != em_iter->item ()->timestamp ())
               continue;
 
             // Copy the metrics for the process data into the appropriate
             // parameters before we execute the statement.
             query->parameter (7)->bind (dst, 0);
 
-            myinfo->type_->sources_.find (em_iter->first, portname);
+            myinfo->type_->sources_.find (em_iter->key (), portname);
             ACE_OS::strcpy (dst, portname.c_str ());
 
             // Store the metrics in their parameters.
-            metric_count = em_iter->second.count ();
-            best_time  = em_iter->second.minimum ().msec ();
-            worse_time = em_iter->second.maximum ().msec ();
-            total_time = em_iter->second.total ().msec ();
+            metric_count = em_iter->item ()->count ();
+            best_time  = em_iter->item ()->minimum ().msec ();
+            worse_time = em_iter->item ()->maximum ().msec ();
+            total_time = em_iter->item ()->total ().msec ();
 
             query->execute_no_record ();
           }

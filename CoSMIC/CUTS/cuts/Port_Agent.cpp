@@ -18,10 +18,10 @@ update (const CUTS_Activation_Record * record)
 {
   // Locate the measurements for this owner. If we can not
   // find the records then we need to create a new entry for it.
-  CUTS_Port_Measurement_Map & pmmap = this->pool_.current ();
-  CUTS_Port_Measurement * measurement = pmmap[record->owner ()];
+  CUTS_Port_Measurement * measurement = 0;
+  int retval = this->sender_map_.find (record->owner (), measurement);
 
-  if (measurement != 0)
+  if (retval == 0 && measurement != 0)
   {
     // Get the duration of the record's activity.
     ACE_Time_Value duration;
@@ -36,12 +36,27 @@ update (const CUTS_Activation_Record * record)
 
     ACE_Time_Value start_time = record->start_time ();
 
-    while (!iter.done ())
+    for (; !iter.done (); iter ++)
     {
       duration = iter->item () - start_time;
-
       measurement->record_exitpoint (iter->key (), duration);
-      iter.advance ();
+    }
+  }
+  else
+  {
+    if (retval != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_Port_Agent): failed to locate port "
+                  "measurements for sender %u\n",
+                  record->owner ()));
+    }
+    else
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_Port_Agent): port measurement for sender "
+                  "%u is NIL\n",
+                  record->owner ()));
     }
   }
 }
