@@ -213,40 +213,67 @@ Visit_Component (const PICML::Component & component)
       pos << component;
       pos.translate (0, 50);
       pos >> proxy_component;
+    }
 
-      // Locate the <cuts_proxy_impl> attribute. This is need to configure
-      // the proxy to load the correct implementation.
-      typedef std::vector <PICML::Attribute> Attribute_Set;
-      Attribute_Set attributes = proxy_component.Attribute_kind_children ();
+    // Locate the <cuts_proxy_impl> attribute. This is need to configure
+    // the proxy to load the correct implementation.
+    typedef std::vector <PICML::Attribute> Attribute_Set;
+    Attribute_Set attributes = proxy_component.Attribute_kind_children ();
 
-      PICML::Attribute cuts_proxy_impl;
+    PICML::Attribute cuts_proxy_impl;
 
-      if (Udm::contains (boost::bind (std::equal_to <std::string> (),
-                         "cuts_proxy_impl",
-                         boost::bind (&PICML::Attribute::name,
-                                      _1))) (proxy_component, cuts_proxy_impl))
+    if (Udm::contains (boost::bind (std::equal_to <std::string> (),
+                       "cuts_proxy_impl",
+                       boost::bind (&PICML::Attribute::name,
+                                    _1))) (proxy_component, cuts_proxy_impl))
+    {
+      // Create the property value for cuts_proxy_impl.
+      this->locate_executor_entry_point (interface_type);
+      std::string propval = this->artifact_name_ + ":" + this->entry_point_;
+
+      // Get the connection from the cuts_proxy_impl its property. If
+      // we cannot find it, then we need to create one and attach it to
+      // the connection.
+      PICML::AttributeValue attrval = cuts_proxy_impl.dstAttributeValue ();
+
+      if (attrval == Udm::null)
       {
-        // Locate the entry point for this proxy so we can fill
-        // set the <cuts_proxy_impl> attribute.
-        this->locate_executor_entry_point (interface_type);
+        attrval = PICML::AttributeValue::Create (this->target_assembly_);
+        attrval.srcAttributeValue_end () = cuts_proxy_impl;
+      }
 
-        // Create the property for the <cuts_proxy_impl>.
-        PICML::Property property =
-          PICML::Property::Create (this->target_assembly_);
+      // Get the property that is connected to the attribute value. If we
+      // cannot find one, then we need to create one and attach it to
+      // the connection.
+      PICML::Property property = attrval.dstAttributeValue_end ();
 
+      if (property == Udm::null)
+      {
+        property = PICML::Property::Create (this->target_assembly_);
         property.name () = "cuts_proxy_impl";
-        property.DataValue () = this->artifact_name_ + ":" + this->entry_point_;
 
-        // Create the attribute value connection for the property.
-        PICML::AttributeValue attr_value =
-          PICML::AttributeValue::Create (this->target_assembly_);
+        attrval.dstAttributeValue_end () = property;
+      }
 
-        attr_value.srcAttributeValue_end () = cuts_proxy_impl;
-        attr_value.dstAttributeValue_end () = property;
+      if (std::string (property.name ()) != "cuts_proxy_impl")
+        property.name () = "cuts_proxy_impl";
 
-        // Create the <DataType> for the <property>. It is going to
-        // reference the string type in the CUTS project.
-        PICML::DataType datatype = PICML::DataType::Create (property);
+      if (std::string (property.DataValue ()) != propval)
+        property.DataValue () = propval;
+
+      // Make sure the property has a datatype.
+      PICML::DataType datatype = property.DataType_child ();
+
+      if (datatype == Udm::null)
+      {
+        datatype = PICML::DataType::Create (property);
+        datatype.name () = CUTS_BE_PROJECT ()->get_string_type ().name ();
+      }
+
+      // Verify the datatype is referencing the correct string.
+      if (PICML::String::Cast (datatype.ref ()) !=
+          CUTS_BE_PROJECT ()->get_string_type ())
+      {
         datatype.ref () = CUTS_BE_PROJECT ()->get_string_type ();
       }
     }

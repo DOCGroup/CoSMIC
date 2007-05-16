@@ -1,3 +1,11 @@
+Wed May 16 20:31:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Assembly_Generator.cpp (Visit_Component):
+
+          Improved the repair operation for component instances. Now,
+          if model generator will restore any missing cuts_proxy_impl
+          specifications.
+
 Wed May 16 19:41:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/Component.rc:
