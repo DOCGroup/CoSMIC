@@ -18,32 +18,6 @@
 
 //=============================================================================
 /**
- * @struct Find_Element_By_Name
- *
- * Functor that compares the name of a UDM element against a
- * predetermined name.
- */
-//=============================================================================
-
-template <typename T>
-struct Find_Element_By_Name
-{
-  inline
-  Find_Element_By_Name (const std::string & name)
-    : name_ (name) { }
-
-  inline
-  bool operator () (const T & element)
-  {
-    return (std::string)element.name () == this->name_;
-  }
-
-private:
-  std::string name_;
-};
-
-//=============================================================================
-/**
  * @struct Sort_By_Position
  *
  * @brief Help functor to sort objects by their position. The object
@@ -99,22 +73,6 @@ struct Sort_By_Position
     return pos_lhs.x < pos_rhs.x;
   }
 };
-
-//=============================================================================
-/**
- * @struct create_element_if_not_exist
- *
- * Functor for creating an element if it does not exist. This
- * is useful when used with the std::find_if method.
- */
-//=============================================================================
-
-template <typename COLLECTION, typename COMPARE, typename PARENT>
-bool create_element_if_not_exist (const COLLECTION & coll,
-                                  COMPARE & comp,
-                                  const PARENT & parent,
-                                  const Uml::CompositionChildRole & role,
-                                  typename COLLECTION::value_type & element);
 
 //=============================================================================
 /**

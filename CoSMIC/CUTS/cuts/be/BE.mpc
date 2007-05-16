@@ -51,6 +51,7 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Manager_T.cpp
     BE_Workspace_Generator_T.cpp
 
+    UDM_Utility_T.cpp
     modelgen.cpp
   }
 }

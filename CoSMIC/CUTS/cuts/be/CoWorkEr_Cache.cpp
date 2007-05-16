@@ -2,7 +2,8 @@
 
 #include "CoWorkEr_Cache.h"
 #include "PICML/PICML.h"
-#include "UDM_Utility_T.h"
+#include "modelgen.h"
+#include "boost/bind.hpp"
 
 /// expected CUTS CoWorkEr receptacle
 static const char * CUTS_TESTING_SERVICE = "cuts_testing_service";
@@ -58,15 +59,12 @@ CUTS_CoWorkEr_Cache * CUTS_CoWorkEr_Cache::instance (void)
 //
 bool CUTS_CoWorkEr_Cache::is_coworker (const PICML::Component & component)
 {
-  // We need to search for the receptacle "cuts_proxy_impl"
-  typedef std::set <PICML::RequiredRequestPort> Receptacle_Set;
-  Receptacle_Set receptacles = component.RequiredRequestPort_kind_children ();
+  PICML::RequiredRequestPort receptacle;
 
-  if (std::find_if (
-      receptacles.begin (),
-      receptacles.end (),
-      Find_Element_By_Name <Receptacle_Set::value_type> (
-      CUTS_TESTING_SERVICE)) == receptacles.end ())
+  if (!contains (boost::bind (std::equal_to <std::string> (),
+      CUTS_TESTING_SERVICE,
+      boost::bind (&PICML::RequiredRequestPort::name, _1)))
+      (component, receptacle))
   {
     return false;
   }
@@ -75,11 +73,12 @@ bool CUTS_CoWorkEr_Cache::is_coworker (const PICML::Component & component)
   typedef std::set <PICML::Attribute> Attribute_Set;
   Attribute_Set attrs = component.Attribute_kind_children ();
 
-  if (std::find_if (
-      attrs.begin (),
-      attrs.end (),
-      Find_Element_By_Name <Attribute_Set::value_type> (
-      CUTS_PROXY_IMPL)) == attrs.end ())
+  PICML::Attribute attribute;
+
+  if (!contains (boost::bind (std::equal_to <std::string> (),
+      CUTS_PROXY_IMPL,
+      boost::bind (&PICML::Attribute::name, _1)))
+      (component, attribute))
   {
     return false;
   }

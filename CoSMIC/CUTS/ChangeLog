@@ -1,3 +1,22 @@
+Wed May 16 06:01:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+
+          Added UDM_Utility_T.cpp back to the project.
+
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+        * cuts/be/CoWorkEr_Cache.cpp:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Reimplemented the search operations using the modelgen
+          functions.
+
+        * cuts/be/UDM_Utility_T.h:
+
+          Removed the create_if* functions since the ones in modelgen
+          supercede them.
+
 Wed May 16 05:39:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CUTS.mpc:
