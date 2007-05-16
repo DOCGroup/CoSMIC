@@ -1,3 +1,22 @@
+Wed May 16 05:39:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CUTS.mpc:
+
+          Removed Port_Measurement_Pool.* files from the project.
+
+        * cuts/be/BE_Assembly_Generator.h:
+        * cuts/be/BE_Assembly_Generator.cpp:
+
+          Fixed bug where the value of the cuts_proxy_impl was set to
+          the proxy executor entrypoint, and not the entrypoint of
+          the hosted component.
+
+        * cuts/Port_Measurement_Pool.h:
+        * cuts/Port_Measurement_Pool.inl:
+        * cuts/Port_Measurement_Pool.cpp:
+
+          Removed these files.
+
 Tue May 15 16:46:07 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:

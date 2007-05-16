@@ -6,13 +6,11 @@
 #include "BE_Assembly_Generator.inl"
 #endif
 
-#include "BE_algorithm.h"
 #include "BE_Position.h"
 #include "BE_Scope_Manager.h"
 #include "CoWorkEr_Cache.h"
 #include "CUTS_Project.h"
 #include "modelgen.h"
-#include "UDM_Utility_T.h"
 
 // BOOST headers
 #include "boost/bind.hpp"
@@ -35,20 +33,22 @@ Visit_RootFolder (const PICML::RootFolder & folder)
   // We need to locate the <CoWorkEr_ComponentImplementations> folder
   // or create one since this is where all the <CoWorkErs> will be
   // placed.
-  if (Udm::create_if_not (folder, this->target_folder_,
-      Udm::contains (boost::bind (
-                     std::equal_to <std::string> (),
-                     CoWorkEr_ComponentImplementations,
-                     boost::bind (&PICML::ComponentImplementations::name, _1)))))
+  if (Udm::contains (
+      boost::bind (std::equal_to <std::string> (),
+                   CoWorkEr_ComponentImplementations,
+                   boost::bind (&PICML::ComponentImplementations::name,
+                                _1))) (folder, this->target_folder_))
   {
-    this->target_folder_.SetStrValue ("name", CoWorkEr_ComponentImplementations);
+    std::for_each (folders.begin (),
+                   folders.end (),
+                   boost::bind (&Folder_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
-
-  std::for_each (folders.begin (),
-                 folders.end (),
-                 boost::bind (&Folder_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
+  else
+  {
+    // The user need to run the CoWorkEr generator first.
+  }
 }
 
 //
@@ -60,20 +60,18 @@ Visit_ComponentImplementations (const PICML::ComponentImplementations & folder)
   // We need to ignore all folders that contain the following.
   std::string name = folder.name ();
 
-  if (name.find_first_of ("CUTS_") == 0 ||
-      name.find_first_of ("CoWorkEr_") == 0)
+  if (name.find ("CUTS_") == std::string::npos &&
+      name.find ("CoWorkEr_") == std::string::npos)
   {
-    return;
+    typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
+    Container_Set containers = folder.ComponentImplementationContainer_children ();
+
+    std::for_each (containers.begin (),
+                   containers.end (),
+                   boost::bind (&Container_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
-
-  typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
-  Container_Set containers = folder.ComponentImplementationContainer_children ();
-
-  std::for_each (containers.begin (),
-                 containers.end (),
-                 boost::bind (&Container_Set::value_type::Accept,
-                              _1,
-                              boost::ref (*this)));
 }
 
 //
@@ -189,20 +187,27 @@ Visit_Component (const PICML::Component & component)
 
   if (this->locate_proxy_type (interface_type, proxy_type))
   {
-    // Create an instance of the <proxy_type> in the <target_assembly_>.
-    PICML::Component proxy_component =
-      proxy_type.CreateInstance (this->target_assembly_);
+    // We should first search for an instance of the specified type
+    // that has the same name. If we can't find it, when we should
+    // create one.
 
-    // Update the <proxy> so that it matches is <component>. We however,
-    // are going to move the <proxy_component> down some to make space
-    // for the <cuts_proxy_impl> property.
-    proxy_component.name () = component.name ();
+    PICML::Component proxy_component;
 
-    CUTS_BE_Position pos;
-    pos << component;
-    pos.translate (0, 50);
+    do {
+      // Create an instance of the <proxy_type> in the <target_assembly_>.
+      proxy_component = proxy_type.CreateInstance (this->target_assembly_);
 
-    pos >> proxy_component;
+      // Update the <proxy> so that it matches its <component>. We however,
+      // are going to move the <proxy_component> down some to make space
+      // for the <cuts_proxy_impl> property.
+      proxy_component.name () = component.name ();
+
+      CUTS_BE_Position pos;
+      pos << component;
+      pos.translate (0, 50);
+      pos >> proxy_component;
+    }
+    while (0);
 
     // Cache the proxy away for future usage.
     this->proxy_map_.insert (
@@ -223,9 +228,11 @@ Visit_Component (const PICML::Component & component)
 
     if (cuts_proxy_impl != attributes.end ())
     {
+      std::string name = interface_type.name ();
+
       // Locate the entry point for this proxy so we can fill
       // set the <cuts_proxy_impl> attribute.
-      this->locate_executor_entry_point (proxy_type);
+      this->locate_executor_entry_point (interface_type);
 
       // Create the property for the <cuts_proxy_impl>.
       PICML::Property property =
@@ -438,8 +445,8 @@ bool CUTS_BE_Assembly_Generator::
 locate_proxy_type (const PICML::Component & component,
                    PICML::Component & proxy)
 {
-  Proxy_Type_Map::const_iterator entry =
-    this->proxy_type_map_.find (component);
+  Proxy_Type_Map::
+    const_iterator entry = this->proxy_type_map_.find (component);
 
   if (entry != this->proxy_type_map_.end ())
   {
@@ -450,20 +457,18 @@ locate_proxy_type (const PICML::Component & component,
   // Locate the "proxy" that supports this interface. This mean we
   // have to search all the component's that are derived from this
   // component to locate the CoWorkEr proxy.
+
   typedef std::set <PICML::Component> Component_Set;
-  Component_Set derived = Udm::DerivedAttr <PICML::Component> (component.__impl ());
+  Component_Set tmpset = Udm::DerivedAttr <PICML::Component> (component.__impl ());
 
-  Component_Set::const_iterator iter =
-    std::find_if (derived.begin (),
-                  derived.end (),
-                  &CUTS_CoWorkEr_Cache::is_coworker);
-
-  if (iter == derived.end ())
+  if (Udm::contains (
+      boost::bind (&CUTS_CoWorkEr_Cache::is_coworker, _1)) (tmpset, proxy))
+  {
+    this->proxy_type_map_.insert (std::make_pair (component, proxy));
+    return true;
+  }
+  else
     return false;
-
-  this->proxy_type_map_.insert (std::make_pair (component, *iter));
-  proxy = *iter;
-  return true;
 }
 
 //
@@ -472,41 +477,40 @@ locate_proxy_type (const PICML::Component & component,
 void CUTS_BE_Assembly_Generator::
 locate_executor_entry_point (const PICML::Component & component)
 {
-  if (!this->artifact_name_.empty ())
-    this->artifact_name_.clear ();
+  this->artifact_name_.clear ();
+  this->entry_point_.clear ();
 
-  if (!this->entry_point_.empty ())
-    this->entry_point_.empty ();
+  // First, we need to locate the component implementation container
+  // that contains a monolithic implementation for this component.
+  typedef std::set <PICML::ComponentRef> ComponentRef_Set;
+  ComponentRef_Set refs = component.referedbyComponentRef ();
 
-  // The first thing we need to do is locate the container that
-  // has the same path name as this <component>.
-  typedef std::vector <PICML::ComponentImplementationContainer> Container_Set;
-  Container_Set containers =
-    this->target_folder_.ComponentImplementationContainer_kind_children ();
-
-  std::string scoped_name =
-    CUTS_BE_SCOPE_MANAGER ()->generate_scope (component, "/") +
-    (std::string) component.name ();
-
-  Container_Set::iterator iter =
-    std::find_if (containers.begin (),
-                  containers.end (),
-                  boost::bind (std::equal_to <std::string> (),
-                               scoped_name,
-                               boost::bind (&PICML::ComponentImplementationContainer::name,
-                                            _1)));
-
-  // If we have found the <container>, then we need to visit its
-  // monolithic implementation. This will allow use to eventually
-  // visti its artifacts.
-  if (iter != containers.end ())
+  for (ComponentRef_Set::iterator iter = refs.begin ();
+       iter != refs.end ();
+       iter ++)
   {
-    typedef std::vector <PICML::MonolithicImplementation> MonoImpl_Set;
-    MonoImpl_Set monoimpls = iter->MonolithicImplementation_kind_children ();
+    // Get the monolithic implementation in this container and visit
+    // it. We need to locate the executor artifact.
+    PICML::Implements implements = iter->srcImplements ();
 
-    if (!monoimpls.empty ())
-      monoimpls.begin ()->Accept (*this);
+    if (implements != Udm::null)
+    {
+      implements.Accept (*this);
+      break;
+    }
   }
+}
+
+//
+// Visit_Implements
+//
+void CUTS_BE_Assembly_Generator::
+Visit_Implements (const PICML::Implements & implements)
+{
+  PICML::MonolithicImplementation monoimpl =
+    PICML::MonolithicImplementation::Cast (implements.srcImplements_end ());
+
+  monoimpl.Accept (*this);
 }
 
 //
@@ -523,7 +527,6 @@ Visit_MonolithicImplementation (const PICML::MonolithicImplementation & monoimpl
                  boost::bind (&primaryArtifact_Set::value_type::Accept,
                               _1,
                               boost::ref (*this)));
-
 }
 
 //

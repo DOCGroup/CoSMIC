@@ -40,7 +40,6 @@ project (CUTS) : cutslib {
     Port_Agent.cpp
     Port_Measurement.cpp
     Port_Measurement_Map.cpp
-    Port_Measurement_Pool.cpp
     Port_Metric.cpp
     Component_Registry.cpp
     str.cpp

@@ -83,6 +83,9 @@ protected:
   void Visit_ArtifactExecParameter (
     const PICML::ArtifactExecParameter & param);
 
+  void Visit_Implements (
+    const PICML::Implements & implements);
+
 private:
   bool locate_proxy (const PICML::Component &, PICML::Component &);
 
