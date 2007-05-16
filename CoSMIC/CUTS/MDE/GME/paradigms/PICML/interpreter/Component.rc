@@ -108,9 +108,8 @@ BEGIN
     GROUPBOX        "Model Generation",IDC_STATIC,7,7,272,45
     CONTROL         "Generate component proxy models",IDC_OPERATION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,14,19,128,10
-    CONTROL         "Generate assembly proxy models (one-time only)",
-                    IDC_GENERATE_ASSEMBLIES,"Button",BS_AUTORADIOBUTTON | 
-                    WS_TABSTOP,14,35,173,10
+    CONTROL         "Generate assembly proxy models",IDC_GENERATE_ASSEMBLIES,
+                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,35,122,10
     GROUPBOX        "Model Interpretation",IDC_STATIC,7,54,272,60
     CONTROL         "Generate component implementation",IDC_COWORKER_IMPL,
                     "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,14,66,133,10

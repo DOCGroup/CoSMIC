@@ -131,6 +131,20 @@ namespace Udm
   template <typename P, typename C, typename T, typename PRED>
   bool create_subtype_if_not (P & parent, const C & container,
                               T & element, T & subtype, PRED predicate);
+
+  template <typename P, typename T, typename PRED>
+  bool create_instance_if (P & parent, T & element, T & instance, PRED predicate);
+
+  template <typename P, typename C, typename T, typename PRED>
+  bool create_instance_if (P & parent, const C & container,
+                          T & element, T & instance, PRED predicate);
+
+  template <typename P, typename T, typename PRED>
+  bool create_instance_if_not (P & parent, T & element, T & instance, PRED predicate);
+
+  template <typename P, typename C, typename T, typename PRED>
+  bool create_instance_if_not (P & parent, const C & container,
+                               T & element, T & instance, PRED predicate);
 }
 
 #if defined (__CUTS_INLINE__)

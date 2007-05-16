@@ -1,3 +1,19 @@
+Wed May 16 19:41:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/Component.rc:
+        * cuts/be/BE_Assembly_Generator.h:
+        * cuts/be/BE_Assembly_Generator.cpp:
+
+          Now the creation of CoWorkEr assemblies option can be clicked
+          mulitple times without having any negative events. It just
+          repairs the model, if necessary.
+
+        * cuts/be/modelgen.h:
+        * cuts/be/modelgen.cpp:
+
+          Implemented model generation methods for creating instances
+          based on conditions.
+
 Wed May 16 06:01:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE.mpc:

@@ -61,22 +61,6 @@ namespace Udm
   }
 
   //
-  // create_subtype_if
-  //
-  template <typename P, typename T, typename PRED>
-  bool create_subtype_if (P & parent, T & element, T & subtype, PRED predicate)
-  {
-    // Determine if the parent has an element that matches the specified
-    // predicate. If it does contain such an element then we need to
-    // create one for the caller.
-    if (!predicate (parent, subtype))
-      return false;
-
-    subtype = element.CreateDerived (parent);
-    return true;
-  }
-
-  //
   // create_if
   //
   template <typename P, typename C, typename T, typename PRED>
@@ -89,23 +73,6 @@ namespace Udm
       return false;
 
     element = T::Create (parent);
-    return true;
-  }
-
-  //
-  // create_subtype_if
-  //
-  template <typename P, typename C, typename T, typename PRED>
-  bool create_subtype_if (P & parent, const C & container,
-                          T & element, T & subtype, PRED predicate)
-  {
-    // Determine if the parent has an element that matches the specified
-    // predicate. If it does not contain such an element then we need to
-    // create one for the caller.
-    if (!predicate (container, subtype))
-      return false;
-
-    subtype = element.CreateDerived (parent);
     return true;
   }
 
@@ -142,6 +109,39 @@ namespace Udm
   }
 
   //
+  // create_subtype_if
+  //
+  template <typename P, typename T, typename PRED>
+  bool create_subtype_if (P & parent, T & element, T & subtype, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does contain such an element then we need to
+    // create one for the caller.
+    if (!predicate (parent, subtype))
+      return false;
+
+    subtype = element.CreateDerived (parent);
+    return true;
+  }
+
+  //
+  // create_subtype_if
+  //
+  template <typename P, typename C, typename T, typename PRED>
+  bool create_subtype_if (P & parent, const C & container,
+                          T & element, T & subtype, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does not contain such an element then we need to
+    // create one for the caller.
+    if (!predicate (container, subtype))
+      return false;
+
+    subtype = element.CreateDerived (parent);
+    return true;
+  }
+
+  //
   // create_subtype_if_not
   //
   template <typename P, typename T, typename PRED>
@@ -171,6 +171,74 @@ namespace Udm
       return false;
 
     subtype = element.CreateDerived (parent);
+    return true;
+  }
+
+  //
+  // create_instance_if
+  //
+  template <typename P, typename T, typename PRED>
+  bool create_instance_if (P & parent, T & element,
+                           T & instance, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does contain such an element then we need to
+    // create one for the caller.
+    if (!predicate (parent, instance))
+      return false;
+
+    instance = element.CreateInstance (parent);
+    return true;
+  }
+
+  //
+  // create_instance_if
+  //
+  template <typename P, typename C, typename T, typename PRED>
+  bool create_instance_if (P & parent, const C & container,
+                           T & element, T & instance, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does not contain such an element then we need to
+    // create one for the caller.
+    if (!predicate (container, instance))
+      return false;
+
+    instance = element.CreateInstance (parent);
+    return true;
+  }
+
+  //
+  // create_instance_if_not
+  //
+  template <typename P, typename T, typename PRED>
+  bool create_instance_if_not (P & parent, T & element,
+                               T & instance, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does contain such an element then we need to
+    // create one for the caller.
+    if (predicate (parent, instance))
+      return false;
+
+    instance = element.CreateInstance (parent);
+    return true;
+  }
+
+  //
+  // create_instance_if_not
+  //
+  template <typename P, typename C, typename T, typename PRED>
+  bool create_instance_if_not (P & parent, const C & container,
+                               T & element, T & instance, PRED predicate)
+  {
+    // Determine if the parent has an element that matches the specified
+    // predicate. If it does not contain such an element then we need to
+    // create one for the caller.
+    if (predicate (container, instance))
+      return false;
+
+    instance = element.CreateInstance (parent);
     return true;
   }
 }

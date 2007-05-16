@@ -91,7 +91,7 @@ private:
 
   bool locate_proxy_type (const PICML::Component &, PICML::Component &);
 
-  void locate_executor_entry_point (const PICML::Component & component);
+  bool locate_executor_entry_point (const PICML::Component & component);
 
   /// Type definition for a queue of components.
   typedef std::set <PICML::Component> Component_Set;

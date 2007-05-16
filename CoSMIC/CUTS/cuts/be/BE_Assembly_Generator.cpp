@@ -192,11 +192,18 @@ Visit_Component (const PICML::Component & component)
     // create one.
 
     PICML::Component proxy_component;
+    std::string name = component.name ();
 
-    do {
-      // Create an instance of the <proxy_type> in the <target_assembly_>.
-      proxy_component = proxy_type.CreateInstance (this->target_assembly_);
-
+    if (Udm::create_instance_if_not (this->target_assembly_,
+        proxy_type, proxy_component,
+        Udm::contains (boost::bind (std::logical_and <bool> (),
+          boost::bind (std::equal_to <std::string> (),
+                       name,
+                       boost::bind (&PICML::Component::name, _1)),
+          boost::bind (std::equal_to <Udm::Object> (),
+                       proxy_type,
+                       boost::bind (&Udm::Object::archetype, _1))))))
+    {
       // Update the <proxy> so that it matches its <component>. We however,
       // are going to move the <proxy_component> down some to make space
       // for the <cuts_proxy_impl> property.
@@ -206,53 +213,47 @@ Visit_Component (const PICML::Component & component)
       pos << component;
       pos.translate (0, 50);
       pos >> proxy_component;
-    }
-    while (0);
 
-    // Cache the proxy away for future usage.
+      // Locate the <cuts_proxy_impl> attribute. This is need to configure
+      // the proxy to load the correct implementation.
+      typedef std::vector <PICML::Attribute> Attribute_Set;
+      Attribute_Set attributes = proxy_component.Attribute_kind_children ();
+
+      PICML::Attribute cuts_proxy_impl;
+
+      if (Udm::contains (boost::bind (std::equal_to <std::string> (),
+                         "cuts_proxy_impl",
+                         boost::bind (&PICML::Attribute::name,
+                                      _1))) (proxy_component, cuts_proxy_impl))
+      {
+        // Locate the entry point for this proxy so we can fill
+        // set the <cuts_proxy_impl> attribute.
+        this->locate_executor_entry_point (interface_type);
+
+        // Create the property for the <cuts_proxy_impl>.
+        PICML::Property property =
+          PICML::Property::Create (this->target_assembly_);
+
+        property.name () = "cuts_proxy_impl";
+        property.DataValue () = this->artifact_name_ + ":" + this->entry_point_;
+
+        // Create the attribute value connection for the property.
+        PICML::AttributeValue attr_value =
+          PICML::AttributeValue::Create (this->target_assembly_);
+
+        attr_value.srcAttributeValue_end () = cuts_proxy_impl;
+        attr_value.dstAttributeValue_end () = property;
+
+        // Create the <DataType> for the <property>. It is going to
+        // reference the string type in the CUTS project.
+        PICML::DataType datatype = PICML::DataType::Create (property);
+        datatype.ref () = CUTS_BE_PROJECT ()->get_string_type ();
+      }
+    }
+
+    // Save the proxy by name for later usage.
     this->proxy_map_.insert (
       std::make_pair (proxy_component.name (), proxy_component));
-
-    // Locate the <cuts_proxy_impl> attribute. This is need to configure
-    // the proxy to load the correct implementation.
-    typedef std::vector <PICML::Attribute> Attribute_Set;
-    Attribute_Set attributes = proxy_component.Attribute_kind_children ();
-
-    Attribute_Set::iterator cuts_proxy_impl =
-      std::find_if (attributes.begin (),
-                    attributes.end (),
-                    boost::bind (std::equal_to <std::string> (),
-                                 "cuts_proxy_impl",
-                                 boost::bind (&PICML::Attribute::name,
-                                              _1)));
-
-    if (cuts_proxy_impl != attributes.end ())
-    {
-      std::string name = interface_type.name ();
-
-      // Locate the entry point for this proxy so we can fill
-      // set the <cuts_proxy_impl> attribute.
-      this->locate_executor_entry_point (interface_type);
-
-      // Create the property for the <cuts_proxy_impl>.
-      PICML::Property property =
-        PICML::Property::Create (this->target_assembly_);
-
-      property.name () = "cuts_proxy_impl";
-      property.DataValue () = this->artifact_name_ + ":" + this->entry_point_;
-
-      // Create the attribute value connection for the property.
-      PICML::AttributeValue attr_value =
-        PICML::AttributeValue::Create (this->target_assembly_);
-
-      attr_value.srcAttributeValue_end () = *cuts_proxy_impl;
-      attr_value.dstAttributeValue_end () = property;
-
-      // Create the <DataType> for the <property>. It is going to
-      // reference the string type in the CUTS project.
-      PICML::DataType datatype = PICML::DataType::Create (property);
-      datatype.ref () = CUTS_BE_PROJECT ()->get_string_type ();
-    }
   }
 }
 
@@ -270,21 +271,15 @@ Visit_OutEventPort (const PICML::OutEventPort & outevent)
   PICML::Component proxy_component = this->proxy_map_[component.name ()];
 
   // Get all the output ports for the <proxy_component>.
-  typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
-  OutEventPort_Set outevents = proxy_component.OutEventPort_kind_children ();
-
-  OutEventPort_Set::iterator iter =
-    std::find_if (outevents.begin (),
-                  outevents.end (),
-                  boost::bind (std::equal_to <std::string> (),
-                               outevent.name (),
-                               boost::bind (&PICML::OutEventPort::name, _1)));
-
-  // Save the located output event port.
-  if (iter != outevents.end ())
-    this->target_outevent_ = *iter;
-  else
-    this->target_outevent_ = PICML::OutEventPort ();
+  // Get all the input ports for the <proxy_component>.
+  if (!Udm::contains (boost::bind (std::equal_to <std::string> (),
+                      outevent.name (),
+                      boost::bind (&PICML::OutEventPort::name,
+                                   _1))) (proxy_component,
+                                          this->target_outevent_))
+  {
+    this->target_outevent_ = PICML::OutEventPort::Cast (Udm::null);
+  }
 }
 
 //
@@ -301,21 +296,14 @@ Visit_InEventPort (const PICML::InEventPort & inevent)
   PICML::Component proxy_component = this->proxy_map_[component.name ()];
 
   // Get all the input ports for the <proxy_component>.
-  typedef std::vector <PICML::InEventPort> InEventPort_Set;
-  InEventPort_Set inevents = proxy_component.InEventPort_kind_children ();
-
-  InEventPort_Set::iterator iter =
-    std::find_if (inevents.begin (),
-                  inevents.end (),
-                  boost::bind (std::equal_to <std::string> (),
-                               inevent.name (),
-                               boost::bind (&PICML::InEventPort::name, _1)));
-
-  // Save the located input event port.
-  if (iter != inevents.end ())
-    this->target_inevent_ = *iter;
-  else
-    this->target_inevent_ = PICML::InEventPort ();
+  if (!Udm::contains (boost::bind (std::equal_to <std::string> (),
+                      inevent.name (),
+                      boost::bind (&PICML::InEventPort::name,
+                                   _1))) (proxy_component,
+                                          this->target_inevent_))
+  {
+    this->target_inevent_ = PICML::InEventPort::Cast (Udm::null);
+  }
 }
 
 //
@@ -324,23 +312,32 @@ Visit_InEventPort (const PICML::InEventPort & inevent)
 void CUTS_BE_Assembly_Generator::
 Visit_publish (const PICML::publish & publish)
 {
-  // This will locate the correct input event port on the
-  // proxy component.
+  // Locate the correct output port on the proxy.
   PICML::OutEventPort outevent = publish.srcpublish_end ();
   outevent.Accept (*this);
 
+  // Get the connector in the target assembly.
   PICML::PublishConnector connector = publish.dstpublish_end ();
-  PICML::PublishConnector target_connector =
-    this->connector_map_[connector.name ()];
+  PICML::PublishConnector target_connector = this->connector_map_[connector.name ()];
 
-  if (this->target_outevent_ != Udm::null &&
-      target_connector != Udm::null)
+  PICML::publish target_publish;
+
+  if (this->target_outevent_ != Udm::null && target_connector != Udm::null)
   {
-    PICML::publish target_publish =
-      PICML::publish::Create (this->target_assembly_);
-
-    target_publish.srcpublish_end () = this->target_outevent_;
-    target_publish.dstpublish_end () = target_connector;
+    // We only need to create a publish connection if one does not
+    // already exist.
+    if (Udm::create_if_not (this->target_assembly_, target_publish,
+        Udm::contains (boost::bind (std::logical_and <bool> (),
+          boost::bind (std::equal_to <PICML::OutEventPort> (),
+                       this->target_outevent_,
+                       boost::bind (&PICML::publish::srcpublish_end, _1)),
+          boost::bind (std::equal_to <PICML::PublishConnector> (),
+                       target_connector,
+                       boost::bind (&PICML::publish::dstpublish_end, _1))))))
+    {
+      target_publish.srcpublish_end () = this->target_outevent_;
+      target_publish.dstpublish_end () = target_connector;
+    }
   }
 }
 
@@ -358,16 +355,26 @@ Visit_emit (const PICML::emit & emit)
   PICML::OutEventPort outevent = emit.srcemit_end ();
   outevent.Accept (*this);
 
-  if (this->target_inevent_ != Udm::null &&
+  if (this->target_inevent_  != Udm::null &&
       this->target_outevent_ != Udm::null)
   {
-    // Create an <emit> connection and connect the input
-    // and output ports.
-    PICML::emit target_emit =
-      PICML::emit::Create (this->target_assembly_);
+    // We need to create a emits connection in the target assembly
+    // if we are not able to find an existing one for the target
+    // in and out event ports.
+    PICML::emit target_emit;
 
-    target_emit.srcemit_end () = this->target_outevent_;
-    target_emit.dstemit_end () = this->target_inevent_;
+    if (Udm::create_if_not (this->target_assembly_, target_emit,
+        Udm::contains (boost::bind (std::logical_and <bool> (),
+          boost::bind (std::equal_to <PICML::OutEventPort> (),
+            this->target_outevent_,
+            boost::bind (&PICML::emit::srcemit_end, _1)),
+          boost::bind (std::equal_to <PICML::InEventPort> (),
+            this->target_inevent_,
+            boost::bind (&PICML::emit::dstemit_end, _1))))))
+    {
+      target_emit.srcemit_end () = this->target_outevent_;
+      target_emit.dstemit_end () = this->target_inevent_;
+    }
   }
 }
 
@@ -378,12 +385,19 @@ void CUTS_BE_Assembly_Generator::
 Visit_PublishConnector (const PICML::PublishConnector & connector)
 {
   // Create a <PublishConnector> to represent <connector>.
-  PICML::PublishConnector target_connector =
-    PICML::PublishConnector::Create (this->target_assembly_);
+  PICML::PublishConnector target_connector;
+  std::string name = connector.name ();
 
-  target_connector.name () = connector.name ();
-  target_connector.position () = connector.position ();
+  if (Udm::create_if_not (this->target_assembly_, target_connector,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     name,
+                     boost::bind (&PICML::PublishConnector::name, _1)))))
+  {
+    target_connector.name () = connector.name ();
+    target_connector.position () = connector.position ();
+  }
 
+  // Save the connector for later usage.
   this->connector_map_.insert (
     std::make_pair (target_connector.name (), target_connector));
 }
@@ -402,14 +416,22 @@ Visit_deliverTo (const PICML::deliverTo & deliverTo)
   PICML::PublishConnector target_connector =
     this->connector_map_[connector.name ()];
 
-  if (this->target_inevent_ != Udm::null &&
-      target_connector != Udm::null)
+  if (this->target_inevent_ != Udm::null && target_connector != Udm::null)
   {
-    PICML::deliverTo target_deliverTo =
-      PICML::deliverTo::Create (this->target_assembly_);
+    PICML::deliverTo target_deliverTo;
 
-    target_deliverTo.srcdeliverTo_end () = target_connector;
-    target_deliverTo.dstdeliverTo_end () = this->target_inevent_;
+    if (Udm::create_if_not (this->target_assembly_, target_deliverTo,
+        Udm::contains (boost::bind (std::logical_and <bool> (),
+          boost::bind (std::equal_to <PICML::PublishConnector> (),
+            target_connector,
+            boost::bind (&PICML::deliverTo::srcdeliverTo_end, _1)),
+          boost::bind (std::equal_to <PICML::InEventPort> (),
+            this->target_inevent_,
+            boost::bind (&PICML::deliverTo::dstdeliverTo_end, _1))))))
+    {
+      target_deliverTo.srcdeliverTo_end () = target_connector;
+      target_deliverTo.dstdeliverTo_end () = this->target_inevent_;
+    }
   }
 }
 
@@ -417,25 +439,16 @@ Visit_deliverTo (const PICML::deliverTo & deliverTo)
 // locate_proxy
 //
 bool CUTS_BE_Assembly_Generator::
-locate_proxy (const PICML::Component & component,
-              PICML::Component & proxy)
+locate_proxy (const PICML::Component & component, PICML::Component & proxy)
 {
   typedef std::vector <PICML::Component> Component_Set;
   Component_Set proxies = this->target_assembly_.Component_children ();
 
   // Locate the proxy component by its name.
-  Component_Set::iterator iter =
-    std::find_if (proxies.begin (),
-                  proxies.end (),
-                  boost::bind (std::equal_to <std::string> (),
-                               component.name (),
-                               boost::bind (&PICML::Component::name, _1)));
-
-  if (iter == proxies.end ())
-    return false;
-
-  proxy = *iter;
-  return true;
+  return Udm::contains (boost::bind (std::equal_to <std::string> (),
+                        component.name (),
+                        boost::bind (&PICML::Component::name,
+                                     _1))) (this->target_assembly_, proxy);
 }
 
 //
@@ -474,9 +487,10 @@ locate_proxy_type (const PICML::Component & component,
 //
 // locate_executor_entry_point
 //
-void CUTS_BE_Assembly_Generator::
+bool CUTS_BE_Assembly_Generator::
 locate_executor_entry_point (const PICML::Component & component)
 {
+  // Erase the previous values.
   this->artifact_name_.clear ();
   this->entry_point_.clear ();
 
@@ -499,6 +513,8 @@ locate_executor_entry_point (const PICML::Component & component)
       break;
     }
   }
+
+  return !(this->artifact_name_.empty () || this->entry_point_.empty ());
 }
 
 //
