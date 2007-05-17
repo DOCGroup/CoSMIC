@@ -22,7 +22,8 @@ CUTS_BE_File_Traits::CUTS_BE_File_Traits (void)
 //
 CUTS_BE_File_Traits::~CUTS_BE_File_Traits (void)
 {
-
+  if (this->outfile_->is_open ())
+    this->outfile_->close ();
 }
 
 //
@@ -31,5 +32,5 @@ CUTS_BE_File_Traits::~CUTS_BE_File_Traits (void)
 void CUTS_BE_File_Traits::
 close_file (const PICML::ComponentImplementationContainer & container)
 {
-  this->outfile ().close ();
+  this->outfile_->close ();
 }

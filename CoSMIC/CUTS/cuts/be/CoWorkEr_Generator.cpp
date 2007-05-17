@@ -320,29 +320,13 @@ Visit_File (const PICML::File & file)
     // need to make sure one does not already exist in the <coworker_parent_>
     // model which is really a <PICML::File> element.
 
-    typedef std::vector <PICML::FileRef> FileRef_Set;
-    FileRef_Set filerefs =
-      Udm::ChildrenAttr <PICML::FileRef> (this->coworker_parent_.__impl (),
-                                          Udm::NULLCHILDROLE);
-    PICML::File file;
-    FileRef_Set::iterator iter;
+    PICML::FileRef fileref;
 
-    // Try and locate the <cuts/CUTS> file reference in the current
-    // collection of file references.
-    for (iter = filerefs.begin (); iter != filerefs.end (); iter ++)
+    if (Udm::create_if_not (this->coworker_parent_, fileref,
+        Udm::contains (boost::bind (std::equal_to <PICML::File> (),
+                       CUTS_BE_PROJECT ()->get_cuts_file (),
+                       boost::bind (&PICML::FileRef::ref, _1)))))
     {
-      file = PICML::File::Cast (iter->ref ());
-
-      if (file == CUTS_BE_PROJECT ()->get_cuts_file ())
-        break;
-    }
-
-    if (iter == filerefs.end ())
-    {
-      // Create a file reference since one doesn't exist.
-      PICML::FileRef fileref =
-        PICML::FileRef::Create (this->coworker_parent_);
-
       fileref.ref () = CUTS_BE_PROJECT ()->get_cuts_file ();
     }
   }
@@ -417,8 +401,10 @@ Visit_Component (const PICML::Component & component)
 
   // 3. Lastly, we need to create a home for this <coworker_>. The home
   //    must be a subtype of the real components home.
+  PICML::Component basetype = PICML::Component::Cast (component.archetype ());
+
   typedef std::set <PICML::ManagesComponent> Manages_Set;
-  Manages_Set manages = component.srcManagesComponent ();
+  Manages_Set manages = basetype.srcManagesComponent ();
 
   // We can stop if we don't have any connection.
   //
@@ -547,7 +533,7 @@ find_component_i (const std::vector <PICML::Component> & component_set,
     this->coworker_count_ ++;
 
     // We need to add elements to make it a true coworker.
-    const_cast <PICML::Component &> (src_component).Accept (*this);
+    this->coworker_.Accept (*this);
 
     // Generate the artifacts and implemenation for <coworker_>.
     Artifact_Set artifacts;

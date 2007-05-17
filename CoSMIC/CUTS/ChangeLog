@@ -1,3 +1,13 @@
+Thu May 17 00:03:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_File_Traits.cpp:
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          Bug fix that was causing regular component to be populated
+          with CoWorkEr model elements. This resulted in the implementation
+          generator crashing because it was thinking the real components
+          were CoWorkErs.
+
 Wed May 16 20:31:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Assembly_Generator.cpp (Visit_Component):
