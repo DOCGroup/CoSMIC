@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{BD1D9B41-1C84-4986-957D-9C3DF95699B1}" cdate="Fri Apr 13 20:04:02 2007" mdate="Fri Apr 13 20:04:02 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{F1465925-A26A-43C2-9AC7-84DC53213594}" cdate="Thu May 17 12:28:42 2007" mdate="Thu May 17 12:28:42 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2147,8 +2147,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -2487,6 +2487,12 @@ endif</value>
 									<value>yes</value>
 								</regnode>
 							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Duration-23-FieldAttribute" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>3967</value>
 						</regnode>
 					</regnode>
 					<regnode name="InputAction-7-Model" status="undefined">
@@ -6403,7 +6409,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>659,251</value>
+								<value>631,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6424,13 +6430,13 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000024" kind="FieldAttribute" role="FieldAttribute" guid="{3E424585-D292-4e73-B6DD-8A02CD2623B7}" relid="0x23">
-					<name>Repetitions</name>
+					<name>Duration</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>659,174</value>
+								<value>631,146</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6441,13 +6447,13 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<value>integer</value>
 					</attribute>
 					<attribute kind="FieldDefault">
-						<value>1</value>
+						<value></value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
 					</attribute>
 					<attribute kind="Help">
-						<value>Specifies the number of repetitions for an operation. Actions with 0 repetitions are considered non-repetitive actions.</value>
+						<value>Specifies how long the action should take to execute.  This is useful when measuring the execution time of an action, or using the action in a timed simulation.</value>
 					</attribute>
 					<attribute kind="IsViewable" status="meta">
 						<value>true</value>
@@ -6456,7 +6462,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<value>1</value>
 					</attribute>
 					<attribute kind="Prompt">
-						<value>Number of Repetitions:</value>
+						<value>Duration:</value>
 					</attribute>
 				</atom>
 				<atom id="id-0066-00000025" kind="Model" role="Model" guid="{DB3CD255-1CAD-4de5-9D77-7797CFA3F55C}" relid="0x7">
@@ -42177,8 +42183,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000064"/>
 				<connpoint role="src" target="id-0066-00000064"/>
+				<connpoint role="dst" target="id-0066-00000064"/>
 			</connection>
 			<connection id="id-0068-000000a7" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -85488,8 +85494,8 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000227"/>
 				<connpoint role="dst" target="id-0066-00000227"/>
+				<connpoint role="src" target="id-0066-00000227"/>
 			</connection>
 			<connection id="id-0068-0000037c" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>

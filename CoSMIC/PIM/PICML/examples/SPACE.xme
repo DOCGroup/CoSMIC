@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{E4369705-958E-428C-8A09-9FBF3B994DE1}" cdate="Sat Jan 20 01:37:35 2007" mdate="Sat Jan 20 01:37:35 2007" version="" metaguid="{DD537A42-0806-481E-900B-E5B5C11930D3}" metaversion="" metaname="PICML">
+<project guid="{E4369705-958E-428C-8A09-9FBF3B994DE1}" cdate="Thu May 17 12:58:39 2007" mdate="Thu May 17 12:58:39 2007" version="" metaguid="{E367D2BA-6622-4E19-B574-18CBE6529804}" metaversion="" metaname="PICML">
 	<name>SPACE</name>
 	<comment></comment>
 	<author></author>
@@ -1427,13 +1427,13 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<model id="id-0065-00000088" kind="Component" role="Component" guid="{88CB3D56-23D3-4e7a-BED1-70CD9C24E8F1}" derivedfrom="id-0065-0000003b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>Gizmo1_Low</name>
+							<model id="id-0065-00000088" kind="Component" role="Component" guid="{FA78F2B3-CCB2-4e0f-96BE-9FD8EBD1593F}" derivedfrom="id-0065-0000003b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>Gizmo1_Medium</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
 								</attribute>
 								<attribute kind="UUID">
-									<value>3A68863B-F64D-4956-98F8-D61658172841</value>
+									<value>AECA560F-B865-4C7B-9EC0-D4E334649129</value>
 								</attribute>
 								<attribute kind="VersionTag" status="meta">
 									<value></value>
@@ -1441,7 +1441,7 @@
 								<attribute kind="label" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-00000068" kind="OutEventPort" role="OutEventPort" guid="{17A0002E-65F3-40c7-AA4C-0A4C0B76A261}" derivedfrom="id-0067-00000061" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<reference id="id-0067-00000066" kind="OutEventPort" role="OutEventPort" guid="{AAD86DF0-458B-4be7-93E1-AA1571F98596}" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 									<name>observation_data</name>
 									<attribute kind="SpecifyIdTag" status="meta">
 										<value></value>
@@ -1480,7 +1480,7 @@
 								<attribute kind="label" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-00000069" kind="OutEventPort" role="OutEventPort" guid="{0EDCD261-232C-44a4-A1D3-463ECBFEBF25}" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<reference id="id-0067-00000068" kind="OutEventPort" role="OutEventPort" guid="{0EDCD261-232C-44a4-A1D3-463ECBFEBF25}" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 									<name>observation_data</name>
 									<attribute kind="SpecifyIdTag" status="meta">
 										<value></value>
@@ -1505,13 +1505,13 @@
 									</attribute>
 								</reference>
 							</model>
-							<model id="id-0065-0000008a" kind="Component" role="Component" guid="{FA78F2B3-CCB2-4e0f-96BE-9FD8EBD1593F}" derivedfrom="id-0065-0000003a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>Gizmo1_Medium</name>
+							<model id="id-0065-0000008a" kind="Component" role="Component" guid="{88CB3D56-23D3-4e7a-BED1-70CD9C24E8F1}" derivedfrom="id-0065-0000003a" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>Gizmo1_Low</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
 								</attribute>
 								<attribute kind="UUID">
-									<value>AECA560F-B865-4C7B-9EC0-D4E334649129</value>
+									<value>3A68863B-F64D-4956-98F8-D61658172841</value>
 								</attribute>
 								<attribute kind="VersionTag" status="meta">
 									<value></value>
@@ -1519,7 +1519,7 @@
 								<attribute kind="label" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-0000006a" kind="OutEventPort" role="OutEventPort" guid="{AAD86DF0-458B-4be7-93E1-AA1571F98596}" derivedfrom="id-0067-0000002c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<reference id="id-0067-00000069" kind="OutEventPort" role="OutEventPort" guid="{17A0002E-65F3-40c7-AA4C-0A4C0B76A261}" derivedfrom="id-0067-00000061" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 									<name>observation_data</name>
 									<attribute kind="SpecifyIdTag" status="meta">
 										<value></value>
@@ -1544,7 +1544,7 @@
 									</attribute>
 								</reference>
 							</model>
-							<reference id="id-0067-00000067" kind="OutEventPort" role="OutEventPort" guid="{3AFA1A64-4C4F-4731-9CB8-E5783F045DA1}" derivedfrom="id-0067-0000002b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-00000067" kind="OutEventPort" role="OutEventPort" guid="{3AFA1A64-4C4F-4731-9CB8-E5783F045DA1}" derivedfrom="id-0067-0000002d" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>observation_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -1568,13 +1568,13 @@
 									<value>true</value>
 								</attribute>
 							</reference>
-							<connection isbound="yes" id="id-0068-0000008d" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F960DF28-F118-42bc-9640-CDA5298F120A}" derivedfrom="id-0068-00000017" isinstance="yes" isprimary="no">
+							<connection isbound="yes" id="id-0068-0000008c" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{5865FB14-1857-4bbf-8AFF-AB6CC4BC7635}" derivedfrom="id-0068-00000015" isinstance="yes" isprimary="no">
 								<name>EventSourceDelegate</name>
 							</connection>
-							<connection isbound="yes" id="id-0068-0000008e" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{5865FB14-1857-4bbf-8AFF-AB6CC4BC7635}" derivedfrom="id-0068-00000016" isinstance="yes" isprimary="no">
+							<connection isbound="yes" id="id-0068-0000008d" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{25546167-E15F-45ad-B129-72F7C1391B9C}" derivedfrom="id-0068-00000016" isinstance="yes" isprimary="no">
 								<name>EventSourceDelegate</name>
 							</connection>
-							<connection isbound="yes" id="id-0068-0000008f" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{25546167-E15F-45ad-B129-72F7C1391B9C}" derivedfrom="id-0068-00000015" isinstance="yes" isprimary="no">
+							<connection isbound="yes" id="id-0068-0000008e" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F960DF28-F118-42bc-9640-CDA5298F120A}" derivedfrom="id-0068-00000017" isinstance="yes" isprimary="no">
 								<name>EventSourceDelegate</name>
 							</connection>
 						</model>
@@ -1586,121 +1586,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<model id="id-0065-0000008c" kind="Component" role="Component" guid="{E0219696-0FAC-4197-8654-0BA5736970C3}" derivedfrom="id-0065-00000036" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>Compression_Component</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="UUID">
-									<value>1F1BC57D-FBAB-482C-A992-7163E5E225F1</value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="label" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000006d" kind="OutEventPort" role="OutEventPort" guid="{6052D8FA-660C-418e-B094-7903C305DE47}" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-									<name>send_data</name>
-									<attribute kind="SpecifyIdTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="VersionTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="exclusiveProvider" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="exclusiveUser" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="optional" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="out_event_port_type" status="meta">
-										<value>DirectConnect</value>
-									</attribute>
-									<attribute kind="single_destination" status="inherited">
-										<value>true</value>
-									</attribute>
-								</reference>
-								<reference id="id-0067-0000006e" kind="InEventPort" role="InEventPort" guid="{91C2ED9A-C355-47b0-B494-C5999555249D}" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-									<name>recv_data</name>
-									<attribute kind="SpecifyIdTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="VersionTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="exclusiveProvider" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="exclusiveUser" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="optional" status="meta">
-										<value>false</value>
-									</attribute>
-								</reference>
-							</model>
-							<model id="id-0065-0000008d" kind="Component" role="Component" guid="{178E2951-3416-4ad1-9E12-DA955681D25B}" derivedfrom="id-0065-00000038" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>Filter_Component</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="UUID">
-									<value>9FEC911E-0BFE-4733-8C5E-39D57C0653F0</value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="label" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-0000006f" kind="InEventPort" role="InEventPort" guid="{5E4FB690-FAAA-4dbf-B051-41337B5F7A75}" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-									<name>recv_data</name>
-									<attribute kind="SpecifyIdTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="VersionTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="exclusiveProvider" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="exclusiveUser" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="optional" status="meta">
-										<value>false</value>
-									</attribute>
-								</reference>
-								<reference id="id-0067-00000070" kind="OutEventPort" role="OutEventPort" guid="{61AED83B-B676-48b1-BDED-0713ADE42DD0}" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-									<name>send_data</name>
-									<attribute kind="SpecifyIdTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="VersionTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="exclusiveProvider" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="exclusiveUser" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="optional" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="out_event_port_type" status="meta">
-										<value>DirectConnect</value>
-									</attribute>
-									<attribute kind="single_destination" status="inherited">
-										<value>true</value>
-									</attribute>
-								</reference>
-							</model>
-							<model id="id-0065-0000008e" kind="Component" role="Component" guid="{0079322C-AC07-4df8-BA87-4D6F5EA86412}" derivedfrom="id-0065-00000037" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-0000008c" kind="Component" role="Component" guid="{0079322C-AC07-4df8-BA87-4D6F5EA86412}" derivedfrom="id-0065-00000037" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>Comm_Component</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -1714,7 +1600,25 @@
 								<attribute kind="label" status="meta">
 									<value></value>
 								</attribute>
-								<reference id="id-0067-00000071" kind="OutEventPort" role="OutEventPort" guid="{7B890EC1-FE58-4230-A237-F16267D14C36}" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<reference id="id-0067-0000006b" kind="InEventPort" role="InEventPort" guid="{584EAF04-EC8E-46f3-9DFB-280F02A4B089}" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+									<name>recv_command</name>
+									<attribute kind="SpecifyIdTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="VersionTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="exclusiveProvider" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="exclusiveUser" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="optional" status="meta">
+										<value>false</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-0000006c" kind="OutEventPort" role="OutEventPort" guid="{7B890EC1-FE58-4230-A237-F16267D14C36}" derivedfrom="id-0067-00000026" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 									<name>transmit_data</name>
 									<attribute kind="SpecifyIdTag" status="meta">
 										<value></value>
@@ -1738,25 +1642,7 @@
 										<value>true</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-00000072" kind="InEventPort" role="InEventPort" guid="{584EAF04-EC8E-46f3-9DFB-280F02A4B089}" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-									<name>recv_command</name>
-									<attribute kind="SpecifyIdTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="VersionTag" status="meta">
-										<value></value>
-									</attribute>
-									<attribute kind="exclusiveProvider" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="exclusiveUser" status="meta">
-										<value>false</value>
-									</attribute>
-									<attribute kind="optional" status="meta">
-										<value>false</value>
-									</attribute>
-								</reference>
-								<reference id="id-0067-00000073" kind="InEventPort" role="InEventPort" guid="{1A6DB9A8-FEB6-497b-9F7F-74F67D8342C7}" derivedfrom="id-0067-00000028" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<reference id="id-0067-0000006d" kind="InEventPort" role="InEventPort" guid="{1A6DB9A8-FEB6-497b-9F7F-74F67D8342C7}" derivedfrom="id-0067-00000027" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 									<name>science_data</name>
 									<attribute kind="SpecifyIdTag" status="meta">
 										<value></value>
@@ -1775,7 +1661,139 @@
 									</attribute>
 								</reference>
 							</model>
-							<reference id="id-0067-0000006b" kind="OutEventPort" role="OutEventPort" guid="{FD3941C8-6BED-4eba-A320-B18A8316C81A}" derivedfrom="id-0067-00000022" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<model id="id-0065-0000008d" kind="Component" role="Component" guid="{178E2951-3416-4ad1-9E12-DA955681D25B}" derivedfrom="id-0065-00000036" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>Filter_Component</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="UUID">
+									<value>9FEC911E-0BFE-4733-8C5E-39D57C0653F0</value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="label" status="meta">
+									<value></value>
+								</attribute>
+								<reference id="id-0067-0000006f" kind="OutEventPort" role="OutEventPort" guid="{61AED83B-B676-48b1-BDED-0713ADE42DD0}" derivedfrom="id-0067-00000023" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+									<name>send_data</name>
+									<attribute kind="SpecifyIdTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="VersionTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="exclusiveProvider" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="exclusiveUser" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="optional" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="out_event_port_type" status="meta">
+										<value>DirectConnect</value>
+									</attribute>
+									<attribute kind="single_destination" status="inherited">
+										<value>true</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-00000070" kind="InEventPort" role="InEventPort" guid="{5E4FB690-FAAA-4dbf-B051-41337B5F7A75}" derivedfrom="id-0067-00000024" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+									<name>recv_data</name>
+									<attribute kind="SpecifyIdTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="VersionTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="exclusiveProvider" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="exclusiveUser" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="optional" status="meta">
+										<value>false</value>
+									</attribute>
+								</reference>
+							</model>
+							<model id="id-0065-0000008e" kind="Component" role="Component" guid="{E0219696-0FAC-4197-8654-0BA5736970C3}" derivedfrom="id-0065-00000038" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>Compression_Component</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="UUID">
+									<value>1F1BC57D-FBAB-482C-A992-7163E5E225F1</value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="label" status="meta">
+									<value></value>
+								</attribute>
+								<reference id="id-0067-00000071" kind="InEventPort" role="InEventPort" guid="{91C2ED9A-C355-47b0-B494-C5999555249D}" derivedfrom="id-0067-0000002a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+									<name>recv_data</name>
+									<attribute kind="SpecifyIdTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="VersionTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="exclusiveProvider" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="exclusiveUser" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="optional" status="meta">
+										<value>false</value>
+									</attribute>
+								</reference>
+								<reference id="id-0067-00000072" kind="OutEventPort" role="OutEventPort" guid="{6052D8FA-660C-418e-B094-7903C305DE47}" derivedfrom="id-0067-00000029" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+									<name>send_data</name>
+									<attribute kind="SpecifyIdTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="VersionTag" status="meta">
+										<value></value>
+									</attribute>
+									<attribute kind="exclusiveProvider" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="exclusiveUser" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="optional" status="meta">
+										<value>false</value>
+									</attribute>
+									<attribute kind="out_event_port_type" status="meta">
+										<value>DirectConnect</value>
+									</attribute>
+									<attribute kind="single_destination" status="inherited">
+										<value>true</value>
+									</attribute>
+								</reference>
+							</model>
+							<reference id="id-0067-0000006a" kind="InEventPort" role="InEventPort" guid="{D15DC323-8553-49c2-8262-6FA1FB41EF38}" derivedfrom="id-0067-00000025" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<name>recv_data</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+							</reference>
+							<reference id="id-0067-0000006e" kind="OutEventPort" role="OutEventPort" guid="{FD3941C8-6BED-4eba-A320-B18A8316C81A}" derivedfrom="id-0067-00000022" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>transmit_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -1799,38 +1817,20 @@
 									<value>true</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-0000006c" kind="InEventPort" role="InEventPort" guid="{D15DC323-8553-49c2-8262-6FA1FB41EF38}" derivedfrom="id-0067-00000023" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-								<name>recv_data</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<connection isbound="yes" id="id-0068-00000091" kind="emit" role="emit" guid="{8005F9FB-D535-4066-9BB6-6303EBEC11D7}" derivedfrom="id-0068-00000014" isinstance="yes" isprimary="no">
-								<name>emit</name>
-							</connection>
-							<connection isbound="yes" id="id-0068-00000092" kind="EventSinkDelegate" role="EventSinkDelegate" guid="{D902897C-D2E1-48aa-90F9-1D6766291FA1}" derivedfrom="id-0068-00000012" isinstance="yes" isprimary="no">
-								<name>EventSinkDelegate</name>
-							</connection>
-							<connection isbound="yes" id="id-0068-00000093" kind="emit" role="emit" guid="{FFA9FA84-CF31-427d-9562-54FFA5F06FE8}" derivedfrom="id-0068-00000011" isinstance="yes" isprimary="no">
-								<name>emit</name>
-							</connection>
-							<connection isbound="yes" id="id-0068-00000094" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F0ABF09A-69EB-4d8d-87BE-357840CEF290}" derivedfrom="id-0068-00000013" isinstance="yes" isprimary="no">
+							<connection isbound="yes" id="id-0068-00000091" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F0ABF09A-69EB-4d8d-87BE-357840CEF290}" derivedfrom="id-0068-00000011" isinstance="yes" isprimary="no">
 								<name>EventSourceDelegate</name>
 							</connection>
+							<connection isbound="yes" id="id-0068-00000092" kind="EventSinkDelegate" role="EventSinkDelegate" guid="{D902897C-D2E1-48aa-90F9-1D6766291FA1}" derivedfrom="id-0068-00000013" isinstance="yes" isprimary="no">
+								<name>EventSinkDelegate</name>
+							</connection>
+							<connection isbound="yes" id="id-0068-00000093" kind="emit" role="emit" guid="{FFA9FA84-CF31-427d-9562-54FFA5F06FE8}" derivedfrom="id-0068-00000012" isinstance="yes" isprimary="no">
+								<name>emit</name>
+							</connection>
+							<connection isbound="yes" id="id-0068-00000094" kind="emit" role="emit" guid="{8005F9FB-D535-4066-9BB6-6303EBEC11D7}" derivedfrom="id-0068-00000014" isinstance="yes" isprimary="no">
+								<name>emit</name>
+							</connection>
 						</model>
-						<reference id="id-0067-00000066" kind="OutEventPort" role="OutEventPort" guid="{D3B1004A-625B-44bb-B324-1D3DBD6033FE}" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000073" kind="OutEventPort" role="OutEventPort" guid="{D3B1004A-625B-44bb-B324-1D3DBD6033FE}" derivedfrom="id-0067-0000002e" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>transmit_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -1854,11 +1854,11 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<connection isbound="yes" id="id-0068-0000008c" kind="emit" role="emit" guid="{D42DA644-83E8-43f6-82CA-DD45581E419A}" derivedfrom="id-0068-00000018" isinstance="yes" isprimary="no">
-							<name>emit</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000090" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{E5AE3A3D-6C1D-4ec0-96B2-0C78BA3E85D1}" derivedfrom="id-0068-00000019" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000008f" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{E5AE3A3D-6C1D-4ec0-96B2-0C78BA3E85D1}" derivedfrom="id-0068-00000019" isinstance="yes" isprimary="no">
 							<name>EventSourceDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000090" kind="emit" role="emit" guid="{D42DA644-83E8-43f6-82CA-DD45581E419A}" derivedfrom="id-0068-00000018" isinstance="yes" isprimary="no">
+							<name>emit</name>
 						</connection>
 					</model>
 				</model>
@@ -1905,7 +1905,25 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<reference id="id-0067-00000016" kind="OutEventPort" role="OutEventPort" guid="{20201D01-B7F5-4fad-8D88-322562306C8C}" derivedfrom="id-0067-0000000a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000016" kind="InEventPort" role="InEventPort" guid="{A57AE1B9-567F-450f-AEF2-E5CF85634604}" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>recv_data</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000017" kind="OutEventPort" role="OutEventPort" guid="{20201D01-B7F5-4fad-8D88-322562306C8C}" derivedfrom="id-0067-0000000a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>send_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -1927,24 +1945,6 @@
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
 								<value>true</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000017" kind="InEventPort" role="InEventPort" guid="{A57AE1B9-567F-450f-AEF2-E5CF85634604}" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>recv_data</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
 							</attribute>
 						</reference>
 					</model>
@@ -2055,25 +2055,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000001b" kind="InEventPort" role="InEventPort" guid="{8BD75656-1FE9-4097-8E95-566761DAAAC5}" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-							<name>recv_command</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000001c" kind="OutEventPort" role="OutEventPort" guid="{4980BC95-136E-4a90-B5BF-79E5CA03A5E0}" derivedfrom="id-0067-00000006" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-0000001b" kind="OutEventPort" role="OutEventPort" guid="{4980BC95-136E-4a90-B5BF-79E5CA03A5E0}" derivedfrom="id-0067-00000006" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>transmit_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2095,6 +2077,24 @@
 							</attribute>
 							<attribute kind="single_destination" status="inherited">
 								<value>true</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000001c" kind="InEventPort" role="InEventPort" guid="{8BD75656-1FE9-4097-8E95-566761DAAAC5}" derivedfrom="id-0067-00000007" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<name>recv_command</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
 							</attribute>
 						</reference>
 					</model>
@@ -2160,7 +2160,7 @@
 					</reference>
 					<connection id="id-0068-0000000a" kind="emit" role="emit" guid="{4AEEFFF9-0F4D-423a-BA94-11650971A8E4}" relid="0x4">
 						<name>emit</name>
-						<connpoint role="src" target="id-0067-00000016"/>
+						<connpoint role="src" target="id-0067-00000017"/>
 						<connpoint role="dst" target="id-0067-00000019"/>
 					</connection>
 					<connection id="id-0068-0000000b" kind="emit" role="emit" guid="{87D2446F-FEA4-4c1a-BEBB-31AFD9EAEB17}" relid="0x5">
@@ -2173,7 +2173,7 @@
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>w</value>
 						</regnode>
-						<connpoint role="src" target="id-0067-0000001c"/>
+						<connpoint role="src" target="id-0067-0000001b"/>
 						<connpoint role="dst" target="id-0067-0000001e"/>
 					</connection>
 					<connection id="id-0068-0000000d" kind="EventSinkDelegate" role="EventSinkDelegate" guid="{AA08AABD-F230-4d94-86BE-C57139802658}" relid="0x11">
@@ -2181,7 +2181,7 @@
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>e</value>
 						</regnode>
-						<connpoint role="src" target="id-0067-00000017"/>
+						<connpoint role="src" target="id-0067-00000016"/>
 						<connpoint role="dst" target="id-0067-0000001d"/>
 					</connection>
 				</model>
@@ -2444,13 +2444,13 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-00000036" kind="Component" role="Component" guid="{AD5F0667-4DAA-4d9f-9926-7B821AD0773F}" derivedfrom="id-0065-0000002c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Compression_Component</name>
+						<model id="id-0065-00000036" kind="Component" role="Component" guid="{F0341ABD-38E2-44b1-9183-533B57931458}" derivedfrom="id-0065-0000002b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>Filter_Component</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="UUID">
-								<value>93B795A8-F5D4-4C9D-9B6B-3CA74E4231D3</value>
+								<value>31B9D062-D614-4EF6-9C4F-6452EB1A4750</value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
@@ -2458,25 +2458,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000024" kind="InEventPort" role="InEventPort" guid="{FDB80F14-C1EF-4204-851F-77BB19F71A8D}" derivedfrom="id-0067-00000019" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-								<name>recv_data</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-00000025" kind="OutEventPort" role="OutEventPort" guid="{38A86808-E1F6-4a55-BF13-8D03B7F0893A}" derivedfrom="id-0067-00000018" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-00000023" kind="OutEventPort" role="OutEventPort" guid="{27560F71-ADF8-4628-82F2-BC2E0AA7C70F}" derivedfrom="id-0067-00000017" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>send_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2500,6 +2482,24 @@
 									<value>true</value>
 								</attribute>
 							</reference>
+							<reference id="id-0067-00000024" kind="InEventPort" role="InEventPort" guid="{28F594E3-F196-4f6a-BCB0-60B36A327C17}" derivedfrom="id-0067-00000016" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<name>recv_data</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+							</reference>
 						</model>
 						<model id="id-0065-00000037" kind="Component" role="Component" guid="{1858DE75-806D-486c-A92C-E03861BE1C50}" derivedfrom="id-0065-0000002d" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>Comm_Component</name>
@@ -2515,7 +2515,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000026" kind="OutEventPort" role="OutEventPort" guid="{9B68DE28-EB3C-40d4-B0E2-C5339D46EDBB}" derivedfrom="id-0067-0000001c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-00000026" kind="OutEventPort" role="OutEventPort" guid="{9B68DE28-EB3C-40d4-B0E2-C5339D46EDBB}" derivedfrom="id-0067-0000001b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>transmit_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2539,25 +2539,7 @@
 									<value>true</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-00000027" kind="InEventPort" role="InEventPort" guid="{D75C20FF-6194-4e27-941C-C50805BEF410}" derivedfrom="id-0067-0000001b" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-								<name>recv_command</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-00000028" kind="InEventPort" role="InEventPort" guid="{646E0107-EE96-419c-8DA7-A011A080F23E}" derivedfrom="id-0067-0000001a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-00000027" kind="InEventPort" role="InEventPort" guid="{646E0107-EE96-419c-8DA7-A011A080F23E}" derivedfrom="id-0067-0000001a" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>science_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2575,14 +2557,32 @@
 									<value>false</value>
 								</attribute>
 							</reference>
+							<reference id="id-0067-00000028" kind="InEventPort" role="InEventPort" guid="{D75C20FF-6194-4e27-941C-C50805BEF410}" derivedfrom="id-0067-0000001c" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<name>recv_command</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+							</reference>
 						</model>
-						<model id="id-0065-00000038" kind="Component" role="Component" guid="{F0341ABD-38E2-44b1-9183-533B57931458}" derivedfrom="id-0065-0000002b" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Filter_Component</name>
+						<model id="id-0065-00000038" kind="Component" role="Component" guid="{AD5F0667-4DAA-4d9f-9926-7B821AD0773F}" derivedfrom="id-0065-0000002c" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>Compression_Component</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="UUID">
-								<value>31B9D062-D614-4EF6-9C4F-6452EB1A4750</value>
+								<value>93B795A8-F5D4-4C9D-9B6B-3CA74E4231D3</value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
@@ -2590,7 +2590,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-00000029" kind="OutEventPort" role="OutEventPort" guid="{27560F71-ADF8-4628-82F2-BC2E0AA7C70F}" derivedfrom="id-0067-00000016" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-00000029" kind="OutEventPort" role="OutEventPort" guid="{38A86808-E1F6-4a55-BF13-8D03B7F0893A}" derivedfrom="id-0067-00000018" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>send_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2614,7 +2614,7 @@
 									<value>true</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-0000002a" kind="InEventPort" role="InEventPort" guid="{28F594E3-F196-4f6a-BCB0-60B36A327C17}" derivedfrom="id-0067-00000017" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-0000002a" kind="InEventPort" role="InEventPort" guid="{FDB80F14-C1EF-4204-851F-77BB19F71A8D}" derivedfrom="id-0067-00000019" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>recv_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2657,7 +2657,7 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000023" kind="InEventPort" role="InEventPort" guid="{E95958B9-E619-499f-961D-750E65300E0D}" derivedfrom="id-0067-0000001d" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<reference id="id-0067-00000025" kind="InEventPort" role="InEventPort" guid="{E95958B9-E619-499f-961D-750E65300E0D}" derivedfrom="id-0067-0000001d" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>recv_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2675,14 +2675,14 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<connection isbound="yes" id="id-0068-00000011" kind="emit" role="emit" guid="{5D2040C6-0D6E-47d6-AFA0-1CBAEA1D2B63}" derivedfrom="id-0068-0000000a" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000011" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F5289AB9-1059-4043-A9BB-AA00EBC897E7}" derivedfrom="id-0068-0000000c" isinstance="yes" isprimary="no">
+							<name>EventSourceDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000012" kind="emit" role="emit" guid="{5D2040C6-0D6E-47d6-AFA0-1CBAEA1D2B63}" derivedfrom="id-0068-0000000a" isinstance="yes" isprimary="no">
 							<name>emit</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000012" kind="EventSinkDelegate" role="EventSinkDelegate" guid="{9DB5AD7A-788D-4c84-87B5-F4D0BBB4655B}" derivedfrom="id-0068-0000000d" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000013" kind="EventSinkDelegate" role="EventSinkDelegate" guid="{9DB5AD7A-788D-4c84-87B5-F4D0BBB4655B}" derivedfrom="id-0068-0000000d" isinstance="yes" isprimary="no">
 							<name>EventSinkDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000013" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F5289AB9-1059-4043-A9BB-AA00EBC897E7}" derivedfrom="id-0068-0000000c" isinstance="yes" isprimary="no">
-							<name>EventSourceDelegate</name>
 						</connection>
 						<connection isbound="yes" id="id-0068-00000014" kind="emit" role="emit" guid="{36F6402D-87B4-45a0-9068-186E3E5359F4}" derivedfrom="id-0068-0000000b" isinstance="yes" isprimary="no">
 							<name>emit</name>
@@ -2705,46 +2705,7 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-0000003a" kind="Component" role="Component" guid="{74C7D50D-7923-4e4c-B3B7-7A262625A655}" derivedfrom="id-0065-00000030" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Gizmo1_Medium</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>8E6B171F-432E-4D7A-9610-8154FAD50E03</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-0000002c" kind="OutEventPort" role="OutEventPort" guid="{06FC3595-8C10-45ad-BFB6-D4BEA8960AA5}" derivedfrom="id-0067-0000001f" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
-								<name>observation_data</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="out_event_port_type" status="meta">
-									<value>DirectConnect</value>
-								</attribute>
-								<attribute kind="single_destination" status="inherited">
-									<value>true</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-0000003b" kind="Component" role="Component" guid="{6E2AFA43-7120-4c68-9902-C421AC310F92}" derivedfrom="id-0065-00000032" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-0000003a" kind="Component" role="Component" guid="{6E2AFA43-7120-4c68-9902-C421AC310F92}" derivedfrom="id-0065-00000032" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>Gizmo1_Low</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2783,13 +2744,13 @@
 								</attribute>
 							</reference>
 						</model>
-						<model id="id-0065-0000003c" kind="Component" role="Component" guid="{EAE11BD6-623F-4881-8EBA-C536C1743E43}" derivedfrom="id-0065-00000031" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>Gizmo2_Medium</name>
+						<model id="id-0065-0000003b" kind="Component" role="Component" guid="{74C7D50D-7923-4e4c-B3B7-7A262625A655}" derivedfrom="id-0065-00000030" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>Gizmo1_Medium</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
 							<attribute kind="UUID">
-								<value>149BE71F-E513-4F7B-AB47-3939DA664642</value>
+								<value>8E6B171F-432E-4D7A-9610-8154FAD50E03</value>
 							</attribute>
 							<attribute kind="VersionTag" status="meta">
 								<value></value>
@@ -2797,7 +2758,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<reference id="id-0067-0000002d" kind="OutEventPort" role="OutEventPort" guid="{92F670E7-8A70-4403-BB0D-B0D3869D1BF5}" derivedfrom="id-0067-00000020" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+							<reference id="id-0067-0000002b" kind="OutEventPort" role="OutEventPort" guid="{06FC3595-8C10-45ad-BFB6-D4BEA8960AA5}" derivedfrom="id-0067-0000001f" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 								<name>observation_data</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -2822,7 +2783,46 @@
 								</attribute>
 							</reference>
 						</model>
-						<reference id="id-0067-0000002b" kind="OutEventPort" role="OutEventPort" guid="{3211BCD7-6FB4-44ba-BB77-75F70D34019B}" derivedfrom="id-0067-00000021" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+						<model id="id-0065-0000003c" kind="Component" role="Component" guid="{EAE11BD6-623F-4881-8EBA-C536C1743E43}" derivedfrom="id-0065-00000031" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>Gizmo2_Medium</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="UUID">
+								<value>149BE71F-E513-4F7B-AB47-3939DA664642</value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="label" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-0000002c" kind="OutEventPort" role="OutEventPort" guid="{92F670E7-8A70-4403-BB0D-B0D3869D1BF5}" derivedfrom="id-0067-00000020" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
+								<name>observation_data</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="out_event_port_type" status="meta">
+									<value>DirectConnect</value>
+								</attribute>
+								<attribute kind="single_destination" status="inherited">
+									<value>true</value>
+								</attribute>
+							</reference>
+						</model>
+						<reference id="id-0067-0000002d" kind="OutEventPort" role="OutEventPort" guid="{3211BCD7-6FB4-44ba-BB77-75F70D34019B}" derivedfrom="id-0067-00000021" isinstance="yes" isprimary="no" referred="id-0065-00000006" isbound="yes">
 							<name>observation_data</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -2846,10 +2846,10 @@
 								<value>true</value>
 							</attribute>
 						</reference>
-						<connection isbound="yes" id="id-0068-00000015" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{0DB8BA4B-EE10-4c0d-B8A8-C8FB9B03B357}" derivedfrom="id-0068-0000000e" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000015" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{9F8F0E54-2E3B-407d-900C-BC8CBEC338CC}" derivedfrom="id-0068-00000010" isinstance="yes" isprimary="no">
 							<name>EventSourceDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000016" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{9F8F0E54-2E3B-407d-900C-BC8CBEC338CC}" derivedfrom="id-0068-00000010" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000016" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{0DB8BA4B-EE10-4c0d-B8A8-C8FB9B03B357}" derivedfrom="id-0068-0000000e" isinstance="yes" isprimary="no">
 							<name>EventSourceDelegate</name>
 						</connection>
 						<connection isbound="yes" id="id-0068-00000017" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{F7CAD28E-CA16-4e71-BB4C-3B56D43FE5AE}" derivedfrom="id-0068-0000000f" isinstance="yes" isprimary="no">
@@ -2891,8 +2891,8 @@
 					</reference>
 					<connection id="id-0068-00000018" kind="emit" role="emit" guid="{DBB9E3A1-EC24-4d44-AC46-A91D9988E6CC}" relid="0x3">
 						<name>emit</name>
-						<connpoint role="dst" target="id-0067-00000023"/>
-						<connpoint role="src" target="id-0067-0000002b"/>
+						<connpoint role="dst" target="id-0067-00000025"/>
+						<connpoint role="src" target="id-0067-0000002d"/>
 					</connection>
 					<connection id="id-0068-00000019" kind="EventSourceDelegate" role="EventSourceDelegate" guid="{CED56D2F-6DE0-4a35-AB3B-2DC8A79B1B01}" relid="0x9">
 						<name>EventSourceDelegate</name>
@@ -4040,7 +4040,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4073,7 +4073,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4106,7 +4106,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4236,7 +4236,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4269,7 +4269,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4302,7 +4302,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4432,7 +4432,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4465,7 +4465,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4498,7 +4498,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4628,7 +4628,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4661,7 +4661,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4694,7 +4694,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4824,7 +4824,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4857,7 +4857,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -4890,7 +4890,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5020,7 +5020,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5053,7 +5053,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5086,7 +5086,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5216,7 +5216,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5249,7 +5249,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5282,7 +5282,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5412,7 +5412,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5445,7 +5445,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5478,7 +5478,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -5608,7 +5608,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
@@ -5641,7 +5641,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
@@ -5674,7 +5674,7 @@
 						<value>0.0.0.0</value>
 					</attribute>
 					<attribute kind="configuration" status="meta">
-						<value></value>
+						<value>Release</value>
 					</attribute>
 					<attribute kind="label">
 						<value></value>
