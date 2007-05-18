@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{9D57F0C2-A09F-4A4D-AF3C-6B6D28B47F67}" cdate="Thu May 17 12:58:57 2007" mdate="Thu May 17 12:58:57 2007" version="" metaguid="{E367D2BA-6622-4E19-B574-18CBE6529804}" metaversion="" metaname="PICML">
+<project guid="{9D57F0C2-A09F-4A4D-AF3C-6B6D28B47F67}" cdate="Thu May 17 21:41:48 2007" mdate="Thu May 17 21:41:48 2007" version="" metaguid="{3DAED5DF-672E-416D-BBA5-339D4CF9E4CA}" metaversion="" metaname="PICML">
 	<name>RACE_NetQoS</name>
 	<comment></comment>
 	<author></author>
@@ -6037,28 +6037,7 @@
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000031" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{F70A7756-3C5E-42cd-93E2-624F5A36D8B6}" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
-							<name>planner_manager_i</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="inherited">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000032" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{22D6929B-41B5-4308-82A5-46A7DDECD4E5}" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
+						<reference id="id-0067-00000031" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{22D6929B-41B5-4308-82A5-46A7DDECD4E5}" derivedfrom="id-0067-0000000f" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
 							<name>plugins</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -6074,6 +6053,27 @@
 							</attribute>
 							<attribute kind="multiple_connections" status="inherited">
 								<value>true</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000032" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{F70A7756-3C5E-42cd-93E2-624F5A36D8B6}" derivedfrom="id-0067-0000000e" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
+							<name>planner_manager_i</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="inherited">
+								<value>false</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
 								<value>false</value>
@@ -6209,7 +6209,7 @@
 					</connection>
 					<connection id="id-0068-00000044" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{B01FBA8E-36AC-486f-9DE5-36B82BC85DCB}" relid="0x12">
 						<name>ReceptacleDelegate</name>
-						<connpoint role="dst" target="id-0067-00000031"/>
+						<connpoint role="dst" target="id-0067-00000032"/>
 						<connpoint role="src" target="id-0067-00000035"/>
 					</connection>
 					<connection id="id-0068-00000045" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{3D69DC8E-AF36-4a29-83F9-B3E5B3A909C6}" relid="0x13">
@@ -6217,7 +6217,7 @@
 						<regnode name="autorouterPref" isopaque="yes">
 							<value>E</value>
 						</regnode>
-						<connpoint role="dst" target="id-0067-00000032"/>
+						<connpoint role="dst" target="id-0067-00000031"/>
 						<connpoint role="src" target="id-0067-00000036"/>
 					</connection>
 				</model>
@@ -6305,8 +6305,8 @@
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<reference id="id-0067-00000038" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{BF93BDA2-2365-42cf-BB76-6A29A4492BEB}" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
-							<name>outputs</name>
+						<reference id="id-0067-00000038" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{E0D4D55F-FBD1-461e-AB1C-58D312933189}" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
+							<name>planners</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -6326,8 +6326,8 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000039" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{E0D4D55F-FBD1-461e-AB1C-58D312933189}" derivedfrom="id-0067-00000008" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
-							<name>planners</name>
+						<reference id="id-0067-00000039" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{BF93BDA2-2365-42cf-BB76-6A29A4492BEB}" derivedfrom="id-0067-00000009" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
+							<name>outputs</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
 							</attribute>
@@ -6488,7 +6488,19 @@
 						<attribute kind="label" status="meta">
 							<value></value>
 						</attribute>
-						<model id="id-0065-000000bb" kind="Attribute" role="Attribute" guid="{36573D96-F1E2-4476-ACCF-B75FA112FD0C}" derivedfrom="id-0065-00000098" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000bb" kind="Attribute" role="Attribute" guid="{0BF400F1-7314-4296-A174-07335C1AF3F5}" derivedfrom="id-0065-00000097" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>type</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<reference id="id-0067-000000ef" kind="AttributeMember" role="AttributeMember" guid="{0D675D78-49E7-4d86-B189-B0CA5CC8FB73}" derivedfrom="id-0067-000000ee" isinstance="yes" isprimary="no" referred="id-0067-00000096" isbound="yes">
+								<name>AttributeMember</name>
+							</reference>
+						</model>
+						<model id="id-0065-000000bc" kind="Attribute" role="Attribute" guid="{36573D96-F1E2-4476-ACCF-B75FA112FD0C}" derivedfrom="id-0065-00000098" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>node_map_file</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -6500,7 +6512,7 @@
 								<name>AttributeMember</name>
 							</reference>
 						</model>
-						<model id="id-0065-000000bc" kind="Attribute" role="Attribute" guid="{E3EC75F5-17AB-4fc6-89D7-447BA352EEC9}" derivedfrom="id-0065-00000096" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000bd" kind="Attribute" role="Attribute" guid="{E3EC75F5-17AB-4fc6-89D7-447BA352EEC9}" derivedfrom="id-0065-00000096" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>name</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -6509,18 +6521,6 @@
 								<value></value>
 							</attribute>
 							<reference id="id-0067-000000ec" kind="AttributeMember" role="AttributeMember" guid="{1665C666-029B-4a91-BD4C-7572CC978FAD}" derivedfrom="id-0067-000000eb" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
-								<name>AttributeMember</name>
-							</reference>
-						</model>
-						<model id="id-0065-000000bd" kind="Attribute" role="Attribute" guid="{0BF400F1-7314-4296-A174-07335C1AF3F5}" derivedfrom="id-0065-00000097" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>type</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<reference id="id-0067-000000ef" kind="AttributeMember" role="AttributeMember" guid="{0D675D78-49E7-4d86-B189-B0CA5CC8FB73}" derivedfrom="id-0067-000000ee" isinstance="yes" isprimary="no" referred="id-0067-00000096" isbound="yes">
 								<name>AttributeMember</name>
 							</reference>
 						</model>
@@ -6736,7 +6736,7 @@
 					</connection>
 					<connection id="id-0068-00000048" kind="invoke" role="invoke" guid="{328CB8F0-14CE-4aa0-893D-D641BA2BAE55}" relid="0xb">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000039"/>
+						<connpoint role="src" target="id-0067-00000038"/>
 						<connpoint role="dst" target="id-0067-000000b7"/>
 					</connection>
 					<connection id="id-0068-00000049" kind="FacetDelegate" role="FacetDelegate" guid="{4BC60144-E9E9-429b-93E4-309B8A61388D}" relid="0x10">
@@ -6746,12 +6746,12 @@
 					</connection>
 					<connection id="id-0068-0000004a" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{05CDB777-13CF-43f1-8038-5EDE9EB1CD45}" relid="0x11">
 						<name>ReceptacleDelegate</name>
-						<connpoint role="dst" target="id-0067-00000039"/>
+						<connpoint role="dst" target="id-0067-00000038"/>
 						<connpoint role="src" target="id-0067-0000003e"/>
 					</connection>
 					<connection id="id-0068-0000004b" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{28C2D5E8-B674-47e7-B5F6-C4A53F83ACEF}" relid="0x12">
 						<name>ReceptacleDelegate</name>
-						<connpoint role="dst" target="id-0067-00000038"/>
+						<connpoint role="dst" target="id-0067-00000039"/>
 						<connpoint role="src" target="id-0067-0000003f"/>
 					</connection>
 					<connection id="id-0068-0000004c" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{AB042A8A-A7B2-4c61-AA1E-C74773B8106D}" relid="0x14">
@@ -6761,12 +6761,12 @@
 					</connection>
 					<connection id="id-0068-0000004d" kind="invoke" role="invoke" guid="{0B35F12C-A5F5-405c-A11E-269DA063AE35}" relid="0x16">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000039"/>
+						<connpoint role="src" target="id-0067-00000038"/>
 						<connpoint role="dst" target="id-0067-0000003a"/>
 					</connection>
 					<connection id="id-0068-0000004e" kind="AttributeValue" role="AttributeValue" guid="{F1722F3A-F69F-48ef-889A-343F0EC5799A}" relid="0x18">
 						<name>AttributeValue</name>
-						<connpoint role="src" target="id-0065-000000bb"/>
+						<connpoint role="src" target="id-0065-000000bc"/>
 						<connpoint role="dst" target="id-0065-000000be"/>
 					</connection>
 				</model>
@@ -7212,25 +7212,7 @@
 								</attribute>
 							</reference>
 						</model>
-						<reference id="id-0067-00000046" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{B3C54688-E5F6-4e13-B53B-F57385ACA4B4}" derivedfrom="id-0067-00000043" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
-							<name>PlanEgress</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000047" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{235CE125-BDAA-4c6d-AA81-6C269FDC70E7}" derivedfrom="id-0067-00000042" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
+						<reference id="id-0067-00000046" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{235CE125-BDAA-4c6d-AA81-6C269FDC70E7}" derivedfrom="id-0067-00000042" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
 							<name>PlanEgress</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -7245,6 +7227,24 @@
 								<value>false</value>
 							</attribute>
 							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000047" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{B3C54688-E5F6-4e13-B53B-F57385ACA4B4}" derivedfrom="id-0067-00000043" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
+							<name>PlanEgress</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
 								<value>false</value>
 							</attribute>
 							<attribute kind="optional" status="meta">
@@ -7272,17 +7272,17 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<connection isbound="yes" id="id-0068-00000055" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{2300E1A0-694F-49bc-B823-6D78601D19B8}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000056" kind="invoke" role="invoke" guid="{442A85CD-E4C8-4bb1-B9D1-B349977DBA1A}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000055" kind="invoke" role="invoke" guid="{442A85CD-E4C8-4bb1-B9D1-B349977DBA1A}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
 							<name>invoke</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000056" kind="FacetDelegate" role="FacetDelegate" guid="{5D130F66-02A1-43cf-AC78-7FC918EB8B9A}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
+							<name>FacetDelegate</name>
 						</connection>
 						<connection isbound="yes" id="id-0068-00000057" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{06E7BE73-E119-4e72-BB12-0DE9AAA4A64C}" derivedfrom="id-0068-00000052" isinstance="yes" isprimary="no">
 							<name>ReceptacleDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000058" kind="FacetDelegate" role="FacetDelegate" guid="{5D130F66-02A1-43cf-AC78-7FC918EB8B9A}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
-							<name>FacetDelegate</name>
+						<connection isbound="yes" id="id-0068-00000058" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{2300E1A0-694F-49bc-B823-6D78601D19B8}" derivedfrom="id-0068-00000053" isinstance="yes" isprimary="no">
+							<name>ReceptacleDelegate</name>
 						</connection>
 					</model>
 					<model id="id-0065-000000c8" kind="ComponentAssembly" role="ComponentAssembly" guid="{F9A0CBB3-FB8D-47cb-AE96-03EC1E35FE15}" derivedfrom="id-0065-000000b0" isinstance="yes" isprimary="yes" relid="0xa" childrelidcntr="0x0">
@@ -7328,28 +7328,7 @@
 									<name>AttributeMember</name>
 								</reference>
 							</model>
-							<reference id="id-0067-0000004d" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{B15439A3-4B54-45dc-B218-1670E9F3D84D}" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
-								<name>plugins</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="multiple_connections" status="inherited">
-									<value>true</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-							<reference id="id-0067-0000004e" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{E57597D7-E0E6-4713-9D3C-902EDA13D6BF}" derivedfrom="id-0067-00000031" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
+							<reference id="id-0067-0000004b" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{E57597D7-E0E6-4713-9D3C-902EDA13D6BF}" derivedfrom="id-0067-00000032" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
 								<name>planner_manager_i</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -7365,6 +7344,27 @@
 								</attribute>
 								<attribute kind="multiple_connections" status="inherited">
 									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+							</reference>
+							<reference id="id-0067-0000004c" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{B15439A3-4B54-45dc-B218-1670E9F3D84D}" derivedfrom="id-0067-00000031" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
+								<name>plugins</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="multiple_connections" status="inherited">
+									<value>true</value>
 								</attribute>
 								<attribute kind="optional" status="meta">
 									<value>false</value>
@@ -7389,31 +7389,10 @@
 								</attribute>
 							</reference>
 						</model>
-						<reference id="id-0067-00000049" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{40E9A700-45E4-4356-A751-B24D2DB93ED3}" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
-							<name>Planner_Manager_I</name>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="multiple_connections" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-0000004a" kind="AttributeMapping" role="AttributeMapping" guid="{04ADD7FA-2386-428a-9F19-908A96E6ADB6}" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-000000ca" isbound="yes">
+						<reference id="id-0067-00000049" kind="AttributeMapping" role="AttributeMapping" guid="{04ADD7FA-2386-428a-9F19-908A96E6ADB6}" derivedfrom="id-0067-00000033" isinstance="yes" isprimary="no" referred="id-0065-000000ca" isbound="yes">
 							<name>classes</name>
 						</reference>
-						<reference id="id-0067-0000004b" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{D37CBC5B-DC54-492f-B945-71368F99889A}" derivedfrom="id-0067-00000036" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
+						<reference id="id-0067-0000004a" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{D37CBC5B-DC54-492f-B945-71368F99889A}" derivedfrom="id-0067-00000036" isinstance="yes" isprimary="no" referred="id-0065-00000024" isbound="yes">
 							<name>Analyzer_I</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -7434,7 +7413,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-0000004c" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{45C55757-1A6F-4a35-8062-B17559F88BFE}" derivedfrom="id-0067-00000034" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
+						<reference id="id-0067-0000004d" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{45C55757-1A6F-4a35-8062-B17559F88BFE}" derivedfrom="id-0067-00000034" isinstance="yes" isprimary="no" referred="id-0065-0000006c" isbound="yes">
 							<name>PlanIngress</name>
 							<attribute kind="SpecifyIdTag" status="meta">
 								<value></value>
@@ -7452,16 +7431,37 @@
 								<value>false</value>
 							</attribute>
 						</reference>
+						<reference id="id-0067-0000004e" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{40E9A700-45E4-4356-A751-B24D2DB93ED3}" derivedfrom="id-0067-00000035" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
+							<name>Planner_Manager_I</name>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="multiple_connections" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
 						<connection isbound="yes" id="id-0068-00000059" kind="AttributeDelegate" role="AttributeDelegate" guid="{34BE8754-79DD-4ba4-B845-BF365B2307C6}" derivedfrom="id-0068-00000042" isinstance="yes" isprimary="no">
 							<name>AttributeDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000005a" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{0CBD1BC3-E8CF-49e3-9144-2FC88E5FC226}" derivedfrom="id-0068-00000045" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000005b" kind="FacetDelegate" role="FacetDelegate" guid="{55813D3F-D3E3-42e3-9F4E-ECE2C51642D4}" derivedfrom="id-0068-00000043" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000005a" kind="FacetDelegate" role="FacetDelegate" guid="{55813D3F-D3E3-42e3-9F4E-ECE2C51642D4}" derivedfrom="id-0068-00000043" isinstance="yes" isprimary="no">
 							<name>FacetDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-0000005c" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{C06786D6-A241-4352-9EFE-2EDB51FC76FE}" derivedfrom="id-0068-00000044" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000005b" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{C06786D6-A241-4352-9EFE-2EDB51FC76FE}" derivedfrom="id-0068-00000044" isinstance="yes" isprimary="no">
+							<name>ReceptacleDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000005c" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{0CBD1BC3-E8CF-49e3-9144-2FC88E5FC226}" derivedfrom="id-0068-00000045" isinstance="yes" isprimary="no">
 							<name>ReceptacleDelegate</name>
 						</connection>
 					</model>
@@ -7517,7 +7517,7 @@
 									<name>AttributeMember</name>
 								</reference>
 							</model>
-							<reference id="id-0067-00000051" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{58F55EAD-EB92-4f56-9032-853B69B95CF9}" derivedfrom="id-0067-00000039" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
+							<reference id="id-0067-0000004f" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{58F55EAD-EB92-4f56-9032-853B69B95CF9}" derivedfrom="id-0067-00000038" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
 								<name>planners</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -7538,7 +7538,7 @@
 									<value>false</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-00000052" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{332CE5BD-8121-4a18-9903-327CAD7DC9A3}" derivedfrom="id-0067-00000038" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
+							<reference id="id-0067-00000050" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{332CE5BD-8121-4a18-9903-327CAD7DC9A3}" derivedfrom="id-0067-00000039" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
 								<name>outputs</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -7592,89 +7592,11 @@
 							<attribute kind="DataValue" status="inherited">
 								<value>NodeDetails.dat</value>
 							</attribute>
-							<reference id="id-0067-00000055" kind="DataType" role="DataType" guid="{A02B1612-BFC0-4349-8BD4-6801488E3BF3}" derivedfrom="id-0067-0000003b" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
+							<reference id="id-0067-00000051" kind="DataType" role="DataType" guid="{A02B1612-BFC0-4349-8BD4-6801488E3BF3}" derivedfrom="id-0067-0000003b" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
 								<name>DataType</name>
 							</reference>
 						</model>
-						<model id="id-0065-000000cf" kind="Component" role="Component" guid="{5891AA10-FCAA-4d19-BF64-028D2C22F79D}" derivedfrom="id-0065-000000ba" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-							<name>NetQoSPlannerImplementation</name>
-							<regnode name="PartRegs" isopaque="yes">
-								<value></value>
-								<regnode name="QoS" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>642,488</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="UUID">
-								<value>F1F41347-B7E5-4121-BEF9-E427BF75DF7E</value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="label" status="meta">
-								<value></value>
-							</attribute>
-							<model id="id-0065-000000d0" kind="Attribute" role="Attribute" guid="{135337DD-D587-4dfc-A317-2E5A51700DAD}" derivedfrom="id-0065-000000bb" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>node_map_file</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000f3" kind="AttributeMember" role="AttributeMember" guid="{E592321C-CD2D-4b19-BF4A-BFB226B07AAF}" derivedfrom="id-0067-000000f2" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
-									<name>String</name>
-								</reference>
-							</model>
-							<model id="id-0065-000000d1" kind="Attribute" role="Attribute" guid="{C6529912-38F7-49d5-BF73-D962C863EC00}" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>type</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000f0" kind="AttributeMember" role="AttributeMember" guid="{55C72A92-DF7A-4865-8C4C-7B65E685E929}" derivedfrom="id-0067-000000ef" isinstance="yes" isprimary="no" referred="id-0067-00000096" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<model id="id-0065-000000d2" kind="Attribute" role="Attribute" guid="{C4850722-7431-4f45-AC98-A6B751DBC438}" derivedfrom="id-0065-000000bc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
-								<name>name</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<reference id="id-0067-000000ed" kind="AttributeMember" role="AttributeMember" guid="{13C26AD7-B00C-476b-A9F4-72ABB6986883}" derivedfrom="id-0067-000000ec" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
-									<name>AttributeMember</name>
-								</reference>
-							</model>
-							<reference id="id-0067-00000056" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{7EBCBECD-CA4C-4f9e-ABCE-C1C98ED8D2D4}" derivedfrom="id-0067-0000003a" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
-								<name>planner_i</name>
-								<attribute kind="SpecifyIdTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="VersionTag" status="meta">
-									<value></value>
-								</attribute>
-								<attribute kind="exclusiveProvider" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="exclusiveUser" status="meta">
-									<value>false</value>
-								</attribute>
-								<attribute kind="optional" status="meta">
-									<value>false</value>
-								</attribute>
-							</reference>
-						</model>
-						<model id="id-0065-000000d3" kind="Component" role="Component" guid="{2A544C7D-3842-4dad-A246-F0CE3C929075}" derivedfrom="id-0065-000000b7" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+						<model id="id-0065-000000cf" kind="Component" role="Component" guid="{2A544C7D-3842-4dad-A246-F0CE3C929075}" derivedfrom="id-0065-000000b7" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 							<name>StaticPlannerImplementation</name>
 							<regnode name="PartRegs" isopaque="yes">
 								<value></value>
@@ -7697,7 +7619,7 @@
 							<attribute kind="label" status="meta">
 								<value></value>
 							</attribute>
-							<model id="id-0065-000000d4" kind="Attribute" role="Attribute" guid="{82334627-8836-4c2a-B1D8-141617246599}" derivedfrom="id-0065-000000b8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000d0" kind="Attribute" role="Attribute" guid="{82334627-8836-4c2a-B1D8-141617246599}" derivedfrom="id-0065-000000b8" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>type</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -7709,7 +7631,7 @@
 									<name>AttributeMember</name>
 								</reference>
 							</model>
-							<model id="id-0065-000000d5" kind="Attribute" role="Attribute" guid="{E1B1A32C-E2D7-4ec5-80C1-E9DBEE8F12E6}" derivedfrom="id-0065-000000b9" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<model id="id-0065-000000d1" kind="Attribute" role="Attribute" guid="{E1B1A32C-E2D7-4ec5-80C1-E9DBEE8F12E6}" derivedfrom="id-0065-000000b9" isinstance="yes" isprimary="no" childrelidcntr="0x0">
 								<name>name</name>
 								<attribute kind="SpecifyIdTag" status="meta">
 									<value></value>
@@ -7761,7 +7683,115 @@
 								</attribute>
 							</reference>
 						</model>
-						<reference id="id-0067-0000004f" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{2E19AA1F-B06D-4730-995F-E2C84C539CF8}" derivedfrom="id-0067-0000003e" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
+						<model id="id-0065-000000d2" kind="Component" role="Component" guid="{5891AA10-FCAA-4d19-BF64-028D2C22F79D}" derivedfrom="id-0065-000000ba" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+							<name>NetQoSPlannerImplementation</name>
+							<regnode name="PartRegs" isopaque="yes">
+								<value></value>
+								<regnode name="QoS" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>642,488</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="UUID">
+								<value>F1F41347-B7E5-4121-BEF9-E427BF75DF7E</value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="label" status="meta">
+								<value></value>
+							</attribute>
+							<model id="id-0065-000000d3" kind="Attribute" role="Attribute" guid="{135337DD-D587-4dfc-A317-2E5A51700DAD}" derivedfrom="id-0065-000000bc" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>node_map_file</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<reference id="id-0067-000000f3" kind="AttributeMember" role="AttributeMember" guid="{E592321C-CD2D-4b19-BF4A-BFB226B07AAF}" derivedfrom="id-0067-000000f2" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
+									<name>String</name>
+								</reference>
+							</model>
+							<model id="id-0065-000000d4" kind="Attribute" role="Attribute" guid="{C4850722-7431-4f45-AC98-A6B751DBC438}" derivedfrom="id-0065-000000bd" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>name</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<reference id="id-0067-000000ed" kind="AttributeMember" role="AttributeMember" guid="{13C26AD7-B00C-476b-A9F4-72ABB6986883}" derivedfrom="id-0067-000000ec" isinstance="yes" isprimary="no" referred="id-0066-00000003" isbound="yes">
+									<name>AttributeMember</name>
+								</reference>
+							</model>
+							<model id="id-0065-000000d5" kind="Attribute" role="Attribute" guid="{C6529912-38F7-49d5-BF73-D962C863EC00}" derivedfrom="id-0065-000000bb" isinstance="yes" isprimary="no" childrelidcntr="0x0">
+								<name>type</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<reference id="id-0067-000000f0" kind="AttributeMember" role="AttributeMember" guid="{55C72A92-DF7A-4865-8C4C-7B65E685E929}" derivedfrom="id-0067-000000ef" isinstance="yes" isprimary="no" referred="id-0067-00000096" isbound="yes">
+									<name>AttributeMember</name>
+								</reference>
+							</model>
+							<reference id="id-0067-00000057" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{7EBCBECD-CA4C-4f9e-ABCE-C1C98ED8D2D4}" derivedfrom="id-0067-0000003a" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
+								<name>planner_i</name>
+								<attribute kind="SpecifyIdTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="VersionTag" status="meta">
+									<value></value>
+								</attribute>
+								<attribute kind="exclusiveProvider" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="exclusiveUser" status="meta">
+									<value>false</value>
+								</attribute>
+								<attribute kind="optional" status="meta">
+									<value>false</value>
+								</attribute>
+							</reference>
+						</model>
+						<reference id="id-0067-00000052" kind="AttributeMapping" role="AttributeMapping" guid="{D665FFA6-ABD8-4759-AA84-396A85C9A71C}" derivedfrom="id-0067-0000003c" isinstance="yes" isprimary="no" referred="id-0065-000000cd" isbound="yes">
+							<name>classes</name>
+						</reference>
+						<reference id="id-0067-00000053" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{9D813F37-4887-40d3-9182-1DC966C2FAE4}" derivedfrom="id-0067-0000003d" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
+							<name>Planner_Manager_I</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="QoS" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>181,55</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="SpecifyIdTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="VersionTag" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="exclusiveProvider" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="exclusiveUser" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="optional" status="meta">
+								<value>false</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000054" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{2E19AA1F-B06D-4730-995F-E2C84C539CF8}" derivedfrom="id-0067-0000003e" isinstance="yes" isprimary="no" referred="id-0065-0000004f" isbound="yes">
 							<name>Planner_I</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -7791,34 +7821,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000050" kind="ProvidedRequestPort" role="ProvidedRequestPort" guid="{9D813F37-4887-40d3-9182-1DC966C2FAE4}" derivedfrom="id-0067-0000003d" isinstance="yes" isprimary="no" referred="id-0065-00000061" isbound="yes">
-							<name>Planner_Manager_I</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="QoS" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>181,55</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="SpecifyIdTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="VersionTag" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="exclusiveProvider" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="exclusiveUser" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="optional" status="meta">
-								<value>false</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000053" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{DD65E22C-2E1F-495e-9967-368D9B421A1C}" derivedfrom="id-0067-0000003f" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
+						<reference id="id-0067-00000055" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{DD65E22C-2E1F-495e-9967-368D9B421A1C}" derivedfrom="id-0067-0000003f" isinstance="yes" isprimary="no" referred="id-0065-00000044" isbound="yes">
 							<name>PlanEgress</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -7848,7 +7851,7 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000054" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{5331B4DF-285B-45da-A08C-1D359D159A26}" derivedfrom="id-0067-00000040" isinstance="yes" isprimary="no" referred="id-0065-0000007a">
+						<reference id="id-0067-00000056" kind="RequiredRequestPort" role="RequiredRequestPort" guid="{5331B4DF-285B-45da-A08C-1D359D159A26}" derivedfrom="id-0067-00000040" isinstance="yes" isprimary="no" referred="id-0065-0000007a">
 							<name>TargetManager</name>
 							<regnode name="PartRegs" status="undefined">
 								<value></value>
@@ -7878,32 +7881,29 @@
 								<value>false</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000057" kind="AttributeMapping" role="AttributeMapping" guid="{D665FFA6-ABD8-4759-AA84-396A85C9A71C}" derivedfrom="id-0067-0000003c" isinstance="yes" isprimary="no" referred="id-0065-000000cd" isbound="yes">
-							<name>classes</name>
-						</reference>
-						<connection isbound="yes" id="id-0068-0000005d" kind="invoke" role="invoke" guid="{69D87FFE-0523-45c0-9B69-4D8F71D644FF}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000005e" kind="FacetDelegate" role="FacetDelegate" guid="{76D2160A-56C2-4b7b-9B82-7D667935A97C}" derivedfrom="id-0068-00000049" isinstance="yes" isprimary="no">
-							<name>FacetDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-0000005f" kind="invoke" role="invoke" guid="{4F0CEACA-5B0C-4a3a-BE9C-03035AE994B1}" derivedfrom="id-0068-00000048" isinstance="yes" isprimary="no">
-							<name>invoke</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000060" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{9C314F65-B429-49b2-BEDD-722BFF1C3956}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
-							<name>ReceptacleDelegate</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000061" kind="AttributeValue" role="AttributeValue" guid="{2A6DCA5C-4484-4e51-A917-F425783BE8C7}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
-							<name>AttributeValue</name>
-						</connection>
-						<connection isbound="yes" id="id-0068-00000062" kind="AttributeDelegate" role="AttributeDelegate" guid="{E99827F1-460B-4e0f-AC23-BD0FA95750B1}" derivedfrom="id-0068-00000047" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000005d" kind="AttributeDelegate" role="AttributeDelegate" guid="{E99827F1-460B-4e0f-AC23-BD0FA95750B1}" derivedfrom="id-0068-00000047" isinstance="yes" isprimary="no">
 							<name>AttributeDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000063" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{A363E788-F2F6-4f33-884F-4FD690E08F40}" derivedfrom="id-0068-0000004a" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-0000005e" kind="invoke" role="invoke" guid="{4F0CEACA-5B0C-4a3a-BE9C-03035AE994B1}" derivedfrom="id-0068-00000048" isinstance="yes" isprimary="no">
+							<name>invoke</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-0000005f" kind="FacetDelegate" role="FacetDelegate" guid="{76D2160A-56C2-4b7b-9B82-7D667935A97C}" derivedfrom="id-0068-00000049" isinstance="yes" isprimary="no">
+							<name>FacetDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000060" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{A363E788-F2F6-4f33-884F-4FD690E08F40}" derivedfrom="id-0068-0000004a" isinstance="yes" isprimary="no">
 							<name>ReceptacleDelegate</name>
 						</connection>
-						<connection isbound="yes" id="id-0068-00000064" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{BE7FFE51-A74D-442f-A445-733D08E39933}" derivedfrom="id-0068-0000004b" isinstance="yes" isprimary="no">
+						<connection isbound="yes" id="id-0068-00000061" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{BE7FFE51-A74D-442f-A445-733D08E39933}" derivedfrom="id-0068-0000004b" isinstance="yes" isprimary="no">
 							<name>ReceptacleDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000062" kind="ReceptacleDelegate" role="ReceptacleDelegate" guid="{9C314F65-B429-49b2-BEDD-722BFF1C3956}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
+							<name>ReceptacleDelegate</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000063" kind="invoke" role="invoke" guid="{69D87FFE-0523-45c0-9B69-4D8F71D644FF}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
+							<name>invoke</name>
+						</connection>
+						<connection isbound="yes" id="id-0068-00000064" kind="AttributeValue" role="AttributeValue" guid="{2A6DCA5C-4484-4e51-A917-F425783BE8C7}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
+							<name>AttributeValue</name>
 						</connection>
 					</model>
 					<model id="id-0065-000000d6" kind="Component" role="Component" guid="{338E775C-0D87-43ad-9121-3EC361DBC2E5}" derivedfrom="id-0065-00000031" isinstance="yes" isprimary="yes" relid="0x8" childrelidcntr="0x0">
@@ -8175,18 +8175,18 @@
 					</model>
 					<connection id="id-0068-00000065" kind="invoke" role="invoke" guid="{2383330D-E919-405f-8A88-41244739755B}" relid="0xe">
 						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-0000004c"/>
+						<connpoint role="dst" target="id-0067-0000004d"/>
 						<connpoint role="src" target="id-0067-0000009a"/>
 					</connection>
 					<connection id="id-0068-00000066" kind="invoke" role="invoke" guid="{F16F0163-150E-468f-A1AE-AF32D16BD7D1}" relid="0xd">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000049"/>
-						<connpoint role="dst" target="id-0067-00000050"/>
+						<connpoint role="src" target="id-0067-0000004e"/>
+						<connpoint role="dst" target="id-0067-00000053"/>
 					</connection>
 					<connection id="id-0068-00000067" kind="invoke" role="invoke" guid="{72572585-179E-4dcb-BC47-D88C15B34465}" relid="0xc">
 						<name>invoke</name>
-						<connpoint role="dst" target="id-0067-00000046"/>
-						<connpoint role="src" target="id-0067-00000053"/>
+						<connpoint role="dst" target="id-0067-00000047"/>
+						<connpoint role="src" target="id-0067-00000055"/>
 					</connection>
 					<connection id="id-0068-00000068" kind="invoke" role="invoke" guid="{884507D0-FCB4-448c-B51A-EC78AA829615}" relid="0x1d">
 						<name>invoke</name>
@@ -8195,7 +8195,7 @@
 					</connection>
 					<connection id="id-0068-00000069" kind="invoke" role="invoke" guid="{7C4E472E-C1AC-4ac3-A69C-F8AC9BDD7B78}" relid="0x21">
 						<name>invoke</name>
-						<connpoint role="src" target="id-0067-00000054"/>
+						<connpoint role="src" target="id-0067-00000056"/>
 						<connpoint role="dst" target="id-0067-0000005a"/>
 					</connection>
 					<connection id="id-0068-0000006a" kind="invoke" role="invoke" guid="{36E3B6C0-F65C-47c6-B51B-6655BA2C575F}" relid="0x22">
