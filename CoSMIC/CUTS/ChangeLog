@@ -1,3 +1,17 @@
+Sat May 19 06:32:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits.h:
+
+          Added support for generating conditional branching.
+
+        * cuts/be/natural-lang/Natural_Lang_Generator.cpp:
+
+          Removed all usage of Repetitions attribute.
+
 Thu May 17 00:03:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_File_Traits.cpp:

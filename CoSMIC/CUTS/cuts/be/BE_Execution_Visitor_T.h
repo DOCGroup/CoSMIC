@@ -62,8 +62,13 @@ protected:
   /// Visit a State element.
   void Visit_State (const PICML::State &);
 
+  void Visit_BranchState (const PICML::BranchState &);
+
   /// Visit a Transition element.
   void Visit_Transition (const PICML::Transition &);
+
+  /// Visit a BranchTransition element.
+  void Visit_BranchTransition (const PICML::BranchTransition &);
 
   /// Visit a Property element.
   void Visit_Property (const PICML::Property &);
@@ -81,6 +86,10 @@ protected:
   void Visit_OutputAction_Property (const PICML::Property & property);
 
 private:
+  void Visit_StateBase (const PICML::StateBase & base);
+
+  void Visit_ActionBase (const PICML::ActionBase & base);
+
   /// Flag that determines if effects should be ignored.
   bool ignore_effects_;
 
@@ -96,6 +105,8 @@ private:
   typedef std::stack <PICML::InputAction> Action_Stack;
 
   Action_Stack action_stack_;
+
+  std::stack <size_t> branches_;
 
   // prevent the following operations
   CUTS_BE_Execution_Visitor_T (CUTS_BE_Execution_Visitor_T &);

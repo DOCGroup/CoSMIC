@@ -100,22 +100,19 @@ write_WorkerAction_begin (const PICML::Worker & worker,
 {
   PICML::Action action_type = PICML::Action::Cast (action.archetype ());
 
-  if (action.Repetitions () != 0)
+  // Write the statement about the action.
+  this->outfile_
+    << "  - execute '" << action_type.name ()
+    << "' using '" << action.name () << "'";
+
+  // Determine if we need a 'parameter(s)' line.
+  std::vector <PICML::Property> properties = action.Property_children ();
+
+  if (!properties.empty ())
   {
-    // Write the statement about the action.
     this->outfile_
-      << "  - execute " << action.Repetitions () << " rep(s) of '"
-      << action_type.name () << "' using '" << action.name () << "'";
-
-    // Determine if we need a 'parameter(s)' line.
-    std::vector <PICML::Property> properties = action.Property_children ();
-
-    if (!properties.empty ())
-    {
-      this->outfile_
-        << std::endl
-        << "    parameter(s):";
-    }
+      << std::endl
+      << "    parameter(s):";
   }
 }
 

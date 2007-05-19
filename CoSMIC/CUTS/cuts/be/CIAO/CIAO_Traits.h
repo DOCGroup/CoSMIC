@@ -572,6 +572,46 @@ namespace CUTS_BE
       }
     };
 
+    // POG: Branches_Begin
+    struct CUTS_UDM_CIAO_Export Branches_Begin
+    {
+      static inline bool generate (size_t branches)
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->write_branches_begin (branches);
+        return true;
+      }
+    };
+
+    // POG: Branch_Precondition
+    struct CUTS_UDM_CIAO_Export Branch_Begin
+    {
+      static inline bool generate (const std::string & precondition)
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_begin (precondition);
+        return true;
+      }
+    };
+
+    // POG: Branch_Precondition
+    struct CUTS_UDM_CIAO_Export Branch_End
+    {
+      static inline bool generate ()
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_end ();
+        return true;
+      }
+    };
+
+    // POG: Branches_Begin
+    struct CUTS_UDM_CIAO_Export Branches_End
+    {
+      static inline bool generate (void)
+      {
+        CIAO_EXEC_SOURCE_GENERATOR ()->write_branches_end ();
+        return true;
+      }
+    };
+
     // POG: Postcondition
     struct CUTS_UDM_CIAO_Export Postcondition
     {

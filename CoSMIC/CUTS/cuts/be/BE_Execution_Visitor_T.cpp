@@ -2,6 +2,7 @@
 
 #include "UDM_Utility_T.h"
 #include "BE_algorithm.h"
+#include "modelgen.h"
 
 // BOOST headers
 #include "boost/bind.hpp"
@@ -12,48 +13,6 @@
 // STL headers
 #include <algorithm>
 #include <sstream>
-
-//=============================================================================
-/**
- * @struct Is_Finish_Connection
- *
- * Functor for determining if a Finish connection belongs to
- * a particular input action.
- */
-//=============================================================================
-
-struct Is_Finish_Connection
-{
-  /**
-   * Initializing constructor.
-   *
-   * @param[in]     src_input       The target input action.
-   */
-  inline
-  Is_Finish_Connection (const PICML::InputAction & src_input)
-    : src_input_ (src_input)
-  {
-
-  }
-
-  /**
-   * Functor method responsible for determining the owner
-   * of the finish connection.
-   *
-   * @param[in]     finish          The next finish connection.
-   */
-  inline
-  bool operator () (const PICML::Finish & finish)
-  {
-    PICML::InputAction ia =
-      PICML::InputAction::Cast (finish.dstFinish_end ());
-
-    return ia == this->src_input_;
-  }
-
-  // Source input action we are looking for.
-  const PICML::InputAction & src_input_;
-};
 
 //
 // CUTS_BE_Execution_Visitor_T
@@ -187,9 +146,7 @@ Visit_InputEffect (const PICML::InputEffect & effect)
     CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
 
   // Visit the next state in the chain.
-  PICML::State state = effect.dstInputEffect_end ();
-  CUTS_BE::visit <BE_STRATEGY> (state,
-    boost::bind (&PICML::State::Accept, _1, boost::ref (*this)));
+  this->Visit_StateBase (effect.dstInputEffect_end ());
 }
 
 //
@@ -206,10 +163,30 @@ Visit_Effect (const PICML::Effect & effect)
     CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
 
   // Visit the next state in the chain.
-  PICML::State state = effect.dstEffect_end ();
+  this->Visit_StateBase (effect.dstEffect_end ());
+}
 
-  CUTS_BE::visit <BE_STRATEGY> (state,
-    boost::bind (&PICML::State::Accept, _1, boost::ref (*this)));
+//
+// Visit_StateBase
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_StateBase (const PICML::StateBase & base)
+{
+  if (base.type () == PICML::State::meta)
+  {
+    PICML::State state = PICML::State::Cast (base);
+
+    CUTS_BE::visit <BE_STRATEGY> (state,
+      boost::bind (&PICML::State::Accept, _1, boost::ref (*this)));
+  }
+  else
+  {
+    PICML::BranchState branch = PICML::BranchState::Cast (base);
+
+    CUTS_BE::visit <BE_STRATEGY> (branch,
+      boost::bind (&PICML::BranchState::Accept, _1, boost::ref (*this)));
+  }
 }
 
 //
@@ -219,75 +196,104 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_State (const PICML::State & state)
 {
-  if (!this->ignore_effects_)
+  if (this->ignore_effects_)
   {
-    // Determine if this state is a finishing state for conditional
-    // flows. If the state has more than one source, then we can
-    // assume that we are ending one or more conditional flows.
-    typedef std::set <PICML::Effect> Effect_Set;
-    Effect_Set effects = state.srcEffect ();
-
-    if (effects.size () > 1)
-    {
-      if (this->holding_state_.empty ())
-        this->holding_state_.push (state);
-      else if (this->holding_state_.top () != state)
-        this->holding_state_.push (state);
-
-      return;
-    }
+    this->ignore_effects_ = false;
   }
   else
-    this->ignore_effects_ = false;
+  {
+    if (!this->holding_state_.empty () &&
+        this->holding_state_.top () == state)
+    {
+      // We have reached the end of this workflow.
+      return;
+    }
+    else
+    {
+      // Get all the effects that are connected to this state. We know that
+      // if we have more than 1 effect, then we are looking at state where
+      // there either some, or all the branches come together (or there is
+      // sharing of workload.
+
+      typedef std::set <PICML::Effect> Effect_Set;
+      Effect_Set effects = state.srcEffect ();
+
+      if (effects.size () > 1)
+      {
+        if (!this->branches_.empty ())
+        {
+          // Ok, we have more than one effect entering this state and
+          // we have some branching in effect. This mean this is a joining
+          // state for one or more branches.
+          size_t remaining = this->branches_.top () - effects.size () + 1;
+          this->branches_.top () = remaining;
+
+          if (remaining == 1)
+          {
+            // We reached end of the line for this branch state.
+            this->holding_state_.push (state);
+            return;
+          }
+        }
+      }
+    }
+  }
 
   // Check for a finishing transition from this state.
   typedef std::set <PICML::Finish> Finish_Set;
   Finish_Set finish_set = state.dstFinish ();
 
-  // We need to store the current size of the <action_stack_>
-  // just in case one of the finish connections in for this
-  // particular behavior workflow.
-  if (std::find_if (finish_set.begin (),
-                    finish_set.end (),
-                    Is_Finish_Connection (this->action_stack_.top ())) !=
-                    finish_set.end ())
+  // Check to see if this state has any finish connections. If it
+  // does, then we need to see if any of the finish connections is
+  // for the current input action.
+  PICML::Finish finish;
+
+  if (Udm::contains (boost::bind (std::equal_to <PICML::InputAction> (),
+      this->action_stack_.top (),
+      boost::bind (&PICML::Finish::dstFinish_end,
+                    _1))) (finish_set, finish))
   {
     return;
   }
 
-  // Get all the transitions from this state. If there is more than
-  // one transition, then we need to prepare generating flow control
-  // in execution path.
-  typedef std::set <PICML::Transition> Transition_Set;
-  Transition_Set transitions = state.dstInternalPrecondition ();
+  // Visit the transition that connected to this state.
+  PICML::Transition transition = state.dstInternalPrecondition ();
 
-  size_t transition_count = transitions.size ();
+  CUTS_BE::visit <BE_STRATEGY> (transition,
+    boost::bind (&PICML::Transition::Accept, _1, boost::ref (*this)));
+}
 
-  if (transition_count > 1)
-    ++ this->depth_;
+//
+// Visit_BranchState
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_BranchState (const PICML::BranchState & state)
+{
+  typedef std::set <PICML::BranchTransition> Transition_Set;
+  Transition_Set transitions = state.dstBranchTransition ();
+
+  // Save the number of branches we are operating on.
+  size_t transition_size = transitions.size ();
+  this->branches_.push (transition_size);
+
+  // Signal the backend we are starting a branch state.
+  CUTS_BE::generate <BE_STRATEGY::Branches_Begin> (transition_size);
 
   CUTS_BE::visit <BE_STRATEGY> (transitions,
-    boost::bind (&Transition_Set::value_type::Accept,
-    _1, boost::ref (*this)));
+    boost::bind (&PICML::BranchTransition::Accept, _1, boost::ref (*this)));
 
-  // Now that we have visited all the transitions from the
-  // state, we can jump to the state were all the branching
-  // transitions from this state merge.
-  if (transition_count > 1)
-  {
-    if (this->depth_ -- == this->holding_state_.size ())
-    {
-      // Get the topmost holding state and jump to it. We need to make
-      // sure we tell the holding state to ignore any effect connections
-      // since it will cause it to return.
-      PICML::State jmp_state = this->holding_state_.top ();
+  // Signal the backend we are starting a branch state.
+  CUTS_BE::generate <BE_STRATEGY::Branches_End> ();
+  this->branches_.pop ();
 
-      this->holding_state_.pop ();
-      this->ignore_effects_ = true;
+  // Since we have finished the branching, we can continue generating
+  // the remainder of the behavior that occurs after the branching.
+  PICML::State jmpstate = this->holding_state_.top ();
+  this->holding_state_.pop ();
 
-      jmp_state.Accept (*this);
-    }
-  }
+  this->ignore_effects_ = true;
+  jmpstate.Accept (*this);
 }
 
 //
@@ -304,6 +310,33 @@ Visit_Transition (const PICML::Transition & transition)
 
   // Get the action connected to the end of the transaction.
   PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
+  this->Visit_ActionBase (action_base);
+}
+
+//
+// Visit_Transition
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_BranchTransition (const PICML::BranchTransition & transition)
+{
+  // Signal the backend we are starting a branch.
+  CUTS_BE::generate <BE_STRATEGY::Branch_Begin> (transition.Precondition ());
+
+  PICML::ActionBase action_base = transition.dstBranchTransition_end ();
+  this->Visit_ActionBase (action_base);
+
+  // Signal the backend we are finishing a branch state.
+  CUTS_BE::generate <BE_STRATEGY::Branch_End> ();
+}
+
+//
+// Visit_ActionBase
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_ActionBase (const PICML::ActionBase & action_base)
+{
   Uml::Class type = action_base.type ();
 
   // We are placing the order of the action types in fast path
@@ -311,11 +344,7 @@ Visit_Transition (const PICML::Transition & transition)
   // than any type.
   if (type == PICML::Action::meta)
   {
-    PICML::Action action = PICML::Action::Cast (action_base);
-    long reps = static_cast <long> (action.Repetitions ());
-
-    if (reps > 0)
-      PICML::Action::Cast (action).Accept (*this);
+    PICML::Action::Cast (action_base).Accept (*this);
   }
   else if (type == PICML::OutputAction::meta)
   {
@@ -400,11 +429,13 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_CompositeAction (const PICML::CompositeAction & action)
 {
-  typedef std::vector <PICML::InputActionBase> InputAction_Set;
-  InputAction_Set actions = action.InputActionBase_children ();
+  typedef std::vector <PICML::InputAction> InputAction_Set;
+  InputAction_Set actions = action.InputAction_children ();
 
   if (!actions.empty ())
   {
+    // Composite actions are only allowed to have a single input
+    // action. Therefore, we only visit the first action in the set.
     CUTS_BE::visit <BE_STRATEGY> (PICML::InputAction::Cast (actions.front ()),
       boost::bind (&PICML::InputAction::Accept, _1, boost::ref (*this)));
   }

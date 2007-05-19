@@ -17,6 +17,7 @@
 #include "Port_Manager_T.h"
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
+#include <stack>
 
 //=============================================================================
 /**
@@ -109,6 +110,11 @@ public:
 
   virtual void write_action_end (void);
 
+  void write_branches_begin (size_t branches);
+  void write_branch_begin (const std::string & precondition);
+  void write_branch_end (void);
+  void write_branches_end (void);
+
 protected:
   virtual void write_set_session_context (
     const PICML::Component & component);
@@ -148,6 +154,8 @@ private:
 
   /// Manager for mapping port types to their scoped name.
   CUTS_UDM_Port_Manager_T <const PICML::OutEventPort> outevent_mgr_;
+
+  std::stack <size_t> branches_;
 };
 
 // Singleton declaration.

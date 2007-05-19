@@ -557,69 +557,31 @@ write_WorkerAction_begin (const PICML::Worker & parent,
   if (!this->outfile ().is_open ())
     return;
 
-  long repetitions = static_cast <long> (action.Repetitions ());
+  this->skip_action_ = false;
 
-  if (repetitions > 0)
+  // Now, how are we to log this action. If logging is enabled
+  // then we need to invoke the logging method. If not, then we
+  // need to invoke the non-logging method.
+
+  if (action.LogAction ())
   {
-    // Ok, we are not skipping this action since there is at
-    // least one repetition in play.
-    this->skip_action_ = false;
-
-    // Now, how are we to log this action. If logging is enabled
-    // then we need to invoke the logging method. If not, then we
-    // need to invoke the non-logging method.
-
-    if (action.LogAction ())
-    {
-      this->outfile ()
-        << "record->perform_action (" << std::endl
-        << "CUTS_action (";
-    }
-    else
-    {
-      this->outfile ()
-        << "record->perform_action_no_logging (" << std::endl
-        << "CUTS_action (";
-    }
-
-    // Since we have overloaded the methods based on the number of
-    // repetitions specified for an action, let's call the appropriate
-    // one. This is a minor optimization.
-
-    //if (repetitions > 1)
-    //  this->outfile () << repetitions << ", ";
-
-    PICML::Action action_type =
-      const_cast <PICML::Action &> (action).Archetype ();
-
-    //this->outfile ()
-    //  << "this->" << action.name () << ","
-    //std::string name = action_type.name ();
-
-    //// Print the fully qualifies name of the action.
-    //std::string tempstr = parent.name ();
-
     this->outfile ()
-      << "&" << parent.name () << "::" << action_type.name ()
-      << ", this->" << action.name () << "_)";
-
-    //PICML::MgaObject parent_action = parent.parent ();
-
-    //while (parent_action.type () != PICML::WorkerFile::meta)
-    //{
-    //  tempstr.insert (0, "::");
-    //  tempstr.insert (0, parent_action.name ());
-
-    //  parent_action = PICML::MgaObject::Cast (parent_action.parent ());
-    //}
-
-    //// Print the action and it's worker.
-    //this->outfile ()
-    //  << tempstr << "::" << action_type.name ()
-    //  << " (this->" << action.name () << "_";
+      << "record->perform_action (" << std::endl
+      << "CUTS_action (";
   }
   else
-    this->skip_action_ = true;
+  {
+    this->outfile ()
+      << "record->perform_action_no_logging (" << std::endl
+      << "CUTS_action (";
+  }
+
+  PICML::Action action_type =
+    const_cast <PICML::Action &> (action).Archetype ();
+
+  this->outfile ()
+    << "&" << parent.name () << "::" << action_type.name ()
+    << ", this->" << action.name () << "_)";
 }
 
 //
@@ -719,7 +681,8 @@ write_precondition (const std::string & precondition)
   if (!this->outfile ().is_open ())
     return;
 
-  this->outfile () << precondition;
+  this->outfile ()
+    << "if (" << precondition << ")" << std::endl;
 }
 
 //
@@ -763,3 +726,42 @@ write_PeriodicEvent_end (const PICML::PeriodicEvent & periodic)
     << "}";
 }
 
+//
+// write_branches_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::write_branches_begin (size_t branches)
+{
+  this->branches_.push (1);
+}
+
+//
+// write_branch_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_branch_begin (const std::string & precondition)
+{
+  // We need to generate an "else if" statement if this is not
+  // the first transition.
+  if (this->branches_.top () ++ > 1)
+    this->outfile () << "else ";
+
+  this->outfile ()
+    << "if (" << precondition.c_str () << ")"
+    << "{";
+}
+
+//
+// write_branch_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::write_branch_end (void)
+{
+  this->outfile () << "}";
+}
+
+//
+// write_branches_end
+//
+void CUTS_CIAO_Exec_Source_Traits::write_branches_end (void)
+{
+  this->branches_.pop ();
+}
