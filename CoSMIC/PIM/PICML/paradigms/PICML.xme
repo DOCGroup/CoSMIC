@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1266359B-3F40-477B-8439-13B882481711}" cdate="Thu May 17 12:28:42 2007" mdate="Thu May 17 12:28:42 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{380D72BB-183D-4FDA-9858-37E9B8BBE720}" cdate="Thu May 17 12:28:42 2007" mdate="Thu May 17 12:28:42 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -5369,7 +5369,7 @@ rrName = referedbyVariable</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xb3">
+			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xb4">
 				<name>ActionTypes</name>
 				<atom id="id-0066-00000010" kind="Connection" role="Connection" guid="{F832DAEE-CADF-433e-B8DE-B7694D6E4392}" relid="0x82">
 					<name>Effect</name>
@@ -6158,7 +6158,7 @@ inputs.size () = 1
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>246,132</value>
+								<value>246,131</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
@@ -6201,8 +6201,10 @@ inputs.size () = 1
 					<attribute kind="DstAttrLabel2" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="GeneralPreferences" status="meta">
-						<value></value>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcInputEffect
+dName = dstInputEffect</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -6245,7 +6247,7 @@ inputs.size () = 1
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>29,132</value>
+								<value>8,131</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
@@ -6291,8 +6293,10 @@ inputs.size () = 1
 					<attribute kind="DstAttrLabel2" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="GeneralPreferences" status="meta">
-						<value></value>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcFinish
+dName = dstFinish</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -6347,7 +6351,7 @@ inputs.size () = 1
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>695,254</value>
+								<value>561,195</value>
 							</regnode>
 						</regnode>
 						<regnode name="ClassDiagram" status="undefined">
@@ -7094,6 +7098,14 @@ inputs.size () = 1
 					</regnode>
 					<connpoint role="dst" target="id-0066-0000026a"/>
 					<connpoint role="src" target="id-0066-0000026b"/>
+				</connection>
+				<connection id="id-0068-00000427" kind="HasAttribute" role="HasAttribute" guid="{86252C03-DBF5-4af1-86A0-298394D380DE}" relid="0xb4">
+					<name>HasAttribute</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>En</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-00000010"/>
+					<connpoint role="src" target="id-0066-00000018"/>
 				</connection>
 				<set id="id-0069-0000001f" kind="Aspect" role="Aspect" guid="{A44EF0A7-4025-48fb-9E4C-32DDA6C9F2AD}" relid="0xa1" members="id-0066-00000010 id-0066-00000025 id-0066-00000264 id-0066-00000266 id-0066-0000026a id-0067-00000064">
 					<name>Behavior</name>
@@ -9582,8 +9594,10 @@ dName = dstInternalPrecondition</value>
 					<attribute kind="DstAttrLabel2" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="GeneralPreferences" status="meta">
-						<value></value>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcBranchTransition
+dName = dstBranchTransition</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
