@@ -47,6 +47,12 @@ void CUTS_STUB_Export operator >>= (const CUTS::Metric_Log & mlog,
 void CUTS_STUB_Export operator >>= (const CUTS::Metric_Record & m_record,
                                     CUTS_Activation_Record & a_record);
 
+void CUTS_STUB_Export operator >>= (const CUTS::Action_Time & act,
+                                    CUTS_Activation_Record_Entry & entry);
+
+void CUTS_STUB_Export operator >>= (const CUTS::Action_Times & act,
+                                    CUTS_Activation_Record_Entry_Log & entries);
+
 void CUTS_STUB_Export operator >>= (const CUTS::Endpoint_Times & ep_times,
                                     CUTS_Activation_Record_Endpoints & endpoints);
 
@@ -79,6 +85,12 @@ void CUTS_STUB_Export operator <<= (CUTS::Metric_Log & mlog,
 
 void CUTS_STUB_Export operator <<= (CUTS::Metric_Record & m_record,
                                     const CUTS_Activation_Record & a_record);
+
+void CUTS_STUB_Export operator <<= (CUTS::Action_Time & act,
+                                    const CUTS_Activation_Record_Entry & entry);
+
+void CUTS_STUB_Export operator <<= (CUTS::Action_Times & act,
+                                    const CUTS_Activation_Record_Entry_Log & entries);
 
 void CUTS_STUB_Export operator <<= (CUTS::Endpoint_Times & ep_times,
                                     const CUTS_Activation_Record_Endpoints & endpoints);

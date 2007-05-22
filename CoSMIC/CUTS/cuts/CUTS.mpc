@@ -9,6 +9,8 @@ project (CUTS) : cutslib {
   libs  -= CUTS
 
   Header_Files {
+    Activation_Record_Log.h
+    Activation_Record_Entry.h
     config.h
     Component_Info.h
     Component_Type.h
@@ -23,9 +25,7 @@ project (CUTS) : cutslib {
     Action.cpp
     Action_Iterator.cpp
     Activation_Record.cpp
-    Activation_Record_Entry.cpp
     Activation_Record_Endpoint.cpp
-    Activation_Record_Log.cpp
     Benchmark_Agent.cpp
     Component_Metric.cpp
     Component_Registry_Node.cpp
@@ -68,6 +68,7 @@ project (CUTS) : cutslib {
     Event_Guard_T.cpp
     Event_Handler_T.cpp
     Event_Handler_Manager_T.cpp
+    Log_T.cpp
     Pending_Op_T.cpp
     Pending_Op_List_T.cpp
     Trigger_T.cpp

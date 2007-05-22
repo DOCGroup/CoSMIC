@@ -16,24 +16,23 @@
 #ifndef _CUTS_ACTIVATION_RECORD_H_
 #define _CUTS_ACTIVATION_RECORD_H_
 
+#include "cuts/Activation_Record_Entry.h"
+#include "cuts/Log_T.h"
 #include "cuts/Time_Measurement.h"
 #include "cuts/Time_Value_History.h"
-#include "cuts/Activation_Record_Entry.h"
-#include "cuts/mem_action_t.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
+#include "ace/High_Res_Timer.h"
 #include "ace/OS_NS_sys_time.h"
-#include <list>
-
-/// Type defintion for a list of entries.
-typedef std::list <CUTS_Activation_Record_Entry>
-                   CUTS_Activation_Record_Entries;
 
 /// Type definition for a collection of endpoints
 typedef ACE_Hash_Map_Manager <size_t,
                               ACE_Time_Value,
                               ACE_Null_Mutex>
                               CUTS_Activation_Record_Endpoints;
+
+typedef CUTS_Log_T <CUTS_Activation_Record_Entry,
+                    ACE_Null_Mutex> CUTS_Activation_Record_Entry_Log;
 
 //=============================================================================
 /**
@@ -121,13 +120,6 @@ public:
   ACE_Time_Value & stop_time (void);
 
   /**
-   * Get the entries for the record.
-   *
-   * @return      Entries for the record.
-   */
-  const CUTS_Activation_Record_Entries & entries (void) const;
-
-  /**
    * Get the collection of endpoints for this record.
    *
    * @return      Endpoints for the record.
@@ -164,14 +156,24 @@ public:
    */
   const ACE_Time_Value & queue_time (void) const;
 
+  CUTS_Activation_Record_Entry_Log & entries (void);
+
+  /**
+   * @overload
+   */
+  const CUTS_Activation_Record_Entry_Log & entries (void) const;
+
+  //===========================================================================
+  // @@ templates
+
   /**
    * Perform the specified action without any logging. The \a action
    * is a functor that defines the method operator ().
    *
    * @param[in]     action          The action (functor) to execute.
    */
-  template <typename ACTION>
-  void perform_action_no_logging (ACTION action);
+  template <typename R, typename T>
+  void perform_action_no_logging (R (T::*method) (void), T & obj);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -181,8 +183,9 @@ public:
    * @param[in]     action          The action (functor) to execute.
    * @param[in]     arg1            The first argument
    */
-  template <typename ACTION, typename A1>
-  void perform_action_no_logging (ACTION action, A1 arg1);
+  template <typename R, typename T,
+            typename P1, typename A1>
+  void perform_action_no_logging (R (T::*method) (P1), T & obj, A1 arg1);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -193,8 +196,11 @@ public:
    * @param[in]     arg1            The first argument
    * @param[in]     arg2            The second argument
    */
-  template <typename ACTION, typename A1, typename A2>
-  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2);
+  template <typename R, typename T,
+            typename P1, typename P2,
+            typename A1, typename A2>
+  void perform_action_no_logging (R (T::*method) (P1, P2), T & obj,
+                                  A1 arg1, A2 arg2);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -206,8 +212,11 @@ public:
    * @param[in]     arg2            The second argument
    * @param[in]     arg3            The third argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3>
-  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3,
+            typename A1, typename A2, typename A3>
+  void perform_action_no_logging (R (T::*method) (P1, P2, P3), T & obj,
+                                  A1 arg1, A2 arg2, A3 arg3);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -220,10 +229,11 @@ public:
    * @param[in]     arg3            The third argument.
    * @param[in]     arg4            The fourth argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3,
-            typename A4>
-  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3,
-                                  A4 arg4);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3, typename P4,
+            typename A1, typename A2, typename A3, typename A4>
+  void perform_action_no_logging (R (T::*method) (P1, P2, P3, P4), T & obj,
+                                  A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -237,10 +247,11 @@ public:
    * @param[in]     arg4            The fourth argument.
    * @param[in]     arg5            The fifth argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3,
-            typename A4, typename A5>
-  void perform_action_no_logging (ACTION action, A1 arg1, A2 arg2, A3 arg3,
-                                  A4 arg4, A5 arg5);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3, typename P4, typename P5,
+            typename A1, typename A2, typename A3, typename A4, typename A5>
+  void perform_action_no_logging (R (T::*method) (P1, P2, P3, P4, P5), T & obj,
+                                  A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -248,8 +259,9 @@ public:
    *
    * @param[in]     action          The action (functor) to execute.
    */
-  template <typename ACTION>
-  void perform_action (ACTION action);
+  template <typename R, typename T>
+  void perform_action (size_t uid, size_t type,
+                       R (T::*method) (void), T & obj);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -259,8 +271,9 @@ public:
    * @param[in]     action          The action (functor) to execute.
    * @param[in]     arg1            The first argument
    */
-  template <typename ACTION, typename A1>
-  void perform_action (ACTION action, A1 arg1);
+  template <typename R, typename T, typename P1, typename A1>
+  void perform_action (size_t uid, size_t type,
+                       R (T::*method) (P1), T & obj, A1 arg1);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -271,8 +284,12 @@ public:
    * @param[in]     arg1            The first argument
    * @param[in]     arg2            The second argument
    */
-  template <typename ACTION, typename A1, typename A2>
-  void perform_action (ACTION action, A1 arg1, A2 arg2);
+  template <typename R, typename T,
+            typename P1, typename P2,
+            typename A1, typename A2>
+  void perform_action (size_t uid, size_t type,
+                       R (T::*method) (P1, P2), T & obj,
+                       A1 arg1, A2 arg2);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -284,8 +301,12 @@ public:
    * @param[in]     arg2            The second argument
    * @param[in]     arg3            The third argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3>
-  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3,
+            typename A1, typename A2, typename A3>
+  void perform_action (size_t uid, size_t type,
+                       R (T::*method) (P1, P2, P3), T & obj,
+                       A1 arg1, A2 arg2, A3 arg3);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -298,9 +319,12 @@ public:
    * @param[in]     arg3            The third argument.
    * @param[in]     arg4            The fourth argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3,
-            typename A4>
-  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3, A4 arg4);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3, typename P4,
+            typename A1, typename A2, typename A3, typename A4>
+  void perform_action (size_t uid, size_t type,
+                       R (T::*method) (P1, P2, P3, P4), T & obj,
+                       A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 
   /**
    * Perform the specified action with logging . The \a action
@@ -314,10 +338,12 @@ public:
    * @param[in]     arg4            The fourth argument.
    * @param[in]     arg5            The fifth argument.
    */
-  template <typename ACTION, typename A1, typename A2, typename A3,
-            typename A4, typename A5>
-  void perform_action (ACTION action, A1 arg1, A2 arg2, A3 arg3, A4 arg4,
-                       A5 arg5);
+  template <typename R, typename T,
+            typename P1, typename P2, typename P3, typename P4, typename P5,
+            typename A1, typename A2, typename A3, typename A4, typename A5>
+  void perform_action (size_t uid,
+                       size_t type, R (T::*method) (P1, P2, P3, P4, P5), T & obj,
+                       A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 
   /**
    * Log an endpoint to the activation record. This will store the
@@ -327,6 +353,12 @@ public:
    */
   void log_endpoint (size_t uid);
 
+  /**
+   * Get how long the record was open. This is a measure of the
+   * processing time for a the recorded workload.
+   *
+   * @param[out]      duration      How long the record was open.
+   */
   void get_duration (ACE_Time_Value & duration) const;
 
 private:
@@ -337,8 +369,7 @@ private:
    */
   void copy_endpoints (const CUTS_Activation_Record_Endpoints & endpoints);
 
-  /// Log the timing measurement.
-  void log_time_measurement (size_t reps, long worker_id, long action_id);
+  void perform_action_i (size_t uid, size_t type);
 
   /// Active state of the record.
   bool active_;
@@ -349,55 +380,17 @@ private:
   /// The timing stop watch for the activation record.
   CUTS_Time_Value_Ex stopwatch_;
 
-  /// Start time of the operation.
-  ACE_Time_Value action_state_time_;
-
-  /// Stop time of the operation.
-  ACE_Time_Value action_stop_time_;
-
   /// Queuing time for the event relating to this record.
   ACE_Time_Value queue_time_;
 
-  /// Entries in the activation record.
-  CUTS_Activation_Record_Entries entries_;
+  /// High resolution timer for measuring actions.
+  ACE_High_Res_Timer action_timer_;
 
   /// Collection of exit points
   CUTS_Activation_Record_Endpoints endpoints_;
-};
 
-//=============================================================================
-/**
- * @class CUTS_Cached_Activation_Record
- */
-//=============================================================================
-
-class CUTS_Export CUTS_Cached_Activation_Record :
-  public CUTS_Activation_Record
-{
-public:
-  /// Default constructor.
-  CUTS_Cached_Activation_Record (void);
-
-  /// Destructor.
-  virtual ~CUTS_Cached_Activation_Record (void);
-
-  /**
-   * Add a new node onto the chain.
-   *
-   * @param[in]       next        Pointer to the next node.
-   */
-  void set_next (CUTS_Cached_Activation_Record * next);
-
-  /**
-   * Get the next node on the chain.
-   *
-   * @return          Pointer to the next record.
-   */
-  CUTS_Cached_Activation_Record * get_next (void);
-
-private:
-  /// Pointer to the next record.
-  CUTS_Cached_Activation_Record * next_;
+  /// Action entries in the log.
+  CUTS_Activation_Record_Entry_Log entries_;
 };
 
 #if defined (__CUTS_INLINE__)

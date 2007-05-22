@@ -54,6 +54,21 @@ module CUTS
   /// Type defintition for a listing of endpoints.
   typedef sequence <Endpoint_Time> Endpoint_Times;
 
+  struct Action_Time
+  {
+    /// The unique id of the action.
+    long uid;
+
+    /// The type/classification of the action.
+    long type;
+
+    /// The measured duration of the action.
+    Time_Stamp duration;
+  };
+
+  /// Type definition for a listing of action times.
+  typedef sequence <Action_Time> Action_Times;
+
   //===========================================================================
   /**
    * @struct Metric_Record
@@ -82,6 +97,9 @@ module CUTS
 
     /// Log of the endpoints for this record.
     Endpoint_Times ep_times;
+
+    /// Log of the action times for a record.
+    Action_Times action_log;
   };
 
   /// Type definition for a collection of Metric_Record objects.

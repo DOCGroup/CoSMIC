@@ -157,8 +157,7 @@ int CUTS_Component_Registry::close (void)
 // get_component_info
 //
 int CUTS_Component_Registry::
-get_component_info (size_t uid,
-                    const CUTS_Component_Info ** info) const
+get_component_info (size_t uid, const CUTS_Component_Info ** info) const
 {
   if (uid == CUTS_UNKNOWN_IMPL)
     return -1;

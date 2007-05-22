@@ -175,6 +175,35 @@ void operator >>= (const CUTS::Time_Info & ti, CUTS_Time_Measurement & tm)
 //
 // operator >>=
 //
+void operator >>= (const CUTS::Action_Time & time,
+                   CUTS_Activation_Record_Entry & entry)
+{
+  entry.uid_ = time.uid;
+  entry.type_ = time.type;
+  time.duration >>= entry.duration_;
+}
+
+//
+// operator >>=
+//
+void operator >>= (const CUTS::Action_Times & times,
+                   CUTS_Activation_Record_Entry_Log & entries)
+{
+  // Get the current size of the buffer and resize the log.
+  CORBA::ULong curr_size = times.length ();
+  entries.size (curr_size);
+
+  // Get a pointer/iterator to the buffer/log.
+  CUTS::Action_Times::const_value_type * buf = times.get_buffer ();
+  CUTS::Action_Times::const_value_type * buf_stop = buf + curr_size;
+
+  for (; buf != buf_stop; buf ++)
+    *buf >>= *entries.next_free_record_i ();
+}
+
+//
+// operator >>=
+//
 void operator >>= (const CUTS::Endpoint_Times & ep_times,
                    CUTS_Activation_Record_Endpoints & endpoints)
 {
@@ -188,14 +217,11 @@ void operator >>= (const CUTS::Endpoint_Times & ep_times,
   endpoints.unbind_all ();
   ACE_Time_Value tv_temp;
 
-  while (buf < buf_stop)
+  for (; buf < buf_stop; buf ++)
   {
     // Extract the ACE_Time_Value then add mapping to <endpoints>.
     buf->exittime >>= tv_temp;
     endpoints.bind (buf->uid, tv_temp);
-
-    // Move to the next slot in the buffer.
-    buf ++;
   }
 }
 
@@ -218,6 +244,7 @@ void operator >>= (const CUTS::Metric_Record & m_record,
   a_record.queue_time (tv_temp);
 
   m_record.ep_times >>= a_record.endpoints ();
+  m_record.action_log >>= a_record.entries ();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -425,6 +452,36 @@ void operator <<= (CUTS::Endpoint_Times & ep_times,
 //
 // operator <<=
 //
+void operator <<= (CUTS::Action_Time & act,
+                   const CUTS_Activation_Record_Entry & entry)
+{
+  act.uid = entry.uid_;
+  act.type = entry.type_;
+  act.duration <<= entry.duration_;
+}
+
+//
+// operetor <<=
+//
+void operator <<= (CUTS::Action_Times & times,
+                   const CUTS_Activation_Record_Entry_Log & entries)
+{
+  // Get the current size of the log and resize the sequence.
+  size_t curr_size = entries.used_size ();
+  times.length (curr_size);
+
+  // Get iterators to the source and destination buffer.
+  CUTS::Action_Times::value_type * buf = times.get_buffer ();
+  CUTS_Activation_Record_Entry_Log::const_iterator iter = entries.begin ();
+  CUTS_Activation_Record_Entry_Log::const_iterator iter_stop = iter + curr_size;
+
+  for (; iter != iter_stop; iter ++)
+    *buf ++ <<= *iter;
+}
+
+//
+// operator <<=
+//
 void operator <<= (CUTS::Metric_Record & dest,
                    const CUTS_Activation_Record & src)
 {
@@ -439,4 +496,5 @@ void operator <<= (CUTS::Metric_Record & dest,
   // Insert the queueing and endpoint times into the record.
   dest.queue_time <<= src.queue_time ();
   dest.ep_times   <<= src.endpoints ();
+  dest.action_log <<= src.entries ();
 }

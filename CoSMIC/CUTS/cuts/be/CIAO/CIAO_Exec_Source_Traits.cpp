@@ -567,13 +567,12 @@ write_WorkerAction_begin (const PICML::Worker & parent,
   {
     this->outfile ()
       << "record->perform_action (" << std::endl
-      << "CUTS_action (";
+      << action.uniqueId () << ", -1, ";
   }
   else
   {
     this->outfile ()
-      << "record->perform_action_no_logging (" << std::endl
-      << "CUTS_action (";
+      << "record->perform_action_no_logging (" << std::endl;
   }
 
   PICML::Action action_type =
@@ -581,7 +580,7 @@ write_WorkerAction_begin (const PICML::Worker & parent,
 
   this->outfile ()
     << "&" << parent.name () << "::" << action_type.name ()
-    << ", this->" << action.name () << "_)";
+    << ", this->" << action.name () << "_";
 }
 
 //

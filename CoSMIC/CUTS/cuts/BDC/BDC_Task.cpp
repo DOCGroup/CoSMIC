@@ -120,12 +120,12 @@ namespace CUTS
     else if (!this->active_)
     {
       ACE_ERROR ((LM_WARNING,
-                  "*** warn: collection object not active\n"));
+                  "*** warning: collection object not active\n"));
     }
     else if (this->count_ != 0)
     {
       ACE_ERROR ((LM_WARNING,
-                  "*** warn: collecting metrics from previous timeout\n"));
+                  "*** warning: collecting metrics from previous timeout\n"));
     }
     else
     {
@@ -146,9 +146,9 @@ namespace CUTS
         try
         {
           // We need to get the benchmark agent from the node.
-          ::CUTS::CCM_Component_Registry_Node * node =
-            dynamic_cast < ::CUTS::CCM_Component_Registry_Node * > (iter->int_id_);
-          ::CUTS::Benchmark_Agent_ptr agent = node->benchmark_agent ();
+          CUTS::CCM_Component_Registry_Node * node =
+            dynamic_cast <::CUTS::CCM_Component_Registry_Node *> (iter->int_id_);
+          CUTS::Benchmark_Agent_ptr agent = node->benchmark_agent ();
 
           // Verify this is actual an agent connected to the testing
           // service. If the component was "preregistered" then the
@@ -160,6 +160,10 @@ namespace CUTS
           }
           else
             this->decrement_count ();
+        }
+        catch (std::bad_cast ex)
+        {
+
         }
         catch (...)
         {

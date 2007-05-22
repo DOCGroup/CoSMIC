@@ -170,13 +170,13 @@ ciao_preactivate (void)
   if (::CORBA::is_nil (tsvc.in ()))
   {
     ACE_DEBUG ((LM_INFO,
-                "[%M] (preactivate) -%T - %s not connected to data collector\n",
+                "*** warning (CoWorkEr): %s not connected to BDC\n",
                 this->instance_.c_str ()));
   }
   else if (::CORBA::is_nil (this->type_impl_.in ()))
   {
     ACE_DEBUG ((LM_WARNING,
-                "[%M] (preactivate) -%T - %s does not have a loaded component\n",
+                "*** warning (CoWorkEr): %s does not have a loaded component\n",
                 this->instance_.c_str ()));
   }
   else
@@ -194,13 +194,13 @@ ciao_preactivate (void)
     catch (const CORBA::Exception & ex)
     {
       ACE_ERROR ((LM_ERROR,
-                  "[%M] (preactivate) -%T - %s\n",
+                  "*** error (preactivate): %s\n",
                   ex._info ().c_str ()));
     }
     catch (...)
     {
       ACE_ERROR ((LM_ERROR,
-                  "[%M] (preactivate) -%T - unknown exception has occurred\n"));
+                  "*** error (preactivate): unknown exception occurred\n"));
     }
   }
 

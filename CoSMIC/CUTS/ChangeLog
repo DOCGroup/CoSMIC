@@ -1,3 +1,82 @@
+Tue May 22 21:29:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp (write_WorkerAction_begin):
+
+          Change the format of generating a worker's action to be
+          consistent w/ the new implementation of perform_action () and
+          perform_action_no_logging ().
+
+        * cuts/Activation_Record.h:
+        * cuts/Activation_Record.inl:
+        * cuts/Activation_Record.cpp:
+        * cuts/Activation_Record_T.inl:
+        * cuts/Activation_Record_T.cpp:
+
+          - perform_action () and perform_action_no_logging () now
+            make direct calls on the target methods instead of creating
+            a functor to make the call.
+          - The record log now records the duration actions.
+
+        * cuts/Activation_Record_Entry.h:
+
+          Entry that contains information about a measured action.
+
+        * cuts/Activation_Record_Log.h:
+        * cuts/Log_T.h:
+        * cuts/Log_T.inl:
+        * cuts/Log_T.cpp:
+
+          Refactored the log class into a template that is parameterized
+          by the storage type.
+
+        * cuts/BDC/BDC_Task.cpp (collect_data):
+
+          Added std::bad_cast catch block.
+
+        * cuts/CCM_CoWorkEr_Proxy.cpp:
+
+          Removed the in_nil () test on the testing service variable
+          and added a status message that is prevented when a component
+          is registering itself.
+
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp (ciao_preactivate):
+
+          Changed the format of all the ACE_DEBUG and ACE_ERROR messages.
+
+        * cuts/CUTS.mpc:
+
+          Added/removed files from the project.
+
+        * cuts/Component_Registry.cpp:
+
+          Changed the layout of the file.
+
+        * cuts/Port_Measurement.h:
+        * cuts/Port_Measurement.cpp (record_exitpoint):
+
+          Changed the return type to 'int' to act as a return status.
+
+        * cuts/XML_Metrics_Writer.cpp:
+
+          - Added support for writing action log to the XML file for each
+            activation record in the port log.
+          - Fixed bug that caused the BDC to crash if it had records with an
+            unknown sender, i.e., sender = CUTS_UNKNOWN_IMPL.
+
+        * cuts/performance.idl:
+        * cuts/performance_i.h:
+        * cuts/performance_i.cpp:
+
+          Added support to packing and unpacking the performance of
+          actions in a activation record.
+
+        * cuts/Activation_Record_Entry.inl:
+        * cuts/Activation_Record_Entry.cpp:
+        * cuts/Activation_Record_Log.inl:
+        * cuts/Activation_Record_Log.cpp:
+
+          Removed these files.
+
 Sat May 19 06:32:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.h:

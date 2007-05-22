@@ -81,7 +81,9 @@ public:
    */
   const CUTS_Time_Measurement & queuing_time (void) const;
 
-  /// @overload
+  /**
+   * @overload
+   */
   CUTS_Time_Measurement & queuing_time (void);
 
   /**
@@ -90,7 +92,7 @@ public:
    * @param[in]       uid       The target uid.
    * @param[in]       tv        The timing value.
    */
-  void record_exitpoint (size_t uid, const ACE_Time_Value & tv);
+  int record_exitpoint (size_t uid, const ACE_Time_Value & tv);
 
   /// Reset all the collected data.
   void reset (void);

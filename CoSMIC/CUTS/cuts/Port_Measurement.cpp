@@ -47,22 +47,16 @@ accept (CUTS_Metrics_Visitor & visitor) const
 //
 // record_exitpoint
 //
-void CUTS_Port_Measurement::
+int CUTS_Port_Measurement::
 record_exitpoint (size_t uid, const ACE_Time_Value & tv)
 {
   CUTS_Time_Measurement * measure = 0;
+  int retval = this->endpoints_.find (uid, measure);
 
-  if (this->endpoints_.find (uid, measure) == 0)
-  {
+  if (retval == 0 && measure != 0)
     *measure += tv;
-  }
-  else
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (CUTS_Port_Measurement): unable to find port "
-                "with id = %u\n",
-                uid));
-  }
+
+  return retval;
 }
 
 //

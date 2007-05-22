@@ -73,28 +73,6 @@ CUTS_Activation_Record::stop_time (void)
 }
 
 //
-// entries
-//
-CUTS_INLINE
-const CUTS_Activation_Record_Entries &
-CUTS_Activation_Record::entries (void) const
-{
-  return this->entries_;
-}
-
-//
-// log_time_measurement
-//
-CUTS_INLINE
-void CUTS_Activation_Record::
-log_time_measurement (size_t reps, long worker_id, long action_id)
-{
-  this->entries_.push_back (
-    CUTS_Activation_Record_Entry (reps, worker_id, action_id,
-    this->action_state_time_, this->action_stop_time_));
-}
-
-//
 // endpoints
 //
 CUTS_INLINE
@@ -192,41 +170,20 @@ get_duration (ACE_Time_Value & duration) const
 }
 
 //
-// CUTS_Cached_Activation_Record
+// entries
 //
 CUTS_INLINE
-CUTS_Cached_Activation_Record::CUTS_Cached_Activation_Record (void)
-: next_ (0)
+CUTS_Activation_Record_Entry_Log & CUTS_Activation_Record::entries (void)
 {
-
+  return this->entries_;
 }
 
 //
-// CUTS_Cached_Activation_Record
+// entries
 //
 CUTS_INLINE
-CUTS_Cached_Activation_Record::~CUTS_Cached_Activation_Record (void)
+const CUTS_Activation_Record_Entry_Log &
+CUTS_Activation_Record::entries (void) const
 {
-
+  return this->entries_;
 }
-
-//
-// get_next
-//
-CUTS_INLINE
-CUTS_Cached_Activation_Record *
-CUTS_Cached_Activation_Record::get_next (void)
-{
-  return this->next_;
-}
-
-//
-// get_next
-//
-CUTS_INLINE
-void CUTS_Cached_Activation_Record::
-set_next (CUTS_Cached_Activation_Record * next)
-{
-  this->next_ = next;
-}
-

@@ -94,43 +94,37 @@ init_realtime (CORBA::ORB_ptr orb, PortableServer::POA_ptr poa)
 // register_i
 //
 long CUTS_CCM_CoWorkEr_Proxy::
-register_i (CUTS::Testing_Service_ptr ts,
-            CUTS::Component_Registration & reg)
+register_i (CUTS::Testing_Service_ptr ts, CUTS::Component_Registration & reg)
 {
   int regid = CUTS_UNKNOWN_IMPL;
 
-  if (!::CORBA::is_nil (ts))
+  // Get the hostname and ip-address for this component.
+  char hostname[1024];
+  ACE_OS::hostname (hostname, sizeof (hostname));
+  ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
+
+  reg.host_info.ipaddr   = ::CORBA::string_dup (inet.get_host_addr ());
+  reg.host_info.hostname = ::CORBA::string_dup (inet.get_host_name ());
+
+  try
   {
-    // Get the hostname and ip-address for this component.
-    char hostname[1024];
-    ACE_OS::hostname (hostname, sizeof (hostname));
-    ACE_INET_Addr inet ((u_short)0, hostname, AF_ANY);
+    ACE_DEBUG ((LM_INFO,
+                "*** info (CoWorkEr): registering %s with the BDC\n",
+                reg.name.in ()));
 
-    reg.host_info.ipaddr   = ::CORBA::string_dup (inet.get_host_addr ());
-    reg.host_info.hostname = ::CORBA::string_dup (inet.get_host_name ());
-
-    try
-    {
-      regid = ts->register_component (reg);
-    }
-    catch (const CUTS::Registration_Failed &)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - component registration failed for %s\n",
-                  reg.name.in ()));
-    }
-    catch (const CUTS::Registration_Limit &)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "[%M] -%T - component registation limit reached; failed to "
-                  "register %s\n",
-                  reg.name.in ()));
-    }
+    regid = ts->register_component (reg);
   }
-  else
+  catch (const CUTS::Registration_Failed &)
   {
-    ACE_DEBUG ((LM_ERROR,
-                "[%M] -%T - %s is not connected to the BDC\n",
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - component registration failed for %s\n",
+                reg.name.in ()));
+  }
+  catch (const CUTS::Registration_Limit &)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "[%M] -%T - component registation limit reached; failed to "
+                "register %s\n",
                 reg.name.in ()));
   }
 
