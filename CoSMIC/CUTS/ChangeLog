@@ -1,3 +1,36 @@
+Wed May 23 03:54:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Auto_Functor_T.h:
+        * cuts/Auto_Functor_T.inl:
+        * cuts/Auto_Functor_T.cpp:
+
+          Reimplemented the auto functor class so that it is only
+          parameterizable by the object type. The second argument in
+          the constructor is the method to invoke before the object is
+          destroyed.
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.mpc:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          - The CUTS_DB_Registry is no longer a base class, but a contained
+            class.
+          - Removed most of the dependency on ODBC.
+
+        * cuts/svcs/dbase/DB_Registry.h:
+        * cuts/svcs/dbase/DB_Registry.inl:
+        * cuts/svcs/dbase/DB_Registry.cpp:
+        * cuts/svcs/dbase/DB_export.h:
+
+          Reimplmented the database registry class so that it's not
+          dependent on the ODBC data type.
+
+        * cuts/utils/DB_Query.h:
+        * cuts/utils/DB_Query.cpp:
+
+          Implemented a destroy () method, which is to be used when the
+          query is created via the connection.
+
 Wed May 23 00:30:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/svcs/dbase/DB_Registry.h:

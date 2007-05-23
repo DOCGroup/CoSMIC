@@ -8,6 +8,7 @@
 #define CUTS_DB_EXPORT_H
 
 #include "ace/config-all.h"
+#include "cuts/config.h"
 
 #if defined (ACE_AS_STATIC_LIBS) && !defined (CUTS_DB_HAS_DLL)
 #  define CUTS_DB_HAS_DLL 0

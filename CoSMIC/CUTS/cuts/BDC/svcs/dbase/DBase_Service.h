@@ -19,6 +19,7 @@
 #include "ace/RW_Thread_Mutex.h"
 #include <map>
 
+class ODBC_Query;
 
 //=============================================================================
 /**
@@ -31,9 +32,7 @@
  */
 //=============================================================================
 
-class CUTS_Database_Service :
-  public CUTS_BDC_Service,
-  public CUTS_DB_Registry
+class CUTS_Database_Service : public CUTS_BDC_Service
 {
 public:
   /// Constructor.
@@ -83,15 +82,21 @@ public:
    */
   long current_test (void) const;
 
-
 private:
-  typedef std::map <long,
-                    long> ID_Map;
+  typedef std::map <long, long> ID_Map;
 
   // Helper method to parse the command-line arguments.
   int parse_args (int argc, ACE_TCHAR * argv []);
 
   ODBC_Query * create_new_query (void);
+
+  /**
+   * Set the test uuid for the current test.
+   *
+   * @retval      true      Successfully set the test uuid.
+   * @retval      false     Failed to set the test uuid.
+   */
+  bool set_test_uuid (void);
 
   /**
    * Stop the current test. This version of the method does
@@ -125,6 +130,12 @@ private:
 
   /// The current test number.
   long test_number_;
+
+  /// The connection for the database service.
+  ACE_Auto_Ptr <CUTS_DB_Connection> conn_;
+
+  /// The registry part of the database.
+  CUTS_DB_Registry registry_;
 };
 
 #if defined (__CUTS_INLINE__)

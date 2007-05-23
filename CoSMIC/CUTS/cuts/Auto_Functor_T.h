@@ -9,34 +9,22 @@
 #ifndef _CUTS_AUTO_FUNCTOR_T_H_
 #define _CUTS_AUTO_FUNCTOR_T_H_
 
-template <typename TYPE, typename METHOD>
+template <typename T>
 class CUTS_Auto_Functor_T
 {
 public:
   /// Type definition for the pointer type.
-  typedef TYPE _type;
+  typedef T _type;
 
   /**
    * Initializing constructor.
    *
    * @param[in]     ptr     Pointer to the object to manage.
    */
-  explicit CUTS_Auto_Functor_T (TYPE * ptr,
-                                METHOD method);
-
-  /**
-   * Copy constructor.
-   */
-  CUTS_Auto_Functor_T (const CUTS_Auto_Functor_T &);
+  CUTS_Auto_Functor_T (T * ptr, void (T::*method) (void));
 
   /// Destructor.
   ~CUTS_Auto_Functor_T (void);
-
-  /**
-   * Assignment operation.
-   */
-  const CUTS_Auto_Functor_T & operator = (const CUTS_Auto_Functor_T & rhs);
-
 
   /**
    * Detach from the current object. This will prevent the contained
@@ -45,7 +33,7 @@ public:
    *
    * @return      Pointer to the contained object.
    */
-  TYPE * detach (void);
+  T * detach (void);
 
   /**
    * Force the object to manager a new element. This will cause
@@ -55,22 +43,22 @@ public:
    *
    * @param[in]     ptr     Pointer to the new element.
    */
-  void reset (TYPE * ptr = 0);
+  void reset (T * ptr = 0);
 
   /**
    * Get an unmanaged pointer to the element.
    *
    * @return    Pointer to the element.
    */
-  TYPE * get (void);
+  T * get (void);
 
   /**
    * Pointer operator. This allows clients to use this class
-   * as if it was a \a TYPE pointer itself.
+   * as if it was a \a T pointer itself.
    *
    * @return    Pointer to the element.
    */
-  TYPE * operator -> (void);
+  T * operator -> (void);
 
   /**
    * Deference operator. This method returns a reference to the
@@ -79,14 +67,14 @@ public:
    *
    * @return      Reference to the element.
    */
-  TYPE & operator * (void);
+  T & operator * (void);
 
 private:
   /// Pointer to the element.
-  TYPE * ptr_;
+  T * ptr_;
 
   /// The method to invoke on \a ptr_ when reset.
-  METHOD method_;
+  void (T::*method_) (void);
 };
 
 #if defined (__CUTS_INLINE__)

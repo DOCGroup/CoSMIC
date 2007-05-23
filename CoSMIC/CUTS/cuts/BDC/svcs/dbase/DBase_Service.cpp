@@ -6,6 +6,7 @@
 #include "DBase_Service.inl"
 #endif
 
+#include "cuts/Auto_Functor_T.h"
 #include "cuts/Component_Info.h"
 #include "cuts/System_Metric.h"
 #include "cuts/Component_Info.h"
@@ -17,9 +18,9 @@
 #include "cuts/Testing_Service.h"
 #include "cuts/BDC/BDC_Service_Manager.h"
 #include "cuts/utils/ODBC/ODBC_Connection.h"
-#include "cuts/utils/ODBC/ODBC_Query.h"
-#include "cuts/utils/ODBC/ODBC_Record.h"
-#include "cuts/utils/ODBC/ODBC_Parameter.h"
+#include "cuts/utils/DB_Query.h"
+#include "cuts/utils/DB_Record.h"
+#include "cuts/utils/DB_Parameter.h"
 #include "cuts/utils/ODBC/ODBC_Types.h"
 
 #include "ace/Guard_T.h"
@@ -59,7 +60,9 @@ CUTS_Database_Service::CUTS_Database_Service (void)
   verbose_ (false),
   test_number_ (-1)
 {
-
+  CUTS_DB_Connection * conn = 0;
+  ACE_NEW (conn, ODBC_Connection ());
+  this->conn_.reset (conn);
 }
 
 //
@@ -78,16 +81,20 @@ int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
   if (this->parse_args (argc, argv) != 0)
     return -1;
 
-  int is_connected = this->connect (this->username_.c_str (),
-                                    this->password_.c_str (),
-                                    this->server_.c_str (),
-                                    this->port_);
-  if (is_connected)
+  this->conn_->connect (this->username_.c_str (),
+                        this->password_.c_str (),
+                        this->server_.c_str (),
+                        this->port_);
+
+  if (this->conn_->is_connected ())
   {
     VERBOSE_MESSAGE ((LM_INFO,
                       "*** info [archive]: successfully connected to "
                       "database on %s\n",
                       this->server_.c_str ()));
+
+    this->registry_.attach (this->conn_.get ());
+    return true;
   }
   else
   {
@@ -99,9 +106,8 @@ int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
                 this->password_.c_str (),
                 this->port_));
 
+    return false;
   }
-
-  return is_connected ? 0 : -1;
 }
 
 //
@@ -109,8 +115,12 @@ int CUTS_Database_Service::init (int argc, ACE_TCHAR * argv [])
 //
 int CUTS_Database_Service::fini (void)
 {
+  // Remove the connection from the registry.
+  this->registry_.detach ();
+
   // Disconnect from the database.
-  this->disconnect ();
+  this->conn_->disconnect ();
+
   return 0;
 }
 
@@ -191,10 +201,8 @@ bool CUTS_Database_Service::create_new_test (void)
                        false);
   }
 
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -202,11 +210,9 @@ bool CUTS_Database_Service::create_new_test (void)
     const char * str_stmt =
       "INSERT INTO tests (start_time, status) VALUES (NOW(), 'active')";
 
-    // Execute the statement and retrieve the test id, which is
-    // the <last_insert_id ()> for the query.
+    // Execute the statement and get the last inserted id.
     query->execute_no_record (str_stmt);
     this->test_number_ = query->last_insert_id ();
-
     return true;
   }
   catch (const CUTS_DB_Exception & ex)
@@ -247,10 +253,8 @@ bool CUTS_Database_Service::stop_current_test_i (void)
   if (this->test_number_ == 0)
     return true;
 
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), CUTS_DB_Query::destroy);
 
   try
   {
@@ -292,10 +296,9 @@ int CUTS_Database_Service::
 handle_metrics (const CUTS_System_Metric & metrics)
 {
   ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
 
-  if (query.get () == 0)
-    return 0;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   long best_time,
        worse_time,
@@ -314,6 +317,7 @@ handle_metrics (const CUTS_System_Metric & metrics)
     // Convert the <timestamp> to a known type.
     ACE_Time_Value timestamp = metrics.get_timestamp ();
     ACE_Date_Time ct (timestamp);
+
     ODBC_Date_Time datetime (ct);
 
     // Prepare the statement and bind all the parameters.
@@ -458,9 +462,9 @@ handle_component (const CUTS_Component_Info & info)
   {
     long inst_id = -1;
 
-    if (this->register_component (info.inst_.c_str (),
-                                  info.type_->name_.c_str (),
-                                  &inst_id))
+    if (this->registry_.register_instance (info.inst_.c_str (),
+                                           info.type_->name_.c_str (),
+                                           &inst_id))
     {
       VERBOSE_MESSAGE ((LM_INFO,
                         "*** info [archive]: successfully registered "
@@ -492,10 +496,46 @@ int CUTS_Database_Service::handle_activate (void)
   if (!this->create_new_test ())
     return -1;
 
-  // Associate that test with the UUID of the service manager.
-  bool retval = this->set_test_uuid (this->test_number_,
-                                     this->svc_mgr ()->get_uuid ().c_str ());
+  return this->set_test_uuid () ? 0 : -1;
+}
 
-  return retval ? 0 : -1;
+//
+// set_test_uuid_i
+//
+bool CUTS_Database_Service::set_test_uuid (void)
+{
+  // Associate that test with the UUID of the service manager.
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+  try
+  {
+    // Prepare a SQL query for execution.
+    const char * query_stmt =
+      "UPDATE tests SET test_uuid = ? WHERE test_number = ?";
+
+    char * uuid = const_cast <char *> (this->svc_mgr ()->get_uuid ().c_str ());
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (uuid, 0);
+    query->parameter (1)->bind (&this->test_number_);
+
+    // Execute the query.
+    query->execute_no_record ();
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_test_uuid): %s\n",
+                ex.message ().c_str ()));
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_test_uuid): caught unknown exception\n"));
+  }
+
+  return false;
 }
 

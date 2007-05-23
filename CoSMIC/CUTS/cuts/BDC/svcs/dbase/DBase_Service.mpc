@@ -1,7 +1,7 @@
 // $Id$
 
-project (CUTS_Database_Service) : cuts_bdcsvc, cuts_dbsvc {
-  sharedname   = CUTS_Database_Service
+project (CUTS_BDC_DB) : cuts_bdcsvc, cuts_dbsvc {
+  sharedname   = CUTS_BDC_DB
   dynamicflags = DBASE_SVC_BUILD_DLL
 
   Source_Files {

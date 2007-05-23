@@ -11,6 +11,7 @@
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
 #include "cuts/utils/ODBC/ODBC_Types.h"
+#include "cuts/Auto_Functor_T.h"
 #include "ace/Log_Msg.h"
 
 #define MAX_VARCHAR_LENGTH 256
@@ -20,12 +21,7 @@
 //
 CUTS_DB_Registry::CUTS_DB_Registry (void)
 {
-  // Right now we are binding directly to ODBC. In the future we would
-  // like to ask the <CUTS_DB_Manager> for a connection object.
-  ODBC_Connection * conn = 0;
-  ACE_NEW (conn, ODBC_Connection ());
 
-  this->conn_.reset (conn);
 }
 
 //
@@ -33,71 +29,14 @@ CUTS_DB_Registry::CUTS_DB_Registry (void)
 //
 CUTS_DB_Registry::~CUTS_DB_Registry (void)
 {
-  this->disconnect ();
+
 }
 
 //
-// connect
-//
-bool CUTS_DB_Registry::connect (const char * username,
-                               const char * password,
-                               const char * server,
-                               long port)
-{
-  // Remove the existing connection.
-  this->disconnect ();
-
-  try
-  {
-    // Establish a new connection.
-    this->conn_->connect (username, password, server, port);
-    return this->conn_->is_connected ();
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (connect): %s\n",
-                ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (connect): caught unknown exception\n"));
-  }
-
-  return false;
-}
-
-//
-// disconnect
-//
-void CUTS_DB_Registry::disconnect (void)
-{
-  try
-  {
-    if (this->conn_->is_connected ())
-      this->conn_->disconnect ();
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (disconnect): %s\n",
-                ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (disconnect): caught unknown exception\n"));
-  }
-}
-
-//
-// register_component
+// register_instance
 //
 bool CUTS_DB_Registry::
-register_component (const char * inst,
-                    const char * type,
-                    long * instid)
+register_instance (const char * inst, const char * type, long * instid)
 {
   // Get the <type_id> for the component. We do not care if the
   // operation succeeds or fails.
@@ -111,9 +50,8 @@ register_component (const char * inst,
                        false);
   }
 
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -200,9 +138,8 @@ bool CUTS_DB_Registry::register_host (const char * ipaddr,
   if (this->get_hostid_by_ipaddr (ipaddr, hostid))
     return true;
 
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -216,7 +153,7 @@ bool CUTS_DB_Registry::register_host (const char * ipaddr,
     // prepared statement.
     query->parameter (0)->bind (const_cast <char *> (ipaddr), 0);
     query->parameter (1)->bind (const_cast <char *> (hostname), 0);
-    query->execute ();
+    query->execute_no_record ();
 
     if (hostid != 0)
       *hostid = query->last_insert_id ();
@@ -244,9 +181,8 @@ bool CUTS_DB_Registry::register_host (const char * ipaddr,
 bool CUTS_DB_Registry::
 get_hostid_by_ipaddr (const char * ipaddr, long * hostid)
 {
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -295,9 +231,8 @@ get_hostid_by_ipaddr (const char * ipaddr, long * hostid)
 bool CUTS_DB_Registry::
 get_hostid_by_hostname (const char * hostname, long * hostid)
 {
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -345,10 +280,8 @@ get_hostid_by_hostname (const char * hostname, long * hostid)
 bool CUTS_DB_Registry::
 get_instance_id (const char * inst, long * instid)
 {
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
@@ -388,38 +321,20 @@ get_instance_id (const char * inst, long * instid)
 }
 
 //
-// create_query
+// get_component_typeid
 //
-ODBC_Query * CUTS_DB_Registry::create_query (void)
+bool CUTS_DB_Registry::
+get_component_typeid (const char * type, long * type_id, bool auto_register)
 {
-  if (!this->conn_->is_connected ())
-  {
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       "*** error (create_query): "
-                       "no database connection exist\n"),
-                       0);
-  }
-
-  return this->conn_->create_odbc_query ();
-}
-
-//
-// get_component_type_id
-//
-bool CUTS_DB_Registry::get_component_typeid (const char * type,
-                                            long * type_id,
-                                            bool auto_register)
-{
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-
-  if (query.get () == 0)
-    return false;
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {
     // Prepare a SQL query for execution.
-    const char * query_stmt =
-      "SELECT typeid FROM component_types WHERE typename = ?";
+    const char * query_stmt
+      = "SELECT typeid FROM component_types WHERE typename = ?";
+
     query->prepare (query_stmt);
     query->parameter (0)->bind (const_cast <char *> (type), 0);
 
@@ -466,43 +381,3 @@ bool CUTS_DB_Registry::get_component_typeid (const char * type,
 
   return false;
 }
-
-//
-// set_test_uuid
-//
-bool CUTS_DB_Registry::set_test_uuid (long test, const char * uuid)
-{
-  ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
-
-  if (query.get () == 0)
-    return false;
-
-  try
-  {
-    // Prepare a SQL query for execution.
-    const char * query_stmt =
-      "UPDATE tests SET test_uuid = ? WHERE test_number = ?";
-
-    query->prepare (query_stmt);
-    query->parameter (0)->bind (const_cast <char *> (uuid), 0);
-    query->parameter (1)->bind (&test);
-
-    // Execute the query.
-    query->execute_no_record ();
-    return true;
-  }
-  catch (CUTS_DB_Exception & ex)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (set_test_uuid): %s\n",
-                ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (set_test_uuid): caught unknown exception\n"));
-  }
-
-  return false;
-}
-

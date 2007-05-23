@@ -46,6 +46,10 @@ public:
   virtual void prepare (const char * query)
     ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
 
+  /// Destroy the query. The queury is no longer usable after
+  /// this method returns.
+  virtual void destroy (void);
+
   /**
    * Directly execute a database query.
    *

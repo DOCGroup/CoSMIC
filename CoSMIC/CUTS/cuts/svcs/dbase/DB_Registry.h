@@ -17,10 +17,7 @@
 #include "ace/Auto_Ptr.h"
 
 // Forward decl.
-class ODBC_Connection;
-
-// Forward decl.
-class ODBC_Query;
+class CUTS_DB_Connection;
 
 //=============================================================================
 /**
@@ -43,25 +40,23 @@ public:
   ~CUTS_DB_Registry (void);
 
   /**
-   * Connect to the database. This will establish a connection to the
-   * database located on \a server. The connection will be autheticated
-   * by \a username and \a password. If there is an existing connection,
-   * it will be closed before trying to establish the new connection.
+   * Attach the database registry to an existing connection. This
+   * is really the only way to use this object.
    *
-   * @param[in]     username      Username for login
-   * @param[in]     password      Password for login
-   * @param[in]     server        Server hosting the database.
-   * @param[in]     port          Port to use for connecting.
-   * @retval        true          Connection succeeded.
-   * @retval        false         Connection failed.
+   * @param[in]       conn        The target connection.
    */
-  bool connect (const char * username,
-                const char * password,
-                const char * server,
-                long port);
+  void attach (CUTS_DB_Connection * conn);
 
-  /// Disconnect from the database service.
-  void disconnect (void);
+  /// Detach the registry from the current database connection.
+  void detach (void);
+
+  /**
+   * Determine if the database object is has a connection.
+   *
+   * @retval          true        Has a connection.
+   * @retval          false       Does not have a connection.
+   */
+  bool is_attached (void) const;
 
   /**
    * Register a new component. This will add the component information
@@ -79,9 +74,22 @@ public:
    * @todo Add an overwrite flag to prevent existing data from being
    *       replaced by \a inst and \a type.
    */
-  bool register_component (const char * inst,
-                           const char * type,
-                           long * instid = 0);
+  bool register_instance (const char * inst,
+                          const char * type,
+                          long * instid = 0);
+
+  /**
+   * Get the instance id of a component instance. The client does
+   * not have to store the instance id. If this is the case, then
+   * this method can be used to test for an instance id. The client
+   * also has the option of registering the id it is not found.
+   *
+   * @param[in]       inst        Unique instance name of the component.
+   * @param[out]      instid      Registered id for \a inst.
+   * @retval          true        Successfully retrieved id.
+   * @retval          false       Failed to retrieve id.
+   */
+  bool get_instance_id (const char * inst, long * instid = 0);
 
   /**
    * Get the typeid of the component. The typeid is the one
@@ -98,20 +106,6 @@ public:
   bool get_component_typeid (const char * type,
                              long * type_id = 0,
                              bool auto_register = true);
-
-  /**
-   * Get the instance id of a component instance. The client does
-   * not have to store the instance id. If this is the case, then
-   * this method can be used to test for an instance id. The client
-   * also has the option of registering the id it is not found.
-   *
-   * @param[in]       inst        Unique instance name of the component.
-   * @param[out]      instid      Registered id for \a inst.
-   * @retval          true        Successfully retrieved id.
-   * @retval          false       Failed to retrieve id.
-   */
-  bool get_instance_id (const char * inst,
-                        long * instid = 0);
 
   /**
    * Register an IP-address and hostname w/ the database. If
@@ -147,24 +141,11 @@ public:
    * @retval        true        The operation succeeded.
    * @retval        false       The operation failed.
    */
-  bool get_hostid_by_hostname (const char * hostname,
-                               long * hostid);
-
-  /**
-   * Set the UUID for the current test.
-   *
-   * @param[in]     test        The target test number.
-   * @param[in]     uuid        The UUID for the test.
-   * @retval        true        Succeeded to set the UUID.
-   * @retval        false       Failed to set the UUID.
-   */
-  bool set_test_uuid (long test, const char * uuid);
+  bool get_hostid_by_hostname (const char * hostname, long * hostid);
 
 protected:
-  ODBC_Query * create_query (void);
-
-  /// Database connection.
-  ACE_Auto_Ptr <ODBC_Connection> conn_;
+  /// Pointer the connection for the registry.
+  CUTS_DB_Connection * conn_;
 };
 
 #if defined (__CUTS_INLINE__)
