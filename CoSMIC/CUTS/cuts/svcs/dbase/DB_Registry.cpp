@@ -1,6 +1,11 @@
 // $Id$
 
-#include "DB_Service.h"
+#include "DB_Registry.h"
+
+#if !defined (__CUTS_INLINE__)
+#include "DB_Registry.inl"
+#endif
+
 #include "cuts/utils/ODBC/ODBC_Connection.h"
 #include "cuts/utils/ODBC/ODBC_Query.h"
 #include "cuts/utils/ODBC/ODBC_Record.h"
@@ -9,10 +14,6 @@
 #include "ace/Log_Msg.h"
 
 #define MAX_VARCHAR_LENGTH 256
-
-#if !defined (__CUTS_INLINE__)
-#include "DB_Service.inl"
-#endif
 
 //
 // CUTS_DB_Service

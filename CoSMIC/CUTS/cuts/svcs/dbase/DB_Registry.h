@@ -13,7 +13,7 @@
 #ifndef _CUTS_DB_SERVICE_H_
 #define _CUTS_DB_SERVICE_H_
 
-#include "DB_Service_export.h"
+#include "DB_export.h"
 #include "ace/Auto_Ptr.h"
 
 // Forward decl.
@@ -33,7 +33,7 @@ class ODBC_Query;
  */
 //=============================================================================
 
-class CUTS_DB_SERVICE_Export CUTS_DB_Service
+class CUTS_DB_Export CUTS_DB_Service
 {
 public:
   /// Constructor.
@@ -168,7 +168,7 @@ protected:
 };
 
 #if defined (__CUTS_INLINE__)
-#include "DB_Service.inl"
+#include "DB_Registry.inl"
 #endif
 
 #endif  // !defined _CUTS_DB_SERVICE_H_

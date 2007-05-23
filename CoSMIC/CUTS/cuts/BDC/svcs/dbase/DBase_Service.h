@@ -15,7 +15,7 @@
 
 #include "DBase_Service_export.h"
 #include "cuts/BDC/BDC_Service.h"
-#include "cuts/svcs/dbase/DB_Service.h"
+#include "cuts/svcs/dbase/DB_Registry.h"
 #include "ace/RW_Thread_Mutex.h"
 #include <map>
 

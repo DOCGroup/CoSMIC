@@ -1,0 +1,17 @@
+// $Id$
+
+project (CUTS_DB) : cutslib, odbc {
+  sharedname  += CUTS_DB
+  dynamicflags = CUTS_DB_BUILD_DLL
+
+  libs  += CUTS_ODBC_DBase CUTS_Utils_DBase
+  after += CUTS_ODBC_DBase CUTS_Utils_DBase
+
+  Source_Files {
+    DB_Registry.cpp
+  }
+
+  Header_Files {
+    DB_export.h
+  }
+}

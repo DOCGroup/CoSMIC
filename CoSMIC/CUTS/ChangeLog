@@ -1,3 +1,25 @@
+Wed May 23 00:02:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/svcs/dbase/DB_Registry.h:
+        * cuts/svcs/dbase/DB_Registry.inl:
+        * cuts/svcs/dbase/DB_Registry.cpp:
+        * cuts/svcs/dbase/DB_export.h:
+
+          Rename of the files below.
+
+        * cuts/svcs/dbase/DB_Registry.mpc:
+
+          Changed the name of the project.
+
+        * cuts/svcs/dbase/DB_Service.h:
+        * cuts/svcs/dbase/DB_Service.inl:
+        * cuts/svcs/dbase/DB_Service.cpp:
+        * cuts/svcs/dbase/DB_Service.mpc:
+        * cuts/svcs/dbase/DB_Service_export.h:
+
+          Removed these files.
+
 Tue May 22 21:29:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp (write_WorkerAction_begin):
