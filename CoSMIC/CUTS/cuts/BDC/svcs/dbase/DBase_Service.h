@@ -33,7 +33,7 @@
 
 class CUTS_Database_Service :
   public CUTS_BDC_Service,
-  public CUTS_DB_Service
+  public CUTS_DB_Registry
 {
 public:
   /// Constructor.

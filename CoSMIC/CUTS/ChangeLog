@@ -1,3 +1,16 @@
+Wed May 23 00:30:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/svcs/dbase/DB_Registry.h:
+        * cuts/svcs/dbase/DB_Registry.cpp:
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+
+          Change the CUTS_DB_Service class to CUTS_DB_Registry.
+
+        * etc/config/cuts_dbsvc.mpb:
+
+          Updated the 'after' and 'libs' values to the new name
+          of the CUTS_DB project.
+
 Wed May 23 00:02:44 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.h:

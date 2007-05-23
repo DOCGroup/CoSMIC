@@ -24,7 +24,7 @@ class ODBC_Query;
 
 //=============================================================================
 /**
- * @class CUTS_DB_Service
+ * @class CUTS_DB_Registry
  *
  * Implements the common database operations that can be used by any
  * object. The main purpose of this class is to provide resuability
@@ -33,14 +33,14 @@ class ODBC_Query;
  */
 //=============================================================================
 
-class CUTS_DB_Export CUTS_DB_Service
+class CUTS_DB_Export CUTS_DB_Registry
 {
 public:
   /// Constructor.
-  CUTS_DB_Service (void);
+  CUTS_DB_Registry (void);
 
   /// Destructor.
-  ~CUTS_DB_Service (void);
+  ~CUTS_DB_Registry (void);
 
   /**
    * Connect to the database. This will establish a connection to the

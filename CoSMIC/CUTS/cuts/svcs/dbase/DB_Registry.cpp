@@ -16,9 +16,9 @@
 #define MAX_VARCHAR_LENGTH 256
 
 //
-// CUTS_DB_Service
+// CUTS_DB_Registry
 //
-CUTS_DB_Service::CUTS_DB_Service (void)
+CUTS_DB_Registry::CUTS_DB_Registry (void)
 {
   // Right now we are binding directly to ODBC. In the future we would
   // like to ask the <CUTS_DB_Manager> for a connection object.
@@ -29,9 +29,9 @@ CUTS_DB_Service::CUTS_DB_Service (void)
 }
 
 //
-// ~CUTS_DB_Service
+// ~CUTS_DB_Registry
 //
-CUTS_DB_Service::~CUTS_DB_Service (void)
+CUTS_DB_Registry::~CUTS_DB_Registry (void)
 {
   this->disconnect ();
 }
@@ -39,7 +39,7 @@ CUTS_DB_Service::~CUTS_DB_Service (void)
 //
 // connect
 //
-bool CUTS_DB_Service::connect (const char * username,
+bool CUTS_DB_Registry::connect (const char * username,
                                const char * password,
                                const char * server,
                                long port)
@@ -71,7 +71,7 @@ bool CUTS_DB_Service::connect (const char * username,
 //
 // disconnect
 //
-void CUTS_DB_Service::disconnect (void)
+void CUTS_DB_Registry::disconnect (void)
 {
   try
   {
@@ -94,7 +94,7 @@ void CUTS_DB_Service::disconnect (void)
 //
 // register_component
 //
-bool CUTS_DB_Service::
+bool CUTS_DB_Registry::
 register_component (const char * inst,
                     const char * type,
                     long * instid)
@@ -189,7 +189,7 @@ register_component (const char * inst,
 //
 // register_host
 //
-bool CUTS_DB_Service::register_host (const char * ipaddr,
+bool CUTS_DB_Registry::register_host (const char * ipaddr,
                                      const char * hostname,
                                      long * hostid)
 {
@@ -241,7 +241,7 @@ bool CUTS_DB_Service::register_host (const char * ipaddr,
 //
 // get_hostid_by_ipaddr
 //
-bool CUTS_DB_Service::
+bool CUTS_DB_Registry::
 get_hostid_by_ipaddr (const char * ipaddr, long * hostid)
 {
   ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
@@ -292,7 +292,7 @@ get_hostid_by_ipaddr (const char * ipaddr, long * hostid)
 //
 // get_hostid_by_hostname
 //
-bool CUTS_DB_Service::
+bool CUTS_DB_Registry::
 get_hostid_by_hostname (const char * hostname, long * hostid)
 {
   ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
@@ -342,7 +342,7 @@ get_hostid_by_hostname (const char * hostname, long * hostid)
 //
 // get_instance_id
 //
-bool CUTS_DB_Service::
+bool CUTS_DB_Registry::
 get_instance_id (const char * inst, long * instid)
 {
   ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
@@ -390,7 +390,7 @@ get_instance_id (const char * inst, long * instid)
 //
 // create_query
 //
-ODBC_Query * CUTS_DB_Service::create_query (void)
+ODBC_Query * CUTS_DB_Registry::create_query (void)
 {
   if (!this->conn_->is_connected ())
   {
@@ -406,7 +406,7 @@ ODBC_Query * CUTS_DB_Service::create_query (void)
 //
 // get_component_type_id
 //
-bool CUTS_DB_Service::get_component_typeid (const char * type,
+bool CUTS_DB_Registry::get_component_typeid (const char * type,
                                             long * type_id,
                                             bool auto_register)
 {
@@ -470,7 +470,7 @@ bool CUTS_DB_Service::get_component_typeid (const char * type,
 //
 // set_test_uuid
 //
-bool CUTS_DB_Service::set_test_uuid (long test, const char * uuid)
+bool CUTS_DB_Registry::set_test_uuid (long test, const char * uuid)
 {
   ACE_Auto_Ptr <ODBC_Query> query (this->create_query ());
 
