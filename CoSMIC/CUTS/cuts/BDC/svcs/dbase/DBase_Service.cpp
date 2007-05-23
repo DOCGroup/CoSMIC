@@ -462,9 +462,7 @@ handle_component (const CUTS_Component_Info & info)
   {
     long inst_id = -1;
 
-    if (this->registry_.register_instance (info.inst_.c_str (),
-                                           info.type_->name_.c_str (),
-                                           &inst_id))
+    if (this->registry_.register_component (info, &inst_id))
     {
       VERBOSE_MESSAGE ((LM_INFO,
                         "*** info [archive]: successfully registered "
@@ -473,8 +471,7 @@ handle_component (const CUTS_Component_Info & info)
 
       // Map the testing environment id to the database id for
       // the component. This will allow us to keep track of it.
-      this->id_map_.insert (
-        ID_Map::value_type (info.uid_, inst_id));
+      this->id_map_.insert (ID_Map::value_type (info.uid_, inst_id));
     }
     else
     {
@@ -538,4 +535,3 @@ bool CUTS_Database_Service::set_test_uuid (void)
 
   return false;
 }
-

@@ -39,8 +39,10 @@ CREATE TABLE IF NOT EXISTS tests
 
 CREATE TABLE IF NOT EXISTS component_types
 (
-  typeid          INT            NOT NULL auto_increment,
-  typename        VARCHAR(256)   NOT NULL,
+  typeid          INT              NOT NULL auto_increment,
+  typename        VARCHAR (255)    NOT NULL,
+  sinks           VARCHAR (255),
+  sources         VARCHAR (255),
 
   PRIMARY KEY (typeid),
   UNIQUE (typename)
@@ -48,6 +50,19 @@ CREATE TABLE IF NOT EXISTS component_types
 
 INSERT INTO component_types (typename)
   VALUES ('Unknown');
+
+--
+-- Create the table that contains the names of ports.
+--
+
+CREATE TABLE IF NOT EXISTS portnames
+(
+  portid          INT              NOT NULL auto_increment,
+  portname        VARCHAR (255),
+
+  PRIMARY KEY (portid),
+  UNIQUE (portname)
+);
 
 --
 -- This table contains the mapping of UUIDs their appropriate

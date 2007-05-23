@@ -14,10 +14,12 @@
 #define _CUTS_DB_SERVICE_H_
 
 #include "DB_export.h"
-#include "ace/Auto_Ptr.h"
 
 // Forward decl.
 class CUTS_DB_Connection;
+
+// Forward decl.
+struct CUTS_Component_Info;
 
 //=============================================================================
 /**
@@ -57,6 +59,15 @@ public:
    * @retval          false       Does not have a connection.
    */
   bool is_attached (void) const;
+
+  /**
+   * Register a component.
+   *
+   * @param[in]       info        The component info to register.
+   * @retval          true        Successfully register info.
+   * @retval          false       Failed to register info.
+   */
+  bool register_component (const CUTS_Component_Info & info, long * inst_id);
 
   /**
    * Register a new component. This will add the component information
@@ -142,6 +153,19 @@ public:
    * @retval        false       The operation failed.
    */
   bool get_hostid_by_hostname (const char * hostname, long * hostid);
+
+  /**
+   * Get the id of a port.
+   *
+   * @param[in]     portname    The name of the port.
+   * @param[out]    portid      The id of the port.
+   * @param[in]     autoreg     Register port if it does not exist.
+   */
+  bool get_port_id (const char * portname, long * portid, bool autoreg = true);
+
+  bool set_component_type_details (long type_id,
+                                   const char * sinks,
+                                   const char * sources);
 
 protected:
   /// Pointer the connection for the registry.

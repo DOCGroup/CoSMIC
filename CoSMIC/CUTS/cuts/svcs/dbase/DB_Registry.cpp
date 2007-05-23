@@ -6,13 +6,16 @@
 #include "DB_Registry.inl"
 #endif
 
+#include "cuts/Auto_Functor_T.h"
+#include "cuts/Component_Info.h"
+#include "cuts/Component_Type.h"
 #include "cuts/utils/ODBC/ODBC_Connection.h"
 #include "cuts/utils/ODBC/ODBC_Query.h"
 #include "cuts/utils/ODBC/ODBC_Record.h"
 #include "cuts/utils/ODBC/ODBC_Parameter.h"
 #include "cuts/utils/ODBC/ODBC_Types.h"
-#include "cuts/Auto_Functor_T.h"
 #include "ace/Log_Msg.h"
+#include <sstream>
 
 #define MAX_VARCHAR_LENGTH 256
 
@@ -127,14 +130,9 @@ register_instance (const char * inst, const char * type, long * instid)
 //
 // register_host
 //
-bool CUTS_DB_Registry::register_host (const char * ipaddr,
-                                     const char * hostname,
-                                     long * hostid)
+bool CUTS_DB_Registry::
+register_host (const char * ipaddr, const char * hostname, long * hostid)
 {
-  // Before we continue, we should check to see if the host has already
-  // been registered. This will prevent any exceptions from occuring
-  // because of duplicate data.
-
   if (this->get_hostid_by_ipaddr (ipaddr, hostid))
     return true;
 
@@ -223,7 +221,6 @@ get_hostid_by_ipaddr (const char * ipaddr, long * hostid)
   }
   return false;
 }
-
 
 //
 // get_hostid_by_hostname
@@ -377,6 +374,180 @@ get_component_typeid (const char * type, long * type_id, bool auto_register)
   {
     ACE_ERROR ((LM_ERROR,
                 "*** error (get_component_typeid): caught unknown exception\n"));
+  }
+
+  return false;
+}
+
+//
+// get_port_id
+//
+bool CUTS_DB_Registry::
+get_port_id (const char * portname, long * portid, bool autoreg)
+{
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+  try
+  {
+    // Prepare a SQL query for execution.
+    const char * query_stmt
+      = "SELECT portid FROM portnames WHERE portname = ?";
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (const_cast <char *> (portname), 0);
+
+    // Execute the query.
+    CUTS_DB_Record * record = query->execute ();
+
+    if (record->count () != 0)
+    {
+      if (portid != 0)
+      {
+        record->fetch ();
+        record->get_data (1, *portid);
+      }
+    }
+    else if (autoreg)
+    {
+      // Insert the <typename> into the database.
+      query_stmt = "INSERT INTO portnames (portname) VALUES (?)";
+      query->prepare (query_stmt);
+      query->execute_no_record ();
+
+      // Get the LAST_INSERT_ID () and store it in <type_id>.
+      if (portid != 0)
+        *portid = query->last_insert_id ();
+    }
+
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (get_component_typeid): %s\n",
+                ex.message ().c_str ()));
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (get_component_typeid): caught unknown exception\n"));
+  }
+
+  return false;
+}
+
+//
+// register_component
+//
+bool CUTS_DB_Registry::
+register_component (const CUTS_Component_Info & info, long * inst_id)
+{
+  // Try to register the instance with the database. There is no
+  // need to continue if we are not able to register the component.
+
+  if (this->register_instance (info.inst_.c_str (),
+                               info.type_->name_.c_str (),
+                               inst_id))
+  {
+    long portid;
+    std::ostringstream sinks;
+    std::ostringstream sources;
+
+    // Convert the sinks into a listing of comma seperated ids. We are
+    // using two for loops to guarantee the listing does not end in a
+    // comma.
+    CUTS_Port_Description_Map::CONST_ITERATOR sink_iter (info.type_->sinks_);
+
+    for ( ; !sink_iter.done (); sink_iter ++)
+    {
+      if (this->get_port_id (sink_iter->item ().c_str (), &portid, true))
+      {
+        sinks << portid;
+        sink_iter.advance ();
+
+        break;
+      }
+    }
+
+    for ( ; !sink_iter.done (); sink_iter ++)
+    {
+      if (this->get_port_id (sink_iter->item ().c_str (), &portid, true))
+        sinks << "," << portid;
+    }
+
+    // Convert the sources into a listing of comma seperated ids. We are
+    // using two for loops to guarantee the listing does not end in a
+    // comma.
+    CUTS_Port_Description_Map::CONST_ITERATOR source_iter (info.type_->sources_);
+
+    for ( ; !source_iter.done (); source_iter ++)
+    {
+      if (this->get_port_id (source_iter->item ().c_str (), &portid, true))
+      {
+        sources << portid;
+        source_iter.advance ();
+
+        break;
+      }
+    }
+
+    for ( ; !source_iter.done (); source_iter ++)
+    {
+      if (this->get_port_id (source_iter->item ().c_str (), &portid, true))
+        sources << "," << portid;
+    }
+
+    long type_id;
+
+    if (this->get_component_typeid (info.type_->name_.c_str (), &type_id))
+    {
+      this->set_component_type_details (type_id,
+                                        sinks.str ().c_str (),
+                                        sources.str ().c_str ());
+    }
+    return true;
+  }
+  else
+    return false;
+}
+
+//
+// set_component_type_details
+//
+bool CUTS_DB_Registry::
+set_component_type_details (long type_id,
+                            const char * sinks,
+                            const char * sources)
+{
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+  try
+  {
+    // Prepare a SQL query for execution.
+    const char * query_stmt =
+      "UPDATE component_types SET sinks = ?, sources = ? "
+      "WHERE typeid = ?";
+
+    query->prepare (query_stmt);
+    query->parameter (0)->bind (const_cast <char *> (sinks), 0);
+    query->parameter (1)->bind (const_cast <char *> (sources), 0);
+    query->parameter (2)->bind (&type_id);
+    query->execute_no_record ();
+
+    return true;
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_component_type_details): %s\n",
+                ex.message ().c_str ()));
+  }
+  catch (...)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (set_component_type_details): caught unknown exception\n"));
   }
 
   return false;
