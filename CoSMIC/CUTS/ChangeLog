@@ -1,3 +1,9 @@
+Wed May 23 04:17:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/IO/BDC_IO.h:
+
+          Removed an unncessary include file.
+
 Wed May 23 03:54:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Auto_Functor_T.h:
