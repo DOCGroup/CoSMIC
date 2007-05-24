@@ -1,3 +1,11 @@
+Thu May 24 04:32:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Critical_Path.aspx:
+        * utils/BMW/Critical_Path.aspx.cs:
+
+          - Updated the look and feel of the page.
+          - The critical path table is not cached anymore.
+
 Thu May 24 03:37:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Critical_Path.aspx:

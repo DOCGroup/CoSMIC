@@ -49,11 +49,8 @@
   </tr>
   <tr>
     <td colspan="2">
-      <asp:button runat="server"
-                  text="Create"
-                  id="create_path_"
-                  onclick="button_create_path"
-                  validationgroup="createpath" />
+      <asp:button runat="server" text="Create Critical Path" id="create_path_"
+                  onclick="CreateCritcalPath" validationgroup="createpath" />
       </td>
   </tr>
   </table>
@@ -83,16 +80,12 @@
                          itemstyle-width="100" />
 
         <asp:hyperlinkcolumn datanavigateurlfield="path_id"
+                             headertext="Edit"
                              datanavigateurlformatstring="Critical_Path.aspx?p={0}"
                              text='<img src="images/edit.gif" border="0" alt="edit path elements" />'
                              itemstyle-horizontalalign="center" />
       </columns>
     </asp:datagrid>
-    <div>&nbsp;</div>
-    <asp:button runat="server" id="save_paths_"
-                text="Save"
-                onclick="save_paths_onclick"
-                causesvalidation="false" />
   </td>
 </tr>
 </table>
