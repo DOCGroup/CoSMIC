@@ -8,7 +8,7 @@
              id="main_content_"
              contentplaceholderid="MainContent">
 
-<h2>Critical Paths / Paths of Interest</h2>
+<h2>Execution Paths</h2>
 
 <table width="100%" border="0">
 <tr valign="top">
@@ -91,77 +91,80 @@
 </table>
 <asp:label runat="server" id="message_" />
 
-<asp:panel runat="server" id="element_panel_">
-  <hr />
+<h2>Execution Path Components</h2>
+<table>
+<tr>
+  <td class="title">Next Index:</td>
+  <td><asp:textbox id="order_" runat="server" width="75" maxlength="11"></asp:textbox></td>
+</tr>
+<tr>
+  <td class="title">Instance:</td>
+  <td><asp:dropdownlist id="instance_" runat="server"
+                        datatextfield="component_name" datavaluefield="component_id"
+                        onselectedindexchanged="instance_OnSelectedIndexChanged"
+                        autopostback="true" /></td>
+</tr>
 
-  <h2>Critical Path Components</h2>
+<tr>
+  <td class="title">Source Port:</td>
+  <td>
+    <asp:dropdownlist  id="src_" runat="server"
+                      datavaluefield="portid" datatextfield="portname"
+                      width="200" />
+    <span class="title">Destination Port: </span>
+    <asp:dropdownlist id="dst_" runat="server"
+                      datavaluefield="portid" datatextfield="portname"
+                      width="200" />
+  </td>
+</tr>
 
-  <table>
-  <tr>
-    <td class="title">Next Index:</td>
-    <td><asp:textbox id="order_" runat="server" width="75" maxlength="11"></asp:textbox></td>
-  </tr>
-  <tr>
-    <td class="title">Instance:</td>
-    <td><asp:dropdownlist id="instance_" runat="server"
-                          datatextfield="component_name" datavaluefield="component_id"
-                          onselectedindexchanged="instance_OnSelectedIndexChanged"
-                          autopostback="true" /></td>
-  </tr>
+<tr>
+  <td colspan="2">
+    <asp:button id="button_PathElementInsert" onclick="PathElement_Insert"
+                runat="server" text="Insert Component" />
+  </td>
+</tr>
+</table>
 
-  <tr>
-    <td class="title">Source Port:</td>
-    <td>
-      <asp:dropdownlist  id="src_" runat="server"
-                        datavaluefield="portid" datatextfield="portname"
-                        width="200" />
-      <span class="title">Destination Port: </span>
-      <asp:dropdownlist id="dst_" runat="server"
-                        datavaluefield="portid" datatextfield="portname"
-                        width="200" />
-    </td>
-  </tr>
+<asp:datagrid id="path_elements_" runat="server"
+              datakeyfield="path_order" width="100%" pagesize="15"
+              allowpaging="true" autogeneratecolumns="false" showfooter="false"
+              borderstyle="solid" cellpadding="4" cellspacing="0"
+              onitemcreated="path_elements_OnItemCreated">
 
-  <tr>
-    <td colspan="2">
-      <asp:button id="button_PathElementInsert" onclick="PathElement_Insert"
-                  runat="server" text="Insert Component" />
-    </td>
-  </tr>
-  </table>
+  <headerstyle cssclass="header" />
+  <footerstyle cssclass="footer" />
+  <alternatingitemstyle cssclass="alternate-row" />
+  <pagerstyle mode="NumericPages" />
 
-  <asp:datagrid id="path_elements_" runat="server"
-                width="100%" pagesize="15" allowpaging="true"
-                autogeneratecolumns="false" showfooter="false"
-                borderstyle="solid" cellpadding="4" cellspacing="0"
-                onitemcreated="path_elements_OnItemCreated">
+  <columns>
+    <asp:boundcolumn datafield="path_order" headertext="Index"
+                     itemstyle-horizontalalign="Center" />
+    <asp:boundcolumn datafield="component_name" headertext="Instance Name" />
+    <asp:boundcolumn datafield="srcname" headertext="Source Port" />
+    <asp:boundcolumn datafield="dstname" headertext="Destination Port" />
 
-    <headerstyle cssclass="header" />
-    <footerstyle cssclass="footer" />
-    <alternatingitemstyle cssclass="alternate-row" />
-    <pagerstyle mode="NumericPages" />
+    <asp:templatecolumn>
+      <headertemplate>
+        <asp:checkbox runat="server" id="delete_"
+                      oncheckedchanged="ToggleDelete"
+                      causesvalidation="false" autopostback="true" />
+      </headertemplate>
+      <itemtemplate>
+        <asp:checkbox runat="server" id="delete_" />
+      </itemtemplate>
+    </asp:templatecolumn>
+  </columns>
+</asp:datagrid>
 
-    <columns>
-      <asp:boundcolumn datafield="path_order" headertext="Index"
-                       itemstyle-horizontalalign="Center" />
-      <asp:boundcolumn datafield="component_name" headertext="Instance Name" />
-      <asp:boundcolumn datafield="srcname" headertext="Source Port" />
-      <asp:boundcolumn datafield="dstname" headertext="Destination Port" />
-
-      <asp:templatecolumn headertext="Delete"
-                          itemstyle-horizontalalign="Center">
-        <itemtemplate>
-          <asp:imagebutton id="Imagebutton1" runat="server" imageurl="~/images/delete.gif"
-                           commandname="DeletePathElement"
-                           commandargument='<%# DataBinder.Eval (Container.DataItem, "path_order") %>'
-                           oncommand="OnCommand" />
-        </itemtemplate>
-      </asp:templatecolumn>
-    </columns>
-  </asp:datagrid>
-
+<p>
   <asp:linkbutton id="button_CommitPathElements" onclick="PathElement_Commit"
                   runat="server" text="Commit Changes" />
 
-</asp:panel>
+  <!-- controls at the bottom of page used for batch processing -->
+  <asp:linkbutton runat="server" id="button_DeletePathElements"
+                  onclick="PathElement_Delete"
+                  text="Delete Selected"
+                  causesvalidation="false" />
+</p>
 </asp:content>

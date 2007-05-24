@@ -72,15 +72,10 @@ namespace CUTS
             MySqlDataAdapter inst_adapter = Critical_Path.create_instance_adapter (conn);
             inst_adapter.Fill (ds, Critical_Path.INSTANCE_TABLE);
 
-            // Show the controls in the area.
-            this.element_panel_.Visible = true;
-
             // Update the view.
             UpdateView(ds);
             Session["dataset"] = ds;
           }
-          else
-            this.element_panel_.Visible = false;
         }
       }
       catch (MySqlException ex)
@@ -258,11 +253,6 @@ namespace CUTS
      */
     private void UpdateView (DataSet ds)
     {
-      // There is no need to update the view if the element panel
-      // is not visible to the naked eye. ;o)
-      if (!this.element_panel_.Visible)
-        return;
-
       // Bind the path elements table.
       if (ds.Tables.Contains (PATH_ELEMENTS_TABLE))
       {
@@ -358,20 +348,33 @@ namespace CUTS
       command.CommandText = "SELECT sinks, sources FROM component_types WHERE typeid = ?typeid";
       command.Parameters.Add("?typeid", typeid);
 
+      // Get all the ports for the component.
       DataSet ds = new DataSet();
       MySqlDataAdapter adapter = new MySqlDataAdapter(command);
       adapter.Fill(ds, "ports");
 
-      command.CommandText =
-        String.Format ("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
-                       ds.Tables["ports"].Rows[0]["sinks"]);
-      adapter.Fill(ds, "sinks");
+      // Get the port table.
+      DataTable ports = ds.Tables["ports"];
 
-      command.CommandText =
-        String.Format("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
-                       ds.Tables["ports"].Rows[0]["sources"]);
-      adapter.Fill(ds, "sources");
+      // Add all the sinks to the dataset.
+      if (ports.Rows[0]["sinks"] != DBNull.Value)
+      {
+        command.CommandText =
+          String.Format("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
+                        ds.Tables["ports"].Rows[0]["sinks"]);
+        adapter.Fill(ds, "sinks");
+      }
 
+      // Add all the sources to the dataset.
+      if (ports.Rows[0]["sources"] != DBNull.Value)
+      {
+        command.CommandText =
+          String.Format("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
+                         ds.Tables["ports"].Rows[0]["sources"]);
+        adapter.Fill(ds, "sources");
+      }
+
+      // Bind the different ports to their respective controls.
       this.src_.DataSource = ds.Tables["sinks"];
       this.src_.DataBind();
 
@@ -405,7 +408,73 @@ namespace CUTS
       }
     }
 
-    #region Web Form Designer generated code
+    /**
+     * Callback method for selecting all the test on the
+     * current page.
+     *
+     * @param[in]       e       Arguments for the event.
+     */
+    protected void ToggleDelete(object sender, System.EventArgs e)
+    {
+      // The sender of this event is a <CheckBox>
+      CheckBox check = (CheckBox)sender;
+
+      if (check != null)
+        this.toggle_action_i(check.Checked);
+    }
+
+    /**
+     * Helper method for toggling all the "action_" checkboxes
+     * on the current page.
+     *
+     * @param[in]     state         Enable state for the item.
+     */
+    private void toggle_action_i(bool state)
+    {
+      foreach (DataGridItem item in this.path_elements_.Items)
+      {
+        CheckBox action = (CheckBox)item.FindControl("delete_");
+
+        if (action != null)
+          action.Checked = state;
+      }
+    }
+
+    /**
+     * Callback method for clicking the "Delete All" link.
+     *
+     * @param[in]       sender        Sender of the event.
+     */
+    protected void PathElement_Delete(object sender, System.EventArgs e)
+    {
+      // Get the dataset for the path elements.
+      DataSet ds = (DataSet)Session["dataset"];
+
+      if (ds == null)
+        return;
+
+
+      foreach (DataGridItem item in this.path_elements_.Items)
+      {
+        // Locate the <action_> control since it's the checkbox
+        // that determines the action of the current test.
+        CheckBox action = (CheckBox)item.FindControl("delete_");
+
+        if (action != null && action.Checked)
+        {
+          object key = this.path_elements_.DataKeys[item.ItemIndex];
+          DataRow row = ds.Tables[PATH_ELEMENTS_TABLE].Rows.Find(key);
+
+          if (row != null)
+            row.Delete();
+        }
+      }
+
+      this.UpdateView(ds);
+      Session["dataset"] = ds;
+    }
+
+#region Web Form Designer generated code
     override protected void OnInit(EventArgs e)
     {
       InitializeComponent();

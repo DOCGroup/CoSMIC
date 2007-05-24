@@ -1,3 +1,11 @@
+Thu May 24 14:38:26 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Critical_Path.aspx:
+        * utils/BMW/Critical_Path.aspx.cs:
+
+          Users are now able to delete muliple elements in the critical
+          path simultaneously.
+
 Thu May 24 04:32:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Critical_Path.aspx:
