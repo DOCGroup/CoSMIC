@@ -343,6 +343,7 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
     ACE_CString portname;
     const CUTS_Component_Info * myinfo = 0;
+    long component;
 
     for (cm_iter; !cm_iter.done (); cm_iter ++)
     {
@@ -355,7 +356,10 @@ handle_metrics (const CUTS_System_Metric & metrics)
       this->svc_mgr ()->testing_service ()->
         registry ().get_component_info (cm_iter->key (), &myinfo);
 
-      component = this->id_map_[cm_iter->key ()];
+      if (this->id_map_.find (cm_iter->key (), component) == -1)
+      {
+        continue;
+      }
 
       // Iterate over all the ports in the <component_metric>.
       CUTS_Port_Metric_Map::
@@ -379,12 +383,7 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
           // Copy the metrics for the process data into the appropriate
           // parameters before we execute the statement.
-          ID_Map::const_iterator id_iter =
-            this->id_map_.find (sender_iter->key ());
-
-          if (id_iter != this->id_map_.end ())
-            sender = id_iter->second;
-          else
+          if (this->id_map_.find (sender_iter->key (), sender) == -1)
             sender = CUTS_UNKNOWN_IMPL;
 
           query->parameter (7)->null ();
@@ -460,7 +459,7 @@ handle_component (const CUTS_Component_Info & info)
 {
   if (info.state_ == CUTS_Component_Info::STATE_ACTIVATE)
   {
-    long inst_id = -1;
+    long inst_id;
 
     if (this->registry_.register_component (info, &inst_id))
     {
@@ -471,7 +470,7 @@ handle_component (const CUTS_Component_Info & info)
 
       // Map the testing environment id to the database id for
       // the component. This will allow us to keep track of it.
-      this->id_map_.insert (ID_Map::value_type (info.uid_, inst_id));
+      this->id_map_.bind (info.uid_, inst_id);
     }
     else
     {

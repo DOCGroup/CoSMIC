@@ -1,3 +1,11 @@
+Thu May 24 17:06:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          Converted the underlying container class for the ID_Map to
+          an ACE_Hash_Map_Manager.
+
 Thu May 24 14:57:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Critical_Path.aspx:

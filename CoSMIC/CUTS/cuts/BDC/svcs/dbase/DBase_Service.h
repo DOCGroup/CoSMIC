@@ -17,7 +17,7 @@
 #include "cuts/BDC/BDC_Service.h"
 #include "cuts/svcs/dbase/DB_Registry.h"
 #include "ace/RW_Thread_Mutex.h"
-#include <map>
+#include "ace/Hash_Map_Manager.h"
 
 class ODBC_Query;
 
@@ -31,6 +31,7 @@ class ODBC_Query;
  * the metrics for later usage, i.e., viewing in the BMW.
  */
 //=============================================================================
+
 
 class CUTS_Database_Service : public CUTS_BDC_Service
 {
@@ -83,7 +84,8 @@ public:
   long current_test (void) const;
 
 private:
-  typedef std::map <long, long> ID_Map;
+  typedef ACE_Hash_Map_Manager <
+    long, long, ACE_RW_Thread_Mutex> id_map_t;
 
   // Helper method to parse the command-line arguments.
   int parse_args (int argc, ACE_TCHAR * argv []);
@@ -126,7 +128,7 @@ private:
   ACE_RW_Thread_Mutex lock_;
 
   /// Component registration mapping.
-  ID_Map id_map_;
+  id_map_t id_map_;
 
   /// The current test number.
   long test_number_;
