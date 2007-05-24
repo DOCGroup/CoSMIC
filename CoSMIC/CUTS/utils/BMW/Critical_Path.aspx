@@ -91,7 +91,8 @@
 </table>
 <asp:label runat="server" id="message_" />
 
-<h2>Execution Path Components</h2>
+<h2><asp:label id="selected_path_" runat="server"
+               font-bold="true" font-size="medium" />Execution Path</h2>
 <table>
 <tr>
   <td class="title">Next Index:</td>

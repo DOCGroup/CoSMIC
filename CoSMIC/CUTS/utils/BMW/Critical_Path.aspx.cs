@@ -53,11 +53,16 @@ namespace CUTS
 
           if (p_query != null)
           {
-            DataSet ds = new DataSet();
-
             // Get the path to query.
             long path_id = Int32.Parse (p_query);
             Session["path_id"] = path_id;
+
+            // Update the name of the selected path.
+            DataView paths = (DataView)this.critical_paths_.DataSource;
+            DataRow[] rows = paths.Table.Select(String.Format("path_id = {0}", path_id));
+            this.selected_path_.Text = rows[0]["path_name"].ToString() + " ";
+
+            DataSet ds = new DataSet();
 
             // Fill the adapter w/ the path element data.
             MySqlDataAdapter path_adapter = this.CreatePathElementAdapter(conn, path_id);
