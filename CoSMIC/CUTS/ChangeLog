@@ -1,3 +1,22 @@
+Thu May 24 03:29:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-path-analysis.sql:
+
+          Change the types of src and dst columns in critical_path_element
+          to integers, which have constraits mapped to portid in portnames.
+
+        * utils/BMW/Critical_Path.aspx:
+        * utils/BMW/Critical_Path.aspx.cs:
+
+          - When a user selects a instance to add to the critical path, the
+            valid source and destination ports of the instance are shown.
+          - The user now has the option of deleting elements in the critical
+            path.
+
+        * utils/BMW/Web.config:
+
+          Updated the MySQL dependency to 1.0.9.
+
 Wed May 23 06:45:32 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.cpp:

@@ -33,17 +33,23 @@ CREATE TABLE IF NOT EXISTS critical_path
 
 CREATE TABLE IF NOT EXISTS critical_path_elements
 (
-  path_id       INT             NOT NULL,
-  path_order    INT             NOT NULL,
-  instance      INT             NOT NULL,
-  src           VARCHAR (255)   NOT NULL,
-  dst           VARCHAR (255)   NOT NULL,
+  path_id       INT  NOT NULL,
+  path_order    INT  NOT NULL,
+  instance      INT  NOT NULL,
+  src           INT  NOT NULL,
+  dst           INT  NOT NULL,
 
   PRIMARY KEY (path_id, path_order),
   FOREIGN KEY (path_id) REFERENCES critical_path (path_id)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  FOREIGN KEY (src) REFERENCES portnames (portid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  FOREIGN KEY (dst) REFERENCES portnames (portid)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
