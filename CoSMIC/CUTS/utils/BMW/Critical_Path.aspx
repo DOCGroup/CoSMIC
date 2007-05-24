@@ -101,7 +101,7 @@
 <asp:panel runat="server" id="element_panel_">
   <hr />
 
-  <h2>Critical Path Elements</h2>
+  <h2>Critical Path Components</h2>
 
   <table>
   <tr>
@@ -131,8 +131,8 @@
 
   <tr>
     <td colspan="2">
-      <asp:button id="Button1" onclick="PathElement_Insert" runat="server" text="Insert" />
-      <asp:button id="Button2" onclick="PathElement_Commit" runat="server" text="Save" />
+      <asp:button id="button_PathElementInsert" onclick="PathElement_Insert"
+                  runat="server" text="Insert Component" />
     </td>
   </tr>
   </table>
@@ -166,6 +166,9 @@
       </asp:templatecolumn>
     </columns>
   </asp:datagrid>
+
+  <asp:linkbutton id="button_CommitPathElements" onclick="PathElement_Commit"
+                  runat="server" text="Commit Changes" />
 
 </asp:panel>
 </asp:content>
