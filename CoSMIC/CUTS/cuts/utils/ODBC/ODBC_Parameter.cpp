@@ -8,7 +8,7 @@
 //
 ODBC_Parameter::ODBC_Parameter (HSTMT handle, int index)
 : handle_ (handle),
-  intptr_ (0)
+  intptr_ (SQL_NULL_DATA)
 {
   this->index_ = index;
 }
@@ -174,6 +174,7 @@ void ODBC_Parameter::null (void)
 ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->intptr_ = SQL_NULL_DATA;
+
   CUTS_DB_Parameter::null ();
 }
 
@@ -201,4 +202,21 @@ void ODBC_Parameter::bind_i (SQLSMALLINT iotype,
                                   buffer_length,
                                   &this->intptr_),
               ODBC_Stmt_Exception (this->handle_));
+}
+
+//
+// length
+//
+void ODBC_Parameter::length (long len)
+{
+  this->intptr_ =
+    this->type () == CUTS_DB_Parameter::PT_CHAR && len == 0 ? SQL_NTS : len;
+}
+
+//
+// length
+//
+long ODBC_Parameter::length (void)
+{
+  return this->intptr_;
 }

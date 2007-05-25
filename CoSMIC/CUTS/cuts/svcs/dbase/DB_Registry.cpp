@@ -7,13 +7,11 @@
 #endif
 
 #include "cuts/Auto_Functor_T.h"
-#include "cuts/Component_Info.h"
-#include "cuts/Component_Type.h"
-#include "cuts/utils/ODBC/ODBC_Connection.h"
-#include "cuts/utils/ODBC/ODBC_Query.h"
-#include "cuts/utils/ODBC/ODBC_Record.h"
-#include "cuts/utils/ODBC/ODBC_Parameter.h"
-#include "cuts/utils/ODBC/ODBC_Types.h"
+#include "cuts/utils/DB_Connection.h"
+#include "cuts/utils/DB_Exception.h"
+#include "cuts/utils/DB_Query.h"
+#include "cuts/utils/DB_Record.h"
+#include "cuts/utils/DB_Parameter.h"
 #include "ace/Log_Msg.h"
 #include <sstream>
 
@@ -450,61 +448,21 @@ register_component (const CUTS_Component_Info & info, long * inst_id)
                                info.type_->name_.c_str (),
                                inst_id))
   {
-    long portid;
-    std::ostringstream sinks;
-    std::ostringstream sources;
-
     // Convert the sinks into a listing of comma seperated ids. We are
     // using two for loops to guarantee the listing does not end in a
     // comma.
-    CUTS_Port_Description_Map::CONST_ITERATOR sink_iter (info.type_->sinks_);
 
-    for ( ; !sink_iter.done (); sink_iter ++)
-    {
-      if (this->get_port_id (sink_iter->item ().c_str (), &portid, true))
-      {
-        sinks << portid;
-        sink_iter.advance ();
-
-        break;
-      }
-    }
-
-    for ( ; !sink_iter.done (); sink_iter ++)
-    {
-      if (this->get_port_id (sink_iter->item ().c_str (), &portid, true))
-        sinks << "," << portid;
-    }
-
-    // Convert the sources into a listing of comma seperated ids. We are
-    // using two for loops to guarantee the listing does not end in a
-    // comma.
-    CUTS_Port_Description_Map::CONST_ITERATOR source_iter (info.type_->sources_);
-
-    for ( ; !source_iter.done (); source_iter ++)
-    {
-      if (this->get_port_id (source_iter->item ().c_str (), &portid, true))
-      {
-        sources << portid;
-        source_iter.advance ();
-
-        break;
-      }
-    }
-
-    for ( ; !source_iter.done (); source_iter ++)
-    {
-      if (this->get_port_id (source_iter->item ().c_str (), &portid, true))
-        sources << "," << portid;
-    }
+    ACE_CString sinks, sources;
+    this->ports_to_csv (info.type_->sinks_, sinks);
+    this->ports_to_csv (info.type_->sources_, sources);
 
     long type_id;
 
     if (this->get_component_typeid (info.type_->name_.c_str (), &type_id))
     {
       this->set_component_type_details (type_id,
-                                        sinks.str ().c_str (),
-                                        sources.str ().c_str ());
+                                        sinks.c_str (),
+                                        sources.c_str ());
     }
     return true;
   }
@@ -552,3 +510,94 @@ set_component_type_details (long type_id,
 
   return false;
 }
+
+//
+// register_component_type
+//
+bool CUTS_DB_Registry::
+register_component_type (const CUTS_Component_Type & type, long & type_id)
+{
+  CUTS_Auto_Functor_T <CUTS_DB_Query>
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+  // Convert the ports (i.e., sinks and sources) into a comma separated
+  // string. This is the format requirement of the string.
+  ACE_CString sinks, sources;
+  this->ports_to_csv (type.sinks_, sinks);
+  this->ports_to_csv (type.sources_, sources);
+
+  // First, we need to insert the component's type into the database. If
+  // an exception occurs, then we there is a possiblity the type is already
+  // in the database.
+  try
+  {
+    const char * stmt =
+      "INSERT INTO component_types (typename, sinks, sources) "
+      "VALUES (?, ?, ?)";
+
+    // Prepare the statement and its parameters.
+    query->prepare (stmt);
+    query->parameter (0)->bind (const_cast <char *> (type.name_.c_str ()), 0);
+    query->parameter (1)->bind (const_cast <char *> (sinks.c_str ()), 0);
+    query->parameter (2)->bind (const_cast <char *> (sources.c_str ()), 0);
+
+    // Execute the parameter and get the last inserted id.
+    query->execute_no_record ();
+    type_id = query->last_insert_id ();
+  }
+  catch (CUTS_DB_Exception &)
+  {
+    // Apparently the type is already registerd. We therefore need to
+    // just ask for the types id.
+    const char * stmt =
+      "SELECT typeid FROM component_types WHERE typename = ?";
+
+    // Prepare the statement and its parameters.
+    query->prepare (stmt);
+    query->parameter (0)->bind (const_cast <char *> (type.name_.c_str ()), 0);
+
+    // Execute the query and get the selected id.
+    CUTS_DB_Record * record = query->execute ();
+
+    if (record->count () == 0)
+      return false;
+
+    record->fetch ();
+    record->get_data (1, type_id);
+  }
+
+  return true;
+}
+
+//
+// ports_to_csv
+//
+bool CUTS_DB_Registry::
+ports_to_csv (const CUTS_Port_Description_Map & ports, ACE_CString & csv_str)
+{
+  long port;
+  std::ostringstream ostr;
+
+  CUTS_Port_Description_Map::CONST_ITERATOR iter (ports);
+
+  // We need to add the first item to the CSV list. The remaining
+  // items will be added with a comma prepend to the item. The two
+  // separate loops will prevent us from having unncessary checks
+  // in the loops. This is still an O(n) algorithm.
+
+  for (; !iter.done (); iter ++)
+  {
+    if (this->get_port_id (iter->item ().c_str (), &port))
+      ostr << port;
+  }
+
+  for (; !iter.done (); iter ++)
+  {
+    if (this->get_port_id (iter->item ().c_str (), &port))
+      ostr << "," << port;
+  }
+
+  csv_str = ostr.str ().c_str ();
+  return ostr.good ();
+}
+

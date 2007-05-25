@@ -84,13 +84,8 @@ public:
   long current_test (void) const;
 
 private:
-  typedef ACE_Hash_Map_Manager <
-    long, long, ACE_RW_Thread_Mutex> id_map_t;
-
   // Helper method to parse the command-line arguments.
   int parse_args (int argc, ACE_TCHAR * argv []);
-
-  ODBC_Query * create_new_query (void);
 
   /**
    * Set the test uuid for the current test.
@@ -109,6 +104,9 @@ private:
    */
   bool stop_current_test_i (void);
 
+  /// Verbose flag for the service.
+  bool verbose_;
+
   /// Location of the database.
   ACE_CString server_;
 
@@ -118,17 +116,11 @@ private:
   /// Password for the login (default='cuts')
   ACE_CString password_;
 
-  /// Verbose flag for the service.
-  bool verbose_;
-
   /// Port number for database connection.
   int port_;
 
   /// Locking mechanism.
   ACE_RW_Thread_Mutex lock_;
-
-  /// Component registration mapping.
-  id_map_t id_map_;
 
   /// The current test number.
   long test_number_;

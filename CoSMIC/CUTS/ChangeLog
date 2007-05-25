@@ -1,3 +1,38 @@
+Fri May 25 16:21:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_metrics):
+
+          - Fixed bug where the src field was actually storing information from
+            the sources instead of the sinks.
+          - The query for inserting metrics is now composed to several subqueries.
+            This removes the necessity of having the store information that mapped
+            CUTS assigned ids to DB assigned ids.
+
+        * cuts/svcs/dbase/DB_Registry.h:
+        * cuts/svcs/dbase/DB_Registry.cpp:
+
+          - Implemented a separate method for registering the component
+            type.
+          - Replace the ODBC header files w/ the abstract DB header files.
+
+        * cuts/utils/DB_Parameter.h:
+        * cuts/utils/ODBC/ODBC_Parameter.h:
+        * cuts/utils/ODBC/ODBC_Parameter.cpp:
+
+          Added length () methods to the interface of a parameter. This
+          will allow the caller to adjust the length of a previously bound
+          parameter. It is extremely useful when working with NULL parameters.
+
+        * etc/SQL/CUTS-archive.sql:
+
+          Changed src and dst field in execution_time to INT types, which
+          reference portnames.portid.
+
+        * etc/SQL/CUTS-create.sql:
+
+          portname of NULL now maps to portid 1 by default.
+
 Thu May 24 17:06:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.h:

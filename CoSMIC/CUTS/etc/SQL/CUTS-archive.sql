@@ -1,4 +1,4 @@
---
+﻿--
 -- @file        CUTS-archive.sql
 --
 -- $Id: CUTS-create.sql 1127 2007-02-04 02:59:21Z hillj $
@@ -27,10 +27,10 @@ CREATE TABLE IF NOT EXISTS execution_time
                           'process')  NOT NULL,
   metric_count      int               NOT NULL,
 
-  component         int               NOT NULL  default 0,
-  sender            int               NOT NULL  default 0,
-  src               varchar (255)     NOT NULL  default 'unknown',
-  dst               varchar (255)               default NULL,
+  component         int               NOT NULL default 1,
+  sender            int               NOT NULL default 1,
+  src               int               NOT NULL default 1,
+  dst               int                        default 1,
 
   best_time         int NOT NULL default 0,
   worse_time        int NOT NULL default 0,
@@ -46,6 +46,12 @@ CREATE TABLE IF NOT EXISTS execution_time
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
   FOREIGN KEY (sender) REFERENCES component_instances (component_id)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  FOREIGN KEY (src) REFERENCES portnames (portid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  FOREIGN KEY (dst) REFERENCES portnames (portid)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );

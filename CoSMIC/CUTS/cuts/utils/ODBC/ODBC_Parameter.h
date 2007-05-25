@@ -67,6 +67,22 @@ public:
   virtual void bind (CUTS_DB_Date_Time_Impl * datetime)
     ACE_THROW_SPEC ((CUTS_DB_Exception));
 
+  /**
+   * Set the length of the parameter. This is necessary of the
+   * parameter is already bound to a buffer, and the length of the
+   * input buffer has changed.
+   *
+   * @param[in]       len         Length of the buffer.
+   */
+  virtual void length (long len);
+
+  /**
+   * Get the current length/size of the parameter.
+   *
+   * @return          The length/size of the parameter.
+   */
+  virtual long length (void);
+
 private:
   /// Helper method for binding SQL parameters.
   void bind_i (SQLSMALLINT iotype,

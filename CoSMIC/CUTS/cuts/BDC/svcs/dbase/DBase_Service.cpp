@@ -53,11 +53,11 @@ CUTS_BDC_SERVICE_IMPL (CUTS_Database_Service);
 // CUTS_Database_Service
 //
 CUTS_Database_Service::CUTS_Database_Service (void)
-: server_ (CUTS_DEFAULT_HOSTNAME),
+: verbose_ (false),
+  server_ (CUTS_DEFAULT_HOSTNAME),
   username_ (CUTS_USERNAME),
   password_ (CUTS_PASSWORD),
   port_ (CUTS_DEFAULT_PORT),
-  verbose_ (false),
   test_number_ (-1)
 {
   CUTS_DB_Connection * conn = 0;
@@ -303,14 +303,13 @@ handle_metrics (const CUTS_System_Metric & metrics)
   long best_time,
        worse_time,
        total_time,
-       metric_count,
-       component,
-       sender;
+       metric_count;
 
   char src[MAX_VARCHAR_LENGTH],
        dst[MAX_VARCHAR_LENGTH],
-       metric_type[MAX_VARCHAR_LENGTH];
-
+       metric_type[MAX_VARCHAR_LENGTH],
+       component[MAX_VARCHAR_LENGTH],
+       sender[MAX_VARCHAR_LENGTH];
 
   try
   {
@@ -324,26 +323,38 @@ handle_metrics (const CUTS_System_Metric & metrics)
     const char * str_stmt =
       "INSERT INTO execution_time (test_number, collection_time, metric_type, "
       "metric_count, component, sender, src, dst, best_time, total_time, "
-      "worse_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      "worse_time) VALUES (?, ?, ?, ?, (SELECT component_id FROM component_instances "
+      "WHERE component_name = ?), (SELECT component_id FROM component_instances "
+      "WHERE component_name = ?), (SELECT portid FROM portnames WHERE portname = ?), "
+      "(SELECT portid FROM portnames WHERE portname = ?), ?, ?, ?)";
+
+    // Get the component registry for this service.
+    const CUTS_Component_Registry & registry =
+      this->svc_mgr ()->testing_service ()->registry ();
+
     query->prepare (str_stmt);
     query->parameter (0)->bind (&this->test_number_);
     query->parameter (1)->bind (&datetime);
     query->parameter (2)->bind (metric_type, 0);
     query->parameter (3)->bind (&metric_count);
-    query->parameter (4)->bind (&component);
-    query->parameter (5)->bind (&sender);
+    query->parameter (4)->bind (component, 0);
+    query->parameter (5)->bind (sender, 0);
     query->parameter (6)->bind (src, 0);
     query->parameter (7)->bind (dst, 0);
     query->parameter (8)->bind (&best_time);
     query->parameter (9)->bind (&total_time);
     query->parameter (10)->bind (&worse_time);
 
+    ACE_DEBUG ((LM_DEBUG,
+                "number of parameters = %u\n",
+                query->parameter_count ()));
+
     CUTS_Component_Metric_Map::
       CONST_ITERATOR cm_iter (metrics.component_metrics ());
 
     ACE_CString portname;
-    const CUTS_Component_Info * myinfo = 0;
-    long component;
+    const CUTS_Component_Info * myinfo = 0,
+                              * sender_info = 0;
 
     for (cm_iter; !cm_iter.done (); cm_iter ++)
     {
@@ -353,13 +364,11 @@ handle_metrics (const CUTS_System_Metric & metrics)
       if (timestamp != cm_iter->item ()->timestamp ())
         continue;
 
-      this->svc_mgr ()->testing_service ()->
-        registry ().get_component_info (cm_iter->key (), &myinfo);
-
-      if (this->id_map_.find (cm_iter->key (), component) == -1)
-      {
+      if (registry.get_component_info (cm_iter->key (), &myinfo) == -1)
         continue;
-      }
+
+      // Copy the name of the component into the buffer.
+      ACE_OS::strncpy (component, myinfo->inst_.c_str (), MAX_VARCHAR_LENGTH);
 
       // Iterate over all the ports in the <component_metric>.
       CUTS_Port_Metric_Map::
@@ -367,8 +376,10 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
       for (pm_iter; !pm_iter.done (); pm_iter ++)
       {
-        myinfo->type_->sources_.find (pm_iter->key (), portname);
-        ACE_OS::strcpy (src, portname.c_str ());
+        // Copy the name of the source port, which is a event source,
+        // into its corresponding buffer.
+        myinfo->type_->sinks_.find (pm_iter->key (), portname);
+        ACE_OS::strncpy (src, portname.c_str (), MAX_VARCHAR_LENGTH);
 
         CUTS_Port_Measurement_Map::
           CONST_ITERATOR sender_iter (pm_iter->item ()->sender_map ().hash_map ());
@@ -381,41 +392,49 @@ handle_metrics (const CUTS_System_Metric & metrics)
           if (timestamp != sender_iter->item ()->timestamp ())
             continue;
 
-          // Copy the metrics for the process data into the appropriate
-          // parameters before we execute the statement.
-          if (this->id_map_.find (sender_iter->key (), sender) == -1)
-            sender = CUTS_UNKNOWN_IMPL;
+          // Get the sender's information and copy it into the buffer.
+          if (registry.get_component_info (sender_iter->key (),
+                                           &sender_info) == 0)
+          {
+            ACE_OS::strncpy (sender,
+                             sender_info->inst_.c_str (),
+                             MAX_VARCHAR_LENGTH);
+          }
+          else
+          {
+            ACE_OS::strcpy (sender, "Unknown");
+          }
 
-          query->parameter (7)->null ();
           metric_count = sender_iter->item ()->queuing_time ().count ();
 
+          // Since we are dealing with the queueing time, the destination
+          // buffer should have the value 'Unknown'.
           ACE_OS::strcpy (metric_type, "queue");
+          query->parameter (7)->null ();
 
           best_time  = sender_iter->item ()->queuing_time ().minimum ().msec ();
           worse_time = sender_iter->item ()->queuing_time ().maximum ().msec ();
           total_time = sender_iter->item ()->queuing_time ().total ().msec ();
 
-          // Execute the "prepared" statement using the parameters
-          // we have stored.
+          // Execute the statement to store the queueing time.
           query->execute_no_record ();
 
           ACE_OS::strcpy (metric_type, "process");
+          query->parameter (7)->length (0);
 
           CUTS_Port_Measurement_Endpoint_Map::
             CONST_ITERATOR em_iter (sender_iter->item ()->endpoints ());
 
           for (; !em_iter.done (); em_iter ++)
           {
-            // Determine if this port has any metrics that correspond
+            // Determine if this port has any metrics that corresponds
             // with the lastest timestamp for the system metrics. If it
             // does not then why bother going any further.
             if (timestamp != em_iter->item ()->timestamp ())
               continue;
 
-            // Copy the metrics for the process data into the appropriate
-            // parameters before we execute the statement.
-            query->parameter (7)->bind (dst, 0);
-
+            // Copy the name of the destination port, which is a event
+            // source, into its corresponding buffer.
             myinfo->type_->sources_.find (em_iter->key (), portname);
             ACE_OS::strcpy (dst, portname.c_str ());
 
@@ -459,18 +478,12 @@ handle_component (const CUTS_Component_Info & info)
 {
   if (info.state_ == CUTS_Component_Info::STATE_ACTIVATE)
   {
-    long inst_id;
-
-    if (this->registry_.register_component (info, &inst_id))
+    if (this->registry_.register_component (info, 0))
     {
       VERBOSE_MESSAGE ((LM_INFO,
                         "*** info [archive]: successfully registered "
                         "component %s\n",
                         info.inst_.c_str ()));
-
-      // Map the testing environment id to the database id for
-      // the component. This will allow us to keep track of it.
-      this->id_map_.bind (info.uid_, inst_id);
     }
     else
     {

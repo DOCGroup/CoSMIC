@@ -161,6 +161,22 @@ public:
   virtual void bind (CUTS_DB_Date_Time_Impl * datetime)
     ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
 
+  /**
+   * Set the length of the parameter. This is necessary of the
+   * parameter is already bound to a buffer, and the length of the
+   * input buffer has changed.
+   *
+   * @param[in]       len         Length of the buffer.
+   */
+  virtual void length (long len) = 0;
+
+  /**
+   * Get the current length/size of the parameter.
+   *
+   * @return          The length/size of the parameter.
+   */
+  virtual long length (void) = 0;
+
 protected:
   /// The index of the parameter.
   int index_;

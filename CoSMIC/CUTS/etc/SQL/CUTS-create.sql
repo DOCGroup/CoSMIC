@@ -1,4 +1,4 @@
---
+﻿--
 -- @file        CUTS-create.sql
 --
 -- $Id$
@@ -63,6 +63,9 @@ CREATE TABLE IF NOT EXISTS portnames
   PRIMARY KEY (portid),
   UNIQUE (portname)
 );
+
+INSERT INTO portnames (portid, portname)
+  VALUES (1);
 
 --
 -- This table contains the mapping of UUIDs their appropriate

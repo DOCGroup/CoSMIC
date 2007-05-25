@@ -14,12 +14,11 @@
 #define _CUTS_DB_SERVICE_H_
 
 #include "DB_export.h"
+#include "cuts/Component_Info.h"
+#include "cuts/Component_Type.h"
 
 // Forward decl.
 class CUTS_DB_Connection;
-
-// Forward decl.
-struct CUTS_Component_Info;
 
 //=============================================================================
 /**
@@ -88,6 +87,16 @@ public:
   bool register_instance (const char * inst,
                           const char * type,
                           long * instid = 0);
+
+  /**
+   * Register a component type. This will add the component's type
+   * information to the database, including its port ids.
+   *
+   * @param[in]       type        The component type.
+   * @param[out]      type_id     Registered type id.
+   */
+  bool register_component_type (const CUTS_Component_Type & type,
+                                long & type_id);
 
   /**
    * Get the instance id of a component instance. The client does
@@ -168,6 +177,9 @@ public:
                                    const char * sources);
 
 protected:
+  bool ports_to_csv (const CUTS_Port_Description_Map & ports,
+                     ACE_CString & str);
+
   /// Pointer the connection for the registry.
   CUTS_DB_Connection * conn_;
 };
