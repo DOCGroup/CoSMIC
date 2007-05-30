@@ -345,10 +345,6 @@ handle_metrics (const CUTS_System_Metric & metrics)
     query->parameter (9)->bind (&total_time);
     query->parameter (10)->bind (&worse_time);
 
-    ACE_DEBUG ((LM_DEBUG,
-                "number of parameters = %u\n",
-                query->parameter_count ()));
-
     CUTS_Component_Metric_Map::
       CONST_ITERATOR cm_iter (metrics.component_metrics ());
 

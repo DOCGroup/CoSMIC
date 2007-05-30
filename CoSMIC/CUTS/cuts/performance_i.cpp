@@ -356,10 +356,19 @@ void operator <<= (CUTS::Endpoint_Time_Infos & eti,
   // Get a pointer to the buffer.
   CUTS::Endpoint_Time_Infos::value_type * buf = eti.get_buffer ();
 
+  size_t count = 0;
   CUTS_Port_Measurement_Endpoint_Map::CONST_ITERATOR iter (endpoints);
 
   for (; !iter.done (); iter ++)
-    *buf ++ <<= *iter;
+  {
+    if (iter->item ()->count () > 0)
+    {
+      *buf ++ <<= *iter;
+      ++ count;
+    }
+  }
+
+  eti.length (buf - eti.get_buffer ());
 }
 
 //

@@ -1,3 +1,16 @@
+Wed May 30 14:32:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_metrics):
+        * cuts/svcs/dbase/DB_Registry.cpp (ports_to_csv):
+
+          Removed unnecessary debug messages.
+
+        * cuts/performance_i.cpp:
+
+          Fixed bug where endpoints never used where being sent to
+          the BDC and appearing as false endpoints w/ no events
+          activity.
+
 Wed May 30 05:22:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Sender_Metrics.ascx:
