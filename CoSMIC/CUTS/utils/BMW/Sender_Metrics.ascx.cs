@@ -58,11 +58,14 @@ namespace CUTS
     public void BindDataSource (OdbcConnection conn, DateTime time)
     {
       System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-      builder.Append ("SELECT metric_count, metric_type, src, dst, best_time, ");
-      builder.Append ("(total_time / metric_count) AS average_time, worse_time ");
-      builder.Append ("FROM execution_time WHERE (");
-      builder.Append ("test_number = ? AND component = ? AND sender = ? AND ");
-      builder.Append ("collection_time = ?)");
+      builder.Append("SELECT metric_count, metric_type, src, srcname, ");
+      builder.Append("dst, portname AS dstname, best_time, average_time, worse_time ");
+      builder.Append("FROM (SELECT metric_count, metric_type, src, portname AS srcname, ");
+      builder.Append("dst, best_time, (total_time / metric_count) AS average_time, worse_time ");
+      builder.Append("FROM execution_time, portnames WHERE (");
+      builder.Append("test_number = ? AND component = ? AND sender = ? AND ");
+      builder.Append("collection_time = ? AND src = portid)) AS t1 LEFT JOIN portnames ");
+      builder.Append("ON t1.dst = portid");
 
       OdbcParameter p1 = new OdbcParameter ("@test_number", OdbcType.Int);
       p1.Direction = ParameterDirection.Input;

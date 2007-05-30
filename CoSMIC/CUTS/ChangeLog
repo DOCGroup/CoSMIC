@@ -1,3 +1,11 @@
+Wed May 30 05:22:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Sender_Metrics.ascx:
+        * utils/BMW/Sender_Metrics.ascx.cs:
+
+          Update the metrics table so that it displays the portname instead
+          of the port ids based on the database's new layout.
+
 Wed May 30 02:56:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_component):

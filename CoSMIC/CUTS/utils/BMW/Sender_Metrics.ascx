@@ -13,9 +13,9 @@
   <itemstyle horizontalalign="center" />
 
   <columns>
-    <asp:boundcolumn datafield="src" headertext="In Port" />
+    <asp:boundcolumn datafield="srcname" headertext="In Port" />
     <asp:boundcolumn datafield="metric_type" headertext="Type" />
-    <asp:boundcolumn datafield="dst" headertext="Out Port" />
+    <asp:boundcolumn datafield="dstname" headertext="Out Port" />
     <asp:boundcolumn datafield="metric_count" headertext="Count"
       itemstyle-width="50"/>
     <asp:templatecolumn headertext="Timeline"
