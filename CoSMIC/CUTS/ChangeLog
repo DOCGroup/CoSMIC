@@ -1,3 +1,14 @@
+Wed May 30 02:56:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_component):
+
+          Method returns -1 if service fails to register component.
+
+        * cuts/svcs/dbase/DB_Registry.cpp (ports_to_csv):
+
+          Fixed bug that was causing invalid entry of sinks and sources
+          for component types.
+
 Fri May 25 16:21:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.h:

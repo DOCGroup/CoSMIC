@@ -487,9 +487,10 @@ handle_component (const CUTS_Component_Info & info)
     }
     else
     {
-      ACE_ERROR ((LM_ERROR,
-                  "*** error [archive]: failed to register component %s\n",
-                  info.inst_.c_str ()));
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "*** error [archive]: failed to register component %s\n",
+                         info.inst_.c_str ()),
+                         -1);
     }
   }
 

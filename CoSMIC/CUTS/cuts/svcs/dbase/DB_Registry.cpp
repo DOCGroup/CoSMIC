@@ -456,6 +456,11 @@ register_component (const CUTS_Component_Info & info, long * inst_id)
     this->ports_to_csv (info.type_->sinks_, sinks);
     this->ports_to_csv (info.type_->sources_, sources);
 
+    ACE_DEBUG ((LM_DEBUG,
+                "sources = %s\nsinks = %s\n",
+                sources.c_str (),
+                sinks.c_str ()));
+
     long type_id;
 
     if (this->get_component_typeid (info.type_->name_.c_str (), &type_id))
@@ -588,10 +593,13 @@ ports_to_csv (const CUTS_Port_Description_Map & ports, ACE_CString & csv_str)
   for (; !iter.done (); iter ++)
   {
     if (this->get_port_id (iter->item ().c_str (), &port))
+    {
       ostr << port;
+      break;
+    }
   }
 
-  for (; !iter.done (); iter ++)
+  for (iter.advance (); !iter.done (); iter ++)
   {
     if (this->get_port_id (iter->item ().c_str (), &port))
       ostr << "," << port;
