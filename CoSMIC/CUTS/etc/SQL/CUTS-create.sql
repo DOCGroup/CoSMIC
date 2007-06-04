@@ -68,6 +68,31 @@ INSERT INTO portnames (portid, portname)
   VALUES (1);
 
 --
+-- Create the ports table. This table contains which ports
+-- belong to what component types. It also contains the ports
+-- type (i.e., facet, receptacle, & etc.).
+--
+
+CREATE TABLE IF NOT EXISTS ports
+(
+  pid              INT      NOT NULL auto_increment,
+  ctype            INT      NOT NULL,
+  portid           INT      NOT NULL,
+  port_type        ENUM ('sink', 'source', 'facet', 'receptacle') NOT NULL,
+
+  -- set the constaints for the table
+  PRIMARY KEY (pid),
+  UNIQUE (ctype, portid, port_type),
+
+  FOREIGN KEY (ctype) REFERENCES component_types (typeid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+  FOREIGN KEY (portid) REFERENCES portnames (portid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+);
+
+--
 -- This table contains the mapping of UUIDs their appropriate
 -- component name. The UUID is the primary key for the table
 -- because no two components can have the same UUID regardless
@@ -128,7 +153,7 @@ CREATE TABLE IF NOT EXISTS scratchpad
 
 --
 -- Create the 'users' table. This table contains login information
--- for users who are allows to view the database.
+-- for users who are allowed to view the database.
 --
 
 CREATE TABLE IF NOT EXISTS users

@@ -1,3 +1,15 @@
+Mon Jun  4 00:58:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-create.sql:
+
+          Added a new table named *ports*, which is responsible for holding
+          the port details of a component type.
+
+        * etc/SQL/CUTS-execution.sql:
+        * etc/SQL/CUTS-archive.sql:
+
+          Changed the filename from the latter to the primer.
+
 Wed May 30 14:32:45 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.cpp (handle_metrics):
