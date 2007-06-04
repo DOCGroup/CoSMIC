@@ -460,6 +460,9 @@ register_component (const CUTS_Component_Info & info, long * inst_id)
 
     if (this->get_component_typeid (info.type_->name_.c_str (), &type_id))
     {
+      this->register_component_port (type_id, info.type_->sinks_, "sink");
+      this->register_component_port (type_id, info.type_->sources_, "source");
+
       this->set_component_type_details (type_id,
                                         sinks.c_str (),
                                         sources.c_str ());
@@ -520,26 +523,17 @@ register_component_type (const CUTS_Component_Type & type, long & type_id)
   CUTS_Auto_Functor_T <CUTS_DB_Query>
     query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
-  // Convert the ports (i.e., sinks and sources) into a comma separated
-  // string. This is the format requirement of the string.
-  ACE_CString sinks, sources;
-  this->ports_to_csv (type.sinks_, sinks);
-  this->ports_to_csv (type.sources_, sources);
-
-  // First, we need to insert the component's type into the database. If
-  // an exception occurs, then we there is a possiblity the type is already
-  // in the database.
   try
   {
+    // First, we need to insert the component's type into the database. If
+    // an exception occurs, then we there is a possiblity the type is already
+    // in the database.
     const char * stmt =
-      "INSERT INTO component_types (typename, sinks, sources) "
-      "VALUES (?, ?, ?)";
+      "INSERT INTO component_types (typename) VALUES (?)";
 
     // Prepare the statement and its parameters.
     query->prepare (stmt);
     query->parameter (0)->bind (const_cast <char *> (type.name_.c_str ()), 0);
-    query->parameter (1)->bind (const_cast <char *> (sinks.c_str ()), 0);
-    query->parameter (2)->bind (const_cast <char *> (sources.c_str ()), 0);
 
     // Execute the parameter and get the last inserted id.
     query->execute_no_record ();
@@ -604,3 +598,64 @@ ports_to_csv (const CUTS_Port_Description_Map & ports, ACE_CString & csv_str)
   return ostr.good ();
 }
 
+//
+// register_component_port
+//
+bool CUTS_DB_Registry::
+register_component_port (long type_id,
+                         const CUTS_Port_Description_Map & ports,
+                         const char * port_type)
+{
+  try
+  {
+    CUTS_Auto_Functor_T <CUTS_DB_Query>
+      query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+    const char * stmt =
+      "INSERT INTO ports (ctype, portid, port_type) "
+      "VALUES (?, (SELECT portid FROM portnames WHERE portname = ?), ?)";
+
+    char porttype[16],
+         portname[MAX_VARCHAR_LENGTH];
+
+    // Prepare the query and its parameters.
+    query->prepare (stmt);
+    query->parameter (0)->bind (&type_id);
+    query->parameter (1)->bind (portname, 0);
+    query->parameter (2)->bind (porttype, 0);
+
+    // Execute the query on all the ports by copying the correct
+    // information into the parameters, and then invoking it.
+    ACE_OS::strncpy (porttype, port_type, sizeof (porttype));
+    CUTS_Port_Description_Map::CONST_ITERATOR iter (ports);
+
+    for (; !iter.done (); iter ++)
+    {
+      ACE_OS::strncpy (portname, iter->item ().c_str (), MAX_VARCHAR_LENGTH);
+
+      try
+      {
+        query->execute_no_record ();
+      }
+      catch (const CUTS_DB_Exception & ex)
+      {
+        if (ex.state () != "23000")
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "*** error (register_component_port): %s\n",
+                      ex.message ().c_str ()));
+        }
+      }
+    }
+
+    return true;
+  }
+  catch (const CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (register_component_port): %s\n",
+                ex.message ().c_str ()));
+  }
+
+  return false;
+}

@@ -93,10 +93,22 @@ public:
    * information to the database, including its port ids.
    *
    * @param[in]       type        The component type.
+   */
+  bool register_component_type (const CUTS_Component_Type & type);
+
+  /**
+   * @overload
+   *
+   * @param[in]       type        The component type.
    * @param[out]      type_id     Registered type id.
    */
   bool register_component_type (const CUTS_Component_Type & type,
                                 long & type_id);
+
+
+  bool register_component_port (long type_id,
+                                const CUTS_Port_Description_Map & port,
+                                const char * port_type);
 
   /**
    * Get the instance id of a component instance. The client does

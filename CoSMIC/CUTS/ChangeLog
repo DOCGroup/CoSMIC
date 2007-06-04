@@ -1,3 +1,18 @@
+Mon Jun  4 02:30:26 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/svcs/dbase/DB_Registry.h:
+        * cuts/svcs/dbase/DB_Registry.inl:
+        * cuts/svcs/dbase/DB_Registry.cpp:
+
+          Implemented a new method names register_component_port (), which
+          insert a component's port information into the port table.
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+        * etc/SQL/CUTS-execution.sql:
+
+          Implemented a stored procedure for inserting execution times into
+          the database.
+
 Mon Jun  4 00:58:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-create.sql:

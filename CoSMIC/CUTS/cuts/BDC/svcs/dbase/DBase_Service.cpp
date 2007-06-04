@@ -321,12 +321,7 @@ handle_metrics (const CUTS_System_Metric & metrics)
 
     // Prepare the statement and bind all the parameters.
     const char * str_stmt =
-      "INSERT INTO execution_time (test_number, collection_time, metric_type, "
-      "metric_count, component, sender, src, dst, best_time, total_time, "
-      "worse_time) VALUES (?, ?, ?, ?, (SELECT component_id FROM component_instances "
-      "WHERE component_name = ?), (SELECT component_id FROM component_instances "
-      "WHERE component_name = ?), (SELECT portid FROM portnames WHERE portname = ?), "
-      "(SELECT portid FROM portnames WHERE portname = ?), ?, ?, ?)";
+      "CALL insert_execution_time (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Get the component registry for this service.
     const CUTS_Component_Registry & registry =

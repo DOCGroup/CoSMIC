@@ -48,10 +48,46 @@ CREATE TABLE IF NOT EXISTS execution_time
   FOREIGN KEY (sender) REFERENCES component_instances (component_id)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  FOREIGN KEY (src) REFERENCES portnames (portid)
+  FOREIGN KEY (src) REFERENCES ports (pid)
     ON DELETE RESTRICT
     ON UPDATE CASCADE,
-  FOREIGN KEY (dst) REFERENCES portnames (portid)
+  FOREIGN KEY (dst) REFERENCES ports (pid)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
+
+-- Change the delimiter for creating the procedures. Failing
+-- to change the delimit will result in the invalid execution
+-- of the SQL statements below.
+
+delimiter //
+
+CREATE PROCEDURE
+insert_execution_time (IN test INT, IN ctime DATETIME,
+                       IN mtype VARCHAR (255), IN mcount INT,
+                       IN cname VARCHAR (255), IN sname VARCHAR (255),
+                       IN srcname VARCHAR (255), IN dstname VARCHAR (255),
+                       IN best INT, IN worst INT, IN total INT)
+BEGIN
+  DECLARE tid INT;
+
+  -- get the type id of the component
+  SELECT typeid INTO tid FROM component_instances
+    WHERE component_name = cname LIMIT 1;
+
+  INSERT INTO execution_time (test_number, collection_time, metric_type,
+   metric_count, component, sender, src, dst, best_time, total_time, worse_time)
+   VALUES (test, ctime, mtype, mcount,
+     (SELECT component_id FROM component_instances WHERE component_name = cname),
+     (SELECT component_id FROM component_instances WHERE component_name = sname),
+     (SELECT pid FROM ports WHERE ctype = tid AND
+          portid = (SELECT portid FROM portnames WHERE portname = srcname) AND
+          port_type = 'sink'),
+     (SELECT pid FROM ports WHERE ctype = tid AND
+          portid = (SELECT portid FROM portnames WHERE portname = dstname) AND
+          port_type = 'source'),
+   best, worst, total);
+
+END; //
+
+delimiter ;
