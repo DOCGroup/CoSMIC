@@ -58,6 +58,19 @@ public:
     PT_DATETIME
   };
 
+  /// The direction of the parameter.
+  enum Direction_Type
+  {
+    /// Parameter is an input type.
+    DIRECTION_INPUT,
+
+    /// Parameter is an output type.
+    DIRECTION_OUTPUT,
+
+    /// Parameter is an inout type.
+    DIRECTION_INOUT
+  };
+
   /**
    * Initializing contructor.
    *
@@ -77,6 +90,14 @@ public:
   Parameter_Type type (void) const;
 
   /**
+   * Get the direction of the parameter. The direction will be
+   * one of the values in the Direction_Type enumeration.
+   *
+   * @return      Direction of the parameter.
+   */
+  Direction_Type direction (void) const;
+
+  /**
    * Get the index of the parameter.
    *
    * @return    The index of the parameter; 1-based.
@@ -92,8 +113,7 @@ public:
   int is_null (void) const;
 
   /// Make the parameter a NULL value.
-  virtual void null (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void null (void) = 0;
 
   /**
    * Bind the parameter to a character buffer. If the size of
@@ -102,64 +122,55 @@ public:
    * @param[in]       buffer    Source character buffer.
    * @param[in]       bufsize   Size of the buffer.
    */
-  virtual void bind (char * buffer, size_t bufsize)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (char * buffer, size_t bufsize) = 0;
 
   /**
    * Bind the parameter to a short value.
    *
    * @param[in]       buffer    Source short value.
    */
-  virtual void bind (short * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
-
+  virtual void bind (short * buffer) = 0;
   /**
    * Bind the parameter to a unsigned short value.
    *
    * @param[in]       buffer    Source unsigned short value.
    */
-  virtual void bind (u_short * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (u_short * buffer) = 0;
 
   /**
    * Bind the parameter to a signed long value.
    *
    * @param[in]       buffer    Source signed long value.
    */
-  virtual void bind (long * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (long * buffer) = 0;
 
   /**
    * Bind the parameter to a unsigned long value.
    *
    * @param[in]       buffer    Source unsigned long value.
    */
-  virtual void bind (u_long * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (u_long * buffer) = 0;
 
   /**
    * Bind the parameter to a float value.
    *
    * @param[in]       buffer    Source float value.
    */
-  virtual void bind (float * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (float * buffer) = 0;
 
   /**
    * Bind the parameter to a double value.
    *
    * @param[in]       buffer    Source double value.
    */
-  virtual void bind (double * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (double * buffer) = 0;
 
   /**
    * Bind the parameter to a data/time value.
    *
    * @param[in]       datetime    Source date/time value.
    */
-  virtual void bind (CUTS_DB_Date_Time_Impl * datetime)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void bind (CUTS_DB_Date_Time_Impl * datetime) = 0;
 
   /**
    * Set the length of the parameter. This is necessary of the
@@ -184,6 +195,9 @@ protected:
 private:
   /// The parameter type.
   Parameter_Type type_;
+
+  /// The direction of the parameter.
+  Direction_Type direction_;
 
   /// Null flags for the parameter.
   int null_;

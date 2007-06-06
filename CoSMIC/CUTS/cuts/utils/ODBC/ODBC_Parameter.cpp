@@ -25,7 +25,6 @@ ODBC_Parameter::~ODBC_Parameter (void)
 // bind
 //
 void ODBC_Parameter::bind (char * buffer, size_t bufsize)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_CHAR,
@@ -45,7 +44,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (short * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_SSHORT,
@@ -63,7 +61,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (u_short * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_USHORT,
@@ -81,7 +78,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (long * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_SLONG,
@@ -99,7 +95,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (u_long * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_ULONG,
@@ -117,7 +112,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (float * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_FLOAT,
@@ -135,7 +129,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (double * buffer)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_DOUBLE,
@@ -153,7 +146,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::bind (CUTS_DB_Date_Time_Impl * datetime)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->bind_i (SQL_PARAM_INPUT,
                 SQL_C_TYPE_TIMESTAMP,
@@ -171,7 +163,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // bind
 //
 void ODBC_Parameter::null (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->intptr_ = SQL_NULL_DATA;
 
@@ -189,7 +180,6 @@ void ODBC_Parameter::bind_i (SQLSMALLINT iotype,
                              SQLSMALLINT decimals,
                              SQLPOINTER  valueptr,
                              SQLINTEGER  buffer_length)
-                             ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLBindParameter (this->handle_,
                                   this->index_,

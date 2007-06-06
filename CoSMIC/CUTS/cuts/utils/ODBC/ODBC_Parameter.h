@@ -40,32 +40,23 @@ public:
   /// Destructor.
   virtual ~ODBC_Parameter (void);
 
-  virtual void bind (char * buffer, size_t bufsize)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void null (void);
 
-  virtual void bind (short * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (char * buffer, size_t bufsize);
 
-  virtual void bind (u_short * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (short * buffer);
 
-  virtual void bind (long * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (u_short * buffer);
 
-  virtual void bind (u_long * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (long * buffer);
 
-  virtual void bind (float * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (u_long * buffer);
 
-  virtual void bind (double * buffer)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (float * buffer);
 
-  virtual void null (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (double * buffer);
 
-  virtual void bind (CUTS_DB_Date_Time_Impl * datetime)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void bind (CUTS_DB_Date_Time_Impl * datetime);
 
   /**
    * Set the length of the parameter. This is necessary of the
@@ -91,8 +82,7 @@ private:
                SQLUINTEGER columnsize,
                SQLSMALLINT decimals,
                SQLPOINTER  valueptr,
-               SQLINTEGER  buffer_length)
-               ACE_THROW_SPEC ((CUTS_DB_Exception));
+               SQLINTEGER  buffer_length);
 
   /// Handle to the ODBC statement.
   HSTMT handle_;

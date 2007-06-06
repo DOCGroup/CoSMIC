@@ -24,7 +24,6 @@ size_t CUTS_DB_Parameter::index (void) const
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (char *, size_t)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_CHAR;
 }
@@ -34,7 +33,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (short *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_SHORT;
 }
@@ -44,7 +42,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (u_short *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_USHORT;
 }
@@ -54,7 +51,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (long *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_LONG;
 }
@@ -64,7 +60,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (u_long *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_ULONG;
 }
@@ -74,7 +69,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (double *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_DOUBLE;
 }
@@ -84,7 +78,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (float *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_FLOAT;
 }
@@ -94,7 +87,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::bind (CUTS_DB_Date_Time_Impl *)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->type_ = CUTS_DB_Parameter::PT_DATETIME;
 }
@@ -113,7 +105,16 @@ int CUTS_DB_Parameter::is_null (void) const
 //
 CUTS_INLINE
 void CUTS_DB_Parameter::null (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->null_ = 1;
+}
+
+//
+// direction
+//
+CUTS_INLINE
+CUTS_DB_Parameter::Direction_Type
+CUTS_DB_Parameter::direction (void) const
+{
+  return this->direction_;
 }
