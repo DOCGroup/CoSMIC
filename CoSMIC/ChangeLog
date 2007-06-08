@@ -1,3 +1,47 @@
+Fri Jun  8 04:46:17 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated paradigm to remove warnings during meta-interpretation.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updates to correspond to the updates to PICML.
+
+        * Installer/CoSMIC_Installer:
+        * MPC:
+        * MPC/config:
+        * PIM/POSAML/docs:
+        * PIM/POSAML/interpreters/AspectInterpreter:
+        * PSM/CQML/docs:
+        * PSM/CQML/interpreters/BIRSpecification:
+        * PSM/CQML/interpreters/BIRSpecificationComponent:
+        * PSM/CQML/interpreters/EventBus:
+        * PSM/CQML/interpreters/EventBusComponent:
+        * PSM/CQML/interpreters/RTConfig:
+        * PSM/CQML/interpreters/RTConfiguration:
+        * PSM/CQML/interpreters/RTConfigurationComponent:
+        * PSM/CQML/interpreters/RTSchedulability:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent:
+        * Transformations:
+        * Transformations/QUICKER:
+        * Transformations/QUICKER/examples:
+        * Transformations/QUICKER/paradigms:
+        * Utils/gme:
+
+          Re-ran svn ignore to update the svn:ignore property.
+
+        * cosmic.mwc:  Removed POSAML from being built since they are not
+          yet compliant with CoSMIC building rules.
+
 Sat May 19 06:30:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
