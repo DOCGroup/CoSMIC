@@ -254,7 +254,7 @@ bool CUTS_Database_Service::stop_current_test_i (void)
     return true;
 
   CUTS_Auto_Functor_T <CUTS_DB_Query>
-    query (this->conn_->create_query (), CUTS_DB_Query::destroy);
+    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
 
   try
   {

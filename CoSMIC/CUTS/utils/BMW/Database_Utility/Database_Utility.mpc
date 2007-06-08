@@ -10,7 +10,7 @@ project (CUTS_Database_Utility) {
                System.Xml \
                MySql.Data
 
-  requires  += mysql
+  requires  += mysql bmw
 
   specific {
     output_dir =

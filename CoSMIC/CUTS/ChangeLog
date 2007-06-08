@@ -1,3 +1,25 @@
+Fri Jun  8 04:49:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * cuts/BDC/svcs/IO:
+        * cuts/BDC/svcs/XML:
+        * cuts/be/natural-lang:
+        * cuts/workers:
+        * cuts/workers/CPU_Worker:
+        * etc/calibration:
+        * install/images:
+        * tests/cuts/workers:
+        * utils/calibrate:
+
+          Updated the svn:ignore property recursively.
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:  Fixed a compilation
+          error with VC8 due to missing & to CUTS_DB_Query::destroy
+          argument.
+
+        * utils/BMW/Database_Utility/Database_Utility.mpc:  Add bmw in
+          addition to mysql to the list of requires to prevent
+          Database_Utility from being built if bmw is not selected.
+
 Wed Jun  6 03:11:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/utils/DB_Parameter.h:
