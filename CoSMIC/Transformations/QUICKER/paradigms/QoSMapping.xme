@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{E5444FA5-6381-40BD-B09D-538963327755}" cdate="Tue Jun 12 10:59:19 2007" mdate="Tue Jun 12 10:59:19 2007" version="" metaguid="{756D1966-B0D2-402A-ADEB-B47F8299BE59}" metaversion="" metaname="UMLModelTransformer">
+<project guid="{12A384E3-5E8D-4706-8819-60462C576029}" cdate="Tue Jun 12 10:59:19 2007" mdate="Tue Jun 12 10:59:19 2007" version="" metaguid="{756D1966-B0D2-402A-ADEB-B47F8299BE59}" metaversion="" metaname="UMLModelTransformer">
 	<name>QoSMapping</name>
 	<comment></comment>
 	<author></author>
@@ -3952,7 +3952,7 @@ BandedConnection2.high() = 200;</value>
 							<regnode name="Transform" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>339,258</value>
+									<value>451,328</value>
 								</regnode>
 							</regnode>
 						</regnode>
