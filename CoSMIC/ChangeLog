@@ -1,3 +1,17 @@
+Tue Jun 12 18:21:36 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Changed the transformation to work only using CQML models.
+          This is a temporary solution till GReAT supports deep copying
+          of source and target type graphs. The current transformation
+          works as a refinement on the CQML model, adding the QoS
+          options from the (user-specified) QoS requirements, assigning values
+          to the QoS options elements created and finally deleting the QoS
+          requirements elements at the end of transformation. Thus, now only
+          CQML model should be given as an input the QoSMapping transformation
+          project.
+
 Fri Jun  8 04:46:17 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
