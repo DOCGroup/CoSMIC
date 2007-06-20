@@ -1,3 +1,11 @@
+Wed Jun 20 17:04:38 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Changed the PriorityModelPolicy rule to create PMP
+          irrespective of ThreadPool element. 
+          Changed the name-mapping to correspond to that of RTRequirement.
+
 Tue Jun 12 18:21:36 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/QUICKER/paradigms/QoSMapping.xme:
