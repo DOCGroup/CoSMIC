@@ -36,10 +36,7 @@ namespace CQML
 	  dp_framework_owner_ (DeploymentPlanFrameworkVisitor::instance ()),
 	  rt_injector_ (0)
 	{
-		std::string filename = this->outputPath_ + "\\" + std::string ("RTConfig.trace");
-		this->outfile_.open (filename.c_str (), ios::app);		
-		this->init();
-		this->outfile_<<"RTConfigurationVisitor::RTConfigurationVisitor ()"<<std::endl;		
+		this->init();		
 		DeploymentPlanFrameworkVisitor::instance()->set_path (outputPath);
     }
 
@@ -50,8 +47,8 @@ namespace CQML
 			this->doc_->release();
 		delete this->target_;
 		delete this->rt_injector_;
-
-		this->outfile_.close ();		
+		this->outfile_.close ();
+		
 	}
 
 	void RTConfigurationVisitor::init()
@@ -320,54 +317,62 @@ namespace CQML
 	{			
 		this->populate_deployed_resources (object);				
 
-		//add the orbResources
-		this->push ();
-
-		//Create the <orbResources> as a child of the <orbConfigs>
-		DOMElement* or = this->doc_->createElement (XStr ("resources"));
-		this->curr_->appendChild (or);
-		this->curr_ = or;
-		this->resources_ = this->curr_;
-
-		//visit the resources
+		
 		std::set<CQML::ThreadPool> tpools = object.ThreadPool_kind_children ();
-
-		for (std::set<CQML::ThreadPool>::iterator iter = tpools.begin ();
-			iter != tpools.end ();
-			++iter)
-		{
-			CQML::ThreadPool tp = *iter;
-			tp.Accept (*this);
-		}
-
-		this->push ();
-
-		//Create the <connectionBands> element
-		DOMElement* e = this->doc_->createElement (XStr ("connectionBands"));
-		std::string bcID ("band");
-		e->setAttribute (XStr ("id"), XStr (bcID));
-		this->curr_->appendChild (e);
-		this->curr_ = e;
-
 		std::set<CQML::BandedConnection> bandedconns = object.BandedConnection_kind_children ();
 
-		for (std::set<CQML::BandedConnection>::iterator iter = bandedconns.begin ();
-			iter != bandedconns.end ();
-			++iter)
+		if (tpools.size () != 0 || bandedconns.size () != 0)
 		{
-			CQML::BandedConnection tp = *iter;
-			tp.Accept (*this);
-		}
+			//add the orbResources
+			this->push ();
+			//Create the <orbResources> as a child of the <orbConfigs>
+			DOMElement* or = this->doc_->createElement (XStr ("resources"));
+			this->curr_->appendChild (or);
+			this->curr_ = or;
+			this->resources_ = this->curr_;
 
-		//restore the current element to the ORBConfigs level
-		this->pop ();
-		this->pop ();
+			//visit the resources		
+
+			if (tpools.size () != 0)
+			{
+				for (std::set<CQML::ThreadPool>::iterator iter = tpools.begin ();
+					iter != tpools.end ();
+					++iter)
+				{
+					CQML::ThreadPool tp = *iter;
+					tp.Accept (*this);
+				}
+			}
+
+
+			if (bandedconns.size () != 0)
+			{				
+				this->push ();
+
+				//Create the <connectionBands> element
+				DOMElement* e = this->doc_->createElement (XStr ("connectionBands"));
+				std::string bcID ("band");
+				e->setAttribute (XStr ("id"), XStr (bcID));
+				this->curr_->appendChild (e);
+				this->curr_ = e;
+
+				for (std::set<CQML::BandedConnection>::iterator iter = bandedconns.begin ();
+					iter != bandedconns.end ();
+					++iter)
+				{
+					CQML::BandedConnection tp = *iter;
+					tp.Accept (*this);
+				}
+
+				//restore the current element to the ORBConfigs level
+				this->pop ();
+			}
+			this->pop ();
+		}
 
 		// handle policy set elements.
 		if (!this->add_policy_set (object))
-			return;
-
-		
+			return;		
 
 		return;
 
@@ -375,20 +380,18 @@ namespace CQML
 
 	bool RTConfigurationVisitor::add_policy_set (const CQML::RealTimeConfiguration& object)
 	{
-		this->push ();
-
-		//Create the <threadpoolWithLanes> element
-		DOMElement* e = this->doc_->createElement (XStr ("policySet"));
-		std::string psID (object.name ());
-		e->setAttribute (XStr ("id"), XStr (psID));
-		this->curr_->appendChild (e);
-		this->curr_ = e;
-
 		//add the priority model
 		std::set<CQML::PriorityModelPolicy> pmps = object.PriorityModelPolicy_kind_children ();
-
 		if (pmps.size () != 0)
 		{
+			this->push ();
+
+			//Create the <threadpoolWithLanes> element
+			DOMElement* e = this->doc_->createElement (XStr ("policySet"));
+			std::string psID (object.name ());
+			e->setAttribute (XStr ("id"), XStr (psID));
+			this->curr_->appendChild (e);
+			this->curr_ = e;		
 
 			for (std::set<CQML::PriorityModelPolicy>::iterator iter = pmps.begin ();
 				iter != pmps.end ();
