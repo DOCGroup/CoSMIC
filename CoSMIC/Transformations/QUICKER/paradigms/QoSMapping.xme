@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{12A384E3-5E8D-4706-8819-60462C576029}" cdate="Tue Jun 12 10:59:19 2007" mdate="Tue Jun 12 10:59:19 2007" version="" metaguid="{756D1966-B0D2-402A-ADEB-B47F8299BE59}" metaversion="" metaname="UMLModelTransformer">
+<project guid="{313F4FC6-BB51-4F5E-BCED-CE4FFA4A3AE2}" cdate="Tue Jun 12 10:59:19 2007" mdate="Tue Jun 12 10:59:19 2007" version="" metaguid="{756D1966-B0D2-402A-ADEB-B47F8299BE59}" metaversion="" metaname="UMLModelTransformer">
 	<name>QoSMapping</name>
 	<comment></comment>
 	<author></author>
@@ -145,7 +145,7 @@
 						<regnode name="Transform" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>812,308</value>
+								<value>812,315</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -905,7 +905,7 @@ Lanes2.dynamic_threads () = 4;</value>
 						<connpoint role="src" target="id-0067-00000202"/>
 					</connection>
 				</model>
-				<model id="id-0065-00000005" kind="Block" role="Block" guid="{DB4D2480-06F6-40f2-A33B-4CCAB90F9DAC}" relid="0x7" childrelidcntr="0x1c">
+				<model id="id-0065-00000005" kind="Block" role="Block" guid="{DB4D2480-06F6-40f2-A33B-4CCAB90F9DAC}" relid="0x7" childrelidcntr="0x25">
 					<name>PriorityModelPolicy</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -918,7 +918,7 @@ Lanes2.dynamic_threads () = 4;</value>
 						<regnode name="Transform" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>665,308</value>
+								<value>665,315</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -1057,18 +1057,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 								<value>return ServiceProvider.fixed_prioirty_service_execution () == true;</value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-00000016" kind="Connector" role="Connector" guid="{79780D94-53FA-4afa-8A73-046C7DDF6D57}" relid="0x9">
-							<name>Connector</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>425,670</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</atom>
 						<atom id="id-0066-00000272" kind="In" role="In" guid="{29908C03-C540-463d-8966-8E2EBB8A0FFC}" relid="0x21">
 							<name>In</name>
 							<regnode name="PartRegs" status="undefined">
@@ -1168,30 +1156,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 								<value>1</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000062" kind="PatternClass" role="PatternClass" guid="{D598B37E-BE80-4ac4-B63D-E6572C9D985F}" relid="0xe" referred="id-0066-00000215">
-							<name>ThreadPool</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>80,578</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="Action">
-								<value>Bound</value>
-							</attribute>
-							<attribute kind="ExcludedSubTypes" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="IsAbstract" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="PatternCardinality" status="meta">
-								<value>1</value>
-							</attribute>
-						</reference>
 						<reference id="id-0067-00000063" kind="PatternClass" role="PatternClass" guid="{1CC95730-3FB6-42cc-8457-F58D501E5DEA}" relid="0xf" referred="id-0066-00000070">
 							<name>ServiceProvider</name>
 							<regnode name="PartRegs" status="undefined">
@@ -1224,30 +1188,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 									<value></value>
 									<regnode name="Position" isopaque="yes">
 										<value>590,635</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="Action">
-								<value>CreateNew</value>
-							</attribute>
-							<attribute kind="ExcludedSubTypes" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="IsAbstract" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="PatternCardinality" status="meta">
-								<value>1</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000065" kind="PatternClass" role="PatternClass" guid="{5FAB8080-A889-49bb-A374-06D5C7A67E75}" relid="0x11" referred="id-0066-0000021a">
-							<name>PolicyPerThreadPool</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>469,804</value>
 									</regnode>
 								</regnode>
 							</regnode>
@@ -1320,29 +1260,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							</regnode>
 							<connpoint role="src" target="id-0066-00000010"/>
 							<connpoint role="dst" target="id-0067-0000005f"/>
-						</connection>
-						<connection id="id-0068-00000019" kind="PatternComposition" role="PatternComposition" guid="{5100F001-A313-4691-8866-D371CE26FD42}" relid="0x15">
-							<name>PatternComposition</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>s</value>
-							</regnode>
-							<regnode name="color" isopaque="yes">
-								<value>0x000000</value>
-							</regnode>
-							<attribute kind="Action">
-								<value>Bound</value>
-							</attribute>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="ChildRole" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="ParentRole" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="dst" target="id-0067-00000060"/>
-							<connpoint role="src" target="id-0067-00000062"/>
 						</connection>
 						<connection id="id-0068-0000001a" kind="PatternComposition" role="PatternComposition" guid="{1B864ABA-C5C1-4805-8338-0A683BA37FD4}" relid="0x16">
 							<name>PatternComposition</name>
@@ -1422,62 +1339,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							</attribute>
 							<connpoint role="dst" target="id-0067-00000060"/>
 							<connpoint role="src" target="id-0067-00000064"/>
-						</connection>
-						<connection id="id-0068-0000001f" kind="Src" role="Src" guid="{7C9CD740-C835-42df-A4CE-91DA1359BAE1}" relid="0x1c">
-							<name>Src</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>W</value>
-							</regnode>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="srcRolename">
-								<value>srcPolicyPerThreadPool</value>
-							</attribute>
-							<connpoint role="dst" target="id-0066-00000016"/>
-							<connpoint role="src" target="id-0067-00000064"/>
-						</connection>
-						<connection id="id-0068-00000020" kind="Dst" role="Dst" guid="{72F49780-1BE1-415a-B926-B60E11427305}" relid="0x1d">
-							<name>Dst</name>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="dstRolename">
-								<value>dstPolicyPerThreadPool</value>
-							</attribute>
-							<connpoint role="src" target="id-0066-00000016"/>
-							<connpoint role="dst" target="id-0067-00000062"/>
-						</connection>
-						<connection id="id-0068-00000021" kind="AssociationClass" role="AssociationClass" guid="{8DAF95A0-5A11-4a0a-8AB5-04DB3903ADD8}" relid="0x1e">
-							<name>AssociationClass</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>n</value>
-							</regnode>
-							<connpoint role="src" target="id-0066-00000016"/>
-							<connpoint role="dst" target="id-0067-00000065"/>
-						</connection>
-						<connection id="id-0068-00000022" kind="PatternComposition" role="PatternComposition" guid="{9887B599-16E2-494f-BA5F-C67EDD5FB5E6}" relid="0x1f">
-							<name>PatternComposition</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>Ns</value>
-							</regnode>
-							<regnode name="color" isopaque="yes">
-								<value>0x0000ff</value>
-							</regnode>
-							<attribute kind="Action">
-								<value>CreateNew</value>
-							</attribute>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="ChildRole" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="ParentRole" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="dst" target="id-0067-00000060"/>
-							<connpoint role="src" target="id-0067-00000065"/>
 						</connection>
 						<connection id="id-0068-0000051d" kind="Binding" role="Binding" guid="{E094760C-0372-49ba-86A5-B690C07BEF65}" relid="0x23">
 							<name>Binding</name>
@@ -1607,18 +1468,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 								<value></value>
 							</attribute>
 						</atom>
-						<atom id="id-0066-0000001d" kind="Connector" role="Connector" guid="{7FBC832D-DDFF-4d2f-AF50-4AF4D04756B8}" relid="0x7">
-							<name>Connector</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>425,670</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</atom>
 						<atom id="id-0066-0000001e" kind="Out" role="Out" guid="{61C083F7-0556-4c88-ADB1-6E2E07CC9D8C}" relid="0x8">
 							<name>Out</name>
 							<regnode name="PartRegs" status="undefined">
@@ -1697,30 +1546,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 								<value>1</value>
 							</attribute>
 						</reference>
-						<reference id="id-0067-00000067" kind="PatternClass" role="PatternClass" guid="{7E2B433C-73F9-45a7-B50F-E6C8A848DF60}" relid="0xb" referred="id-0066-00000215">
-							<name>ThreadPool</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>80,578</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="Action">
-								<value>Bound</value>
-							</attribute>
-							<attribute kind="ExcludedSubTypes" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="IsAbstract" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="PatternCardinality" status="meta">
-								<value>1</value>
-							</attribute>
-						</reference>
 						<reference id="id-0067-00000068" kind="PatternClass" role="PatternClass" guid="{CC4C01E3-688B-40f5-A6FF-FBEC30A91E0E}" relid="0xc" referred="id-0066-0000006f">
 							<name>RTRequirements</name>
 							<regnode name="PartRegs" status="undefined">
@@ -1734,30 +1559,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							</regnode>
 							<attribute kind="Action" status="meta">
 								<value>Bound</value>
-							</attribute>
-							<attribute kind="ExcludedSubTypes" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="IsAbstract" status="meta">
-								<value>false</value>
-							</attribute>
-							<attribute kind="PatternCardinality" status="meta">
-								<value>1</value>
-							</attribute>
-						</reference>
-						<reference id="id-0067-00000069" kind="PatternClass" role="PatternClass" guid="{AA709DE9-6F94-49bd-8D66-036342B45BD2}" relid="0xd" referred="id-0066-0000021a">
-							<name>PolicyPerThreadPool</name>
-							<regnode name="PartRegs" status="undefined">
-								<value></value>
-								<regnode name="Transform" status="undefined">
-									<value></value>
-									<regnode name="Position" isopaque="yes">
-										<value>469,804</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<attribute kind="Action">
-								<value>CreateNew</value>
 							</attribute>
 							<attribute kind="ExcludedSubTypes" status="meta">
 								<value></value>
@@ -1865,20 +1666,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 								<value>1</value>
 							</attribute>
 						</reference>
-						<connection id="id-0068-00000023" kind="Src" role="Src" guid="{0A35E582-607A-4c2a-B45E-41AB3D8BE7B1}" relid="0x12">
-							<name>Src</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>W</value>
-							</regnode>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="srcRolename">
-								<value>srcPolicyPerThreadPool</value>
-							</attribute>
-							<connpoint role="dst" target="id-0066-0000001d"/>
-							<connpoint role="src" target="id-0067-0000006b"/>
-						</connection>
 						<connection id="id-0068-00000024" kind="Binding" role="Binding" guid="{884EC168-CBD3-4cc9-B845-D97701A08349}" relid="0x13">
 							<name>Binding</name>
 							<regnode name="autorouterPref" isopaque="yes">
@@ -1889,60 +1676,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							</regnode>
 							<connpoint role="src" target="id-0066-00000019"/>
 							<connpoint role="dst" target="id-0067-00000066"/>
-						</connection>
-						<connection id="id-0068-00000025" kind="AssociationClass" role="AssociationClass" guid="{B70EA64F-432E-421a-A338-CE318DC9C350}" relid="0x14">
-							<name>AssociationClass</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>n</value>
-							</regnode>
-							<connpoint role="src" target="id-0066-0000001d"/>
-							<connpoint role="dst" target="id-0067-00000069"/>
-						</connection>
-						<connection id="id-0068-00000026" kind="PatternComposition" role="PatternComposition" guid="{2B6853DA-28ED-41a5-8CD1-3B417525509C}" relid="0x15">
-							<name>PatternComposition</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>s</value>
-							</regnode>
-							<regnode name="color" isopaque="yes">
-								<value>0x000000</value>
-							</regnode>
-							<attribute kind="Action">
-								<value>Bound</value>
-							</attribute>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="ChildRole" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="ParentRole" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="dst" target="id-0067-00000066"/>
-							<connpoint role="src" target="id-0067-00000067"/>
-						</connection>
-						<connection id="id-0068-00000027" kind="PatternComposition" role="PatternComposition" guid="{1CEC7BB0-F258-40ee-B668-376010751CEF}" relid="0x16">
-							<name>PatternComposition</name>
-							<regnode name="autorouterPref" isopaque="yes">
-								<value>Ns</value>
-							</regnode>
-							<regnode name="color" isopaque="yes">
-								<value>0x0000ff</value>
-							</regnode>
-							<attribute kind="Action">
-								<value>CreateNew</value>
-							</attribute>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="ChildRole" status="meta">
-								<value></value>
-							</attribute>
-							<attribute kind="ParentRole" status="meta">
-								<value></value>
-							</attribute>
-							<connpoint role="dst" target="id-0067-00000066"/>
-							<connpoint role="src" target="id-0067-00000069"/>
 						</connection>
 						<connection id="id-0068-00000028" kind="Binding" role="Binding" guid="{1112BE21-2B31-4b04-B5E8-3BF7E6D548DE}" relid="0x17">
 							<name>Binding</name>
@@ -2045,17 +1778,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							<connpoint role="dst" target="id-0066-0000001a"/>
 							<connpoint role="src" target="id-0067-00000066"/>
 						</connection>
-						<connection id="id-0068-0000002f" kind="Dst" role="Dst" guid="{74145DB9-2EF9-412b-9B31-AF6CA4FCAF62}" relid="0x1f">
-							<name>Dst</name>
-							<attribute kind="Cardinality" status="meta">
-								<value>0..*</value>
-							</attribute>
-							<attribute kind="dstRolename">
-								<value>dstPolicyPerThreadPool</value>
-							</attribute>
-							<connpoint role="src" target="id-0066-0000001d"/>
-							<connpoint role="dst" target="id-0067-00000067"/>
-						</connection>
 						<connection id="id-0068-0000051f" kind="Binding" role="Binding" guid="{6E68BE08-FE73-4c23-BFB5-3DAC5F006B45}" relid="0x23">
 							<name>Binding</name>
 							<regnode name="autorouterPref" isopaque="yes">
@@ -2077,6 +1799,555 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							</regnode>
 							<connpoint role="dst" target="id-0066-00000275"/>
 							<connpoint role="src" target="id-0067-00000201"/>
+						</connection>
+					</model>
+					<model id="id-0065-0000003d" kind="Rule" role="Rule" guid="{BEE4E115-0267-4708-A90F-93DEC8BEFB8C}" relid="0x1d" childrelidcntr="0x24">
+						<name>ConnectWithTP</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Template" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>136,79</value>
+								</regnode>
+							</regnode>
+							<regnode name="Transform" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>581,245</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="Distinguished" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="ForAll" status="meta">
+							<value>true</value>
+						</attribute>
+						<atom id="id-0066-00000293" kind="In" role="In" guid="{8757458D-3527-449c-BE33-35B15A68DAD9}" relid="0x1">
+							<name>In</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>48,76</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000294" kind="In" role="In" guid="{0A93CC1C-C6D1-4c67-AAF5-923350D24178}" relid="0x9">
+							<name>In</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>48,174</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000295" kind="In" role="In" guid="{492829EF-A080-48bf-9A35-F1A39AF12515}" relid="0x3">
+							<name>In</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>23,464</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-00000296" kind="Out" role="Out" guid="{AD6DBD64-50D1-499d-91F8-49D640B4D4B0}" relid="0x4">
+							<name>Out</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>916,440</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="CmpFunc" status="meta">
+								<value></value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000297" kind="Out" role="Out" guid="{74848ACA-8E01-45e7-A2AD-5CC05480CCEC}" relid="0x8">
+							<name>Out</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>853,216</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="CmpFunc" status="meta">
+								<value></value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000298" kind="Out" role="Out" guid="{949A9A03-8760-417b-860C-D1759FE0BA7F}" relid="0x6">
+							<name>Out</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>930,160</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="CmpFunc" status="meta">
+								<value></value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-00000299" kind="Out" role="Out" guid="{F2A1104F-2706-493e-BD59-0960223C3F62}" relid="0x22">
+							<name>Out</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>965,48</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="CmpFunc" status="meta">
+								<value></value>
+							</attribute>
+						</atom>
+						<atom id="id-0066-0000029a" kind="In" role="In" guid="{2F182E36-4E0D-4ae6-AD33-3537444AE54B}" relid="0x20">
+							<name>In</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>51,23</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<atom id="id-0066-0000029b" kind="Connector" role="Connector" guid="{F7F4B44D-1719-47ac-81C8-D6775A618E55}" relid="0x7">
+							<name>Connector</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>425,670</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</atom>
+						<reference id="id-0067-00000215" kind="PatternClass" role="PatternClass" guid="{6925FED4-8D69-4090-B5F1-AD7D976021E9}" relid="0x21" referred="id-0066-00000083">
+							<name>ComponentAssembly</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>516,118</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000216" kind="PatternClass" role="PatternClass" guid="{A7A33449-056C-4da6-80F8-470A6093D75D}" relid="0x11" referred="id-0066-00000070">
+							<name>ServiceProvider</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>193,244</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000217" kind="PatternClass" role="PatternClass" guid="{CDC4176D-B216-41db-B9A9-41B41159101B}" relid="0xf" referred="id-0066-0000021b">
+							<name>PriorityModelPolicy</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>590,635</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000218" kind="PatternClass" role="PatternClass" guid="{3AEB2F3E-C242-46be-AF2B-8D215E3480D4}" relid="0xe" referred="id-0066-0000015b">
+							<name>ComponentOutput</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>266,40</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-00000219" kind="PatternClass" role="PatternClass" guid="{ED89FC24-EB21-4866-A99E-307617852C34}" relid="0xd" referred="id-0066-0000021a">
+							<name>PolicyPerThreadPool</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>469,804</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action">
+								<value>CreateNew</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000021a" kind="PatternClass" role="PatternClass" guid="{03BD6864-2D4A-4924-866C-287C0F522BC4}" relid="0xc" referred="id-0066-0000006f">
+							<name>RTRequirements</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>255,153</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action" status="meta">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000021b" kind="PatternClass" role="PatternClass" guid="{8F7FD6CA-0941-44fb-A485-4325426634A5}" relid="0xb" referred="id-0066-00000215">
+							<name>ThreadPool</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>80,578</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<reference id="id-0067-0000021c" kind="PatternClass" role="PatternClass" guid="{AC264721-05B8-4307-B960-3CAD92D7B1B4}" relid="0xa" referred="id-0066-00000218">
+							<name>RealTimeConfiguration</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Transform" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>225,440</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="ExcludedSubTypes" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="IsAbstract" status="meta">
+								<value>false</value>
+							</attribute>
+							<attribute kind="PatternCardinality" status="meta">
+								<value>1</value>
+							</attribute>
+						</reference>
+						<connection id="id-0068-00000555" kind="Binding" role="Binding" guid="{3318E02B-7CE7-48d9-BF13-34E608DDF31B}" relid="0x23">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>w</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-0000029a"/>
+							<connpoint role="dst" target="id-0067-00000215"/>
+						</connection>
+						<connection id="id-0068-00000556" kind="Dst" role="Dst" guid="{486B36CD-E4BD-4cd9-815B-8B504A3FB376}" relid="0x1f">
+							<name>Dst</name>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="dstRolename">
+								<value>dstPolicyPerThreadPool</value>
+							</attribute>
+							<connpoint role="src" target="id-0066-0000029b"/>
+							<connpoint role="dst" target="id-0067-0000021b"/>
+						</connection>
+						<connection id="id-0068-00000557" kind="Binding" role="Binding" guid="{0F3DC81D-BF89-4f8c-B0A0-7E9F11BF4EB7}" relid="0x24">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-00000299"/>
+							<connpoint role="src" target="id-0067-00000215"/>
+						</connection>
+						<connection id="id-0068-00000558" kind="Binding" role="Binding" guid="{61ABE6F5-9CB7-4b23-9EBD-8B169D1068CA}" relid="0x1c">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-00000294"/>
+							<connpoint role="dst" target="id-0067-0000021a"/>
+						</connection>
+						<connection id="id-0068-00000559" kind="PatternComposition" role="PatternComposition" guid="{F4411D96-A058-4528-A4C9-48E00BEC419F}" relid="0x1b">
+							<name>PatternComposition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>N</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0x000000</value>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="ChildRole" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="ParentRole" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0067-00000216"/>
+							<connpoint role="dst" target="id-0067-0000021a"/>
+						</connection>
+						<connection id="id-0068-0000055a" kind="Binding" role="Binding" guid="{E5DC9680-8C0E-46c7-A36A-E8D1AEF92A90}" relid="0x1d">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-00000296"/>
+							<connpoint role="src" target="id-0067-0000021c"/>
+						</connection>
+						<connection id="id-0068-0000055b" kind="Binding" role="Binding" guid="{4E18E09B-CB45-472f-9B30-EF8ADE30D9AD}" relid="0x1a">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-00000297"/>
+							<connpoint role="src" target="id-0067-0000021a"/>
+						</connection>
+						<connection id="id-0068-0000055c" kind="PatternComposition" role="PatternComposition" guid="{40A943CF-DDA7-4e9a-9CE5-D9575189094D}" relid="0x19">
+							<name>PatternComposition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ns</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0x000000</value>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="ChildRole" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="ParentRole" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0067-00000217"/>
+							<connpoint role="dst" target="id-0067-0000021c"/>
+						</connection>
+						<connection id="id-0068-0000055d" kind="Binding" role="Binding" guid="{514EDAF2-7CB4-42a3-95D1-87A5B6FD3DEA}" relid="0x18">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-00000293"/>
+							<connpoint role="dst" target="id-0067-00000218"/>
+						</connection>
+						<connection id="id-0068-0000055e" kind="Binding" role="Binding" guid="{6AFD41CC-59DD-4fc6-A323-6D8D6E1EB89A}" relid="0x17">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>w</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="dst" target="id-0066-00000298"/>
+							<connpoint role="src" target="id-0067-00000218"/>
+						</connection>
+						<connection id="id-0068-0000055f" kind="PatternComposition" role="PatternComposition" guid="{58BAB6E0-1764-4982-BB41-3699E931E930}" relid="0x16">
+							<name>PatternComposition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ns</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0x0000ff</value>
+							</regnode>
+							<attribute kind="Action">
+								<value>CreateNew</value>
+							</attribute>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="ChildRole" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="ParentRole" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0067-00000219"/>
+							<connpoint role="dst" target="id-0067-0000021c"/>
+						</connection>
+						<connection id="id-0068-00000560" kind="PatternComposition" role="PatternComposition" guid="{B2814424-1B0A-40a2-8380-8162A6D95950}" relid="0x15">
+							<name>PatternComposition</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>s</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0x000000</value>
+							</regnode>
+							<attribute kind="Action">
+								<value>Bound</value>
+							</attribute>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="ChildRole" status="meta">
+								<value></value>
+							</attribute>
+							<attribute kind="ParentRole" status="meta">
+								<value></value>
+							</attribute>
+							<connpoint role="src" target="id-0067-0000021b"/>
+							<connpoint role="dst" target="id-0067-0000021c"/>
+						</connection>
+						<connection id="id-0068-00000561" kind="AssociationClass" role="AssociationClass" guid="{98994587-9C55-43b9-A03C-7B7E60F85494}" relid="0x14">
+							<name>AssociationClass</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>n</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-0000029b"/>
+							<connpoint role="dst" target="id-0067-00000219"/>
+						</connection>
+						<connection id="id-0068-00000562" kind="Binding" role="Binding" guid="{27AAA83F-D54C-4538-AA6B-11D528777461}" relid="0x13">
+							<name>Binding</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>Ew</value>
+							</regnode>
+							<regnode name="color" isopaque="yes">
+								<value>0xAA00AA</value>
+							</regnode>
+							<connpoint role="src" target="id-0066-00000295"/>
+							<connpoint role="dst" target="id-0067-0000021c"/>
+						</connection>
+						<connection id="id-0068-00000563" kind="Src" role="Src" guid="{DA3222E2-18A7-4e2a-AD44-6F011C79887E}" relid="0x12">
+							<name>Src</name>
+							<regnode name="autorouterPref" isopaque="yes">
+								<value>W</value>
+							</regnode>
+							<attribute kind="Cardinality" status="meta">
+								<value>0..*</value>
+							</attribute>
+							<attribute kind="srcRolename">
+								<value>srcPolicyPerThreadPool</value>
+							</attribute>
+							<connpoint role="dst" target="id-0066-0000029b"/>
+							<connpoint role="src" target="id-0067-00000217"/>
 						</connection>
 					</model>
 					<atom id="id-0066-00000020" kind="In" role="In" guid="{32285108-DAB1-438b-9A3E-680C443F4808}" relid="0x3">
@@ -2134,7 +2405,7 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							<regnode name="Transform" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>783,286</value>
+									<value>1049,195</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2149,7 +2420,7 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							<regnode name="Transform" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>776,174</value>
+									<value>1042,83</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2164,7 +2435,7 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							<regnode name="Transform" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>765,415</value>
+									<value>1028,321</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2179,7 +2450,7 @@ PriorityModelPolicy.priority_value () = 100;</value>
 							<regnode name="Transform" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>758,569</value>
+									<value>1021,475</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2226,38 +2497,6 @@ PriorityModelPolicy.priority_value () = 100;</value>
 						<connpoint role="src" target="id-0066-00000013"/>
 						<connpoint role="dst" target="id-0066-00000019"/>
 					</connection>
-					<connection id="id-0068-00000521" kind="Sequence" role="Sequence" guid="{CA260922-2AF9-4dd2-A6F4-CE6A38C7217E}" relid="0x17">
-						<name>Sequence</name>
-						<regnode name="autorouterPref" isopaque="yes">
-							<value>w</value>
-						</regnode>
-						<connpoint role="src" target="id-0066-0000001c"/>
-						<connpoint role="dst" target="id-0066-00000277"/>
-					</connection>
-					<connection id="id-0068-00000522" kind="Sequence" role="Sequence" guid="{7C41EFE1-586D-46b8-A3DD-5C6956B9615F}" relid="0x18">
-						<name>Sequence</name>
-						<regnode name="autorouterPref" isopaque="yes">
-							<value>w</value>
-						</regnode>
-						<connpoint role="src" target="id-0066-00000275"/>
-						<connpoint role="dst" target="id-0066-00000278"/>
-					</connection>
-					<connection id="id-0068-00000523" kind="Sequence" role="Sequence" guid="{FAC9864D-97D3-415f-9199-108017232D6A}" relid="0x19">
-						<name>Sequence</name>
-						<regnode name="autorouterPref" isopaque="yes">
-							<value>w</value>
-						</regnode>
-						<connpoint role="src" target="id-0066-0000001e"/>
-						<connpoint role="dst" target="id-0066-00000279"/>
-					</connection>
-					<connection id="id-0068-00000524" kind="Sequence" role="Sequence" guid="{05AB9536-6C05-49ce-9B5D-B27ADF51FF88}" relid="0x1a">
-						<name>Sequence</name>
-						<regnode name="autorouterPref" isopaque="yes">
-							<value>w</value>
-						</regnode>
-						<connpoint role="src" target="id-0066-0000001a"/>
-						<connpoint role="dst" target="id-0066-0000027a"/>
-					</connection>
 					<connection id="id-0068-00000525" kind="Sequence" role="Sequence" guid="{1C8B9868-C5B2-4ac5-AE1C-095FC19E59C8}" relid="0x1b">
 						<name>Sequence</name>
 						<regnode name="autorouterPref" isopaque="yes">
@@ -2270,6 +2509,49 @@ PriorityModelPolicy.priority_value () = 100;</value>
 						<name>Sequence</name>
 						<connpoint role="src" target="id-0066-00000273"/>
 						<connpoint role="dst" target="id-0066-00000274"/>
+					</connection>
+					<connection id="id-0068-00000564" kind="Sequence" role="Sequence" guid="{5F31116C-82B8-457b-80AF-B3CF4752DB40}" relid="0x1e">
+						<name>Sequence</name>
+						<connpoint role="src" target="id-0066-00000275"/>
+						<connpoint role="dst" target="id-0066-0000029a"/>
+					</connection>
+					<connection id="id-0068-00000565" kind="Sequence" role="Sequence" guid="{9D726C57-B70D-48af-AC87-9F776D865AAE}" relid="0x1f">
+						<name>Sequence</name>
+						<connpoint role="src" target="id-0066-0000001c"/>
+						<connpoint role="dst" target="id-0066-00000293"/>
+					</connection>
+					<connection id="id-0068-00000566" kind="Sequence" role="Sequence" guid="{AC115372-42E2-45a6-AC5E-4048B96188C8}" relid="0x20">
+						<name>Sequence</name>
+						<connpoint role="src" target="id-0066-0000001e"/>
+						<connpoint role="dst" target="id-0066-00000294"/>
+					</connection>
+					<connection id="id-0068-00000567" kind="Sequence" role="Sequence" guid="{7075125C-1D8D-4d4b-934A-F6986BE2B8E3}" relid="0x21">
+						<name>Sequence</name>
+						<connpoint role="src" target="id-0066-0000001a"/>
+						<connpoint role="dst" target="id-0066-00000295"/>
+					</connection>
+					<connection id="id-0068-00000568" kind="Sequence" role="Sequence" guid="{64B854EF-FB59-411a-A3FB-47EB0C2CEBE4}" relid="0x22">
+						<name>Sequence</name>
+						<connpoint role="dst" target="id-0066-00000278"/>
+						<connpoint role="src" target="id-0066-00000299"/>
+					</connection>
+					<connection id="id-0068-00000569" kind="Sequence" role="Sequence" guid="{5A36570E-97D0-4cad-B3B8-C92ABC6E5929}" relid="0x23">
+						<name>Sequence</name>
+						<connpoint role="dst" target="id-0066-00000277"/>
+						<connpoint role="src" target="id-0066-00000298"/>
+					</connection>
+					<connection id="id-0068-0000056a" kind="Sequence" role="Sequence" guid="{536C0F9B-54AD-4e09-8A46-A095B2648CE1}" relid="0x24">
+						<name>Sequence</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>w</value>
+						</regnode>
+						<connpoint role="dst" target="id-0066-00000279"/>
+						<connpoint role="src" target="id-0066-00000297"/>
+					</connection>
+					<connection id="id-0068-0000056b" kind="Sequence" role="Sequence" guid="{1482A1DC-31A2-4a98-829B-BCA6727D9D0F}" relid="0x25">
+						<name>Sequence</name>
+						<connpoint role="dst" target="id-0066-0000027a"/>
+						<connpoint role="src" target="id-0066-00000296"/>
 					</connection>
 				</model>
 				<model id="id-0065-00000008" kind="Rule" role="Rule" guid="{10A74C47-6E3E-4887-8D13-0117E790D7AB}" relid="0x8" childrelidcntr="0x1b">
@@ -2285,7 +2567,7 @@ PriorityModelPolicy.priority_value () = 100;</value>
 						<regnode name="Transform" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>532,308</value>
+								<value>532,315</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -3236,7 +3518,7 @@ BandedConnection2.high() = 200;</value>
 						<connpoint role="src" target="id-0067-000001fe"/>
 					</connection>
 				</model>
-				<model id="id-0065-0000000a" kind="Rule" role="Rule" guid="{E221F211-BFC1-40d7-8969-F60DB17E03C7}" relid="0xa" childrelidcntr="0x23">
+				<model id="id-0065-0000000a" kind="Rule" role="Rule" guid="{E221F211-BFC1-40d7-8969-F60DB17E03C7}" relid="0xa" childrelidcntr="0x24">
 					<name>RTConfiguration</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -3353,6 +3635,21 @@ BandedConnection2.high() = 200;</value>
 						</regnode>
 						<attribute kind="CmpFunc" status="meta">
 							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-0000029e" kind="AttributeMapping" role="AttributeMapping" guid="{1311329C-4498-49ea-BE8D-740E721531AE}" relid="0x24">
+						<name>AttributeMapping</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Transform" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>884,667</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="ExpressionString">
+							<value>RealTimeConfiguration.name () = RTRequirements.name();</value>
 						</attribute>
 					</atom>
 					<reference id="id-0067-00000079" kind="PatternClass" role="PatternClass" guid="{31C9587F-05AB-4c6e-9626-65388AEAAEAD}" relid="0x7" referred="id-0066-00000218">
