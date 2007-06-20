@@ -1,9 +1,26 @@
+Wed Jun 20 20:31:38 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed the problems with the attributes in EventChannel
+          requirements.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated PICML library to reflect the latest changes.
+
 Wed Jun 20 17:04:38 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/QUICKER/paradigms/QoSMapping.xme:
 
           Changed the PriorityModelPolicy rule to create PMP
-          irrespective of ThreadPool element. 
+          irrespective of ThreadPool element.
           Changed the name-mapping to correspond to that of RTRequirement.
 
 Tue Jun 12 18:21:36 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
