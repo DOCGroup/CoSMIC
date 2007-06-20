@@ -1,3 +1,10 @@
+Wed Jun 20 21:33:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          Fixed the problems with generation of resources, connection bands
+          in the csr file.
+
 Wed Jun 20 20:31:38 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
