@@ -1654,7 +1654,8 @@ namespace CQML
 	 {
 		 injector = this->injectors_[plan_name];
 		 std::string resource_name = injector->get_deployed_resource (comp);		 
-
+		 if (resource_name.empty () == true)
+			 return;
 		 std::string name ("InstanceUsesResource");
 		 std::string requirement_name ("CIAO::PolicySet");
 		 std::string set_name ("CIAO::PolicySetName");
