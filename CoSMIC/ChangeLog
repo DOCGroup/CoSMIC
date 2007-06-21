@@ -1,3 +1,10 @@
+Thu Jun 21 21:33:34 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Fixed the transformation project such that CQML models
+          are correctly generated with the changed CQML meta-model.
+
 Thu Jun 21 20:12:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
