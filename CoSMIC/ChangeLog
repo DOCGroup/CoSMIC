@@ -1,3 +1,13 @@
+Thu Jun 21 14:48:19 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          Following bugs reported by Kitty were fixed:
+          Fixed the reference generated for csr file in deployment plan.
+          Fixed the problem with deployedResource element such that it is not
+          created for non-RT components.
+
 Wed Jun 20 21:33:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
