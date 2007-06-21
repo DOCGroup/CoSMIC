@@ -1653,9 +1653,10 @@ namespace CQML
 	 if (this->injectors_.find (plan_name) != this->injectors_.end ())
 	 {
 		 injector = this->injectors_[plan_name];
-		 std::string resource_name = injector->get_deployed_resource (comp);		 
-		 if (resource_name.empty () == true)
+		 std::string dep_resource= injector->get_deployed_resource (comp);		 
+		 if (dep_resource.empty () == true)
 			 return;
+		 std::string resource_name = injector->get_resource_name ();
 		 std::string name ("InstanceUsesResource");
 		 std::string requirement_name ("CIAO::PolicySet");
 		 std::string set_name ("CIAO::PolicySetName");
@@ -1700,7 +1701,7 @@ namespace CQML
 		 this->curr_->appendChild (val);
 		 this->curr_ = val;
 		 this->curr_->appendChild (this->createSimpleContent ("string",
-			 resource_name));
+			 dep_resource));
 		 this->pop();
 		 this->pop();
 		 this->pop();
