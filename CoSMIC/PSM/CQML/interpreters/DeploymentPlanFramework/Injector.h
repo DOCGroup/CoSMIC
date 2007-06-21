@@ -28,6 +28,7 @@ namespace CQML
           virtual ConnectionMap add_connections (const std::string& plan_name, const ConnectionMap &);
           virtual std::map <std::string, std::string> assign_node_mappings (const std::string& plan_name, const std::map <std::string, std::string> &);		  
 		  virtual std::string get_deployed_resource(const CQML::Component& comp);
+		  virtual std::string get_resource_name ();
 		  
       };
   } // namespace CQML
