@@ -110,7 +110,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
           return;
         }
 	  
-  //    XMLPlatformUtils::Terminate();
+      XMLPlatformUtils::Terminate();
   
   AfxMessageBox ("Descriptor files were successfully generated!",
                  MB_OK| MB_ICONINFORMATION);
