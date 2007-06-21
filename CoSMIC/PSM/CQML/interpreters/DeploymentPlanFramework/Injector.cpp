@@ -34,6 +34,10 @@ std::string Injector::get_deployed_resource (const CQML::Component& comp)
   {
 	  return std::string ();
   }
+std::string Injector::get_resource_name ()
+{
+	return std::string ();
+}
 
 
 
