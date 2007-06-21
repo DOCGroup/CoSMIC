@@ -1,3 +1,38 @@
+Thu Jun 21 20:12:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp:
+
+          Added new interface to injector that retrieves the resource_name
+          for a plan.
+
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          ServerResources id matches the resourceName as per the new
+          schema.
+          Fixed the interpreter as per name changes in some elements of
+          RTConfiguration in CQML meta-model.
+
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.cpp:
+
+          The new interface of Injector is implemented here.
+
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.cpp:
+
+          Added terminate on XMLPlatformUtils.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Changed the multiplicity of associations between ThreadPool and
+          Lanes and ThreadPool and PriorityModelPolicy.
+          Changed names such that they reflect those in the specs.
+
 Thu Jun 21 14:48:19 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
