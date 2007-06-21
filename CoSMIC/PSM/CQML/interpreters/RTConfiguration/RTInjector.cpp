@@ -19,5 +19,10 @@ namespace CQML
 		return this->rt_config_visitor_->get_deployed_resource (comp);
 	}
 
+	std::string RTInjector::get_resource_name ()
+	{
+		return this->rt_config_visitor_->get_resource_name ();
+	}
+
 } // namespace CQML
 
