@@ -236,7 +236,7 @@ namespace CQML
 		{
 			std::string name = this->outputPath_ + "\\"; 
 			name += prop.DataValue ();
-			name += ".csr";
+			//name += ".csr";
 			this->csr_files_.insert (name);					
 		}
 		return;
