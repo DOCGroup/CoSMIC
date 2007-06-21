@@ -57,9 +57,9 @@ namespace CQML
     virtual void Visit_RealTimeConfiguration( const CQML::RealTimeConfiguration& object );
     virtual void Visit_EnvironmentConf (const EnvironmentConf& ec);
 	virtual void Visit_ThreadPool( const CQML::ThreadPool& tp );            
-	virtual void Visit_BandedConnection( const CQML::BandedConnection& bc);        	
+	virtual void Visit_PriorityBands( const CQML::PriorityBands & bc);        	
     virtual void Visit_PriorityModelPolicy( const CQML::PriorityModelPolicy& pmp);
-	virtual void Visit_Lanes (const CQML::Lanes& lns);	
+	virtual void Visit_Lane (const CQML::Lane& ln);	
 
 	// Predefined Types    
 	virtual void Visit_Boolean( const CQML::Boolean& object );
@@ -72,14 +72,15 @@ namespace CQML
 
 	void parse_rt_configs (const RootFolder& rf);
 	bool add_policy_set (const CQML::RealTimeConfiguration& rtc);
-	void add_simple_threadpool (std::set<CQML::Lanes> lanes);
-	void add_threadpool_with_lanes (std::set<CQML::Lanes> lanes);
+	void add_simple_threadpool (std::set<CQML::Lane> lanes);
+	void add_threadpool_with_lanes (std::set<CQML::Lane> lanes);
 	void add_env_conf (const ComponentAssembly& assembly);
 
 	void populate_deployed_resources (const CQML::RealTimeConfiguration& rtc);
 
 	// interfaces required by RTInjector	
 	std::string get_deployed_resource (const CQML::Component& comp);
+	std::string get_resource_name ();
 	std::set<Component> get_connected_components (const CQML::RealTimeConfiguration& rtc);
 	
   private:
@@ -87,7 +88,7 @@ namespace CQML
     void init();
     void initTarget (const std::string& fileName);
     void initDocument (const std::string& rootName);
-    void initRootAttributes();
+	void initRootAttributes();
     void dumpDocument();
 
     void push();
@@ -105,6 +106,7 @@ namespace CQML
     XMLFormatTarget*        target_;
     std::string             outputPath_;
 	std::set<std::string>             csr_files_;
+	std::string artifact_name_;
     std::stack<DOMElement*> curr_stack_;
 	std::ofstream outfile_;
     //maps to maintain the elements that were added already

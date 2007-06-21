@@ -32,10 +32,12 @@ namespace CQML
 	  resources_ (0),
 	  serializer_ (0),
 	  target_ (0),
-	  outputPath_ (outputPath),	  
+	  outputPath_ (outputPath),
+	  artifact_name_ (""),
 	  dp_framework_owner_ (DeploymentPlanFrameworkVisitor::instance ()),
 	  rt_injector_ (0)
 	{
+		
 		this->init();		
 		DeploymentPlanFrameworkVisitor::instance()->set_path (outputPath);
     }
@@ -113,10 +115,11 @@ namespace CQML
 			XStr ("http://www.omg.org/XMI"));
 		this->root_->setAttribute (XStr ("xsi:schemaLocation"),
 			XStr ("http://www.dre.vanderbilt.edu/ServerResources CIAOServerResources.xsd"));
-		std::string id = "_";
-		id += Utils::CreateUuid ();
+		std::string id = "_";		
+		id += Utils::CreateUuid ();		
 		this->root_->setAttribute (XStr ("id"),
 			XStr (id.c_str ()));
+		this->artifact_name_ = id;
 		this->curr_ = this->root_;
 		this->resources_ = 0;
 	}
@@ -170,6 +173,7 @@ namespace CQML
 		// DeploymentPlans for creating the csr file and registering the injector with DRFramework.
 		accept_each_child (rf, DeploymentPlans, *this);
 		this->initDocument ("CIAO:ServerResources");			
+		this->artifact_name_ = rf.getPath ("_",false,true,"name",true);
 		this->initRootAttributes ();
 		this->push();
 		// Continue visiting RTConfiguration.		
@@ -254,13 +258,20 @@ namespace CQML
 	// rt_injector calls this function on behalf of DPFramework to get the deployed resources string
 	// for a specific component.
 	std::string RTConfigurationVisitor::get_deployed_resource (const CQML::Component& comp)
-	{
+	{	
+
 		if (this->deployed_resources_.find (comp) != this->deployed_resources_.end ())
 		{
 			std::string deployed_resource = this->deployed_resources_[comp];
 			return deployed_resource;
 		}
 		return std::string ();
+	}
+
+	std::string RTConfigurationVisitor::get_resource_name ()
+	{
+		std::string resource_name = this->artifact_name_;
+		return resource_name;
 	}
 
 	// Returns all the connected components for a RealTimeConfiguration element.
@@ -319,7 +330,7 @@ namespace CQML
 
 		
 		std::set<CQML::ThreadPool> tpools = object.ThreadPool_kind_children ();
-		std::set<CQML::BandedConnection> bandedconns = object.BandedConnection_kind_children ();
+		std::set<CQML::PriorityBands> bandedconns = object.PriorityBands_kind_children ();
 
 		if (tpools.size () != 0 || bandedconns.size () != 0)
 		{
@@ -356,11 +367,11 @@ namespace CQML
 				this->curr_->appendChild (e);
 				this->curr_ = e;
 
-				for (std::set<CQML::BandedConnection>::iterator iter = bandedconns.begin ();
+				for (std::set<CQML::PriorityBands>::iterator iter = bandedconns.begin ();
 					iter != bandedconns.end ();
 					++iter)
 				{
-					CQML::BandedConnection tp = *iter;
+					CQML::PriorityBands tp = *iter;
 					tp.Accept (*this);
 				}
 
@@ -482,21 +493,21 @@ namespace CQML
 	}
 
 
-	void RTConfigurationVisitor::add_threadpool_with_lanes (std::set<CQML::Lanes> lanes)
+	void RTConfigurationVisitor::add_threadpool_with_lanes (std::set<CQML::Lane> lanes)
 	{	
-		for (std::set<CQML::Lanes>::iterator iter = lanes.begin ();
+		for (std::set<CQML::Lane>::iterator iter = lanes.begin ();
 			iter != lanes.end (); ++iter)
 		{
-			CQML::Lanes lane = (*iter);
+			CQML::Lane lane = (*iter);
 			lane.Accept (*this);
 		}
 	}
 
-	void RTConfigurationVisitor::add_simple_threadpool (std::set<CQML::Lanes> lanes)
+	void RTConfigurationVisitor::add_simple_threadpool (std::set<CQML::Lane> lanes)
 	{
 		//static, dynamic and lane priority elements from lane.
-		std::set<CQML::Lanes>::iterator iter = lanes.begin ();
-		CQML::Lanes lane = *iter;		
+		std::set<CQML::Lane>::iterator iter = lanes.begin ();
+		CQML::Lane lane = *iter;		
 
 		//output static threads
 		long st = (long)lane.static_threads ();
@@ -527,7 +538,7 @@ namespace CQML
 	{
 		// if only a single lane element is connected to threadpool, create a simple thread pool.
 		// else create a threadpoolwithlanes.	
-		std::set<CQML::LanePerThreadPool> lanespertp = tp.dstLanePerThreadPool ();
+		std::set<CQML::LanePerThreadPool> lanespertp = tp.srcLanePerThreadPool ();
 
 		if (lanespertp.empty ())
 			return;
@@ -536,10 +547,10 @@ namespace CQML
 		std::set<CQML::LanePerThreadPool>::iterator iter = lanespertp.begin ();
 
 		// Populate the lanes
-		std::set<CQML::Lanes> lanes;
+		std::set<CQML::Lane> lanes;
 		for (;iter != lanespertp.end (); ++iter)
 		{			
-			CQML::Lanes lane = (*iter).dstLanePerThreadPool_end ();
+			CQML::Lane lane = (*iter).srcLanePerThreadPool_end ();
 			lanes.insert (lane);
 		}
 
@@ -629,7 +640,7 @@ namespace CQML
 
 	}
 
-	void RTConfigurationVisitor::Visit_BandedConnection (const CQML::BandedConnection& bc)
+	void RTConfigurationVisitor::Visit_PriorityBands (const CQML::PriorityBands& bc)
 	{
 		//save curr
 		this->push ();
@@ -666,7 +677,7 @@ namespace CQML
 	}
 
 
-	void RTConfigurationVisitor::Visit_Lanes (const CQML::Lanes& lns)
+	void RTConfigurationVisitor::Visit_Lane (const CQML::Lane& lns)
 	{
 		//save curr
 		this->push ();
@@ -720,13 +731,16 @@ namespace CQML
 		long pv = (long)pmp.priority_value ();
 		temp << pv;
 		
-		e->setAttribute (XStr ("server_priority"), XStr (temp.str ()));
+		std::string p_type = pmp.priority_model ();
+		// Only set the server_priority if model is CLIENT_PROPAGATED
+		if (p_type.compare ("CLIENT_PROPAGATED") != 0 )
+			e->setAttribute (XStr ("server_priority"), XStr (temp.str ()));
 
 		this->curr_->appendChild (e);
 		this->curr_ = e;
 
 		//Add the <priority_model>			
-		std::string p_type = pmp.priority_model ();
+		
 
 		// ugly, but serves the purpose.
 		std::string pt = p_type.compare ("CLIENT_PROPAGATED") == 0?"CLIENT_PROPAGATED":"SERVER_DECLARED";
