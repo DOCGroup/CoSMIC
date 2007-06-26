@@ -1658,8 +1658,8 @@ namespace CQML
 			 return;
 		 std::string resource_name = injector->get_resource_name ();
 		 std::string name ("InstanceUsesResource");
-		 std::string requirement_name ("CIAO::PolicySet");
-		 std::string set_name ("CIAO::PolicySetName");
+		 std::string requirement_name ("CIAO:PolicySet");
+		 std::string set_name ("CIAO:InstancePolicy");
 
 		 this->push();
 		 DOMElement* ele = this->doc_->createElement (XStr ("deployedResource"));
