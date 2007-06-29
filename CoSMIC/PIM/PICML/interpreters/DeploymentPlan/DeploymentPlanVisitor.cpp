@@ -1405,6 +1405,7 @@ namespace PICML
       update_monolith_impl (monolithic_component, monolithic_component_name);
       create_component_instance (monolithic_component);
       create_component_config_properties (this->mimpl_);
+      create_assembly_config_properties (monolithic_component);
       create_component_readonly_attributes (monolithic_component);
       this->pop ();
     }
