@@ -258,7 +258,7 @@ namespace CQML
 			}
 
 
-			std::set<BandedConnection> bcs = rtc.BandedConnection_children ();
+			std::set<PriorityBands> bcs = rtc.PriorityBands_children ();
 
 			if (bcs.size () != 0)
 			{				
@@ -266,7 +266,7 @@ namespace CQML
 				this->outfile_ << "int "<< comp.name () << "_client_priority_high := " << this->get_highest_priority (rtc) <<";"<< std::endl;
 			}
 
-			std::set<ThreadPool> tps = rtc.ThreadPool_children ();
+			std::set<ThreadPool> tps = rtc.ThreadPool_kind_children ();
 
 			if (tps.size () != 0)
 			{
@@ -293,8 +293,8 @@ namespace CQML
 
 	int BIRSpecificationVisitor::get_lowest_priority (RealTimeConfiguration rtc)
 	{
-		std::set<BandedConnection> bcs = rtc.BandedConnection_children ();
-		std::set<BandedConnection>::iterator iter = bcs.begin ();
+		std::set<PriorityBands> bcs = rtc.PriorityBands_children ();
+		std::set<PriorityBands>::iterator iter = bcs.begin ();
 		
 		int low = (int)(*iter).low ();
 		for (;iter != bcs.end ();++iter)
@@ -308,8 +308,8 @@ namespace CQML
 	int BIRSpecificationVisitor::get_highest_priority (RealTimeConfiguration rtc)
 	{
 		
-		std::set<BandedConnection> bcs = rtc.BandedConnection_children ();
-		std::set<BandedConnection>::iterator iter = bcs.begin ();
+		std::set<PriorityBands> bcs = rtc.PriorityBands_children ();
+		std::set<PriorityBands>::iterator iter = bcs.begin ();
 		int high = (int)(*iter).high ();
 
 		for (;iter != bcs.end ();++iter)
