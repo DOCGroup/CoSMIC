@@ -1,3 +1,10 @@
+Tue Jul  3 15:36:47 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+
+          Fixed errors in BIRSpecification generator due to changes in
+          RTConfiguration meta-model.
+
 Fri Jun 29 00:15:30 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
