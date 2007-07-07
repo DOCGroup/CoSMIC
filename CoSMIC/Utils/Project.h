@@ -72,7 +72,7 @@ namespace Utils
      * @param[in]       uuid        Unique identifier
      * @param[in]       outdir      The output directory to store.
      */
-    static void set_defualt_output_dir (IMgaProject * project,
+    static void set_default_output_dir (IMgaProject * project,
                                         const std::string & uuid,
                                         const std::string & outdir);
   };

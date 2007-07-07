@@ -1,3 +1,44 @@
+Sat Jul  7 05:06:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme:  Updated example to add example
+          RT-Configuration elements.
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Fix typo in function name set_default_output_dir.
+
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:  Updates
+          to fix usage of set_default_output_dir.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:  Added PAM and
+          PAMComponent to build when building CQML.
+
+        * PSM/CQML/interpreters/PAM:
+        * PSM/CQML/interpreters/PAM/PAM.mpc:
+        * PSM/CQML/interpreters/PAM/PAMVisitor.h:
+        * PSM/CQML/interpreters/PAM/PAMVisitor.cpp:
+        * PSM/CQML/interpreters/PAM/PAM_Export.h:
+        * PSM/CQML/interpreters/PAMComponent:
+        * PSM/CQML/interpreters/PAMComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/PAMComponent/Component.def:
+        * PSM/CQML/interpreters/PAMComponent/Component.rc:
+        * PSM/CQML/interpreters/PAMComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.reg:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponentd.reg:
+        * PSM/CQML/interpreters/PAMComponent/RawComponent.h:
+        * PSM/CQML/interpreters/PAMComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/PAMComponent/UdmApp.h:
+        * PSM/CQML/interpreters/PAMComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/PAMComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/PAMComponent/resource.h:
+
+          New interpreter skeleton to generate physical assemblies.
+
 Tue Jul  3 15:36:47 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:

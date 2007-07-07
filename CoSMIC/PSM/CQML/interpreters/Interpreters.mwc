@@ -14,6 +14,8 @@ workspace {
   FaultToleranceComponent
   EventBus
   EventBusComponent
+  PAM
+  PAMComponent
   RTConfiguration
   RTConfigurationComponent
   RTSchedulability

@@ -334,18 +334,18 @@ void RawComponent::SavePackageOptions (const PackageOptions & options)
   // of the interpreter.
   if (options.generate_descriptors_)
   {
-    Utils::Project::set_defualt_output_dir (this->project_,
+    Utils::Project::set_default_output_dir (this->project_,
                                             PACKAGE_DESCRIPTOR_UUID,
                                             options.descriptor_directory_);
   }
 
   if (options.generate_packages_)
   {
-    Utils::Project::set_defualt_output_dir (this->project_,
+    Utils::Project::set_default_output_dir (this->project_,
                                             PACKAGE_IMPLEMNATION_UUID,
                                             options.implementation_directory_);
 
-    Utils::Project::set_defualt_output_dir (this->project_,
+    Utils::Project::set_default_output_dir (this->project_,
                                             PACKAGE_PACKAGE_UUID,
                                             options.package_directory_);
   }

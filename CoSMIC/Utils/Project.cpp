@@ -31,13 +31,13 @@ namespace Utils
   void Project::set_global_default_output_dir (IMgaProject * project,
                                                const std::string & outdir)
   {
-    Project::set_defualt_output_dir (project, "", outdir);
+    Project::set_default_output_dir (project, "", outdir);
   }
 
   //
-  // set_defualt_output_dir
+  // set_default_output_dir
   //
-  void Project::set_defualt_output_dir (IMgaProject * proj,
+  void Project::set_default_output_dir (IMgaProject * proj,
                                         const std::string & uuid,
                                         const std::string & outdir)
   {
