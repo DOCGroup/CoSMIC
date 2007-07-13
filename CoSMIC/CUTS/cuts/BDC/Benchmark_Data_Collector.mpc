@@ -68,7 +68,7 @@ project (Benchmark_Data_Collector_svnt) : cuts_bdcsvc, cuts_servant_dnc {
   }
 }
 
-project (Benchmark_Data_Collector_exec) : cuts_component_dnc, rt_client {
+project (Benchmark_Data_Collector_exec) : cuts_component_dnc {
   sharedname  = Benchmark_Data_Collector_exec
 
   after      += Benchmark_Data_Collector_svnt \

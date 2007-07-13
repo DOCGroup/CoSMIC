@@ -1,3 +1,13 @@
+Fri Jul 13 04:04:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/CUTS_CIAO.mpc:
+
+          Removed the rt_server base projects since it defined the
+          project type as an executable. This was cause the top-level
+          project to inherit this project type as well regardless
+          of the top-level project specifying a different project type.
+
 Fri Jun  8 04:49:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * cuts/BDC/svcs/IO:

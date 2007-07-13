@@ -1,6 +1,6 @@
 // $Id$
 
-project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
+project(CUTS_stub): cuts_client_dnc, ciao_events_base_dnc {
   sharedname     = CUTS_stub
 
   idlflags      += -Wb,export_macro=CUTS_STUB_Export \
@@ -26,7 +26,7 @@ project(CUTS_stub): rt_server, cuts_client_dnc, ciao_events_base_dnc {
   }
 }
 
-project (CUTS_exec) : rt_server, cuts_component_dnc {
+project (CUTS_exec) : cuts_component_dnc {
   after     += CUTS_stub
   sharedname = CUTS_exec
   libs      += CUTS_stub
