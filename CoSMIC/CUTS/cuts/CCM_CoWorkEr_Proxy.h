@@ -16,8 +16,8 @@
 #include "cuts/CUTS_exec_export.h"
 #include "cuts/Benchmark_Agent_i.h"
 #include "tao/LocalObject.h"
-#include "tao/RTCORBA/RTCORBA.h"
-#include "tao/RTPortableServer/RT_POA.h"
+//#include "tao/RTCORBA/RTCORBA.h"
+//#include "tao/RTPortableServer/RT_POA.h"
 
 //=============================================================================
 /**
@@ -60,11 +60,11 @@ protected:
   /// Pointer to the <Benchmark_Agent_i> implementation.
   Benchmark_Agent_i * agent_;
 
-  /// Reference to the RTCORBA orb.
-  RTCORBA::RTORB_var rt_orb_;
+  ///// Reference to the RTCORBA orb.
+  //RTCORBA::RTORB_var rt_orb_;
 
-  /// Reference to the RTCORBA POA.
-  RTPortableServer::POA_var benchmark_poa_;
+  ///// Reference to the RTCORBA POA.
+  //RTPortableServer::POA_var benchmark_poa_;
 
   /// POA servant.
   PortableServer::ServantBase_var servant_;
