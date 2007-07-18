@@ -6,7 +6,7 @@ project (GatewayGenerator): bon, register, boost_base {
    includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
 
    specific(nmake, vc71, vc8) {
-    compile_flags += /wd4290 /wd4800 /wd4250 /wd4355
+    compile_flags += /wd4290 /wd4800 /wd4250 /wd4355 /bigobj
    }
 
    specific (vc6,vc7,vc71,vc8) {
@@ -35,9 +35,6 @@ project (GatewayGenerator): bon, register, boost_base {
      GatewayGeneratorUtils.cpp
      GsoapVisitor.cpp
      AspNetVisitor.cpp
-     PICML
-     WSML
-     SIML
    }
 
    Header_Files {
@@ -63,21 +60,9 @@ project (GatewayGenerator): bon, register, boost_base {
      GatewayGeneratorUtils.h
      GsoapVisitor.h
      AspNetVisitor.h
-     PICML
-     WSML
-     SIML
    }
 
    Resource_Files {
      CompIcon.ico
    }
 }
-
-// project (RegisterGatewayGenerator) : register {
-//   after += GatewayGenerator
-//   custom_only = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\GatewayGenerator.dll
-//   }
-// }

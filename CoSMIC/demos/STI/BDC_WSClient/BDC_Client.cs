@@ -34,7 +34,7 @@ namespace CUTS
 
         static void Main()
         {
-            
+
             string pathId = "SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerOne,CommandEvent,CommandEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.SensorMain,CommandEvent,TrackEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerOne,TrackEvent,SituationEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.PlannerTwo,SituationEvent,AssessmentEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.ConfigOp,AssessmentEvent,CommandEvent;SLICE.CoWorkEr_ComponentImplementations.SLICE.SLICE.EffectorMain,CommandEvent,CommandEvent";
             //Console.WriteLine("pathId = {0}", pathId);
             CUTSPath_Element[] pathSeq = BDCClient.createPathId(pathId);
@@ -56,10 +56,9 @@ namespace CUTS
                             CUTSTime_Info time;
                             eventInfo = bdc_measurements.execution_time(cutsId);
                             time = eventInfo.time;
-                            Console.Error.WriteLine("ID {0}: Execution time (min/avg/max): ({1} ms/{2} ms/{3} ms)\t No. of Events sampled: ({4})",
+                            Console.Error.WriteLine("ID {0}: Execution time (min/max): ({1} ms/{2} ms)\t No. of Events sampled: ({3})",
                                 cutsId,
                                 time.min,
-                                time.total,
                                 time.max,
                                 eventInfo.max_events);
                             Thread.Sleep(5000);
@@ -69,10 +68,9 @@ namespace CUTS
                             Console.WriteLine(ex.Message);
                             CUTSTime_Info time = new CUTSTime_Info();
                             CUTSEvent_Time_Info eventInfo = new CUTSEvent_Time_Info();
-                            Console.Error.WriteLine("ID {0}: Execution time (min/avg/max): ({1} ms/{2} ms/{3} ms)\t No. of Events sampled: ({4})",
+                            Console.Error.WriteLine("ID {0}: Execution time (min/max): ({1} ms/{2} ms)\t No. of Events sampled: ({3})",
                                 cutsId,
                                 time.min,
-                                time.total,
                                 time.max,
                                 eventInfo.max_events);
                         }
@@ -86,7 +84,7 @@ namespace CUTS
                 {
                     CUTSTime_Info time = new CUTSTime_Info();
                     CUTSEvent_Time_Info eventInfo = new CUTSEvent_Time_Info();
-                    Console.Error.WriteLine("ID {0}: Execution time (min/avg/max): ({1} ms/{2} ms/{3} ms)\t No. of Events sampled: ({4})",
+                    Console.Error.WriteLine("ID {0}: Execution time (min/max): ({1} ms/{2} ms)\t No. of Events sampled: ({3})",
                                 0,
                                 time.min,
                                 time.total,

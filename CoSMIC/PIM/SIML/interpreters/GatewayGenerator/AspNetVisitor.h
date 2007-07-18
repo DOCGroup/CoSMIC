@@ -48,7 +48,8 @@ private:
   void corba_struct_to_soap_struct (const Aggregate& agg,
                                     const string& soapName,
                                     const string& corbaName,
-                                    ofstream& os);
+                                    ofstream& os,
+                                    bool child);
   void soap_seq_to_corba_seq (const Collection& seq,
                               const string& soapName,
                               const string& corbaName,

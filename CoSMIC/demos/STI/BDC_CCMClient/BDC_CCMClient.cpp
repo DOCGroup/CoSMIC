@@ -132,12 +132,11 @@ main (int argc, char *argv[])
           CUTS::Event_Time_Info event_info
             = online_measurements->execution_time (pathCookie);
           CUTS::Time_Info time = event_info.time;
-          ACE_DEBUG ((LM_DEBUG, "ID %d: Execution time (min/avg/max): "
-                      "(%d ms/%d ms/%d ms)\t"
+          ACE_DEBUG ((LM_DEBUG, "ID %d: Execution time (min/max): "
+                      "(%d ms/%d ms)\t"
                       "No. of Events sampled: (%d)\n",
                       pathCookie,
                       time.min,
-                      time.total,
                       time.max,
                       event_info.max_events));
           ACE_OS::sleep (timeout);

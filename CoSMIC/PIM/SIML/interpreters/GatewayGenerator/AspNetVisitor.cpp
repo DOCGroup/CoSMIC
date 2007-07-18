@@ -92,8 +92,14 @@ string AspNetVisitor::wsdl_scoped_name (const BON::FCO& object,
   // If our parent is a file, don't tack on its name.
   if (!File (parent))
     {
-      string name = this->wsdl_scoped_name (parent, append)
-                    + local_name;
+      if (Collection (object))
+        {
+			Collection sequence (object);
+
+          local_name = sequence->getReferred()->getName();
+        }
+      string name  = this->wsdl_scoped_name (parent, append)
+                     + local_name;
       if (append)
         name += "^";
       if (Collection (object))
@@ -282,8 +288,6 @@ AspNetVisitor::generate_operation_signature(const TwowayOperation& object,
                                             ofstream& os)
 {
   string operationName = this->transform_name (object->getName().c_str());
-  // All methods are virtual
-  os << "virtual ";
   set<ReturnType> retTypes = object->getReturnType();
   if (retTypes.size() == 0)
     {
@@ -397,6 +401,8 @@ AspNetVisitor::generate_header()
     {
       TwowayOperation oper (*iter);
       string empty;
+      // All methods are virtual
+      this->header_ << "virtual ";
       this->generate_operation_signature (oper, empty, this->header_);
       this->header_ << ";" << endl;
     }
@@ -494,7 +500,8 @@ AspNetVisitor::generate_source()
                     << "if (CORBA::is_nil (obj))\n"
                     << "{"
                     << "throw std::exception (\"Unable to acquire "
-                    << object->getName() << " objref\");\n";
+                    << object->getName() << " objref\");\n"
+                    << "}\n";
       this->source_ << "this->" << lowerCompName << "_ = "
                     << this->idl_scoped_name (object) << "::_narrow (obj.in());\n"
                     << "if (CORBA::is_nil ("
@@ -522,7 +529,8 @@ AspNetVisitor::generate_source()
                     << iter->first << " objref\");"
                     << "}";
     }
-  this->source_ << "catch (CORBA::Exception& ex)\n"
+  this->source_ << "}\n"
+                << "catch (CORBA::Exception& ex)\n"
                 << "{"
                 << "ACE_PRINT_EXCEPTION (ex, \"CORBA::Exception\");\n"
                 << "throw std::exception (ex._info().c_str());\n"
@@ -650,7 +658,7 @@ AspNetVisitor::generate_function_body (const TwowayOperation& oper, ofstream& os
           this->corba_struct_to_soap_struct (agg,
                                              "retval",
                                              "_return",
-                                             this->source_);
+                                             this->source_, false);
         }
       this->source_ << "return retval;\n";
     }
@@ -684,11 +692,13 @@ void
 AspNetVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
                                             const string& soapName,
                                             const string& corbaName,
-                                            ofstream& os)
+                                            ofstream& os,
+                                            bool child)
 {
   string aggName = this->wsdl_scoped_name (agg, false);
-  os << this->wsdl_scoped_name (agg) << " " << soapName << " = gcnew "
-     <<  aggName << "();\n";
+  if (!child)
+    os << this->wsdl_scoped_name (agg) << " ";
+  os << soapName << " = gcnew " <<  aggName << "();\n";
   set<Member> members = agg->getMember();
   for (set<Member>::iterator iter = members.begin();
        iter != members.end();
@@ -705,7 +715,7 @@ AspNetVisitor::corba_struct_to_soap_struct (const Aggregate& agg,
       else if (Aggregate (memberType))
         {
           Aggregate child (memberType);
-          this->corba_struct_to_soap_struct (child, lhs, rhs, os);
+          this->corba_struct_to_soap_struct (child, lhs, rhs, os, true);
         }
       else if (Alias (memberType))
         {

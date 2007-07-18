@@ -1,3 +1,37 @@
+Wed Jul 18 02:30:46 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+
+          Fixes to make sure that code generated for ASP.NET compiles.
+
+        * PIM/WSML/examples/SLICE.xme:  Updated the example to reflect a
+          working version.
+
+        * demos/STI/BDCWebService/SLICE.wsdl:  Updated file to reflect a
+          working version.
+
+        * demos/STI/BDC_CCMClient/BDC_CCMClient.cpp:  Updated to fix the
+          message printed.  It was erroneously printing the total time
+          taken to process events as average time taken to process an
+          event.
+
+        * demos/STI/BDC_WSClient/BDC_Client.cs:  Updated to fix the
+          message printed.  It was erroneously printing the total time
+          taken to process events as average time taken to process an
+          event.
+
+        * demos/STI/BDC_WSClient/Benchmark_Data_Collector.cs:
+        * demos/STI/BDC_WSClient/CORBA.xsd:
+        * demos/STI/BDC_WSClient/SLICE.wsdl:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector.h:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector_Impl.h:
+        * demos/STI/BDCWebService.NET/Benchmark_Data_Collector_Impl.cpp:
+        * demos/STI/BDCWebService.NET/SLICE.wsdl:
+
+          Updates resulting from updated WSDL.
+
 Sat Jul  7 05:06:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/BasicSP.xme:  Updated example to add example
