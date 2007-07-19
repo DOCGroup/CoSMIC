@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSML" guid="{16F25D19-8452-4177-91EA-0299AB49B09B}" cdate="Mon Sep 25 21:02:06 2006" mdate="Mon Sep 25 21:02:06 2006" >
+<paradigm name="WSML" guid="{A639345C-63F1-4346-A69D-46122A0F7153}" cdate="Tue Jul 17 17:59:27 2007" mdate="Tue Jul 17 17:59:27 2007" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -491,9 +491,9 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
 			<constraint name="ValidBindingOperationPartCardinality27" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
+				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidBindingOperationPartCardinality28" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
@@ -501,9 +501,9 @@
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidBindingOperationPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
+				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidBindsOperationdstCardinality4" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::BindsOperation ) -> size in
@@ -551,17 +551,17 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="definitions.gif"></regnode>
 			<constraint name="ValidDefinitionsPartCardinality30" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDefinitionsPartCardinality31" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidDefinitionsPartCardinality32" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>

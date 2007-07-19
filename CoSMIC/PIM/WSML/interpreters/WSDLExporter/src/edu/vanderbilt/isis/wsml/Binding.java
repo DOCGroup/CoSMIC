@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -98,23 +98,6 @@ public class Binding extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>BindingOperation<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BindingOperation[] getBindingOperationChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, BindingOperation.META_TYPE, BindingOperation.META_TYPE_NS);
-		BindingOperation[] res = new BindingOperation[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (BindingOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
 	 * Returns all the children of type <code>OperationRef<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -127,6 +110,23 @@ public class Binding extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (OperationRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>BindingOperation<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindingOperation[] getBindingOperationChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, BindingOperation.META_TYPE, BindingOperation.META_TYPE_NS);
+		BindingOperation[] res = new BindingOperation[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (BindingOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -150,33 +150,6 @@ public class Binding extends MgaObject
 	/* Attribute setters, getters */
 
 	/* Associations */
-
-	/*
-	 * Asoociation with role name <code>referedbyBindingRef</code>.
-	 */
-
-	/**
-	 * Sets the other end of the association with role name <code>referedbyBindingRef</code>.
-	 * @param a The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setreferedbyBindingRef(BindingRef a)
-		throws UdmException
-	{
-		setAssociation("referedbyBindingRef", a, UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other end of the association with role name <code>referedbyBindingRef</code>.
-	 * @return The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BindingRef getreferedbyBindingRef()
-		throws UdmException
-	{
-		UdmPseudoObject result = getSingleAssociatedObject("referedbyBindingRef", UdmHelper.TARGET_FROM_PEER);
-		return (result == null) ? null : new BindingRef(result, getDiagram());
-	}
 
 	/*
 	 * Asoociation with role name <code>dstBindingPortType</code>.
@@ -203,6 +176,33 @@ public class Binding extends MgaObject
 	{
 		UdmPseudoObjectContainer objs = getAssociation("dstBindingPortType", UdmHelper.CLASS_FROM_TARGET);
 		return (BindingPortType[]) Utils.wrapWithSubclass(objs, BindingPortType.class, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>referedbyBindingRef</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>referedbyBindingRef</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setreferedbyBindingRef(BindingRef a)
+		throws UdmException
+	{
+		setAssociation("referedbyBindingRef", a, UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>referedbyBindingRef</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindingRef getreferedbyBindingRef()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("referedbyBindingRef", UdmHelper.TARGET_FROM_PEER);
+		return (result == null) ? null : new BindingRef(result, getDiagram());
 	}
 
 }

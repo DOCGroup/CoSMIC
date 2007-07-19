@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -41,33 +41,6 @@ public abstract class SOAPHeaders extends ExtensibleMessage
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>srcHeaderBinding</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>srcHeaderBinding</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setsrcHeaderBinding(HeaderBinding[] a)
-		throws UdmException
-	{
-		setAssociation("srcHeaderBinding", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>srcHeaderBinding</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public HeaderBinding[] getsrcHeaderBinding()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("srcHeaderBinding", UdmHelper.CLASS_FROM_TARGET);
-		return (HeaderBinding[]) Utils.wrapWithSubclass(objs, HeaderBinding.class, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>dstHeaderPart</code>.
 	 */
 
@@ -92,6 +65,33 @@ public abstract class SOAPHeaders extends ExtensibleMessage
 	{
 		UdmPseudoObjectContainer objs = getAssociation("dstHeaderPart", UdmHelper.CLASS_FROM_TARGET);
 		return (HeaderPart[]) Utils.wrapWithSubclass(objs, HeaderPart.class, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>srcHeaderBinding</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>srcHeaderBinding</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcHeaderBinding(HeaderBinding[] a)
+		throws UdmException
+	{
+		setAssociation("srcHeaderBinding", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>srcHeaderBinding</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public HeaderBinding[] getsrcHeaderBinding()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("srcHeaderBinding", UdmHelper.CLASS_FROM_TARGET);
+		return (HeaderBinding[]) Utils.wrapWithSubclass(objs, HeaderBinding.class, getDiagram());
 	}
 
 	/*

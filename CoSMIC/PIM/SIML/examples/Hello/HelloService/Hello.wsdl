@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="Hello" targetNamespace="urn:Hello" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:dime="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:corba="http://www.omg.org/IDL-WSDL/1.0/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="urn:Hello" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/">
+  <import namespace="http://www.omg.org/IDL-WSDL/1.0/" location="CORBA.wsdl"/>
+  <types>
+    <xsd:schema targetNamespace="urn:Hello" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <import namespace="http://www.omg.org/IDL-WSDL/1.0/" schemaLocation="CORBA.xsd"/>
+      <xsd:complexType name="Hello.TimeOut">
+        <xsd:sequence>
+          <xsd:element maxOccurs="1" minOccurs="1" name="data" nillable="true" type="xsd:string"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID" use="optional"/>
+      </xsd:complexType>
+      <xsd:simpleType name="Hello.COLOR_SELECTION">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="empty"/>
+          <xsd:enumeration value="white"/>
+          <xsd:enumeration value="red"/>
+          <xsd:enumeration value="yellow"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </types>
+  <message name="Hello.trigger.startResponse">
+  </message>
+  <message name="Hello.Sender._get_colorResponse">
+    <part name="_return" type="tns:Hello.COLOR_SELECTION"/>
+  </message>
+  <message name="Hello.Sender._set_color">
+    <part name="value" type="tns:Hello.COLOR_SELECTION"/>
+  </message>
+  <message name="Hello.Sender._set_colorResponse">
+  </message>
+  <message name="Hello.Sender._get_local_message">
+  </message>
+  <message name="Hello.Sender._set_local_message">
+    <part name="value" type="xsd:string"/>
+  </message>
+  <message name="Hello.Sender._set_local_messageResponse">
+  </message>
+  <message name="Hello.Sender._get_color">
+  </message>
+  <message name="Hello.Sender._get_local_messageResponse">
+    <part name="_return" type="xsd:string"/>
+  </message>
+  <message name="Hello.ReadMessage.get_messageResponse">
+    <part name="_return" type="xsd:string"/>
+  </message>
+  <message name="Hello.ReadMessage.get_message">
+  </message>
+  <message name="Hello.Sender._get_hertzResponse">
+    <part name="_return" type="xsd:int"/>
+  </message>
+  <message name="Hello.Sender._get_hertz">
+  </message>
+  <message name="Hello.trigger.start">
+  </message>
+  <portType name="Hello.Sender">
+    <operation name="start">
+      <input name="startRequest" message="tns:Hello.trigger.start"/>
+      <output name="startResponse" message="tns:Hello.trigger.startResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+    <operation name="_set_color">
+      <input name="_set_colorRequest" message="tns:Hello.Sender._set_color"/>
+      <output name="_set_colorResponse" message="tns:Hello.Sender._set_colorResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+    <operation name="_get_color">
+      <input name="_get_colorRequest" message="tns:Hello.Sender._get_color"/>
+      <output name="_get_colorResponse" message="tns:Hello.Sender._get_colorResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+    <operation name="_get_hertz">
+      <input name="_get_hertzRequest" message="tns:Hello.Sender._get_hertz"/>
+      <output name="_get_hertzResponse" message="tns:Hello.Sender._get_hertzResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+    <operation name="_set_local_message">
+      <input name="_set_local_messageRequest" message="tns:Hello.Sender._set_local_message"/>
+      <output name="_set_local_messageResponse" message="tns:Hello.Sender._set_local_messageResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+    <operation name="_get_local_message">
+      <input name="_get_local_messageRequest" message="tns:Hello.Sender._get_local_message"/>
+      <output name="_get_local_messageResponse" message="tns:Hello.Sender._get_local_messageResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+  </portType>
+  <portType name="Hello.ReadMessage">
+    <operation name="get_message">
+      <input name="get_messageRequest" message="tns:Hello.ReadMessage.get_message"/>
+      <output name="get_messageResponse" message="tns:Hello.ReadMessage.get_messageResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+  </portType>
+  <portType name="Hello.trigger">
+    <operation name="start">
+      <input name="startRequest" message="tns:Hello.trigger.start"/>
+      <output name="startResponse" message="tns:Hello.trigger.startResponse"/>
+      <fault name="CORBA.SystemException" message="corba:CORBA.SystemExceptionMessage"/>
+    </operation>
+  </portType>
+  <portType name="Hello.Receiver">
+  </portType>
+  <binding name="Hello.Sender._SE_push_message" type="tns:Hello.ReadMessage">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" required="false"/>
+    <operation name="get_message">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="get_messageRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="get_messageResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+  </binding>
+  <binding name="Hello._SE_Receiver" type="tns:Hello.Receiver">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" required="false"/>
+  </binding>
+  <binding name="Hello._SE_Sender" type="tns:Hello.Sender">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" required="false"/>
+    <operation name="start">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="startRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="startResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+    <operation name="_set_color">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="_set_colorRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="_set_colorResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+    <operation name="_get_color">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="_get_colorRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="_get_colorResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+    <operation name="_get_hertz">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="_get_hertzRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="_get_hertzResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+    <operation name="_set_local_message">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="_set_local_messageRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="_set_local_messageResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+    <operation name="_get_local_message">
+      <soap:operation soapAction="" style="rpc" required="false"/>
+      <input name="_get_local_messageRequest">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </input>
+      <output name="_get_local_messageResponse">
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:Hello" required="false"/>
+      </output>
+      <fault name="CORBA.SystemException">
+        <soap:fault name="CORBA.SystemException" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://www.omg.org/IDL-WSDL/1.0/" required="false"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="Hello.Sender">
+    <port name="Hello.Sender.push_message" binding="tns:Hello.Sender._SE_push_message">
+      <soap:address location="http://localhost/Hello/Hello.asmx" required="false"/>
+    </port>
+    <port name="Hello.Sender" binding="tns:Hello._SE_Sender">
+      <soap:address location="http://localhost/Hello/Hello.asmx" required="false"/>
+    </port>
+  </service>
+  <service name="Hello.Receiver">
+    <port name="Hello.Receiver" binding="tns:Hello._SE_Receiver">
+      <soap:address location="http://localhost/Hello/Hello.asmx" required="false"/>
+    </port>
+  </service>
+</definitions>

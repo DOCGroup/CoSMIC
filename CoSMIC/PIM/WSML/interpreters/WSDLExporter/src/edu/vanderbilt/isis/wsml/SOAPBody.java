@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,33 +69,6 @@ public class SOAPBody extends ExtensibleMessage
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>srcBodyBinding</code>.
-	 */
-
-	/**
-	 * Sets the other end of the association with role name <code>srcBodyBinding</code>.
-	 * @param a The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setsrcBodyBinding(BodyBinding a)
-		throws UdmException
-	{
-		setAssociation("srcBodyBinding", a, UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other end of the association with role name <code>srcBodyBinding</code>.
-	 * @return The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BodyBinding getsrcBodyBinding()
-		throws UdmException
-	{
-		UdmPseudoObject result = getSingleAssociatedObject("srcBodyBinding", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new BodyBinding(result, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>dstBodyParts</code>.
 	 */
 
@@ -120,6 +93,33 @@ public class SOAPBody extends ExtensibleMessage
 	{
 		UdmPseudoObjectContainer objs = getAssociation("dstBodyParts", UdmHelper.CLASS_FROM_TARGET);
 		return (BodyParts[]) Utils.wrapWithSubclass(objs, BodyParts.class, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>srcBodyBinding</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>srcBodyBinding</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcBodyBinding(BodyBinding a)
+		throws UdmException
+	{
+		setAssociation("srcBodyBinding", a, UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>srcBodyBinding</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BodyBinding getsrcBodyBinding()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("srcBodyBinding", UdmHelper.CLASS_FROM_TARGET);
+		return (result == null) ? null : new BodyBinding(result, getDiagram());
 	}
 
 }

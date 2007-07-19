@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,40 +65,6 @@ public class PortType extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>OneWayOperation<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public OneWayOperation[] getOneWayOperationChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, OneWayOperation.META_TYPE, OneWayOperation.META_TYPE_NS);
-		OneWayOperation[] res = new OneWayOperation[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (OneWayOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>RequestResponseOperation<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public RequestResponseOperation[] getRequestResponseOperationChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, RequestResponseOperation.META_TYPE, RequestResponseOperation.META_TYPE_NS);
-		RequestResponseOperation[] res = new RequestResponseOperation[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (RequestResponseOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
 	 * Returns all the children of type <code>SolicitResponseOperation<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -128,6 +94,40 @@ public class PortType extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (NotificationOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>RequestResponseOperation<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public RequestResponseOperation[] getRequestResponseOperationChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, RequestResponseOperation.META_TYPE, RequestResponseOperation.META_TYPE_NS);
+		RequestResponseOperation[] res = new RequestResponseOperation[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (RequestResponseOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>OneWayOperation<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public OneWayOperation[] getOneWayOperationChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, OneWayOperation.META_TYPE, OneWayOperation.META_TYPE_NS);
+		OneWayOperation[] res = new OneWayOperation[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (OneWayOperation)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

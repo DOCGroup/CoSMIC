@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -53,23 +53,6 @@ public abstract class Operation extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>MessageRef<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public MessageRef[] getMessageRefChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, MessageRef.META_TYPE, MessageRef.META_TYPE_NS);
-		MessageRef[] res = new MessageRef[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (MessageRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
 	 * Returns all the children of type <code>FaultMessage<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -116,6 +99,23 @@ public abstract class Operation extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (InputMessage)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>MessageRef<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public MessageRef[] getMessageRefChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, MessageRef.META_TYPE, MessageRef.META_TYPE_NS);
+		MessageRef[] res = new MessageRef[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (MessageRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

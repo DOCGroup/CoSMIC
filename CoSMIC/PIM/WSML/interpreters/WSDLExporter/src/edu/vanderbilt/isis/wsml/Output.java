@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,19 +55,6 @@ public class Output extends MgaObject
 	 * @return  An instance of the class <code>Output</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Output create(RequestResponseOperation parent) 
-		throws UdmException 
-	{
-		Diagram metaDiagram = parent.getDiagram();
-		return new Output(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
-	}
-
-	/**
-	 * Creates an instance of the class in the container specified by the parameter. 
-	 * @param  parent The parent container
-	 * @return  An instance of the class <code>Output</code>
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
 	public static Output create(SolicitResponseOperation parent) 
 		throws UdmException 
 	{
@@ -82,6 +69,19 @@ public class Output extends MgaObject
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
 	public static Output create(NotificationOperation parent) 
+		throws UdmException 
+	{
+		Diagram metaDiagram = parent.getDiagram();
+		return new Output(parent.createObject(META_TYPE, META_TYPE_NS), metaDiagram);
+	}
+
+	/**
+	 * Creates an instance of the class in the container specified by the parameter. 
+	 * @param  parent The parent container
+	 * @return  An instance of the class <code>Output</code>
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public static Output create(RequestResponseOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -112,33 +112,6 @@ public class Output extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>dstOutputMessage</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>dstOutputMessage</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setdstOutputMessage(OutputMessage[] a)
-		throws UdmException
-	{
-		setAssociation("dstOutputMessage", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>dstOutputMessage</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public OutputMessage[] getdstOutputMessage()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("dstOutputMessage", UdmHelper.CLASS_FROM_TARGET);
-		return (OutputMessage[]) Utils.wrapWithSubclass(objs, OutputMessage.class, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>referedbyOutputRef</code>.
 	 */
 
@@ -163,6 +136,33 @@ public class Output extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("referedbyOutputRef", UdmHelper.TARGET_FROM_PEER);
 		return (result == null) ? null : new OutputRef(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>dstOutputMessage</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>dstOutputMessage</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setdstOutputMessage(OutputMessage[] a)
+		throws UdmException
+	{
+		setAssociation("dstOutputMessage", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>dstOutputMessage</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public OutputMessage[] getdstOutputMessage()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("dstOutputMessage", UdmHelper.CLASS_FROM_TARGET);
+		return (OutputMessage[]) Utils.wrapWithSubclass(objs, OutputMessage.class, getDiagram());
 	}
 
 }

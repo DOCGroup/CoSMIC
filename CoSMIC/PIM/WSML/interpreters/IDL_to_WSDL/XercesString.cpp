@@ -6,6 +6,7 @@
 #include "ace/ACE.h"
 
 using xercesc::XMLString;
+using std::swap;
 
 XStr::XStr (const char* str)
   : _wstr (0)
@@ -35,7 +36,7 @@ XStr& XStr::operator= (const XStr& rhs)
 {
   if (&rhs == this) return *this;
   XStr temp (rhs);
-  ACE_Swap<XMLCh*>::swap (this->_wstr, temp._wstr);
+  swap (this->_wstr, temp._wstr);
   return *this;
 }
 

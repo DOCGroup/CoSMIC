@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -32,14 +32,139 @@ public class Utils
 		 throws UdmException
 	{
 		String type = obj.getType();
-		if (HeaderMessage.META_TYPE.equals(type))
+		if (Port.META_TYPE.equals(type))
 		{
-			return new HeaderMessage(obj, diagram);
+			return new Port(obj, diagram);
+		}
+		else
+		if (Import.META_TYPE.equals(type))
+		{
+			return new Import(obj, diagram);
+		}
+		else
+		if (PortType.META_TYPE.equals(type))
+		{
+			return new PortType(obj, diagram);
+		}
+		else
+		if (Types.META_TYPE.equals(type))
+		{
+			return new Types(obj, diagram);
+		}
+		else
+		if (BindingRef.META_TYPE.equals(type))
+		{
+			return new BindingRef(obj, diagram);
+		}
+		else
+		if (BindsOperation.META_TYPE.equals(type))
+		{
+			return new BindsOperation(obj, diagram);
+		}
+		else
+		if (PortBinding.META_TYPE.equals(type))
+		{
+			return new PortBinding(obj, diagram);
+		}
+		else
+		if (OperationRef.META_TYPE.equals(type))
+		{
+			return new OperationRef(obj, diagram);
+		}
+		else
+		if (BindingOperation.META_TYPE.equals(type))
+		{
+			return new BindingOperation(obj, diagram);
+		}
+		else
+		if (Definitions.META_TYPE.equals(type))
+		{
+			return new Definitions(obj, diagram);
+		}
+		else
+		if (Message.META_TYPE.equals(type))
+		{
+			return new Message(obj, diagram);
+		}
+		else
+		if (PartRef.META_TYPE.equals(type))
+		{
+			return new PartRef(obj, diagram);
+		}
+		else
+		if (BindingPortType.META_TYPE.equals(type))
+		{
+			return new BindingPortType(obj, diagram);
+		}
+		else
+		if (Service.META_TYPE.equals(type))
+		{
+			return new Service(obj, diagram);
+		}
+		else
+		if (Documentation.META_TYPE.equals(type))
+		{
+			return new Documentation(obj, diagram);
+		}
+		else
+		if (Binding.META_TYPE.equals(type))
+		{
+			return new Binding(obj, diagram);
+		}
+		else
+		if (Part.META_TYPE.equals(type))
+		{
+			return new Part(obj, diagram);
+		}
+		else
+		if (Messages.META_TYPE.equals(type))
+		{
+			return new Messages(obj, diagram);
+		}
+		else
+		if (ServiceRef.META_TYPE.equals(type))
+		{
+			return new ServiceRef(obj, diagram);
+		}
+		else
+		if (Schema.META_TYPE.equals(type))
+		{
+			return new Schema(obj, diagram);
+		}
+		else
+		if (Element.META_TYPE.equals(type))
+		{
+			return new Element(obj, diagram);
+		}
+		else
+		if (Attribute.META_TYPE.equals(type))
+		{
+			return new Attribute(obj, diagram);
+		}
+		else
+		if (SchemaReference.META_TYPE.equals(type))
+		{
+			return new SchemaReference(obj, diagram);
+		}
+		else
+		if (SchemaImport.META_TYPE.equals(type))
+		{
+			return new SchemaImport(obj, diagram);
+		}
+		else
+		if (BodyBinding.META_TYPE.equals(type))
+		{
+			return new BodyBinding(obj, diagram);
 		}
 		else
 		if (HeaderPart.META_TYPE.equals(type))
 		{
 			return new HeaderPart(obj, diagram);
+		}
+		else
+		if (HeaderMessage.META_TYPE.equals(type))
+		{
+			return new HeaderMessage(obj, diagram);
 		}
 		else
 		if (BodyParts.META_TYPE.equals(type))
@@ -57,209 +182,14 @@ public class Utils
 			return new HeaderBinding(obj, diagram);
 		}
 		else
-		if (BodyBinding.META_TYPE.equals(type))
+		if (SOAPAddress.META_TYPE.equals(type))
 		{
-			return new BodyBinding(obj, diagram);
+			return new SOAPAddress(obj, diagram);
 		}
 		else
-		if (SchemaBuiltins.META_TYPE.equals(type))
+		if (SOAPBody.META_TYPE.equals(type))
 		{
-			return new SchemaBuiltins(obj, diagram);
-		}
-		else
-		if (AtomicType.META_TYPE.equals(type))
-		{
-			return new AtomicType(obj, diagram);
-		}
-		else
-		if (BindingRef.META_TYPE.equals(type))
-		{
-			return new BindingRef(obj, diagram);
-		}
-		else
-		if (Message.META_TYPE.equals(type))
-		{
-			return new Message(obj, diagram);
-		}
-		else
-		if (Binding.META_TYPE.equals(type))
-		{
-			return new Binding(obj, diagram);
-		}
-		else
-		if (BindsOperation.META_TYPE.equals(type))
-		{
-			return new BindsOperation(obj, diagram);
-		}
-		else
-		if (PortBinding.META_TYPE.equals(type))
-		{
-			return new PortBinding(obj, diagram);
-		}
-		else
-		if (BindingOperation.META_TYPE.equals(type))
-		{
-			return new BindingOperation(obj, diagram);
-		}
-		else
-		if (Port.META_TYPE.equals(type))
-		{
-			return new Port(obj, diagram);
-		}
-		else
-		if (Types.META_TYPE.equals(type))
-		{
-			return new Types(obj, diagram);
-		}
-		else
-		if (Service.META_TYPE.equals(type))
-		{
-			return new Service(obj, diagram);
-		}
-		else
-		if (Definitions.META_TYPE.equals(type))
-		{
-			return new Definitions(obj, diagram);
-		}
-		else
-		if (OperationRef.META_TYPE.equals(type))
-		{
-			return new OperationRef(obj, diagram);
-		}
-		else
-		if (Messages.META_TYPE.equals(type))
-		{
-			return new Messages(obj, diagram);
-		}
-		else
-		if (PortType.META_TYPE.equals(type))
-		{
-			return new PortType(obj, diagram);
-		}
-		else
-		if (Part.META_TYPE.equals(type))
-		{
-			return new Part(obj, diagram);
-		}
-		else
-		if (PartRef.META_TYPE.equals(type))
-		{
-			return new PartRef(obj, diagram);
-		}
-		else
-		if (Import.META_TYPE.equals(type))
-		{
-			return new Import(obj, diagram);
-		}
-		else
-		if (BindingPortType.META_TYPE.equals(type))
-		{
-			return new BindingPortType(obj, diagram);
-		}
-		else
-		if (Documentation.META_TYPE.equals(type))
-		{
-			return new Documentation(obj, diagram);
-		}
-		else
-		if (InputRef.META_TYPE.equals(type))
-		{
-			return new InputRef(obj, diagram);
-		}
-		else
-		if (OneWayOperation.META_TYPE.equals(type))
-		{
-			return new OneWayOperation(obj, diagram);
-		}
-		else
-		if (MessageRef.META_TYPE.equals(type))
-		{
-			return new MessageRef(obj, diagram);
-		}
-		else
-		if (RequestResponseOperation.META_TYPE.equals(type))
-		{
-			return new RequestResponseOperation(obj, diagram);
-		}
-		else
-		if (FaultRef.META_TYPE.equals(type))
-		{
-			return new FaultRef(obj, diagram);
-		}
-		else
-		if (FaultMessage.META_TYPE.equals(type))
-		{
-			return new FaultMessage(obj, diagram);
-		}
-		else
-		if (OutputMessage.META_TYPE.equals(type))
-		{
-			return new OutputMessage(obj, diagram);
-		}
-		else
-		if (Fault.META_TYPE.equals(type))
-		{
-			return new Fault(obj, diagram);
-		}
-		else
-		if (Output.META_TYPE.equals(type))
-		{
-			return new Output(obj, diagram);
-		}
-		else
-		if (SolicitResponseOperation.META_TYPE.equals(type))
-		{
-			return new SolicitResponseOperation(obj, diagram);
-		}
-		else
-		if (Input.META_TYPE.equals(type))
-		{
-			return new Input(obj, diagram);
-		}
-		else
-		if (InputMessage.META_TYPE.equals(type))
-		{
-			return new InputMessage(obj, diagram);
-		}
-		else
-		if (NotificationOperation.META_TYPE.equals(type))
-		{
-			return new NotificationOperation(obj, diagram);
-		}
-		else
-		if (OutputRef.META_TYPE.equals(type))
-		{
-			return new OutputRef(obj, diagram);
-		}
-		else
-		if (SchemaReference.META_TYPE.equals(type))
-		{
-			return new SchemaReference(obj, diagram);
-		}
-		else
-		if (Attribute.META_TYPE.equals(type))
-		{
-			return new Attribute(obj, diagram);
-		}
-		else
-		if (Element.META_TYPE.equals(type))
-		{
-			return new Element(obj, diagram);
-		}
-		else
-		if (Schema.META_TYPE.equals(type))
-		{
-			return new Schema(obj, diagram);
-		}
-		else
-		if (SchemaImport.META_TYPE.equals(type))
-		{
-			return new SchemaImport(obj, diagram);
-		}
-		else
-		if (SOAPOperation.META_TYPE.equals(type))
-		{
-			return new SOAPOperation(obj, diagram);
+			return new SOAPBody(obj, diagram);
 		}
 		else
 		if (SOAPHeader.META_TYPE.equals(type))
@@ -277,19 +207,94 @@ public class Utils
 			return new SOAPFault(obj, diagram);
 		}
 		else
-		if (SOAPBody.META_TYPE.equals(type))
-		{
-			return new SOAPBody(obj, diagram);
-		}
-		else
 		if (SOAPBinding.META_TYPE.equals(type))
 		{
 			return new SOAPBinding(obj, diagram);
 		}
 		else
-		if (SOAPAddress.META_TYPE.equals(type))
+		if (SOAPOperation.META_TYPE.equals(type))
 		{
-			return new SOAPAddress(obj, diagram);
+			return new SOAPOperation(obj, diagram);
+		}
+		else
+		if (SolicitResponseOperation.META_TYPE.equals(type))
+		{
+			return new SolicitResponseOperation(obj, diagram);
+		}
+		else
+		if (NotificationOperation.META_TYPE.equals(type))
+		{
+			return new NotificationOperation(obj, diagram);
+		}
+		else
+		if (OutputRef.META_TYPE.equals(type))
+		{
+			return new OutputRef(obj, diagram);
+		}
+		else
+		if (InputRef.META_TYPE.equals(type))
+		{
+			return new InputRef(obj, diagram);
+		}
+		else
+		if (FaultMessage.META_TYPE.equals(type))
+		{
+			return new FaultMessage(obj, diagram);
+		}
+		else
+		if (OutputMessage.META_TYPE.equals(type))
+		{
+			return new OutputMessage(obj, diagram);
+		}
+		else
+		if (InputMessage.META_TYPE.equals(type))
+		{
+			return new InputMessage(obj, diagram);
+		}
+		else
+		if (Fault.META_TYPE.equals(type))
+		{
+			return new Fault(obj, diagram);
+		}
+		else
+		if (RequestResponseOperation.META_TYPE.equals(type))
+		{
+			return new RequestResponseOperation(obj, diagram);
+		}
+		else
+		if (OneWayOperation.META_TYPE.equals(type))
+		{
+			return new OneWayOperation(obj, diagram);
+		}
+		else
+		if (Input.META_TYPE.equals(type))
+		{
+			return new Input(obj, diagram);
+		}
+		else
+		if (Output.META_TYPE.equals(type))
+		{
+			return new Output(obj, diagram);
+		}
+		else
+		if (MessageRef.META_TYPE.equals(type))
+		{
+			return new MessageRef(obj, diagram);
+		}
+		else
+		if (FaultRef.META_TYPE.equals(type))
+		{
+			return new FaultRef(obj, diagram);
+		}
+		else
+		if (SchemaBuiltins.META_TYPE.equals(type))
+		{
+			return new SchemaBuiltins(obj, diagram);
+		}
+		else
+		if (AtomicType.META_TYPE.equals(type))
+		{
+			return new AtomicType(obj, diagram);
 		}
 		else
 		if (RootFolder.META_TYPE.equals(type))

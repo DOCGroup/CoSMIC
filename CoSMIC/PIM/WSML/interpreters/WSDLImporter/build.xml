@@ -2,15 +2,12 @@
 <project basedir="." default="compile">
   <description>Ant task to compile WSDLImporter </description>
   <property environment="env" />
-  <property name="jwsdp.home" value="${env.JWSDP_HOME}" />
+  <property name="jaxb.home" value="${env.JAXB_HOME}" />
   <property name="wsdl4j.home" value="${env.WSDL4J_HOME}" />
   <path id="classpath">
     <pathelement path="src" />
     <pathelement path="lib" />
-    <fileset dir="${jwsdp.home}" includes="jaxb/lib/*.jar" />
-    <fileset dir="${jwsdp.home}" includes="sjsxp/lib/*.jar" />
-    <fileset dir="${jwsdp.home}" includes="jwsdp-shared/lib/activation.jar" />
-    <fileset dir="${jwsdp.home}" includes="jwsdp-shared/lib/resolver.jar" />
+    <fileset dir="${jaxb.home}" includes="lib/*.jar" />
     <fileset dir="${wsdl4j.home}" includes="lib/*.jar" />
   </path>
   <taskdef name="xjc" classname="com.sun.tools.xjc.XJCTask">
@@ -46,6 +43,15 @@
     <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
       <arg file="SLICE.wsdl" />
       <arg file="SLICE.xme" />
+      <classpath refid="classpath" />
+    </java>
+  </target>
+
+  <target name="Hello" depends="compile" description="Run the WSDLImporter">
+    <echo message="Running the WSDLImporter..." />
+    <java classname="edu.vanderbilt.dre.WSML.WSDLImporter.WSDLImporter" fork="true">
+      <arg file="Hello.wsdl" />
+      <arg file="Hello.xme" />
       <classpath refid="classpath" />
     </java>
   </target>

@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,7 +55,7 @@ public class MessageRef extends MgaObject
 	 * @return  An instance of the class <code>MessageRef</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static MessageRef create(Operation parent) 
+	public static MessageRef create(BindingOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -68,7 +68,7 @@ public class MessageRef extends MgaObject
 	 * @return  An instance of the class <code>MessageRef</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static MessageRef create(BindingOperation parent) 
+	public static MessageRef create(Operation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -109,6 +109,33 @@ public class MessageRef extends MgaObject
 	}
 
 	/*
+	 * Asoociation with role name <code>srcHeaderMessage</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcHeaderMessage(HeaderMessage a)
+		throws UdmException
+	{
+		setAssociation("srcHeaderMessage", a, UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public HeaderMessage getsrcHeaderMessage()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("srcHeaderMessage", UdmHelper.CLASS_FROM_TARGET);
+		return (result == null) ? null : new HeaderMessage(result, getDiagram());
+	}
+
+	/*
 	 * Asoociation with role name <code>srcFaultMessage</code>.
 	 */
 
@@ -133,33 +160,6 @@ public class MessageRef extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("srcFaultMessage", UdmHelper.CLASS_FROM_TARGET);
 		return (result == null) ? null : new FaultMessage(result, getDiagram());
-	}
-
-	/*
-	 * Asoociation with role name <code>srcOutputMessage</code>.
-	 */
-
-	/**
-	 * Sets the other end of the association with role name <code>srcOutputMessage</code>.
-	 * @param a The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setsrcOutputMessage(OutputMessage a)
-		throws UdmException
-	{
-		setAssociation("srcOutputMessage", a, UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other end of the association with role name <code>srcOutputMessage</code>.
-	 * @return The other end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public OutputMessage getsrcOutputMessage()
-		throws UdmException
-	{
-		UdmPseudoObject result = getSingleAssociatedObject("srcOutputMessage", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new OutputMessage(result, getDiagram());
 	}
 
 	/*
@@ -190,30 +190,30 @@ public class MessageRef extends MgaObject
 	}
 
 	/*
-	 * Asoociation with role name <code>srcHeaderMessage</code>.
+	 * Asoociation with role name <code>srcOutputMessage</code>.
 	 */
 
 	/**
-	 * Sets the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * Sets the other end of the association with role name <code>srcOutputMessage</code>.
 	 * @param a The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public void setsrcHeaderMessage(HeaderMessage a)
+	public void setsrcOutputMessage(OutputMessage a)
 		throws UdmException
 	{
-		setAssociation("srcHeaderMessage", a, UdmHelper.CLASS_FROM_TARGET);
+		setAssociation("srcOutputMessage", a, UdmHelper.CLASS_FROM_TARGET);
 	}
 
 	/**
-	 * Returns the other end of the association with role name <code>srcHeaderMessage</code>.
+	 * Returns the other end of the association with role name <code>srcOutputMessage</code>.
 	 * @return The other end of the association
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public HeaderMessage getsrcHeaderMessage()
+	public OutputMessage getsrcOutputMessage()
 		throws UdmException
 	{
-		UdmPseudoObject result = getSingleAssociatedObject("srcHeaderMessage", UdmHelper.CLASS_FROM_TARGET);
-		return (result == null) ? null : new HeaderMessage(result, getDiagram());
+		UdmPseudoObject result = getSingleAssociatedObject("srcOutputMessage", UdmHelper.CLASS_FROM_TARGET);
+		return (result == null) ? null : new OutputMessage(result, getDiagram());
 	}
 
 }

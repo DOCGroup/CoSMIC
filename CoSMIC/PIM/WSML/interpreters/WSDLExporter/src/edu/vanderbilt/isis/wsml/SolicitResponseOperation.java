@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -82,22 +82,6 @@ public class SolicitResponseOperation extends Operation
 	}
 
 	/**
-	 * Return the child of type <code>Output<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Output getOutputChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Output.META_TYPE, Output.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (Output)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/**
 	 * Return the child of type <code>Input<code> of this container. 
 	 * @return  The child
 	 * @throws  UdmException If any Udm related exception occured
@@ -109,6 +93,22 @@ public class SolicitResponseOperation extends Operation
 		if (container.getLength() > 0)
 
 			return (Input)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
+	 * Return the child of type <code>Output<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Output getOutputChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Output.META_TYPE, Output.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (Output)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
 	}

@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -68,7 +68,7 @@ public class Attribute extends MgaObject
 	 * @return  An instance of the class <code>Attribute</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Attribute create(Element parent) 
+	public static Attribute create(Schema parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -81,7 +81,7 @@ public class Attribute extends MgaObject
 	 * @return  An instance of the class <code>Attribute</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Attribute create(Schema parent) 
+	public static Attribute create(Element parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();

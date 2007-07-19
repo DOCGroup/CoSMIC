@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,6 +65,23 @@ public class Service extends MgaObject
 	/* Accessing children */
 
 	/**
+	 * Returns all the children of type <code>Port<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Port[] getPortChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Port.META_TYPE, Port.META_TYPE_NS);
+		Port[] res = new Port[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (Port)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
 	 * Returns all the children of type <code>BindingRef<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -98,25 +115,35 @@ public class Service extends MgaObject
 		return res;
 	}
 
-	/**
-	 * Returns all the children of type <code>Port<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Port[] getPortChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Port.META_TYPE, Port.META_TYPE_NS);
-		Port[] res = new Port[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Port)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
 	/* Attribute setters, getters */
 
 	/* Associations */
+
+	/*
+	 * Asoociation with role name <code>referedbyServiceRef</code>.
+	 */
+
+	/**
+	 * Sets the other end of the association with role name <code>referedbyServiceRef</code>.
+	 * @param a The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setreferedbyServiceRef(ServiceRef a)
+		throws UdmException
+	{
+		setAssociation("referedbyServiceRef", a, UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other end of the association with role name <code>referedbyServiceRef</code>.
+	 * @return The other end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public ServiceRef getreferedbyServiceRef()
+		throws UdmException
+	{
+		UdmPseudoObject result = getSingleAssociatedObject("referedbyServiceRef", UdmHelper.TARGET_FROM_PEER);
+		return (result == null) ? null : new ServiceRef(result, getDiagram());
+	}
 
 }

@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -55,7 +55,7 @@ public class Fault extends MgaObject
 	 * @return  An instance of the class <code>Fault</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Fault create(RequestResponseOperation parent) 
+	public static Fault create(SolicitResponseOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -68,7 +68,7 @@ public class Fault extends MgaObject
 	 * @return  An instance of the class <code>Fault</code>
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public static Fault create(SolicitResponseOperation parent) 
+	public static Fault create(RequestResponseOperation parent) 
 		throws UdmException 
 	{
 		Diagram metaDiagram = parent.getDiagram();
@@ -99,33 +99,6 @@ public class Fault extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>dstFaultMessage</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>dstFaultMessage</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setdstFaultMessage(FaultMessage[] a)
-		throws UdmException
-	{
-		setAssociation("dstFaultMessage", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>dstFaultMessage</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public FaultMessage[] getdstFaultMessage()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("dstFaultMessage", UdmHelper.CLASS_FROM_TARGET);
-		return (FaultMessage[]) Utils.wrapWithSubclass(objs, FaultMessage.class, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>referedbyFaultRef</code>.
 	 */
 
@@ -150,6 +123,33 @@ public class Fault extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("referedbyFaultRef", UdmHelper.TARGET_FROM_PEER);
 		return (result == null) ? null : new FaultRef(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>dstFaultMessage</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>dstFaultMessage</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setdstFaultMessage(FaultMessage[] a)
+		throws UdmException
+	{
+		setAssociation("dstFaultMessage", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>dstFaultMessage</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public FaultMessage[] getdstFaultMessage()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("dstFaultMessage", UdmHelper.CLASS_FROM_TARGET);
+		return (FaultMessage[]) Utils.wrapWithSubclass(objs, FaultMessage.class, getDiagram());
 	}
 
 }

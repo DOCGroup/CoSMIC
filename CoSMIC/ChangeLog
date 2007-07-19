@@ -1,3 +1,177 @@
+Thu Jul 19 00:37:35 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/Hello.xme:  New PICML for the CIAO Hello
+          example.
+
+        * PIM/SIML/examples/Hello/2003-02-11.xsd:
+        * PIM/SIML/examples/Hello/CORBA.wsdl:
+        * PIM/SIML/examples/Hello/CORBA.xsd:
+        * PIM/SIML/examples/Hello/Hello.wsdl:
+        * PIM/SIML/examples/Hello/Hello.xme:
+        * PIM/SIML/examples/Hello/soap-encoding.xsd:
+
+          New example SIML model to illustrate Web Service gateway
+          generation.
+
+        * PIM/SIML/examples/Hello/HelloService.NET/AssemblyInfo.cpp:
+        * PIM/SIML/examples/Hello/HelloService.NET/Hello.asmx:
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloSender.h:
+        * PIM/SIML/examples/Hello/HelloService.NET/Web.config:
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.sln:
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.vcproj:
+
+          Skeleton project for building Hello as a Web Service using .NET.
+
+        * PIM/SIML/examples/Hello/HelloService/CORBA.wsdl:
+        * PIM/SIML/examples/Hello/HelloService/CORBA.xsd:
+        * PIM/SIML/examples/Hello/HelloService/Hello.h:
+        * PIM/SIML/examples/Hello/HelloService/Hello.wsdl:
+        * PIM/SIML/examples/Hello/HelloService/HelloH.h:
+        * PIM/SIML/examples/Hello/HelloService/HelloService.mpc:
+        * PIM/SIML/examples/Hello/HelloService/HelloStub.h:
+        * PIM/SIML/examples/Hello/HelloService/Hello_x002eSender.nsmap:
+        * PIM/SIML/examples/Hello/HelloService/typemap.dat:
+
+          Skeleton project for building Hello as a Web Service using GSOAP.
+
+        * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/BON2Component.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GsoapVisitor.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLBonX.h:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLBonX.cpp:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLVisitor.h:
+        * PIM/SIML/interpreters/GatewayGenerator/SIMLVisitor.cpp:
+
+          Updates to the gateway generator to fix a variety of bugs.
+
+        * PIM/SIML/interpreters/Interpreters.mwc:  New file to allow
+          building SIML interpreters from cosmic.mwc.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updated the paradigm to pick up changes in WSML and PICML.
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.cpp:
+
+          Fixes to ensure idl_to_wsdl.exe can be built using the latest
+          ACE.
+
+        * PIM/WSML/interpreters/Interpreters.mwc: New file to allow
+          building WSML interpreters from cosmic.mwc.
+
+        * PIM/WSML/interpreters/WSDLExporter/build.xml:  Updates to show
+          how Hello can be used with the WSDLExporter.
+
+        * PIM/WSML/interpreters/WSDLExporter/src/WSML.xsd:  Updates to use
+          the latest version of the paradigm.
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_udm_xml_0.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd_0.java:
+
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/AtomicType.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Attribute.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Binding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingPortType.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindsOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyParts.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Definitions.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Documentation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Element.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibilityElement.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensiblePort.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FactoryRepository.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Fault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderPart.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/IORef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Import.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Input.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Message.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MessageRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Messages.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MgaObject.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/NotificationOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OneWayOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Operation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OperationRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Output.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputMessage.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Part.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PartRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Port.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortType.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Referrable.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RequestResponseOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolder.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderFileFactory.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderStringFactory.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPAddress.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBinding.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBody.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFaultExtension.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeader.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaderFault.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaders.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Schema.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaBuiltins.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaImport.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaReference.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Service.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ServiceRef.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SolicitResponseOperation.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Types.java:
+        * PIM/WSML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Utils.java:
+
+        * PIM/WSML/interpreters/WSDLExporter/src/test/TestExample.java:
+
+          Regenerated the files to pick the changes to the WSML schema.
+
+        * PIM/WSML/interpreters/WSDLImporter/2003-02-11.xsd:
+        * PIM/WSML/interpreters/WSDLImporter/CORBA.wsdl:
+        * PIM/WSML/interpreters/WSDLImporter/CORBA.xsd:
+        * PIM/WSML/interpreters/WSDLImporter/build.xml:
+        * PIM/WSML/interpreters/WSDLImporter/soap-encoding.xsd:
+
+          Updates to show use with the Hello example.
+
+        * PIM/WSML/paradigms/WSML-uml.xme:
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xml:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated paradigm to the latest version of GME.  No changes to
+          the paradigm itself.
+
+        * cosmic.mwc:  Added the SIML and WSML interpreters to be built
+          along with the PICML interpreters.
+
+        * vc8warnings.mpb:  New file to shut up the warnings emitted by
+          VC8.
+
+        * cosmic_common.mpb:  Added the vc8warnings as a base project.
+
+        * PIM/SIML/examples/SLICE.xme:
+
+          Removed this file as it no longer matters (or even works).
+
 Wed Jul 18 02:30:46 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/SIML/interpreters/GatewayGenerator/AspNetVisitor.h:

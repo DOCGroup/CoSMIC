@@ -1,6 +1,7 @@
-project  {
+project : vc8warnings  {
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
    includes += $(COSMIC_ROOT)
    libpaths += $(COSMIC_ROOT)/lib
+   macros += _CRT_SECURE_NO_WARNINGS
 }

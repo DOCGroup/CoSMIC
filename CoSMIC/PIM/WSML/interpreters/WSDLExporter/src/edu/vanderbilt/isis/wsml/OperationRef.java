@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,33 +69,6 @@ public class OperationRef extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>ref</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>ref</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setref(Operation[] a)
-		throws UdmException
-	{
-		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>ref</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Operation[] getref()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
-		return (Operation[]) Utils.wrapWithSubclass(objs, Operation.class, getDiagram());
-	}
-
-	/*
 	 * Asoociation with role name <code>srcBindsOperation</code>.
 	 */
 
@@ -120,6 +93,33 @@ public class OperationRef extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("srcBindsOperation", UdmHelper.CLASS_FROM_TARGET);
 		return (result == null) ? null : new BindsOperation(result, getDiagram());
+	}
+
+	/*
+	 * Asoociation with role name <code>ref</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>ref</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setref(Operation[] a)
+		throws UdmException
+	{
+		setAssociation("ref", new UdmPseudoObjectContainer(a), UdmHelper.TARGET_FROM_PEER);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>ref</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Operation[] getref()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("ref", UdmHelper.TARGET_FROM_PEER);
+		return (Operation[]) Utils.wrapWithSubclass(objs, Operation.class, getDiagram());
 	}
 
 }

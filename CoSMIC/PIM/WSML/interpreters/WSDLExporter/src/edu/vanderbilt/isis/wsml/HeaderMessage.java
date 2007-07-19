@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,38 +69,6 @@ public class HeaderMessage extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>dstHeaderMessage</code>.
-	 */
-	/**
-	 * Sets the end of the association with role name <code>dstHeaderMessage</code>.
-	 * @param a The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setdstHeaderMessage(MessageRef a)
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
-		container.setAt(0, a);
-		setAssociation("dstHeaderMessage", container, UdmHelper.TARGET_FROM_CLASS);
-	}
-
-	/**
-	 * Returns the end of the association with role name <code>dstHeaderMessage</code>.
-	 * @return The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public MessageRef getdstHeaderMessage()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = getAssociation("dstHeaderMessage", UdmHelper.TARGET_FROM_CLASS);
-		if (container.getLength() > 0)
-
-			return (MessageRef) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/*
 	 * Asoociation with role name <code>srcHeaderMessage</code>.
 	 */
 	/**
@@ -128,6 +96,38 @@ public class HeaderMessage extends MgaObject
 		if (container.getLength() > 0)
 
 			return (SOAPHeaders) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/*
+	 * Asoociation with role name <code>dstHeaderMessage</code>.
+	 */
+	/**
+	 * Sets the end of the association with role name <code>dstHeaderMessage</code>.
+	 * @param a The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setdstHeaderMessage(MessageRef a)
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
+		container.setAt(0, a);
+		setAssociation("dstHeaderMessage", container, UdmHelper.TARGET_FROM_CLASS);
+	}
+
+	/**
+	 * Returns the end of the association with role name <code>dstHeaderMessage</code>.
+	 * @return The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public MessageRef getdstHeaderMessage()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = getAssociation("dstHeaderMessage", UdmHelper.TARGET_FROM_CLASS);
+		if (container.getLength() > 0)
+
+			return (MessageRef) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
 	}

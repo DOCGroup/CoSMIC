@@ -80,7 +80,13 @@ string AspNetVisitor::wsdl_scoped_name (const BON::FCO& object,
                                         bool append)
 {
   PredefinedType pdt (object);
-  if (pdt) return this->asp_net_basic_name (pdt);
+  if (pdt)
+    {
+      if (String (object) && append)
+        return this->asp_net_basic_name (pdt) + "^";
+      else
+        return this->asp_net_basic_name (pdt);
+    }
 
   BON::Model parent (object->getParentModel ());
 
@@ -532,7 +538,7 @@ AspNetVisitor::generate_source()
   this->source_ << "}\n"
                 << "catch (CORBA::Exception& ex)\n"
                 << "{"
-                << "ACE_PRINT_EXCEPTION (ex, \"CORBA::Exception\");\n"
+                << "ex._tao_print_exception (\"CORBA::Exception\");\n"
                 << "throw std::exception (ex._info().c_str());\n"
                 << "}"
                 << "}\n";
@@ -625,7 +631,16 @@ AspNetVisitor::generate_function_body (const TwowayOperation& oper, ofstream& os
       string retTypeName = this->wsdl_scoped_name (returnType);
       if (PredefinedType (returnType))
         {
-          this->source_ << retTypeName << " retval = ";
+          if (String (returnType))
+            {
+              this->source_ << retTypeName << " retval = gcnew "
+                            << this->wsdl_scoped_name (returnType, false)
+                            << " (";
+            }
+          else
+            {
+              this->source_ << retTypeName << " retval = ";
+            }
         }
       else if (Aggregate (returnType))
         {
@@ -649,9 +664,17 @@ AspNetVisitor::generate_function_body (const TwowayOperation& oper, ofstream& os
       if (count > 0)
         this->source_ << ", ";
     }
-  this->source_ << ");";
+  this->source_ << ")";
   if (returnType)
     {
+      if (String (returnType))
+        {
+          this->source_ << ");";
+        }
+      else
+        {
+          this->source_ << ";";
+        }
       if (Aggregate (returnType))
         {
           Aggregate agg = Aggregate (returnType);
@@ -673,14 +696,14 @@ AspNetVisitor::generate_function_body (const TwowayOperation& oper, ofstream& os
       string exceptioName = this->idl_scoped_name (exception);
       this->source_ << "catch (" << exceptioName << "& ex)\n"
                     << "{"
-                    << "ACE_PRINT_EXCEPTION (ex, "
+                    << "ex._tao_print_exception ("
                     << "\"" << oper->getName() << "\");\n"
                     << "throw std::exception (ex._info().c_str());\n"
                     << "}";
     }
   this->source_ << "catch (CORBA::Exception& ex)\n"
                 << "{"
-                << "ACE_PRINT_EXCEPTION (ex, "
+                << "ex._tao_print_exception ("
                 << "\"" << oper->getName() << "\"" << ");\n"
                 << "throw std::exception (ex._info().c_str());\n"
                 << "}"

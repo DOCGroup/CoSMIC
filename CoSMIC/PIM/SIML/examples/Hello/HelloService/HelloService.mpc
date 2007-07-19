@@ -1,0 +1,28 @@
+project (HelloService) : ciao_events_dnc, valuetype {
+   exename = HelloService
+   includes += $(GSOAP_ROOT) $(COSMIC_ROOT)/examples/Hello/HelloService
+   includes += $(CIAO_ROOT)/examples/Hello/Hello_Base \
+               $(CIAO_ROOT)/examples/Hello/Sender \
+               $(CIAO_ROOT)/examples/Hello/Receiver
+   libpaths += $(COSMIC_ROOT)/lib
+   libs += Sender_stub Hello_Base_stub
+
+   IDL_Files {
+
+   }
+
+   Source_Files {
+     $(GSOAP_ROOT)/stdsoap2.cpp
+     HelloC.cpp
+     Hello_x002eSender.cpp
+     Hello_x002eSenderService.cpp
+   }
+
+   Header_Files {
+     Hello_x002eSender.nsmap
+     Hello_x002eSender.h
+     HelloStub.h
+     HelloH.h
+     $(GSOAP_ROOT)/stdsoap2.h
+   }
+}

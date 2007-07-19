@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,6 +69,33 @@ public class PartRef extends MgaObject
 	/* Associations */
 
 	/*
+	 * Asoociation with role name <code>srcBodyParts</code>.
+	 */
+
+	/**
+	 * Sets the other ends of the association with role name <code>srcBodyParts</code>.
+	 * @param a The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setsrcBodyParts(BodyParts[] a)
+		throws UdmException
+	{
+		setAssociation("srcBodyParts", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
+	}
+
+	/**
+	 * Returns the other ends of the association with role name <code>srcBodyParts</code>.
+	 * @return The other ends of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BodyParts[] getsrcBodyParts()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer objs = getAssociation("srcBodyParts", UdmHelper.CLASS_FROM_TARGET);
+		return (BodyParts[]) Utils.wrapWithSubclass(objs, BodyParts.class, getDiagram());
+	}
+
+	/*
 	 * Asoociation with role name <code>ref</code>.
 	 */
 
@@ -120,33 +147,6 @@ public class PartRef extends MgaObject
 	{
 		UdmPseudoObject result = getSingleAssociatedObject("srcHeaderPart", UdmHelper.CLASS_FROM_TARGET);
 		return (result == null) ? null : new HeaderPart(result, getDiagram());
-	}
-
-	/*
-	 * Asoociation with role name <code>srcBodyParts</code>.
-	 */
-
-	/**
-	 * Sets the other ends of the association with role name <code>srcBodyParts</code>.
-	 * @param a The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setsrcBodyParts(BodyParts[] a)
-		throws UdmException
-	{
-		setAssociation("srcBodyParts", new UdmPseudoObjectContainer(a), UdmHelper.CLASS_FROM_TARGET);
-	}
-
-	/**
-	 * Returns the other ends of the association with role name <code>srcBodyParts</code>.
-	 * @return The other ends of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BodyParts[] getsrcBodyParts()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer objs = getAssociation("srcBodyParts", UdmHelper.CLASS_FROM_TARGET);
-		return (BodyParts[]) Utils.wrapWithSubclass(objs, BodyParts.class, getDiagram());
 	}
 
 }

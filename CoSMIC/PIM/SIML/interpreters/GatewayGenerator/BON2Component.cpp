@@ -146,9 +146,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
                           AspNetVisitor visitor (project, outputPath);
                           service->accept (&visitor);
                         }
-                      break; // Break out of the loop to visit the next service
                     }
-                  break; // Break out of the loop to visit the next service
                 }
             }
         }
@@ -163,7 +161,7 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
       AfxMessageBox ("GsoapException caught!");
       return;
     }
-  AfxMessageBox ("Gateway skeletons were successfully generated!",
+  AfxMessageBox ("Web Service Gateway was successfully generated!",
                  MB_OK| MB_ICONINFORMATION);
   return;
 }

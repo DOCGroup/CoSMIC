@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:37 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -65,23 +65,6 @@ public class RootFolder extends UdmPseudoObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>SchemaBuiltins<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public SchemaBuiltins[] getSchemaBuiltinsChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, SchemaBuiltins.META_TYPE, SchemaBuiltins.META_TYPE_NS);
-		SchemaBuiltins[] res = new SchemaBuiltins[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (SchemaBuiltins)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
 	 * Returns all the children of type <code>Definitions<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -111,6 +94,23 @@ public class RootFolder extends UdmPseudoObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (Schema)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>SchemaBuiltins<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public SchemaBuiltins[] getSchemaBuiltinsChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, SchemaBuiltins.META_TYPE, SchemaBuiltins.META_TYPE_NS);
+		SchemaBuiltins[] res = new SchemaBuiltins[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (SchemaBuiltins)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}

@@ -81,7 +81,7 @@ string GsoapVisitor::idl_scoped_name (const BON::FCO& object)
 string GsoapVisitor::wsdl_scoped_name (const BON::FCO& object)
 {
   PredefinedType pdt (object);
-  if (pdt) return this->basic_name (pdt);
+  if (pdt) return this->gsoap_basic_name (pdt);
 
   BON::Model parent (object->getParentModel ());
 
@@ -100,6 +100,16 @@ string GsoapVisitor::wsdl_scoped_name (const BON::FCO& object)
       return this->wsdl_scoped_name (parent) + "." + local_name;
     }
   return local_name;
+}
+
+string GsoapVisitor::gsoap_basic_name (const PredefinedType& pdt)
+{
+  if (String (pdt))             return "char*";
+  if (LongInteger (pdt))        return "int";
+  if (RealNumber (pdt))         return "double";
+  if (ShortInteger (pdt))       return "short";
+  if (Boolean (pdt))            return "bool";
+  else                          return "";
 }
 
 string GsoapVisitor::basic_name (const PredefinedType& pdt)
@@ -391,7 +401,7 @@ GsoapVisitor::visitTwowayOperation(const TwowayOperation& object)
         {
           if (ShortInteger (returnType))
             this->header_ << "unsigned ";
-          this->header_ << this->transform_name (retTypeName.c_str()) << "& ";
+          this->header_ << retTypeName.c_str() << "& ";
           this->header_ << this->transform_name ("_return") << ")";
           return true;
         }
@@ -534,8 +544,8 @@ GsoapVisitor::generate_driver()
                 << "}"
                 << "catch (CORBA::Exception& ex)\n"
                 << "{"
-                << "ACE_PRINT_EXCEPTION (ex, \"CORBA::Exception\\n\");\n"
-                << "ACE_ERROR_RETURN ((LM_ERROR, \"Uncaught CORBA exception\\n\"), 1);\n"
+                << "ex._tao_print_exception(\"CORBA::Exception\\n\");\n"
+                << "ACE_ERROR_RETURN ((LM_ERROR, \"Caught CORBA exception\\n\"), 1);\n"
                 << "}"
                 << "return 0;\n"
                 << "}";
@@ -924,7 +934,7 @@ GsoapVisitor::generate_source()
             {
               if (ShortInteger (paramType))
                 this->source_ << "unsigned ";
-              this->source_ << this->transform_name (paramTypeName.c_str()) << " ";
+              this->source_ << paramTypeName.c_str() << " ";
             }
           else
             {
@@ -947,7 +957,7 @@ GsoapVisitor::generate_source()
             {
               if (ShortInteger (returnType))
                 returntypes += "unsigned ";
-              returntypes += this->transform_name (retTypeName.c_str());
+              returntypes += retTypeName.c_str();
               returntypes += "& ";
               returntypes += this->transform_name ("_return");
               returntypes += ")";
@@ -1047,7 +1057,7 @@ GsoapVisitor::generate_source()
           string exceptioName = this->idl_scoped_name (exception);
           this->source_ << "catch (" << exceptioName << "& ex)" << endl;
           this->source_ << "{";
-          this->source_ << "ACE_PRINT_EXCEPTION (ex, "
+          this->source_ << "ex._tao_print_exception ("
                         << "\"" << oper->getName() << "\");";
           this->source_ << "string msg (ex._info().c_str());";
           this->source_ << "return soap_receiver_fault (this,"
@@ -1056,7 +1066,7 @@ GsoapVisitor::generate_source()
         }
       this->source_ << "catch (CORBA::Exception& ex)" << endl;
       this->source_ << "{";
-      this->source_ << "ACE_PRINT_EXCEPTION (ex, "
+      this->source_ << "ex._tao_print_exception ("
                     << "\"" << oper->getName() << "\"" << ");";
       this->source_ << "string msg (ex._info().c_str());";
       this->source_ << "return soap_receiver_fault (this,"

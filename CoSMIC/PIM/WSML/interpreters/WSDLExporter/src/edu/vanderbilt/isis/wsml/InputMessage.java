@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -69,38 +69,6 @@ public class InputMessage extends MgaObject
 	/* Associations */
 
 	/*
-	 * Asoociation with role name <code>dstInputMessage</code>.
-	 */
-	/**
-	 * Sets the end of the association with role name <code>dstInputMessage</code>.
-	 * @param a The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public void setdstInputMessage(MessageRef a)
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
-		container.setAt(0, a);
-		setAssociation("dstInputMessage", container, UdmHelper.TARGET_FROM_CLASS);
-	}
-
-	/**
-	 * Returns the end of the association with role name <code>dstInputMessage</code>.
-	 * @return The end of the association
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public MessageRef getdstInputMessage()
-		throws UdmException
-	{
-		UdmPseudoObjectContainer container = getAssociation("dstInputMessage", UdmHelper.TARGET_FROM_CLASS);
-		if (container.getLength() > 0)
-
-			return (MessageRef) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
-	}
-
-	/*
 	 * Asoociation with role name <code>srcInputMessage</code>.
 	 */
 	/**
@@ -128,6 +96,38 @@ public class InputMessage extends MgaObject
 		if (container.getLength() > 0)
 
 			return (Input) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/*
+	 * Asoociation with role name <code>dstInputMessage</code>.
+	 */
+	/**
+	 * Sets the end of the association with role name <code>dstInputMessage</code>.
+	 * @param a The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public void setdstInputMessage(MessageRef a)
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = new UdmPseudoObjectContainer(1);
+		container.setAt(0, a);
+		setAssociation("dstInputMessage", container, UdmHelper.TARGET_FROM_CLASS);
+	}
+
+	/**
+	 * Returns the end of the association with role name <code>dstInputMessage</code>.
+	 * @return The end of the association
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public MessageRef getdstInputMessage()
+		throws UdmException
+	{
+		UdmPseudoObjectContainer container = getAssociation("dstInputMessage", UdmHelper.TARGET_FROM_CLASS);
+		if (container.getLength() > 0)
+
+			return (MessageRef) Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
 		return null;
 
 	}

@@ -1,4 +1,4 @@
-/* Generated on Sat Jul 29 22:41:36 2006 */
+/* Generated on Tue Jul 17 20:35:06 2007 */
 
 /* This is a generalt file, do not modify its content.
  * Copyright (c) Vanderbilt University, 2000-2005
@@ -78,18 +78,35 @@ public class Definitions extends MgaObject
 	/* Accessing children */
 
 	/**
-	 * Returns all the children of type <code>Binding<code> of this container. 
+	 * Returns all the children of type <code>Import<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public Binding[] getBindingChildren()
+	public Import[] getImportChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, Binding.META_TYPE, Binding.META_TYPE_NS);
-		Binding[] res = new Binding[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, Import.META_TYPE, Import.META_TYPE_NS);
+		Import[] res = new Import[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (Binding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (Import)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Returns all the children of type <code>PortType<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public PortType[] getPortTypeChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, PortType.META_TYPE, PortType.META_TYPE_NS);
+		PortType[] res = new PortType[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (PortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -111,6 +128,23 @@ public class Definitions extends MgaObject
 	}
 
 	/**
+	 * Returns all the children of type <code>BindingPortType<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public BindingPortType[] getBindingPortTypeChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, BindingPortType.META_TYPE, BindingPortType.META_TYPE_NS);
+		BindingPortType[] res = new BindingPortType[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (BindingPortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
 	 * Returns all the children of type <code>Service<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
@@ -123,6 +157,39 @@ public class Definitions extends MgaObject
 		for (int i=0; i < container.getLength(); i++) 
 		{
 			res[i] = (Service)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+		}
+		return res;
+	}
+
+	/**
+	 * Return the child of type <code>Documentation<code> of this container. 
+	 * @return  The child
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Documentation getDocumentationChild()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
+		if (container.getLength() > 0)
+
+			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
+		return null;
+
+	}
+
+	/**
+	 * Returns all the children of type <code>Binding<code> of this container. 
+	 * @return  The children in an array
+	 * @throws  UdmException If any Udm related exception occured
+	 */ 
+	public Binding[] getBindingChildren()
+		throws UdmException 
+	{
+		UdmPseudoObjectContainer container = getChildren(null, Binding.META_TYPE, Binding.META_TYPE_NS);
+		Binding[] res = new Binding[container.getLength()];
+		for (int i=0; i < container.getLength(); i++) 
+		{
+			res[i] = (Binding)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
 	}
@@ -144,70 +211,20 @@ public class Definitions extends MgaObject
 	}
 
 	/**
-	 * Returns all the children of type <code>PortType<code> of this container. 
+	 * Returns all the children of type <code>ServiceRef<code> of this container. 
 	 * @return  The children in an array
 	 * @throws  UdmException If any Udm related exception occured
 	 */ 
-	public PortType[] getPortTypeChildren()
+	public ServiceRef[] getServiceRefChildren()
 		throws UdmException 
 	{
-		UdmPseudoObjectContainer container = getChildren(null, PortType.META_TYPE, PortType.META_TYPE_NS);
-		PortType[] res = new PortType[container.getLength()];
+		UdmPseudoObjectContainer container = getChildren(null, ServiceRef.META_TYPE, ServiceRef.META_TYPE_NS);
+		ServiceRef[] res = new ServiceRef[container.getLength()];
 		for (int i=0; i < container.getLength(); i++) 
 		{
-			res[i] = (PortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
+			res[i] = (ServiceRef)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
 		}
 		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>Import<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Import[] getImportChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Import.META_TYPE, Import.META_TYPE_NS);
-		Import[] res = new Import[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (Import)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Returns all the children of type <code>BindingPortType<code> of this container. 
-	 * @return  The children in an array
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public BindingPortType[] getBindingPortTypeChildren()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, BindingPortType.META_TYPE, BindingPortType.META_TYPE_NS);
-		BindingPortType[] res = new BindingPortType[container.getLength()];
-		for (int i=0; i < container.getLength(); i++) 
-		{
-			res[i] = (BindingPortType)Utils.wrapWithSubclass(container.getAt(i), metaDiagram);
-		}
-		return res;
-	}
-
-	/**
-	 * Return the child of type <code>Documentation<code> of this container. 
-	 * @return  The child
-	 * @throws  UdmException If any Udm related exception occured
-	 */ 
-	public Documentation getDocumentationChild()
-		throws UdmException 
-	{
-		UdmPseudoObjectContainer container = getChildren(null, Documentation.META_TYPE, Documentation.META_TYPE_NS); 
-		if (container.getLength() > 0)
-
-			return (Documentation)Utils.wrapWithSubclass(container.getAt(0), metaDiagram);
-		return null;
-
 	}
 
 	/**

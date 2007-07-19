@@ -38,6 +38,7 @@ private:
   string idl_scoped_name (const BON::FCO& object);
   string wsdl_scoped_name (const BON::FCO& object);
   string basic_name (const PredefinedType& pdt);
+  string gsoap_basic_name (const PredefinedType& pdt);
   string get_file_name (const BON::FCO& object);
   void generate_header();
   void generate_driver();
