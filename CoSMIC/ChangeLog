@@ -1,3 +1,38 @@
+Mon Jul 23 19:45:19 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Fixed the enum attribute values in PICML and CQML
+          such that the BON interpreter generates code w.o.
+          any errors/warnings/modifications to these attributes.
+
+          Updated CQML/Event Channel paradigm such that the
+          assoociation of event channel now can be done only
+          through QoSConnector (i.e., standard way of associating
+          any 'connection-level QoS).
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+          Added event channel configuration QoS Mapping.
+          Also removed reference to PICML such that the 
+          transformation uses only CQML, reading input from
+          composed model (i.e., PICML part of the model) and
+          composing the model (i.e., annotating the QoS options
+          on the input model itself) as the transformation
+          progresses.
+
+          Fixed priority values in RealTime QoS Mapping such
+          that the generated values can be directly used w.o.
+          modifying the generated (CQML) model. Thanks to Kitty
+          for pointing this out.
+
 Thu Jul 19 00:37:35 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/examples/Hello.xme:  New PICML for the CIAO Hello
