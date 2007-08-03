@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{57544C8E-8B5B-4B7D-9A23-CC29AA41BD60}" cdate="Tue Jul 17 15:26:50 2007" mdate="Tue Jul 17 15:26:50 2007" version="" metaguid="{E029A7D2-A20A-4F08-ACAD-01810EDFFC00}" metaversion="" metaname="PICML">
+<project guid="{C0A8264A-467B-48CC-BC5D-83B7418609F9}" cdate="Tue Jul 17 15:26:50 2007" mdate="Tue Jul 17 15:26:50 2007" version="" metaguid="{E029A7D2-A20A-4F08-ACAD-01810EDFFC00}" metaversion="" metaname="PICML">
 	<name>Hello</name>
 	<comment></comment>
 	<author></author>
@@ -1041,7 +1041,7 @@
 			</model>
 			<model id="id-0065-00000020" kind="ComponentImplementationContainer" guid="{E90A3009-E3D4-429f-96D3-3798EFA12073}" relid="0x1" childrelidcntr="0x1">
 				<name>Hello</name>
-				<model id="id-0065-00000021" kind="ComponentAssembly" role="ComponentAssembly" guid="{92C3E92C-3077-4c4c-A188-7D37C8DCEF99}" relid="0x1" childrelidcntr="0x9">
+				<model id="id-0065-00000021" kind="ComponentAssembly" role="ComponentAssembly" guid="{92C3E92C-3077-4c4c-A188-7D37C8DCEF99}" relid="0x1" childrelidcntr="0xb">
 					<name>Hello</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1226,6 +1226,33 @@
 							<name>Supports</name>
 						</reference>
 					</model>
+					<model id="id-0065-00000033" kind="Property" role="Property" guid="{E90CBE97-BFFB-436c-8487-5DC4F89F664F}" relid="0xa" childrelidcntr="0x1">
+						<name>local_message</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>48,265</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>hello, world!</value>
+						</attribute>
+						<reference id="id-0067-00000035" kind="DataType" role="DataType" guid="{D3323048-04C0-4e3c-B012-52860207DD03}" relid="0x1" referred="id-0066-00000007">
+							<name>String</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>277,312</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
 					<atom id="id-0066-00000018" kind="PublishConnector" role="PublishConnector" guid="{FE16EF3B-0B43-4b6b-8FB1-7002CD3A3822}" relid="0x4">
 						<name>c1</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1302,6 +1329,14 @@
 						<name>FacetDelegate</name>
 						<connpoint role="src" target="id-0067-00000023"/>
 						<connpoint role="dst" target="id-0067-00000032"/>
+					</connection>
+					<connection id="id-0068-00000029" kind="AttributeValue" role="AttributeValue" guid="{7B2D493B-E213-4e82-B60C-C9206DDD9C5A}" relid="0xb">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000024"/>
+						<connpoint role="dst" target="id-0065-00000033"/>
 					</connection>
 				</model>
 			</model>

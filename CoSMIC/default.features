@@ -18,3 +18,4 @@ rpc           = 0
 wxWindows     = 1
 boost         = 1
 cidl          = 1
+xerces        = 1

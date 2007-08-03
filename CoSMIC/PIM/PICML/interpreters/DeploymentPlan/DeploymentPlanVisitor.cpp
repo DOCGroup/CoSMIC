@@ -1482,6 +1482,26 @@ namespace PICML
     // comp_assembly.Accept (*this);
   }
 
+    void DeploymentPlanVisitor::update_shared_component_parents (ComponentRef& comp_ref)
+  {
+    ComponentAssembly component_assembly_parent;
+    component_assembly_parent = comp_ref.ComponentAssembly_parent();
+
+    if (component_assembly_parent.isInstance())
+    {
+      this->path_parents_.insert (component_assembly_parent);
+      component_assembly_parent =
+        component_assembly_parent.ComponentAssembly_parent();
+      while (component_assembly_parent.isInstance())
+      {
+        this->path_parents_.insert (component_assembly_parent);
+        component_assembly_parent =
+          component_assembly_parent.ComponentAssembly_parent();
+      }
+    }
+    this->path_parents_.insert(component_assembly_parent);
+  }
+
   void DeploymentPlanVisitor::update_component_parents (Component& comp)
   {
     ComponentAssembly component_assembly_parent;
@@ -1573,25 +1593,6 @@ namespace PICML
     }
   }
 
-  void DeploymentPlanVisitor::update_shared_component_parents (ComponentRef& comp_ref)
-  {
-    ComponentAssembly component_assembly_parent;
-    component_assembly_parent = comp_ref.ComponentAssembly_parent();
-
-    if (component_assembly_parent.isInstance())
-    {
-      this->path_parents_.insert (component_assembly_parent);
-      component_assembly_parent =
-        component_assembly_parent.ComponentAssembly_parent();
-      while (component_assembly_parent.isInstance())
-      {
-        this->path_parents_.insert (component_assembly_parent);
-        component_assembly_parent =
-          component_assembly_parent.ComponentAssembly_parent();
-      }
-    }
-    this->path_parents_.insert(component_assembly_parent);
-  }
 
   void DeploymentPlanVisitor::update_component_instance (Component& comp, std::string& nodeRefName)
   {

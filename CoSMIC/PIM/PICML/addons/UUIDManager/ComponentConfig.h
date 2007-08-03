@@ -29,7 +29,7 @@
 
 // The name of the paradigm(s). The GME will use this component
 // for this paradigm. Separate the names of paradigms by commas.
-#define PARADIGMS "PICML"
+#define PARADIGMS "PICML, CQML"
 
 
 #define GME_INTERFACES_BASE Interfaces

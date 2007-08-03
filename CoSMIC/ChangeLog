@@ -1,3 +1,52 @@
+Fri Aug  3 18:15:25 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:  Added CQML to
+          the list of paradigms that the UUIDManager is applicable to.
+
+        * PIM/PICML/examples/Hello.xme:  Added values for the attributes
+          to fix build errors.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          Formatted the code to follow ACE-Coding-Guidelines.html.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PAM:
+        * PIM/PICML/interpreters/PAM/PAM.mpc:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.h:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.cpp:
+        * PIM/PICML/interpreters/PAM/PAM_Export.h:
+        * PIM/PICML/interpreters/PAMComponent:
+        * PIM/PICML/interpreters/PAMComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/PAMComponent/Component.def:
+        * PIM/PICML/interpreters/PAMComponent/Component.rc:
+        * PIM/PICML/interpreters/PAMComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.reg:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponentd.reg:
+        * PIM/PICML/interpreters/PAMComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PAMComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PAMComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PAMComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PAMComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/PAMComponent/resource.h:
+
+          New interpreter for the physical assembly mapping.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated paradigm to fix the constraint ValidName associated with
+          Component; Updated the constraint which disallowed creation of a
+          temporary reference of Component to not fire on creation.
+
+        * default.features: Enable xerces by default.
+
 Mon Jul 23 19:45:19 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -21,7 +70,7 @@ Mon Jul 23 19:45:19 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/QUICKER/paradigms/QoSMapping.xme:
           Added event channel configuration QoS Mapping.
-          Also removed reference to PICML such that the 
+          Also removed reference to PICML such that the
           transformation uses only CQML, reading input from
           composed model (i.e., PICML part of the model) and
           composing the model (i.e., annotating the QoS options

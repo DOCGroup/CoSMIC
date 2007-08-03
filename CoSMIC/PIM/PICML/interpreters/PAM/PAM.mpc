@@ -1,0 +1,13 @@
+project(PAM): picmllib, boost_base {
+   sharedname = PAM
+   macros += PAM_BUILD_DLL
+
+   Source_Files {
+     PAMVisitor.cpp
+   }
+
+   Header_Files {
+     PAMVisitor.h
+     PAM_Export.h
+   }
+}

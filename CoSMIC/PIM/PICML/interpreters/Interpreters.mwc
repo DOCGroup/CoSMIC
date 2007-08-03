@@ -5,6 +5,8 @@ workspace {
   PICML
   Package
   PackageComponent
+  PAM
+  PAMComponent
   Target
   TargetComponent
   DeploymentPlan
