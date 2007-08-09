@@ -37,10 +37,6 @@ public:
   STDMETHODIMP GlobalEvent(globalevent_enum event);
   STDMETHODIMP ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v);
 #endif
-
-private:
-  void LoadOutputDirectory (IMgaProject* project);
-  void SaveOutputDirectory (IMgaProject* project);
 };
 
 

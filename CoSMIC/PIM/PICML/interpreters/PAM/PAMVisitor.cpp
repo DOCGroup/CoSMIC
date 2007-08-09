@@ -133,7 +133,7 @@ namespace PICML
                                              candidateTypes,
                                              candidateInstances);
           }
-        this->CreatePhysicalAssemblies (candidateInstances);
+        this->CreatePhysicalAssemblies (candidateTypes);
       }
   }
 
@@ -162,7 +162,7 @@ namespace PICML
     this->CreateCandidateComponents (cgmembers,
                                      candidateTypes,
                                      candidateInstances);
-    this->CreatePhysicalAssemblies (candidateInstances);
+    this->CreatePhysicalAssemblies (candidateTypes);
   }
 
   void PAMVisitor::CleanUpAssemblies ()
@@ -178,30 +178,6 @@ namespace PICML
           continue;
         for_each (clique.begin(), clique.end(), UdmObjectDeleter<Component>());
       }
-  }
-
-  void PAMVisitor::CreatePhysicalAssemblies (set<Component>& candidateInstances)
-  {
-    if (candidateInstances.empty())
-      return;
-    CliqueSets cliqueSets;
-    this->CalculateCliques (candidateInstances, cliqueSets);
-    CliqueSets::const_iterator begin, end;
-    // Use the counter to uniquify the names of the instances
-    this->asmInstanceCounter_ = 0;
-    for (boost::tie (begin, end) = make_pair (cliqueSets.begin(),
-                                              cliqueSets.end());
-         begin != end;
-         ++begin, ++this->asmInstanceCounter_)
-      {
-        set<Component> clique (begin->begin(), begin->end());
-        if (this->CreateInterfaceDefinitions(clique))
-          {
-            this->CreateImplementationArtifacts(clique);
-          }
-        this->UpdateAssembly (clique);
-      }
-    this->cliqueSets_.insert (cliqueSets.begin(), cliqueSets.end());
   }
 
   void PAMVisitor::ConnectCgNodeRef(const CollocationGroup& cg)
@@ -395,6 +371,9 @@ namespace PICML
             this->asmInstance_ = this->asmComp_.CreateInstance (cliqueAsm);
             this->asmInstance_.name() = CreateCliqueString (clique);
             this->asmInstance_.UUID() = Utils::CreateUuid();
+            this->UpdateComponentConnections (cliqueAsm, this->asmInstance_,
+                                              clique);
+            this->UpdateAttributes (cliqueAsm, this->asmInstance_, clique);
             asmCreated = true;
           }
         else
@@ -403,44 +382,9 @@ namespace PICML
             ComponentRef compRef = ComponentRef::Create (cliqueAsm);
             compRef.ref() = this->asmInstance_;
             compRef.name() = this->asmInstance_.name();
+            this->UpdateComponentConnections (cliqueAsm, this->asmInstance_,
+                                              clique);
           }
-        // Update the receptacles
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::invoke_kind_children,
-                              &invoke::srcinvoke_end,
-                              &Component::RequiredRequestPort_kind_children,
-                              &RequiredRequestPort::parent);
-        // Update the facets
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::invoke_kind_children,
-                              &invoke::dstinvoke_end,
-                              &Component::ProvidedRequestPort_kind_children,
-                              &ProvidedRequestPort::parent);
-        // Update the event emitters
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::emit_kind_children,
-                              &emit::srcemit_end,
-                              &Component::OutEventPort_kind_children,
-                              &OutEventPort::parent);
-        // Update the event consumers (emitter source)
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::emit_kind_children,
-                              &emit::dstemit_end,
-                              &Component::InEventPort_kind_children,
-                              &InEventPort::parent);
-        // Update the event publisher side
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::publish_kind_children,
-                              &publish::srcpublish_end,
-                              &Component::OutEventPort_kind_children,
-                              &OutEventPort::parent);
-        // Update the event consumer (publisher source)
-        UpdatePortConnection (cliqueAsm, this->asmInstance_, clique,
-                              &ComponentAssembly::deliverTo_kind_children,
-                              &deliverTo::dstdeliverTo_end,
-                              &Component::InEventPort_kind_children,
-                              &InEventPort::parent);
-        this->UpdateAttributes (cliqueAsm, this->asmInstance_, clique);
         // Update the Component QoS properties
         //         UpdateConnection (cliqueAsm, this->asmInstance_, clique,
         //                           &ComponentAssembly::ComponentQoS_kind_children,
@@ -457,6 +401,47 @@ namespace PICML
       }
   }
 
+  void PAMVisitor::UpdateComponentConnections (const ComponentAssembly& container,
+                                               const Component& asmInstance,
+                                               const set<Component>& clique)
+  {
+    // Update the receptacles
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::invoke_kind_children,
+                          &invoke::srcinvoke_end,
+                          &Component::RequiredRequestPort_kind_children,
+                          &RequiredRequestPort::parent);
+    // Update the facets
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::invoke_kind_children,
+                          &invoke::dstinvoke_end,
+                          &Component::ProvidedRequestPort_kind_children,
+                          &ProvidedRequestPort::parent);
+    // Update the event emitters
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::emit_kind_children,
+                          &emit::srcemit_end,
+                          &Component::OutEventPort_kind_children,
+                          &OutEventPort::parent);
+    // Update the event consumers (emitter source)
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::emit_kind_children,
+                          &emit::dstemit_end,
+                          &Component::InEventPort_kind_children,
+                          &InEventPort::parent);
+    // Update the event publisher side
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::publish_kind_children,
+                          &publish::srcpublish_end,
+                          &Component::OutEventPort_kind_children,
+                          &OutEventPort::parent);
+    // Update the event consumer (publisher source)
+    UpdatePortConnection (container, asmInstance, clique,
+                          &ComponentAssembly::deliverTo_kind_children,
+                          &deliverTo::dstdeliverTo_end,
+                          &Component::InEventPort_kind_children,
+                          &InEventPort::parent);
+  }
 
   void PAMVisitor::CollectPorts (const Component& comp,
                                  vector<ProvidedRequestPort>& facets,
@@ -844,6 +829,29 @@ namespace PICML
     this->CreateImplements (container, asmMonolith);
   }
 
+  void PAMVisitor::CreatePhysicalAssemblies (set<Component>& candidateTypes)
+  {
+    if (candidateTypes.empty())
+      return;
+    CliqueSets cliqueSets;
+    this->GenerateCliqueSets (candidateTypes, cliqueSets);
+    CliqueSets::const_iterator begin, end;
+    // Use the counter to uniquify the names of the instances
+    this->asmInstanceCounter_ = 0;
+    for (boost::tie (begin, end) = make_pair (cliqueSets.begin(),
+                                              cliqueSets.end());
+         begin != end;
+         ++begin, ++this->asmInstanceCounter_)
+      {
+        set<Component> clique (begin->begin(), begin->end());
+        if (this->CreateInterfaceDefinitions(clique))
+          {
+            this->CreateImplementationArtifacts(clique);
+          }
+        this->UpdateAssembly (clique);
+      }
+    this->cliqueSets_.insert (cliqueSets.begin(), cliqueSets.end());
+  }
 
   void PAMVisitor::CreateCandidateComponents (set<CollocationGroup_Members_Base>& cgmembers,
                                               set<Component>& candidateTypes,
@@ -862,6 +870,8 @@ namespace PICML
               {
                 Component type = comp.Archetype();
                 candidateTypes.insert (type);
+                candidateInstances.insert (comp);
+                this->candidateMap_.insert(make_pair(type, comp));
               }
             else
               {
@@ -871,14 +881,69 @@ namespace PICML
                                  + string (" to non-instance ")
                                  + string(comp.name()));
               }
-            candidateInstances.insert (comp);
           }
+      }
+  }
+
+  void PAMVisitor::GenerateCliqueSets (set<Component>& candidateTypes,
+                                       CliqueSets& cliqueSets)
+  {
+    typedef set<Component>::iterator CompIter;
+    for (CandidateMap::size_type count = 1;
+         !this->candidateMap_.empty() && !candidateTypes.empty();
+         ++count)
+      {
+        set<Component> sameCountTypes;
+        CompIter tBegin, tEnd;
+        for (boost::tie (tBegin, tEnd)
+               = make_pair (candidateTypes.begin(),
+                            candidateTypes.end());
+             tBegin != tEnd;
+             ++tBegin)
+          {
+            if (this->candidateMap_.count (*tBegin) == count)
+              sameCountTypes.insert (*tBegin);
+          }
+        for (boost::tie (tBegin, tEnd)
+               = make_pair (sameCountTypes.begin(),
+                            sameCountTypes.end());
+             tBegin != tEnd;
+             ++tBegin)
+          {
+            candidateTypes.erase (remove (candidateTypes.begin(),
+                                          candidateTypes.end(),
+                                          *tBegin),
+                                  candidateTypes.end());
+          }
+        set<Component> candidateComps;
+        for (CandidateMap::size_type i = 0; i < count; ++i)
+          {
+            for (boost::tie (tBegin, tEnd)
+                   = make_pair (sameCountTypes.begin(),
+                                sameCountTypes.end());
+                 tBegin != tEnd;
+                 ++tBegin)
+              {
+                CandidateMap::iterator vBegin =
+                  this->candidateMap_.lower_bound (*tBegin);
+                if (vBegin == this->candidateMap_.end())
+                  throw udm_exception ("Candidate type not found in map");
+                candidateComps.insert (vBegin->second);
+                this->candidateMap_.erase (vBegin);
+              }
+          }
+        this->CalculateCliques (candidateComps, cliqueSets);
       }
   }
 
   void PAMVisitor::CalculateCliques (set<Component>& candidateInstances,
                                      CliqueSets& cliqueSets)
   {
+    if (candidateInstances.size() == 1)
+      {
+        cliqueSets.insert (candidateInstances);
+        return;
+      }
     typedef set<Component>::iterator CompIter;
     CompIter outerBegin, outerEnd;
     Graph g (candidateInstances.size());

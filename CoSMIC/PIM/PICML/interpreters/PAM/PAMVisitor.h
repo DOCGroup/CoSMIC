@@ -48,6 +48,7 @@ namespace PICML
   using std::endl;
   using std::list;
   using std::remove_copy;
+  using std::remove;
   using std::copy;
   using std::transform;
   using std::find;
@@ -443,6 +444,9 @@ namespace PICML
     MonolithicImplementation GetMonolithicImpl (const Component& comp);
     string CreateCliqueString (const set<Component>& clique);
     void CreatePhysicalAssemblies (set<Component>& candidateInstances);
+    void UpdateComponentConnections (const ComponentAssembly& container,
+                                     const Component& asmInstance,
+                                     const set<Component>& clique);
     void UpdateAttributes (const ComponentAssembly& container,
                            const Component& asmInstance,
                            const set<Component>& clique);
@@ -491,6 +495,8 @@ namespace PICML
                         set<Vertex>& unprocessedVertices,
                         set<Vertex>& processedVertices,
                         Graph& g);
+  void GenerateCliqueSets (set<Component>& candidateTypes,
+                           CliqueSets& cliqueSets);
   private:
     Udm::Object         focusObject_;
     set<Udm::Object>    selectedObjects_;
@@ -508,6 +514,8 @@ namespace PICML
       ComponentFactory  asmHome;
       Package           asmPackage;
     };
+    typedef multimap<Component, Component> CandidateMap;
+    CandidateMap        candidateMap_;
     typedef map<string, AsmInfo> AsmInfoMap;
     AsmInfoMap          createdAsms_;
     typedef map<Component, Component> CliqueMap;

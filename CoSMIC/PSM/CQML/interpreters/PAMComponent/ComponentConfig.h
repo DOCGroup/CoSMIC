@@ -6,14 +6,14 @@
 // COM UUID-s, names and ProgID
 
 #define TYPELIB_UUID "563A0AC1-AB8A-4CD2-A33E-9A2F788CF2B2"
-#define TYPELIB_NAME "MGA Interpreter TypeLibrary (PAMComponent)"
+#define TYPELIB_NAME "MGA Interpreter TypeLibrary (RTPAMComponent)"
 #define COCLASS_UUID "5B3D253C-66A2-45F0-99A3-2D923A61154B"
-#define COCLASS_NAME "MGA Interpreter CoClass (PAMComponent)"
-#define COCLASS_PROGID "MGA.Interpreter.PAMComponent"
+#define COCLASS_NAME "MGA Interpreter CoClass (RTPAMComponent)"
+#define COCLASS_PROGID "MGA.Interpreter.RTPAMComponent"
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "PAM"
+#define COMPONENT_NAME "RTPAMComponent"
 
 
 #define TOOLTIP_TEXT "Generate Physical Assemblies"

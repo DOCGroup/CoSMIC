@@ -1,6 +1,6 @@
-project(PAM): cqmllib, boost_base {
-   sharedname = PAM
-   macros += PAM_BUILD_DLL
+project(RTPAM): cqmllib, boost_base {
+   sharedname = RTPAM
+   dynamicflags += PAM_BUILD_DLL
 
    Source_Files {
      PAMVisitor.cpp

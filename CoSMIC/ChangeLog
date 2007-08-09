@@ -1,3 +1,45 @@
+Thu Aug  9 07:18:39 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/PAM/PAM.mpc:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.h:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.cpp:  Updated interpreter
+          to implement the new optimized strategy for creating physical
+          assemblies.
+
+        * PIM/SIML/interpreters/Interpreters.mwc:  Build GatewayGenerator
+          only under VC8.
+
+        * PSM/CQML/interpreters/PAM/PAM.mpc:
+        * PSM/CQML/interpreters/PAM/PAMVisitor.h:
+        * PSM/CQML/interpreters/PAM/PAMVisitor.cpp:  Updated interpreter
+          to implement performance-related optimizations.
+
+        * PSM/CQML/interpreters/PAMComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/PAMComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/RTPAMComponent.reg:
+        * PSM/CQML/interpreters/PAMComponent/RTPAMComponentd.reg:
+        * PSM/CQML/interpreters/PAMComponent/RawComponent.h:
+        * PSM/CQML/interpreters/PAMComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/PAMComponent/UdmApp.cpp:
+
+          Updates corresponding to performance-related optimizations.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated paradigm to pick up changes to PICML.
+
+        * picmllib.mpb:  Use dynamicflags instead of macros for the export
+          defines.
+
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.reg:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponentd.reg:
+
+          Removed these files.
+
 Fri Aug  3 18:15:25 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/addons/UUIDManager/ComponentConfig.h:  Added CQML to

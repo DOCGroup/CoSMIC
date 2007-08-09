@@ -26,7 +26,6 @@
 #include "UdmUtil.h"
 
 #include "UdmApp.h"
-#include "Utils/Project.h"
 
 // Global config object
 _config config;
@@ -133,9 +132,6 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,
               // Opening backend
               dngBackend.OpenExisting(ccpProject);
 
-              // Set the default output directory
-              this->LoadOutputDirectory (ccpProject);
-
               CComPtr<IMgaFCO> ccpFocus(currentobj);
               Udm::Object currentObject;
               if(ccpFocus)
@@ -227,21 +223,12 @@ STDMETHODIMP RawComponent::InvokeEx( IMgaProject *project,
                                 selectedObjectsCache,
                                 param);
 
-              // Save the default output directory
-              this->SaveOutputDirectory (ccpProject);
-
               // Close cache backend
               dnsCacheBackend.CloseNoUpdate();
 
 #else
-              // Set the default output directory
-              this->LoadOutputDirectory (ccpProject);
-
               // Calling the main entry point
               CUdmApp::UdmMain(&dngBackend,currentObject,selectedObjects,param);
-
-              // Save the default output directory
-              this->SaveOutputDirectory (ccpProject);
 
               // Closing backend
               dngBackend.CloseWithUpdate();
@@ -315,15 +302,3 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 }
 
 #endif
-
-void RawComponent::SaveOutputDirectory (IMgaProject* project)
-{
-  Utils::Project::set_default_output_dir (project,
-                                          "PAM",
-                                          CUdmApp::outdir_);
-}
-
-void RawComponent::LoadOutputDirectory (IMgaProject* project)
-{
-  CUdmApp::outdir_ = Utils::Project::get_default_output_dir (project, "PAM");
-}

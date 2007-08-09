@@ -1,8 +1,9 @@
-project (PAMComponent): mfc, cqmllib, register {
-  after += PAM
+project (RTPAMComponent): mfc, cqmllib, boost_base, register {
+  after += RTPAM
 
-  macros +=  _USRDLL _WINDLL
-  sharedname = PAMComponent
+  dynamicflags +=  _USRDLL _WINDLL
+  sharedname = RTPAMComponent
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

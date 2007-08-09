@@ -35,17 +35,7 @@
 #include "UdmConfig.h"
 
 #include "Utils/Utils.h"
-#include "CQML/CQML.h"
 #include "PAM/PAMVisitor.h"
-
-using xercesc::XMLPlatformUtils;
-using xercesc::XMLException;
-using xercesc::DOMException;
-using xercesc::XMLString;
-using Utils::XStr;
-using std::string;
-
-string CUdmApp::outdir_;
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -92,58 +82,58 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
                        set <Udm::Object> selectedObjects,  // Selected objects
                        long param)                         // Parameters
 {
+  using std::string;
+  using CQML::CompCliques;
+  using CQML::Component;
+  using CQML::PAMVisitor;
+  using CQML::RootFolder;
+
   try
     {
-      XMLPlatformUtils::Initialize ();
+      PAMVisitor visitor (focusObject, selectedObjects);
 
-      try
-        {
-          std::string message = "Please specify the output directory";
+      RootFolder
+        start = RootFolder::Cast (p_backend->GetRootObject());
 
-          // If there is no output path specified
-          if (!Utils::getPath (message, CUdmApp::outdir_, CUdmApp::outdir_))
-            return;
+      start.Accept (visitor);
 
-          CQML::PAMVisitor visitor (CUdmApp::outdir_);
-
-          CQML::RootFolder
-            start = CQML::RootFolder::Cast (p_backend->GetRootObject());
-
-          start.Accept (visitor);
-
-          AfxMessageBox ("Successfully generated physical assembly!",
-                         MB_OK| MB_ICONINFORMATION);
-        }
-      catch (const udm_exception &e)
-        {
-          AfxMessageBox ("Interpretation Failed. Caught UDM Exception: "
-                         + CString (e.what()));
-          return;
-        }
-      catch (const DOMException& e)
-        {
-          const unsigned int maxChars = 2047;
-          XMLCh errText[maxChars + 1];
-
-          std::stringstream estream;
-          estream << "DOMException code: " << e.code << std::endl;
-          if (xercesc::DOMImplementation::loadDOMExceptionMsg(e.code,
-                                                              errText,
-                                                              maxChars))
-            {
-              std::string message (XMLString::transcode (errText));
-              estream << "Message is: " << message << std::endl;
-            }
-          AfxMessageBox (estream.str().c_str());
-          return;
-        }
-      XMLPlatformUtils::Terminate();
+      AfxMessageBox ("Successfully generated physical assembly!",
+                     MB_OK| MB_ICONINFORMATION);
     }
-  catch (const XMLException& e)
+  catch (const udm_exception &e)
     {
-      std::string message (XMLString::transcode (e.getMessage()));
-      AfxMessageBox (message.c_str());
-      return;
+      AfxMessageBox ("Interpretation Failed. Caught UDM Exception: "
+                     + CString (e.what()));
+    }
+  catch (const CompCliques& cliqueSets)
+    {
+      CompCliques::const_iterator begin, end;
+      boost::tie (begin, end) = make_pair (cliqueSets.begin(),
+                                           cliqueSets.end());
+      for (; begin != end; ++begin)
+        {
+          set<Component> clique (begin->begin(), begin->end());
+          set<Component>::iterator cBegin, cEnd;
+          boost::tie (cBegin, cEnd) = make_pair (clique.begin(),
+                                                 clique.end());
+
+          stringstream ss;
+          ss << "Clique contains: (";
+          if (cBegin != cEnd)
+            {
+              string name (cBegin->name());
+              ss << name;
+              ++cBegin;
+              while (cBegin != cEnd)
+                {
+                  name = cBegin->name();
+                  ss << "," << name;
+                  ++cBegin;
+                }
+              ss << ")\n";
+            }
+          AfxMessageBox (CString(ss.str().c_str()), MB_OK| MB_ICONINFORMATION);
+        }
     }
   return;
 }
