@@ -71,19 +71,16 @@ namespace CQML
     /////////////////////////////////////////////////////////////////////////////////////////
     void SecurityQoSVisitor::Visit_InterfaceDefinitions(const InterfaceDefinitions& ntrface_def)
 	    {
-        // e.g. cuts/CUTS
         accept_each_child (ntrface_def, File, *this)
 	    }
 
      void SecurityQoSVisitor::Visit_File(const File& file)
 	    {
-        // e.g. CUTS
         accept_each_child (file, Package, *this)
 		}
 
     void SecurityQoSVisitor::Visit_Package(const Package& package)
 	    {
-        // e.g. Testing_Service
         accept_each_child (package, Object, *this)
       }
 
@@ -160,7 +157,6 @@ namespace CQML
      
     void SecurityQoSVisitor::Visit_RBAC(const RBAC& rbac)
       {
-		    // e.g. cuts/CUTS
         std::set<Role> roles = rbac.Role_kind_children();
         for (std::set<Role>::iterator iter = roles.begin();
 	        iter != roles.end();

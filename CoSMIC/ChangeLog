@@ -1,3 +1,52 @@
+Sat Aug 11 05:22:06 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/LSML:
+
+        * PIM/LSML/examples:
+        * PIM/LSML/interpreters:
+
+        * PIM/LSML/interpreters/CompIcon.ico:
+
+        * PIM/LSML/paradigms:
+
+        * PIM/LSML/paradigms/LSML.xme:
+        * PIM/LSML/paradigms/LSML.xml:
+        * PIM/LSML/paradigms/LSML.xmp:
+        * PIM/LSML/paradigms/LSML_uml.xme:
+        * PIM/LSML/paradigms/icons:
+
+        * PIM/LSML/paradigms/icons/depot.bmp:
+        * PIM/LSML/paradigms/icons/metadatalserver.bmp:
+
+          Platform Indpendent Structural Language for Logistical Storage
+          (L-Store) systems that provide an abstraction for modeling an
+          internet based virtual file system that leverages Chord (DHT)
+          mechanism to provide scalable data transfers and decentralized
+          data management.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          Removed some debugs
+
+        * PSM/LQML:
+
+        * PSM/LQML/paradigms:
+
+        * PSM/LQML/paradigms/LQML.xmp:
+
+          Language to provide QoS configuration for LSML based models to
+          provide virtually unlimited scalability in both raw storage and
+          associated file system metadata; a decentralized management system;
+          security; role-based authentication and authorization; policy-based
+          data management; fault tolerant meta data support; replication
+          policies; and support for the concept of geographical locations
+          for data migration to facilitate quicker access.
+
 Thu Aug  9 07:18:39 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
 
         * PIM/PICML/interpreters/PAM/PAM.mpc:

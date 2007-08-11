@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="LQML" guid="{A3F2E871-69B6-425C-A279-F97A32AB9C64}" cdate="Fri Aug 10 15:22:14 2007" mdate="Fri Aug 10 15:22:14 2007" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  subfolders = "LStoreNetwork" rootobjects = "LogisticalNetwork" >
+		<attrdef name="DepotPingFrequency" metaref = "1001" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="IFSpeed" metaref = "1002" valuetype = "double" defvalue = "0.0">
+			<dispname>&quot;Speed (kbps)&quot;</dispname>
+		</attrdef>
+		<attrdef name="IFType" metaref = "1003" valuetype = "enum" defvalue = "Ethernet">
+			<enumitem dispname = "Ethernet" value = "Ethernet"></enumitem>
+			<enumitem dispname = "HDLC" value = "HDLC"></enumitem>
+			<enumitem dispname = "PPP" value = "PPP"></enumitem>
+		</attrdef>
+		<attrdef name="IPAddress" metaref = "1004" valuetype = "string" defvalue = "0.0.0.0">
+		</attrdef>
+		<attrdef name="NetMask" metaref = "1005" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="NetworkAddress" metaref = "1006" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="NumResources" metaref = "1050" valuetype = "string" defvalue = "">
+		</attrdef>
+		<atom name = "IBPDepot" metaref = "1007"  attributes = "IPAddress IFSpeed IFType NumResources">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidDepotConnectionsrcCardinality1" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::DepotConnection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to IBPDepot as &quot;src&quot; over DepotConnection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="depot.gif"></regnode>
+		</atom>
+		<atom name = "LServer" metaref = "1008"  attributes = "IPAddress DepotPingFrequency">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidLSControlConnectionsrcCardinality5" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::LSControlConnection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to LServer as &quot;src&quot; over LSControlConnection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Port.bmp"></regnode>
+				<regnode name = "porticon" value ="PortSmall.bmp"></regnode>
+		</atom>
+		<connection name = "DepotConnection" metaref = "1011" >
+				<regnode name = "sName" value ="srcDepotConnection"></regnode>
+				<regnode name = "dName" value ="dstDepotConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "LSControlConnection" metaref = "1012" >
+				<regnode name = "sName" value ="srcLSControlConnection"></regnode>
+				<regnode name = "dName" value ="dstLSControlConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "T1" metaref = "1040" attributes = "NetMask NetworkAddress" >
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "TeraGrid" metaref = "1041" attributes = "NetMask NetworkAddress" >
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Ultralight" metaref = "1042" attributes = "NetMask NetworkAddress" >
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<reference name = "LogisticalNetworkRef" metaref = "1013">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyLogisticalNetworkRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "LogisticalNetwork"></pointeritem>
+			</pointerspec>
+		</reference>
+		<model name = "LSGroup" metaref = "1014" attributes = "IPAddress" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "IBPDepot" metaref = "1015" kind = "IBPDepot"></role>
+			<role name = "LServer" metaref = "1016" kind = "LServer"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1051" attributes = "IPAddress" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1034" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1035" role = "LServer" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "LogisticalNetwork" metaref = "1020" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "IBPDepot" metaref = "1021" kind = "IBPDepot"></role>
+			<role name = "LSControlConnection" metaref = "1022" kind = "LSControlConnection"></role>
+			<role name = "LogisticalNetwork" metaref = "1023" kind = "LogisticalNetwork"></role>
+			<role name = "T1" metaref = "1043" kind = "T1"></role>
+			<role name = "TeraGrid" metaref = "1044" kind = "TeraGrid"></role>
+			<role name = "Ultralight" metaref = "1045" kind = "Ultralight"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1052" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1037" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1038" role = "LSControlConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1039" role = "LogisticalNetwork" primary = "yes" linked = "no"></part>
+				<part metaref = "1046" role = "T1" primary = "yes" linked = "no"></part>
+				<part metaref = "1047" role = "TeraGrid" primary = "yes" linked = "no"></part>
+				<part metaref = "1048" role = "Ultralight" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<folder name = "LStoreNetwork" metaref = "1049"  rootobjects = "LogisticalNetwork" >
+		</folder>
+	</folder>
+</paradigm>
