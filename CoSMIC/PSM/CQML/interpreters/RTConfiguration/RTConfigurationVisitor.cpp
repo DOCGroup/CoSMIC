@@ -230,7 +230,37 @@ namespace CQML
 		DOMElement* oc = this->doc_->createElement (XStr ("orbConfigs"));
 		this->curr_->appendChild (oc);
 		this->curr_ = oc;
-		accept_each_child (assembly, RealTimeConfiguration, *this);		
+
+		//add the orbResources
+		this->push ();
+		//Create the <orbResources> as a child of the <orbConfigs>
+		DOMElement* or = this->doc_->createElement (XStr ("resources"));
+		this->curr_->appendChild (or);
+		this->curr_ = or;
+		this->resources_ = this->curr_;
+
+		std::set<RealTimeConfiguration> rts = assembly.RealTimeConfiguration_kind_children ();
+
+		for (std::set<RealTimeConfiguration>::iterator rtsiter = rts.begin ();
+			 rtsiter != rts.end ();
+			 ++rtsiter)
+		{
+			(*rtsiter).Accept (*this);
+		}
+		
+		this->pop ();
+
+		for (std::set<RealTimeConfiguration>::iterator rtsiter = rts.begin (); rtsiter != rts.end ();
+			 ++rtsiter)
+		{
+			// handle policy set elements.
+		    if (!this->add_policy_set (*rtsiter))
+			 return;		
+		}
+
+		
+
+
 	}
 
 	void RTConfigurationVisitor::Visit_Property (const Property& prop)
@@ -334,13 +364,13 @@ namespace CQML
 
 		if (tpools.size () != 0 || bandedconns.size () != 0)
 		{
-			//add the orbResources
-			this->push ();
-			//Create the <orbResources> as a child of the <orbConfigs>
-			DOMElement* or = this->doc_->createElement (XStr ("resources"));
-			this->curr_->appendChild (or);
-			this->curr_ = or;
-			this->resources_ = this->curr_;
+			////add the orbResources
+			//this->push ();
+			////Create the <orbResources> as a child of the <orbConfigs>
+			//DOMElement* or = this->doc_->createElement (XStr ("resources"));
+			//this->curr_->appendChild (or);
+			//this->curr_ = or;
+			//this->resources_ = this->curr_;
 
 			//visit the resources		
 
@@ -374,16 +404,11 @@ namespace CQML
 					CQML::PriorityBands tp = *iter;
 					tp.Accept (*this);
 				}
-
-				//restore the current element to the ORBConfigs level
-				this->pop ();
+				
 			}
-			this->pop ();
+			
 		}
-
-		// handle policy set elements.
-		if (!this->add_policy_set (object))
-			return;		
+			
 
 		return;
 
@@ -413,28 +438,22 @@ namespace CQML
 			}
 		}
 
+		std::set<CQML::ThreadPool> pool_set = object.ThreadPool_kind_children ();
 		std::string name;
-		// add reference to first simplethreadpool
-		if (this->tp_.size () != 0)
-		{
-			std::map<std::string, bool>::iterator siter = tp_.begin ();
 
-			name = (*siter).first;
+		CQML::ThreadPool tp;
+		if (pool_set.size () != 0)
+			tp = *(pool_set.begin ());
+		
+		  name =  tp.name ();
+		
+		
+		if (name.size () != 0)
 			this->curr_->appendChild (
 				this->createSimpleContent ("threadpool", name.c_str ()));
-		}
+		
 
-		if (this->tp_with_lanes_.size () != 0)
-		{
-
-			// add reference to first threadpoolwlanes
-			std::map<std::string, bool>::iterator liter = tp_with_lanes_.begin ();
-
-			name = (*liter).first;
-			this->curr_->appendChild (
-				this->createSimpleContent ("threadpool", name.c_str ()));
-		}
-
+		
 		if (this->connections_.size () != 0)
 		{
 
@@ -733,7 +752,8 @@ namespace CQML
 		
 		std::string p_type = pmp.priority_model ();
 		// Only set the server_priority if model is CLIENT_PROPAGATED
-		if (p_type.compare ("CLIENT_PROPAGATED") != 0 )
+
+		//if (p_type.compare ("CLIENT_PROPAGATED") != 0 )
 			e->setAttribute (XStr ("server_priority"), XStr (temp.str ()));
 
 		this->curr_->appendChild (e);
