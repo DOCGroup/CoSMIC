@@ -1,3 +1,15 @@
+Mon Aug 13 23:18:05 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          Fixed the following bugs in RTConfiguration:
+          1. Fixed the csr file generation s.t. <resources> is modified
+             to be at 0..1 in a single file.
+          2. Fixed the ThreadPool references populated in PolicySet
+             to point to correct TP instances.
+          3. Reverted back the change that generates <server_priority>
+             s.t. it is populated for all priority model policies.
+
 Mon Aug 13 16:22:03 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/LSML/examples/NLC.xme:
