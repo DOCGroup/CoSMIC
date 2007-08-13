@@ -1,3 +1,51 @@
+Mon Aug 13 16:22:03 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/LSML/examples/NLC.xme:
+
+          Added a simple example for National Library of Congress scenario.
+
+        * PIM/LSML/paradigms/LSML-uml.xme:
+        * PIM/LSML/paradigms/LSML.xme:
+        * PIM/LSML/paradigms/LSML.xml:
+        * PIM/LSML/paradigms/LSML.xmp:
+        * PIM/LSML/paradigms/icons/metadatalserver.bmp:
+
+          Updated icons and added some new attributes.
+
+        * PSM/LQML/paradigms/LQML-uml.xme:
+        * PSM/LQML/paradigms/LQML.xme:
+        * PSM/LQML/paradigms/LQML.xml:
+        * PSM/LQML/paradigms/LQML.xmp:
+        * PSM/LQML/paradigms/icons:
+
+        * PSM/LQML/paradigms/icons/RPG.bmp:
+        * PSM/LQML/paradigms/icons/ResourceContainer.bmp:
+        * PSM/LQML/paradigms/icons/RootRiskGroup.bmp:
+        * PSM/LQML/paradigms/icons/Thumbs.db:
+        * PSM/LQML/paradigms/icons/assembly_qos.bmp:
+        * PSM/LQML/paradigms/icons/component_qos.bmp:
+        * PSM/LQML/paradigms/icons/component_rule.gif:
+        * PSM/LQML/paradigms/icons/group.bmp:
+        * PSM/LQML/paradigms/icons/ns_qos.bmp:
+        * PSM/LQML/paradigms/icons/operation_set.bmp:
+        * PSM/LQML/paradigms/icons/policy_set.bmp:
+        * PSM/LQML/paradigms/icons/port_qos.bmp:
+        * PSM/LQML/paradigms/icons/port_rule.GIF:
+        * PSM/LQML/paradigms/icons/private.bmp:
+        * PSM/LQML/paradigms/icons/realm.bmp:
+        * PSM/LQML/paradigms/icons/rights.bmp:
+        * PSM/LQML/paradigms/icons/role.bmp:
+        * PSM/LQML/paradigms/icons/role_access_rights.bmp:
+        * PSM/LQML/paradigms/icons/security_domain.bmp:
+        * PSM/LQML/paradigms/icons/security_policy.bmp:
+        * PSM/LQML/paradigms/icons/user.gif:
+
+          Added icons for various LStore QoS
+
+        * PIM/LSML/paradigms/LSML_uml.xme:
+
+          Removed this file.
+
 Sat Aug 11 05:22:06 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/LSML:

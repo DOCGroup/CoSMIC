@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{C377235A-1BC2-4D3F-B1FE-A5410359CC5B}" cdate="Sun Aug 12 01:07:09 2007" mdate="Sun Aug 12 01:07:09 2007" version="" metaguid="{38B16453-18CC-4E3F-9DA7-8440F6D06AB1}" metaversion="" metaname="LSML">
+	<name>NLC</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{1BEB894E-B660-4b15-9A75-DCD03A2FC0ED}">
+		<name>NLC</name>
+		<model id="id-0065-00000001" kind="LogisticalNetwork" guid="{587EC2B6-5C73-4d44-9BE4-C1BFA9EBF2CD}" relid="0x1" childrelidcntr="0xe">
+			<name>LogisticalNetwork</name>
+			<atom id="id-0066-00000001" kind="IBPDepot" role="IBPDepot" guid="{0C03C925-1A42-484c-9755-9B831889D199}" relid="0x1">
+				<name>Vandy_IBPDepot</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>998,186</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IFSpeed" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="IFType" status="meta">
+					<value>Ethernet</value>
+				</attribute>
+				<attribute kind="IPAddress" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="NumResources" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="LServer" role="LServer" guid="{019BD53D-D54F-4d4c-845C-E1087F168AA0}" relid="0x3">
+				<name>Vandy_LServer</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>304,171</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DepotPingFrequency" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="IPAddress" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000003" kind="IBPDepot" role="IBPDepot" guid="{FFF596B6-8F38-4e1b-A3A9-CCF81D112EDA}" relid="0x5">
+				<name>ORNL_IBPDepot</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>998,11</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IFSpeed" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="IFType" status="meta">
+					<value>Ethernet</value>
+				</attribute>
+				<attribute kind="IPAddress" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="NumResources" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000004" kind="IBPDepot" role="IBPDepot" guid="{ADB30F0E-BC8B-48bc-A93F-F59CFF83ED29}" relid="0x7">
+				<name>Caltech_IBPDepot</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>998,361</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="IFSpeed" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="IFType" status="meta">
+					<value>Ethernet</value>
+				</attribute>
+				<attribute kind="IPAddress" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="NumResources" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000005" kind="LServer" role="LServer" guid="{7A58A9FB-4E40-44cd-B6C0-065EC40AD371}" relid="0x9">
+				<name>Caltech_LServer</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetworkingAspect" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>304,346</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DepotPingFrequency" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+				<attribute kind="IPAddress" status="meta">
+					<value>0.0.0.0</value>
+				</attribute>
+			</atom>
+			<connection id="id-0068-00000001" kind="Ultralight" role="Ultralight" guid="{95C0A815-1C13-4114-A6FD-AE361C22B305}" relid="0x4">
+				<name>Ultralight</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="NetMask" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NetworkAddress" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000004" kind="Ultralight" role="Ultralight" guid="{D41D46EB-1722-4e1c-8BCB-E54A83B00C5F}" relid="0xa">
+				<name>Ultralight</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="NetMask" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NetworkAddress" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000004"/>
+				<connpoint role="src" target="id-0066-00000005"/>
+			</connection>
+			<connection id="id-0068-00000007" kind="TeraGrid" role="TeraGrid" guid="{139040A0-FA1D-4f3d-9819-D3C8973D978A}" relid="0xd">
+				<name>TeraGrid</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ee</value>
+				</regnode>
+				<attribute kind="NetMask" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NetworkAddress" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="T1" role="T1" guid="{DEEBA172-78B0-44c8-BE7E-60499ED98403}" relid="0xe">
+				<name>T1</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ee</value>
+				</regnode>
+				<attribute kind="NetMask" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="NetworkAddress" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000004"/>
+			</connection>
+		</model>
+	</folder>
+</project>

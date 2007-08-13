@@ -1,92 +1,95 @@
 <Diagram name="LSML" version="1.00" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Uml.xsd">
+	<Association _id="id27" name="GenericNetworkConnection" assocClass="id3" nonpersistent="false">
+		<AssociationRole _id="id28" max="-1" min="0" name="srcGenericNetworkConnection" target="id8" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id29" max="-1" min="0" name="dstGenericNetworkConnection" target="id8" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Association _id="id2a" name="LSServerConnection" assocClass="idd" nonpersistent="false">
+		<AssociationRole _id="id2b" max="1" min="0" name="srcLSServerConnection" target="idb" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id2c" max="-1" min="0" name="dstLSServerConnection" target="idb" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Association _id="id2d" name="DepotLServerConnection" assocClass="idc" nonpersistent="false">
+		<AssociationRole _id="id2e" max="-1" min="0" name="srcDepotLServerConnection" target="ida" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id2f" max="-1" min="0" name="dstDepotLServerConnection" target="idb" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Association _id="id30" name="DepotConnection" assocClass="ide" nonpersistent="false">
+		<AssociationRole _id="id31" max="1" min="0" name="srcDepotConnection" target="ida" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id32" max="-1" min="0" name="dstDepotConnection" target="ida" isPrimary="false" isNavigable="true"/>
+	</Association>
 	<Association nonpersistent="false">
-		<AssociationRole _id="id27" max="-1" min="0" name="referedbyLogisticalNetworkRef" target="id9" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id28" max="1" min="0" name="ref" target="id10" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id33" max="-1" min="0" name="referedbyLogisticalNetworkRef" target="idf" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id34" max="1" min="0" name="ref" target="id10" isPrimary="false" isNavigable="true"/>
 	</Association>
-	<Association _id="id29" name="DepotLServerConnection" assocClass="id3" nonpersistent="false">
-		<AssociationRole _id="id2a" max="-1" min="0" name="srcDepotLServerConnection" target="ide" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id2b" max="-1" min="0" name="dstDepotLServerConnection" target="idf" isPrimary="false" isNavigable="true"/>
-	</Association>
-	<Association _id="id2c" name="DepotConnection" assocClass="idb" nonpersistent="false">
-		<AssociationRole _id="id2d" max="1" min="0" name="srcDepotConnection" target="ide" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id2e" max="-1" min="0" name="dstDepotConnection" target="ide" isPrimary="false" isNavigable="true"/>
-	</Association>
-	<Association _id="id2f" name="GenericNetworkConnection" assocClass="id6" nonpersistent="false">
-		<AssociationRole _id="id30" max="-1" min="0" name="srcGenericNetworkConnection" target="idd" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id31" max="-1" min="0" name="dstGenericNetworkConnection" target="idd" isPrimary="false" isNavigable="true"/>
-	</Association>
-	<Association _id="id32" name="LSServerConnection" assocClass="ida" nonpersistent="false">
-		<AssociationRole _id="id33" max="1" min="0" name="srcLSServerConnection" target="idf" isPrimary="false" isNavigable="true"/>
-		<AssociationRole _id="id34" max="-1" min="0" name="dstLSServerConnection" target="idf" isPrimary="false" isNavigable="true"/>
-	</Association>
-	<Class _id="id3" name="DepotLServerConnection" baseTypes="id4" isAbstract="false" stereotype="Connection" association="id29"/>
-	<Class _id="id5" name="Ultralight" baseTypes="id6" isAbstract="false" stereotype="Connection"/>
-	<Class _id="id7" name="TeraGrid" baseTypes="id6" isAbstract="false" stereotype="Connection"/>
-	<Class _id="id8" name="T1" baseTypes="id6" isAbstract="false" stereotype="Connection"/>
-	<Class _id="id9" name="LogisticalNetworkRef" baseTypes="id4" isAbstract="false" stereotype="Reference" associationRoles="id27"/>
-	<Class _id="ida" name="LSServerConnection" baseTypes="id4" childRoles="id19" isAbstract="false" stereotype="Connection" association="id32"/>
-	<Class _id="idb" name="DepotConnection" baseTypes="id4" isAbstract="false" stereotype="Connection" association="id2c"/>
-	<Class _id="idc" name="LSGroup" baseTypes="idd" isAbstract="false" stereotype="Model" parentRoles="id12 id14"/>
-	<Class _id="ide" name="IBPDepot" baseTypes="idd" childRoles="id13" isAbstract="false" stereotype="Atom" associationRoles="id2a id2d id2e">
+	<Class _id="id3" name="GenericNetworkConnection" subTypes="id5 id6 id7" baseTypes="id4" childRoles="id1a" isAbstract="true" stereotype="Connection" association="id27">
+		<Attribute max="1" min="1" name="NetworkAddress" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="NetMask" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id8" name="LStoreNode" subTypes="id9 ida idb" baseTypes="id4" childRoles="id18" isAbstract="true" stereotype="FCO" associationRoles="id28 id29">
+		<Attribute max="1" min="1" name="Location" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="Realm" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="IPAddress" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="idb" name="LServer" baseTypes="id8" childRoles="id13" isAbstract="false" stereotype="Atom" associationRoles="id2b id2c id2f">
+		<Attribute max="1" min="1" name="DepotPingFrequency" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="1" name="WeaverErasureCode" type="String" ordered="false" defvalue="Reed-Solomon;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="ida" name="IBPDepot" baseTypes="id8" childRoles="id11" isAbstract="false" stereotype="Atom" associationRoles="id2e id31 id32">
 		<Attribute max="1" min="1" name="IFSpeed" type="Real" ordered="false" defvalue="0;" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="IFType" type="String" ordered="false" defvalue="Ethernet;" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="1" name="NumResources" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
-	<Class _id="idd" name="LStoreNode" subTypes="idc ide idf" baseTypes="id4" childRoles="id15" isAbstract="true" stereotype="FCO" associationRoles="id30 id31">
-		<Attribute max="1" min="1" name="IPAddress" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="id10" name="LogisticalNetwork" baseTypes="id4" childRoles="id1b id1d id20" isAbstract="false" stereotype="Model" parentRoles="id16 id18 id1a id1c" associationRoles="id28"/>
-	<Class _id="id6" name="GenericNetworkConnection" subTypes="id5 id7 id8" baseTypes="id4" childRoles="id17" isAbstract="true" stereotype="Connection" association="id2f">
-		<Attribute max="1" min="1" name="NetworkAddress" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
-		<Attribute max="1" min="1" name="NetMask" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="idf" name="LServer" baseTypes="idd" childRoles="id11" isAbstract="false" stereotype="Atom" associationRoles="id2b id33 id34">
-		<Attribute max="1" min="1" name="DepotPingFrequency" type="String" ordered="false" defvalue="0.0.0.0;" registry="false" visibility="public" nonpersistent="false"/>
-	</Class>
-	<Class _id="id1e" name="LStoreNetwork" childRoles="id23" isAbstract="false" stereotype="Folder" parentRoles="id1f">
+	<Class _id="idc" name="DepotLServerConnection" baseTypes="id4" isAbstract="false" stereotype="Connection" association="id2d"/>
+	<Class _id="idd" name="LSServerConnection" baseTypes="id4" childRoles="id1e" isAbstract="false" stereotype="Connection" association="id2a"/>
+	<Class _id="ide" name="DepotConnection" baseTypes="id4" isAbstract="false" stereotype="Connection" association="id30"/>
+	<Class _id="id6" name="T1" baseTypes="id3" isAbstract="false" stereotype="Connection"/>
+	<Class _id="id9" name="LStoreNodeGroup" baseTypes="id8" isAbstract="false" stereotype="Model" parentRoles="id12 id14"/>
+	<Class _id="idf" name="LogisticalNetworkRef" baseTypes="id4" isAbstract="false" stereotype="Reference" associationRoles="id33"/>
+	<Class _id="id16" name="LStoreNetwork" childRoles="id20" isAbstract="false" stereotype="Folder" parentRoles="id17">
 		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
+	<Class _id="id7" name="TeraGrid" baseTypes="id3" isAbstract="false" stereotype="Connection"/>
+	<Class _id="id5" name="Ultralight" baseTypes="id3" isAbstract="false" stereotype="Connection"/>
+	<Class _id="id10" name="LogisticalNetwork" baseTypes="id4" childRoles="id15 id1c id23" isAbstract="false" stereotype="Model" parentRoles="id19 id1b id1d id1f" associationRoles="id34"/>
 	<Class _id="id21" name="RootFolder" childRoles="id25" isAbstract="false" stereotype="Folder" parentRoles="id22 id24 id26">
 		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
-	<Class _id="id4" name="MgaObject" subTypes="id3 id9 ida idb idd id10 id6" isAbstract="true">
+	<Class _id="id4" name="MgaObject" subTypes="id3 id8 idc idd ide idf id10" isAbstract="true">
 		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 		<Attribute max="1" min="0" name="position" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
 	</Class>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id11" max="-1" min="0" target="idf" isNavigable="true"/>
-		<CompositionParentRole _id="id12" target="idc" isNavigable="true"/>
+		<CompositionChildRole _id="id11" max="-1" min="0" target="ida" isNavigable="true"/>
+		<CompositionParentRole _id="id12" target="id9" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id13" max="-1" min="0" target="ide" isNavigable="true"/>
-		<CompositionParentRole _id="id14" target="idc" isNavigable="true"/>
+		<CompositionChildRole _id="id13" max="-1" min="0" target="idb" isNavigable="true"/>
+		<CompositionParentRole _id="id14" target="id9" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id15" max="-1" min="0" target="idd" isNavigable="true"/>
-		<CompositionParentRole _id="id16" target="id10" isNavigable="true"/>
+		<CompositionChildRole _id="id15" max="-1" min="0" target="id10" isNavigable="true"/>
+		<CompositionParentRole _id="id17" target="id16" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id17" max="-1" min="0" target="id6" isNavigable="true"/>
-		<CompositionParentRole _id="id18" target="id10" isNavigable="true"/>
+		<CompositionChildRole _id="id18" max="-1" min="0" target="id8" isNavigable="true"/>
+		<CompositionParentRole _id="id19" target="id10" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id19" max="-1" min="0" target="ida" isNavigable="true"/>
-		<CompositionParentRole _id="id1a" target="id10" isNavigable="true"/>
+		<CompositionChildRole _id="id1a" max="-1" min="0" target="id3" isNavigable="true"/>
+		<CompositionParentRole _id="id1b" target="id10" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1b" max="-1" min="0" target="id10" isNavigable="true"/>
-		<CompositionParentRole _id="id1c" target="id10" isNavigable="true"/>
+		<CompositionChildRole _id="id1c" max="-1" min="0" target="id10" isNavigable="true"/>
+		<CompositionParentRole _id="id1d" target="id10" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id1d" max="-1" min="0" target="id10" isNavigable="true"/>
-		<CompositionParentRole _id="id1f" target="id1e" isNavigable="true"/>
+		<CompositionChildRole _id="id1e" max="-1" min="0" target="idd" isNavigable="true"/>
+		<CompositionParentRole _id="id1f" target="id10" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id20" max="-1" min="0" target="id10" isNavigable="true"/>
+		<CompositionChildRole _id="id20" max="-1" min="0" target="id16" isNavigable="true"/>
 		<CompositionParentRole _id="id22" target="id21" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
-		<CompositionChildRole _id="id23" max="-1" min="0" target="id1e" isNavigable="true"/>
+		<CompositionChildRole _id="id23" max="-1" min="0" target="id10" isNavigable="true"/>
 		<CompositionParentRole _id="id24" target="id21" isNavigable="true"/>
 	</Composition>
 	<Composition nonpersistent="false">
