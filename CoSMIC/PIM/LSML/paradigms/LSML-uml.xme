@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{09652FAC-1D4E-4279-A80F-755635BF22AC}" cdate="Mon Aug 13 11:19:05 2007" mdate="Mon Aug 13 11:19:05 2007" version="" metaguid="{D050E6EA-C1A6-4A39-9171-AE1918810D1F}" metaversion="" metaname="UML">
+<project guid="{A6B4F9EA-AA7D-4E92-B441-FCACBCF41C8C}" cdate="Mon Aug 13 20:30:18 2007" mdate="Mon Aug 13 20:30:18 2007" version="" metaguid="{D050E6EA-C1A6-4A39-9171-AE1918810D1F}" metaversion="" metaname="UML">
 	<name>Root Folder</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{822EF149-2465-4ff9-949F-0F899568CD53}">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{B9C99207-D27F-406b-968C-AD2F4B921C94}">
 		<name>LSML</name>
-		<model id="id-0065-00000001" kind="Package" guid="{3992ECF3-443C-4e06-A24F-570EB42F5496}" relid="0x1" childrelidcntr="0x3">
+		<model id="id-0065-00000001" kind="Package" guid="{060D7420-50B6-47c5-9DF6-7538A790CB84}" relid="0x1" childrelidcntr="0x3">
 			<name>LSML</name>
 			<attribute kind="alias" status="meta">
 				<value></value>
@@ -15,9 +15,9 @@
 			<attribute kind="version" status="meta">
 				<value>1.00</value>
 			</attribute>
-			<model id="id-0065-00000002" kind="ClassDiagram" role="ClassDiagram" guid="{4B85E33F-5466-4e1b-9B79-F7A8A68D30FF}" relid="0x1" childrelidcntr="0x11">
+			<model id="id-0065-00000002" kind="ClassDiagram" role="ClassDiagram" guid="{6B4F14CA-4E05-47cc-AA85-9A53D10BE477}" relid="0x1" childrelidcntr="0x11">
 				<name>zC_GMEInheritanceSheet</name>
-				<atom id="id-0066-00000001" kind="Class" role="Class" guid="{E2AEA757-0717-4ed7-B7BD-C26B4D77F14E}" relid="0x1">
+				<atom id="id-0066-00000001" kind="Class" role="Class" guid="{E692BA4C-BB26-4ad1-BB76-52A6C2C54E45}" relid="0x1">
 					<name>MgaObject</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -46,7 +46,7 @@ position : String[0..1]
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000002" kind="Inheritance" role="Inheritance" guid="{4F0F619D-3181-4cbd-937B-B5884F7C3FE4}" relid="0x2">
+				<atom id="id-0066-00000002" kind="Inheritance" role="Inheritance" guid="{058C26C2-8E19-4910-912D-02FC0AEA7378}" relid="0x2">
 					<name></name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -64,7 +64,7 @@ position : String[0..1]
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-00000003" kind="ClassCopy" role="ClassCopy" guid="{69482021-FE93-4b43-84BA-01956A2F5EF9}" relid="0x4" referred="id-0066-00000011">
+				<reference id="id-0067-00000003" kind="ClassCopy" role="ClassCopy" guid="{170E2B41-CC32-42e8-ADD8-B40D99D1AEBC}" relid="0x4" referred="id-0066-0000000b">
 					<name>GenericNetworkConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -85,7 +85,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000004" kind="ClassCopy" role="ClassCopy" guid="{E624D085-41BF-480f-85F7-24F219C987D2}" relid="0x6" referred="id-0066-00000004">
+				<reference id="id-0067-00000004" kind="ClassCopy" role="ClassCopy" guid="{158989BF-1FEC-48c8-80FA-8FF03A27BFF0}" relid="0x6" referred="id-0066-0000000a">
 					<name>LogisticalNetwork</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -106,7 +106,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000005" kind="ClassCopy" role="ClassCopy" guid="{7FAF4B03-3AFA-43d2-AA3B-81A442D36B93}" relid="0x8" referred="id-0066-00000010">
+				<reference id="id-0067-00000005" kind="ClassCopy" role="ClassCopy" guid="{261BE717-77F5-4034-9A5F-BC53A42101A3}" relid="0x8" referred="id-0066-0000000d">
 					<name>LStoreNode</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -127,7 +127,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000006" kind="ClassCopy" role="ClassCopy" guid="{96D15C49-C423-4ba6-96B1-A2F034B65FF9}" relid="0xa" referred="id-0066-0000000b">
+				<reference id="id-0067-00000006" kind="ClassCopy" role="ClassCopy" guid="{BA0E7B93-682A-4619-8086-FC0A030E094B}" relid="0xa" referred="id-0066-0000000e">
 					<name>DepotConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -148,7 +148,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000007" kind="ClassCopy" role="ClassCopy" guid="{B5FB6DBF-D90F-42cd-AC05-130C95436C2B}" relid="0xc" referred="id-0066-0000000c">
+				<reference id="id-0067-00000007" kind="ClassCopy" role="ClassCopy" guid="{96D52378-FD0E-4f4d-9C69-F2F435AC704A}" relid="0xc" referred="id-0066-00000007">
 					<name>LSServerConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -169,7 +169,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000008" kind="ClassCopy" role="ClassCopy" guid="{6CAE6528-8642-416e-8E0A-72153D836ABC}" relid="0xe" referred="id-0066-00000008">
+				<reference id="id-0067-00000008" kind="ClassCopy" role="ClassCopy" guid="{9ED8181D-6B8C-442a-9462-FCB66F5569B4}" relid="0xe" referred="id-0066-00000006">
 					<name>LogisticalNetworkRef</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -190,7 +190,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000009" kind="ClassCopy" role="ClassCopy" guid="{E9B0D158-2E99-41a6-A53B-C58308121B99}" relid="0x10" referred="id-0066-0000000d">
+				<reference id="id-0067-00000009" kind="ClassCopy" role="ClassCopy" guid="{F8FBE93A-7D2B-42d6-A051-3A859B7BE371}" relid="0x10" referred="id-0066-00000010">
 					<name>DepotLServerConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -211,50 +211,50 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000001" kind="Base" role="Base" guid="{7BC901CD-B051-468c-B985-80FCD5BDC854}" relid="0x3">
+				<connection id="id-0068-00000001" kind="Base" role="Base" guid="{67530B1A-3195-49f3-B603-FFCBCC669A15}" relid="0x3">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000001"/>
 					<connpoint role="dst" target="id-0066-00000002"/>
 				</connection>
-				<connection id="id-0068-00000021" kind="Sub" role="Sub" guid="{A5F2A736-0CD5-4488-9E1E-998DF7F0A058}" relid="0x5">
+				<connection id="id-0068-00000020" kind="Sub" role="Sub" guid="{D514835A-B2A0-49dc-9F6D-183B00957B7A}" relid="0x5">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000003"/>
 				</connection>
-				<connection id="id-0068-00000022" kind="Sub" role="Sub" guid="{D3E002C4-3E21-498f-A78F-9A86DA27A930}" relid="0x7">
+				<connection id="id-0068-00000021" kind="Sub" role="Sub" guid="{BFEE9FB5-630A-4557-A3A8-6D71FF24765C}" relid="0x7">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000004"/>
 				</connection>
-				<connection id="id-0068-00000023" kind="Sub" role="Sub" guid="{2429B2B5-5A3B-48ab-95B2-992701394E4D}" relid="0x9">
+				<connection id="id-0068-00000022" kind="Sub" role="Sub" guid="{F870FD20-7593-4f41-B55B-706DC181A2CE}" relid="0x9">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000005"/>
 				</connection>
-				<connection id="id-0068-00000024" kind="Sub" role="Sub" guid="{B024875D-F042-47d1-BEA0-A919C90C925E}" relid="0xb">
+				<connection id="id-0068-00000023" kind="Sub" role="Sub" guid="{C51881F6-BA0C-4f0d-88E1-48C5BD33EFE9}" relid="0xb">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000006"/>
 				</connection>
-				<connection id="id-0068-00000025" kind="Sub" role="Sub" guid="{4EBD925D-6CEB-4a88-BB27-B5F507EAF353}" relid="0xd">
+				<connection id="id-0068-00000024" kind="Sub" role="Sub" guid="{CD234020-FE37-4690-B3E1-8689148C4769}" relid="0xd">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000007"/>
 				</connection>
-				<connection id="id-0068-00000026" kind="Sub" role="Sub" guid="{FEBED77F-16FE-45c5-9A51-FBB3EAC717EA}" relid="0xf">
+				<connection id="id-0068-00000025" kind="Sub" role="Sub" guid="{820FB52E-956B-42c0-B657-E8F397DEBDA3}" relid="0xf">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000008"/>
 				</connection>
-				<connection id="id-0068-00000027" kind="Sub" role="Sub" guid="{F9564141-9FAC-4f3f-BB75-3936DBC5EA8E}" relid="0x11">
+				<connection id="id-0068-00000026" kind="Sub" role="Sub" guid="{527C0C5B-291A-4862-AB62-0EFAA63B8186}" relid="0x11">
 					<name></name>
 					<connpoint role="src" target="id-0066-00000002"/>
 					<connpoint role="dst" target="id-0067-00000009"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000003" kind="ClassDiagram" role="ClassDiagram" guid="{225063EA-076E-4be0-8980-95F0A69464F2}" relid="0x2" childrelidcntr="0x6">
+			<model id="id-0065-00000003" kind="ClassDiagram" role="ClassDiagram" guid="{042F1FC0-4FDD-4df2-9952-086E8827B670}" relid="0x2" childrelidcntr="0x6">
 				<name>zC_RootFolderCompositionSheet</name>
-				<atom id="id-0066-00000003" kind="Class" role="Class" guid="{D30DF05D-216F-4fe3-86F3-0B575335AAD5}" relid="0x1">
+				<atom id="id-0066-00000003" kind="Class" role="Class" guid="{7200BF9C-368B-4cb1-A9D3-6B9AC25C3880}" relid="0x1">
 					<name>RootFolder</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -282,7 +282,7 @@ position : String[0..1]
 						<value>Folder</value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000001" kind="ClassCopy" role="ClassCopy" guid="{1E43B2BA-1771-46a3-868B-21D830882932}" relid="0x3" referred="id-0066-00000004">
+				<reference id="id-0067-00000001" kind="ClassCopy" role="ClassCopy" guid="{1D18E3E3-5E43-4424-847D-85933A6FB25A}" relid="0x3" referred="id-0066-0000000a">
 					<name>LogisticalNetwork</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -303,7 +303,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000002" kind="ClassCopy" role="ClassCopy" guid="{7D8DE2C3-9EBA-4019-9E5A-C2418CE3C2FD}" relid="0x5" referred="id-0066-00000007">
+				<reference id="id-0067-00000002" kind="ClassCopy" role="ClassCopy" guid="{137898C4-5B28-477c-9197-15D12F668564}" relid="0x5" referred="id-0066-00000011">
 					<name>LStoreNetwork</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -324,7 +324,7 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000002" kind="Composition" role="Composition" guid="{8537605B-36EE-42c6-AD5E-79E537BF6328}" relid="0x2">
+				<connection id="id-0068-00000002" kind="Composition" role="Composition" guid="{26C71D87-3362-4a23-8C55-1072BB52BBFF}" relid="0x2">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -338,7 +338,7 @@ position : String[0..1]
 					<connpoint role="dst" target="id-0066-00000003"/>
 					<connpoint role="src" target="id-0066-00000003"/>
 				</connection>
-				<connection id="id-0068-00000003" kind="Composition" role="Composition" guid="{45A4864C-3D3F-42a3-9E0C-46BACC1885B4}" relid="0x4">
+				<connection id="id-0068-00000003" kind="Composition" role="Composition" guid="{D20A5B0B-6992-4f9b-B77A-7FA1A56B4E3B}" relid="0x4">
 					<name></name>
 					<attribute kind="Cardinality" status="meta">
 						<value>0..*</value>
@@ -352,7 +352,7 @@ position : String[0..1]
 					<connpoint role="dst" target="id-0066-00000003"/>
 					<connpoint role="src" target="id-0067-00000001"/>
 				</connection>
-				<connection id="id-0068-00000004" kind="Composition" role="Composition" guid="{D78B0AAF-10ED-4bd2-B604-644273513B10}" relid="0x6">
+				<connection id="id-0068-00000004" kind="Composition" role="Composition" guid="{73142D5A-C87F-46f9-91C6-DC28DBBAE7C9}" relid="0x6">
 					<name></name>
 					<attribute kind="Cardinality" status="meta">
 						<value>0..*</value>
@@ -367,172 +367,9 @@ position : String[0..1]
 					<connpoint role="src" target="id-0067-00000002"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000004" kind="ClassDiagram" role="ClassDiagram" guid="{9C8F0D0E-D3A0-4b2f-8525-39F45AD2BE8C}" relid="0x3" childrelidcntr="0x30">
+			<model id="id-0065-00000004" kind="ClassDiagram" role="ClassDiagram" guid="{ACDAC9CC-7574-4f3f-B604-BA36D61C1554}" relid="0x3" childrelidcntr="0x2f">
 				<name>LStore</name>
-				<atom id="id-0066-00000004" kind="Class" role="Class" guid="{B2D35645-0978-4f76-B38A-C7811CCCB3BF}" relid="0x1">
-					<name>LogisticalNetwork</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>169,13</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>169,13</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Model</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000005" kind="Class" role="Class" guid="{614410F2-38E5-43d8-AE05-36994C25EB44}" relid="0x2">
-					<name>Ultralight</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>988,265</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>988,265</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Connection</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000006" kind="Class" role="Class" guid="{673A759A-0B48-40bc-8736-E5D92A718CD9}" relid="0x3">
-					<name>TeraGrid</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>750,265</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>750,265</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Connection</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000007" kind="Class" role="Class" guid="{66B52312-C19C-470e-9A05-A4E04D4A9C98}" relid="0x4">
-					<name>LStoreNetwork</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>8,13</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>8,13</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes">
-						<value>name : String[0..1]
-</value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Folder</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000008" kind="Class" role="Class" guid="{94419466-A107-4af0-A14C-02233B187537}" relid="0x5">
-					<name>LogisticalNetworkRef</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>8,104</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>8,104</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Reference</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000009" kind="Class" role="Class" guid="{8F257808-7C22-447a-9B0F-A593EB8C9D35}" relid="0x6">
-					<name>LStoreNodeGroup</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>631,265</value>
-							</regnode>
-						</regnode>
-						<regnode name="UML" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>631,265</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="IsAbstract">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Stereotype">
-						<value>Model</value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-0000000a" kind="Class" role="Class" guid="{1303FCB9-FFCE-4dd9-90D6-7E3455082EDF}" relid="0x7">
+				<atom id="id-0066-00000004" kind="Class" role="Class" guid="{2EC1239D-5EF3-4bc2-B245-19F602A71A2E}" relid="0x1">
 					<name>T1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -559,20 +396,20 @@ position : String[0..1]
 						<value>Connection</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000b" kind="Class" role="Class" guid="{A6E87714-16C6-4d3c-9A57-19440821B77F}" relid="0x8">
-					<name>DepotConnection</name>
+				<atom id="id-0066-00000005" kind="Class" role="Class" guid="{6979EA65-7934-4185-A8B8-B84661105464}" relid="0x2">
+					<name>Ultralight</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>484,482</value>
+								<value>988,265</value>
 							</regnode>
 						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>484,482</value>
+								<value>988,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -586,7 +423,34 @@ position : String[0..1]
 						<value>Connection</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000c" kind="Class" role="Class" guid="{49E35E20-02E1-48e5-9975-13AE2410D333}" relid="0x9">
+				<atom id="id-0066-00000006" kind="Class" role="Class" guid="{ABF0AA38-D587-470d-8A3E-10DA83C26D03}" relid="0x3">
+					<name>LogisticalNetworkRef</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,104</value>
+							</regnode>
+						</regnode>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,104</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Attributes" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Reference</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000007" kind="Class" role="Class" guid="{D0A21F3E-3871-4181-B894-175A544D3D2F}" relid="0x4">
 					<name>LSServerConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -613,20 +477,20 @@ position : String[0..1]
 						<value>Connection</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000d" kind="Class" role="Class" guid="{F387B4F3-A5FB-4183-86A4-DDBB199CAA11}" relid="0xa">
-					<name>DepotLServerConnection</name>
+				<atom id="id-0066-00000008" kind="Class" role="Class" guid="{487E65BB-1002-4855-818A-A131222BE984}" relid="0x5">
+					<name>LServerCluster</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>64,356</value>
+								<value>631,265</value>
 							</regnode>
 						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>64,356</value>
+								<value>631,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -637,10 +501,10 @@ position : String[0..1]
 						<value>false</value>
 					</attribute>
 					<attribute kind="Stereotype">
-						<value>Connection</value>
+						<value>Model</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000e" kind="Class" role="Class" guid="{A1DA9F98-18D5-4c0f-85B7-5454BEB208BB}" relid="0xb">
+				<atom id="id-0066-00000009" kind="Class" role="Class" guid="{3B4EC73B-5A06-42c5-9B2B-59DC6BF78B8F}" relid="0x6">
 					<name>IBPDepot</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -653,7 +517,7 @@ position : String[0..1]
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>470,340</value>
+								<value>463,340</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -670,7 +534,63 @@ NumResources:String</value>
 						<value>Atom</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000000f" kind="Class" role="Class" guid="{4FEC97A6-FFB5-4200-A6F3-09CFA04B08AE}" relid="0xc">
+				<atom id="id-0066-0000000a" kind="Class" role="Class" guid="{CE684E0C-A66D-4603-B93F-F2188330F587}" relid="0x7">
+					<name>LogisticalNetwork</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>169,13</value>
+							</regnode>
+						</regnode>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>169,27</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Attributes" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Model</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000000b" kind="Class" role="Class" guid="{2A4508B8-91BD-467e-A2E0-D31F614E6D3E}" relid="0x8">
+					<name>GenericNetworkConnection</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>841,96</value>
+							</regnode>
+						</regnode>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>841,96</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Attributes">
+						<value>
+NetworkAddress:String
+NetMask:String</value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>true</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Connection</value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000000c" kind="Class" role="Class" guid="{1D09E6BE-E876-447d-8F29-AF7CBC7EEEE3}" relid="0x9">
 					<name>LServer</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -699,7 +619,7 @@ WeaverErasureCode:String=&quot;Reed-Solomon&quot;</value>
 						<value>Atom</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000010" kind="Class" role="Class" guid="{BB4724DE-AC1B-45c7-87E3-324923A678BE}" relid="0xd">
+				<atom id="id-0066-0000000d" kind="Class" role="Class" guid="{59D3DF49-76FE-47b2-AD99-3F6D99D26014}" relid="0xa">
 					<name>LStoreNode</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -729,72 +649,116 @@ IPAddress:String=&quot;0.0.0.0&quot;</value>
 						<value>FCO</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000011" kind="Class" role="Class" guid="{D2B86194-0EA1-4ed9-B357-3616BA16AF47}" relid="0xe">
-					<name>GenericNetworkConnection</name>
+				<atom id="id-0066-0000000e" kind="Class" role="Class" guid="{5FB30A47-8746-42c5-B9CF-23737521C8ED}" relid="0xb">
+					<name>DepotConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>841,96</value>
+								<value>484,482</value>
 							</regnode>
 						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>841,96</value>
+								<value>477,482</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Attributes">
-						<value>
-NetworkAddress:String
-NetMask:String</value>
+					<attribute kind="Attributes" status="meta">
+						<value></value>
 					</attribute>
 					<attribute kind="IsAbstract">
-						<value>true</value>
+						<value>false</value>
 					</attribute>
 					<attribute kind="Stereotype">
 						<value>Connection</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000012" kind="Connector" role="Connector" guid="{A26FB2F5-B5A9-4555-8207-F9D93C493BFA}" relid="0x17">
-					<name></name>
+				<atom id="id-0066-0000000f" kind="Class" role="Class" guid="{9F66471B-6248-44ab-8BB6-850CF89ACBB4}" relid="0xc">
+					<name>TeraGrid</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>750,265</value>
+							</regnode>
+						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>676,130</value>
+								<value>750,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Attributes" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Connection</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000013" kind="Connector" role="Connector" guid="{56ADFFE5-7B7F-4591-B81F-E8B9E3729EF1}" relid="0x1b">
-					<name></name>
+				<atom id="id-0066-00000010" kind="Class" role="Class" guid="{3D030F44-839B-4585-AD81-A66C3419DA2E}" relid="0xd">
+					<name>DepotLServerConnection</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>64,356</value>
+							</regnode>
+						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>354,221</value>
+								<value>113,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Attributes" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Connection</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000014" kind="Connector" role="Connector" guid="{29053141-7348-4821-B13C-3E42B088207E}" relid="0x1f">
-					<name></name>
+				<atom id="id-0066-00000011" kind="Class" role="Class" guid="{D36143A1-BA51-4214-93AA-669D42327E12}" relid="0xe">
+					<name>LStoreNetwork</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>8,13</value>
+							</regnode>
+						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>536,459</value>
+								<value>8,27</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<attribute kind="Attributes">
+						<value>name : String[0..1]
+</value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Stereotype">
+						<value>Folder</value>
+					</attribute>
 				</atom>
-				<atom id="id-0066-00000015" kind="Connector" role="Connector" guid="{947F567E-EDBC-4ea3-AB07-3C7A146219F1}" relid="0x23">
+				<atom id="id-0066-00000012" kind="Connector" role="Connector" guid="{13AE4B88-B8BB-4b74-A23A-A194551F0A8F}" relid="0x16">
 					<name></name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -806,25 +770,43 @@ NetMask:String</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-00000016" kind="Inheritance" role="Inheritance" guid="{432C31B8-7DA4-498b-ABC7-B66566F97B0E}" relid="0x27">
+				<atom id="id-0066-00000013" kind="Connector" role="Connector" guid="{32F54BDD-4FD9-424b-8A28-5CA4A1755E29}" relid="0x1a">
 					<name></name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>913,194</value>
-							</regnode>
-						</regnode>
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>913,194</value>
+								<value>529,459</value>
 							</regnode>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-00000017" kind="Inheritance" role="Inheritance" guid="{302B2F80-15E8-4b86-95DC-98382A214FBB}" relid="0x2c">
+				<atom id="id-0066-00000014" kind="Connector" role="Connector" guid="{2A12B15E-8106-4869-AB6D-63B6BAB4DB8B}" relid="0x1e">
+					<name></name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>676,130</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-00000015" kind="Connector" role="Connector" guid="{359B6076-4790-44c5-B0B6-8643F5669AEE}" relid="0x22">
+					<name></name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>354,221</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-00000016" kind="Inheritance" role="Inheritance" guid="{AEB4C759-5B8E-41ea-9987-737A0AC2E19E}" relid="0x26">
 					<name></name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -842,7 +824,25 @@ NetMask:String</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<connection id="id-0068-00000005" kind="Composition" role="Composition" guid="{D9EFB142-9A0C-4ce3-AB7A-37584ACBFCBC}" relid="0xf">
+				<atom id="id-0066-00000017" kind="Inheritance" role="Inheritance" guid="{3851A1AD-7A90-43c7-9F05-6474677599B4}" relid="0x2b">
+					<name></name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>913,194</value>
+							</regnode>
+						</regnode>
+						<regnode name="UML" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>913,194</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<connection id="id-0068-00000005" kind="Composition" role="Composition" guid="{588EC481-BB02-4b22-8928-B30411D9AC00}" relid="0xf">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -853,10 +853,38 @@ NetMask:String</value>
 					<attribute kind="ParentRole" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000b"/>
+				</connection>
+				<connection id="id-0068-00000006" kind="Composition" role="Composition" guid="{BB136359-8AD3-4c1b-B266-D2874B431C83}" relid="0x10">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="ChildRole">
+						<value></value>
+					</attribute>
+					<attribute kind="ParentRole" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000007"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
+				</connection>
+				<connection id="id-0068-00000007" kind="Composition" role="Composition" guid="{9B104D14-57DA-4475-9BFF-4129BED03CB1}" relid="0x11">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="ChildRole">
+						<value></value>
+					</attribute>
+					<attribute kind="ParentRole" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-00000008"/>
 					<connpoint role="src" target="id-0066-0000000c"/>
 				</connection>
-				<connection id="id-0068-00000006" kind="Composition" role="Composition" guid="{D0E60814-6451-4215-A07D-D67B427DF912}" relid="0x10">
+				<connection id="id-0068-00000008" kind="Composition" role="Composition" guid="{02019466-2B30-48c8-A77F-C75481A56316}" relid="0x12">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -867,10 +895,10 @@ NetMask:String</value>
 					<attribute kind="ParentRole" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000004"/>
-					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000d"/>
 				</connection>
-				<connection id="id-0068-00000007" kind="Composition" role="Composition" guid="{722CE81B-51AE-4912-8052-BB67AF3F5D36}" relid="0x11">
+				<connection id="id-0068-00000009" kind="Composition" role="Composition" guid="{05247FAE-C8D9-459c-9676-00430DFFC53C}" relid="0x13">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -881,52 +909,10 @@ NetMask:String</value>
 					<attribute kind="ParentRole" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-00000009"/>
-					<connpoint role="src" target="id-0066-0000000f"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
-				<connection id="id-0068-00000008" kind="Composition" role="Composition" guid="{A46D1771-4E53-462c-B2DA-212B2DEAB80E}" relid="0x12">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="ChildRole">
-						<value></value>
-					</attribute>
-					<attribute kind="ParentRole" status="meta">
-						<value></value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-00000009"/>
-					<connpoint role="src" target="id-0066-0000000e"/>
-				</connection>
-				<connection id="id-0068-00000009" kind="Composition" role="Composition" guid="{7DF92A15-57D7-4da1-9019-381ED79E9ED0}" relid="0x13">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="ChildRole">
-						<value></value>
-					</attribute>
-					<attribute kind="ParentRole" status="meta">
-						<value></value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-00000004"/>
-					<connpoint role="src" target="id-0066-00000011"/>
-				</connection>
-				<connection id="id-0068-0000000a" kind="Composition" role="Composition" guid="{EFD61844-A9A5-4f3f-87DE-BD790E024BDA}" relid="0x14">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="ChildRole">
-						<value></value>
-					</attribute>
-					<attribute kind="ParentRole" status="meta">
-						<value></value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-00000004"/>
-					<connpoint role="src" target="id-0066-00000010"/>
-				</connection>
-				<connection id="id-0068-0000000b" kind="Composition" role="Composition" guid="{F7E59064-1BC5-4f52-A77D-0F7EEBC8F6EE}" relid="0x15">
+				<connection id="id-0068-0000000a" kind="Composition" role="Composition" guid="{61A76F8E-12EF-4195-B0E7-492B1A65D665}" relid="0x14">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -937,10 +923,10 @@ NetMask:String</value>
 					<attribute kind="ParentRole" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000004"/>
-					<connpoint role="dst" target="id-0066-00000007"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-00000011"/>
 				</connection>
-				<connection id="id-0068-0000000c" kind="Association" role="Association" guid="{D628E057-AAF2-483f-859E-6606084A2905}" relid="0x16">
+				<connection id="id-0068-0000000b" kind="Association" role="Association" guid="{39D0A2E4-60A3-4b22-87B0-2FAECB1353FD}" relid="0x15">
 					<name></name>
 					<attribute kind="Stereotype" status="meta">
 						<value></value>
@@ -957,91 +943,10 @@ NetMask:String</value>
 					<attribute kind="srcRolename">
 						<value>referedbyLogisticalNetworkRef</value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-00000004"/>
-					<connpoint role="src" target="id-0066-00000008"/>
+					<connpoint role="src" target="id-0066-00000006"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
-				<connection id="id-0068-0000000d" kind="Src" role="Src" guid="{0487403E-A3AB-4f9a-8D46-DFDA60B0A4B0}" relid="0x18">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="srcRolename">
-						<value>srcGenericNetworkConnection</value>
-					</attribute>
-					<connpoint role="src" target="id-0066-00000010"/>
-					<connpoint role="dst" target="id-0066-00000012"/>
-				</connection>
-				<connection id="id-0068-0000000e" kind="Dst" role="Dst" guid="{75F0E028-3C74-4dd1-A735-C57AC685CF0B}" relid="0x19">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="dstRolename">
-						<value>dstGenericNetworkConnection</value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-00000010"/>
-					<connpoint role="src" target="id-0066-00000012"/>
-				</connection>
-				<connection id="id-0068-0000000f" kind="AssociationClass" role="AssociationClass" guid="{ACBA5548-F376-4390-927E-A7F7B39C6692}" relid="0x1a">
-					<name></name>
-					<connpoint role="dst" target="id-0066-00000011"/>
-					<connpoint role="src" target="id-0066-00000012"/>
-				</connection>
-				<connection id="id-0068-00000010" kind="Src" role="Src" guid="{7BB304DA-D42B-481c-A99D-075FC33DDB1C}" relid="0x1c">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..1</value>
-					</attribute>
-					<attribute kind="srcRolename">
-						<value>srcLSServerConnection</value>
-					</attribute>
-					<connpoint role="src" target="id-0066-0000000f"/>
-					<connpoint role="dst" target="id-0066-00000013"/>
-				</connection>
-				<connection id="id-0068-00000011" kind="Dst" role="Dst" guid="{C37C8DA2-40F9-45a7-9B3C-2410841EA03D}" relid="0x1d">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="dstRolename">
-						<value>dstLSServerConnection</value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-0000000f"/>
-					<connpoint role="src" target="id-0066-00000013"/>
-				</connection>
-				<connection id="id-0068-00000012" kind="AssociationClass" role="AssociationClass" guid="{16E9200F-8D6B-49fd-8D2C-075D56144A5B}" relid="0x1e">
-					<name></name>
-					<connpoint role="dst" target="id-0066-0000000c"/>
-					<connpoint role="src" target="id-0066-00000013"/>
-				</connection>
-				<connection id="id-0068-00000013" kind="Src" role="Src" guid="{BA1A697A-E168-4f43-9661-E0F176568CF8}" relid="0x20">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..1</value>
-					</attribute>
-					<attribute kind="srcRolename">
-						<value>srcDepotConnection</value>
-					</attribute>
-					<connpoint role="src" target="id-0066-0000000e"/>
-					<connpoint role="dst" target="id-0066-00000014"/>
-				</connection>
-				<connection id="id-0068-00000014" kind="Dst" role="Dst" guid="{24CD8BC1-7B63-4dc3-9EA5-30C4E0198A6C}" relid="0x21">
-					<name></name>
-					<attribute kind="Cardinality">
-						<value>0..*</value>
-					</attribute>
-					<attribute kind="dstRolename">
-						<value>dstDepotConnection</value>
-					</attribute>
-					<connpoint role="dst" target="id-0066-0000000e"/>
-					<connpoint role="src" target="id-0066-00000014"/>
-				</connection>
-				<connection id="id-0068-00000015" kind="AssociationClass" role="AssociationClass" guid="{39950A0E-8B55-47fc-B98B-4984AECAB715}" relid="0x22">
-					<name></name>
-					<connpoint role="dst" target="id-0066-0000000b"/>
-					<connpoint role="src" target="id-0066-00000014"/>
-				</connection>
-				<connection id="id-0068-00000016" kind="Src" role="Src" guid="{98C2EED5-7959-4c65-87F7-B3443AE02CB2}" relid="0x24">
+				<connection id="id-0068-0000000c" kind="Src" role="Src" guid="{318544EC-1FF4-4daf-9B84-80F8390C0B15}" relid="0x17">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -1049,10 +954,10 @@ NetMask:String</value>
 					<attribute kind="srcRolename">
 						<value>srcDepotLServerConnection</value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000e"/>
-					<connpoint role="dst" target="id-0066-00000015"/>
+					<connpoint role="src" target="id-0066-00000009"/>
+					<connpoint role="dst" target="id-0066-00000012"/>
 				</connection>
-				<connection id="id-0068-00000017" kind="Dst" role="Dst" guid="{ECB5A863-4418-4469-902A-8595579B33D3}" relid="0x25">
+				<connection id="id-0068-0000000d" kind="Dst" role="Dst" guid="{B31AEBA3-077C-4e05-823E-DDA3E3F8650A}" relid="0x18">
 					<name></name>
 					<attribute kind="Cardinality">
 						<value>0..*</value>
@@ -1060,52 +965,133 @@ NetMask:String</value>
 					<attribute kind="dstRolename">
 						<value>dstDepotLServerConnection</value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000f"/>
-					<connpoint role="src" target="id-0066-00000015"/>
+					<connpoint role="dst" target="id-0066-0000000c"/>
+					<connpoint role="src" target="id-0066-00000012"/>
 				</connection>
-				<connection id="id-0068-00000018" kind="AssociationClass" role="AssociationClass" guid="{AE08AAEC-78C0-4017-A519-84CCBDC35D93}" relid="0x26">
+				<connection id="id-0068-0000000e" kind="AssociationClass" role="AssociationClass" guid="{6104B6CF-CB7D-4dab-B55B-F1B8DE35FD20}" relid="0x19">
 					<name></name>
-					<connpoint role="dst" target="id-0066-0000000d"/>
-					<connpoint role="src" target="id-0066-00000015"/>
+					<connpoint role="dst" target="id-0066-00000010"/>
+					<connpoint role="src" target="id-0066-00000012"/>
 				</connection>
-				<connection id="id-0068-00000019" kind="Base" role="Base" guid="{98718C1B-FBF8-4a79-8466-3B4943B78534}" relid="0x28">
+				<connection id="id-0068-0000000f" kind="Src" role="Src" guid="{AA291D9C-B19D-498a-B5C7-832F101F44B8}" relid="0x1b">
 					<name></name>
-					<connpoint role="src" target="id-0066-00000011"/>
-					<connpoint role="dst" target="id-0066-00000016"/>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="srcRolename">
+						<value>srcDepotConnection</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000009"/>
+					<connpoint role="dst" target="id-0066-00000013"/>
 				</connection>
-				<connection id="id-0068-0000001a" kind="Sub" role="Sub" guid="{F32501C4-D9AA-44cb-BB2F-9FB90D663F5A}" relid="0x29">
+				<connection id="id-0068-00000010" kind="Dst" role="Dst" guid="{7CA79F38-5BED-4631-9103-05BB1C2E4486}" relid="0x1c">
 					<name></name>
-					<connpoint role="dst" target="id-0066-00000006"/>
-					<connpoint role="src" target="id-0066-00000016"/>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="dstRolename">
+						<value>dstDepotConnection</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-00000009"/>
+					<connpoint role="src" target="id-0066-00000013"/>
 				</connection>
-				<connection id="id-0068-0000001b" kind="Sub" role="Sub" guid="{775F116B-65F6-4e5c-B383-D001CDAE4138}" relid="0x2a">
-					<name></name>
-					<connpoint role="dst" target="id-0066-0000000a"/>
-					<connpoint role="src" target="id-0066-00000016"/>
-				</connection>
-				<connection id="id-0068-0000001c" kind="Sub" role="Sub" guid="{8A18F8BA-0032-4a34-8CE1-D0F8774D17E1}" relid="0x2b">
-					<name></name>
-					<connpoint role="dst" target="id-0066-00000005"/>
-					<connpoint role="src" target="id-0066-00000016"/>
-				</connection>
-				<connection id="id-0068-0000001d" kind="Base" role="Base" guid="{5D9838E0-24CF-4e12-9E00-1C38A39FFEF4}" relid="0x2d">
-					<name></name>
-					<connpoint role="src" target="id-0066-00000010"/>
-					<connpoint role="dst" target="id-0066-00000017"/>
-				</connection>
-				<connection id="id-0068-0000001e" kind="Sub" role="Sub" guid="{72308295-F0E9-408b-8B88-2E7BC2BE25F7}" relid="0x2e">
-					<name></name>
-					<connpoint role="dst" target="id-0066-0000000f"/>
-					<connpoint role="src" target="id-0066-00000017"/>
-				</connection>
-				<connection id="id-0068-0000001f" kind="Sub" role="Sub" guid="{186D6489-AA7A-443a-BCD9-5F5CE74B6BA4}" relid="0x2f">
+				<connection id="id-0068-00000011" kind="AssociationClass" role="AssociationClass" guid="{0E99D7A0-298C-4e60-8FB8-EB74A0489483}" relid="0x1d">
 					<name></name>
 					<connpoint role="dst" target="id-0066-0000000e"/>
-					<connpoint role="src" target="id-0066-00000017"/>
+					<connpoint role="src" target="id-0066-00000013"/>
 				</connection>
-				<connection id="id-0068-00000020" kind="Sub" role="Sub" guid="{83786B5D-243C-4b94-8D3E-E42DC033AE6B}" relid="0x30">
+				<connection id="id-0068-00000012" kind="Src" role="Src" guid="{135C662C-F930-42bb-8938-0739CA5833C8}" relid="0x1f">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="srcRolename">
+						<value>srcGenericNetworkConnection</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000000d"/>
+					<connpoint role="dst" target="id-0066-00000014"/>
+				</connection>
+				<connection id="id-0068-00000013" kind="Dst" role="Dst" guid="{0EC47C21-F5A0-4c40-83C5-E058F40055B5}" relid="0x20">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="dstRolename">
+						<value>dstGenericNetworkConnection</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-0000000d"/>
+					<connpoint role="src" target="id-0066-00000014"/>
+				</connection>
+				<connection id="id-0068-00000014" kind="AssociationClass" role="AssociationClass" guid="{D785D56D-BFEC-4b20-B769-D52C8F025631}" relid="0x21">
+					<name></name>
+					<connpoint role="dst" target="id-0066-0000000b"/>
+					<connpoint role="src" target="id-0066-00000014"/>
+				</connection>
+				<connection id="id-0068-00000015" kind="Src" role="Src" guid="{65342923-03A9-48e7-AF2C-03C3E2BCB45C}" relid="0x23">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="srcRolename">
+						<value>srcLSServerConnection</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000000c"/>
+					<connpoint role="dst" target="id-0066-00000015"/>
+				</connection>
+				<connection id="id-0068-00000016" kind="Dst" role="Dst" guid="{3531C65D-E58E-49c2-9EA3-7EEDCF1509AF}" relid="0x24">
+					<name></name>
+					<attribute kind="Cardinality">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="dstRolename">
+						<value>dstLSServerConnection</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-0000000c"/>
+					<connpoint role="src" target="id-0066-00000015"/>
+				</connection>
+				<connection id="id-0068-00000017" kind="AssociationClass" role="AssociationClass" guid="{0C963877-95C7-42d9-B1C9-842F7BDD52AA}" relid="0x25">
+					<name></name>
+					<connpoint role="dst" target="id-0066-00000007"/>
+					<connpoint role="src" target="id-0066-00000015"/>
+				</connection>
+				<connection id="id-0068-00000018" kind="Base" role="Base" guid="{D879742C-767C-4125-98EB-205E130DFF04}" relid="0x27">
+					<name></name>
+					<connpoint role="src" target="id-0066-0000000d"/>
+					<connpoint role="dst" target="id-0066-00000016"/>
+				</connection>
+				<connection id="id-0068-00000019" kind="Sub" role="Sub" guid="{471252B7-9CE9-4690-A47A-A5B7CBF0DBC0}" relid="0x28">
+					<name></name>
+					<connpoint role="dst" target="id-0066-0000000c"/>
+					<connpoint role="src" target="id-0066-00000016"/>
+				</connection>
+				<connection id="id-0068-0000001a" kind="Sub" role="Sub" guid="{3824D387-A177-42be-A599-38EAB3E1EBF3}" relid="0x29">
 					<name></name>
 					<connpoint role="dst" target="id-0066-00000009"/>
+					<connpoint role="src" target="id-0066-00000016"/>
+				</connection>
+				<connection id="id-0068-0000001b" kind="Sub" role="Sub" guid="{1C054B10-EC50-42fc-A156-5B98E2F9BD06}" relid="0x2a">
+					<name></name>
+					<connpoint role="dst" target="id-0066-00000008"/>
+					<connpoint role="src" target="id-0066-00000016"/>
+				</connection>
+				<connection id="id-0068-0000001c" kind="Base" role="Base" guid="{077DCFE7-26FE-4b76-B296-F2DF0F60969F}" relid="0x2c">
+					<name></name>
+					<connpoint role="src" target="id-0066-0000000b"/>
+					<connpoint role="dst" target="id-0066-00000017"/>
+				</connection>
+				<connection id="id-0068-0000001d" kind="Sub" role="Sub" guid="{E50ABB0B-19DF-40e3-AE1F-46ACD71B0D77}" relid="0x2d">
+					<name></name>
+					<connpoint role="dst" target="id-0066-0000000f"/>
+					<connpoint role="src" target="id-0066-00000017"/>
+				</connection>
+				<connection id="id-0068-0000001e" kind="Sub" role="Sub" guid="{FDD89D4F-E21E-4750-A3FC-3B58E619CC84}" relid="0x2e">
+					<name></name>
+					<connpoint role="dst" target="id-0066-00000004"/>
+					<connpoint role="src" target="id-0066-00000017"/>
+				</connection>
+				<connection id="id-0068-0000001f" kind="Sub" role="Sub" guid="{6232D446-FDA9-48d5-95E5-AE12B84DAC3F}" relid="0x2f">
+					<name></name>
+					<connpoint role="dst" target="id-0066-00000005"/>
 					<connpoint role="src" target="id-0066-00000017"/>
 				</connection>
 			</model>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{07D0FD18-BB47-4053-9E01-55D6DF7D99C4}" cdate="Mon Aug 13 11:16:34 2007" mdate="Mon Aug 13 11:16:34 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{6AE2C391-553A-45BA-BF65-DD214474DC63}" cdate="Mon Aug 13 11:16:34 2007" mdate="Mon Aug 13 11:16:34 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>LSML</name>
 	<comment></comment>
 	<author></author>
@@ -17,6 +17,9 @@
 						<value></value>
 						<regnode name="LSGroup" isopaque="yes">
 							<value>1033</value>
+						</regnode>
+						<regnode name="LServerCluster" isopaque="yes">
+							<value>1070</value>
 						</regnode>
 						<regnode name="LStoreNodeGroup" isopaque="yes">
 							<value>1065</value>
@@ -235,6 +238,15 @@
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="LServerCluster" status="undefined">
+						<value></value>
+						<regnode name="LServer" isopaque="yes">
+							<value>1069</value>
+							<regnode name="LogisticalNetworkingAspect" isopaque="yes">
+								<value>1071</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="LStoreNodeGroup" status="undefined">
 						<value></value>
 						<regnode name="LServer" isopaque="yes">
@@ -265,6 +277,12 @@
 							<value>yes</value>
 						</regnode>
 					</regnode>
+					<regnode name="LServerCluster:LServer" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="LStoreNodeGroup:LServer" status="undefined">
 						<value></value>
 						<regnode name="LogisticalNetworkingAspect" isopaque="yes">
@@ -272,6 +290,39 @@
 						</regnode>
 					</regnode>
 					<regnode name="LogisticalNetwork:LServer" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="LServerCluster-38-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetwork:LServerCluster" status="undefined">
+						<value></value>
+						<regnode name="LogisticalNetworkingAspect" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1068</value>
+					<regnode name="LogisticalNetwork" status="undefined">
+						<value></value>
+						<regnode name="LServerCluster" isopaque="yes">
+							<value>1072</value>
+							<regnode name="LogisticalNetworkingAspect" isopaque="yes">
+								<value>1073</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="LogisticalNetwork:LServerCluster" status="undefined">
 						<value></value>
 						<regnode name="LogisticalNetworkingAspect" isopaque="yes">
 							<value>yes</value>
@@ -604,7 +655,7 @@
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>8,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -801,7 +852,7 @@ dName = dstGenericNetworkConnection</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>169,13</value>
+							<value>169,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -826,8 +877,8 @@ dName = dstGenericNetworkConnection</value>
 				<attribute kind="GeneralPreferences" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
+				<attribute kind="Icon">
+					<value>lstorenetwork.bmp</value>
 				</attribute>
 				<attribute kind="InRootFolder">
 					<value>true</value>
@@ -978,7 +1029,7 @@ dName = dstGenericNetworkConnection</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>470,340</value>
+							<value>463,340</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -1250,7 +1301,7 @@ PPP</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000010" kind="Model" role="Model" guid="{98EA974D-849D-4cde-83FD-4C33DCF152EA}" relid="0x38">
-				<name>LStoreNodeGroup</name>
+				<name>LServerCluster</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="Attributes" status="undefined">
@@ -1288,7 +1339,7 @@ PPP</value>
 					<value></value>
 				</attribute>
 				<attribute kind="Icon">
-					<value>lstore_node_group.bmp</value>
+					<value>lservercluster.bmp</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -1337,7 +1388,7 @@ PPP</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>484,482</value>
+							<value>477,482</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -1402,7 +1453,7 @@ dName = dstDepotConnection</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>536,459</value>
+							<value>529,459</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" status="undefined">
@@ -1833,7 +1884,7 @@ rrName = referedbyLogisticalNetworkRef</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>64,356</value>
+							<value>113,356</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -2049,8 +2100,8 @@ dName = dstDepotLServerConnection</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000006"/>
 				<connpoint role="src" target="id-0066-00000006"/>
+				<connpoint role="dst" target="id-0066-00000006"/>
 			</connection>
 			<connection id="id-0068-00000005" kind="DerivedInheritance" role="DerivedInheritance" guid="{1DA429A2-8D93-4eb8-B500-F93D023972E3}" relid="0x39">
 				<name>DerivedInheritance</name>
@@ -2058,23 +2109,6 @@ dName = dstDepotLServerConnection</value>
 					<value>Sn</value>
 				</regnode>
 				<connpoint role="src" target="id-0066-00000008"/>
-				<connpoint role="dst" target="id-0066-00000010"/>
-			</connection>
-			<connection id="id-0068-00000006" kind="Containment" role="Containment" guid="{EEB71560-7C65-4f99-945C-712D94656323}" relid="0x3a">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Es</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000009"/>
 				<connpoint role="dst" target="id-0066-00000010"/>
 			</connection>
 			<connection id="id-0068-00000007" kind="Containment" role="Containment" guid="{1C6E1BEF-2E1E-4282-86FB-E32A235FF21E}" relid="0x3b">
