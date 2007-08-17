@@ -1,3 +1,47 @@
+Fri Aug 17 20:54:05 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/LSML/examples/NLC.xme:
+
+        * PIM/LSML/paradigms/LSML-uml.xme:
+        * PIM/LSML/paradigms/LSML.xme:
+        * PIM/LSML/paradigms/LSML.xml:
+        * PIM/LSML/paradigms/LSML.xmp:
+
+          Added a Node base FCO for LStoreNode.
+
+        * PIM/LSML/paradigms/icons/lstore.bmp:
+        * PIM/LSML/paradigms/icons/lstoresystem.bmp:
+        * PIM/LSML/paradigms/icons/metadatalserver_port.bmp:
+
+          Added new icons.
+
+        * PSM/LQML/examples:
+
+        * PSM/LQML/examples/NLC.xme:
+
+          Upgraded the example to LQML also.
+
+        * PSM/LQML/paradigms/LQML-uml.xme:
+        * PSM/LQML/paradigms/LQML.xme:
+        * PSM/LQML/paradigms/LQML.xml:
+        * PSM/LQML/paradigms/LQML.xmp:
+
+          Created Dataflow, FTReplication and QoSModel.
+
+        * PSM/LQML/paradigms/icons/FOU.bmp:
+        * PSM/LQML/paradigms/icons/SharedResource.bmp:
+        * PSM/LQML/paradigms/icons/SharedRiskGroup.bmp:
+        * PSM/LQML/paradigms/icons/TargetReliabilityModel.bmp:
+        * PSM/LQML/paradigms/icons/depot.bmp:
+        * PSM/LQML/paradigms/icons/lservercluster.bmp:
+        * PSM/LQML/paradigms/icons/lstore.bmp:
+        * PSM/LQML/paradigms/icons/lstorenetwork.bmp:
+        * PSM/LQML/paradigms/icons/lstoresystem.bmp:
+        * PSM/LQML/paradigms/icons/metadatalserver.bmp:
+        * PSM/LQML/paradigms/icons/metadatalserver_port.bmp:
+
+          Added icons for different QoS.
+
 Tue Aug 14 01:33:05 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/LSML/examples/NLC.xme:

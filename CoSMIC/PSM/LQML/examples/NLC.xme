@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{F8F0D06B-B78F-4409-BE43-D2DB3BA36B80}" cdate="Fri Aug 17 15:48:27 2007" mdate="Fri Aug 17 15:48:27 2007" version="" metaguid="{BF154BF8-4ECE-4699-B1C3-82ADC8BB5E80}" metaversion="" metaname="LSML">
+<project guid="{514B1F7E-F2A1-4D98-AA49-B613586EC89F}" cdate="Fri Aug 17 15:58:35 2007" mdate="Fri Aug 17 15:58:35 2007" version="" metaguid="{C240BBBD-C2A6-443B-A95C-87A69061A097}" metaversion="" metaname="LQML">
 	<name>NLC</name>
 	<comment></comment>
 	<author></author>

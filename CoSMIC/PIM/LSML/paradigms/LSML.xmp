@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="LSML" guid="{6057088C-AD12-40AB-A147-FFDD2A64EF7D}" cdate="Mon Aug 13 11:16:34 2007" mdate="Mon Aug 13 11:16:34 2007" >
+<paradigm name="LSML" guid="{BF154BF8-4ECE-4699-B1C3-82ADC8BB5E80}" cdate="Mon Aug 13 22:20:00 2007" mdate="Mon Aug 13 22:20:00 2007" >
 
 	<comment></comment>
 
 	<author></author>
 
-	<folder name = "RootFolder" metaref = "1000"  subfolders = "LStoreNetwork" rootobjects = "LogisticalNetwork" >
+	<folder name = "RootFolder" metaref = "1000"  subfolders = "LStoreNetwork" rootobjects = "LogisticalStorageNetwork" >
 		<attrdef name="DepotPingFrequency" metaref = "1001" valuetype = "string" defvalue = "0.0.0.0">
 		</attrdef>
 		<attrdef name="IFSpeed" metaref = "1002" valuetype = "double" defvalue = "0.0">
@@ -35,63 +35,64 @@
 		</attrdef>
 		<atom name = "IBPDepot" metaref = "1007"  attributes = "Location Realm IPAddress IFSpeed IFType NumResources">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidDepotConnectionsrcCardinality1" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::DepotConnection ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to IBPDepot as &quot;src&quot; over DepotConnection, has to match 0..1.</dispname>
-			</constraint>
 				<regnode name = "icon" value ="depot.bmp"></regnode>
 		</atom>
 		<atom name = "LServer" metaref = "1008"  attributes = "Location Realm IPAddress DepotPingFrequency WeaverErasureCode">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidLSServerConnectionsrcCardinality7" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::LSServerConnection ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to LServer as &quot;src&quot; over LSServerConnection, has to match 0..1.</dispname>
-			</constraint>
 				<regnode name = "icon" value ="metadatalserver.bmp"></regnode>
+				<regnode name = "porticon" value ="metadatalserver_port.bmp"></regnode>
 		</atom>
-		<connection name = "DepotConnection" metaref = "1011" >
-				<regnode name = "sName" value ="srcDepotConnection"></regnode>
-				<regnode name = "dName" value ="dstDepotConnection"></regnode>
+		<connection name = "AbileneInternet2" metaref = "1164" attributes = "NetworkAddress NetMask" >
+			<dispname>TeraGrid</dispname>
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
-				<regnode name = "dstStyle" value ="butt"></regnode>
-				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "dstStyle" value ="apex"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
 				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="TeraGrid"/>
+				<regnode name= "dstLabel1" value="TeraGrid"/>
 			<connjoint>
 				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "DepotLServerConnection" metaref = "1051" >
-				<regnode name = "sName" value ="srcDepotLServerConnection"></regnode>
-				<regnode name = "dName" value ="dstDepotLServerConnection"></regnode>
+		<connection name = "Loopback" metaref = "1074" attributes = "NetworkAddress NetMask" >
+			<dispname>TeraGrid</dispname>
+				<regnode name = "sName" value ="srcGenericNetworkConnection"></regnode>
+				<regnode name = "dName" value ="dstGenericNetworkConnection"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
-				<regnode name = "dstStyle" value ="butt"></regnode>
-				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "dstStyle" value ="apex"></regnode>
+				<regnode name = "srcStyle" value ="apex"></regnode>
 				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="TeraGrid"/>
+				<regnode name= "dstLabel1" value="TeraGrid"/>
 			<connjoint>
 				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
+					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
-				</pointerspec>
-			</connjoint>
-		</connection>
-		<connection name = "LSServerConnection" metaref = "1052" >
-				<regnode name = "sName" value ="srcLSServerConnection"></regnode>
-				<regnode name = "dName" value ="dstLSServerConnection"></regnode>
-				<regnode name = "color" value ="0x000000"></regnode>
-				<regnode name = "dstStyle" value ="butt"></regnode>
-				<regnode name = "srcStyle" value ="butt"></regnode>
-				<regnode name = "lineType" value ="solid"></regnode>
-			<connjoint>
-				<pointerspec name = "src">
+					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
-				</pointerspec>
-				<pointerspec name = "dst">
-					<pointeritem desc = "LServer"></pointeritem>
+					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -109,11 +110,15 @@
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -132,11 +137,15 @@
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -154,11 +163,15 @@
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "IBPDepot"></pointeritem>
 					<pointeritem desc = "LServer"></pointeritem>
 					<pointeritem desc = "LServerCluster"></pointeritem>
+					<pointeritem desc = "LServerCluster LServer"></pointeritem>
+					<pointeritem desc = "LStoreSystem"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -167,42 +180,62 @@
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyLogisticalNetworkRef"></regnode>
 			<pointerspec name = "ref">
-				<pointeritem desc = "LogisticalNetwork"></pointeritem>
+				<pointeritem desc = "LogisticalStorageNetwork"></pointeritem>
 			</pointerspec>
 		</reference>
 		<model name = "LServerCluster" metaref = "1068" attributes = "Location Realm IPAddress" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="lservercluster.bmp"></regnode>
+				<regnode name = "porticon" value ="metadatalserver_port.bmp"></regnode>
 			<role name = "LServer" metaref = "1069" kind = "LServer"></role>
 			<aspect name = "LogisticalNetworkingAspect" metaref = "1070" attributes = "Location Realm IPAddress" >
 				<dispname>LogisticalNetworking</dispname>
-				<part metaref = "1071" role = "LServer" primary = "yes" linked = "no"></part>
+				<part metaref = "1071" role = "LServer" primary = "yes" linked = "yes"></part>
 			</aspect>
 		</model>
-		<model name = "LogisticalNetwork" metaref = "1020" >
+		<model name = "LStoreSystem" metaref = "1075" attributes = "Location Realm IPAddress" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="lstoresystem.bmp"></regnode>
+			<role name = "AbileneInternet2" metaref = "1165" kind = "AbileneInternet2"></role>
+			<role name = "IBPDepot" metaref = "1076" kind = "IBPDepot"></role>
+			<role name = "LServer" metaref = "1077" kind = "LServer"></role>
+			<role name = "LServerCluster" metaref = "1078" kind = "LServerCluster"></role>
+			<role name = "LStoreSystem" metaref = "1079" kind = "LStoreSystem"></role>
+			<role name = "Loopback" metaref = "1156" kind = "Loopback"></role>
+			<role name = "T1" metaref = "1157" kind = "T1"></role>
+			<role name = "TeraGrid" metaref = "1158" kind = "TeraGrid"></role>
+			<role name = "Ultralight" metaref = "1159" kind = "Ultralight"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1089" attributes = "Location Realm IPAddress" >
+				<dispname>LogisticalNetworking</dispname>
+				<part metaref = "1166" role = "AbileneInternet2" primary = "yes" linked = "no"></part>
+				<part metaref = "1090" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1091" role = "LServer" primary = "yes" linked = "no"></part>
+				<part metaref = "1092" role = "LServerCluster" primary = "yes" linked = "no"></part>
+				<part metaref = "1093" role = "LStoreSystem" primary = "yes" linked = "no"></part>
+				<part metaref = "1160" role = "Loopback" primary = "yes" linked = "no"></part>
+				<part metaref = "1161" role = "T1" primary = "yes" linked = "no"></part>
+				<part metaref = "1162" role = "TeraGrid" primary = "yes" linked = "no"></part>
+				<part metaref = "1163" role = "Ultralight" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "LogisticalStorageNetwork" metaref = "1136" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="lstorenetwork.bmp"></regnode>
-			<role name = "IBPDepot" metaref = "1021" kind = "IBPDepot"></role>
-			<role name = "LSServerConnection" metaref = "1053" kind = "LSServerConnection"></role>
-			<role name = "LServer" metaref = "1056" kind = "LServer"></role>
-			<role name = "LServerCluster" metaref = "1072" kind = "LServerCluster"></role>
-			<role name = "LogisticalNetwork" metaref = "1023" kind = "LogisticalNetwork"></role>
-			<role name = "T1" metaref = "1043" kind = "T1"></role>
-			<role name = "TeraGrid" metaref = "1044" kind = "TeraGrid"></role>
-			<role name = "Ultralight" metaref = "1045" kind = "Ultralight"></role>
-			<aspect name = "LogisticalNetworkingAspect" metaref = "1036" >
+			<role name = "IBPDepot" metaref = "1137" kind = "IBPDepot"></role>
+			<role name = "LServer" metaref = "1138" kind = "LServer"></role>
+			<role name = "LServerCluster" metaref = "1139" kind = "LServerCluster"></role>
+			<role name = "LStoreSystem" metaref = "1140" kind = "LStoreSystem"></role>
+			<role name = "LogisticalStorageNetwork" metaref = "1141" kind = "LogisticalStorageNetwork"></role>
+			<aspect name = "LogisticalNetworkingAspect" metaref = "1146" >
 				<dispname>LogisticalNetworking</dispname>
-				<part metaref = "1037" role = "IBPDepot" primary = "yes" linked = "no"></part>
-				<part metaref = "1054" role = "LSServerConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "1058" role = "LServer" primary = "yes" linked = "no"></part>
-				<part metaref = "1073" role = "LServerCluster" primary = "yes" linked = "no"></part>
-				<part metaref = "1039" role = "LogisticalNetwork" primary = "yes" linked = "no"></part>
-				<part metaref = "1046" role = "T1" primary = "yes" linked = "no"></part>
-				<part metaref = "1047" role = "TeraGrid" primary = "yes" linked = "no"></part>
-				<part metaref = "1048" role = "Ultralight" primary = "yes" linked = "no"></part>
+				<part metaref = "1147" role = "IBPDepot" primary = "yes" linked = "no"></part>
+				<part metaref = "1148" role = "LServer" primary = "yes" linked = "no"></part>
+				<part metaref = "1149" role = "LServerCluster" primary = "yes" linked = "no"></part>
+				<part metaref = "1150" role = "LStoreSystem" primary = "yes" linked = "no"></part>
+				<part metaref = "1151" role = "LogisticalStorageNetwork" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<folder name = "LStoreNetwork" metaref = "1049"  rootobjects = "LogisticalNetwork" >
+		<folder name = "LStoreNetwork" metaref = "1049"  rootobjects = "LogisticalStorageNetwork" >
 		</folder>
 	</folder>
 </paradigm>
