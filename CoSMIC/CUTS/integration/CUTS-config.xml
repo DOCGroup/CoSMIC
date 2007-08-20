@@ -1,0 +1,38 @@
+<cruisecontrol>
+
+  <!--
+    Component Workload Emulator (CoWorkEr) Utilization Test
+    Suite (CUTS) for Visual C++ 8
+    -->
+  <project name="CUTS Nightly Build (vc8)"
+           requiremodification="no">
+    <listeners>
+      <currentbuildstatuslistener file="logs/${project.name}/status.txt"/>
+    </listeners>
+
+    <bootstrappers>
+      <svnbootstrapper localworkingcopy="D:\projects\CoSMIC\CUTS" />
+    </bootstrappers>
+
+    <modificationset quietperiod="30">
+      <svn repositorylocation="https://svn.dre.vanderbilt.edu/CoSMIC/trunk/CoSMIC/CUTS"/>
+    </modificationset>
+
+    <schedule interval="30">
+      <exec command="D:\projects\CoSMIC\CUTS\integration\vc8.bat"
+            workingdir="D:\projects\CoSMIC\CUTS"
+            args="-buildfile integration\autobuild.build -v" />
+    </schedule>
+
+    <log>
+      <merge dir="projects/${project.name}/target/test-results"/>
+    </log>
+
+    <!-- publishers>
+      <onsuccess>
+        <artifactspublisher dest="artifacts/${project.name}" file="projects/${project.name}/target/${project.name}.jar"/>
+      </onsuccess>
+    </publishers -->
+  </project>
+
+</cruisecontrol>

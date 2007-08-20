@@ -1,9 +1,17 @@
+Mon Aug 20 16:58:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/CUTS-config.xml:
+
+          Initial support allowing end-user's of CUTS to support their
+          own personal builds of the entire framework. Much work needs to
+          be done to improve the scripts, but this is a good start.
+
 Fri Jul 13 05:27:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy.h:
         * cuts/CCM_CoWorkEr_Proxy.cpp:
-        
-					Temporarily commented out RTCORBA specific implementation.
+
+          Temporarily commented out RTCORBA specific implementation.
 
 Fri Jul 13 04:04:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
