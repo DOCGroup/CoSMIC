@@ -1,3 +1,16 @@
+Mon Aug 20 20:22:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * integration/CUTS-config.xml:
+
+          - Now ANT is used as the build tool of choice.
+          - Added a nightly and hourly build project section.
+
+        * integration/autobuild.build:
+
+          All environment properties are defined in terms of project.[]
+          instead of env.[] since we do not want to couple the build system
+          to the system environment, which may have multiple sandboxes.
+
 Mon Aug 20 17:34:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Control_Handle_exec_i.h:
