@@ -21,7 +21,7 @@
     <schedule interval="30">
       <exec command="D:\projects\CoSMIC\CUTS\integration\vc8.bat"
             workingdir="D:\projects\CoSMIC\CUTS"
-            args="-buildfile integration\autobuild.build -v" />
+            args="-buildfile integration\autobuild.build" />
     </schedule>
 
     <log>

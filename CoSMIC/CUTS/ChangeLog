@@ -1,3 +1,33 @@
+Mon Aug 20 17:34:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Control_Handle_exec_i.h:
+        * cuts/BDC/BDC_Control_Handle_exec_i.cpp:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+        * cuts/utils/DB_Connection.h:
+        * cuts/utils/DB_Connection.inl:
+        * cuts/utils/DB_Query.h:
+        * cuts/utils/DB_Record.h:
+        * cuts/utils/ODBC/ODBC_Connection.h:
+        * cuts/utils/ODBC/ODBC_Connection.cpp:
+        * cuts/utils/ODBC/ODBC_Parameter_List.h:
+        * cuts/utils/ODBC/ODBC_Parameter_List.cpp:
+        * cuts/utils/ODBC/ODBC_Query.h:
+        * cuts/utils/ODBC/ODBC_Query.cpp:
+        * cuts/utils/ODBC/ODBC_Record.h:
+        * cuts/utils/ODBC/ODBC_Record.inl:
+        * cuts/utils/ODBC/ODBC_Record.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+
+          Remove all occurences of ACE_THROW_SPEC macro. Moreover, remove all
+          exeception specification list from all applicable functions.
+
+        * integration/CUTS-config.xml:
+
+          Removed verbose flag from the build process.
+
+
 Mon Aug 20 16:58:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/CUTS-config.xml:

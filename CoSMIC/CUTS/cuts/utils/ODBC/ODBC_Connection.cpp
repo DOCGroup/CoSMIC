@@ -55,7 +55,6 @@ void ODBC_Connection::connect (const char * username,
                                const char * password,
                                const char * server,
                                int port)
-                               ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   // Genereate the connection string for MySQL.
   std::ostringstream connstr;
@@ -96,7 +95,6 @@ void ODBC_Connection::connect (const char * username,
 // disconnect
 //
 void ODBC_Connection::disconnect (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (this->conn_ != SQL_NULL_HDBC)
   {
@@ -109,19 +107,20 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 }
 
 //
-// create_query
+// create_odbc_query
 //
-CUTS_DB_Query * ODBC_Connection::create_query (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
+ODBC_Query * ODBC_Connection::create_odbc_query (void)
 {
-  return new ODBC_Query (this->conn_);
+  ODBC_Query * query = 0;
+  ACE_NEW_RETURN (query, ODBC_Query (this->conn_), 0);
+
+  return query;
 }
 
 //
 // create_query
 //
-ODBC_Query * ODBC_Connection::create_odbc_query (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
+CUTS_DB_Query * ODBC_Connection::create_query (void)
 {
-  return new ODBC_Query (this->conn_);
+  return this->create_odbc_query ();
 }

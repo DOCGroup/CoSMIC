@@ -46,13 +46,10 @@ public:
   virtual void connect (const char * username,
                         const char * password,
                         const char * server,
-                        int port)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+                        int port) = 0;
 
   /// Close the current connection.
-  virtual void disconnect (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
-
+  virtual void disconnect (void) = 0;
 
   /**
    * Create a database database query. The query created will be
@@ -60,8 +57,7 @@ public:
    *
    * @return     Pointer to a database query.
    */
-  virtual CUTS_DB_Query * create_query (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual CUTS_DB_Query * create_query (void) = 0;
 
   /**
    * Determine if there is a valid connection.

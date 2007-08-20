@@ -14,7 +14,6 @@ bool CUTS_DB_Connection::is_connected (void) const
 //
 CUTS_INLINE
 void CUTS_DB_Connection::disconnect (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->connected_ = false;
 }
@@ -27,10 +26,9 @@ void CUTS_DB_Connection::connect (const char * username,
                                   const char * password,
                                   const char * server,
                                   int port)
-                                  ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->connected_ = true;
-        
+
   ACE_UNUSED_ARG (username);
   ACE_UNUSED_ARG (password);
   ACE_UNUSED_ARG (server);

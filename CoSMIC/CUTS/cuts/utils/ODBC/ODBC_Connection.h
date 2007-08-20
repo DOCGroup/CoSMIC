@@ -57,28 +57,24 @@ public:
   virtual void connect (const char * username,
                         const char * password,
                         const char * host,
-                        int port = 3306)
-                        ACE_THROW_SPEC ((CUTS_DB_Exception));
+                        int port = 3306);
 
   /// Close the existing connection
-  virtual void disconnect (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void disconnect (void);
 
   /**
    * Create an ODBC query object.
    *
    * @return Pointer to the database query.
    */
-  virtual CUTS_DB_Query * create_query (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual CUTS_DB_Query * create_query (void);
 
   /**
    * Create an ODBC query object.
    *
    * @return Pointer to the database query.
    */
-  ODBC_Query * create_odbc_query (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  ODBC_Query * create_odbc_query (void);
 
 protected:
   /// Handle to the environment

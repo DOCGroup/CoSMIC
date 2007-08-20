@@ -52,8 +52,6 @@ namespace CUTS
     //
     void Benchmark_Data_Collector_exec_i::
       set_session_context (::Components::SessionContext_ptr ctx)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       this->context_ =
         Benchmark_Data_Collector_Context::_narrow (ctx);
@@ -73,8 +71,6 @@ namespace CUTS
     // ciao_preactivate
     //
     void Benchmark_Data_Collector_exec_i::ciao_preactivate (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       // Register the service manager with the registry.
       this->tsvc_->registry ().register_handler (CUTS_BDC_SVC_MANAGER ());
@@ -88,8 +84,6 @@ namespace CUTS
     // ciao_postactivate
     //
     void Benchmark_Data_Collector_exec_i::ciao_postactivate (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
 
     }
@@ -98,8 +92,6 @@ namespace CUTS
     // ccm_activate
     //
     void Benchmark_Data_Collector_exec_i::ccm_activate (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       ACE_Time_Value delay (this->timeout_, 0);
 
@@ -117,8 +109,6 @@ namespace CUTS
     // ccm_passivate
     //
     void Benchmark_Data_Collector_exec_i::ccm_passivate (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       this->task_.deactivate ();
     }
@@ -127,8 +117,6 @@ namespace CUTS
     // ccm_remove
     //
     void Benchmark_Data_Collector_exec_i::ccm_remove (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       // Unregister the service manager from the <registry_>. Then
       // we can actually close the <CUTS_BDC_SVC_MANAGER>.
@@ -143,7 +131,6 @@ namespace CUTS
     // timeout
     //
     void Benchmark_Data_Collector_exec_i::timeout (::CORBA::Long tm)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       this->timeout_ = tm;
     }
@@ -152,7 +139,6 @@ namespace CUTS
     // timeout
     //
     ::CORBA::Long Benchmark_Data_Collector_exec_i::timeout (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return this->timeout_;
     }
@@ -162,7 +148,6 @@ namespace CUTS
     //
     ::CUTS::CCM_Testing_Service_ptr
       Benchmark_Data_Collector_exec_i::get_testing_service (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return ::CUTS::CCM_Testing_Service::_duplicate (this->tsvc_.get ());
     }
@@ -172,7 +157,6 @@ namespace CUTS
     //
     ::CUTS::CCM_BDC_Control_Handle_ptr
       Benchmark_Data_Collector_exec_i::get_controls (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       return ::CUTS::CCM_BDC_Control_Handle::_duplicate (this->controller_.get ());
     }
@@ -181,7 +165,6 @@ namespace CUTS
     // test_uuid
     //
     void Benchmark_Data_Collector_exec_i::test_uuid (const char * uuid)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       CUTS_BDC_SVC_MANAGER ()->set_uuid (uuid);
     }
@@ -190,7 +173,6 @@ namespace CUTS
     // test_uuid
     //
     char * Benchmark_Data_Collector_exec_i::test_uuid (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       CORBA::String_var str =
         CORBA::string_dup (CUTS_BDC_SVC_MANAGER ()->get_uuid ().c_str ());
@@ -202,7 +184,6 @@ namespace CUTS
     // service
     //
     void Benchmark_Data_Collector_exec_i::service (const char * svc)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       // Save the service attribute.
       this->svcs_ = svc;
@@ -285,7 +266,6 @@ namespace CUTS
     // service
     //
     char * Benchmark_Data_Collector_exec_i::service (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException))
     {
       ::CORBA::String_var svcs =
         CORBA::string_dup (this->svcs_.c_str ());
@@ -320,8 +300,6 @@ namespace CUTS
     //
     ::Components::EnterpriseComponent_ptr
       Benchmark_Data_Collector_Home_exec_i::create (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException,
-                       ::Components::CCMException))
     {
       ::Components::EnterpriseComponent_ptr retval =
         ::Components::EnterpriseComponent::_nil ();

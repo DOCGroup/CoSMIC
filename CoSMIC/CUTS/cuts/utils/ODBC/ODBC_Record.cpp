@@ -29,7 +29,6 @@ ODBC_Record::~ODBC_Record (void)
 // fetch
 //
 void ODBC_Record::fetch (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLFetch (this->handle_),
               ODBC_Stmt_Exception (this->handle_));
@@ -39,7 +38,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // count
 //
 size_t ODBC_Record::count (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQLLEN count = 0;
   SQL_VERIFY (::SQLRowCount (this->handle_, &count),
@@ -53,7 +51,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 //
 void ODBC_Record::get_data (size_t column,
                             ACE_Date_Time & datetime)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_TIMESTAMP_STRUCT timestamp;
 
@@ -81,7 +78,6 @@ void ODBC_Record::get_data_i (SQLUSMALLINT column,
                               SQLPOINTER target,
                               SQLINTEGER bufsize,
                               SQLINTEGER * result)
-                              ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLGetData (this->handle_,
                             column,
@@ -96,7 +92,6 @@ void ODBC_Record::get_data_i (SQLUSMALLINT column,
 // columns
 //
 size_t ODBC_Record::columns (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQLSMALLINT cols = 0;
   SQL_VERIFY (::SQLNumResultCols (this->handle_, &cols),

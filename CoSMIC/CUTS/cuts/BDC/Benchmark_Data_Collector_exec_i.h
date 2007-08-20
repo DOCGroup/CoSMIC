@@ -46,55 +46,35 @@ namespace CUTS
       /// Destructor.
       virtual ~Benchmark_Data_Collector_exec_i (void);
 
-      virtual void set_session_context (Components::SessionContext_ptr ctx)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void set_session_context (Components::SessionContext_ptr ctx);
 
-      virtual void ciao_preactivate (void)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void ciao_preactivate (void);
 
-      virtual void ciao_postactivate (void)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void ciao_postactivate (void);
 
-      virtual void ccm_activate (void)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void ccm_activate (void);
 
-      virtual void ccm_passivate (void)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void ccm_passivate (void);
 
-      virtual void ccm_remove (void)
-        ACE_THROW_SPEC ((CORBA::SystemException,
-                         Components::CCMException));
+      virtual void ccm_remove (void);
 
       virtual ::CUTS::CCM_Testing_Service_ptr
-        get_testing_service (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+        get_testing_service (void);
 
       virtual ::CUTS::CCM_BDC_Control_Handle_ptr
-        get_controls (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+        get_controls (void);
 
-      virtual void timeout (::CORBA::Long tm)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual void timeout (::CORBA::Long tm);
 
-      virtual ::CORBA::Long timeout (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual ::CORBA::Long timeout (void);
 
-      virtual void service (const char * svc)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual void service (const char * svc);
 
-      virtual char * service (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual char * service (void);
 
-      virtual void test_uuid (const char * uuid)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual void test_uuid (const char * uuid);
 
-      virtual char * test_uuid (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException));
+      virtual char * test_uuid (void);
 
     private:
       /// Pointer to it context.
@@ -143,9 +123,7 @@ namespace CUTS
        *
        * @return Newly created Benchmark_Data_Collector component.
        */
-      virtual ::Components::EnterpriseComponent_ptr create (void)
-        ACE_THROW_SPEC ((::CORBA::SystemException,
-                         ::Components::CCMException));
+      virtual ::Components::EnterpriseComponent_ptr create (void);
     };
   }
 }

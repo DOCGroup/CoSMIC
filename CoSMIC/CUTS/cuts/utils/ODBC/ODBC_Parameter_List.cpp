@@ -64,7 +64,6 @@ ODBC_Parameter_List::~ODBC_Parameter_List (void)
 // get
 //
 ODBC_Parameter * ODBC_Parameter_List::get (size_t index)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (!this->in_range (index))
     throw CUTS_DB_Exception ("parameter index out of range");
@@ -76,7 +75,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // resize
 //
 void ODBC_Parameter_List::resize (HSTMT handle, size_t n)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   // Get the current <max_size_> of the array and then resize the array
   // to its right size.

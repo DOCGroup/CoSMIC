@@ -57,24 +57,21 @@ public:
   virtual ~ODBC_Query (void);
 
   /// Execute a prepare query.
-  virtual void execute_no_record (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void execute_no_record (void);
 
   /**
    * Execute a query.
    *
    * @param[in]     query       Query to execute.
    */
-  virtual void execute_no_record (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void execute_no_record (const char * query);
 
   /**
    * Prepare an SQL query for execution.
    *
    * @param[in]     query       NULL-terminate SQL query string.
    */
-  virtual void prepare (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void prepare (const char * query);
 
   /**
    * Get the last insert id. This method is only value if an
@@ -82,12 +79,10 @@ public:
    *
    * @return The last id inserted.
    */
-  virtual long last_insert_id (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual long last_insert_id (void);
 
   /// Cancel the current operation.
-  virtual void cancel (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void cancel (void);
 
   /**
    * Execute a query. This method is useful with the query is known
@@ -97,8 +92,7 @@ public:
    *
    * @return  Pointer to a record.
    */
-  virtual CUTS_DB_Record * execute (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual CUTS_DB_Record * execute (const char * query);
 
   /**
    * Execute a prepared query. This method is useful with the query is
@@ -108,8 +102,7 @@ public:
    *
    * @return  Pointer to a record.
    */
-  virtual CUTS_DB_Record * execute (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual CUTS_DB_Record * execute (void);
 
   /**
    * Get the parameter.
@@ -117,25 +110,21 @@ public:
    * @param[in]     index     Index of the parameter.
    * @return        Pointer to the parameter.
    */
-  CUTS_DB_Parameter * parameter (size_t index)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  CUTS_DB_Parameter * parameter (size_t index);
 
   /**
    * Get the number of parameters.
    *
    * @return        The number of parameters.
    */
-  size_t parameter_count (void) const
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  size_t parameter_count (void) const;
 
   /// Reset the query string.
-  void reset (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  void reset (void);
 
 private:
   /// Reset the statement.
-  void reset_i (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  void reset_i (void);
 
   /// Get the pointer to the record.
   ODBC_Record * record_i (void);

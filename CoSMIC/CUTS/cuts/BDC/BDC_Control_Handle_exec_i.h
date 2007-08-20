@@ -46,24 +46,18 @@ namespace CUTS
      * in the system. This is a blocking method and does not return until
      * all components are handled.
      */
-    virtual void collect_performance_data (void)
-      ACE_THROW_SPEC ((CORBA::SystemException));
+    virtual void collect_performance_data (void);
 
-    virtual ::CORBA::ULong 
-      load_services (const CUTS::BDC_Service_Descriptors & svcs)
-      ACE_THROW_SPEC ((CORBA::SystemException));
+    virtual ::CORBA::ULong
+      load_services (const CUTS::BDC_Service_Descriptors & svcs);
 
-    virtual void 
-      unload_services (const CUTS::BDC_Service_Names & names)
-      ACE_THROW_SPEC ((CORBA::SystemException));
+    virtual void
+      unload_services (const CUTS::BDC_Service_Names & names);
 
-    virtual CUTS::BDC_Service_ptr 
-      get_service (const char * name)
-      ACE_THROW_SPEC ((CORBA::SystemException,
-                       CUTS::Service_Not_Found));
+    virtual CUTS::BDC_Service_ptr
+      get_service (const char * name);
 
-    virtual void list_services (CUTS::BDC_Service_Names_out)
-      ACE_THROW_SPEC ((CORBA::SystemException));
+    virtual void list_services (CUTS::BDC_Service_Names_out);
 
   private:
     /// Pointer reference to the benchmark data collector.

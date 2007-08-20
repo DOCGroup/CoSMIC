@@ -33,19 +33,18 @@ public:
   CUTS_DB_Record (void);
 
   /// Destructor.
-  virtual ~CUTS_DB_Record (void) = 0;
+  virtual ~CUTS_DB_Record (void);
 
   /**
    * Get the number of records in the result.
    *
    * @return Number of records.
    */
-  virtual size_t count (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual size_t count (void) = 0;
 
   /// Fetch the next row in the records.
   virtual void fetch (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+    throw (CUTS_DB_Exception) = 0;
 
   /**
    * Get a string data value at the specified column.
@@ -54,8 +53,7 @@ public:
    * @param[out]    buffer        Pointer to the output buffer.
    * @param[in]     bufsize       Size of the output buffer.
    */
-  virtual void get_data (size_t column, char * buffer, size_t bufsize)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, char * buffer, size_t bufsize) = 0;
 
   /**
    * Get a character value.
@@ -63,8 +61,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, char & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, char & value) = 0;
 
   /**
    * Get a character value.
@@ -72,8 +69,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, unsigned char & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, unsigned char & value) = 0;
 
   /**
    * Get a character value.
@@ -81,8 +77,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, short & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, short & value) = 0;
 
   /**
    * Get a character value.
@@ -90,8 +85,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, unsigned short & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, unsigned short & value) = 0;
 
   /**
    * Get a character value.
@@ -99,8 +93,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, long & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, long & value) = 0;
 
   /**
    * Get a character value.
@@ -108,8 +101,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, unsigned long & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, unsigned long & value) = 0;
 
   /**
    * Get a float value.
@@ -117,8 +109,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Float value.
    */
-  virtual void get_data (size_t column, float & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, float & value) = 0;
 
   /**
    * Get a double value.
@@ -126,8 +117,7 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Double value.
    */
-  virtual void get_data (size_t column, double & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, double & value) = 0;
 
   /**
    * Get a date time value.
@@ -135,16 +125,14 @@ public:
    * @param[in]     column        1-based column index.
    * @param[out]    value         Character value.
    */
-  virtual void get_data (size_t column, ACE_Date_Time & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void get_data (size_t column, ACE_Date_Time & value) = 0;
 
   /**
    * Get the number of columns in the result.
    *
    * @return Number of columns.
    */
-  virtual size_t columns (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual size_t columns (void) = 0;
 
 private:
   /// prevent the following operations

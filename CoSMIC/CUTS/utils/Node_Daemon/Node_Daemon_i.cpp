@@ -100,7 +100,6 @@ namespace CUTS
   // spawn
   //
   ::CORBA::ULong Node_Daemon_i::spawn (const ::CUTS::Spawn_Detail & detail)
-    ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
 
@@ -172,7 +171,6 @@ namespace CUTS
   // kill
   //
   ::CORBA::ULong Node_Daemon_i::kill (const ::CUTS::Node_Bindings & nodes)
-    ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_WRITE_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
 
@@ -495,7 +493,6 @@ namespace CUTS
   // details
   //
   ::CUTS::Node_Bindings * Node_Daemon_i::details (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     ACE_READ_GUARD_RETURN (ACE_RW_Thread_Mutex, guard, this->lock_, 0);
 
@@ -539,7 +536,6 @@ namespace CUTS
   // shutdown
   //
   void Node_Daemon_i::shutdown (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException))
   {
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "receieved request to shutdown\n"));

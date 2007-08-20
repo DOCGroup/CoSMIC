@@ -51,8 +51,7 @@ public:
    *
    * @param[in]       n     Size of the parameter list.
    */
-  void resize (HSTMT handle, size_t n)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  void resize (HSTMT handle, size_t n);
 
   /**
    * Get an existing parameter.
@@ -60,8 +59,7 @@ public:
    * @param[in]     index       Index of the parameter.
    * @param[out]    param       Pointer to the parameter.
    */
-  ODBC_Parameter * get (size_t index)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  ODBC_Parameter * get (size_t index);
 
 private:
   /// Type defintion of the parameter list.

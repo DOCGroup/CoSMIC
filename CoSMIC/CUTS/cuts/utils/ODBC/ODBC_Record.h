@@ -41,50 +41,37 @@ public:
   virtual ~ODBC_Record (void);
 
   /// Fetch the next row in the records.
-  virtual void fetch (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void fetch (void);
 
   /// Get the number of records
-  virtual size_t count (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual size_t count (void);
 
-  virtual void get_data (size_t column, char * buffer, size_t bufsize)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, char * buffer, size_t bufsize);
 
-  virtual void get_data (size_t column, char & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, char & value);
 
-  virtual void get_data (size_t column, unsigned char & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, unsigned char & value);
 
-  virtual void get_data (size_t column, short & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, short & value);
 
-  virtual void get_data (size_t column, unsigned short & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, unsigned short & value);
 
-  virtual void get_data (size_t column, long & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, long & value);
 
-  virtual void get_data (size_t column, unsigned long & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, unsigned long & value);
 
-  virtual void get_data (size_t column, float & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, float & value);
 
-  virtual void get_data (size_t column, double & value)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, double & value);
 
-  virtual void get_data (size_t column, ACE_Date_Time & datetime)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual void get_data (size_t column, ACE_Date_Time & datetime);
 
   /**
    * Get the number of columns in the result.
    *
    * @return Number of columns.
    */
-  virtual size_t columns (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception));
+  virtual size_t columns (void);
 
 private:
   /// Help method that wraps the SQLGetData method.
@@ -92,8 +79,7 @@ private:
                    SQLSMALLINT target_type,
                    SQLPOINTER target,
                    SQLINTEGER bufsize,
-                   SQLINTEGER * result)
-                   ACE_THROW_SPEC ((CUTS_DB_Exception));
+                   SQLINTEGER * result);
 
   /// ODBC statement resource handle.
   HSTMT handle_;

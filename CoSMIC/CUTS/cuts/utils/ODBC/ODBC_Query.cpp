@@ -42,7 +42,6 @@ ODBC_Query::~ODBC_Query (void)
 // execute_no_record
 //
 void ODBC_Query::execute_no_record (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLExecute (this->stmt_),
               ODBC_Stmt_Exception (this->stmt_));
@@ -54,7 +53,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // execute_no_record
 //
 void ODBC_Query::execute_no_record (const char * query)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLExecDirect (this->stmt_, (SQLCHAR *)query, SQL_NTS),
               ODBC_Stmt_Exception (this->stmt_));
@@ -66,7 +64,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // last_insert_id
 //
 long ODBC_Query::last_insert_id (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   long last_id = 0;
 
@@ -85,7 +82,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // prepare
 //
 void ODBC_Query::prepare (const char * stmt)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (this->cursor_open_)
     this->reset_i ();
@@ -127,7 +123,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // cancel
 //
 void ODBC_Query::cancel (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLCancel (this->stmt_),
               ODBC_Stmt_Exception (this->stmt_));
@@ -137,7 +132,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // execute
 //
 CUTS_DB_Record * ODBC_Query::execute (const char * query)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   // Reset the record just in case we executed a "SELECT" statement.
   if (this->cursor_open_)
@@ -154,7 +148,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // execute
 //
 CUTS_DB_Record * ODBC_Query::execute (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->execute_no_record ();
   this->cursor_open_ = 1;
@@ -181,7 +174,6 @@ ODBC_Record * ODBC_Query::record_i (void)
 // parameter
 //
 CUTS_DB_Parameter * ODBC_Query::parameter (size_t index)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   return this->params_->get (index);
 }
@@ -190,7 +182,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // parameter_count
 //
 size_t ODBC_Query::parameter_count (void) const
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   return this->params_.get () != 0 ? this->params_->count () : 0;
 }
@@ -199,7 +190,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // reset
 //
 void ODBC_Query::reset (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   if (this->stmt_ != SQL_NULL_HSTMT)
     this->reset_i ();
@@ -209,7 +199,6 @@ ACE_THROW_SPEC ((CUTS_DB_Exception))
 // reset_i
 //
 void ODBC_Query::reset_i (void)
-ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   SQL_VERIFY (::SQLFreeStmt (this->stmt_, SQL_CLOSE),
               ODBC_Stmt_Exception (this->stmt_));

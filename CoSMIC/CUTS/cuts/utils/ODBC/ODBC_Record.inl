@@ -7,7 +7,6 @@ CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             char * buffer,
                             size_t bufsize)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_CHAR,
@@ -23,7 +22,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             long & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_SLONG,
@@ -38,7 +36,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             unsigned long & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_ULONG,
@@ -53,7 +50,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             char & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_CHAR,
@@ -68,7 +64,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             unsigned char & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_CHAR,
@@ -83,7 +78,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             short & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_SHORT,
@@ -98,7 +92,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             unsigned short & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_USHORT,
@@ -113,7 +106,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             float & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_FLOAT,
@@ -129,7 +121,6 @@ void ODBC_Record::get_data (size_t column,
 CUTS_INLINE
 void ODBC_Record::get_data (size_t column,
                             double & value)
-                            ACE_THROW_SPEC ((CUTS_DB_Exception))
 {
   this->get_data_i (static_cast <SQLUSMALLINT> (column),
                     SQL_C_DOUBLE,

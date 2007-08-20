@@ -43,8 +43,7 @@ public:
    *
    * @param[in]     query     NULL-terminated query string.
    */
-  virtual void prepare (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void prepare (const char * query) = 0;
 
   /// Destroy the query. The queury is no longer usable after
   /// this method returns.
@@ -55,12 +54,10 @@ public:
    *
    * @param[in]     query     NULL-terminated query string.
    */
-  virtual void execute_no_record (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void execute_no_record (const char * query) = 0;
 
   /// Execute an already prepared query.
-  virtual void execute_no_record (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void execute_no_record (void) = 0;
 
   /**
    * Execute a query. This method is useful with the query is known
@@ -70,8 +67,7 @@ public:
    *
    * @return  Pointer to a record.
    */
-  virtual CUTS_DB_Record * execute (const char * query)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual CUTS_DB_Record * execute (const char * query) = 0;
 
   /**
    * Execute a prepared query. This method is useful with the query is
@@ -81,12 +77,10 @@ public:
    *
    * @return  Pointer to a record.
    */
-  virtual CUTS_DB_Record * execute (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual CUTS_DB_Record * execute (void) = 0;
 
   /// Cancel the current query.
-  virtual void cancel (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void cancel (void) = 0;
 
   /**
    * Get the last insert id. This method is only value if an
@@ -94,8 +88,7 @@ public:
    *
    * @return The last id inserted.
    */
-  virtual long last_insert_id (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual long last_insert_id (void) = 0;
 
   /**
    * Create a parameter for the statement. The parameter must
@@ -103,20 +96,17 @@ public:
    *
    * @return        Pointer to the new parameter.
    */
-  virtual CUTS_DB_Parameter * parameter (size_t index)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual CUTS_DB_Parameter * parameter (size_t index) = 0;
 
   /**
    * Get the number of parameters.
    *
    * @return        The number of parameters.
    */
-  virtual size_t parameter_count (void) const
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual size_t parameter_count (void) const = 0;
 
   /// Reset the query string.
-  virtual void reset (void)
-    ACE_THROW_SPEC ((CUTS_DB_Exception)) = 0;
+  virtual void reset (void) = 0;
 
 private:
   // prevent the following operations

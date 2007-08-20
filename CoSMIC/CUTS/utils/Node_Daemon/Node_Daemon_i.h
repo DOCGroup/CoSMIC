@@ -50,8 +50,7 @@ namespace CUTS
      * @param[in]     nodes       Details of nodes to spawn.
      * @return        Number of nodes successfully spawned.
      */
-    virtual ::CORBA::ULong spawn (const ::CUTS::Spawn_Detail & detail)
-      ACE_THROW_SPEC ((::CORBA::SystemException));
+    virtual ::CORBA::ULong spawn (const ::CUTS::Spawn_Detail & detail);
 
     /**
      * Kill a set of node daemons.
@@ -59,16 +58,13 @@ namespace CUTS
      * @param[in]     nodes       Node bindings to kill.
      * @return        Number of nodes successfully killed.
      */
-    virtual ::CORBA::ULong kill (const ::CUTS::Node_Bindings & nodes)
-      ACE_THROW_SPEC ((::CORBA::SystemException));
+    virtual ::CORBA::ULong kill (const ::CUTS::Node_Bindings & nodes);
 
     /// Get the details of the spawned node managers.
-    virtual ::CUTS::Node_Bindings * details (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException));
+    virtual ::CUTS::Node_Bindings * details (void);
 
     /// Shutdown the node daemon server.
-    virtual void shutdown (void)
-      ACE_THROW_SPEC ((::CORBA::SystemException));
+    virtual void shutdown (void);
 
     /**
      * Determine the availability of a specific binding.
