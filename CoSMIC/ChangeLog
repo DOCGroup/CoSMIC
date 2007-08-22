@@ -1,3 +1,62 @@
+Wed Aug 22 18:14:59 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/PSM:
+
+        * Transformations/PSM/examples:
+        * Transformations/PSM/paradigms:
+
+        * Transformations/PSM/paradigms/WSQML-uml.xme:
+        * Transformations/PSM/paradigms/WSQML.xme:
+        * Transformations/PSM/paradigms/WSQML.xml:
+        * Transformations/PSM/paradigms/WSQML.xmp:
+        * Transformations/PSM/paradigms/icons:
+
+          Added WS notification service meta-model.
+
+        * Transformations/PSM/paradigms/icons/Left Up.png:
+        * Transformations/PSM/paradigms/icons/address.png:
+        * Transformations/PSM/paradigms/icons/any.png:
+        * Transformations/PSM/paradigms/icons/arrow.png:
+        * Transformations/PSM/paradigms/icons/createpullpoint.PNG:
+        * Transformations/PSM/paradigms/icons/createpullpointoperation.PNG:
+        * Transformations/PSM/paradigms/icons/currenttime.png:
+        * Transformations/PSM/paradigms/icons/demand.PNG:
+        * Transformations/PSM/paradigms/icons/destroypullpointoperation.PNG:
+        * Transformations/PSM/paradigms/icons/destroyregisterationoperation.PNG:
+        * Transformations/PSM/paradigms/icons/endpointref.png:
+        * Transformations/PSM/paradigms/icons/endpointrefproperties.png:
+        * Transformations/PSM/paradigms/icons/faultproperties.PNG:
+        * Transformations/PSM/paradigms/icons/filterproperties.PNG:
+        * Transformations/PSM/paradigms/icons/getcurrentmessageoperation.png:
+        * Transformations/PSM/paradigms/icons/getmessagesoperation.png:
+        * Transformations/PSM/paradigms/icons/initialterminationtime.png:
+        * Transformations/PSM/paradigms/icons/message.jpg:
+        * Transformations/PSM/paradigms/icons/notificationbroker.png:
+        * Transformations/PSM/paradigms/icons/notificationconsumer.png:
+        * Transformations/PSM/paradigms/icons/notificationproducer.png:
+        * Transformations/PSM/paradigms/icons/notificationproperties.PNG:
+        * Transformations/PSM/paradigms/icons/pausesubscriptionoperation.PNG:
+        * Transformations/PSM/paradigms/icons/publisherregistrationmanager.png:
+        * Transformations/PSM/paradigms/icons/pullpoint.png:
+        * Transformations/PSM/paradigms/icons/register.PNG:
+        * Transformations/PSM/paradigms/icons/registerpublisher.png:
+        * Transformations/PSM/paradigms/icons/registerpublisheroperation.PNG:
+        * Transformations/PSM/paradigms/icons/renewoperation.PNG:
+        * Transformations/PSM/paradigms/icons/requestproperties.png:
+        * Transformations/PSM/paradigms/icons/responseproperties.PNG:
+        * Transformations/PSM/paradigms/icons/resumesubscriptionoperation.PNG:
+        * Transformations/PSM/paradigms/icons/service.bmp:
+        * Transformations/PSM/paradigms/icons/subscribeoperation.PNG:
+        * Transformations/PSM/paradigms/icons/subscriptionmanager.png:
+        * Transformations/PSM/paradigms/icons/subscriptionpolicy.png:
+        * Transformations/PSM/paradigms/icons/terminationtime.png:
+        * Transformations/PSM/paradigms/icons/topic.PNG:
+        * Transformations/PSM/paradigms/icons/topicexpression.png:
+        * Transformations/PSM/paradigms/icons/unsubscribeoperation.PNG:
+
+          Added icons for notification service operations and messages.
+
+
 Fri Aug 17 20:54:05 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/LSML/examples/NLC.xme:
