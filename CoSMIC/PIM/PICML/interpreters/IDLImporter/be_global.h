@@ -278,7 +278,11 @@ public:
 
   DOMElement *imported_module_dom_elem (DOMElement *sub_tree,
                                         AST_Module *node);
-  // Specialization for IDL modules of above method.
+  // Specialization for IDL modules.
+
+  DOMElement *imported_file_dom_elem (const char *local_name,
+                                      const char *path);
+  // Specialization for IDL files.
 
   void set_working_folders (void);
   // If we are importing an XME file, set root folder and

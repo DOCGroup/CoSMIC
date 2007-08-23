@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{01A253C5-E631-4708-A5AA-8C7604925601}" cdate="Wed Aug 08 12:43:43 2007" mdate="Wed Aug 08 12:43:43 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{BCC83D92-6676-44DF-B398-5FC351630ADA}" cdate="Wed Aug 22 16:29:08 2007" mdate="Wed Aug 22 16:29:08 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2147,8 +2147,8 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -28247,6 +28247,12 @@ dName = dstBranchTransition</value>
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="path-11c-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4023</value>
+				</regnode>
+			</regnode>
 			<regnode name="value-b3-FieldAttribute" isopaque="yes">
 				<value></value>
 				<regnode name="MetaRef" status="undefined">
@@ -41396,7 +41402,7 @@ ResourceUsesPort</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000000a" kind="ParadigmSheet" guid="{19752B73-1AE1-4bc5-8B46-35A0081716D2}" relid="0x1" childrelidcntr="0x11b">
+		<model id="id-0065-0000000a" kind="ParadigmSheet" guid="{19752B73-1AE1-4bc5-8B46-35A0081716D2}" relid="0x1" childrelidcntr="0x11d">
 			<name>InterfaceDefinition</name>
 			<atom id="id-0066-0000006a" kind="Model" role="Model" guid="{7F782B0B-23B0-4ff1-8075-BA882BC17999}" relid="0x1">
 				<name>Package</name>
@@ -41480,7 +41486,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>792,90</value>
+							<value>946,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42229,7 +42235,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>925,104</value>
+							<value>1030,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -42671,6 +42677,42 @@ ResourceUsesPort</value>
 				</attribute>
 				<attribute kind="UnReferenceEvent" status="meta">
 					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000255" kind="FieldAttribute" role="FieldAttribute" guid="{FAE5B153-E832-4651-B065-9B3054065449}" relid="0x11c">
+				<name>path</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>932,167</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
 				</attribute>
 			</atom>
 			<reference id="id-0067-0000008e" kind="AspectProxy" role="AspectProxy" guid="{508D3D4A-B7E9-4ae6-90BE-E0D55AB3BE9D}" relid="0x9e" referred="id-0069-00000008">
@@ -43164,8 +43206,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-0000006a"/>
 				<connpoint role="dst" target="id-0066-0000006a"/>
+				<connpoint role="src" target="id-0066-0000006a"/>
 			</connection>
 			<connection id="id-0068-000000b3" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -43646,6 +43688,14 @@ ResourceUsesPort</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000007e"/>
 				<connpoint role="src" target="id-0066-00000081"/>
+			</connection>
+			<connection id="id-0068-000003cc" kind="HasAttribute" role="HasAttribute" guid="{3EA814A5-7602-446f-BDBA-B23FDF71412B}" relid="0x11d">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000006b"/>
+				<connpoint role="src" target="id-0066-00000255"/>
 			</connection>
 			<set id="id-0069-00000019" kind="Aspect" role="Aspect" guid="{B631F288-AC33-44bf-90EA-DCD49D4EED15}" relid="0x0" members="id-0066-0000006a id-0066-0000006b id-0066-0000006e id-0066-00000070 id-0066-00000079 id-0066-0000007e id-0067-00000092 id-0067-00000093 id-0067-00000094 id-0067-00000095 id-0067-00000096 id-0067-00000097">
 				<name>InterfaceDefinition</name>
@@ -86476,8 +86526,8 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000022d"/>
 				<connpoint role="src" target="id-0066-0000022d"/>
+				<connpoint role="dst" target="id-0066-0000022d"/>
 			</connection>
 			<connection id="id-0068-00000388" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>

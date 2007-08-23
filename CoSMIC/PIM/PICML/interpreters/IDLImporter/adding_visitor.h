@@ -119,6 +119,7 @@ private:
   void add_prefix_element (DOMElement *parent, AST_Decl *node);
   void add_replace_id_element (DOMElement *parent, AST_Decl *node);
   void add_version_element (DOMElement *parent, AST_Decl *node);
+  void add_path_element (DOMElement *elem, const char *path);
   void add_tag_common (const char *value,
                        const char *name,
                        DOMElement *parent,

@@ -31,6 +31,7 @@
 #include "utl_string.h"
 #include "global_extern.h"
 #include "nr_extern.h"
+#include "fe_extern.h"
 
 #include "XercesString.h"
 
@@ -1913,8 +1914,8 @@ adding_visitor::visit_typedef (AST_Typedef *node)
           this->add_name_element (elem, node->local_name ()->get_string ());
           this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
+          // Diagnostic emitted below.
           this->insert_element (elem, node);
-          be_global->emit_diagnostic (elem);
         }
     }
 
@@ -2441,15 +2442,29 @@ adding_visitor::add_file_element (DOMElement *parent,
                                   AST_Root *node,
                                   unsigned long rel_id)
 {
-  ACE_CString tmp (idl_global->stripped_filename ()->get_string ());
+  ACE_CString tmp (idl_global->filename ()->get_string ());
   tmp = tmp.substr (0, tmp.rfind ('.'));
   const char *tmp_cstr = tmp.c_str ();
   int result = 0;
 
+  // We split the filename (which has a relative path starting
+  // from the directory of idl_to_picml execution) into local
+  // name and path name. The local name is for the GME model
+  // element identifier for the IDL file. The path is for the
+  // GME attribute 'path' associated with File elements.
+  
+  ACE_CString::size_type fpos = tmp.rfind ('/');
+  ACE_CString::size_type pos =
+    (fpos == ACE_CString::npos ? tmp.rfind ('\\') : fpos);
+  ACE_CString lname (
+    pos == ACE_CString::npos ? tmp : tmp.substr (pos + 1));
+    
+  // Start the substring at position 2 to skip './'.
+  ACE_CString path (pos == ACE_CString::npos ? "" : tmp.substr (2, pos - 2));
+
   // See if we have already imported this file. If so, just return it.
-  DOMElement *file = be_global->imported_dom_element (parent,
-                                                      tmp_cstr,
-                                                      false);
+  DOMElement *file =
+    be_global->imported_file_dom_elem (lname.c_str (), path.c_str ());
 
   if (0 == file)
     {
@@ -2463,7 +2478,7 @@ adding_visitor::add_file_element (DOMElement *parent,
                       "file %s not found in decl table\n",
                       tmp_cstr));
 
-          exit (99);
+          throw FE_Bailout ();
         }
 
       char *hex_relid = be_global->hex_string (rel_id);
@@ -2481,11 +2496,13 @@ adding_visitor::add_file_element (DOMElement *parent,
                       "Error: file %s id not found in id table\n",
                       tmp_cstr));
 
-          exit (99);
+          throw FE_Bailout ();
         }
 
       file->setAttribute (X ("id"), file_id);
-      this->add_name_element (file, tmp_cstr);
+
+      this->add_name_element (file, lname.c_str ());
+      this->add_path_element (file, path.c_str ());
       this->add_prefix_element (file, node);
 
       // This has to come before add_include_elements, because it adjusts
@@ -2579,6 +2596,12 @@ adding_visitor::add_version_element (DOMElement *parent, AST_Decl *node)
    }
 
   this->add_tag_common (version, "VersionTag", parent);
+}
+
+void
+adding_visitor::add_path_element (DOMElement *parent, const char *path)
+{
+  this->add_tag_common (path, "path", parent, false);
 }
 
 void
@@ -2683,29 +2706,52 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
           continue;
         }
 
-      ACE_CString lname_noext = lname.substr (0, lname.rfind ('.'));
-      const char *tmp = lname_noext.c_str ();
+      ACE_CString fname_noext = fname.substr (0, fname.rfind ('.'));
       const XMLCh *id = 0;
 
       int result =
-        be_global->decl_id_table ().find (tmp, id);
+        be_global->decl_id_table ().find (fname_noext.c_str (), id);
 
       if (result != 0)
         {
-          ACE_ERROR ((LM_ERROR,
-                      "Error: Filename %s, included in %s, not found "
-                      "in id table. %s was omitted from command line "
-                      "or spelling differs in case.\n",
-                      lname.c_str (),
-                      idl_global->filename ()->get_string (),
-                      lname.c_str ()));
+          char **item = 0;
+        
+          for (ACE_Unbounded_Queue_Const_Iterator<char *> i (
+                   idl_global->rel_include_paths ()
+                 );
+               i.done () == 0;
+               i.advance ())
+            {
+              i.next (item);
+              ACE_CString candidate (*item);
+              candidate += '/';
+              candidate += fname_noext;
+              result =
+                be_global->decl_id_table ().find (candidate.c_str (), id);
+                
+              if (result == 0)
+                {
+                  break;
+                }
+            }
+           
+          if (result != 0)
+            {  
+              ACE_ERROR ((LM_ERROR,
+                          "Error: Filename %s, included in %s, not found "
+                          "in id table. %s was omitted from command line "
+                          "or spelling differs in case.\n",
+                          fname.c_str (),
+                          idl_global->filename ()->get_string (),
+                          fname.c_str ()));
 
-          exit (99);
+              throw FE_Bailout ();
+            }
         }
 
       DOMElement *fileref =
         be_global->imported_dom_element (parent,
-                                         tmp,
+                                         fname_noext.c_str (),
                                          false,
                                          BE_GlobalData::REF,
                                          true);
@@ -2724,7 +2770,9 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
           this->add_regnodes (container, fileref, slot++);
 
           parent->appendChild (fileref);
-          be_global->included_file_diagnostic (fileref, parent, tmp);
+          be_global->included_file_diagnostic (fileref,
+                                               parent,
+                                               fname_noext.c_str ());
         }
 
       // Add to list used in check for removed IDL decls.

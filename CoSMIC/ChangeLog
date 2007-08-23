@@ -1,3 +1,23 @@
+Thu Aug 23 18:39:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML.xme:
+        
+          Added FieldAttribute 'path' to the File model element.
+          When importing IDL files from a directory subtree,
+          this attribute is necessary to disambiguate files
+          in different directories with the same local name.
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        
+          Corresponding changes to the IDL importer to use the
+          new GME Attribute described above.
+        
 Wed Aug 22 18:14:59 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/PSM:

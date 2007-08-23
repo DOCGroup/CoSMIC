@@ -728,14 +728,16 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       // appears further down the command line.
 
       ACE_CString fname (files[i]);
-      int fpos = fname.rfind ('/');
-      int pos = (fpos == ACE_CString::npos ? fname.rfind ('\\') : fpos);
+      ACE_CString::size_type fpos = fname.rfind ('/');
+      ACE_CString::size_type pos =
+        (fpos == ACE_CString::npos ? fname.rfind ('\\') : fpos);
       ACE_CString lname =
         (pos == ACE_CString::npos ? fname : fname.substr (pos + 1));
       lname = lname.substr (0, lname.rfind ('.'));
       const char *lname_cstr = lname.c_str ();
 
       DOMElement *file = 0;
+      fname = fname.substr (0, fname.rfind ('.'));
 
       if (0 != be_global->input_xme ())
         {
@@ -758,10 +760,10 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
           file->setAttribute (X ("id"), X (new_id.c_str ()));
         }
 
-      this->decl_elem_table_.bind (ACE::strnew (lname_cstr),
+      this->decl_elem_table_.bind (ACE::strnew (fname.c_str ()),
                                    file);
 
-      this->decl_id_table_.bind (ACE::strnew (lname_cstr),
+      this->decl_id_table_.bind (ACE::strnew (fname.c_str ()),
                                  file->getAttribute (X ("id")));
    }
 
@@ -1030,6 +1032,84 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
       if (this->match_module_opening (model, node))
         {
           return model;
+        }
+    }
+
+  return 0;
+}
+
+DOMElement *
+BE_GlobalData::imported_file_dom_elem (const char *local_name,
+                                       const char *path)
+{
+  // Can't already be in the DOM tree if we didn't read in an XME file.
+  if (0 == this->input_xme_)
+    {
+      return 0;
+    }
+
+  // All the top level elements in the InterfaceDefinnitions
+  // folder are Files.
+  DOMNodeList *files =
+    this->interface_definitions_folder_->getChildNodes ();
+  DOMElement *file = 0;
+
+  // Iterate over the list of Files.
+  for (XMLSize_t i = 0; i < files->getLength (); ++i)
+    {
+      file = dynamic_cast<DOMElement *> (files->item (i));
+
+      // Skip any other children, like <name>.
+      if (X ("model") != X (file->getTagName ()))
+        {
+          continue;
+        }
+
+      const XMLCh *kind = file->getAttribute (X ("kind"));
+
+      if (X ("File") != X (kind))
+        {
+          continue;
+        }
+
+      // There should be only one "name" node.
+      DOMNodeList *namelist = file->getElementsByTagName (X ("name"));
+      DOMNode *name_elem = namelist->item (0);
+      DOMNode *name_item = name_elem->getFirstChild ();
+      DOMText *name = (DOMText *) name_item;
+      const XMLCh *text = name->getData ();
+
+      // If the local name doesn't match, keep searching.
+      if (X (local_name) != X (text))
+        {
+          continue;
+        }
+        
+      DOMNodeList *attrlist = file->getElementsByTagName (X ("attribute"));
+      DOMElement *attr = 0;
+      
+      // Now try to match the GME attribute 'path'.
+      for (XMLSize_t j = 0; j < attrlist->getLength (); ++j)
+        {
+          attr = dynamic_cast<DOMElement *> (attrlist->item (j));       
+          kind = attr->getAttribute (X ("kind"));
+          
+          if (X ("path") != X (kind))
+            {
+              continue;
+            }
+            
+          // A GME attribute contains only the value, and the
+          // value contains only the text node.  
+          DOMNode *value_tag = attr->getFirstChild ();
+          DOMNode *value_item = value_tag->getFirstChild ();
+          DOMText *value = (DOMText *) value_item;
+          text = value->getData ();
+          
+          if (X (path) == X (text))
+            {
+              return file;
+            }
         }
     }
 
