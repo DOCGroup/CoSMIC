@@ -143,7 +143,7 @@ Visit_InputEffect (const PICML::InputEffect & effect)
   std::string postcondition = effect.Postcondition ();
 
   if (!postcondition.empty ())
-    CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
+    CUTS_BE_Postcondition_T <BE_STRATEGY>::generate (postcondition);
 
   // Visit the next state in the chain.
   this->Visit_StateBase (effect.dstInputEffect_end ());
@@ -160,7 +160,7 @@ Visit_Effect (const PICML::Effect & effect)
   std::string postcondition = effect.Postcondition ();
 
   if (!postcondition.empty ())
-    CUTS_BE::generate <BE_STRATEGY::Postcondition> (postcondition);
+    CUTS_BE_Postcondition_T <BE_STRATEGY>::generate (postcondition);
 
   // Visit the next state in the chain.
   this->Visit_StateBase (effect.dstEffect_end ());
@@ -278,13 +278,13 @@ Visit_BranchState (const PICML::BranchState & state)
   this->branches_.push (transition_size);
 
   // Signal the backend we are starting a branch state.
-  CUTS_BE::generate <BE_STRATEGY::Branches_Begin> (transition_size);
+  CUTS_BE_Branches_Begin_T <BE_STRATEGY>::generate (transition_size);
 
   CUTS_BE::visit <BE_STRATEGY> (transitions,
     boost::bind (&PICML::BranchTransition::Accept, _1, boost::ref (*this)));
 
   // Signal the backend we are starting a branch state.
-  CUTS_BE::generate <BE_STRATEGY::Branches_End> ();
+  CUTS_BE_Branches_End_T <BE_STRATEGY>::generate ();
   this->branches_.pop ();
 
   // Since we have finished the branching, we can continue generating
@@ -306,7 +306,7 @@ Visit_Transition (const PICML::Transition & transition)
   std::string precondition = transition.Precondition ();
 
   if (!precondition.empty ())
-    CUTS_BE::generate <BE_STRATEGY::Precondition> (precondition);
+    CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
 
   // Get the action connected to the end of the transaction.
   PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
@@ -321,13 +321,13 @@ void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_BranchTransition (const PICML::BranchTransition & transition)
 {
   // Signal the backend we are starting a branch.
-  CUTS_BE::generate <BE_STRATEGY::Branch_Begin> (transition.Precondition ());
+  CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate (transition.Precondition ());
 
   PICML::ActionBase action_base = transition.dstBranchTransition_end ();
   this->Visit_ActionBase (action_base);
 
   // Signal the backend we are finishing a branch state.
-  CUTS_BE::generate <BE_STRATEGY::Branch_End> ();
+  CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
 }
 
 //
@@ -367,7 +367,7 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_Property (const PICML::Property & property)
 {
-  CUTS_BE::generate <BE_STRATEGY::Action_Property> (property);
+  CUTS_BE_Action_Property_T <BE_STRATEGY>::generate (property);
 }
 
 //
@@ -386,7 +386,7 @@ Visit_Action (const PICML::Action & action)
 
   // Let's tell the <traits_> to begin generating an action.
   PICML::Worker worker = action_type.Worker_parent ();
-  CUTS_BE::generate <BE_STRATEGY::WorkerAction_Begin> (worker, action);
+  CUTS_BE_WorkerAction_Begin_T <BE_STRATEGY>::generate (worker, action);
 
   // Generate the parameters for the action.
   typedef std::set <PICML::Property,
@@ -400,7 +400,7 @@ Visit_Action (const PICML::Action & action)
     _1, boost::ref (*this)));
 
   // Let's tell the <traits_> to end generating an action.
-  CUTS_BE::generate <BE_STRATEGY::Action_End> ();
+  CUTS_BE_Action_End_T <BE_STRATEGY>::generate ();
 }
 
 //
@@ -410,7 +410,7 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_OutputAction (const PICML::OutputAction & action)
 {
-  CUTS_BE::generate <BE_STRATEGY::OutputAction_Begin> (action);
+  CUTS_BE_OutputAction_Begin_T <BE_STRATEGY>::generate (action);
 
   typedef std::vector <PICML::Property> Property_Set;
   Property_Set properties = action.Property_kind_children ();
@@ -419,7 +419,7 @@ Visit_OutputAction (const PICML::OutputAction & action)
     boost::bind (&CUTS_BE_Execution_Visitor_T::Visit_OutputAction_Property,
     boost::ref (*this), _1));
 
-  CUTS_BE::generate <BE_STRATEGY::OutputAction_End> (action);
+  CUTS_BE_OutputAction_End_T <BE_STRATEGY>::generate (action);
 }
 
 //
@@ -451,5 +451,5 @@ Visit_OutputAction_Property (const PICML::Property & property)
   PICML::OutputAction parent =
     PICML::OutputAction::Cast (property.parent ());
 
-  CUTS_BE::generate <BE_STRATEGY::OutputAction_Property> (parent, property);
+  CUTS_BE_OutputAction_Property_T <BE_STRATEGY>::generate (parent, property);
 }

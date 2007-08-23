@@ -90,4 +90,11 @@ BEGIN
 
 END; //
 
+CREATE PROCEDURE
+select_execution_times (IN test INT, IN ctime DATETIME,
+                        IN component_id INT, IN sender_id)
+BEGIN
+
+END; //
+
 delimiter ;

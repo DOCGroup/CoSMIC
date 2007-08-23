@@ -29,11 +29,6 @@ namespace CUTS_BE
 
   struct CUTS_BE_Export NIL
   {
-    /// Dummy generate method to satisfy the generator. We use variatric
-    /// parameters so the method can be used with any number of parameters.
-    static inline bool generate (...)
-      { return false; }
-
     /// Dummy execute method to satisfy the generator. We use variatric
     /// parameters so the method can be used with any number of parameters.
     static inline bool execute (...)

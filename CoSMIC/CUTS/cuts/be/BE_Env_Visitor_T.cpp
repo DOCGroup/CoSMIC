@@ -56,7 +56,7 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Env_Visitor_T <IMPL_STRATEGY>::
 Visit_InputAction (const PICML::InputAction & action)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_Begin> (action);
+  CUTS_BE_Environment_Method_Begin_T <IMPL_STRATEGY>::generate (action);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
   PICML::InputAction input_action (action);
@@ -64,5 +64,5 @@ Visit_InputAction (const PICML::InputAction & action)
   CUTS_BE::visit <IMPL_STRATEGY> (input_action,
     boost::bind (&PICML::InputAction::Accept, _1, boost::ref (exec_visitor)));
 
-  CUTS_BE::generate <IMPL_STRATEGY::Environment_Method_End> (action);
+  CUTS_BE_Environment_Method_End_T <IMPL_STRATEGY>::generate (action);
 }

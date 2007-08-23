@@ -8,6 +8,8 @@
 #include "BE_Preprocessor.h"
 #include "BE_Env_Visitor_T.h"
 #include "BE_Execution_Visitor_T.h"
+#include "BE_Generators_T.h"
+
 #include "UDM_Utility_T.h"
 
 #include "boost/bind.hpp"
@@ -63,10 +65,10 @@ const PICML::ComponentImplementationContainer & container)
   // as we can about the current component's implementation.
   CUTS_BE_PREPROCESSOR ()->preprocess (container);
 
-  if (CUTS_BE::generate <IMPL_STRATEGY::Open_File> (container))
+  if (CUTS_BE_File_Open_T <IMPL_STRATEGY>::generate (container))
   {
     // Write the prologue for the file.
-    CUTS_BE::generate <IMPL_STRATEGY::Prologue> (container);
+    CUTS_BE_Prologue_T <IMPL_STRATEGY>::generate (container);
 
     // Get the implementation node and write all the includes.
     const CUTS_BE_Impl_Node * impl = 0;
@@ -81,8 +83,8 @@ const PICML::ComponentImplementationContainer & container)
       boost::bind (&MonoImpl_Set::value_type::Accept, _1, boost::ref (*this)));
 
     // Write the epilogue for the file, then close it.
-    CUTS_BE::generate <IMPL_STRATEGY::Epilogue> (container);
-    CUTS_BE::generate <IMPL_STRATEGY::Close_File> (container);
+    CUTS_BE_Epilogue_T <IMPL_STRATEGY>::generate (container);
+    CUTS_BE_File_Close_T <IMPL_STRATEGY>::generate (container);
   }
   else
     CUTS_BE_PREPROCESSOR ()->remove (container);
@@ -109,14 +111,16 @@ const PICML::MonolithicImplementation & monoimpl)
     PICML::Component component = ref.ref ();
 
     // Write the beginning of the component's implementation.
-    CUTS_BE::generate <IMPL_STRATEGY::Component_Impl_Begin> (monoimpl, component);
+    CUTS_BE_Component_Impl_Begin_T <IMPL_STRATEGY>::
+      generate (monoimpl, component);
 
     // Visit the component.
     CUTS_BE::visit <IMPL_STRATEGY> (component,
       boost::bind (&PICML::Component::Accept, _1, boost::ref (*this)));
 
     // Write the end of the component's implementation.
-    CUTS_BE::generate <IMPL_STRATEGY::Component_Impl_End> (monoimpl, component);
+    CUTS_BE_Component_Impl_End_T <IMPL_STRATEGY>::
+      generate (monoimpl, component);
 
     // Get all the facets in the component so that we can
     // generate their implementation.
@@ -132,16 +136,16 @@ const PICML::MonolithicImplementation & monoimpl)
     if (this->get_component_factory (component, factory))
     {
       // Write the beginning of the factory's implementation.
-      CUTS_BE::generate <
-        IMPL_STRATEGY::Factory_Impl_Begin> (factory, monoimpl, component);
+      CUTS_BE_Factory_Impl_Begin_T <IMPL_STRATEGY>::
+        generate (factory, monoimpl, component);
 
       CUTS_BE::visit <IMPL_STRATEGY> (factory,
         boost::bind (&PICML::ComponentFactory::Accept,
         _1, boost::ref (*this)));
 
       // Write the end of the factory's implementation.
-      CUTS_BE::generate <
-        IMPL_STRATEGY::Factory_Impl_End> (factory, monoimpl, component);
+      CUTS_BE_Factory_Impl_End_T <IMPL_STRATEGY>::
+        generate (factory, monoimpl, component);
     }
   }
 }
@@ -197,23 +201,20 @@ Visit_Component (const PICML::Component & component)
   typedef std::vector <PICML::ReadonlyAttribute> ReadonlyAttribute_Set;
   ReadonlyAttribute_Set ro_attrs = component.ReadonlyAttribute_kind_children ();
 
-  typedef
-    is_type <PICML::ReadonlyAttribute> ReadonlyAttribute_Type;
+  typedef is_type <PICML::ReadonlyAttribute> ReadonlyAttribute_Type;
 
-  std::for_each (
-    boost::make_filter_iterator <ReadonlyAttribute_Type> (
-      ro_attrs.begin (), ro_attrs.end ()),
-    boost::make_filter_iterator <ReadonlyAttribute_Type> (
-      ro_attrs.end (), ro_attrs.end ()),
-    boost::bind (&ReadonlyAttribute_Set::value_type::Accept,
-                 _1,
-                 boost::ref (*this)));
+  std::for_each (boost::make_filter_iterator <ReadonlyAttribute_Type> (
+                    ro_attrs.begin (), ro_attrs.end ()),
+                 boost::make_filter_iterator <ReadonlyAttribute_Type> (
+                    ro_attrs.end (), ro_attrs.end ()),
+                 boost::bind (&ReadonlyAttribute_Set::value_type::Accept,
+                    _1, boost::ref (*this)));
 
   // Get the environment for the component.
   PICML::Environment env = component.Environment_child ();
 
   // Begin generating environment related metadata.
-  CUTS_BE::generate <IMPL_STRATEGY::Environment_Begin> (component);
+  CUTS_BE_Environment_Begin_T <IMPL_STRATEGY>::generate (component);
 
   if (env != Udm::null)
   {
@@ -225,13 +226,13 @@ Visit_Component (const PICML::Component & component)
   }
 
   // End generating environment related metadata.
-  CUTS_BE::generate <IMPL_STRATEGY::Environment_End> (component);
+  CUTS_BE_Environment_End_T <IMPL_STRATEGY>::generate (component);
 
   // We are now ready to write the variables for the components. The
   // variables consist of the attributes and the behavior declared
   // variables.
 
-  CUTS_BE::generate <IMPL_STRATEGY::Variables_Begin> (component);
+  CUTS_BE_Variables_Begin_T <IMPL_STRATEGY>::generate (component);
 
   typedef std::vector <PICML::Variable> Variable_Set;
   Variable_Set vars = component.Variable_kind_children ();
@@ -257,7 +258,7 @@ Visit_Component (const PICML::Component & component)
     boost::ref (this), _1));
 
   // End the generation of the variables.
-  CUTS_BE::generate <IMPL_STRATEGY::Variables_End> (component);
+  CUTS_BE_Variables_End_T <IMPL_STRATEGY>::generate (component);
 }
 
 //
@@ -267,12 +268,12 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_InEventPort (const PICML::InEventPort & sink)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::InEventPort_Begin> (sink);
+  CUTS_BE_InEventPort_Begin_T <IMPL_STRATEGY>::generate (sink);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
   exec_visitor.generate (sink);
 
-  CUTS_BE::generate <IMPL_STRATEGY::InEventPort_End> (sink);
+  CUTS_BE_InEventPort_End_T <IMPL_STRATEGY>::generate (sink);
 }
 
 //
@@ -283,13 +284,13 @@ void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & facet)
 {
   // Begin the generation of the provided request port.
-  CUTS_BE::generate <IMPL_STRATEGY::ProvidedRequestPort_Begin> (facet);
+  CUTS_BE_ProvidedRequestPort_Begin_T <IMPL_STRATEGY>::generate (facet);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
   exec_visitor.generate (facet);
 
   // End the generation of the provided request port.
-  CUTS_BE::generate <IMPL_STRATEGY::ProvidedRequestPort_End> (facet);
+  CUTS_BE_ProvidedRequestPort_End_T <IMPL_STRATEGY>::generate (facet);
 }
 
 //
@@ -306,13 +307,13 @@ Visit_ProvidedRequestPort_impl (const PICML::ProvidedRequestPort & facet)
   if (object != Udm::null)
   {
     // Write the beginning of the facet's implementation.
-    CUTS_BE::generate <IMPL_STRATEGY::Object_Impl_Begin> (component, facet);
+    CUTS_BE_Object_Impl_Begin_T <IMPL_STRATEGY>::generate (component, facet);
 
     CUTS_BE::visit <IMPL_STRATEGY> (object,
       boost::bind (&PICML::Object::Accept, _1, boost::ref (*this)));
 
     // Write the end of the facet's implementation.
-    CUTS_BE::generate <IMPL_STRATEGY::Object_Impl_End> (component, facet);
+    CUTS_BE_Object_Impl_End_T <IMPL_STRATEGY>::generate (component, facet);
   }
 }
 
@@ -324,13 +325,13 @@ void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_PeriodicEvent (const PICML::PeriodicEvent & periodic)
 {
   // Begin the generation of the periodic event.
-  CUTS_BE::generate <IMPL_STRATEGY::PeriodicEvent_Begin> (periodic);
+  CUTS_BE_PeriodicEvent_Begin_T <IMPL_STRATEGY>::generate (periodic);
 
   CUTS_BE_Execution_Visitor_T <IMPL_STRATEGY> exec_visitor;
   exec_visitor.generate (periodic);
 
   // End the generation of the periodic event.
-  CUTS_BE::generate <IMPL_STRATEGY::PeriodicEvent_End> (periodic);
+  CUTS_BE_PeriodicEvent_End_T <IMPL_STRATEGY>::generate (periodic);
 }
 
 //
@@ -340,9 +341,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_Attribute (const PICML::Attribute & attr)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::Attribute_Begin> (attr);
+  CUTS_BE_Attribute_Begin_T <IMPL_STRATEGY>::generate (attr);
 
-  CUTS_BE::generate <IMPL_STRATEGY::Attribute_End> (attr);
+  CUTS_BE_Attribute_End_T <IMPL_STRATEGY>::generate (attr);
 }
 
 //
@@ -352,9 +353,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & attr)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::ReadonlyAttribute_Begin> (attr);
+  CUTS_BE_ReadonlyAttribute_Begin_T <IMPL_STRATEGY>::generate (attr);
 
-  CUTS_BE::generate <IMPL_STRATEGY::ReadonlyAttribute_End> (attr);
+  CUTS_BE_ReadonlyAttribute_End_T <IMPL_STRATEGY>::generate (attr);
 }
 
 //
@@ -406,7 +407,7 @@ Visit_WorkerType (const PICML::WorkerType & type)
   PICML::Worker worker = type.ref ();
 
   if (worker != Udm::null)
-    CUTS_BE::generate <IMPL_STRATEGY::Worker_Variable> (type, worker);
+    CUTS_BE_Worker_Variable_T <IMPL_STRATEGY>::generate (type, worker);
 }
 
 //
@@ -416,9 +417,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_TwowayOperation (const PICML::TwowayOperation & twoway)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::TwowayOperation_Begin> (twoway);
+  CUTS_BE_TwowayOperation_Begin_T <IMPL_STRATEGY>::generate (twoway);
 
-  CUTS_BE::generate <IMPL_STRATEGY::TwowayOperation_End> (twoway);
+  CUTS_BE_TwowayOperation_End_T <IMPL_STRATEGY>::generate (twoway);
 }
 
 //
@@ -428,9 +429,9 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_OnewayOperation (const PICML::OnewayOperation & oneway)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::OnewayOperation_Begin> (oneway);
+  CUTS_BE_OnewayOperation_Begin_T <IMPL_STRATEGY>::generate (oneway);
 
-  CUTS_BE::generate <IMPL_STRATEGY::OnewayOperation_End> (oneway);
+  CUTS_BE_OnewayOperation_End_T <IMPL_STRATEGY>::generate (oneway);
 }
 
 //
@@ -477,11 +478,11 @@ Visit_ComponentFactory_inherits (const PICML::Inherits & inherits)
 //
 template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
-Visit_FactoryOperation (const PICML::FactoryOperation & factory_op)
+Visit_FactoryOperation (const PICML::FactoryOperation & fop)
 {
-  CUTS_BE::generate <IMPL_STRATEGY::FactoryOperation_Begin> (factory_op);
+  CUTS_BE_FactoryOperation_Begin_T <IMPL_STRATEGY>::generate (fop);
 
-  CUTS_BE::generate <IMPL_STRATEGY::FactoryOperation_End> (factory_op);
+  CUTS_BE_FactoryOperation_End_T <IMPL_STRATEGY>::generate (fop);
 }
 
 //

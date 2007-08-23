@@ -24,7 +24,7 @@
 /// Type definition for the CIAO backend manager.
 typedef CUTS_BE_Manager_T <CUTS_BE_MPC_Workspace,
                            CUTS_CIAO_Project_Generator,
-                           CUTS_BE::CIAO_Traits>
+                           CUTS_BE_CIAO>
                            CIAO_BE_Manager;
 
 

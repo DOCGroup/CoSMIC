@@ -1,3 +1,28 @@
+Thu Aug 23 14:12:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Env_Visitor_T.cpp:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_Impl_Generator_T.inl:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/BE_algorithm.h:
+        * cuts/be/BE_nil.h:
+        * cuts/be/CIAO/CIAO_Manager.h:
+        * cuts/be/CIAO/CIAO_Traits.h:
+
+          Re-implemented the point-of-generation template architecture
+          for the backend generators so different backends are not required
+          to define unused points-of-generation as NIL.
+
+        * etc/SQL/CUTS-execution.sql:
+
+          Implemented a stored procedure for getting the execution times
+          for a component from a given sender at a specific collection time.
+
+        * etc/config/cuts_coworker_exec.mpb:
+
+          Removed the 'rt_server' base project.
+
 Mon Aug 20 20:22:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * integration/CUTS-config.xml:
