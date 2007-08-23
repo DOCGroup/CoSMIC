@@ -24,6 +24,7 @@
 #include "DependencyVisitor.h"
 #include "IDLEmitVisitor.h"
 #include <fstream>
+#include <direct.h>
 
 namespace
 {
@@ -173,6 +174,7 @@ void Component::invokeEx( Project& project,
           AfxMessageBox ("Interpretation must start from a File model!");
           continue;
         }
+        
       if (root->isInLibrary ())
         {
           continue;
@@ -181,12 +183,25 @@ void Component::invokeEx( Project& project,
       DependencyVisitor root_visitor;
       root_visitor.visitOrderableImpl (root);
 
-      // A strstream may also be passed to the visitor here, to
-      // redirect the output.
+      // Preserves any directory structure that may have existed
+      // with IDL files imported into the model.
+      
+      std::string filepath = root->getpath ();
+      std::string dirpath = outputPath
+                            + (filepath == "" ? "" : "\\" + filepath);
+                            
+      // We don't care about the return value. Since we are passing
+      // an absolute path, it will always get created unless it
+      // already exists. Either way the stream gets a valid file path.
+      (void) ::_mkdir (dirpath.c_str ());
+      
       std::string raw_filename = root->getName ();
-      std::string filename = outputPath + "\\" + raw_filename + ".idl";
+      std::string fullpath = dirpath
+                             + "\\"
+                             + raw_filename
+                             + ".idl";
 
-      std::ofstream strm (filename.c_str ());
+      std::ofstream strm (fullpath.c_str ());
 
       IDLEmitVisitor emit_visitor (strm);
       emit_visitor.visitOrderableImpl (root);

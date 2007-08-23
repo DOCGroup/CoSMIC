@@ -266,6 +266,9 @@ class FileImpl :
 {
 public:
 	//
+	// attribute getters
+	virtual std::string getpath();
+	//
 	// kind and role getters
 	virtual std::set<Aggregate>             getAggregate();
 	virtual std::set<Alias>                 getAlias();

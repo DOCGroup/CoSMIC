@@ -1,1 +1,853 @@
-ÐÏà¡±
+{\rtf1\adeflang1025\ansi\ansicpg1252\uc1\adeff0\deff0\stshfdbch0\stshfloch0\stshfhich0\stshfbi0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fcharset0\fprq2{\*\panose 02020603050405020304}Times New Roman{\*\falt Times New Roman};}{\f1\fswiss\fcharset0\fprq2{\*\panose 020b0604020202020204}Arial{\*\falt Arial};}
+{\f2\fmodern\fcharset0\fprq1{\*\panose 02070309020205020404}Courier New{\*\falt Courier New};}{\f3\froman\fcharset2\fprq2{\*\panose 05050102010706020507}Symbol{\*\falt Symbol};}{\f10\fnil\fcharset2\fprq2{\*\panose 05000000000000000000}Wingdings;}
+{\f37\froman\fcharset238\fprq2 Times New Roman CE{\*\falt Times New Roman};}{\f38\froman\fcharset204\fprq2 Times New Roman Cyr{\*\falt Times New Roman};}{\f40\froman\fcharset161\fprq2 Times New Roman Greek{\*\falt Times New Roman};}
+{\f41\froman\fcharset162\fprq2 Times New Roman Tur{\*\falt Times New Roman};}{\f42\fbidi \froman\fcharset177\fprq2 Times New Roman (Hebrew){\*\falt Times New Roman};}{\f43\fbidi \froman\fcharset178\fprq2 Times New Roman (Arabic){\*\falt Times New Roman};}
+{\f44\froman\fcharset186\fprq2 Times New Roman Baltic{\*\falt Times New Roman};}{\f45\froman\fcharset163\fprq2 Times New Roman (Vietnamese){\*\falt Times New Roman};}{\f47\fswiss\fcharset238\fprq2 Arial CE{\*\falt Arial};}
+{\f48\fswiss\fcharset204\fprq2 Arial Cyr{\*\falt Arial};}{\f50\fswiss\fcharset161\fprq2 Arial Greek{\*\falt Arial};}{\f51\fswiss\fcharset162\fprq2 Arial Tur{\*\falt Arial};}{\f52\fbidi \fswiss\fcharset177\fprq2 Arial (Hebrew){\*\falt Arial};}
+{\f53\fbidi \fswiss\fcharset178\fprq2 Arial (Arabic){\*\falt Arial};}{\f54\fswiss\fcharset186\fprq2 Arial Baltic{\*\falt Arial};}{\f55\fswiss\fcharset163\fprq2 Arial (Vietnamese){\*\falt Arial};}
+{\f57\fmodern\fcharset238\fprq1 Courier New CE{\*\falt Courier New};}{\f58\fmodern\fcharset204\fprq1 Courier New Cyr{\*\falt Courier New};}{\f60\fmodern\fcharset161\fprq1 Courier New Greek{\*\falt Courier New};}
+{\f61\fmodern\fcharset162\fprq1 Courier New Tur{\*\falt Courier New};}{\f62\fbidi \fmodern\fcharset177\fprq1 Courier New (Hebrew){\*\falt Courier New};}{\f63\fbidi \fmodern\fcharset178\fprq1 Courier New (Arabic){\*\falt Courier New};}
+{\f64\fmodern\fcharset186\fprq1 Courier New Baltic{\*\falt Courier New};}{\f65\fmodern\fcharset163\fprq1 Courier New (Vietnamese){\*\falt Courier New};}}{\colortbl;\red0\green0\blue0;\red0\green0\blue255;\red0\green255\blue255;\red0\green255\blue0;
+\red255\green0\blue255;\red255\green0\blue0;\red255\green255\blue0;\red255\green255\blue255;\red0\green0\blue128;\red0\green128\blue128;\red0\green128\blue0;\red128\green0\blue128;\red128\green0\blue0;\red128\green128\blue0;\red128\green128\blue128;
+\red192\green192\blue192;}{\stylesheet{\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \snext15 Normal;}{
+\s1\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel0\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \sbasedon15 \snext15 heading 1;}{
+\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \sbasedon15 \snext15 heading 3;}{\*\cs10 \additive 
+\ssemihidden Default Paragraph Font;}{\*
+\ts11\tsrowd\trftsWidthB3\trpaddl108\trpaddr108\trpaddfl3\trpaddft3\trpaddfb3\trpaddfr3\trcbpat1\trcfpat1\tblind0\tblindtype3\tscellwidthfts0\tsvertalt\tsbrdrt\tsbrdrl\tsbrdrb\tsbrdrr\tsbrdrdgl\tsbrdrdgr\tsbrdrh\tsbrdrv 
+\ql \li0\ri0\widctlpar\wrapdefault\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs20 \ltrch\fcs0 \fs20\lang1024\langfe1024\cgrid\langnp1024\langfenp1024 \snext11 \ssemihidden Normal Table;}{
+\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \snext15 Default;}{\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 
+\rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 \sbasedon15 \snext15 Plain Text;}{\*\cs17 \additive \cf1 Hyperlink;}}{\*\latentstyles\lsdstimax156\lsdlockeddef0}{\*\listtable
+{\list\listtemplateid-1807443269\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-1777825544}{\list\listtemplateid624644575\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-1566889589}{\list\listtemplateid-1290718659\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-1432869513}
+{\list\listtemplateid784524292\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-1124494917}{\list\listtemplateid-293623073\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-1042958924}{\list\listtemplateid-1367291897\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-952747030}
+{\list\listtemplateid-218602296\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-801634647}{\list\listtemplateid1400593812\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-714334978}{\list\listtemplateid1615324061\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-381465154}
+{\list\listtemplateid1263580267\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0
+\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid-372484139}{\list\listtemplateid745616020\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext
+\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0
+\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid0}{\list\listtemplateid-359219530\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0
+\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}
+\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0
+\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}
+\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0
+\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}
+\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid244155201}
+{\list\listtemplateid-504200856\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\leveltext\leveltemplateid67698689\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li360
+\jclisttab\tx360\lin360 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698691\'01o;}{\levelnumbers;}\f2\fbias0 \fi-360\li1080\jclisttab\tx1080\lin1080 }
+{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698693\'01\u-3929 ?;}{\levelnumbers;}\f10\fbias0 \fi-360\li1800\jclisttab\tx1800\lin1800 }{\listlevel
+\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698689\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li2520\jclisttab\tx2520\lin2520 }{\listlevel\levelnfc23
+\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698691\'01o;}{\levelnumbers;}\f2\fbias0 \fi-360\li3240\jclisttab\tx3240\lin3240 }{\listlevel\levelnfc23\levelnfcn23\leveljc0
+\leveljcn0\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698693\'01\u-3929 ?;}{\levelnumbers;}\f10\fbias0 \fi-360\li3960\jclisttab\tx3960\lin3960 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0
+\levelfollow0\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698689\'01\u-3913 ?;}{\levelnumbers;}\f3\fbias0 \fi-360\li4680\jclisttab\tx4680\lin4680 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0
+\levelstartat1\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698691\'01o;}{\levelnumbers;}\f2\fbias0 \fi-360\li5400\jclisttab\tx5400\lin5400 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1
+\lvltentative\levelspace360\levelindent0{\leveltext\leveltemplateid67698693\'01\u-3929 ?;}{\levelnumbers;}\f10\fbias0 \fi-360\li6120\jclisttab\tx6120\lin6120 }{\listname ;}\listid416708471}{\list\listtemplateid1794923377\listhybrid{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname 
+;}\listid468713342}{\list\listtemplateid-135960717\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0
+\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat0\levelspace0\levelindent0
+{\leveltext\'00;}{\levelnumbers;}\rtlch\fcs1 \af0 \ltrch\fcs0 }{\listname ;}\listid1515336637}}{\*\listoverridetable{\listoverride\listid-1042958924\listoverridecount0\ls1}{\listoverride\listid-381465154\listoverridecount0\ls2}
+{\listoverride\listid-372484139\listoverridecount0\ls3}{\listoverride\listid-1777825544\listoverridecount0\ls4}{\listoverride\listid-1432869513\listoverridecount0\ls5}{\listoverride\listid1515336637\listoverridecount0\ls6}{\listoverride\listid468713342
+\listoverridecount0\ls7}{\listoverride\listid-714334978\listoverridecount0\ls8}{\listoverride\listid-952747030\listoverridecount0\ls9}{\listoverride\listid-1124494917\listoverridecount0\ls10}{\listoverride\listid-1566889589\listoverridecount0\ls11}
+{\listoverride\listid244155201\listoverridecount0\ls12}{\listoverride\listid-801634647\listoverridecount0\ls13}{\listoverride\listid416708471\listoverridecount0\ls14}}{\*\rsidtbl \rsid7673872\rsid12941887}{\*\generator Microsoft Word 11.0.8134;}{\info
+{\title Importing IDL Files into PICML }{\author Jeffrey Parsons}{\operator Jeff Parsons}{\creatim\yr2006\mo2\dy6\hr15\min3}{\revtim\yr2007\mo8\dy23\hr15\min36}{\version2}{\edmins12}{\nofpages17}{\nofwords6333}{\nofchars36101}{\nofcharsws42350}
+{\vern24611}{\*\password 00000000}}{\*\xmlnstbl {\xmlns1 http://schemas.microsoft.com/office/word/2003/wordml}{\xmlns2 urn:schemas-microsoft-com:office:smarttags}}\paperw12240\paperh15840\margl1080\margr800\margt1400\margb1400\gutter0\ltrsect 
+\widowctrl\ftnbj\aenddoc\donotembedsysfont0\donotembedlingdata1\grfdocevents0\validatexml0\showplaceholdtext0\ignoremixedcontent0\saveinvalidxml0\showxmlerrors0\horzdoc\dghspace120\dgvspace120\dghorigin1701\dgvorigin1984\dghshow0\dgvshow3
+\jcompress\viewkind1\viewscale100\rsidroot12941887 \fet0{\*\wgrffmtfilter 013f}\ilfomacatclnup0\ltrpar \sectd \ltrsect\sbknone\linex0\sectdefaultcl\sftnbj {\*\pnseclvl1\pnucrm\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl2
+\pnucltr\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl3\pndec\pnstart1\pnindent720\pnhang {\pntxta .}}{\*\pnseclvl4\pnlcltr\pnstart1\pnindent720\pnhang {\pntxta )}}{\*\pnseclvl5\pndec\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl6
+\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl7\pnlcrm\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl8\pnlcltr\pnstart1\pnindent720\pnhang {\pntxtb (}{\pntxta )}}{\*\pnseclvl9\pnlcrm\pnstart1\pnindent720\pnhang 
+{\pntxtb (}{\pntxta )}}\pard\plain \ltrpar\s16\qc \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af0\afs44 \ltrch\fcs0 
+\b\fs44\insrsid7673872 Importing IDL into PICML  }{\rtlch\fcs1 \af0\afs44 \ltrch\fcs0 \fs44\insrsid7673872 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard \ltrpar\s16\qc \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 And IDL to PICML Mapping Reference }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }\pard\plain \ltrpar\s1\qc \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel0\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs32 \ltrch\fcs0 
+\b\fs32\insrsid7673872 Jeff Parsons }{\rtlch\fcs1 \af1\afs32 \ltrch\fcs0 \fs32\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 
+Introduction  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+The Platform Independent Component Modeling Language (PICML) is the centerpiece of the Component Synthesis with Modeling Integrated Computing (CoSMIC) tool suite. A wealth of information is available at the CoSMIC website: 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }{\field{\*\fldinst {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 HYPERLINK "http://www.dre.vanderbilt.edu/cosmic/"}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872\charrsid12941887 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b6400000068007400740070003a002f002f007700770077002e006400720065002e00760061006e00640065007200620069006c0074002e006500640075002f0063006f0073006d00690063002f000000795881f43b1d
+7f48af2c825dc485276300000000a5ab0000}}}{\fldrslt {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \cs17\f2\fs20\ul\cf2\insrsid7673872 http://www.dre.vanderbilt.edu/cosmic/}}}\sectd \sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+
+\par   
+\par PICML is a large modeling language with several facets - one such facet includes elements that represent components, interfa
+ces and related data types that are the building blocks of component systems. These are precisely the kind of elements we find in CORBA IDL files. This document describes a tool that enables developers to jump-start a PICML project by mapping the interfac
+e definitions in a set of existing IDL files to corresponding elements of PICML. For a detailed description of each of these PICML elements, along with their semantics, motivation and intended use, see the documentation in 
+\par  
+\par COSMIC_ROOT/PIM/PICML/docs 
+\par  
+\par }{\rtlch\fcs1 \ai\af2 \ltrch\fcs0 \i\f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  is an executable program that imports IDL into PICML.  The}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872  idl_to_picml}{\rtlch\fcs1 
+\af0 \ltrch\fcs0 \f0\insrsid7673872  executable translates up to 1024 IDL files at a time into a single XML document that may be imported into the Generic Modeling Environment (GME) as a model in PICML. This m
+odel, which contains only the information present in the set of IDL files passed to }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ on the command line, may then be developed further in PICML to model a complete component system. The }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ executable iterates over the list of IDL fil
+es, using the parsing engine of the TAO IDL Compiler to create an abstract representation of each IDL file. This Abstract Syntax Tree (AST) is then traversed by a custom back end plugin which translates the AST and generates XML which conforms to the DTD 
+d
+escribing XML files which can be imported/exported by all GME modeling languages. For more information about GME, see the GME Manual and User Guide, and The Generic Modeling Environment, both of which are PDF files included with the GME distribution. GME 
+was developed at the Institute for Software Integrated Systems (ISIS) at {\*\xmlopen\xmlns2{\factoidname PlaceName}}Vanderbilt{\*\xmlclose} {\*\xmlopen\xmlns2{\factoidname PlaceType}}University{\*\xmlclose}
+, and information about how to obtain GME may be found at the  {\*\xmlopen\xmlns2{\factoidname place}}ISIS{\*\xmlclose} website: 
+\par  
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\field{\*\fldinst {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+HYPERLINK "http://www.isis.vanderbilt.edu/Projects/gme/"}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872\charrsid12941887 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b7200000068007400740070003a002f002f007700770077002e0069007300690073002e00760061006e00640065007200620069006c0074002e006500640075002f00500072006f006a0065006300740073002f006700
+6d0065002f000000795881f43b1d7f48af2c825dc485276300000000a5ab0000}}}{\fldrslt {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \cs17\f2\fs20\ul\cf2\insrsid7673872 http://www.isis.vanderbilt.edu/Projects/gme/}}}\sectd \sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 
+\af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par The TAO IDL Compiler is included with the ACE+TAO+CIAO distribution. Download and other information can be found at 
+\par  
+\par }{\field{\*\fldinst {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 HYPERLINK "http://www.cs.wustl.edu/~schmidt/"}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872\charrsid12941887 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b5c00000068007400740070003a002f002f007700770077002e00630073002e0077007500730074006c002e006500640075002f007e007300630068006d006900640074002f000000795881f43b1d7f48af2c825dc485
+276300000000a5ab0000}}}{\fldrslt {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \cs17\f2\fs20\ul\cf2\insrsid7673872 http://www.cs.wustl.edu/~schmidt/}}}\sectd \sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872   
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 The back end of }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+uses the Xerces library to construct a DOM tree from the AST, then traverses the DOM tree to generate the XML document. For documentation and download information about Xerces, see 
+\par  
+\par }{\field{\*\fldinst {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 HYPERLINK "http://xml.apache.org/xerces-c/"}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872\charrsid12941887 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b5800000068007400740070003a002f002f0078006d006c002e006100700061006300680065002e006f00720067002f007800650072006300650073002d0063002f000000795881f43b1d7f48af2c825dc48527630000
+0000a5ab0000}}}{\fldrslt {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \cs17\f2\fs20\ul\cf2\insrsid7673872 http://xml.apache.org/xerces-c/}}}\sectd \sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  }{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872  
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 Compiling}{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par  
+\par }\pard \ltrpar\s16\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Although GME may be run only on Windows platforms, }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ is portable to any platform supported by both ACE+TAO+CIAO and Xerces, including but not limited to Windwos and most flavors of Unix/Linux. A makefile or Windows project can be generated using Makefile Project Creator (MPC) developed by Object Computing 
+Incorporated (OCI). MPC is included in the ACE+TAO+CIAO distribution, and documentation can be found in the ACE_wrappers/MPC directory. More information about MPC can be found at the OCI website: 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }{\field{\*\fldinst {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 HYPERLINK "http://ociweb.com/"}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872\charrsid12941887 {\*\datafield 
+00d0c9ea79f9bace118c8200aa004ba90b0200000003000000e0c9ea79f9bace118c8200aa004ba90b3e00000068007400740070003a002f002f006f00630069007700650062002e0063006f006d002f000000795881f43b1d7f48af2c825dc485276300000000a5ab0000}}}{\fldrslt {\rtlch\fcs1 \af2\afs20 
+\ltrch\fcs0 \cs17\f2\fs20\ul\cf2\insrsid7673872 http://ociweb.com}}}\sectd \sbknone\linex0\sectdefaultcl\sftnbj {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par  
+\par An .mpc file for }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  is included in the same directory as this document. This file assumes that some environment variables have been set: 
+\par  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls1\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 ACE_ROOT - ACE_wrappers (root directory of the ACE+TAO+CIAO distribution 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 TAO_ROOT - ACE_wrappers/TAO 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 XERCESCROOT - path to the Xerces library on your machine 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+As mentioned above, }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ uses the TAO IDL Compiler parsing engine, and so depends on the that compiler's front end library. The .mpc file and all source files for the TAO IDL Compiler can be found in TAO_ROOT/TAO_IDL. This front end library in turn depends on the ACE library. Th
+e .mpc file and source files for the ACE library can be found in ACE_ROOT/ace. There are 
+\par many ways that all these things may be built and many ways to combine the builds with other projects, but a typical scenario in a fresh workspace might look like this: 
+\par  
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 cd $(ACE_ROOT)/ace 
+\par mwc.pl 
+\par make -f GNUMakefile.ACE 
+\par cd ../TAO/TAO_IDL 
+\par mwc.pl 
+\par make -f GNUMakefile.TAO_IDL_FE 
+\par cd $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLImporter 
+\par mwc.pl 
+\par make 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par The }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  executable is created in COSMIC_ROOT/bin, so you may want to put that directory in your path for convenience. 
+\par  
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 Command Line Options }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Since it uses the TAO IDL Compiler front end, }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml }{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 supports all command line options pertaining to that front end. Typing 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 idl_to_picml \endash u 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par will output a usage message with all command line options listed along with a brief description of each. For more information about the IDL compiler options, see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 TAO_ROOT/docs/compiler.html}{\rtlch\fcs1 
+\af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par  
+\par There are two command line options specific to }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 : 
+\par  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls2\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 
+\f2\fs20\insrsid7673872 -x <filename>}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  Sets the name of the output XML file which, for GME import, has the extension .xme. Do not include the extension in the file name \endash 
+ it is added automatically. If this option is not used, the default file name will be "PICML_default_xme_file.xme". 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 -i <filename> }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Sets the name of the (optional) input XML file exported from a PICML model. Unlike the }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 \endash x}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ option above, the extension must be included in }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 filename}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  for this option. If this option is used, IDL files imported to create the original 
+PICML model can be reprocessed and the resulting XML file, containing the corresponding additions, removals, and changes, can be imported into GME. See }{\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 Re-importing Modified IDL Files}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872  below for more information about this feature. 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 -m <directory path>}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  Specifies the path to the file }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 mga.dtd}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , used to parse the input XML file if the }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 \endash i}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ option is used. The default value of this path is set to GME_ROOT/bin. The option needs to be used only if }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 mga.dtd}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  is in some other directory. 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 -o <directory>}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  Sets the (rela
+tive or absolute) path to the directory where the XML file will be generated. The default directory is the one from which }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  is executed. 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 -r <directory>}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Can be passed instead of a list of IDL files. If this option is used, }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  will process all IDL files found in }{\rtlch\fcs1 \af2\afs20 
+\ltrch\fcs0 \f2\fs20\insrsid7673872 directory}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and all of its subdirectories. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 
+\f2\fs20\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 
+Imported Model Features }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Each imported PICML model will contain a folder called PredefinedTypes, containing all the PICML model elements representing basic types. These types can
+not be created in a model, since in a sense they already exist, but they may be referred to by other model elements, so they are placed in this folder in every PICML model. PICML model elements corresponding to IDL declarations that refer to basic types w
+ill refer to elements in the PredefinedTypes folder according to the IDL to PICML mapping for basic types, described in the mapping section below. 
+\par  All PICML model elements corresponding to IDL declarations appear in a folder called InterfaceDefinitions. T
+he user may rename this folder if desired, and any subsequent new model elements added directly in the graphical modeling environment may go into the same folder, or into any number of other (possibly also renamed) InterfaceDefinitions folders that may be
+ inserted in the model. 
+\par  If the }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 \endash i }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 option is not used with }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 
+\f2\fs20\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 (in other words, if a new PICML model is being created from IDL files), the imported PICML model will also contain the following folders: 
+\par  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls3\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 ComponentBuild 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ComponentImplementations 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ComponentPackages 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ComponentTypes 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 DeploymentPlans 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ImplementationArtifacts 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 PackageConfigurations 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Targets 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 TopLevelPackages 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+which must be filled in with the appropriate package, assembly, implementation and deployment elements in order to have a complete and usable PICML model. Most of these folder will be empty, but ComponentTypes, ComponentImplementations, and Implementation
+Artifacts will have default elements added for each IDL component in the processed IDL files. These default elements can be renamed and/or modified by the modeler. 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 Re-importing Modified IDL Files }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 As mentioned above, the }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 \endash i <filename>}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  option will input the XML file }{\rtlch\fcs1 
+\af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 filename}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, representing a PICML model, into the IDL importer and compare it with a set of modified IDL files, passed in either individually on the command line, or by use of the }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 \endash r <directory>}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  option. If the XML file was exported from a PICML 
+model, all changes made to the model will be after the original import from IDL files will be preserved (except when relevant IDL declarations have been removed from the modified files, as described below). }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\ul\insrsid7673872 The IDL importer will output (to }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\ul\insrsid7673872 stdout}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\ul\insrsid7673872 ) an informative diagnostic for each addition, removal, or substitution it makes}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . The following subsections provide details on the behavior of this feature, broken down by the three broad categories of possible }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid12941887 m}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872 odifications.}{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 Additions to IDL Files }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 This is th
+e simplest case, in which the corresponding additions will be made to the InterfaceDefinitions folder, along with default additions to the ComponentTypes, ComponentImplementations, and ImplementationArtifacts folders, as described in the previous section,
+ for each added IDL component declaration (if any). 
+\par  
+\par }{\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 Removals from IDL Files }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls4\rin0\lin720\itap0 {\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 \bullet  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Within the InterfaceDefinitions folder, model elements corresponding to the removed IDL declarations will be removed. 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Throughout the entire PICML model, any elements that
+ reference, either directly or indirectly, elements removed as described in the bullet above, will also be removed. 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Throughout the entire PICML model, any GME Connections that have an endpoint at a PICML model element removed as described in the previous bullets will also be removed. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 It\rquote 
+s possible that some of the actions described above may leave the PICML model in an inconsistent state, that is, a check of all constraints will reveal violations. This behavior exists intentionally, motivated by the 
+fact that it is often impossible to determine the modeler\rquote 
+s intention when modifications to IDL file are re-imported. The output of the IDL importer in these cases is determined by what will most likely require the least amount of work for the modeler. Here are a couple of examples: 
+\par  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls5\rin0\lin720\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 A GME Connection is removed because one of its endpoints was removed, and the other endpoint requires this type of Connection, which is now missing. On one hand, suppose the modeler int
+ends to replace the Connection, between the remaining endpoint and a new endpoint (which may have been added automatically as a result of an IDL addition) \endash 
+ a matter of 3 mouse clicks in GME. If the IDL importer had instead removed both endpoints of the Co
+nnection, the modeler could be faced with replacing many more PICML elements, since the removal of the second endpoint may itself have caused the removal of other PICML elements via a \'93domino effect\'94
+. On the other hand, if the removed Connection is not to 
+be replaced, it is a much simpler matter to remove the remaining endpoint, and any other PICML elements that reference or connect to it, than it would be to replace all these elements by hand if they were removed automatically. 
+\par }\pard \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+A Component instance is
+ removed because the corresponding Component type was removed from InterfaceDefinitions. In a correct PICML model, there must also be a MonolithicImplementation whose name matches either the Component instance name or type name. Again, suppose the modeler
+\rquote 
+s intention is to replace the removed Component with another type added to the modified IDL files. One or more instances of the new type will have to be created, which would have to be done in any case. If these new instance names are the same as the remo
+v
+ed ones, nothing further needs to be done. In the worst case, the modeler will have to rename some MonolithicImplementations to match either the new instance or type names. On the other hand, if the IDL importer had automatically removed the MonolithicImp
+lementation, all its elements would have to be recreated by hand. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+In general, with a given set of modifications to IDL files, given a choice between requiring the modeler to remove or rename \'93dangling\'94 elements to satisfy constraint checking in one scen
+ario, or recreating these same elements by hand in another scenario, we have chosen the former alternative since it requires fewer steps for the modeler. Using the GME constraint checker is a convenient way to make sure no loose ends are overlooked. 
+
+\par  
+\par }{\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 Substitutions in IDL Files }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls6\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 
+\b\f0\insrsid7673872 To Identifiers}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  An identifier, in IDL, can be given to a type declaration, a member, or an operation parameter. In all of these cases, it is the identifier that determines uniqueness, 
+since in a given scope there may be any number of repeated IDL types as long as the identifiers are unique. For this reason, a change in an IDL identifier is treated by the IDL importer as the removal of the construct named by the original identifier and 
+the addition of a new one of the same type. While it may be possible for the IDL importer to \'93drill down\'94
+ through arbitrarily many levels of scope to determine that the type associated with some new identifier is identical to one associated with an identifi
+er in the original IDL file, doing so might require a huge amount of time and resources, and in any case may not reflect the intention of the modeler. 
+\par }\pard \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 
+To Type References}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li1440\ri0\nowidctlpar\wrapdefault\faauto\ls6\ilvl1\rin0\lin1440\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 
+\b\f0\insrsid7673872 With Identifier }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 This case includes IDL members, attributes, parameters, constants, typedefs, ports and union discriminators, where the \'93type\'94
+ associated with the identifier is actually a reference to a previously declared type or a basic predefined type. These use cases are all represented in a PICML model by a GME Reference, and the \'93referred\'94
+ parts of these References (all in the InterfaceDefinitions folder) will be changed automatically by the IDL importer. In some cases, constraint violations may be introduced, for example if there is an existing connection between Component po
+rts which become type mismatched. Again, the modeler may conveniently use the constraint checker to quickly locate places in the model that need to be updated. While it is possible for the IDL importer to detect port connections that have become type mism
+atched, we feel it\rquote s better to leave the connection than to remove it, since the latter course will lead to changed behavior in a Component assembly and, without constraint violation messages, may be unnoticed by the modeler. 
+\par }\pard \ltrpar\s16\ql \li1080\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1080\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li1440\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1440\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 
+Without Identifier}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  This ca
+se includes operation exceptions, attribute exceptions, inheritance lists and supported interface lists. Since there is no identifier to serve as a point of commonality, the IDL importer treats these use cases as removal/addition pairs of changes. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls6\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 
+\b\f0\insrsid7673872 To Directives}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  This case includes the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ directives plus the IDL keywords introduced to replace some of these directives: 
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li1440\ri0\nowidctlpar\wrapdefault\faauto\ls6\ilvl1\rin0\lin1440\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 #pragma prefix 
+\par {\listtext\tab}o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma ID 
+\par {\listtext\tab}o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma version 
+\par {\listtext\tab}o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 typeprefix 
+\par {\listtext\tab}o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 typeid 
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\ls6\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 The values of these things are represented in a PI
+CML model by GME Attributes, and the             IDL importer will automatically change these values. These GME Attributes are always present in any PICML model element that may have them, the default value for each being the empty string. Note that these
+ default values differ from those in C++ or Java code generated from IDL, where the default version is \'931.0\'94
+ and the default type id is the repository id. Changes to these values made by the IDL importer will not affect anything else in a PICML model. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 R
+elocations in IDL Files }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par IDL declarations that are moved within the same scope produce no changes in a PICML model when re-imported, since GME does not capture any ordering information within a scope. If an IDL declaration is moved to a different scope, 
+however, it will be handled as a removal/addition pair of changes. Relocation to a different opening of the same IDL module, while considered movement within the same scope by IDL, will result in a removal/addition pair of changes in the PICML model, sinc
+e each opening of an IDL module is mapped to its own PICML Package model element. 
+\par  
+\par }{\rtlch\fcs1 \ab\af1 \ltrch\fcs0 \b\insrsid7673872 Special Cases }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 
+\par }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls7\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 
+\b\f0\insrsid7673872 Valuetype/Eventtype Member Visibility}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  Public visibility is the default in PICML, so public members of ValueObject and Event in PICML have nothing special
+ about them. Private members, however, are represented by a PrivateFlag model element, which is a GME Atom, and a GME Connection called MakeMemberPrivate to the member in question. Changing a member from public to private (or vice versa) will result in th
+e addition (or removal) of the corresponding Atom and Connection 
+\par }\pard \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 
+Union Case Label Value}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  This construct is treated the same as an identifier by the IDL importer, and thus result in a removal/addition pair of changes when the case label value is changed.
+ Addition or removal of a case label in IDL, even without corresponding addition or removal of the associated union member (IDL allows union members to have multiple case labels), will result in the addition or removal of a PICML Label element (GME Atom) 
+and an associated LabelConnection. The Label\rquote s name in the PICML model will be the same as the case label value in IDL. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 
+Usage Notes}{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }\pard \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0\pararsid12941887 {\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872 \bullet  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Command line arguments that require a subsequent argument will parse correctly whether or not a }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid12941887     }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 space is left between
+ the command line option and the argument. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Command line arguments and file names may appear in any order on the command line. Any string not preceded by a dash and not following a dashed option that requires an argument will be treated as a file name. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+No XML is generated for included IDL files. This means that the closure set of all included IDL files must be passed on the command line. There are 3 exceptions to these inclusions: 
+\par }\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\ls8\ilvl1\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 
+orb.idl - a special case, even in the CORBA world, containing declarations already implemented in the ORB, hence even IDL compilers don't generate the contents of this file. The only thing in this file that can be legally referenced in applic
+ation IDL files is CORBA::TypeCode, which is modeled as a predefined type called TypeEncoding in PICML. 
+\par }\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Components.idl - the CCM counterpart of orb.idl and the same explanation applies. There is nothing in this file that can be legally referenced in application IDL. 
+\par }\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+files included by the above - Components.idl is a spec-defined IDL file that in CIAO is just a shell for  several other IDL files, none of which contain anything that may be legally referenced in application IDL. Both files above also 
+contain .pidl (pseudo IDL) files. These are peculiar to TAO. The unique extension is used to designate IDL files found in TAO_ROOT/tao that are used to generate parts of the ORB implementation. With the exception of the spec-defined sequences of basic typ
+es, there is nothing in these files that may be legally referenced in application IDL. For a detailed discussion of how sequences of basic types are handled by }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 , see the next section in this document. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls8\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 Of course, it is always possible that none of the contents of a given included IDL file will be referenced by any other IDL file in the project, and in such a case, it can be left out of the list of files passed to }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and the resulting .xme file can be imported without error, but this
+ use case begs the question of why that particular IDL file was included in the existing project in the first place. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+A set of IDL files may be placed on the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ command line in any order. The order of the IDL files will dictate the order of elements appearing in the generated XML file, but not the order in which the corresponding elements appear in the Model Browser of GME. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+It is the responsibility of the user to make sure that all include paths other than the current directory, even for included IDL files not required on the command  line, be passed to}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid12941887  }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid12941887  as a -}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 I option. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid12941887 However, if the \endash r option is used, 
+an include path will be added automatically for each directory encountered.}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0\pararsid7673872 {\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid7673872 
+If the directory passed with a -o option does not exist, it will not be created, but an error message output instead. This behavior may change in future versions of the TAO IDL compiler and }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \insrsid7673872 .}{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872\charrsid7673872 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 
+\f2\fs20\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 
+IDL Issues }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls9\rin0\lin720\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 Some IDL syntax deprecated by the OMG is not supported by }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 : 
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\ls9\ilvl1\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 Anonymous sequences and arrays. It is preferable to typedef arrays and sequences before using them as member types, attribute types or operation parameter types. 
+\par }\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+Members that are also declarations, for example: 
+\par }\pard \ltrpar\s16\ql \li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \li1800\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1800\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 struct foo  
+\par \{ 
+\par    string str_member; 
+\par   
+\par    enum bar  
+\par    \{ 
+\par }\pard \ltrpar\s16\ql \li2520\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin2520\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872 ONE, 
+\par TWO, 
+\par THREE 
+\par }\pard \ltrpar\s16\ql \li1800\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin1800\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872    \} e_member; 
+\par \}; 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls9\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 Some IDL features are not supported by the TAO IDL Compiler, and so cannot be supported by }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 : 
+\par }\pard \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li360\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin360\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872   
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li1080\ri0\nowidctlpar\wrapdefault\faauto\ls10\rin0\lin1080\itap0 {\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 Boxed valuetypes 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Custom valuetypes 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Truncatable valuetype inheritance 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Fixed point types 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Union discriminators or type char and wchar  
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 The }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 import}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  keyword 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 The }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 native}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  keyword 
+\par {\listtext\tab}}{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 o}{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 The }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 context}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872  keyword  
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872   
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls11\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 The CORBA specification defines several sequences of basic types - }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 octet, boolean, string, any}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, etc. - that must therefore be included in ORB source files. In TAO, these types are generated from IDL contained in files with the extension }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 .pidl}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, contained in the same directories as ORB source code files. These basic type sequences a
+re also exceptional in that they are the only types declared in spec-defined IDL files that may be legally referenced by application IDL. This special case creates a problem for PICML and for }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}
+{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+. They are too specific to CORBA to be included in the platform-independent PICML modeling language, but they cannot just be ignored, so a suitable mapping must be found from CORBA IDL to PICML for these types, as well as a suitable place in a PICML model
+ to declare them. 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par }\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+IDL sequences and arrays are mapped to the PICML model element called Collection. A Collection is a GME Reference, and it refers to the sequence element type. For each basic type sequence actually referenced in application IDL (which 
+may be a subset of the ones seen through inclusion) }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ generates a Collection at global scope in the first IDL file processed. Each Collection so generated refers to the appropriate PICML model element in the PredefinedTypes folder. References to
+ these sequences in IDL are mapped to some PICML model element type that specializes a GME Reference. This mapping process is reversed when generating IDL from PICML models (see PICML documentation for IDL generation). 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 \f2\fs20\insrsid7673872  
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af2\afs20 \ltrch\fcs0 
+\f2\fs20\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872 
+IDL to PICML Mapping Reference }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af1\afs36 \ltrch\fcs0 \b\fs36\insrsid7673872  }{\rtlch\fcs1 \af1\afs36 \ltrch\fcs0 \fs36\insrsid7673872 
+\par }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 Each IDL file passed on the command line to }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 idl_to_picml}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  maps to a PICML model element called File. A File is the only PICML model element that may be inserted into an InterfaceDefinitions folder. 
+\par }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872  }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+\par }\pard \ltrpar\s16\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 This section contains the specific mappings from IDL t
+ypes and kinds to PICML model elements. The IDL pragma directive, include directive, basic types and other odds and ends are listed first, followed by the remaining IDL keywords in alphabetical order. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 Pragma Directive }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ These are mapped in PICML to GME Attributes appearing in the PICML model elements corresponding to the IDL types that may legally have the particular pragma directive in question. 
+\par Note that }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma prefix}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma ID}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ now overlap with the IDL keywords }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 typeprefix}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 typeid}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 , respectively. Either way they appear in an IDL file, they are mapped to the same thing in PICML. 
+\par  
+\par {\listtext\tab}}\pard \ltrpar\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls12\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 prefix}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  PrefixTag 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 ID}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  SpecifyIdTag 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 version}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  VersionTag 
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 Include Directive }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ If an IDL file includes another IDL file, it is mapped to PICML as a model element called FileRef, which is a reference to the File model element corresponding to the included file. This included IDL file must be passed on the command line to idl_to_picm
+l (subject to the exceptions described in Usage Notes) in the same set of IFL files as the including file. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 Basic Types }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+PICML has model elements representing basic types which are found only in a GME folder of type PredefinedTypes and cannot be added from 
+the Part Browser. References to basic types in IDL files are mapped to the appropriate GME Reference type in PICML, with the appropriate element in the PredefinedTypes folder as the model element referred to. Since it is platform-independent, PICML does n
+ot have an analogue for each and every IDL type, including the basic types. The mapping for IDL basic types is: 
+\par }\pard \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  
+\par {\listtext\tab}}\pard \ltrpar\s16\ql \fi-360\li720\ri0\nowidctlpar\wrapdefault\faauto\ls13\rin0\lin720\itap0 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 \bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 any}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  GenericValue 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 boolean}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  Boolean 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 char}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  Byte 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 double}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  - RealNumber 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 float}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  - RealNumber 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 long}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  LongInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 long doubl}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 e - RealNumber 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 long long}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  - LongInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 Object}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  GenericObject 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 octet}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  Byte 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 short}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  ShortInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 string}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  String 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 TCKind}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  TypeKind 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 TypeCode}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  TypeEncoding 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 unsigned long}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  LongInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 unsigned long long}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  LongInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 unsigned short}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  - ShortInteger 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 ValueBase}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  - GenericValueObject 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 wchar}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  Byte 
+\par {\listtext\tab}\bullet }{\rtlch\fcs1 \af1 \ltrch\fcs0 \insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 wstring}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  String 
+\par }\pard\plain \ltrpar\s15\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af1\afs24\alang1025 \ltrch\fcs0 \f1\fs24\cf1\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\cf0\insrsid7673872 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 Odds and Ends }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  }{\rtlch\fcs1 
+\ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 Bounded string}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 s \endash  String and wstring bound information is not captured in the IDL to PICML mapping  
+\par }\pard \ltrpar\ql \fi720\li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 {\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 Arrays}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  IDL arrays are mapped to the
+ PICML model element called Collection, which is a reference to the model element corresponding to the IDL declaration of the array element type. The dimension of the array is not preserved in PICML models. As noted in the section IDL Issues, anonymous ar
+rays (used as members without a wrapping typedef declaration0 are deprecated by the OMG, and are not supported in the IDL to PICML mapping. 
+\par }{\rtlch\fcs1 \ab\af0 \ltrch\fcs0 \b\f0\insrsid7673872 Return types}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  \endash  Non-void IDL operation return types are represented in PICML by a model element called ReturnType, wh
+ich is a reference to the model element corresponding to the IDL declaration of the type, or to a basic type. An IDL operation with a void return type is represented in PICML by a OnewayOperation or TwowayOperation that contains no ReturnType instance. 
+
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 abstract }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, an interface, valuetype or eventtype may be abstract. In PICML, the corresponding model elements Object, ValueObject, and Event each have a GME attribute called \'93abstract\'94, which is a Boolean GME attribute and is false by default. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 attribute }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Attribute or, if the attribute is }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 readonly, }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+to a PICML model element called ReadonlyAttribute. The type of the IDL attribute is contained inside the Attribute or ReadonlyAttribute, in a PICML model element called A
+ttributeMember, which is a reference to the model element representing the declaration of the type, or the basic type. If the IDL attribute has any associated }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 getraises}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  or }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 setraises }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 declarations, they appear in PICML (also contained by the Attribute or Rea
+donlyAttribute) as GetException or SetException, which are references to PICML Exception model elements (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 exception}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 case }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Begins a union label in IDL. In PICML, IDL unions (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 union}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) are represented by SwitchedAggregate, which contains a Discriminator (see }{\rtlch\fcs1 
+\af2 \ltrch\fcs0 \f2\insrsid7673872 switch}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+) and one or more elements called Member. In a SwitchedAggregate, each Member must be connected to one or more PICML model elements called Labels. The name of each Label is the stringified value of the IDL case label value. A default case in
+ IDL will map to a Label with the name \'93default\'94. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 component }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Component. For mappings of component-related types, see the relevant IDL keyword entry in this list. In IDL, a component must be managed by at least one hom
+e declaration, whereas in PICML a Component may have no connection to any ComponentFactory (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+). As with IDL a Component may optionally inherit from a single parent Component, by containing a PICML model element called Inherits, which is a reference to the model element corresponding to the IDL declaration of the base }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+. Also as with IDL, a Component may optionally support any number of Objects, by containing model elements called Supports, which are references to model elements corresponding to the IDL declarations of the supported interfaces. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 const }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Constant, which has an attribute called \'93value\'94 which contains the stringified representation of the IDL constant\rquote s value. The PICML model element Constant i
+s a GME Reference, and it refers to some other element in the PICML model which represents the type of the constant, which may be either a basic type or an enumerated type. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 consumes }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  In IDL this re
+presents an event sink in a component. It maps in PICML to a model element called InEventPort, which is a reference, referring to the model element corresponding to the IDL eventtype which is consumed. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 context }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ No analogue in PICML. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 custom }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ No analogue in PICML. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 default }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Label that has the name \'93default\'94 (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 case}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 exception }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ IDL exceptions map to PICML model elements called Exception. Like IDL exceptions, PICML Exceptions can have zero or more membe
+rs. In PICML, these model elements are called Members, and they are references to the model elements corresponding to the IDL declarations of the member types. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 emits }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL this represents an event source in a component, an event source that sends to a single subscriber (as opposed to }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 publishes}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, which represents an event source sending to any number of subscribers). An event source is represented in PICML by a model element called OutEventPort., which has a Boolean attribute called \'93single_destination\'94. 
+The IDL to PICML mapping sets this attribute to TRUE when mapping an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 emits}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration. The attribute is FALSE by default. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 enum }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ The mapping of an IDL enum to PICML is straightforward. The corresponding PICML model element is called Enum. An Enum contains one or more PICML model elements called EnumValue. The name of an EnumValue corresponds to the name of an IDL enum memberf. 
+
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 eventtype }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Event. For mappings of eventtype-related types, see the relevant IDL keyword entry in this list. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 factory }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this declaration can be found either in a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  or a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 . This is correspondingly true in PICML as well, and in PICML is called FactoryOperation. Also as with an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 factory}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, a FactoryOperation is considered to be a specialized form of an operation., where the return type is implicit and only IN parameters are allowed (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 parameter}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 finder }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this is another form of specialized operation, found only in a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration. The corresponding PICML model eleme
+nt is called LookupOperation, and can be found only contained in a ComponentFactory (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). Like }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 
+factory}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and FactoryOperation, }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 finder}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ and LookupOperation have an implicit return type and may take only IN parameters, if any. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 fixed }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  No analogue in PICM
+L. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 getraises }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Mapped to a PICML model element called GetException, which is a reference to the Exception model element corresponding to the IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 exception}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration. 
+
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 home }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ A component home in IDL maps to a PICML model element called ComponentFactory. ComponentFactory has the same semantics as an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+, including the constraint that it must manage exactly one Component, although in PICML, a Component need not always be managed by a ComponentFactory (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 ). As with IDL, a ComponentFactory may optionally inherit from a single ComponentFactory, by containing a PICML model element called Inherits, which is a reference to the model element corresponding to the IDL declaration of the base }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par Also as with IDL, a ComponentFactory may support any number of Objects (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+), by containing PICML model elements called Supports, which are references to the model element corresponding to the IDL declaration of the supported interfaces. Finally, again as with IDL, a ComponentFactory may be associa
+ted with a key that assists in looking up the managed component in a database or repository. In IDL the keyword is }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 primarykey}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and refers to a }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . A PICML ComponentFactory may optionally contain a single model element called LookupKey, which ia a ref
+erence to the ValueObject model element corresponding to the IDL declaration of the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 import }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ No analogue in PICML. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 in }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL this keyword qualifies an operation parameter. PICML has 3 types of operation parameters, called InParameter, InoutP
+arameter, and OutParameter, to correspond to the 3 IDL operation parameter qualifiers. OnewayOperation, TwowayOperation, FactoryOperation and LookupOperation model elements may contain zero or more of these as circumstances and constraints dictate. 
+
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 inout }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  See }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 in}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 interface }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Object. This model element has two attributes, called \'93abstract\'94 and \'93local\'94 corresponding to the similar IDL keywords that may precede }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+. As with IDL, an Object may inherit from any number of other Objects. In PICML this is represented by the containment, in Object, of model elements called Inherits, which are references to the model elements corresponding to the IDL declarations of the p
+arent interfaces. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 local }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL this keyword may qualify an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration. In PICML, an Object (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) has a Boolean GME attribute called \'93abstract\'94 to indicate locality constraint. The default value for this attribute is FALSE. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 manages }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this keyword represents the relationship between a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  type and a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872  type. In PICML, this relationship is represented by a connection between a ComponentFactory (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+) and a Component (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). However, if the Component does not
+ appear in the model in the same scope as the ComponentFactory, an additional model element called a ComopnentRef (which is a reference to a Component) will be added to the ComponentFactory\rquote 
+s scope, and the connection will be shown between the ComponentFactory and the ComponentRef, 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 module }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Maps to a PICML model element called Package. As with IDL modules, Packages can be nested, and the same Package name may appear more than once in its scope (corresponding to a reopened IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 module}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 multiple }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  This IDL 
+keyword qualifies a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 uses}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration, indicating that multiple connections may be made to this component port. In PICML, the model element representing a }
+{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 uses}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  port is called RequiredRequestPort (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 uses}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+), and this model element has a Boolean GME attribute called \'93multiple_connections\'94 to store this information. The default value of this attribute is FALSE. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 native }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ No analogue in PICML. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 oneway }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword qualifies an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 operation}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , indicating that no reply is expected from this type of request, and implying that the return type is }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 void}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , that there are only IN parameters, if any, and that the operation may raise no user-defined }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 exception
+}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . PICML represents these semantics with two model elements for operations, TwowayOperation and OnewayOperation. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 out }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  See }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 in}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 primarykey }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this keyword indicates a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  that may be used by a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  to look up a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  in a database or some other kind of persistent storage. A PICML ComponentFactory (see }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) may likewise contain a model element called LookupKey, which is a reference to the ValueObject (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) corresponding to the IDL declaration of the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  used as a }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 primarykey}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 . 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 private }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword qualifies the member of a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  or }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 . A PICML ValueObject (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) or Event (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872 ) contains Member model elements that may each optionally be connected to a single model element called PrivateFlag. ValueObject and Event Members that are not connected to a PrivateFlag correspond to public }{\rtlch\fcs1 
+\af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  members. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 provides }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This type of IDL component port is represented in PICML by a model element called ProvidedRequestPort. It is a reference to the Object (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+) corresponding to the IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  that implements the port. It is legal in IDL for this kind of port to be of type }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 Object, }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 in which case the PICML model element\rquote s reference would be to GenericObject in the PredefinedTypes folder (see the section Basic Types above). 
+\par  
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 public }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword qualified the members of }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  and }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 . The corresponding PICML Members (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872 ) are public by default (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 private}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 publishes }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword denotes a }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  port that is an event source. In PICML, a Component (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}
+{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) can contain zero or more model elements called OutEventPort. These model elements may also represent an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 emits}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  declaration, if the OutEventPort\rquote s GME Boolean attribute \'93single_destination\'94 (FALSE by default) is set to TRUE. An OutEventPort is a reference to the Event model element corresponding to the IDL }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration that implements the port. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 raises }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this keyword associates exceptions with an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 operation}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 factory}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  or }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 readonly}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+. In PICML, this keyword maps to a model element called ExceptionRef for TwowayOperations, OnewayOperations, (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 oneway}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) FactoryOperations (see }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 factory}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) and LookupOperations (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 finder}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+), and to a model element called GetExceptions (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) for Rea
+donlyAttributes. Both model elements are references to the Exception corresponding to the IDL declaration of the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 exception}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  the operation may raise. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 readonly }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword may qualify an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  declaration. In PICML, these two keywords together map to a model element called ReadonlyAttribute (see }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+). Like an Attribute, a ReadonlyAttribute contains a single AttributeMember that is a reference to the model element corresponding to the IDL attribute\rquote s type, and zero or more GetException references (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 raises}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 setraises }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This is an IDL keyword that refers to one or more exceptions that may be thrown when executing the mutator version of the operation implied by the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 attribute}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872  declaration. In PICML, a model element called SetExceptions fulfills this role, and it refers to the Exception model elements corresponding to the IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 exception}{\rtlch\fcs1 \af0 
+\ltrch\fcs0 \f0\insrsid7673872  declaration (see getraises). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 sequence }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ The OMG deprecates anonymous sequences (used without a typedef) and anonymous sequences are not supported in the IDL to PICML mapping. An IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 sequence}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ typedef is represented in PICML by a model element called a Collection (implying that it contains things of one type), which is a reference to the model element corresponding to the declaration of the IDL sequences\rquote s
+ base type, or to a basic type, which has no declaration in IDL. Bounded IDL sequences are mapped to PICML the same as unbounded ones \endash  the bound information is not preserved. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 struct }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ An IDL struct is represented in PICML by a model element called Aggregate (implying that it contains things of dissimilar type). An Aggregate may contain one or more model elements called a Member, which is a reference to the actual member type.  
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 supports }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  In IDL, a }{
+\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  or home can support the operations of other interfaces. PICML has a model element called Supports, that may be contained in its corresponding model elements \endash 
+ ValueObject, Event, Component and ComponentFactory to represent the same semantics. The Supports model element is a reference to the Object corresponding to the declaration of the IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  that is supported (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 home}{\rtlch\fcs1 
+\af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 eventtype}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 switch }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ In IDL, this keyword is followed by the type of the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 union}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  discriminator. In PICML, an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 union}{
+\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  is represented by a model element called a SwitchedAggregate (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 union}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+), implying that the model element is similar to an Aggregate (representing an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 struct}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) but with only a single member \'93active\'94
+ at any given time. A SwitchedAggregate must contain exactly one model element called Discriminator, which is a reference to the model element corresponding to the IDL type used by the discrimiator. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 truncatable }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ No analogue in PICML. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 typedef }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ This IDL keyword is represented in PICML by a model element called Alias, which is a reference to the model element corresponding to the aliased IDL type. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 typeid }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ An IDL keyword that has been recently added to give official status to the replacement of the repository id with something other than what would normally be created by the IDL compiler, an activity also described by the older }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 #pragma ID. }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+The appearance of either one of these in an IDL file will set the SpecifyIdTag GME string attribute in the appropriate model element (see the Pragma Directives section above). The default value of this attribute is the empty string. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 typeprefix }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ An IDL keyword that has been recently added to give official status to the repository id prefixing activity that is also indicated by the older }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 #pragma prefix}{\rtlch\fcs1 \af0 \ltrch\fcs0 
+\f0\insrsid7673872 . The appearance of either one of these in an IDL file will set the PrefixTag GEM string attribute (see the Pragma Directives section above). The default value of thies attribute is the empty string. 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 union }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Represented in PICML by a model element called SwitchedAggregate, implying similarity to the model element Aggregate (see struct) but with a mechanism to store (and send over the wire) a single member, designated \'93active\'94
+ at any given time. The active member is indicated by the value of a Discriminator (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 switch}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ) model elem
+ent contained in the SwitchedAggregate. As with IDL, PICML supports multiple case labels and a default case (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 label}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 , }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 default}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 uses }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Represented in PICML by a model element called RequiredRequestPort, which is contained in a Component (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 component}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ),
+ and which is a reference to the Object model element corresponding to the IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  implementing the port. If the }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 uses}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  keyword in IDL is followed by the }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 multiple}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  keyword (see }{\rtlch\fcs1 \af2 
+\ltrch\fcs0 \f2\insrsid7673872 multiple}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ), the RequiredRequestPort\rquote s GME Boolean attribute \'93multiple_connections\'94 will be set to TRUE \endash 
+ the default value is FALSE. It is legal in IDL for this kind of port to be of type }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 Object, }{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 in which case the PICML model element\rquote 
+s reference would be to GenericObject in the PredefinedTypes folder (see the section Basic Types above). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 valuetype }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ Represented in PICML by a model element called ValueObject, implying that it has some of the semantics of a PICML Object (as an IDL }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 valuetype}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 
+ has some of the semantics of an }{\rtlch\fcs1 \af2 \ltrch\fcs0 \f2\insrsid7673872 interface}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ), but with additional semantics concerning the state.
+ A ValueObject may contain a single Inherits model element, which is a reference to a model element corresponding to the base class valuetype in IDL. A ValueObject model element may also contain Supports model elements (see }{\rtlch\fcs1 \af2 \ltrch\fcs0 
+\f2\insrsid7673872 supports}{\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872 ). 
+\par }\pard\plain \ltrpar\s3\ql \li0\ri0\sb240\sa60\nowidctlpar\wrapdefault\faauto\outlinelevel2\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \ab\af1\afs26 \ltrch\fcs0 
+\b\fs26\insrsid7673872 void }{\rtlch\fcs1 \af1\afs26 \ltrch\fcs0 \fs26\insrsid7673872 
+\par }\pard\plain \ltrpar\s16\ql \li0\ri0\nowidctlpar\wrapdefault\faauto\rin0\lin0\itap0 \rtlch\fcs1 \af0\afs24\alang1025 \ltrch\fcs0 \f1\fs24\lang1033\langfe1033\cgrid\langnp1033\langfenp1033 {\rtlch\fcs1 \af0 \ltrch\fcs0 \f0\insrsid7673872  If an IDL ope
+ration has a void return type, the corresponding PICML OnewayOperation or TwowayOperation will simply contain no ReturnType model element (see the Odds and Ends section above). 
+\par }}

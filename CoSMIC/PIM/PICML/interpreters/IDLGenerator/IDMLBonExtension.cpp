@@ -417,6 +417,15 @@ std::set<Member> ExceptionImpl::getMember()
 //*******************************************************************
 //
 //*******************************************************************
+std::string FileImpl::getpath()
+{
+	return FCOImpl::getAttribute("path")->getStringValue();
+}
+
+
+//*******************************************************************
+//
+//*******************************************************************
 bool FileImpl::include_components_idl () const
 {
   return this->include_components_idl_;

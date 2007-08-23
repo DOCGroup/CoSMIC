@@ -1,3 +1,22 @@
+Thu Aug 23 20:46:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+        
+          Changed creation of output filestream to use the new 'path'
+          attribute associate with File elements, to recreate any
+          direcory structure that may have existed when IDL files
+          were imported into PICML.
+          
+        * PIM.PICML/docs/Interface_Definitions.doc:
+        * PIM.PICML/docs/Interface_Definitions.pdf:
+        * PIM.PICML/docs/Importing_IDL.doc:
+        * PIM.PICML/docs/Importing_IDL.pdf:
+        
+          Updated documentation to reflect the new GME attribute in
+          the metamodel and the new behavior of the IDL generator.
+
 Thu Aug 23 18:39:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xml:
