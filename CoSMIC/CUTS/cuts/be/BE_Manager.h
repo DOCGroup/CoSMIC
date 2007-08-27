@@ -32,9 +32,6 @@ namespace PICML
 class CUTS_BE_Export CUTS_BE_Manager
 {
 public:
-  /// Destructor.
-  virtual ~CUTS_BE_Manager (void);
-
   /**
    * Handle the root folder. This actually causes the manager
    * to begin its execution.
@@ -43,9 +40,15 @@ public:
    */
   virtual bool handle (const PICML::RootFolder & root) = 0;
 
+  /// Close the manager and release its resources.
+  virtual void close (void);
+
 protected:
   /// Default constructor.
   CUTS_BE_Manager (void);
+
+  /// Destructor.
+  virtual ~CUTS_BE_Manager (void);
 };
 
 #if defined (__CUTS_INLINE__)

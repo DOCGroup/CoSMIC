@@ -10,8 +10,11 @@
 #include "cuts/be/CoWorkEr_Generator.h"
 #include "cuts/be/BE_Assembly_Generator.h"
 
+#include "cuts/be/BE_Manager.h"
+#include "cuts/be/BE_Manager_Factory.h"
 #include "cuts/be/BE_Options.h"
-#include "cuts/be/CIAO/CIAO_Manager.h"
+
+#include "cuts/Auto_Functor_T.h"
 
 //
 // dummy function for UDM meta initialization
@@ -19,26 +22,38 @@
 extern void dummy(void);
 
 //
+// repo_
+//
+CUTS_BE_Manager_Factory_Repo CUdmApp::repo_;
+
+//
 // Initialize
 //
-int CUdmApp::Initialize()
+int CUdmApp::Initialize (void)
 {
-  return 0;
+  // To add a new "static" backend, just add the module's name
+  // to this loading list.
+  bool retval = CUdmApp::repo_.load ("CUTS_BE_CIAO");
+  retval &= CUdmApp::repo_.load ("CUTS_BE_Natural_Lang");
+
+  return retval ? 0 : -1;
 }
 
 //
 // UdmMain
 //
-void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
-                      Udm::Object focusObject,
-                      set <Udm::Object> selectedObjects,
-                      long param)
+void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,
+                       Udm::Object focusObject,
+                       set <Udm::Object> selectedObjects,
+                       long param)
 {
   // Displaay the main dialog and initialize it with the
   // current backend options.
-  CWnd * parent = ::AfxGetMainWnd ();
   CUTS_BE_Options * options = CUTS_BE_OPTIONS ();
-  Main_Dialog dialog (options, parent);
+
+  Main_Dialog dialog (options,
+                      CUdmApp::repo_,
+                      ::AfxGetMainWnd ());
 
   if (dialog.DoModal () == IDCANCEL)
     return;
@@ -49,7 +64,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
 
   std::string message;
 
-  switch (CUTS_BE_OPTIONS ()->option_)
+  switch (options->option_)
   {
   case CUTS_BE_Options::OPT_GENERATE_MODELS:
     {
@@ -80,13 +95,36 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
     {
       // Initialize the backend options. Eventually, the user will
       // be able to set these via a dialog.
-      CUTS_BE_OPTIONS ()->exec_suffix_  = "_exec";
+      options->exec_suffix_  = "_exec";
 
-      // Create a CIAO manager and pass it the root element.
-      CIAO_BE_Manager manager;
-      manager.handle (root);
+      CUTS_BE_Manager_Factory * factory = dialog.manager_factory ();
 
-      message = "Successfully generated implementation files";
+      if (factory)
+      {
+        // Create the manager from the factory.
+        CUTS_Auto_Functor_T <CUTS_BE_Manager>
+          manager (factory->create_manager (), &CUTS_BE_Manager::close);
+
+        if (manager.get ())
+        {
+          // Store the manager in an auto functor that calls the
+          // 'close' method once we leave this scope.
+
+          // Let the manager handle the root folder.
+          if (manager->handle (root))
+            message = "Successfully generated implementation files";
+          else
+            message = "Failed to generate implementation files.";
+        }
+        else
+        {
+          message = "Failed to create manager";
+        }
+      }
+      else
+      {
+        message = "CUTS_BE_CIAO is not loaded";
+      }
     }
     break;
   }
@@ -94,7 +132,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,
   // Display a status message to the user.
   if (!message.empty ())
   {
-    ::MessageBox (::GetActiveWindow (),
-                  message.c_str (), "CUTS", MB_ICONINFORMATION | MB_OK);
+    ::AfxMessageBox (message.c_str (),
+                     MB_ICONINFORMATION | MB_OK);
   }
 }

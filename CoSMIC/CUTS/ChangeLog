@@ -1,3 +1,66 @@
+Mon Aug 27 04:27:10 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/Component.rc:
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.h:
+        * MDE/GME/paradigms/PICML/interpreter/Main_Dialog.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.h:
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+        * MDE/GME/paradigms/PICML/interpreter/resource.h:
+
+          Improved the user-interface so end-users can select which
+          backend to use when interpreting the model.
+
+        * cuts/be/BE.h:
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/BE_Manager.h:
+        * cuts/be/BE_Manager.cpp:
+        * cuts/be/BE_Manager_Factory.h:
+        * cuts/be/BE_Manager_Factory.inl:
+        * cuts/be/BE_Manager_Factory.cpp:
+        * cuts/be/BE_Workspace_Generator_T.h:
+        * cuts/be/BE_export.h:
+
+          Extended the backend architecture so a factory object is
+          responsible for creating the contained manager. Also, the
+          factory contains details about the backend generator.
+
+        * cuts/be/CIAO/BE_CIAO.mpc:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Manager.h:
+        * cuts/be/CIAO/CIAO_Manager_Factory.h:
+        * cuts/be/CIAO/CIAO_Manager_Factory.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+
+          Converted the CIAO backend over to the new backend framework
+          where a factory object is responsible for creating the CIAO
+          generator. The factory also contains details about the contained
+          manager.
+
+        * cuts/be/natural-lang/Natural_Lang.mpc:
+        * cuts/be/natural-lang/Natural_Lang_Generators.h:
+        * cuts/be/natural-lang/Natural_Lang_Generators.cpp:
+        * cuts/be/natural-lang/Natural_Lang_Manager.h:
+        * cuts/be/natural-lang/Natural_Lang_Manager_Factory.h:
+        * cuts/be/natural-lang/Natural_Lang_Manager_Factory.cpp:
+
+          Converted the natural langauge backend over to the new backend
+          framework where a factory object is responsible for creating the
+          natural language generator. The factory also contains details
+          about the contained manager.
+
+        * cuts/be/natural-lang/Natural_Lang_Generator.h:
+        * cuts/be/natural-lang/Natural_Lang_Generator.inl:
+        * cuts/be/natural-lang/Natural_Lang_Generator.cpp:
+
+          Removed these files.
+
 Fri Aug 24 13:08:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Generators_T.h:

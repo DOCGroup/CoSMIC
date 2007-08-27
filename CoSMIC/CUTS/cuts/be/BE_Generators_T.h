@@ -17,6 +17,12 @@
 
 #include "PICML/PICML.h"
 
+#if !defined (_MSC_VER) || _MSC_VER > 1310
+#define CUTS_BE_EXPLICIT_SPECIALIZATION template < >
+#else
+#define CUTS_BE_EXPLICIT_SPECIALIZATION
+#endif
+
 //=============================================================================
 /**
  *
@@ -554,7 +560,7 @@ struct CUTS_BE_Branches_Begin_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_Branch_Begin_T
 {
-  static bool generate (void)
+  static bool generate (const std::string & precondition)
     { return false; }
 };
 

@@ -39,8 +39,7 @@ namespace Indentation
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CIAO_Traits_Base :
-  public CUTS_BE_File_Traits
+class CIAO_Traits_Base : public CUTS_BE_File_Traits
 {
 public:
   typedef CUTS_BE_File_Traits _super;

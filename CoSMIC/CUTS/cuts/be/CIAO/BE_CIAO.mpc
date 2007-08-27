@@ -27,6 +27,8 @@ project (CUTS_BE_CIAO) : cosmic_lib, boost_base, picml_udm {
     CIAO_Proxy_Header_Traits.cpp
     CIAO_Proxy_Source_Traits.cpp
     CIAO_Project_Generator.cpp
+
+    CIAO_Manager_Factory.cpp
   }
 
   Template_Files {

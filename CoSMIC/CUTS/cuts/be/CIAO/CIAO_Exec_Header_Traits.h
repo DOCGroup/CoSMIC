@@ -25,7 +25,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_CIAO_Exec_Header_Traits :
+class CUTS_CIAO_Exec_Header_Traits :
   public CUTS_CIAO_Header_Traits
 {
 public:
@@ -85,10 +85,6 @@ private:
   static Environment_Table env_table_;
 };
 
-// Singleton declaration.
-CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
-                                 CUTS_CIAO_Exec_Header_Traits,
-                                 ACE_Null_Mutex);
 // Singleton definition.
 #define CIAO_EXEC_HEADER_GENERATOR() \
   ACE_Singleton <CUTS_CIAO_Exec_Header_Traits, \

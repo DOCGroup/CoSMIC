@@ -12,6 +12,9 @@
 #define IDC_BROWSE                      205
 #define IDC_RADIO1                      206
 #define IDC_GENERATE_ASSEMBLIES         206
+#define IDC_LIST1                       207
+#define IDC_BE_LIST                     207
+#define IDC_BE_DESCRIPTION              208
 
 // Next default values for new objects
 // 
@@ -19,7 +22,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        204
 #define _APS_NEXT_COMMAND_VALUE         32768
-#define _APS_NEXT_CONTROL_VALUE         207
+#define _APS_NEXT_CONTROL_VALUE         209
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

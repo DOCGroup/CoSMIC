@@ -23,7 +23,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_CIAO_Proxy_Source_Traits :
+class CUTS_CIAO_Proxy_Source_Traits :
   public CUTS_CIAO_Source_Traits
 {
 public:
@@ -94,10 +94,6 @@ private:
   size_t endpoint_id_;
 };
 
-// Singleton declaration.
-CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
-                                 CUTS_CIAO_Proxy_Source_Traits,
-                                 ACE_Null_Mutex);
 // Singleton definition.
 #define CIAO_PROXY_SOURCE_GENERATOR() \
   ACE_Singleton <CUTS_CIAO_Proxy_Source_Traits, \

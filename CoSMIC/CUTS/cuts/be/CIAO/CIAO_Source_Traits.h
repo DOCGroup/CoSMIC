@@ -22,7 +22,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_CIAO_Source_Traits :
+class CUTS_CIAO_Source_Traits :
   public CIAO_Traits_Base
 {
 public:

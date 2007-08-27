@@ -29,7 +29,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_CIAO_Project_Generator :
+class CUTS_CIAO_Project_Generator :
   public CUTS_BE_Project_Generator
 {
 public:

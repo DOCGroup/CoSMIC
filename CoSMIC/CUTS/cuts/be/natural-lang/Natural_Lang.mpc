@@ -10,7 +10,8 @@ project (CUTS_BE_Natural_Lang) : cosmic_lib, boost_base, picml_udm {
   dynamicflags += CUTS_BE_NATURAL_LANG_BUILD_DLL
 
   Source_Files {
-    Natural_Lang_Generator.cpp
+    Natural_Lang_Generators.cpp
+    Natural_Lang_Manager_Factory.cpp
   }
 
   Header_Files {

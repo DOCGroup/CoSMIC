@@ -15,6 +15,7 @@
 
 #include <iosfwd>
 #include <vector>
+#include "String_Set.h"
 
 // Forward decl.
 class CUTS_BE_Preprocessor;

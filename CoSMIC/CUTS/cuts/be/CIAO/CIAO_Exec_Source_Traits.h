@@ -25,7 +25,7 @@
  */
 //=============================================================================
 
-class CUTS_UDM_CIAO_Export CUTS_CIAO_Exec_Source_Traits :
+class CUTS_CIAO_Exec_Source_Traits :
   public CUTS_CIAO_Source_Traits
 {
 public:
@@ -158,10 +158,6 @@ private:
   std::stack <size_t> branches_;
 };
 
-// Singleton declaration.
-CUTS_UDM_CIAO_SINGLETON_DECLARE (ACE_Singleton,
-                                 CUTS_CIAO_Exec_Source_Traits,
-                                 ACE_Null_Mutex);
 // Singleton definition.
 #define CIAO_EXEC_SOURCE_GENERATOR() \
   ACE_Singleton <CUTS_CIAO_Exec_Source_Traits, \
