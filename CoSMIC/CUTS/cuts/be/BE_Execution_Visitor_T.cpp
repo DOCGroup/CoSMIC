@@ -395,9 +395,17 @@ Visit_Action (const PICML::Action & action)
   Property_Set properties =
     action.Property_kind_children_sorted (Sort_By_Position <PICML::Property> ());
 
-  CUTS_BE::visit <BE_STRATEGY> (properties,
-    boost::bind (&Property_Set::value_type::Accept,
-    _1, boost::ref (*this)));
+  if (!properties.empty ())
+  {
+    CUTS_BE_Action_Properties_Begin_T <BE_STRATEGY>::
+      generate (properties.size ());
+
+    CUTS_BE::visit <BE_STRATEGY> (properties,
+      boost::bind (&Property_Set::value_type::Accept,
+      _1, boost::ref (*this)));
+
+    CUTS_BE_Action_Properties_End_T <BE_STRATEGY>::generate ();
+  }
 
   // Let's tell the <traits_> to end generating an action.
   CUTS_BE_Action_End_T <BE_STRATEGY>::generate ();

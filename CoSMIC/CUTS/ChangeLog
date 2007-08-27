@@ -1,3 +1,14 @@
+Mon Aug 27 05:01:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/natural-lang/Natural_Lang_Generators.h:
+        * cuts/be/natural-lang/Natural_Lang_Generators.cpp:
+
+          Added the following points-of-generation:
+            - CUTS_BE_Action_Properties_Begin_T
+            - CUTS_BE_Action_Properties_End_T
+
 Mon Aug 27 04:27:10 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/Component.rc:

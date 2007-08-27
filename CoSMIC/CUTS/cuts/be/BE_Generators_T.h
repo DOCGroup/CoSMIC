@@ -597,9 +597,35 @@ struct CUTS_BE_Branches_End_T
 //=============================================================================
 
 template <typename IMPL_STRATEGY>
+struct CUTS_BE_Action_Properties_Begin_T
+{
+  static bool generate (size_t count)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
 struct CUTS_BE_Action_Property_T
 {
   static bool generate (const PICML::Property & property)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Action_Properties_End_T
+{
+  static bool generate (void)
     { return false; }
 };
 

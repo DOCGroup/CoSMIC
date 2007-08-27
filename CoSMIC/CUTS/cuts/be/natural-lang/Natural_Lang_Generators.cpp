@@ -108,17 +108,7 @@ generate (const PICML::Worker & worker, const PICML::Action & action)
   // Write the statement about the action.
   CUTS_BE_NATURAL_LANG ()->outfile_
     << "  - execute '" << action_type.name ()
-    << "' using '" << action.name () << "'";
-
-  // Determine if we need a 'parameter(s)' line.
-  std::vector <PICML::Property> properties = action.Property_children ();
-
-  if (!properties.empty ())
-  {
-    CUTS_BE_NATURAL_LANG ()->outfile_
-      << std::endl
-      << "    parameter(s):";
-  }
+    << "' using '" << action.name () << "'" << std::endl;
 
   return true;
 }
@@ -131,10 +121,23 @@ bool CUTS_BE_OutputAction_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::OutputAction & action)
 {
   CUTS_BE_NATURAL_LANG ()->outfile_
-    << "  - output event on '" << action.name () << "' port";
+    << "  - output event on '" << action.name () << "' port" << std::endl;
 
   return true;
 }
+
+//
+// CUTS_BE_Action_Properties_Begin_T
+//
+CUTS_BE_EXPLICIT_SPECIALIZATION
+bool CUTS_BE_Action_Properties_Begin_T <CUTS_BE_Natural_Lang>::
+generate (size_t count)
+{
+  if (count >  0)
+    CUTS_BE_NATURAL_LANG ()->outfile_ << "    parameter(s):";
+
+  return true;
+};
 
 //
 // CUTS_BE_Action_Property_T
@@ -149,6 +152,16 @@ generate (const PICML::Property & property)
 
   return true;
 }
+
+//
+// CUTS_BE_Action_Properties_Begin_T
+//
+CUTS_BE_EXPLICIT_SPECIALIZATION
+bool CUTS_BE_Action_Properties_End_T <CUTS_BE_Natural_Lang>::generate (void)
+{
+  CUTS_BE_NATURAL_LANG ()->outfile_ << std::endl;
+  return true;
+};
 
 //
 // CUTS_BE_Environment_Method_Begin_T

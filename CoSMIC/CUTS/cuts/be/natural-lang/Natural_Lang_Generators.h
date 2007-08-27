@@ -140,10 +140,35 @@ struct CUTS_BE_OutputAction_Begin_T <CUTS_BE_Natural_Lang>
 //=============================================================================
 
 template < >
+struct CUTS_BE_Action_Properties_Begin_T <CUTS_BE_Natural_Lang>
+{
+  static bool generate (size_t count);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
 struct CUTS_BE_Action_Property_T <CUTS_BE_Natural_Lang>
 {
   static bool generate (const PICML::Property & property);
 };
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Action_Properties_End_T <CUTS_BE_Natural_Lang>
+{
+  static bool generate (void);
+};
+
 
 //=============================================================================
 /**
