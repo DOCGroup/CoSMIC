@@ -1,3 +1,16 @@
+Mon Aug 27 15:04:13 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Manager_Factory_Repo.h:
+        * cuts/be/BE_Manager_Factory_Repo.inl:
+        * cuts/be/BE_Manager_Factory_Repo.cpp:
+
+          Missing project files.
+
+        * cuts/be/natural-lang/Natural_Lang_Generators.cpp:
+
+          Removed the explicit specialization macro from all methods
+          since it seems to be failing on all Windows builds.
+
 Mon Aug 27 05:01:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.cpp:

@@ -9,7 +9,6 @@
 //
 // CUTS_BE_File_Open_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_File_Open_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::ComponentImplementationContainer & container)
 {
@@ -36,7 +35,6 @@ generate (const PICML::ComponentImplementationContainer & container)
 //
 // CUTS_BE_File_Close_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_File_Close_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::ComponentImplementationContainer & container)
 {
@@ -49,7 +47,6 @@ generate (const PICML::ComponentImplementationContainer & container)
 //
 // CUTS_BE_Component_Impl_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::MonolithicImplementation & monoimpl,
           const PICML::Component & type)
@@ -67,7 +64,6 @@ generate (const PICML::MonolithicImplementation & monoimpl,
 //
 // CUTS_BE_InEventPort_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_InEventPort_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::InEventPort & sink)
 {
@@ -85,7 +81,6 @@ generate (const PICML::InEventPort & sink)
 //
 // CUTS_BE_PeriodicEvent_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_PeriodicEvent_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::PeriodicEvent & periodic)
 {
@@ -99,7 +94,6 @@ generate (const PICML::PeriodicEvent & periodic)
 //
 // CUTS_BE_WorkerAction_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_WorkerAction_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::Worker & worker, const PICML::Action & action)
 {
@@ -116,7 +110,6 @@ generate (const PICML::Worker & worker, const PICML::Action & action)
 //
 // CUTS_BE_OutputAction_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_OutputAction_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::OutputAction & action)
 {
@@ -129,7 +122,6 @@ generate (const PICML::OutputAction & action)
 //
 // CUTS_BE_Action_Properties_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Action_Properties_Begin_T <CUTS_BE_Natural_Lang>::
 generate (size_t count)
 {
@@ -142,7 +134,6 @@ generate (size_t count)
 //
 // CUTS_BE_Action_Property_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Action_Property_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::Property & property)
 {
@@ -156,7 +147,6 @@ generate (const PICML::Property & property)
 //
 // CUTS_BE_Action_Properties_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Action_Properties_End_T <CUTS_BE_Natural_Lang>::generate (void)
 {
   CUTS_BE_NATURAL_LANG ()->outfile_ << std::endl;
@@ -166,7 +156,6 @@ bool CUTS_BE_Action_Properties_End_T <CUTS_BE_Natural_Lang>::generate (void)
 //
 // CUTS_BE_Environment_Method_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Environment_Method_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::InputAction & action)
 {
@@ -179,7 +168,6 @@ generate (const PICML::InputAction & action)
 //
 // CUTS_BE_Variables_Begin_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Variables_Begin_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::Component & component)
 {
@@ -192,7 +180,6 @@ generate (const PICML::Component & component)
 //
 // CUTS_BE_Variable_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Variable_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::Variable & variable)
 {
@@ -208,7 +195,6 @@ generate (const PICML::Variable & variable)
 //
 // CUTS_BE_Worker_Variable_T
 //
-CUTS_BE_EXPLICIT_SPECIALIZATION
 bool CUTS_BE_Worker_Variable_T <CUTS_BE_Natural_Lang>::
 generate (const PICML::WorkerType & type, const PICML::Worker & worker)
 {
