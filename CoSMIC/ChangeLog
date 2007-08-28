@@ -1,19 +1,33 @@
+Tue Aug 28 16:57:53 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/PIM:
+
+        * Transformations/PIM/paradigms:
+
+        * Transformations/PIM/paradigms/WSRML-uml.xme:
+        * Transformations/PIM/paradigms/WSRML.xme:
+        * Transformations/PIM/paradigms/WSRML.xml:
+        * Transformations/PIM/paradigms/WSRML.xmp:
+
+           Added WS requirements meta-model. Currently this contains
+	   only WS notification requirements.
+
 Thu Aug 23 20:46:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
-        
+
           Changed creation of output filestream to use the new 'path'
           attribute associate with File elements, to recreate any
           direcory structure that may have existed when IDL files
           were imported into PICML.
-          
+
         * PIM.PICML/docs/Interface_Definitions.doc:
         * PIM.PICML/docs/Interface_Definitions.pdf:
         * PIM.PICML/docs/Importing_IDL.doc:
         * PIM.PICML/docs/Importing_IDL.pdf:
-        
+
           Updated documentation to reflect the new GME attribute in
           the metamodel and the new behavior of the IDL generator.
 
@@ -23,7 +37,7 @@ Thu Aug 23 18:39:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML.xme:
-        
+
           Added FieldAttribute 'path' to the File model element.
           When importing IDL files from a directory subtree,
           this attribute is necessary to disambiguate files
@@ -33,10 +47,10 @@ Thu Aug 23 18:39:51 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
+
           Corresponding changes to the IDL importer to use the
           new GME Attribute described above.
-        
+
 Wed Aug 22 18:14:59 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/PSM:
