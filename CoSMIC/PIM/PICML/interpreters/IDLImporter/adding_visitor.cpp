@@ -2711,6 +2711,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
 
       int result =
         be_global->decl_id_table ().find (fname_noext.c_str (), id);
+      ACE_CString candidate;
 
       if (result != 0)
         {
@@ -2723,7 +2724,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
                i.advance ())
             {
               i.next (item);
-              ACE_CString candidate (*item);
+              candidate = *item;
               candidate += '/';
               candidate += fname_noext;
               result =
@@ -2734,19 +2735,38 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
                   break;
                 }
             }
-           
-          if (result != 0)
-            {  
-              ACE_ERROR ((LM_ERROR,
-                          "Error: Filename %s, included in %s, not found "
-                          "in id table. %s was omitted from command line "
-                          "or spelling differs in case.\n",
-                          fname.c_str (),
-                          idl_global->filename ()->get_string (),
-                          fname.c_str ()));
-
-              throw FE_Bailout ();
+        }
+        
+      // Try stripping any "../" or "..\" prefixes, add a "./" prefix
+      // (used in storing all filenames in the table) and try again.
+      // This will catch a relative include path that starts from the
+      // directory of execution. We don't have a mechanism to catch
+      // an include path that is neither local nor starting from
+      // execution root. 
+      if (result != 0)
+        {
+          candidate = fname_noext;
+          
+          while (candidate.substr (0, 2) == "..")
+            {
+              candidate = candidate.substr (3);
             }
+            
+          candidate = ACE_CString ("./") + candidate;
+          result =
+            be_global->decl_id_table ().find (candidate.c_str (), id);
+        }
+           
+      // If it's still not found in the table, give up and bail.
+      if (result != 0)
+        {
+          ACE_ERROR ((LM_ERROR,
+                      "Error: Filename %s, included in %s, not found "
+                      "in id table.\n",
+                      fname.c_str (),
+                      idl_global->filename ()->get_string ()));
+
+          throw FE_Bailout ();
         }
 
       DOMElement *fileref =

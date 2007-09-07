@@ -1,3 +1,11 @@
+Fri Sep  7 16:22:20 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
+        
+          Added lookup (in the internal GME id table) of included IDL
+          files given with a relative path to catch cases where the
+          relative path starts from the directory of execution.
+
 Tue Aug 28 16:57:53 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/PIM:
