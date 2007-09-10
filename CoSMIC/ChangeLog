@@ -1,7 +1,23 @@
+Mon Sep 10 20:19:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar:
+
+        * Transformations/MTTVar/paradigms:
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Added transformations that generate variability meta-model
+          from a given (parameterized) transformation project, using source and
+          target meta-models for object type information. variability
+          meta-model is used to specify platform-specific variabilities
+          to be used to instantiate specialized transformations from
+          the transformation project.
+
+
 Fri Sep  7 16:22:20 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
-        
+
           Added lookup (in the internal GME id table) of included IDL
           files given with a relative path to catch cases where the
           relative path starts from the directory of execution.
@@ -18,7 +34,7 @@ Tue Aug 28 16:57:53 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
         * Transformations/PIM/paradigms/WSRML.xmp:
 
            Added WS requirements meta-model. Currently this contains
-	   only WS notification requirements.
+           only WS notification requirements.
 
 Thu Aug 23 20:46:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
