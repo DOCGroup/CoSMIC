@@ -1,4 +1,4 @@
-﻿--
+--
 -- @file        CUTS-create.sql
 --
 -- $Id$
@@ -58,14 +58,14 @@ INSERT INTO component_types (typename)
 CREATE TABLE IF NOT EXISTS portnames
 (
   portid          INT              NOT NULL auto_increment,
-  portname        VARCHAR (255),
+  portname        VARCHAR (255)    default NULL,
 
   PRIMARY KEY (portid),
   UNIQUE (portname)
 );
 
 INSERT INTO portnames (portid, portname)
-  VALUES (1);
+  VALUES (1, 'Unknown');
 
 --
 -- Create the ports table. This table contains which ports
