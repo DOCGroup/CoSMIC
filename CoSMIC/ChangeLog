@@ -1,3 +1,10 @@
+Tue Sep 11 22:04:17 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Added a new rule set for processing conditional value
+	  block for mapping between source and target meta-models.
+
 Mon Sep 10 20:19:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar:
