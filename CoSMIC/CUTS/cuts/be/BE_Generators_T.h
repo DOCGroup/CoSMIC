@@ -696,4 +696,17 @@ struct CUTS_BE_Action_End_T
     { return false; }
 };
 
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_State_T
+{
+  static bool generate (const PICML::State & state)
+    { return false; }
+};
+
 #endif  // !defined _CUTS_BE_GENERATORS_T_H_

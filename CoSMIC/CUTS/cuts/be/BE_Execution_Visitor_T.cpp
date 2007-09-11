@@ -111,12 +111,12 @@ Visit_InputAction (const PICML::InputAction & action)
   this->action_stack_.push (action);
 
   // Visit all the properties for this input action.
-  typedef std::vector <PICML::Property> Property_Set;
-  Property_Set props = action.Property_children ();
+  //typedef std::vector <PICML::Property> Property_Set;
+  //Property_Set props = action.Property_children ();
 
-  CUTS_BE::visit <BE_STRATEGY> (props,
-    boost::bind (&Property_Set::value_type::Accept,
-    _1, boost::ref (*this)));
+  //CUTS_BE::visit <BE_STRATEGY> (props,
+  //  boost::bind (&Property_Set::value_type::Accept,
+  //  _1, boost::ref (*this)));
 
   // Visit the effect.
   PICML::InputEffect input_effect = action.dstInputEffect ();
@@ -255,6 +255,9 @@ Visit_State (const PICML::State & state)
   {
     return;
   }
+
+  // Generate information about the state.
+  CUTS_BE_State_T <BE_STRATEGY>::generate (state);
 
   // Visit the transition that connected to this state.
   PICML::Transition transition = state.dstInternalPrecondition ();

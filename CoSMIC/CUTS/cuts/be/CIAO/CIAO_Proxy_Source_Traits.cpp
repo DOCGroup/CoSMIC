@@ -528,4 +528,29 @@ write_agent_register (const PICML::InEventPort & sink)
     << "this->agent_->register_agent (&this->push_"
     << sink.name () << "_.port_agent (), "
     << this->endpoint_id_ ++ << ");" << std::endl;
+
+  // temporary hack to set the priorities!!
+  PICML::Input input = sink.dstInput ();
+
+  if (input != Udm::null)
+  {
+    PICML::InputAction action = input.dstInput_end ();
+
+    typedef std::vector <PICML::Property> Property_Set;
+    Property_Set propset = action.Property_children ();
+
+    Property_Set::iterator iter =
+      std::find_if (propset.begin (),
+                    propset.end (),
+                    boost::bind (std::equal_to <std::string> (),
+                                 "priority",
+                                 boost::bind (&PICML::Property::name, _1)));
+
+    if (iter != propset.end ())
+    {
+      this->outfile ()
+        << "this->push_" << sink.name () << "_.priority ("
+        << iter->DataValue () << ");";
+    }
+  }
 }
