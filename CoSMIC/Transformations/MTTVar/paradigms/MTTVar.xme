@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{63094671-A8C3-4707-B8C1-72C0BC464B85}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
+<project guid="{2746E39A-D1AB-4836-AA42-2A0801966618}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
 	<name>MTTVar</name>
 	<comment></comment>
 	<author></author>
@@ -23723,7 +23723,7 @@ BooleanAttribute.name () = attrib_name;</value>
 								<regnode name="Transform" status="undefined">
 									<value></value>
 									<regnode name="Position" isopaque="yes">
-										<value>560,603</value>
+										<value>574,603</value>
 									</regnode>
 								</regnode>
 							</regnode>
