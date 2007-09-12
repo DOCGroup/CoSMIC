@@ -6,6 +6,10 @@
      <?define UDM_PATH = "$(env.UDM_PATH)" ?>
      <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
      <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
-     <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
+     <?if $(var.type) = vc71 ?>
+        <?define VS71COMNTOOLS = "$(env.VS71COMNTOOLS)" ?>
+     <?elseif $(var.type) = vc8 ?>
+        <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
+     <?endif ?>
      <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
 </Include>

@@ -1,9 +1,16 @@
+Wed Sep 12 23:31:45 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+          Fixed VC 7.1 environmental variables.
+          CoSMIC_Installer builds after RegisterParadigm.
+
 Wed Sep 12 18:04:31 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
 
           Added conditional creation rule block for creation
-	  mapping between source and target meta-models.
+          mapping between source and target meta-models.
 
 Wed Sep 12 08:46:04 UTC 2007  Sumant Tambe  <sutambe@nospam>
 

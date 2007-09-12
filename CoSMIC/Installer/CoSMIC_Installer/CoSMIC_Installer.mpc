@@ -2,6 +2,8 @@
 
 project (CoSMIC_Installer) : wix {
 
+  after += RegisterParadigm
+
   specific {
     wix_flags += -ext WixUIExtension
     light_flags += -ext WixUIExtension -cultures:en-us
