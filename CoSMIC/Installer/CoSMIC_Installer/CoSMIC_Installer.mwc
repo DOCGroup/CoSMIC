@@ -6,4 +6,6 @@ workspace (CoSMIC_Installer) {
   exclude (!vc71, !vc8) {
     CoSMIC_Installer.mpc
   }
+
+  $(COSMIC_ROOT)/Installer/RegisterParadigm/RegisterParadigm.mpc
 }

@@ -1,3 +1,11 @@
+Wed Sep 12 08:46:04 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+
+        * Release.mwc:
+
+          Moved RegisterParadigm component mpc to CoSMIC_Installer.mwc.
+
 Wed Sep 12 04:58:23 UTC 2007  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
@@ -13,7 +21,7 @@ Wed Sep 12 04:58:23 UTC 2007  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
         * Release_idl_to_picml.mwc:
 
           Updates to CoSMIC release mwc files to statically link
-          idl_to_picml.exe 
+          idl_to_picml.exe
 
 Tue Sep 11 22:04:17 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
