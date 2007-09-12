@@ -9,6 +9,9 @@
               Name='idl_to_picml.exe'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\idl_to_picml.exe' />
+        <!--
+          The following files are commented because IDL_TO_PICML.EXE
+          is now released as a statically linked executable.
         <File Id='IDL_TO_PICML_BE_DLL'
               Name='IDL_TO_PICML_BE.dll'
               DiskId='1'
@@ -21,7 +24,7 @@
               Name='TAO_IDL_FE.dll'
               DiskId='1'
               Source='$(var.ACE_ROOT)\lib\TAO_IDL_FE.dll' />
-
+         -->
       </Component>
     </DirectoryRef>
   </Fragment>

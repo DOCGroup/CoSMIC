@@ -1,6 +1,34 @@
 workspace {
   cmdline += -feature_file default.features
-  CoSMIC.mwc
+
+  // Entire CoSMIC.mwc expanded inline.
+  Utils/Utils.mpc
+  Utils/gme/GME.mpc
+  $(ACE_ROOT)/contrib/minizip/minizip.mpc
+  $(ACE_ROOT)/ace/ace.mpc
+
+  // All PICML interpreters expanded inline.
+  PIM/PICML/interpreters/PICML
+  PIM/PICML/interpreters/Package
+  PIM/PICML/interpreters/PackageComponent
+  PIM/PICML/interpreters/PAM
+  PIM/PICML/interpreters/PAMComponent
+  PIM/PICML/interpreters/Target
+  PIM/PICML/interpreters/TargetComponent
+  PIM/PICML/interpreters/DeploymentPlan
+  PIM/PICML/interpreters/DeploymentPlanComponent
+  PIM/PICML/interpreters/IDLGenerator
+  PIM/PICML/interpreters/MPC
+  PIM/PICML/interpreters/MPCComponent
+  PIM/PICML/interpreters/CIDL
+  PIM/PICML/interpreters/CIDLComponent
+  PIM/PICML/interpreters/Path
+  PIM/PICML/interpreters/PathComponent
+
+  PIM/SIML/interpreters/Interpreters.mwc
+  PSM/CQML/interpreters/Interpreters.mwc
+  PIM/PICML/addons/UUIDManager
+  PIM/PICML/decorators/Decorators.mwc
+
   Installer/RegisterParadigm/RegisterParadigm.mpc
-  Installer/CoSMIC_Installer/CoSMIC_Installer.mwc
 }

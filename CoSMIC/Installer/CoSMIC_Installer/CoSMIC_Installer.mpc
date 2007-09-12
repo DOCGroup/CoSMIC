@@ -1,10 +1,15 @@
 // $Id: CUTS_CoSMIC_installers.mpc 1213 2007-02-28 16:56:06Z hillj $
 
 project (CoSMIC_Installer) : wix {
+
   specific {
     wix_flags += -ext WixUIExtension
     light_flags += -ext WixUIExtension -cultures:en-us
   }
+
+  Wxi_Files {
+    EnvironmentVars.wxi
+  }  
 
   Wxs_Files {
 
@@ -70,17 +75,13 @@ project (CoSMIC_Installer) : wix {
 /////////////// POSAML
 /////////////////////////////////////////////////////////////////////////
 
-    $(COSMIC_ROOT)/PIM/POSAML/paradigms/POSAMLParadigm.wxs
-    $(COSMIC_ROOT)/PIM/POSAML/examples/POSAMLExamples.wxs
-    $(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs
-    $(COSMIC_ROOT)/PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs
-    $(COSMIC_ROOT)/PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs
-    $(COSMIC_ROOT)/PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/paradigms/POSAMLParadigm.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/examples/POSAMLExamples.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs
+//    $(COSMIC_ROOT)/PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.wxs
 
   }
-
-  Wxi_Files {
-    EnvironmentVars.wxi
-  }  
 
 }

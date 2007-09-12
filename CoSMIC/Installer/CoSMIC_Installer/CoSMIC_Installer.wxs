@@ -3,7 +3,7 @@
   <?include EnvironmentVars.wxi ?>
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
-           Language='1033' Codepage='1252' Version='0.5.7' Manufacturer='ISIS'
+           Language='1033' Codepage='1252' Version='0.6' Manufacturer='ISIS'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
     <Package Keywords='Installer'
@@ -35,8 +35,10 @@
     
     <!-- UI -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
-    <!-- <UIRef Id="WixUI_InstallDir" />
-    <UIRef Id="WixUI_FeatureTree" /> -->
+    <!-- 
+    <UIRef Id="WixUI_InstallDir" />
+    <UIRef Id="WixUI_FeatureTree" /> 
+    -->
     <UIRef Id="WixUI_Mondo" /> 
     <UIRef Id="WixUI_ErrorProgressText" />
 
@@ -44,7 +46,10 @@
     <FeatureRef Id="CoSMICRegistryFeature" />
     <FeatureRef Id="PICMLParadigmFeature" />
     <FeatureRef Id="CQMLParadigmFeature" />
+    <!-- 
+    POSAML is not compliant with CoSMIC build procedure
     <FeatureRef Id="POSAMLParadigmFeature" />    
+    -->
     <FeatureRef Id='QUICKERFeature' />
     <FeatureRef Id="CoSMICCommonFeature" />
     <FeatureRef Id="vc_merge_modules" />

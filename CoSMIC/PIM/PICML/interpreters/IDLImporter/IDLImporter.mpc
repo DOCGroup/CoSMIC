@@ -1,7 +1,7 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acedefaults, core, crosscompile, xerces {
+project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
   after       += TAO_IDL_FE
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
