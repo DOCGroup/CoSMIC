@@ -1,3 +1,9 @@
+Thu Sep 13 16:18:50 UTC 2007  John S. Kinnebrew  <john.s.kinnebrew@vanderbilt.edu>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+          Trimmed RACE/SA-POP development model.
+
 Thu Sep 13 04:46:46 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
