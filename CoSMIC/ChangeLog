@@ -1,3 +1,11 @@
+Thu Sep 13 04:46:46 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Fixed Thumbs.db and UDM 3.1.1
+
 Wed Sep 12 23:31:45 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:

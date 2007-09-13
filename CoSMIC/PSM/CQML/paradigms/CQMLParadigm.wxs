@@ -401,11 +401,6 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Throughput.bmp' />
 
-        <File Id='CQML_icon_61'
-        Name='Thumbs.db'
-        DiskId='1'
-        Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\icons\Thumbs.db' />
-
         <File Id='CQML_icon_62'
         Name='TimerState.bmp'
         DiskId='1'

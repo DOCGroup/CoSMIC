@@ -62,7 +62,7 @@
     </DirectoryRef>
 
     <DirectoryRef Id='CoSMICBinDir'>
-      <!-- UDM 3.0.1 -->
+      <!-- UDM 3.1.1 -->
       <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
         <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL_3_1_1.DLL"
               Source="$(var.UDM_PATH)\bin\UDMDLL_3_1_1.DLL"
