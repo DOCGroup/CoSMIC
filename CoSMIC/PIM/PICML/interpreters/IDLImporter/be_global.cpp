@@ -1104,11 +1104,25 @@ BE_GlobalData::imported_file_dom_elem (const char *local_name,
           DOMNode *value_tag = attr->getFirstChild ();
           DOMNode *value_item = value_tag->getFirstChild ();
           DOMText *value = (DOMText *) value_item;
-          text = value->getData ();
           
-          if (X (path) == X (text))
+          if (value == 0)
             {
-              return file;
+              // No way to represent an empty string in XML, so a 0
+              // value here represent no path, which would be passed
+              // in as "".
+              if (ACE_OS::strcmp (path, "") == 0)
+                {
+                  return file;
+                }
+            }
+          else
+            {
+              text = value->getData ();
+              
+              if (X (path) == X (text))
+                {
+                  return file;
+                }
             }
         }
     }

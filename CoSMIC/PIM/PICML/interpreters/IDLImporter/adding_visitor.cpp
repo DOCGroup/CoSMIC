@@ -2459,8 +2459,10 @@ adding_visitor::add_file_element (DOMElement *parent,
   ACE_CString lname (
     pos == ACE_CString::npos ? tmp : tmp.substr (pos + 1));
     
-  // Start the substring at position 2 to skip './'.
-  ACE_CString path (pos == ACE_CString::npos ? "" : tmp.substr (2, pos - 2));
+  // Skip './' if it is still there (a file name with no path will
+  // have it already stripped above).
+  ACE_CString path (
+    lname.substr (0, 2) == "./" ? tmp.substr (2, pos - 2) : "");
 
   // See if we have already imported this file. If so, just return it.
   DOMElement *file =
