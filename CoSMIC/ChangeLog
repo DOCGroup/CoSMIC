@@ -1,8 +1,18 @@
+Tue Sep 18 20:30:02 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/LibCQML:
+
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+
+          A new approach of using CQML with other composition 
+          languages.
+
 Fri Sep 14 14:29:33 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           Fixed a bug in lookup of GME attribute "path" for File
           elements that have no path.
 
