@@ -1,3 +1,26 @@
+Tue Sep 18 21:53:26 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+
+          Added J2EEML paradigm with CQML as its library.
+
+        * PSM/LibCQML/icons/adapt_action.bmp:
+        * PSM/LibCQML/icons/client.bmp:
+        * PSM/LibCQML/icons/create.bmp:
+        * PSM/LibCQML/icons/e-bean.bmp:
+        * PSM/LibCQML/icons/finder.bmp:
+        * PSM/LibCQML/icons/logic.bmp:
+        * PSM/LibCQML/icons/method.bmp:
+        * PSM/LibCQML/icons/pfield.bmp:
+        * PSM/LibCQML/icons/plan.bmp:
+        * PSM/LibCQML/icons/postcreate.bmp:
+        * PSM/LibCQML/icons/qos.bmp:
+        * PSM/LibCQML/icons/rel_role.bmp:
+        * PSM/LibCQML/icons/s-bean.bmp:
+        * PSM/LibCQML/icons/solution.bmp:
+
+          Added icons for J2EEML.
+
 Tue Sep 18 21:20:34 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
