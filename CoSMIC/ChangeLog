@@ -1,8 +1,20 @@
+Wed Sep 19 02:05:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+        * PSM/LibCQML/Simple-J2EEMLlibCQML.xme:
+
+          New version of LibCQML, its integration with J2EEML and
+          some examples.
+
 Wed Sep 19 00:25:31 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
         * PSM/LibCQML/LibCQML.xme:
         * PSM/LibCQML/PICMLlibCQML.xme:
+
+          New version of LibCQML.
 
 Tue Sep 18 21:53:26 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 

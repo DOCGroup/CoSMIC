@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{E1E915AC-81F1-45F8-8B0A-E8BE9F31F0B2}" cdate="Tue Sep 18 21:01:01 2007" mdate="Tue Sep 18 21:01:01 2007" version="" metaguid="{8D1FAE82-4B26-49E1-8886-1BAB406F2837}" metaversion="" metaname="J2EEMLlibCQML">
+	<name>Simple-J2EEMLlibCQML</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{1189A959-D51C-4f70-A090-16E23E391BBA}">
+		<name>Simple-J2EEMLlibCQML</name>
+		<model id="id-0065-00000001" kind="J2EEML::J2EE_Solution" guid="{E0505340-AE18-4867-98A8-E82E4B47F799}" relid="0x1" childrelidcntr="0x11">
+			<name>NewJ2EEML::J2EE_Solution</name>
+			<attribute kind="Description" status="meta">
+				<value></value>
+			</attribute>
+			<attribute kind="RootPackage" status="meta">
+				<value></value>
+			</attribute>
+			<model id="id-0065-00000002" kind="J2EEML::J2EE_Solution" role="J2EEML::J2EE_Solution" guid="{AA960FEC-F513-43d0-A3C4-93A7F4C88482}" relid="0x2" childrelidcntr="0x4">
+				<name>J2EEML::J2EE_Solution</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>504,217</value>
+						</regnode>
+					</regnode>
+					<regnode name="System" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>714,245</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Description" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="RootPackage" status="meta">
+					<value></value>
+				</attribute>
+				<model id="id-0065-00000003" kind="J2EEML::SessionBean" role="J2EEML::SessionBean" guid="{3ADCE4AC-B4BD-4f1e-8CC6-034B729F2657}" relid="0x1" childrelidcntr="0x0">
+					<name>J2EEML::SessionBean</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="QoS_Requirements" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>422,191</value>
+							</regnode>
+						</regnode>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>422,191</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="JNDIName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="LocallyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Package" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="RemotelyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="StateType" status="meta">
+						<value>Stateless</value>
+					</attribute>
+				</model>
+				<model id="id-0065-00000004" kind="J2EEML::EntityBean" role="J2EEML::EntityBean" guid="{376C53FF-84CE-4b53-863B-A38B0A6A9EC9}" relid="0x2" childrelidcntr="0x0">
+					<name>J2EEML::EntityBean</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="EntityRelationships" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>436,380</value>
+							</regnode>
+						</regnode>
+						<regnode name="QoS_Requirements" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>436,380</value>
+							</regnode>
+						</regnode>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>455,361</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="JNDIName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="LocallyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Package" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="PersistenceType" status="meta">
+						<value>CMP</value>
+					</attribute>
+					<attribute kind="RemotelyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+				</model>
+				<model id="id-0065-00000005" kind="J2EEML::J2EE_Solution" role="J2EEML::J2EE_Solution" guid="{30041FDE-416D-4129-AC50-739677004CFB}" relid="0x3" childrelidcntr="0x1">
+					<name>J2EEML::J2EE_Solution</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>805,301</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="RootPackage" status="meta">
+						<value></value>
+					</attribute>
+					<model id="id-0065-00000006" kind="J2EEML::EntityBean" role="J2EEML::EntityBean" guid="{DEC54262-F70A-48d1-9D3A-6B2EB2DD6D6B}" relid="0x1" childrelidcntr="0x0">
+						<name>J2EEML::EntityBean</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="EntityRelationships" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>506,303</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS_Requirements" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>506,303</value>
+								</regnode>
+							</regnode>
+							<regnode name="System" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>506,303</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="Description" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="JNDIName" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="LocallyAccessible" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="Package" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="PersistenceType" status="meta">
+							<value>CMP</value>
+						</attribute>
+						<attribute kind="RemotelyAccessible" status="meta">
+							<value>false</value>
+						</attribute>
+					</model>
+				</model>
+				<connection id="id-0068-00000001" kind="J2EEML::DataInteraction" role="J2EEML::DataInteraction" guid="{7BED2B1B-B3D1-4721-A28E-CA00B0F114A4}" relid="0x4">
+					<name>J2EEML::DataInteraction</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>E</value>
+					</regnode>
+					<connpoint role="src" target="id-0065-00000003"/>
+					<connpoint role="dst" target="id-0065-00000006"/>
+				</connection>
+			</model>
+			<model id="id-0065-00000007" kind="J2EEML::J2EE_Solution" role="J2EEML::J2EE_Solution" guid="{39E0A511-C3B4-4653-AE9C-4C2ED5122462}" relid="0x5" childrelidcntr="0x2">
+				<name>J2EEML::J2EE_Solution</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>882,217</value>
+						</regnode>
+					</regnode>
+					<regnode name="System" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>322,237</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Description" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="RootPackage" status="meta">
+					<value></value>
+				</attribute>
+				<model id="id-0065-00000008" kind="J2EEML::SessionBean" role="J2EEML::SessionBean" guid="{49166035-1A68-44eb-925E-C0C7EE223CD7}" relid="0x1" childrelidcntr="0x0">
+					<name>J2EEML::SessionBean</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="QoS_Requirements" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>338,177</value>
+							</regnode>
+						</regnode>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>338,177</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="JNDIName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="LocallyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Package" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="RemotelyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="StateType" status="meta">
+						<value>Stateless</value>
+					</attribute>
+				</model>
+				<model id="id-0065-00000009" kind="J2EEML::EntityBean" role="J2EEML::EntityBean" guid="{9D421896-3E6E-434d-9FDD-41E3D13D5F0A}" relid="0x2" childrelidcntr="0x0">
+					<name>J2EEML::EntityBean</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="EntityRelationships" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>359,394</value>
+							</regnode>
+						</regnode>
+						<regnode name="QoS_Requirements" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>359,394</value>
+							</regnode>
+						</regnode>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>359,394</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="JNDIName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="LocallyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Package" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="PersistenceType" status="meta">
+						<value>CMP</value>
+					</attribute>
+					<attribute kind="RemotelyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+				</model>
+			</model>
+			<model id="id-0065-0000000a" kind="FailOverUnit" role="FailOverUnit" guid="{2496559D-6B0B-49e9-9BB8-535BCA881134}" relid="0x8" childrelidcntr="0x0">
+				<name>FailOverUnit</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>737,408</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Replica" status="meta">
+					<value>0</value>
+				</attribute>
+			</model>
+			<atom id="id-0066-00000001" kind="NetQoS" role="NetQoS" guid="{6C4A4B04-FBB6-4a69-8C78-2DDA9156C547}" relid="0xb">
+				<name>NetQoS</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>716,86</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="admissionPriority" status="meta">
+					<value>NORMAL</value>
+				</attribute>
+				<attribute kind="custom" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="fwdBW" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="quality" status="meta">
+					<value>BEST_EFFORT</value>
+				</attribute>
+				<attribute kind="revBW" status="meta">
+					<value>0</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="QoSConnector" role="QoSConnector" guid="{6764A70E-0FD5-42b4-91F8-4FEBC6A855F0}" relid="0xc">
+				<name>QoSConnector</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="QoS" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>730,170</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<connection id="id-0068-00000002" kind="J2EEML::Interaction" role="J2EEML::Interaction" guid="{136E0BBA-BF9E-4381-934F-2A7E4C5F30DC}" relid="0x6">
+				<name>J2EEML::Interaction</name>
+				<connpoint role="dst" target="id-0065-00000003"/>
+				<connpoint role="src" target="id-0065-00000008"/>
+			</connection>
+			<connection id="id-0068-00000003" kind="J2EEML::DataInteraction" role="J2EEML::DataInteraction" guid="{25411308-C86D-4f15-8482-9D545A5027D8}" relid="0x7">
+				<name>J2EEML::DataInteraction</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000008"/>
+			</connection>
+			<connection id="id-0068-00000004" kind="ComponentAssemblyQoS" role="ComponentAssemblyQoS" guid="{46387649-ACB9-4550-AF36-065994AFADEA}" relid="0x9">
+				<name>ComponentAssemblyQoS</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sw</value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000002"/>
+				<connpoint role="dst" target="id-0065-0000000a"/>
+			</connection>
+			<connection id="id-0068-00000005" kind="ComponentAssemblyQoS" role="ComponentAssemblyQoS" guid="{AF04E6E4-49B0-4a5a-AFC4-F29120CA566C}" relid="0xa">
+				<name>ComponentAssemblyQoS</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Se</value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000007"/>
+				<connpoint role="dst" target="id-0065-0000000a"/>
+			</connection>
+			<connection id="id-0068-00000006" kind="OutConnection" role="OutConnection" guid="{F09F0522-E1A4-4568-8B79-7EDBD1D603D5}" relid="0xd">
+				<name>OutConnection</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000003"/>
+				<connpoint role="dst" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000007" kind="InputConnection" role="InputConnection" guid="{D960D208-5F09-47a9-A274-D838CEDE9D9D}" relid="0xe">
+				<name>InputConnection</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>E</value>
+				</regnode>
+				<connpoint role="dst" target="id-0065-00000008"/>
+				<connpoint role="src" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="QoSReq" role="QoSReq" guid="{3C27984A-1BCB-4087-98E8-CB83E4954933}" relid="0xf">
+				<name>QoSReq</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000001"/>
+				<connpoint role="src" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000009" kind="PortQoS" role="PortQoS" guid="{939C42B9-C9AB-42f6-A0BF-93F2E4FBC288}" relid="0x10">
+				<name>PortQoS</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000009"/>
+				<connpoint role="dst" target="id-0066-00000001"/>
+			</connection>
+			<connection id="id-0068-0000000a" kind="PortQoS" role="PortQoS" guid="{83C4A1E1-83DB-4d2c-9931-D3837A59BC51}" relid="0x11">
+				<name>PortQoS</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>e</value>
+				</regnode>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-00000001"/>
+			</connection>
+		</model>
+	</folder>
+</project>
