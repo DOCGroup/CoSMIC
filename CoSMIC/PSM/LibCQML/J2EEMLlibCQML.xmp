@@ -1,0 +1,961 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="J2EEMLlibCQML" guid="{4FC528F4-08B6-4D3F-813F-74EEDEB6A458}" cdate="Wed Sep 19 12:23:48 2007" mdate="Wed Sep 19 12:23:48 2007" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment J2EE_Solution" >
+		<attrdef name="AcessType" metaref = "1138" valuetype = "enum" defvalue = "Read-Write">
+			<enumitem dispname = "Read-Write" value = "Read-Write"></enumitem>
+			<enumitem dispname = "Read-Only" value = "Read-Only"></enumitem>
+		</attrdef>
+		<attrdef name="Arguments" metaref = "1052" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="BiDirectional" metaref = "1125" valuetype = "boolean" defvalue = "true">
+		</attrdef>
+		<attrdef name="Description" metaref = "1140" valuetype = "string" defvalue = "">
+			<regnode name="multiLine" value = "4"></regnode>
+		</attrdef>
+		<attrdef name="FieldType" metaref = "1124" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="ImplementingClass" metaref = "1050" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="JNDIName" metaref = "1053" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="LocallyAccessible" metaref = "1054" valuetype = "boolean" defvalue = "false">
+		</attrdef>
+		<attrdef name="Metric" metaref = "1422" valuetype = "double" defvalue = "0.0">
+		</attrdef>
+		<attrdef name="Package" metaref = "1051" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="PartOfPrimaryKey" metaref = "1139" valuetype = "boolean" defvalue = "false">
+		</attrdef>
+		<attrdef name="PersistenceType" metaref = "1089" valuetype = "enum" defvalue = "CMP">
+			<enumitem dispname = "CMP" value = "CMP"></enumitem>
+			<enumitem dispname = "BMP" value = "BMP"></enumitem>
+		</attrdef>
+		<attrdef name="Query" metaref = "1081" valuetype = "string" defvalue = "">
+			<regnode name="multiLine" value = "5"></regnode>
+		</attrdef>
+		<attrdef name="RemotelyAccessible" metaref = "1002" valuetype = "boolean" defvalue = "false">
+		</attrdef>
+		<attrdef name="Replica" metaref = "1016" valuetype = "integer" defvalue = "0">
+		</attrdef>
+		<attrdef name="ReplicationStyle" metaref = "1423" valuetype = "enum" defvalue = "Active">
+			<enumitem dispname = "Active" value = "Active"></enumitem>
+			<enumitem dispname = "Passive" value = "Passive"></enumitem>
+			<enumitem dispname = "Semiactive" value = "Semiactive"></enumitem>
+		</attrdef>
+		<attrdef name="ResultTypeMapping" metaref = "1088" valuetype = "enum" defvalue = "Local">
+			<enumitem dispname = "Local" value = "Local"></enumitem>
+			<enumitem dispname = "Remote" value = "Remote"></enumitem>
+		</attrdef>
+		<attrdef name="ReturnType" metaref = "1056" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="RootPackage" metaref = "1040" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="SecurityRoles" metaref = "1147" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="StateType" metaref = "1090" valuetype = "enum" defvalue = "Stateless">
+			<enumitem dispname = "Stateless" value = "Stateless"></enumitem>
+			<enumitem dispname = "Stateful" value = "Stateful"></enumitem>
+		</attrdef>
+		<attrdef name="TransactionType" metaref = "1148" valuetype = "enum" defvalue = "Required">
+			<enumitem dispname = "NotSupported" value = "NotSupported"></enumitem>
+			<enumitem dispname = "Supports" value = "Supports"></enumitem>
+			<enumitem dispname = "Required" value = "Required"></enumitem>
+			<enumitem dispname = "RequiresNew" value = "RequiresNew"></enumitem>
+			<enumitem dispname = "Mandatory" value = "Mandatory"></enumitem>
+			<enumitem dispname = "Never" value = "Never"></enumitem>
+		</attrdef>
+		<attrdef name="Unchecked" metaref = "1082" valuetype = "boolean" defvalue = "true">
+		</attrdef>
+		<attrdef name="Visibility" metaref = "1136" valuetype = "enum" defvalue = "Both">
+			<enumitem dispname = "Remote" value = "Remote"></enumitem>
+			<enumitem dispname = "Local" value = "Local"></enumitem>
+			<enumitem dispname = "Both" value = "Both"></enumitem>
+		</attrdef>
+		<attrdef name="admissionPriority" metaref = "1066" valuetype = "enum" defvalue = "NORMAL">
+			<enumitem dispname = "NORMAL" value = "NORMAL"></enumitem>
+			<enumitem dispname = "HIGH" value = "HIGH"></enumitem>
+			<enumitem dispname = "LOW" value = "LOW"></enumitem>
+		</attrdef>
+		<attrdef name="custom" metaref = "1424" valuetype = "string" defvalue = "">
+			<regnode name="multiLine" value = "2"></regnode>
+		</attrdef>
+		<attrdef name="fwdBW" metaref = "1068" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="msec" metaref = "1425" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="quality" metaref = "1069" valuetype = "enum" defvalue = "BEST_EFFORT">
+			<enumitem dispname = "BEST_EFFORT" value = "BEST_EFFORT"></enumitem>
+			<enumitem dispname = "HIGH_PRIORITY" value = "HIGH_PRIORITY"></enumitem>
+			<enumitem dispname = "HIGH_RELIABILITY" value = "HIGH_RELIABILITY"></enumitem>
+			<enumitem dispname = "HIGH_THROUGHPUT" value = "HIGH_THROUGHPUT"></enumitem>
+			<enumitem dispname = "VOICE" value = "VOICE"></enumitem>
+			<enumitem dispname = "VIDEO" value = "VIDEO"></enumitem>
+		</attrdef>
+		<attrdef name="revBW" metaref = "1426" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="seconds" metaref = "1427" valuetype = "string" defvalue = "">
+		</attrdef>
+		<atom name = "Client" metaref = "1003"  attributes = "Description">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="client.bmp"></regnode>
+		</atom>
+		<atom name = "ComputationTime" metaref = "1428"  attributes = "msec seconds">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="comp_time_clock.gif"></regnode>
+		</atom>
+		<atom name = "EJBCreate" metaref = "1071"  attributes = "Description Arguments Visibility TransactionType SecurityRoles ReturnType">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method.bmp"></regnode>
+				<regnode name = "icon" value ="create.bmp"></regnode>
+		</atom>
+		<atom name = "EJBPostCreate" metaref = "1072"  attributes = "Description Arguments Visibility TransactionType SecurityRoles ReturnType">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method.bmp"></regnode>
+				<regnode name = "icon" value ="postcreate.bmp"></regnode>
+		</atom>
+		<atom name = "Finder" metaref = "1083"  attributes = "Description Arguments Visibility TransactionType SecurityRoles ReturnType Unchecked Query ResultTypeMapping">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method.bmp"></regnode>
+				<regnode name = "icon" value ="finder.bmp"></regnode>
+		</atom>
+		<atom name = "Logic" metaref = "1042"  attributes = "Description ImplementingClass">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidLogicConnectionsrcCardinality19" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::LogicConnection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Logic as &quot;src&quot; over LogicConnection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="logic.bmp"></regnode>
+		</atom>
+		<atom name = "Method" metaref = "1058"  attributes = "Description Arguments Visibility TransactionType SecurityRoles ReturnType">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="method.bmp"></regnode>
+		</atom>
+		<atom name = "NetQoS" metaref = "1429"  attributes = "quality custom admissionPriority fwdBW revBW">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="ns_qos.bmp"></regnode>
+		</atom>
+		<atom name = "PersistentField" metaref = "1111"  attributes = "Description Visibility TransactionType SecurityRoles PartOfPrimaryKey FieldType AcessType">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidRoleAssociationsrcCardinality35" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RoleAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to PersistentField as &quot;src&quot; over RoleAssociation, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="pfield.bmp"></regnode>
+		</atom>
+		<atom name = "QoSConnector" metaref = "1001" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidOutConnectionsrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::OutConnection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to QoSConnector as &quot;src&quot; over OutConnection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Connector.bmp"></regnode>
+				<regnode name = "isNameEnabled" value ="false"></regnode>
+		</atom>
+		<atom name = "RGProperty" metaref = "1430" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "RelationshipRole" metaref = "1112"  attributes = "Description">
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidRoleAssociationdstCardinality36" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::RoleAssociation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to RelationshipRole as &quot;dst&quot; over RoleAssociation, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="rel_role.bmp"></regnode>
+		</atom>
+		<connection name = "ClientRequest" metaref = "1004" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Client"></pointeritem>
+					<pointeritem desc = "J2EE_Solution Client"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ComponentAssemblyQoS" metaref = "1431" >
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EE_Solution"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FailOverUnit"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ComponentQoS" metaref = "1432" >
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FailOverUnit"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "CourseOfAction" metaref = "1191" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EEQoS"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "AdaptationPlan"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "DPQoSConn" metaref = "1433" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DomainRiskGroupingRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "DataInteraction" metaref = "1005" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "FTDeployDepends" metaref = "1434" >
+				<regnode name = "sName" value ="srcFTDeployDepends"></regnode>
+				<regnode name = "dName" value ="dstFTDeployDepends"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Depends"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DeploymentPlanRef"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DomainRiskGrouping"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "InputConnection" metaref = "1435" >
+				<regnode name = "color" value ="0x008000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "Interaction" metaref = "1006" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "LogicConnection" metaref = "1043" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Logic"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Logic"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ManyToMany" metaref = "1126" attributes = "BiDirectional" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="bullet"></regnode>
+				<regnode name = "srcStyle" value ="bullet"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ManyToOne" metaref = "1127" attributes = "BiDirectional" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="bullet"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MethodQoSConn" metaref = "1436" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EJBCreate"></pointeritem>
+					<pointeritem desc = "EJBPostCreate"></pointeritem>
+					<pointeritem desc = "Finder"></pointeritem>
+					<pointeritem desc = "Method"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "ComputationTime"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MonitorableGroupAssociation" metaref = "1437" >
+				<regnode name = "sName" value ="srcMonitorable2RepG"></regnode>
+				<regnode name = "dName" value ="dstMonitorable2RepG"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RepicaGroupConfiguration"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "OneToMany" metaref = "1091" attributes = "BiDirectional" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="bullet"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "OneToOne" metaref = "1092" attributes = "BiDirectional" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean RelationshipRole"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "OutConnection" metaref = "1438" >
+				<regnode name = "color" value ="0x008000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "PortQoS" metaref = "1439" >
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "NetQoS"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "QoSReq" metaref = "1440" >
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "NetQoS"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "QoSRequirement" metaref = "1141" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "J2EEQoS"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution EntityBean"></pointeritem>
+					<pointeritem desc = "J2EE_Solution SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean"></pointeritem>
+					<pointeritem desc = "SessionBean SessionBean"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "RoleAssociation" metaref = "1113" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RelationshipRole"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "PersistentField"></pointeritem>
+				</pointerspec>
+			</connjoint>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "PersistentField"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RelationshipRole"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "RootRiskAssociation" metaref = "1441" >
+				<regnode name = "sName" value ="srcRootRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstRootRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RootRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "SRGRiskAssociation" metaref = "1442" >
+				<regnode name = "sName" value ="srcSRGRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstSRGRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<reference name = "DeploymentPlanRef" metaref = "1443">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyDeploymentPlanReference"></regnode>
+			<constraint name="NoNullReference_DepPlan" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo ().isNull ()]]>
+				<dispname>A null deployment plan reference is not allowed.</dispname>
+			</constraint>
+			<constraint name="ValidFTDeployDependsdstCardinality14" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::FTDeployDepends ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DeploymentPlanRef as &quot;dst&quot; over FTDeployDepends, has to match 0..1.</dispname>
+			</constraint>
+			<regnode name = "icon" value ="DeploymentPlan.bmp"></regnode>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<reference name = "DomainRiskGroupingRef" metaref = "1025">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyDomainRiskGroupingRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "DomainRiskGrouping"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "HostReference" metaref = "1444" attributes = "Metric">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyHostReference"></regnode>
+			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(self.connectedFCOs(SRGRiskAssociation ) -> size = 1 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 0 ) or
+(self.connectedFCOs(SRGRiskAssociation ) -> size = 0 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
+				<dispname>Every risk group has a single unique parent risk group.</dispname>
+			</constraint>
+			<constraint name="ValidRootRiskAssociationsrcCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality39" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<reference name = "QoSCharRef" metaref = "1008">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyQoSCharRef"></regnode>
+			<constraint name="NoCycles" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not (self.refersTo().kindName.trim() = "QoSCharRef")]]>
+				<dispname>A QoS Characteristic Reference must refer to a QoS characteristic and can&apos;t refer to another QoSCharRef.</dispname>
+			</constraint>
+			<constraint name="NoNullQoSCharReference" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo().isNull()]]>
+				<dispname>Null References to QoS charcteristics is not allowed.</dispname>
+			</constraint>
+			<pointerspec name = "ref">
+				<pointeritem desc = "FailOverUnit"></pointeritem>
+				<pointeritem desc = "NetQoS"></pointeritem>
+				<pointeritem desc = "QoSCharRef"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "SharedResourceReference" metaref = "1027">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbySharedResourceReference"></regnode>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<model name = "AdaptationAction" metaref = "1192" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="adapt_action.bmp"></regnode>
+			<role name = "AdaptationAction" metaref = "1193" kind = "AdaptationAction"></role>
+			<aspect name = "Adaptation" metaref = "1194" >
+				<part metaref = "1195" role = "AdaptationAction" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "AdaptationPlan" metaref = "1196" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="plan.bmp"></regnode>
+			<role name = "AdaptationAction" metaref = "1197" kind = "AdaptationAction"></role>
+			<aspect name = "Adaptation" metaref = "1198" >
+				<part metaref = "1199" role = "AdaptationAction" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "DomainRiskGrouping" metaref = "1028" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
+			<constraint name="ValidDomainRiskGroupingPartCardinality41" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "HostReference" metaref = "1445" kind = "HostReference"></role>
+			<role name = "RootRiskAssociation" metaref = "1446" kind = "RootRiskAssociation"></role>
+			<role name = "RootRiskGroup" metaref = "1447" kind = "RootRiskGroup"></role>
+			<role name = "SRGRiskAssociation" metaref = "1448" kind = "SRGRiskAssociation"></role>
+			<role name = "SharedRiskGroup" metaref = "1449" kind = "SharedRiskGroup"></role>
+			<aspect name = "QoS" metaref = "1400" >
+				<part metaref = "1035" role = "HostReference" primary = "yes" linked = "no"></part>
+				<part metaref = "1450" role = "RootRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1037" role = "RootRiskGroup" primary = "yes" linked = "no"></part>
+				<part metaref = "1038" role = "SRGRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1451" role = "SharedRiskGroup" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "EntityBean" metaref = "1007" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible PersistenceType" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="e-bean.bmp"></regnode>
+			<constraint name="UniqueNames" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.parts()->isUnique(a | a.name())]]>
+				<dispname>All classes in the same package must have unique names.</dispname>
+			</constraint>
+			<constraint name="ValidLogicConnectiondstCardinality20" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::LogicConnection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Bean as &quot;dst&quot; over LogicConnection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMonitorableGroupAssociationdstCardinality24" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::MonitorableGroupAssociation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to FTMonitorable as &quot;dst&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "ComputationTime" metaref = "1452" kind = "ComputationTime"></role>
+			<role name = "EJBCreate" metaref = "1073" kind = "EJBCreate"></role>
+			<role name = "EJBPostCreate" metaref = "1074" kind = "EJBPostCreate"></role>
+			<role name = "FailOverUnit" metaref = "1453" kind = "FailOverUnit"></role>
+			<role name = "Finder" metaref = "1084" kind = "Finder"></role>
+			<role name = "J2EEQoS" metaref = "1454" kind = "J2EEQoS"></role>
+			<role name = "Method" metaref = "1061" kind = "Method"></role>
+			<role name = "MethodQoSConn" metaref = "1455" kind = "MethodQoSConn"></role>
+			<role name = "NetQoS" metaref = "1456" kind = "NetQoS"></role>
+			<role name = "PersistentField" metaref = "1114" kind = "PersistentField"></role>
+			<role name = "QoSCharRef" metaref = "1457" kind = "QoSCharRef"></role>
+			<role name = "RelationshipRole" metaref = "1118" kind = "RelationshipRole"></role>
+			<role name = "RoleAssociation" metaref = "1119" kind = "RoleAssociation"></role>
+			<aspect name = "CompoundBean" metaref = "1458" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible PersistenceType" >
+				<part metaref = "1075" role = "EJBCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1076" role = "EJBPostCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1085" role = "Finder" primary = "yes" linked = "no"></part>
+				<part metaref = "1064" role = "Method" primary = "yes" linked = "no"></part>
+				<part metaref = "1115" role = "PersistentField" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "EntityRelationships" metaref = "1120" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible PersistenceType" >
+				<part metaref = "1121" role = "PersistentField" primary = "yes" linked = "no"></part>
+				<part metaref = "1122" role = "RelationshipRole" primary = "yes" linked = "yes"></part>
+				<part metaref = "1123" role = "RoleAssociation" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "QoS" metaref = "1149" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible PersistenceType" >
+				<part metaref = "1459" role = "ComputationTime" primary = "yes" linked = "no"></part>
+				<part metaref = "1150" role = "EJBCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1151" role = "EJBPostCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1460" role = "FailOverUnit" primary = "yes" linked = "no"></part>
+				<part metaref = "1152" role = "Finder" primary = "yes" linked = "no"></part>
+				<part metaref = "1153" role = "Method" primary = "yes" linked = "no"></part>
+				<part metaref = "1461" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
+				<part metaref = "1462" role = "NetQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1463" role = "QoSCharRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+			</aspect>
+			<aspect name = "QoS_Requirements" metaref = "1166" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible PersistenceType" >
+				<part metaref = "1167" role = "EJBCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1168" role = "EJBPostCreate" primary = "yes" linked = "no"></part>
+				<part metaref = "1169" role = "Finder" primary = "yes" linked = "no"></part>
+				<part metaref = "1464" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1170" role = "Method" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "FTDeployment" metaref = "1465" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "DeploymentPlanRef" metaref = "1041" kind = "DeploymentPlanRef"></role>
+			<role name = "DomainRiskGrouping" metaref = "1466" kind = "DomainRiskGrouping"></role>
+			<role name = "FTDeployDepends" metaref = "1467" kind = "FTDeployDepends"></role>
+			<aspect name = "QoS" metaref = "1406" >
+				<part metaref = "1468" role = "DeploymentPlanRef" primary = "yes" linked = "no"></part>
+				<part metaref = "1469" role = "DomainRiskGrouping" primary = "yes" linked = "no"></part>
+				<part metaref = "1470" role = "FTDeployDepends" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "FailOverUnit" metaref = "1471" attributes = "Replica" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="FOU.bmp"></regnode>
+			<constraint name="NotEmpty" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.parts().size() > 0]]>
+				<dispname>FailOverUnit can&apos;t be empty.</dispname>
+			</constraint>
+			<role name = "EntityBean" metaref = "1472" kind = "EntityBean"></role>
+			<role name = "J2EE_Solution" metaref = "1473" kind = "J2EE_Solution"></role>
+			<role name = "MonitorableGroupAssociation" metaref = "1474" kind = "MonitorableGroupAssociation"></role>
+			<role name = "RepicaGroupConfiguration" metaref = "1475" kind = "RepicaGroupConfiguration"></role>
+			<role name = "SessionBean" metaref = "1476" kind = "SessionBean"></role>
+			<aspect name = "QoS" metaref = "1413" attributes = "Replica" >
+				<part metaref = "1477" role = "EntityBean" primary = "yes" linked = "no"></part>
+				<part metaref = "1478" role = "J2EE_Solution" primary = "yes" linked = "no"></part>
+				<part metaref = "1479" role = "MonitorableGroupAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1480" role = "RepicaGroupConfiguration" primary = "yes" linked = "no"></part>
+				<part metaref = "1481" role = "SessionBean" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "J2EEQoS" metaref = "1361" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="qos.bmp"></regnode>
+			<role name = "AdaptationPlan" metaref = "1482" kind = "AdaptationPlan"></role>
+			<role name = "CourseOfAction" metaref = "1483" kind = "CourseOfAction"></role>
+			<role name = "J2EEQoS" metaref = "1484" kind = "J2EEQoS"></role>
+			<aspect name = "QoS_Hierarchy" metaref = "1485" >
+				<part metaref = "1486" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "Adaptation" metaref = "1487" >
+				<part metaref = "1488" role = "AdaptationPlan" primary = "yes" linked = "no"></part>
+				<part metaref = "1489" role = "CourseOfAction" primary = "yes" linked = "no"></part>
+				<part metaref = "1490" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "J2EE_Solution" metaref = "1009" attributes = "RootPackage Description" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="solution.bmp"></regnode>
+			<constraint name="ValidMonitorableGroupAssociationdstCardinality24" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::MonitorableGroupAssociation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to FTMonitorable as &quot;dst&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "AdaptationPlan" metaref = "1200" kind = "AdaptationPlan"></role>
+			<role name = "Client" metaref = "1010" kind = "Client"></role>
+			<role name = "ClientRequest" metaref = "1011" kind = "ClientRequest"></role>
+			<role name = "ComponentAssemblyQoS" metaref = "1491" kind = "ComponentAssemblyQoS"></role>
+			<role name = "ComponentQoS" metaref = "1492" kind = "ComponentQoS"></role>
+			<role name = "CourseOfAction" metaref = "1201" kind = "CourseOfAction"></role>
+			<role name = "DataInteraction" metaref = "1012" kind = "DataInteraction"></role>
+			<role name = "EntityBean" metaref = "1013" kind = "EntityBean"></role>
+			<role name = "FailOverUnit" metaref = "1493" kind = "FailOverUnit"></role>
+			<role name = "InputConnection" metaref = "1494" kind = "InputConnection"></role>
+			<role name = "Interaction" metaref = "1014" kind = "Interaction"></role>
+			<role name = "J2EEQoS" metaref = "1495" kind = "J2EEQoS"></role>
+			<role name = "J2EE_Solution" metaref = "1109" kind = "J2EE_Solution"></role>
+			<role name = "Logic" metaref = "1044" kind = "Logic"></role>
+			<role name = "LogicConnection" metaref = "1048" kind = "LogicConnection"></role>
+			<role name = "ManyToMany" metaref = "1128" kind = "ManyToMany"></role>
+			<role name = "ManyToOne" metaref = "1129" kind = "ManyToOne"></role>
+			<role name = "NetQoS" metaref = "1496" kind = "NetQoS"></role>
+			<role name = "OneToMany" metaref = "1094" kind = "OneToMany"></role>
+			<role name = "OneToOne" metaref = "1095" kind = "OneToOne"></role>
+			<role name = "OutConnection" metaref = "1497" kind = "OutConnection"></role>
+			<role name = "PortQoS" metaref = "1498" kind = "PortQoS"></role>
+			<role name = "QoSCharRef" metaref = "1499" kind = "QoSCharRef"></role>
+			<role name = "QoSConnector" metaref = "1500" kind = "QoSConnector"></role>
+			<role name = "QoSReq" metaref = "1501" kind = "QoSReq"></role>
+			<role name = "QoSRequirement" metaref = "1144" kind = "QoSRequirement"></role>
+			<role name = "SessionBean" metaref = "1015" kind = "SessionBean"></role>
+			<aspect name = "System" metaref = "1502" attributes = "RootPackage Description" >
+				<part metaref = "1029" role = "Client" primary = "yes" linked = "yes"></part>
+				<part metaref = "1030" role = "ClientRequest" primary = "yes" linked = "no"></part>
+				<part metaref = "1031" role = "DataInteraction" primary = "yes" linked = "no"></part>
+				<part metaref = "1032" role = "EntityBean" primary = "yes" linked = "yes"></part>
+				<part metaref = "1033" role = "Interaction" primary = "yes" linked = "no"></part>
+				<part metaref = "1110" role = "J2EE_Solution" primary = "yes" linked = "no"></part>
+				<part metaref = "1045" role = "Logic" primary = "yes" linked = "no"></part>
+				<part metaref = "1049" role = "LogicConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1130" role = "ManyToMany" primary = "yes" linked = "no"></part>
+				<part metaref = "1131" role = "ManyToOne" primary = "yes" linked = "no"></part>
+				<part metaref = "1103" role = "OneToMany" primary = "yes" linked = "no"></part>
+				<part metaref = "1104" role = "OneToOne" primary = "yes" linked = "no"></part>
+				<part metaref = "1034" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+			<aspect name = "EntityRelationships" metaref = "1105" attributes = "RootPackage Description" >
+				<part metaref = "1106" role = "EntityBean" primary = "yes" linked = "yes"></part>
+				<part metaref = "1132" role = "ManyToMany" primary = "yes" linked = "no"></part>
+				<part metaref = "1133" role = "ManyToOne" primary = "yes" linked = "no"></part>
+				<part metaref = "1107" role = "OneToMany" primary = "yes" linked = "no"></part>
+				<part metaref = "1108" role = "OneToOne" primary = "yes" linked = "no"></part>
+			</aspect>
+			<aspect name = "QoS" metaref = "1154" attributes = "RootPackage Description" >
+				<part metaref = "1503" role = "ComponentAssemblyQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1504" role = "ComponentQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1155" role = "EntityBean" primary = "yes" linked = "yes"></part>
+				<part metaref = "1505" role = "FailOverUnit" primary = "yes" linked = "no"></part>
+				<part metaref = "1506" role = "InputConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1507" role = "J2EE_Solution" primary = "yes" linked = "no"></part>
+				<part metaref = "1508" role = "NetQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1509" role = "OutConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "1510" role = "PortQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1511" role = "QoSCharRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "1512" role = "QoSConnector" primary = "yes" linked = "no"></part>
+				<part metaref = "1513" role = "QoSReq" primary = "yes" linked = "no"></part>
+				<part metaref = "1158" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+			<aspect name = "QoS_Requirements" metaref = "1171" attributes = "RootPackage Description" >
+				<part metaref = "1172" role = "EntityBean" primary = "yes" linked = "yes"></part>
+				<part metaref = "1514" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1174" role = "QoSRequirement" primary = "yes" linked = "no"></part>
+				<part metaref = "1175" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+			<aspect name = "Adaptation" metaref = "1202" attributes = "RootPackage Description" >
+				<part metaref = "1203" role = "AdaptationPlan" primary = "yes" linked = "no"></part>
+				<part metaref = "1204" role = "CourseOfAction" primary = "yes" linked = "no"></part>
+				<part metaref = "1515" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RepicaGroupConfiguration" metaref = "1516" attributes = "ReplicationStyle" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RPG.bmp"></regnode>
+			<constraint name="ValidMonitorableGroupAssociationsrcCardinality23" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MonitorableGroupAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to RepicaGroupConfiguration as &quot;src&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "RGProperty" metaref = "1055" kind = "RGProperty"></role>
+			<aspect name = "QoS" metaref = "1417" attributes = "ReplicationStyle" >
+				<part metaref = "1057" role = "RGProperty" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RootRiskGroup" metaref = "1517" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RootRiskGroup.bmp"></regnode>
+			<constraint name="MustHaveChild" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.attachingConnections(meta::RootRiskAssociation)->size() >= 1]]>
+				<dispname>A RootRiskGroup must have atleast one child</dispname>
+			</constraint>
+			<role name = "SharedResourceReference" metaref = "1059" kind = "SharedResourceReference"></role>
+			<aspect name = "QoS" metaref = "1419" attributes = "Metric" >
+				<part metaref = "1518" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "SessionBean" metaref = "1023" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible StateType" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="s-bean.bmp"></regnode>
+			<constraint name="UniqueNames" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.parts()->isUnique(a | a.name())]]>
+				<dispname>All classes in the same package must have unique names.</dispname>
+			</constraint>
+			<constraint name="ValidLogicConnectiondstCardinality20" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::LogicConnection ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Bean as &quot;dst&quot; over LogicConnection, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMonitorableGroupAssociationdstCardinality24" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::MonitorableGroupAssociation ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to FTMonitorable as &quot;dst&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "FailOverUnit" metaref = "1519" kind = "FailOverUnit"></role>
+			<role name = "J2EEQoS" metaref = "1520" kind = "J2EEQoS"></role>
+			<role name = "NetQoS" metaref = "1521" kind = "NetQoS"></role>
+			<role name = "QoSCharRef" metaref = "1522" kind = "QoSCharRef"></role>
+			<role name = "SessionBean" metaref = "1024" kind = "SessionBean"></role>
+			<aspect name = "CompoundBean" metaref = "1523" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible StateType" >
+				<part metaref = "1039" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+			<aspect name = "QoS" metaref = "1160" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible StateType" >
+				<part metaref = "1524" role = "FailOverUnit" primary = "yes" linked = "no"></part>
+				<part metaref = "1525" role = "NetQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1526" role = "QoSCharRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "1165" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+			<aspect name = "QoS_Requirements" metaref = "1177" attributes = "Description RemotelyAccessible JNDIName Package LocallyAccessible StateType" >
+				<part metaref = "1527" role = "J2EEQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "1182" role = "SessionBean" primary = "yes" linked = "yes"></part>
+			</aspect>
+		</model>
+		<model name = "SharedRiskGroup" metaref = "1062" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="SharedRiskGroup.bmp"></regnode>
+			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(self.connectedFCOs(SRGRiskAssociation ) -> size = 1 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 0 ) or
+(self.connectedFCOs(SRGRiskAssociation ) -> size = 0 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
+				<dispname>Every risk group has a single unique parent risk group.</dispname>
+			</constraint>
+			<constraint name="ValidRootRiskAssociationsrcCardinality37" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality39" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "SharedResourceReference" metaref = "1063" kind = "SharedResourceReference"></role>
+			<aspect name = "QoS" metaref = "1421" attributes = "Metric" >
+				<part metaref = "1065" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+	</folder>
+</paradigm>

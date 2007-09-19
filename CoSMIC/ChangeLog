@@ -1,3 +1,87 @@
+Wed Sep 19 18:01:06 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
+        * PSM/LibCQML/ESMLlibCQML:
+
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xme:
+        * PSM/LibCQML/ESMLlibCQML/icons:
+
+        * PSM/LibCQML/ESMLlibCQML/icons/Component.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/CompoundParameter.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/DataType.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/DataTypePort.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/DeploymentPlan.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Disable.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Enable.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/EventRef.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/FOU.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Float.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Integer.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Interface.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Long.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Method.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/MethodPort.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/RPG.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/SharedRiskGroup.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/String.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/Thread.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/action.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/agent.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/agent_type.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/asc_linguistic_variable.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/comp_time_clock.gif:
+        * PSM/LibCQML/ESMLlibCQML/icons/concurrency.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/data.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/distribution.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/event.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/event_channel.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/event_channel_ref.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/facet-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/facet.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/fmode.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/hwport-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/hwport.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/init.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/inv-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/inv.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/join.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/log.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/mode.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/node_type.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/ns_qos.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/parameter.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/persistence.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/priority.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/priority_ref.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/pub-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/pub.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/receptacle-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/receptacle.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/replicationtriggers.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/split.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/sub-port.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/sub.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/synchproxygroup.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/task.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/task_repeat.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/task_select.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/thread_ref.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/timer.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/trans.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/transition.bmp:
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/J2EEMLlibCQML.xmp:
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/LibCQML.xmp:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xmp:
+        * PSM/LibCQML/Simple-J2EEMLlibCQML.xme:
+
+        * PSM/LibCQML/icons/comp_time_clock.gif:
+
+          LibCQML interation with PICML, J2EEML, ESML.
+
 Wed Sep 19 02:05:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/LibCQML/J2EEMLlibCQML.xme:
