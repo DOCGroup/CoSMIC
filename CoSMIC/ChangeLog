@@ -1,3 +1,19 @@
+Thu Sep 20 22:46:53 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSMLLibCQML-uml.xme:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSMLLibCQML.xme:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSMLLibCQML.xml:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSMLLibCQML.xmp:
+
+          Renamed from WSML to WSMLLibCQML.
+
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSML-uml.xme:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSML.xme:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSML.xml:
+        * PSM/LibCQML/WSMLLibCQML/paradigms/WSML.xmp:
+
+          Removed these files.
+
 Thu Sep 20 22:44:11 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/LibCQML/WSMLLibCQML:
