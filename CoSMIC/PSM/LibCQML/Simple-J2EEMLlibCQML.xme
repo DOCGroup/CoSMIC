@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{07757FFF-E13F-4441-9BC7-DFEB8BF749FA}" cdate="Thu Sep 20 01:55:06 2007" mdate="Thu Sep 20 01:55:06 2007" version="" metaguid="{DEE41BCD-CFA3-4C76-ABFF-4E53844B2F12}" metaversion="" metaname="J2EEMLlibCQML">
+<project guid="{B2F82700-2D30-4760-AACF-EF5FA0BE8E50}" cdate="Thu Sep 20 17:25:24 2007" mdate="Thu Sep 20 17:25:24 2007" version="" metaguid="{9D2EAAB1-ECE8-45D2-9DF8-80A50B0925EF}" metaversion="" metaname="J2EEMLlibCQML">
 	<name>Simple-J2EEMLlibCQML</name>
 	<comment></comment>
 	<author></author>
@@ -63,7 +63,7 @@
 						<regnode name="System" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>415,163</value>
+								<value>413,158</value>
 							</regnode>
 						</regnode>
 					</regnode>
