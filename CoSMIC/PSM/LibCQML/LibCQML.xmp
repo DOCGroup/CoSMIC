@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="LibCQML" guid="{88D49D1A-1F97-4275-8EAF-69496F24E2B1}" cdate="Tue Sep 18 18:49:48 2007" mdate="Tue Sep 18 18:49:48 2007" >
+<paradigm name="LibCQML" guid="{C796FA32-F2EB-43DA-B1F9-C6C2C4262703}" cdate="Wed Sep 19 20:31:02 2007" mdate="Wed Sep 19 20:31:02 2007" >
 
 	<comment></comment>
 
@@ -9,6 +9,8 @@
 
 	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment" >
 		<attrdef name="Metric" metaref = "1015" valuetype = "double" defvalue = "0.0">
+		</attrdef>
+		<attrdef name="Priority" metaref = "1080" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="Replica" metaref = "1016" valuetype = "integer" defvalue = "0">
 		</attrdef>
@@ -27,7 +29,11 @@
 		</attrdef>
 		<attrdef name="fwdBW" metaref = "1068" valuetype = "integer" defvalue = "">
 		</attrdef>
-		<attrdef name="msec" metaref = "1074" valuetype = "string" defvalue = "">
+		<attrdef name="msecComputationTime" metaref = "1081" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="msecDeadline" metaref = "1082" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="msecPeriod" metaref = "1083" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="quality" metaref = "1069" valuetype = "enum" defvalue = "BEST_EFFORT">
 			<enumitem dispname = "BEST_EFFORT" value = "BEST_EFFORT"></enumitem>
@@ -39,11 +45,16 @@
 		</attrdef>
 		<attrdef name="revBW" metaref = "1070" valuetype = "integer" defvalue = "">
 		</attrdef>
-		<attrdef name="seconds" metaref = "1075" valuetype = "string" defvalue = "">
+		<attrdef name="secComputationTime" metaref = "1084" valuetype = "string" defvalue = "">
 		</attrdef>
-		<atom name = "ComputationTime" metaref = "1076"  attributes = "msec seconds">
+		<atom name = "MethodId" metaref = "1077" >
 				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "icon" value ="comp_time_clock.gif"></regnode>
+			<constraint name="ValidMethodIdentifiersrcCardinality13" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MethodIdentifier ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to MethodId as &quot;src&quot; over MethodIdentifier, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="MethodId.bmp"></regnode>
 		</atom>
 		<atom name = "NetQoS" metaref = "1071"  attributes = "quality custom admissionPriority fwdBW revBW">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -51,7 +62,7 @@
 		</atom>
 		<atom name = "QoSConnector" metaref = "1001" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidOutConnectionsrcCardinality15" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOutConnectionsrcCardinality19" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::OutConnection ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to QoSConnector as &quot;src&quot; over OutConnection, has to match 0..1.</dispname>
@@ -61,6 +72,10 @@
 		</atom>
 		<atom name = "RGProperty" metaref = "1018" >
 				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "RTTaskProperty" metaref = "1085"  attributes = "msecDeadline msecPeriod secComputationTime Priority msecComputationTime">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="comp_time_clock.gif"></regnode>
 		</atom>
 		<connection name = "ComponentAssemblyQoS" metaref = "1002" >
 				<regnode name = "color" value ="0x0000FF"></regnode>
@@ -133,6 +148,33 @@
 				</pointerspec>
 			</connjoint>
 		</connection>
+		<connection name = "MethodIdQoS" metaref = "1078" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "MethodId"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RTTaskProperty"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MethodIdentifier" metaref = "1079" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "MethodId"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
 		<connection name = "MethodQoSConn" metaref = "1073" >
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="butt"></regnode>
@@ -142,7 +184,7 @@
 				<pointerspec name = "src">
 				</pointerspec>
 				<pointerspec name = "dst">
-					<pointeritem desc = "ComputationTime"></pointeritem>
+					<pointeritem desc = "RTTaskProperty"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -273,12 +315,12 @@
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality21" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality23" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
@@ -314,7 +356,7 @@
 		<model name = "DomainRiskGrouping" metaref = "1028" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
-			<constraint name="ValidDomainRiskGroupingPartCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDomainRiskGroupingPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
@@ -360,7 +402,7 @@
 		<model name = "RepicaGroupConfiguration" metaref = "1054" attributes = "ReplicationStyle" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RPG.bmp"></regnode>
-			<constraint name="ValidMonitorableGroupAssociationsrcCardinality13" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidMonitorableGroupAssociationsrcCardinality17" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MonitorableGroupAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to RepicaGroupConfiguration as &quot;src&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
@@ -392,12 +434,12 @@
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality21" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality23" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>

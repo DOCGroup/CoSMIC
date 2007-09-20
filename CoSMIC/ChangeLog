@@ -1,3 +1,27 @@
+Thu Sep 20 06:57:00 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
+
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xme:
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xmp:
+        * PSM/LibCQML/ESMLlibCQML/MC__BasicSP-ESMLlibCQML.xme:
+
+        * PSM/LibCQML/ESMLlibCQML/icons/Connector.bmp:
+        * PSM/LibCQML/ESMLlibCQML/icons/MethodId.bmp:
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/J2EEMLlibCQML.xmp:
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/LibCQML.xmp:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xmp:
+        * PSM/LibCQML/Simple-J2EEMLlibCQML.xme:
+
+        * PSM/LibCQML/icons/MethodId.bmp:
+
+          Version of LibCQML that understands RTTaskProperty and
+          method level QoS support.
+            
 Wed Sep 19 18:01:06 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
