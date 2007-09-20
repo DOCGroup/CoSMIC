@@ -200,7 +200,7 @@ namespace CUTS
 
       // Create the chart that will display the execution times for
       // the average execution time for the path.
-      WebChart.LineChart average_chart = 
+      WebChart.LineChart average_chart =
         new WebChart.LineChart (average_points, Color.Blue);
       average_chart.Legend = "Average Time";
       average_chart.Fill.Color = Color.Blue;
@@ -208,7 +208,7 @@ namespace CUTS
 
       // Create the chart that will display the execution times for
       // the worse execution time for the path.
-      WebChart.LineChart worse_chart = 
+      WebChart.LineChart worse_chart =
         new WebChart.LineChart (worse_points, Color.Red);
       worse_chart.Legend = "Worst Time";
       worse_chart.Fill.Color = Color.Red;
@@ -224,7 +224,7 @@ namespace CUTS
       // Redraw the charts.
       this.timeline_.RedrawChart ();
     }
- 
+
     private void extract_path_elements (MySqlDataReader reader)
     {
       while (reader.Read ())
@@ -244,7 +244,7 @@ namespace CUTS
       MySqlCommand command = conn.CreateCommand();
       command.CommandText =
         "SELECT deadline FROM critical_path WHERE path_id = ?path";
-      command.Parameters.Add("?path", this.path_);
+      command.Parameters.AddWithValue("?path", this.path_);
 
       return (Int32) command.ExecuteScalar();
     }
@@ -268,8 +268,8 @@ namespace CUTS
       command.CommandText = "CALL select_path_execution_times (?test, ?path)";
 
       // Initailize the parameters
-      command.Parameters.Add ("?test", this.test_);
-      command.Parameters.Add ("?path", this.path_);
+      command.Parameters.AddWithValue("?test", this.test_);
+      command.Parameters.AddWithValue("?path", this.path_);
 
       return command.ExecuteReader ();
     }

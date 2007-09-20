@@ -27,7 +27,7 @@ namespace CUTS
     private OdbcConnection conn_  = new OdbcConnection(
         ConfigurationManager.AppSettings["ConnectionString"]);
 
-    private CUTS_Database_Utility cuts_database_ = 
+    private CUTS_Database_Utility cuts_database_ =
       new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
 
     private void Page_Load(object sender, System.EventArgs e)
@@ -135,15 +135,8 @@ namespace CUTS
     private void init_execution_times (DateTime time)
     {
       // Build the command to select the components in this test.
-      System.Text.StringBuilder builder = new System.Text.StringBuilder();
-      builder.Append("SELECT DISTINCT component, component_name ");
-      builder.Append("FROM execution_time LEFT JOIN component_instances ");
-      builder.Append("ON (component = component_id) ");
-      builder.Append("WHERE (test_number = ? AND collection_time = ?) ");
-      builder.Append("ORDER BY component_name");
-
-      OdbcCommand command = new OdbcCommand(builder.ToString(),
-                                            this.conn_);
+      string sqlstmt = "CALL cuts.select_distinct_components_in_execution_time (?,?)";
+      OdbcCommand command = new OdbcCommand(sqlstmt, this.conn_);
 
       // Create the parameter for the command.
       OdbcParameter p1 = new OdbcParameter("test_number", OdbcType.Int);
@@ -180,7 +173,7 @@ namespace CUTS
         }
 
         // Get all the components that send to this component.
-        IDataReader s_reader = 
+        IDataReader s_reader =
           this.cuts_database_.get_senders((System.Int32)component_id, this.test_, time);
 
         while (s_reader.Read())
@@ -228,11 +221,11 @@ namespace CUTS
       this.cuts_database_.get_collection_times(this.test_, ref ds);
 
       // Bind the dataset to the <collection_time_> control.
-      this.collection_times_.DataSource = 
+      this.collection_times_.DataSource =
         ds.Tables["collection_time"].DefaultView;
       this.collection_times_.DataBind();
 
-      Object result = 
+      Object result =
         ds.Tables["collection_time"].Compute("MAX(collection_time)", "");
 
       if (result != DBNull.Value)

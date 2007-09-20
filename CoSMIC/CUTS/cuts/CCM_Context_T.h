@@ -24,31 +24,20 @@ public:
   /// Destructor.
   virtual ~CUTS_CCM_Context_T (void);
 
-  ::Components::Principal_ptr get_caller_principal (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  ::Components::Principal_ptr get_caller_principal (void);
 
-  ::Components::CCMHome_ptr get_CCM_home (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  ::Components::CCMHome_ptr get_CCM_home (void);
 
-  ::CORBA::Boolean get_rollback_only (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::IllegalState));
+  ::CORBA::Boolean get_rollback_only (void);
 
   ::Components::Transaction::UserTransaction_ptr
-    get_user_transaction (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::IllegalState));
+    get_user_transaction (void);
 
-  ::CORBA::Boolean is_caller_in_role (const char * role)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  ::CORBA::Boolean is_caller_in_role (const char * role);
 
-  void set_rollback_only (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::IllegalState));
+  void set_rollback_only (void);
 
-  ::CORBA::Object_ptr get_CCM_object (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException,
-                     ::Components::IllegalState));
+  ::CORBA::Object_ptr get_CCM_object (void);
 
   ::CORBA::Object_ptr resolve_service_reference (const char * service_id);
 

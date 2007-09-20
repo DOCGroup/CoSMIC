@@ -29,14 +29,13 @@
             "&s=" + this.instance_id_ +
             "&m=" + DataBinder.Eval (Container.DataItem, "metric_type") +
             "&src=" + DataBinder.Eval (Container.DataItem, "src") +
-            "&dst=" + DataBinder.Eval (Container.DataItem, "dst")
-          %>' />
+            "&dst=" + DataBinder.Eval (Container.DataItem, "dst") %>' />
       </itemtemplate>
     </asp:templatecolumn>
 
     <asp:boundcolumn datafield="best_time"
       headertext="Best (ms)" itemstyle-width="75" />
-    <asp:boundcolumn datafield="average_time"
+    <asp:boundcolumn datafield="avg_time"
       headertext="Average (ms)" itemstyle-width="95" />
     <asp:boundcolumn datafield="worse_time"
       headertext="Worst (ms)" itemstyle-width="95" />

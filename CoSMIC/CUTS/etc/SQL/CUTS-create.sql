@@ -181,3 +181,31 @@ GRANT SELECT, UPDATE, DELETE, INSERT, EXECUTE
   ON cuts.*
   TO cuts@'localhost'
   IDENTIFIED BY 'cuts';
+
+-------------------------------------------------------------------------------
+--
+
+DELIMITER //
+
+-------------------------------------------------------------------------------
+-- FUNCTION: cuts.component_portname
+-------------------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS cuts.component_portname //
+
+CREATE FUNCTION cuts.component_portname (pid INT)
+RETURNS VARCHAR (255)
+BEGIN
+  DECLARE portname VARCHAR (255);
+
+  SELECT t2.portname INTO portname
+    FROM ports AS t1, portnames AS t2
+    WHERE t1.portid = t2.portid AND t1.pid = pid;
+
+  RETURN portname;
+END; //
+
+DELIMITER ;
+
+--
+-------------------------------------------------------------------------------

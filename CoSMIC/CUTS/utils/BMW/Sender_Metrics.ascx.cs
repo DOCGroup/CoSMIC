@@ -57,33 +57,25 @@ namespace CUTS
 
     public void BindDataSource (OdbcConnection conn, DateTime time)
     {
-      System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-      builder.Append("SELECT metric_count, metric_type, src, srcname, ");
-      builder.Append("dst, portname AS dstname, best_time, average_time, worse_time ");
-      builder.Append("FROM (SELECT metric_count, metric_type, src, portname AS srcname, ");
-      builder.Append("dst, best_time, (total_time / metric_count) AS average_time, worse_time ");
-      builder.Append("FROM execution_time, portnames WHERE (");
-      builder.Append("test_number = ? AND component = ? AND sender = ? AND ");
-      builder.Append("collection_time = ? AND src = portid)) AS t1 LEFT JOIN portnames ");
-      builder.Append("ON t1.dst = portid");
-
       OdbcParameter p1 = new OdbcParameter ("@test_number", OdbcType.Int);
       p1.Direction = ParameterDirection.Input;
       p1.Value = this.test_;
 
-      OdbcParameter p2 = new OdbcParameter ("@component", OdbcType.Int);
+      OdbcParameter p2 = new OdbcParameter("@collection_time", OdbcType.DateTime);
       p2.Direction = ParameterDirection.Input;
-      p2.Value = this.owner_;
+      p2.Value = time;
 
-      OdbcParameter p3 = new OdbcParameter ("@sender", OdbcType.Int);
+      OdbcParameter p3 = new OdbcParameter("@component", OdbcType.Int);
       p3.Direction = ParameterDirection.Input;
-      p3.Value = this.instance_id_;
+      p3.Value = this.owner_;
 
-      OdbcParameter p4 = new OdbcParameter ("@collection_time", OdbcType.DateTime);
+      OdbcParameter p4 = new OdbcParameter("@sender", OdbcType.Int);
       p4.Direction = ParameterDirection.Input;
-      p4.Value = time;
+      p4.Value = this.instance_id_;
 
-      OdbcCommand command = new OdbcCommand (builder.ToString (), conn);
+      String sqlstmt = "CALL select_execution_time_ex (?,?,?,?)";
+      OdbcCommand command = new OdbcCommand(sqlstmt, conn);
+
       command.Parameters.Add (p1);
       command.Parameters.Add (p2);
       command.Parameters.Add (p3);

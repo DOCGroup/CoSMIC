@@ -38,7 +38,7 @@ public:
    * @param[in]         size        Initial size of the log.
    * @param[in]         grow        Allow the log to grow as needed.
    */
-  CUTS_Log_T (size_t size = 0, bool auto_grow = true);
+  CUTS_Log_T (size_t size = 0, bool auto_grow = false);
 
   CUTS_Log_T (const CUTS_Log_T & log);
 

@@ -127,8 +127,8 @@ namespace CUTS
         // Create the SQL command.
         MySqlCommand command = this.conn.CreateCommand();
         command.CommandText = insert_sql.ToString ();
-        command.Parameters.Add("?path_name", this.path_name_.Text);
-        command.Parameters.Add("?deadline", Int32.Parse(this.deadline_.Text));
+        command.Parameters.AddWithValue("?path_name", this.path_name_.Text);
+        command.Parameters.AddWithValue("?deadline", Int32.Parse(this.deadline_.Text));
 
         // Execute the command to create the critical path.
         command.ExecuteNonQuery();
@@ -294,7 +294,7 @@ namespace CUTS
       select_sql.Append ("ORDER BY path_order;");
 
       MySqlCommand select_command = new MySqlCommand (select_sql.ToString (), conn);
-      select_command.Parameters.Add ("?path_id", path_id);
+      select_command.Parameters.AddWithValue ("?path_id", path_id);
 
       // Create a new adapter with the default select command.
       MySqlDataAdapter adapter = new MySqlDataAdapter (select_command);

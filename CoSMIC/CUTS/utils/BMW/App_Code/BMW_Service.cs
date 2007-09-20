@@ -40,48 +40,6 @@ public class BMW_Web_Service : System.Web.Services.WebService
   }
 
   /**
-   * Get the id of a path by its name
-   *
-   * @param[in]     PathName      Name of the path.
-   */
-  [WebMethod(Description = "Get the id of a path by name")]
-  public System.Int32 PathIDByName(string PathName)
-  {
-    try
-    {
-      return this.util_.path_id_by_name(PathName);
-    }
-    catch (Exception ex)
-    {
-      throw new SoapException(ex.Message,
-                              new XmlQualifiedName("BMWeb.PathIDByName"));
-    }
-  }
-
-  /**
-   * Get the execution time of a path for a given test.
-   *
-   * @param[in]     TestNumber    The target test number.
-   * @param[in]     PathName      Name of the target path.
-   */
-  [WebMethod (Description="Calculates the execution time for the path of " +
-                          "observation the lastest timestamp")]
-  public ExecutionTime PathExecutionTime(int TestNumber,
-                                                string PathName)
-  {
-    try
-    {
-      return this.util_.path_execution_time(TestNumber, PathName);
-    }
-    catch (Exception ex)
-    {
-      throw new SoapException(
-        ex.Message,
-        new XmlQualifiedName("BMWeb.PathExecutionTime"));
-    }
-  }
-
-  /**
    * CUTS database utility component. This object is created
    * at construction time and a the default connection is
    * established. The methods do not have to worry about

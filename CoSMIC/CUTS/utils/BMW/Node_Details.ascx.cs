@@ -3,9 +3,9 @@
 //=============================================================================
 /**
  * @file        Node_Details.ascx.cs
- * 
+ *
  * $Id$
- * 
+ *
  * @author      James H. Hill
  */
 //=============================================================================
@@ -38,7 +38,7 @@ namespace CUTS
   {
     /**
      * Event handler for loading the page.
-     * 
+     *
      * @param[in]       sender      Sender of the event.
      * @param[in]       e           Arguments for the event.
      */
@@ -60,7 +60,7 @@ namespace CUTS
 
     /**
      * Show the details of the node.
-     * 
+     *
      * @param[in]     ipaddr      IP-address of the port.
      * @param[in]     port        Port number.
      */
@@ -86,7 +86,7 @@ namespace CUTS
     }
 
     /**
-     * Implemenation method showing the details given a node 
+     * Implemenation method showing the details given a node
      * deamon. This is useful when showing updated information
      * without having to requery for the node daemon.
      */
@@ -131,7 +131,7 @@ namespace CUTS
 
     /**
      * Method called when the "Kill Selected" link is triggered
-     * 
+     *
      * @param[in]     sender          Sender of the event.
      * @param[in]     e               Arguments associated with command.
      */
@@ -140,7 +140,7 @@ namespace CUTS
       LinkButton linkbtn = (LinkButton)sender;
       CUTS.Node_Details_Control parent = (CUTS.Node_Details_Control)linkbtn.Parent;
       int selected = 0;
-      
+
       // Before we can do anything with the data, we have to figure out
       // how many items are selected all togther.
       foreach (ListItem item in parent.local_.Items)
@@ -208,7 +208,7 @@ namespace CUTS
     /**
      * Get the CUTS.Node_Daemon using the current ip-address and port
      * number.
-     * 
+     *
      * @return      Interface to the daemon.
      */
     private CUTS.Node_Daemon get_daemon()
@@ -218,7 +218,7 @@ namespace CUTS
 
     /**
      * Helper method for getting a reference to the CUTS/Node_Daemon
-     * 
+     *
      * @param[in]       ipaddr        Ip-address of the node daemon.
      * @param[in]       port          Port number of the node daemon.
      * @return          Reference to the node daemon.
@@ -306,7 +306,7 @@ namespace CUTS
 
       try
       {
-        // Get the <daemon> and spawn the nodes. Then we need to 
+        // Get the <daemon> and spawn the nodes. Then we need to
         // update the view with the new nodes.
         CUTS.Node_Daemon daemon = this.get_daemon();
 
@@ -330,7 +330,7 @@ namespace CUTS
 
     /**
      * Event handler for clicking the \a select_all link.
-     * 
+     *
      * @param[in]       sender        Sender of the event.
      * @param[in]       e             Arguments for the event.
      */
@@ -344,7 +344,7 @@ namespace CUTS
 
     /**
      * Event handler for clicking the \a unselect_all link.
-     * 
+     *
      * @param[in]       sender        Sender of the event.
      * @param[in]       e             Arguments for the event.
      */
@@ -359,7 +359,7 @@ namespace CUTS
     /**
      * Helper method for displaying an error message in the
      * correct format.
-     * 
+     *
      * @param[in]     message       Error message.
      */
     private void error_message(string message)

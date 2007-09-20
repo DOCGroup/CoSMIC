@@ -1,3 +1,46 @@
+Thu Sep 20 03:56:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_Context_T.h:
+        * cuts/CCM_Context_T.inl:
+        * cuts/CCM_Events_T.h:
+        * cuts/CCM_Events_T.inl:
+
+          These files still contained deprecated macros.
+
+        * cuts/Log_T.h:
+
+          Turned auto_grow flag off by default.
+
+        * etc/SQL/CUTS-create.sql:
+
+          Created a function that will return the name of a port
+          given its pid.
+
+        * etc/SQL/CUTS-execution.sql:
+
+          Fixed procedures that selects the execution times for
+          components w/ all its information present in the returned
+          query.
+
+        * utils/BMW/App_Code/BMW_Service.cs:
+
+          Removed deadcode.
+
+        * utils/BMW/Critical_Path.aspx.cs:
+        * utils/BMW/Critical_Path_Timeline.aspx.cs:
+        * utils/BMW/Execution_Times.aspx.cs:
+        * utils/BMW/Node_Details.ascx.cs:
+        * utils/BMW/Sender_Metrics.ascx:
+        * utils/BMW/Sender_Metrics.ascx.cs:
+        * utils/BMW/Timeline.aspx.cs:
+
+          Updated files to conform to new database format and leverage
+          the new functions/procedures.
+
+        * utils/BMW/Web.config:
+
+          Removed the MySQL configuration requirement.
+
 Tue Sep 11 18:19:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Generators_T.h:

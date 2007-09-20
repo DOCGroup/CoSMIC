@@ -38,8 +38,8 @@ namespace CUTS
         int component = System.Int32.Parse (Request.QueryString["c"]);
         int sender_component = System.Int32.Parse (Request.QueryString["s"]);
         string metric = Request.QueryString["m"];
-        string src = Request.QueryString["src"];
-        string dst = Request.QueryString["dst"];
+        String src = Request.QueryString["src"];
+        String dst = Request.QueryString["dst"];
 
         this.return_link_.NavigateUrl = "~/Execution_Times.aspx?test=" + test_number;
 
@@ -62,13 +62,24 @@ namespace CUTS
         select_component_name.Parameters["component_id"].Value = component;
         this.component_name_ = (string) select_component_name.ExecuteScalar ();
 
+        // Create a statement for selecting the portnames
+        string portname_stmt = "SELECT cuts.component_portname(?)";
+        OdbcCommand select_portname = new OdbcCommand(portname_stmt, conn);
+        select_portname.Parameters.Add("pid", OdbcType.Int);
+
+        select_portname.Parameters["pid"].Value = Int32.Parse (src);
+        string srcname = (string)select_portname.ExecuteScalar();
+
         this.timeline_.ChartTitle.Text =
           this.component_name_ + "\nfrom " + this.sender_name_ +
-          "\n[metric = '" + metric + "' AND input = '" + src + "'";
+          "\n[metric = '" + metric + "' AND input = '" + srcname + "'";
 
         if (dst != String.Empty)
         {
-          this.timeline_.ChartTitle.Text += " AND output = '" + dst + "'";
+          select_portname.Parameters["pid"].Value = Int32.Parse (dst);
+          string dstname = (string)select_portname.ExecuteScalar();
+
+          this.timeline_.ChartTitle.Text += " AND output = '" + dstname + "'";
         }
 
         this.timeline_.ChartTitle.Text += "]";
@@ -78,7 +89,8 @@ namespace CUTS
         builder.Append("SELECT collection_time, best_time, (total_time / metric_count) AS average_time, worse_time ");
         builder.Append ("FROM execution_time WHERE (test_number = ? AND component = ? ");
         builder.Append ("AND sender = ? AND metric_type = ? AND src = ?");
-        if (dst != "")
+
+        if (dst != String.Empty)
         {
           builder.Append (" AND dst = ?");
         }
@@ -109,7 +121,7 @@ namespace CUTS
         p5.Value = src;
         select_command.Parameters.Add (p5);
 
-        if (dst != "")
+        if (dst != String.Empty)
         {
           OdbcParameter p6 = new OdbcParameter ("dst", OdbcType.VarChar);
           p6.Value = dst;
@@ -206,7 +218,7 @@ namespace CUTS
 
     private System.Int32 get_max_execution_time (
       OdbcConnection conn,
-      int test, 
+      int test,
       int component)
     {
       OdbcCommand command = conn.CreateCommand ();

@@ -115,8 +115,7 @@ public:
   virtual ~CUTS_Event_T (void);
 
   /// Get the <event_id_> for the <eventtype>
-  virtual ::CORBA::Long event_id (void)
-    ACE_THROW_SPEC ((::CORBA::SystemException));
+  virtual ::CORBA::Long event_id (void);
 };
 
 //=============================================================================
