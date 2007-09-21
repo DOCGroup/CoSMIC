@@ -1,3 +1,25 @@
+Fri Sep 21 04:54:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xml:
+        * PIM/CQML/paradigms/CQML.xmp:
+        * PIM/CQML/paradigms/CQML_uml.xme:
+
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xme:
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xmp:
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/J2EEMLlibCQML.xmp:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xmp:
+
+          Composite languages updated with latest PIM/CQML.
+
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/LibCQML.xmp:
+
+          Removed these files. 
+
 Fri Sep 21 04:28:33 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML:
