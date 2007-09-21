@@ -1,3 +1,9 @@
+Fri Sep 21 05:18:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.h:
+
+          Fixed an include.
+
 Fri Sep 21 04:54:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/paradigms/CQML.xme:
@@ -18,7 +24,7 @@ Fri Sep 21 04:54:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PSM/LibCQML/LibCQML.xme:
         * PSM/LibCQML/LibCQML.xmp:
 
-          Removed these files. 
+          Removed these files.
 
 Fri Sep 21 04:28:33 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
