@@ -1,3 +1,209 @@
+Fri Sep 21 04:28:33 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML:
+
+        * PIM/CQML/CQML.mwc:
+        * PIM/CQML/interpreters:
+
+        * PIM/CQML/interpreters/CQML:
+
+        * PIM/CQML/interpreters/CQML/CQML.mpc:
+
+        * PIM/CQML/interpreters/QoSIntegrator:
+
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.h:
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.cpp:
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.mpc:
+
+        * PIM/CQML/paradigms:
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xml:
+        * PIM/CQML/paradigms/CQML.xmp:
+        * PIM/CQML/paradigms/CQML_uml.xme:
+
+          CQML has been moved under PIM.
+
+        * PSM/LibCQML/LibCQML.xme:
+        * PSM/LibCQML/LibCQML.xmp:
+
+          Fixed constraint violations in security metamodel.
+
+          Deleting the interpreters directory.
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/EntityResolver.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/EntityResolver.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/IDL_TO_WSDL_BE_Export.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/README:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/XML_Error_Handler.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/XML_Error_Handler.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/XercesString.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/XercesString.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_extern.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_global.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_helper.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_helper.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_init.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/be_produce.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/binding_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/binding_visitor.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/idl_to_wsdl_visitor.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/message_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/message_visitor.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/port_type_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/port_type_visitor.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/service_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/service_visitor.cpp:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/type_visitor.h:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/IDL_to_WSDL/type_visitor.cpp:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/Interpreters.mwc:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/build.xml:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/WSML.xsd:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/Visitor.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/WSDLExportVisitor.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/dre/WSML/WSDLExporter/WSDLExporter.java:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_udm_xml.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_udm_xml_0.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd_0.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/meta/WSML_xsd_1.java:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/AtomicType.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Attribute.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Binding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingPortType.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindingRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BindsOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyBinding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/BodyParts.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Definitions.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Documentation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Element.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibilityElement.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleBinding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleMessage.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensibleOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ExtensiblePort.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FactoryRepository.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Fault.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultMessage.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/FaultRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderBinding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderMessage.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/HeaderPart.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/IORef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Import.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Input.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputMessage.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/InputRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Message.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MessageRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Messages.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/MgaObject.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/NotificationOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OneWayOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Operation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OperationRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Output.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputMessage.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/OutputRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Part.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PartRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Port.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortBinding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/PortType.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Referrable.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RequestResponseOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolder.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderFileFactory.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/RootFolderStringFactory.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPAddress.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBinding.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPBody.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFault.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPFaultExtension.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeader.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaderFault.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPHeaders.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SOAPOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Schema.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaBuiltins.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaImport.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SchemaReference.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Service.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/ServiceRef.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/SolicitResponseOperation.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Types.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/Utils.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/edu/vanderbilt/isis/wsml/package.html:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/test:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLExporter/src/test/TestExample.java:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/2003-02-11.xsd:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/CORBA.wsdl:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/CORBA.xsd:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/bin:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/build.xml:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/mga.xsd:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/soap-encoding.xsd:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/Visitor.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/WSDLImporter.java:
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/dre/WSML/WSDLImporter/XmlExportVisitor.java:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/isis:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme:
+
+        * PSM/LibCQML/WSMLLibCQML/interpreters/WSDLImporter/src/edu/vanderbilt/isis/gme/xme:
+
+          Removed these files.
+
 Thu Sep 20 22:46:53 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PSM/LibCQML/WSMLLibCQML/paradigms/WSMLLibCQML-uml.xme:

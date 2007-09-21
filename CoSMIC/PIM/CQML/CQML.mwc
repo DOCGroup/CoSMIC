@@ -1,0 +1,10 @@
+workspace {
+
+    cmdline += -feature_file default.features
+
+    $(COSMIC_ROOT)/Utils/Utils.mpc
+
+    $(COSMIC_ROOT)/PIM/CQML/interpreters/CQML
+    $(COSMIC_ROOT)/PIM/CQML/interpreters/QoSIntegrator
+
+}

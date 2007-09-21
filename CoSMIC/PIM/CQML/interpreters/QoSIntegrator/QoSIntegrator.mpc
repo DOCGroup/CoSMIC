@@ -1,0 +1,23 @@
+project(QoSIntegrator): cosmic_common, udm,  {
+
+   after += CQML
+   sharedname = QoSIntegrator
+   macros += QOSINTEGRATOR_BUILD_DLL
+   libs += CQML
+
+   Source_Files {
+     QoSIntegrator.cpp
+//     FTAdders.cpp
+//     FTInjector.cpp
+//     FTVisitors.cpp
+   }
+
+   Header_Files {
+     QoSIntegrator.h
+     QoSIntegrator_Export.h
+//     FTAdders.h
+//     FTInjector.h
+//     FTVisitors.h
+//     common.h
+   }
+}

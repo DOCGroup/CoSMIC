@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<!DOCTYPE paradigm SYSTEM "edf.dtd">
+
+<paradigm name="CQML" guid="{F64646D0-E1A6-496A-85F6-190B478E4D3F}" cdate="Thu Sep 20 22:41:14 2007" mdate="Thu Sep 20 22:41:14 2007" >
+
+	<comment></comment>
+
+	<author></author>
+
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment" >
+		<attrdef name="Metric" metaref = "1015" valuetype = "double" defvalue = "0.0">
+		</attrdef>
+		<attrdef name="RTTaskPriority" metaref = "1086" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="Replica" metaref = "1016" valuetype = "integer" defvalue = "0">
+		</attrdef>
+		<attrdef name="ReplicationStyle" metaref = "1017" valuetype = "enum" defvalue = "Active">
+			<enumitem dispname = "Active" value = "Active"></enumitem>
+			<enumitem dispname = "Passive" value = "Passive"></enumitem>
+			<enumitem dispname = "Semiactive" value = "Semiactive"></enumitem>
+		</attrdef>
+		<attrdef name="admissionPriority" metaref = "1066" valuetype = "enum" defvalue = "NORMAL">
+			<enumitem dispname = "NORMAL" value = "NORMAL"></enumitem>
+			<enumitem dispname = "HIGH" value = "HIGH"></enumitem>
+			<enumitem dispname = "LOW" value = "LOW"></enumitem>
+		</attrdef>
+		<attrdef name="custom" metaref = "1067" valuetype = "string" defvalue = "">
+			<regnode name="multiLine" value = "2"></regnode>
+		</attrdef>
+		<attrdef name="fwdBW" metaref = "1068" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="msecComputationTime" metaref = "1081" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="msecDeadline" metaref = "1082" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="msecPeriod" metaref = "1083" valuetype = "string" defvalue = "">
+		</attrdef>
+		<attrdef name="quality" metaref = "1069" valuetype = "enum" defvalue = "BEST_EFFORT">
+			<enumitem dispname = "BEST_EFFORT" value = "BEST_EFFORT"></enumitem>
+			<enumitem dispname = "HIGH_PRIORITY" value = "HIGH_PRIORITY"></enumitem>
+			<enumitem dispname = "HIGH_RELIABILITY" value = "HIGH_RELIABILITY"></enumitem>
+			<enumitem dispname = "HIGH_THROUGHPUT" value = "HIGH_THROUGHPUT"></enumitem>
+			<enumitem dispname = "VOICE" value = "VOICE"></enumitem>
+			<enumitem dispname = "VIDEO" value = "VIDEO"></enumitem>
+		</attrdef>
+		<attrdef name="revBW" metaref = "1070" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="secComputationTime" metaref = "1084" valuetype = "string" defvalue = "">
+		</attrdef>
+		<atom name = "MethodId" metaref = "1077" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidMethodIdentifiersrcCardinality13" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MethodIdentifier ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to MethodId as &quot;src&quot; over MethodIdentifier, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="MethodId.bmp"></regnode>
+		</atom>
+		<atom name = "NetQoS" metaref = "1071"  attributes = "quality custom admissionPriority fwdBW revBW">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="ns_qos.bmp"></regnode>
+		</atom>
+		<atom name = "QoSConnector" metaref = "1001" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidOutConnectionsrcCardinality19" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::OutConnection ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to QoSConnector as &quot;src&quot; over OutConnection, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="Connector.bmp"></regnode>
+				<regnode name = "isNameEnabled" value ="false"></regnode>
+		</atom>
+		<atom name = "RGProperty" metaref = "1018" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
+		<atom name = "RTTaskProperty" metaref = "1085"  attributes = "msecDeadline msecPeriod secComputationTime RTTaskPriority msecComputationTime">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="comp_time_clock.gif"></regnode>
+		</atom>
+		<connection name = "ComponentAssemblyQoS" metaref = "1002" >
+				<regnode name = "sName" value ="srcComponentAssemblyQoS"></regnode>
+				<regnode name = "dName" value ="dstComponentAssemblyQoS"></regnode>
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FailOverUnit"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "ComponentQoS" metaref = "1003" >
+				<regnode name = "sName" value ="srcComponentQoS"></regnode>
+				<regnode name = "dName" value ="dstComponentQoS"></regnode>
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "FailOverUnit"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "DPQoSConn" metaref = "1072" >
+				<regnode name = "sName" value ="srcDPQoSConn"></regnode>
+				<regnode name = "dName" value ="dstDPQoSConn"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DomainRiskGroupingRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "FTDeployDepends" metaref = "1020" >
+				<regnode name = "sName" value ="srcFTDeployDepends"></regnode>
+				<regnode name = "dName" value ="dstFTDeployDepends"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Depends"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "DeploymentPlanRef"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "DomainRiskGrouping"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "InputConnection" metaref = "1004" >
+				<regnode name = "sName" value ="srcInputConnection"></regnode>
+				<regnode name = "dName" value ="dstInputConnection"></regnode>
+				<regnode name = "color" value ="0x008000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MethodIdQoS" metaref = "1078" >
+				<regnode name = "sName" value ="srcMethodIdQoS"></regnode>
+				<regnode name = "dName" value ="dstMethodIdQoS"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "MethodId"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RTTaskProperty"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MethodIdentifier" metaref = "1079" >
+				<regnode name = "sName" value ="srcMethodIdentifier"></regnode>
+				<regnode name = "dName" value ="dstMethodIdentifier"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "MethodId"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MethodQoSConn" metaref = "1073" >
+				<regnode name = "sName" value ="srcMethodQoSConn"></regnode>
+				<regnode name = "dName" value ="dstMethodQoSConn"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RTTaskProperty"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "MonitorableGroupAssociation" metaref = "1021" >
+				<regnode name = "sName" value ="srcMonitorable2RepG"></regnode>
+				<regnode name = "dName" value ="dstMonitorable2RepG"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "RepicaGroupConfiguration"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "OutConnection" metaref = "1005" >
+				<regnode name = "sName" value ="srcOutConnection"></regnode>
+				<regnode name = "dName" value ="dstOutConnection"></regnode>
+				<regnode name = "color" value ="0x008000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "PortQoS" metaref = "1006" >
+				<regnode name = "sName" value ="srcPortQoS"></regnode>
+				<regnode name = "dName" value ="dstPortQoS"></regnode>
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "NetQoS"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "QoSReq" metaref = "1007" >
+				<regnode name = "sName" value ="srcQoSReq"></regnode>
+				<regnode name = "dName" value ="dstQoSReq"></regnode>
+				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "QoSConnector"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "NetQoS"></pointeritem>
+					<pointeritem desc = "QoSCharRef"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "RootRiskAssociation" metaref = "1022" >
+				<regnode name = "sName" value ="srcRootRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstRootRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "RootRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<connection name = "SRGRiskAssociation" metaref = "1023" >
+				<regnode name = "sName" value ="srcSRGRiskAssociation"></regnode>
+				<regnode name = "dName" value ="dstSRGRiskAssociation"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="butt"></regnode>
+				<regnode name = "srcStyle" value ="diamond"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "HostReference"></pointeritem>
+					<pointeritem desc = "SharedRiskGroup"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
+		<reference name = "DeploymentPlanRef" metaref = "1024">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyDeploymentPlanReference"></regnode>
+			<constraint name="NoNullReference_DepPlan" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo ().isNull ()]]>
+				<dispname>A null deployment plan reference is not allowed.</dispname>
+			</constraint>
+			<constraint name="ValidFTDeployDependsdstCardinality8" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::FTDeployDepends ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to DeploymentPlanRef as &quot;dst&quot; over FTDeployDepends, has to match 0..1.</dispname>
+			</constraint>
+			<regnode name = "icon" value ="DeploymentPlan.bmp"></regnode>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<reference name = "DomainRiskGroupingRef" metaref = "1025">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyDomainRiskGroupingRef"></regnode>
+			<pointerspec name = "ref">
+				<pointeritem desc = "DomainRiskGrouping"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "HostReference" metaref = "1026" attributes = "Metric">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyHostReference"></regnode>
+			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(self.connectedFCOs(SRGRiskAssociation ) -> size = 1 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 0 ) or
+(self.connectedFCOs(SRGRiskAssociation ) -> size = 0 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
+				<dispname>Every risk group has a single unique parent risk group.</dispname>
+			</constraint>
+			<constraint name="ValidRootRiskAssociationsrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<reference name = "QoSCharRef" metaref = "1008">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbyQoSCharRef"></regnode>
+			<constraint name="NoCycles" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not (self.refersTo().kindName.trim() = "QoSCharRef")]]>
+				<dispname>A QoS Characteristic Reference must refer to a QoS characteristic and can&apos;t refer to another QoSCharRef.</dispname>
+			</constraint>
+			<constraint name="NoNullQoSCharReference" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[not self.refersTo().isNull()]]>
+				<dispname>Null References to QoS charcteristics is not allowed.</dispname>
+			</constraint>
+			<pointerspec name = "ref">
+				<pointeritem desc = "FailOverUnit"></pointeritem>
+				<pointeritem desc = "NetQoS"></pointeritem>
+				<pointeritem desc = "QoSCharRef"></pointeritem>
+			</pointerspec>
+		</reference>
+		<reference name = "SharedResourceReference" metaref = "1027">
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "rName" value ="ref"></regnode>
+				<regnode name = "rrName" value ="referedbySharedResourceReference"></regnode>
+			<pointerspec name = "ref">
+			</pointerspec>
+		</reference>
+		<model name = "DomainRiskGrouping" metaref = "1028" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
+			<constraint name="ValidDomainRiskGroupingPartCardinality29" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "HostReference" metaref = "1029" kind = "HostReference"></role>
+			<role name = "RootRiskAssociation" metaref = "1030" kind = "RootRiskAssociation"></role>
+			<role name = "RootRiskGroup" metaref = "1031" kind = "RootRiskGroup"></role>
+			<role name = "SRGRiskAssociation" metaref = "1032" kind = "SRGRiskAssociation"></role>
+			<role name = "SharedRiskGroup" metaref = "1033" kind = "SharedRiskGroup"></role>
+			<aspect name = "QoS" metaref = "1034" >
+				<part metaref = "1035" role = "HostReference" primary = "yes" linked = "no"></part>
+				<part metaref = "1036" role = "RootRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1037" role = "RootRiskGroup" primary = "yes" linked = "no"></part>
+				<part metaref = "1038" role = "SRGRiskAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1039" role = "SharedRiskGroup" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "FTDeployment" metaref = "1040" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "DeploymentPlanRef" metaref = "1041" kind = "DeploymentPlanRef"></role>
+			<role name = "DomainRiskGrouping" metaref = "1042" kind = "DomainRiskGrouping"></role>
+			<role name = "FTDeployDepends" metaref = "1043" kind = "FTDeployDepends"></role>
+			<aspect name = "QoS" metaref = "1044" >
+				<part metaref = "1045" role = "DeploymentPlanRef" primary = "yes" linked = "no"></part>
+				<part metaref = "1046" role = "DomainRiskGrouping" primary = "yes" linked = "no"></part>
+				<part metaref = "1047" role = "FTDeployDepends" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "FailOverUnit" metaref = "1048" attributes = "Replica" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="FOU.bmp"></regnode>
+			<constraint name="NotEmpty" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.parts().size() > 0]]>
+				<dispname>FailOverUnit can&apos;t be empty.</dispname>
+			</constraint>
+			<role name = "MonitorableGroupAssociation" metaref = "1049" kind = "MonitorableGroupAssociation"></role>
+			<role name = "RepicaGroupConfiguration" metaref = "1050" kind = "RepicaGroupConfiguration"></role>
+			<aspect name = "QoS" metaref = "1051" attributes = "Replica" >
+				<part metaref = "1052" role = "MonitorableGroupAssociation" primary = "yes" linked = "no"></part>
+				<part metaref = "1053" role = "RepicaGroupConfiguration" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RepicaGroupConfiguration" metaref = "1054" attributes = "ReplicationStyle" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RPG.bmp"></regnode>
+			<constraint name="ValidMonitorableGroupAssociationsrcCardinality17" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MonitorableGroupAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to RepicaGroupConfiguration as &quot;src&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "RGProperty" metaref = "1055" kind = "RGProperty"></role>
+			<aspect name = "QoS" metaref = "1056" attributes = "ReplicationStyle" >
+				<part metaref = "1057" role = "RGProperty" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "RootRiskGroup" metaref = "1058" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="RootRiskGroup.bmp"></regnode>
+			<constraint name="MustHaveChild" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.attachingConnections(meta::RootRiskAssociation)->size() >= 1]]>
+				<dispname>A RootRiskGroup must have atleast one child</dispname>
+			</constraint>
+			<role name = "SharedResourceReference" metaref = "1059" kind = "SharedResourceReference"></role>
+			<aspect name = "QoS" metaref = "1060" attributes = "Metric" >
+				<part metaref = "1061" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "SharedRiskGroup" metaref = "1062" attributes = "Metric" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="SharedRiskGroup.bmp"></regnode>
+			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(self.connectedFCOs(SRGRiskAssociation ) -> size = 1 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 0 ) or
+(self.connectedFCOs(SRGRiskAssociation ) -> size = 0 and
+ self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
+				<dispname>Every risk group has a single unique parent risk group.</dispname>
+			</constraint>
+			<constraint name="ValidRootRiskAssociationsrcCardinality25" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidSRGRiskAssociationsrcCardinality27" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "SharedResourceReference" metaref = "1063" kind = "SharedResourceReference"></role>
+			<aspect name = "QoS" metaref = "1064" attributes = "Metric" >
+				<part metaref = "1065" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+	</folder>
+</paradigm>
