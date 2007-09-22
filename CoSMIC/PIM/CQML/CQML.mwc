@@ -6,5 +6,6 @@ workspace {
 
     $(COSMIC_ROOT)/PIM/CQML/interpreters/CQML
     $(COSMIC_ROOT)/PIM/CQML/interpreters/QoSIntegrator
+    $(COSMIC_ROOT)/PIM/CQML/interpreters/ECLGenerator
 
 }

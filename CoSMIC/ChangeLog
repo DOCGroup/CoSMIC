@@ -1,3 +1,26 @@
+Sat Sep 22 22:58:43 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/CQML.mwc:
+
+        * PIM/CQML/interpreters/ECLGenerator:
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.h:
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/CompIcon.ico:
+        * PIM/CQML/interpreters/ECLGenerator/Component.rc:
+        * PIM/CQML/interpreters/ECLGenerator/ComponentConfig.h:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.h:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/GMESources.txt:
+        * PIM/CQML/interpreters/ECLGenerator/Resource.h:
+        * PIM/CQML/interpreters/ECLGenerator/StdAfx.h:
+        * PIM/CQML/interpreters/ECLGenerator/StdAfx.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/component.def:
+
+          A new MON based interpreter to generate ECL statements
+          from a meta-model.
+
 Sat Sep 22 20:34:36 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/CQML/paradigms/CQML.xme:
