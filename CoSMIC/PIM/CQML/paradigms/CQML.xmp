@@ -1,11 +1,17 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{C5F6F991-B371-44AD-9856-B7DC0E2251D2}" cdate="Thu Sep 20 23:33:16 2007" mdate="Thu Sep 20 23:33:16 2007" >
+<paradigm name="CQML" guid="{C144A501-54FB-4CAC-8F3A-DF096023680C}" cdate="Fri Sep 21 21:19:02 2007" mdate="Fri Sep 21 21:19:02 2007" >
 
-	<comment></comment>
+	<comment>Component-Oriented QoS Modeling Language (CQML) is a 
+platform-independent QoS modeling language that provides 
+first class support for modeling different QoS Aspects like 
+Fault Tolerance (FT), Realtime (RT), Security, Network for 
+different platform specific structural modeling languages 
+based on some fundamental structural elements like 
+Assembly, Component, Port, Connection.</comment>
 
-	<author></author>
+	<author>Sumant Tambe, Akshay Dabholkar, Amogh Kavimandan</author>
 
 	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment Security" >
 		<attrdef name="AuditLevel" metaref = "4211" valuetype = "enum" defvalue = "one">
@@ -68,13 +74,7 @@
 		<attrdef name="custom" metaref = "1067" valuetype = "string" defvalue = "">
 			<regnode name="multiLine" value = "2"></regnode>
 		</attrdef>
-		<attrdef name="family" metaref = "4231" valuetype = "string" defvalue = "corba">
-		</attrdef>
 		<attrdef name="fwdBW" metaref = "1068" valuetype = "integer" defvalue = "">
-		</attrdef>
-		<attrdef name="get" metaref = "4232" valuetype = "boolean" defvalue = "false">
-		</attrdef>
-		<attrdef name="manage" metaref = "4233" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="msecComputationTime" metaref = "1081" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -93,10 +93,6 @@
 		<attrdef name="revBW" metaref = "1070" valuetype = "integer" defvalue = "">
 		</attrdef>
 		<attrdef name="secComputationTime" metaref = "1084" valuetype = "string" defvalue = "">
-		</attrdef>
-		<attrdef name="set" metaref = "4234" valuetype = "boolean" defvalue = "false">
-		</attrdef>
-		<attrdef name="use" metaref = "4235" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<atom name = "AssemblyRule" metaref = "4236"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -144,6 +140,16 @@
 				<![CDATA[self.connectedFCOs(RightsAssignmentConn)->size() = 1]]>
 				<dispname>Granted Rights should have a user/group associated</dispname>
 			</constraint>
+			<attrdef name="family" metaref = "6449" valuetype = "string" defvalue = "corba">
+			</attrdef>
+			<attrdef name="get" metaref = "6450" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="manage" metaref = "6451" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="set" metaref = "6452" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="use" metaref = "6453" valuetype = "boolean" defvalue = "false">
+			</attrdef>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="role_access_rights.bmp"></regnode>
 		</atom>
@@ -204,6 +210,16 @@
 = 1 or self.connectedFCOs(OperationInvokeConn)->size() = 1)]]>
 				<dispname>Required Rights should have an operation/interface associated.</dispname>
 			</constraint>
+			<attrdef name="family" metaref = "6454" valuetype = "string" defvalue = "corba">
+			</attrdef>
+			<attrdef name="get" metaref = "6455" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="manage" metaref = "6456" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="set" metaref = "6457" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="use" metaref = "6458" valuetype = "boolean" defvalue = "false">
+			</attrdef>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 		</atom>

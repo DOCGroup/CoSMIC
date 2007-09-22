@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{63FEFCB1-C577-4E2F-9DC8-A8180BC69AF8}" cdate="Thu Sep 20 23:33:16 2007" mdate="Thu Sep 20 23:33:16 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{4B69DFE9-2E6A-46A8-9FF6-F59CD1D8130D}" cdate="Fri Sep 21 21:19:02 2007" mdate="Fri Sep 21 21:19:02 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>CQML</name>
-	<comment></comment>
-	<author></author>
+	<comment>Component-Oriented QoS Modeling Language (CQML) is a 
+platform-independent QoS modeling language that provides 
+first class support for modeling different QoS Aspects like 
+Fault Tolerance (FT), Realtime (RT), Security, Network for 
+different platform specific structural modeling languages 
+based on some fundamental structural elements like 
+Assembly, Component, Port, Connection.</comment>
+	<author>Sumant Tambe, Akshay Dabholkar, Amogh Kavimandan</author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x5" kind="RootFolder" guid="{6819C0F7-A6B1-408d-9085-66162815B824}">
 		<name>CQML</name>
 		<folder id="id-006a-00000002" relid="0x5" childrelidcntr="0x4" kind="SheetFolder" guid="{FE88052C-B69E-4b54-9FC6-8D31382E37AC}">
@@ -6176,18 +6182,36 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>4231</value>
+							<regnode name="GrantedRights" isopaque="yes">
+								<value>6449</value>
+							</regnode>
+							<regnode name="RequiredRights" isopaque="yes">
+								<value>6454</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="get-16-BooleanAttribute" status="undefined">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>4232</value>
+							<regnode name="GrantedRights" isopaque="yes">
+								<value>6450</value>
+							</regnode>
+							<regnode name="RequiredRights" isopaque="yes">
+								<value>6455</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="manage-14-BooleanAttribute" status="undefined">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>4233</value>
+							<regnode name="GrantedRights" isopaque="yes">
+								<value>6451</value>
+							</regnode>
+							<regnode name="RequiredRights" isopaque="yes">
+								<value>6456</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="principal-4-FieldAttribute" status="undefined">
@@ -6212,12 +6236,24 @@
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>4234</value>
+							<regnode name="GrantedRights" isopaque="yes">
+								<value>6452</value>
+							</regnode>
+							<regnode name="RequiredRights" isopaque="yes">
+								<value>6457</value>
+							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="use-15-BooleanAttribute" status="undefined">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
 							<value>4235</value>
+							<regnode name="GrantedRights" isopaque="yes">
+								<value>6453</value>
+							</regnode>
+							<regnode name="RequiredRights" isopaque="yes">
+								<value>6458</value>
+							</regnode>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -23160,8 +23196,8 @@ dName = dstOperationClassificationConn</value>
 					<attribute kind="BooleanDefault" status="meta">
 						<value>false</value>
 					</attribute>
-					<attribute kind="GlobalScope" status="meta">
-						<value>true</value>
+					<attribute kind="GlobalScope">
+						<value>false</value>
 					</attribute>
 					<attribute kind="Help" status="meta">
 						<value></value>
@@ -23193,8 +23229,8 @@ dName = dstOperationClassificationConn</value>
 					<attribute kind="FieldDefault">
 						<value>corba</value>
 					</attribute>
-					<attribute kind="GlobalScope" status="meta">
-						<value>true</value>
+					<attribute kind="GlobalScope">
+						<value>false</value>
 					</attribute>
 					<attribute kind="Help" status="meta">
 						<value></value>
@@ -23223,8 +23259,8 @@ dName = dstOperationClassificationConn</value>
 					<attribute kind="BooleanDefault" status="meta">
 						<value>false</value>
 					</attribute>
-					<attribute kind="GlobalScope" status="meta">
-						<value>true</value>
+					<attribute kind="GlobalScope">
+						<value>false</value>
 					</attribute>
 					<attribute kind="Help" status="meta">
 						<value></value>
@@ -23250,8 +23286,8 @@ dName = dstOperationClassificationConn</value>
 					<attribute kind="BooleanDefault" status="meta">
 						<value>false</value>
 					</attribute>
-					<attribute kind="GlobalScope" status="meta">
-						<value>true</value>
+					<attribute kind="GlobalScope">
+						<value>false</value>
 					</attribute>
 					<attribute kind="Help" status="meta">
 						<value></value>
@@ -23277,8 +23313,8 @@ dName = dstOperationClassificationConn</value>
 					<attribute kind="BooleanDefault" status="meta">
 						<value>false</value>
 					</attribute>
-					<attribute kind="GlobalScope" status="meta">
-						<value>true</value>
+					<attribute kind="GlobalScope">
+						<value>false</value>
 					</attribute>
 					<attribute kind="Help" status="meta">
 						<value></value>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="ESMLlibCQML" guid="{F646B2FB-E7FA-43C4-900A-1BDE9D071C2A}" cdate="Thu Sep 20 23:45:48 2007" mdate="Thu Sep 20 23:45:48 2007" >
+<paradigm name="ESMLlibCQML" guid="{7AC45F79-C7DD-4436-9738-EE46601FBBC0}" cdate="Fri Sep 21 21:32:37 2007" mdate="Fri Sep 21 21:32:37 2007" >
 
 	<comment></comment>
 
@@ -43,17 +43,17 @@ endif]]>
 		<attrdef name="Asynchronous" metaref = "1324" valuetype = "boolean" defvalue = "false">
 			<dispname>Asynchronous (yes|no) :</dispname>
 		</attrdef>
-		<attrdef name="AuditLevel" metaref = "6562" valuetype = "enum" defvalue = "one">
+		<attrdef name="AuditLevel" metaref = "6752" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
 			<enumitem dispname = "three" value = "three"></enumitem>
 		</attrdef>
-		<attrdef name="Authentication" metaref = "6563" valuetype = "boolean" defvalue = "false">
+		<attrdef name="Authentication" metaref = "6753" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="Bandwidth" metaref = "1325" valuetype = "string" defvalue = "">
 			<dispname>Bandwidth (MB/s) :</dispname>
 		</attrdef>
-		<attrdef name="ConfidentialityLevel" metaref = "6564" valuetype = "enum" defvalue = "one">
+		<attrdef name="ConfidentialityLevel" metaref = "6754" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
 			<enumitem dispname = "three" value = "three"></enumitem>
@@ -81,7 +81,7 @@ endif]]>
 		<attrdef name="Deadline" metaref = "1329" valuetype = "string" defvalue = "">
 			<dispname>Deadline:</dispname>
 		</attrdef>
-		<attrdef name="DelegationPolicy" metaref = "6565" valuetype = "enum" defvalue = "None">
+		<attrdef name="DelegationPolicy" metaref = "6755" valuetype = "enum" defvalue = "None">
 			<enumitem dispname = "None" value = "None"></enumitem>
 			<enumitem dispname = "Simple" value = "Simple"></enumitem>
 			<enumitem dispname = "Composite" value = "Composite"></enumitem>
@@ -122,7 +122,7 @@ endif]]>
 		<attrdef name="InitialMode" metaref = "1341" valuetype = "boolean" defvalue = "false">
 			<dispname>Is this the initial mode?</dispname>
 		</attrdef>
-		<attrdef name="IntegrityLevel" metaref = "6566" valuetype = "enum" defvalue = "one">
+		<attrdef name="IntegrityLevel" metaref = "6756" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
 			<enumitem dispname = "three" value = "three"></enumitem>
@@ -161,7 +161,7 @@ endif]]>
 		<attrdef name="Multiplicity" metaref = "1351" valuetype = "integer" defvalue = "1">
 			<dispname>Multiplicity (1..N):</dispname>
 		</attrdef>
-		<attrdef name="NonRepudiation" metaref = "6567" valuetype = "boolean" defvalue = "false">
+		<attrdef name="NonRepudiation" metaref = "6757" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="PRISM_ID" metaref = "1352" viewable = "no" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -205,12 +205,12 @@ endif]]>
 			<enumitem dispname = "Auto Save 10Hz" value = "Auto Save 10Hz"></enumitem>
 			<enumitem dispname = "Auto Save 20Hz" value = "Auto Save 20Hz"></enumitem>
 		</attrdef>
-		<attrdef name="SecurityLevel" metaref = "6568" valuetype = "enum" defvalue = "one">
+		<attrdef name="SecurityLevel" metaref = "6758" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
 			<enumitem dispname = "three" value = "three"></enumitem>
 		</attrdef>
-		<attrdef name="SecurityPolicy" metaref = "6569" valuetype = "enum" defvalue = "SecureInvocationPolicy">
+		<attrdef name="SecurityPolicy" metaref = "6759" valuetype = "enum" defvalue = "SecureInvocationPolicy">
 			<enumitem dispname = "DomainAccessPolicy" value = "DomainAccessPolicy"></enumitem>
 			<enumitem dispname = "SecureInvocationPolicy" value = "SecureInvocationPolicy"></enumitem>
 		</attrdef>
@@ -254,9 +254,9 @@ endif]]>
 			<enumitem dispname = "HIGH" value = "HIGH"></enumitem>
 			<enumitem dispname = "LOW" value = "LOW"></enumitem>
 		</attrdef>
-		<attrdef name="allow" metaref = "6570" valuetype = "boolean" defvalue = "false">
+		<attrdef name="allow" metaref = "6760" valuetype = "boolean" defvalue = "false">
 		</attrdef>
-		<attrdef name="combinator" metaref = "6571" valuetype = "enum" defvalue = "All">
+		<attrdef name="combinator" metaref = "6761" valuetype = "enum" defvalue = "All">
 			<enumitem dispname = "Any" value = "Any"></enumitem>
 			<enumitem dispname = "All" value = "All"></enumitem>
 		</attrdef>
@@ -269,13 +269,7 @@ endif]]>
 			<enumitem dispname = "32" value = "32"></enumitem>
 			<enumitem dispname = "64" value = "64"></enumitem>
 		</attrdef>
-		<attrdef name="family" metaref = "6572" valuetype = "string" defvalue = "corba">
-		</attrdef>
 		<attrdef name="fwdBW" metaref = "1068" valuetype = "integer" defvalue = "">
-		</attrdef>
-		<attrdef name="get" metaref = "6573" valuetype = "boolean" defvalue = "false">
-		</attrdef>
-		<attrdef name="manage" metaref = "6574" valuetype = "boolean" defvalue = "false">
 		</attrdef>
 		<attrdef name="msecComputationTime" metaref = "1081" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -295,10 +289,6 @@ endif]]>
 		</attrdef>
 		<attrdef name="secComputationTime" metaref = "1084" valuetype = "string" defvalue = "">
 		</attrdef>
-		<attrdef name="set" metaref = "6575" valuetype = "boolean" defvalue = "false">
-		</attrdef>
-		<attrdef name="use" metaref = "6576" valuetype = "boolean" defvalue = "false">
-		</attrdef>
 		<atom name = "Action" metaref = "1371"  attributes = "WCET">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<attrdef name="WCET" metaref = "1372" valuetype = "string" defvalue = "">
@@ -310,7 +300,7 @@ endif]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="agent_type.bmp"></regnode>
 		</atom>
-		<atom name = "AssemblyRule" metaref = "6577"  attributes = "allow">
+		<atom name = "AssemblyRule" metaref = "6762"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="AssemblyRuleSemantics" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.connectedFCOs(AssemblyAccessConn)->size() = 1 and self.connectedFCOs(SecuredPathConn)->size() >= 1) and 
@@ -341,7 +331,7 @@ self.connectedFCOs( "dst") -> forAll( cp | cp.parent() <> parent )
 				<regnode name = "icon" value ="hwport.bmp"></regnode>
 				<regnode name = "porticon" value ="hwport-port.bmp"></regnode>
 		</atom>
-		<atom name = "ComponentRule" metaref = "6578"  attributes = "allow">
+		<atom name = "ComponentRule" metaref = "6763"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ComponentRuleSemantics" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.connectedFCOs(ComponentAccessConn)->size() = 1 and self.connectedFCOs(AttributeManipulateConn)->size() >= 1) and 
@@ -380,12 +370,22 @@ self.connectedFCOs( "dst") -> forAll( cp | cp.parent() <> parent )
 			</attrdef>
 				<regnode name = "icon" value ="distribution.bmp"></regnode>
 		</atom>
-		<atom name = "GrantedRights" metaref = "6579"  attributes = "family get set use manage">
+		<atom name = "GrantedRights" metaref = "6764"  attributes = "family get set use manage">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="GrantedRightsHasRole" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.connectedFCOs(RightsAssignmentConn)->size() = 1]]>
 				<dispname>Granted Rights should have a user/group associated</dispname>
 			</constraint>
+			<attrdef name="family" metaref = "6765" valuetype = "string" defvalue = "corba">
+			</attrdef>
+			<attrdef name="get" metaref = "6766" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="manage" metaref = "6767" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="set" metaref = "6768" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="use" metaref = "6769" valuetype = "boolean" defvalue = "false">
+			</attrdef>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="role_access_rights.bmp"></regnode>
 		</atom>
@@ -470,7 +470,7 @@ endif]]>
 			</attrdef>
 				<regnode name = "icon" value ="persistence.bmp"></regnode>
 		</atom>
-		<atom name = "PortRule" metaref = "6580"  attributes = "allow">
+		<atom name = "PortRule" metaref = "6770"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="PortRuleSemantics" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.connectedFCOs(ObjectAccessConn)->size() = 1 and self.connectedFCOs(OperationInvokeConn)->size() >= 1) and 
@@ -528,17 +528,27 @@ endif
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="comp_time_clock.gif"></regnode>
 		</atom>
-		<atom name = "RequiredRights" metaref = "6581"  attributes = "combinator family get set use manage">
+		<atom name = "RequiredRights" metaref = "6771"  attributes = "combinator family get set use manage">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="RequiredRightsHasOperationOrInterface" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[(self.connectedFCOs(MethodClassificationConn)->size() = 1 or self.connectedFCOs(InterfaceClassificationConn)->size() 
 = 1 or self.connectedFCOs(OperationInvokeConn)->size() = 1)]]>
 				<dispname>Required Rights should have an operation/interface associated.</dispname>
 			</constraint>
+			<attrdef name="family" metaref = "6772" valuetype = "string" defvalue = "corba">
+			</attrdef>
+			<attrdef name="get" metaref = "6773" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="manage" metaref = "6774" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="set" metaref = "6775" valuetype = "boolean" defvalue = "false">
+			</attrdef>
+			<attrdef name="use" metaref = "6776" valuetype = "boolean" defvalue = "false">
+			</attrdef>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 		</atom>
-		<atom name = "Role" metaref = "6582" >
+		<atom name = "Role" metaref = "6777" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidRightsAssignmentConndstCardinality72" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::RightsAssignmentConn ) -> size in
@@ -593,9 +603,9 @@ endif
 			</attrdef>
 				<regnode name = "icon" value ="timer.bmp"></regnode>
 		</atom>
-		<atom name = "User" metaref = "6583"  attributes = "principal">
+		<atom name = "User" metaref = "6778"  attributes = "principal">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<attrdef name="principal" metaref = "6584" valuetype = "string" defvalue = "">
+			<attrdef name="principal" metaref = "6779" valuetype = "string" defvalue = "">
 			</attrdef>
 				<regnode name = "icon" value ="user.gif"></regnode>
 		</atom>
@@ -707,7 +717,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AssemblyAccessConn" metaref = "6585" >
+		<connection name = "AssemblyAccessConn" metaref = "6780" >
 				<regnode name = "sName" value ="srcAssemblyAccessConn"></regnode>
 				<regnode name = "dName" value ="dstAssemblyAccessConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -724,7 +734,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "AttributeManipulateConn" metaref = "6586" >
+		<connection name = "AttributeManipulateConn" metaref = "6781" >
 				<regnode name = "sName" value ="srcAttributeManipulateConn"></regnode>
 				<regnode name = "dName" value ="dstAttributeManipulateConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -741,7 +751,7 @@ endif]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "ComponentAccessConn" metaref = "6587" >
+		<connection name = "ComponentAccessConn" metaref = "6782" >
 				<regnode name = "sName" value ="srcComponentAccessConn"></regnode>
 				<regnode name = "dName" value ="dstComponentAccessConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -977,7 +987,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "InterfaceClassificationConn" metaref = "6588" >
+		<connection name = "InterfaceClassificationConn" metaref = "6783" >
 				<regnode name = "sName" value ="srcInterfaceClassificationConn"></regnode>
 				<regnode name = "dName" value ="dstInterfaceClassificationConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1029,7 +1039,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "MethodClassificationConn" metaref = "6589" >
+		<connection name = "MethodClassificationConn" metaref = "6784" >
 				<regnode name = "sName" value ="srcOperationClassificationConn"></regnode>
 				<regnode name = "dName" value ="dstOperationClassificationConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1116,7 +1126,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "ObjectAccessConn" metaref = "6590" >
+		<connection name = "ObjectAccessConn" metaref = "6785" >
 				<regnode name = "sName" value ="srcObjectAccessConn"></regnode>
 				<regnode name = "dName" value ="dstObjectAccessConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1133,7 +1143,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "OnAssemblyConn" metaref = "6591" >
+		<connection name = "OnAssemblyConn" metaref = "6786" >
 				<regnode name = "sName" value ="srcOnAssemblyConn"></regnode>
 				<regnode name = "dName" value ="dstOnAssemblyConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1150,7 +1160,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "OnComponentConn" metaref = "6592" >
+		<connection name = "OnComponentConn" metaref = "6787" >
 				<regnode name = "sName" value ="srcOnComponentConn"></regnode>
 				<regnode name = "dName" value ="dstOnComponentConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1167,7 +1177,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "OnInterfaceConn" metaref = "6593" >
+		<connection name = "OnInterfaceConn" metaref = "6788" >
 				<regnode name = "sName" value ="srcOnInterfaceConn"></regnode>
 				<regnode name = "dName" value ="dstOnInterfaceConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1184,7 +1194,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "OperationInvokeConn" metaref = "6594" >
+		<connection name = "OperationInvokeConn" metaref = "6789" >
 				<regnode name = "sName" value ="srcOperationInvokeConn"></regnode>
 				<regnode name = "dName" value ="dstOperationInvokeConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1321,7 +1331,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "RightsAssignmentConn" metaref = "6595" >
+		<connection name = "RightsAssignmentConn" metaref = "6790" >
 				<regnode name = "sName" value ="srcRightsAssignmentConn"></regnode>
 				<regnode name = "dName" value ="dstRightsAssignmentConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1338,7 +1348,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "RoleAssignmentConn" metaref = "6596" >
+		<connection name = "RoleAssignmentConn" metaref = "6791" >
 				<regnode name = "sName" value ="srcRoleAssignmentConn"></regnode>
 				<regnode name = "dName" value ="dstRoleAssignmentConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1407,7 +1417,7 @@ endif
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "SecuredPathConn" metaref = "6597" >
+		<connection name = "SecuredPathConn" metaref = "6792" >
 				<regnode name = "sName" value ="srcSecuredPathConn"></regnode>
 				<regnode name = "dName" value ="dstSecuredPathConn"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
@@ -1612,7 +1622,7 @@ endif
 				<pointeritem desc = "AgentInstance"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "AssemblyRuleRef" metaref = "6598">
+		<reference name = "AssemblyRuleRef" metaref = "6793">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyAssemblyRuleRef"></regnode>
@@ -1620,7 +1630,7 @@ endif
 				<pointeritem desc = "AssemblyRule"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "AttributeRef" metaref = "6599">
+		<reference name = "AttributeRef" metaref = "6794">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyAttributeRef"></regnode>
@@ -1690,7 +1700,7 @@ endif]]>
 				<pointeritem desc = "ComponentType"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "ComponentRuleRef" metaref = "6600">
+		<reference name = "ComponentRuleRef" metaref = "6795">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyComponentRuleRef"></regnode>
@@ -1858,7 +1868,7 @@ endif]]>
 			<pointerspec name = "ref">
 			</pointerspec>
 		</reference>
-		<reference name = "InitiatorRoleRef" metaref = "6601">
+		<reference name = "InitiatorRoleRef" metaref = "6796">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyInitiatorRoleRef"></regnode>
@@ -1917,7 +1927,7 @@ endif]]>
 				<pointeritem desc = "NormalComponent"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "PathRef" metaref = "6602">
+		<reference name = "PathRef" metaref = "6797">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPathRef"></regnode>
@@ -1929,7 +1939,7 @@ endif]]>
 			<pointerspec name = "ref">
 			</pointerspec>
 		</reference>
-		<reference name = "PortRuleRef" metaref = "6603">
+		<reference name = "PortRuleRef" metaref = "6798">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyPortRuleRef"></regnode>
@@ -1986,7 +1996,7 @@ endif]]>
 			<pointerspec name = "ref">
 			</pointerspec>
 		</reference>
-		<reference name = "TargetAssemblyReference" metaref = "6604">
+		<reference name = "TargetAssemblyReference" metaref = "6799">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyTargetAssemblyReference"></regnode>
@@ -1998,7 +2008,7 @@ endif]]>
 				<pointeritem desc = "InteractionModel"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "TargetComponentRef" metaref = "6605">
+		<reference name = "TargetComponentRef" metaref = "6800">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyTargetComponentRef"></regnode>
@@ -2010,7 +2020,7 @@ endif]]>
 				<pointeritem desc = "ComponentType"></pointeritem>
 			</pointerspec>
 		</reference>
-		<reference name = "TargetObjectRef" metaref = "6606">
+		<reference name = "TargetObjectRef" metaref = "6801">
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyTargetObjectRef"></regnode>
@@ -2056,32 +2066,32 @@ endif]]>
 				<part metaref = "1448" role = "AgentType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "ComponentAssemblySecurityQoS" metaref = "6607" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
+		<model name = "ComponentAssemblySecurityQoS" metaref = "6802" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="assembly_qos.bmp"></regnode>
 			<constraint name="AssemblySecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Assembly Secuirty QoS must have atleast one rule pertaining with its associated Target Assembly</dispname>
 			</constraint>
-			<role name = "AssemblyRuleRef" metaref = "6608" kind = "AssemblyRuleRef"></role>
-			<role name = "PortRuleRef" metaref = "6609" kind = "PortRuleRef"></role>
+			<role name = "AssemblyRuleRef" metaref = "6803" kind = "AssemblyRuleRef"></role>
+			<role name = "PortRuleRef" metaref = "6804" kind = "PortRuleRef"></role>
 			<aspect name = "QoS" metaref = "6610" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
-				<part metaref = "6611" role = "AssemblyRuleRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6612" role = "PortRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6805" role = "AssemblyRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6806" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "ComponentSecurityQoS" metaref = "6613" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
+		<model name = "ComponentSecurityQoS" metaref = "6807" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="component_qos.bmp"></regnode>
 			<constraint name="ComponentSecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Component Security QoS must have atleast one rule pertaining with its associated Target Component .</dispname>
 			</constraint>
-			<role name = "ComponentRuleRef" metaref = "6614" kind = "ComponentRuleRef"></role>
-			<role name = "PortRuleRef" metaref = "6615" kind = "PortRuleRef"></role>
+			<role name = "ComponentRuleRef" metaref = "6808" kind = "ComponentRuleRef"></role>
+			<role name = "PortRuleRef" metaref = "6809" kind = "PortRuleRef"></role>
 			<aspect name = "QoS" metaref = "6616" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
-				<part metaref = "6617" role = "ComponentRuleRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6618" role = "PortRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6810" role = "ComponentRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6811" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ComponentType" metaref = "1449" attributes = "IsAbstract PRISM_ID GroupID ItemID Locker Locked" >
@@ -2229,12 +2239,12 @@ endif]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentType, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentTypePartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ReplicationTriggers" ) -> size in
+				<![CDATA[let partCount = self.parts( "Distribution" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentType, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentTypePartCardinality103" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Distribution" ) -> size in
+				<![CDATA[let partCount = self.parts( "ReplicationTriggers" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentType, has to match 0..1.</dispname>
 			</constraint>
@@ -2272,16 +2282,16 @@ endif]]>
 			<role name = "Facet" metaref = "1462" kind = "Facet"></role>
 			<role name = "FacetMethod2Action" metaref = "1463" kind = "FacetMethod2Action"></role>
 			<role name = "GAConn" metaref = "1464" kind = "GAConn"></role>
-			<role name = "MethodId" metaref = "6619" kind = "MethodId"></role>
-			<role name = "MethodIdQoS" metaref = "6620" kind = "MethodIdQoS"></role>
-			<role name = "MethodIdentifier" metaref = "6621" kind = "MethodIdentifier"></role>
-			<role name = "MethodQoSConn" metaref = "6622" kind = "MethodQoSConn"></role>
+			<role name = "MethodId" metaref = "6812" kind = "MethodId"></role>
+			<role name = "MethodIdQoS" metaref = "6813" kind = "MethodIdQoS"></role>
+			<role name = "MethodIdentifier" metaref = "6814" kind = "MethodIdentifier"></role>
+			<role name = "MethodQoSConn" metaref = "6815" kind = "MethodQoSConn"></role>
 			<role name = "Mode" metaref = "1465" kind = "Mode"></role>
 			<role name = "ModeTransition" metaref = "1466" kind = "ModeTransition"></role>
 			<role name = "Parameter" metaref = "1467" kind = "Parameter"></role>
 			<role name = "Persistence" metaref = "1468" kind = "Persistence"></role>
 			<role name = "PublishPort" metaref = "1469" kind = "PublishPort"></role>
-			<role name = "RTTaskProperty" metaref = "6623" kind = "RTTaskProperty"></role>
+			<role name = "RTTaskProperty" metaref = "6816" kind = "RTTaskProperty"></role>
 			<role name = "Receptacle" metaref = "1470" kind = "Receptacle"></role>
 			<role name = "ReplicationTriggers" metaref = "1471" kind = "ReplicationTriggers"></role>
 			<role name = "SubscribeAction" metaref = "1472" kind = "SubscribeAction"></role>
@@ -2324,12 +2334,12 @@ endif]]>
 			</aspect>
 			<aspect name = "QoS" metaref = "1884" attributes = "IsAbstract GroupID ItemID Locker Locked" >
 				<part metaref = "1885" role = "Facet" primary = "yes" kindaspect = "QoS" linked = "yes"></part>
-				<part metaref = "6624" role = "MethodId" primary = "yes" linked = "no"></part>
-				<part metaref = "6625" role = "MethodIdQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6626" role = "MethodIdentifier" primary = "yes" linked = "no"></part>
-				<part metaref = "6627" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6817" role = "MethodId" primary = "yes" linked = "no"></part>
+				<part metaref = "6818" role = "MethodIdQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6819" role = "MethodIdentifier" primary = "yes" linked = "no"></part>
+				<part metaref = "6820" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
 				<part metaref = "1888" role = "PublishPort" primary = "yes" linked = "yes"></part>
-				<part metaref = "6628" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "6821" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
 				<part metaref = "1890" role = "Receptacle" primary = "yes" kindaspect = "QoS" linked = "yes"></part>
 				<part metaref = "1891" role = "SubscribePort" primary = "yes" linked = "yes"></part>
 			</aspect>
@@ -2511,16 +2521,16 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
 				<part metaref = "1531" role = "NormalComponentRef" primary = "yes" kindaspect = "Structure" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Group" metaref = "6629" attributes = "principal" >
+		<model name = "Group" metaref = "6822" attributes = "principal" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="group.bmp"></regnode>
-			<attrdef name="principal" metaref = "6630" valuetype = "string" defvalue = "">
+			<attrdef name="principal" metaref = "6823" valuetype = "string" defvalue = "">
 			</attrdef>
-			<role name = "Group" metaref = "6631" kind = "Group"></role>
-			<role name = "User" metaref = "6632" kind = "User"></role>
+			<role name = "Group" metaref = "6824" kind = "Group"></role>
+			<role name = "User" metaref = "6825" kind = "User"></role>
 			<aspect name = "QoS" metaref = "6633" attributes = "principal" >
-				<part metaref = "6634" role = "Group" primary = "yes" linked = "no"></part>
-				<part metaref = "6635" role = "User" primary = "yes" linked = "no"></part>
+				<part metaref = "6826" role = "Group" primary = "yes" linked = "no"></part>
+				<part metaref = "6827" role = "User" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "InteractionModel" metaref = "1532" >
@@ -2530,26 +2540,26 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to FTMonitorable as &quot;dst&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "ComponentAssemblyQoS" metaref = "6636" kind = "ComponentAssemblyQoS"></role>
-			<role name = "ComponentAssemblySecurityQoS" metaref = "6637" kind = "ComponentAssemblySecurityQoS"></role>
-			<role name = "ComponentQoS" metaref = "6638" kind = "ComponentQoS"></role>
-			<role name = "ComponentSecurityQoS" metaref = "6639" kind = "ComponentSecurityQoS"></role>
+			<role name = "ComponentAssemblyQoS" metaref = "6828" kind = "ComponentAssemblyQoS"></role>
+			<role name = "ComponentAssemblySecurityQoS" metaref = "6829" kind = "ComponentAssemblySecurityQoS"></role>
+			<role name = "ComponentQoS" metaref = "6830" kind = "ComponentQoS"></role>
+			<role name = "ComponentSecurityQoS" metaref = "6831" kind = "ComponentSecurityQoS"></role>
 			<role name = "ComponentShortcut" metaref = "1533" kind = "ComponentShortcut"></role>
 			<role name = "ComponentType" metaref = "1534" kind = "ComponentType"></role>
 			<role name = "Distribute" metaref = "1535" kind = "Distribute"></role>
 			<role name = "EventChRef" metaref = "1536" kind = "EventChRef"></role>
 			<role name = "EventType" metaref = "1537" kind = "EventType"></role>
-			<role name = "FailOverUnit" metaref = "6640" kind = "FailOverUnit"></role>
-			<role name = "InputConnection" metaref = "6641" kind = "InputConnection"></role>
+			<role name = "FailOverUnit" metaref = "6832" kind = "FailOverUnit"></role>
+			<role name = "InputConnection" metaref = "6833" kind = "InputConnection"></role>
 			<role name = "Invoke" metaref = "1538" kind = "Invoke"></role>
-			<role name = "NetQoS" metaref = "6642" kind = "NetQoS"></role>
-			<role name = "OutConnection" metaref = "6643" kind = "OutConnection"></role>
-			<role name = "PortQoS" metaref = "6644" kind = "PortQoS"></role>
-			<role name = "PortSecurityQoS" metaref = "6645" kind = "PortSecurityQoS"></role>
+			<role name = "NetQoS" metaref = "6834" kind = "NetQoS"></role>
+			<role name = "OutConnection" metaref = "6835" kind = "OutConnection"></role>
+			<role name = "PortQoS" metaref = "6836" kind = "PortQoS"></role>
+			<role name = "PortSecurityQoS" metaref = "6837" kind = "PortSecurityQoS"></role>
 			<role name = "Publish" metaref = "1539" kind = "Publish"></role>
-			<role name = "QoSCharRef" metaref = "6646" kind = "QoSCharRef"></role>
-			<role name = "QoSConnector" metaref = "6647" kind = "QoSConnector"></role>
-			<role name = "QoSReq" metaref = "6648" kind = "QoSReq"></role>
+			<role name = "QoSCharRef" metaref = "6838" kind = "QoSCharRef"></role>
+			<role name = "QoSConnector" metaref = "6839" kind = "QoSConnector"></role>
+			<role name = "QoSReq" metaref = "6840" kind = "QoSReq"></role>
 			<role name = "RTTrigger" metaref = "1540" kind = "RTTrigger"></role>
 			<role name = "SharedLock" metaref = "1541" kind = "SharedLock"></role>
 			<role name = "Subscribe" metaref = "1542" kind = "Subscribe"></role>
@@ -2576,20 +2586,20 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
 				<part metaref = "1560" role = "SynchProxyOwner" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "QoS" metaref = "1898" >
-				<part metaref = "6649" role = "ComponentAssemblyQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6650" role = "ComponentAssemblySecurityQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6651" role = "ComponentQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6652" role = "ComponentSecurityQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6841" role = "ComponentAssemblyQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6842" role = "ComponentAssemblySecurityQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6843" role = "ComponentQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6844" role = "ComponentSecurityQoS" primary = "yes" linked = "no"></part>
 				<part metaref = "1900" role = "ComponentType" primary = "yes" linked = "no"></part>
-				<part metaref = "6653" role = "FailOverUnit" primary = "yes" linked = "no"></part>
-				<part metaref = "6654" role = "InputConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "6655" role = "NetQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6656" role = "OutConnection" primary = "yes" linked = "no"></part>
-				<part metaref = "6657" role = "PortQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6658" role = "PortSecurityQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6659" role = "QoSCharRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
-				<part metaref = "6660" role = "QoSConnector" primary = "yes" linked = "no"></part>
-				<part metaref = "6661" role = "QoSReq" primary = "yes" linked = "no"></part>
+				<part metaref = "6845" role = "FailOverUnit" primary = "yes" linked = "no"></part>
+				<part metaref = "6846" role = "InputConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "6847" role = "NetQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6848" role = "OutConnection" primary = "yes" linked = "no"></part>
+				<part metaref = "6849" role = "PortQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6850" role = "PortSecurityQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6851" role = "QoSCharRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "6852" role = "QoSConnector" primary = "yes" linked = "no"></part>
+				<part metaref = "6853" role = "QoSReq" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Interface" metaref = "1561" attributes = "Id" >
@@ -2603,19 +2613,19 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
 				<dispname>Id</dispname>
 			</attrdef>
 			<role name = "Method" metaref = "1563" kind = "Method"></role>
-			<role name = "MethodClassificationConn" metaref = "6662" kind = "MethodClassificationConn"></role>
-			<role name = "MethodQoSConn" metaref = "6663" kind = "MethodQoSConn"></role>
-			<role name = "RTTaskProperty" metaref = "6664" kind = "RTTaskProperty"></role>
-			<role name = "RequiredRights" metaref = "6665" kind = "RequiredRights"></role>
+			<role name = "MethodClassificationConn" metaref = "6854" kind = "MethodClassificationConn"></role>
+			<role name = "MethodQoSConn" metaref = "6855" kind = "MethodQoSConn"></role>
+			<role name = "RTTaskProperty" metaref = "6856" kind = "RTTaskProperty"></role>
+			<role name = "RequiredRights" metaref = "6857" kind = "RequiredRights"></role>
 			<aspect name = "Structure" metaref = "1251" attributes = "Id" >
 				<part metaref = "1564" role = "Method" primary = "yes" linked = "yes"></part>
 			</aspect>
 			<aspect name = "QoS" metaref = "1906" attributes = "Id" >
 				<part metaref = "1935" role = "Method" primary = "yes" linked = "yes"></part>
-				<part metaref = "6666" role = "MethodClassificationConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6667" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6668" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "6669" role = "RequiredRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6858" role = "MethodClassificationConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6859" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6860" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "6861" role = "RequiredRights" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "NodeTypes" metaref = "1565" >
@@ -2625,7 +2635,7 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
 				<part metaref = "1567" role = "NodeType" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "OperationSet" metaref = "6670" >
+		<model name = "OperationSet" metaref = "6862" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="operation_set.bmp"></regnode>
 			<role name = "Method" metaref = "6559" kind = "Method"></role>
@@ -2633,70 +2643,70 @@ compRefs -> forAll( cr | failedProcs -> forAll( fp |
 				<part metaref = "6672" role = "Method" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Policy" metaref = "6673" >
+		<model name = "Policy" metaref = "6863" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="security_policy.bmp"></regnode>
-			<role name = "AssemblyAccessConn" metaref = "6674" kind = "AssemblyAccessConn"></role>
-			<role name = "AssemblyRule" metaref = "6675" kind = "AssemblyRule"></role>
-			<role name = "AttributeManipulateConn" metaref = "6676" kind = "AttributeManipulateConn"></role>
-			<role name = "AttributeRef" metaref = "6677" kind = "AttributeRef"></role>
-			<role name = "ComponentAccessConn" metaref = "6678" kind = "ComponentAccessConn"></role>
-			<role name = "ComponentRule" metaref = "6679" kind = "ComponentRule"></role>
-			<role name = "InitiatorRoleRef" metaref = "6680" kind = "InitiatorRoleRef"></role>
-			<role name = "ObjectAccessConn" metaref = "6681" kind = "ObjectAccessConn"></role>
-			<role name = "OnAssemblyConn" metaref = "6682" kind = "OnAssemblyConn"></role>
-			<role name = "OnComponentConn" metaref = "6683" kind = "OnComponentConn"></role>
-			<role name = "OnInterfaceConn" metaref = "6684" kind = "OnInterfaceConn"></role>
-			<role name = "OperationInvokeConn" metaref = "6685" kind = "OperationInvokeConn"></role>
-			<role name = "OperationSet" metaref = "6686" kind = "OperationSet"></role>
-			<role name = "PathRef" metaref = "6687" kind = "PathRef"></role>
-			<role name = "PortRule" metaref = "6688" kind = "PortRule"></role>
-			<role name = "RequiredRights" metaref = "6689" kind = "RequiredRights"></role>
-			<role name = "SecuredPathConn" metaref = "6690" kind = "SecuredPathConn"></role>
-			<role name = "TargetAssemblyReference" metaref = "6691" kind = "TargetAssemblyReference"></role>
-			<role name = "TargetComponentRef" metaref = "6692" kind = "TargetComponentRef"></role>
-			<role name = "TargetObjectRef" metaref = "6693" kind = "TargetObjectRef"></role>
+			<role name = "AssemblyAccessConn" metaref = "6864" kind = "AssemblyAccessConn"></role>
+			<role name = "AssemblyRule" metaref = "6865" kind = "AssemblyRule"></role>
+			<role name = "AttributeManipulateConn" metaref = "6866" kind = "AttributeManipulateConn"></role>
+			<role name = "AttributeRef" metaref = "6867" kind = "AttributeRef"></role>
+			<role name = "ComponentAccessConn" metaref = "6868" kind = "ComponentAccessConn"></role>
+			<role name = "ComponentRule" metaref = "6869" kind = "ComponentRule"></role>
+			<role name = "InitiatorRoleRef" metaref = "6870" kind = "InitiatorRoleRef"></role>
+			<role name = "ObjectAccessConn" metaref = "6871" kind = "ObjectAccessConn"></role>
+			<role name = "OnAssemblyConn" metaref = "6872" kind = "OnAssemblyConn"></role>
+			<role name = "OnComponentConn" metaref = "6873" kind = "OnComponentConn"></role>
+			<role name = "OnInterfaceConn" metaref = "6874" kind = "OnInterfaceConn"></role>
+			<role name = "OperationInvokeConn" metaref = "6875" kind = "OperationInvokeConn"></role>
+			<role name = "OperationSet" metaref = "6876" kind = "OperationSet"></role>
+			<role name = "PathRef" metaref = "6877" kind = "PathRef"></role>
+			<role name = "PortRule" metaref = "6878" kind = "PortRule"></role>
+			<role name = "RequiredRights" metaref = "6879" kind = "RequiredRights"></role>
+			<role name = "SecuredPathConn" metaref = "6880" kind = "SecuredPathConn"></role>
+			<role name = "TargetAssemblyReference" metaref = "6881" kind = "TargetAssemblyReference"></role>
+			<role name = "TargetComponentRef" metaref = "6882" kind = "TargetComponentRef"></role>
+			<role name = "TargetObjectRef" metaref = "6883" kind = "TargetObjectRef"></role>
 			<aspect name = "QoS" metaref = "6694" >
-				<part metaref = "6695" role = "AssemblyAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6696" role = "AssemblyRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6697" role = "AttributeManipulateConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6698" role = "AttributeRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6699" role = "ComponentAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6700" role = "ComponentRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6701" role = "InitiatorRoleRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6702" role = "ObjectAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6703" role = "OnAssemblyConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6704" role = "OnComponentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6705" role = "OnInterfaceConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6706" role = "OperationInvokeConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6707" role = "OperationSet" primary = "yes" linked = "no"></part>
-				<part metaref = "6708" role = "PathRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6709" role = "PortRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6710" role = "RequiredRights" primary = "yes" linked = "no"></part>
-				<part metaref = "6711" role = "SecuredPathConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6712" role = "TargetAssemblyReference" primary = "yes" kindaspect = "QoS" linked = "no"></part>
-				<part metaref = "6713" role = "TargetComponentRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
-				<part metaref = "6714" role = "TargetObjectRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "6884" role = "AssemblyAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6885" role = "AssemblyRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6886" role = "AttributeManipulateConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6887" role = "AttributeRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6888" role = "ComponentAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6889" role = "ComponentRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6890" role = "InitiatorRoleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6891" role = "ObjectAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6892" role = "OnAssemblyConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6893" role = "OnComponentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6894" role = "OnInterfaceConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6895" role = "OperationInvokeConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6896" role = "OperationSet" primary = "yes" linked = "no"></part>
+				<part metaref = "6897" role = "PathRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6898" role = "PortRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6899" role = "RequiredRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6900" role = "SecuredPathConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6901" role = "TargetAssemblyReference" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "6902" role = "TargetComponentRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
+				<part metaref = "6903" role = "TargetObjectRef" primary = "yes" kindaspect = "QoS" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PolicySet" metaref = "6715" >
+		<model name = "PolicySet" metaref = "6904" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="policy_set.bmp"></regnode>
-			<role name = "Policy" metaref = "6716" kind = "Policy"></role>
+			<role name = "Policy" metaref = "6905" kind = "Policy"></role>
 			<aspect name = "QoS" metaref = "6717" >
-				<part metaref = "6718" role = "Policy" primary = "yes" linked = "no"></part>
+				<part metaref = "6906" role = "Policy" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PortSecurityQoS" metaref = "6719" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
+		<model name = "PortSecurityQoS" metaref = "6907" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="port_qos.bmp"></regnode>
 			<constraint name="PortSecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Port Security QoS must have atleast one rule pertaining with its associated Target</dispname>
 			</constraint>
-			<role name = "PortRuleRef" metaref = "6720" kind = "PortRuleRef"></role>
+			<role name = "PortRuleRef" metaref = "6908" kind = "PortRuleRef"></role>
 			<aspect name = "QoS" metaref = "6721" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
-				<part metaref = "6722" role = "PortRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6909" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Process" metaref = "1568" >
@@ -2744,32 +2754,32 @@ endif]]>
 				<part metaref = "1589" role = "Thread" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "RBAC" metaref = "6723" >
+		<model name = "RBAC" metaref = "6910" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="rbac.bmp"></regnode>
-			<role name = "GrantedRights" metaref = "6724" kind = "GrantedRights"></role>
-			<role name = "Group" metaref = "6725" kind = "Group"></role>
-			<role name = "RightsAssignmentConn" metaref = "6726" kind = "RightsAssignmentConn"></role>
-			<role name = "Role" metaref = "6727" kind = "Role"></role>
-			<role name = "RoleAssignmentConn" metaref = "6728" kind = "RoleAssignmentConn"></role>
-			<role name = "SecurityDomain" metaref = "6729" kind = "SecurityDomain"></role>
-			<role name = "User" metaref = "6730" kind = "User"></role>
+			<role name = "GrantedRights" metaref = "6911" kind = "GrantedRights"></role>
+			<role name = "Group" metaref = "6912" kind = "Group"></role>
+			<role name = "RightsAssignmentConn" metaref = "6913" kind = "RightsAssignmentConn"></role>
+			<role name = "Role" metaref = "6914" kind = "Role"></role>
+			<role name = "RoleAssignmentConn" metaref = "6915" kind = "RoleAssignmentConn"></role>
+			<role name = "SecurityDomain" metaref = "6916" kind = "SecurityDomain"></role>
+			<role name = "User" metaref = "6917" kind = "User"></role>
 			<aspect name = "QoS" metaref = "6731" >
-				<part metaref = "6732" role = "GrantedRights" primary = "yes" linked = "no"></part>
-				<part metaref = "6733" role = "Group" primary = "yes" linked = "no"></part>
-				<part metaref = "6734" role = "RightsAssignmentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6735" role = "Role" primary = "yes" linked = "no"></part>
-				<part metaref = "6736" role = "RoleAssignmentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6737" role = "SecurityDomain" primary = "yes" linked = "no"></part>
-				<part metaref = "6738" role = "User" primary = "yes" linked = "no"></part>
+				<part metaref = "6918" role = "GrantedRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6919" role = "Group" primary = "yes" linked = "no"></part>
+				<part metaref = "6920" role = "RightsAssignmentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6921" role = "Role" primary = "yes" linked = "no"></part>
+				<part metaref = "6922" role = "RoleAssignmentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6923" role = "SecurityDomain" primary = "yes" linked = "no"></part>
+				<part metaref = "6924" role = "User" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Realm" metaref = "6739" >
+		<model name = "Realm" metaref = "6925" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="realm.bmp"></regnode>
-			<role name = "Role" metaref = "6740" kind = "Role"></role>
+			<role name = "Role" metaref = "6926" kind = "Role"></role>
 			<aspect name = "QoS" metaref = "6741" >
-				<part metaref = "6742" role = "Role" primary = "yes" linked = "no"></part>
+				<part metaref = "6927" role = "Role" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "RepeatTask" metaref = "1590" attributes = "ID" >
@@ -2825,21 +2835,21 @@ endif]]>
 				<part metaref = "1061" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Security" metaref = "6743" >
+		<model name = "Security" metaref = "6928" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PolicySet" metaref = "6744" kind = "PolicySet"></role>
-			<role name = "RBAC" metaref = "6745" kind = "RBAC"></role>
+			<role name = "PolicySet" metaref = "6929" kind = "PolicySet"></role>
+			<role name = "RBAC" metaref = "6930" kind = "RBAC"></role>
 			<aspect name = "QoS" metaref = "6746" >
-				<part metaref = "6747" role = "PolicySet" primary = "yes" linked = "no"></part>
-				<part metaref = "6748" role = "RBAC" primary = "yes" linked = "no"></part>
+				<part metaref = "6931" role = "PolicySet" primary = "yes" linked = "no"></part>
+				<part metaref = "6932" role = "RBAC" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "SecurityDomain" metaref = "6749" >
+		<model name = "SecurityDomain" metaref = "6933" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="security_domain.bmp"></regnode>
-			<role name = "Realm" metaref = "6750" kind = "Realm"></role>
+			<role name = "Realm" metaref = "6934" kind = "Realm"></role>
 			<aspect name = "QoS" metaref = "6751" >
-				<part metaref = "6752" role = "Realm" primary = "yes" linked = "no"></part>
+				<part metaref = "6935" role = "Realm" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "SelectTask" metaref = "1605" attributes = "ID" >
