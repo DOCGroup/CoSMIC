@@ -1,3 +1,9 @@
+Sun Sep 23 00:08:22 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/ComponentConfig.h:
+          
+          Updated UUIDs.
+
 Sat Sep 22 22:58:43 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/CQML.mwc:
