@@ -95,6 +95,17 @@ namespace GME
   }
 
   //
+  // _narrow
+  //
+  Folder Folder::_narrow (const GME::Object & object)
+  {
+    CComPtr <IMgaFolder> folder;
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&folder));
+
+    return folder.p;
+  }
+
+  //
   // parent
   //
   Folder Folder::parent(void) const

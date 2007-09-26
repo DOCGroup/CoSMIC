@@ -215,6 +215,14 @@ namespace GME
      */
     Object parent (void) const;
 
+    /**
+     * Get the underlying implemenation for the object. This returns
+     * the actual COM pointer used to manage the object.
+     *
+     * @return      The IMgaObject pointer to the object.
+     */
+    IMgaObject * impl (void) const;
+
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

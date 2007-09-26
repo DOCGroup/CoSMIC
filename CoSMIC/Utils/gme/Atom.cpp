@@ -71,10 +71,10 @@ namespace GME
   //
   // _narrow
   //
-  Atom Atom::_narrow (FCO & fco)
+  Atom Atom::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaAtom> atom;
-    VERIFY_HRESULT (fco.impl ()->QueryInterface (&atom));
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&atom));
 
     return atom.p;
   }

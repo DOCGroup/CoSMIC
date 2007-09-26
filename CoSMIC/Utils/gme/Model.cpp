@@ -61,10 +61,10 @@ namespace GME
   //
   // _narrow
   //
-  Model Model::_narrow (FCO & fco)
+  Model Model::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaModel> model;
-    VERIFY_HRESULT (fco.impl ()->QueryInterface (&model));
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&model));
 
     return model.p;
   }

@@ -212,6 +212,17 @@ namespace GME
   }
 
   //
+  // _narrow
+  //
+  FCO FCO::_narrow (const Object & object)
+  {
+    CComPtr <IMgaFCO> fco;
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&fco));
+
+    return fco.p;
+  }
+
+  //
   // registry_value
   //
   std::string FCO::registry_value (const std::string & path) const

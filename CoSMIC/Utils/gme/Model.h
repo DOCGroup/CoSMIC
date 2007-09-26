@@ -43,7 +43,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The model object.
      */
-    static Model _narrow (FCO & fco);
+    static Model _narrow (const GME::Object & object);
 
     /**
      * Create a new model element.

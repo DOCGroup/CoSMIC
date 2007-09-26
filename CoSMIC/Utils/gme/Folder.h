@@ -60,6 +60,8 @@ namespace GME
      */
     Folder _create (const std::string & type, Folder & parent);
 
+    Folder _narrow (const GME::Object & object);
+
     /// Destructor.
     virtual ~Folder (void);
 

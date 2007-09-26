@@ -43,6 +43,14 @@ namespace GME
      */
     static FCO _create (const std::string & role, Model & parent);
 
+    /**
+     * Extract an FCO object from the GME object.
+     *
+     * @param[in]       object        The source object.
+     * @return          The FCO version of the object, if applicable.
+     */
+    static FCO _narrow (const GME::Object & object);
+
     /// Default constructor.
     FCO (void);
 

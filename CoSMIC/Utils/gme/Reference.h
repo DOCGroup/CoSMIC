@@ -37,7 +37,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The atom object.
      */
-    static Reference _narrow (FCO & fco);
+    static Reference _narrow (const GME::Object & object);
 
     /**
      * Create a new atom element.

@@ -1,7 +1,25 @@
+Wed Sep 26 00:25:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Atom.h:
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/Model.h:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Reference.h:
+        * Utils/gme/Reference.cpp:
+
+          The _narrow () method is now takes a GME::Object as the input
+          parameter instead of a GME::FCO.
+
 Sun Sep 23 00:08:22 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/interpreters/ECLGenerator/ComponentConfig.h:
-          
+
           Updated UUIDs.
 
 Sat Sep 22 22:58:43 UTC 2007  Sumant Tambe  <sutambe@nospam>

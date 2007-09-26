@@ -53,10 +53,10 @@ namespace GME
   //
   // _narrow
   //
-  Reference Reference::_narrow (FCO & fco)
+  Reference Reference::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaReference> ref;
-    VERIFY_HRESULT (fco.impl ()->QueryInterface (&ref));
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&ref));
 
     return ref.p;
   }

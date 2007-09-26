@@ -311,4 +311,12 @@ namespace GME
     VERIFY_HRESULT (this->object_->DestroyObject ());
     this->object_.Release ();
   }
+
+  //
+  // impl
+  //
+  IMgaObject * Object::impl (void) const
+  {
+    return this->object_.p;
+  }
 }
