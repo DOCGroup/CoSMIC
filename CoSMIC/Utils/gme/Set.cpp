@@ -77,32 +77,16 @@ namespace GME
   //
   // members
   //
-  size_t Set::members (std::vector <FCO> & elements) const
+  size_t Set::members (GME::Collection_T <GME::FCO> & members) const
   {
     // Get all the members in the set.
     CComPtr <IMgaFCOs> fcos;
     VERIFY_HRESULT (this->impl ()->get_Members (&fcos));
 
-    // Determine the number of members in the set.
-    long count;
-    VERIFY_HRESULT (fcos->get_Count (&count));
-    elements.resize (count);
-
-    if (count > 0)
-    {
-      // Get the interface to all the members.
-      CComPtr <IMgaFCO> * array = new CComPtr <IMgaFCO> [count];
-      VERIFY_HRESULT (fcos->GetAll (count, &(*array)));
-
-      // Store the members in a collection.
-      for (long i = 0; i < count; i ++)
-        elements[i].attach (array[i]);
-
-      // Release the temp storage.
-      delete [] array;
-    }
-
-    return count;
+    // Attach the implementation to the collection. We also need
+    // to return the size of the set.
+    members.attach (fcos);
+    return members.size ();
   }
 
   //
@@ -130,10 +114,10 @@ namespace GME
   //
   // _narrow
   //
-  Set Set::_narrow (FCO & fco)
+  Set Set::_narrow (GME::Object & object)
   {
     CComPtr <IMgaSet> set;
-    VERIFY_HRESULT (fco.impl ()->QueryInterface (&set));
+    VERIFY_HRESULT (object.impl ()->QueryInterface (&set));
 
     return set.p;
   }

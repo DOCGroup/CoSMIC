@@ -54,7 +54,7 @@ namespace GME
   GME_INLINE
   size_t Folder_Model_T <T, BASE>::
   fcos (const std::string & type,
-        std::vector <FCO> & fcos) const
+        GME::Collection_T <FCO> & fcos) const
   {
     return this->get_children (type, fcos);
   }
@@ -66,7 +66,7 @@ namespace GME
   GME_INLINE
   size_t Folder_Model_T <T, BASE>::
   models (const std::string & type,
-          std::vector <Model> & models) const
+          GME::Collection_T <Model> & models) const
   {
     return this->get_children (type, models);
   }
@@ -78,7 +78,7 @@ namespace GME
   GME_INLINE
   size_t Folder_Model_T <T, BASE>::
   atoms (const std::string & type,
-         std::vector <Atom> & atoms) const
+         GME::Collection_T <Atom> & atoms) const
   {
     return this->get_children (type, atoms);
   }
@@ -90,7 +90,7 @@ namespace GME
   GME_INLINE
   size_t Folder_Model_T <T, BASE>::
   sets (const std::string & type,
-        std::vector <Set> & sets) const
+        GME::Collection_T <Set> & sets) const
   {
     return this->get_children (type, sets);
   }
@@ -102,7 +102,7 @@ namespace GME
   GME_INLINE
   size_t Folder_Model_T <T, BASE>::
   references (const std::string & type,
-              std::vector <Reference> & refs) const
+              GME::Collection_T <Reference> & refs) const
   {
     return this->get_children (type, refs);
   }

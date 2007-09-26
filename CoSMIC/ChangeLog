@@ -1,3 +1,18 @@
+Wed Sep 26 04:48:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.inl:
+        * Utils/gme/Collection_T.cpp:
+        * Utils/gme/Folder_Model_T.h:
+        * Utils/gme/Folder_Model_T.inl:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/Set.h:
+        * Utils/gme/Set.cpp:
+
+          Implemented a collection container that simplifies interacting
+          with collection elements/interfaces in GME.
+
 Wed Sep 26 00:25:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Atom.h:

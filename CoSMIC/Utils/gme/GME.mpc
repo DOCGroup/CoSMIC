@@ -39,6 +39,7 @@ project (GME) : cosmic_common {
   }
 
   Template_Files {
+    Collection_T.cpp
     Folder_Model_T.cpp
   }
 

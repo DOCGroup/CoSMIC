@@ -14,6 +14,7 @@
 #define _GME_SET_H_
 
 #include "FCO.h"
+#include "Collection_T.h"
 
 namespace GME
 {
@@ -37,7 +38,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The atom object.
      */
-    static Set _narrow (FCO & fco);
+    static Set _narrow (GME::Object & object);
 
     /**
      * Create a new set element.
@@ -115,7 +116,7 @@ namespace GME
      * @param[out]    members       Collection of objects in the set.
      * @return        Number of elements in \a members.
      */
-    size_t members (std::vector <FCO> & members) const;
+    size_t members (GME::Collection_T <FCO> & members) const;
 
   protected:
     /// Helper method for getting the correct implemenation.

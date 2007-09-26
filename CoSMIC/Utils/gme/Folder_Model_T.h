@@ -15,7 +15,7 @@
 
 #include "GME_fwd.h"
 #include "Exception.h"
-#include <vector>
+#include "Collection_T.h"
 
 namespace GME
 {
@@ -50,7 +50,7 @@ namespace GME
      * @return      Number of FCOs returned \a fcos.
      */
     size_t fcos (const std::string & type,
-                 std::vector <FCO> & fcos) const;
+                 GME::Collection_T <FCO> & fcos) const;
 
     /**
      * Get all the atoms of a particular \a type.
@@ -59,7 +59,7 @@ namespace GME
      * @return      Collection of atoms of the specified \a type.
      */
     size_t atoms (const std::string & type,
-                  std::vector <Atom> & atoms) const;
+                  GME::Collection_T <Atom> & atoms) const;
 
     /**
      * Get all the models of a particular \a type.
@@ -69,7 +69,7 @@ namespace GME
      * @return      Number of elements in \a models.
      */
     size_t models (const std::string & type,
-                   std::vector <Model> & models) const;
+                   GME::Collection_T <Model> & models) const;
 
     /**
      * Get all the sets of a particular \a type.
@@ -79,7 +79,7 @@ namespace GME
      * @return      Number of elements in \a sets.
      */
     size_t sets (const std::string & type,
-                 std::vector <Set> & sets) const;
+                 GME::Collection_T <Set> & sets) const;
 
     /**
      * Get all the references of a particular \a type.
@@ -89,7 +89,7 @@ namespace GME
      * @return      Number of elements in \a refs.
      */
     size_t references (const std::string & type,
-                       std::vector <Reference> & refs) const;
+                       GME::Collection_T <Reference> & refs) const;
 
     /**
      * Helper method to get the correct implementation.
@@ -123,7 +123,7 @@ namespace GME
     /// the appropriate methods.
     template <typename T2>
     size_t get_children (const std::string & type,
-                         std::vector <T2> & children) const;
+                         GME::Collection_T <T2> & children) const;
 
     /// Cached pointer to the implementation.
     mutable CComPtr <T> type_;
