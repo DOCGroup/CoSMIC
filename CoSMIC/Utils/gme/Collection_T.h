@@ -3,6 +3,12 @@
 //=============================================================================
 /**
  * @file        Collection_T.h
+ *
+ * Defines the collection container
+ *
+ * $Id$
+ *
+ * @author      James H. Hill
  */
 //=============================================================================
 
@@ -20,6 +26,8 @@ namespace GME
 //=============================================================================
 /**
  * @struct collection_traits
+ *
+ * Trait class that determines the GME item type of a collection.
  */
 //=============================================================================
 
@@ -50,6 +58,8 @@ struct collection_traits <IMgaFolders>
 //=============================================================================
 /**
  * @struct item_traits
+ *
+ * Trait class that determines the GME collection type of an object.
  */
 //=============================================================================
 
@@ -103,7 +113,9 @@ struct item_traits <GME::Folder>
 
 //=============================================================================
 /**
+ * @class Collection_T
  *
+ * Default container class for managing GME collections.
  */
 //=============================================================================
 
@@ -130,10 +142,27 @@ public:
   /// Destructor.
   ~Collection_T (void);
 
+  /**
+   * Attach to the specified collection.
+   *
+   * @param[in]     collection      The source collection.
+   */
   void attach (typename _collection_type * collection);
 
+  /**
+   * Get the item at the specified index.
+   *
+   * @param[in]     i               The target index.
+   * @return        The target item.
+   */
   T & operator [] (size_t i);
 
+  /**
+   * Get the item at the specified index.
+   *
+   * @param[in]     i               The target index.
+   * @return        The target item.
+   */
   const T & operator [] (size_t i) const;
 
   /**
@@ -151,6 +180,7 @@ public:
   typename _collection_type * impl (void) const;
 
 private:
+  /// Populate the collection object with the items.
   void populate (void);
 
   /// The underlying collection.
