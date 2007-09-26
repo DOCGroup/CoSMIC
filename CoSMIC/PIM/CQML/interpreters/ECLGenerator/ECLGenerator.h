@@ -1,34 +1,40 @@
 #pragma once
 
+#include "BON.h"
 #include "MON.h"
 
 #include <map>
 #include <set>
 #include <string>
 #include <queue>
+#include <list>
 
 namespace { /// anonymous
 
 struct Compound
 {
-	MON::Object obj;
-	MON::ObjectType type;
+	long obj_ref;
 	std::string name;	
 
 	bool operator < (Compound const & c) const;
 };
 
 typedef std::map <std::string, std::set <Compound> > ContainmentGraph;
+typedef std::map <std::string, std::set <std::string> > NodeToCompMapping;
+typedef std::map <std::string, std::string> CompToNodeMapping;
 
 }
 
-class ECLGenerator
+class ECLGenerator : public CWnd
 {
 public:
-	ECLGenerator(const MON::Project& project);
+	ECLGenerator(const BON::Project& project);
 	~ECLGenerator(void);
 
-	void generate ();
+	void generate (NodeToCompMapping const & node2comp, 
+				   CompToNodeMapping const & comp2node);
+	static void get_sample_mapping (NodeToCompMapping & node2comp, 
+		                            CompToNodeMapping & comp2node);
 
 private:
 
@@ -37,12 +43,20 @@ private:
     template <class Comp>
     void push_adj (std::set <Comp> const & set, 
 	               std::string const & name);
-	bool is_compound (MON::Object);
+	bool is_compound (MON::Object const &);
 	void parse_containement ();
 	void parse_compound (Compound const & comp);
+	std::list <std::string> composition_sequence (std::string const & begin, 
+								                  std::string const & end);
+	template <class Iter>
+    void print_sequence (Iter begin, Iter end);
+    std::string gen_ECL (NodeToCompMapping const & node2comp, 
+	    				 CompToNodeMapping const & comp2node);
+	std::string add_slash_r (std::string const & s);
 
 
-	const MON::Project * mon_project_;
+	const BON::Project & bon_project_;
+	const MON::Project & mon_project_;
 	ContainmentGraph con_graph_;
 	std::queue <Compound> compound_queue_;
 };

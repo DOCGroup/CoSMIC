@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{4B69DFE9-2E6A-46A8-9FF6-F59CD1D8130D}" cdate="Fri Sep 21 21:19:02 2007" mdate="Fri Sep 21 21:19:02 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{FF089A00-1231-43AC-8C59-1255ED44AB31}" cdate="Tue Sep 25 20:05:36 2007" mdate="Tue Sep 25 20:05:36 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>CQML</name>
 	<comment>Component-Oriented QoS Modeling Language (CQML) is a 
 platform-independent QoS modeling language that provides 
@@ -24655,6 +24655,18 @@ dName = dstInterfaceClassificationConn</value>
 			<value></value>
 			<regnode name="AspectMetaRefs" status="undefined">
 				<value></value>
+				<regnode name="Deployment" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="DeploymentPlan" isopaque="yes">
+							<value>6466</value>
+						</regnode>
+						<regnode name="Node" isopaque="yes">
+							<value>6472</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="OperationRights" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" status="undefined">
@@ -24799,11 +24811,14 @@ dName = dstInterfaceClassificationConn</value>
 			</regnode>
 			<regnode name="AspectOrder" isopaque="yes">
 				<value>valid</value>
+				<regnode name="Deployment" isopaque="yes">
+					<value>2</value>
+				</regnode>
 				<regnode name="OperationRights" isopaque="yes">
 					<value>2</value>
 				</regnode>
 				<regnode name="QoS" isopaque="yes">
-					<value>3</value>
+					<value>1</value>
 				</regnode>
 				<regnode name="SecurityRule" isopaque="yes">
 					<value>1</value>
@@ -25003,6 +25018,15 @@ dName = dstInterfaceClassificationConn</value>
 			</regnode>
 			<regnode name="HostReference-21-Reference" status="undefined">
 				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="DomainRiskGrouping:HostReference" status="undefined">
+						<value></value>
+						<regnode name="QoS" isopaque="yes">
+							<value></value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1026</value>
 					<regnode name="DomainRiskGrouping" status="undefined">
@@ -25571,10 +25595,40 @@ dName = dstInterfaceClassificationConn</value>
 					<value>1003</value>
 				</regnode>
 			</regnode>
+			<regnode name="ComponentRef-100-Reference" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>6461</value>
+					<regnode name="DeploymentPlan" status="undefined">
+						<value></value>
+						<regnode name="ComponentRef" isopaque="yes">
+							<value>6463</value>
+							<regnode name="Deployment" isopaque="yes">
+								<value>6467</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="DeploymentPlan:ComponentRef" status="undefined">
+						<value></value>
+						<regnode name="Deployment" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="DPQoSConn-9e-Connection" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1072</value>
+				</regnode>
+			</regnode>
+			<regnode name="DeploymentPlan-f8-Model" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>6462</value>
 				</regnode>
 			</regnode>
 			<regnode name="DeploymentPlanQoSConnection-9e-Connection" status="undefined">
@@ -25613,16 +25667,97 @@ dName = dstInterfaceClassificationConn</value>
 					<value>1073</value>
 				</regnode>
 			</regnode>
+			<regnode name="Node-10a-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="DeploymentPlan:Node" status="undefined">
+						<value></value>
+						<regnode name="Deployment" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>6470</value>
+					<regnode name="DeploymentPlan" status="undefined">
+						<value></value>
+						<regnode name="Node" isopaque="yes">
+							<value>6464</value>
+							<regnode name="Deployment" isopaque="yes">
+								<value>6468</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="DeploymentPlan:Node" status="undefined">
+						<value></value>
+						<regnode name="Deployment" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="OutConnection-1-Connection" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1005</value>
 				</regnode>
 			</regnode>
+			<regnode name="Placement-fb-Connection" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>6460</value>
+					<regnode name="DeploymentPlan" status="undefined">
+						<value></value>
+						<regnode name="Placement" isopaque="yes">
+							<value>6465</value>
+							<regnode name="Deployment" isopaque="yes">
+								<value>6469</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="DeploymentPlan:Placement" status="undefined">
+						<value></value>
+						<regnode name="Deployment" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="PortQoS-a-Connection" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1006</value>
+				</regnode>
+			</regnode>
+			<regnode name="Process-10d-Atom" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>6459</value>
+					<regnode name="Node" status="undefined">
+						<value></value>
+						<regnode name="Process" isopaque="yes">
+							<value>6471</value>
+							<regnode name="Deployment" isopaque="yes">
+								<value>6473</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Node:Process" status="undefined">
+						<value></value>
+						<regnode name="Deployment" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 				</regnode>
 			</regnode>
 			<regnode name="QoSCharRef-15-Reference" status="undefined">
@@ -25668,7 +25803,7 @@ dName = dstInterfaceClassificationConn</value>
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000005" kind="ParadigmSheet" guid="{F5DB173D-11CF-4c01-96FE-FF9A85322E52}" relid="0x1" childrelidcntr="0xf5">
+		<model id="id-0065-00000005" kind="ParadigmSheet" guid="{F5DB173D-11CF-4c01-96FE-FF9A85322E52}" relid="0x1" childrelidcntr="0x119">
 			<name>QoSModeling</name>
 			<atom id="id-0066-00000066" kind="Connection" role="Connection" guid="{2833AEB1-A487-4785-9154-3FA338B1007E}" relid="0x1">
 				<name>OutConnection</name>
@@ -27741,81 +27876,6 @@ dName = dstDPQoSConn</value>
 					</regnode>
 				</regnode>
 			</atom>
-			<atom id="id-0066-0000008b" kind="Model" role="Model" guid="{5B349919-F871-49b3-B888-E25737E57643}" relid="0xa6">
-				<name>NodeBase</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>792,951</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1114,860</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>849,947</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>1114,860</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeInfoShown" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-0000008c" kind="Model" role="Model" guid="{4A7DE9CA-DA85-41a5-BBC8-1328B9CE8449}" relid="0xa7">
 				<name>AbstractSharedResource</name>
 				<regnode name="PartRegs" status="undefined">
@@ -27829,7 +27889,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1072,1077</value>
+							<value>1513,1308</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -27841,7 +27901,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1072,1077</value>
+							<value>1513,1308</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27904,7 +27964,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1093,937</value>
+							<value>1534,1168</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -27916,7 +27976,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1093,937</value>
+							<value>1534,1168</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -27979,7 +28039,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="ClassDiagram" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1137,1027</value>
+							<value>1578,1258</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" status="undefined">
@@ -27991,7 +28051,7 @@ dName = dstDPQoSConn</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1137,1027</value>
+							<value>1578,1258</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28404,7 +28464,7 @@ dName = dstMethodQoSConn</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,1203</value>
+							<value>666,1196</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28476,7 +28536,7 @@ dName = dstMethodQoSConn</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>778,1280</value>
+							<value>771,1280</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28538,7 +28598,7 @@ dName = dstMethodIdentifier</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>816,1222</value>
+							<value>823,1222</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28568,7 +28628,7 @@ dName = dstMethodIdentifier</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>519,1210</value>
+							<value>491,1210</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28660,7 +28720,7 @@ dName = dstMethodIdQoS</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1114,860</value>
+							<value>1597,734</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28735,7 +28795,7 @@ dName = dstMethodIdQoS</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>666,1203</value>
+							<value>1457,734</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -28759,6 +28819,390 @@ dName = dstMethodIdQoS</value>
 				</attribute>
 				<attribute kind="IsAbstract">
 					<value>true</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000d0" kind="Model" role="Model" guid="{70397F53-B720-4b60-984B-45A3C5DFB35F}" relid="0xf8">
+				<name>DeploymentPlan</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1185,1164</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1185,1164</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1185,1164</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1184,1161</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000d1" kind="Connection" role="Connection" guid="{AC9E2E80-C961-4dd5-B848-B362B8A6184D}" relid="0xfb">
+				<name>Placement</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1185,1367</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1184,1385</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1185,1367</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1184,1385</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="color" isopaque="yes">
+					<value>0x0000ff</value>
+				</regnode>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1">
+					<value>Placement</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000d2" kind="Connector" role="Connector" guid="{250FDB3D-192E-45d0-A983-1345FC59D718}" relid="0xfc">
+				<name>Connector</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1278,1327</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1278,1327</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</atom>
+			<atom id="id-0066-000000d4" kind="Model" role="Model" guid="{53B9F1A2-BAF2-4687-9D79-91D0B78CA0C1}" relid="0x10a">
+				<name>Node</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1122,1269</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1122,1269</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1122,1269</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1121,1266</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>Node.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000d5" kind="Atom" role="Atom" guid="{AE824DB3-0B3E-4c64-AA61-D404FB235429}" relid="0x10d">
+				<name>Process</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1066,1388</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1066,1388</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1066,1388</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1065,1385</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-000000d6" kind="Atom" role="Atom" guid="{2BEC1F2B-BCC2-46e4-9A89-25C34304A6DA}" relid="0x117">
+				<name>Component</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1339,1262</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1331,1266</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1339,1262</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1339,1262</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>generic_component.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
 				</attribute>
 				<attribute kind="IsHotspotEnabled" status="meta">
 					<value>true</value>
@@ -28807,7 +29251,7 @@ dName = dstMethodIdQoS</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>925,1210</value>
+							<value>925,1196</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -29801,7 +30245,127 @@ dName = dstMethodIdQoS</value>
 				<connpoint role="src" target="id-0066-00000098"/>
 				<connpoint role="dst" target="id-0066-00000099"/>
 			</connection>
-			<set id="id-0069-00000007" kind="Aspect" role="Aspect" guid="{882D19D8-D81F-4dc5-8CAF-91DB4924C801}" relid="0x68" members="id-0066-00000066 id-0066-00000067 id-0066-0000006a id-0066-0000006b id-0066-0000006f id-0066-00000074 id-0066-00000077 id-0066-00000078 id-0066-00000080 id-0066-00000085 id-0066-00000086 id-0066-00000088 id-0066-00000089 id-0066-0000008b id-0066-0000008d id-0066-0000008f id-0066-00000090 id-0066-00000091 id-0066-00000093 id-0066-00000094 id-0066-00000095 id-0066-00000096 id-0066-00000098">
+			<connection id="id-0068-00000141" kind="AssociationClass" role="AssociationClass" guid="{15DE4829-90E4-4f1d-8655-38EDD095488E}" relid="0xff">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000000d1"/>
+				<connpoint role="src" target="id-0066-000000d2"/>
+			</connection>
+			<connection id="id-0068-00000146" kind="HasAspect" role="HasAspect" guid="{AB9A266C-7BC7-43af-83D9-258A87A91159}" relid="0x106">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000000d0"/>
+				<connpoint role="src" target="id-0069-00000009"/>
+			</connection>
+			<connection id="id-0068-00000148" kind="Containment" role="Containment" guid="{50C5EB49-2A32-4aa0-9DDE-57638E3AE873}" relid="0x109">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000000d0"/>
+				<connpoint role="src" target="id-0066-000000d1"/>
+			</connection>
+			<connection id="id-0068-0000014a" kind="Containment" role="Containment" guid="{64906109-6A0B-44ad-A87E-E93DE0C38579}" relid="0x10b">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000000d0"/>
+				<connpoint role="src" target="id-0066-000000d4"/>
+			</connection>
+			<connection id="id-0068-0000014b" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{787966A6-534A-41e5-97A9-E5019F982905}" relid="0x10c">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-000000d2"/>
+				<connpoint role="dst" target="id-0066-000000d4"/>
+			</connection>
+			<connection id="id-0068-0000014d" kind="Containment" role="Containment" guid="{3F6A790A-C76F-4f0e-ABAF-B3D298DC4C46}" relid="0x10e">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000000d4"/>
+				<connpoint role="src" target="id-0066-000000d5"/>
+			</connection>
+			<connection id="id-0068-0000014e" kind="HasAspect" role="HasAspect" guid="{2C151AC8-0D1D-445b-AAFC-1DC90C35BA0C}" relid="0x10f">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-000000d4"/>
+				<connpoint role="src" target="id-0069-00000009"/>
+			</connection>
+			<connection id="id-0068-00000154" kind="SourceToConnector" role="SourceToConnector" guid="{A161656F-0740-49b1-837B-8A5E815AFD34}" relid="0x118">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000000d2"/>
+				<connpoint role="src" target="id-0066-000000d6"/>
+			</connection>
+			<connection id="id-0068-00000155" kind="Containment" role="Containment" guid="{C92A8263-FDF6-4d4f-A648-BCD713582123}" relid="0x119">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-000000d0"/>
+				<connpoint role="src" target="id-0066-000000d6"/>
+			</connection>
+			<set id="id-0069-00000007" kind="Aspect" role="Aspect" guid="{882D19D8-D81F-4dc5-8CAF-91DB4924C801}" relid="0x68" members="id-0066-00000066 id-0066-00000067 id-0066-0000006a id-0066-0000006b id-0066-0000006f id-0066-00000074 id-0066-00000077 id-0066-00000078 id-0066-00000080 id-0066-00000085 id-0066-00000086 id-0066-00000088 id-0066-00000089 id-0066-0000008d id-0066-0000008f id-0066-00000090 id-0066-00000091 id-0066-00000093 id-0066-00000094 id-0066-00000095 id-0066-00000096 id-0066-00000098">
 				<name>QoS</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -29819,8 +30383,23 @@ dName = dstMethodIdQoS</value>
 					<value></value>
 				</attribute>
 			</set>
+			<set id="id-0069-00000009" kind="Aspect" role="Aspect" guid="{251080E7-C7E6-41c9-ABE9-2B2E870B0199}" relid="0x105" members="id-0066-000000d1 id-0066-000000d4 id-0066-000000d5 id-0066-000000d6">
+				<name>Deployment</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1429,1161</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
 		</model>
-		<model id="id-0065-00000006" kind="ParadigmSheet" guid="{9AD11B2A-B81E-478c-9076-14ACFA16E51E}" relid="0x2" childrelidcntr="0x81">
+		<model id="id-0065-00000006" kind="ParadigmSheet" guid="{9AD11B2A-B81E-478c-9076-14ACFA16E51E}" relid="0x2" childrelidcntr="0x85">
 			<name>FaultTolerance</name>
 			<atom id="id-0066-0000009c" kind="Inheritance" role="Inheritance" guid="{66536F62-6914-4d82-8A61-6C4BAF48BC0C}" relid="0x1">
 				<name>Inheritance</name>
@@ -31980,81 +32559,6 @@ rrName = referedbyDomainRiskGroupingRef</value>
 					</regnode>
 				</regnode>
 			</reference>
-			<reference id="id-0067-00000009" kind="ModelProxy" role="ModelProxy" guid="{4EEF0A35-0EA5-40e4-B8FA-47B037F14AC7}" relid="0x6f" referred="id-0066-0000008b">
-				<name>NodeBase</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>484,510</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>92,97</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>92,97</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeInfoShown" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</reference>
 			<reference id="id-0067-0000000a" kind="ModelProxy" role="ModelProxy" guid="{C03D5EAE-C3C6-475c-A0CA-A5D663C366CB}" relid="0x70" referred="id-0066-0000008c">
 				<name>AbstractSharedResource</name>
 				<regnode name="PartRegs" status="undefined">
@@ -32409,6 +32913,63 @@ rrName = referedbyDomainRiskGroupingRef</value>
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</reference>
+			<reference id="id-0067-00000029" kind="ModelProxy" role="ModelProxy" guid="{7872A68A-DECE-4a0e-8E0B-3D950EC2C15E}" relid="0x84" referred="id-0066-000000d4">
+				<name>Node</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>491,510</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
 					<value>true</value>
 				</attribute>
 				<attribute kind="IsTypeShown" status="meta">
@@ -32980,14 +33541,6 @@ rrName = referedbyDomainRiskGroupingRef</value>
 				<connpoint role="dst" target="id-0066-000000a3"/>
 				<connpoint role="src" target="id-0066-000000be"/>
 			</connection>
-			<connection id="id-0068-00000126" kind="ReferTo" role="ReferTo" guid="{AEACE49D-B8C1-4cc5-B861-09E74FC97E44}" relid="0x71">
-				<name>ReferTo</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ew</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-000000ba"/>
-				<connpoint role="dst" target="id-0067-00000009"/>
-			</connection>
 			<connection id="id-0068-00000127" kind="ReferTo" role="ReferTo" guid="{6D28A96C-82A7-4929-A6CD-DE143D1BE42C}" relid="0x72">
 				<name>ReferTo</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -33044,6 +33597,14 @@ rrName = referedbyDomainRiskGroupingRef</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-000000bd"/>
 				<connpoint role="src" target="id-0067-0000000e"/>
+			</connection>
+			<connection id="id-0068-0000014c" kind="ReferTo" role="ReferTo" guid="{E30BED56-9A30-4d2b-B74C-FADA3AD29053}" relid="0x85">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-000000ba"/>
+				<connpoint role="dst" target="id-0067-00000029"/>
 			</connection>
 			<set id="id-0069-00000008" kind="Aspect" role="Aspect" guid="{961C7709-7D5A-4f0e-B664-CBC95242DD1C}" relid="0x6e" members="id-0066-0000009d id-0066-0000009e id-0066-000000a0 id-0066-000000a2 id-0066-000000a3 id-0066-000000a4 id-0066-000000a6 id-0066-000000a7 id-0066-000000ab id-0066-000000ad id-0066-000000af id-0066-000000b2 id-0066-000000b4 id-0066-000000b5 id-0066-000000b7 id-0066-000000ba id-0066-000000bf">
 				<name>FTAspect</name>

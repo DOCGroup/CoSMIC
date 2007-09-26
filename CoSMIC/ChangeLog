@@ -1,3 +1,23 @@
+Wed Sep 26 09:09:50 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Component.rc:
+        * PIM/CQML/interpreters/ECLGenerator/ECLDialog.h:
+        * PIM/CQML/interpreters/ECLGenerator/ECLDialog.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.h:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/Resource.h:
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xmp:
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/J2EEMLlibCQML.xmp:
+          
+          New Improved ECL generator. New version of CQML has 
+          been integrated with J2EEML only.          
+
 Wed Sep 26 05:19:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Collection_T.h:

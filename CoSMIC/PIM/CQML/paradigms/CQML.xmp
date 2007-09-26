@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{C144A501-54FB-4CAC-8F3A-DF096023680C}" cdate="Fri Sep 21 21:19:02 2007" mdate="Fri Sep 21 21:19:02 2007" >
+<paradigm name="CQML" guid="{F6228DCD-4B77-4800-8557-5054C1D4B98A}" cdate="Tue Sep 25 20:05:36 2007" mdate="Tue Sep 25 20:05:36 2007" >
 
 	<comment>Component-Oriented QoS Modeling Language (CQML) is a 
 platform-independent QoS modeling language that provides 
@@ -13,7 +13,7 @@ Assembly, Component, Port, Connection.</comment>
 
 	<author>Sumant Tambe, Akshay Dabholkar, Amogh Kavimandan</author>
 
-	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment Security" >
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "DeploymentPlan FTDeployment Security" >
 		<attrdef name="AuditLevel" metaref = "4211" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
@@ -106,13 +106,22 @@ Assembly, Component, Port, Connection.</comment>
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AssemblyRule as &quot;src&quot; over AssemblyAccessConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSecuredPathConndstCardinality54" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSecuredPathConndstCardinality56" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::SecuredPathConn ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AssemblyRule as &quot;dst&quot; over SecuredPathConn, has to match 0..1.</dispname>
 			</constraint>
 				<regnode name = "icon" value ="rule.bmp"></regnode>
 				<regnode name = "icon" value ="assembly_rule.gif"></regnode>
+		</atom>
+		<atom name = "Component" metaref = "6474" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<constraint name="ValidPlacementdstCardinality42" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Placement ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to Component as &quot;dst&quot; over Placement, has to match 0..1.</dispname>
+			</constraint>
+				<regnode name = "icon" value ="generic_component.bmp"></regnode>
 		</atom>
 		<atom name = "ComponentRule" metaref = "4237"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -186,6 +195,9 @@ Assembly, Component, Port, Connection.</comment>
 				<regnode name = "icon" value ="rule.bmp"></regnode>
 				<regnode name = "icon" value ="port_rule.gif"></regnode>
 		</atom>
+		<atom name = "Process" metaref = "6459" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
 		<atom name = "QoSConnector" metaref = "1001" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ValidOutConnectionsrcCardinality39" eventmask = "0x0" depth = "1" priority = "1">
@@ -225,7 +237,7 @@ Assembly, Component, Port, Connection.</comment>
 		</atom>
 		<atom name = "Role" metaref = "4243" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidRightsAssignmentConndstCardinality46" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRightsAssignmentConndstCardinality48" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::RightsAssignmentConn ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Role as &quot;dst&quot; over RightsAssignmentConn, has to match 0..1.</dispname>
@@ -564,6 +576,21 @@ Assembly, Component, Port, Connection.</comment>
 				</pointerspec>
 			</connjoint>
 		</connection>
+		<connection name = "Placement" metaref = "6460" >
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Placement"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Component"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Node"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
 		<connection name = "PortQoS" metaref = "1006" >
 				<regnode name = "sName" value ="srcPortQoS"></regnode>
 				<regnode name = "dName" value ="dstPortQoS"></regnode>
@@ -743,17 +770,18 @@ Assembly, Component, Port, Connection.</comment>
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality49" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality51" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality51" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality53" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
 			<pointerspec name = "ref">
+				<pointeritem desc = "Node"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "InitiatorRoleRef" metaref = "4275">
@@ -873,10 +901,21 @@ Assembly, Component, Port, Connection.</comment>
 				<part metaref = "6161" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
+		<model name = "DeploymentPlan" metaref = "6462" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "Component" metaref = "6475" kind = "Component"></role>
+			<role name = "Node" metaref = "6464" kind = "Node"></role>
+			<role name = "Placement" metaref = "6465" kind = "Placement"></role>
+			<aspect name = "Deployment" metaref = "6466" >
+				<part metaref = "6476" role = "Component" primary = "yes" linked = "no"></part>
+				<part metaref = "6468" role = "Node" primary = "yes" linked = "no"></part>
+				<part metaref = "6469" role = "Placement" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
 		<model name = "DomainRiskGrouping" metaref = "1028" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
-			<constraint name="ValidDomainRiskGroupingPartCardinality55" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDomainRiskGroupingPartCardinality57" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
@@ -929,6 +968,14 @@ Assembly, Component, Port, Connection.</comment>
 			<aspect name = "QoS" metaref = "6438" attributes = "principal" >
 				<part metaref = "6190" role = "Group" primary = "yes" linked = "no"></part>
 				<part metaref = "6191" role = "User" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "Node" metaref = "6470" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Node.bmp"></regnode>
+			<role name = "Process" metaref = "6471" kind = "Process"></role>
+			<aspect name = "Deployment" metaref = "6472" >
+				<part metaref = "6473" role = "Process" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "OperationSet" metaref = "4448" >
@@ -1083,12 +1130,12 @@ Assembly, Component, Port, Connection.</comment>
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality49" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality51" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality51" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality53" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>

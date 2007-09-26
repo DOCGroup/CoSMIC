@@ -1,9 +1,13 @@
 #include "stdafx.h"
 #include "ECLGenerator.h"
+#include "ECLDialog.h"
 
 #include "MON.h"
+#include <BONImpl.h>
 
 #include <queue>
+#include <sstream>
+#include <iostream>
 
 namespace /// anonymous
 { 
@@ -52,10 +56,65 @@ bool BFS (ContainmentGraph & graph,
 
 
 
+std::string make_string (int number)
+{
+	std::ostringstream ostream;
+	ostream << number;
+	return ostream.str();
+}
+
+struct MGAInstance
+{
+	MON::ObjectType type;
+	std::string kind;
+	std::string name;
+	std::set <MGAInstance> children;
+
+	MGAInstance ();
+	MGAInstance (MON::ObjectType type,
+		         std::string const & kind,
+		         std::string const & name);
+	void add_child (MGAInstance const & child);
+	bool operator < (MGAInstance const & m) const;
+		 
+};
+
+MGAInstance::
+MGAInstance ()
+: type (MON::OT_Null)
+{}
+
+MGAInstance::
+MGAInstance (MON::ObjectType t,
+	         std::string const & k,
+	         std::string const & n)
+			 : type (t),
+			   kind (k),
+			   name (n)
+{
+}
+
+void MGAInstance::
+add_child (MGAInstance const & child)
+{
+	this->children.insert (child);
+}
+
+bool MGAInstance::operator < (MGAInstance const & m) const
+{
+	return this->kind < m.kind;
+}
+
+struct MGAInstanceTree
+{
+	MGAInstance root;
+};
+
 } /// namespace anonymous 
 
-ECLGenerator::ECLGenerator(const MON::Project& project)
-: mon_project_ (& project)
+ECLGenerator::ECLGenerator(const BON::Project& project)
+:  bon_project_ (project),
+   mon_project_ (project->getProjectMeta())
 {
 }
 
@@ -63,27 +122,174 @@ ECLGenerator::~ECLGenerator(void)
 {
 }
 
-void ECLGenerator::generate ()
+void ECLGenerator::
+get_sample_mapping (NodeToCompMapping & node2comp, CompToNodeMapping & comp2node)
 {
+	char * n1[] = { "C1" , "C2", "C3" };
+	char * n2[] = { "C4" , "C5" };
+	char * n3[] = { "C6" };
+	char * n4[] = { "C7" , "C8", "C9" };
+
+	node2comp["n1"].insert (n1, n1 + 3);
+	node2comp["n2"].insert (n2, n2 + 2);
+	node2comp["n3"].insert (n3, n3 + 1);
+	node2comp["n4"].insert (n4, n4 + 3);
+
+	for(NodeToCompMapping::const_iterator i = node2comp.begin ();
+		i != node2comp.end();
+		++i)
+	{
+		for(std::set <std::string>::const_iterator j = i->second.begin ();
+			j != i->second.end();
+			++j)
+		{
+			comp2node [*j] = i->first;
+		}
+	}
+
+}
+
+void ECLGenerator::generate (NodeToCompMapping const & node2comp, 
+					         CompToNodeMapping const & comp2node)
+{
+/*
+	std::string dp_kind_name = "J2EEDeployment";
+	std::string rf_kind_name = "RootFolder";
+	std::string comp_kind_name = "BeanName";
+	std::string node_kind_name = "HostName";
 	parse_containement ();
+	//AfxMessageBox("done parse_containement");
+	std::list <std::string> seq = composition_sequence (rf_kind_name, dp_kind_name);
+	print_sequence (seq.begin(), seq.end());
+	std::list <std::string> seq2 = composition_sequence (dp_kind_name, comp_kind_name);
+	print_sequence (seq2.begin(), seq2.end());
+	std::list <std::string> seq3 = composition_sequence (dp_kind_name, node_kind_name);
+	print_sequence (seq3.begin(), seq3.end());
+*/
+
+	std::string ecl = gen_ECL (node2comp, comp2node);
+	//AfxMessageBox (ecl.c_str());
+	std::string ecl_for_dialog = add_slash_r(ecl);
+    ECLDialog dialog (ecl_for_dialog, ::AfxGetMainWnd ());
+	dialog.DoModal();
+}
+
+std::string ECLGenerator::add_slash_r (std::string const & s)
+{
+	std::string retval;
+	for (std::string::const_iterator i (s.begin());
+		 i != s.end();
+		 ++i)
+	{
+		if (*i == '\n')
+			retval += '\r';
+		retval += *i;
+	}
+	return retval;
+}
+
+std::string ECLGenerator::gen_ECL (NodeToCompMapping const & node2comp, 
+					               CompToNodeMapping const & comp2node)
+{
+	std::string SPACE3 = "   ";
+	std::ostringstream 	outputECL;
+    outputECL << "defines Deploy, Placement, Association;" 
+		      << std::endl;
+	outputECL << "strategy Association "
+	          << "(dp, node : model; compref : reference) {" 
+			  << std::endl;
+    outputECL << SPACE3 
+		      << "dp.addConnection (\"Placement\", compref, node);"
+		      << std::endl << "}" << std::endl;
+	outputECL << "strategy Placement () {" << std::endl;
+	outputECL << SPACE3 
+		      << "declare dp : model;" << std::endl;
+	outputECL << SPACE3 
+		      << "dp := rootFolder().addModel "
+			     "(\"DeploymentPlan\",\"ECLGeneratorDP\");" 
+			  << std::endl;
+
+	for (NodeToCompMapping::const_iterator i (node2comp.begin());
+		 i != node2comp.end();
+		 ++i)
+	{
+		int count = 0;
+		for (std::set <std::string>::const_iterator j (i->second.begin());
+			 j != i->second.end();
+			 ++j, ++count)
+		{
+			if (count == 0)
+			{
+				outputECL << SPACE3
+					      << "Association (dp, dp.addModel (\"Node\",\""
+						  << i->first
+						<< "\"), dp.addAtom (\"Component\",\""
+						<< *j
+						<< "\"));" << std::endl;
+			}
+			else
+			{
+				outputECL << SPACE3
+					      << "Association (dp, dp.findModel (\""
+						  << i->first
+					   	  << "\"), dp.addAtom (\"Component\",\""
+						  << *j
+						  << "\"));" << std::endl;
+			}
+		}
+	}
+
+	outputECL << "}" << std::endl << std::endl;
+	outputECL << "aspect Deploy () {" << std::endl;
+	outputECL << SPACE3 << "Placement();" << std::endl;
+	outputECL << "}" << std::endl;
+
+	return outputECL.str();
+}
+
+template <class Iter>
+void ECLGenerator::print_sequence (Iter begin, Iter end)
+{
+	for (Iter itr = begin;
+		 itr != end;
+		 ++itr)
+	{
+		bon_project_->consoleMsg (itr->c_str(), MSG_ERROR);		
+	}
+	bon_project_->consoleMsg ("\n", MSG_ERROR);		
+}
+
+std::list <std::string> ECLGenerator::
+composition_sequence (std::string const & begin, 
+                      std::string const & end)
+{
 	std::map <std::string, std::string> parent;
-	BFS (con_graph_, "rootFolder", "DeploymentPlan", parent);
-    
-	std::string str_sequence;
-	std::string str = "DeploymentPlan";
-    while (str != "RootFolder")
+	std::list <std::string> ret_sequence;
+
+	BFS (con_graph_, begin, end, parent);
+	//AfxMessageBox("done BFS!");
+	std::string str = end;
+    while (str != begin)
     {
-	  str_sequence += (str + " ");
-	  str  = parent[str];
+	  ret_sequence.push_front (str);
+	  if (parent.find (str) != parent.end())
+	  {
+		  str = parent[str];
+	  }
+	  else
+	  {
+		  str = "NOTFOUND";
+		  break;
+	  }
     }
-    str_sequence += (str + " ");
-	AfxMessageBox(str_sequence.c_str());
+    ret_sequence.push_front (str);
+	return ret_sequence;
 }
 
 void ECLGenerator::parse_containement ()
 {
-	MON::Folder rootFolder = mon_project_->rootFolder ();
-	Compound rf_compound = { rootFolder, rootFolder.type(), "rootFolder" };
+	MON::Folder rootFolder = mon_project_.rootFolder ();
+	Compound rf_compound = { rootFolder.ref(), rootFolder.name() };
 	compound_queue_.push (rf_compound);
 	while (! compound_queue_.empty ())
 	{
@@ -99,16 +305,19 @@ void ECLGenerator::parse_containement ()
 
 void ECLGenerator::parse_compound (Compound const & comp)
 {
-	switch (comp.type)
+	MON::MetaObject object = mon_project_.findByRef (comp.obj_ref);
+	switch (object.type())
 	{
 		case MON::OT_Folder:
-			push_folder_adj (dynamic_cast <MON::Folder const &> 
-							(comp.obj), comp.name);
+		{
+			push_folder_adj (MON::Folder (object), comp.name);
 			break;
+		}
 		case MON::OT_Model:
-			push_model_adj (dynamic_cast <MON::Model const &> 
-							(comp.obj), comp.name);
+		{
+			push_model_adj (MON::Model (object), comp.name);
 			break;
+		}
 	}
 }
 
@@ -120,16 +329,17 @@ void ECLGenerator::push_adj (std::set <Comp> const & set,
 		 it != set.end(); 
 		 ++it ) 
 	{
-		if (is_compound (*it))
+		Compound c = { it->ref(), it->name() };
+		con_graph_[name].insert (c); 
+		if (is_compound (*it) && 
+			(con_graph_.find (it->name()) == con_graph_.end()))
 		{
-			Compound c = { *it, it->type(), it->name() };
-			con_graph_[name].insert (c); 
 			compound_queue_.push (c);
 		}
 	}
 }
 
-bool ECLGenerator::is_compound (MON::Object obj)
+bool ECLGenerator::is_compound (MON::Object const & obj)
 {
 	switch (obj.type())
 	{
@@ -148,10 +358,41 @@ void ECLGenerator::push_folder_adj (MON::Folder folder, std::string const & name
 	
 	std::set<MON::Model> mset = folder.childModels();
     push_adj (mset, name);
+
+	std::set<MON::Atom> aset = folder.childAtoms();
+    push_adj (aset, name);
 }
 
 void ECLGenerator::push_model_adj (MON::Model model, std::string const & name)
 {
 	std::set<MON::Model> mset = model.childModels();
     push_adj (mset, name);
+
+	std::set<MON::Atom> aset = model.childAtoms();
+    push_adj (aset, name);
+
+	std::set<MON::Set> sset = model.childSets();
+    push_adj (sset, name);
+
+	std::set<MON::Reference> rset = model.childReferences();
+    push_adj (rset, name);
 }
+
+	/*
+	bon_project_->consoleMsg ("************************************", MSG_ERROR);
+	for (ContainmentGraph::iterator i = con_graph_.begin();
+		 i != con_graph_.end ();
+		 ++i)
+	{
+		std::string vertex = "vertex = " + i->first + ":";
+		bon_project_->consoleMsg (vertex, MSG_ERROR);
+		for (std::set <Compound>::const_iterator iter 
+			  = con_graph_[i->first].begin ();
+			 iter != con_graph_[i->first].end ();
+			++iter)
+		{
+			bon_project_->consoleMsg (iter->name.c_str(), MSG_ERROR);
+		}
+		bon_project_->consoleMsg ("\n", MSG_ERROR);
+	}
+	*/

@@ -30,6 +30,7 @@ project (ECLGenerator): register, bon{
      $(GME_ROOT)/SDK/BON/Utils.cpp
      BON2Component.cpp
      ECLGenerator.cpp
+     ECLDialog.cpp
    }
 
    Header_Files {
@@ -51,6 +52,7 @@ project (ECLGenerator): register, bon{
      $(GME_ROOT)/SDK/BON/Utils.h
      BON2Component.h
      ECLGenerator.h
+     ECLDialog.h
    }
 
    Resource_Files {

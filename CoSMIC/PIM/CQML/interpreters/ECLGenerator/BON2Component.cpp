@@ -92,7 +92,17 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 #endif
 	// ======================
 	// Insert application specific code here
-	ECLGenerator(project->getProjectMeta()).generate ();
+	try 
+	{
+		NodeToCompMapping node2comp;
+ 	    CompToNodeMapping comp2node;
+        ECLGenerator generator (project);
+		ECLGenerator::get_sample_mapping (node2comp, comp2node);
+		generator.generate (node2comp, comp2node);
+	}
+	catch (...)
+	{
+	}
 }
 
 // ====================================================
