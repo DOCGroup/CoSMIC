@@ -45,13 +45,14 @@ Collection_T <T>::impl (void) const
 }
 
 //
-// operator []
+// items
 //
 template <typename T>
 GME_INLINE
-T & Collection_T <T>::operator [] (size_t i)
+typename Collection_T <T>::_container_type &
+Collection_T <T>::items (void)
 {
-  return this->items_[i];
+  return this->items_;
 }
 
 //
@@ -59,19 +60,10 @@ T & Collection_T <T>::operator [] (size_t i)
 //
 template <typename T>
 GME_INLINE
-const T & Collection_T <T>::operator [] (size_t i) const
+const typename Collection_T <T>::_container_type &
+Collection_T <T>::items (void) const
 {
-  return this->items_[i];
-}
-
-//
-// size
-//
-template <typename T>
-GME_INLINE
-size_t Collection_T <T>::size (void) const
-{
-  return this->items_.size ();
+  return this->items_;
 }
 
 //

@@ -1,3 +1,13 @@
+Wed Sep 26 05:19:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.inl:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/Set.cpp:
+
+          Re-implemented the collection object so that clients can
+          access the underlying container via the items () method.
+
 Wed Sep 26 04:55:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Collection_T.h:

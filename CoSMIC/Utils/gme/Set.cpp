@@ -86,7 +86,7 @@ namespace GME
     // Attach the implementation to the collection. We also need
     // to return the size of the set.
     members.attach (fcos);
-    return members.size ();
+    return members.items ().size ();
   }
 
   //

@@ -129,6 +129,9 @@ public:
   /// Type definition for the collection type.
   typedef typename item_traits <T>::_collection_type _collection_type;
 
+  /// Type definition for the container type.
+  typedef std::vector <T> _container_type;
+
   /// Default constructor.
   Collection_T (void);
 
@@ -150,27 +153,18 @@ public:
   void attach (typename _collection_type * collection);
 
   /**
-   * Get the item at the specified index.
+   * Get the collection of items.
    *
-   * @param[in]     i               The target index.
-   * @return        The target item.
+   * @return        The collection of items.
    */
-  T & operator [] (size_t i);
+  typename _container_type & items (void);
 
   /**
-   * Get the item at the specified index.
+   * Get the collection of items.
    *
-   * @param[in]     i               The target index.
-   * @return        The target item.
+   * @return        The collection of items.
    */
-  const T & operator [] (size_t i) const;
-
-  /**
-   * Get the size of the collection.
-   *
-   * @return        Number of elements in the collection.
-   */
-  size_t size (void) const;
+  const typename _container_type & items (void) const;
 
   /**
    * Get the underlying implementation.

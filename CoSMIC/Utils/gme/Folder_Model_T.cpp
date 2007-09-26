@@ -46,6 +46,6 @@ namespace GME
 
     // Determine how many folders there are.
     children.attach (fcos);
-    return children.size ();
+    return children.items ().size ();
   }
 }
