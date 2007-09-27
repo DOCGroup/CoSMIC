@@ -40,7 +40,7 @@ namespace GME
   get_children (const std::string & type,
                 GME::Collection_T <T2> & children) const
   {
-    CComPtr <IMgaFCOs> fcos;
+    IMgaFCOs * fcos = 0;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
