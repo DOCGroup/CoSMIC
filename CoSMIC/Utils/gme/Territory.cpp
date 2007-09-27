@@ -43,7 +43,11 @@ namespace GME
   //
   void Territory::close (void)
   {
-    this->terr_.Release ();
+    if (this->terr_)
+    {
+      VERIFY_HRESULT (this->terr_->Destroy ());
+      this->terr_.Release ();
+    }
   }
 
   //

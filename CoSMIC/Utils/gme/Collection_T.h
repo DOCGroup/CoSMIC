@@ -70,43 +70,43 @@ struct item_traits
 };
 
 template < >
-struct item_traits <GME::Object>
+struct item_traits <Object>
 {
   typedef IMgaObjects _collection_type;
 };
 
 template < >
-struct item_traits <GME::FCO>
+struct item_traits <FCO>
 {
   typedef IMgaFCOs _collection_type;
 };
 
 template < >
-struct item_traits <GME::Atom>
+struct item_traits <Atom>
 {
   typedef IMgaFCOs _collection_type;
 };
 
 template < >
-struct item_traits <GME::Model>
+struct item_traits <Model>
 {
   typedef IMgaFCOs _collection_type;
 };
 
 template < >
-struct item_traits <GME::Set>
+struct item_traits <Set>
 {
   typedef IMgaFCOs _collection_type;
 };
 
 template < >
-struct item_traits <GME::Reference>
+struct item_traits <Reference>
 {
   typedef IMgaFCOs _collection_type;
 };
 
 template < >
-struct item_traits <GME::Folder>
+struct item_traits <Folder>
 {
   typedef IMgaFolders _collection_type;
 };

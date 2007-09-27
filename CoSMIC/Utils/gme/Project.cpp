@@ -35,7 +35,7 @@ namespace GME
   //
   Project::~Project (void)
   {
-
+    this->terr_.close ();
   }
 
   //
@@ -233,6 +233,9 @@ namespace GME
   //
   void Project::begin_transaction (void)
   {
+    if (this->terr_ == 0)
+      this->terr_ = this->create_territory ();
+
     VERIFY_HRESULT (this->project_->BeginTransaction (this->terr_));
   }
 
