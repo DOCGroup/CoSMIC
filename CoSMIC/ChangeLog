@@ -1,3 +1,18 @@
+Sat Sep 29 23:41:14 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.cpp:
+
+        * PIM/CQML/interpreters/Interpreters.mwc:
+
+          Added a generic API class that will help aggregate all instances
+          of a kind alongwith their the hierarchy of their ancestors.
+
+        * PIM/CQML/CQML.mwc:
+
+          Removed this file.
+
 Thu Sep 27 17:48:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Folder_Model_T.cpp (get_children):

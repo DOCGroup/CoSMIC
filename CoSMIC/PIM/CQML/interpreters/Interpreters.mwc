@@ -1,0 +1,8 @@
+workspace {
+  cmdline += -feature_file $COSMIC_ROOT/default.features
+
+  $(COSMIC_ROOT)/Utils/Utils.mpc
+  CQML
+  QoSIntegrator
+  ECLGenerator
+}
