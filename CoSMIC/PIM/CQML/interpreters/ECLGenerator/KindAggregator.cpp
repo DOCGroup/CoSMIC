@@ -34,27 +34,29 @@ namespace CQML
   {
     try
     {
-      this->bon_project_->consoleMsg ("Test", MSG_INFO);		
+      //this->bon_project_->consoleMsg ("Test", MSG_INFO);		
       std::set<BON::Object> bon_instances 
         = this->bon_project_->findByKind (this->kindname_);
 
-      for_each (bon_instances.begin (), 
-        bon_instances.end (), 
-        print<BON::Object> (this->bon_project_));
+      //for_each (bon_instances.begin (), 
+      //  bon_instances.end (), 
+      //  print<BON::Object> (this->bon_project_));
 
-      this->bon_project_->consoleMsg ("\n", MSG_INFO);
+     // this->bon_project_->consoleMsg ("\n", MSG_INFO);
 
       // Insert the instances into the KindMap
       for_each (bon_instances.begin (), 
         bon_instances.end (), 
         insertKindInstance <BON::Object> (this));
 
-    } catch (MON::Exception& ex)
+    } 
+	catch (MON::Exception& ex)
     {
       this->bon_project_->consoleMsg (
         /*this->kindname_+std::string(" kind does not exist in this model.")+*/
         ex.getErrorMessage(), MSG_ERROR);		
-    } catch (...)
+    } 
+	catch (...)
     {
       this->bon_project_->consoleMsg ("Unknown exception.", MSG_ERROR);
     

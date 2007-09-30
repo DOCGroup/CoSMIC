@@ -23,6 +23,9 @@
 #include "BON2Component.h"
 #include "ECLGenerator.h"
 #include "KindAggregator.h"
+#include "kindDialog.h"
+
+#include <list>
 
 namespace BON
 {
@@ -96,12 +99,57 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	// Insert application specific code here
 	try 
 	{
-    /// Experimenting with J2EEML::EntityBean
-    CQML::KindAggregator<CQML::AbstractComponent> 
-      aggregator_(project, std::string("EntityBean"));
-    aggregator_.aggregate ();
+		/// Experimenting with J2EEML::EntityBean
+		KindDialog kind_dialog (::AfxGetMainWnd ());
+		if (kind_dialog.DoModal() != IDOK)
+			return;
+		std::list <std::string> comp_kinds = 
+				kind_dialog.get_component_kinds ();
 
-    NodeToCompMapping node2comp;
+		std::string comp_sequence ("Components: ");
+		for (std::list <std::string>::const_iterator i (comp_kinds.begin());
+			 i != comp_kinds.end();
+			 ++i)
+		{
+			CQML::KindAggregator<CQML::AbstractComponent> 
+				aggregator (project, *i);
+			CQML::KindAggregator<CQML::AbstractComponent>::KindMap
+				map = aggregator.aggregate ();
+			
+			for (CQML::KindAggregator<CQML::AbstractComponent>::KindMap::iterator i = map.begin();
+				 i != map.end();
+				++i)
+			{	
+				comp_sequence += i->first;
+				comp_sequence += " ";
+			}
+		}
+		AfxMessageBox (comp_sequence.c_str());
+
+		std::list <std::string> node_kinds = 
+				kind_dialog.get_node_kinds ();
+		std::string node_sequence ("Nodes: ");
+		for (std::list <std::string>::const_iterator i (node_kinds.begin());
+			 i != node_kinds.end();
+			 ++i)
+		{
+			CQML::KindAggregator<CQML::AbstractNode> 
+				aggregator (project, *i);
+			CQML::KindAggregator<CQML::AbstractNode>::KindMap
+				map = aggregator.aggregate ();
+			
+			for (CQML::KindAggregator<CQML::AbstractNode>::KindMap::iterator i = map.begin();
+				 i != map.end();
+				++i)
+			{	
+				node_sequence += i->first;
+				node_sequence += " ";
+			}
+		}
+		AfxMessageBox (node_sequence.c_str());
+
+
+		NodeToCompMapping node2comp;
  	    CompToNodeMapping comp2node;
         ECLGenerator generator (project);
 		ECLGenerator::get_sample_mapping (node2comp, comp2node);

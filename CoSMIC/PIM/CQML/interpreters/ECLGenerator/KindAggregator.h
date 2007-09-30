@@ -65,9 +65,9 @@ namespace CQML
 
         outer_->bon_project_->consoleMsg ("Ancestors: ", MSG_INFO);		
         
-        for_each (kind_instance.ancestors_.begin (), 
-        kind_instance.ancestors_.end (), 
-        print<BON::Object> (outer_->bon_project_));
+        //for_each (kind_instance.ancestors_.begin (), 
+        //kind_instance.ancestors_.end (), 
+        //print<BON::Object> (outer_->bon_project_));
 
         outer_->insert (x->getName(), kind_instance);
         

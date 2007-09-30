@@ -1,3 +1,16 @@
+Sun Sep 30 23:23:20 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Component.rc:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/kindDialog.h:
+        * PIM/CQML/interpreters/ECLGenerator/kindDialog.cpp:
+
+        ECL generator now brings up a dialog box to enter paradigm
+        specific component and node kind names.
+
 Sun Sep 30 18:12:56 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
