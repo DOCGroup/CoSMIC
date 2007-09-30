@@ -22,6 +22,7 @@
 #include "stdafx.h"
 #include "BON2Component.h"
 #include "ECLGenerator.h"
+#include "KindAggregator.h"
 
 namespace BON
 {
@@ -81,6 +82,7 @@ void Component::invoke( Project& project, const std::set<FCO>& setModels, long l
 	#endif
 }
 
+
 // ====================================================
 // This is the main component method for Interpereters and Plugins.
 // May also be used in case of invokeable Add-Ons
@@ -94,7 +96,12 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	// Insert application specific code here
 	try 
 	{
-		NodeToCompMapping node2comp;
+    /// Experimenting with J2EEML::EntityBean
+    CQML::KindAggregator<CQML::AbstractComponent> 
+      aggregator_(project, std::string("EntityBean"));
+    aggregator_.aggregate ();
+
+    NodeToCompMapping node2comp;
  	    CompToNodeMapping comp2node;
         ECLGenerator generator (project);
 		ECLGenerator::get_sample_mapping (node2comp, comp2node);

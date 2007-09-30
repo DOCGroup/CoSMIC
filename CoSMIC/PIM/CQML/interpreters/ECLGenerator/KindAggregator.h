@@ -1,75 +1,85 @@
-#ifndef __CQMLKINDAGGREGATOR_H
-#define __CQMLKINDAGGREGATOR_H
+#ifndef __KINDAGGREGATOR_H
+#define __KINDAGGREGATOR_H
 
-#include "BON.h"
-#include "MON.h"
-
-#include <map>
-#include <set>
-#include <string>
-#include <queue>
-#include <list>
+#include "Kinds.h"
 
 namespace CQML 
 {
-  enum Entity
+  template<class T> 
+  struct print : public std::unary_function<T, void>
   {
-    K_AbstractPort = 0,
-    K_OutputPortBase,
-    K_InputPortBase,
-    K_AbstractAssembly,
-    K_AbstractComponent,
-    K_AbstractNode
-  };
-
-  struct AbstractKind
-  {
-    const BON::Object & m_instance_;
-
-  public:
     // ctor
-    AbstractKind (BON::Object & instance);
+    print(BON::Project bon_project) 
+      : bon_project_ (bon_project),
+      count(0) 
+    {
 
-    // dtor
-    ~AbstractKind (void);
+    }
+
+    // overloaded function operator
+    void operator() (T x) 
+    { 
+      this->bon_project_->consoleMsg (x->getName (), MSG_INFO);		
+      this->count++;
+    }
+
+    BON::Project bon_project_;
+    int count;
   };
 
-  struct Kind : public AbstractKind
-  {
-    std::list<BON::Object> ancestors_;
-
-  public:
-    // ctor
-    Kind (BON::Object & instance);
-
-    // dtor
-    ~Kind (void);
-
-  };
-
-  typedef Kind AbstractAssembly;
-  typedef Kind AbstractComponent;
-  typedef Kind AbstractNode;
-
-  typedef std::map<std::string, AbstractAssembly> AssemblyMap;
-  typedef std::map<std::string, AbstractComponent> ComponentMap;
-  typedef std::map<std::string, AbstractNode> NodeMap;
-
+  // T is the kind you want to aggregate
   template <class T>
   class KindAggregator
   {
   public:
+    
+    typedef std::map<std::string, T> KindMap;
+
     // ctor
-    KindAggregator (const BON::Project& project, std::string& kindname);
+    KindAggregator (const BON::Project& project, std::string kindname);
 
     // dtor
     ~KindAggregator (void);
 
-    typedef std::map<std::string, T> KindMap;
-
-    KindMap collect ();
+    KindMap aggregate ();
 
     KindMap getKindMap ();
+
+  private:
+
+    template<class I> 
+    struct insertKindInstance : public std::unary_function<I, void>
+    {
+      // ctor
+      insertKindInstance (KindAggregator<T>* outer) 
+        : outer_ (outer),
+          count (0) 
+      {
+
+      }
+
+      // overloaded function operator
+      void operator() (I x) 
+      { 
+        T kind_instance (x);
+
+        outer_->bon_project_->consoleMsg ("Ancestors: ", MSG_INFO);		
+        
+        for_each (kind_instance.ancestors_.begin (), 
+        kind_instance.ancestors_.end (), 
+        print<BON::Object> (outer_->bon_project_));
+
+        outer_->insert (x->getName(), kind_instance);
+        
+        this->count++;
+      }
+
+      KindAggregator<T>* outer_;
+
+      int count;
+    };
+
+    void insert (std::string instance_name, T kind_instance);
 
   private:
     // The GME project
@@ -82,4 +92,5 @@ namespace CQML
   };
 }
 
-#endif /* __CQMLKINDAGGREGATOR_H */
+#include "KindAggregator.cpp"
+#endif /* __KINDAGGREGATOR_H */

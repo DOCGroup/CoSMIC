@@ -1,3 +1,14 @@
+Sun Sep 30 18:12:56 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Kinds.h:
+        * PIM/CQML/interpreters/ECLGenerator/Kinds.cpp:
+
+          Aggregator working with hardcoded values. Need to get working with
+          GUI user input throught MFC.
+
 Sat Sep 29 23:41:14 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
