@@ -31,6 +31,7 @@ project (ECLGenerator): register, bon{
      BON2Component.cpp
      ECLGenerator.cpp
      ECLDialog.cpp
+     Kinds.cpp
      KindAggregator.cpp
    }
 
@@ -54,6 +55,7 @@ project (ECLGenerator): register, bon{
      BON2Component.h
      ECLGenerator.h
      ECLDialog.h
+     Kinds.h
      KindAggregator.h
    }
 
