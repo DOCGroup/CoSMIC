@@ -34,6 +34,8 @@ project (ECLGenerator): register, bon{
      kindDialog.cpp
      Kinds.cpp
      KindAggregator.cpp
+     DeploymentPlanner.cpp
+     NodeAssigner.cpp
    }
 
    Header_Files {
@@ -59,6 +61,8 @@ project (ECLGenerator): register, bon{
      Kinds.h
      kindDialog.h
      KindAggregator.h
+     DeploymentPlanner.h
+     NodeAssigner.h
    }
 
    Resource_Files {

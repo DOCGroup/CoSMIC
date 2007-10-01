@@ -55,7 +55,6 @@ namespace CQML
         : outer_ (outer),
           count (0) 
       {
-
       }
 
       // overloaded function operator
@@ -63,7 +62,7 @@ namespace CQML
       { 
         T kind_instance (x);
 
-        outer_->bon_project_->consoleMsg ("Ancestors: ", MSG_INFO);		
+        //outer_->bon_project_->consoleMsg ("Ancestors: ", MSG_INFO);		
         
         //for_each (kind_instance.ancestors_.begin (), 
         //kind_instance.ancestors_.end (), 

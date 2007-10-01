@@ -1,3 +1,16 @@
+Mon Oct  1 01:28:14 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Component.rc:
+        * PIM/CQML/interpreters/ECLGenerator/DeploymentPlanner.h:
+        * PIM/CQML/interpreters/ECLGenerator/DeploymentPlanner.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.h:
+        * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.cpp:
+          
+          ECL generator mods
+
 Sun Sep 30 23:23:20 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
