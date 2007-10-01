@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{F6228DCD-4B77-4800-8557-5054C1D4B98A}" cdate="Tue Sep 25 20:05:36 2007" mdate="Tue Sep 25 20:05:36 2007" >
+<paradigm name="CQML" guid="{BC2F5123-3C4C-4BA7-A9CE-A3CF21D59791}" cdate="Sun Sep 30 21:47:56 2007" mdate="Sun Sep 30 21:47:56 2007" >
 
 	<comment>Component-Oriented QoS Modeling Language (CQML) is a 
 platform-independent QoS modeling language that provides 
@@ -13,7 +13,7 @@ Assembly, Component, Port, Connection.</comment>
 
 	<author>Sumant Tambe, Akshay Dabholkar, Amogh Kavimandan</author>
 
-	<folder name = "RootFolder" metaref = "1000"  rootobjects = "DeploymentPlan FTDeployment Security" >
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "FTDeployment PlacementPlan Security" >
 		<attrdef name="AuditLevel" metaref = "4211" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
@@ -114,15 +114,6 @@ Assembly, Component, Port, Connection.</comment>
 				<regnode name = "icon" value ="rule.bmp"></regnode>
 				<regnode name = "icon" value ="assembly_rule.gif"></regnode>
 		</atom>
-		<atom name = "Component" metaref = "6474" >
-				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidPlacementdstCardinality42" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Placement ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to Component as &quot;dst&quot; over Placement, has to match 0..1.</dispname>
-			</constraint>
-				<regnode name = "icon" value ="generic_component.bmp"></regnode>
-		</atom>
 		<atom name = "ComponentRule" metaref = "4237"  attributes = "allow">
 				<regnode name = "namePosition" value ="4"></regnode>
 			<constraint name="ComponentRuleSemantics" eventmask = "0x0" depth = "1" priority = "2">
@@ -162,6 +153,9 @@ Assembly, Component, Port, Connection.</comment>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="role_access_rights.bmp"></regnode>
 		</atom>
+		<atom name = "HostProcess" metaref = "6489" >
+				<regnode name = "namePosition" value ="4"></regnode>
+		</atom>
 		<atom name = "MethodId" metaref = "1077" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="MethodId.bmp"></regnode>
@@ -194,9 +188,6 @@ Assembly, Component, Port, Connection.</comment>
 			</constraint>
 				<regnode name = "icon" value ="rule.bmp"></regnode>
 				<regnode name = "icon" value ="port_rule.gif"></regnode>
-		</atom>
-		<atom name = "Process" metaref = "6459" >
-				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "QoSConnector" metaref = "1001" >
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -577,6 +568,8 @@ Assembly, Component, Port, Connection.</comment>
 			</connjoint>
 		</connection>
 		<connection name = "Placement" metaref = "6460" >
+				<regnode name = "sName" value ="srcPlacement"></regnode>
+				<regnode name = "dName" value ="dstPlacement"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -584,10 +577,9 @@ Assembly, Component, Port, Connection.</comment>
 				<regnode name= "srcLabel1" value="Placement"/>
 			<connjoint>
 				<pointerspec name = "src">
-					<pointeritem desc = "Component"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
-					<pointeritem desc = "Node"></pointeritem>
+					<pointeritem desc = "Host"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -781,7 +773,7 @@ Assembly, Component, Port, Connection.</comment>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
 			<pointerspec name = "ref">
-				<pointeritem desc = "Node"></pointeritem>
+				<pointeritem desc = "Host"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "InitiatorRoleRef" metaref = "4275">
@@ -901,17 +893,6 @@ Assembly, Component, Port, Connection.</comment>
 				<part metaref = "6161" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "DeploymentPlan" metaref = "6462" >
-				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "Component" metaref = "6475" kind = "Component"></role>
-			<role name = "Node" metaref = "6464" kind = "Node"></role>
-			<role name = "Placement" metaref = "6465" kind = "Placement"></role>
-			<aspect name = "Deployment" metaref = "6466" >
-				<part metaref = "6476" role = "Component" primary = "yes" linked = "no"></part>
-				<part metaref = "6468" role = "Node" primary = "yes" linked = "no"></part>
-				<part metaref = "6469" role = "Placement" primary = "yes" linked = "no"></part>
-			</aspect>
-		</model>
 		<model name = "DomainRiskGrouping" metaref = "1028" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
@@ -970,18 +951,27 @@ Assembly, Component, Port, Connection.</comment>
 				<part metaref = "6191" role = "User" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Node" metaref = "6470" >
+		<model name = "Host" metaref = "6477" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Node.bmp"></regnode>
-			<role name = "Process" metaref = "6471" kind = "Process"></role>
-			<aspect name = "Deployment" metaref = "6472" >
-				<part metaref = "6473" role = "Process" primary = "yes" linked = "no"></part>
+			<role name = "HostProcess" metaref = "6490" kind = "HostProcess"></role>
+			<aspect name = "Deployment" metaref = "6479" >
+				<part metaref = "6491" role = "HostProcess" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "OperationSet" metaref = "4448" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="operation_set.bmp"></regnode>
 			<aspect name = "QoS" metaref = "6439" >
+			</aspect>
+		</model>
+		<model name = "PlacementPlan" metaref = "6481" >
+				<regnode name = "namePosition" value ="4"></regnode>
+			<role name = "Host" metaref = "6483" kind = "Host"></role>
+			<role name = "Placement" metaref = "6484" kind = "Placement"></role>
+			<aspect name = "Deployment" metaref = "6485" >
+				<part metaref = "6487" role = "Host" primary = "yes" linked = "no"></part>
+				<part metaref = "6488" role = "Placement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Policy" metaref = "4461" >

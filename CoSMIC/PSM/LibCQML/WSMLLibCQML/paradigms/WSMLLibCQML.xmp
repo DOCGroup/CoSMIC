@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="WSMLLibCQML" guid="{754E4F39-96AC-465D-836F-7914598AF18F}" cdate="Thu Sep 20 18:12:36 2007" mdate="Thu Sep 20 18:12:36 2007" >
+<paradigm name="WSMLLibCQML" guid="{E9D1FBCB-ADE9-4149-B154-A0F85349B737}" cdate="Sun Sep 30 22:01:50 2007" mdate="Sun Sep 30 22:01:50 2007" >
 
 	<comment>Web Services Modeling Language (WSML) is a domain-specific modeling language
   which allows definition of Web Services and interactions, and uses generative
@@ -9,7 +9,7 @@
 
 	<author>Krishnakumar B</author>
 
-	<folder name = "RootFolder" metaref = "1000"  rootobjects = "Definitions FTDeployment Schema SchemaBuiltins Security" >
+	<folder name = "RootFolder" metaref = "1000"  rootobjects = "Definitions FTDeployment PlacementPlan Schema SchemaBuiltins Security" >
 		<attrdef name="AuditLevel" metaref = "6668" valuetype = "enum" defvalue = "one">
 			<enumitem dispname = "one" value = "one"></enumitem>
 			<enumitem dispname = "two" value = "two"></enumitem>
@@ -201,7 +201,7 @@
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AssemblyRule as &quot;src&quot; over AssemblyAccessConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSecuredPathConndstCardinality78" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidSecuredPathConndstCardinality80" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::SecuredPathConn ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AssemblyRule as &quot;dst&quot; over SecuredPathConn, has to match 0..1.</dispname>
@@ -254,6 +254,9 @@
 			</attrdef>
 				<regnode name = "icon" value ="rights.bmp"></regnode>
 				<regnode name = "icon" value ="role_access_rights.bmp"></regnode>
+		</atom>
+		<atom name = "HostProcess" metaref = "6489" >
+				<regnode name = "namePosition" value ="4"></regnode>
 		</atom>
 		<atom name = "MethodId" metaref = "6698" >
 				<regnode name = "namePosition" value ="4"></regnode>
@@ -327,7 +330,7 @@
 		</atom>
 		<atom name = "Role" metaref = "6709" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="ValidRightsAssignmentConndstCardinality68" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidRightsAssignmentConndstCardinality70" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::RightsAssignmentConn ) -> size in
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Role as &quot;dst&quot; over RightsAssignmentConn, has to match 0..1.</dispname>
@@ -882,6 +885,23 @@
 				</pointerspec>
 			</connjoint>
 		</connection>
+		<connection name = "Placement" metaref = "6460" >
+				<regnode name = "sName" value ="srcPlacement"></regnode>
+				<regnode name = "dName" value ="dstPlacement"></regnode>
+				<regnode name = "color" value ="0x000000"></regnode>
+				<regnode name = "dstStyle" value ="arrow"></regnode>
+				<regnode name = "srcStyle" value ="butt"></regnode>
+				<regnode name = "lineType" value ="solid"></regnode>
+				<regnode name= "srcLabel1" value="Placement"/>
+			<connjoint>
+				<pointerspec name = "src">
+					<pointeritem desc = "Service"></pointeritem>
+				</pointerspec>
+				<pointerspec name = "dst">
+					<pointeritem desc = "Host"></pointeritem>
+				</pointerspec>
+			</connjoint>
+		</connection>
 		<connection name = "PortBinding" metaref = "1034" >
 				<regnode name = "labelFormatStr" value ="boundPort"></regnode>
 				<regnode name = "sName" value ="srcPortBinding"></regnode>
@@ -1096,7 +1116,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyFaultRef"></regnode>
-			<constraint name="ValidSOAPFaultExtensiondstCardinality74" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidSOAPFaultExtensiondstCardinality76" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::SOAPFaultExtension ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to FaultRef as &quot;dst&quot; over SOAPFaultExtension, has to match 1.</dispname>
@@ -1116,17 +1136,18 @@
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality71" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality73" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality75" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality77" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
 			<pointerspec name = "ref">
+				<pointeritem desc = "Host"></pointeritem>
 			</pointerspec>
 		</reference>
 		<reference name = "InitiatorRoleRef" metaref = "6744">
@@ -1293,12 +1314,12 @@
 		<model name = "Binding" metaref = "1044" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="binding.gif"></regnode>
-			<constraint name="ValidBindingPartCardinality79" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBindingPartCardinality81" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Binding, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidBindingPartCardinality80" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBindingPartCardinality82" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ExtensibleBinding" ) -> size + self.parts( "SOAPBinding" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Binding, has to match 1.</dispname>
@@ -1324,17 +1345,17 @@
 		<model name = "BindingOperation" metaref = "1052" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="bindingoperation.gif"></regnode>
-			<constraint name="ValidBindingOperationPartCardinality81" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality82" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBindingOperationPartCardinality83" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidBindingOperationPartCardinality83" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidBindingOperationPartCardinality84" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ExtensibleMessage" ) -> size + self.parts( "SOAPBody" ) -> size + self.parts( "SOAPFault" ) -> size + self.parts( "SOAPHeaderFault" ) -> size + self.parts( "SOAPHeader" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidBindingOperationPartCardinality85" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ExtensibleOperation" ) -> size + self.parts( "SOAPOperation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by BindingOperation, has to match 0..1.</dispname>
@@ -1412,18 +1433,18 @@
 		<model name = "Definitions" metaref = "1090" attributes = "targetNamespace" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="definitions.gif"></regnode>
-			<constraint name="ValidDefinitionsPartCardinality84" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality86" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Types" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality85" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDefinitionsPartCardinality87" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidDefinitionsPartCardinality86" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Types" ) -> size in
+			<constraint name="ValidDefinitionsPartCardinality88" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Messages" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Definitions, has to match 0..1.</dispname>
 			</constraint>
@@ -1463,7 +1484,7 @@
 		<model name = "DomainRiskGrouping" metaref = "6762" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TargetReliabilityModel.bmp"></regnode>
-			<constraint name="ValidDomainRiskGroupingPartCardinality87" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidDomainRiskGroupingPartCardinality89" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "RootRiskGroup" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by DomainRiskGrouping, has to match 0..1.</dispname>
@@ -1543,10 +1564,18 @@
 				<part metaref = "6778" role = "User" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
+		<model name = "Host" metaref = "6477" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="Node.bmp"></regnode>
+			<role name = "HostProcess" metaref = "6490" kind = "HostProcess"></role>
+			<aspect name = "Deployment" metaref = "6779" >
+				<part metaref = "6491" role = "HostProcess" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
 		<model name = "Import" metaref = "1127" attributes = "namespace location" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="import.bmp"></regnode>
-			<constraint name="ValidImportPartCardinality88" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidImportPartCardinality90" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Definitions" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Import, has to match 1.</dispname>
@@ -1604,12 +1633,12 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AbstractMethod as &quot;dst&quot; over MethodClassificationConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidNotificationOperationPartCardinality89" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidNotificationOperationPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by NotificationOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -1642,12 +1671,12 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AbstractMethod as &quot;dst&quot; over MethodClassificationConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidOneWayOperationPartCardinality90" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOneWayOperationPartCardinality92" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by OneWayOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
@@ -1667,7 +1696,7 @@
 				<part metaref = "1166" role = "OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "OperationSet" metaref = "6779" >
+		<model name = "OperationSet" metaref = "6780" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="operation_set.bmp"></regnode>
 			<role name = "NotificationOperation" metaref = "6551" kind = "NotificationOperation"></role>
@@ -1694,58 +1723,68 @@
 				<part metaref = "1170" role = "Documentation" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Policy" metaref = "6780" >
+		<model name = "PlacementPlan" metaref = "6481" >
 				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "icon" value ="security_policy.bmp"></regnode>
-			<role name = "AssemblyAccessConn" metaref = "6781" kind = "AssemblyAccessConn"></role>
-			<role name = "AssemblyRule" metaref = "6782" kind = "AssemblyRule"></role>
-			<role name = "AttributeManipulateConn" metaref = "6783" kind = "AttributeManipulateConn"></role>
-			<role name = "AttributeRef" metaref = "6784" kind = "AttributeRef"></role>
-			<role name = "ComponentAccessConn" metaref = "6785" kind = "ComponentAccessConn"></role>
-			<role name = "ComponentRule" metaref = "6786" kind = "ComponentRule"></role>
-			<role name = "InitiatorRoleRef" metaref = "6787" kind = "InitiatorRoleRef"></role>
-			<role name = "ObjectAccessConn" metaref = "6788" kind = "ObjectAccessConn"></role>
-			<role name = "OnAssemblyConn" metaref = "6789" kind = "OnAssemblyConn"></role>
-			<role name = "OnComponentConn" metaref = "6790" kind = "OnComponentConn"></role>
-			<role name = "OnInterfaceConn" metaref = "6791" kind = "OnInterfaceConn"></role>
-			<role name = "OperationInvokeConn" metaref = "6792" kind = "OperationInvokeConn"></role>
-			<role name = "OperationSet" metaref = "6793" kind = "OperationSet"></role>
-			<role name = "PathRef" metaref = "6794" kind = "PathRef"></role>
-			<role name = "PortRule" metaref = "6795" kind = "PortRule"></role>
-			<role name = "RequiredRights" metaref = "6796" kind = "RequiredRights"></role>
-			<role name = "SecuredPathConn" metaref = "6797" kind = "SecuredPathConn"></role>
-			<role name = "TargetAssemblyReference" metaref = "6798" kind = "TargetAssemblyReference"></role>
-			<role name = "TargetComponentRef" metaref = "6799" kind = "TargetComponentRef"></role>
-			<role name = "TargetObjectRef" metaref = "6800" kind = "TargetObjectRef"></role>
-			<aspect name = "SecurityRule" metaref = "6581" >
-				<part metaref = "6801" role = "AssemblyAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6802" role = "AssemblyRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6803" role = "AttributeManipulateConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6804" role = "AttributeRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6805" role = "ComponentAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6806" role = "ComponentRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6807" role = "InitiatorRoleRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6808" role = "ObjectAccessConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6809" role = "OnAssemblyConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6810" role = "OnComponentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6811" role = "OnInterfaceConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6812" role = "OperationInvokeConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6813" role = "OperationSet" primary = "yes" linked = "no"></part>
-				<part metaref = "6814" role = "PathRef" primary = "yes" linked = "no"></part>
-				<part metaref = "6815" role = "PortRule" primary = "yes" linked = "no"></part>
-				<part metaref = "6816" role = "RequiredRights" primary = "yes" linked = "no"></part>
-				<part metaref = "6817" role = "SecuredPathConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6818" role = "TargetAssemblyReference" primary = "yes" linked = "no"></part>
-				<part metaref = "6819" role = "TargetComponentRef" primary = "yes" kindaspect = "SecurityRule" linked = "no"></part>
-				<part metaref = "6820" role = "TargetObjectRef" primary = "yes" linked = "no"></part>
+			<role name = "Host" metaref = "6483" kind = "Host"></role>
+			<role name = "Placement" metaref = "6484" kind = "Placement"></role>
+			<role name = "Service" metaref = "6781" kind = "Service"></role>
+			<aspect name = "Deployment" metaref = "6782" >
+				<part metaref = "6487" role = "Host" primary = "yes" linked = "no"></part>
+				<part metaref = "6488" role = "Placement" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PolicySet" metaref = "6821" >
+		<model name = "Policy" metaref = "6783" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="security_policy.bmp"></regnode>
+			<role name = "AssemblyAccessConn" metaref = "6784" kind = "AssemblyAccessConn"></role>
+			<role name = "AssemblyRule" metaref = "6785" kind = "AssemblyRule"></role>
+			<role name = "AttributeManipulateConn" metaref = "6786" kind = "AttributeManipulateConn"></role>
+			<role name = "AttributeRef" metaref = "6787" kind = "AttributeRef"></role>
+			<role name = "ComponentAccessConn" metaref = "6788" kind = "ComponentAccessConn"></role>
+			<role name = "ComponentRule" metaref = "6789" kind = "ComponentRule"></role>
+			<role name = "InitiatorRoleRef" metaref = "6790" kind = "InitiatorRoleRef"></role>
+			<role name = "ObjectAccessConn" metaref = "6791" kind = "ObjectAccessConn"></role>
+			<role name = "OnAssemblyConn" metaref = "6792" kind = "OnAssemblyConn"></role>
+			<role name = "OnComponentConn" metaref = "6793" kind = "OnComponentConn"></role>
+			<role name = "OnInterfaceConn" metaref = "6794" kind = "OnInterfaceConn"></role>
+			<role name = "OperationInvokeConn" metaref = "6795" kind = "OperationInvokeConn"></role>
+			<role name = "OperationSet" metaref = "6796" kind = "OperationSet"></role>
+			<role name = "PathRef" metaref = "6797" kind = "PathRef"></role>
+			<role name = "PortRule" metaref = "6798" kind = "PortRule"></role>
+			<role name = "RequiredRights" metaref = "6799" kind = "RequiredRights"></role>
+			<role name = "SecuredPathConn" metaref = "6800" kind = "SecuredPathConn"></role>
+			<role name = "TargetAssemblyReference" metaref = "6801" kind = "TargetAssemblyReference"></role>
+			<role name = "TargetComponentRef" metaref = "6802" kind = "TargetComponentRef"></role>
+			<role name = "TargetObjectRef" metaref = "6803" kind = "TargetObjectRef"></role>
+			<aspect name = "SecurityRule" metaref = "6581" >
+				<part metaref = "6804" role = "AssemblyAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6805" role = "AssemblyRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6806" role = "AttributeManipulateConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6807" role = "AttributeRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6808" role = "ComponentAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6809" role = "ComponentRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6810" role = "InitiatorRoleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6811" role = "ObjectAccessConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6812" role = "OnAssemblyConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6813" role = "OnComponentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6814" role = "OnInterfaceConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6815" role = "OperationInvokeConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6816" role = "OperationSet" primary = "yes" linked = "no"></part>
+				<part metaref = "6817" role = "PathRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6818" role = "PortRule" primary = "yes" linked = "no"></part>
+				<part metaref = "6819" role = "RequiredRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6820" role = "SecuredPathConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6821" role = "TargetAssemblyReference" primary = "yes" linked = "no"></part>
+				<part metaref = "6822" role = "TargetComponentRef" primary = "yes" kindaspect = "SecurityRule" linked = "no"></part>
+				<part metaref = "6823" role = "TargetObjectRef" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "PolicySet" metaref = "6824" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="policy_set.bmp"></regnode>
-			<role name = "Policy" metaref = "6822" kind = "Policy"></role>
+			<role name = "Policy" metaref = "6825" kind = "Policy"></role>
 			<aspect name = "SecurityRule" metaref = "6602" >
-				<part metaref = "6823" role = "Policy" primary = "yes" linked = "no"></part>
+				<part metaref = "6826" role = "Policy" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Port" metaref = "1171" >
@@ -1757,54 +1796,54 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AbstractInterface as &quot;dst&quot; over InterfaceClassificationConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPortBindingdstCardinality62" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidPortBindingdstCardinality64" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::PortBinding ) -> size in
                      (dstCount = 1)]]>
 				<dispname>Multiplicity of objects, which are associated to Port as &quot;dst&quot; over PortBinding, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPortPartCardinality92" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortPartCardinality94" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ExtensiblePort" ) -> size + self.parts( "SOAPAddress" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Port, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidPortPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortPartCardinality95" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Port, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Documentation" metaref = "1172" kind = "Documentation"></role>
-			<role name = "MethodClassificationConn" metaref = "6824" kind = "MethodClassificationConn"></role>
-			<role name = "MethodQoSConn" metaref = "6825" kind = "MethodQoSConn"></role>
-			<role name = "RTTaskProperty" metaref = "6826" kind = "RTTaskProperty"></role>
-			<role name = "RequiredRights" metaref = "6827" kind = "RequiredRights"></role>
+			<role name = "MethodClassificationConn" metaref = "6827" kind = "MethodClassificationConn"></role>
+			<role name = "MethodQoSConn" metaref = "6828" kind = "MethodQoSConn"></role>
+			<role name = "RTTaskProperty" metaref = "6829" kind = "RTTaskProperty"></role>
+			<role name = "RequiredRights" metaref = "6830" kind = "RequiredRights"></role>
 			<role name = "SOAPAddress" metaref = "1173" kind = "SOAPAddress"></role>
 			<aspect name = "SecurityRule" metaref = "6608" >
-				<part metaref = "6828" role = "MethodClassificationConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6829" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6830" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
-				<part metaref = "6831" role = "RequiredRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6831" role = "MethodClassificationConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6832" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6833" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "6834" role = "RequiredRights" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "ServiceDefinition" metaref = "1572" >
 				<part metaref = "1175" role = "Documentation" primary = "yes" linked = "no"></part>
 				<part metaref = "1176" role = "SOAPAddress" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "PortSecurityQoS" metaref = "6832" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
+		<model name = "PortSecurityQoS" metaref = "6835" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="port_qos.bmp"></regnode>
 			<constraint name="PortSecQoSHasValidRules" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[true]]>
 				<dispname>Port Security QoS must have atleast one rule pertaining with its associated Target</dispname>
 			</constraint>
-			<role name = "PortRuleRef" metaref = "6833" kind = "PortRuleRef"></role>
+			<role name = "PortRuleRef" metaref = "6836" kind = "PortRuleRef"></role>
 			<aspect name = "SecurityRule" metaref = "6615" attributes = "Authentication DelegationPolicy IntegrityLevel AuditLevel ConfidentialityLevel SecurityLevel SecurityPolicy NonRepudiation" >
-				<part metaref = "6834" role = "PortRuleRef" primary = "yes" linked = "no"></part>
+				<part metaref = "6837" role = "PortRuleRef" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "PortType" metaref = "1177" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="porttype.bmp"></regnode>
-			<constraint name="ValidPortTypePartCardinality94" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPortTypePartCardinality96" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PortType, has to match 0..1.</dispname>
@@ -1822,35 +1861,35 @@
 				<part metaref = "1188" role = "SolicitResponseOperation" primary = "yes" linked = "yes"></part>
 			</aspect>
 		</model>
-		<model name = "RBAC" metaref = "6835" >
+		<model name = "RBAC" metaref = "6838" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="rbac.bmp"></regnode>
-			<role name = "GrantedRights" metaref = "6836" kind = "GrantedRights"></role>
-			<role name = "Group" metaref = "6837" kind = "Group"></role>
-			<role name = "RightsAssignmentConn" metaref = "6838" kind = "RightsAssignmentConn"></role>
-			<role name = "Role" metaref = "6839" kind = "Role"></role>
-			<role name = "RoleAssignmentConn" metaref = "6840" kind = "RoleAssignmentConn"></role>
-			<role name = "SecurityDomain" metaref = "6841" kind = "SecurityDomain"></role>
-			<role name = "User" metaref = "6842" kind = "User"></role>
+			<role name = "GrantedRights" metaref = "6839" kind = "GrantedRights"></role>
+			<role name = "Group" metaref = "6840" kind = "Group"></role>
+			<role name = "RightsAssignmentConn" metaref = "6841" kind = "RightsAssignmentConn"></role>
+			<role name = "Role" metaref = "6842" kind = "Role"></role>
+			<role name = "RoleAssignmentConn" metaref = "6843" kind = "RoleAssignmentConn"></role>
+			<role name = "SecurityDomain" metaref = "6844" kind = "SecurityDomain"></role>
+			<role name = "User" metaref = "6845" kind = "User"></role>
 			<aspect name = "SecurityRule" metaref = "6625" >
-				<part metaref = "6843" role = "GrantedRights" primary = "yes" linked = "no"></part>
-				<part metaref = "6844" role = "Group" primary = "yes" linked = "no"></part>
-				<part metaref = "6845" role = "RightsAssignmentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6846" role = "Role" primary = "yes" linked = "no"></part>
-				<part metaref = "6847" role = "RoleAssignmentConn" primary = "yes" linked = "no"></part>
-				<part metaref = "6848" role = "SecurityDomain" primary = "yes" linked = "no"></part>
-				<part metaref = "6849" role = "User" primary = "yes" linked = "no"></part>
+				<part metaref = "6846" role = "GrantedRights" primary = "yes" linked = "no"></part>
+				<part metaref = "6847" role = "Group" primary = "yes" linked = "no"></part>
+				<part metaref = "6848" role = "RightsAssignmentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6849" role = "Role" primary = "yes" linked = "no"></part>
+				<part metaref = "6850" role = "RoleAssignmentConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6851" role = "SecurityDomain" primary = "yes" linked = "no"></part>
+				<part metaref = "6852" role = "User" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Realm" metaref = "6850" >
+		<model name = "Realm" metaref = "6853" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="realm.bmp"></regnode>
-			<role name = "Role" metaref = "6851" kind = "Role"></role>
+			<role name = "Role" metaref = "6854" kind = "Role"></role>
 			<aspect name = "SecurityRule" metaref = "6635" >
-				<part metaref = "6852" role = "Role" primary = "yes" linked = "no"></part>
+				<part metaref = "6855" role = "Role" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "RepicaGroupConfiguration" metaref = "6853" attributes = "ReplicationStyle" >
+		<model name = "RepicaGroupConfiguration" metaref = "6856" attributes = "ReplicationStyle" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RPG.bmp"></regnode>
 			<constraint name="ValidMonitorableGroupAssociationsrcCardinality45" eventmask = "0x800" depth = "1" priority = "1">
@@ -1858,7 +1897,7 @@
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to RepicaGroupConfiguration as &quot;src&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "RGProperty" metaref = "6854" kind = "RGProperty"></role>
+			<role name = "RGProperty" metaref = "6857" kind = "RGProperty"></role>
 			<aspect name = "SecurityRule" metaref = "6639" attributes = "ReplicationStyle" >
 				<part metaref = "6431" role = "RGProperty" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -1876,17 +1915,17 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AbstractMethod as &quot;dst&quot; over MethodClassificationConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality95" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRequestResponseOperationPartCardinality97" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidRequestResponseOperationPartCardinality96" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidRequestResponseOperationPartCardinality98" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RequestResponseOperation, has to match 1.</dispname>
@@ -1910,14 +1949,14 @@
 				<part metaref = "1204" role = "OutputMessage" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "RootRiskGroup" metaref = "6855" attributes = "Metric" >
+		<model name = "RootRiskGroup" metaref = "6858" attributes = "Metric" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="RootRiskGroup.bmp"></regnode>
 			<constraint name="MustHaveChild" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.attachingConnections(meta::RootRiskAssociation)->size() >= 1]]>
 				<dispname>A RootRiskGroup must have atleast one child</dispname>
 			</constraint>
-			<role name = "SharedResourceReference" metaref = "6856" kind = "SharedResourceReference"></role>
+			<role name = "SharedResourceReference" metaref = "6859" kind = "SharedResourceReference"></role>
 			<aspect name = "SecurityRule" metaref = "6642" attributes = "Metric" >
 				<part metaref = "6433" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -1968,7 +2007,7 @@
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="schemareference.gif"></regnode>
 				<regnode name = "icon" value ="schemaimport.gif"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality97" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
@@ -1983,7 +2022,7 @@
 		<model name = "SchemaReference" metaref = "1226" attributes = "id schemaLocation" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="schemareference.gif"></regnode>
-			<constraint name="ValidSchemaReferencePartCardinality97" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSchemaReferencePartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Schema" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SchemaReference, has to match 1.</dispname>
@@ -1993,21 +2032,21 @@
 				<part metaref = "1229" role = "Schema" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "Security" metaref = "6857" >
+		<model name = "Security" metaref = "6860" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "PolicySet" metaref = "6858" kind = "PolicySet"></role>
-			<role name = "RBAC" metaref = "6859" kind = "RBAC"></role>
+			<role name = "PolicySet" metaref = "6861" kind = "PolicySet"></role>
+			<role name = "RBAC" metaref = "6862" kind = "RBAC"></role>
 			<aspect name = "SecurityRule" metaref = "6646" >
-				<part metaref = "6860" role = "PolicySet" primary = "yes" linked = "no"></part>
-				<part metaref = "6861" role = "RBAC" primary = "yes" linked = "no"></part>
+				<part metaref = "6863" role = "PolicySet" primary = "yes" linked = "no"></part>
+				<part metaref = "6864" role = "RBAC" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "SecurityDomain" metaref = "6862" >
+		<model name = "SecurityDomain" metaref = "6865" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="security_domain.bmp"></regnode>
-			<role name = "Realm" metaref = "6863" kind = "Realm"></role>
+			<role name = "Realm" metaref = "6866" kind = "Realm"></role>
 			<aspect name = "SecurityRule" metaref = "6651" >
-				<part metaref = "6864" role = "Realm" primary = "yes" linked = "no"></part>
+				<part metaref = "6867" role = "Realm" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Service" metaref = "1230" >
@@ -2018,21 +2057,26 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to FTMonitorable as &quot;dst&quot; over MonitorableGroupAssociation, has to match 0..1.</dispname>
 			</constraint>
+			<constraint name="ValidPlacementdstCardinality62" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Placement ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to AbstractComponent as &quot;dst&quot; over Placement, has to match 0..1.</dispname>
+			</constraint>
 			<role name = "BindingRef" metaref = "1404" kind = "BindingRef"></role>
-			<role name = "MethodId" metaref = "6865" kind = "MethodId"></role>
-			<role name = "MethodIdQoS" metaref = "6866" kind = "MethodIdQoS"></role>
-			<role name = "MethodIdentifier" metaref = "6867" kind = "MethodIdentifier"></role>
-			<role name = "MethodQoSConn" metaref = "6868" kind = "MethodQoSConn"></role>
+			<role name = "MethodId" metaref = "6868" kind = "MethodId"></role>
+			<role name = "MethodIdQoS" metaref = "6869" kind = "MethodIdQoS"></role>
+			<role name = "MethodIdentifier" metaref = "6870" kind = "MethodIdentifier"></role>
+			<role name = "MethodQoSConn" metaref = "6871" kind = "MethodQoSConn"></role>
 			<role name = "Port" metaref = "1402" kind = "Port"></role>
 			<role name = "PortBinding" metaref = "1406" kind = "PortBinding"></role>
-			<role name = "RTTaskProperty" metaref = "6869" kind = "RTTaskProperty"></role>
+			<role name = "RTTaskProperty" metaref = "6872" kind = "RTTaskProperty"></role>
 			<aspect name = "SecurityRule" metaref = "6658" >
-				<part metaref = "6870" role = "MethodId" primary = "yes" linked = "no"></part>
-				<part metaref = "6871" role = "MethodIdQoS" primary = "yes" linked = "no"></part>
-				<part metaref = "6872" role = "MethodIdentifier" primary = "yes" linked = "no"></part>
-				<part metaref = "6873" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
+				<part metaref = "6873" role = "MethodId" primary = "yes" linked = "no"></part>
+				<part metaref = "6874" role = "MethodIdQoS" primary = "yes" linked = "no"></part>
+				<part metaref = "6875" role = "MethodIdentifier" primary = "yes" linked = "no"></part>
+				<part metaref = "6876" role = "MethodQoSConn" primary = "yes" linked = "no"></part>
 				<part metaref = "6663" role = "Port" primary = "yes" linked = "yes"></part>
-				<part metaref = "6874" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
+				<part metaref = "6877" role = "RTTaskProperty" primary = "yes" linked = "no"></part>
 			</aspect>
 			<aspect name = "ServiceDefinition" metaref = "1580" >
 				<part metaref = "1405" role = "BindingRef" primary = "yes" kindaspect = "ServiceDefinition" linked = "no"></part>
@@ -2040,7 +2084,7 @@
 				<part metaref = "1407" role = "PortBinding" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "SharedRiskGroup" metaref = "6875" attributes = "Metric" >
+		<model name = "SharedRiskGroup" metaref = "6878" attributes = "Metric" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="SharedRiskGroup.bmp"></regnode>
 			<constraint name="SingleSRGParent" eventmask = "0x0" depth = "1" priority = "2">
@@ -2050,17 +2094,17 @@
  self.connectedFCOs(RootRiskAssociation ) -> size = 1 )]]>
 				<dispname>Every risk group has a single unique parent risk group.</dispname>
 			</constraint>
-			<constraint name="ValidRootRiskAssociationsrcCardinality71" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidRootRiskAssociationsrcCardinality73" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::RootRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over RootRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSRGRiskAssociationsrcCardinality75" eventmask = "0x800" depth = "1" priority = "1">
+			<constraint name="ValidSRGRiskAssociationsrcCardinality77" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::SRGRiskAssociation ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to SRGBase as &quot;src&quot; over SRGRiskAssociation, has to match 0..1.</dispname>
 			</constraint>
-			<role name = "SharedResourceReference" metaref = "6876" kind = "SharedResourceReference"></role>
+			<role name = "SharedResourceReference" metaref = "6879" kind = "SharedResourceReference"></role>
 			<aspect name = "SecurityRule" metaref = "6667" attributes = "Metric" >
 				<part metaref = "6435" role = "SharedResourceReference" primary = "yes" linked = "no"></part>
 			</aspect>
@@ -2078,17 +2122,17 @@
                      (dstCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to AbstractMethod as &quot;dst&quot; over MethodClassificationConn, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidOperationPartCardinality91" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidOperationPartCardinality93" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Operation, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality98" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSolicitResponseOperationPartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Output" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
 			</constraint>
-			<constraint name="ValidSolicitResponseOperationPartCardinality99" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSolicitResponseOperationPartCardinality101" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Input" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SolicitResponseOperation, has to match 1.</dispname>
@@ -2115,7 +2159,7 @@
 		<model name = "Types" metaref = "1250" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="types.bmp"></regnode>
-			<constraint name="ValidTypesPartCardinality100" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidTypesPartCardinality102" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Documentation" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by Types, has to match 0..1.</dispname>
