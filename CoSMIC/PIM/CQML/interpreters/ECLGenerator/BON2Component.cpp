@@ -57,12 +57,13 @@ namespace  // anonymous
 		std::list <std::string> node_kinds = 
 				kind_dialog.get_node_kinds ();
 		std::string node_sequence ("Nodes: ");
-		for (std::list <std::string>::const_iterator i (node_kinds.begin());
-			 i != node_kinds.end();
-			 ++i)
-		{
+		
+  //  for (std::list <std::string>::const_iterator i (node_kinds.begin());
+		//	 i != node_kinds.end();
+		//	 ++i)
+		//{
 			CQML::KindAggregator<CQML::AbstractNode> 
-				aggregator (project, *i);
+				aggregator (project, node_kinds);
 			CQML::KindAggregator<CQML::AbstractNode>::KindMap
 				map = aggregator.aggregate ();
 			
@@ -73,7 +74,7 @@ namespace  // anonymous
 				node_sequence += i->first;
 				node_sequence += " ";
 			}
-		}
+		//}
 		AfxMessageBox (node_sequence.c_str());
 }
 

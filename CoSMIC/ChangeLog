@@ -1,3 +1,12 @@
+Mon Oct  1 01:48:24 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.cpp:
+
+          Added a constructor to the aggregator that will take a list
+          too.
+
 Mon Oct  1 01:28:14 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
@@ -8,7 +17,7 @@ Mon Oct  1 01:28:14 UTC 2007  Sumant Tambe  <sutambe@nospam>
         * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
         * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.h:
         * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.cpp:
-          
+
           ECL generator mods
 
 Sun Sep 30 23:23:20 UTC 2007  Sumant Tambe  <sutambe@nospam>

@@ -10,7 +10,16 @@ namespace CQML
   KindAggregator<T>::KindAggregator(const BON::Project& project,
     std::string kindname)
     : bon_project_ (project),
-    kindname_ (kindname)
+      kindlist_ (1, kindname)
+  {
+  }
+
+  // ctor that takes a list of kinds and aggregates them collectively
+  template <class T>
+  KindAggregator<T>::KindAggregator (const BON::Project& project, 
+    const std::list<std::string>& kindlist)
+    : bon_project_ (project),
+    kindlist_ (kindlist)
   {
   }
 
@@ -34,32 +43,20 @@ namespace CQML
   {
     try
     {
-      //this->bon_project_->consoleMsg ("Test", MSG_INFO);		
-      std::set<BON::Object> bon_instances 
-        = this->bon_project_->findByKind (this->kindname_);
-
-      //for_each (bon_instances.begin (), 
-      //  bon_instances.end (), 
-      //  print<BON::Object> (this->bon_project_));
-
-     // this->bon_project_->consoleMsg ("\n", MSG_INFO);
-
-      // Insert the instances into the KindMap
-      for_each (bon_instances.begin (), 
-        bon_instances.end (), 
-        insertKindInstance <BON::Object> (this));
-
+      for_each (this->kindlist_.begin (),
+        this->kindlist_.end (),
+        insertKindInstances <std::string> (this));
     } 
-	catch (MON::Exception& ex)
+    catch (MON::Exception& ex)
     {
       this->bon_project_->consoleMsg (
         /*this->kindname_+std::string(" kind does not exist in this model.")+*/
         ex.getErrorMessage(), MSG_ERROR);		
     } 
-	catch (...)
+    catch (...)
     {
       this->bon_project_->consoleMsg ("Unknown exception.", MSG_ERROR);
-    
+
     }
 
     return this->m_kind_instances_;
