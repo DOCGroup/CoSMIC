@@ -1,3 +1,18 @@
+Mon Oct  1 14:09:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+        * cuts/workers/CPU_Worker/Calibration_Details.h:
+        * cuts/workers/CPU_Worker/Calibration_Details.cpp:
+
+          Updated the calibration results to calcuate the variance,
+          standard deviation, and standard error for each execution
+          time during the validation process.
+
+        * utils/GUTS/gems2picml_App.cpp:
+
+          Updated implementation to use the new collection entities
+          in the GME library.
+
 Thu Sep 20 03:56:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_Context_T.h:

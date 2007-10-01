@@ -9,6 +9,7 @@
 #include "ace/Auto_Ptr.h"
 #include "ace/CORBA_macros.h"
 #include <numeric>
+#include <math.h>
 
 //
 // ~CUTS_CPU_Calibration_Details
@@ -22,6 +23,9 @@ CUTS_CPU_Calibration_Details::
     delete iter->item ();
 }
 
+//
+// process
+//
 int CUTS_CPU_Calibration_Details::
 process (size_t msec,
          const CUTS_CPU_Calibration_Results & results,
@@ -57,6 +61,11 @@ process (size_t msec,
     entry->average_error_ = entry->average_time_ - (double) msec;
     entry->percent_error_ = entry->average_error_ / (double) msec;
 
+    // Calculate basic statistics about the results.
+    entry->variance_ = this->calculate_variance (msec, results);
+    entry->stddev_ = sqrt (entry->variance_);
+    entry->stderr_ = entry->stddev_ / sqrt ((double) results.size ());
+
     // Update the min, max, and sum percentages.
     if (entry->average_error_ < this->min_error_)
       this->min_error_ = entry->average_error_;
@@ -88,4 +97,19 @@ void CUTS_CPU_Calibration_Details::reset (void)
     delete iter->item ();
 
   this->log_.unbind_all ();
+}
+
+//
+// calculate_stddev
+//
+double CUTS_CPU_Calibration_Details::
+calculate_variance (size_t msec, const CUTS_CPU_Calibration_Results & results)
+{
+  double sum = 0.0;
+  CUTS_CPU_Calibration_Results::const_iterator iter;
+
+  for (iter = results.begin (); iter != results.end (); iter ++)
+    sum += ((double)(*iter - msec) * (double)(*iter - msec));
+
+  return (sum / (double) results.size ());
 }

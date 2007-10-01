@@ -39,6 +39,15 @@ struct CUTS_CPU_Calibration_Details_Log_Entry
 
   /// The percentage of error.
   double percent_error_;
+
+  /// The variance of the results.
+  double variance_;
+
+  /// The standard deviation of the results.
+  double stddev_;
+
+  /// The standard error of the results.
+  double stderr_;
 };
 
 /// Type definition of the log that contains the measured averages for
@@ -106,6 +115,17 @@ public:
   void reset (void);
 
 private:
+  /**
+   * Calculate the standard deviation of the results. The results
+   * are compared against the expected \a msec count.
+   *
+   * @param[in]     msec          The expected execution time.
+   * @param[in]     results       The source measurements.
+   * @return        The standard deviation of \a results.
+   */
+  double calculate_variance (size_t msec,
+                             const CUTS_CPU_Calibration_Results & results);
+
   /// The maximum percentage of error.
   double max_error_;
 

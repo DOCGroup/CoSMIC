@@ -301,7 +301,10 @@ verify_calibration (size_t trycount, const ACE_CString & temp_filename)
       tempfile
         << entry->average_time_ << " "
         << entry->average_error_ << " "
-        << entry->percent_error_ << std::endl;
+        << entry->percent_error_ << "; "
+        << entry->variance_ << " "
+        << entry->stddev_ << " "
+        << entry->stderr_ << std::endl;
     }
   }
 

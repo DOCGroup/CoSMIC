@@ -322,12 +322,17 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
                         this->options_.target_model_.c_str ()));
 
       // Get all the deployment plans in the model.
-      std::vector <GME::Model> models;
-      f_iter->models ("DeploymentPlan", models);
+      typedef GME::Collection_T <GME::Model> DeploymentPlan_Set;
+
+      DeploymentPlan_Set deployment_plans;
+      f_iter->models ("DeploymentPlan", deployment_plans);
 
       // Search for one by the name of "SLICE_DeploymentPlan"
-      std::vector <GME::Model>::iterator m_iter;
-      for (m_iter = models.begin (); m_iter != models.end (); m_iter ++)
+      DeploymentPlan_Set::_container_type::iterator m_iter;
+
+      for (m_iter = deployment_plans.items ().begin ();
+           m_iter != deployment_plans.items ().end ();
+           m_iter ++)
       {
         // Determine if this the the <target_model_>.
         if (m_iter->name () == this->options_.target_model_)
@@ -340,7 +345,8 @@ int gems2picml_App::find_deployment_plan (GME::Model & plan)
       // Ok, we found the folder, but we didn't find <target_model_>. We
       // therefore need to create a new model. However, we only create a
       // new model if we have permission.
-      if (m_iter == models.end () && this->options_.create_)
+      if (m_iter == deployment_plans.items ().end () &&
+          this->options_.create_)
       {
         plan = GME::Model::_create ("DeploymentPlan", *f_iter);
         return 0;
@@ -362,15 +368,18 @@ convert_gems_2_picml (GME::Model & deployment)
                     "PICML model...\n"));
 
   // Get all the component references for this deployment.
-  std::vector <GME::Reference> components;
+  typedef GME::Collection_T <GME::Reference> Reference_Set;
+
+  Reference_Set components;
   deployment.references ("ComponentRef", components);
 
   // We need to create a reverse map of the *real* components
   // to the references.
   std::map <std::string, GME::Reference> component_map;
+  Reference_Set::_container_type::iterator iter;
 
-  for (std::vector <GME::Reference>::iterator iter = components.begin ();
-       iter != components.end ();
+  for (iter  = components.items ().begin ();
+       iter != components.items ().end ();
        iter ++)
   {
     std::string name = iter->refers_to ().path (".", false);
@@ -384,21 +393,24 @@ convert_gems_2_picml (GME::Model & deployment)
   /// @todo Re-implement algorithm such that we do not have to
   /// empty all the sets before we begin reconfiguring the
   /// deployment.
-  std::vector <GME::Set> hosts;
+  typedef GME::Collection_T <GME::Set> Host_Set;
+
+  Host_Set hosts;
   deployment.sets ("CollocationGroup", hosts);
 
   std::map <std::string, GME::Set> hostmap;
+  Host_Set::_container_type::iterator host_iter;
 
-  for (std::vector <GME::Set>::iterator iter = hosts.begin ();
-       iter != hosts.end ();
-       iter ++)
+  for (host_iter  = hosts.items ().begin ();
+       host_iter != hosts.items ().end ();
+       host_iter ++)
   {
-    std::string name = iter->name ();
+    std::string name = host_iter->name ();
 
     if (name != "Control")
-      iter->clear ();
+      host_iter->clear ();
 
-    hostmap[name] = *iter;
+    hostmap[name] = *host_iter;
   }
 
   // Iterate over all the GEMS deployment connections and create
