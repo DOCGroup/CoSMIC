@@ -112,9 +112,12 @@ struct MGAInstanceTree
 
 } /// namespace anonymous 
 
-ECLGenerator::ECLGenerator(const BON::Project& project)
+ECLGenerator::ECLGenerator(
+	const BON::Project& project,
+	const CQML::KindAggregator<CQML::AbstractComponent>::KindMap & comp_kind_map)
 :  bon_project_ (project),
-   mon_project_ (project->getProjectMeta())
+   mon_project_ (project->getProjectMeta()),
+   comp_kind_map_ (comp_kind_map)
 {
 }
 
@@ -146,29 +149,13 @@ get_sample_mapping (NodeToCompMapping & node2comp, CompToNodeMapping & comp2node
 			comp2node [*j] = i->first;
 		}
 	}
-
 }
 
 void ECLGenerator::generate (NodeToCompMapping const & node2comp, 
-					         CompToNodeMapping const & comp2node)
+					         CompToNodeMapping const & comp2node,
+							 std::string const & plan_name)
 {
-/*
-	std::string dp_kind_name = "J2EEDeployment";
-	std::string rf_kind_name = "RootFolder";
-	std::string comp_kind_name = "BeanName";
-	std::string node_kind_name = "HostName";
-	parse_containement ();
-	//AfxMessageBox("done parse_containement");
-	std::list <std::string> seq = composition_sequence (rf_kind_name, dp_kind_name);
-	print_sequence (seq.begin(), seq.end());
-	std::list <std::string> seq2 = composition_sequence (dp_kind_name, comp_kind_name);
-	print_sequence (seq2.begin(), seq2.end());
-	std::list <std::string> seq3 = composition_sequence (dp_kind_name, node_kind_name);
-	print_sequence (seq3.begin(), seq3.end());
-*/
-
-	std::string ecl = gen_ECL (node2comp, comp2node);
-	//AfxMessageBox (ecl.c_str());
+	std::string ecl = gen_ECL (node2comp, comp2node, plan_name);
 	std::string ecl_for_dialog = add_slash_r(ecl);
     ECLDialog dialog (ecl_for_dialog, ::AfxGetMainWnd ());
 	dialog.DoModal();
@@ -189,50 +176,63 @@ std::string ECLGenerator::add_slash_r (std::string const & s)
 }
 
 std::string ECLGenerator::gen_ECL (NodeToCompMapping const & node2comp, 
-					               CompToNodeMapping const & comp2node)
+					               CompToNodeMapping const & comp2node,
+								   std::string const & plan_name)
 {
 	std::string SPACE3 = "   ";
 	std::ostringstream 	outputECL;
     outputECL << "defines Deploy, Placement, Association;" 
 		      << std::endl;
 	outputECL << "strategy Association "
-	          << "(dp, node : model; compref : reference) {" 
+	          << "(dp, host, comp : model) {" 
 			  << std::endl;
     outputECL << SPACE3 
-		      << "dp.addConnection (\"Placement\", compref, node);"
+		      << "dp.addConnection (\"PlacementConn\", comp, host);"
 		      << std::endl << "}" << std::endl;
 	outputECL << "strategy Placement () {" << std::endl;
 	outputECL << SPACE3 
 		      << "declare dp : model;" << std::endl;
 	outputECL << SPACE3 
-		      << "dp := rootFolder().addModel "
-			     "(\"DeploymentPlan\",\"ECLGeneratorDP\");" 
+		      << "dp := rootFolder().findModel (\""
+			  << plan_name 
+			  << "\");" 
 			  << std::endl;
 
 	for (NodeToCompMapping::const_iterator i (node2comp.begin());
 		 i != node2comp.end();
 		 ++i)
 	{
-		int count = 0;
+		bool node_created = true;
 		for (std::set <std::string>::const_iterator j (i->second.begin());
 			 j != i->second.end();
-			 ++j, ++count)
+			 ++j)
 		{
-			if (count == 0)
+			std::string kind_name = "NOT_FOUND";
+			CQML::KindAggregator<CQML::AbstractComponent>::KindMap::const_iterator
+				kind_iter = comp_kind_map_.find (*j);
+			if (kind_iter != comp_kind_map_.end())
+				kind_name = kind_iter->second.kind();
+
+			if (node_created == false)
 			{
 				outputECL << SPACE3
-					      << "Association (dp, dp.addModel (\"Node\",\""
+					      << "Association (dp, dp.addModel (\"Host\",\""
 						  << i->first
-						<< "\"), dp.addAtom (\"Component\",\""
-						<< *j
-						<< "\"));" << std::endl;
+						  << "\"), dp.addModel (\""
+						  << kind_name
+						  << "\",\""
+						  << *j
+						  << "\"));" << std::endl;
+				node_created = true;
 			}
 			else
 			{
 				outputECL << SPACE3
 					      << "Association (dp, dp.findModel (\""
 						  << i->first
-					   	  << "\"), dp.addAtom (\"Component\",\""
+					   	  << "\"), dp.addModel (\""
+						  << kind_name
+						  << "\",\""
 						  << *j
 						  << "\"));" << std::endl;
 			}

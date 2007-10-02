@@ -1,5 +1,8 @@
-project (ECLGenerator): register, bon{
+project (ECLGenerator): mfc, register, bon, register {
 
+   after += CoSMIC_Utils
+
+   macros += _USRDLL _WINDLL
    sharedname = ECLGenerator
    includes += $(COSMIC_ROOT)/PIM/CQML/interpreters/ECLGenerator
    includes += $(XERCESCROOT)/include
@@ -63,6 +66,7 @@ project (ECLGenerator): register, bon{
      KindAggregator.h
      DeploymentPlanner.h
      NodeAssigner.h
+     PlacementMaps.h
    }
 
    Resource_Files {

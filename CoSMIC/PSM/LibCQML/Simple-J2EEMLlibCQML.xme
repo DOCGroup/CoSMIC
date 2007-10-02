@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{B2F82700-2D30-4760-AACF-EF5FA0BE8E50}" cdate="Fri Sep 21 21:35:14 2007" mdate="Fri Sep 21 21:35:14 2007" version="" metaguid="{E2DA18DC-4C10-4E0A-8019-C86098E7106B}" metaversion="" metaname="J2EEMLlibCQML">
+<project guid="{8C456941-247E-4AB3-B676-A70F25092619}" cdate="Mon Oct 01 16:24:47 2007" mdate="Mon Oct 01 16:24:47 2007" version="" metaguid="{E35E4940-9C96-497B-BBFD-EBF17C624B44}" metaversion="" metaname="J2EEMLlibCQML">
 	<name>Simple-J2EEMLlibCQML</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{C7BF4566-9EFD-49d9-9C67-893B378385E5}">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x10" kind="RootFolder" guid="{C7BF4566-9EFD-49d9-9C67-893B378385E5}">
 		<name>Simple-J2EEMLlibCQML</name>
-		<model id="id-0065-00000001" kind="J2EE_Solution" guid="{BBEA8C48-A644-4005-B54C-F739A802FD35}" relid="0x1" childrelidcntr="0xe">
+		<model id="id-0065-00000001" kind="J2EE_Solution" guid="{BBEA8C48-A644-4005-B54C-F739A802FD35}" relid="0x1" childrelidcntr="0x12">
 			<name>NewJ2EE_Solution</name>
 			<attribute kind="Description" status="meta">
 				<value></value>
@@ -28,7 +28,7 @@
 					<regnode name="System" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>387,177</value>
+							<value>84,175</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -38,8 +38,8 @@
 				<attribute kind="RootPackage" status="meta">
 					<value></value>
 				</attribute>
-				<model id="id-0065-00000003" kind="EntityBean" role="EntityBean" guid="{495C02A6-4B40-4606-8593-2D6C1FAC319F}" relid="0x2" childrelidcntr="0x6">
-					<name>EntityBean</name>
+				<model id="id-0065-00000003" kind="EntityBean" role="EntityBean" guid="{495C02A6-4B40-4606-8593-2D6C1FAC319F}" relid="0x2" childrelidcntr="0x9">
+					<name>EntityBean1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="EntityRelationships" status="undefined">
@@ -164,7 +164,7 @@
 					</connection>
 				</model>
 				<model id="id-0065-00000004" kind="SessionBean" role="SessionBean" guid="{17F2C958-4048-462c-BD6B-0942AE63B0F5}" relid="0x3" childrelidcntr="0x0">
-					<name>SessionBean</name>
+					<name>SessionBean1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="QoS" status="undefined">
@@ -237,8 +237,8 @@
 					<connpoint role="src" target="id-0065-00000004"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000006" kind="J2EE_Solution" role="J2EE_Solution" guid="{17534FE2-CC57-42a9-B2CD-E89AD18891AF}" relid="0x2" childrelidcntr="0x2">
-				<name>J2EE_Solution</name>
+			<model id="id-0065-00000006" kind="J2EE_Solution" role="J2EE_Solution" guid="{17534FE2-CC57-42a9-B2CD-E89AD18891AF}" relid="0x2" childrelidcntr="0x3">
+				<name>J2EE_Sol</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="QoS" status="undefined">
@@ -250,7 +250,7 @@
 					<regnode name="System" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>709,156</value>
+							<value>399,70</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -261,7 +261,7 @@
 					<value></value>
 				</attribute>
 				<model id="id-0065-00000007" kind="EntityBean" role="EntityBean" guid="{C54052E7-CD0D-4067-A880-84DBD7B2D5E4}" relid="0x1" childrelidcntr="0x4">
-					<name>EntityBean</name>
+					<name>MyEntityBean</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="EntityRelationships" status="undefined">
@@ -285,7 +285,7 @@
 						<regnode name="System" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>709,100</value>
+								<value>196,165</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -385,8 +385,50 @@
 						<connpoint role="dst" target="id-0066-00000004"/>
 					</connection>
 				</model>
+				<model id="id-0065-00000008" kind="SessionBean" role="SessionBean" guid="{418BACC3-3AC6-4f1d-9496-C5A5EEDE1251}" relid="0x3" childrelidcntr="0x0">
+					<name>MySessionBean</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="QoS" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>422,457</value>
+							</regnode>
+						</regnode>
+						<regnode name="QoS_Requirements" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>422,457</value>
+							</regnode>
+						</regnode>
+						<regnode name="System" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>469,263</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Description" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="JNDIName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="LocallyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Package" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="RemotelyAccessible" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="StateType" status="meta">
+						<value>Stateless</value>
+					</attribute>
+				</model>
 			</model>
-			<model id="id-0065-00000008" kind="FailOverUnit" role="FailOverUnit" guid="{8270F0C2-D9FC-42d7-A815-FC6FEFFB9C61}" relid="0x5" childrelidcntr="0x0">
+			<model id="id-0065-00000009" kind="FailOverUnit" role="FailOverUnit" guid="{8270F0C2-D9FC-42d7-A815-FC6FEFFB9C61}" relid="0x5" childrelidcntr="0x0">
 				<name>FailOverUnit</name>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
@@ -446,7 +488,7 @@
 					<value>Sw</value>
 				</regnode>
 				<connpoint role="src" target="id-0065-00000002"/>
-				<connpoint role="dst" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0065-00000009"/>
 			</connection>
 			<connection id="id-0068-00000006" kind="ComponentAssemblyQoS" role="ComponentAssemblyQoS" guid="{32E8A7AC-9ACB-447e-8284-18CF41C4AE32}" relid="0x7">
 				<name>ComponentAssemblyQoS</name>
@@ -454,7 +496,7 @@
 					<value>Se</value>
 				</regnode>
 				<connpoint role="src" target="id-0065-00000006"/>
-				<connpoint role="dst" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0065-00000009"/>
 			</connection>
 			<connection id="id-0068-00000007" kind="QoSReq" role="QoSReq" guid="{9AD8B8B6-C2CE-44af-B351-512E4DB037AC}" relid="0xc">
 				<name>QoSReq</name>
@@ -480,6 +522,38 @@
 				<connpoint role="dst" target="id-0065-00000007"/>
 				<connpoint role="src" target="id-0066-00000005"/>
 			</connection>
+			<connection id="id-0068-0000000a" kind="DataInteraction" role="DataInteraction" guid="{3A74D871-C119-4377-AD47-BDA5B04B4044}" relid="0xf">
+				<name>DataInteraction</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0065-00000007"/>
+			</connection>
+		</model>
+		<model id="id-0065-00000020" kind="PlacementPlan" guid="{4E93F6BA-A67C-49e7-A6C4-7166B099FC1F}" relid="0x10" childrelidcntr="0xa">
+			<name>DP</name>
+			<model id="id-0065-00000021" kind="Host" role="Host" guid="{C280C4A7-DC75-442d-BB76-E3A58BD6D1ED}" relid="0x1" childrelidcntr="0x0">
+				<name>Sniper</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>174,69</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000022" kind="Host" role="Host" guid="{6F324E5F-2967-457a-A4D5-C33A594023D9}" relid="0x2" childrelidcntr="0x0">
+				<name>Prince</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>349,69</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
 		</model>
 	</folder>
 </project>

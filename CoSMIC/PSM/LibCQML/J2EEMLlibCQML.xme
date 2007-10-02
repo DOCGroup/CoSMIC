@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{9C562752-3CA7-4717-A053-C9E94E9F9D21}" cdate="Sun Sep 30 22:00:57 2007" mdate="Sun Sep 30 22:00:57 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{CBEF5FA4-833A-4D58-AF5D-81319FFDCC8D}" cdate="Mon Oct 01 16:16:57 2007" mdate="Mon Oct 01 16:16:57 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>J2EEMLlibCQML</name>
 	<comment></comment>
 	<author></author>
@@ -24880,7 +24880,7 @@ three</value>
 				<regnode name="DeploymentPlanRef-c-Reference" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7298</value>
+						<value>1024</value>
 						<regnode name="FTDeployment" status="undefined">
 							<value></value>
 							<regnode name="DeploymentPlanRef" isopaque="yes">
@@ -24889,7 +24889,7 @@ three</value>
 									<value>6403</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7336</value>
+									<value>1045</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6424</value>
@@ -24935,12 +24935,12 @@ three</value>
 						<regnode name="FTDeployment" status="undefined">
 							<value></value>
 							<regnode name="DomainRiskGrouping" isopaque="yes">
-								<value>7334</value>
+								<value>1042</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6404</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7337</value>
+									<value>1046</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6425</value>
@@ -24973,16 +24973,16 @@ three</value>
 				<regnode name="FTDeployDepends-11-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7274</value>
+						<value>1020</value>
 						<regnode name="FTDeployment" status="undefined">
 							<value></value>
 							<regnode name="FTDeployDepends" isopaque="yes">
-								<value>7335</value>
+								<value>1043</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6405</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7338</value>
+									<value>1047</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6426</value>
@@ -25009,40 +25009,13 @@ three</value>
 				<regnode name="FTDeployment-3-Model" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7333</value>
+						<value>1040</value>
 					</regnode>
 				</regnode>
 				<regnode name="FailOverUnit-2-Model" status="undefined">
 					<value></value>
-					<regnode name="KindAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:FailOverUnit" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value> </value>
-							</regnode>
-						</regnode>
-					</regnode>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7339</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="FailOverUnit" isopaque="yes">
-								<value>7354</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7367</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:FailOverUnit" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1048</value>
 					</regnode>
 				</regnode>
 				<regnode name="HostReference-21-Reference" status="undefined">
@@ -25057,11 +25030,11 @@ three</value>
 						</regnode>
 					</regnode>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7299</value>
+						<value>1026</value>
 						<regnode name="DomainRiskGrouping" status="undefined">
 							<value></value>
 							<regnode name="HostReference" isopaque="yes">
-								<value>7316</value>
+								<value>1029</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6397</value>
 								</regnode>
@@ -25093,22 +25066,22 @@ three</value>
 				<regnode name="Metric-6-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7233</value>
+						<value>1015</value>
 					</regnode>
 				</regnode>
 				<regnode name="MonitorableGroupAssociation-9-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7281</value>
+						<value>1021</value>
 						<regnode name="FailOverUnit" status="undefined">
 							<value></value>
 							<regnode name="MonitorableGroupAssociation" isopaque="yes">
-								<value>7340</value>
+								<value>1049</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6407</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7342</value>
+									<value>1052</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6428</value>
@@ -25135,7 +25108,7 @@ three</value>
 				<regnode name="RGProperty-7e-Atom" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7257</value>
+						<value>1018</value>
 						<regnode name="RepicaGroupConfiguration" status="undefined">
 							<value></value>
 							<regnode name="RGProperty" isopaque="yes">
@@ -25186,16 +25159,16 @@ three</value>
 						</regnode>
 					</regnode>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7442</value>
+						<value>1054</value>
 						<regnode name="FailOverUnit" status="undefined">
 							<value></value>
 							<regnode name="RepicaGroupConfiguration" isopaque="yes">
-								<value>7341</value>
+								<value>1050</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6408</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7343</value>
+									<value>1053</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6429</value>
@@ -25228,22 +25201,22 @@ three</value>
 				<regnode name="ReplicationStyle-1f-EnumAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7235</value>
+						<value>1017</value>
 					</regnode>
 				</regnode>
 				<regnode name="RootRiskAssociation-18-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7292</value>
+						<value>1022</value>
 						<regnode name="DomainRiskGrouping" status="undefined">
 							<value></value>
 							<regnode name="RootRiskAssociation" isopaque="yes">
-								<value>7317</value>
+								<value>1030</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6398</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7321</value>
+									<value>1036</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6419</value>
@@ -25285,11 +25258,11 @@ three</value>
 						</regnode>
 					</regnode>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7443</value>
+						<value>1058</value>
 						<regnode name="DomainRiskGrouping" status="undefined">
 							<value></value>
 							<regnode name="RootRiskGroup" isopaque="yes">
-								<value>7318</value>
+								<value>1031</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6399</value>
 								</regnode>
@@ -25321,11 +25294,11 @@ three</value>
 				<regnode name="SRGRiskAssociation-15-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7293</value>
+						<value>1023</value>
 						<regnode name="DomainRiskGrouping" status="undefined">
 							<value></value>
 							<regnode name="SRGRiskAssociation" isopaque="yes">
-								<value>7319</value>
+								<value>1032</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6400</value>
 								</regnode>
@@ -25366,7 +25339,7 @@ three</value>
 									<value>6414</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7444</value>
+									<value>1061</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6433</value>
@@ -25439,12 +25412,12 @@ three</value>
 						<regnode name="DomainRiskGrouping" status="undefined">
 							<value></value>
 							<regnode name="SharedRiskGroup" isopaque="yes">
-								<value>7320</value>
+								<value>1033</value>
 								<regnode name="OperationRights" isopaque="yes">
 									<value>6401</value>
 								</regnode>
 								<regnode name="QoS" isopaque="yes">
-									<value>7322</value>
+									<value>1039</value>
 								</regnode>
 								<regnode name="SecurityRule" isopaque="yes">
 									<value>6422</value>
@@ -25510,40 +25483,7 @@ three</value>
 				<regnode name="RTTaskProperty-3-Atom" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7258</value>
-						<regnode name="EntityBean" status="undefined">
-							<value></value>
-							<regnode name="RTTaskProperty" isopaque="yes">
-								<value>7327</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7332</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean" status="undefined">
-							<value></value>
-							<regnode name="RTTaskProperty" isopaque="yes">
-								<value>7457</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7462</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="EntityBean:RTTaskProperty" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean:RTTaskProperty" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1085</value>
 					</regnode>
 				</regnode>
 				<regnode name="msec-6-FieldAttribute" status="undefined">
@@ -25555,25 +25495,25 @@ three</value>
 				<regnode name="msecComputationTime-6-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7241</value>
+						<value>1081</value>
 					</regnode>
 				</regnode>
 				<regnode name="msecDeadline-e-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7242</value>
+						<value>1082</value>
 					</regnode>
 				</regnode>
 				<regnode name="msecPeriod-d-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7243</value>
+						<value>1083</value>
 					</regnode>
 				</regnode>
 				<regnode name="secComputationTime-8-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7245</value>
+						<value>1084</value>
 					</regnode>
 				</regnode>
 				<regnode name="seconds-8-FieldAttribute" status="undefined">
@@ -25591,25 +25531,7 @@ three</value>
 				<regnode name="NetQoS-3-Atom" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7255</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="NetQoS" isopaque="yes">
-								<value>7356</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7369</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:NetQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1071</value>
 					</regnode>
 				</regnode>
 				<regnode name="admissionPriority-5-EnumAttribute" status="undefined">
@@ -25621,7 +25543,7 @@ three</value>
 				<regnode name="custom-4-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7240</value>
+						<value>1067</value>
 					</regnode>
 				</regnode>
 				<regnode name="fwdBW-7-FieldAttribute" status="undefined">
@@ -25639,7 +25561,7 @@ three</value>
 				<regnode name="revBW-6-FieldAttribute" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7244</value>
+						<value>1070</value>
 					</regnode>
 				</regnode>
 			</regnode>
@@ -25687,34 +25609,19 @@ three</value>
 				<regnode name="ComponentAssemblyQoS-17-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7271</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="ComponentAssemblyQoS" isopaque="yes">
-								<value>7350</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7363</value>
-								</regnode>
-							</regnode>
-						</regnode>
+						<value>1002</value>
 						<regnode name="TopLevelContainerBase" status="undefined">
 							<value></value>
-							<regnode name="ComponentAssemblyQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" status="undefined">
-									<value></value>
+							<regnode name="ComponentAssemblyQoS" isopaque="yes">
+								<value>1010</value>
+								<regnode name="QoS" isopaque="yes">
+									<value>1013</value>
 								</regnode>
 							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="PrimaryAspects" status="undefined">
 						<value></value>
-						<regnode name="J2EE_Solution:ComponentAssemblyQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
 						<regnode name="TopLevelContainerBase:ComponentAssemblyQoS" status="undefined">
 							<value></value>
 							<regnode name="QoS" isopaque="yes">
@@ -25726,25 +25633,7 @@ three</value>
 				<regnode name="ComponentQoS-16-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7272</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="ComponentQoS" isopaque="yes">
-								<value>7352</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7365</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:ComponentQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1003</value>
 					</regnode>
 				</regnode>
 				<regnode name="ComponentRef-100-Reference" status="undefined">
@@ -25774,7 +25663,7 @@ three</value>
 				<regnode name="DPQoSConn-9e-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7273</value>
+						<value>1072</value>
 					</regnode>
 				</regnode>
 				<regnode name="DeploymentPlan-f8-Model" status="undefined">
@@ -25822,208 +25711,34 @@ three</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<regnode name="HostProcess-10d-Atom" status="undefined">
-					<value></value>
-					<regnode name="MetaRef" isopaque="yes">
-						<value>6489</value>
-						<regnode name="Host" status="undefined">
-							<value></value>
-							<regnode name="HostProcess" isopaque="yes">
-								<value>6490</value>
-								<regnode name="Deployment" isopaque="yes">
-									<value>6491</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="Host:HostProcess" status="undefined">
-							<value></value>
-							<regnode name="Deployment" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</regnode>
 				<regnode name="InputConnection-2-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7275</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="InputConnection" isopaque="yes">
-								<value>7355</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7368</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:InputConnection" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1004</value>
 					</regnode>
 				</regnode>
 				<regnode name="MethodId-e1-Atom" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7254</value>
-						<regnode name="EntityBean" status="undefined">
-							<value></value>
-							<regnode name="MethodId" isopaque="yes">
-								<value>7323</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7328</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean" status="undefined">
-							<value></value>
-							<regnode name="MethodId" isopaque="yes">
-								<value>7453</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7458</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="EntityBean:MethodId" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean:MethodId" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1077</value>
 					</regnode>
 				</regnode>
 				<regnode name="MethodIdQoS-eb-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7278</value>
-						<regnode name="EntityBean" status="undefined">
-							<value></value>
-							<regnode name="MethodIdQoS" isopaque="yes">
-								<value>7324</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7329</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean" status="undefined">
-							<value></value>
-							<regnode name="MethodIdQoS" isopaque="yes">
-								<value>7454</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7459</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="EntityBean:MethodIdQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean:MethodIdQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1078</value>
 					</regnode>
 				</regnode>
 				<regnode name="MethodIdentifier-e5-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7279</value>
-						<regnode name="EntityBean" status="undefined">
-							<value></value>
-							<regnode name="MethodIdentifier" isopaque="yes">
-								<value>7325</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7330</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean" status="undefined">
-							<value></value>
-							<regnode name="MethodIdentifier" isopaque="yes">
-								<value>7455</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7460</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="EntityBean:MethodIdentifier" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean:MethodIdentifier" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1079</value>
 					</regnode>
 				</regnode>
 				<regnode name="MethodQoSConn-b5-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7280</value>
-						<regnode name="EntityBean" status="undefined">
-							<value></value>
-							<regnode name="MethodQoSConn" isopaque="yes">
-								<value>7326</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7331</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean" status="undefined">
-							<value></value>
-							<regnode name="MethodQoSConn" isopaque="yes">
-								<value>7456</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7461</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="EntityBean:MethodQoSConn" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
-						<regnode name="SessionBean:MethodQoSConn" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1073</value>
 					</regnode>
 				</regnode>
 				<regnode name="Node-10a-Model" status="undefined">
@@ -26062,25 +25777,7 @@ three</value>
 				<regnode name="OutConnection-1-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7287</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="OutConnection" isopaque="yes">
-								<value>7357</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7370</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:OutConnection" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1005</value>
 					</regnode>
 				</regnode>
 				<regnode name="Placement-fb-Connection" status="undefined">
@@ -26131,25 +25828,7 @@ three</value>
 				<regnode name="PortQoS-a-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7288</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="PortQoS" isopaque="yes">
-								<value>7358</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7371</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:PortQoS" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1006</value>
 					</regnode>
 				</regnode>
 				<regnode name="Process-10d-Atom" status="undefined">
@@ -26193,44 +25872,20 @@ three</value>
 				</regnode>
 				<regnode name="QoSCharRef-15-Reference" status="undefined">
 					<value></value>
-					<regnode name="KindAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:QoSCharRef" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>QoS</value>
-							</regnode>
-						</regnode>
-					</regnode>
 					<regnode name="MetaRef" isopaque="yes">
 						<value>1008</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="QoSCharRef" isopaque="yes">
-								<value>7360</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7373</value>
-								</regnode>
-							</regnode>
-						</regnode>
 						<regnode name="TopLevelContainerBase" status="undefined">
 							<value></value>
-							<regnode name="QoSCharRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" status="undefined">
-									<value></value>
+							<regnode name="QoSCharRef" isopaque="yes">
+								<value>1011</value>
+								<regnode name="QoS" isopaque="yes">
+									<value>1014</value>
 								</regnode>
 							</regnode>
 						</regnode>
 					</regnode>
 					<regnode name="PrimaryAspects" status="undefined">
 						<value></value>
-						<regnode name="J2EE_Solution:QoSCharRef" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
 						<regnode name="TopLevelContainerBase:QoSCharRef" status="undefined">
 							<value></value>
 							<regnode name="QoS" isopaque="yes">
@@ -26243,1305 +25898,18 @@ three</value>
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
 						<value>1001</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="QoSConnector" isopaque="yes">
-								<value>7361</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7374</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:QoSConnector" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
 					</regnode>
 				</regnode>
 				<regnode name="QoSReq-6-Connection" status="undefined">
 					<value></value>
 					<regnode name="MetaRef" isopaque="yes">
-						<value>7289</value>
-						<regnode name="J2EE_Solution" status="undefined">
-							<value></value>
-							<regnode name="QoSReq" isopaque="yes">
-								<value>7362</value>
-								<regnode name="QoS" isopaque="yes">
-									<value>7375</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PrimaryAspects" status="undefined">
-						<value></value>
-						<regnode name="J2EE_Solution:QoSReq" status="undefined">
-							<value></value>
-							<regnode name="QoS" isopaque="yes">
-								<value>yes</value>
-							</regnode>
-						</regnode>
+						<value>1007</value>
 					</regnode>
 				</regnode>
 				<regnode name="TopLevelContainerBase-74-Model" status="undefined">
 					<value></value>
-					<regnode name="MetaRef" status="undefined">
-						<value></value>
-					</regnode>
-				</regnode>
-			</regnode>
-			<regnode name="Security" status="undefined">
-				<value></value>
-				<regnode name="PolicyModel" status="undefined">
-					<value></value>
-					<regnode name="Policy-1-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="PolicySet:Policy" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7377</value>
-							<regnode name="PolicySet" status="undefined">
-								<value></value>
-								<regnode name="Policy" isopaque="yes">
-									<value>7419</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7420</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="PolicySet:Policy" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PolicySet-2-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Security:PolicySet" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7418</value>
-							<regnode name="Security" status="undefined">
-								<value></value>
-								<regnode name="PolicySet" isopaque="yes">
-									<value>7446</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7448</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Security:PolicySet" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-				</regnode>
-				<regnode name="RBAC" status="undefined">
-					<value></value>
-					<regnode name="GrantedRights-5-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7248</value>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="GrantedRights" isopaque="yes">
-									<value>7425</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7432</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:GrantedRights" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="Group-1-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Group:Group" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-							<regnode name="RBAC:Group" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7344</value>
-							<regnode name="Group" status="undefined">
-								<value></value>
-								<regnode name="Group" isopaque="yes">
-									<value>7346</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7348</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="Group" isopaque="yes">
-									<value>7426</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7433</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Group:Group" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-							<regnode name="RBAC:Group" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="InterfaceClassificationConn-1d-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7276</value>
-						</regnode>
-					</regnode>
-					<regnode name="MethodClassificationConn-10-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7277</value>
-						</regnode>
-					</regnode>
-					<regnode name="RBAC-3-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Security:RBAC" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7424</value>
-							<regnode name="Security" status="undefined">
-								<value></value>
-								<regnode name="RBAC" isopaque="yes">
-									<value>7447</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7449</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Security:RBAC" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="Realm-9-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="SecurityDomain:Realm" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7439</value>
-							<regnode name="SecurityDomain" status="undefined">
-								<value></value>
-								<regnode name="Realm" isopaque="yes">
-									<value>7451</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7452</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="SecurityDomain:Realm" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="RequiredRights-1a-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7259</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="RequiredRights" isopaque="yes">
-									<value>7393</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7413</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:RequiredRights" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="RightsAssignmentConn-7-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7290</value>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="RightsAssignmentConn" isopaque="yes">
-									<value>7427</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7434</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:RightsAssignmentConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="Role-a-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7265</value>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="Role" isopaque="yes">
-									<value>7428</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7435</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="Realm" status="undefined">
-								<value></value>
-								<regnode name="Role" isopaque="yes">
-									<value>7440</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7441</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:Role" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-							<regnode name="Realm:Role" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="RoleAssignmentConn-e-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7291</value>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="RoleAssignmentConn" isopaque="yes">
-									<value>7429</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7436</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:RoleAssignmentConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="Security-1b-Model" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7445</value>
-						</regnode>
-					</regnode>
-					<regnode name="SecurityDomain-f-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:SecurityDomain" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7450</value>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="SecurityDomain" isopaque="yes">
-									<value>7430</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7437</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="RBAC:SecurityDomain" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="User-b-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7266</value>
-							<regnode name="Group" status="undefined">
-								<value></value>
-								<regnode name="User" isopaque="yes">
-									<value>7347</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7349</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="RBAC" status="undefined">
-								<value></value>
-								<regnode name="User" isopaque="yes">
-									<value>7431</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7438</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Group:User" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-							<regnode name="RBAC:User" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="family-13-FieldAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="GrantedRights" isopaque="yes">
-								<value>7249</value>
-							</regnode>
-							<regnode name="RequiredRights" isopaque="yes">
-								<value>7260</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="get-16-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="GrantedRights" isopaque="yes">
-								<value>7250</value>
-							</regnode>
-							<regnode name="RequiredRights" isopaque="yes">
-								<value>7261</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="manage-14-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="GrantedRights" isopaque="yes">
-								<value>7251</value>
-							</regnode>
-							<regnode name="RequiredRights" isopaque="yes">
-								<value>7262</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="principal-4-FieldAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="Group" isopaque="yes">
-								<value>7345</value>
-							</regnode>
-							<regnode name="User" isopaque="yes">
-								<value>7267</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="set-12-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="GrantedRights" isopaque="yes">
-								<value>7252</value>
-							</regnode>
-							<regnode name="RequiredRights" isopaque="yes">
-								<value>7263</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="use-15-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" status="undefined">
-							<value></value>
-							<regnode name="GrantedRights" isopaque="yes">
-								<value>7253</value>
-							</regnode>
-							<regnode name="RequiredRights" isopaque="yes">
-								<value>7264</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</regnode>
-				<regnode name="RuleModel" status="undefined">
-					<value></value>
-					<regnode name="AssemblyAccessConn-1e-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7268</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="AssemblyAccessConn" isopaque="yes">
-									<value>7378</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7398</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:AssemblyAccessConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="AssemblyRule-5-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7246</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="AssemblyRule" isopaque="yes">
-									<value>7379</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7399</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:AssemblyRule" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="AttributeManipulateConn-f-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7269</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="AttributeManipulateConn" isopaque="yes">
-									<value>7380</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7400</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:AttributeManipulateConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="AttributeRef-14-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7296</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="AttributeRef" isopaque="yes">
-									<value>7381</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7401</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:AttributeRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ComponentAccessConn-20-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7270</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="ComponentAccessConn" isopaque="yes">
-									<value>7382</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7402</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:ComponentAccessConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ComponentRule-7-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7247</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="ComponentRule" isopaque="yes">
-									<value>7383</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7403</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:ComponentRule" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="InitiatorRoleRef-4-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7300</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="InitiatorRoleRef" isopaque="yes">
-									<value>7384</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7404</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:InitiatorRoleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ObjectAccessConn-a-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7282</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="ObjectAccessConn" isopaque="yes">
-									<value>7385</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7405</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:ObjectAccessConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="OnAssemblyConn-10-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7283</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="OnAssemblyConn" isopaque="yes">
-									<value>7386</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7406</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OnAssemblyConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="OnComponentConn-13-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7284</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="OnComponentConn" isopaque="yes">
-									<value>7387</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7407</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OnComponentConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="OnInterfaceConn-c-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7285</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="OnInterfaceConn" isopaque="yes">
-									<value>7388</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7408</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OnInterfaceConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="OperationInvokeConn-6-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7286</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="OperationInvokeConn" isopaque="yes">
-									<value>7389</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7409</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OperationInvokeConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="OperationSet-16-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OperationSet" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7376</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="OperationSet" isopaque="yes">
-									<value>7390</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7410</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:OperationSet" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PathRef-1c-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7301</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="PathRef" isopaque="yes">
-									<value>7391</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7411</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:PathRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PortRule-17-Atom" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7256</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="PortRule" isopaque="yes">
-									<value>7392</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7412</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:PortRule" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="SecuredPathConn-1a-Connection" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7294</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="SecuredPathConn" isopaque="yes">
-									<value>7394</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7414</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:SecuredPathConn" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="TargetAssemblyReference-8c-Reference" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetAssemblyReference" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>QoS</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7303</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="TargetAssemblyReference" isopaque="yes">
-									<value>7395</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7415</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetAssemblyReference" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="TargetComponentRef-89-Reference" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetComponentRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>QoS</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7304</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="TargetComponentRef" isopaque="yes">
-									<value>7396</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7416</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetComponentRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="TargetObjectRef-9-Reference" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetObjectRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>QoS</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7305</value>
-							<regnode name="Policy" status="undefined">
-								<value></value>
-								<regnode name="TargetObjectRef" isopaque="yes">
-									<value>7397</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7417</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="Policy:TargetObjectRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="allow-18-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7238</value>
-						</regnode>
-					</regnode>
-					<regnode name="combinator-1d-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7239</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<regnode name="SecurityQoS" status="undefined">
-					<value></value>
-					<regnode name="AssemblyRuleRef-12-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7295</value>
-							<regnode name="ComponentAssemblySecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="AssemblyRuleRef" isopaque="yes">
-									<value>7307</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7309</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="ComponentAssemblySecurityQoS:AssemblyRuleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="AuditLevel-2-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7228</value>
-						</regnode>
-					</regnode>
-					<regnode name="Authentication-7-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7229</value>
-						</regnode>
-					</regnode>
-					<regnode name="ComponentAssemblySecurityQoS-10-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:ComponentAssemblySecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7306</value>
-							<regnode name="J2EE_Solution" status="undefined">
-								<value></value>
-								<regnode name="ComponentAssemblySecurityQoS" isopaque="yes">
-									<value>7351</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7364</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:ComponentAssemblySecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ComponentRuleRef-14-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7297</value>
-							<regnode name="ComponentSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="ComponentRuleRef" isopaque="yes">
-									<value>7312</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7314</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="ComponentSecurityQoS:ComponentRuleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ComponentSecurityQoS-f-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:ComponentSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7311</value>
-							<regnode name="J2EE_Solution" status="undefined">
-								<value></value>
-								<regnode name="ComponentSecurityQoS" isopaque="yes">
-									<value>7353</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7366</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:ComponentSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="ConfidentialityLevel-8-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7230</value>
-						</regnode>
-					</regnode>
-					<regnode name="DelegationPolicy-a-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7231</value>
-						</regnode>
-					</regnode>
-					<regnode name="IntegrityLevel-5-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7232</value>
-						</regnode>
-					</regnode>
-					<regnode name="NonRepudiation-4-BooleanAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7234</value>
-						</regnode>
-					</regnode>
-					<regnode name="PortRuleRef-13-Reference" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7302</value>
-							<regnode name="ComponentAssemblySecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="PortRuleRef" isopaque="yes">
-									<value>7308</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7310</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="ComponentSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="PortRuleRef" isopaque="yes">
-									<value>7313</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7315</value>
-									</regnode>
-								</regnode>
-							</regnode>
-							<regnode name="PortSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="PortRuleRef" isopaque="yes">
-									<value>7422</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7423</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="ComponentAssemblySecurityQoS:PortRuleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-							<regnode name="ComponentSecurityQoS:PortRuleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-							<regnode name="PortSecurityQoS:PortRuleRef" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="PortSecurityQoS-e-Model" status="undefined">
-						<value></value>
-						<regnode name="KindAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:PortSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value> </value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7421</value>
-							<regnode name="J2EE_Solution" status="undefined">
-								<value></value>
-								<regnode name="PortSecurityQoS" isopaque="yes">
-									<value>7359</value>
-									<regnode name="QoS" isopaque="yes">
-										<value>7372</value>
-									</regnode>
-								</regnode>
-							</regnode>
-						</regnode>
-						<regnode name="PrimaryAspects" status="undefined">
-							<value></value>
-							<regnode name="J2EE_Solution:PortSecurityQoS" status="undefined">
-								<value></value>
-								<regnode name="QoS" isopaque="yes">
-									<value>yes</value>
-								</regnode>
-							</regnode>
-						</regnode>
-					</regnode>
-					<regnode name="SecurityLevel-3-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7236</value>
-						</regnode>
-					</regnode>
-					<regnode name="SecurityPolicy-6-EnumAttribute" status="undefined">
-						<value></value>
-						<regnode name="MetaRef" isopaque="yes">
-							<value>7237</value>
-						</regnode>
+					<regnode name="MetaRef" isopaque="yes">
+						<value>1009</value>
 					</regnode>
 				</regnode>
 			</regnode>
@@ -28449,7 +26817,7 @@ LOW
 					<connpoint role="dst" target="id-0066-00000189"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000011" kind="ParadigmSheet" guid="{9AD11B2A-B81E-478c-9076-14ACFA16E51E}" relid="0x2" childrelidcntr="0x85">
+			<model id="id-0065-00000011" kind="ParadigmSheet" guid="{9AD11B2A-B81E-478c-9076-14ACFA16E51E}" relid="0x2" childrelidcntr="0x87">
 				<name>FaultTolerance</name>
 				<atom id="id-0066-0000018a" kind="Atom" role="Atom" guid="{6FCB4C93-5835-4828-9809-F28003A809B8}" relid="0x7e">
 					<name>RGProperty</name>
@@ -30453,14 +28821,14 @@ dName = dstMonitorable2RepG</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-0000004c" kind="ModelProxy" role="ModelProxy" guid="{7872A68A-DECE-4a0e-8E0B-3D950EC2C15E}" relid="0x84" referred="id-0066-000001af">
-					<name>Node</name>
+				<reference id="id-0067-0000004c" kind="ModelProxy" role="ModelProxy" guid="{B60AE7F6-EB13-4c1f-B731-B455ABADAB6A}" relid="0x86" referred="id-0066-000001af">
+					<name>Host</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>491,510</value>
+								<value>470,510</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -31038,7 +29406,7 @@ dName = dstMonitorable2RepG</value>
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-00000268" kind="ReferTo" role="ReferTo" guid="{E30BED56-9A30-4d2b-B74C-FADA3AD29053}" relid="0x85">
+				<connection id="id-0068-00000268" kind="ReferTo" role="ReferTo" guid="{AF3DE71E-8E1B-41c2-A0EE-4E5EF44FCF70}" relid="0x87">
 					<name>ReferTo</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -31840,7 +30208,7 @@ dName = dstMonitorable2RepG</value>
 					</regnode>
 				</atom>
 				<atom id="id-0066-000001b1" kind="Connection" role="Connection" guid="{AC9E2E80-C961-4dd5-B848-B362B8A6184D}" relid="0xfb">
-					<name>Placement</name>
+					<name>PlacementConn</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Attributes" status="undefined">
@@ -31852,7 +30220,7 @@ dName = dstMonitorable2RepG</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1177,1385</value>
+								<value>1226,1385</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -31864,7 +30232,7 @@ dName = dstMonitorable2RepG</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1184,1385</value>
+								<value>1226,1385</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -35025,14 +33393,20 @@ dName = dstOutConnection</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000055" kind="ModelProxy" role="ModelProxy" guid="{B18E0DBB-CFB1-4838-966C-35D07E7248C9}" relid="0x11b" referred="id-0066-000001c7">
+				<reference id="id-0067-00000055" kind="ModelProxy" role="ModelProxy" guid="{CD8BD17A-35BB-4992-B97D-C96A682605CA}" relid="0x11a" referred="id-0066-000001c7">
 					<name>AbstractComponent</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>1331,1266</value>
+								<value>1310,1259</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>1310,1259</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -35154,24 +33528,27 @@ dName = dstOutConnection</value>
 						<value></value>
 					</attribute>
 				</reference>
-				<connection id="id-0068-000002a4" kind="SourceToConnector" role="SourceToConnector" guid="{C6E5BF3A-32AC-47a7-87B7-EBE40CCFA509}" relid="0x11d">
-					<name>SourceToConnector</name>
+				<connection id="id-0068-000002a4" kind="Containment" role="Containment" guid="{D075AD3B-583B-4bcf-BEF7-671C32E396F2}" relid="0x11d">
+					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
-						<value>We</value>
+						<value>Nn</value>
 					</regnode>
 					<attribute kind="Cardinality" status="meta">
 						<value>0..*</value>
 					</attribute>
-					<attribute kind="srcRolename" status="meta">
-						<value>src</value>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-000001b0"/>
-					<connpoint role="src" target="id-0067-00000055"/>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-000001af"/>
+					<connpoint role="src" target="id-0066-000001c1"/>
 				</connection>
-				<connection id="id-0068-000002a5" kind="Containment" role="Containment" guid="{657747FD-4E02-406e-B405-F68F903C215D}" relid="0x11c">
+				<connection id="id-0068-000002a5" kind="Containment" role="Containment" guid="{2A538A50-F10F-4743-BA44-5448DC1705B9}" relid="0x11c">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
-						<value>Ns</value>
+						<value>Ne</value>
 					</regnode>
 					<attribute kind="Cardinality" status="meta">
 						<value>0..*</value>
@@ -35185,7 +33562,21 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001b2"/>
 					<connpoint role="src" target="id-0067-00000055"/>
 				</connection>
-				<connection id="id-0068-000002a6" kind="HasAspect" role="HasAspect" guid="{2C151AC8-0D1D-445b-AAFC-1DC90C35BA0C}" relid="0x10f">
+				<connection id="id-0068-000002a6" kind="SourceToConnector" role="SourceToConnector" guid="{210F6EA4-6AC5-4d8b-BF7C-7E0B5718A9C9}" relid="0x11b">
+					<name>SourceToConnector</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>W</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="srcRolename" status="meta">
+						<value>src</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-000001b0"/>
+					<connpoint role="src" target="id-0067-00000055"/>
+				</connection>
+				<connection id="id-0068-000002a7" kind="HasAspect" role="HasAspect" guid="{2C151AC8-0D1D-445b-AAFC-1DC90C35BA0C}" relid="0x10f">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35193,7 +33584,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001af"/>
 					<connpoint role="src" target="id-0069-00000017"/>
 				</connection>
-				<connection id="id-0068-000002a7" kind="Containment" role="Containment" guid="{3F6A790A-C76F-4f0e-ABAF-B3D298DC4C46}" relid="0x10e">
+				<connection id="id-0068-000002a8" kind="Containment" role="Containment" guid="{3F6A790A-C76F-4f0e-ABAF-B3D298DC4C46}" relid="0x10e">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35210,7 +33601,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001ae"/>
 					<connpoint role="dst" target="id-0066-000001af"/>
 				</connection>
-				<connection id="id-0068-000002a8" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{787966A6-534A-41e5-97A9-E5019F982905}" relid="0x10c">
+				<connection id="id-0068-000002a9" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{787966A6-534A-41e5-97A9-E5019F982905}" relid="0x10c">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35224,7 +33615,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001af"/>
 					<connpoint role="src" target="id-0066-000001b0"/>
 				</connection>
-				<connection id="id-0068-000002a9" kind="Containment" role="Containment" guid="{64906109-6A0B-44ad-A87E-E93DE0C38579}" relid="0x10b">
+				<connection id="id-0068-000002aa" kind="Containment" role="Containment" guid="{64906109-6A0B-44ad-A87E-E93DE0C38579}" relid="0x10b">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35241,7 +33632,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001af"/>
 					<connpoint role="dst" target="id-0066-000001b2"/>
 				</connection>
-				<connection id="id-0068-000002aa" kind="Containment" role="Containment" guid="{50C5EB49-2A32-4aa0-9DDE-57638E3AE873}" relid="0x109">
+				<connection id="id-0068-000002ab" kind="Containment" role="Containment" guid="{50C5EB49-2A32-4aa0-9DDE-57638E3AE873}" relid="0x109">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35258,7 +33649,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b1"/>
 					<connpoint role="dst" target="id-0066-000001b2"/>
 				</connection>
-				<connection id="id-0068-000002ab" kind="HasAspect" role="HasAspect" guid="{AB9A266C-7BC7-43af-83D9-258A87A91159}" relid="0x106">
+				<connection id="id-0068-000002ac" kind="HasAspect" role="HasAspect" guid="{AB9A266C-7BC7-43af-83D9-258A87A91159}" relid="0x106">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35266,7 +33657,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001b2"/>
 					<connpoint role="src" target="id-0069-00000017"/>
 				</connection>
-				<connection id="id-0068-000002ac" kind="AssociationClass" role="AssociationClass" guid="{15DE4829-90E4-4f1d-8655-38EDD095488E}" relid="0xff">
+				<connection id="id-0068-000002ad" kind="AssociationClass" role="AssociationClass" guid="{15DE4829-90E4-4f1d-8655-38EDD095488E}" relid="0xff">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35274,7 +33665,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b0"/>
 					<connpoint role="dst" target="id-0066-000001b1"/>
 				</connection>
-				<connection id="id-0068-000002ad" kind="AssociationClass" role="AssociationClass" guid="{502F992C-D156-421a-847E-E022A1E1CDA9}" relid="0xf3">
+				<connection id="id-0068-000002ae" kind="AssociationClass" role="AssociationClass" guid="{502F992C-D156-421a-847E-E022A1E1CDA9}" relid="0xf3">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -35282,7 +33673,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001b5"/>
 					<connpoint role="src" target="id-0066-000001b6"/>
 				</connection>
-				<connection id="id-0068-000002ae" kind="SourceToConnector" role="SourceToConnector" guid="{F0EC2582-E889-45d5-83C0-09D04CA9D653}" relid="0xf2">
+				<connection id="id-0068-000002af" kind="SourceToConnector" role="SourceToConnector" guid="{F0EC2582-E889-45d5-83C0-09D04CA9D653}" relid="0xf2">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ws</value>
@@ -35296,7 +33687,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001b5"/>
 					<connpoint role="src" target="id-0066-000001b9"/>
 				</connection>
-				<connection id="id-0068-000002af" kind="SourceToConnector" role="SourceToConnector" guid="{222EBC04-60CB-43b8-B4B4-F11CE8C18539}" relid="0xf1">
+				<connection id="id-0068-000002b0" kind="SourceToConnector" role="SourceToConnector" guid="{222EBC04-60CB-43b8-B4B4-F11CE8C18539}" relid="0xf1">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35310,7 +33701,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001b7"/>
 					<connpoint role="src" target="id-0067-00000056"/>
 				</connection>
-				<connection id="id-0068-000002b0" kind="Containment" role="Containment" guid="{07B54442-584B-4ed7-A15D-AE4B0DE9E526}" relid="0xf0">
+				<connection id="id-0068-000002b1" kind="Containment" role="Containment" guid="{07B54442-584B-4ed7-A15D-AE4B0DE9E526}" relid="0xf0">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35327,7 +33718,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b6"/>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 				</connection>
-				<connection id="id-0068-000002b1" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{E7819773-B2D8-485b-BCDB-6416B64AB38E}" relid="0xee">
+				<connection id="id-0068-000002b2" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{E7819773-B2D8-485b-BCDB-6416B64AB38E}" relid="0xee">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -35341,7 +33732,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b5"/>
 					<connpoint role="dst" target="id-0066-000001be"/>
 				</connection>
-				<connection id="id-0068-000002b2" kind="Containment" role="Containment" guid="{9975CE79-E9DE-440c-A390-229A81665EBF}" relid="0xea">
+				<connection id="id-0068-000002b3" kind="Containment" role="Containment" guid="{9975CE79-E9DE-440c-A390-229A81665EBF}" relid="0xea">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35358,7 +33749,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b8"/>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 				</connection>
-				<connection id="id-0068-000002b3" kind="AssociationClass" role="AssociationClass" guid="{CD66A830-D18B-4881-8BA4-ED2661DAF393}" relid="0xe9">
+				<connection id="id-0068-000002b4" kind="AssociationClass" role="AssociationClass" guid="{CD66A830-D18B-4881-8BA4-ED2661DAF393}" relid="0xe9">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35366,7 +33757,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b7"/>
 					<connpoint role="dst" target="id-0066-000001b8"/>
 				</connection>
-				<connection id="id-0068-000002b4" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{60F69070-7E41-4009-A476-8B642229EE76}" relid="0xe8">
+				<connection id="id-0068-000002b5" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{60F69070-7E41-4009-A476-8B642229EE76}" relid="0xe8">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35380,7 +33771,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b7"/>
 					<connpoint role="dst" target="id-0066-000001b9"/>
 				</connection>
-				<connection id="id-0068-000002b5" kind="Containment" role="Containment" guid="{51633B17-493D-4cee-B7D4-A952997ACDA7}" relid="0xe3">
+				<connection id="id-0068-000002b6" kind="Containment" role="Containment" guid="{51633B17-493D-4cee-B7D4-A952997ACDA7}" relid="0xe3">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35397,7 +33788,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001b9"/>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 				</connection>
-				<connection id="id-0068-000002b6" kind="Containment" role="Containment" guid="{8D4A7833-161E-4042-ACD7-89CBC08E9062}" relid="0xdf">
+				<connection id="id-0068-000002b7" kind="Containment" role="Containment" guid="{8D4A7833-161E-4042-ACD7-89CBC08E9062}" relid="0xdf">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35414,7 +33805,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001d9"/>
 				</connection>
-				<connection id="id-0068-000002b7" kind="Containment" role="Containment" guid="{5819E6BF-0843-4e0e-99F3-A7C940675AF8}" relid="0xdd">
+				<connection id="id-0068-000002b8" kind="Containment" role="Containment" guid="{5819E6BF-0843-4e0e-99F3-A7C940675AF8}" relid="0xdd">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35431,7 +33822,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001bd"/>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 				</connection>
-				<connection id="id-0068-000002b8" kind="Containment" role="Containment" guid="{43E6B984-239A-41f2-9E84-14BA91BFB8DC}" relid="0xdc">
+				<connection id="id-0068-000002b9" kind="Containment" role="Containment" guid="{43E6B984-239A-41f2-9E84-14BA91BFB8DC}" relid="0xdc">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35448,7 +33839,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001be"/>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 				</connection>
-				<connection id="id-0068-000002b9" kind="AssociationClass" role="AssociationClass" guid="{62BD5F25-655A-4b82-B3B0-30589F85D593}" relid="0xd2">
+				<connection id="id-0068-000002ba" kind="AssociationClass" role="AssociationClass" guid="{62BD5F25-655A-4b82-B3B0-30589F85D593}" relid="0xd2">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -35456,7 +33847,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001bc"/>
 					<connpoint role="dst" target="id-0066-000001bd"/>
 				</connection>
-				<connection id="id-0068-000002ba" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{B2A03F74-A228-4efc-BDD0-858A208F6D2A}" relid="0xd1">
+				<connection id="id-0068-000002bb" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{B2A03F74-A228-4efc-BDD0-858A208F6D2A}" relid="0xd1">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>En</value>
@@ -35470,7 +33861,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001bc"/>
 					<connpoint role="dst" target="id-0066-000001be"/>
 				</connection>
-				<connection id="id-0068-000002bb" kind="Containment" role="Containment" guid="{AFA5974B-2D92-4f0d-8081-8DED561FB0DA}" relid="0xd0">
+				<connection id="id-0068-000002bc" kind="Containment" role="Containment" guid="{AFA5974B-2D92-4f0d-8081-8DED561FB0DA}" relid="0xd0">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35487,7 +33878,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001bb"/>
 					<connpoint role="src" target="id-0066-000001bd"/>
 				</connection>
-				<connection id="id-0068-000002bc" kind="SourceToConnector" role="SourceToConnector" guid="{B3B2A200-06D4-4c94-A5FA-DEF15EECC925}" relid="0xcf">
+				<connection id="id-0068-000002bd" kind="SourceToConnector" role="SourceToConnector" guid="{B3B2A200-06D4-4c94-A5FA-DEF15EECC925}" relid="0xcf">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -35501,7 +33892,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001ba"/>
 					<connpoint role="dst" target="id-0066-000001bc"/>
 				</connection>
-				<connection id="id-0068-000002bd" kind="Containment" role="Containment" guid="{9BB15E85-C2CE-47f7-A455-3019D52EE312}" relid="0xc3">
+				<connection id="id-0068-000002be" kind="Containment" role="Containment" guid="{9BB15E85-C2CE-47f7-A455-3019D52EE312}" relid="0xc3">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35518,7 +33909,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001bb"/>
 					<connpoint role="src" target="id-0066-000001be"/>
 				</connection>
-				<connection id="id-0068-000002be" kind="HasAspect" role="HasAspect" guid="{4AF0AC82-2300-4628-B752-C12ADA1088A9}" relid="0xc0">
+				<connection id="id-0068-000002bf" kind="HasAspect" role="HasAspect" guid="{4AF0AC82-2300-4628-B752-C12ADA1088A9}" relid="0xc0">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -35526,7 +33917,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001bb"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002bf" kind="Containment" role="Containment" guid="{2ECC4946-D5B2-425c-BE4A-EDF25127271F}" relid="0xb2">
+				<connection id="id-0068-000002c0" kind="Containment" role="Containment" guid="{2ECC4946-D5B2-425c-BE4A-EDF25127271F}" relid="0xb2">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ww</value>
@@ -35543,7 +33934,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c4"/>
 					<connpoint role="dst" target="id-0066-000001c6"/>
 				</connection>
-				<connection id="id-0068-000002c0" kind="Containment" role="Containment" guid="{A4BB05E4-9541-40b6-98D6-95E2077A49C0}" relid="0xb1">
+				<connection id="id-0068-000002c1" kind="Containment" role="Containment" guid="{A4BB05E4-9541-40b6-98D6-95E2077A49C0}" relid="0xb1">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -35560,7 +33951,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001bf"/>
 					<connpoint role="dst" target="id-0066-000001c5"/>
 				</connection>
-				<connection id="id-0068-000002c1" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{75A8B24B-6494-44ec-8B05-BEF55442BA6C}" relid="0xb0">
+				<connection id="id-0068-000002c2" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{75A8B24B-6494-44ec-8B05-BEF55442BA6C}" relid="0xb0">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Es</value>
@@ -35574,7 +33965,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001bf"/>
 					<connpoint role="src" target="id-0066-000001c3"/>
 				</connection>
-				<connection id="id-0068-000002c2" kind="Containment" role="Containment" guid="{E3DCF86F-1929-41b9-AC2A-61B0C040A152}" relid="0xaf">
+				<connection id="id-0068-000002c3" kind="Containment" role="Containment" guid="{E3DCF86F-1929-41b9-AC2A-61B0C040A152}" relid="0xaf">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35591,7 +33982,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001bf"/>
 					<connpoint role="dst" target="id-0066-000001c6"/>
 				</connection>
-				<connection id="id-0068-000002c3" kind="DerivedInheritance" role="DerivedInheritance" guid="{B234C951-5C5B-44ac-A897-B24E6CE7B3E4}" relid="0xab">
+				<connection id="id-0068-000002c4" kind="DerivedInheritance" role="DerivedInheritance" guid="{B234C951-5C5B-44ac-A897-B24E6CE7B3E4}" relid="0xab">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35599,7 +33990,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c0"/>
 					<connpoint role="dst" target="id-0066-000001c2"/>
 				</connection>
-				<connection id="id-0068-000002c4" kind="BaseInheritance" role="BaseInheritance" guid="{427409F7-2453-4f6e-833B-EAC410E9B9F9}" relid="0xaa">
+				<connection id="id-0068-000002c5" kind="BaseInheritance" role="BaseInheritance" guid="{427409F7-2453-4f6e-833B-EAC410E9B9F9}" relid="0xaa">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35607,7 +33998,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c0"/>
 					<connpoint role="src" target="id-0066-000001c1"/>
 				</connection>
-				<connection id="id-0068-000002c5" kind="HasAspect" role="HasAspect" guid="{5FA20A68-46D4-4541-BD19-67106A30E7CB}" relid="0xa5">
+				<connection id="id-0068-000002c6" kind="HasAspect" role="HasAspect" guid="{5FA20A68-46D4-4541-BD19-67106A30E7CB}" relid="0xa5">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -35615,7 +34006,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c5"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002c6" kind="HasAspect" role="HasAspect" guid="{52F5CCF1-395B-42d5-9369-D37D0655E3B9}" relid="0xa4">
+				<connection id="id-0068-000002c7" kind="HasAspect" role="HasAspect" guid="{52F5CCF1-395B-42d5-9369-D37D0655E3B9}" relid="0xa4">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -35623,7 +34014,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c6"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002c7" kind="AssociationClass" role="AssociationClass" guid="{78B0A33D-79A1-4392-A88A-87D1051BB4D8}" relid="0xa1">
+				<connection id="id-0068-000002c8" kind="AssociationClass" role="AssociationClass" guid="{78B0A33D-79A1-4392-A88A-87D1051BB4D8}" relid="0xa1">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>n</value>
@@ -35631,7 +34022,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c3"/>
 					<connpoint role="dst" target="id-0066-000001c4"/>
 				</connection>
-				<connection id="id-0068-000002c8" kind="SourceToConnector" role="SourceToConnector" guid="{54E0D01F-5B82-47b7-99CC-05EB72F008D7}" relid="0xa0">
+				<connection id="id-0068-000002c9" kind="SourceToConnector" role="SourceToConnector" guid="{54E0D01F-5B82-47b7-99CC-05EB72F008D7}" relid="0xa0">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -35645,7 +34036,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c3"/>
 					<connpoint role="src" target="id-0066-000001c5"/>
 				</connection>
-				<connection id="id-0068-000002c9" kind="Containment" role="Containment" guid="{DBCDCAEE-278A-41b1-BA81-3FA0BF8E25D9}" relid="0x99">
+				<connection id="id-0068-000002ca" kind="Containment" role="Containment" guid="{DBCDCAEE-278A-41b1-BA81-3FA0BF8E25D9}" relid="0x99">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35662,7 +34053,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c5"/>
 					<connpoint role="dst" target="id-0066-000001c6"/>
 				</connection>
-				<connection id="id-0068-000002ca" kind="HasAspect" role="HasAspect" guid="{83B7AB5A-5E5E-48a4-BE15-5F7C9B92E659}" relid="0x96">
+				<connection id="id-0068-000002cb" kind="HasAspect" role="HasAspect" guid="{83B7AB5A-5E5E-48a4-BE15-5F7C9B92E659}" relid="0x96">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35670,7 +34061,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c7"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002cb" kind="HasAspect" role="HasAspect" guid="{A5899090-F900-40c9-BE99-D150F16345D9}" relid="0x95">
+				<connection id="id-0068-000002cc" kind="HasAspect" role="HasAspect" guid="{A5899090-F900-40c9-BE99-D150F16345D9}" relid="0x95">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>S</value>
@@ -35678,7 +34069,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002cc" kind="Containment" role="Containment" guid="{8DC1E544-6437-4e4d-9B95-6DAB4A512708}" relid="0x93">
+				<connection id="id-0068-000002cd" kind="Containment" role="Containment" guid="{8DC1E544-6437-4e4d-9B95-6DAB4A512708}" relid="0x93">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>N</value>
@@ -35695,7 +34086,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c7"/>
 					<connpoint role="dst" target="id-0066-000001c9"/>
 				</connection>
-				<connection id="id-0068-000002cd" kind="Containment" role="Containment" guid="{4DA4D02D-CA64-400d-8DF2-973D65CEE472}" relid="0x91">
+				<connection id="id-0068-000002ce" kind="Containment" role="Containment" guid="{4DA4D02D-CA64-400d-8DF2-973D65CEE472}" relid="0x91">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35712,7 +34103,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c9"/>
 					<connpoint role="src" target="id-0066-000001d9"/>
 				</connection>
-				<connection id="id-0068-000002ce" kind="SourceToConnector" role="SourceToConnector" guid="{81697FDE-1ABC-4223-92A0-B54F1458DFDB}" relid="0x8f">
+				<connection id="id-0068-000002cf" kind="SourceToConnector" role="SourceToConnector" guid="{81697FDE-1ABC-4223-92A0-B54F1458DFDB}" relid="0x8f">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35726,7 +34117,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c7"/>
 					<connpoint role="dst" target="id-0066-000001d4"/>
 				</connection>
-				<connection id="id-0068-000002cf" kind="SourceToConnector" role="SourceToConnector" guid="{78467542-AC01-4cc2-AEDF-8C569BCBD4F1}" relid="0x8e">
+				<connection id="id-0068-000002d0" kind="SourceToConnector" role="SourceToConnector" guid="{78467542-AC01-4cc2-AEDF-8C569BCBD4F1}" relid="0x8e">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Nw</value>
@@ -35740,7 +34131,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001c8"/>
 					<connpoint role="dst" target="id-0066-000001d3"/>
 				</connection>
-				<connection id="id-0068-000002d0" kind="HasAspect" role="HasAspect" guid="{850CBB2E-2B70-49c5-91A5-63C77EC22ECE}" relid="0x8d">
+				<connection id="id-0068-000002d1" kind="HasAspect" role="HasAspect" guid="{850CBB2E-2B70-49c5-91A5-63C77EC22ECE}" relid="0x8d">
 					<name>HasAspect</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -35748,7 +34139,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c9"/>
 					<connpoint role="src" target="id-0069-00000018"/>
 				</connection>
-				<connection id="id-0068-000002d1" kind="Containment" role="Containment" guid="{19026EDC-8DD4-4ab6-BBE1-5C1E61DFB8B3}" relid="0x8c">
+				<connection id="id-0068-000002d2" kind="Containment" role="Containment" guid="{19026EDC-8DD4-4ab6-BBE1-5C1E61DFB8B3}" relid="0x8c">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ss</value>
@@ -35765,7 +34156,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001d5"/>
 				</connection>
-				<connection id="id-0068-000002d2" kind="Containment" role="Containment" guid="{8E2B452D-E6E1-46ff-818A-2C06798C1DC4}" relid="0x8b">
+				<connection id="id-0068-000002d3" kind="Containment" role="Containment" guid="{8E2B452D-E6E1-46ff-818A-2C06798C1DC4}" relid="0x8b">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>S</value>
@@ -35782,7 +34173,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001d6"/>
 				</connection>
-				<connection id="id-0068-000002d3" kind="Containment" role="Containment" guid="{05B8F8C5-8097-41e3-B2CD-79EEEE4E141F}" relid="0x8a">
+				<connection id="id-0068-000002d4" kind="Containment" role="Containment" guid="{05B8F8C5-8097-41e3-B2CD-79EEEE4E141F}" relid="0x8a">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35799,7 +34190,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001de"/>
 				</connection>
-				<connection id="id-0068-000002d4" kind="Containment" role="Containment" guid="{4731038E-3068-4441-852C-2E6FD2783409}" relid="0x89">
+				<connection id="id-0068-000002d5" kind="Containment" role="Containment" guid="{4731038E-3068-4441-852C-2E6FD2783409}" relid="0x89">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>S</value>
@@ -35816,7 +34207,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001e2"/>
 				</connection>
-				<connection id="id-0068-000002d5" kind="Containment" role="Containment" guid="{C32294E4-CE93-4e26-B8EC-638E47A27128}" relid="0x87">
+				<connection id="id-0068-000002d6" kind="Containment" role="Containment" guid="{C32294E4-CE93-4e26-B8EC-638E47A27128}" relid="0x87">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35833,7 +34224,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001e6"/>
 				</connection>
-				<connection id="id-0068-000002d6" kind="Containment" role="Containment" guid="{4371AD92-7237-475a-89F9-0C11BECF5118}" relid="0x86">
+				<connection id="id-0068-000002d7" kind="Containment" role="Containment" guid="{4371AD92-7237-475a-89F9-0C11BECF5118}" relid="0x86">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35850,7 +34241,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001e7"/>
 				</connection>
-				<connection id="id-0068-000002d7" kind="Containment" role="Containment" guid="{00B02BAE-4B88-4839-905B-C67B5425154A}" relid="0x85">
+				<connection id="id-0068-000002d8" kind="Containment" role="Containment" guid="{00B02BAE-4B88-4839-905B-C67B5425154A}" relid="0x85">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35867,7 +34258,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c8"/>
 					<connpoint role="src" target="id-0066-000001e3"/>
 				</connection>
-				<connection id="id-0068-000002d8" kind="Containment" role="Containment" guid="{3FD6F3D7-630B-46cd-BA63-61E5271098D3}" relid="0x77">
+				<connection id="id-0068-000002d9" kind="Containment" role="Containment" guid="{3FD6F3D7-630B-46cd-BA63-61E5271098D3}" relid="0x77">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -35884,7 +34275,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001c9"/>
 					<connpoint role="src" target="id-0066-000001d5"/>
 				</connection>
-				<connection id="id-0068-000002d9" kind="DerivedInheritance" role="DerivedInheritance" guid="{E54DF3BD-D8A8-4d0d-BC12-3E56276FEFC2}" relid="0x72">
+				<connection id="id-0068-000002da" kind="DerivedInheritance" role="DerivedInheritance" guid="{E54DF3BD-D8A8-4d0d-BC12-3E56276FEFC2}" relid="0x72">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35892,7 +34283,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001ca"/>
 					<connpoint role="dst" target="id-0066-000001cc"/>
 				</connection>
-				<connection id="id-0068-000002da" kind="DerivedInheritance" role="DerivedInheritance" guid="{5CF5F1A1-A850-49ce-AAF8-211B1811B1F1}" relid="0x71">
+				<connection id="id-0068-000002db" kind="DerivedInheritance" role="DerivedInheritance" guid="{5CF5F1A1-A850-49ce-AAF8-211B1811B1F1}" relid="0x71">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35900,7 +34291,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001ca"/>
 					<connpoint role="dst" target="id-0066-000001cb"/>
 				</connection>
-				<connection id="id-0068-000002db" kind="BaseInheritance" role="BaseInheritance" guid="{93FC7DE1-D19C-4020-8395-59A7FB6A7D87}" relid="0x70">
+				<connection id="id-0068-000002dc" kind="BaseInheritance" role="BaseInheritance" guid="{93FC7DE1-D19C-4020-8395-59A7FB6A7D87}" relid="0x70">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35908,7 +34299,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001ca"/>
 					<connpoint role="src" target="id-0066-000001cd"/>
 				</connection>
-				<connection id="id-0068-000002dc" kind="SourceToConnector" role="SourceToConnector" guid="{70DD851A-4CC2-4153-B677-81B11850EB6F}" relid="0x6e">
+				<connection id="id-0068-000002dd" kind="SourceToConnector" role="SourceToConnector" guid="{70DD851A-4CC2-4153-B677-81B11850EB6F}" relid="0x6e">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>W</value>
@@ -35922,7 +34313,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001cb"/>
 					<connpoint role="dst" target="id-0066-000001e5"/>
 				</connection>
-				<connection id="id-0068-000002dd" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{42ADADEF-2E3A-4cd7-BC7E-8EC6F82C35BF}" relid="0x6c">
+				<connection id="id-0068-000002de" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{42ADADEF-2E3A-4cd7-BC7E-8EC6F82C35BF}" relid="0x6c">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -35936,7 +34327,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001cc"/>
 					<connpoint role="src" target="id-0066-000001e4"/>
 				</connection>
-				<connection id="id-0068-000002de" kind="SourceToConnector" role="SourceToConnector" guid="{0E099AB6-F8B7-4318-BD57-2CB14BA87C2B}" relid="0x6a">
+				<connection id="id-0068-000002df" kind="SourceToConnector" role="SourceToConnector" guid="{0E099AB6-F8B7-4318-BD57-2CB14BA87C2B}" relid="0x6a">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -35950,7 +34341,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001cd"/>
 					<connpoint role="dst" target="id-0066-000001dd"/>
 				</connection>
-				<connection id="id-0068-000002df" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{74F37424-22F7-4826-9BF7-1FD51977E728}" relid="0x67">
+				<connection id="id-0068-000002e0" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{74F37424-22F7-4826-9BF7-1FD51977E728}" relid="0x67">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Wn</value>
@@ -35964,7 +34355,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001dc"/>
 					<connpoint role="src" target="id-0066-000001dd"/>
 				</connection>
-				<connection id="id-0068-000002e0" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{2138439C-B48D-4957-B07F-742A52E8FB86}" relid="0x66">
+				<connection id="id-0068-000002e1" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{2138439C-B48D-4957-B07F-742A52E8FB86}" relid="0x66">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>n</value>
@@ -35978,7 +34369,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d4"/>
 					<connpoint role="dst" target="id-0066-000001db"/>
 				</connection>
-				<connection id="id-0068-000002e1" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{E30A74EC-0562-49bb-BAC3-21A9A39F564E}" relid="0x65">
+				<connection id="id-0068-000002e2" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{E30A74EC-0562-49bb-BAC3-21A9A39F564E}" relid="0x65">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -35992,7 +34383,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d3"/>
 					<connpoint role="dst" target="id-0066-000001da"/>
 				</connection>
-				<connection id="id-0068-000002e2" kind="ReferTo" role="ReferTo" guid="{53D35492-262B-4949-8693-FBCF7C4E858F}" relid="0x64">
+				<connection id="id-0068-000002e3" kind="ReferTo" role="ReferTo" guid="{53D35492-262B-4949-8693-FBCF7C4E858F}" relid="0x64">
 					<name>ReferTo</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ww</value>
@@ -36000,7 +34391,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d7"/>
 					<connpoint role="dst" target="id-0066-000001d9"/>
 				</connection>
-				<connection id="id-0068-000002e3" kind="BaseInheritance" role="BaseInheritance" guid="{F34D9DCF-8A62-4a38-AE61-1517F41F110D}" relid="0x63">
+				<connection id="id-0068-000002e4" kind="BaseInheritance" role="BaseInheritance" guid="{F34D9DCF-8A62-4a38-AE61-1517F41F110D}" relid="0x63">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36008,7 +34399,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001d8"/>
 					<connpoint role="src" target="id-0066-000001d9"/>
 				</connection>
-				<connection id="id-0068-000002e4" kind="DerivedInheritance" role="DerivedInheritance" guid="{639D3A7B-C952-410e-B3C5-7E4AE232C13B}" relid="0x62">
+				<connection id="id-0068-000002e5" kind="DerivedInheritance" role="DerivedInheritance" guid="{639D3A7B-C952-410e-B3C5-7E4AE232C13B}" relid="0x62">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36016,7 +34407,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001ce"/>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 				</connection>
-				<connection id="id-0068-000002e5" kind="DerivedInheritance" role="DerivedInheritance" guid="{2BE56F16-B950-4667-9E96-D34F287EA630}" relid="0x61">
+				<connection id="id-0068-000002e6" kind="DerivedInheritance" role="DerivedInheritance" guid="{2BE56F16-B950-4667-9E96-D34F287EA630}" relid="0x61">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36024,7 +34415,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001cf"/>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 				</connection>
-				<connection id="id-0068-000002e6" kind="DerivedInheritance" role="DerivedInheritance" guid="{A755E44E-355B-4f36-9470-AFC167D31491}" relid="0x60">
+				<connection id="id-0068-000002e7" kind="DerivedInheritance" role="DerivedInheritance" guid="{A755E44E-355B-4f36-9470-AFC167D31491}" relid="0x60">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36032,7 +34423,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d0"/>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 				</connection>
-				<connection id="id-0068-000002e7" kind="DerivedInheritance" role="DerivedInheritance" guid="{DE6D8C75-9CD9-4c37-8221-03B56D63B589}" relid="0x5f">
+				<connection id="id-0068-000002e8" kind="DerivedInheritance" role="DerivedInheritance" guid="{DE6D8C75-9CD9-4c37-8221-03B56D63B589}" relid="0x5f">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36040,7 +34431,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d1"/>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 				</connection>
-				<connection id="id-0068-000002e8" kind="BaseInheritance" role="BaseInheritance" guid="{AFF77327-80A9-442e-A6FA-0A18CFE5F770}" relid="0x5e">
+				<connection id="id-0068-000002e9" kind="BaseInheritance" role="BaseInheritance" guid="{AFF77327-80A9-442e-A6FA-0A18CFE5F770}" relid="0x5e">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36048,7 +34439,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001ce"/>
 					<connpoint role="src" target="id-0066-000001da"/>
 				</connection>
-				<connection id="id-0068-000002e9" kind="BaseInheritance" role="BaseInheritance" guid="{2DCD79C1-7448-49c4-AA1C-7599381E4FAB}" relid="0x5d">
+				<connection id="id-0068-000002ea" kind="BaseInheritance" role="BaseInheritance" guid="{2DCD79C1-7448-49c4-AA1C-7599381E4FAB}" relid="0x5d">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36056,7 +34447,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001cf"/>
 					<connpoint role="src" target="id-0066-000001df"/>
 				</connection>
-				<connection id="id-0068-000002ea" kind="BaseInheritance" role="BaseInheritance" guid="{C8F40765-C25E-43ec-979E-33C0433441EB}" relid="0x5c">
+				<connection id="id-0068-000002eb" kind="BaseInheritance" role="BaseInheritance" guid="{C8F40765-C25E-43ec-979E-33C0433441EB}" relid="0x5c">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36064,7 +34455,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001d0"/>
 					<connpoint role="src" target="id-0066-000001db"/>
 				</connection>
-				<connection id="id-0068-000002eb" kind="BaseInheritance" role="BaseInheritance" guid="{2E923DBE-5531-4eae-85EC-E39B406BA360}" relid="0x5b">
+				<connection id="id-0068-000002ec" kind="BaseInheritance" role="BaseInheritance" guid="{2E923DBE-5531-4eae-85EC-E39B406BA360}" relid="0x5b">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36072,7 +34463,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001d1"/>
 					<connpoint role="src" target="id-0066-000001dc"/>
 				</connection>
-				<connection id="id-0068-000002ec" kind="HasConstraint" role="HasConstraint" guid="{4C0C36A2-95DD-4af1-AA73-4620F56BCDE8}" relid="0x5a">
+				<connection id="id-0068-000002ed" kind="HasConstraint" role="HasConstraint" guid="{4C0C36A2-95DD-4af1-AA73-4620F56BCDE8}" relid="0x5a">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ns</value>
@@ -36080,7 +34471,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d2"/>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 				</connection>
-				<connection id="id-0068-000002ed" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{F188FBAC-CD57-41fe-9A28-FC63E91EADCE}" relid="0x53">
+				<connection id="id-0068-000002ee" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{F188FBAC-CD57-41fe-9A28-FC63E91EADCE}" relid="0x53">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36094,7 +34485,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001df"/>
 					<connpoint role="src" target="id-0066-000001e1"/>
 				</connection>
-				<connection id="id-0068-000002ee" kind="HasConstraint" role="HasConstraint" guid="{73A6CDBA-EE69-4b55-9FFE-8E6A0E9891C4}" relid="0x4a">
+				<connection id="id-0068-000002ef" kind="HasConstraint" role="HasConstraint" guid="{73A6CDBA-EE69-4b55-9FFE-8E6A0E9891C4}" relid="0x4a">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>We</value>
@@ -36102,7 +34493,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001d7"/>
 					<connpoint role="src" target="id-0066-000001e0"/>
 				</connection>
-				<connection id="id-0068-000002ef" kind="AssociationClass" role="AssociationClass" guid="{DBB59F0B-49C0-40c1-9CDE-59C6330DA5E5}" relid="0x48">
+				<connection id="id-0068-000002f0" kind="AssociationClass" role="AssociationClass" guid="{DBB59F0B-49C0-40c1-9CDE-59C6330DA5E5}" relid="0x48">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -36110,7 +34501,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d3"/>
 					<connpoint role="dst" target="id-0066-000001d5"/>
 				</connection>
-				<connection id="id-0068-000002f0" kind="AssociationClass" role="AssociationClass" guid="{93F2430B-E1B7-4ff8-BD5E-232AEFE27030}" relid="0x47">
+				<connection id="id-0068-000002f1" kind="AssociationClass" role="AssociationClass" guid="{93F2430B-E1B7-4ff8-BD5E-232AEFE27030}" relid="0x47">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -36118,7 +34509,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d4"/>
 					<connpoint role="dst" target="id-0066-000001d6"/>
 				</connection>
-				<connection id="id-0068-000002f1" kind="AssociationClass" role="AssociationClass" guid="{568A3D82-3B68-48a3-BEF0-0702F4569382}" relid="0x44">
+				<connection id="id-0068-000002f2" kind="AssociationClass" role="AssociationClass" guid="{568A3D82-3B68-48a3-BEF0-0702F4569382}" relid="0x44">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -36126,7 +34517,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001e1"/>
 					<connpoint role="dst" target="id-0066-000001e2"/>
 				</connection>
-				<connection id="id-0068-000002f2" kind="DerivedInheritance" role="DerivedInheritance" guid="{237F6B0A-40DC-40ef-AC1D-C0A77A593A91}" relid="0x43">
+				<connection id="id-0068-000002f3" kind="DerivedInheritance" role="DerivedInheritance" guid="{237F6B0A-40DC-40ef-AC1D-C0A77A593A91}" relid="0x43">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36134,7 +34525,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d8"/>
 					<connpoint role="dst" target="id-0066-000001df"/>
 				</connection>
-				<connection id="id-0068-000002f3" kind="DerivedInheritance" role="DerivedInheritance" guid="{284B7E3C-E1CC-4174-8FD6-2C9ABA7767F7}" relid="0x42">
+				<connection id="id-0068-000002f4" kind="DerivedInheritance" role="DerivedInheritance" guid="{284B7E3C-E1CC-4174-8FD6-2C9ABA7767F7}" relid="0x42">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36142,7 +34533,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d8"/>
 					<connpoint role="dst" target="id-0066-000001da"/>
 				</connection>
-				<connection id="id-0068-000002f4" kind="DerivedInheritance" role="DerivedInheritance" guid="{E393CEBF-EEF6-4ae3-BE13-9D21759D9DD5}" relid="0x41">
+				<connection id="id-0068-000002f5" kind="DerivedInheritance" role="DerivedInheritance" guid="{E393CEBF-EEF6-4ae3-BE13-9D21759D9DD5}" relid="0x41">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36150,7 +34541,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d8"/>
 					<connpoint role="dst" target="id-0066-000001db"/>
 				</connection>
-				<connection id="id-0068-000002f5" kind="DerivedInheritance" role="DerivedInheritance" guid="{8E47AE5F-E142-4d75-9F8E-EB7E51EEE2AB}" relid="0x40">
+				<connection id="id-0068-000002f6" kind="DerivedInheritance" role="DerivedInheritance" guid="{8E47AE5F-E142-4d75-9F8E-EB7E51EEE2AB}" relid="0x40">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
@@ -36158,7 +34549,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001d8"/>
 					<connpoint role="dst" target="id-0066-000001dc"/>
 				</connection>
-				<connection id="id-0068-000002f6" kind="AssociationClass" role="AssociationClass" guid="{06B656AD-1E42-4daf-A4E0-7EE3C883AAB4}" relid="0x3b">
+				<connection id="id-0068-000002f7" kind="AssociationClass" role="AssociationClass" guid="{06B656AD-1E42-4daf-A4E0-7EE3C883AAB4}" relid="0x3b">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
@@ -36166,7 +34557,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001dd"/>
 					<connpoint role="dst" target="id-0066-000001de"/>
 				</connection>
-				<connection id="id-0068-000002f7" kind="SourceToConnector" role="SourceToConnector" guid="{93FE1527-4538-454e-B460-A67964BCBF4E}" relid="0x38">
+				<connection id="id-0068-000002f8" kind="SourceToConnector" role="SourceToConnector" guid="{93FE1527-4538-454e-B460-A67964BCBF4E}" relid="0x38">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>S</value>
@@ -36180,7 +34571,7 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001e1"/>
 					<connpoint role="src" target="id-0066-000001e3"/>
 				</connection>
-				<connection id="id-0068-000002f8" kind="SourceToConnector" role="SourceToConnector" guid="{52011CC0-F53C-4cc8-8DAC-9F0CF8D7EF52}" relid="0x36">
+				<connection id="id-0068-000002f9" kind="SourceToConnector" role="SourceToConnector" guid="{52011CC0-F53C-4cc8-8DAC-9F0CF8D7EF52}" relid="0x36">
 					<name>SourceToConnector</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>E</value>
@@ -36194,7 +34585,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001e3"/>
 					<connpoint role="dst" target="id-0066-000001e4"/>
 				</connection>
-				<connection id="id-0068-000002f9" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{413FCFDF-C08C-4dfb-87BD-94F87D450C92}" relid="0x35">
+				<connection id="id-0068-000002fa" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{413FCFDF-C08C-4dfb-87BD-94F87D450C92}" relid="0x35">
 					<name>ConnectorToDestination</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>w</value>
@@ -36208,12 +34599,12 @@ dName = dstOutConnection</value>
 					<connpoint role="dst" target="id-0066-000001e3"/>
 					<connpoint role="src" target="id-0066-000001e5"/>
 				</connection>
-				<connection id="id-0068-000002fa" kind="AssociationClass" role="AssociationClass" guid="{0C1D0D89-347B-4eba-9B08-B6597637AC80}" relid="0x31">
+				<connection id="id-0068-000002fb" kind="AssociationClass" role="AssociationClass" guid="{0C1D0D89-347B-4eba-9B08-B6597637AC80}" relid="0x31">
 					<name>AssociationClass</name>
 					<connpoint role="src" target="id-0066-000001e4"/>
 					<connpoint role="dst" target="id-0066-000001e6"/>
 				</connection>
-				<connection id="id-0068-000002fb" kind="AssociationClass" role="AssociationClass" guid="{C1E76E23-2EED-471c-9F16-EEF97E44AB13}" relid="0x2f">
+				<connection id="id-0068-000002fc" kind="AssociationClass" role="AssociationClass" guid="{C1E76E23-2EED-471c-9F16-EEF97E44AB13}" relid="0x2f">
 					<name>AssociationClass</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>s</value>
@@ -36221,7 +34612,7 @@ dName = dstOutConnection</value>
 					<connpoint role="src" target="id-0066-000001e5"/>
 					<connpoint role="dst" target="id-0066-000001e7"/>
 				</connection>
-				<set id="id-0069-00000017" kind="Aspect" role="Aspect" guid="{251080E7-C7E6-41c9-ABE9-2B2E870B0199}" relid="0x105" members="id-0066-000001ae id-0066-000001af id-0066-000001b1">
+				<set id="id-0069-00000017" kind="Aspect" role="Aspect" guid="{251080E7-C7E6-41c9-ABE9-2B2E870B0199}" relid="0x105" members="id-0066-000001ae id-0066-000001af id-0066-000001b1 id-0066-000001c1 id-0067-00000055">
 					<name>Deployment</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>

@@ -2,6 +2,8 @@
 
 #include "BON.h"
 #include "MON.h"
+#include "PlacementMaps.h"
+#include "KindAggregator.h"
 
 #include <map>
 #include <set>
@@ -20,19 +22,20 @@ struct Compound
 };
 
 typedef std::map <std::string, std::set <Compound> > ContainmentGraph;
-typedef std::map <std::string, std::set <std::string> > NodeToCompMapping;
-typedef std::map <std::string, std::string> CompToNodeMapping;
-
 }
+
 
 class ECLGenerator : public CWnd
 {
 public:
-	ECLGenerator(const BON::Project& project);
+	ECLGenerator(const BON::Project& project, 
+		         const CQML::KindAggregator<CQML::AbstractComponent>::KindMap &);
 	~ECLGenerator(void);
 
 	void generate (NodeToCompMapping const & node2comp, 
-				   CompToNodeMapping const & comp2node);
+				   CompToNodeMapping const & comp2node,
+				   std::string const & plan_name);
+
 	static void get_sample_mapping (NodeToCompMapping & node2comp, 
 		                            CompToNodeMapping & comp2node);
 
@@ -51,12 +54,14 @@ private:
 	template <class Iter>
     void print_sequence (Iter begin, Iter end);
     std::string gen_ECL (NodeToCompMapping const & node2comp, 
-	    				 CompToNodeMapping const & comp2node);
+	    				 CompToNodeMapping const & comp2node,
+						 std::string const & plan_name);
 	std::string add_slash_r (std::string const & s);
 
 
 	const BON::Project & bon_project_;
 	const MON::Project & mon_project_;
+	CQML::KindAggregator<CQML::AbstractComponent>::KindMap comp_kind_map_;
 	ContainmentGraph con_graph_;
 	std::queue <Compound> compound_queue_;
 };

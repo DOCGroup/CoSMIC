@@ -1,15 +1,22 @@
 #pragma once
 
 #include "KindAggregator.h"
+#include "PlacementMaps.h"
+
+typedef CQML::KindAggregator<CQML::AbstractComponent>::KindMap MGAComponentMap;
+typedef CQML::KindAggregator<CQML::AbstractNode>::KindMap MGANodeMap;
 
 class DeploymentPlanner
 {
 public:
-	DeploymentPlanner(CQML::KindAggregator<CQML::AbstractComponent>::KindMap const & comp_map,
-		              CQML::KindAggregator<CQML::AbstractNode>::KindMap const & node_map);
+	
+
+	DeploymentPlanner(MGAComponentMap const & comp_map,
+		              MGANodeMap const & node_map);
 	~DeploymentPlanner(void);
+	void get_placement (NodeToCompMapping &, CompToNodeMapping &);
 
 private:
-	CQML::KindAggregator<CQML::AbstractComponent>::KindMap comp_map_;
-	CQML::KindAggregator<CQML::AbstractNode>::KindMap node_map_;
+	MGAComponentMap comp_map_;
+	MGANodeMap node_map_;
 };

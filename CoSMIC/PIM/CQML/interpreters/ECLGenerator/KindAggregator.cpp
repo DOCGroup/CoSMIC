@@ -43,6 +43,9 @@ namespace CQML
   {
     try
     {
+	  if (! this->m_kind_instances_.empty())
+		  return this->m_kind_instances_;
+
       for_each (this->kindlist_.begin (),
         this->kindlist_.end (),
         insertKindInstances <std::string> (this));
@@ -51,7 +54,8 @@ namespace CQML
     {
       this->bon_project_->consoleMsg (
         /*this->kindname_+std::string(" kind does not exist in this model.")+*/
-        ex.getErrorMessage(), MSG_ERROR);		
+        ex.getErrorMessage(), MSG_ERROR);	
+	  throw;
     } 
     catch (...)
     {

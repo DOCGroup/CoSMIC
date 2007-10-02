@@ -24,6 +24,7 @@
 #include "ECLGenerator.h"
 #include "KindAggregator.h"
 #include "kindDialog.h"
+#include "DeploymentPlanner.h"
 
 #include <list>
 
@@ -35,12 +36,12 @@ namespace  // anonymous
 				kind_dialog.get_component_kinds ();
 		
 		std::string comp_sequence ("Components: ");
-		for (std::list <std::string>::const_iterator i (comp_kinds.begin());
-			 i != comp_kinds.end();
-			 ++i)
+//		for (std::list <std::string>::const_iterator i (comp_kinds.begin());
+//			 i != comp_kinds.end();
+//			 ++i)
 		{
 			CQML::KindAggregator<CQML::AbstractComponent> 
-				aggregator (project, *i);
+				aggregator (project, comp_kinds);
 			CQML::KindAggregator<CQML::AbstractComponent>::KindMap
 				map = aggregator.aggregate ();
 			
@@ -61,7 +62,7 @@ namespace  // anonymous
   //  for (std::list <std::string>::const_iterator i (node_kinds.begin());
 		//	 i != node_kinds.end();
 		//	 ++i)
-		//{
+		{
 			CQML::KindAggregator<CQML::AbstractNode> 
 				aggregator (project, node_kinds);
 			CQML::KindAggregator<CQML::AbstractNode>::KindMap
@@ -74,7 +75,7 @@ namespace  // anonymous
 				node_sequence += i->first;
 				node_sequence += " ";
 			}
-		//}
+		}
 		AfxMessageBox (node_sequence.c_str());
 }
 
@@ -152,20 +153,36 @@ void Component::invokeEx( Project& project, FCO& currentFCO, const std::set<FCO>
 	// Insert application specific code here
 	try 
 	{
-		/// Experimenting with J2EEML::EntityBean
 		KindDialog kind_dialog (::AfxGetMainWnd ());
 		if (kind_dialog.DoModal() != IDOK)
 			return;
         //display (kind_dialog, project);
+		std::list <std::string> comp_kinds = 
+			kind_dialog.get_component_kinds ();
+		CQML::KindAggregator<CQML::AbstractComponent> 
+			comp_aggr (project, comp_kinds);
+
+		std::list <std::string> node_kinds = 
+			kind_dialog.get_node_kinds ();
+		CQML::KindAggregator<CQML::AbstractNode> 
+			node_aggr (project, node_kinds);
+
+		DeploymentPlanner planner (comp_aggr.aggregate (), node_aggr.aggregate());
 
 		NodeToCompMapping node2comp;
  	    CompToNodeMapping comp2node;
-        ECLGenerator generator (project);
-		ECLGenerator::get_sample_mapping (node2comp, comp2node);
-		generator.generate (node2comp, comp2node);
+
+		planner.get_placement (node2comp, comp2node);
+		//ECLGenerator::get_sample_mapping (node2comp, comp2node);
+
+		ECLGenerator generator (project, comp_aggr.aggregate ());
+		generator.generate (node2comp, comp2node, kind_dialog.get_planname());
 	}
 	catch (...)
 	{
+		std::string ex = "ECLGenerator: An exception was thrown!";
+	  AfxMessageBox (ex.c_str());
+	  project->consoleMsg (ex.c_str(), MSG_ERROR);	
 	}
 }
 

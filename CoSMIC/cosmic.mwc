@@ -4,6 +4,7 @@ workspace {
   Utils/gme/GME.mpc
   $(ACE_ROOT)/contrib/minizip/minizip.mpc
   PIM/PICML/interpreters/Interpreters.mwc
+  PIM/CQML/interpreters/Interpreters.mwc
   PIM/WSML/interpreters/Interpreters.mwc
   PIM/SIML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc

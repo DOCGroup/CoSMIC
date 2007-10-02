@@ -1,5 +1,0 @@
-#ifndef __QOSINTEGRATOR_H
-#define __QOSINTEGRATOR_H
-
-
-#endif /// __QOSINTEGRATOR_H

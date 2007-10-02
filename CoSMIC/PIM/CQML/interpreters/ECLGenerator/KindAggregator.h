@@ -121,10 +121,10 @@ namespace CQML
       int count;
     };
 
-    void insert (std::string instance_name, T kind_instance);
-
   private:
-    // The GME project
+     void insert (std::string instance_name, T kind_instance);
+
+	  // The GME project
     const BON::Project & bon_project_;
 
     // Concrete model kind list whose instances to collect

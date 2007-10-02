@@ -1,3 +1,61 @@
+Tue Oct  2 03:26:48 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Component.rc:
+        * PIM/CQML/interpreters/ECLGenerator/DeploymentPlanner.h:
+        * PIM/CQML/interpreters/ECLGenerator/DeploymentPlanner.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.h:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.reg:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGeneratord.reg:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.h:
+        * PIM/CQML/interpreters/ECLGenerator/KindAggregator.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/Kinds.h:
+        * PIM/CQML/interpreters/ECLGenerator/Kinds.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.h:
+        * PIM/CQML/interpreters/ECLGenerator/NodeAssigner.cpp:
+        * PIM/CQML/interpreters/ECLGenerator/PlacementMaps.h:
+        * PIM/CQML/interpreters/ECLGenerator/component.def:
+        * PIM/CQML/interpreters/ECLGenerator/kindDialog.h:
+        * PIM/CQML/interpreters/ECLGenerator/kindDialog.cpp:
+
+        * PIM/CQML/interpreters/Interpreters.mwc:
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xmp:
+
+        * PSM/LibCQML/BasicSP-PICMLlibCQML.xme:
+
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xme:
+        * PSM/LibCQML/ESMLlibCQML/ESMLlibCQML.xmp:
+        * PSM/LibCQML/ESMLlibCQML/MC__BasicSP-ESMLlibCQML.xme:
+
+        * PSM/LibCQML/ESMLlibCQML/icons/Node.bmp:
+
+        * PSM/LibCQML/J2EEMLlibCQML.xme:
+        * PSM/LibCQML/J2EEMLlibCQML.xmp:
+        * PSM/LibCQML/PICMLlibCQML.xme:
+        * PSM/LibCQML/PICMLlibCQML.xmp:
+        * PSM/LibCQML/Simple-J2EEMLlibCQML.xme:
+
+        * cosmic.mwc:
+
+          The latest version of ECLGenerator for the demo in
+          MoDELS conference. Works for multiple modeling languages.
+
+        * PIM/CQML/interpreters/CQML:
+
+        * PIM/CQML/interpreters/CQML/CQML.mpc:
+
+        * PIM/CQML/interpreters/QoSIntegrator:
+
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.h:
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.cpp:
+        * PIM/CQML/interpreters/QoSIntegrator/QoSIntegrator.mpc:
+
+          Removed these files.
+
 Mon Oct  1 03:07:53 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
 
         * PIM/CQML/paradigms/CQML.xme:

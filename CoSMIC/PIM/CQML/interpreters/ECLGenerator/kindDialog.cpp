@@ -23,18 +23,32 @@ KindDialog::~KindDialog()
 BOOL KindDialog::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
+
+	CEdit * input;
+
+	input = reinterpret_cast<CEdit *>(GetDlgItem(EDIT1));
+	input->SetFocus ();
+
+	input = reinterpret_cast<CEdit *>(GetDlgItem(EDIT2));
+	input->SetWindowTextA ("Host");
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-std::list <std::string> KindDialog::get_component_kinds ()
+std::list <std::string> KindDialog::get_component_kinds () const
 {
 	return component_kinds_;
 }
 
-std::list <std::string> KindDialog::get_node_kinds ()
+std::list <std::string> KindDialog::get_node_kinds () const
 {
 	return node_kinds_;
+}
+
+std::string KindDialog::get_planname () const
+{
+	return this->placement_plan_name_;
 }
 
 void KindDialog::OnOK ()
@@ -57,6 +71,10 @@ void KindDialog::OnOK ()
 	std::copy (std::istream_iterator <std::string> (node_str_stream),
 		std::istream_iterator <std::string> (),
 		std::back_inserter (this->node_kinds_));
+
+	input = reinterpret_cast<CEdit *>(GetDlgItem(EDIT3));
+	input->GetWindowTextA (buffer, 1024);
+	this->placement_plan_name_ = buffer;
 
 	CDialog::OnOK ();
 }

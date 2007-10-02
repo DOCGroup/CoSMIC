@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{C6AC5295-AA65-4996-89E7-F0D6B345470B}" cdate="Thu Sep 20 16:51:27 2007" mdate="Thu Sep 20 16:51:27 2007" version="" metaguid="{1D4711DB-EB15-4CF1-9A13-4E79129C98B0}" metaversion="" metaname="ESMLlibCQML">
+<project guid="{00A0CCF8-4BCD-46D1-96F6-1D7E90DF71CA}" cdate="Mon Oct 01 21:26:04 2007" mdate="Mon Oct 01 21:26:04 2007" version="" metaguid="{DC667DC9-5115-4CCA-959B-9A735EFDB150}" metaversion="" metaname="ESMLlibCQML">
 	<name>MC__BasicSP-ESMLlibCQML</name>
 	<comment></comment>
 	<author></author>
-	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x6" kind="RootFolder" guid="{CA27D2E1-1BF0-42ac-B98F-5306F7E6E60D}">
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x7" kind="RootFolder" guid="{CA27D2E1-1BF0-42ac-B98F-5306F7E6E60D}">
 		<name>MC__BasicSP-ESMLlibCQML</name>
 		<folder id="id-006a-00000002" relid="0x3" childrelidcntr="0x2" kind="EventTypes" guid="{D2448E91-489D-4f46-BF9E-9BAA211ACAF7}">
 			<name>EventTypes</name>
@@ -2694,7 +2694,19 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000002e" kind="Facet" role="Facet" guid="{11EFF1F4-2237-4198-893E-475C253B33F9}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000002e" kind="EventTypeRef" role="EventTypeRef" guid="{98C6675D-73A3-4ff2-B480-980F3620F3C0}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>92,35</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000002f" kind="Facet" role="Facet" guid="{11EFF1F4-2237-4198-893E-475C253B33F9}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -2717,18 +2729,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-0000002f" kind="EventTypeRef" role="EventTypeRef" guid="{98C6675D-73A3-4ff2-B480-980F3620F3C0}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>92,35</value>
-							</regnode>
-						</regnode>
-					</regnode>
 				</reference>
 				<reference id="id-0067-00000030" kind="EventTypeRef" role="EventTypeRef" guid="{8B51AC3D-1F12-4671-83FA-3BABEC32254B}" relid="0x3">
 					<name>ANY_ref</name>
@@ -2843,10 +2843,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000032" kind="EventTypeRef" role="EventTypeRef" guid="{29093174-E5C3-47d6-8E50-5286A0BB413F}" derivedfrom="id-0067-00000005" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000033" kind="Facet" role="Facet" guid="{4BB4BC78-F923-4c87-88D0-6420BCE860ED}" derivedfrom="id-0067-00000007" isinstance="no" isprimary="no" referred="id-0065-0000000c" isbound="yes">
+				<reference id="id-0067-00000032" kind="Facet" role="Facet" guid="{4BB4BC78-F923-4c87-88D0-6420BCE860ED}" derivedfrom="id-0067-00000007" isinstance="no" isprimary="no" referred="id-0065-0000000c" isbound="yes">
 					<name>RM1__RoutesFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -2855,10 +2852,10 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000034" kind="EventTypeRef" role="EventTypeRef" guid="{BF8A075D-B8BC-4d36-84A1-1FBA4F0F12C0}" derivedfrom="id-0067-00000006" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000033" kind="EventTypeRef" role="EventTypeRef" guid="{29093174-E5C3-47d6-8E50-5286A0BB413F}" derivedfrom="id-0067-00000005" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000035" kind="Facet" role="Facet" guid="{F0B1C46F-F5DF-4439-A20B-0EAE29B03EA6}" derivedfrom="id-0067-00000008" isinstance="no" isprimary="no" referred="id-0065-0000000b" isbound="yes">
+				<reference id="id-0067-00000034" kind="Facet" role="Facet" guid="{F0B1C46F-F5DF-4439-A20B-0EAE29B03EA6}" derivedfrom="id-0067-00000008" isinstance="no" isprimary="no" referred="id-0065-0000000b" isbound="yes">
 					<name>BM__SharedLockFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -2867,10 +2864,13 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<connection isbound="yes" id="id-0068-0000002d" kind="EventTyping" role="EventTyping" guid="{1ECBD1C1-891B-46f7-A9C6-DF78AC35F583}" derivedfrom="id-0068-00000006" isinstance="no" isprimary="no">
+				<reference id="id-0067-00000035" kind="EventTypeRef" role="EventTypeRef" guid="{BF8A075D-B8BC-4d36-84A1-1FBA4F0F12C0}" derivedfrom="id-0067-00000006" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<connection isbound="yes" id="id-0068-0000002d" kind="EventTyping" role="EventTyping" guid="{6357B912-BB2F-45fa-A683-D0A080BE9557}" derivedfrom="id-0068-00000005" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000002e" kind="EventTyping" role="EventTyping" guid="{6357B912-BB2F-45fa-A683-D0A080BE9557}" derivedfrom="id-0068-00000005" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000002e" kind="EventTyping" role="EventTyping" guid="{1ECBD1C1-891B-46f7-A9C6-DF78AC35F583}" derivedfrom="id-0068-00000006" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 			</model>
@@ -2894,7 +2894,16 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000056" kind="SubscribePort" role="SubscribePort" guid="{17048E40-DEF6-42d6-BE5A-535A9B1C8AF1}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000056" kind="PublishPort" role="PublishPort" guid="{47AFCB77-D25E-4d59-AE5F-28716C8FB659}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000057" kind="SubscribePort" role="SubscribePort" guid="{17048E40-DEF6-42d6-BE5A-535A9B1C8AF1}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -2915,15 +2924,6 @@
 						<value></value>
 					</attribute>
 					<attribute kind="Priority" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000057" kind="PublishPort" role="PublishPort" guid="{47AFCB77-D25E-4d59-AE5F-28716C8FB659}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -2951,8 +2951,11 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000036" kind="Facet" role="Facet" guid="{2007915C-210D-4564-AD5D-AAF50CD0A6F2}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
-					<name>BM__OpenFunctionalFacet</name>
+				<reference id="id-0067-00000036" kind="EventTypeRef" role="EventTypeRef" guid="{6E8FD5DD-08B1-42d9-83A7-D78AFCAA7604}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000037" kind="Facet" role="Facet" guid="{7D306B3C-A13E-4870-A007-648CAE0E8D62}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -2960,14 +2963,11 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000037" kind="EventTypeRef" role="EventTypeRef" guid="{BA631D0F-3E43-447c-999C-C930DC0ACC05}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000038" kind="EventTypeRef" role="EventTypeRef" guid="{BA631D0F-3E43-447c-999C-C930DC0ACC05}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000038" kind="EventTypeRef" role="EventTypeRef" guid="{6E8FD5DD-08B1-42d9-83A7-D78AFCAA7604}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000039" kind="Facet" role="Facet" guid="{7D306B3C-A13E-4870-A007-648CAE0E8D62}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
-					<name>BM__ClosedFunctionalFacet</name>
+				<reference id="id-0067-00000039" kind="Facet" role="Facet" guid="{2007915C-210D-4564-AD5D-AAF50CD0A6F2}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -3019,7 +3019,16 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000059" kind="SubscribePort" role="SubscribePort" guid="{16A990C2-6434-46ad-9EB2-EE752D87A009}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000059" kind="PublishPort" role="PublishPort" guid="{C11AE658-BBEC-4383-90C0-51C222EA67CB}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000005a" kind="SubscribePort" role="SubscribePort" guid="{16A990C2-6434-46ad-9EB2-EE752D87A009}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -3043,17 +3052,11 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000005a" kind="PublishPort" role="PublishPort" guid="{C11AE658-BBEC-4383-90C0-51C222EA67CB}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<reference id="id-0067-0000003c" kind="Facet" role="Facet" guid="{D3204499-C6E2-4a10-BA34-9D6E5F06A998}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
-					<name>BM__OpenFunctionalFacet</name>
+				<reference id="id-0067-0000003c" kind="EventTypeRef" role="EventTypeRef" guid="{E3CBF08B-7C15-42d6-A2BD-20D5ABF2A524}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-0000003d" kind="Facet" role="Facet" guid="{FC37DCCC-E5EE-420a-82C8-2F921D482CC8}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -3061,14 +3064,11 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-0000003d" kind="EventTypeRef" role="EventTypeRef" guid="{50994809-1C1E-469e-AFB4-164D510F9CBC}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-0000003e" kind="EventTypeRef" role="EventTypeRef" guid="{50994809-1C1E-469e-AFB4-164D510F9CBC}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-0000003e" kind="EventTypeRef" role="EventTypeRef" guid="{E3CBF08B-7C15-42d6-A2BD-20D5ABF2A524}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-0000003f" kind="Facet" role="Facet" guid="{FC37DCCC-E5EE-420a-82C8-2F921D482CC8}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
-					<name>BM__ClosedFunctionalFacet</name>
+				<reference id="id-0067-0000003f" kind="Facet" role="Facet" guid="{D3204499-C6E2-4a10-BA34-9D6E5F06A998}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -3160,7 +3160,10 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000040" kind="Facet" role="Facet" guid="{E746687A-29DD-4e0d-BB77-5CE289C7D88B}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000040" kind="EventTypeRef" role="EventTypeRef" guid="{581A1119-D7E7-4a11-BB1B-332A309C1EA9}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000041" kind="Facet" role="Facet" guid="{E746687A-29DD-4e0d-BB77-5CE289C7D88B}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -3168,9 +3171,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-00000041" kind="EventTypeRef" role="EventTypeRef" guid="{581A1119-D7E7-4a11-BB1B-332A309C1EA9}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-00000042" kind="EventTypeRef" role="EventTypeRef" guid="{47EBA279-4BDB-4af2-8EE0-6192EF1EA8C6}" relid="0x2">
 					<name>ANY_ref</name>
@@ -3308,10 +3308,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000044" kind="EventTypeRef" role="EventTypeRef" guid="{CD44AC83-6D76-4860-920C-EBD6ECC52CC3}" derivedfrom="id-0067-0000000e" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000045" kind="Facet" role="Facet" guid="{0802CEBB-3479-480d-B49C-2EC105943609}" derivedfrom="id-0067-00000010" isinstance="no" isprimary="no" referred="id-0065-0000000e" isbound="yes">
+				<reference id="id-0067-00000044" kind="Facet" role="Facet" guid="{0802CEBB-3479-480d-B49C-2EC105943609}" derivedfrom="id-0067-00000010" isinstance="no" isprimary="no" referred="id-0065-0000000e" isbound="yes">
 					<name>RM1__PathFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -3320,10 +3317,10 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000046" kind="EventTypeRef" role="EventTypeRef" guid="{6F9ADA7C-A723-4546-B255-494F50AA42EB}" derivedfrom="id-0067-0000000f" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000045" kind="EventTypeRef" role="EventTypeRef" guid="{6F9ADA7C-A723-4546-B255-494F50AA42EB}" derivedfrom="id-0067-0000000f" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000047" kind="Facet" role="Facet" guid="{209AE675-A9F7-4bad-B5DD-E6F3E79CA502}" derivedfrom="id-0067-00000011" isinstance="no" isprimary="no" referred="id-0065-00000004" isbound="yes">
+				<reference id="id-0067-00000046" kind="Facet" role="Facet" guid="{209AE675-A9F7-4bad-B5DD-E6F3E79CA502}" derivedfrom="id-0067-00000011" isinstance="no" isprimary="no" referred="id-0065-00000004" isbound="yes">
 					<name>RM1__PathUpdateFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -3331,6 +3328,9 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
+				</reference>
+				<reference id="id-0067-00000047" kind="EventTypeRef" role="EventTypeRef" guid="{CD44AC83-6D76-4860-920C-EBD6ECC52CC3}" derivedfrom="id-0067-0000000e" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-00000048" kind="Facet" role="Facet" guid="{37E777F2-8055-4456-A78E-33582D1D8930}" relid="0x1" referred="id-0065-0000000c">
 					<name>RM1__RoutesFunctionalFacet</name>
@@ -3368,13 +3368,13 @@
 				<reference id="id-0067-0000004c" kind="EventTypeRef" role="EventTypeRef" guid="{AFA60B9F-673F-4263-8711-B79682132F23}" relid="0x6">
 					<name>ANY_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000037" kind="EventTyping" role="EventTyping" guid="{26A675F2-13C5-4921-A7F5-7EB85853D9E0}" derivedfrom="id-0068-0000000a" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000037" kind="EventTyping" role="EventTyping" guid="{6C192101-36D3-4654-9561-B49CC57A9B33}" derivedfrom="id-0068-0000000e" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000038" kind="TransConnSrc" role="TransConnSrc" guid="{F5E6C4F3-8FDF-4db0-9F4F-BC1341595E53}" derivedfrom="id-0068-0000000d" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000038" kind="TransConnDst" role="TransConnDst" guid="{5F525413-16B0-446d-B932-7DF48AAC990E}" derivedfrom="id-0068-0000000b" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000039" kind="TransConnDst" role="TransConnDst" guid="{5F525413-16B0-446d-B932-7DF48AAC990E}" derivedfrom="id-0068-0000000b" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000039" kind="EventTyping" role="EventTyping" guid="{26A675F2-13C5-4921-A7F5-7EB85853D9E0}" derivedfrom="id-0068-0000000a" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-0000003a" kind="TransConnDst" role="TransConnDst" guid="{85DC0968-D62B-440f-89DE-F972C72408A8}" derivedfrom="id-0068-0000000c" isinstance="no" isprimary="no">
@@ -3383,7 +3383,7 @@
 				<connection isbound="yes" id="id-0068-0000003b" kind="TransConnSrc" role="TransConnSrc" guid="{5156C55B-C074-488d-8F3A-E1C1438EC101}" derivedfrom="id-0068-0000000f" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000003c" kind="EventTyping" role="EventTyping" guid="{6C192101-36D3-4654-9561-B49CC57A9B33}" derivedfrom="id-0068-0000000e" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000003c" kind="TransConnSrc" role="TransConnSrc" guid="{F5E6C4F3-8FDF-4db0-9F4F-BC1341595E53}" derivedfrom="id-0068-0000000d" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-0000003d" kind="TransConnDst" role="TransConnDst" guid="{4C5C8311-892C-4e44-9FDD-51ADD912FC77}" relid="0xc">
@@ -3411,14 +3411,14 @@
 					<connpoint role="dst" target="id-0066-00000064"/>
 					<connpoint role="src" target="id-0069-00000008"/>
 				</connection>
-				<set id="id-0069-00000006" kind="Mode" role="Mode" guid="{4FAA5423-C79D-4106-B83D-C192669224B9}" derivedfrom="id-0069-00000001" isinstance="no" isprimary="no" isbound="yes">
-					<name>Disabled</name>
+				<set id="id-0069-00000006" kind="Mode" role="Mode" guid="{90D8CF15-99E5-4e5b-8276-6F7F74D454D4}" derivedfrom="id-0069-00000002" isinstance="no" isprimary="no" isbound="yes">
+					<name>Enabled</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
 				</set>
-				<set id="id-0069-00000007" kind="Mode" role="Mode" guid="{90D8CF15-99E5-4e5b-8276-6F7F74D454D4}" derivedfrom="id-0069-00000002" isinstance="no" isprimary="no" isbound="yes">
-					<name>Enabled</name>
+				<set id="id-0069-00000007" kind="Mode" role="Mode" guid="{4FAA5423-C79D-4106-B83D-C192669224B9}" derivedfrom="id-0069-00000001" isinstance="no" isprimary="no" isbound="yes">
+					<name>Disabled</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
@@ -3456,7 +3456,16 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000065" kind="SubscribePort" role="SubscribePort" guid="{53705622-5909-490f-8295-3A524D917A09}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000065" kind="PublishPort" role="PublishPort" guid="{6B177928-26D9-4c89-ADF1-31FC995668A4}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000066" kind="SubscribePort" role="SubscribePort" guid="{53705622-5909-490f-8295-3A524D917A09}" derivedfrom="id-0066-00000052" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3489,28 +3498,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000066" kind="PublishPort" role="PublishPort" guid="{6B177928-26D9-4c89-ADF1-31FC995668A4}" derivedfrom="id-0066-00000053" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<reference id="id-0067-0000004d" kind="Facet" role="Facet" guid="{45447316-90FA-4f87-A315-68217ADC4F21}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
-					<name>BM__OpenFunctionalFacet</name>
-					<attribute kind="DistributableRead" status="inherited">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DistributableWrite" status="inherited">
-						<value>false</value>
-					</attribute>
-				</reference>
-				<reference id="id-0067-0000004e" kind="EventTypeRef" role="EventTypeRef" guid="{A11899D1-5CBC-4a2e-9C50-6FAE1229961B}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-0000004f" kind="EventTypeRef" role="EventTypeRef" guid="{C6EB87DE-2105-42e7-A484-F20C90D499AF}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-0000004d" kind="EventTypeRef" role="EventTypeRef" guid="{C6EB87DE-2105-42e7-A484-F20C90D499AF}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3522,8 +3510,20 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000050" kind="Facet" role="Facet" guid="{D40D253F-5DCB-4b2e-8AF2-EBB95C4B92D2}" derivedfrom="id-0067-0000002e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000004e" kind="Facet" role="Facet" guid="{D40D253F-5DCB-4b2e-8AF2-EBB95C4B92D2}" derivedfrom="id-0067-0000002f" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
+					<attribute kind="DistributableRead" status="inherited">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DistributableWrite" status="inherited">
+						<value>false</value>
+					</attribute>
+				</reference>
+				<reference id="id-0067-0000004f" kind="EventTypeRef" role="EventTypeRef" guid="{A11899D1-5CBC-4a2e-9C50-6FAE1229961B}" derivedfrom="id-0067-00000030" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000050" kind="Facet" role="Facet" guid="{45447316-90FA-4f87-A315-68217ADC4F21}" derivedfrom="id-0067-00000031" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -3639,13 +3639,7 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000052" kind="EventTypeRef" role="EventTypeRef" guid="{79F4E8DE-72F7-4e53-A093-273A23477615}" derivedfrom="id-0067-0000002a" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000053" kind="EventTypeRef" role="EventTypeRef" guid="{7390ACBE-6877-45a5-AE9C-231CB4488D4E}" derivedfrom="id-0067-0000002b" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000054" kind="Facet" role="Facet" guid="{9FEE6B21-F3D9-487a-9A5A-AD40ED99214F}" derivedfrom="id-0067-0000002c" isinstance="no" isprimary="no" referred="id-0065-0000000f" isbound="yes">
+				<reference id="id-0067-00000052" kind="Facet" role="Facet" guid="{9FEE6B21-F3D9-487a-9A5A-AD40ED99214F}" derivedfrom="id-0067-0000002c" isinstance="no" isprimary="no" referred="id-0065-0000000f" isbound="yes">
 					<name>RM1__RouteFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -3653,6 +3647,12 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
+				</reference>
+				<reference id="id-0067-00000053" kind="EventTypeRef" role="EventTypeRef" guid="{79F4E8DE-72F7-4e53-A093-273A23477615}" derivedfrom="id-0067-0000002a" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000054" kind="EventTypeRef" role="EventTypeRef" guid="{7390ACBE-6877-45a5-AE9C-231CB4488D4E}" derivedfrom="id-0067-0000002b" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-00000055" kind="Facet" role="Facet" guid="{12E88984-4359-4fe7-829D-6AA49DA3CBDF}" relid="0x2" referred="id-0065-0000000c">
 					<name>RM1__RoutesFunctionalFacet</name>
@@ -3681,10 +3681,10 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000044" kind="EventTyping" role="EventTyping" guid="{ED6D1337-9AEC-4b08-BD41-DE75C9F31A45}" derivedfrom="id-0068-00000029" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000044" kind="EventTyping" role="EventTyping" guid="{6914C28E-9202-4149-82DD-F2D05C49D70A}" derivedfrom="id-0068-0000002a" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000045" kind="EventTyping" role="EventTyping" guid="{6914C28E-9202-4149-82DD-F2D05C49D70A}" derivedfrom="id-0068-0000002a" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000045" kind="EventTyping" role="EventTyping" guid="{ED6D1337-9AEC-4b08-BD41-DE75C9F31A45}" derivedfrom="id-0068-00000029" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-00000046" kind="EventTyping" role="EventTyping" guid="{50E7FF3D-AD24-458f-B35B-594C6DE84CF3}" relid="0x6">
@@ -3797,7 +3797,19 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000059" kind="Facet" role="Facet" guid="{E6379ECF-E1CA-4cab-848C-34B95D22B2D1}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000059" kind="EventTypeRef" role="EventTypeRef" guid="{31C5B352-10EE-4089-B085-A5FA4454DBB6}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>134,182</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000005a" kind="Facet" role="Facet" guid="{E6379ECF-E1CA-4cab-848C-34B95D22B2D1}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3814,18 +3826,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-0000005a" kind="EventTypeRef" role="EventTypeRef" guid="{31C5B352-10EE-4089-B085-A5FA4454DBB6}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>134,182</value>
-							</regnode>
-						</regnode>
-					</regnode>
 				</reference>
 				<reference id="id-0067-0000005b" kind="EventTypeRef" role="EventTypeRef" guid="{01DD0A4A-CD78-4ede-8EB3-339D39EAA654}" relid="0x5" referred="id-0065-00000001">
 					<name>Interval Timeout_ref</name>
@@ -3936,7 +3936,19 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000005d" kind="Facet" role="Facet" guid="{C9E7D8E8-3E60-4e69-A436-5353BD8B327A}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000005d" kind="EventTypeRef" role="EventTypeRef" guid="{77A3E45C-3AEB-4a6c-9095-8795417A00E1}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>190,126</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000005e" kind="Facet" role="Facet" guid="{C9E7D8E8-3E60-4e69-A436-5353BD8B327A}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -3953,18 +3965,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-0000005e" kind="EventTypeRef" role="EventTypeRef" guid="{77A3E45C-3AEB-4a6c-9095-8795417A00E1}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>190,126</value>
-							</regnode>
-						</regnode>
-					</regnode>
 				</reference>
 				<reference id="id-0067-0000005f" kind="EventTypeRef" role="EventTypeRef" guid="{3649A427-AB6B-4af3-B896-DD7CF758EC68}" relid="0x2">
 					<name>ANY_ref</name>
@@ -4007,7 +4007,46 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-0000006f" kind="SubscribePort" role="SubscribePort" guid="{14B386CA-731B-4f06-BBDF-0A27D2AE4297}" derivedfrom="id-0066-0000006a" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000006f" kind="SubscribePort" role="SubscribePort" guid="{F986F4A0-D893-42fd-891E-7C93FD1C9EF2}" derivedfrom="id-0066-0000006b" isinstance="no" isprimary="no">
+					<name>Interval Timeout_sub</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Modes" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>62,13</value>
+							</regnode>
+						</regnode>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>34,34</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Asynchronous" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Criticality" status="meta">
+						<value>MEDIUM_CRITICALITY</value>
+					</attribute>
+					<attribute kind="Deadline" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="EventCorrelation" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000070" kind="SubscribePort" role="SubscribePort" guid="{14B386CA-731B-4f06-BBDF-0A27D2AE4297}" derivedfrom="id-0066-0000006a" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4046,7 +4085,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000070" kind="PublishPort" role="PublishPort" guid="{B253A918-8241-4096-8941-A9E4CD1089C4}" derivedfrom="id-0066-0000006c" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000071" kind="PublishPort" role="PublishPort" guid="{B253A918-8241-4096-8941-A9E4CD1089C4}" derivedfrom="id-0066-0000006c" isinstance="no" isprimary="no">
 					<name>ANY_pub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4067,45 +4106,6 @@
 						<value>Full Channel</value>
 					</attribute>
 					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000071" kind="SubscribePort" role="SubscribePort" guid="{F986F4A0-D893-42fd-891E-7C93FD1C9EF2}" derivedfrom="id-0066-0000006b" isinstance="no" isprimary="no">
-					<name>Interval Timeout_sub</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Modes" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>62,13</value>
-							</regnode>
-						</regnode>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>34,34</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Asynchronous" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Criticality" status="meta">
-						<value>MEDIUM_CRITICALITY</value>
-					</attribute>
-					<attribute kind="Deadline" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="EventCorrelation" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -4190,19 +4190,7 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-00000061" kind="EventTypeRef" role="EventTypeRef" guid="{C667F32A-944A-480f-AC90-39BE105BE7A8}" derivedfrom="id-0067-0000005c" isinstance="no" isprimary="no" referred="id-0065-00000002">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>542,208</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-00000062" kind="Facet" role="Facet" guid="{E1887B23-EE6F-4352-8E4A-71594020B0C0}" derivedfrom="id-0067-00000059" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000061" kind="Facet" role="Facet" guid="{E1887B23-EE6F-4352-8E4A-71594020B0C0}" derivedfrom="id-0067-0000005a" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4226,7 +4214,19 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000063" kind="EventTypeRef" role="EventTypeRef" guid="{AA0A7D3C-2864-4c25-800F-41AB95516CCC}" derivedfrom="id-0067-0000005a" isinstance="no" isprimary="no" referred="id-0065-00000002">
+				<reference id="id-0067-00000062" kind="EventTypeRef" role="EventTypeRef" guid="{C667F32A-944A-480f-AC90-39BE105BE7A8}" derivedfrom="id-0067-0000005c" isinstance="no" isprimary="no" referred="id-0065-00000002">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>542,208</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-00000063" kind="EventTypeRef" role="EventTypeRef" guid="{AA0A7D3C-2864-4c25-800F-41AB95516CCC}" derivedfrom="id-0067-00000059" isinstance="no" isprimary="no" referred="id-0065-00000002">
 					<name>ANY_ref</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4238,13 +4238,13 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<connection isbound="yes" id="id-0068-0000004c" kind="EventTyping" role="EventTyping" guid="{5ED27C79-31D1-436e-BF37-DEFF0EE13D68}" derivedfrom="id-0068-00000047" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000004c" kind="EventTyping" role="EventTyping" guid="{26EF8609-C52C-4287-AB98-2067EC202566}" derivedfrom="id-0068-00000049" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-0000004d" kind="EventTyping" role="EventTyping" guid="{E8748BC0-A699-4b91-90D0-2AF26D5236E8}" derivedfrom="id-0068-00000048" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000004e" kind="EventTyping" role="EventTyping" guid="{26EF8609-C52C-4287-AB98-2067EC202566}" derivedfrom="id-0068-00000049" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000004e" kind="EventTyping" role="EventTyping" guid="{5ED27C79-31D1-436e-BF37-DEFF0EE13D68}" derivedfrom="id-0068-00000047" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-0000004f" kind="ActionPublish" role="ActionPublish" guid="{5D3885F4-2722-45ea-9FA3-3A7C55D866EB}" relid="0x8">
@@ -4264,7 +4264,7 @@
 					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-00000070"/>
+					<connpoint role="dst" target="id-0066-00000071"/>
 					<connpoint role="src" target="id-0066-00000074"/>
 				</connection>
 				<connection id="id-0068-00000050" kind="SubscribeAction" role="SubscribeAction" guid="{979B3C9E-C0E8-4aaa-BDB5-49DEBCDB9872}" relid="0x7">
@@ -4284,7 +4284,7 @@
 					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000071"/>
+					<connpoint role="src" target="id-0066-0000006f"/>
 					<connpoint role="dst" target="id-0066-00000074"/>
 				</connection>
 				<connection id="id-0068-00000051" kind="FacetMethod2Action" role="FacetMethod2Action" guid="{8846CBA7-EA16-4494-A9C8-00A14C02F366}" relid="0xc">
@@ -4304,7 +4304,7 @@
 					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000012" refs="id-0067-00000062"/>
+					<connpoint role="src" target="id-0066-00000012" refs="id-0067-00000061"/>
 					<connpoint role="dst" target="id-0066-00000072"/>
 				</connection>
 			</model>
@@ -4328,7 +4328,16 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000075" kind="SubscribePort" role="SubscribePort" guid="{E2ED3AD4-8976-4425-9C37-1A0B2D5DA1A5}" derivedfrom="id-0066-00000056" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000075" kind="PublishPort" role="PublishPort" guid="{6B227B96-4F62-4dd7-B365-1588B2A513CE}" derivedfrom="id-0066-00000056" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000076" kind="SubscribePort" role="SubscribePort" guid="{0501990E-24A4-4df3-80EB-71FB3EDA4087}" derivedfrom="id-0066-00000058" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -4352,16 +4361,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000076" kind="PublishPort" role="PublishPort" guid="{6B227B96-4F62-4dd7-B365-1588B2A513CE}" derivedfrom="id-0066-00000057" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000077" kind="SubscribePort" role="SubscribePort" guid="{0501990E-24A4-4df3-80EB-71FB3EDA4087}" derivedfrom="id-0066-00000058" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000077" kind="SubscribePort" role="SubscribePort" guid="{E2ED3AD4-8976-4425-9C37-1A0B2D5DA1A5}" derivedfrom="id-0066-00000057" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -4409,11 +4409,8 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000064" kind="EventTypeRef" role="EventTypeRef" guid="{A42E9194-F63C-43fb-B7DA-B85F44CB3FCA}" derivedfrom="id-0067-00000037" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000065" kind="Facet" role="Facet" guid="{CB0528AA-F404-4c2b-9396-65676608CF44}" derivedfrom="id-0067-0000003b" isinstance="no" isprimary="no" referred="id-0065-00000011" isbound="yes">
-					<name>OM1__FormatFunctionalFacet</name>
+				<reference id="id-0067-00000064" kind="Facet" role="Facet" guid="{139F7DA7-E289-4a3d-A928-5668380E9241}" derivedfrom="id-0067-00000039" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -4421,7 +4418,7 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000066" kind="Facet" role="Facet" guid="{5F7C2468-1F07-45a3-8878-0265BAA0F186}" derivedfrom="id-0067-00000039" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000065" kind="Facet" role="Facet" guid="{5F7C2468-1F07-45a3-8878-0265BAA0F186}" derivedfrom="id-0067-00000037" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -4430,14 +4427,17 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000067" kind="EventTypeRef" role="EventTypeRef" guid="{0AD58F04-C1C8-4593-94E1-E765C372B07D}" derivedfrom="id-0067-00000038" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000066" kind="EventTypeRef" role="EventTypeRef" guid="{F70B797A-C1A7-424a-A5F2-BD571A48B08F}" derivedfrom="id-0067-0000003a" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000068" kind="EventTypeRef" role="EventTypeRef" guid="{F70B797A-C1A7-424a-A5F2-BD571A48B08F}" derivedfrom="id-0067-0000003a" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000067" kind="EventTypeRef" role="EventTypeRef" guid="{0AD58F04-C1C8-4593-94E1-E765C372B07D}" derivedfrom="id-0067-00000036" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000069" kind="Facet" role="Facet" guid="{139F7DA7-E289-4a3d-A928-5668380E9241}" derivedfrom="id-0067-00000036" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
-					<name>BM__OpenFunctionalFacet</name>
+				<reference id="id-0067-00000068" kind="EventTypeRef" role="EventTypeRef" guid="{A42E9194-F63C-43fb-B7DA-B85F44CB3FCA}" derivedfrom="id-0067-00000038" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000069" kind="Facet" role="Facet" guid="{CB0528AA-F404-4c2b-9396-65676608CF44}" derivedfrom="id-0067-0000003b" isinstance="no" isprimary="no" referred="id-0065-00000011" isbound="yes">
+					<name>OM1__FormatFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -4502,10 +4502,10 @@
 				<connection isbound="yes" id="id-0068-00000052" kind="EventTyping" role="EventTyping" guid="{C220812C-D999-473c-9C57-0734E26A648F}" derivedfrom="id-0068-00000030" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000053" kind="EventTyping" role="EventTyping" guid="{AA605240-771E-4f5b-9E71-919D0892B419}" derivedfrom="id-0068-00000031" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000053" kind="EventTyping" role="EventTyping" guid="{E8B71DAA-F3E8-4611-844F-77127371E943}" derivedfrom="id-0068-0000002f" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000054" kind="EventTyping" role="EventTyping" guid="{E8B71DAA-F3E8-4611-844F-77127371E943}" derivedfrom="id-0068-0000002f" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000054" kind="EventTyping" role="EventTyping" guid="{AA605240-771E-4f5b-9E71-919D0892B419}" derivedfrom="id-0068-00000031" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-00000055" kind="EventTyping" role="EventTyping" guid="{C0DC7AA4-C296-4169-8B92-9E5ADE143DD6}" relid="0x9">
@@ -4534,7 +4534,16 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000079" kind="SubscribePort" role="SubscribePort" guid="{EB814234-EE83-426e-9D64-DCFCE3A92A79}" derivedfrom="id-0066-00000065" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000079" kind="PublishPort" role="PublishPort" guid="{3071F827-EBA8-48e2-B3D6-BBAC1F04AE1F}" derivedfrom="id-0066-00000065" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000007a" kind="SubscribePort" role="SubscribePort" guid="{EB814234-EE83-426e-9D64-DCFCE3A92A79}" derivedfrom="id-0066-00000066" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -4555,15 +4564,6 @@
 						<value></value>
 					</attribute>
 					<attribute kind="Priority" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-0000007a" kind="PublishPort" role="PublishPort" guid="{3071F827-EBA8-48e2-B3D6-BBAC1F04AE1F}" derivedfrom="id-0066-00000066" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -4591,7 +4591,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000071" kind="Facet" role="Facet" guid="{C91B8CD1-F4F8-40fa-AB01-99E42DC870B3}" derivedfrom="id-0067-00000050" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000071" kind="Facet" role="Facet" guid="{C91B8CD1-F4F8-40fa-AB01-99E42DC870B3}" derivedfrom="id-0067-0000004e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -4600,13 +4600,13 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000072" kind="EventTypeRef" role="EventTypeRef" guid="{FC5FC278-FA23-44f1-994D-7D691FB8200C}" derivedfrom="id-0067-0000004f" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000072" kind="EventTypeRef" role="EventTypeRef" guid="{8F3A9543-65FE-43fc-9698-DAA1C81D5DB3}" derivedfrom="id-0067-0000004f" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000073" kind="EventTypeRef" role="EventTypeRef" guid="{8F3A9543-65FE-43fc-9698-DAA1C81D5DB3}" derivedfrom="id-0067-0000004e" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000073" kind="EventTypeRef" role="EventTypeRef" guid="{FC5FC278-FA23-44f1-994D-7D691FB8200C}" derivedfrom="id-0067-0000004d" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-00000074" kind="Facet" role="Facet" guid="{ED60C454-A606-4f02-8D85-5759FDC98036}" derivedfrom="id-0067-0000004d" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+				<reference id="id-0067-00000074" kind="Facet" role="Facet" guid="{ED60C454-A606-4f02-8D85-5759FDC98036}" derivedfrom="id-0067-00000050" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -4656,7 +4656,7 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-0000007c" kind="SubscribePort" role="SubscribePort" guid="{8F2FB51B-3F2C-4a8a-9F77-FCF222A54D46}" derivedfrom="id-0066-00000059" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000007c" kind="SubscribePort" role="SubscribePort" guid="{8F2FB51B-3F2C-4a8a-9F77-FCF222A54D46}" derivedfrom="id-0066-0000005a" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -4680,7 +4680,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000007d" kind="PublishPort" role="PublishPort" guid="{A731BB27-D064-4f57-81DE-44F7F5C299D4}" derivedfrom="id-0066-0000005a" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000007d" kind="PublishPort" role="PublishPort" guid="{A731BB27-D064-4f57-81DE-44F7F5C299D4}" derivedfrom="id-0066-00000059" isinstance="no" isprimary="no">
 					<name>ANY_pub</name>
 					<attribute kind="ConsumerType" status="meta">
 						<value>Full Channel</value>
@@ -4689,13 +4689,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000077" kind="EventTypeRef" role="EventTypeRef" guid="{2551FCB3-7B55-4ffd-A720-9F5ED010F121}" derivedfrom="id-0067-0000003d" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000078" kind="EventTypeRef" role="EventTypeRef" guid="{FF3C29D2-298C-4c5b-985F-020CB32579F0}" derivedfrom="id-0067-0000003e" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000079" kind="Facet" role="Facet" guid="{5148958A-8BBC-4a4b-9E76-1FF1D2D9DD9A}" derivedfrom="id-0067-0000003c" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+				<reference id="id-0067-00000077" kind="Facet" role="Facet" guid="{5148958A-8BBC-4a4b-9E76-1FF1D2D9DD9A}" derivedfrom="id-0067-0000003f" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -4704,7 +4698,7 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-0000007a" kind="Facet" role="Facet" guid="{654B9533-E474-4ef7-8A82-2CB6C09C8008}" derivedfrom="id-0067-0000003f" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000078" kind="Facet" role="Facet" guid="{654B9533-E474-4ef7-8A82-2CB6C09C8008}" derivedfrom="id-0067-0000003d" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -4712,6 +4706,12 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
+				</reference>
+				<reference id="id-0067-00000079" kind="EventTypeRef" role="EventTypeRef" guid="{FF3C29D2-298C-4c5b-985F-020CB32579F0}" derivedfrom="id-0067-0000003c" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-0000007a" kind="EventTypeRef" role="EventTypeRef" guid="{2551FCB3-7B55-4ffd-A720-9F5ED010F121}" derivedfrom="id-0067-0000003e" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-0000007b" kind="Receptacle" role="Receptacle" guid="{D435CAA1-7E8C-4330-96D7-15116275A32D}" relid="0x1" referred="id-0065-00000007">
 					<name>BM__ClosedComponent</name>
@@ -4746,7 +4746,31 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-0000007e" kind="SubscribePort" role="SubscribePort" guid="{9D6F201A-3E08-4787-812D-41A65E98BAA7}" derivedfrom="id-0066-00000065" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000007e" kind="PublishPort" role="PublishPort" guid="{3494C4F0-4355-47d7-8908-002690ADFC9C}" derivedfrom="id-0066-00000065" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Modes" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>580,209</value>
+							</regnode>
+						</regnode>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>650,55</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000007f" kind="SubscribePort" role="SubscribePort" guid="{9D6F201A-3E08-4787-812D-41A65E98BAA7}" derivedfrom="id-0066-00000066" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4785,30 +4809,6 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000007f" kind="PublishPort" role="PublishPort" guid="{3494C4F0-4355-47d7-8908-002690ADFC9C}" derivedfrom="id-0066-00000066" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Modes" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>580,209</value>
-							</regnode>
-						</regnode>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>650,55</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
 				<atom id="id-0066-00000080" kind="ModeTransition" role="ModeTransition" guid="{26BF88EB-200E-41c5-A097-0E00545D3867}" relid="0xa">
 					<name></name>
 					<regnode name="PartRegs" isopaque="yes">
@@ -4839,7 +4839,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000007c" kind="Facet" role="Facet" guid="{1A1BB7FF-D3BC-4428-BEFA-4BF226992109}" derivedfrom="id-0067-00000050" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000007c" kind="Facet" role="Facet" guid="{1A1BB7FF-D3BC-4428-BEFA-4BF226992109}" derivedfrom="id-0067-0000004e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4863,19 +4863,7 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-0000007d" kind="EventTypeRef" role="EventTypeRef" guid="{7FBAA95A-1C80-4d32-A685-40F7ADB37A25}" derivedfrom="id-0067-0000004f" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>218,196</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-0000007e" kind="EventTypeRef" role="EventTypeRef" guid="{5978F6E8-D3A4-412e-8192-3DD08814A231}" derivedfrom="id-0067-0000004e" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-0000007d" kind="EventTypeRef" role="EventTypeRef" guid="{5978F6E8-D3A4-412e-8192-3DD08814A231}" derivedfrom="id-0067-0000004f" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4887,7 +4875,19 @@
 						</regnode>
 					</regnode>
 				</reference>
-				<reference id="id-0067-0000007f" kind="Facet" role="Facet" guid="{9A9AC191-5A7A-49fa-B3AA-498BA25A76DB}" derivedfrom="id-0067-0000004d" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+				<reference id="id-0067-0000007e" kind="EventTypeRef" role="EventTypeRef" guid="{7FBAA95A-1C80-4d32-A685-40F7ADB37A25}" derivedfrom="id-0067-0000004d" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>218,196</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000007f" kind="Facet" role="Facet" guid="{9A9AC191-5A7A-49fa-B3AA-498BA25A76DB}" derivedfrom="id-0067-00000050" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 					<name>BM__OpenFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -4974,7 +4974,7 @@
 					<attribute kind="ConnSemantics" status="meta">
 						<value>guard</value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000007e"/>
+					<connpoint role="dst" target="id-0066-0000007f"/>
 					<connpoint role="src" target="id-0066-00000080"/>
 				</connection>
 				<set id="id-0069-0000000a" kind="Mode" role="Mode" guid="{A65E49E1-E94A-4175-AC95-F4C0EA7D4036}" relid="0x0">
@@ -5028,22 +5028,7 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-00000082" kind="ModeTransition" role="ModeTransition" guid="{9D94902E-60DD-455b-8399-CDB9321F9688}" derivedfrom="id-0066-00000080" isinstance="no" isprimary="no">
-					<name></name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Modes" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>239,120</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="TransitionTag" status="inherited">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000083" kind="SubscribePort" role="SubscribePort" guid="{2066B9B5-6673-4f89-BE01-FFC66C72AEC0}" derivedfrom="id-0066-0000007e" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000082" kind="SubscribePort" role="SubscribePort" guid="{2066B9B5-6673-4f89-BE01-FFC66C72AEC0}" derivedfrom="id-0066-0000007f" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5076,18 +5061,33 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000084" kind="PublishPort" role="PublishPort" guid="{DA6E5DAE-524A-4f09-BCD6-0D8C44765FF6}" derivedfrom="id-0066-0000007f" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000083" kind="ModeTransition" role="ModeTransition" guid="{9D94902E-60DD-455b-8399-CDB9321F9688}" derivedfrom="id-0066-00000080" isinstance="no" isprimary="no">
+					<name></name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Modes" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>239,120</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="TransitionTag" status="inherited">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000084" kind="ModeTransition" role="ModeTransition" guid="{DAD9CAFB-C7CC-474b-9C31-028C461A4141}" derivedfrom="id-0066-00000081" isinstance="no" isprimary="no">
+					<name></name>
+					<attribute kind="TransitionTag" status="inherited">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000085" kind="PublishPort" role="PublishPort" guid="{DA6E5DAE-524A-4f09-BCD6-0D8C44765FF6}" derivedfrom="id-0066-0000007e" isinstance="no" isprimary="no">
 					<name>ANY_pub</name>
 					<attribute kind="ConsumerType" status="meta">
 						<value>Full Channel</value>
 					</attribute>
 					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000085" kind="ModeTransition" role="ModeTransition" guid="{DAD9CAFB-C7CC-474b-9C31-028C461A4141}" derivedfrom="id-0066-00000081" isinstance="no" isprimary="no">
-					<name></name>
-					<attribute kind="TransitionTag" status="inherited">
 						<value></value>
 					</attribute>
 				</atom>
@@ -5154,19 +5154,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000081" kind="EventTypeRef" role="EventTypeRef" guid="{D593DCBA-4931-44d1-88FA-FED7D167890E}" derivedfrom="id-0067-0000007d" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000082" kind="Facet" role="Facet" guid="{15A4091F-B3FE-4dce-982B-BF519BCE41F5}" derivedfrom="id-0067-00000080" isinstance="no" isprimary="no" referred="id-0065-00000003" isbound="yes">
-					<name>BM__ModeChangeFunctionalFacet</name>
-					<attribute kind="DistributableRead" status="inherited">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DistributableWrite" status="inherited">
-						<value>false</value>
-					</attribute>
-				</reference>
-				<reference id="id-0067-00000083" kind="Facet" role="Facet" guid="{24C4E856-629F-4f1c-9CDF-EEF99F917160}" derivedfrom="id-0067-0000007f" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
+				<reference id="id-0067-00000081" kind="Facet" role="Facet" guid="{24C4E856-629F-4f1c-9CDF-EEF99F917160}" derivedfrom="id-0067-0000007f" isinstance="no" isprimary="no" referred="id-0065-00000005" isbound="yes">
 					<name>BM__OpenFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -5175,8 +5163,11 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000084" kind="Facet" role="Facet" guid="{E72AD429-8ED1-48f9-BB59-0B01D3E77A8E}" derivedfrom="id-0067-0000007c" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
-					<name>BM__ClosedFunctionalFacet</name>
+				<reference id="id-0067-00000082" kind="EventTypeRef" role="EventTypeRef" guid="{D593DCBA-4931-44d1-88FA-FED7D167890E}" derivedfrom="id-0067-0000007e" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000083" kind="Facet" role="Facet" guid="{15A4091F-B3FE-4dce-982B-BF519BCE41F5}" derivedfrom="id-0067-00000080" isinstance="no" isprimary="no" referred="id-0065-00000003" isbound="yes">
+					<name>BM__ModeChangeFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
 					</attribute>
@@ -5184,8 +5175,17 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-00000085" kind="EventTypeRef" role="EventTypeRef" guid="{174486EB-99F7-4c2d-97BA-9AAF9886DCA2}" derivedfrom="id-0067-0000007e" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-00000084" kind="EventTypeRef" role="EventTypeRef" guid="{174486EB-99F7-4c2d-97BA-9AAF9886DCA2}" derivedfrom="id-0067-0000007d" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000085" kind="Facet" role="Facet" guid="{E72AD429-8ED1-48f9-BB59-0B01D3E77A8E}" derivedfrom="id-0067-0000007c" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<name>BM__ClosedFunctionalFacet</name>
+					<attribute kind="DistributableRead" status="inherited">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DistributableWrite" status="inherited">
+						<value>false</value>
+					</attribute>
 				</reference>
 				<reference id="id-0067-00000086" kind="Receptacle" role="Receptacle" guid="{25D4675C-7F4D-47ba-B610-7C677203A75B}" relid="0x1" referred="id-0065-00000007">
 					<name>BM__ClosedComponent</name>
@@ -5208,32 +5208,32 @@
 				<connection isbound="yes" id="id-0068-00000063" kind="EventTyping" role="EventTyping" guid="{2ABBE08E-31E9-4fa3-A339-BC93F95C7E30}" derivedfrom="id-0068-0000005b" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000064" kind="TransConnDst" role="TransConnDst" guid="{F35799CB-D5F2-4fea-8F93-AE8F7D9B8A63}" derivedfrom="id-0068-00000061" isinstance="no" isprimary="no">
-					<name></name>
-				</connection>
-				<connection isbound="yes" id="id-0068-00000065" kind="GAConn" role="GAConn" guid="{DC0C1F0A-5489-472c-AEA4-C4EBD5CA4307}" derivedfrom="id-0068-0000005d" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000064" kind="GAConn" role="GAConn" guid="{19DE493A-6359-4130-9C62-CA1BC52ABC06}" derivedfrom="id-0068-00000062" isinstance="no" isprimary="no">
 					<name>GAConn</name>
-					<attribute kind="ConnSemantics" status="inherited">
-						<value>action</value>
+					<attribute kind="ConnSemantics" status="meta">
+						<value>guard</value>
 					</attribute>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000066" kind="TransConnDst" role="TransConnDst" guid="{2ABDD19E-7445-40d6-A342-DB3BE1EAA6AE}" derivedfrom="id-0068-0000005f" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000065" kind="TransConnDst" role="TransConnDst" guid="{F35799CB-D5F2-4fea-8F93-AE8F7D9B8A63}" derivedfrom="id-0068-00000061" isinstance="no" isprimary="no">
+					<name></name>
+				</connection>
+				<connection isbound="yes" id="id-0068-00000066" kind="TransConnSrc" role="TransConnSrc" guid="{5E4E2FD0-7525-4868-978E-83C7D1F96595}" derivedfrom="id-0068-0000005e" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-00000067" kind="TransConnSrc" role="TransConnSrc" guid="{B3685EAF-158F-4a23-A229-F901448994EA}" derivedfrom="id-0068-00000060" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000068" kind="TransConnSrc" role="TransConnSrc" guid="{5E4E2FD0-7525-4868-978E-83C7D1F96595}" derivedfrom="id-0068-0000005e" isinstance="no" isprimary="no">
-					<name></name>
+				<connection isbound="yes" id="id-0068-00000068" kind="GAConn" role="GAConn" guid="{DC0C1F0A-5489-472c-AEA4-C4EBD5CA4307}" derivedfrom="id-0068-0000005d" isinstance="no" isprimary="no">
+					<name>GAConn</name>
+					<attribute kind="ConnSemantics" status="inherited">
+						<value>action</value>
+					</attribute>
 				</connection>
 				<connection isbound="yes" id="id-0068-00000069" kind="EventTyping" role="EventTyping" guid="{8D0D9EED-05E7-4525-BA42-81C5629A272A}" derivedfrom="id-0068-0000005c" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000006a" kind="GAConn" role="GAConn" guid="{19DE493A-6359-4130-9C62-CA1BC52ABC06}" derivedfrom="id-0068-00000062" isinstance="no" isprimary="no">
-					<name>GAConn</name>
-					<attribute kind="ConnSemantics" status="meta">
-						<value>guard</value>
-					</attribute>
+				<connection isbound="yes" id="id-0068-0000006a" kind="TransConnDst" role="TransConnDst" guid="{2ABDD19E-7445-40d6-A342-DB3BE1EAA6AE}" derivedfrom="id-0068-0000005f" isinstance="no" isprimary="no">
+					<name></name>
 				</connection>
 				<connection id="id-0068-0000006b" kind="EventTyping" role="EventTyping" guid="{C4FF83F6-0179-42d9-B5CA-75FB30CEC3AD}" relid="0x4">
 					<name></name>
@@ -5380,7 +5380,10 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000088" kind="Facet" role="Facet" guid="{9D711A79-C0A4-416f-BC5E-BD0421032D19}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000088" kind="EventTypeRef" role="EventTypeRef" guid="{2F305CA6-9365-445a-A821-35E8E0FE5109}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000089" kind="Facet" role="Facet" guid="{9D711A79-C0A4-416f-BC5E-BD0421032D19}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -5388,9 +5391,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-00000089" kind="EventTypeRef" role="EventTypeRef" guid="{2F305CA6-9365-445a-A821-35E8E0FE5109}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-0000008a" kind="EventTypeRef" role="EventTypeRef" guid="{3C731CD1-027E-47b2-9B92-DF8CEC960C51}" relid="0x2">
 					<name>ANY_ref</name>
@@ -5489,7 +5489,10 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000008c" kind="Facet" role="Facet" guid="{934013F2-8143-40cd-9F54-B77263D054C5}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000008c" kind="EventTypeRef" role="EventTypeRef" guid="{BE577C66-B8F9-4849-B2E0-75CD5B5A02B4}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-0000008d" kind="Facet" role="Facet" guid="{934013F2-8143-40cd-9F54-B77263D054C5}" derivedfrom="id-0067-00000024" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -5497,9 +5500,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-0000008d" kind="EventTypeRef" role="EventTypeRef" guid="{BE577C66-B8F9-4849-B2E0-75CD5B5A02B4}" derivedfrom="id-0067-00000023" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-0000008e" kind="EventTypeRef" role="EventTypeRef" guid="{CCBD9F38-C0BD-427c-A5BA-2F4B26DCAEEE}" relid="0x2">
 					<name>ANY_ref</name>
@@ -5565,25 +5565,13 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000090" kind="ModeTransition" role="ModeTransition" guid="{B1CCEDEB-BEF1-4c74-95FF-46AC475F686B}" derivedfrom="id-0066-0000004d" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000090" kind="ModeTransition" role="ModeTransition" guid="{24D171FC-04A0-4334-8939-C77926DFF35A}" derivedfrom="id-0066-0000004c" isinstance="no" isprimary="no">
 					<name></name>
 					<attribute kind="TransitionTag" status="inherited">
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000091" kind="ModeTransition" role="ModeTransition" guid="{4B090246-C3FC-4f02-9150-CDAEB284289D}" derivedfrom="id-0066-0000004e" isinstance="no" isprimary="no">
-					<name></name>
-					<attribute kind="TransitionTag" status="inherited">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000092" kind="ModeTransition" role="ModeTransition" guid="{24D171FC-04A0-4334-8939-C77926DFF35A}" derivedfrom="id-0066-0000004c" isinstance="no" isprimary="no">
-					<name></name>
-					<attribute kind="TransitionTag" status="inherited">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-00000093" kind="SubscribePort" role="SubscribePort" guid="{BF3D45AB-31BD-4a03-9495-703C8EC863EA}" derivedfrom="id-0066-0000004b" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000091" kind="SubscribePort" role="SubscribePort" guid="{BF3D45AB-31BD-4a03-9495-703C8EC863EA}" derivedfrom="id-0066-0000004b" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -5604,6 +5592,18 @@
 						<value></value>
 					</attribute>
 					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000092" kind="ModeTransition" role="ModeTransition" guid="{B1CCEDEB-BEF1-4c74-95FF-46AC475F686B}" derivedfrom="id-0066-0000004d" isinstance="no" isprimary="no">
+					<name></name>
+					<attribute kind="TransitionTag" status="inherited">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000093" kind="ModeTransition" role="ModeTransition" guid="{4B090246-C3FC-4f02-9150-CDAEB284289D}" derivedfrom="id-0066-0000004e" isinstance="no" isprimary="no">
+					<name></name>
+					<attribute kind="TransitionTag" status="inherited">
 						<value></value>
 					</attribute>
 				</atom>
@@ -5649,10 +5649,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000090" kind="EventTypeRef" role="EventTypeRef" guid="{80C9D920-1BF3-4d4c-B976-90C045BDD7C0}" derivedfrom="id-0067-00000027" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000091" kind="Facet" role="Facet" guid="{7FC89D8B-78D1-460e-93BD-2FA84E449368}" derivedfrom="id-0067-00000028" isinstance="no" isprimary="no" referred="id-0065-00000009" isbound="yes">
+				<reference id="id-0067-00000090" kind="Facet" role="Facet" guid="{7FC89D8B-78D1-460e-93BD-2FA84E449368}" derivedfrom="id-0067-00000028" isinstance="no" isprimary="no" referred="id-0065-00000009" isbound="yes">
 					<name>BM1__ActivationFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -5660,6 +5657,9 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
+				</reference>
+				<reference id="id-0067-00000091" kind="EventTypeRef" role="EventTypeRef" guid="{80C9D920-1BF3-4d4c-B976-90C045BDD7C0}" derivedfrom="id-0067-00000027" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-00000092" kind="EventTypeRef" role="EventTypeRef" guid="{72AC153A-3AC5-49a1-B2D0-99D5C5B3E6FD}" derivedfrom="id-0067-00000029" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
@@ -5676,28 +5676,28 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000076" kind="TransConnSrc" role="TransConnSrc" guid="{B7317AA9-1589-4526-BE4F-5D21C21D8973}" derivedfrom="id-0068-00000022" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000076" kind="TransConnSrc" role="TransConnSrc" guid="{D0361161-F401-4c2a-B5F7-874331EEFBDD}" derivedfrom="id-0068-00000026" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000077" kind="TransConnSrc" role="TransConnSrc" guid="{CE0A194B-7596-4e6e-98BD-7F0D34D4EAE9}" derivedfrom="id-0068-00000028" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000077" kind="EventTyping" role="EventTyping" guid="{20BE4FC8-1AED-45af-B189-A799C827E268}" derivedfrom="id-0068-00000024" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000078" kind="TransConnDst" role="TransConnDst" guid="{9D019DC1-369F-4fb4-B101-B5DD8FDFDB10}" derivedfrom="id-0068-00000023" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000078" kind="TransConnDst" role="TransConnDst" guid="{B2495238-D6D0-4578-B209-CD15AEE9B5EF}" derivedfrom="id-0068-00000025" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000079" kind="TransConnDst" role="TransConnDst" guid="{B2495238-D6D0-4578-B209-CD15AEE9B5EF}" derivedfrom="id-0068-00000025" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000079" kind="TransConnDst" role="TransConnDst" guid="{99798274-D425-4b67-A0AA-5E8230DE674B}" derivedfrom="id-0068-00000027" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000007a" kind="EventTyping" role="EventTyping" guid="{5E769FA4-24C8-4099-98D4-F39E727F838A}" derivedfrom="id-0068-00000021" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000007a" kind="TransConnSrc" role="TransConnSrc" guid="{CE0A194B-7596-4e6e-98BD-7F0D34D4EAE9}" derivedfrom="id-0068-00000028" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000007b" kind="TransConnSrc" role="TransConnSrc" guid="{D0361161-F401-4c2a-B5F7-874331EEFBDD}" derivedfrom="id-0068-00000026" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000007b" kind="EventTyping" role="EventTyping" guid="{5E769FA4-24C8-4099-98D4-F39E727F838A}" derivedfrom="id-0068-00000021" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000007c" kind="EventTyping" role="EventTyping" guid="{20BE4FC8-1AED-45af-B189-A799C827E268}" derivedfrom="id-0068-00000024" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000007c" kind="TransConnDst" role="TransConnDst" guid="{9D019DC1-369F-4fb4-B101-B5DD8FDFDB10}" derivedfrom="id-0068-00000023" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000007d" kind="TransConnDst" role="TransConnDst" guid="{99798274-D425-4b67-A0AA-5E8230DE674B}" derivedfrom="id-0068-00000027" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000007d" kind="TransConnSrc" role="TransConnSrc" guid="{B7317AA9-1589-4526-BE4F-5D21C21D8973}" derivedfrom="id-0068-00000022" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-0000007e" kind="EventTyping" role="EventTyping" guid="{7F711478-0AD9-42c0-BCBC-AE06A2A26EAD}" relid="0x4">
@@ -5735,14 +5735,14 @@
 					<connpoint role="src" target="id-0066-00000097"/>
 					<connpoint role="dst" target="id-0069-00000013"/>
 				</connection>
-				<set id="id-0069-00000010" kind="Mode" role="Mode" guid="{E5F69B22-6824-4840-BD71-67E460EF923B}" derivedfrom="id-0069-00000005" isinstance="no" isprimary="no" isbound="yes">
-					<name>NonActive</name>
+				<set id="id-0069-00000010" kind="Mode" role="Mode" guid="{A608B4F3-02B3-487b-848D-D98B3C3652F5}" derivedfrom="id-0069-00000004" isinstance="no" isprimary="no" isbound="yes">
+					<name>Active</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
 				</set>
-				<set id="id-0069-00000011" kind="Mode" role="Mode" guid="{A608B4F3-02B3-487b-848D-D98B3C3652F5}" derivedfrom="id-0069-00000004" isinstance="no" isprimary="no" isbound="yes">
-					<name>Active</name>
+				<set id="id-0069-00000011" kind="Mode" role="Mode" guid="{E5F69B22-6824-4840-BD71-67E460EF923B}" derivedfrom="id-0069-00000005" isinstance="no" isprimary="no" isbound="yes">
+					<name>NonActive</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
@@ -5789,7 +5789,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000099" kind="SubscribePort" role="SubscribePort" guid="{13789107-519A-4c11-951C-2698EF11B603}" derivedfrom="id-0066-0000005b" isinstance="no" isprimary="no">
+				<atom id="id-0066-00000099" kind="SubscribePort" role="SubscribePort" guid="{C9240A95-CFED-42a3-A03D-066FACBD386B}" derivedfrom="id-0066-0000005d" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -5813,7 +5813,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000009a" kind="SubscribePort" role="SubscribePort" guid="{C9240A95-CFED-42a3-A03D-066FACBD386B}" derivedfrom="id-0066-0000005d" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000009a" kind="SubscribePort" role="SubscribePort" guid="{13789107-519A-4c11-951C-2698EF11B603}" derivedfrom="id-0066-0000005b" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
@@ -5861,16 +5861,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-00000095" kind="EventTypeRef" role="EventTypeRef" guid="{6407043A-663E-4031-9A3D-A20CD7D02366}" derivedfrom="id-0067-00000042" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000096" kind="EventTypeRef" role="EventTypeRef" guid="{70B4521F-5418-410d-B4FC-FF184FC9052E}" derivedfrom="id-0067-00000041" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000097" kind="EventTypeRef" role="EventTypeRef" guid="{5D3043C1-CEE4-4b4a-B00A-5E7B6885E8DA}" derivedfrom="id-0067-00000043" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-00000098" kind="Facet" role="Facet" guid="{5EF1B28D-1741-48a5-93D4-3873646E7708}" derivedfrom="id-0067-00000040" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-00000095" kind="Facet" role="Facet" guid="{5EF1B28D-1741-48a5-93D4-3873646E7708}" derivedfrom="id-0067-00000041" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -5879,16 +5870,25 @@
 						<value>false</value>
 					</attribute>
 				</reference>
+				<reference id="id-0067-00000096" kind="EventTypeRef" role="EventTypeRef" guid="{6407043A-663E-4031-9A3D-A20CD7D02366}" derivedfrom="id-0067-00000042" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000097" kind="EventTypeRef" role="EventTypeRef" guid="{5D3043C1-CEE4-4b4a-B00A-5E7B6885E8DA}" derivedfrom="id-0067-00000043" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-00000098" kind="EventTypeRef" role="EventTypeRef" guid="{70B4521F-5418-410d-B4FC-FF184FC9052E}" derivedfrom="id-0067-00000040" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
 				<reference id="id-0067-00000099" kind="EventTypeRef" role="EventTypeRef" guid="{1D549C15-EC91-4a83-809F-66BAF4A49D85}" relid="0x2">
 					<name>ANY_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000085" kind="EventTyping" role="EventTyping" guid="{91FA45DE-CBCF-4201-BC30-FFAF79CB6160}" derivedfrom="id-0068-00000036" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000085" kind="EventTyping" role="EventTyping" guid="{17A3969A-EEFE-41f9-9E77-C53659DABD06}" derivedfrom="id-0068-00000035" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-00000086" kind="EventTyping" role="EventTyping" guid="{B942EC2E-77F2-4c64-8CED-BDDF777E3467}" derivedfrom="id-0068-00000034" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000087" kind="EventTyping" role="EventTyping" guid="{17A3969A-EEFE-41f9-9E77-C53659DABD06}" derivedfrom="id-0068-00000035" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000087" kind="EventTyping" role="EventTyping" guid="{91FA45DE-CBCF-4201-BC30-FFAF79CB6160}" derivedfrom="id-0068-00000036" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-00000088" kind="EventTyping" role="EventTyping" guid="{E502461B-D6CA-456f-94B5-81A897137F1C}" relid="0x3">
@@ -5917,7 +5917,40 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-0000009c" kind="SubscribePort" role="SubscribePort" guid="{C095A1E8-C79A-40f3-94F1-3700F2742E6C}" derivedfrom="id-0066-0000006a" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000009c" kind="SubscribePort" role="SubscribePort" guid="{63D729B7-01A9-4137-BDAA-FFCF605001A4}" derivedfrom="id-0066-0000006b" isinstance="no" isprimary="no">
+					<name>Interval Timeout_sub</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Modes" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>13,139</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Asynchronous" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Criticality" status="meta">
+						<value>MEDIUM_CRITICALITY</value>
+					</attribute>
+					<attribute kind="Deadline" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="EventCorrelation" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000009d" kind="SubscribePort" role="SubscribePort" guid="{C095A1E8-C79A-40f3-94F1-3700F2742E6C}" derivedfrom="id-0066-0000006a" isinstance="no" isprimary="no">
 					<name>ANY_sub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5950,7 +5983,7 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000009d" kind="PublishPort" role="PublishPort" guid="{0747E9AB-A480-4bde-8D62-46CDB226DCA4}" derivedfrom="id-0066-0000006c" isinstance="no" isprimary="no">
+				<atom id="id-0066-0000009e" kind="PublishPort" role="PublishPort" guid="{0747E9AB-A480-4bde-8D62-46CDB226DCA4}" derivedfrom="id-0066-0000006c" isinstance="no" isprimary="no">
 					<name>ANY_pub</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -5965,39 +5998,6 @@
 						<value>Full Channel</value>
 					</attribute>
 					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-0000009e" kind="SubscribePort" role="SubscribePort" guid="{63D729B7-01A9-4137-BDAA-FFCF605001A4}" derivedfrom="id-0066-0000006b" isinstance="no" isprimary="no">
-					<name>Interval Timeout_sub</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Modes" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>13,139</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="Asynchronous" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Criticality" status="meta">
-						<value>MEDIUM_CRITICALITY</value>
-					</attribute>
-					<attribute kind="Deadline" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="EventCorrelation" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -6082,10 +6082,7 @@
 				<reference id="id-0067-0000009a" kind="EventTypeRef" role="EventTypeRef" guid="{33944F79-B533-4dcb-B0BF-1D2E4184C831}" derivedfrom="id-0067-0000005b" isinstance="no" isprimary="no" referred="id-0065-00000001" isbound="yes">
 					<name>Interval Timeout_ref</name>
 				</reference>
-				<reference id="id-0067-0000009b" kind="EventTypeRef" role="EventTypeRef" guid="{7F72E11B-5CF0-40a5-B7B0-502C072B0736}" derivedfrom="id-0067-0000005c" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-0000009c" kind="Facet" role="Facet" guid="{DF547CC9-D931-4365-96A4-F936DC1D6DA6}" derivedfrom="id-0067-00000059" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000009b" kind="Facet" role="Facet" guid="{DF547CC9-D931-4365-96A4-F936DC1D6DA6}" derivedfrom="id-0067-0000005a" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6103,19 +6100,22 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-0000009d" kind="EventTypeRef" role="EventTypeRef" guid="{78AEADC2-3B42-4ea1-882C-CA2C5C56EDF3}" derivedfrom="id-0067-0000005a" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-0000009c" kind="EventTypeRef" role="EventTypeRef" guid="{7F72E11B-5CF0-40a5-B7B0-502C072B0736}" derivedfrom="id-0067-0000005c" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-0000009d" kind="EventTypeRef" role="EventTypeRef" guid="{78AEADC2-3B42-4ea1-882C-CA2C5C56EDF3}" derivedfrom="id-0067-00000059" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-0000009e" kind="EventTypeRef" role="EventTypeRef" guid="{4FB6FAAE-B8E8-4cbf-824D-93851DF3420B}" relid="0x2" referred="id-0065-00000001">
 					<name>Interval Timeout_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000089" kind="EventTyping" role="EventTyping" guid="{DA1EA7B0-8E1F-4b2f-8610-4199697E5812}" derivedfrom="id-0068-00000047" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000089" kind="EventTyping" role="EventTyping" guid="{2CF9C86B-676D-4b24-9363-A9F51A3A2E16}" derivedfrom="id-0068-00000049" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-0000008a" kind="EventTyping" role="EventTyping" guid="{758C60CA-086F-4334-8021-014FBC629306}" derivedfrom="id-0068-00000048" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-0000008b" kind="EventTyping" role="EventTyping" guid="{2CF9C86B-676D-4b24-9363-A9F51A3A2E16}" derivedfrom="id-0068-00000049" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-0000008b" kind="EventTyping" role="EventTyping" guid="{DA1EA7B0-8E1F-4b2f-8610-4199697E5812}" derivedfrom="id-0068-00000047" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-0000008c" kind="TransConnDst" role="TransConnDst" guid="{EE2DE853-1BFC-4e64-ACA8-9CCA6EA1B65A}" relid="0xf">
@@ -6137,7 +6137,7 @@
 						<value>action</value>
 					</attribute>
 					<connpoint role="src" target="id-0066-000000a0"/>
-					<connpoint role="dst" target="id-0067-0000009c"/>
+					<connpoint role="dst" target="id-0067-0000009b"/>
 				</connection>
 				<connection id="id-0068-0000008f" kind="TransConnSrc" role="TransConnSrc" guid="{F099CB50-A07F-49b0-8146-39E50F755BC1}" relid="0x8">
 					<name></name>
@@ -6316,7 +6316,10 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-0000009f" kind="Facet" role="Facet" guid="{E2555166-3AE6-4a99-8696-BF585186DF8C}" derivedfrom="id-0067-0000008c" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-0000009f" kind="EventTypeRef" role="EventTypeRef" guid="{850C7A37-8828-4f66-A90B-E7AB5C0E111F}" derivedfrom="id-0067-0000008f" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-000000a0" kind="Facet" role="Facet" guid="{E2555166-3AE6-4a99-8696-BF585186DF8C}" derivedfrom="id-0067-0000008d" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -6325,25 +6328,22 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-000000a0" kind="EventTypeRef" role="EventTypeRef" guid="{9CECC540-7A4F-4926-AEBC-394502AD32D7}" derivedfrom="id-0067-0000008e" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-000000a1" kind="EventTypeRef" role="EventTypeRef" guid="{D545C4E8-5A0D-4ac0-85A1-3A2EDE026A3D}" derivedfrom="id-0067-0000008c" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-000000a1" kind="EventTypeRef" role="EventTypeRef" guid="{850C7A37-8828-4f66-A90B-E7AB5C0E111F}" derivedfrom="id-0067-0000008f" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-000000a2" kind="EventTypeRef" role="EventTypeRef" guid="{D545C4E8-5A0D-4ac0-85A1-3A2EDE026A3D}" derivedfrom="id-0067-0000008d" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-000000a2" kind="EventTypeRef" role="EventTypeRef" guid="{9CECC540-7A4F-4926-AEBC-394502AD32D7}" derivedfrom="id-0067-0000008e" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-000000a3" kind="EventTypeRef" role="EventTypeRef" guid="{A0959B97-B2A2-43ea-83A3-D4A3BE9D8006}" relid="0x2">
 					<name>ANY_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-00000095" kind="EventTyping" role="EventTyping" guid="{EC84EC48-5EB2-4a1d-82E1-7D68B36847E3}" derivedfrom="id-0068-00000074" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000095" kind="EventTyping" role="EventTyping" guid="{91E0B7A4-4848-4109-80D1-860E3C2ED10B}" derivedfrom="id-0068-00000073" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000096" kind="EventTyping" role="EventTyping" guid="{B0C90257-13B5-412c-A7CD-2BD5A02BBE5A}" derivedfrom="id-0068-00000075" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000096" kind="EventTyping" role="EventTyping" guid="{EC84EC48-5EB2-4a1d-82E1-7D68B36847E3}" derivedfrom="id-0068-00000074" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-00000097" kind="EventTyping" role="EventTyping" guid="{91E0B7A4-4848-4109-80D1-860E3C2ED10B}" derivedfrom="id-0068-00000073" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-00000097" kind="EventTyping" role="EventTyping" guid="{B0C90257-13B5-412c-A7CD-2BD5A02BBE5A}" derivedfrom="id-0068-00000075" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-00000098" kind="EventTyping" role="EventTyping" guid="{DE166FB0-61E6-4235-8228-42992B9F8C43}" relid="0x3">
@@ -6555,31 +6555,7 @@
 						</regnode>
 					</regnode>
 				</atom>
-				<reference id="id-0067-000000a4" kind="EventTypeRef" role="EventTypeRef" guid="{E0C86B87-B322-45bc-8F6D-EDC8AFA5F410}" derivedfrom="id-0067-0000005e" isinstance="no" isprimary="no" referred="id-0065-00000002">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>143,271</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-000000a5" kind="EventTypeRef" role="EventTypeRef" guid="{7B59F187-EA11-478f-B733-0B623353C73B}" derivedfrom="id-0067-0000005f" isinstance="no" isprimary="no" referred="id-0065-00000002">
-					<name>ANY_ref</name>
-					<regnode name="PartRegs" isopaque="yes">
-						<value></value>
-						<regnode name="Structure" isopaque="yes">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>304,320</value>
-							</regnode>
-						</regnode>
-					</regnode>
-				</reference>
-				<reference id="id-0067-000000a6" kind="Facet" role="Facet" guid="{76B5653B-2D47-404d-843E-C0CB808AF047}" derivedfrom="id-0067-0000005d" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-000000a4" kind="Facet" role="Facet" guid="{76B5653B-2D47-404d-843E-C0CB808AF047}" derivedfrom="id-0067-0000005e" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<regnode name="PartRegs" isopaque="yes">
 						<value></value>
@@ -6608,6 +6584,30 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
+				</reference>
+				<reference id="id-0067-000000a5" kind="EventTypeRef" role="EventTypeRef" guid="{E0C86B87-B322-45bc-8F6D-EDC8AFA5F410}" derivedfrom="id-0067-0000005d" isinstance="no" isprimary="no" referred="id-0065-00000002">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>143,271</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-000000a6" kind="EventTypeRef" role="EventTypeRef" guid="{7B59F187-EA11-478f-B733-0B623353C73B}" derivedfrom="id-0067-0000005f" isinstance="no" isprimary="no" referred="id-0065-00000002">
+					<name>ANY_ref</name>
+					<regnode name="PartRegs" isopaque="yes">
+						<value></value>
+						<regnode name="Structure" isopaque="yes">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>304,320</value>
+							</regnode>
+						</regnode>
+					</regnode>
 				</reference>
 				<reference id="id-0067-000000a7" kind="Receptacle" role="Receptacle" guid="{72D0129D-FA8E-43be-9036-6E6AA43C9FD0}" relid="0x5" referred="id-0065-00000008">
 					<name>BM__ClosedFunctionalFacetInterface</name>
@@ -6719,7 +6719,7 @@
 					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000012" refs="id-0067-000000a6"/>
+					<connpoint role="src" target="id-0066-00000012" refs="id-0067-000000a4"/>
 					<connpoint role="dst" target="id-0066-000000aa"/>
 				</connection>
 				<connection id="id-0068-0000009f" kind="MethodIdentifier" role="MethodIdentifier" guid="{DFDF79D4-75E6-46db-9B94-3234D71A19DF}" relid="0x18">
@@ -6756,60 +6756,60 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-000000ae" kind="SubscribePort" role="SubscribePort" guid="{F316F608-493F-4520-8BC8-73EF4D842153}" derivedfrom="id-0066-00000089" isinstance="no" isprimary="no">
-					<name>ANY_sub</name>
-					<attribute kind="Asynchronous" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Criticality" status="meta">
-						<value>MEDIUM_CRITICALITY</value>
-					</attribute>
-					<attribute kind="Deadline" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="EventCorrelation" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="Priority" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-000000af" kind="SubscribePort" role="SubscribePort" guid="{5F9863AB-804F-499f-B89B-88402CC4C38A}" derivedfrom="id-0066-0000008a" isinstance="no" isprimary="no">
-					<name>ANY_sub</name>
-					<attribute kind="Asynchronous" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Criticality" status="meta">
-						<value>MEDIUM_CRITICALITY</value>
-					</attribute>
-					<attribute kind="Deadline" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="EventCorrelation" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="Priority" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-000000b0" kind="PublishPort" role="PublishPort" guid="{DBDFA5A2-522C-45fe-9A07-0B266547D66D}" derivedfrom="id-0066-0000008b" isinstance="no" isprimary="no">
+				<atom id="id-0066-000000ae" kind="PublishPort" role="PublishPort" guid="{DBDFA5A2-522C-45fe-9A07-0B266547D66D}" derivedfrom="id-0066-0000008b" isinstance="no" isprimary="no">
 					<name>ANY_pub</name>
 					<attribute kind="ConsumerType" status="meta">
 						<value>Full Channel</value>
 					</attribute>
 					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-000000af" kind="SubscribePort" role="SubscribePort" guid="{F316F608-493F-4520-8BC8-73EF4D842153}" derivedfrom="id-0066-00000089" isinstance="no" isprimary="no">
+					<name>ANY_sub</name>
+					<attribute kind="Asynchronous" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Criticality" status="meta">
+						<value>MEDIUM_CRITICALITY</value>
+					</attribute>
+					<attribute kind="Deadline" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="EventCorrelation" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-000000b0" kind="SubscribePort" role="SubscribePort" guid="{5F9863AB-804F-499f-B89B-88402CC4C38A}" derivedfrom="id-0066-0000008a" isinstance="no" isprimary="no">
+					<name>ANY_sub</name>
+					<attribute kind="Asynchronous" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Criticality" status="meta">
+						<value>MEDIUM_CRITICALITY</value>
+					</attribute>
+					<attribute kind="Deadline" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="EventCorrelation" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Priority" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -6837,13 +6837,16 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-000000a8" kind="EventTypeRef" role="EventTypeRef" guid="{D60824AC-D4BD-41f7-A689-F263B53939B4}" derivedfrom="id-0067-00000089" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-000000a8" kind="EventTypeRef" role="EventTypeRef" guid="{7424CA8C-236E-4e4c-B68F-675FB5075B6C}" derivedfrom="id-0067-0000008a" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-000000a9" kind="EventTypeRef" role="EventTypeRef" guid="{7424CA8C-236E-4e4c-B68F-675FB5075B6C}" derivedfrom="id-0067-0000008a" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-000000a9" kind="EventTypeRef" role="EventTypeRef" guid="{EDD26DD7-0869-43c6-AC05-295A51F835C0}" derivedfrom="id-0067-0000008b" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-000000aa" kind="Facet" role="Facet" guid="{47F899B0-AFCA-40ca-BFB9-58C2A893C5A9}" derivedfrom="id-0067-00000088" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-000000aa" kind="EventTypeRef" role="EventTypeRef" guid="{D60824AC-D4BD-41f7-A689-F263B53939B4}" derivedfrom="id-0067-00000088" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
+				</reference>
+				<reference id="id-0067-000000ab" kind="Facet" role="Facet" guid="{47F899B0-AFCA-40ca-BFB9-58C2A893C5A9}" derivedfrom="id-0067-00000089" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -6851,9 +6854,6 @@
 					<attribute kind="DistributableWrite" status="inherited">
 						<value>false</value>
 					</attribute>
-				</reference>
-				<reference id="id-0067-000000ab" kind="EventTypeRef" role="EventTypeRef" guid="{EDD26DD7-0869-43c6-AC05-295A51F835C0}" derivedfrom="id-0067-0000008b" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-000000ac" kind="Receptacle" role="Receptacle" guid="{8D0588D3-FEB5-4457-900B-FBB68E20F620}" relid="0x1" referred="id-0065-00000007">
 					<name>BM__ClosedComponent</name>
@@ -6864,13 +6864,13 @@
 				<reference id="id-0067-000000ad" kind="EventTypeRef" role="EventTypeRef" guid="{FCB129B9-B789-4117-A72D-39C481B10473}" relid="0x3">
 					<name>ANY_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-000000a1" kind="EventTyping" role="EventTyping" guid="{109F2201-2592-4d8d-BB13-C6E1EB31D1DE}" derivedfrom="id-0068-00000072" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a1" kind="EventTyping" role="EventTyping" guid="{DA55EBAD-2FC4-42ad-AD3E-7E14D3784565}" derivedfrom="id-0068-00000071" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection isbound="yes" id="id-0068-000000a2" kind="EventTyping" role="EventTyping" guid="{56AE57DB-C0D7-4af5-ABB1-73005081C6E4}" derivedfrom="id-0068-00000070" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000a3" kind="EventTyping" role="EventTyping" guid="{DA55EBAD-2FC4-42ad-AD3E-7E14D3784565}" derivedfrom="id-0068-00000071" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a3" kind="EventTyping" role="EventTyping" guid="{109F2201-2592-4d8d-BB13-C6E1EB31D1DE}" derivedfrom="id-0068-00000072" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-000000a4" kind="EventTyping" role="EventTyping" guid="{A4DDFABA-E1B0-489a-A73F-DA7BB0F78A49}" relid="0x4">
@@ -6899,23 +6899,8 @@
 				<attribute kind="PRISM_ID" status="meta">
 					<value></value>
 				</attribute>
-				<atom id="id-0066-000000b2" kind="PublishPort" role="PublishPort" guid="{A8A5C28C-81D5-4a66-8367-5E548EC74681}" derivedfrom="id-0066-0000009d" isinstance="no" isprimary="no">
-					<name>ANY_pub</name>
-					<attribute kind="ConsumerType" status="meta">
-						<value>Full Channel</value>
-					</attribute>
-					<attribute kind="Period" status="meta">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-000000b3" kind="ModeTransition" role="ModeTransition" guid="{05EBCF07-1F43-41dd-A527-2430A018D525}" derivedfrom="id-0066-000000a0" isinstance="no" isprimary="no">
-					<name></name>
-					<attribute kind="TransitionTag" status="inherited">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-000000b4" kind="SubscribePort" role="SubscribePort" guid="{BA53BDB0-8524-4b9e-AF9F-FF0C1D122BE0}" derivedfrom="id-0066-0000009e" isinstance="no" isprimary="no">
-					<name>Interval Timeout_sub</name>
+				<atom id="id-0066-000000b2" kind="SubscribePort" role="SubscribePort" guid="{3086CFD7-BD59-4899-BA21-848D49D3CCD9}" derivedfrom="id-0066-0000009d" isinstance="no" isprimary="no">
+					<name>ANY_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
 					</attribute>
@@ -6935,6 +6920,21 @@
 						<value></value>
 					</attribute>
 					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-000000b3" kind="ModeTransition" role="ModeTransition" guid="{95EA6677-98BB-477b-9018-54FACC6A6EC5}" derivedfrom="id-0066-000000a1" isinstance="no" isprimary="no">
+					<name></name>
+					<attribute kind="TransitionTag" status="inherited">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-000000b4" kind="PublishPort" role="PublishPort" guid="{A8A5C28C-81D5-4a66-8367-5E548EC74681}" derivedfrom="id-0066-0000009e" isinstance="no" isprimary="no">
+					<name>ANY_pub</name>
+					<attribute kind="ConsumerType" status="meta">
+						<value>Full Channel</value>
+					</attribute>
+					<attribute kind="Period" status="meta">
 						<value></value>
 					</attribute>
 				</atom>
@@ -6962,20 +6962,14 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-000000b6" kind="ModeTransition" role="ModeTransition" guid="{CC64BD15-9C10-4ae1-9C99-6BF87ED160C0}" derivedfrom="id-0066-000000a2" isinstance="no" isprimary="no">
+				<atom id="id-0066-000000b6" kind="ModeTransition" role="ModeTransition" guid="{05EBCF07-1F43-41dd-A527-2430A018D525}" derivedfrom="id-0066-000000a0" isinstance="no" isprimary="no">
 					<name></name>
 					<attribute kind="TransitionTag" status="inherited">
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-000000b7" kind="ModeTransition" role="ModeTransition" guid="{95EA6677-98BB-477b-9018-54FACC6A6EC5}" derivedfrom="id-0066-000000a1" isinstance="no" isprimary="no">
-					<name></name>
-					<attribute kind="TransitionTag" status="inherited">
-						<value></value>
-					</attribute>
-				</atom>
-				<atom id="id-0066-000000b8" kind="SubscribePort" role="SubscribePort" guid="{3086CFD7-BD59-4899-BA21-848D49D3CCD9}" derivedfrom="id-0066-0000009c" isinstance="no" isprimary="no">
-					<name>ANY_sub</name>
+				<atom id="id-0066-000000b7" kind="SubscribePort" role="SubscribePort" guid="{BA53BDB0-8524-4b9e-AF9F-FF0C1D122BE0}" derivedfrom="id-0066-0000009c" isinstance="no" isprimary="no">
+					<name>Interval Timeout_sub</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
 					</attribute>
@@ -6995,6 +6989,12 @@
 						<value></value>
 					</attribute>
 					<attribute kind="Priority" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-000000b8" kind="ModeTransition" role="ModeTransition" guid="{CC64BD15-9C10-4ae1-9C99-6BF87ED160C0}" derivedfrom="id-0066-000000a2" isinstance="no" isprimary="no">
+					<name></name>
+					<attribute kind="TransitionTag" status="inherited">
 						<value></value>
 					</attribute>
 				</atom>
@@ -7040,13 +7040,10 @@
 						<value></value>
 					</attribute>
 				</atom>
-				<reference id="id-0067-000000ae" kind="EventTypeRef" role="EventTypeRef" guid="{D7FAABCD-62F9-4a8f-9542-79EEEA571307}" derivedfrom="id-0067-0000009a" isinstance="no" isprimary="no" referred="id-0065-00000001" isbound="yes">
-					<name>Interval Timeout_ref</name>
-				</reference>
-				<reference id="id-0067-000000af" kind="EventTypeRef" role="EventTypeRef" guid="{1E0C21A2-83AD-420c-BA58-5B09591888AF}" derivedfrom="id-0067-0000009d" isinstance="no" isprimary="no" isbound="yes">
+				<reference id="id-0067-000000ae" kind="EventTypeRef" role="EventTypeRef" guid="{254F1F20-F644-448a-ADA2-0721A7960DC2}" derivedfrom="id-0067-0000009c" isinstance="no" isprimary="no" isbound="yes">
 					<name>ANY_ref</name>
 				</reference>
-				<reference id="id-0067-000000b0" kind="Facet" role="Facet" guid="{9284D267-367A-4138-A8BA-8292B1E87EB5}" derivedfrom="id-0067-0000009c" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
+				<reference id="id-0067-000000af" kind="Facet" role="Facet" guid="{9284D267-367A-4138-A8BA-8292B1E87EB5}" derivedfrom="id-0067-0000009b" isinstance="no" isprimary="no" referred="id-0065-00000008" isbound="yes">
 					<name>BM__ClosedFunctionalFacet</name>
 					<attribute kind="DistributableRead" status="inherited">
 						<value>false</value>
@@ -7055,55 +7052,58 @@
 						<value>false</value>
 					</attribute>
 				</reference>
-				<reference id="id-0067-000000b1" kind="EventTypeRef" role="EventTypeRef" guid="{254F1F20-F644-448a-ADA2-0721A7960DC2}" derivedfrom="id-0067-0000009b" isinstance="no" isprimary="no" isbound="yes">
-					<name>ANY_ref</name>
-				</reference>
-				<reference id="id-0067-000000b2" kind="EventTypeRef" role="EventTypeRef" guid="{207287EC-BDB9-411a-A870-6B04B65FF0A9}" derivedfrom="id-0067-0000009e" isinstance="no" isprimary="no" referred="id-0065-00000001" isbound="yes">
+				<reference id="id-0067-000000b0" kind="EventTypeRef" role="EventTypeRef" guid="{207287EC-BDB9-411a-A870-6B04B65FF0A9}" derivedfrom="id-0067-0000009e" isinstance="no" isprimary="no" referred="id-0065-00000001" isbound="yes">
 					<name>Interval Timeout_ref</name>
+				</reference>
+				<reference id="id-0067-000000b1" kind="EventTypeRef" role="EventTypeRef" guid="{D7FAABCD-62F9-4a8f-9542-79EEEA571307}" derivedfrom="id-0067-0000009a" isinstance="no" isprimary="no" referred="id-0065-00000001" isbound="yes">
+					<name>Interval Timeout_ref</name>
+				</reference>
+				<reference id="id-0067-000000b2" kind="EventTypeRef" role="EventTypeRef" guid="{1E0C21A2-83AD-420c-BA58-5B09591888AF}" derivedfrom="id-0067-0000009d" isinstance="no" isprimary="no" isbound="yes">
+					<name>ANY_ref</name>
 				</reference>
 				<reference id="id-0067-000000b3" kind="EventTypeRef" role="EventTypeRef" guid="{41CE2F6E-6570-4109-932F-05B32F998F66}" relid="0x2" referred="id-0065-00000001">
 					<name>Interval Timeout_ref</name>
 				</reference>
-				<connection isbound="yes" id="id-0068-000000a5" kind="EventTyping" role="EventTyping" guid="{6E71EF4F-356C-441e-AAD4-1F899F43B308}" derivedfrom="id-0068-0000008a" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a5" kind="TransConnSrc" role="TransConnSrc" guid="{57BBD08B-5A0A-4fc3-BEA8-83584C82B7A6}" derivedfrom="id-0068-00000091" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000a6" kind="TransConnDst" role="TransConnDst" guid="{6F6525D6-6E20-42df-9E63-A475D69BF704}" derivedfrom="id-0068-00000090" isinstance="no" isprimary="no">
-					<name></name>
-				</connection>
-				<connection isbound="yes" id="id-0068-000000a7" kind="EventTyping" role="EventTyping" guid="{676EA606-516A-436b-A599-DE61DD17A6CF}" derivedfrom="id-0068-00000094" isinstance="no" isprimary="no">
-					<name></name>
-				</connection>
-				<connection isbound="yes" id="id-0068-000000a8" kind="EventTyping" role="EventTyping" guid="{0A9DBB41-8A4C-4171-8646-5730770FEFF7}" derivedfrom="id-0068-00000089" isinstance="no" isprimary="no">
-					<name></name>
-				</connection>
-				<connection isbound="yes" id="id-0068-000000a9" kind="GAConn" role="GAConn" guid="{90A2E091-A0EB-4834-89A2-0F1FC338B8A2}" derivedfrom="id-0068-0000008d" isinstance="no" isprimary="no">
-					<name>GAConn</name>
-					<attribute kind="ConnSemantics" status="meta">
-						<value>guard</value>
-					</attribute>
-				</connection>
-				<connection isbound="yes" id="id-0068-000000aa" kind="EventTyping" role="EventTyping" guid="{7996B231-26E4-4a8f-BC40-5A9B34C7A637}" derivedfrom="id-0068-0000008b" isinstance="no" isprimary="no">
-					<name></name>
-				</connection>
-				<connection isbound="yes" id="id-0068-000000ab" kind="GAConn" role="GAConn" guid="{6E563F8C-9DC2-4a88-8051-6D506EDFD10E}" derivedfrom="id-0068-0000008e" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a6" kind="GAConn" role="GAConn" guid="{6E563F8C-9DC2-4a88-8051-6D506EDFD10E}" derivedfrom="id-0068-0000008e" isinstance="no" isprimary="no">
 					<name>GAConn</name>
 					<attribute kind="ConnSemantics" status="inherited">
 						<value>action</value>
 					</attribute>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000ac" kind="TransConnSrc" role="TransConnSrc" guid="{6EF52B18-CBF8-48a2-A967-59843539548B}" derivedfrom="id-0068-0000008f" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a7" kind="TransConnSrc" role="TransConnSrc" guid="{B356B019-7CC2-4ee4-8DD3-6612158CB164}" derivedfrom="id-0068-00000093" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000ad" kind="TransConnDst" role="TransConnDst" guid="{B4652F21-8B9F-4b8e-B3DD-4292012B5338}" derivedfrom="id-0068-00000092" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a8" kind="TransConnDst" role="TransConnDst" guid="{6F6525D6-6E20-42df-9E63-A475D69BF704}" derivedfrom="id-0068-00000090" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000ae" kind="TransConnSrc" role="TransConnSrc" guid="{B356B019-7CC2-4ee4-8DD3-6612158CB164}" derivedfrom="id-0068-00000093" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000a9" kind="TransConnDst" role="TransConnDst" guid="{AD482BD1-EF17-4d4f-A9B8-ADE20B7AA5DC}" derivedfrom="id-0068-0000008c" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000af" kind="TransConnSrc" role="TransConnSrc" guid="{57BBD08B-5A0A-4fc3-BEA8-83584C82B7A6}" derivedfrom="id-0068-00000091" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000aa" kind="EventTyping" role="EventTyping" guid="{7996B231-26E4-4a8f-BC40-5A9B34C7A637}" derivedfrom="id-0068-00000089" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
-				<connection isbound="yes" id="id-0068-000000b0" kind="TransConnDst" role="TransConnDst" guid="{AD482BD1-EF17-4d4f-A9B8-ADE20B7AA5DC}" derivedfrom="id-0068-0000008c" isinstance="no" isprimary="no">
+				<connection isbound="yes" id="id-0068-000000ab" kind="EventTyping" role="EventTyping" guid="{6E71EF4F-356C-441e-AAD4-1F899F43B308}" derivedfrom="id-0068-0000008a" isinstance="no" isprimary="no">
+					<name></name>
+				</connection>
+				<connection isbound="yes" id="id-0068-000000ac" kind="GAConn" role="GAConn" guid="{90A2E091-A0EB-4834-89A2-0F1FC338B8A2}" derivedfrom="id-0068-0000008d" isinstance="no" isprimary="no">
+					<name>GAConn</name>
+					<attribute kind="ConnSemantics" status="meta">
+						<value>guard</value>
+					</attribute>
+				</connection>
+				<connection isbound="yes" id="id-0068-000000ad" kind="EventTyping" role="EventTyping" guid="{676EA606-516A-436b-A599-DE61DD17A6CF}" derivedfrom="id-0068-00000094" isinstance="no" isprimary="no">
+					<name></name>
+				</connection>
+				<connection isbound="yes" id="id-0068-000000ae" kind="TransConnSrc" role="TransConnSrc" guid="{6EF52B18-CBF8-48a2-A967-59843539548B}" derivedfrom="id-0068-0000008f" isinstance="no" isprimary="no">
+					<name></name>
+				</connection>
+				<connection isbound="yes" id="id-0068-000000af" kind="TransConnDst" role="TransConnDst" guid="{B4652F21-8B9F-4b8e-B3DD-4292012B5338}" derivedfrom="id-0068-00000092" isinstance="no" isprimary="no">
+					<name></name>
+				</connection>
+				<connection isbound="yes" id="id-0068-000000b0" kind="EventTyping" role="EventTyping" guid="{0A9DBB41-8A4C-4171-8646-5730770FEFF7}" derivedfrom="id-0068-0000008b" isinstance="no" isprimary="no">
 					<name></name>
 				</connection>
 				<connection id="id-0068-000000b1" kind="EventTyping" role="EventTyping" guid="{8D54519A-F71A-4b99-9ED8-0A34508CB6D2}" relid="0x3">
@@ -7141,20 +7141,20 @@
 					<connpoint role="src" target="id-0066-000000bc"/>
 					<connpoint role="dst" target="id-0069-0000001c"/>
 				</connection>
-				<set id="id-0069-00000017" kind="Mode" role="Mode" guid="{9CC4E88C-6737-4373-9603-7E9D4A3C5585}" derivedfrom="id-0069-00000016" isinstance="no" isprimary="no" isbound="yes">
-					<name>Invalid</name>
-					<attribute kind="InitialMode" status="meta">
-						<value>false</value>
-					</attribute>
-				</set>
-				<set id="id-0069-00000018" kind="Mode" role="Mode" guid="{77A605FC-A2C6-4eaa-9166-4215CA622FEE}" derivedfrom="id-0069-00000015" isinstance="no" isprimary="no" isbound="yes">
+				<set id="id-0069-00000017" kind="Mode" role="Mode" guid="{77A605FC-A2C6-4eaa-9166-4215CA622FEE}" derivedfrom="id-0069-00000015" isinstance="no" isprimary="no" isbound="yes">
 					<name>Initial Delay</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
 				</set>
-				<set id="id-0069-00000019" kind="Mode" role="Mode" guid="{104FDEE3-869F-4435-A6F9-6147BFAD25BF}" derivedfrom="id-0069-00000014" isinstance="no" isprimary="no" isbound="yes">
+				<set id="id-0069-00000018" kind="Mode" role="Mode" guid="{104FDEE3-869F-4435-A6F9-6147BFAD25BF}" derivedfrom="id-0069-00000014" isinstance="no" isprimary="no" isbound="yes">
 					<name>Valid</name>
+					<attribute kind="InitialMode" status="meta">
+						<value>false</value>
+					</attribute>
+				</set>
+				<set id="id-0069-00000019" kind="Mode" role="Mode" guid="{9CC4E88C-6737-4373-9603-7E9D4A3C5585}" derivedfrom="id-0069-00000016" isinstance="no" isprimary="no" isbound="yes">
+					<name>Invalid</name>
 					<attribute kind="InitialMode" status="meta">
 						<value>false</value>
 					</attribute>
@@ -7261,17 +7261,17 @@
 						</reference>
 						<connection id="id-0068-000000b8" kind="ThreadConnection" role="ThreadConnection" guid="{324A0E2B-844D-4826-9CA5-6E6ABEDC548B}" relid="0x7">
 							<name>ThreadConnection</name>
-							<connpoint role="src" target="id-0066-000000c3" refs="id-0067-000000c0"/>
+							<connpoint role="src" target="id-0066-000000c1" refs="id-0067-000000c0"/>
 							<connpoint role="dst" target="id-0067-000000bf"/>
 						</connection>
 						<connection id="id-0068-000000b9" kind="ThreadConnection" role="ThreadConnection" guid="{33167C7C-1C88-43fe-AD64-10C622D9C038}" relid="0x5">
 							<name>ThreadConnection</name>
-							<connpoint role="src" target="id-0066-000000c4" refs="id-0067-000000c1"/>
+							<connpoint role="src" target="id-0066-000000c6" refs="id-0067-000000c1"/>
 							<connpoint role="dst" target="id-0067-000000bf"/>
 						</connection>
 						<connection id="id-0068-000000ba" kind="ThreadConnection" role="ThreadConnection" guid="{983881F0-6A7E-41fd-B6E0-15BDE1630664}" relid="0x6">
 							<name>ThreadConnection</name>
-							<connpoint role="src" target="id-0066-000000d0" refs="id-0067-000000c2"/>
+							<connpoint role="src" target="id-0066-000000cf" refs="id-0067-000000c2"/>
 							<connpoint role="dst" target="id-0067-000000bf"/>
 						</connection>
 					</model>
@@ -7512,31 +7512,7 @@
 					<attribute kind="PRISM_ID" status="meta">
 						<value></value>
 					</attribute>
-					<atom id="id-0066-000000c1" kind="Action" role="Action" guid="{F2665BC0-03F9-46e1-BDC1-D36AB00131C4}" derivedfrom="id-0066-00000045" isinstance="yes" isprimary="no">
-						<name>Action_1</name>
-						<attribute kind="WCET" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000c2" kind="Concurrency" role="Concurrency" guid="{688D73F3-A0A0-49e1-80BB-BDEA8703C7DB}" derivedfrom="id-0066-00000044" isinstance="yes" isprimary="no">
-						<name>Concurrency</name>
-						<attribute kind="Enable" status="meta">
-							<value>false</value>
-						</attribute>
-						<attribute kind="LockStrategy" status="meta">
-							<value>Internal Locking</value>
-						</attribute>
-						<attribute kind="LockType">
-							<value>Recursive Thread Mutex</value>
-						</attribute>
-						<attribute kind="SynchProxy" status="meta">
-							<value>false</value>
-						</attribute>
-						<attribute kind="UpdateRate" status="meta">
-							<value>40Hz</value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000c3" kind="SubscribePort" role="SubscribePort" guid="{A4DD3A11-4E91-493a-90FC-EA4E7D983E85}" derivedfrom="id-0066-00000043" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000c1" kind="SubscribePort" role="SubscribePort" guid="{A4DD3A11-4E91-493a-90FC-EA4E7D983E85}" derivedfrom="id-0066-00000043" isinstance="yes" isprimary="no">
 						<name>ANY_sub</name>
 						<attribute kind="Asynchronous" status="meta">
 							<value>false</value>
@@ -7560,14 +7536,38 @@
 							<value></value>
 						</attribute>
 					</atom>
-					<reference id="id-0067-000000b4" kind="EventTypeRef" role="EventTypeRef" guid="{60E3CF6C-821A-46f3-8396-19B3E0095C46}" derivedfrom="id-0067-0000001f" isinstance="yes" isprimary="no" referred="id-0065-00000002">
-						<name>ANY_ref</name>
-					</reference>
-					<reference id="id-0067-000000b5" kind="Receptacle" role="Receptacle" guid="{611A2D81-D01D-4dd1-A260-655556B60E61}" derivedfrom="id-0067-00000020" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<atom id="id-0066-000000c2" kind="Action" role="Action" guid="{F2665BC0-03F9-46e1-BDC1-D36AB00131C4}" derivedfrom="id-0066-00000045" isinstance="yes" isprimary="no">
+						<name>Action_1</name>
+						<attribute kind="WCET" status="meta">
+							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-000000c3" kind="Concurrency" role="Concurrency" guid="{688D73F3-A0A0-49e1-80BB-BDEA8703C7DB}" derivedfrom="id-0066-00000044" isinstance="yes" isprimary="no">
+						<name>Concurrency</name>
+						<attribute kind="Enable" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="LockStrategy" status="meta">
+							<value>Internal Locking</value>
+						</attribute>
+						<attribute kind="LockType">
+							<value>Recursive Thread Mutex</value>
+						</attribute>
+						<attribute kind="SynchProxy" status="meta">
+							<value>false</value>
+						</attribute>
+						<attribute kind="UpdateRate" status="meta">
+							<value>40Hz</value>
+						</attribute>
+					</atom>
+					<reference id="id-0067-000000b4" kind="Receptacle" role="Receptacle" guid="{611A2D81-D01D-4dd1-A260-655556B60E61}" derivedfrom="id-0067-00000020" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
 						<name>BM__ClosedFunctionalFacetInterface</name>
 						<attribute kind="Multiplicity" status="meta">
 							<value>1</value>
 						</attribute>
+					</reference>
+					<reference id="id-0067-000000b5" kind="EventTypeRef" role="EventTypeRef" guid="{60E3CF6C-821A-46f3-8396-19B3E0095C46}" derivedfrom="id-0067-0000001f" isinstance="yes" isprimary="no" referred="id-0065-00000002">
+						<name>ANY_ref</name>
 					</reference>
 					<reference id="id-0067-000000b6" kind="Facet" role="Facet" guid="{C66E3B21-94BD-44fa-9ED8-703BDD8558B0}" derivedfrom="id-0067-0000001e" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
 						<name>BM__ClosedFunctionalFacet</name>
@@ -7593,7 +7593,10 @@
 							<value></value>
 						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000bc" kind="SubscribeAction" role="SubscribeAction" guid="{05E92452-DE92-45f0-8012-86448B642F45}" derivedfrom="id-0068-0000001b" isinstance="yes" isprimary="no">
+					<connection isbound="yes" id="id-0068-000000bc" kind="EventTyping" role="EventTyping" guid="{8D419460-C9F2-499e-9488-3FD3E137A946}" derivedfrom="id-0068-00000019" isinstance="yes" isprimary="no">
+						<name></name>
+					</connection>
+					<connection isbound="yes" id="id-0068-000000bd" kind="SubscribeAction" role="SubscribeAction" guid="{05E92452-DE92-45f0-8012-86448B642F45}" derivedfrom="id-0068-0000001b" isinstance="yes" isprimary="no">
 						<name>SubscribeAction</name>
 						<attribute kind="AggregateWCET" status="meta">
 							<value></value>
@@ -7607,9 +7610,6 @@
 						<attribute kind="Priority" status="meta">
 							<value></value>
 						</attribute>
-					</connection>
-					<connection isbound="yes" id="id-0068-000000bd" kind="EventTyping" role="EventTyping" guid="{8D419460-C9F2-499e-9488-3FD3E137A946}" derivedfrom="id-0068-00000019" isinstance="yes" isprimary="no">
-						<name></name>
 					</connection>
 				</model>
 				<model id="id-0065-00000047" kind="ComponentType" role="ComponentType" guid="{E0721812-FDDF-4c06-BD72-2724F50D37E5}" derivedfrom="id-0065-0000002e" isinstance="yes" isprimary="yes" relid="0x1c" childrelidcntr="0x0">
@@ -7653,7 +7653,22 @@
 					<attribute kind="PRISM_ID" status="meta">
 						<value></value>
 					</attribute>
-					<atom id="id-0066-000000c4" kind="SubscribePort" role="SubscribePort" guid="{77C361B0-2D83-4bc6-A67B-5EB398657D27}" derivedfrom="id-0066-00000071" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000c4" kind="Action" role="Action" guid="{9A109A8E-F856-490b-BF71-FB731A1F457C}" derivedfrom="id-0066-00000072" isinstance="yes" isprimary="no">
+						<name>Action_1</name>
+						<attribute kind="WCET" status="meta">
+							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-000000c5" kind="PublishPort" role="PublishPort" guid="{42AF0E7B-A1A8-421c-B9BD-E0E4DE10845F}" derivedfrom="id-0066-00000071" isinstance="yes" isprimary="no">
+						<name>ANY_pub</name>
+						<attribute kind="ConsumerType" status="meta">
+							<value>Full Channel</value>
+						</attribute>
+						<attribute kind="Period" status="meta">
+							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-000000c6" kind="SubscribePort" role="SubscribePort" guid="{77C361B0-2D83-4bc6-A67B-5EB398657D27}" derivedfrom="id-0066-0000006f" isinstance="yes" isprimary="no">
 						<name>Interval Timeout_sub</name>
 						<attribute kind="Asynchronous" status="meta">
 							<value>false</value>
@@ -7677,7 +7692,13 @@
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-000000c5" kind="SubscribePort" role="SubscribePort" guid="{A8C87AAE-AE40-42b7-BD34-8C4882409F62}" derivedfrom="id-0066-0000006f" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000c7" kind="Action" role="Action" guid="{F41C0F0D-56CD-481b-9E5A-98D0BF35D432}" derivedfrom="id-0066-00000074" isinstance="yes" isprimary="no">
+						<name>Action_2</name>
+						<attribute kind="WCET" status="meta">
+							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-000000c8" kind="SubscribePort" role="SubscribePort" guid="{A8C87AAE-AE40-42b7-BD34-8C4882409F62}" derivedfrom="id-0066-00000070" isinstance="yes" isprimary="no">
 						<name>ANY_sub</name>
 						<attribute kind="Asynchronous" status="meta">
 							<value>false</value>
@@ -7701,22 +7722,7 @@
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-000000c6" kind="PublishPort" role="PublishPort" guid="{42AF0E7B-A1A8-421c-B9BD-E0E4DE10845F}" derivedfrom="id-0066-00000070" isinstance="yes" isprimary="no">
-						<name>ANY_pub</name>
-						<attribute kind="ConsumerType" status="meta">
-							<value>Full Channel</value>
-						</attribute>
-						<attribute kind="Period" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000c7" kind="Action" role="Action" guid="{F41C0F0D-56CD-481b-9E5A-98D0BF35D432}" derivedfrom="id-0066-00000074" isinstance="yes" isprimary="no">
-						<name>Action_2</name>
-						<attribute kind="WCET" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000c8" kind="Concurrency" role="Concurrency" guid="{A92F527F-A8E5-48c3-B1B5-F8617C27DC83}" derivedfrom="id-0066-00000073" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000c9" kind="Concurrency" role="Concurrency" guid="{A92F527F-A8E5-48c3-B1B5-F8617C27DC83}" derivedfrom="id-0066-00000073" isinstance="yes" isprimary="no">
 						<name>Concurrency</name>
 						<attribute kind="Enable" status="meta">
 							<value>false</value>
@@ -7734,13 +7740,10 @@
 							<value>40Hz</value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-000000c9" kind="Action" role="Action" guid="{9A109A8E-F856-490b-BF71-FB731A1F457C}" derivedfrom="id-0066-00000072" isinstance="yes" isprimary="no">
-						<name>Action_1</name>
-						<attribute kind="WCET" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<reference id="id-0067-000000b7" kind="Facet" role="Facet" guid="{82CD3A36-CF8B-4e13-A0C4-D00133296562}" derivedfrom="id-0067-00000062" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<reference id="id-0067-000000b7" kind="EventTypeRef" role="EventTypeRef" guid="{32A463DC-890A-463f-BD0E-90EB56BEF690}" derivedfrom="id-0067-00000063" isinstance="yes" isprimary="no" referred="id-0065-00000002" isbound="yes">
+						<name>ANY_ref</name>
+					</reference>
+					<reference id="id-0067-000000b8" kind="Facet" role="Facet" guid="{82CD3A36-CF8B-4e13-A0C4-D00133296562}" derivedfrom="id-0067-00000061" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
 						<name>BM__ClosedFunctionalFacet</name>
 						<attribute kind="DistributableRead" status="inherited">
 							<value>false</value>
@@ -7749,13 +7752,10 @@
 							<value>false</value>
 						</attribute>
 					</reference>
-					<reference id="id-0067-000000b8" kind="EventTypeRef" role="EventTypeRef" guid="{E1603AEE-A0F8-4481-B809-64C644E7BD53}" derivedfrom="id-0067-00000061" isinstance="yes" isprimary="no" referred="id-0065-00000002" isbound="yes">
-						<name>ANY_ref</name>
-					</reference>
 					<reference id="id-0067-000000b9" kind="EventTypeRef" role="EventTypeRef" guid="{69E89D3F-D5EB-4936-9072-9447EA314B72}" derivedfrom="id-0067-00000060" isinstance="yes" isprimary="no" referred="id-0065-00000001" isbound="yes">
 						<name>Interval Timeout_ref</name>
 					</reference>
-					<reference id="id-0067-000000ba" kind="EventTypeRef" role="EventTypeRef" guid="{32A463DC-890A-463f-BD0E-90EB56BEF690}" derivedfrom="id-0067-00000063" isinstance="yes" isprimary="no" referred="id-0065-00000002" isbound="yes">
+					<reference id="id-0067-000000ba" kind="EventTypeRef" role="EventTypeRef" guid="{E1603AEE-A0F8-4481-B809-64C644E7BD53}" derivedfrom="id-0067-00000062" isinstance="yes" isprimary="no" referred="id-0065-00000002" isbound="yes">
 						<name>ANY_ref</name>
 					</reference>
 					<connection isbound="yes" id="id-0068-000000be" kind="SubscribeAction" role="SubscribeAction" guid="{50137937-3328-42a7-B582-139F8E0658C5}" derivedfrom="id-0068-00000050" isinstance="yes" isprimary="no">
@@ -7773,7 +7773,13 @@
 							<value></value>
 						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000bf" kind="FacetMethod2Action" role="FacetMethod2Action" guid="{166F0FB8-FA73-4725-BB15-2370FE1FA24C}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
+					<connection isbound="yes" id="id-0068-000000bf" kind="EventTyping" role="EventTyping" guid="{D23D9EC6-21DC-4ca4-9D1C-89D3C90782DE}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
+						<name></name>
+					</connection>
+					<connection isbound="yes" id="id-0068-000000c0" kind="EventTyping" role="EventTyping" guid="{2AB40A4B-4AA0-4496-83C2-5F7317E8686F}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
+						<name></name>
+					</connection>
+					<connection isbound="yes" id="id-0068-000000c1" kind="FacetMethod2Action" role="FacetMethod2Action" guid="{166F0FB8-FA73-4725-BB15-2370FE1FA24C}" derivedfrom="id-0068-00000051" isinstance="yes" isprimary="no">
 						<name>FacetMethod2Action</name>
 						<attribute kind="AggregateWCET" status="meta">
 							<value></value>
@@ -7788,13 +7794,10 @@
 							<value></value>
 						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c0" kind="EventTyping" role="EventTyping" guid="{439788D5-E80E-4906-AD67-ECCD621CE996}" derivedfrom="id-0068-0000004e" isinstance="yes" isprimary="no">
+					<connection isbound="yes" id="id-0068-000000c2" kind="EventTyping" role="EventTyping" guid="{439788D5-E80E-4906-AD67-ECCD621CE996}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
 						<name></name>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c1" kind="EventTyping" role="EventTyping" guid="{D23D9EC6-21DC-4ca4-9D1C-89D3C90782DE}" derivedfrom="id-0068-0000004d" isinstance="yes" isprimary="no">
-						<name></name>
-					</connection>
-					<connection isbound="yes" id="id-0068-000000c2" kind="ActionPublish" role="ActionPublish" guid="{552A69B0-6FEE-43e3-9019-4A9EC392BCF4}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
+					<connection isbound="yes" id="id-0068-000000c3" kind="ActionPublish" role="ActionPublish" guid="{552A69B0-6FEE-43e3-9019-4A9EC392BCF4}" derivedfrom="id-0068-0000004f" isinstance="yes" isprimary="no">
 						<name>ActionPublish</name>
 						<attribute kind="AggregateWCET" status="meta">
 							<value></value>
@@ -7808,9 +7811,6 @@
 						<attribute kind="Priority" status="meta">
 							<value></value>
 						</attribute>
-					</connection>
-					<connection isbound="yes" id="id-0068-000000c3" kind="EventTyping" role="EventTyping" guid="{2AB40A4B-4AA0-4496-83C2-5F7317E8686F}" derivedfrom="id-0068-0000004c" isinstance="yes" isprimary="no">
-						<name></name>
 					</connection>
 				</model>
 				<model id="id-0065-00000048" kind="ComponentType" role="ComponentType" guid="{910A6C99-D279-4e3e-8EE6-E3A925B95EA0}" derivedfrom="id-0065-0000003a" isinstance="yes" isprimary="yes" relid="0x4" childrelidcntr="0x0">
@@ -7854,21 +7854,21 @@
 					<attribute kind="PRISM_ID" status="meta">
 						<value></value>
 					</attribute>
-					<atom id="id-0066-000000ca" kind="PublishPort" role="PublishPort" guid="{43858EC8-51CF-418a-AC04-77C72BC64D56}" derivedfrom="id-0066-000000a7" isinstance="yes" isprimary="no">
-						<name>ANY_pub</name>
-						<regnode name="PartRegs" isopaque="yes">
+					<atom id="id-0066-000000ca" kind="RTTaskProperty" role="RTTaskProperty" guid="{1DD64D69-4EA9-441c-839C-3D4B441CDBE5}" derivedfrom="id-0066-000000ac" isinstance="yes" isprimary="no">
+						<name>RTTaskProperty</name>
+						<attribute kind="RTTaskPriority" status="meta">
 							<value></value>
-							<regnode name="QoS" status="undefined">
-								<value></value>
-								<regnode name="Position" isopaque="yes">
-									<value>566,328</value>
-								</regnode>
-							</regnode>
-						</regnode>
-						<attribute kind="ConsumerType" status="meta">
-							<value>Full Channel</value>
 						</attribute>
-						<attribute kind="Period">
+						<attribute kind="msecComputationTime" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="msecDeadline" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="msecPeriod" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="secComputationTime" status="meta">
 							<value></value>
 						</attribute>
 					</atom>
@@ -7890,40 +7890,34 @@
 							<value>40Hz</value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-000000cc" kind="Action" role="Action" guid="{4C726FC3-91B6-4e00-95D5-CCDCEC2822EB}" derivedfrom="id-0066-000000ab" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000cc" kind="PublishPort" role="PublishPort" guid="{43858EC8-51CF-418a-AC04-77C72BC64D56}" derivedfrom="id-0066-000000a7" isinstance="yes" isprimary="no">
+						<name>ANY_pub</name>
+						<regnode name="PartRegs" isopaque="yes">
+							<value></value>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>566,328</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="ConsumerType" status="meta">
+							<value>Full Channel</value>
+						</attribute>
+						<attribute kind="Period">
+							<value></value>
+						</attribute>
+					</atom>
+					<atom id="id-0066-000000cd" kind="Action" role="Action" guid="{4C726FC3-91B6-4e00-95D5-CCDCEC2822EB}" derivedfrom="id-0066-000000ab" isinstance="yes" isprimary="no">
 						<name>Action_2</name>
 						<attribute kind="WCET" status="meta">
 							<value></value>
 						</attribute>
 					</atom>
-					<atom id="id-0066-000000cd" kind="Action" role="Action" guid="{A15A54A8-8694-499d-80BC-BADFC0372BBF}" derivedfrom="id-0066-000000aa" isinstance="yes" isprimary="no">
-						<name>Action_1</name>
-						<attribute kind="WCET" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000ce" kind="RTTaskProperty" role="RTTaskProperty" guid="{1DD64D69-4EA9-441c-839C-3D4B441CDBE5}" derivedfrom="id-0066-000000ac" isinstance="yes" isprimary="no">
-						<name>RTTaskProperty</name>
-						<attribute kind="RTTaskPriority" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="msecComputationTime" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="msecDeadline" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="msecPeriod" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="secComputationTime" status="meta">
-							<value></value>
-						</attribute>
-					</atom>
-					<atom id="id-0066-000000cf" kind="MethodId" role="MethodId" guid="{1D94EA33-2E70-4c03-B57A-EDF7137C0F60}" derivedfrom="id-0066-000000ad" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000ce" kind="MethodId" role="MethodId" guid="{1D94EA33-2E70-4c03-B57A-EDF7137C0F60}" derivedfrom="id-0066-000000ad" isinstance="yes" isprimary="no">
 						<name>MethodId</name>
 					</atom>
-					<atom id="id-0066-000000d0" kind="SubscribePort" role="SubscribePort" guid="{37A5EA66-EC08-46f0-8B0C-A88ECDDBA344}" derivedfrom="id-0066-000000a8" isinstance="yes" isprimary="no">
+					<atom id="id-0066-000000cf" kind="SubscribePort" role="SubscribePort" guid="{37A5EA66-EC08-46f0-8B0C-A88ECDDBA344}" derivedfrom="id-0066-000000a8" isinstance="yes" isprimary="no">
 						<name>ANY_sub</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7956,7 +7950,13 @@
 							<value></value>
 						</attribute>
 					</atom>
-					<reference id="id-0067-000000bb" kind="Facet" role="Facet" guid="{84A8C2BE-C85A-455c-B950-C4CD9A4119D2}" derivedfrom="id-0067-000000a6" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<atom id="id-0066-000000d0" kind="Action" role="Action" guid="{A15A54A8-8694-499d-80BC-BADFC0372BBF}" derivedfrom="id-0066-000000aa" isinstance="yes" isprimary="no">
+						<name>Action_1</name>
+						<attribute kind="WCET" status="meta">
+							<value></value>
+						</attribute>
+					</atom>
+					<reference id="id-0067-000000bb" kind="Facet" role="Facet" guid="{84A8C2BE-C85A-455c-B950-C4CD9A4119D2}" derivedfrom="id-0067-000000a4" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
 						<name>BM__ClosedFunctionalFacet</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7974,10 +7974,13 @@
 							<value>false</value>
 						</attribute>
 					</reference>
-					<reference id="id-0067-000000bc" kind="EventTypeRef" role="EventTypeRef" guid="{430CBC6F-C760-4fa7-8B09-5492FD68950C}" derivedfrom="id-0067-000000a5" isinstance="yes" isprimary="no" referred="id-0065-00000002">
+					<reference id="id-0067-000000bc" kind="EventTypeRef" role="EventTypeRef" guid="{7D29429C-DBF7-4778-A4C1-E4F5D96B3242}" derivedfrom="id-0067-000000a5" isinstance="yes" isprimary="no" referred="id-0065-00000002">
 						<name>ANY_ref</name>
 					</reference>
-					<reference id="id-0067-000000bd" kind="Receptacle" role="Receptacle" guid="{CDE4A5A9-1A4F-40da-A672-6D3A8D66BBAE}" derivedfrom="id-0067-000000a7" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
+					<reference id="id-0067-000000bd" kind="EventTypeRef" role="EventTypeRef" guid="{430CBC6F-C760-4fa7-8B09-5492FD68950C}" derivedfrom="id-0067-000000a6" isinstance="yes" isprimary="no" referred="id-0065-00000002">
+						<name>ANY_ref</name>
+					</reference>
+					<reference id="id-0067-000000be" kind="Receptacle" role="Receptacle" guid="{CDE4A5A9-1A4F-40da-A672-6D3A8D66BBAE}" derivedfrom="id-0067-000000a7" isinstance="yes" isprimary="no" referred="id-0065-00000008" isbound="yes">
 						<name>BM__ClosedFunctionalFacetInterface</name>
 						<regnode name="PartRegs" isopaque="yes">
 							<value></value>
@@ -7992,28 +7995,16 @@
 							<value>1</value>
 						</attribute>
 					</reference>
-					<reference id="id-0067-000000be" kind="EventTypeRef" role="EventTypeRef" guid="{7D29429C-DBF7-4778-A4C1-E4F5D96B3242}" derivedfrom="id-0067-000000a4" isinstance="yes" isprimary="no" referred="id-0065-00000002">
-						<name>ANY_ref</name>
-					</reference>
-					<connection isbound="yes" id="id-0068-000000c4" kind="MethodIdQoS" role="MethodIdQoS" guid="{96CF05BE-36CA-47c9-877D-C6E91F2016FA}" derivedfrom="id-0068-000000a0" isinstance="yes" isprimary="no">
-						<name>MethodIdQoS</name>
+					<connection isbound="yes" id="id-0068-000000c4" kind="EventTyping" role="EventTyping" guid="{62B1B22E-549C-4a7c-95DD-F457054E5DFE}" derivedfrom="id-0068-00000099" isinstance="yes" isprimary="no">
+						<name></name>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c5" kind="Action2ReceptacleMethod" role="Action2ReceptacleMethod" guid="{ED9CC80F-3956-4b6e-BF63-A4448CD7A496}" derivedfrom="id-0068-0000009d" isinstance="yes" isprimary="no">
-						<name>Action2ReceptacleMethod</name>
-						<attribute kind="AggregateWCET" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Deadline" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Period" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Priority" status="meta">
-							<value></value>
-						</attribute>
+					<connection isbound="yes" id="id-0068-000000c5" kind="MethodIdentifier" role="MethodIdentifier" guid="{BEF37AA6-6A54-47e8-96F1-74D1332CFB70}" derivedfrom="id-0068-0000009f" isinstance="yes" isprimary="no">
+						<name>MethodIdentifier</name>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c6" kind="FacetMethod2Action" role="FacetMethod2Action" guid="{799B8752-8079-482a-9823-9E7672E3EC49}" derivedfrom="id-0068-0000009e" isinstance="yes" isprimary="no">
+					<connection isbound="yes" id="id-0068-000000c6" kind="EventTyping" role="EventTyping" guid="{AC131BF4-8D2F-4818-B38B-B65B0A31DA0C}" derivedfrom="id-0068-0000009a" isinstance="yes" isprimary="no">
+						<name></name>
+					</connection>
+					<connection isbound="yes" id="id-0068-000000c7" kind="FacetMethod2Action" role="FacetMethod2Action" guid="{799B8752-8079-482a-9823-9E7672E3EC49}" derivedfrom="id-0068-0000009e" isinstance="yes" isprimary="no">
 						<name>FacetMethod2Action</name>
 						<attribute kind="AggregateWCET" status="meta">
 							<value></value>
@@ -8028,14 +8019,35 @@
 							<value></value>
 						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c7" kind="EventTyping" role="EventTyping" guid="{AC131BF4-8D2F-4818-B38B-B65B0A31DA0C}" derivedfrom="id-0068-0000009a" isinstance="yes" isprimary="no">
-						<name></name>
+					<connection isbound="yes" id="id-0068-000000c8" kind="SubscribeAction" role="SubscribeAction" guid="{8AAF0F70-6127-4c07-A9D1-28DBE5CB445B}" derivedfrom="id-0068-0000009b" isinstance="yes" isprimary="no">
+						<name>SubscribeAction</name>
+						<attribute kind="AggregateWCET" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Deadline" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Period" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Priority" status="meta">
+							<value></value>
+						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000c8" kind="EventTyping" role="EventTyping" guid="{62B1B22E-549C-4a7c-95DD-F457054E5DFE}" derivedfrom="id-0068-00000099" isinstance="yes" isprimary="no">
-						<name></name>
-					</connection>
-					<connection isbound="yes" id="id-0068-000000c9" kind="MethodIdentifier" role="MethodIdentifier" guid="{BEF37AA6-6A54-47e8-96F1-74D1332CFB70}" derivedfrom="id-0068-0000009f" isinstance="yes" isprimary="no">
-						<name>MethodIdentifier</name>
+					<connection isbound="yes" id="id-0068-000000c9" kind="Action2ReceptacleMethod" role="Action2ReceptacleMethod" guid="{ED9CC80F-3956-4b6e-BF63-A4448CD7A496}" derivedfrom="id-0068-0000009d" isinstance="yes" isprimary="no">
+						<name>Action2ReceptacleMethod</name>
+						<attribute kind="AggregateWCET" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Deadline" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Period" status="meta">
+							<value></value>
+						</attribute>
+						<attribute kind="Priority" status="meta">
+							<value></value>
+						</attribute>
 					</connection>
 					<connection isbound="yes" id="id-0068-000000ca" kind="ActionPublish" role="ActionPublish" guid="{79B76C75-5CDB-44fa-8D38-63CC2ACD742E}" derivedfrom="id-0068-0000009c" isinstance="yes" isprimary="no">
 						<name>ActionPublish</name>
@@ -8052,20 +8064,8 @@
 							<value></value>
 						</attribute>
 					</connection>
-					<connection isbound="yes" id="id-0068-000000cb" kind="SubscribeAction" role="SubscribeAction" guid="{8AAF0F70-6127-4c07-A9D1-28DBE5CB445B}" derivedfrom="id-0068-0000009b" isinstance="yes" isprimary="no">
-						<name>SubscribeAction</name>
-						<attribute kind="AggregateWCET" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Deadline" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Period" status="meta">
-							<value></value>
-						</attribute>
-						<attribute kind="Priority" status="meta">
-							<value></value>
-						</attribute>
+					<connection isbound="yes" id="id-0068-000000cb" kind="MethodIdQoS" role="MethodIdQoS" guid="{96CF05BE-36CA-47c9-877D-C6E91F2016FA}" derivedfrom="id-0068-000000a0" isinstance="yes" isprimary="no">
+						<name>MethodIdQoS</name>
 					</connection>
 				</model>
 				<model id="id-0065-00000049" kind="FailOverUnit" role="FailOverUnit" guid="{47E30900-58CC-42a0-8FB8-15ED188DF99A}" relid="0x29" childrelidcntr="0x0">
@@ -8109,15 +8109,15 @@
 				<connection id="id-0068-000000cd" kind="Subscribe" role="Subscribe" guid="{E9B5A058-AEF5-407e-882A-4FAB373FD8A4}" relid="0x22">
 					<name>Subscribe</name>
 					<connpoint role="src" target="id-0065-00000043"/>
-					<connpoint role="dst" target="id-0066-000000c4"/>
+					<connpoint role="dst" target="id-0066-000000c6"/>
 				</connection>
 				<connection id="id-0068-000000ce" kind="Invoke" role="Invoke" guid="{1E7F0C98-C16F-4f56-8C35-BD4A71BD7CD4}" relid="0x27">
 					<name>Invoke</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
 					</attribute>
-					<connpoint role="dst" target="id-0067-000000b7"/>
-					<connpoint role="src" target="id-0067-000000bd"/>
+					<connpoint role="dst" target="id-0067-000000b8"/>
+					<connpoint role="src" target="id-0067-000000be"/>
 				</connection>
 				<connection id="id-0068-000000cf" kind="Publish" role="Publish" guid="{76564A72-4222-4563-99A7-B6B092233BDE}" relid="0x23">
 					<name>Publish</name>
@@ -8125,7 +8125,7 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="dst" target="id-0065-00000045"/>
-					<connpoint role="src" target="id-0066-000000c6"/>
+					<connpoint role="src" target="id-0066-000000c5"/>
 				</connection>
 				<connection id="id-0068-000000d0" kind="Subscribe" role="Subscribe" guid="{A1517787-55EC-4570-8BD9-1D25D998FDF9}" relid="0x26">
 					<name>Subscribe</name>
@@ -8133,7 +8133,7 @@
 						<value>E</value>
 					</regnode>
 					<connpoint role="src" target="id-0065-00000044"/>
-					<connpoint role="dst" target="id-0066-000000c3"/>
+					<connpoint role="dst" target="id-0066-000000c1"/>
 				</connection>
 				<connection id="id-0068-000000d1" kind="Subscribe" role="Subscribe" guid="{019355C1-0A83-4869-BB7C-1585054A2F1E}" relid="0x24">
 					<name>Subscribe</name>
@@ -8141,7 +8141,7 @@
 						<value>E</value>
 					</regnode>
 					<connpoint role="src" target="id-0065-00000045"/>
-					<connpoint role="dst" target="id-0066-000000d0"/>
+					<connpoint role="dst" target="id-0066-000000cf"/>
 				</connection>
 				<connection id="id-0068-000000d2" kind="Publish" role="Publish" guid="{FBC490AC-E598-4802-B001-519B6B7E46BE}" relid="0x25">
 					<name>Publish</name>
@@ -8149,14 +8149,14 @@
 						<value>w</value>
 					</regnode>
 					<connpoint role="dst" target="id-0065-00000044"/>
-					<connpoint role="src" target="id-0066-000000ca"/>
+					<connpoint role="src" target="id-0066-000000cc"/>
 				</connection>
 				<connection id="id-0068-000000d3" kind="Invoke" role="Invoke" guid="{BBF7D7CC-3660-4e0a-B4A8-AA89723A5805}" relid="0x28">
 					<name>Invoke</name>
 					<attribute kind="Asynchronous" status="meta">
 						<value>false</value>
 					</attribute>
-					<connpoint role="src" target="id-0067-000000b5"/>
+					<connpoint role="src" target="id-0067-000000b4"/>
 					<connpoint role="dst" target="id-0067-000000bb"/>
 				</connection>
 				<connection id="id-0068-000000d4" kind="ComponentQoS" role="ComponentQoS" guid="{D486FC81-0CF6-480c-B58C-0385DC2EFE98}" relid="0x2a">
@@ -8177,5 +8177,68 @@
 				</connection>
 			</model>
 		</folder>
+		<model id="id-0065-0000004a" kind="PlacementPlan" guid="{2C0CDBF9-9727-4765-9FC7-7A40F2C33AB9}" relid="0x7" childrelidcntr="0xbd">
+			<name>DP</name>
+			<model id="id-0065-0000004b" kind="Host" role="Host" guid="{5E6892C4-C71A-4e7c-BE21-E588A7E821CC}" relid="0x1" childrelidcntr="0x0">
+				<name>Sniper</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1140,300</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000004c" kind="Host" role="Host" guid="{A687CC51-F678-4295-BA0C-82DE6111335A}" relid="0x2" childrelidcntr="0x0">
+				<name>Prince</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1140,167</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000007b" kind="Host" role="Host" guid="{5D34B171-F5E1-4554-98B6-BAD7ABB1E56A}" relid="0x5f" childrelidcntr="0x0">
+				<name>Shiva</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1147,398</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000007c" kind="Host" role="Host" guid="{81449355-B59C-4a9e-9D16-AA69C6E61D0D}" relid="0x60" childrelidcntr="0x0">
+				<name>Tango</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1140,496</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000007d" kind="Host" role="Host" guid="{26792B15-2CA1-4e6c-8568-613D853FA55D}" relid="0x61" childrelidcntr="0x0">
+				<name>Lambada</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Deployment" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1140,594</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+		</model>
 	</folder>
 </project>

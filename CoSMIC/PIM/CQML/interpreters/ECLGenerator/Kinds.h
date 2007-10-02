@@ -10,23 +10,17 @@
 
 namespace CQML 
 {
-  enum Entity
-  {
-    K_AbstractPort = 0,
-    K_OutputPortBase,
-    K_InputPortBase,
-    K_AbstractAssembly,
-    K_AbstractComponent,
-    K_AbstractNode
-  };
-
   struct AbstractKind
   {
-    const BON::Object & m_instance_;
+    BON::Object m_instance_;
 
   public:
     // ctor
     AbstractKind (BON::Object & instance);
+
+	std::string name () const;
+	std::string meta_type () const;
+	std::string kind () const;
 
     // dtor
     ~AbstractKind (void);
