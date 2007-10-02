@@ -5,6 +5,7 @@ workspace {
   Utils/Utils.mpc
   Utils/gme/GME.mpc
   $(ACE_ROOT)/ace/ace.mpc
+  $(ACE_ROOT)/contrib/minizip
 
   // All PICML interpreters expanded inline.
   PIM/PICML/interpreters/PICML

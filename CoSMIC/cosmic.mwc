@@ -3,6 +3,7 @@ workspace {
 
   Utils/Utils.mpc
   Utils/gme/GME.mpc
+  $(ACE_ROOT)/ace/ace.mpc
   
   PIM/PICML/interpreters/Interpreters.mwc
   PIM/CQML/interpreters/Interpreters.mwc

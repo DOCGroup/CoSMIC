@@ -1,3 +1,17 @@
+Tue Oct  2 21:54:54 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/Package/Package.mwc:
+
+        * Release.mwc:
+        * Release_idl_to_picml.mwc:
+        * cosmic.mwc:
+
+          Fixed a problem with minizip being built statically.
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mwc:
+
+          Removed this file.
+
 Tue Oct  2 20:59:22 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mwc:
