@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS baseline
   bid             INT             NOT NULL auto_increment,
   instance        INT             NOT NULL,
   host            INT             NOT NULL DEFAULT 0,
-  inport          VARCHAR(255)    NOT NULL,
-  outport         VARCHAR(255)    NOT NULL,
+  inport          INT             NOT NULL,
+  outport         INT             NOT NULL,
   min_count       INT,
   min_total       INT,
   max_count       INT,
@@ -38,6 +38,14 @@ CREATE TABLE IF NOT EXISTS baseline
     ON UPDATE CASCADE,
 
   FOREIGN KEY (host) REFERENCES ipaddr_host_map (hostid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+
+  FOREIGN KEY (inport) REFERENCES ports (pid)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE,
+
+  FOREIGN KEY (outport) REFERENCES ports (pid)
     ON DELETE RESTRICT
     ON UPDATE CASCADE
 );
