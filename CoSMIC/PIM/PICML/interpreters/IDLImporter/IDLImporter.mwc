@@ -1,0 +1,11 @@
+workspace {
+  cmdline += -feature_file default.features
+
+  static {
+    cmdline += -static
+
+    $(ACE_ROOT)/ace/ace.mpc
+    $(TAO_ROOT)/TAO_IDL/tao_idl.mpc
+    IDLImporter.mpc
+  }
+}

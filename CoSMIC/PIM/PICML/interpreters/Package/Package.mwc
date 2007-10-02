@@ -1,0 +1,10 @@
+workspace {
+  cmdline += -feature_file default.features
+
+  static {
+    cmdline += -static
+
+    $(ACE_ROOT)/contrib/minizip/minizip.mpc
+    package.mpc
+  }
+}

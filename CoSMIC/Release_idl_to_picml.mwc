@@ -1,12 +1,5 @@
 workspace {
-  cmdline += -feature_file default.features
 
-  static {
-    cmdline += -static
+    PIM/PICML/interpreters/IDLImporter/IDLImporter.mwc
 
-    $(ACE_ROOT)/ace/ace.mpc
-    $(TAO_ROOT)/TAO_IDL/tao_idl.mpc
-    PIM/PICML/interpreters/IDLImporter
-    PIM/WSML/interpreters/Interpreters.mwc
-  }
 }

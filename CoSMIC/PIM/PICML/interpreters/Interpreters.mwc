@@ -3,7 +3,7 @@ workspace {
              -include $COSMIC_ROOT
 
   PICML
-  Package
+  Package\package.mwc
   PackageComponent
   PAM
   PAMComponent

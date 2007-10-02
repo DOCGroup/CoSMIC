@@ -12,8 +12,8 @@ workspace {
   DeploymentPlanFramework
   FaultTolerance
   FaultToleranceComponent
-  EventBus
-  EventBusComponent
+  // EventBus
+  // EventBusComponent
   PAM
   PAMComponent
   RTConfiguration
