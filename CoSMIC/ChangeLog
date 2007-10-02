@@ -1,3 +1,16 @@
+Tue Oct  2 03:54:20 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.reg:
+        * PIM/CQML/interpreters/ECLGenerator/ECLGeneratord.reg:
+
+          Fixed the reg files.
+
+Tue Oct  2 03:34:15 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+          Added ECLGenerator.
+
 Tue Oct  2 03:26:48 UTC 2007  Sumant Tambe  <sutambe@nospam>
 
         * PIM/CQML/interpreters/ECLGenerator/BON2Component.cpp:

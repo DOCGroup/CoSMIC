@@ -11,7 +11,7 @@ REGEDIT4
 @="MGA.Interpreter.ECLGenerator"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{43A22705-E6B6-4B4B-81D1-F2E2B8F34C26}\InProcServer32]
-@="ECLGenerator.dll"
+@="ECLGeneratord.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.ECLGenerator]
 @="MGA.Interpreter.ECLGenerator"

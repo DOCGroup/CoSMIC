@@ -24,7 +24,7 @@ REGEDIT4
 "Icon"=",IDI_COMPICON"
 "Paradigm"="*"
 "Type"=dword:00000009
-"Description"="ECL Generator"
+"Description"="ECLGenerator"
 
 [HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.ECLGenerator\Associated]
 "ESMLlibCQML"=""
