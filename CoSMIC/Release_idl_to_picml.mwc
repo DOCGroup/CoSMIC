@@ -6,6 +6,7 @@ workspace {
 
     $(ACE_ROOT)/ace/ace.mpc
     $(TAO_ROOT)/TAO_IDL/tao_idl.mpc
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLImporter
+    PIM/PICML/interpreters/IDLImporter
+    PIM/WSML/interpreters/Interpreters.mwc
   }
 }

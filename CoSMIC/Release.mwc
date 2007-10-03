@@ -25,7 +25,6 @@ workspace {
   PIM/PICML/interpreters/Path
   PIM/PICML/interpreters/PathComponent
 
-  PIM/WSML/interpreters/Interpreters.mwc
   PIM/SIML/interpreters/Interpreters.mwc
   PIM/CQML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
