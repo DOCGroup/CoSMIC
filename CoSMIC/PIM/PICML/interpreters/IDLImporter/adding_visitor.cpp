@@ -4800,10 +4800,10 @@ adding_visitor::add_entrypoint (DOMElement *container,
   switch (index)
     {
       case 1:
-        suffix = "_Home_Servant";
+        suffix = "Home_Servant";
         break;
       case 2:
-        suffix = "_Home_Impl";
+        suffix = "Home_Impl";
         break;
       default:
         return;

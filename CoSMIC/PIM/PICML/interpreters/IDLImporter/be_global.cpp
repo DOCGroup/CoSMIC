@@ -981,6 +981,11 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
           // Compare the 'referred' but return the 'reference'.
           compared_elem = this->doc_->getElementById (referred);
         }
+        
+      if (compared_elem == 0)
+        {
+          continue;
+        }
 
       // There should be only one "name" node.
       DOMNodeList *namelist =
