@@ -292,11 +292,14 @@ Visit_BranchState (const PICML::BranchState & state)
 
   // Since we have finished the branching, we can continue generating
   // the remainder of the behavior that occurs after the branching.
-  PICML::State jmpstate = this->holding_state_.top ();
-  this->holding_state_.pop ();
+  if (!this->holding_state_.empty ())
+  {
+    PICML::State jmpstate = this->holding_state_.top ();
+    this->holding_state_.pop ();
 
-  this->ignore_effects_ = true;
-  jmpstate.Accept (*this);
+    this->ignore_effects_ = true;
+    jmpstate.Accept (*this);
+  }
 }
 
 //

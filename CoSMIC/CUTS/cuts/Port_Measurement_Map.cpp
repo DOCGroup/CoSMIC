@@ -33,22 +33,34 @@ void CUTS_Port_Measurement_Map::empty (void)
 // find
 //
 int CUTS_Port_Measurement_Map::
-find (size_t id, CUTS_Port_Measurement * & measure)
+find (size_t id, CUTS_Port_Measurement * & measure, bool auto_create)
 {
   // Attempt to locate the port measurement in the map.
   if (this->hash_map_.find (id, measure) == 0)
     return 0;
 
-  // Since we did not find one, we need to create a new
-  // port measurement for the id.
-  ACE_NEW_RETURN (measure, CUTS_Port_Measurement, -1);
-  ACE_Auto_Ptr <CUTS_Port_Measurement> auto_clean (measure);
+  if (auto_create)
+  {
+    // Since we did not find one, we need to create a new
+    // port measurement for the id.
+    CUTS_Port_Measurement * temp = 0;
+    ACE_NEW_RETURN (temp, CUTS_Port_Measurement, -1);
+    ACE_Auto_Ptr <CUTS_Port_Measurement> auto_clean (temp);
 
-  if (this->hash_map_.bind (id, measure) != 0)
-    return -1;
+    if (this->hash_map_.bind (id, temp) != 0)
+    {
+      ACE_ERROR ((LM_ERROR,
+                  "*** error (CUTS_Port_Measurement_Map): failed to "
+                  "store the port measurement for %u\n",
+                  id));
+      return -1;
+    }
 
-  auto_clean.release ();
-  return this->template_.prepare (*measure);
+    measure = auto_clean.release ();
+    return this->template_.prepare (*measure);
+  }
+
+  return -1;
 }
 
 //

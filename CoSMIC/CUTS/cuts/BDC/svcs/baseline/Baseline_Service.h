@@ -15,7 +15,7 @@
 
 #include "Baseline_Service_export.h"
 #include "cuts/BDC/BDC_Service.h"
-#include "cuts/svcs/dbase/DB_Service.h"
+#include "cuts/svcs/dbase/DB_Registry.h"
 #include "cuts/System_Metric.h"
 #include "ace/SString.h"
 
@@ -29,9 +29,7 @@
  */
 //=============================================================================
 
-class CUTS_Baseline_Service :
-  public CUTS_BDC_Service,
-  public CUTS_DB_Service
+class CUTS_Baseline_Service : public CUTS_BDC_Service
 {
 public:
   /// Default constructor.
@@ -52,7 +50,7 @@ public:
   int handle_component (const CUTS_Component_Info & info);
 
   // Handle the deactivate event.
-  int handle_metrics (void);
+  int handle_metrics (const CUTS_System_Metric & metrics);
 
 private:
   /**
@@ -82,13 +80,14 @@ private:
   /// System metrics for accumulating the metrics.
   CUTS_System_Metric baseline_;
 
+  /// Instance name of the baseline component.
   ACE_CString instance_;
 
-  long inst_id_;
+  /// The connection for the database service.
+  ACE_Auto_Ptr <CUTS_DB_Connection> conn_;
 
-  long host_id_;
-
-  bool min_baseline_;
+  /// The component registry for the database.
+  CUTS_DB_Registry registry_;
 };
 
 CUTS_BDC_SERVICE_DECL (CUTS_BASELINE_SERVICE_Export);

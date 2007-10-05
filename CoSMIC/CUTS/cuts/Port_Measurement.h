@@ -104,6 +104,18 @@ public:
   const CUTS_Port_Measurement_Endpoint_Map & endpoints (void) const;
 
   /**
+   * Get the endpoint by its id. The user has the option of creating
+   * the endpoint if it does not exist.
+   *
+   * @param[in]       eid           The endpoint id.
+   * @param[in]       tm            Pointer to the located time measurement.
+   * @param[in]       auto_create   Create the measurement if not found.
+   */
+  int endpoint (size_t eid,
+                CUTS_Time_Measurement * & tm,
+                bool auto_create = true);
+
+  /**
    * Accept the CUTS_Metrics_Visitor visitor object.
    *
    * @param[in]     visitor     The target visitor object.

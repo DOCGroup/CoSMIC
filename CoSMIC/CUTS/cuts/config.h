@@ -40,6 +40,9 @@
 
 #define CUTS_DEFAULT_LOG_SIZE             50
 
+#define CUTS_UNKNOWN_HOSTNAME             "unknown"
+#define CUTS_UNKNOWN_IPADDR               "0.0.0.0"
+
 #if defined (CUTS_HAS_DOXYGEN)
 #include "config-doxygen.h"
 #endif

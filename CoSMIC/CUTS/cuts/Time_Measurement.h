@@ -59,7 +59,11 @@ public:
    *
    * @param[in]       tv        The source time value.
    */
-  void operator += (const ACE_Time_Value & tv);
+  const CUTS_Time_Measurement & operator += (const ACE_Time_Value & tv);
+  const CUTS_Time_Measurement & operator += (const CUTS_Time_Measurement & tm);
+
+  /// Assignment operator.
+  const CUTS_Time_Measurement & operator = (const CUTS_Time_Measurement & tm);
 
   /**
    * Get the minimum observed time value during this collection

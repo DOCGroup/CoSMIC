@@ -83,3 +83,31 @@ int CUTS_Port_Measurement::prepare (CUTS_Port_Measurement & pm)
 
   return 0;
 }
+
+//
+// endpoint
+//
+int CUTS_Port_Measurement::
+endpoint (size_t eid, CUTS_Time_Measurement * & tm, bool auto_create)
+{
+  // Try to locate <eid> in the mapping.
+  if (this->endpoints_.find (eid, tm) == 0)
+    return 0;
+
+  if (auto_create)
+  {
+    // Create a new measurement for <eid>.
+    CUTS_Time_Measurement * temp = 0;
+    ACE_NEW_RETURN (temp, CUTS_Time_Measurement, -1);
+    ACE_Auto_Ptr <CUTS_Time_Measurement> auto_clean (temp);
+
+    // Store the measurement object in the mapping.
+    if (this->endpoints_.bind (eid, temp) == 0)
+    {
+      tm = auto_clean.release ();
+      return 0;
+    }
+  }
+
+  return -1;
+}

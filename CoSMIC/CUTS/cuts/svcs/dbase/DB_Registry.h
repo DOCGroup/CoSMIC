@@ -66,7 +66,8 @@ public:
    * @retval          true        Successfully register info.
    * @retval          false       Failed to register info.
    */
-  bool register_component (const CUTS_Component_Info & info, long * inst_id);
+  bool register_component (const CUTS_Component_Info & info,
+                           long * inst_id = 0);
 
   /**
    * Register a new component. This will add the component information
@@ -108,7 +109,7 @@ public:
 
   bool register_component_port (long type_id,
                                 const CUTS_Port_Description_Map & port,
-                                const char * port_type);
+                                const char * port_type = 0);
 
   /**
    * Get the instance id of a component instance. The client does

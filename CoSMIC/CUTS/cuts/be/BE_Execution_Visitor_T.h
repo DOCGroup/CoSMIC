@@ -14,6 +14,7 @@
 #define _CUTS_BE_EXECUTION_VISITOR_H_
 
 #include "PICML/PICML.h"
+#include "BE_Condition_Parser_T.h"
 #include <stack>
 
 //=============================================================================
@@ -107,6 +108,9 @@ private:
   Action_Stack action_stack_;
 
   std::stack <size_t> branches_;
+
+  /// Parser for interpreting the preconditions.
+  CUTS_BE_Condition_Parser_T <BE_STRATEGY> condition_parser_;
 
   // prevent the following operations
   CUTS_BE_Execution_Visitor_T (CUTS_BE_Execution_Visitor_T &);

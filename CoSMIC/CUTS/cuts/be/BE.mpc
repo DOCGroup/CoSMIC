@@ -51,6 +51,7 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Depend_Graph_T.cpp
     BE_Env_Visitor_T.cpp
     BE_Execution_Visitor_T.cpp
+    BE_Condition_Parser_T.cpp
     BE_Impl_Generator_T.cpp
     BE_Manager_T.cpp
     BE_Workspace_Generator_T.cpp

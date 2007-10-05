@@ -1,3 +1,71 @@
+Fri Oct  5 01:27:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          Added MDE/utils to the build.
+
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.h:
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.cpp:
+        * cuts/BDC/svcs/baseline/Baseline_Service.h:
+        * cuts/BDC/svcs/baseline/Baseline_Service.cpp:
+        * cuts/BDC/svcs/baseline/System_Metric_Accumulator.h:
+        * cuts/BDC/svcs/baseline/System_Metric_Accumulator.cpp:
+        * cuts/BDC/svcs/baseline/baseline.mpc:
+
+          Re-implemented the baseline service to use the new service
+          framework and database format.
+
+        * cuts/Component_Metric.h (port_metric):
+        * cuts/Component_Metric.cpp:
+
+          Added a method to locate the port metric based on an id.
+
+        * cuts/Port_Measurement.h (endpoint):
+        * cuts/Port_Measurement.cpp:
+
+          Added a method to locate time measurements based on
+          an endpoint.
+
+        * cuts/Port_Measurement_Map.h (find):
+        * cuts/Port_Measurement_Map.cpp:
+
+          Updated the implementation to check for errors when
+          storing objects in the hash map.
+
+        * cuts/Time_Measurement.h:
+        * cuts/Time_Measurement.cpp:
+
+          Added 'operator =' and 'operator  +=' methods.
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Condition_Parser_T.h:
+        * cuts/be/BE_Condition_Parser_T.cpp:
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+
+          Embedded a parser for preconditions, but have not added
+          implementation to use the parser.
+
+        * cuts/config.h:
+
+          Added the unknown hostname and unknown ip-address to the
+          default configuration file.
+
+        * cuts/svcs/dbase/DB_Registry.h (register_component):
+
+          Set the default paramater for 'inst_id' to a NULL pointer.
+
+        * etc/SQL/CUTS-baseline.sql:
+
+          - Updated the baseline table to use the port ids located in
+            the port table for input and output ports.
+          - Defined procedures to simplify inserting baseline metrics
+            for components into the baseline table.
+
+        * cuts/BDC/svcs/baseline/Baseline_Service.mpc.disable:
+
+          Removed this file.
+
 Tue Oct  2 15:18:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-baseline.sql:

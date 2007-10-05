@@ -1,0 +1,16 @@
+// $Id$
+
+project (CUTS_BDC_Baseline) : cuts_bdcsvc, cuts_dbsvc {
+  sharedname   = CUTS_BDC_Baseline
+  dynamicflags = CUTS_BASELINE_SERVICE_BUILD_DLL
+
+  Source_Files {
+    Baseline_Archiver_DB.cpp
+    Baseline_Service.cpp
+    System_Metric_Accumulator.cpp
+  }
+
+  Documentation_Files {
+    README
+  }
+}

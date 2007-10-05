@@ -39,7 +39,8 @@ void CUTS_Time_Measurement::reset (void)
 //
 // operator +=
 //
-void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
+const CUTS_Time_Measurement &
+CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
 {
   if (this->count_ != 0)
   {
@@ -59,6 +60,50 @@ void CUTS_Time_Measurement::operator += (const ACE_Time_Value & timing)
   // Accumulate the new time value.
   this->total_ += timing;
   ++ this->count_;
+
+  return *this;
+}
+
+//
+// operator +=
+//
+const CUTS_Time_Measurement &
+CUTS_Time_Measurement::operator += (const CUTS_Time_Measurement & tm)
+{
+  if (this->count_ != 0)
+  {
+    // Determine if this is either the <min_> of <max_> value.
+    if (tm.max_ > this->max_)
+      this->max_ = tm.max_;
+    else if (tm.min_ < this->min_)
+      this->min_ = tm.min_;
+  }
+  else
+  {
+    // This is the first time measurement.
+    this->max_ = tm.max_;
+    this->min_ = tm.min_;
+  }
+
+  // Accumulate the new time value.
+  this->total_ += tm.total_;
+  this->count_ += tm.count_;
+
+  return *this;
+}
+
+//
+// operator =
+//
+const CUTS_Time_Measurement &
+CUTS_Time_Measurement::operator = (const CUTS_Time_Measurement & tm)
+{
+  this->max_ = tm.max_;
+  this->min_ = tm.min_;
+  this->total_ = tm.total_;
+  this->count_ = tm.count_;
+
+  return *this;
 }
 
 //

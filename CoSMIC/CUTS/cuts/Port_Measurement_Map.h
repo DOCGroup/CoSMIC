@@ -54,7 +54,9 @@ public:
    * @param[in]         id          The id of the port measurement.
    * @return            Pointer to the port measurement.
    */
-  int find (size_t id, CUTS_Port_Measurement * & measure);
+  int find (size_t id,
+            CUTS_Port_Measurement * & measure,
+            bool auto_create = true);
 
   /**
    * Get the size of the mapping.

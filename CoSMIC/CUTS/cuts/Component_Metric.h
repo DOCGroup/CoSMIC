@@ -65,6 +65,18 @@ public:
   const CUTS_Port_Metric_Map & port_metrics (void) const;
 
   /**
+   * Get an existing port metric object. The client has the option
+   * of creating the port metric if it does not exist.
+   *
+   * @param[in]     pmid          Port metric id.
+   * @param[in]     pm            The port metric object.
+   * @param[in]     auto_create   Auto create object if not exists.
+   */
+  int port_metric (long pmid,
+                   CUTS_Port_Metric * & pm,
+                   bool auto_create = true);
+
+  /**
    * Accept the system metrics visitor.
    *
    * @param[in]   visitor       System metric's visitor.
