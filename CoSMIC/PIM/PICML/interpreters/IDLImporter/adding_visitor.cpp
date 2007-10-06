@@ -4066,36 +4066,36 @@ adding_visitor::timestamp (ACE_TCHAR date_and_time[],
    // below, so DO we need this ifdef.
   static const ACE_TCHAR *day_of_week_name[] =
   {
-    ACE_LIB_TEXT ("Sun"),
-    ACE_LIB_TEXT ("Mon"),
-    ACE_LIB_TEXT ("Tue"),
-    ACE_LIB_TEXT ("Wed"),
-    ACE_LIB_TEXT ("Thu"),
-    ACE_LIB_TEXT ("Fri"),
-    ACE_LIB_TEXT ("Sat")
+    ACE_TEXT ("Sun"),
+    ACE_TEXT ("Mon"),
+    ACE_TEXT ("Tue"),
+    ACE_TEXT ("Wed"),
+    ACE_TEXT ("Thu"),
+    ACE_TEXT ("Fri"),
+    ACE_TEXT ("Sat")
   };
 
   static const ACE_TCHAR *month_name[] =
   {
-    ACE_LIB_TEXT ("Jan"),
-    ACE_LIB_TEXT ("Feb"),
-    ACE_LIB_TEXT ("Mar"),
-    ACE_LIB_TEXT ("Apr"),
-    ACE_LIB_TEXT ("May"),
-    ACE_LIB_TEXT ("Jun"),
-    ACE_LIB_TEXT ("Jul"),
-    ACE_LIB_TEXT ("Aug"),
-    ACE_LIB_TEXT ("Sep"),
-    ACE_LIB_TEXT ("Oct"),
-    ACE_LIB_TEXT ("Nov"),
-    ACE_LIB_TEXT ("Dec")
+    ACE_TEXT ("Jan"),
+    ACE_TEXT ("Feb"),
+    ACE_TEXT ("Mar"),
+    ACE_TEXT ("Apr"),
+    ACE_TEXT ("May"),
+    ACE_TEXT ("Jun"),
+    ACE_TEXT ("Jul"),
+    ACE_TEXT ("Aug"),
+    ACE_TEXT ("Sep"),
+    ACE_TEXT ("Oct"),
+    ACE_TEXT ("Nov"),
+    ACE_TEXT ("Dec")
   };
 
   SYSTEMTIME local;
   ::GetLocalTime (&local);
 
   ACE_OS::sprintf (date_and_time,
-                   ACE_LIB_TEXT ("%3s %3s %02d% 02d:%02d:%02d %04d"),
+                   ACE_TEXT ("%3s %3s %02d% 02d:%02d:%02d %04d"),
                    day_of_week_name[local.wDayOfWeek],
                    month_name[local.wMonth - 1],
                    (int) local.wDay,

@@ -54,8 +54,11 @@ namespace PICML
     if (this->focusObject_ != Udm::null && !this->selectedObjects_.empty())
       throw udm_exception ("focusObject non-null && selectedObjects non-empty");
 
-    if (this->focusObject_ != Udm::null)
-      this->selectedObjects_.insert (this->focusObject_);
+    if (this->focusObject_ != Udm::null &&
+        Udm::IsDerivedFrom (this->focusObject_.type(), DeploymentPlan::meta))
+      {
+        this->selectedObjects_.insert (this->focusObject_);
+      }
     if (this->selectedObjects_.size() == 1)
       {
         set<DeploymentPlan> plans;
@@ -79,61 +82,10 @@ namespace PICML
         transform (this->selectedObjects_.begin(), this->selectedObjects_.end(),
                    inserter (plans, plans.begin()),
                    UdmCaster<DeploymentPlan>());
+        this->CreateGlobalPhysicalAssemblies (plans);
         this->MergeDeploymentPlans (plans);
-        this->UpdateDeploymentPlans (plans);
+//         this->UpdateDeploymentPlans (plans);
         this->CleanUpAssemblies();
-      }
-  }
-
-  void PAMVisitor::MergeDeploymentPlans (set<DeploymentPlan>& plans)
-  {
-    set<DeploymentPlan>::iterator pBegin, pEnd;
-    set<Node> nodes;
-    multimap<Node, CollocationGroup> nodeCgMap;
-    for (boost::tie (pBegin, pEnd) = make_pair (plans.begin(), plans.end());
-         pBegin != pEnd;
-         ++pBegin)
-      {
-        DeploymentPlan plan = *pBegin;
-        set<CollocationGroup> cgs = plan.CollocationGroup_kind_children();
-        set<CollocationGroup>::iterator cgBegin, cgEnd;
-        for (boost::tie (cgBegin, cgEnd) = make_pair (cgs.begin(), cgs.end());
-             cgBegin != cgEnd;
-             ++cgBegin)
-          {
-            CollocationGroup cg = *cgBegin;
-            set<InstanceMapping> instanceMapping = cg.dstInstanceMapping();
-            if (!instanceMapping.empty())
-              {
-                InstanceMapping mapping = *instanceMapping.begin();
-                NodeReference nodeRef = mapping.dstInstanceMapping_end();
-                Node node = nodeRef.ref();
-                nodes.insert (node);
-                nodeCgMap.insert (make_pair (node, cg));
-              }
-          }
-      }
-    set<Node>::iterator nBegin, nEnd;
-    for (boost::tie (nBegin, nEnd) = make_pair (nodes.begin(), nodes.end());
-         nBegin != nEnd;
-         ++nBegin)
-      {
-        Node node = *nBegin;
-        // Collect all the candidate instances
-        set<Component> candidateInstances;
-        set<Component> candidateTypes;
-        multimap<Node, CollocationGroup>::iterator cgBegin, cgEnd;
-        for (boost::tie (cgBegin, cgEnd) = nodeCgMap.equal_range (node);
-             cgBegin != cgEnd;
-             ++cgBegin)
-          {
-            CollocationGroup cg = cgBegin->second;
-            set<CollocationGroup_Members_Base> cgmembers = cg.members();
-            this->CreateCandidateComponents (cgmembers,
-                                             candidateTypes,
-                                             candidateInstances);
-          }
-        this->CreatePhysicalAssemblies (candidateTypes);
       }
   }
 
@@ -162,14 +114,16 @@ namespace PICML
     this->CreateCandidateComponents (cgmembers,
                                      candidateTypes,
                                      candidateInstances);
-    this->CreatePhysicalAssemblies (candidateTypes);
+//    this->MergeRTConfigurations (candidateInstances);
+    this->CreatePhysicalAssemblies (candidateTypes, candidateInstances);
   }
+
 
   void PAMVisitor::CleanUpAssemblies ()
   {
-    CliqueSets::iterator begin, end;
-    for (boost::tie (begin, end) = make_pair (this->cliqueSets_.begin(),
-                                              this->cliqueSets_.end());
+    CompCliques::iterator begin, end;
+    for (boost::tie (begin, end) = make_pair (this->compCliques_.begin(),
+                                              this->compCliques_.end());
          begin != end;
          ++begin)
       {
@@ -178,6 +132,19 @@ namespace PICML
           continue;
         for_each (clique.begin(), clique.end(), UdmObjectDeleter<Component>());
       }
+//     RTConfigCliques::iterator rtBegin, rtEnd;
+//     for (boost::tie (rtBegin, rtEnd)
+//            = make_pair (this->rtConfigCliques_.begin(),
+//                         this->rtConfigCliques_.end());
+//          rtBegin != rtEnd;
+//          ++rtBegin)
+//       {
+//         set<RealTimeConfiguration> clique (rtBegin->begin(), rtBegin->end());
+//         if (clique.size() == 1)
+//           continue;
+//         for_each (clique.begin(), clique.end(),
+//                   UdmObjectDeleter<RealTimeConfiguration>());
+//       }
   }
 
   void PAMVisitor::ConnectCgNodeRef(const CollocationGroup& cg)
@@ -210,6 +177,159 @@ namespace PICML
     // Clone all the node references
     vector<NodeReference> nodeRefs = plan.NodeReference_kind_children();
     CloneSequence (nodeRefs.begin(), nodeRefs.end(), this->asmPlan_);
+  }
+
+  void PAMVisitor::CollectCgs (const set<DeploymentPlan>& plans,
+                               set<Node>& nodes,
+                               multimap<Node, CollocationGroup>& nodeCgMap)
+  {
+    set<DeploymentPlan>::const_iterator pBegin, pEnd;
+    for (boost::tie (pBegin, pEnd) = make_pair (plans.begin(), plans.end());
+         pBegin != pEnd;
+         ++pBegin)
+      {
+        DeploymentPlan plan = *pBegin;
+        set<CollocationGroup> cgs = plan.CollocationGroup_kind_children();
+        set<CollocationGroup>::iterator cgBegin, cgEnd;
+        for (boost::tie (cgBegin, cgEnd) = make_pair (cgs.begin(), cgs.end());
+             cgBegin != cgEnd;
+             ++cgBegin)
+          {
+            CollocationGroup cg = *cgBegin;
+            set<InstanceMapping> instanceMapping = cg.dstInstanceMapping();
+            if (!instanceMapping.empty())
+              {
+                InstanceMapping mapping = *instanceMapping.begin();
+                NodeReference nodeRef = mapping.dstInstanceMapping_end();
+                Node node = nodeRef.ref();
+                nodes.insert (node);
+                nodeCgMap.insert (make_pair (node, cg));
+              }
+          }
+      }
+  }
+
+  void PAMVisitor::CollectNodeComponents(Node& node,
+                                         multimap<Node, CollocationGroup>& nodeCgMap,
+                                         set<Component>& candidateTypes,
+                                         set<Component>& candidateInstances)
+  {
+    // Collect all the candidate instances for a node
+    multimap<Node, CollocationGroup>::iterator cgBegin, cgEnd;
+    for (boost::tie (cgBegin, cgEnd) = nodeCgMap.equal_range (node);
+         cgBegin != cgEnd;
+         ++cgBegin)
+      {
+        CollocationGroup cg = cgBegin->second;
+        set<CollocationGroup_Members_Base> cgmembers = cg.members();
+        this->CreateCandidateComponents (cgmembers,
+                                         candidateTypes,
+                                         candidateInstances);
+      }
+  }
+
+  void PAMVisitor::CreateGlobalPhysicalAssemblies (const set<DeploymentPlan>& plans)
+  {
+    set<Node> nodes;
+    multimap<Node, CollocationGroup> nodeCgMap;
+    this->CollectCgs (plans, nodes, nodeCgMap);
+    set<Node>::iterator nBegin, nEnd;
+    for (boost::tie (nBegin, nEnd) = make_pair (nodes.begin(), nodes.end());
+         nBegin != nEnd;
+         ++nBegin)
+      {
+        Node node = *nBegin;
+        // Collect all the candidate instances
+        set<Component> candidateInstances;
+        set<Component> candidateTypes;
+        this->CollectNodeComponents (node, nodeCgMap, candidateTypes,
+                                     candidateInstances);
+        this->CreatePhysicalAssemblies (candidateTypes, candidateInstances);
+      }
+  }
+
+  NodeReference PAMVisitor::CreateNodeReference (const DeploymentPlan& parent,
+                                                 const Node& node)
+  {
+    NodeReference nodeRef = NodeReference::Create (parent);
+    nodeRef.ref() = node;
+    nodeRef.name() = node.name();
+    return nodeRef;
+  }
+
+  void PAMVisitor::MergeDeploymentPlans (const set<DeploymentPlan>& plans)
+  {
+    set<Node> nodes;
+    multimap<Node, CollocationGroup> nodeCgMap;
+    this->CollectCgs (plans, nodes, nodeCgMap);
+    set<Node>::iterator nBegin, nEnd;
+    set<DeploymentPlan>::const_iterator pBegin, pEnd;
+    boost::tie (pBegin, pEnd) = make_pair (plans.begin(), plans.end());
+    if (pBegin != pEnd)
+      {
+        DeploymentPlan plan (*pBegin);
+        this->asmPlan_ = DeploymentPlan::Create (plan.parent());
+        this->asmPlan_.name() = string ("GlobalDeploymentPlan");
+      }
+    set<Component> localVisited;
+    for (boost::tie (nBegin, nEnd) = make_pair (nodes.begin(), nodes.end());
+         nBegin != nEnd;
+         ++nBegin)
+      {
+        Node node = *nBegin;
+        // Create a reference to the node
+        NodeReference nodeRef = this->CreateNodeReference (this->asmPlan_,node);
+        // Create a collocation Group for the node
+        this->asmCg_ = CollocationGroup::Create (this->asmPlan_);
+        this->asmCg_.name() = node.name();
+        // Connect the CollocationGroup with the appropriate NodeReference
+        InstanceMapping newMapping = InstanceMapping::Create (this->asmPlan_);
+        newMapping.srcInstanceMapping_end() = this->asmCg_;
+        newMapping.dstInstanceMapping_end() = nodeRef;
+        // Collect all the candidate instances
+        set<Component> instances;
+        set<Component> types;
+        this->CollectNodeComponents (node, nodeCgMap, types, instances);
+        set<Component>::iterator cBegin, cEnd;
+        for (boost::tie (cBegin, cEnd) = make_pair (instances.begin(),
+                                                    instances.end());
+             cBegin != cEnd;
+             ++cBegin)
+          {
+            Component comp = *cBegin;
+            string compName = comp.name();
+            // Find the cliqueInstance corresponding to comp
+            Component instance;
+            CliqueMap::iterator compIter = this->cliqueMap_.find (comp);
+            if (compIter == this->cliqueMap_.end())
+              {
+                // The current component is a normal component, i.e.,
+                // not part of a physical assembly
+                instance = comp;
+              }
+            else
+              {
+                // The current component is part of a physical assembly
+                instance = compIter->second;
+              }
+            string instanceName = instance.name();
+            // Have we ever created a reference to this component
+            // in this plan?
+            set<Component>::iterator local = localVisited.find (instance);
+            if (local != localVisited.end())
+              continue;
+            // This is the first time that we are encountering this
+            // component instance.
+            ComponentRef compRef = ComponentRef::Create (this->asmPlan_);
+            compRef.ref() = instance;
+            compRef.name() = instance.name();
+            set<CollocationGroup> cgset;
+            cgset.insert (this->asmCg_);
+            compRef.setCollocationGroup() = cgset;
+            // We have visited this guy once in this plan
+            localVisited.insert (instance);
+          }
+      }
   }
 
 
@@ -328,16 +448,17 @@ namespace PICML
       }
   }
 
-  string PAMVisitor::CreateCliqueString (const set<Component>& clique)
+  template <class T>
+  string PAMVisitor::CreateCliqueString (const set<T>& clique)
   {
     set<string> names;
-    set<Component>::const_iterator cBegin, cEnd;
+    set<T>::const_iterator cBegin, cEnd;
     for (boost::tie (cBegin, cEnd) = make_pair (clique.begin(),
                                                 clique.end());
          cBegin != cEnd;
          ++cBegin)
       {
-        Component comp (*cBegin);
+        T comp (*cBegin);
         names.insert (comp.name());
       }
     stringstream ss;
@@ -349,6 +470,206 @@ namespace PICML
   }
 
 
+//   void PAMVisitor::UpdateAssembly (const set<RealTimeConfiguration>& clique)
+//   {
+//     if (clique.size() == 1)
+//       return;
+//     set<ComponentAssembly> cliqueAssemblies;
+//     transform (clique.begin(), clique.end(),
+//                inserter (cliqueAssemblies, cliqueAssemblies.begin()),
+//                AssemblyParent<RealTimeConfiguration>());
+//     set<ComponentAssembly>::iterator asmBegin, asmEnd;
+//     for (boost::tie (asmBegin, asmEnd) = make_pair (cliqueAssemblies.begin(),
+//                                                     cliqueAssemblies.end());
+//          asmBegin != asmEnd;
+//          ++asmBegin)
+//       {
+//         ComponentAssembly cliqueAsm = *asmBegin;
+//         // Create RealTimeConfiguration inside the assembly
+//         RealTimeConfiguration
+//           rtConfig = this->CreateMergedRealTimeConfiguration (cliqueAsm,
+//                                                               clique);
+//         // Update the connections
+//         UpdateConnection (cliqueAsm, rtConfig, clique,
+//                           &ComponentAssembly::ComponentQoS_kind_children,
+//                           &ComponentQoS::dstComponentQoS_end);
+//       }
+//   }
+
+//   RealTimeConfiguration PAMVisitor::CreateMergedRealTimeConfiguration (const ComponentAssembly& cliqueAsm,
+//                                                                        const set<RealTimeConfiguration>& clique)
+//   {
+//     vector<Lane> lanes;
+//     vector<PriorityBands> bands;
+//     bool threadPoolConfigured = false;
+//     bool priorityModelConfigured = false;
+//     RealTimeConfiguration
+//       rtConfigAsm = RealTimeConfiguration::Create (cliqueAsm);
+//     rtConfigAsm.name() = this->CreateCliqueString (clique);
+//     set<RealTimeConfiguration>::const_iterator  rtBegin, rtEnd;
+//     for (boost::tie (rtBegin, rtEnd) = make_pair (clique.begin(), clique.end());
+//          rtBegin != rtEnd;
+//          ++rtBegin)
+//       {
+//         RealTimeConfiguration rtConfig = *rtBegin;
+//         if (!threadPoolConfigured)
+//           {
+//             vector<ThreadPool>
+//               threadPools = rtConfig.ThreadPool_kind_children();
+//             if (threadPools.size() != 0)
+//               {
+//                 CloneSequence (threadPools.begin(), threadPools.end(),
+//                                rtConfigAsm);
+//                 threadPoolConfigured = true;
+//               }
+//           }
+//         if (!priorityModelConfigured)
+//           {
+//             vector<PriorityModelPolicy>
+//               pModels = rtConfig.PriorityModelPolicy_kind_children();
+//             if (pModels.size() != 0)
+//               {
+//                 CloneSequence (pModels.begin(), pModels.end(), rtConfigAsm);
+//                 priorityModelConfigured = true;
+//               }
+//           }
+//         vector<Lane> tLanes = rtConfig.Lane_kind_children();
+//         copy (tLanes.begin(), tLanes.end(), back_inserter (lanes));
+//         vector<PriorityBands> tBands = rtConfig.PriorityBands_kind_children();
+//         copy (tBands.begin(), tBands.end(), back_inserter (bands));
+//       }
+//     this->MergePriorityBands (bands, rtConfigAsm);
+//     this->MergeThreadPoolLanes (lanes, rtConfigAsm);
+//     return rtConfigAsm;
+//   }
+
+//   void PAMVisitor::MergePriorityBands (vector<PriorityBands>& bands,
+//                                        RealTimeConfiguration rtConfigAsm)
+//   {
+//     sort (bands.begin(), bands.end(), BandSorter());
+//     short currMin = 0;
+//     short currMax = 0;
+//     unsigned int counter = 0;
+//     vector<PriorityBands>::iterator begin, end;
+//     for (boost::tie (begin, end) = make_pair (bands.begin(), bands.end());
+//          begin != end;
+//          ++begin)
+//       {
+//         short low = static_cast<short>(begin->low());
+//         short high = static_cast<short>(begin->high());
+//         if (currMin == 0 && currMax == 0)
+//           {
+//             currMin = low;
+//             currMax = high;
+//           }
+//         else
+//           {
+//             if (low == currMin)
+//               {
+//                 currMax = max (currMax, high);
+//               }
+//             else if (low > currMin)
+//               {
+//                 if (high > currMax)
+//                   {
+//                     PriorityBands band = PriorityBands::Create (rtConfigAsm);
+//                     stringstream bandName;
+//                     bandName << string (rtConfigAsm.name()) << "_MergedBand_"
+//                              << counter++;
+//                     band.name() = bandName.str();
+//                     band.low() = currMin;
+//                     currMin = low;
+//                     band.high() = currMax;
+//                     currMax = high;
+//                   }
+//               }
+//           }
+//       }
+//     if (!bands.empty())
+//       {
+//         // Create a band with the current values of min and max
+//         PriorityBands band = PriorityBands::Create (rtConfigAsm);
+//         stringstream bandName;
+//         bandName << string (rtConfigAsm.name()) << "_MergedBand_"
+//                  << counter++;
+//         band.name() = bandName.str();
+//         band.low() = currMin;
+//         band.high() = currMax;
+//       }
+//   }
+
+//   void PAMVisitor::MergeThreadPoolLanes (vector<Lane>& lanes,
+//                                          RealTimeConfiguration rtConfigAsm)
+//   {
+//     sort (lanes.begin(), lanes.end(), LaneSorter());
+//     unsigned long currStaticThreads = 0;
+//     unsigned long currDynamicThreads = 0;
+//     short currPriority = 0;
+//     vector<Lane>::iterator begin, end;
+//     unsigned int counter = 0;
+//     for (boost::tie (begin, end) = make_pair (lanes.begin(), lanes.end());
+//          begin != end;
+//          ++begin)
+//       {
+//         unsigned long staticThreads
+//           = static_cast<unsigned long>(begin->static_threads());
+//         unsigned long dynamicThreads
+//           = static_cast<unsigned long>(begin->dynamic_threads());
+//         short priority = static_cast<short>(begin->lane_priority());
+//         if (currStaticThreads == 0
+//             && currDynamicThreads == 0
+//             && currPriority == 0)
+//           {
+//             currStaticThreads = staticThreads;
+//             currDynamicThreads = dynamicThreads;
+//             currPriority = priority;
+//           }
+//         else
+//           {
+//             if (priority == currPriority)
+//               {
+//                 currStaticThreads += staticThreads;
+//                 currDynamicThreads += dynamicThreads;
+//               }
+//             else
+//               {
+//                 Lane lane = Lane::Create (rtConfigAsm);
+//                 stringstream laneName;
+//                 laneName << string (rtConfigAsm.name()) << "_MergedLane_"
+//                          << counter++;
+//                 lane.name() = laneName.str();
+//                 lane.lane_priority() = currPriority;
+//                 lane.static_threads() = currStaticThreads;
+//                 lane.dynamic_threads() = currDynamicThreads;
+//                 LanePerThreadPool conn = LanePerThreadPool::Create (rtConfigAsm);
+//                 ThreadPool tpool = rtConfigAsm.ThreadPool_child();
+//                 conn.srcLanePerThreadPool_end() = lane;
+//                 conn.dstLanePerThreadPool_end() = tpool;
+//                 currStaticThreads = staticThreads;
+//                 currDynamicThreads = dynamicThreads;
+//                 currPriority = priority;
+//               }
+//           }
+//       }
+//     if (!lanes.empty())
+//       {
+//         // Create a lane with the current values of staticThreads,
+//         // dynamicThreads and priority
+//         Lane lane = Lane::Create (rtConfigAsm);
+//         stringstream laneName;
+//         laneName << string (rtConfigAsm.name()) << "_MergedLane_"
+//                  << counter++;
+//         lane.name() = laneName.str();
+//         lane.lane_priority() = currPriority;
+//         lane.static_threads() = currStaticThreads;
+//         lane.dynamic_threads() = currDynamicThreads;
+//         LanePerThreadPool conn = LanePerThreadPool::Create (rtConfigAsm);
+//         ThreadPool tpool = rtConfigAsm.ThreadPool_child();
+//         conn.srcLanePerThreadPool_end() = lane;
+//         conn.dstLanePerThreadPool_end() = tpool;
+//       }
+//   }
+
   void PAMVisitor::UpdateAssembly (const set<Component>& clique)
   {
     if (clique.size() == 1)
@@ -356,7 +677,7 @@ namespace PICML
     set<ComponentAssembly> cliqueAssemblies;
     transform (clique.begin(), clique.end(),
                inserter (cliqueAssemblies, cliqueAssemblies.begin()),
-               AssemblyParent());
+               AssemblyParent<Component>());
     bool asmCreated = false;
     set<ComponentAssembly>::iterator asmBegin, asmEnd;
     for (boost::tie (asmBegin, asmEnd) = make_pair (cliqueAssemblies.begin(),
@@ -385,10 +706,10 @@ namespace PICML
             this->UpdateComponentConnections (cliqueAsm, this->asmInstance_,
                                               clique);
           }
-        // Update the Component QoS properties
-        //         UpdateConnection (cliqueAsm, this->asmInstance_, clique,
-        //                           &ComponentAssembly::ComponentQoS_kind_children,
-        //                           &ComponentQoS::srcComponentQoS_end);
+//         // Update the Component QoS properties
+//         UpdateConnection (cliqueAsm, this->asmInstance_, clique,
+//                           &ComponentAssembly::ComponentQoS_kind_children,
+//                           &ComponentQoS::srcComponentQoS_end);
       }
     set<Component>::const_iterator cBegin, cEnd;
     for (boost::tie (cBegin, cEnd) = make_pair (clique.begin(),
@@ -829,19 +1150,59 @@ namespace PICML
     this->CreateImplements (container, asmMonolith);
   }
 
-  void PAMVisitor::CreatePhysicalAssemblies (set<Component>& candidateTypes)
+
+//   void PAMVisitor::CollectRTConfigs (set<Component>& candidateInstances,
+//                                      set<RealTimeConfiguration>& rtconfigs)
+//   {
+//     typedef set<Component>::iterator CompIter;
+//     CompIter cBegin, cEnd;
+//     // Fill the graph with component information
+//     for (boost::tie (cBegin, cEnd)
+//            = make_pair (candidateInstances.begin(),
+//                         candidateInstances.end());
+//          cBegin != cEnd;
+//          ++cBegin)
+//       {
+//         RealTimeConfiguration rtConfig = GetRTConfig (*cBegin);
+//         if (rtConfig != Udm::null)
+//           {
+//             rtconfigs.insert (rtConfig);
+//           }
+//       }
+//   }
+
+//   void PAMVisitor::MergeRTConfigurations (set<Component>& candidateInstances)
+//   {
+//     set<RealTimeConfiguration> rtconfigs;
+//     this->CollectRTConfigs (candidateInstances, rtconfigs);
+//     RTConfigCliques rtConfigCliques;
+//     RTConfigGraph g(rtconfigs.size());
+//     EnumerateCliques (rtconfigs, rtConfigCliques, RTConfigPredicate(), g);
+//     RTConfigCliques::const_iterator begin, end;
+//     for (boost::tie (begin, end) = make_pair (rtConfigCliques.begin(),
+//                                               rtConfigCliques.end());
+//          begin != end;
+//          ++begin)
+//       {
+//         set<RealTimeConfiguration> clique (begin->begin(), begin->end());
+//         this->UpdateAssembly (clique);
+//       }
+//     this->rtConfigCliques_.insert (rtConfigCliques.begin(),
+//                                    rtConfigCliques.end());
+//   }
+
+  void PAMVisitor::CreatePhysicalAssemblies (set<Component>& candidateTypes,
+                                             set<Component>& candidateInstances)
   {
     if (candidateTypes.empty())
       return;
-    CliqueSets cliqueSets;
-    this->GenerateCliqueSets (candidateTypes, cliqueSets);
-    CliqueSets::const_iterator begin, end;
-    // Use the counter to uniquify the names of the instances
-    this->asmInstanceCounter_ = 0;
+    CompCliques cliqueSets;
+    this->GenerateCliqueSets (candidateTypes, candidateInstances, cliqueSets);
+    CompCliques::const_iterator begin, end;
     for (boost::tie (begin, end) = make_pair (cliqueSets.begin(),
                                               cliqueSets.end());
          begin != end;
-         ++begin, ++this->asmInstanceCounter_)
+         ++begin)
       {
         set<Component> clique (begin->begin(), begin->end());
         if (this->CreateInterfaceDefinitions(clique))
@@ -850,43 +1211,12 @@ namespace PICML
           }
         this->UpdateAssembly (clique);
       }
-    this->cliqueSets_.insert (cliqueSets.begin(), cliqueSets.end());
-  }
-
-  void PAMVisitor::CreateCandidateComponents (set<CollocationGroup_Members_Base>& cgmembers,
-                                              set<Component>& candidateTypes,
-                                              set<Component>& candidateInstances)
-  {
-    for (set<CollocationGroup_Members_Base>::iterator iter = cgmembers.begin();
-         iter != cgmembers.end();
-         ++iter)
-      {
-        CollocationGroup_Members_Base cgmem (*iter);
-        if (Udm::IsDerivedFrom (cgmem.type(), ComponentRef::meta))
-          {
-            ComponentRef compRef = ComponentRef::Cast (cgmem);
-            Component comp = compRef.ref();
-            if (comp.isInstance())
-              {
-                Component type = comp.Archetype();
-                candidateTypes.insert (type);
-                candidateInstances.insert (comp);
-                this->candidateMap_.insert(make_pair(type, comp));
-              }
-            else
-              {
-                throw
-                  udm_exception (string ("Invalid reference ")
-                                 + string (compRef.name())
-                                 + string (" to non-instance ")
-                                 + string(comp.name()));
-              }
-          }
-      }
+    this->compCliques_.insert (cliqueSets.begin(), cliqueSets.end());
   }
 
   void PAMVisitor::GenerateCliqueSets (set<Component>& candidateTypes,
-                                       CliqueSets& cliqueSets)
+                                       set<Component>& candidateInstances,
+                                       CompCliques& cliqueSets)
   {
     typedef set<Component>::iterator CompIter;
     for (CandidateMap::size_type count = 1;
@@ -932,189 +1262,44 @@ namespace PICML
                 this->candidateMap_.erase (vBegin);
               }
           }
-        this->CalculateCliques (candidateComps, cliqueSets);
+        ComponentGraph g(candidateComps.size());
+        EnumerateCliques (candidateComps, cliqueSets,
+                          PAMPredicate (candidateComps), g);
       }
   }
 
-  void PAMVisitor::CalculateCliques (set<Component>& candidateInstances,
-                                     CliqueSets& cliqueSets)
+  void PAMVisitor::CreateCandidateComponents (set<CollocationGroup_Members_Base>& cgmembers,
+                                              set<Component>& candidateTypes,
+                                              set<Component>& candidateInstances)
   {
-    if (candidateInstances.size() == 1)
+    for (set<CollocationGroup_Members_Base>::iterator iter = cgmembers.begin();
+         iter != cgmembers.end();
+         ++iter)
       {
-        cliqueSets.insert (candidateInstances);
-        return;
-      }
-    typedef set<Component>::iterator CompIter;
-    CompIter outerBegin, outerEnd;
-    Graph g (candidateInstances.size());
-    size_t index = 0;
-    // Fill the graph with component information
-    for (boost::tie (outerBegin, outerEnd)
-           = make_pair (candidateInstances.begin(),
-                        candidateInstances.end());
-         outerBegin != outerEnd;
-         ++outerBegin, ++index)
-      {
-        Vertex v = vertex (index, g);
-        g[v].component = *outerBegin;
-        g[v].name = outerBegin->name();
-      }
-    boost::tie (outerBegin, outerEnd) = make_pair (candidateInstances.begin(),
-                                                   candidateInstances.end());
-    PAMPredicate<Component> pred (candidateInstances);
-    for (size_t i = 0; outerBegin != outerEnd; ++outerBegin, ++i)
-      {
-        CompIter innerBegin = candidateInstances.begin();
-        CompIter innerEnd = candidateInstances.end();
-        // Move to where outer is currently pointing
-        advance (innerBegin, distance (innerBegin, outerBegin));
-        // Move forward to enable comparison
-        advance (innerBegin, 1);
-        for (size_t j = i+1;innerBegin != innerEnd; ++innerBegin, ++j)
+        CollocationGroup_Members_Base cgmem (*iter);
+        if (Udm::IsDerivedFrom (cgmem.type(), ComponentRef::meta))
           {
-            if (pred (*outerBegin, *innerBegin))
+            ComponentRef compRef = ComponentRef::Cast (cgmem);
+            Component comp = compRef.ref();
+            if (comp.isInstance())
               {
-                Vertex source = vertex (i, g);
-                Vertex target = vertex (j, g);
-                add_edge (source, target, g);
+                Component type = comp.Archetype();
+                candidateTypes.insert (type);
+                candidateInstances.insert (comp);
+                this->candidateMap_.insert(make_pair(type, comp));
               }
-          }
-      }
-
-    while (num_vertices (g))
-      {
-        set<Vertex> gVertices;
-        graph_traits<Graph>::vertex_iterator begin, end;
-        boost::tie (begin, end) = vertices (g);
-        copy (begin, end, inserter (gVertices, gVertices.begin()));
-
-        set<Vertex> clique;
-        set<Vertex> processedVertices;
-        try
-          {
-            MaximalClique (clique, gVertices, processedVertices, g);
-          }
-        catch (set<Vertex>& myClique)
-          {
-            typedef set<Vertex>::iterator CompVertexIter;
-            CompVertexIter cBegin, cEnd, cNext;
-            boost::tie (cBegin, cEnd) = make_pair (myClique.begin(),
-                                                   myClique.end());
-            set<Component> cliqueComps;
-            for (; cBegin != cEnd; ++cBegin)
+            else
               {
-                cliqueComps.insert (g[*cBegin].component);
-              }
-            cliqueSets.insert (cliqueComps);
-            boost::tie (cBegin, cEnd)
-              = make_pair (myClique.begin(), myClique.end());
-            for (cNext = cBegin; cBegin != cEnd; cBegin = cNext)
-              {
-                ++cNext;
-                remove_vertex (*cBegin, g);
+                throw
+                  udm_exception (string ("Invalid reference ")
+                                 + string (compRef.name())
+                                 + string (" to non-instance ")
+                                 + string(comp.name()));
               }
           }
       }
   }
 
-
-  // Algorithm call: IK_*( 0, V[G], 0).
-  //
-  // IK_*(R, P, X)
-  // 1: if P = 0 and X = 0 then
-  // 2:   Report R as a maximal clique
-  // 3: else
-  // 4:   Let up be the pivot vertex (maximum degree vertex) chosen from P U X.
-  // 5:   Assume P = {u1,u2, ...,uk}
-  // 6:   for i 1 to k do
-  // 7:       if ui is not a neighbor of up then
-  // 8:          P = P - {ui}
-  // 9:          Rnew = R U {ui}
-  // 10:         Pnew = P () N[ui]
-  // 11:         Xnew = X () N[ui]
-  // 12:         IK_*(Rnew, Pnew, Xnew)
-  // 13:         X = X U {ui}
-
-  void
-  PAMVisitor::MaximalClique (set<Vertex>& clique,
-                             set<Vertex>& unprocessedVertices,
-                             set<Vertex>& processedVertices,
-                             Graph& g)
-  {
-    if (unprocessedVertices.empty() && processedVertices.empty())
-      {
-        //         set<Vertex>::iterator cBegin, cEnd;
-        //         boost::tie (cBegin, cEnd) = make_pair (clique.begin(), clique.end());
-        //         if (cBegin != cEnd)
-        //           {
-        //             cout << "Reporting clique (";
-        //             cout << g[*cBegin].name;
-        //             ++cBegin;
-        //             while (cBegin != cEnd)
-        //               {
-        //                 cout << "," << g[*cBegin].name;
-        //                 ++cBegin;
-        //               }
-        //             cout << ")\n";
-        //           }
-        throw clique;
-      }
-    else
-      {
-        set<Vertex> combinedVertices;
-        set_union (unprocessedVertices.begin(), unprocessedVertices.end(),
-                   processedVertices.begin(), processedVertices.end(),
-                   inserter (combinedVertices, combinedVertices.begin()));
-        DegreeSorter<Graph> dsort (g);
-        set<Vertex>::iterator max_ele = max_element (combinedVertices.begin(),
-                                                     combinedVertices.end(),
-                                                     dsort);
-        Vertex maxVertex = *max_ele;
-        set<Vertex>::iterator pbegin = unprocessedVertices.begin();
-        set<Vertex>::iterator pend = unprocessedVertices.end();
-        for (; pbegin != pend; ++pbegin)
-          {
-            Vertex vertex = *pbegin;
-            if (!is_adjacent (g, vertex, maxVertex))
-              {
-                set<Vertex> tempUnprocessedVertices;
-                remove_copy (unprocessedVertices.begin(),
-                             unprocessedVertices.end(),
-                             inserter (tempUnprocessedVertices,
-                                       tempUnprocessedVertices.begin()),
-                             vertex);
-
-                set<Vertex> newClique (clique.begin(), clique.end());
-                newClique.insert (vertex);
-
-                set<Vertex> adjacencySet;
-                AdjIter adjBegin, adjEnd;
-                boost::tie (adjBegin, adjEnd) = adjacent_vertices (vertex, g);
-                copy (adjBegin,
-                      adjEnd,
-                      inserter (adjacencySet, adjacencySet.begin()));
-
-                set<Vertex> newUnprocessedVertices;
-                set_intersection (tempUnprocessedVertices.begin(),
-                                  tempUnprocessedVertices.end(),
-                                  adjacencySet.begin(), adjacencySet.end(),
-                                  inserter (newUnprocessedVertices,
-                                            newUnprocessedVertices.begin()));
-
-                set<Vertex> newProcessedVertices;
-                set_intersection (processedVertices.begin(),
-                                  processedVertices.end(),
-                                  adjacencySet.begin(), adjacencySet.end(),
-                                  inserter (newProcessedVertices,
-                                            newProcessedVertices.begin()));
-
-                MaximalClique (newClique, newUnprocessedVertices,
-                               newProcessedVertices, g);
-                processedVertices.insert (vertex);
-              }
-          }
-      }
-  }
 
   void PAMVisitor::Visit_ComponentImplementations (const ComponentImplementations& cimpls)
   {

@@ -444,6 +444,7 @@ namespace CQML
     sort (bands.begin(), bands.end(), BandSorter());
     short currMin = 0;
     short currMax = 0;
+    unsigned int counter = 0;
     vector<PriorityBands>::iterator begin, end;
     for (boost::tie (begin, end) = make_pair (bands.begin(), bands.end());
          begin != end;
@@ -467,6 +468,10 @@ namespace CQML
                 if (high > currMax)
                   {
                     PriorityBands band = PriorityBands::Create (rtConfigAsm);
+                    stringstream bandName;
+                    bandName << string (rtConfigAsm.name()) << "_MergedBand_"
+                             << counter++;
+                    band.name() = bandName.str();
                     band.low() = currMin;
                     currMin = low;
                     band.high() = currMax;
@@ -474,6 +479,17 @@ namespace CQML
                   }
               }
           }
+      }
+    if (!bands.empty())
+      {
+        // Create a band with the current values of min and max
+        PriorityBands band = PriorityBands::Create (rtConfigAsm);
+        stringstream bandName;
+        bandName << string (rtConfigAsm.name()) << "_MergedBand_"
+                 << counter++;
+        band.name() = bandName.str();
+        band.low() = currMin;
+        band.high() = currMax;
       }
   }
 
@@ -485,6 +501,7 @@ namespace CQML
     unsigned long currDynamicThreads = 0;
     short currPriority = 0;
     vector<Lane>::iterator begin, end;
+    unsigned int counter = 0;
     for (boost::tie (begin, end) = make_pair (lanes.begin(), lanes.end());
          begin != end;
          ++begin)
@@ -512,6 +529,10 @@ namespace CQML
             else
               {
                 Lane lane = Lane::Create (rtConfigAsm);
+                stringstream laneName;
+                laneName << string (rtConfigAsm.name()) << "_MergedLane_"
+                         << counter++;
+                lane.name() = laneName.str();
                 lane.lane_priority() = currPriority;
                 lane.static_threads() = currStaticThreads;
                 lane.dynamic_threads() = currDynamicThreads;
@@ -524,6 +545,23 @@ namespace CQML
                 currPriority = priority;
               }
           }
+      }
+    if (!lanes.empty())
+      {
+        // Create a lane with the current values of staticThreads,
+        // dynamicThreads and priority
+        Lane lane = Lane::Create (rtConfigAsm);
+        stringstream laneName;
+        laneName << string (rtConfigAsm.name()) << "_MergedLane_"
+                 << counter++;
+        lane.name() = laneName.str();
+        lane.lane_priority() = currPriority;
+        lane.static_threads() = currStaticThreads;
+        lane.dynamic_threads() = currDynamicThreads;
+        LanePerThreadPool conn = LanePerThreadPool::Create (rtConfigAsm);
+        ThreadPool tpool = rtConfigAsm.ThreadPool_child();
+        conn.srcLanePerThreadPool_end() = lane;
+        conn.dstLanePerThreadPool_end() = tpool;
       }
   }
 

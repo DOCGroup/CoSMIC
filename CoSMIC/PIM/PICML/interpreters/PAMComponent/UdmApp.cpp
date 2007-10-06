@@ -83,7 +83,7 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
                        long param)                         // Parameters
 {
   using std::string;
-  using PICML::CliqueSets;
+  using PICML::CompCliques;
   using PICML::Component;
   using PICML::PAMVisitor;
   using PICML::RootFolder;
@@ -105,9 +105,9 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
       AfxMessageBox ("Interpretation Failed. Caught UDM Exception: "
                      + CString (e.what()));
     }
-  catch (const CliqueSets& cliqueSets)
+  catch (const CompCliques& cliqueSets)
     {
-      CliqueSets::const_iterator begin, end;
+      CompCliques::const_iterator begin, end;
       boost::tie (begin, end) = make_pair (cliqueSets.begin(),
                                            cliqueSets.end());
       for (; begin != end; ++begin)
