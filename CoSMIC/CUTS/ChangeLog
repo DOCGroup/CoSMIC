@@ -1,3 +1,10 @@
+Sat Oct  6 15:38:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS_CoSMIC.mwc:
+
+          Commented out the MDE/utils directory since it is not
+          officially in the repo.
+
 Fri Oct  5 01:27:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:

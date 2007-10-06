@@ -16,7 +16,7 @@ workspace (CUTS_CoSMIC) {
 
   // MDE projects
   MDE/GEMS
-  MDE/utils
+  // MDE/utils
 
   exclude (!vc71, !vc8, !nmake) {
     // -- CUTS projects
