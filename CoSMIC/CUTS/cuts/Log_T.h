@@ -73,6 +73,9 @@ public:
   const CUTS_Log_T & operator = (const CUTS_Log_T & log);
 
 private:
+  typename ACE_Array_Base <T>::iterator iterator;
+  typename ACE_Array_Base <T>::const_iterator const_iterator;
+
   void copy_log (const CUTS_Log_T & log);
   void copy_log_i (const CUTS_Log_T & log);
 

@@ -1,3 +1,22 @@
+Sat Oct  6 22:02:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.cpp (init):
+
+          Swapped the hostname and instance parameters.
+
+        * cuts/Log_T.h:
+        * cuts/Log_T.cpp:
+        * cuts/performance_i.cpp:
+
+          Fixed build issues on Linux boxes.
+
+Sat Oct  6 22:00:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.cpp:
+
+        * cuts/Log_T.h:
+        * cuts/Log_T.cpp:
+
 Sat Oct  6 15:38:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS_CoSMIC.mwc:

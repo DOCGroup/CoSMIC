@@ -62,8 +62,8 @@ bool CUTS_Baseline_Archiver_DB::init (void)
         this->query_->prepare (stmt);
 
       // Bind the parameters of the query the correct variables.
-      this->query_->parameter (0)->bind (this->instance_, 0);
-      this->query_->parameter (1)->bind (this->hostname_, 0);
+      this->query_->parameter (0)->bind (this->hostname_, 0);
+      this->query_->parameter (1)->bind (this->instance_, 0);
       this->query_->parameter (2)->bind (this->inport_, 0);
       this->query_->parameter (3)->bind (this->outport_, 0);
       this->query_->parameter (4)->bind (&this->event_count_);
@@ -188,7 +188,9 @@ visit_port_metric (const CUTS_Port_Metric & pm)
   else
   {
     ACE_ERROR ((LM_ERROR,
-                "*** error [baseline]: failed to locate baseline data\n"));
+                "*** error [baseline]: failed to locate baseline data for "
+                "%s port\n",
+                this->inport_));
   }
 }
 
@@ -235,13 +237,6 @@ visit_time_measurement (const CUTS_Time_Measurement & tm)
 
   try
   {
-    ACE_DEBUG ((LM_DEBUG,
-                "%d (%d/%d/%d)\n",
-                this->event_count_,
-                this->best_time_,
-                this->worst_time_,
-                this->total_time_));
-
     this->query_->execute_no_record ();
   }
   catch (CUTS_DB_Exception & ex)

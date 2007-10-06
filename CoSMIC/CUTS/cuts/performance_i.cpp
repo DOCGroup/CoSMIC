@@ -6,7 +6,7 @@
 #include "cuts/performance_i.inl"
 #endif
 
-#include "tao/CORBA.h"
+#include "tao/corba.h"
 #include "ace/Guard_T.h"
 
 ///////////////////////////////////////////////////////////////////////////////
