@@ -1,3 +1,11 @@
+Sun Oct  7 18:24:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.cpp:
+        * cuts/Log_T.h:
+
+          Fixed compilation error related to upgrading to the latest
+          version of ACE+TAO+CIAO.
+
 Sat Oct  6 22:02:47 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.cpp (init):

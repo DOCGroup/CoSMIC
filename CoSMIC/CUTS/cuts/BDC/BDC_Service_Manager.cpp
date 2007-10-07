@@ -140,13 +140,13 @@ load_service (const char * name, const char * path,  const char * args)
             // Initialize the parent of the service. Then try to activate
             // the service.
             svc->svc_mgr_ = this;
-            
+
             if (svc->handle_activate () != 0)
               {
                 ACE_ERROR ((LM_ERROR,
                             "%s service failed during handle_activate ()\n",
                             name));
-                
+
                 ++ error_count;
               }
           }
@@ -280,7 +280,7 @@ int CUTS_BDC_Service_Manager::activate (void)
   {
     // Since the <uuid_> is empty, we need to generate one.
     ACE_Utils::UUID uuid;
-    ACE_Utils::UUID_GENERATOR::instance ()->generateUUID (uuid);
+    ACE_Utils::UUID_GENERATOR::instance ()->generate_UUID (uuid);
 
     this->uuid_ = *uuid.to_string ();
   }
