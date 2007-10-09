@@ -1,3 +1,17 @@
+Tue Oct  9 19:13:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/XML:
+        * cuts/be/XML/XML.mpc:
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+        * cuts/be/XML/XML_Manager.h:
+        * cuts/be/XML/XML_Manager_Factory.h:
+        * cuts/be/XML/XML_Manager_Factory.cpp:
+        * cuts/be/XML/XML_export.h:
+
+          Initial implementation of the XML backend generator for
+          PICML.
+
 Tue Oct  9 16:55:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.h:

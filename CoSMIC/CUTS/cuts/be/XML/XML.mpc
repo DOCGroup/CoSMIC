@@ -1,0 +1,27 @@
+// $Id$
+
+project (CUTS_BE_XML) : cosmic_lib, boost_base, picml_udm {
+  sharedname    = CUTS_BE_XML
+  dynamicflags += CUTS_BE_XML_BUILD_DLL
+
+  // declare the dependencies and libraries
+  includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
+  libpaths += $(CIAO_ROOT)/CCF/CCF
+
+  after += CodeGenerationKit CUTS_BE
+  libs  += CodeGenerationKits CUTS_BE
+
+  Source_Files {
+    XML_Generators.cpp
+    XML_Manager_Factory.cpp
+  }
+
+  Header_Files {
+    XML_export.h
+    XML_Manager.h
+  }
+
+  Inline_Files {
+
+  }
+}
