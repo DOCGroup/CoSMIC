@@ -1,3 +1,10 @@
+Tue Oct  9 01:47:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-baseline.sql:
+
+          'select_baseline_metric_all' now returns the baseline metrics
+          sorted by the 'component_name' column.
+
 Mon Oct  8 01:51:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-baseline.sql:

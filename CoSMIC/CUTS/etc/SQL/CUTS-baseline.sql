@@ -181,7 +181,8 @@ BEGIN
           WHERE ports.portid = portnames.portid) AS t6 ON t5.inport = t6.pid) AS t7
     LEFT JOIN (SELECT pid, portname
         FROM ports, portnames
-          WHERE ports.portid = portnames.portid) AS t8 ON t7.outport = t8.pid;
+          WHERE ports.portid = portnames.portid) AS t8 ON t7.outport = t8.pid
+    ORDER BY component_name;
 END; //
 
 -------------------------------------------------------------------------------
