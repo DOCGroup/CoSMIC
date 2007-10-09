@@ -1,3 +1,9 @@
+Tue Oct  9 22:32:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
+
+          Added the TIOA and XML backends to the PICML interpreter.
+
 Tue Oct  9 22:31:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Component_Registry.h:

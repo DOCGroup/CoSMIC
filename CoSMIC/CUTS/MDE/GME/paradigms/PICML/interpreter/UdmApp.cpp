@@ -31,12 +31,13 @@ CUTS_BE_Manager_Factory_Repo CUdmApp::repo_;
 //
 int CUdmApp::Initialize (void)
 {
-  // To add a new "static" backend, just add the module's name
-  // to this loading list.
-  bool retval = CUdmApp::repo_.load ("CUTS_BE_CIAO");
-  retval &= CUdmApp::repo_.load ("CUTS_BE_Natural_Lang");
+  // Load the static backends for PICML.
+  CUdmApp::repo_.load ("CUTS_BE_CIAO");
+  CUdmApp::repo_.load ("CUTS_BE_Natural_Lang");
+  CUdmApp::repo_.load ("CUTS_BE_TIOA");
+  CUdmApp::repo_.load ("CUTS_BE_XML");
 
-  return retval ? 0 : -1;
+  return 0;
 }
 
 //
