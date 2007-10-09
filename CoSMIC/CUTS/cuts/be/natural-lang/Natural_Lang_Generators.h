@@ -35,6 +35,17 @@ struct CUTS_BE_Natural_Lang
   size_t indent_;
 };
 
+namespace CUTS_BE
+{
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::ProvidedRequestPort);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::Attribute);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::ReadonlyAttribute);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::ComponentFactory);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::Object);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::OnewayOperation);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Natural_Lang, PICML::TwowayOperation);
+}
+
 //=============================================================================
 /**
  *

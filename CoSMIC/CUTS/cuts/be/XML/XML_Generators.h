@@ -51,6 +51,20 @@ public:
   std::auto_ptr <_formatter_type> formatter_;
 };
 
+//
+// disable the following points of generation
+//
+namespace CUTS_BE
+{
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::ProvidedRequestPort);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::Attribute);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::ReadonlyAttribute);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::ComponentFactory);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::Object);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::OnewayOperation);
+  CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::TwowayOperation);
+}
+
 //=============================================================================
 /**
  *
