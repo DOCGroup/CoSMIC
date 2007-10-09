@@ -266,13 +266,13 @@ static void operator <<= (CUTS::Port_Metrics & ports,
   CUTS_Port_Agent_Set::CONST_ITERATOR iter (agents);
 
   // Copy all the elements from the set to the sequence.
-  for (iter; !iter.done (); iter ++, buf ++)
+  for (; !iter.done (); iter.advance ())
   {
     CUTS_Port_Agent * agent =
       reinterpret_cast <CUTS_Port_Agent *> (iter->key ());
 
     buf->uid = iter->item ();
-    *buf <<= *agent;
+    *buf ++ <<= *agent;
 
     // Reset the port agent for the next collection.
     agent->reset ();
@@ -308,8 +308,9 @@ void operator <<= (CUTS::Port_Metric & pm, const CUTS_Port_Agent & agent)
 //
 // operator <<=
 //
-static inline void operator <<= (CUTS::Sorted_Port_Metric & sps,
-                                 CUTS_Port_Measurement_Map::hash_map_t::value_type & vt)
+static inline
+void operator <<= (CUTS::Sorted_Port_Metric & sps,
+                   CUTS_Port_Measurement_Map::hash_map_t::value_type & vt)
 {
   sps.uid = vt.key ();
   sps.summary <<= *vt.item ();
@@ -329,8 +330,8 @@ void operator <<= (CUTS::Sorted_Port_Metrics & sps,
 
   CUTS::Sorted_Port_Metrics::value_type * buf = sps.get_buffer ();
 
-  while (!iter.done ())
-    *buf ++ <<= *iter ++;
+  for (; !iter.done (); iter.advance ())
+    *buf ++ <<= *iter;
 }
 
 //
@@ -359,7 +360,7 @@ void operator <<= (CUTS::Endpoint_Time_Infos & eti,
   size_t count = 0;
   CUTS_Port_Measurement_Endpoint_Map::CONST_ITERATOR iter (endpoints);
 
-  for (; !iter.done (); iter ++)
+  for (; !iter.done (); iter.advance ())
   {
     if (iter->item ()->count () > 0)
     {
@@ -389,28 +390,27 @@ void operator <<= (CUTS::Time_Info & ti, const CUTS_Time_Measurement & tm)
 void operator <<= (CUTS::Metric_Log & mlog,
                    const CUTS_Activation_Record_Log & log)
 {
-  // Set the size of the <mlog> sequence.
-  CORBA::ULong curr_size = log.used_size ();
-  mlog.length (curr_size);
-
-  // Get a iterator to the logs and a pointer to the head
-  // of the target buffer.
-  CUTS_Activation_Record_Log::const_iterator iter = log.begin ();
-  CUTS_Activation_Record_Log::const_iterator iter_stop = iter + log.used_size ();
-
-  CUTS::Metric_Log::value_type * buf = mlog.get_buffer ();
-  CORBA::ULong final_size = 0;
+  ::CORBA::ULong final_size = 0;
 
   do
   {
+    ACE_READ_GUARD (ACE_RW_Thread_Mutex,
+      guard,
+      const_cast <CUTS_Activation_Record_Log &> (log).lock ());
+
+    // Set the size of the <mlog> sequence.
+    ::CORBA::ULong curr_size = log.used_size ();
+    mlog.length (curr_size);
+
+    // Get a iterator to the logs and a pointer to the head
+    // of the target buffer.
+    CUTS_Activation_Record_Log::const_iterator iter = log.begin ();
+    CUTS::Metric_Log::value_type * buf = mlog.get_buffer ();
+
     // Get a read lock to the log. This will allow use to do a batch
     // processing operation and prevent other threads from trying to
     // increase the size of the record log.
-    ACE_READ_GUARD (ACE_RW_Thread_Mutex,
-                    guard,
-                    const_cast <CUTS_Activation_Record_Log &> (log).lock ());
-
-    while (iter != iter_stop)
+    for (::CORBA::ULong i = 0; i < curr_size; i ++)
     {
       // Only copy records that are not open (i.e., have be used). Since we
       // are only looking at used records, we do not have to worry about a
@@ -419,6 +419,8 @@ void operator <<= (CUTS::Metric_Log & mlog,
       if (!iter->is_open ())
       {
         *buf ++ <<= *iter ++;
+
+        // Keep track of the actual size.
         ++ final_size;
       }
     }
@@ -436,7 +438,7 @@ void operator <<= (CUTS::Endpoint_Times & ep_times,
                    const CUTS_Activation_Record_Endpoints & endpoints)
 {
   // Set the correct size of the target buffer.
-  CORBA::ULong curr_size = endpoints.current_size ();
+  ::CORBA::ULong curr_size = endpoints.current_size ();
   ep_times.length (curr_size);
 
   // Get an iterator to the endpoint times and a pointer to the
@@ -444,7 +446,7 @@ void operator <<= (CUTS::Endpoint_Times & ep_times,
   CUTS_Activation_Record_Endpoints::CONST_ITERATOR iter (endpoints);
   CUTS::Endpoint_Times::value_type * buf = ep_times.get_buffer ();
 
-  for (CORBA::ULong index = 0; index < curr_size; index ++)
+  for (::CORBA::ULong index = 0; index < curr_size; index ++)
   {
     // Store the information in the buffer. This is the unique
     // id of the endpoint and the time it was encountered.

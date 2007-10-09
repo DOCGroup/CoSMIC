@@ -1,3 +1,12 @@
+Tue Oct  9 12:47:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/performance_i.cpp:
+
+          Fixed bug that was caused by not locking the activation record
+          log at the correct time before accessing its data members. This
+          resulted in the iteration over the log to either crash, or enter
+          an infinite loop.
+
 Tue Oct  9 12:38:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-baseline.sql:
