@@ -1,3 +1,10 @@
+Tue Oct  9 12:33:02 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Added baseline.aspx page to the installer and fixed other
+          errors in the WiX installer file.
+
 Tue Oct  9 02:17:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Database_Utility/Database_Utility.cs:

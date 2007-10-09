@@ -18,9 +18,9 @@
              SummaryCodepage='1252' />
 
     <!-- Wix variables -->
-    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
-    <WixVariable Id="WixUIBannerBmp"  Value="Bitmaps\bannrbmp.bmp" />
-    <WixVariable Id="WixUIDialogBmp"  Value="Bitmaps\dlgbmp.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(env.CUTS_ROOT)\docs\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp"  Value="images\bannrbmp.bmp" />
+    <WixVariable Id="WixUIDialogBmp"  Value="images\dlgbmp.bmp" />
 
     <!-- properties -->
     <Property Id="IIS_INSTALLED">
@@ -31,7 +31,7 @@
 
     <Property Id="MYSQL_CONNECTOR_INSTALLED">
       <RegistrySearch Id="MySQLConnectorVersion" Root="HKLM" Type="raw"
-                      Key="SOFTWARE\MySQL AB\MySQL Connector/Net 1.0.7"
+                      Key="SOFTWARE\MySQL AB\MySQL Connector/Net 5.0.8.1"
                       Name="Version" />
     </Property>
 
@@ -44,7 +44,7 @@
     <!-- install conditions -->
     <Condition Message='The Benchmark Manager Web Utility requires Microsoft.NET Framework 2.0'>DOTNET_2_0_INSTALLED</Condition>
     <Condition Message='The Benchmark Manager Web Utility requires Microsoft Internet Information Services (IIS)'>IIS_INSTALLED</Condition>
-    <Condition Message='The Benchmark Manager Web Utility requires MySQL.NET Connector 1.0.7'>MYSQL_CONNECTOR_INSTALLED</Condition>
+    <Condition Message='The Benchmark Manager Web Utility requires MySQL.NET Connector 5.0.8.1'>MYSQL_CONNECTOR_INSTALLED</Condition>
 
     <Media Id="1" Cabinet="BMW.cab" EmbedCab="yes" />
 
@@ -67,6 +67,10 @@
                 <!-- master pages -->
                 <File Id="BMW.master" Name="BMW.master"
                       Source="$(var.BMW_ROOT)\BMW.master" DiskId="1" />
+
+                <!-- website pages -->
+                <File Id="baseline.aspx" Name="baseline.aspx"
+                      Source="$(var.BMW_ROOT)\baseline.aspx" DiskId="1" />
 
                 <File Id="components.aspx" Name="components.aspx"
                       Source="$(var.BMW_ROOT)\components.aspx" DiskId="1" />
@@ -117,6 +121,9 @@
 
                   <File Id="App_Code.compiled" Name="App_Code.compiled"
                         Source="$(var.BMW_ROOT)\bin\App_Code.compiled" DiskId="1" />
+
+                  <File Id="App_Web_baseline.aspx.cdcab7d2.dll" Name="App_Web_baseline.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_baseline.aspx.cdcab7d2.dll" DiskId="1" />
 
                   <File Id="App_Web_timeline.aspx.cdcab7d2.dll" Name="App_Web_timeline.aspx.cdcab7d2.dll"
                         Source="$(var.BMW_ROOT)\bin\App_Web_timeline.aspx.cdcab7d2.dll" DiskId="1" />
