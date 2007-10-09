@@ -132,7 +132,7 @@ public:
    * @param[in]       inst        The component instance name.
    * @param[in]       remove      Completely remove the node.
    */
-  void unregister_component (const ACE_CString & inst, bool remove = false);
+  void unregister_component (const ACE_CString & inst);
 
   /**
    * Determine if a component instance is registered.

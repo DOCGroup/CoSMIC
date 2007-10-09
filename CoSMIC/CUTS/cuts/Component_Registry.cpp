@@ -46,6 +46,8 @@ CUTS_Component_Registry::~CUTS_Component_Registry (void)
 int CUTS_Component_Registry::
 register_component (CUTS_Component_Registry_Node * info)
 {
+  // Insert the <info> into the component registry.
+  CUTS_Component_Registry_Node * old_info = 0;
   int retval = this->registry_.bind (info->info_.inst_, info);
 
   if (retval == 0)
@@ -63,29 +65,21 @@ register_component (CUTS_Component_Registry_Node * info)
 // unregister_component
 //
 void CUTS_Component_Registry::
-unregister_component (const ACE_CString & instance, bool remove)
+unregister_component (const ACE_CString & instance)
 {
   // Locate the registration information for <instance>.
-  CUTS_Component_Registry_Map::ENTRY * entry = 0;
-  int retval = this->registry_.find (instance, entry);
+  CUTS_Component_Registry_Node * node = 0;
+  int retval = this->registry_.unbind (instance, node);
 
-  if (retval == 0)
+  if (retval == 0 && node != 0)
   {
-    // Remove the node from the <registry_> if necessary.
-    if (remove)
-      this->registry_.unbind (entry);
+    // Toggle the deletion flag.
+    node->delete_ = true;
 
-    if (entry->item () != 0)
-    {
-      // Toggle flag to delete entry's item after processing.
-      if (remove)
-        entry->item ()->delete_ = true;
-
-      // Change its state to passivate and notify all the handlers
-      // that are registered w/ the service.
-      entry->item ()->info_.state_ = CUTS_Component_Info::STATE_PASSIVATE;
-      this->info_queue_.enqueue_tail (entry->item ());
-    }
+    // Change its state to passivate and notify all the handlers
+    // that are registered w/ the service.
+    node->info_.state_ = CUTS_Component_Info::STATE_PASSIVATE;
+    this->info_queue_.enqueue_tail (node);
   }
 }
 
