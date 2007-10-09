@@ -58,7 +58,8 @@ CUTS_Database_Service::CUTS_Database_Service (void)
   username_ (CUTS_USERNAME),
   password_ (CUTS_PASSWORD),
   port_ (CUTS_DEFAULT_PORT),
-  test_number_ (-1)
+  test_number_ (-1),
+  enable_deployment_ (false)
 {
   CUTS_DB_Connection * conn = 0;
   ACE_NEW (conn, ODBC_Connection ());
@@ -135,6 +136,7 @@ int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
   get_opt.long_option ("server", 's', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("port", 'p', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("verbose", ACE_Get_Opt::NO_ARG);
+  get_opt.long_option ("enable-deployment", ACE_Get_Opt::NO_ARG);
 
   int option;
 
@@ -154,6 +156,10 @@ int CUTS_Database_Service::parse_args (int argc, ACE_TCHAR * argv [])
       else if (ACE_OS::strcmp (get_opt.long_option (), "verbose") == 0)
       {
         this->verbose_ = true;
+      }
+      else if (ACE_OS::strcmp (get_opt.long_option (), "enable-deployment") == 0)
+      {
+        this->enable_deployment_ = true;
       }
       break;
 
@@ -483,6 +489,16 @@ handle_component (const CUTS_Component_Info & info)
                          info.inst_.c_str ()),
                          -1);
     }
+
+    // Set component's uptime in deployment table if allowed.
+    if (this->enable_deployment_)
+      this->set_component_uptime (info);
+  }
+  else if (info.state_ == CUTS_Component_Info::STATE_PASSIVATE)
+  {
+    // Set component's downtime in deployment table if allowed.
+    if (this->enable_deployment_)
+      this->set_component_downtime (info);
   }
 
   return 0;
@@ -505,12 +521,12 @@ int CUTS_Database_Service::handle_activate (void)
 //
 bool CUTS_Database_Service::set_test_uuid (void)
 {
-  // Associate that test with the UUID of the service manager.
-  CUTS_Auto_Functor_T <CUTS_DB_Query>
-    query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
-
   try
   {
+    // Associate that test with the UUID of the service manager.
+    CUTS_Auto_Functor_T <CUTS_DB_Query>
+      query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
     // Prepare a SQL query for execution.
     const char * query_stmt =
       "UPDATE tests SET test_uuid = ? WHERE test_number = ?";
@@ -523,19 +539,113 @@ bool CUTS_Database_Service::set_test_uuid (void)
 
     // Execute the query.
     query->execute_no_record ();
+
     return true;
   }
   catch (CUTS_DB_Exception & ex)
   {
     ACE_ERROR ((LM_ERROR,
-                "*** error (set_test_uuid): %s\n",
+                "*** error [archive]: %s\n",
                 ex.message ().c_str ()));
-  }
-  catch (...)
-  {
-    ACE_ERROR ((LM_ERROR,
-                "*** error (set_test_uuid): caught unknown exception\n"));
   }
 
   return false;
+}
+
+//
+// set_component_uptime
+//
+void CUTS_Database_Service::
+set_component_uptime (const CUTS_Component_Info & info)
+{
+  try
+  {
+    CUTS_Auto_Functor_T <CUTS_DB_Query>
+      query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+    const char * stmt =
+      "CALL cuts.set_component_uptime_using_hostname (?,?,?)";
+
+    char hostname[256];
+    char instance[256];
+
+    // Prepare the statement and it's parameters.
+    query->prepare (stmt);
+    query->parameter (0)->bind (&this->test_number_);
+    query->parameter (1)->bind (instance, 0);
+    query->parameter (2)->bind (hostname, 0);
+
+    // Copy the strings into the parameter buffers.
+    ACE_OS::strncpy (hostname,
+                     info.host_info_->hostname_.c_str (),
+                     sizeof (hostname));
+
+    ACE_OS::strncpy (instance,
+                     info.inst_.c_str (),
+                     sizeof (instance));
+
+    // Execute the query.
+    query->execute_no_record ();
+
+    VERBOSE_MESSAGE ((LM_INFO,
+                      "*** info [archive]: successfully set uptime "
+                      "for <%s> on <%s>\n",
+                      instance,
+                      hostname))
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error [archive]: %s\n",
+                ex.message ().c_str ()));
+  }
+}
+
+//
+// set_component_downtime
+//
+void CUTS_Database_Service::
+set_component_downtime (const CUTS_Component_Info & info)
+{
+  try
+  {
+    CUTS_Auto_Functor_T <CUTS_DB_Query>
+      query (this->conn_->create_query (), &CUTS_DB_Query::destroy);
+
+    const char * stmt =
+      "CALL cuts.set_component_downtime_using_hostname (?,?,?)";
+
+    char hostname[256];
+    char instance[256];
+
+    // Prepare the statement and it's parameters.
+    query->prepare (stmt);
+    query->parameter (0)->bind (&this->test_number_);
+    query->parameter (1)->bind (instance, 0);
+    query->parameter (2)->bind (hostname, 0);
+
+    // Copy the strings into the parameter buffers.
+    ACE_OS::strncpy (hostname,
+                     info.host_info_->hostname_.c_str (),
+                     sizeof (hostname));
+
+    ACE_OS::strncpy (instance,
+                     info.inst_.c_str (),
+                     sizeof (instance));
+
+    // Execute the query.
+    query->execute_no_record ();
+
+    VERBOSE_MESSAGE ((LM_INFO,
+                      "*** info [archive]: successfully set downtime "
+                      "for <%s> on <%s>\n",
+                      instance,
+                      hostname))
+  }
+  catch (CUTS_DB_Exception & ex)
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error [archive]: %s\n",
+                ex.message ().c_str ()));
+  }
 }

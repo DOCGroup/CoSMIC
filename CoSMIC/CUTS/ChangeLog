@@ -1,3 +1,17 @@
+Tue Oct  9 16:55:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.h:
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+        * cuts/BDC/svcs/dbase/README:
+
+          Added support for storing the uptime of a component in the
+          database if the 'deployment' table is present.
+
+        * etc/SQL/CUTS-deployment.sql:
+
+          Added stored procedures to simplify inserting the component's
+          uptime and downtime.
+
 Tue Oct  9 12:47:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/performance_i.cpp:

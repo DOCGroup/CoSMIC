@@ -16,5 +16,8 @@ Database connection properties:
   -s, --server=VALUE        database is hosted on VALUE
   -p, --port=VALUE          connect to database on port VALUE
 
+Database Capabilities
+  --enable-deployment       database has 'deployment' table
+
 Miscellaneous:
   --verbose                 print information about progress

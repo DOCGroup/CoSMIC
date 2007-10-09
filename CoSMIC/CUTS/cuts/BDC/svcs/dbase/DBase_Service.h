@@ -104,6 +104,12 @@ private:
    */
   bool stop_current_test_i (void);
 
+  /// Set the component uptime in the deployment table.
+  void set_component_uptime (const CUTS_Component_Info & info);
+
+  /// Set the component downtime in the deployment table.
+  void set_component_downtime (const CUTS_Component_Info & info);
+
   /// Verbose flag for the service.
   bool verbose_;
 
@@ -124,6 +130,9 @@ private:
 
   /// The current test number.
   long test_number_;
+
+  /// Determine if we should log the deployment information.
+  bool enable_deployment_;
 
   /// The connection for the database service.
   ACE_Auto_Ptr <CUTS_DB_Connection> conn_;
