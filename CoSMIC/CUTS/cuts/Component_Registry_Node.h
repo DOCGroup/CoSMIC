@@ -32,6 +32,9 @@ public:
 
   /// Information about the component.
   CUTS_Component_Info info_;
+
+  /// Flag that determines if the nede should be deleted.
+  bool delete_;
 };
 
 #if defined (__CUTS_INLINE__)

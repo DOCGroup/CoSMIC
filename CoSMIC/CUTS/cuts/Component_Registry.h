@@ -27,11 +27,18 @@
 // Forward decl.
 class CUTS_Component_Registry_Handler;
 
-// Type definition for the mapping of component types.
+/// Type definition for the mapping of component types.
 typedef
   ACE_Hash_Map_Manager <
   ACE_CString, CUTS_Component_Type *, ACE_RW_Thread_Mutex>
   CUTS_Component_Type_Map;
+
+/// Type definition of the component registry map.
+typedef
+  ACE_Hash_Map_Manager <ACE_CString,
+                        CUTS_Component_Registry_Node *,
+                        ACE_RW_Thread_Mutex>
+                        CUTS_Component_Registry_Map;
 
 //=============================================================================
 /**
@@ -46,14 +53,9 @@ typedef
 class CUTS_Export CUTS_Component_Registry
 {
 public:
-  /// Type definition of the component registry map.
-  typedef ACE_Hash_Map_Manager <ACE_CString,
-                                CUTS_Component_Registry_Node *,
-                                ACE_RW_Thread_Mutex>
-                                Component_Registry_Map;
 
   /// Type definition of the registry const iterator.
-  typedef Component_Registry_Map::CONST_ITERATOR CONST_ITERATOR;
+  typedef CUTS_Component_Registry_Map::CONST_ITERATOR CONST_ITERATOR;
 
   /// Default constructor.
   CUTS_Component_Registry (void);
@@ -128,8 +130,9 @@ public:
    * If the component cannot be found, then nothing happens.
    *
    * @param[in]       inst        The component instance name.
+   * @param[in]       remove      Completely remove the node.
    */
-  void unregister_component (const ACE_CString & inst);
+  void unregister_component (const ACE_CString & inst, bool remove = false);
 
   /**
    * Determine if a component instance is registered.
@@ -163,7 +166,7 @@ public:
    *
    * @return      Read-only reference to entries.
    */
-  const Component_Registry_Map & entries (void) const;
+  const CUTS_Component_Registry_Map & entries (void) const;
 
   /**
    * Get the registeration information for a component.
@@ -193,7 +196,7 @@ protected:
           CUTS_Component_Registry_Node,
           ACE_MT_SYNCH> CUTS_Message_Queue;
 
-  Component_Registry_Map registry_;
+  CUTS_Component_Registry_Map registry_;
 
   /// Queue that contains the component information.
   CUTS_Message_Queue info_queue_;

@@ -37,10 +37,10 @@ namespace CUTS
     // Check for a NIL <agent> and print a warning message if there
     // is one. Usually this means there is something wrong w/ the
     // template code that activates the <agent>!!!
-    if (CORBA::is_nil (creg.agent.in ()))
+    if (::CORBA::is_nil (creg.agent.in ()))
     {
       ACE_ERROR ((LM_WARNING,
-                  "[%M] -%T - component %s has NIL agent\n",
+                  "[%M] -%T - component %s has <NIL> agent\n",
                   creg.name.in ()));
     }
 
@@ -81,9 +81,9 @@ namespace CUTS
   // unregister_component
   //
   void Testing_Service_exec_i::
-  unregister_component (const CUTS::Component_Registration & creg)
+  unregister_component (const CUTS::Component_Registration & reg)
   {
-
+    this->registry_.unregister_component (reg.name.in ());
   }
 
   //

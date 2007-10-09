@@ -60,7 +60,7 @@ CUTS_Host_Table & CUTS_Component_Registry::hosts (void)
 // entries
 //
 CUTS_INLINE
-const CUTS_Component_Registry::Component_Registry_Map &
+const CUTS_Component_Registry_Map &
 CUTS_Component_Registry::entries (void) const
 {
   return this->registry_;

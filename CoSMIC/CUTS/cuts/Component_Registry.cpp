@@ -28,12 +28,14 @@ CUTS_Component_Registry::CUTS_Component_Registry (void)
 CUTS_Component_Registry::~CUTS_Component_Registry (void)
 {
   // Delete all the instances in the registry.
-  Component_Registry_Map::iterator reg_iter (this->registry_);
-  for (reg_iter; !reg_iter.done (); reg_iter.advance ())
+  CUTS_Component_Registry_Map::iterator reg_iter (this->registry_);
+
+  for ( ; !reg_iter.done (); reg_iter.advance ())
     delete reg_iter->int_id_;
 
   // Delete all the types in the registry.
   CUTS_Component_Type_Map::CONST_ITERATOR type_iter (this->component_types_);
+
   for (type_iter; !type_iter.done (); type_iter ++)
     delete type_iter->item ();
 }
@@ -61,15 +63,30 @@ register_component (CUTS_Component_Registry_Node * info)
 // unregister_component
 //
 void CUTS_Component_Registry::
-unregister_component (const ACE_CString & instance)
+unregister_component (const ACE_CString & instance, bool remove)
 {
-  // Remove the component from the registry.
-  CUTS_Component_Registry_Node * node = 0;
-  int retval = this->registry_.unbind (instance, node);
+  // Locate the registration information for <instance>.
+  CUTS_Component_Registry_Map::ENTRY * entry = 0;
+  int retval = this->registry_.find (instance, entry);
 
-  // Delete the node.
-  if (retval == 0 && node != 0)
-    delete node;
+  if (retval == 0)
+  {
+    // Remove the node from the <registry_> if necessary.
+    if (remove)
+      this->registry_.unbind (entry);
+
+    if (entry->item () != 0)
+    {
+      // Toggle flag to delete entry's item after processing.
+      if (remove)
+        entry->item ()->delete_ = true;
+
+      // Change its state to passivate and notify all the handlers
+      // that are registered w/ the service.
+      entry->item ()->info_.state_ = CUTS_Component_Info::STATE_PASSIVATE;
+      this->info_queue_.enqueue_tail (entry->item ());
+    }
+  }
 }
 
 //
@@ -105,6 +122,9 @@ ACE_THR_FUNC_RETURN CUTS_Component_Registry::thr_svc (void * param)
 
       for (iter; !iter.done (); iter ++)
         (*iter)->handle_component (node->info_);
+
+      if (node->delete_)
+        delete node;
     }
   }
 
@@ -126,9 +146,9 @@ int CUTS_Component_Registry::open (void)
 
   // Spawn the service thread for the registry.
   this->grp_id_ =
-    ACE_Thread_Manager::instance ()->spawn (
-    &CUTS_Component_Registry::thr_svc,
-    this);
+    ACE_Thread_Manager::instance ()->
+    spawn (&CUTS_Component_Registry::thr_svc,
+           this);
 
   // Verify everything was created properly.
   if (this->grp_id_ == -1)

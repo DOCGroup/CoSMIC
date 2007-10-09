@@ -1,3 +1,20 @@
+Tue Oct  9 22:15:05 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Testing_Service_exec_i.cpp:
+
+          Implemented the 'unregister_component' method.
+
+        * cuts/Component_Registry.h:
+        * cuts/Component_Registry.inl:
+        * cuts/Component_Registry.cpp:
+        * cuts/Component_Registry_Node.h:
+        * cuts/Component_Registry_Node.inl:
+
+          Re-implemented unregister_component so that the client
+          has the option of caching the registration information for
+          later usage, or deleting it. Also, when a component is
+          unregistered, all registered event handlers are notified.
+
 Tue Oct  9 20:19:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/XML/XML_Generators.h:
