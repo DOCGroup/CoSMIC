@@ -43,9 +43,6 @@ public:
   /// Target TIOA output file.
   std::ofstream outfile_;
 
-  /// Number of properties for an action.
-  size_t property_count_;
-
   /// Indentation implanter.
   typedef Indentation::Implanter <
     Indentation::XML, char> _formatter_type;
@@ -185,33 +182,9 @@ struct CUTS_BE_WorkerAction_Begin_T <CUTS_BE_Xml>
 //=============================================================================
 
 template < >
-struct CUTS_BE_Action_Properties_Begin_T <CUTS_BE_Xml>
-{
-  static bool generate (size_t count);
-};
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-template < >
 struct CUTS_BE_Action_Property_T <CUTS_BE_Xml>
 {
   static bool generate (const PICML::Property & property);
-};
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-template < >
-struct CUTS_BE_Action_Properties_End_T <CUTS_BE_Xml>
-{
-  static bool generate (void);
 };
 
 //=============================================================================
@@ -358,6 +331,66 @@ template < >
 struct CUTS_BE_PeriodicEvent_End_T <CUTS_BE_Xml>
 {
   static bool generate (const PICML::PeriodicEvent & periodic);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Precondition_T <CUTS_BE_Xml>
+{
+  static bool generate (const std::string & precondition);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>
+{
+  static bool generate (size_t branches);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>
+{
+  static bool generate (const std::string & precondition);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Branch_End_T <CUTS_BE_Xml>
+{
+  static bool generate (void);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Branches_End_T <CUTS_BE_Xml>
+{
+  static bool generate (void);
 };
 
 #endif  // !defined _CUTS_BE_XML_GENERATORS_H_

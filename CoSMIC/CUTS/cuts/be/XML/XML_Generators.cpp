@@ -186,15 +186,6 @@ generate (const PICML::Worker & worker, const PICML::Action & action)
 }
 
 //
-// CUTS_BE_Action_Properties_Begin_T
-//
-bool CUTS_BE_Action_Properties_Begin_T <CUTS_BE_Xml>::
-generate (size_t count)
-{
-  return true;
-}
-
-//
 // CUTS_BE_Action_Property_T
 //
 bool CUTS_BE_Action_Property_T <CUTS_BE_Xml>::
@@ -230,14 +221,6 @@ generate (const PICML::Property & property)
 bool CUTS_BE_Action_End_T <CUTS_BE_Xml>::generate (void)
 {
   CUTS_BE_XML ()->outfile_ << "</action>" << std::endl;
-  return true;
-}
-
-//
-// CUTS_BE_Action_Properties_End_T
-//
-bool CUTS_BE_Action_Properties_End_T <CUTS_BE_Xml>::generate (void)
-{
   return true;
 }
 
@@ -358,3 +341,56 @@ generate (const PICML::OutputAction & action,
 {
   return CUTS_BE_Action_Property_T <CUTS_BE_Xml>::generate (property);
 }
+
+//
+// CUTS_BE_Precondition_T
+//
+bool CUTS_BE_Precondition_T <CUTS_BE_Xml>::
+generate (const std::string & precondition)
+{
+  CUTS_BE_XML ()->outfile_
+    << "<precondition>" << precondition << "</precondition>" << std::endl;
+
+  return true;
+}
+
+//
+// CUTS_BE_Branches_Begin_T
+//
+bool CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>::generate (size_t branches)
+{
+  CUTS_BE_XML ()->outfile_ << "<branches>" << std::endl;
+  return true;
+}
+
+//
+// CUTS_BE_Branch_Begin_T
+//
+bool CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>::
+generate (const std::string & precondition)
+{
+  CUTS_BE_XML ()->outfile_
+    << "<branch>" << std::endl;
+
+  CUTS_BE_Precondition_T <CUTS_BE_Xml>::generate (precondition);
+  return true;
+}
+
+//
+// CUTS_BE_Branch_End_T
+//
+bool CUTS_BE_Branch_End_T <CUTS_BE_Xml>::generate (void)
+{
+  CUTS_BE_XML ()->outfile_ << "</branch>" << std::endl;
+  return true;
+}
+
+//
+// CUTS_BE_Branches_End_T
+//
+bool CUTS_BE_Branches_End_T <CUTS_BE_Xml>::generate (void)
+{
+  CUTS_BE_XML ()->outfile_ << "</branches>" << std::endl;
+  return true;
+};
+

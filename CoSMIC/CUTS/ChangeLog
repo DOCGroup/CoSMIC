@@ -1,3 +1,10 @@
+Tue Oct  9 19:56:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+
+          Added support for generating branches in XML.
+
 Tue Oct  9 19:13:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/XML:
