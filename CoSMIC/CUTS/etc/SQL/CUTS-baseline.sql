@@ -173,7 +173,8 @@ BEGIN
   SELECT t7.*, t8.portname AS source FROM
     (SELECT t5.*, t6.portname AS sink FROM
       (SELECT t3.*, t4.hostname FROM
-        (SELECT t1.*, t2.component_name FROM baseline AS t1
+        (SELECT t1.*, (t1.total_time / t1.event_count) AS avg_time, t2.component_name
+          FROM baseline AS t1
           LEFT JOIN component_instances AS t2 ON t1.instance = t2.component_id) AS t3
         LEFT JOIN ipaddr_host_map AS t4 ON t3.host = t4.hostid) AS t5
       LEFT JOIN (SELECT pid, portname
@@ -197,7 +198,8 @@ BEGIN
   SELECT t7.*, t8.portname AS source FROM
     (SELECT t5.*, t6.portname AS sink FROM
       (SELECT t3.*, t4.hostname FROM
-        (SELECT t1.*, t2.component_name FROM baseline AS t1
+        (SELECT t1.*, (t1.total_time / t1.event_count) AS avg_time, t2.component_name
+          FROM baseline AS t1
           LEFT JOIN component_instances AS t2 ON t1.instance = t2.component_id
           WHERE t2.component_name = instance_name) AS t3
         LEFT JOIN ipaddr_host_map AS t4 ON t3.host = t4.hostid) AS t5
