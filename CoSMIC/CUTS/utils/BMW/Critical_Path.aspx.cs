@@ -346,12 +346,12 @@ namespace CUTS
 
       // Get the type id of the selected component.
       command.CommandText = "SELECT typeid FROM component_instances WHERE component_id = ?cid";
-      command.Parameters.Add("?cid", this.instance_.SelectedValue);
+      command.Parameters.AddWithValue("?cid", this.instance_.SelectedValue);
       System.Int32 typeid = (System.Int32)command.ExecuteScalar();
 
       // Get the source and sinks for the component's type.
       command.CommandText = "SELECT sinks, sources FROM component_types WHERE typeid = ?typeid";
-      command.Parameters.Add("?typeid", typeid);
+      command.Parameters.AddWithValue("?typeid", typeid);
 
       // Get all the ports for the component.
       DataSet ds = new DataSet();

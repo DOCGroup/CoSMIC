@@ -3,9 +3,9 @@
 //=============================================================================
 /**
  * @file      default.aspx.cs
- * 
+ *
  * $Id$
- * 
+ *
  * @author    James H. Hill
  */
 //=============================================================================
@@ -26,8 +26,8 @@ namespace CUTS
 {
   //===========================================================================
   /**
-   * @class Test  
-   * 
+   * @class Test
+   *
    * Backend source for the default.aspx web page.
    */
   //===========================================================================
@@ -39,12 +39,11 @@ namespace CUTS
 
     /**
      * Callback method for loading a page.
-     * 
+     *
      * @param[in]     sender        Sender of the event.
      * @param[in]     e             Arguments for the event.
      */
-    private void Page_Load (object sender, 
-                            System.EventArgs e)
+    private void Page_Load (object sender, System.EventArgs e)
     {
       if (!this.IsPostBack)
         this.load_test_data();
@@ -52,11 +51,11 @@ namespace CUTS
 
     /**
      * Callback method for changing the index of a page.
-     * 
+     *
      * @param[in]       sender        Sender of the event.
      * @param[in]       e             Arguments for the event.
      */
-    protected void handle_onpageindexchanged(object sender, 
+    protected void handle_onpageindexchanged(object sender,
                                              DataGridPageChangedEventArgs e)
     {
       this.tests_.CurrentPageIndex = e.NewPageIndex;
@@ -83,11 +82,11 @@ namespace CUTS
 
     /**
      * Callback method for creating items in a datagrid.
-     * 
+     *
      * @param[in]     sender        Sender of the event.
      * @param[in]     e             Arguments for the event.
      */
-    protected void handle_onitemcreated(object sender, 
+    protected void handle_onitemcreated(object sender,
                                         DataGridItemEventArgs e)
     {
       ListItemType item_type = e.Item.ItemType;
@@ -150,12 +149,12 @@ namespace CUTS
     }
 
     /**
-     * Callback method for selecting all the test on the 
+     * Callback method for selecting all the test on the
      * current page.
-     * 
+     *
      * @param[in]       e       Arguments for the event.
      */
-    protected void handle_toggle_action (object sender, 
+    protected void handle_toggle_action (object sender,
                                          System.EventArgs e)
     {
       // The sender of this event is a <CheckBox>
@@ -167,7 +166,7 @@ namespace CUTS
 
     /**
      * Callback method for clicking the "Select All" link button.
-     * 
+     *
      * @param[in]       sender          Sender of the event.
      * @param[in]       e               Arguments for the event.
      */
@@ -178,7 +177,7 @@ namespace CUTS
 
     /**
      * Callback method for clicking the "Unselect All" link.
-     * 
+     *
      * @param[in]       sender        Sender of the event.
      * @param[in]       e             Arguments for the event.
      */
@@ -191,7 +190,7 @@ namespace CUTS
     /**
      * Helper method for toggling all the "action_" checkboxes
      * on the current page.
-     * 
+     *
      * @param[in]     state         Enable state for the item.
      */
     private void toggle_action_i (bool state)
@@ -207,10 +206,10 @@ namespace CUTS
 
     /**
      * Callback method for clicking the "Delete All" link.
-     * 
+     *
      * @param[in]       sender        Sender of the event.
      */
-    protected void handle_delete_all(object sender, 
+    protected void handle_delete_all(object sender,
                                      System.EventArgs e)
     {
       // Create a list for holding the selected numbers.
@@ -225,7 +224,7 @@ namespace CUTS
         if (action != null && action.Checked)
         {
           // Add the test number to the list if we are checked.
-          System.Int32 testnum = 
+          System.Int32 testnum =
             (System.Int32)this.tests_.DataKeys[item.ItemIndex];
 
           list.Add(testnum);
@@ -236,7 +235,7 @@ namespace CUTS
       {
         // Let's convert the array to an <System.Int32> array
         // and pass control to the database utility.
-        System.Int32 [] testlist = 
+        System.Int32 [] testlist =
           (System.Int32 [])list.ToArray(typeof(System.Int32));
 
         this.cuts_database_.delete_tests(testlist);

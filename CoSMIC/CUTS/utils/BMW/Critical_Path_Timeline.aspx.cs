@@ -256,8 +256,7 @@ namespace CUTS
       command.CommandText = "CALL select_path (?path)";
 
       // Initailize the parameters
-      command.Parameters.Add ("?path", this.path_);
-
+      command.Parameters.AddWithValue ("?path", this.path_);
       return command.ExecuteReader ();
     }
 

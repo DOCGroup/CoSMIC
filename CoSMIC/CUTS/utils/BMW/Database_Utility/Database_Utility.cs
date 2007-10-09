@@ -151,7 +151,7 @@ public class CUTS_Database_Utility
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText =
       "SELECT path_id FROM critical_path WHERE path_name = ?path_name";
-    command.Parameters.Add("?path_name", pathname);
+    command.Parameters.AddWithValue("?path_name", pathname);
 
     object result = command.ExecuteScalar();
 
@@ -166,13 +166,13 @@ public class CUTS_Database_Utility
   /**
    * Get the critical paths as a dataset. The dataset is returned
    * in a table named 'critical_paths'.
-   * 
+   *
    * @param[in]     dataset     Reference to target dataset.
    */
   public void get_critical_paths(ref DataSet dataset)
   {
     MySqlCommand command = this.conn_.CreateCommand();
-    command.CommandText = 
+    command.CommandText =
       "SELECT path_id, path_name FROM critical_path ORDER BY path_name";
 
     // Create an adapter w/ the following select command.
@@ -184,7 +184,7 @@ public class CUTS_Database_Utility
 
   /**
    * Get the collection times for a specific test.
-   * 
+   *
    * @param[in]       test        The id of the test.
    * @param[out]      dataset     Reference to target dataset.
    */
@@ -222,7 +222,7 @@ public class CUTS_Database_Utility
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = "SELECT path_id FROM critical_path WHERE " +
                           "path_name = ?pathname";
-    command.Parameters.Add("?pathname", pathname);
+    command.Parameters.AddWithValue("?pathname", pathname);
 
     object result = command.ExecuteScalar();
 
@@ -236,7 +236,7 @@ public class CUTS_Database_Utility
 
     // Get all the elements in the critical path.
     command.CommandText = "CALL select_path (?pathid)";
-    command.Parameters.Add("?pathid", path_id);
+    command.Parameters.AddWithValue("?pathid", path_id);
 
     MySqlDataReader reader = command.ExecuteReader();
 
@@ -255,7 +255,7 @@ public class CUTS_Database_Utility
 
     // Get the path information from the database.
     command.CommandText = "CALL select_path_execution_times (?test, ?pathid)";
-    command.Parameters.Add("?test", test);
+    command.Parameters.AddWithValue("?test", test);
 
     reader = command.ExecuteReader();
 
@@ -386,7 +386,7 @@ public class CUTS_Database_Utility
   /**
    * Get all the test from the database. This returns the test in
    * the \a test table of the \ds argument.
-   * 
+   *
    * @param[out]        ds      The target database.
    */
   public void get_all_test(ref DataSet ds)
@@ -401,9 +401,9 @@ public class CUTS_Database_Utility
   }
 
   /**
-   * Get all the known hosts from the database. This returns the 
+   * Get all the known hosts from the database. This returns the
    * records in the \hosts table.
-   * 
+   *
    * @param[out]    ds        The target dataset.
    */
   public void get_all_hosts(ref DataSet ds)
@@ -416,8 +416,8 @@ public class CUTS_Database_Utility
   }
 
   /**
-   * Get information about the testing environment from the 
-   * database. This returns the information in the table 
+   * Get information about the testing environment from the
+   * database. This returns the information in the table
    * \a testenv.
    */
   public void get_testenv (ref DataSet ds)
@@ -433,7 +433,7 @@ public class CUTS_Database_Utility
   }
 
   /**
-   * 
+   *
    */
   public void update_testenv(System.Int32 hostid, System.Int32 portnum)
   {
@@ -444,15 +444,15 @@ public class CUTS_Database_Utility
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = builder.ToString();
 
-    command.Parameters.Add("?portnum", portnum);
-    command.Parameters.Add("?hostid", hostid);
+    command.Parameters.AddWithValue("?portnum", portnum);
+    command.Parameters.AddWithValue("?hostid", hostid);
     command.ExecuteNonQuery();
   }
 
   /**
-   * Register the given host. The hostname can either be a human 
+   * Register the given host. The hostname can either be a human
    * readable name, or an IP address.
-   * 
+   *
    * @param[in]       host        Target host to register.
    */
   public void register_host(String hostname)
@@ -470,11 +470,11 @@ public class CUTS_Database_Utility
       MySqlCommand command = this.conn_.CreateCommand();
       command.CommandText = builder.ToString();
 
-      MySqlParameter ipaddr_param = 
+      MySqlParameter ipaddr_param =
         new MySqlParameter ("?ipaddr", MySqlDbType.VarChar, 40);
       command.Parameters.Add(ipaddr_param);
-      
-      MySqlParameter hostname_param 
+
+      MySqlParameter hostname_param
         = new MySqlParameter ("?hostname", hostname);
       command.Parameters.Add(hostname_param);
 
@@ -491,7 +491,7 @@ public class CUTS_Database_Utility
   /**
    * Get all the component instances from the database. It stores
    * the data in the table 'instances'.
-   * 
+   *
    * @param[out]        ds        Target dataset for query.
    */
   public void get_component_instances(ref DataSet ds)
@@ -507,7 +507,7 @@ public class CUTS_Database_Utility
   /**
    * Get all the component instances from the database. It stores
    * the data in the table 'instances'.
-   * 
+   *
    * @param[out]        ds        Target dataset for query.
    * @param[in]         typeid    Typeid of the instances.
    */
@@ -520,7 +520,7 @@ public class CUTS_Database_Utility
 
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = builder.ToString ();
-    command.Parameters.Add("?typeid", typeid);
+    command.Parameters.AddWithValue("?typeid", typeid);
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "component_instances");
@@ -529,7 +529,7 @@ public class CUTS_Database_Utility
   /**
    * Get all the component instances from the database. It stores
    * the data in the table 'instances'.
-   * 
+   *
    * @param[out]        ds        Target dataset for query.
    */
   public void get_component_types (ref DataSet ds)
@@ -544,9 +544,9 @@ public class CUTS_Database_Utility
 
   /**
    * Delete test from the database.
-   * 
+   *
    * @param[in]     tests      Collection of test numbers.
-   */ 
+   */
   public void delete_tests (System.Int32 [] tests)
   {
     // Verify that we have at least one test.
@@ -563,26 +563,26 @@ public class CUTS_Database_Utility
     }
 
     // Create the command that will delete all the tests.
-    String cmdstr = 
+    String cmdstr =
       String.Format ("DELETE FROM tests WHERE test_number IN ({0})",
                      builder.ToString ());
 
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = cmdstr;
-    
+
     // Execute the command.
     command.ExecuteNonQuery();
   }
 
   /**
    * Get the senders for a component.
-   * 
+   *
    * @param[in]       component       Id of component
    * @param[in]       test            Test id for the component
    * @param[in]       time            Timestamp of interest
    */
-  public IDataReader get_senders(System.Int32 component, 
-                                 System.Int32 test, 
+  public IDataReader get_senders(System.Int32 component,
+                                 System.Int32 test,
                                  DateTime time)
   {
     // Create the query to select the senders.
@@ -614,7 +614,7 @@ public class CUTS_Database_Utility
 
     // Initalize the command.
     command.CommandText = "SELECT MAX(collection_time) FROM execution_time WHERE test_number = ?t";
-    command.Parameters.Add("?t", test);
+    command.Parameters.AddWithValue("?t", test);
 
     // Execute the command.
     return (System.DateTime)command.ExecuteScalar();
@@ -632,11 +632,20 @@ public class CUTS_Database_Utility
 
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = builder.ToString();
-    command.Parameters.Add("?t", test);
-    command.Parameters.Add("?ct", timestamp);
+    command.Parameters.AddWithValue("?t", test);
+    command.Parameters.AddWithValue("?ct", timestamp);
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "component_instances");
+  }
+
+  public void get_baseline_data(ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "CALL cuts.select_baseline_metric_all()";
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "baseline");
   }
 
   /// Connection object.
