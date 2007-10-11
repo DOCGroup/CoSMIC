@@ -1,3 +1,21 @@
+Thu Oct 11 17:49:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU:
+
+          Change the name of CPU_Worker to CPU.
+
+        * cuts/workers/CPU_Worker:
+        * cuts/workers/CPU_Worker/CPU_Worker.h:
+        * cuts/workers/CPU_Worker/CPU_Worker.cpp:
+        * cuts/workers/CPU_Worker/CPU_Worker.mpc:
+        * cuts/workers/CPU_Worker/CPU_Worker_export.h:
+        * cuts/workers/CPU_Worker/CUTS_CPU_Worker.xme:
+        * cuts/workers/CPU_Worker/Calibration_Details.h:
+        * cuts/workers/CPU_Worker/Calibration_Details.inl:
+        * cuts/workers/CPU_Worker/Calibration_Details.cpp:
+
+          Removed these files.
+
 Tue Oct  9 22:32:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/GME/paradigms/PICML/interpreter/UdmApp.cpp:
