@@ -8,4 +8,8 @@ project (CUTS_CPU_Worker) : cutslib {
     Calibration_Details.cpp
     CPU_Worker.cpp
   }
+
+  Template_Files {
+    CPU_Worker_T.cpp
+  }
 }

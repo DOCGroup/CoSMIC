@@ -1,3 +1,14 @@
+Fri Oct 12 01:21:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/workers/CPU/CPU_Worker.h:
+        * cuts/workers/CPU/CPU_Worker.cpp:
+        * cuts/workers/CPU/CPU_Worker.mpc:
+        * cuts/workers/CPU/CPU_Worker_T.h:
+        * cuts/workers/CPU/CPU_Worker_T.cpp:
+
+          Templatized the CPU worker so third party developers can
+          create their own work functions in the form of functors.
+
 Thu Oct 11 17:49:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/workers/CPU:
