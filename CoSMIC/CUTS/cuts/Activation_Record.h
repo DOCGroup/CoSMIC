@@ -172,8 +172,8 @@ public:
    *
    * @param[in]     action          The action (functor) to execute.
    */
-  template <typename R, typename T>
-  void perform_action_no_logging (R (T::*method) (void), T & obj);
+  template <typename R, typename F, typename T>
+  void perform_action_no_logging (R (F::*method) (void), T & obj);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -183,9 +183,9 @@ public:
    * @param[in]     action          The action (functor) to execute.
    * @param[in]     arg1            The first argument
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename A1>
-  void perform_action_no_logging (R (T::*method) (P1), T & obj, A1 arg1);
+  void perform_action_no_logging (R (F::*method) (P1), T & obj, A1 arg1);
 
   /**
    * Perform the specified action without any logging. The \a action
@@ -196,10 +196,10 @@ public:
    * @param[in]     arg1            The first argument
    * @param[in]     arg2            The second argument
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2,
             typename A1, typename A2>
-  void perform_action_no_logging (R (T::*method) (P1, P2), T & obj,
+  void perform_action_no_logging (R (F::*method) (P1, P2), T & obj,
                                   A1 arg1, A2 arg2);
 
   /**
@@ -212,10 +212,10 @@ public:
    * @param[in]     arg2            The second argument
    * @param[in]     arg3            The third argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3,
             typename A1, typename A2, typename A3>
-  void perform_action_no_logging (R (T::*method) (P1, P2, P3), T & obj,
+  void perform_action_no_logging (R (F::*method) (P1, P2, P3), T & obj,
                                   A1 arg1, A2 arg2, A3 arg3);
 
   /**
@@ -229,10 +229,10 @@ public:
    * @param[in]     arg3            The third argument.
    * @param[in]     arg4            The fourth argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3, typename P4,
             typename A1, typename A2, typename A3, typename A4>
-  void perform_action_no_logging (R (T::*method) (P1, P2, P3, P4), T & obj,
+  void perform_action_no_logging (R (F::*method) (P1, P2, P3, P4), T & obj,
                                   A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 
   /**
@@ -247,10 +247,10 @@ public:
    * @param[in]     arg4            The fourth argument.
    * @param[in]     arg5            The fifth argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3, typename P4, typename P5,
             typename A1, typename A2, typename A3, typename A4, typename A5>
-  void perform_action_no_logging (R (T::*method) (P1, P2, P3, P4, P5), T & obj,
+  void perform_action_no_logging (R (F::*method) (P1, P2, P3, P4, P5), T & obj,
                                   A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 
   /**
@@ -259,9 +259,9 @@ public:
    *
    * @param[in]     action          The action (functor) to execute.
    */
-  template <typename R, typename T>
+  template <typename R, typename F, typename T>
   void perform_action (size_t uid, size_t type,
-                       R (T::*method) (void), T & obj);
+                       R (F::*method) (void), T & obj);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -271,9 +271,10 @@ public:
    * @param[in]     action          The action (functor) to execute.
    * @param[in]     arg1            The first argument
    */
-  template <typename R, typename T, typename P1, typename A1>
+  template <typename R, typename F, typename T,
+            typename P1, typename A1>
   void perform_action (size_t uid, size_t type,
-                       R (T::*method) (P1), T & obj, A1 arg1);
+                       R (F::*method) (P1), T & obj, A1 arg1);
 
   /**
    * Perform the specified action with logging. The \a action
@@ -284,11 +285,11 @@ public:
    * @param[in]     arg1            The first argument
    * @param[in]     arg2            The second argument
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2,
             typename A1, typename A2>
   void perform_action (size_t uid, size_t type,
-                       R (T::*method) (P1, P2), T & obj,
+                       R (F::*method) (P1, P2), T & obj,
                        A1 arg1, A2 arg2);
 
   /**
@@ -301,11 +302,11 @@ public:
    * @param[in]     arg2            The second argument
    * @param[in]     arg3            The third argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3,
             typename A1, typename A2, typename A3>
   void perform_action (size_t uid, size_t type,
-                       R (T::*method) (P1, P2, P3), T & obj,
+                       R (F::*method) (P1, P2, P3), T & obj,
                        A1 arg1, A2 arg2, A3 arg3);
 
   /**
@@ -319,11 +320,11 @@ public:
    * @param[in]     arg3            The third argument.
    * @param[in]     arg4            The fourth argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3, typename P4,
             typename A1, typename A2, typename A3, typename A4>
   void perform_action (size_t uid, size_t type,
-                       R (T::*method) (P1, P2, P3, P4), T & obj,
+                       R (F::*method) (P1, P2, P3, P4), T & obj,
                        A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 
   /**
@@ -338,11 +339,12 @@ public:
    * @param[in]     arg4            The fourth argument.
    * @param[in]     arg5            The fifth argument.
    */
-  template <typename R, typename T,
+  template <typename R, typename F, typename T,
             typename P1, typename P2, typename P3, typename P4, typename P5,
             typename A1, typename A2, typename A3, typename A4, typename A5>
   void perform_action (size_t uid,
-                       size_t type, R (T::*method) (P1, P2, P3, P4, P5), T & obj,
+                       size_t type, R (F::*method) (P1, P2, P3, P4, P5),
+                       T & obj,
                        A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 
   /**
