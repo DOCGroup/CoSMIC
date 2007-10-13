@@ -1,3 +1,19 @@
+Sat Oct 13 21:50:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-create.sql:
+        * etc/SQL/CUTS-path-analysis.sql:
+        * utils/BMW/Critical_Path.aspx:
+        * utils/BMW/Critical_Path.aspx.cs:
+
+          Updated the execution (critical) path tables and pages to use
+          the new database format. This resulted in creating a handful
+          of new procudure to simplify extracting the correct data from
+          the database.
+
+        * etc/SQL/CUTS-procs.sql:
+
+          Removed this file.
+
 Sat Oct 13 16:36:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Activation_Record.h:

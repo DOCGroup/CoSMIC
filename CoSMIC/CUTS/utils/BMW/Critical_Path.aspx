@@ -110,11 +110,11 @@
   <td class="title">Source Port:</td>
   <td>
     <asp:dropdownlist  id="src_" runat="server"
-                      datavaluefield="portid" datatextfield="portname"
+                      datavaluefield="pid" datatextfield="portname"
                       width="200" />
     <span class="title">Destination Port: </span>
     <asp:dropdownlist id="dst_" runat="server"
-                      datavaluefield="portid" datatextfield="portname"
+                      datavaluefield="pid" datatextfield="portname"
                       width="200" />
   </td>
 </tr>
@@ -141,9 +141,9 @@
   <columns>
     <asp:boundcolumn datafield="path_order" headertext="Index"
                      itemstyle-horizontalalign="Center" />
-    <asp:boundcolumn datafield="component_name" headertext="Instance Name" />
-    <asp:boundcolumn datafield="srcname" headertext="Source Port" />
-    <asp:boundcolumn datafield="dstname" headertext="Destination Port" />
+    <asp:boundcolumn datafield="instance_name" headertext="Instance Name" />
+    <asp:boundcolumn datafield="src_portname" headertext="Source Port" />
+    <asp:boundcolumn datafield="dst_portname" headertext="Destination Port" />
 
     <asp:templatecolumn>
       <headertemplate>

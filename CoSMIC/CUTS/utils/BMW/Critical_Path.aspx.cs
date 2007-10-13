@@ -206,14 +206,14 @@ namespace CUTS
       dr["path_id"] = Session["path_id"];
       dr["path_order"] = Int32.Parse (this.order_.Text);
 
-      dr["component_name"] = this.instance_.SelectedItem.Text;
       dr["instance"] = Int32.Parse (this.instance_.SelectedValue);
+      dr["instance_name"] = this.instance_.SelectedItem.Text;
 
       dr["src"] = this.src_.SelectedValue;
-      dr["srcname"] = this.src_.SelectedItem.Text;
+      dr["src_portname"] = this.src_.SelectedItem.Text;
 
       dr["dst"] = this.dst_.SelectedValue;
-      dr["dstname"] = this.dst_.SelectedItem.Text;
+      dr["dst_portname"] = this.dst_.SelectedItem.Text;
 
       // Insert the row at the end of6 the list.
       table.Rows.Add (dr);
@@ -282,21 +282,15 @@ namespace CUTS
       }
     }
 
-    private MySqlDataAdapter CreatePathElementAdapter (MySqlConnection conn, long path_id)
+    private MySqlDataAdapter CreatePathElementAdapter (MySqlConnection conn,
+                                                       long path_id)
     {
-      System.Text.StringBuilder select_sql = new System.Text.StringBuilder ();
-      select_sql.Append ("SELECT path_id, path_order, instance, component_name, src, srcname, dst, dstname FROM (");
-      select_sql.Append ("SELECT path_id, path_order, instance, src, srcname, dst, portname AS dstname FROM (");
-      select_sql.Append ("SELECT path_id, path_order, instance, src, portname AS srcname, dst ");
-      select_sql.Append ("FROM critical_path_elements, portnames WHERE portid = src) AS tmp1, ");
-      select_sql.Append ("portnames WHERE portid = dst) AS tmp2, component_instances ");
-      select_sql.Append ("WHERE (path_id = ?path_id AND instance = component_id) ");
-      select_sql.Append ("ORDER BY path_order;");
+      // SQL command for selecting the elements in the critical path
+      // for the specified path.
+      MySqlCommand select_command =
+        new MySqlCommand ("CALL cuts.select_execution_path_elements_i(?path_id)", conn);
 
-      MySqlCommand select_command = new MySqlCommand (select_sql.ToString (), conn);
       select_command.Parameters.AddWithValue ("?path_id", path_id);
-
-      // Create a new adapter with the default select command.
       MySqlDataAdapter adapter = new MySqlDataAdapter (select_command);
 
       // Create the insert command for the table.
@@ -343,41 +337,18 @@ namespace CUTS
     {
       this.conn.Open();
       MySqlCommand command = this.conn.CreateCommand();
+      command.Parameters.AddWithValue("?inst", this.instance_.SelectedValue);
 
-      // Get the type id of the selected component.
-      command.CommandText = "SELECT typeid FROM component_instances WHERE component_id = ?cid";
-      command.Parameters.AddWithValue("?cid", this.instance_.SelectedValue);
-      System.Int32 typeid = (System.Int32)command.ExecuteScalar();
-
-      // Get the source and sinks for the component's type.
-      command.CommandText = "SELECT sinks, sources FROM component_types WHERE typeid = ?typeid";
-      command.Parameters.AddWithValue("?typeid", typeid);
-
-      // Get all the ports for the component.
-      DataSet ds = new DataSet();
       MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-      adapter.Fill(ds, "ports");
+      DataSet ds = new DataSet();
 
-      // Get the port table.
-      DataTable ports = ds.Tables["ports"];
+      // Get all the event sinks for the component.
+      command.CommandText = "CALL cuts.select_component_portnames_i(?inst, 'sink')";
+      adapter.Fill(ds, "sinks");
 
-      // Add all the sinks to the dataset.
-      if (ports.Rows[0]["sinks"] != DBNull.Value)
-      {
-        command.CommandText =
-          String.Format("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
-                        ds.Tables["ports"].Rows[0]["sinks"]);
-        adapter.Fill(ds, "sinks");
-      }
-
-      // Add all the sources to the dataset.
-      if (ports.Rows[0]["sources"] != DBNull.Value)
-      {
-        command.CommandText =
-          String.Format("SELECT * FROM portnames WHERE portid IN ({0}) ORDER BY portname",
-                         ds.Tables["ports"].Rows[0]["sources"]);
-        adapter.Fill(ds, "sources");
-      }
+      // Get all the event sources for the component.
+      command.CommandText = "CALL cuts.select_component_portnames_i(?inst, 'source')";
+      adapter.Fill(ds, "sources");
 
       // Bind the different ports to their respective controls.
       this.src_.DataSource = ds.Tables["sinks"];

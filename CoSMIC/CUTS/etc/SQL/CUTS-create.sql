@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS component_types
   UNIQUE (typename)
 );
 
-INSERT INTO component_types (typename)
-  VALUES ('Unknown');
+--INSERT INTO component_types (typename)
+--  VALUES ('Unknown');
 
 --
 -- Create the table that contains the names of ports.
@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS portnames
   UNIQUE (portname)
 );
 
-INSERT INTO portnames (portid, portname)
-  VALUES (1, 'Unknown');
+--INSERT INTO portnames (portid, portname)
+--  VALUES (1, 'Unknown');
 
 --
 -- Create the ports table. This table contains which ports
@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS component_instances
     ON UPDATE CASCADE
 );
 
-INSERT INTO component_instances (typeid, component_name)
-  VALUES (1, 'Unknown');
+--INSERT INTO component_instances (typeid, component_name)
+-- VALUES (1, 'Unknown');
 
 --
 -- Table the contains the mapping of a IP-address to a
@@ -135,8 +135,8 @@ CREATE TABLE IF NOT EXISTS ipaddr_host_map
   UNIQUE (hostname)
 );
 
-INSERT INTO ipaddr_host_map (ipaddr, hostname)
-  VALUES ('0.0.0.0', 'unknown'), ('127.0.0.1', 'localhost');
+--INSERT INTO ipaddr_host_map (ipaddr, hostname)
+--  VALUES ('0.0.0.0', 'unknown'), ('127.0.0.1', 'localhost');
 
 --
 -- Create the scratchpad table. This is the table the
@@ -203,6 +203,65 @@ BEGIN
     WHERE t1.portid = t2.portid AND t1.pid = pid;
 
   RETURN portname;
+END; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_component_info_i
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_component_info_i //
+
+CREATE PROCEDURE
+  cuts.select_component_info_i (IN inst_id INT)
+BEGIN
+  SELECT t5.*, t6.portname FROM
+    (SELECT t3.*, t4.pid, t4.portid, t4.port_type FROM
+      (SELECT t1.*, t2.typename FROM component_instances AS t1
+        LEFT JOIN component_types AS t2 ON t1.typeid = t2.typeid
+        WHERE t1.component_id = inst_id) AS t3
+      LEFT JOIN ports AS t4 ON t3.typeid = t4.ctype) AS t5
+    LEFT JOIN portnames AS t6 ON t5.portid = t6.portid;
+END; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_component_portnames_i
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_component_portnames_i //
+
+CREATE PROCEDURE
+  cuts.select_component_portnames_i (IN inst_id INT,
+                                     IN porttype VARCHAR(20))
+BEGIN
+  SELECT t5.pid, t6.portname FROM
+    (SELECT t3.*, t4.pid, t4.portid, t4.port_type FROM
+      (SELECT t1.*, t2.typename FROM component_instances AS t1
+        LEFT JOIN component_types AS t2 ON t1.typeid = t2.typeid
+        WHERE t1.component_id = inst_id) AS t3
+      LEFT JOIN ports AS t4 ON t3.typeid = t4.ctype
+      WHERE t4.port_type = porttype) AS t5
+    LEFT JOIN portnames AS t6 ON t5.portid = t6.portid;
+END; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_component_portnames_i
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_component_portnames //
+
+CREATE PROCEDURE
+  cuts.select_component_portnames (IN instance VARCHAR(255),
+                                   IN porttype VARCHAR(20))
+BEGIN
+  DECLARE inst_id INT;
+
+  SELECT component_id INTO inst_id FROM component_instances
+    WHERE component_name = instance;
+
+  CALL cuts.select_component_portnames_i (inst_id, porttype);
 END; //
 
 DELIMITER ;
