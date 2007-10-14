@@ -1,3 +1,14 @@
+Sun Oct 14 22:06:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-execution-paths.sql:
+
+          Changes the name of CUTS-path-analysis.sql to
+          CUTS-execution-paths.sql
+
+        * etc/SQL/CUTS-path-analysis.sql:
+
+          Removed this file.
+
 Sun Oct 14 15:07:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-path-analysis.sql (select_execution_path_times):
