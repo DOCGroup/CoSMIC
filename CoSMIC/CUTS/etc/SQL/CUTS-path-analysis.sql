@@ -103,14 +103,14 @@ BEGIN
 END; //
 
 -------------------------------------------------------------------------------
--- cuts.select_execution_path_times
+-- cuts.select_execution_path_times_i
 -------------------------------------------------------------------------------
 
 DROP PROCEDURE IF EXISTS
-  cuts.select_execution_path_times; //
+  cuts.select_execution_path_times_i; //
 
 CREATE PROCEDURE
-  cuts.select_execution_path_times (IN test INT, IN path INT)
+  cuts.select_execution_path_times_i (IN test INT, IN path INT)
 BEGIN
   SELECT t13.* FROM critical_path_elements AS cp
     LEFT JOIN (SELECT t9.*, t10.portname AS dstname FROM
@@ -129,8 +129,66 @@ BEGIN
         (SELECT pid, portname FROM ports AS t11, portnames AS t12
            WHERE t11.portid = t12.portid) AS t10 ON t10.pid = t9.dst) AS t13
     ON cp.instance = t13.component AND cp.src = t13.src AND
-      (cp.dst = et.dst OR et.dst IS NULL)
-    ORDER BY t13.collection_time, t13.component, t13.sender;
+      (cp.dst = t13.dst OR t13.dst IS NULL)
+    WHERE cp.path_id = path
+    ORDER BY t13.collection_time, cp.path_order;
+END; //
+
+-------------------------------------------------------------------------------
+-- cuts.select_execution_path_times
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_path_times; //
+
+CREATE PROCEDURE
+  cuts.select_execution_path_times (IN test INT,
+                                    IN pathname VARCHAR (255))
+BEGIN
+  DECLARE pid INT;
+
+  SELECT path_id INTO pid FROM cuts.critical_path
+    WHERE path_name = pathname;
+
+  CALL cuts.select_execution_path_times_i (test, pid);
+END; //
+
+-------------------------------------------------------------------------------
+-- cuts.execution_path_deadline_i
+-------------------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS
+  cuts.execution_path_deadline_i; //
+
+CREATE FUNCTION
+  cuts.execution_path_deadline_i (path INT)
+  RETURNS INT
+BEGIN
+  DECLARE ep_deadline INT;
+
+  SELECT deadline INTO ep_deadline FROM cuts.critical_path
+    WHERE path_id = path;
+
+  RETURN ep_deadline;
+END; //
+
+-------------------------------------------------------------------------------
+-- cuts.execution_path_deadline
+-------------------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS
+  cuts.execution_path_deadline; //
+
+CREATE FUNCTION
+  cuts.execution_path_deadline (pathname VARCHAR(255))
+  RETURNS INT
+BEGIN
+  DECLARE ep_deadline INT;
+
+  SELECT deadline INTO ep_deadline FROM cuts.critical_path
+    WHERE path_name = path;
+
+  RETURN ep_deadline;
 END; //
 
 DELIMITER ;

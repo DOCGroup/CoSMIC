@@ -17,27 +17,11 @@ using MySql.Data.MySqlClient;
 
 namespace CUTS
 {
-  struct Path_Element
-  {
-    public Path_Element (long component, string src, string dst)
-    {
-      this.component_ = component;
-      this.src_ = src;
-      this.dst_ = dst;
-    }
-
-    public long component_;
-    public string src_;
-    public string dst_;
-  }
-
   public partial class Critical_Path_Timeline : System.Web.UI.Page
   {
     private long test_;
 
     private long path_;
-
-    private ArrayList critical_path_ = new ArrayList ();
 
     private void Page_Load(object sender, System.EventArgs e)
     {
@@ -59,15 +43,9 @@ namespace CUTS
           // Get the critical path deadline
           Int32 deadline = get_deadline(conn);
 
-          // Get the elements in the critical path and place them into a
-          // reusable queue.
-          MySqlDataReader reader = create_path_element_reader (conn);
-          extract_path_elements (reader);
-          reader.Close ();
-
           // Get the metrics of the critical path components and create the
           // performance graphs of the metrics.
-          reader = create_path_reader (conn);
+          MySqlDataReader reader = create_path_reader (conn);
           create_performance_graphs (reader, deadline);
 
           // Close the reader and the connection to the database.
@@ -99,8 +77,9 @@ namespace CUTS
     {
       // Bypass all the empty metrics in the collection and store
       // the first DateTime value as the <collection_time>.
-      while (metrics.Read () && metrics.GetValue (0) == DBNull.Value);
-      long best_time = 0, average_time = 0, worse_time = 0;
+      while (metrics.Read () && metrics["collection_time"] == DBNull.Value);
+      long best_time = 0, worst_time = 0;
+      float average_time = 0.0F;
       bool done = false;
 
       // Create the collection of points for the best, average and
@@ -108,7 +87,7 @@ namespace CUTS
       ChartPointCollection best_points = new ChartPointCollection ();
       ChartPointCollection average_points = new ChartPointCollection ();
       ChartPointCollection worse_points = new ChartPointCollection ();
-      ChartPointCollection deadline_points = new ChartPointCollection();
+      ChartPointCollection deadline_points = new ChartPointCollection ();
 
       do
       {
@@ -116,44 +95,13 @@ namespace CUTS
 
         // Get the collection_date, component, src and dst port and create
         // a path element out of it.
-        DateTime collection_time = (DateTime) metrics.GetDateTime (0);
+        DateTime collection_time = (DateTime) metrics["collection_time"];
 
-        Path_Element element = new Path_Element (metrics.GetUInt32 (1),
-                                                 metrics.GetString (3),
-                                                 metrics.GetString (4));
-
-        // Locate the following metrics in the collection.
-        try
-        {
-          bool valid = true;
-          int index = this.critical_path_.IndexOf (element);
-
-          if (index != 0)
-          {
-            // Check if the sender of this metric is indeed the previous
-            // instance in the critical path for this element.
-            Path_Element prev_element =
-              (Path_Element) this.critical_path_[index - 1];
-
-            if (prev_element.component_ != metrics.GetInt32 (2))
-            {
-              valid = false;
-            }
-          }
-
-          // If this is a valid metric then we need to add it's information
-          // to the current execution times for this collection time.
-          if (valid)
-          {
-            best_time += metrics.GetInt32 (7);
-            average_time += metrics.GetInt32 (8);
-            worse_time += metrics.GetInt32 (9);
-          }
-        }
-        catch (Exception)
-        {
-
-        }
+        // Right now we are checking for the sender. We are just going
+        // to add the metrics to this collection point.
+        best_time    += (Int32)metrics["best_time"];
+        average_time += float.Parse (metrics["avg_time"].ToString ());
+        worst_time   += (Int32)metrics["worse_time"];
 
         // Determine if this is the last record in the listing. If it
         // is not then we need to see if the next record is part of this
@@ -161,10 +109,8 @@ namespace CUTS
         // to create a new point regardless.
         if (metrics.Read ())
         {
-          if (collection_time != metrics.GetDateTime (0))
-          {
+          if (collection_time != (DateTime) metrics["collection_time"])
             create_point = true;
-          }
         }
         else
         {
@@ -176,17 +122,14 @@ namespace CUTS
         {
           // Create a new point for each of the charts using the
           // summations of the metrics collected.
-          best_points.Add (new ChartPoint (
-                           collection_time.ToString (), best_time));
-          average_points.Add (new ChartPoint (
-                              collection_time.ToString (), average_time));
-          worse_points.Add (new ChartPoint (
-                            collection_time.ToString (), worse_time));
-          deadline_points.Add(new ChartPoint(
-                              collection_time.ToString(), deadline));
+          best_points.Add (new ChartPoint (collection_time.ToString (), best_time));
+          average_points.Add (new ChartPoint (collection_time.ToString (), average_time));
+          worse_points.Add (new ChartPoint (collection_time.ToString (), worst_time));
+          deadline_points.Add (new ChartPoint (collection_time.ToString (), deadline));
 
           // Reset the time values.
-          best_time = average_time = worse_time = 0;
+          best_time = worst_time = 0;
+          average_time = 0.0F;
         }
       } while (!done);
 
@@ -225,35 +168,20 @@ namespace CUTS
       this.timeline_.RedrawChart ();
     }
 
-    private void extract_path_elements (MySqlDataReader reader)
-    {
-      while (reader.Read ())
-      {
-        // Create a new element for the path and insert it into the
-        // <critical_path_>.
-        Path_Element element = new Path_Element (reader.GetInt32 (1),
-                                                 reader.GetString (2),
-                                                 reader.GetString (3));
-
-        this.critical_path_.Add (element);
-      }
-    }
-
     private int get_deadline(MySqlConnection conn)
     {
       MySqlCommand command = conn.CreateCommand();
-      command.CommandText =
-        "SELECT deadline FROM critical_path WHERE path_id = ?path";
+      command.CommandText = "SELECT cuts.select_execution_path_deadline_i(?path)";
       command.Parameters.AddWithValue("?path", this.path_);
 
-      return (Int32) command.ExecuteScalar();
+      return (int) command.ExecuteScalar();
     }
 
     private MySqlDataReader create_path_element_reader (MySqlConnection conn)
     {
       // Create the MySQL command.
       MySqlCommand command = conn.CreateCommand ();
-      command.CommandText = "CALL select_path (?path)";
+      command.CommandText = "CALL cuts.select_execution_path_elements_i (?path)";
 
       // Initailize the parameters
       command.Parameters.AddWithValue ("?path", this.path_);
@@ -264,7 +192,7 @@ namespace CUTS
     {
       // Create the MySQL command.
       MySqlCommand command = conn.CreateCommand ();
-      command.CommandText = "CALL select_path_execution_times (?test, ?path)";
+      command.CommandText = "CALL cuts.select_execution_path_times_i (?test, ?path)";
 
       // Initailize the parameters
       command.Parameters.AddWithValue("?test", this.test_);
