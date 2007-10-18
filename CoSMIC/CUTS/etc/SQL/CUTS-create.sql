@@ -206,6 +206,23 @@ BEGIN
 END; //
 
 -------------------------------------------------------------------------------
+-- FUNCTION: cuts.get_component_name
+-------------------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS cuts.get_component_name //
+
+CREATE FUNCTION cuts.get_component_name (id INT)
+RETURNS VARCHAR (255)
+BEGIN
+  DECLARE instance VARCHAR (255);
+
+  SELECT component_name INTO instance
+    FROM component_instances WHERE component_id = id;
+
+  RETURN instance;
+END; //
+
+-------------------------------------------------------------------------------
 -- PROCEDURE: cuts.select_component_info_i
 -------------------------------------------------------------------------------
 

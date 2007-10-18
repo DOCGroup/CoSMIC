@@ -402,21 +402,32 @@ handle_metrics (const CUTS_System_Metric & metrics)
             ACE_OS::strcpy (sender, "Unknown");
           }
 
-          metric_count = sender_iter->item ()->queuing_time ().count ();
-
-          // Since we are dealing with the queueing time, the destination
-          // buffer should have the value 'Unknown'.
-          ACE_OS::strcpy (metric_type, "queue");
+          // For the next set of queries we are going to have a <nil>
+          // destination. This will mean
           query->parameter (7)->null ();
 
-          best_time  = sender_iter->item ()->queuing_time ().minimum ().msec ();
+          // We are going to archive the overall queuing time for the
+          // current port.
+          ACE_OS::strcpy (metric_type, "queue");
+          best_time = sender_iter->item ()->queuing_time ().minimum ().msec ();
           worse_time = sender_iter->item ()->queuing_time ().maximum ().msec ();
           total_time = sender_iter->item ()->queuing_time ().total ().msec ();
+          metric_count = sender_iter->item ()->queuing_time ().count ();
 
-          // Execute the statement to store the queueing time.
           query->execute_no_record ();
 
+          // We are going to archive the overall processing time for the
+          // current port.
           ACE_OS::strcpy (metric_type, "process");
+          best_time = sender_iter->item ()->process_time ().minimum ().msec ();
+          worse_time = sender_iter->item ()->process_time ().maximum ().msec ();
+          total_time = sender_iter->item ()->process_time ().total ().msec ();
+          metric_count = sender_iter->item ()->process_time ().count ();
+
+          query->execute_no_record ();
+
+          // Now, we can reset the <dst> parameter so we know we are
+          // logging metrics specific to a port.
           query->parameter (7)->length (0);
 
           CUTS_Port_Measurement_Endpoint_Map::

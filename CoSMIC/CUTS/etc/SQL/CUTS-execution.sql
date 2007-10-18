@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS execution_time
   dst               int                        default 1,
 
   best_time         int NOT NULL default 0,
-  worse_time        int NOT NULL default 0,
+  worst_time        int NOT NULL default 0,
   total_time        int NOT NULL default 0,
 
   INDEX (test_number),
@@ -63,13 +63,13 @@ CREATE TABLE IF NOT EXISTS execution_time
 delimiter //
 
 -------------------------------------------------------------------------------
--- FUNCTION: cuts.insert_execution_time
+-- FUNCTION: cuts.get_insert_execution_time
 -------------------------------------------------------------------------------
 
-DROP FUNCTION IF EXISTS cuts.max_collection_time //
+DROP FUNCTION IF EXISTS cuts.get_max_collection_time //
 
 CREATE FUNCTION
-  cuts.max_collection_time (test INT)
+  cuts.get_max_collection_time (test INT)
 RETURNS DATETIME
 BEGIN
   DECLARE max_datetime DATETIME;
@@ -78,6 +78,26 @@ BEGIN
     FROM execution_time WHERE test_number = test;
 
   RETURN max_datetime;
+END; //
+
+-------------------------------------------------------------------------------
+-- FUNCTION: cuts.get_distinct_component_count
+-------------------------------------------------------------------------------
+
+DROP FUNCTION IF EXISTS cuts.get_distinct_component_count //
+
+CREATE FUNCTION
+  cuts.get_distinct_component_count (test INT,
+                                     coll_time DATETIME)
+RETURNS INT
+BEGIN
+  DECLARE distinct_count INT;
+
+  SELECT COUNT(DISTINCT component) INTO distinct_count
+    FROM execution_time
+    WHERE test_number = test AND collection_time = coll_time;
+
+  RETURN distinct_count;
 END; //
 
 -------------------------------------------------------------------------------
@@ -111,7 +131,7 @@ BEGIN
     WHERE component_name = sname;
 
   INSERT INTO execution_time (test_number, collection_time, metric_type,
-   metric_count, component, sender, src, dst, best_time, total_time, worse_time)
+   metric_count, component, sender, src, dst, best_time, total_time, worst_time)
    VALUES (test, ctime, mtype, mcount, cid, sid,
      (SELECT pid FROM ports WHERE ctype = tid AND
           portid = (SELECT portid FROM portnames WHERE portname = srcname) AND
@@ -147,9 +167,64 @@ BEGIN
          WHERE t6.portid = t7.portid) AS t8 ON t8.pid = t4.src) AS t9
   LEFT JOIN
       (SELECT pid, portname FROM ports AS t11, portnames AS t12
-         WHERE t11.portid = t12.portid) AS t10 ON t10.pid = t9.dst;
+         WHERE t11.portid = t12.portid) AS t10 ON t10.pid = t9.dst
+  ORDER BY t9.component_name, srcname, dstname;
 END; //
 
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_distinct_collection_times
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_distinct_collection_times //
+
+CREATE PROCEDURE
+  cuts.select_distinct_collection_times (IN test INT)
+BEGIN
+  SELECT DISTINCT collection_time
+    FROM execution_time  WHERE test_number = test;
+END; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_execution_time_with_limits
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_time_with_limits //
+
+CREATE PROCEDURE
+  cuts.select_execution_time_with_limits (IN test INT,
+                                          IN ctime DATETIME,
+                                          IN start_index INT,
+                                          IN numrecs INT)
+BEGIN
+  SET @test = test;
+  SET @collection_time = ctime;
+  SET @offset = start_index;
+  SET @rows = numrecs;
+
+  -- prepare the statement for usage.
+  PREPARE STMT FROM
+    "SELECT t9.*, t10.portname AS dstname FROM
+      (SELECT t4.*, t8.portname AS srcname FROM
+        (SELECT t2.*, t3.component_name FROM
+          (SELECT results.*, t1.component_name AS sender_name FROM
+            (SELECT *, (total_time / metric_count) AS avg_time FROM execution_time AS e
+              WHERE collection_time = ? AND test_number = ?) AS results
+          LEFT JOIN component_instances AS t1
+              ON t1.component_id = results.sender) AS t2
+        LEFT JOIN component_instances AS t3 ON t2.component = t3.component_id) AS t4
+      LEFT JOIN
+        (SELECT pid, portname FROM ports AS t6, portnames AS t7
+          WHERE t6.portid = t7.portid) AS t8 ON t8.pid = t4.src) AS t9
+    LEFT JOIN
+        (SELECT pid, portname FROM ports AS t11, portnames AS t12
+          WHERE t11.portid = t12.portid) AS t10 ON t10.pid = t9.dst
+    ORDER BY t9.component_name LIMIT ?, ?";
+
+  -- execute the statement using limits
+  EXECUTE STMT USING @collection_time, @test, @offset, @rows;
+END; //
 
 -------------------------------------------------------------------------------
 -- PROCEDURE: cuts.select_execution_time_ex
@@ -199,5 +274,94 @@ BEGIN
     ORDER BY component_name;
 END ; //
 
-delimiter ;
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_overall_component_processing_time_all
+-------------------------------------------------------------------------------
 
+DROP PROCEDURE IF EXISTS
+  cuts.select_overall_component_processing_time_all //
+
+CREATE PROCEDURE
+  cuts.select_overall_component_processing_time_all (IN test INT)
+BEGIN
+  SELECT component, src, dst, SUM(metric_count) AS total_event_count,
+      MIN(best_time) AS abs_min_time,
+      SUM(total_time) / SUM(metric_count) AS overall_avg_time,
+      MAX(worst_time) AS abs_max_time
+    FROM execution_time
+    WHERE test_number = test AND metric_type = 'process'
+    GROUP BY dst;
+END ; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_overall_component_processing_time_i
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_overall_component_processing_time_i //
+
+CREATE PROCEDURE
+  cuts.select_overall_component_processing_time_i (IN test INT,
+                                                   IN inst INT)
+BEGIN
+  SELECT component, src, dst, SUM(metric_count) AS total_event_count,
+      MIN(best_time) AS abs_min_time,
+      SUM(total_time) / SUM(metric_count) AS overall_avg_time,
+      MAX(worst_time) AS abs_max_time
+    FROM execution_time
+    WHERE test_number = test AND component = inst AND metric_type = 'process'
+    GROUP BY dst;
+END ; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_overall_component_processing_time
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_overall_component_processing_time //
+
+CREATE PROCEDURE
+  cuts.select_overall_component_processing_time (IN test INT,
+                                                 IN inst VARCHAR(255))
+BEGIN
+  DECLARE inst_id INT;
+
+  SELECT component_id INTO inst_id FROM component_instances
+    WHERE component_name = inst;
+
+  CALL cuts.select_overall_component_processing_time(test, inst_id);
+END ; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_execution_time_cumulative
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_time_cumulative //
+
+CREATE PROCEDURE
+  cuts.select_execution_time_cumulative (IN test INT)
+BEGIN
+  SELECT t9.*, t10.portname AS dstname FROM
+    (SELECT t4.*, t8.portname AS srcname FROM
+      (SELECT t2.*, t3.component_name FROM
+        (SELECT results.*, t1.component_name AS sender_name FROM
+          (SELECT test_number, component, sender, src, dst, metric_type, SUM(metric_count) AS metric_count,
+             MIN(best_time) AS best_time,  SUM(total_time) / SUM(metric_count) AS avg_time,
+             MAX(worst_time) AS worst_time FROM execution_time AS e
+             WHERE test_number = test
+             GROUP BY component, metric_type, src, dst
+             ORDER BY collection_time) AS results
+         LEFT JOIN component_instances AS t1
+             ON t1.component_id = results.sender) AS t2
+      LEFT JOIN component_instances AS t3 ON t2.component = t3.component_id) AS t4
+    LEFT JOIN
+      (SELECT pid, portname FROM ports AS t6, portnames AS t7
+         WHERE t6.portid = t7.portid) AS t8 ON t8.pid = t4.src) AS t9
+  LEFT JOIN
+      (SELECT pid, portname FROM ports AS t11, portnames AS t12
+         WHERE t11.portid = t12.portid) AS t10 ON t10.pid = t9.dst
+  ORDER BY t9.component_name, srcname, dstname;
+END ; //
+
+delimiter ;

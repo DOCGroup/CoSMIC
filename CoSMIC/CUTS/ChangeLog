@@ -1,3 +1,20 @@
+Thu Oct 18 23:18:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/dbase/DBase_Service.cpp:
+
+          The overall processing time for an event is now logged to the
+          database. It has a NULL value in the 'dst' column for 'process'
+          metric type.
+
+        * etc/SQL/CUTS-create.sql:
+
+          Added a function to return the name of a component instance
+          given its uniquely generated id.
+
+        * etc/SQL/CUTS-execution.sql:
+
+          Changed all occurrences of 'worse_time' to 'worst_time'.
+
 Sun Oct 14 22:06:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-execution-paths.sql:
