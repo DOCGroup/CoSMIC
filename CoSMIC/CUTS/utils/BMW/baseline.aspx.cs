@@ -55,8 +55,9 @@ namespace CUTS
       DataSet ds = new DataSet();
       this.cuts_.get_baseline_data(ref ds);
 
-      this.baseline_.DataSource = ds.Tables["baseline"];
-      this.baseline_.DataBind();
+      this.baseline_.DataSource = ds;
+      this.baseline_.DataMember = "baseline";
+      this.baseline_.DataBind ();
     }
 
   #region Web Form Designer generated code

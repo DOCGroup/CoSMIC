@@ -1,19 +1,19 @@
-<%@ Page language="c#" codefile="default.aspx.cs" inherits="CUTS.Test" 
+<%@ Page language="c#" codefile="default.aspx.cs" inherits="CUTS.Test"
          masterpagefile="~/BMW.master" %>
 
 <asp:content runat="server" id="content_" contentplaceholderid="MainContent">
-<asp:datagrid id="tests_" 
+<asp:datagrid id="tests_"
               runat="server"
-              autogeneratecolumns="false" 
-              datakeyfield="test_number" 
-              borderstyle="solid" 
+              autogeneratecolumns="false"
+              datakeyfield="test_number"
+              borderstyle="solid"
               cellpadding="2"
               cellspacing="0"
-              allowpaging="true" 
-              pagesize="25" 
-              width="100%" 
-              showheader="true" 
-              showfooter="false" 
+              allowpaging="true"
+              pagesize="25"
+              width="100%"
+              showheader="true"
+              showfooter="false"
               enableviewstate="true"
               onpageindexchanged="handle_onpageindexchanged"
               onitemcreated="handle_onitemcreated">
@@ -33,23 +33,23 @@
 
     <asp:templatecolumn headertext="Status">
       <itemtemplate>
-        <asp:image 
+        <asp:image
           runat="server"
           imageurl='<%# "images/" + DataBinder.Eval (Container.DataItem, "status") + ".gif" %>'
           alternatetext='<%# DataBinder.Eval (Container.DataItem, "status") %>' />
       </itemtemplate>
     </asp:templatecolumn>
 
-    <asp:hyperlinkcolumn 
+    <asp:hyperlinkcolumn
       headertext="Results"
       datanavigateurlfield="test_number"
-      datanavigateurlformatstring="Execution_Times.aspx?test={0}"
+      datanavigateurlformatstring="performance.aspx?t={0}"
       text='<img src="images/table.gif" border="0" />' />
 
     <asp:templatecolumn>
       <headertemplate>
-        <asp:checkbox runat="server" id="action_" 
-                      oncheckedchanged="handle_toggle_action" 
+        <asp:checkbox runat="server" id="action_"
+                      oncheckedchanged="handle_toggle_action"
                       causesvalidation="false"
                       autopostback="true" />
       </headertemplate>
@@ -67,6 +67,6 @@
                   text="Delete Selected"
                   causesvalidation="false" />
 </p>
-                
+
 <asp:label runat="server" id="message_" />
 </asp:content>

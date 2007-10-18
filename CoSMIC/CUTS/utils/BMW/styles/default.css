@@ -19,12 +19,12 @@ h2
   font-weight:bold;
 }
 
-.menu_item 
+.menu_item
 {
   font-size: small;
 }
 
-a 
+a
 {
   color:blue;
   text-decoration:underline;
@@ -36,15 +36,15 @@ a:hover
   text-decoration:underline;
 }
 
-td.menu a 
+td.menu a
 {
-	color: black;
+  color: black;
   text-decoration:none;
 }
 
-td.menu a:hover 
+td.menu a:hover
 {
-	color: red;
+  color: red;
   text-decoration:none;
 }
 
@@ -53,7 +53,7 @@ td.menu a:hover
   font-weight:bold;
 }
 
-/** 
+/**
  * Default datagrid styles
  */
 .alternate-row
@@ -61,7 +61,7 @@ td.menu a:hover
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 11px;
   font-weight: normal;
-  line-height: 12px;    
+  line-height: 12px;
   background-color: #CCCCFF;
 }
 
@@ -77,7 +77,30 @@ td.menu a:hover
   line-height: 12px;
 }
 
-.required 
+.required
 {
   color:red;
+}
+
+table.performance
+{
+  border-top: solid 2px black;
+}
+
+th.performance-name
+{
+  text-align: left;
+  width: 250px;
+}
+
+td.performance-name
+{
+  text-align: right;
+  width: 250px;
+}
+
+td.performance-data, th.performance-data
+{
+  text-align: center;
+  width: 100px;
 }

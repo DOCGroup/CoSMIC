@@ -191,20 +191,31 @@ public class CUTS_Database_Utility
   public void get_collection_times(Int32 test,
                                    ref DataSet dataset)
   {
-    MySqlParameter p1 = new MySqlParameter("?test", MySqlDbType.Int32);
-    p1.Direction = ParameterDirection.Input;
-    p1.Value = test;
+    MySqlCommand command = this.conn_.CreateCommand ();
+    command.CommandText = "CALL cuts.select_distinct_collection_times (?t)";
+    command.Prepare();
 
-    System.Text.StringBuilder builder = new System.Text.StringBuilder();
-    builder.Append("SELECT DISTINCT collection_time FROM execution_time ");
-    builder.Append("WHERE (test_number = ?test)");
+    // Add the parameter to the statement.
+    command.Parameters.AddWithValue ("?t", test);
 
+    MySqlDataAdapter adapter = new MySqlDataAdapter (command);
+    adapter.Fill (dataset, "collection_time");
+  }
+
+  public void get_execution_times(Int32 test_number,
+                                  DateTime collection_time,
+                                  ref DataSet ds)
+  {
     MySqlCommand command = this.conn_.CreateCommand();
-    command.CommandText = builder.ToString();
-    command.Parameters.Add(p1);
+    command.CommandText = "CALL cuts.select_execution_time(?t, ?ct)";
+    command.Prepare();
+
+    // Add the parameters to the statement.
+    command.Parameters.AddWithValue("?t", test_number);
+    command.Parameters.AddWithValue("?ct", collection_time);
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-    adapter.Fill(dataset, "collection_time");
+    adapter.Fill(ds, "execution_time");
   }
 
   /**
@@ -262,7 +273,7 @@ public class CUTS_Database_Utility
     // Bypass all the empty metrics in the collection and store
     // the first DateTime value as the <collection_time>.
     while (reader.Read() && reader.GetValue(0) == DBNull.Value);
-    long best_time = 0, average_time = 0, worse_time = 0;
+    long best_time = 0, average_time = 0, worst_time = 0;
     bool done = false;
     DateTime collection_time;
 
@@ -304,7 +315,7 @@ public class CUTS_Database_Utility
         {
           best_time += reader.GetInt32(7);
           average_time += reader.GetInt32(8);
-          worse_time += reader.GetInt32(9);
+          worst_time += reader.GetInt32(9);
         }
       }
       catch (Exception)
@@ -338,26 +349,26 @@ public class CUTS_Database_Utility
           {
             et.absmin = best_time;
           }
-          if (worse_time > et.absmax)
+          if (worst_time > et.absmax)
           {
-            et.absmax = worse_time;
+            et.absmax = worst_time;
           }
         }
         else
         {
           et.absmin = best_time;
-          et.absmax = worse_time;
+          et.absmax = worst_time;
         }
 
         et.avgmin += best_time;
         et.avgavg += average_time;
-        et.avgmax += worse_time;
+        et.avgmax += worst_time;
         ++ et.samples;
 
         // Reset the time values.
         if (!done)
         {
-          best_time = average_time = worse_time = 0;
+          best_time = average_time = worst_time = 0;
         }
       }
     } while (!done);
@@ -370,7 +381,7 @@ public class CUTS_Database_Utility
     if (et.samples != 0)
     {
       et.recentmin = best_time;
-      et.recentmax = worse_time;
+      et.recentmax = worst_time;
       et.recentavg = average_time;
 
       et.avgmin /= et.samples;
@@ -613,7 +624,7 @@ public class CUTS_Database_Utility
     MySqlCommand command = this.conn_.CreateCommand ();
 
     // Initalize the command.
-    command.CommandText = "SELECT MAX(collection_time) FROM execution_time WHERE test_number = ?t";
+    command.CommandText = "SELECT cuts.get_max_collection_time(?t)";
     command.Parameters.AddWithValue("?t", test);
 
     // Execute the command.
@@ -646,6 +657,121 @@ public class CUTS_Database_Utility
 
     MySqlDataAdapter adapter = new MySqlDataAdapter(command);
     adapter.Fill(ds, "baseline");
+  }
+
+  public void select_distinct_components_in_execution_time(Int32 test,
+                                                           DateTime colltime,
+                                                           ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "CALL cuts.select_distinct_components_in_execution_time(?t, ?ct)";
+    command.Prepare();
+
+    command.Parameters.AddWithValue("?t", test);
+    command.Parameters.AddWithValue("?ct", colltime);
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "distinct_components");
+  }
+
+  public void select_execution_time_cumulative(Int32 test,
+                                               ref DataSet ds)
+  {
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "CALL cuts.select_execution_time_cumulative(?t)";
+    command.Prepare();
+
+    command.Parameters.AddWithValue("?t", test);
+
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "cumulative");
+  }
+
+  public string get_component_name(Int32 id)
+  {
+    // Prepare the command.
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "SELECT cuts.get_component_name(?id)";
+    command.Prepare();
+
+    // Insert the missing parameters.
+    command.Parameters.AddWithValue("?id", id);
+
+    return (string)command.ExecuteScalar();
+  }
+
+  public string get_component_portname(Int32 id)
+  {
+    // Prepare the command.
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = "SELECT cuts.component_portname(?id)";
+    command.Prepare();
+
+    // Insert the missing parameters.
+    command.Parameters.AddWithValue("?id", id);
+
+    return (string)command.ExecuteScalar();
+  }
+
+  public void get_component_execution_times(Int32 test,
+                                            Int32 component,
+                                            Int32 sender,
+                                            string metric_type,
+                                            Int32 src,
+                                            Int32 dst,
+                                            ref DataSet ds)
+  {
+    // Create the command to get the desired execution times
+    StringBuilder builder = new StringBuilder();
+    builder.Append("SELECT collection_time, best_time, (total_time / metric_count) AS average_time, worst_time ");
+    builder.Append("FROM execution_time WHERE (test_number = ?t AND component = ?c ");
+    builder.Append("AND sender =?s AND metric_type = ?m AND src = ?src");
+
+    if (dst != -1)
+      builder.Append (" AND dst=?dst");
+    else
+      builder.Append (" AND dst IS NULL");
+
+    builder.Append (") ORDER BY collection_time");
+
+    // Create the SQL command.
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+    command.Prepare();
+
+    // Insert the missing parameters.
+    command.Parameters.AddWithValue("?t", test);
+    command.Parameters.AddWithValue("?c", component);
+    command.Parameters.AddWithValue("?s", sender);
+    command.Parameters.AddWithValue("?m", metric_type);
+    command.Parameters.AddWithValue("?src", src);
+
+    if (dst != -1)
+      command.Parameters.AddWithValue("?dst", dst);
+
+    // Execute the SQL command.
+    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+    adapter.Fill(ds, "execution_time");
+  }
+
+  public long get_worst_execution_time(Int32 test, Int32 component)
+  {
+    // Create the command and initialize the parameters.
+    StringBuilder builder = new System.Text.StringBuilder();
+    builder.Append("SELECT MAX(worst_time) FROM execution_time ");
+    builder.Append("WHERE (test_number = ?t AND component = ?c)");
+
+    // Prepare the command for execution.
+    MySqlCommand command = this.conn_.CreateCommand();
+    command.CommandText = builder.ToString();
+    command.Prepare();
+
+    // Insert the missing parameters.
+    command.Parameters.AddWithValue("?t", test);
+    command.Parameters.AddWithValue("?c", component);
+
+    // Execute the parameters.
+    return (System.Int32)command.ExecuteScalar();
   }
 
   /// Connection object.

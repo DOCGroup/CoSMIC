@@ -31,6 +31,15 @@
         <File Id="CUTS_BE_CIAO.dll" Name="CUTS_BE_CIAO.dll"
               Source="$(env.CUTS_ROOT)\bin\CUTS_BE_CIAO.dll" DiskId="1" />
 
+        <File Id="CUTS_BE_XML.dll" Name="CUTS_BE_XML.dll"
+              Source="$(env.CUTS_ROOT)\bin\CUTS_BE_XML.dll" DiskId="1" />
+
+        <File Id="CUTS_BE_Natural_Lang.dll" Name="CUTS_BE_Natural_Lang.dll"
+              Source="$(env.CUTS_ROOT)\bin\CUTS_BE_Natural_Lang.dll" DiskId="1" />
+
+        <!--File Id="CUTS_BE_TIOA.dll" Name="CUTS_BE_TIOA.dll"
+              Source="$(env.CUTS_ROOT)\bin\CUTS_BE_TIOA.dll" DiskId="1" /-->
+
         <File Id="CUTS_PICML.dll" Name="CUTS_PICML.dll"
               Source="$(env.CUTS_ROOT)\bin\CUTS_PICML.dll" DiskId="1" />
 

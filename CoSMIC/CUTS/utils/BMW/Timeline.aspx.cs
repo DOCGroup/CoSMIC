@@ -22,134 +22,66 @@ namespace CUTS
   /// </summary>
   public partial class Timeline : System.Web.UI.Page
   {
+    /// Utility class for interacting with the CUTS database.
+    private CUTS_Database_Utility cutsdb_ =
+      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+
     protected string component_name_;
 
     protected string sender_name_;
 
     private void Page_Load(object sender, System.EventArgs e)
     {
-      OdbcConnection conn =
-        new OdbcConnection (ConfigurationManager.AppSettings["ConnectionString"]);
-
       try
       {
         // Get the appropriate values from the query string.
-        int test_number = System.Int32.Parse (Request.QueryString["t"]);
-        int component = System.Int32.Parse (Request.QueryString["c"]);
-        int sender_component = System.Int32.Parse (Request.QueryString["s"]);
+        int test_number = int.Parse (Request.QueryString["t"]);
+        int component = int.Parse (Request.QueryString["c"]);
         string metric = Request.QueryString["m"];
-        String src = Request.QueryString["src"];
-        String dst = Request.QueryString["dst"];
+        int src = int.Parse(Request.QueryString["src"]);
+        int dst = -1;
 
-        this.return_link_.NavigateUrl = "~/Execution_Times.aspx?test=" + test_number;
+        if (Request.QueryString["dst"] != null)
+          dst = int.Parse(Request.QueryString["dst"]);
 
-        conn.Open ();
+        // Update the navigation link.
+        this.return_link_.NavigateUrl = "~/performance.aspx?t=" + test_number;
 
-        // Create the command to get the name of the sender component.
-        string command_str =
-          "SELECT component_name FROM component_instances WHERE (component_id = ?)";
-        OdbcCommand select_component_name = new OdbcCommand (command_str, conn);
-
-        // Initialize the paramater.
-        OdbcParameter p1 = new OdbcParameter ("component_id", OdbcType.Int);
-        p1.Value = sender_component;
-        select_component_name.Parameters.Add (p1);
-
-        // Get the name of the sender component.
-        this.sender_name_ = (string) select_component_name.ExecuteScalar ();
-
-        // Get the name of the component w/ the metrics.
-        select_component_name.Parameters["component_id"].Value = component;
-        this.component_name_ = (string) select_component_name.ExecuteScalar ();
-
-        // Create a statement for selecting the portnames
-        string portname_stmt = "SELECT cuts.component_portname(?)";
-        OdbcCommand select_portname = new OdbcCommand(portname_stmt, conn);
-        select_portname.Parameters.Add("pid", OdbcType.Int);
-
-        select_portname.Parameters["pid"].Value = Int32.Parse (src);
-        string srcname = (string)select_portname.ExecuteScalar();
+        // Construct the title of the chart.
+        this.component_name_ = this.cutsdb_.get_component_name(component);
+        string src_name = this.cutsdb_.get_component_portname(src);
 
         this.timeline_.ChartTitle.Text =
-          this.component_name_ + "\nfrom " + this.sender_name_ +
-          "\n[metric = '" + metric + "' AND input = '" + srcname + "'";
+          this.component_name_ +
+          "\n[metric = '" + metric + "' AND input = '" + src_name + "'";
 
-        if (dst != String.Empty)
+        if (dst != -1)
         {
-          select_portname.Parameters["pid"].Value = Int32.Parse (dst);
-          string dstname = (string)select_portname.ExecuteScalar();
-
-          this.timeline_.ChartTitle.Text += " AND output = '" + dstname + "'";
+          this.timeline_.ChartTitle.Text +=
+            " AND output = '" + this.cutsdb_.get_component_portname(dst) + "'";
         }
 
         this.timeline_.ChartTitle.Text += "]";
 
-        // Create the command to get the desired execution times
-        System.Text.StringBuilder builder = new System.Text.StringBuilder ();
-        builder.Append("SELECT collection_time, best_time, (total_time / metric_count) AS average_time, worse_time ");
-        builder.Append ("FROM execution_time WHERE (test_number = ? AND component = ? ");
-        builder.Append ("AND sender = ? AND metric_type = ? AND src = ?");
-
-        if (dst != String.Empty)
-        {
-          builder.Append (" AND dst = ?");
-        }
-
-        builder.Append (") ORDER BY collection_time");
-
-        // Create the selection command.
-        OdbcCommand select_command = new OdbcCommand (builder.ToString (), conn);
-
-        // Create all the parameters for the command.
-        p1 = new OdbcParameter ("t", OdbcType.Int);
-        p1.Value = test_number;
-        select_command.Parameters.Add (p1);
-
-        OdbcParameter p2 = new OdbcParameter ("c", OdbcType.Int);
-        p2.Value = component;
-        select_command.Parameters.Add (p2);
-
-        OdbcParameter p3 = new OdbcParameter ("s", OdbcType.Int);
-        p3.Value = sender_component;
-        select_command.Parameters.Add (p3);
-
-        OdbcParameter p4 = new OdbcParameter ("m", OdbcType.VarChar);
-        p4.Value = metric;
-        select_command.Parameters.Add (p4);
-
-        OdbcParameter p5 = new OdbcParameter ("src", OdbcType.VarChar);
-        p5.Value = src;
-        select_command.Parameters.Add (p5);
-
-        if (dst != String.Empty)
-        {
-          OdbcParameter p6 = new OdbcParameter ("dst", OdbcType.VarChar);
-          p6.Value = dst;
-          select_command.Parameters.Add (p6);
-        }
-
-        // Add the parameters to the command.
-
-        // Create a new adapter with using the <select_command>.
-        OdbcDataAdapter adapter = new OdbcDataAdapter (select_command);
-
-        // Fill the <dataset> using the <adapter>.
+        // Get the execution times for the timeline.
         DataSet ds = new DataSet ();
-        adapter.Fill (ds, "execution_time");
+        this.cutsdb_.get_component_execution_times(test_number,
+                                                   component,
+                                                   1,
+                                                   metric,
+                                                   src,
+                                                   dst,
+                                                   ref ds);
 
         // Get the max time for the worse execution time and update
         // the chart so that the Y-axis is 10 msec more that the
         // max value.
         this.timeline_.YCustomEnd =
-          get_max_execution_time(conn, test_number, component) + 10;
-
-        // Close the connection to the database.
-        conn.Close ();
+          this.cutsdb_.get_worst_execution_time(test_number, component) + 10;
 
         // Create the execution time charts.
         DataTable execution_time = ds.Tables["execution_time"];
         create_execution_time_charts (execution_time);
-
       }
       catch (OdbcException ex)
       {
@@ -163,13 +95,6 @@ namespace CUTS
       }
       finally
       {
-        // Close the connection if it is still open.
-        if (conn.State == ConnectionState.Open)
-        {
-          conn.Close ();
-        }
-
-        // Force the redrawing of the chart.
         this.timeline_.RedrawChart ();
       }
     }
@@ -177,7 +102,7 @@ namespace CUTS
     /// <summary>
     /// Creates the execution time charts given the data table. The table
     /// must contain the following fields: collection_time, best_time,
-    /// average_time and worse_time.
+    /// average_time and worst_time.
     /// </summary>
     /// <param name="table"></param>
     private void create_execution_time_charts (DataTable table)
@@ -204,46 +129,16 @@ namespace CUTS
       average_time.DataBind ();
       this.timeline_.Charts.Add (average_time);
 
-      // Create the <worse_time> execution time chart.
-      LineChart worse_time = new LineChart ();
-      worse_time.Legend = "Worst Time";
-      worse_time.DataSource = table.DefaultView;
-      worse_time.DataXValueField = "collection_time";
-      worse_time.DataYValueField = "worse_time";
-      worse_time.Line.Color = Color.Red;
-      worse_time.Fill.Color = Color.Red;
-      worse_time.DataBind ();
-      this.timeline_.Charts.Add (worse_time);
-    }
-
-    private System.Int32 get_max_execution_time (
-      OdbcConnection conn,
-      int test,
-      int component)
-    {
-      OdbcCommand command = conn.CreateCommand ();
-
-      // Create the <test_number> parameter.
-      OdbcParameter p1 = new OdbcParameter ("test_number", OdbcType.Int);
-      p1.Direction = ParameterDirection.Input;
-      p1.Value = test;
-
-      // Create the <component> parameter.
-      OdbcParameter p2 = new OdbcParameter("component", OdbcType.Int);
-      p2.Direction = ParameterDirection.Input;
-      p2.Value = component;
-
-      // Create the command and initialize the parameters.
-      System.Text.StringBuilder string_builder = new System.Text.StringBuilder();
-      string_builder.Append("SELECT MAX(worse_time) FROM execution_time ");
-      string_builder.Append("WHERE (test_number = ? AND component = ?)");
-
-      command.CommandText = string_builder.ToString();
-      command.Parameters.Add(p1);
-      command.Parameters.Add(p2);
-
-      // Execute the parameters.
-      return (System.Int32)command.ExecuteScalar();
+      // Create the <worst_time> execution time chart.
+      LineChart worst_time = new LineChart ();
+      worst_time.Legend = "Worst Time";
+      worst_time.DataSource = table.DefaultView;
+      worst_time.DataXValueField = "collection_time";
+      worst_time.DataYValueField = "worst_time";
+      worst_time.Line.Color = Color.Red;
+      worst_time.Fill.Color = Color.Red;
+      worst_time.DataBind ();
+      this.timeline_.Charts.Add (worst_time);
     }
 
     #region Web Form Designer generated code

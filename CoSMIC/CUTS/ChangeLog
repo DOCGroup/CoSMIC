@@ -1,3 +1,52 @@
+Thu Oct 18 23:23:27 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * install/BMW.wxs:
+
+          Updated the installer version to 1.5
+
+        * install/CUTS_PICML.wxs:
+
+          Added the XML, natural language and TIOA backend generators
+          to the installer.
+
+        * utils/BMW/App_Code/CumulativeExitPoint.cs:
+        * utils/BMW/App_Code/ExitPoint.cs:
+        * utils/BMW/App_Code/PerformanceTimes.cs:
+        * utils/BMW/Critical_Path_Timeline.aspx.cs:
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+        * utils/BMW/Timeline.aspx.cs:
+        * utils/BMW/baseline.aspx.cs:
+        * utils/BMW/controls:
+        * utils/BMW/controls/ComponentPerformance.ascx:
+        * utils/BMW/controls/ComponentPerformance.ascx.cs:
+        * utils/BMW/controls/PortPerformance.ascx:
+        * utils/BMW/controls/PortPerformance.ascx.cs:
+        * utils/BMW/controls/SystemPerformance.ascx:
+        * utils/BMW/controls/SystemPerformance.ascx.cs:
+        * utils/BMW/default.aspx:
+        * utils/BMW/images/graph.gif:
+        * utils/BMW/performance.aspx:
+        * utils/BMW/performance.aspx.cs:
+        * utils/BMW/styles/default.css:
+
+          Updated the look and feel of the performance overview page. Now we
+          have custom controls that will show the current snapshot and the
+          cumulative snapshot of the performance metrics. This allows users
+          to compare individual snapshots w/ the overall results with hopes
+          of understanding where performance started to deter.
+
+        * utils/BMW/Component_Metrics.ascx:
+        * utils/BMW/Component_Metrics.ascx.cs:
+        * utils/BMW/Component_Metrics.ascx.resx:
+        * utils/BMW/Execution_Times.aspx:
+        * utils/BMW/Execution_Times.aspx.cs:
+        * utils/BMW/Execution_Times.aspx.resx:
+        * utils/BMW/Sender_Metrics.ascx:
+        * utils/BMW/Sender_Metrics.ascx.cs:
+        * utils/BMW/Sender_Metrics.ascx.resx:
+
+          Removed these files.
+
 Thu Oct 18 23:18:01 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/dbase/DBase_Service.cpp:

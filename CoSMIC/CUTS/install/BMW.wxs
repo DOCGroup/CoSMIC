@@ -13,7 +13,7 @@
     <Package Keywords='Installer'
              Description='CUTS Benchmark Manager Web Utility Installer'
              Manufacturer='DOC Group, ISIS, Vanderbilt University'
-             InstallerVersion='100'
+             InstallerVersion='150'
              Languages='1033' Compressed='yes'
              SummaryCodepage='1252' />
 

@@ -101,7 +101,7 @@ namespace CUTS
         // to add the metrics to this collection point.
         best_time    += (Int32)metrics["best_time"];
         average_time += float.Parse (metrics["avg_time"].ToString ());
-        worst_time   += (Int32)metrics["worse_time"];
+        worst_time   += (Int32)metrics["worst_time"];
 
         // Determine if this is the last record in the listing. If it
         // is not then we need to see if the next record is part of this
