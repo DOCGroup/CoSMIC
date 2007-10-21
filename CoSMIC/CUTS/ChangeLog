@@ -1,3 +1,26 @@
+Sun Oct 21 01:51:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Database_Utility/Database_Utility.cs (get_baseline_data):
+
+          Returns an IDataReader object instead of returning the data
+          in a dataset.
+
+        * utils/BMW/baseline.aspx:
+        * utils/BMW/baseline.aspx.cs:
+        * utils/BMW/controls/ComponentPerformance.ascx:
+        * utils/BMW/controls/ComponentPerformance.ascx.cs:
+        * utils/BMW/controls/ComponentPerformanceCategory.ascx:
+        * utils/BMW/controls/ComponentPerformanceCategory.ascx.cs:
+        * utils/BMW/controls/ComponentPerformanceGrid.ascx:
+        * utils/BMW/controls/ComponentPerformanceGrid.ascx.cs:
+        * utils/BMW/controls/CumulativePortPerformance.ascx:
+        * utils/BMW/controls/CumulativePortPerformance.ascx.cs:
+
+          Refactored to component performance controls to create a
+          custom grid for each component based on the current layout
+          used in the performance.aspx page. The baseline page is the
+          first page to try using this new component performance grid.
+
 Thu Oct 18 23:23:27 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:

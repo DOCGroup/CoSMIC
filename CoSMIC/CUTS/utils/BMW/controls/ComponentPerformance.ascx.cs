@@ -69,7 +69,11 @@ namespace CUTS
 
     private void Page_Load(Object sender, System.EventArgs e)
     {
+      if (this.current_datasource_ == null)
+        this.current_tablecell_.Visible = false;
 
+      if (this.cumulative_datasource_ == null)
+        this.cumulative_tablecell_.Visible = false;
     }
 
     private void load_current_performance_data()

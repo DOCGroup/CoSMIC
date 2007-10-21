@@ -650,13 +650,11 @@ public class CUTS_Database_Utility
     adapter.Fill(ds, "component_instances");
   }
 
-  public void get_baseline_data(ref DataSet ds)
+  public IDataReader get_baseline_data()
   {
     MySqlCommand command = this.conn_.CreateCommand();
     command.CommandText = "CALL cuts.select_baseline_metric_all()";
-
-    MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-    adapter.Fill(ds, "baseline");
+    return command.ExecuteReader();
   }
 
   public void select_distinct_components_in_execution_time(Int32 test,

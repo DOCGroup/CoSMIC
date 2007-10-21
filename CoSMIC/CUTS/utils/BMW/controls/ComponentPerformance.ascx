@@ -18,12 +18,14 @@
              cssclass="performance">
     <asp:tablerow runat="server">
       <asp:tablecell runat="server"
-                     verticalalign="top">
+                     verticalalign="top"
+                     id="current_tablecell_">
         <div style="font-style:italic">Current Snapshot Performance</div>
         <asp:placeholder runat="server" id="current_" />
       </asp:tablecell>
       <asp:tablecell runat="server"
-                     verticalalign="top">
+                     verticalalign="top"
+                     id="cumulative_tablecell_">
         <div style="font-style:italic">Cumulative Snapshot Performance</div>
         <asp:placeholder runat="server" id="cumulative_" />
       </asp:tablecell>
