@@ -84,22 +84,19 @@
                 <File Id="default.aspx" Name="default.aspx"
                       Source="$(var.BMW_ROOT)\default.aspx" DiskId="1" />
 
-                <File Id="Execution_Times.aspx" Name="Execution_Times.aspx"
-                      Source="$(var.BMW_ROOT)\Execution_Times.aspx" DiskId="1" />
-
                 <File Id="environment.aspx" Name="environment.aspx"
                       Source="$(var.BMW_ROOT)\environment.aspx" DiskId="1" />
 
-                <!-- user-defined controls -->
-                <File Id="Component_Metrics.ascx" Name="Component_Metrics.ascx"
-                      Source="$(var.BMW_ROOT)\Component_Metrics.ascx" DiskId="1" />
+                <File Id="performance.aspx" Name="performance.aspx"
+                      Source="$(var.BMW_ROOT)\performance.aspx" DiskId="1" />
 
+                <File Id="timeline.aspx" Name="timeline.aspx"
+                      Source="$(var.BMW_ROOT)\timeline.aspx" DiskId="1" />
+
+                <!-- user-defined controls -->
                 <File Id="Node_Details.ascx" Name="Node_Details.ascx"
                       Source="$(var.BMW_ROOT)\Node_Details.ascx"
                   DiskId="1" />
-
-                <File Id="Sender_Metrics.ascx" Name="Sender_Metrics.ascx"
-                      Source="$(var.BMW_ROOT)\Sender_Metrics.ascx" DiskId="1" />
 
                 <!-- web services -->
                 <File Id="Service.asmx" Name="Service.asmx"
@@ -108,9 +105,33 @@
                 <!-- config files -->
                 <File Id="PrecompiledApp.config" Name="PrecompiledApp.config"
                       Source="$(var.BMW_ROOT)\PrecompiledApp.config" DiskId="1" />
+
                 <File Id="Web.config" Name="Web.config"
                       Source="$(var.BMW_ROOT)\Web.config" DiskId="1" />
               </Component>
+
+              <!-- http://localhost/CUTS/controls -->
+              <Directory Id="controls" Name="controls">
+                <Component Id="BMWControlFiles" Guid="71EB1EC2-A33F-4895-AD09-4CFEE4904FB2">
+                  <File Id="ComponentPerformance.ascx" Name="ComponentPerformance.ascx"
+                        Source="$(var.BMW_ROOT)\controls\ComponentPerformance.ascx" DiskId="1" />
+
+                  <File Id="ComponentPerformanceCategory.ascx" Name="ComponentPerformanceCategory.ascx"
+                        Source="$(var.BMW_ROOT)\controls\ComponentPerformanceCategory.ascx" DiskId="1" />
+
+                  <File Id="ComponentPerformanceGrid.ascx" Name="ComponentPerformanceGrid.ascx"
+                        Source="$(var.BMW_ROOT)\controls\ComponentPerformanceGrid.ascx" DiskId="1" />
+
+                  <File Id="CumulativePortPerformance.ascx" Name="CumulativePortPerformance.ascx"
+                        Source="$(var.BMW_ROOT)\controls\CumulativePortPerformance.ascx" DiskId="1" />
+
+                  <File Id="PortPerformance.ascx" Name="PortPerformance.ascx"
+                        Source="$(var.BMW_ROOT)\controls\PortPerformance.ascx" DiskId="1" />
+
+                  <File Id="SystemPerformance.ascx" Name="SystemPerformance.ascx"
+                        Source="$(var.BMW_ROOT)\controls\SystemPerformance.ascx" DiskId="1" />
+                </Component>
+              </Directory>
 
               <!-- http://localhost/CUTS/bin -->
               <Directory Id="bin" Name="bin">
@@ -125,41 +146,50 @@
                   <File Id="App_Web_baseline.aspx.cdcab7d2.dll" Name="App_Web_baseline.aspx.cdcab7d2.dll"
                         Source="$(var.BMW_ROOT)\bin\App_Web_baseline.aspx.cdcab7d2.dll" DiskId="1" />
 
-                  <File Id="App_Web_timeline.aspx.cdcab7d2.dll" Name="App_Web_timeline.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_timeline.aspx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_bmw.master.cdcab7d2.dll" Name="App_Web_bmw.master.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_bmw.master.cdcab7d2.dll" DiskId="1" />
 
-                  <File Id="App_Web_sender_metrics.ascx.cdcab7d2.dll" Name="App_Web_sender_metrics.ascx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_sender_metrics.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_componentperformance.ascx.cc671b29.dll" Name="App_Web_componentperformance.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_componentperformance.ascx.cc671b29.dll" DiskId="1" />
 
-                  <File Id="App_Web_node_details.ascx.cdcab7d2.dll" Name="App_Web_node_details.ascx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_node_details.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_componentperformancegrid.ascx.cc671b29.dll" Name="App_Web_componentperformancegrid.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_componentperformancegrid.ascx.cc671b29.dll" DiskId="1" />
 
-                  <File Id="App_Web_environment.aspx.cdcab7d2.dll" Name="App_Web_environment.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_environment.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_header.aspx.cdcab7d2.dll" Name="App_Web_header.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_header.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_execution_times.aspx.cdcab7d2.dll" Name="App_Web_execution_times.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_execution_times.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_default.aspx.cdcab7d2.dll" Name="App_Web_default.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_default.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_critical_path_timeline.aspx.cdcab7d2.dll" Name="App_Web_critical_path_timeline.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path_timeline.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_critical_path.aspx.cdcab7d2.dll" Name="App_Web_critical_path.aspx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path.aspx.cdcab7d2.dll" DiskId="1" />
-
-                  <File Id="App_Web_component_metrics.ascx.cdcab7d2.dll" Name="App_Web_component_metrics.ascx.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_component_metrics.ascx.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_componentperformancecategory.ascx.cc671b29.dll" Name="App_Web_componentperformancecategory.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_componentperformancecategory.ascx.cc671b29.dll" DiskId="1" />
 
                   <File Id="App_Web_components.aspx.cdcab7d2.dll" Name="App_Web_components.aspx.cdcab7d2.dll"
                         Source="$(var.BMW_ROOT)\bin\App_Web_components.aspx.cdcab7d2.dll" DiskId="1" />
 
-                  <File Id="App_Web_bmw.master.cdcab7d2.dll" Name="App_Web_bmw.master.cdcab7d2.dll"
-                        Source="$(var.BMW_ROOT)\bin\App_Web_bmw.master.cdcab7d2.dll" DiskId="1" />
+                  <File Id="App_Web_critical_path.aspx.cdcab7d2.dll" Name="App_Web_critical_path.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path.aspx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_critical_path_timeline.aspx.cdcab7d2.dll" Name="App_Web_critical_path_timeline.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_critical_path_timeline.aspx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_cumulativeportperformance.ascx.cc671b29.dll" Name="App_Web_cumulativeportperformance.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_cumulativeportperformance.ascx.cc671b29.dll" DiskId="1" />
+
+                  <File Id="App_Web_default.aspx.cdcab7d2.dll" Name="App_Web_default.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_default.aspx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_environment.aspx.cdcab7d2.dll" Name="App_Web_environment.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_environment.aspx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_node_details.ascx.cdcab7d2.dll" Name="App_Web_node_details.ascx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_node_details.ascx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_performance.aspx.cdcab7d2.dll" Name="App_Web_performance.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_performance.aspx.cdcab7d2.dll" DiskId="1" />
+
+                  <File Id="App_Web_portperformance.ascx.cc671b29.dll" Name="App_Web_portperformance.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_portperformance.ascx.cc671b29.dll" DiskId="1" />
+
+                  <File Id="App_Web_systemperformance.ascx.cc671b29.dll" Name="App_Web_systemperformance.ascx.cc671b29.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_systemperformance.ascx.cc671b29.dll" DiskId="1" />
+
+                  <File Id="App_Web_timeline.aspx.cdcab7d2.dll" Name="App_Web_timeline.aspx.cdcab7d2.dll"
+                        Source="$(var.BMW_ROOT)\bin\App_Web_timeline.aspx.cdcab7d2.dll" DiskId="1" />
 
                   <!-- 3rd-party libraries -->
                   <File Id="CUTS_Database_Utility.dll" Name="CUTS_Database_Utility.dll"
@@ -240,6 +270,7 @@
              Description="Installs the BMW web application" Level="1">
       <ComponentRef Id="BMWServerFiles" />
       <ComponentRef Id="BMWBinFiles" />
+      <ComponentRef Id="BMWControlFiles" />
       <ComponentRef Id="BMWImageFiles" />
       <ComponentRef Id="BMWStyleFiles" />
     </Feature>
