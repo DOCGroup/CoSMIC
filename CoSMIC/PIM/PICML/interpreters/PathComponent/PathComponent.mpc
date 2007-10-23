@@ -1,8 +1,7 @@
-project (PathComponent): mfc, picmllib, register {
+project (PathComponent): mfc, picmllib, register, boost_base {
   after += Path
   macros += _USRDLL _WINDLL
   sharedname = PathComponent
-  includes += $(BOOST_ROOT)/include/$(BOOST_VERSION)
   libs += Path
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

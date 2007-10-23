@@ -1,7 +1,6 @@
-project(Path): picmllib {
+project(Path): picmllib, boost_base {
    sharedname = Path
    macros += PATH_BUILD_DLL
-   includes += $(BOOST_ROOT)/include/$(BOOST_VERSION)
 
    Source_Files {
      PathVisitor.cpp
