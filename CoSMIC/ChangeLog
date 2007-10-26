@@ -1,8 +1,15 @@
+Fri Oct 26 20:44:35 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Fixed errors in attribute mapping blocks during config file
+          generation/compilation.
+
 Fri Oct 26 17:06:23 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
 
-          Using separate paradigms for each of the input/output 
+          Using separate paradigms for each of the input/output
           languages was causing problems earlier. This is now changed such
           that all languages use either MetaGME or UMLModelTransformer.
 
