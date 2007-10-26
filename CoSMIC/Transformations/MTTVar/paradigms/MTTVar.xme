@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{5FB3CAAF-386C-4461-B2BC-56E7C12F6091}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
+<project guid="{C60E5697-69E4-4480-89F8-EBFA71B51CBE}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
 	<name>MTTVar</name>
 	<comment></comment>
 	<author></author>
@@ -1993,17 +1993,17 @@ else
 								<attribute kind="ExpressionString">
 									<value>std::string expr_string = AttributeMapping.ExpressionString ();
 
-size_type occur;
+int occur = -1;
 
-if ((occur = expr_string.find (&quot;direct&quot;, 0)) != string:npos)
+if ((occur = expr_string.find (&quot;direct&quot;, 0)) != -1)
 {
-  size_type start = string::npos;
-  size_type finish = string::npos;
+  int start = -1;
+  int finish = -1;
 
   start = expr_string.find (&apos;{&apos;, occur);
   finish = expr_string.find (&apos;}&apos;, start + 1);
   std::string direct_values;
-  if (start != string::npos &amp;&amp; finish != string::npos)
+  if (start != -1 &amp;&amp; finish != -1)
   {
     direct_values = std::string (expr_string, start + 1, (finish - start) + 1);
     temp.name () = (std::string)direct_values;  
@@ -2441,7 +2441,7 @@ if ((occur = expr_string.find (&quot;direct&quot;, 0)) != string:npos)
 									<value>
 std::string name = temp.name ();
 
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
 std::string model_name = std::string (name, 0, start_entry - 1);
 
 Atom.name () = model_name;</value>
@@ -5306,21 +5306,21 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
-// Get all has_attribute type connections from BaseFCOClass
-//
+/* Get all has_attribute type connections from BaseFCOClass*/
+
 std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
 
 std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
-// Return true on occurrence of a single Boolean attribute
+/* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
-  // Get the attribute connected to BaseFCOClass
-  //
+  /* Get the attribute connected to BaseFCOClass*/
+  
   Attribute attr = (*iter).srcHasAttribute_end ();
   
   if (Udm::null != attr)
@@ -6011,8 +6011,8 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 FieldAttribute.name () = attrib_name;</value>
@@ -6818,7 +6818,11 @@ FieldAttribute.name () = attrib_name;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;FieldAttribute&quot;) )
+											<value>std::string str(&quot;FieldAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;,str2);
+int comp = str.compare(str2);
+if (comp == 0 )
   return true;
 
 return false;</value>
@@ -7456,7 +7460,11 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;BooleanAttribute&quot;) )
+											<value>std::string str(&quot;BooleanAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;,str2);
+int comp = str.compare(str2);
+if (comp == 0 )
   return true;
 
 return false;</value>
@@ -8124,7 +8132,11 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;EnumAttribute&quot;) )
+											<value>std::string str(&quot;EnumAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;,str2);
+int comp = str.compare(str2);
+if (comp == 0 )
   return true;
 
 return false;</value>
@@ -9661,8 +9673,8 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 BooleanAttribute.name () = attrib_name;</value>
@@ -10452,8 +10464,8 @@ BooleanAttribute.name () = attrib_name;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 EnumAttribute.name () = attrib_name;</value>
@@ -12234,17 +12246,17 @@ EnumAttribute.name () = attrib_name;</value>
 								<attribute kind="ExpressionString">
 									<value>std::string expr_string = AttributeMapping.ExpressionString ();
 
-size_type occur;
+int occur = -1;
 
-if ((occur = expr_string.find (&quot;conditional_value&quot;, 0)) != string:npos)
+if ((occur = (std::string)expr_string.find (&quot;conditional_value&quot;, 0)) != -1)
 {
-  size_type start = string::npos;
-  size_type finish = string::npos;
+   int start = -1;
+   int finish = -1;
 
-  start = expr_string.find (&apos;{&apos;, occur);
-  finish = expr_string.find (&apos;}&apos;, start + 1);
+  start = (int)expr_string.find (&apos;{&apos;, occur);
+  finish = (int)expr_string.find (&apos;}&apos;, start + 1);
   std::string conditional_values;
-  if (start != string::npos &amp;&amp; finish != string::npos)
+  if (start != -1 &amp;&amp; finish != -1)
   {
     conditional_values = std::string (expr_string, start + 1, (finish - start) + 1);
     temp.name () = (std::string)conditional_values;  
@@ -12592,11 +12604,11 @@ if ((occur = expr_string.find (&quot;conditional_value&quot;, 0)) != string:npos
 									<value>// get the temp name.
 std::string name = temp.name ();
 
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
 std::string temp_str = std::string (name, start_entry + 2, name.size () );
 
-start_entry = temp_str.find (&quot;:&quot;, 0);
-std::size_type end_entry = temp_str.find (&quot;::&quot;, 0);
+start_entry = (int)temp_str.find (&quot;:&quot;, 0);
+int end_entry = (int)temp_str.find (&quot;::&quot;, 0);
 
 std::string model_name = std::string (temp_str, start_entry + 2, end_entry - start_entry - 1);
 
@@ -13519,7 +13531,7 @@ TRGT.name () = model_name;</value>
 									<value>
 std::string name = temp.name ();
 
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
 std::string model_name = std::string (name, 0, start_entry - 1);
 
 Atom.name () = model_name;</value>
@@ -16420,14 +16432,14 @@ return false;</value>
 										<regnode name="Transform" status="undefined">
 											<value></value>
 											<regnode name="Position" isopaque="yes">
-												<value>607,1078</value>
+												<value>607,1092</value>
 											</regnode>
 										</regnode>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 FieldAttribute.name () = attrib_name;</value>
@@ -17116,21 +17128,21 @@ FieldAttribute.name () = attrib_name;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot;:&quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot;:&quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
-// Get all has_attribute type connections from BaseFCOClass
-//
+/* Get all has_attribute type connections from BaseFCOClass*/
+
 std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
 
 std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
-// Return true on occurrence of a single Boolean attribute
+/* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
-  // Get the attribute connected to BaseFCOClass
-  //
+  /* Get the attribute connected to BaseFCOClass*/
+
   Attribute attr = (*iter).srcHasAttribute_end ();
   
   if (Udm::null != attr)
@@ -17897,8 +17909,8 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 EnumAttribute.name () = attrib_name;</value>
@@ -18777,7 +18789,11 @@ EnumAttribute.name () = attrib_name;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;EnumAttribute&quot;) )
+											<value>std::string str1 (&quot;EnumAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
 return false;</value>
@@ -19518,10 +19534,16 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;BooleanAttribute&quot;) )
+											<value>std::string str1 (&quot;BooleanAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
-return false;</value>
+return false;
+
+</value>
 										</attribute>
 									</atom>
 									<atom id="id-0066-0000059d" kind="Out" role="Out" guid="{C6E653ED-31B6-4cba-9D09-D78DDB9A95EB}" relid="0x1a">
@@ -20286,10 +20308,15 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;FieldAttribute&quot;) )
+											<value>std::string str1 (&quot;FieldAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
-return false;</value>
+return false;
+</value>
 										</attribute>
 									</atom>
 									<atom id="id-0066-000005b0" kind="Out" role="Out" guid="{E633A9FD-D251-4464-B73F-BF02A091927C}" relid="0x18">
@@ -21947,8 +21974,8 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type start_entry = name.find (&quot;::&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;::&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
 BooleanAttribute.name () = attrib_name;</value>
@@ -23744,10 +23771,10 @@ BooleanAttribute.name () = attrib_name;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type temp_start = name.find (&quot;::&quot;, 0);
-std::size_type start_str = name.find (&quot;::&quot;, temp_start + 1);
-std::size_type end_str = name.find (&quot; &quot;, start_str + 2);
-std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
+int temp_start = (int)name.find (&quot;::&quot;, 0);
+int start_str = (int)name.find (&quot;::&quot;, temp_start + 1);
+int end_str = (int)name.find (&quot; &quot;, start_str + 2);
+std::string attrib_name = std::string (name, start_str + 2, end_str - start_str - 2);
 
 FieldAttribute.name () = attrib_name;</value>
 									</attribute>
@@ -24451,22 +24478,22 @@ FieldAttribute.name () = attrib_name;</value>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
 
-std::size_type temp_start = name.find (&quot;::&quot;, 0);
-std::size_type start_str = name.find (&quot;::&quot;, temp_start + 1);
-std::size_type end_str = name.find (&quot; &quot;, start_str + 2);
+int temp_start = (int)name.find (&quot;::&quot;, 0);
+int start_str = (int)name.find (&quot;::&quot;, temp_start + 1);
+int end_str = (int)name.find (&quot; &quot;, start_str + 2);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
-// Get all has_attribute type connections from BaseFCOClass
-//
+/* Get all has_attribute type connections from BaseFCOClass*/
+
 std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
 
 std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
-// Return true on occurrence of a single Boolean attribute
+/* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
-  // Get the attribute connected to BaseFCOClass
-  //
+  /* Get the attribute connected to BaseFCOClass*/
+
   Attribute attr = (*iter).srcHasAttribute_end ();
   
   if (Udm::null != attr)
@@ -24488,8 +24515,7 @@ for (; attr_iter != has_attribute.end (); ++attr_iter)
   }
 }
 
-return false;
-</value>
+return false;</value>
 									</attribute>
 								</atom>
 								<atom id="id-0066-0000061d" kind="In" role="In" guid="{18B938F6-8C26-402c-8052-7C3DBCC0F71D}" relid="0x44">
@@ -25204,10 +25230,10 @@ return false;
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type temp_start = name.find (&quot;::&quot;, 0);
-std::size_type start_str = name.find (&quot;::&quot;, temp_start + 1);
-std::size_type end_str = name.find (&quot; &quot;, start_str + 2);
-std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
+int temp_start = (int)name.find (&quot;::&quot;, 0);
+int start_str = (int)name.find (&quot;::&quot;, temp_start + 1);
+int end_str = (int)name.find (&quot; &quot;, start_str + 2);
+std::string attrib_name = std::string (name, start_str + 2, end_str - start_str - 2);
 
 EnumAttribute.name () = attrib_name;</value>
 									</attribute>
@@ -26100,7 +26126,11 @@ EnumAttribute.name () = attrib_name;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;EnumAttribute&quot;) )
+											<value>std::string str1 (&quot;EnumAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
 return false;</value>
@@ -26841,7 +26871,11 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;BooleanAttribute&quot;) )
+											<value>std::string str1 (&quot;BooleanAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
 return false;</value>
@@ -27624,7 +27658,11 @@ return false;</value>
 											</regnode>
 										</regnode>
 										<attribute kind="ExpressionString">
-											<value>if (temp.name () == std::string (&quot;FieldAttribute&quot;) )
+											<value>std::string str1 (&quot;FieldAttribute&quot;);
+std::string str2;
+temp.GetStrValue(&quot;name&quot;, str2);
+int comp = str.compare (str2);
+if (comp == 0)
   return true;
 
 return false;</value>
@@ -29231,10 +29269,10 @@ return false;</value>
 									</regnode>
 									<attribute kind="ExpressionString">
 										<value>std::string name = temp.name ();
-std::size_type temp_start = name.find (&quot;::&quot;, 0);
-std::size_type start_str = name.find (&quot;::&quot;, temp_start + 1);
-std::size_type end_str = name.find (&quot; &quot;, start_str + 2);
-std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
+int temp_start = (int)name.find (&quot;::&quot;, 0);
+int start_str = (int)name.find (&quot;::&quot;, temp_start + 1);
+int end_str = (int)name.find (&quot; &quot;, start_str + 2);
+std::string attrib_name = std::string (name, start_str + 2, end_str - start_str - 2);
 
 BooleanAttribute.name () = attrib_name;</value>
 									</attribute>
@@ -31749,7 +31787,7 @@ return false;</value>
 										</regnode>
 									</regnode>
 									<attribute kind="ExpressionString">
-										<value>Connection.name () = SRC.name () + std::string (&quot;To&quot;) + TRGT.name () + std::string (&quot;Connection&quot;);</value>
+										<value>Connection.name () = (std::string)SRC.name () + &quot;To&quot; + (std::string)TRGT.name () + &quot;Connection&quot;;</value>
 									</attribute>
 								</atom>
 								<atom id="id-0066-00000716" kind="In" role="In" guid="{7FE875FC-EA11-4ed8-AF40-897E414B46CF}" relid="0x3a">
@@ -36045,17 +36083,17 @@ return false;</value>
 								<attribute kind="ExpressionString">
 									<value>std::string expr_string = AttributeMapping.ExpressionString ();
 
-size_type occur;
+int occur = -1;
 
-if ((occur = expr_string.find (&quot;conditional_creation&quot;, 0)) != string:npos)
+if ((occur = expr_string.find (&quot;conditional_creation&quot;, 0)) != -1)
 {
-  size_type start = string::npos;
-  size_type finish = string::npos;
+  int start = -1;
+  int finish = -1;
 
   start = expr_string.find (&apos;{&apos;, occur);
   finish = expr_string.find (&apos;}&apos;, start + 1);
   std::string conditional_creation;
-  if (start != string::npos &amp;&amp; finish != string::npos)
+  if (start != -1 &amp;&amp; finish != -1)
   {
     conditional_creation = std::string (expr_string, start + 1, (finish - start) + 1);
     temp.name () = (std::string)conditional_creation;  
@@ -36607,8 +36645,8 @@ if ((occur = expr_string.find (&quot;conditional_creation&quot;, 0)) != string:n
 									<value>// get the temp name.
 std::string name = temp.name ();
 
-std::size_type start_entry = name.find (&quot;:&quot;, 0);
-std::size_type end_entry = name.find (&quot; &quot;, 0);
+int start_entry = (int)name.find (&quot;:&quot;, 0);
+int end_entry = (int)name.find (&quot; &quot;, 0);
 std::string temp_str = std::string (name, start_entry + 1, end_entry - start_entry - 1);
 
 TRGT.name () = temp_str;</value>
@@ -37326,7 +37364,7 @@ TRGT.name () = temp_str;</value>
 									<value>
 std::string name = temp.name ();
 
-std::size_type start_entry = name.find (&quot;:&quot;, 0);
+int start_entry = (int)name.find (&quot;:&quot;, 0);
 std::string model_name = std::string (name, 0, start_entry - 1);
 
 Atom.name () = model_name;</value>
@@ -38959,7 +38997,7 @@ Atom.name () = model_name;</value>
 										</regnode>
 									</regnode>
 									<attribute kind="ExpressionString">
-										<value>Connection.name () = SRC.name () + std::string (&quot;To&quot;) + TRGT.name () + std::string (&quot;Connection&quot;);</value>
+										<value>Connection.name () = (string)SRC.name () + &quot;To&quot; + (string)TRGT.name () + &quot;Connection&quot;;</value>
 									</attribute>
 								</atom>
 								<atom id="id-0066-000007b3" kind="In" role="In" guid="{9DE859EC-7041-4f3d-B36F-A6A62B18B91D}" relid="0x18">
@@ -50757,6 +50795,15 @@ IteratorShift:Integer=1</value>
 			</attribute>
 			<model id="id-0065-00000011" kind="ClassDiagram" role="ClassDiagram" guid="{59E657A1-549A-427f-824F-E8A23A3D56A5}" relid="0x1" childrelidcntr="0x2d">
 				<name>zC_GMEInheritanceSheet</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>14,350</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -51496,6 +51543,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000012" kind="ClassDiagram" role="ClassDiagram" guid="{BBBD3C38-B83C-4880-8724-9A96A910EF22}" relid="0x2" childrelidcntr="0x6">
 				<name>zC_RootFolderCompositionSheet</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>350,350</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -51632,6 +51688,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000013" kind="ClassDiagram" role="ClassDiagram" guid="{65967903-8DBC-4370-B3B2-D1E103C35A3F}" relid="0x3" childrelidcntr="0x3e">
 				<name>Equivalences</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>350,98</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -52212,7 +52277,7 @@ position : String[0..1]
 						<regnode name="UML" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>15,12</value>
+								<value>8,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -52659,6 +52724,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000014" kind="ClassDiagram" role="ClassDiagram" guid="{55198191-41C1-408f-AFF8-F2B7195DF893}" relid="0x4" childrelidcntr="0xf">
 				<name>FCOs</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>308,182</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -52916,6 +52990,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000015" kind="ClassDiagram" role="ClassDiagram" guid="{134868E6-D4A2-4564-AFF7-8AC7BA9AF86C}" relid="0x5" childrelidcntr="0x18">
 				<name>References</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>140,266</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -53348,6 +53431,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000016" kind="ClassDiagram" role="ClassDiagram" guid="{A41C273C-063F-470d-897A-BA01B7A3C81F}" relid="0x6" childrelidcntr="0x18">
 				<name>Sets</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>14,266</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -53780,6 +53872,15 @@ position : String[0..1]
 			</model>
 			<model id="id-0065-00000017" kind="ClassDiagram" role="ClassDiagram" guid="{672428FF-E8E8-49e1-8717-B7B585776041}" relid="0x7" childrelidcntr="0x3b">
 				<name>Stereotypes</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>266,266</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -54846,6 +54947,15 @@ DisplayedName:String</value>
 			</model>
 			<model id="id-0065-00000018" kind="ClassDiagram" role="ClassDiagram" guid="{0B00E7FF-570E-4e05-8E11-18AA0F15FB95}" relid="0x8" childrelidcntr="0x12">
 				<name>Attributes</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>266,14</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -55199,6 +55309,15 @@ DefaultItem:String</value>
 			</model>
 			<model id="id-0065-00000019" kind="ClassDiagram" role="ClassDiagram" guid="{1807D969-7341-4040-B9A1-4882F61E75FC}" relid="0x9" childrelidcntr="0xc">
 				<name>Constraints</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>224,98</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -55471,6 +55590,15 @@ ReferenceEvent:Boolean=false</value>
 			</model>
 			<model id="id-0065-0000001a" kind="ClassDiagram" role="ClassDiagram" guid="{0F2BF2AC-C65A-40ba-98F1-02FFC0E59EF7}" relid="0xa" childrelidcntr="0x30">
 				<name>Inheritances</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>14,182</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -56249,6 +56377,15 @@ ReferenceEvent:Boolean=false</value>
 			</model>
 			<model id="id-0065-0000001b" kind="ClassDiagram" role="ClassDiagram" guid="{8745B8E8-B4A5-4b0d-951F-63A1B6399A8F}" relid="0xb" childrelidcntr="0x13">
 				<name>Aspects</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>182,182</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -56624,6 +56761,15 @@ DisplayedName:String</value>
 			</model>
 			<model id="id-0065-0000001c" kind="ClassDiagram" role="ClassDiagram" guid="{7BD23310-27F3-4f95-963E-00381770FF7D}" relid="0xc" childrelidcntr="0x21">
 				<name>Connections</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>140,14</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -57237,6 +57383,15 @@ Cardinality:String=&quot;0..*&quot;</value>
 			</model>
 			<model id="id-0065-0000001d" kind="ClassDiagram" role="ClassDiagram" guid="{4F65E602-BA03-4934-9F45-DA0EEA1E16FD}" relid="0xd" childrelidcntr="0x13">
 				<name>Folders</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>98,98</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -57587,6 +57742,15 @@ Cardinality:String=&quot;0..*&quot;</value>
 			</model>
 			<model id="id-0065-0000001e" kind="ClassDiagram" role="ClassDiagram" guid="{9F756770-95E6-45ad-84A5-DBD9DDCC70C4}" relid="0xe" childrelidcntr="0xc">
 				<name>zC_AssociationClass_Bidirectional_Association</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="UML" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>14,14</value>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="__udm_namespace" isopaque="yes">
 					<value></value>
 				</regnode>
@@ -57829,13 +57993,13 @@ Cardinality:String=&quot;0..*&quot;</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
+					<attribute kind="Attributes">
+						<value>name: String</value>
 					</attribute>
 					<attribute kind="IsAbstract" status="meta">
 						<value>false</value>
 					</attribute>
-					<attribute kind="Stereotype" status="meta">
+					<attribute kind="Stereotype">
 						<value></value>
 					</attribute>
 				</atom>
@@ -57856,8 +58020,8 @@ Cardinality:String=&quot;0..*&quot;</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="Attributes" status="meta">
-						<value></value>
+					<attribute kind="Attributes">
+						<value>name: String</value>
 					</attribute>
 					<attribute kind="IsAbstract" status="meta">
 						<value>false</value>
