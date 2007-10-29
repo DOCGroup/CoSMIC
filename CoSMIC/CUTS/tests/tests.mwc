@@ -6,6 +6,5 @@ workspace (tests) {
              -feature_file $CUTS_ROOT/default.features
 
   // -- explicitly specify the project directories
-  tests.mpc
   cuts
 }

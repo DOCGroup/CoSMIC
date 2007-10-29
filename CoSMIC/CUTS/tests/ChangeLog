@@ -1,3 +1,30 @@
+Mon Oct 29 01:53:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/Port_Measurement_Test.cpp:
+        * cuts/Time_Measurement_Test.cpp:
+        * cuts/Timestamp_Metric_Test.cpp:
+        * cuts/workers/CPU_Worker_Test.cpp:
+        * etc/config/cuts_test.mpb:
+        * tests.mwc:
+
+          Converted the custom testing framework over to using the BOOST
+          unit test framework.
+
+        * CUTS_Test_export.h:
+        * Default_Msg_Log.h:
+        * Default_Msg_Log.cpp:
+        * Msg_Log.h:
+        * Msg_Log.cpp:
+        * Test_Macros.h:
+        * Test_Main.cpp:
+        * Test_Suite.h:
+        * Test_Suite.cpp:
+        * etc/config/cuts_test_base.mpb:
+
+        * tests.mpc:
+
+          Removed these files.
+
 Tue May 15 16:44:55 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/Port_Measurement_Test.cpp:

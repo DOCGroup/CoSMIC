@@ -1,6 +1,6 @@
 // $Id$
 
-#include "Test_Suite.h"
+#include "boost/test/unit_test.hpp"
 #include "cuts/Time_Measurement.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/OS_NS_stdlib.h"
@@ -17,14 +17,12 @@ static CUTS_Time_Measurement tm_;
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (Time_Measurement_Constructor)
+void Time_Measurement_Constructor (void)
 {
-  CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
-                     tm_.minimum () != ACE_Time_Value::zero ||
-                     tm_.total () != ACE_Time_Value::zero ||
-                     tm_.count () != 0),
-                     "default constructor failed");
-  return 0;
+  BOOST_CHECK (tm_.maximum () == ACE_Time_Value::zero &&
+               tm_.minimum () == ACE_Time_Value::zero &&
+               tm_.total () == ACE_Time_Value::zero &&
+               tm_.count () == 0);
 }
 
 //=============================================================================
@@ -33,7 +31,7 @@ CUTS_UNIT_TEST (Time_Measurement_Constructor)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (Time_Measurement_Add_Time)
+void Time_Measurement_Add_Time (void)
 {
   ACE_Time_Value tv;
 
@@ -45,14 +43,10 @@ CUTS_UNIT_TEST (Time_Measurement_Add_Time)
     CUTS_Time_Measurement tm;
     tm += tv;
 
-    CUTS_VERIFY_TEST (tm.count () != 1,
-                      "expected count = 1");
-    CUTS_VERIFY_TEST (tm.total () != tv,
-                      "total value is incorrect");
-    CUTS_VERIFY_TEST (tm.maximum () != tv,
-                      "maximum value is incorrect");
-    CUTS_VERIFY_TEST (tm.minimum () != tv,
-                      "minimum value is incorrect");
+    BOOST_CHECK (tm.count () == 1);
+    BOOST_CHECK (tm.total () == tv);
+    BOOST_CHECK (tm.maximum () == tv);
+    BOOST_CHECK (tm.minimum () == tv);
   } while (0);
 
   // randomly generate 50-100 numbers and verify the time measurement
@@ -79,15 +73,10 @@ CUTS_UNIT_TEST (Time_Measurement_Add_Time)
     std::max_element (values.begin (), values.end ());
   long sum = std::accumulate (values.begin (), values.end (), 0);
 
-  CUTS_VERIFY_TEST (tm_.count () != length,
-                    "count () failed with multiple values");
-  CUTS_VERIFY_TEST (tm_.minimum ().msec () != *min_iter,
-                    "minimum () failed with multiple values");
-  CUTS_VERIFY_TEST (tm_.maximum ().msec () != *max_iter,
-                    "maximum () failed with multiple values");
-  CUTS_VERIFY_TEST (tm_.total ().msec () != sum,
-                    "total () failed with multiple values");
-  return 0;
+  BOOST_CHECK (tm_.count () == length);
+  BOOST_CHECK (tm_.minimum ().msec () == *min_iter);
+  BOOST_CHECK (tm_.maximum ().msec () == *max_iter);
+  BOOST_CHECK (tm_.total ().msec () == sum);
 }
 
 //=============================================================================
@@ -96,16 +85,14 @@ CUTS_UNIT_TEST (Time_Measurement_Add_Time)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (Time_Measurement_Reset)
+void Time_Measurement_Reset (void)
 {
   tm_.reset ();
 
-  CUTS_VERIFY_TEST ((tm_.maximum () != ACE_Time_Value::zero ||
-                     tm_.minimum () != ACE_Time_Value::zero ||
-                     tm_.total () != ACE_Time_Value::zero ||
-                     tm_.count () != 0),
-                     "reset operation failed");
-  return 0;
+  BOOST_CHECK (tm_.maximum () == ACE_Time_Value::zero);
+  BOOST_CHECK (tm_.minimum () == ACE_Time_Value::zero);
+  BOOST_CHECK (tm_.total () == ACE_Time_Value::zero);
+  BOOST_CHECK (tm_.count () == 0);
 }
 
 //=============================================================================
@@ -114,47 +101,46 @@ CUTS_UNIT_TEST (Time_Measurement_Reset)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (Time_Measurement_Set)
+void Time_Measurement_Set (void)
 {
   // Verify setting the maximum value.
   ACE_Time_Value tv (ACE_OS::rand (), ACE_OS::rand ());
   tm_.maximum () = tv;
 
-  CUTS_VERIFY_TEST ((tm_.maximum () != tv),
-                     "setting maximum value failed");
+  BOOST_CHECK (tm_.maximum () == tv);
 
   // Verify setting the minimum value.
   tv.set (ACE_OS::rand (), ACE_OS::rand ());
   tm_.minimum () = tv;
-  CUTS_VERIFY_TEST ((tm_.minimum () != tv),
-                     "setting minimum value failed");
+  BOOST_CHECK (tm_.minimum () == tv);
 
   // Verify setting the total value.
   tv.set (ACE_OS::rand (), ACE_OS::rand ());
   tm_.total () = tv;
 
-  CUTS_VERIFY_TEST ((tm_.total () != tv),
-                     "setting total value failed");
+  BOOST_CHECK (tm_.total () == tv);
 
   // Verify setting the count value.
   size_t n = ACE_OS::rand ();
   tm_.count (n);
 
-  CUTS_VERIFY_TEST ((tm_.count () != n),
-                     "setting count value failed");
-
-  return 0;
+  BOOST_CHECK (tm_.count () == n);
 }
 
-//=============================================================================
-/*
- * Test_Suite: CUTS_Time_Measurement
- */
-//=============================================================================
+//
+// init_unit_test_suite
+//
+boost::unit_test::test_suite *
+init_unit_test_suite (int argc, char * argv [])
+{
+  boost::unit_test::test_suite * ts =
+    BOOST_TEST_SUITE ("CUTS_Time_Measurement");
 
-CUTS_TEST_SUITE_BEGIN ("CUTS_Time_Measurement");
-  CUTS_ADD_UNIT_TEST ("Constructor", Time_Measurement_Constructor);
-  CUTS_ADD_UNIT_TEST ("Add_Time", Time_Measurement_Add_Time);
-  CUTS_ADD_UNIT_TEST ("Reset", Time_Measurement_Reset);
-  CUTS_ADD_UNIT_TEST ("Set", Time_Measurement_Set);
-CUTS_TEST_SUITE_END ();
+  // Add the unit test to the test suite.
+  ts->add (BOOST_TEST_CASE (&Time_Measurement_Constructor));
+  ts->add (BOOST_TEST_CASE (&Time_Measurement_Add_Time));
+  ts->add (BOOST_TEST_CASE (&Time_Measurement_Reset));
+  ts->add (BOOST_TEST_CASE (&Time_Measurement_Set));
+
+  return ts;
+}

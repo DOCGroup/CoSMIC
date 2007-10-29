@@ -1,8 +1,8 @@
 // -*- C++ -*-
 // $Id$
 
-#include "Test_Suite.h"
-#include "cuts/workers/CPU_Worker/CPU_Worker.h"
+#include "boost/test/unit_test.hpp"
+#include "cuts/workers/CPU/CPU_Worker.h"
 #include "ace/OS_NS_sys_time.h"
 #include "ace/Log_Msg.h"
 #include "ace/Time_Value.h"
@@ -12,7 +12,7 @@
 #include "ace/Null_Mutex.h"
 #include <math.h>
 
-CUTS_UNIT_TEST (Unit_Test_CPU_run)
+void Unit_Test_CPU_run (void)
 {
   CUTS_CPU_Worker worker;
   ACE_High_Res_Timer timer;
@@ -33,17 +33,19 @@ CUTS_UNIT_TEST (Unit_Test_CPU_run)
                 elapsed.msec (),
                 msec - elapsed.msec ()));
   }
-
-  return 0;
 }
 
-//=============================================================================
-/*
- * CUTS_CPU_Worker_TS
- */
-//=============================================================================
+//
+// init_unit_test_suite
+//
+boost::unit_test::test_suite *
+init_unit_test_suite (int argc, char * argv [])
+{
+  boost::unit_test::test_suite * ts =
+    BOOST_TEST_SUITE ("CUTS_CPU_Worker");
 
-CUTS_TEST_SUITE_BEGIN ("CUTS_CPU_Worker");
-  CUTS_ADD_UNIT_TEST ("CPU_run", Unit_Test_CPU_run);
-CUTS_TEST_SUITE_END ();
+  // Add the unit test to the test suite.
+  ts->add (BOOST_TEST_CASE (&Unit_Test_CPU_run));
 
+  return ts;
+}

@@ -1,6 +1,6 @@
 // $Id$
 
-#include "Test_Suite.h"
+#include "boost/test/unit_test.hpp"
 #include "cuts/Timestamp_Metric.h"
 #include "ace/OS_NS_sys_time.h"
 
@@ -10,19 +10,17 @@
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Timestamp_Metric_contructor)
+void CUTS_Timestamp_Metric_contructor (void)
 {
+  // Test the default constructor.
   CUTS_Timestamp_Metric tma;
+  BOOST_CHECK (tma.timestamp () == ACE_Time_Value::zero);
 
-  CUTS_VERIFY_TEST ((tma.timestamp () != ACE_Time_Value::zero),
-                    "default contructor failed\n");
-
+  // Test the initializing constructor.
   ACE_Time_Value current_time = ACE_OS::gettimeofday ();
   CUTS_Timestamp_Metric tmb (current_time);
 
-  CUTS_VERIFY_TEST ((tmb.timestamp () != current_time),
-                    "initializing constructor failed\n");
-  return 0;
+  BOOST_CHECK (tmb.timestamp () == current_time);
 }
 
 //=============================================================================
@@ -31,16 +29,13 @@ CUTS_UNIT_TEST (CUTS_Timestamp_Metric_contructor)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Timestamp_Metric_setter)
+void CUTS_Timestamp_Metric_setter (void)
 {
   CUTS_Timestamp_Metric metric;
   ACE_Time_Value current_time = ACE_OS::gettimeofday ();
 
   metric.timestamp (current_time);
-  CUTS_VERIFY_TEST ((metric.timestamp () != current_time),
-                    "timestamp setter failed\n");
-
-  return 0;
+  BOOST_CHECK (metric.timestamp () == current_time);
 }
 
 //=============================================================================
@@ -49,15 +44,12 @@ CUTS_UNIT_TEST (CUTS_Timestamp_Metric_setter)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Timestamp_Metric_reset)
+void CUTS_Timestamp_Metric_reset (void)
 {
   CUTS_Timestamp_Metric metric (ACE_OS::gettimeofday ());
   metric.reset ();
 
-  CUTS_VERIFY_TEST ((metric.timestamp () != ACE_Time_Value::zero),
-                    "reset method failed\n");
-
-  return 0;
+  BOOST_CHECK (metric.timestamp () == ACE_Time_Value::zero);
 }
 
 //=============================================================================
@@ -66,29 +58,29 @@ CUTS_UNIT_TEST (CUTS_Timestamp_Metric_reset)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Timestamp_Metric_is_valid)
+void CUTS_Timestamp_Metric_is_valid (void)
 {
   CUTS_Timestamp_Metric metric;
-
-  CUTS_VERIFY_TEST ((metric.is_valid ()),
-                    "is_valid should be 'false'\n");
+  BOOST_CHECK (!metric.is_valid ());
 
   metric.timestamp (ACE_OS::gettimeofday ());
-  CUTS_VERIFY_TEST ((!metric.is_valid ()),
-                    "is_valid should be 'true'\n");
-
-  return 0;
+  BOOST_CHECK (metric.is_valid ());
 }
 
-//=============================================================================
-/*
- * Test_Suite: CUTS_Timestamp_Metric
- */
-//=============================================================================
+//
+// init_unit_test_suite
+//
+boost::unit_test::test_suite *
+init_unit_test_suite (int argc, char * argv [])
+{
+  boost::unit_test::test_suite * ts =
+    BOOST_TEST_SUITE ("CUTS_Timestamp_Metric");
 
-CUTS_TEST_SUITE_BEGIN ("CUTS_Timestamp_Metric");
-  CUTS_ADD_UNIT_TEST ("constructor", CUTS_Timestamp_Metric_contructor);
-  CUTS_ADD_UNIT_TEST ("setter", CUTS_Timestamp_Metric_setter);
-  CUTS_ADD_UNIT_TEST ("reset", CUTS_Timestamp_Metric_reset);
-  CUTS_ADD_UNIT_TEST ("is_valid", CUTS_Timestamp_Metric_is_valid);
-CUTS_TEST_SUITE_END ();
+  // Add the unit test to the test suite.
+  ts->add (BOOST_TEST_CASE (&CUTS_Timestamp_Metric_contructor));
+  ts->add (BOOST_TEST_CASE (&CUTS_Timestamp_Metric_setter));
+  ts->add (BOOST_TEST_CASE (&CUTS_Timestamp_Metric_reset));
+  ts->add (BOOST_TEST_CASE (&CUTS_Timestamp_Metric_is_valid));
+
+  return ts;
+}

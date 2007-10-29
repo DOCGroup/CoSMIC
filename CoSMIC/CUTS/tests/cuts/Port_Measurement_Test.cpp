@@ -1,6 +1,6 @@
 // $Id$
 
-#include "Test_Suite.h"
+#include "boost/test/unit_test.hpp"
 #include "cuts/Port_Measurement.h"
 #include "ace/Containers_T.h"
 #include "ace/OS_NS_sys_time.h"
@@ -14,14 +14,10 @@ static size_t global_key_;
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Port_Measurement_contructor)
+void CUTS_Port_Measurement_contructor (void)
 {
   CUTS_Port_Measurement pm;
-
-  CUTS_VERIFY_TEST ((pm.endpoints ().current_size () != 0),
-                    "default contructor failed\n");
-
-  return 0;
+  BOOST_CHECK (pm.endpoints ().current_size () == 0);
 }
 
 //=============================================================================
@@ -30,7 +26,7 @@ CUTS_UNIT_TEST (CUTS_Port_Measurement_contructor)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Port_Measurement_prepare)
+void CUTS_Port_Measurement_prepare (void)
 {
   size_t * keyval_ptr;
   size_t max_size = ACE_OS::rand () % 50;
@@ -66,29 +62,18 @@ CUTS_UNIT_TEST (CUTS_Port_Measurement_prepare)
   }
 
   // Verify the template has the correct number of keys.
-  CUTS_VERIFY_TEST (port_template.endpoints ().current_size () != keyset.size (),
-                    "endpoint size ("
-                    << port_template.endpoints ().current_size ()
-                    << ") != keyset size ("
-                    << keyset.size () << ")\n");
+  BOOST_CHECK (port_template.endpoints ().current_size () == keyset.size ());
 
   // Prepare a new global_port_ measurement based on the template.
   port_template.prepare (global_port_);
-
-  CUTS_VERIFY_TEST (global_port_.endpoints ().current_size () != keyset.size (),
-                    "endpoint size ("
-                    << global_port_.endpoints ().current_size ()
-                    << ") != keyset size ("
-                    << keyset.size () << ")\n");
+  BOOST_CHECK (global_port_.endpoints ().current_size () == keyset.size ());
 
   // First, we need to verify that all the keys in the key set
   // are in the endpoints for the global_port_ measurement.
   for (keyset_iter.first (); !keyset_iter.done (); keyset_iter.advance ())
   {
     keyset_iter.next (keyval_ptr);
-
-    CUTS_VERIFY_TEST (global_port_.endpoints ().find (*keyval_ptr) != 0,
-                      "failed to locate one of the keys\n");
+    BOOST_CHECK (global_port_.endpoints ().find (*keyval_ptr) == 0);
   }
 
   // Now, we need to verify that all the endpoints where initialized
@@ -98,11 +83,8 @@ CUTS_UNIT_TEST (CUTS_Port_Measurement_prepare)
 
   for ( ; !port_iter.done (); port_iter ++)
   {
-    CUTS_VERIFY_TEST (port_iter->item () == 0,
-                      "failed to initialize a key\n");
+    BOOST_CHECK (port_iter->item () != 0);
   }
-
-  return 0;
 }
 
 //=============================================================================
@@ -111,7 +93,7 @@ CUTS_UNIT_TEST (CUTS_Port_Measurement_prepare)
  */
 //=============================================================================
 
-CUTS_UNIT_TEST (CUTS_Port_Measurement_record_exitpoint)
+void CUTS_Port_Measurement_record_exitpoint (void)
 {
   // Record the for the <global_key_>.
   ACE_Time_Value tv = ACE_OS::gettimeofday ();
@@ -120,23 +102,23 @@ CUTS_UNIT_TEST (CUTS_Port_Measurement_record_exitpoint)
   // Verify we are able to find the global key. Then verify that we
   // stored the time value in the global key.
   CUTS_Time_Measurement * tm;
-  CUTS_VERIFY_TEST (global_port_.endpoints ().find (global_key_, tm) != 0,
-                    "failed to located the global key\n");
-
-  CUTS_VERIFY_TEST (tm->total () != tv,
-                    "record_exitpoint failed to store the time value\n");
-
-  return 0;
+  BOOST_CHECK (global_port_.endpoints ().find (global_key_, tm) == 0);
+  BOOST_CHECK (tm->total () == tv);
 }
 
-//=============================================================================
-/*
- * Test_Suite: CUTS_Port_Measurement
- */
-//=============================================================================
+//
+// init_unit_test_suite
+//
+boost::unit_test::test_suite *
+init_unit_test_suite (int argc, char * argv [])
+{
+  boost::unit_test::test_suite * ts =
+    BOOST_TEST_SUITE ("CUTS_Port_Measurement");
 
-CUTS_TEST_SUITE_BEGIN ("CUTS_Port_Measurement");
-  CUTS_ADD_UNIT_TEST ("constructor", CUTS_Port_Measurement_contructor);
-  CUTS_ADD_UNIT_TEST ("prepare", CUTS_Port_Measurement_prepare);
-  CUTS_ADD_UNIT_TEST ("record_exitpoint", CUTS_Port_Measurement_record_exitpoint);
-CUTS_TEST_SUITE_END ();
+  // Add the unit test to the test suite.
+  ts->add (BOOST_TEST_CASE (&CUTS_Port_Measurement_contructor));
+  ts->add (BOOST_TEST_CASE (&CUTS_Port_Measurement_prepare));
+  ts->add (BOOST_TEST_CASE (&CUTS_Port_Measurement_record_exitpoint));
+
+  return ts;
+}
