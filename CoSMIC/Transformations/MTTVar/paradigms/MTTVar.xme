@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{C60E5697-69E4-4480-89F8-EBFA71B51CBE}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
+<project guid="{1F3D556C-513F-46E2-8163-5E384EC2CEAC}" cdate="Thu Aug 30 08:45:32 2007" mdate="Thu Aug 30 08:45:32 2007" version="" metaguid="{4676867B-128A-4622-8A2F-E80E76CA2DA7}" metaversion="" metaname="UMLModelTransformer">
 	<name>MTTVar</name>
 	<comment></comment>
 	<author></author>
@@ -4568,7 +4568,11 @@ if (name.empty () != true)
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString">
-									<value>if (BaseFCO.Class.name () == Atom.name ())
+									<value>std::string str1,str2;
+BaseFCOClass.GetStrValue(&quot;name&quot;,str1);
+Atom.GetStrValue(&quot;name&quot;,str2);
+
+if (str1.compare(str2) == 0)
   return true;
 return false;</value>
 								</attribute>
@@ -4804,7 +4808,7 @@ return false;</value>
 									<value>1</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-00000165" kind="PatternClass" role="PatternClass" guid="{A92035D8-22B3-4dac-AB5D-C8CB1C474686}" relid="0x3b" referred="id-0066-00000090">
+							<reference id="id-0067-00000165" kind="PatternClass" role="PatternClass" guid="{A92035D8-22B3-4dac-AB5D-C8CB1C474686}" relid="0x3b" referred="id-0066-00000091">
 								<name>BaseFCOClass</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
@@ -5312,24 +5316,24 @@ std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_
 
 /* Get all has_attribute type connections from BaseFCOClass*/
 
-std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
+std::set&lt;::MetaGME::HasAttribute&gt; has_attribute = BaseFCOClass.srcAttributes ();
 
-std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
+std::set&lt;::MetaGME::HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
 /* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
   /* Get the attribute connected to BaseFCOClass*/
   
-  Attribute attr = (*iter).srcHasAttribute_end ();
+  ::MetaGME::Attribute attr = (*attr_iter).srcAttributes_end ();
   
   if (Udm::null != attr)
   {
-    if (attrib_name == attr.name ())
+    if (attrib_name.compare(attr.name ()) == 0)
     {
-       if (Udm::IsDerivedFrom (attr.type (), FieldAttribute::meta))
+       if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::FieldAttribute::meta))
          temp1.name () = std::string (&quot;FieldAttribute&quot;);
-       else if (Udm::IsDerivedFrom (attr.type (), BooleanAttribute::meta))
+       else if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::BooleanAttribute::meta))
          temp1.name () = std::string (&quot;BooleanAttribute&quot;);
        else
          temp1.name () = std::string (&quot;EnumAttribute&quot;);
@@ -5342,7 +5346,8 @@ for (; attr_iter != has_attribute.end (); ++attr_iter)
   }
 }
 
-return false;</value>
+return false;
+</value>
 									</attribute>
 								</atom>
 								<reference id="id-0067-00000170" kind="PatternClass" role="PatternClass" guid="{09440F17-ABC7-4814-8D9B-FE347458A968}" relid="0x2a" referred="id-0066-00000033">
@@ -5465,7 +5470,7 @@ return false;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-00000176" kind="PatternClass" role="PatternClass" guid="{DF0101CC-6C39-455d-8925-05B2A38F5894}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-00000176" kind="PatternClass" role="PatternClass" guid="{DF0101CC-6C39-455d-8925-05B2A38F5894}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -6198,7 +6203,7 @@ FieldAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-00000183" kind="PatternClass" role="PatternClass" guid="{147AA978-53BE-4302-A211-9C1B032FF0D0}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-00000183" kind="PatternClass" role="PatternClass" guid="{147AA978-53BE-4302-A211-9C1B032FF0D0}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -6996,7 +7001,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-0000018d" kind="PatternClass" role="PatternClass" guid="{AD6007AB-CC56-4cdc-A31F-194323F8CD92}" relid="0xb" referred="id-0066-00000090">
+									<reference id="id-0067-0000018d" kind="PatternClass" role="PatternClass" guid="{AD6007AB-CC56-4cdc-A31F-194323F8CD92}" relid="0xb" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -7620,7 +7625,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-00000195" kind="PatternClass" role="PatternClass" guid="{3B3CD848-D514-4bea-8806-96D7A322E5F2}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-00000195" kind="PatternClass" role="PatternClass" guid="{3B3CD848-D514-4bea-8806-96D7A322E5F2}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -8292,7 +8297,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-0000019f" kind="PatternClass" role="PatternClass" guid="{37F71A19-C75C-4f8d-94EE-257A0ABD4C9E}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-0000019f" kind="PatternClass" role="PatternClass" guid="{37F71A19-C75C-4f8d-94EE-257A0ABD4C9E}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -9776,7 +9781,7 @@ BooleanAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000001a8" kind="PatternClass" role="PatternClass" guid="{5197E6F3-C08B-4255-9F60-B55386A3CE49}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-000001a8" kind="PatternClass" role="PatternClass" guid="{5197E6F3-C08B-4255-9F60-B55386A3CE49}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -10567,7 +10572,7 @@ EnumAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000001b2" kind="PatternClass" role="PatternClass" guid="{02452374-E10A-404f-9951-BB898FFBFAC8}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-000001b2" kind="PatternClass" role="PatternClass" guid="{02452374-E10A-404f-9951-BB898FFBFAC8}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -12248,7 +12253,7 @@ EnumAttribute.name () = attrib_name;</value>
 
 int occur = -1;
 
-if ((occur = (std::string)expr_string.find (&quot;conditional_value&quot;, 0)) != -1)
+if ((occur = (int)expr_string.find (&quot;conditional_value&quot;, 0)) != -1)
 {
    int start = -1;
    int finish = -1;
@@ -13528,8 +13533,7 @@ TRGT.name () = model_name;</value>
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString">
-									<value>
-std::string name = temp.name ();
+									<value>std::string name = temp.name ();
 
 int start_entry = (int)name.find (&quot;::&quot;, 0);
 std::string model_name = std::string (name, 0, start_entry - 1);
@@ -15487,12 +15491,15 @@ else
 									<regnode name="Transform" status="undefined">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>1073,135</value>
+											<value>951,461</value>
 										</regnode>
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString">
-									<value>if (BaseFCO.Class.name () == Atom.name ())
+									<value>std::string str1,str2;
+BaseFCO.GetStrValue(&quot;name&quot;,str1);
+SRC.GetStrValue(&quot;name&quot;,str2);
+if (str1.compare(str2) == 0)
   return true;
 return false;</value>
 								</attribute>
@@ -15953,8 +15960,8 @@ return false;</value>
 									<value>1</value>
 								</attribute>
 							</reference>
-							<reference id="id-0067-0000029f" kind="PatternClass" role="PatternClass" guid="{9D49DAB7-EB9F-4a87-8FEC-1DB5A4B2E7F4}" relid="0x4d" referred="id-0066-00000090">
-								<name>BaseFCOClass</name>
+							<reference id="id-0067-0000029f" kind="PatternClass" role="PatternClass" guid="{9D49DAB7-EB9F-4a87-8FEC-1DB5A4B2E7F4}" relid="0x4d" referred="id-0066-00000091">
+								<name>BaseFCO</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
 									<regnode name="Transform" status="undefined">
@@ -16598,7 +16605,7 @@ FieldAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-00000258" kind="PatternClass" role="PatternClass" guid="{3D47A344-9DC2-4b8d-828F-B9EA6AE8C42A}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-00000258" kind="PatternClass" role="PatternClass" guid="{3D47A344-9DC2-4b8d-828F-B9EA6AE8C42A}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -17122,7 +17129,7 @@ FieldAttribute.name () = attrib_name;</value>
 										<regnode name="Transform" status="undefined">
 											<value></value>
 											<regnode name="Position" isopaque="yes">
-												<value>727,209</value>
+												<value>727,195</value>
 											</regnode>
 										</regnode>
 									</regnode>
@@ -17132,26 +17139,26 @@ int start_entry = (int)name.find (&quot;::&quot;, 0);
 int end_entry = (int)name.find (&quot;:&quot;, 0);
 std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
 
-/* Get all has_attribute type connections from BaseFCOClass*/
+/* Get all has_attribute type connections from BaseFCO*/
 
-std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
+std::set&lt;::MetaGME::HasAttribute&gt; has_attribute = BaseFCO.srcAttributes ();
 
-std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
+std::set&lt;::MetaGME::HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
 /* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
   /* Get the attribute connected to BaseFCOClass*/
-
-  Attribute attr = (*iter).srcHasAttribute_end ();
+  
+  ::MetaGME::Attribute attr = (*attr_iter).srcAttributes_end ();
   
   if (Udm::null != attr)
   {
-    if (attrib_name == attr.name ())
+    if (attrib_name.compare(attr.name ()) == 0)
     {
-       if (Udm::IsDerivedFrom (attr.type (), FieldAttribute::meta))
+       if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::FieldAttribute::meta))
          temp1.name () = std::string (&quot;FieldAttribute&quot;);
-       else if (Udm::IsDerivedFrom (attr.type (), BooleanAttribute::meta))
+       else if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::BooleanAttribute::meta))
          temp1.name () = std::string (&quot;BooleanAttribute&quot;);
        else
          temp1.name () = std::string (&quot;EnumAttribute&quot;);
@@ -17602,8 +17609,8 @@ return false;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000002a0" kind="PatternClass" role="PatternClass" guid="{85EE8F85-A38E-4a00-8042-6D4BD13E3F83}" relid="0x4a" referred="id-0066-00000090">
-									<name>BaseFCOClass</name>
+								<reference id="id-0067-000002a0" kind="PatternClass" role="PatternClass" guid="{85EE8F85-A38E-4a00-8042-6D4BD13E3F83}" relid="0x4a" referred="id-0066-00000091">
+									<name>BaseFCO</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
 										<regnode name="Transform" status="undefined">
@@ -18363,7 +18370,7 @@ EnumAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-00000273" kind="PatternClass" role="PatternClass" guid="{4C16B97F-688B-4ad7-8BE8-49956FCFDF8C}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-00000273" kind="PatternClass" role="PatternClass" guid="{4C16B97F-688B-4ad7-8BE8-49956FCFDF8C}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -18792,7 +18799,7 @@ EnumAttribute.name () = attrib_name;</value>
 											<value>std::string str1 (&quot;EnumAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
@@ -19114,7 +19121,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-00000279" kind="PatternClass" role="PatternClass" guid="{909B9864-3139-49b7-95D1-5B3B1D3F67DC}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-00000279" kind="PatternClass" role="PatternClass" guid="{909B9864-3139-49b7-95D1-5B3B1D3F67DC}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -19537,12 +19544,11 @@ return false;</value>
 											<value>std::string str1 (&quot;BooleanAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
 return false;
-
 </value>
 										</attribute>
 									</atom>
@@ -19861,7 +19867,7 @@ return false;
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-00000283" kind="PatternClass" role="PatternClass" guid="{CEA55B85-9B07-4e9d-A22D-2550D084D8C3}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-00000283" kind="PatternClass" role="PatternClass" guid="{CEA55B85-9B07-4e9d-A22D-2550D084D8C3}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -20311,12 +20317,11 @@ return false;
 											<value>std::string str1 (&quot;FieldAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
-return false;
-</value>
+return false;</value>
 										</attribute>
 									</atom>
 									<atom id="id-0066-000005b0" kind="Out" role="Out" guid="{E633A9FD-D251-4464-B73F-BF02A091927C}" relid="0x18">
@@ -20583,7 +20588,7 @@ return false;
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-0000028b" kind="PatternClass" role="PatternClass" guid="{689B26D6-F136-4db1-B0F1-A629F77A452E}" relid="0xb" referred="id-0066-00000090">
+									<reference id="id-0067-0000028b" kind="PatternClass" role="PatternClass" guid="{689B26D6-F136-4db1-B0F1-A629F77A452E}" relid="0xb" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -22452,7 +22457,7 @@ BooleanAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-0000029d" kind="PatternClass" role="PatternClass" guid="{5B24C982-5E80-4ef3-87B4-32A1A74BC36C}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-0000029d" kind="PatternClass" role="PatternClass" guid="{5B24C982-5E80-4ef3-87B4-32A1A74BC36C}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -24013,7 +24018,7 @@ FieldAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000002b7" kind="PatternClass" role="PatternClass" guid="{C3D67956-7750-4c69-9D8E-E5EB3A10092B}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-000002b7" kind="PatternClass" role="PatternClass" guid="{C3D67956-7750-4c69-9D8E-E5EB3A10092B}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -24471,7 +24476,7 @@ FieldAttribute.name () = attrib_name;</value>
 										<regnode name="Transform" status="undefined">
 											<value></value>
 											<regnode name="Position" isopaque="yes">
-												<value>727,209</value>
+												<value>734,209</value>
 											</regnode>
 										</regnode>
 									</regnode>
@@ -24481,28 +24486,28 @@ FieldAttribute.name () = attrib_name;</value>
 int temp_start = (int)name.find (&quot;::&quot;, 0);
 int start_str = (int)name.find (&quot;::&quot;, temp_start + 1);
 int end_str = (int)name.find (&quot; &quot;, start_str + 2);
-std::string attrib_name = std::string (name, start_entry + 2, end_entry - start_entry - 2);
+std::string attrib_name = std::string (name, start_str + 2, end_str - start_str - 2);
 
 /* Get all has_attribute type connections from BaseFCOClass*/
 
-std::set&lt;HasAttribute&gt; has_attribute = BaseFCOClass.srcHasAttribute ();
+std::set&lt;::MetaGME::HasAttribute&gt; has_attribute = BaseFCOClass.srcAttributes ();
 
-std::set&lt;HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
+std::set&lt;::MetaGME::HasAttribute&gt;::iterator attr_iter = has_attribute.begin ();
 
 /* Return true on occurrence of a single Boolean attribute*/
 for (; attr_iter != has_attribute.end (); ++attr_iter)
 {
   /* Get the attribute connected to BaseFCOClass*/
-
-  Attribute attr = (*iter).srcHasAttribute_end ();
+  
+  ::MetaGME::Attribute attr = (*attr_iter).srcAttributes_end ();
   
   if (Udm::null != attr)
   {
-    if (attrib_name == attr.name ())
+    if (attrib_name.compare(attr.name ()) == 0)
     {
-       if (Udm::IsDerivedFrom (attr.type (), FieldAttribute::meta))
+       if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::FieldAttribute::meta))
          temp1.name () = std::string (&quot;FieldAttribute&quot;);
-       else if (Udm::IsDerivedFrom (attr.type (), BooleanAttribute::meta))
+       else if (Udm::IsDerivedFrom (attr.type (), ::MetaGME::BooleanAttribute::meta))
          temp1.name () = std::string (&quot;BooleanAttribute&quot;);
        else
          temp1.name () = std::string (&quot;EnumAttribute&quot;);
@@ -24515,7 +24520,8 @@ for (; attr_iter != has_attribute.end (); ++attr_iter)
   }
 }
 
-return false;</value>
+return false;
+</value>
 									</attribute>
 								</atom>
 								<atom id="id-0066-0000061d" kind="In" role="In" guid="{18B938F6-8C26-402c-8052-7C3DBCC0F71D}" relid="0x44">
@@ -24755,7 +24761,7 @@ return false;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000002bd" kind="PatternClass" role="PatternClass" guid="{067E8F6F-4BBB-4c52-8FF9-63E31C5623D0}" relid="0x4a" referred="id-0066-00000090">
+								<reference id="id-0067-000002bd" kind="PatternClass" role="PatternClass" guid="{067E8F6F-4BBB-4c52-8FF9-63E31C5623D0}" relid="0x4a" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -25541,7 +25547,7 @@ EnumAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000002c9" kind="PatternClass" role="PatternClass" guid="{FAC56F4B-574B-464d-BB2B-D805D057442A}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-000002c9" kind="PatternClass" role="PatternClass" guid="{FAC56F4B-574B-464d-BB2B-D805D057442A}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -26129,7 +26135,7 @@ EnumAttribute.name () = attrib_name;</value>
 											<value>std::string str1 (&quot;EnumAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
@@ -26460,7 +26466,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-000002d7" kind="PatternClass" role="PatternClass" guid="{8914D018-9121-42dd-B4FA-299ACD6C1601}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-000002d7" kind="PatternClass" role="PatternClass" guid="{8914D018-9121-42dd-B4FA-299ACD6C1601}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -26874,7 +26880,7 @@ return false;</value>
 											<value>std::string str1 (&quot;BooleanAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
@@ -27157,7 +27163,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-000002e0" kind="PatternClass" role="PatternClass" guid="{6BA2902B-5E84-40a7-8D42-24C9646612C7}" relid="0x11" referred="id-0066-00000090">
+									<reference id="id-0067-000002e0" kind="PatternClass" role="PatternClass" guid="{6BA2902B-5E84-40a7-8D42-24C9646612C7}" relid="0x11" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -27661,7 +27667,7 @@ return false;</value>
 											<value>std::string str1 (&quot;FieldAttribute&quot;);
 std::string str2;
 temp.GetStrValue(&quot;name&quot;, str2);
-int comp = str.compare (str2);
+int comp = str1.compare (str2);
 if (comp == 0)
   return true;
 
@@ -27902,7 +27908,7 @@ return false;</value>
 											<value>1</value>
 										</attribute>
 									</reference>
-									<reference id="id-0067-000002eb" kind="PatternClass" role="PatternClass" guid="{06A67F6D-2590-4b7c-8579-F24C86683CC8}" relid="0xb" referred="id-0066-00000090">
+									<reference id="id-0067-000002eb" kind="PatternClass" role="PatternClass" guid="{06A67F6D-2590-4b7c-8579-F24C86683CC8}" relid="0xb" referred="id-0066-00000091">
 										<name>BaseFCOClass</name>
 										<regnode name="PartRegs" status="undefined">
 											<value></value>
@@ -29604,7 +29610,7 @@ BooleanAttribute.name () = attrib_name;</value>
 										<value>1</value>
 									</attribute>
 								</reference>
-								<reference id="id-0067-000002f6" kind="PatternClass" role="PatternClass" guid="{3966F8E2-BF85-414f-A67D-92764FB362D7}" relid="0x3b" referred="id-0066-00000090">
+								<reference id="id-0067-000002f6" kind="PatternClass" role="PatternClass" guid="{3966F8E2-BF85-414f-A67D-92764FB362D7}" relid="0x3b" referred="id-0066-00000091">
 									<name>BaseFCOClass</name>
 									<regnode name="PartRegs" status="undefined">
 										<value></value>
@@ -30792,12 +30798,16 @@ BooleanAttribute.name () = attrib_name;</value>
 									<regnode name="Transform" status="undefined">
 										<value></value>
 										<regnode name="Position" isopaque="yes">
-											<value>1073,135</value>
+											<value>965,342</value>
 										</regnode>
 									</regnode>
 								</regnode>
 								<attribute kind="ExpressionString">
-									<value>if (BaseFCO.Class.name () == Atom.name ())
+									<value>std::string str;
+BaseFCOClass.GetStrValue(&quot;name&quot;,str);
+std::string str2;
+TRGT.GetStrValue(&quot;name&quot;,str2);
+if (str.compare(str2) == 0)
   return true;
 return false;</value>
 								</attribute>
@@ -31033,7 +31043,7 @@ return false;</value>
 									<value></value>
 								</attribute>
 							</atom>
-							<reference id="id-0067-00000303" kind="PatternClass" role="PatternClass" guid="{0A4BEBBC-778B-4c5b-B732-EE50F702F147}" relid="0x4d" referred="id-0066-00000090">
+							<reference id="id-0067-00000303" kind="PatternClass" role="PatternClass" guid="{0A4BEBBC-778B-4c5b-B732-EE50F702F147}" relid="0x4d" referred="id-0066-00000091">
 								<name>BaseFCOClass</name>
 								<regnode name="PartRegs" status="undefined">
 									<value></value>
