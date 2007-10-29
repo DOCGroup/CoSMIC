@@ -1,0 +1,25 @@
+// $Id$
+
+project (CUTS_BE_TIOA) : cosmic_lib, boost_base, picml_udm {
+  sharedname = CUTS_BE_TIOA
+
+  // declare the dependencies and libraries
+  after += CUTS_BE
+  libs  += CUTS_BE
+
+  dynamicflags += CUTS_BE_TIOA_BUILD_DLL
+
+  Source_Files {
+    TIOA_Generators.cpp
+    TIOA_Manager_Factory.cpp
+  }
+
+  Header_Files {
+    TIOA_export.h
+    TIOA_Manager.h
+  }
+
+  Inline_Files {
+
+  }
+}

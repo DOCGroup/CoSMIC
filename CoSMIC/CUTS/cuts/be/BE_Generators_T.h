@@ -23,6 +23,12 @@
 #define CUTS_BE_EXPLICIT_SPECIALIZATION
 #endif
 
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Write_Variables_Last_T
+{
+  static const bool result_type = true;
+};
+
 //=============================================================================
 /**
  *

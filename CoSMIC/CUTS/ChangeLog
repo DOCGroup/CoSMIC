@@ -1,3 +1,24 @@
+Mon Oct 29 17:05:54 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/XML/CUTS_XML.mpc:
+
+          Changed the name of the shared library to CUTS_BDC_XML.
+
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/BE_Impl_Generator_T.h:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/TIOA:
+        * cuts/be/TIOA/TIOA.mpc:
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+        * cuts/be/TIOA/TIOA_Manager.h:
+        * cuts/be/TIOA/TIOA_Manager_Factory.h:
+        * cuts/be/TIOA/TIOA_Manager_Factory.cpp:
+        * cuts/be/TIOA/TIOA_export.h:
+
+          Initial implementation of the Timed I/O automata generator for
+          CUTS.
+
 Sun Oct 21 12:45:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * install/BMW.wxs:

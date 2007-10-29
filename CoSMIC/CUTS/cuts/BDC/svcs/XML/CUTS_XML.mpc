@@ -1,7 +1,7 @@
 // $Id$
 
 project (CUTS_BDC_XML) : cuts_bdcsvc {
-  sharedname = CUTS_XML
+  sharedname = CUTS_BDC_XML
 
   dynamicflags = CUTS_XML_BUILD_DLL
 

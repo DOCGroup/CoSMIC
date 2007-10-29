@@ -157,6 +157,10 @@ template <typename IMPL_STRATEGY>
 void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_Component (const PICML::Component & component)
 {
+  // Determine if we are ready to write the variables.
+  if (!CUTS_BE_Write_Variables_Last_T <IMPL_STRATEGY>::result_type)
+    this->write_variables_i (component);
+
   // Visit all the supported interfaces.
   typedef std::vector <PICML::Supports> Supports_Set;
   Supports_Set supports = component.Supports_kind_children ();
@@ -228,37 +232,9 @@ Visit_Component (const PICML::Component & component)
   // End generating environment related metadata.
   CUTS_BE_Environment_End_T <IMPL_STRATEGY>::generate (component);
 
-  // We are now ready to write the variables for the components. The
-  // variables consist of the attributes and the behavior declared
-  // variables.
-
-  CUTS_BE_Variables_Begin_T <IMPL_STRATEGY>::generate (component);
-
-  typedef std::vector <PICML::Variable> Variable_Set;
-  Variable_Set vars = component.Variable_kind_children ();
-
-  CUTS_BE::visit <IMPL_STRATEGY> (vars,
-    boost::bind (&Variable_Set::value_type::Accept,
-    _1, boost::ref (*this)));
-
-  typedef std::vector <PICML::WorkerType> WorkerType_Set;
-  WorkerType_Set workers = component.WorkerType_kind_children ();
-
-  CUTS_BE::visit <IMPL_STRATEGY> (workers,
-    boost::bind (&WorkerType_Set::value_type::Accept, _1, boost::ref (*this)));
-
-  // Write the attribute variables.
-  CUTS_BE::visit <IMPL_STRATEGY> (ro_attrs,
-    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ReadonlyAttribute_Variable,
-    boost::ref (this), _1));
-
-  // Write the periodic event variables.
-  CUTS_BE::visit <IMPL_STRATEGY> (periodics,
-    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_PeriodicEvent_Variable,
-    boost::ref (this), _1));
-
-  // End the generation of the variables.
-  CUTS_BE_Variables_End_T <IMPL_STRATEGY>::generate (component);
+  // Determine if we are writing the variables
+  if (CUTS_BE_Write_Variables_Last_T <IMPL_STRATEGY>::result_type)
+    this->write_variables_i (component);
 }
 
 //
@@ -522,4 +498,48 @@ Visit_Object (const PICML::Object & object)
   CUTS_BE::visit <IMPL_STRATEGY> (twoways,
     boost::bind (&TwowayOperation_Set::value_type::Accept,
     _1, boost::ref (*this)));
+}
+
+//
+// write_variables_i
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+write_variables_i (const PICML::Component & component)
+{
+  CUTS_BE_Variables_Begin_T <IMPL_STRATEGY>::generate (component);
+
+  // Write all the basic variables.
+  typedef std::vector <PICML::Variable> Variable_Set;
+  Variable_Set vars = component.Variable_kind_children ();
+
+  CUTS_BE::visit <IMPL_STRATEGY> (vars,
+    boost::bind (&Variable_Set::value_type::Accept,
+    _1, boost::ref (*this)));
+
+  // Write all the worker related variables.
+  typedef std::vector <PICML::WorkerType> WorkerType_Set;
+  WorkerType_Set workers = component.WorkerType_kind_children ();
+
+  CUTS_BE::visit <IMPL_STRATEGY> (workers,
+    boost::bind (&WorkerType_Set::value_type::Accept, _1, boost::ref (*this)));
+
+  // Write the attribute variables.
+  typedef std::vector <PICML::ReadonlyAttribute> ReadonlyAttribute_Set;
+  ReadonlyAttribute_Set ro_attrs = component.ReadonlyAttribute_kind_children ();
+
+  CUTS_BE::visit <IMPL_STRATEGY> (ro_attrs,
+    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ReadonlyAttribute_Variable,
+    boost::ref (this), _1));
+
+  // Write the periodic event variables.
+  typedef std::vector <PICML::PeriodicEvent> PeriodicEvent_Set;
+  PeriodicEvent_Set periodics = component.PeriodicEvent_kind_children ();
+
+  CUTS_BE::visit <IMPL_STRATEGY> (periodics,
+    boost::bind (&CUTS_BE_Impl_Generator_T::Visit_PeriodicEvent_Variable,
+    boost::ref (this), _1));
+
+  // End the generation of the variables.
+  CUTS_BE_Variables_End_T <IMPL_STRATEGY>::generate (component);
 }

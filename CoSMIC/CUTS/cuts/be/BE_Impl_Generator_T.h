@@ -125,6 +125,9 @@ protected:
     const PICML::PeriodicEvent & periodic);
 
 private:
+  /// Helper method to write the variables for the component.
+  void write_variables_i (const PICML::Component & component);
+
   bool get_component_factory (const PICML::Component & component,
                               PICML::ComponentFactory & factory);
 
