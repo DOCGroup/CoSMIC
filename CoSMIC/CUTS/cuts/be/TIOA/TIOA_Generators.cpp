@@ -105,6 +105,8 @@ generate (const PICML::MonolithicImplementation & mono,
 
   CUTS_BE_TIOA ()->outfile_
     << "vocabulary " << name << "_vocab" << std::endl
+    << "  types Location : Enumeration [nil, activate, passivate, remove]"
+    << std::endl
     << "  types " << name << "_states : Enumeration [nil";
 
   // Write the state enumeration vocabulary.
@@ -123,7 +125,8 @@ generate (const PICML::MonolithicImplementation & mono,
     << "automaton " << name << " (host: Int)" << std::endl
     << "  imports " << name << "_vocab" << std::endl
     << std::endl
-    << "  signature" << std::endl;
+    << "  signature" << std::endl
+    << "    input cuts_fini" << std::endl;
 
   // Write the signature for all the input ports.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
@@ -181,7 +184,7 @@ generate (const PICML::MonolithicImplementation & mono,
     << std::endl
     << "  trajectories" << std::endl
     << "    trajdef default" << std::endl
-    << "      evolve d (clock) = 1;" << std::endl
+    << "      evolve d (time) = 1;" << std::endl
     << std::endl;
 
   CUTS_BE_TIOA ()->reset ();
@@ -275,7 +278,7 @@ visit_MultiInput (const PICML::MultiInput & input)
     PICML::InputAction::Cast (input.dstMultiInput_end ());
 
   CUTS_BE_TIOA ()->outfile_
-    << "    input " << action.name () << std::endl;
+    << "    input env_" << action.name () << std::endl;
 }
 
 //
@@ -287,8 +290,9 @@ generate (const PICML::Component & component)
   CUTS_BE_TIOA ()->outfile_
     << std::endl
     << "  states" << std::endl
-    << "    state : " << component.name () << "_states := nil;" << std::endl
-    << "    clock : Int := 0;" << std::endl;
+    << "    mode : Location := nil;" << std::endl
+    << "    time : Real := 0.0;" << std::endl
+    << "    thr_state : " << component.name () << "_states := nil;" << std::endl;
 
   // Write the queue states for each of the inputs.
   std::for_each (CUTS_BE_TIOA ()->input_events_.begin (),
@@ -307,7 +311,13 @@ generate (const PICML::Component & component)
 {
   CUTS_BE_TIOA ()->outfile_
     << std::endl
-    << "  transitions";
+    << "  transitions" << std::endl
+    << "  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
+    << "  %% required: cuts_fini" << std::endl
+    << "  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
+    << "     input cuts_fini" << std::endl
+    << "       eff" << std::endl
+    << "         mode := nil;" << std::endl;
 
   return true;
 }
@@ -339,15 +349,15 @@ bool CUTS_BE_WorkerAction_Begin_T <CUTS_BE_Tioa>::
 generate (const PICML::Worker & worker, const PICML::Action & action)
 {
   CUTS_BE_TIOA ()->outfile_
-    << "        state := " << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_)
+    << "        thr_state := " << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_)
     << ";" << std::endl
     << std::endl
     << "    internal " << TIOA_Signature (action) << std::endl
     << "      pre" << std::endl
-    << "        state = "
+    << "        thr_state = "
     << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_) << ";" << std::endl
     << "      eff" << std::endl
-    << "        clock := clock + " << action.Duration () << ";" << std::endl;
+    << "        time := time + " << action.Duration () << ";" << std::endl;
   return true;
 }
 
@@ -394,7 +404,7 @@ generate (const PICML::InEventPort & sink)
 {
 
   CUTS_BE_TIOA ()->outfile_
-    << "        state := nil;" << std::endl;
+    << "        thr_state := nil;" << std::endl;
 
   return true;
 }
@@ -408,11 +418,11 @@ generate (const PICML::OutputAction & action)
   std::string last_state = TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_);
 
   CUTS_BE_TIOA ()->outfile_
-    << "        state := " << last_state << ";" << std::endl
+    << "        thr_state := " << last_state << ";" << std::endl
     << std::endl
     << "    output " << action.name () << std::endl
     << "      pre" << std::endl
-    << "        state = " << last_state << ";" << std::endl
+    << "        thr_state = " << last_state << ";" << std::endl
     << "      eff" << std::endl;
 
   return true;
@@ -441,13 +451,14 @@ generate (const PICML::InputAction & action)
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
     << "    % environment input: " << name << std::endl
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
-    << "    input " << name << std::endl;
+    << "    input env_" << name << std::endl;
 
   if (!CUTS_BE_TIOA ()->env_done_)
   {
     CUTS_BE_TIOA ()->outfile_
       // 'where' clause goes here...
-      << "      eff" << std::endl;
+      << "      eff" << std::endl
+      << "        mode := " << name << ";" << std::endl;
   }
 
   return true;
@@ -460,7 +471,7 @@ bool CUTS_BE_Environment_Method_End_T <CUTS_BE_Tioa>::
 generate (const PICML::InputAction & action)
 {
   CUTS_BE_TIOA ()->outfile_
-    << "        state := nil;" << std::endl;
+    << "        thr_state := nil;" << std::endl;
 
   return true;
 }
@@ -497,7 +508,7 @@ bool CUTS_BE_PeriodicEvent_End_T <CUTS_BE_Tioa>::
 generate (const PICML::PeriodicEvent & periodic)
 {
   CUTS_BE_TIOA ()->outfile_
-    << "        state := nil;" << std::endl;
+    << "        thr_state := nil;" << std::endl;
 
   return true;
 }
