@@ -1,3 +1,17 @@
+Tue Oct 30 15:18:45 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Fixed the rule for creation of target elements
+	  in value mapping block.
+
+        * Transformations/PIM/paradigms/WSRML.xme:
+        * Transformations/PIM/paradigms/WSRML.xmp:
+
+        * Transformations/PSM/paradigms/WSQML.xme:
+
+        * Transformations/QUICKER/README:
+
 Mon Oct 29 19:33:12 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
