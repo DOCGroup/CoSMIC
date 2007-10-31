@@ -309,11 +309,6 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_Transition (const PICML::Transition & transition)
 {
-  std::string precondition = transition.Precondition ();
-
-  if (!precondition.empty ())
-    CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
-
   // Get the action connected to the end of the transaction.
   PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
   this->Visit_ActionBase (action_base);
@@ -326,13 +321,24 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_BranchTransition (const PICML::BranchTransition & transition)
 {
-  // Signal the backend we are starting a branch.
-  CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate (transition.Precondition ());
+  // We first need to write the condition for the branch before
+  // we can start writing the actual branch statements.
+  CUTS_BE_Branch_Condition_Begin_T <BE_STRATEGY>::generate ();
+
+  std::string precondition = transition.Precondition ();
+
+  boost::spirit::parse (precondition.c_str (),
+                        this->condition_parser_,
+                        boost::spirit::space_p);
+
+  CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
+
+  // We are now ready to write the branch statements.
+  CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate ();
 
   PICML::ActionBase action_base = transition.dstBranchTransition_end ();
   this->Visit_ActionBase (action_base);
 
-  // Signal the backend we are finishing a branch state.
   CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
 }
 

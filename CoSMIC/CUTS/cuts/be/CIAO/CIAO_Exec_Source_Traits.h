@@ -111,9 +111,38 @@ public:
   virtual void write_action_end (void);
 
   void write_branches_begin (size_t branches);
-  void write_branch_begin (const std::string & precondition);
+
+  void write_branch_condition_begin (void);
+
+  void write_branch_condition_end (void);
+
+  void write_branch_begin (void);
+
   void write_branch_end (void);
+
   void write_branches_end (void);
+
+  void write_equal_to (void);
+
+  void write_not_equal_to (void);
+
+  void write_less_than (void);
+
+  void write_less_than_equal_to (void);
+
+  void write_greater_than (void);
+
+  void write_greater_than_equal_to (void);
+
+  void write_identifier (const std::string & ident);
+
+  void write_text (const std::string & text);
+
+  void write_char (char ch);
+
+  void write_and_symbol (void);
+
+  void write_or_symbol (void);
 
 protected:
   virtual void write_set_session_context (

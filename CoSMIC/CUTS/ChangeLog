@@ -1,3 +1,18 @@
+Wed Oct 31 21:05:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Condition_Parser_T.h:
+        * cuts/be/BE_Condition_Parser_T.cpp:
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits.h:
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+
+          The backend parser is now capable of parsing the preconditions
+          of transitions.
+
 Mon Oct 29 19:51:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/TIOA/TIOA_Generators.cpp:

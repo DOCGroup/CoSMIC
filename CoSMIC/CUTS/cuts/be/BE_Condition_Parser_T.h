@@ -61,8 +61,11 @@ public:
     /// rule: expression_
     boost::spirit::rule <ScannerT> expr_;
 
-    /// rule: compare_op_
+    /// rule: comp_op_
     boost::spirit::rule <ScannerT> comp_op_;
+
+    /// rule: join_op_
+    boost::spirit::rule <ScannerT> join_op_;
 
     /// rule: identifier_
     boost::spirit::rule <ScannerT> ident_;

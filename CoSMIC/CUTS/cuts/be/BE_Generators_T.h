@@ -526,19 +526,6 @@ struct CUTS_BE_FactoryOperation_End_T
 //=============================================================================
 
 template <typename IMPL_STRATEGY>
-struct CUTS_BE_Precondition_T
-{
-  static bool generate (const std::string & precondition)
-    { return false; }
-};
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-template <typename IMPL_STRATEGY>
 struct CUTS_BE_Postcondition_T
 {
   static bool generate (const std::string & postcondition)
@@ -566,7 +553,33 @@ struct CUTS_BE_Branches_Begin_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_Branch_Begin_T
 {
-  static bool generate (const std::string & precondition)
+  static bool generate (void)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Branch_Condition_Begin_T
+{
+  static bool generate (void)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Branch_Condition_End_T
+{
+  static bool generate (void)
     { return false; }
 };
 
@@ -712,6 +725,149 @@ template <typename IMPL_STRATEGY>
 struct CUTS_BE_State_T
 {
   static bool generate (const PICML::State & state)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Equal_To_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Not_Equal_To_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Greater_Than_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Greater_Than_Equal_To_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Less_Than_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Less_Than_Equal_To_T
+{
+  static bool generate (const char * first, const char * last)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Identifier_T
+{
+  static bool generate (const char * begin, const char * end)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Transcribe_Text_T
+{
+  static bool generate (const char * begin, const char * end)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Transcribe_Char_T
+{
+  static bool generate (char ch)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_And_T
+{
+  static bool generate (const char * begin, const char * end)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Or_T
+{
+  static bool generate (const char * begin, const char * end)
     { return false; }
 };
 

@@ -354,18 +354,6 @@ struct CUTS_BE_PeriodicEvent_End_T <CUTS_BE_Xml>
 //=============================================================================
 
 template < >
-struct CUTS_BE_Precondition_T <CUTS_BE_Xml>
-{
-  static bool generate (const std::string & precondition);
-};
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-template < >
 struct CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>
 {
   static bool generate (size_t branches);
@@ -380,7 +368,7 @@ struct CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>
 template < >
 struct CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>
 {
-  static bool generate (const std::string & precondition);
+  static bool generate (void);
 };
 
 //=============================================================================

@@ -734,19 +734,32 @@ void CUTS_CIAO_Exec_Source_Traits::write_branches_begin (size_t branches)
 }
 
 //
-// write_branch_begin
+// write_branch_condition_begin
 //
-void CUTS_CIAO_Exec_Source_Traits::
-write_branch_begin (const std::string & precondition)
+void CUTS_CIAO_Exec_Source_Traits::write_branch_condition_begin (void)
 {
   // We need to generate an "else if" statement if this is not
   // the first transition.
   if (this->branches_.top () ++ > 1)
     this->outfile () << "else ";
 
-  this->outfile ()
-    << "if (" << precondition.c_str () << ")"
-    << "{";
+  this->outfile () << "if (";
+}
+
+//
+// write_branch_condition_end
+//
+void CUTS_CIAO_Exec_Source_Traits::write_branch_condition_end (void)
+{
+  this->outfile () << ")";
+}
+
+//
+// write_branch_begin
+//
+void CUTS_CIAO_Exec_Source_Traits::write_branch_begin (void)
+{
+  this->outfile () << "{";
 }
 
 //
@@ -763,4 +776,93 @@ void CUTS_CIAO_Exec_Source_Traits::write_branch_end (void)
 void CUTS_CIAO_Exec_Source_Traits::write_branches_end (void)
 {
   this->branches_.pop ();
+}
+
+//
+// write_equal_to
+//
+void CUTS_CIAO_Exec_Source_Traits::write_equal_to (void)
+{
+  this->outfile () << " == ";
+}
+
+//
+// write_not_equal_to
+//
+void CUTS_CIAO_Exec_Source_Traits::write_not_equal_to (void)
+{
+  this->outfile () << " != ";
+}
+
+//
+// write_less_than
+//
+void CUTS_CIAO_Exec_Source_Traits::write_less_than (void)
+{
+  this->outfile () << " < ";
+}
+
+//
+// write_less_than_equal_to
+//
+void CUTS_CIAO_Exec_Source_Traits::write_less_than_equal_to (void)
+{
+  this->outfile () << " <= ";
+}
+
+//
+// write_greater_than
+//
+void CUTS_CIAO_Exec_Source_Traits::write_greater_than (void)
+{
+  this->outfile () << " > ";
+}
+
+//
+// write_greater_than_equal_to
+//
+void CUTS_CIAO_Exec_Source_Traits::write_greater_than_equal_to (void)
+{
+  this->outfile () << " >= ";
+}
+
+//
+// write_identifier
+//
+void CUTS_CIAO_Exec_Source_Traits::
+write_identifier (const std::string & ident)
+{
+  this->outfile () << ident << "_";
+}
+
+//
+// write_text
+//
+void CUTS_CIAO_Exec_Source_Traits::write_text (const std::string & text)
+{
+  this->outfile () << text;
+}
+
+//
+// write_char
+//
+void CUTS_CIAO_Exec_Source_Traits::write_char (char ch)
+{
+  this->outfile () << ch;
+}
+
+//
+// write_and_symbol
+//
+void CUTS_CIAO_Exec_Source_Traits::write_and_symbol (void)
+{
+  this->outfile () << " && ";
+}
+
+//
+// write_or_symbol
+//
+void CUTS_CIAO_Exec_Source_Traits::write_or_symbol (void)
+{
+  this->outfile () << " || ";
 }

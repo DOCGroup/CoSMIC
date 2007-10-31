@@ -343,18 +343,6 @@ generate (const PICML::OutputAction & action,
 }
 
 //
-// CUTS_BE_Precondition_T
-//
-bool CUTS_BE_Precondition_T <CUTS_BE_Xml>::
-generate (const std::string & precondition)
-{
-  CUTS_BE_XML ()->outfile_
-    << "<precondition>" << precondition << "</precondition>" << std::endl;
-
-  return true;
-}
-
-//
 // CUTS_BE_Branches_Begin_T
 //
 bool CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>::generate (size_t branches)
@@ -366,13 +354,11 @@ bool CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>::generate (size_t branches)
 //
 // CUTS_BE_Branch_Begin_T
 //
-bool CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>::
-generate (const std::string & precondition)
+bool CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>::generate (void)
 {
   CUTS_BE_XML ()->outfile_
     << "<branch>" << std::endl;
 
-  CUTS_BE_Precondition_T <CUTS_BE_Xml>::generate (precondition);
   return true;
 }
 

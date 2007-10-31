@@ -1,3 +1,4 @@
+
 // -*- C++ -*-
 
 //=============================================================================
@@ -763,22 +764,6 @@ struct CUTS_BE_FactoryOperation_End_T <CUTS_BE_CIAO>
 //=============================================================================
 
 template < >
-struct CUTS_BE_Precondition_T <CUTS_BE_CIAO>
-{
-  static bool generate (const std::string & precondition)
-  {
-    CIAO_EXEC_SOURCE_GENERATOR ()->write_precondition (precondition);
-    return true;
-  }
-};
-
-//=============================================================================
-/**
- *
- */
-//=============================================================================
-
-template < >
 struct CUTS_BE_Postcondition_T <CUTS_BE_CIAO>
 {
   static bool generate (const std::string & postcondition)
@@ -811,11 +796,44 @@ struct CUTS_BE_Branches_Begin_T <CUTS_BE_CIAO>
 //=============================================================================
 
 template < >
+struct CUTS_BE_Branch_Condition_Begin_T <CUTS_BE_CIAO>
+{
+  static bool generate (void)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_condition_begin ();
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Branch_Condition_End_T <CUTS_BE_CIAO>
+{
+  static bool generate (void)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_condition_end ();
+    return true;
+  }
+};
+
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
 struct CUTS_BE_Branch_Begin_T <CUTS_BE_CIAO>
 {
-  static bool generate (const std::string & precondition)
+  static inline bool generate ()
   {
-    CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_begin (precondition);
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_branch_begin ();
     return true;
   }
 };
@@ -948,6 +966,182 @@ struct CUTS_BE_Action_End_T <CUTS_BE_CIAO>
   static inline bool generate (void)
   {
     CIAO_EXEC_SOURCE_GENERATOR ()->write_action_end ();
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Equal_To_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_equal_to ();
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Not_Equal_To_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_not_equal_to ();
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Greater_Than_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_greater_than ();
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Greater_Than_Equal_To_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_greater_than_equal_to ();
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Less_Than_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_less_than ();
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Less_Than_Equal_To_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * first, const char * last)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_less_than_equal_to ();
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Identifier_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * begin, const char * end)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_identifier (std::string (begin, end));
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Transcribe_Text_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * begin, const char * end)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_text (std::string (begin, end));
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Transcribe_Char_T <CUTS_BE_CIAO>
+{
+  static bool generate (char ch)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_char (ch);
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_And_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * begin, const char * end)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_and_symbol ();
+    return true;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Or_T <CUTS_BE_CIAO>
+{
+  static bool generate (const char * begin, const char * end)
+  {
+    CIAO_EXEC_SOURCE_GENERATOR ()->write_or_symbol ();
     return true;
   }
 };
