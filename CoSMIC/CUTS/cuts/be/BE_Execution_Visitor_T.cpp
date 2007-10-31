@@ -110,14 +110,6 @@ Visit_InputAction (const PICML::InputAction & action)
   // Add the <action> to the top of the stack.
   this->action_stack_.push (action);
 
-  // Visit all the properties for this input action.
-  //typedef std::vector <PICML::Property> Property_Set;
-  //Property_Set props = action.Property_children ();
-
-  //CUTS_BE::visit <BE_STRATEGY> (props,
-  //  boost::bind (&Property_Set::value_type::Accept,
-  //  _1, boost::ref (*this)));
-
   // Visit the effect.
   PICML::InputEffect input_effect = action.dstInputEffect ();
 
@@ -309,7 +301,28 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_Transition (const PICML::Transition & transition)
 {
-  // Get the action connected to the end of the transaction.
+  std::string precondition = transition.Precondition ();
+
+  if (!precondition.empty ())
+  {
+    // We first need to write the condition for the branch before
+    // we can start writing the actual branch statements.
+    CUTS_BE_Branch_Condition_Begin_T <BE_STRATEGY>::generate ();
+
+    if (CUTS_BE_Parse_Precondition_T <BE_STRATEGY>::result_type)
+    {
+      boost::spirit::parse (precondition.c_str (),
+                            this->condition_parser_,
+                            boost::spirit::space_p);
+    }
+    else
+    {
+      CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
+    }
+
+    CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
+  }
+
   PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
   this->Visit_ActionBase (action_base);
 }
@@ -321,25 +334,35 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_BranchTransition (const PICML::BranchTransition & transition)
 {
-  // We first need to write the condition for the branch before
-  // we can start writing the actual branch statements.
-  CUTS_BE_Branch_Condition_Begin_T <BE_STRATEGY>::generate ();
-
   std::string precondition = transition.Precondition ();
 
-  boost::spirit::parse (precondition.c_str (),
-                        this->condition_parser_,
-                        boost::spirit::space_p);
+  if (!precondition.empty ())
+  {
+    // We first need to write the condition for the branch before
+    // we can start writing the actual branch statements.
+    CUTS_BE_Branch_Condition_Begin_T <BE_STRATEGY>::generate ();
 
-  CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
+    if (CUTS_BE_Parse_Precondition_T <BE_STRATEGY>::result_type)
+    {
+      boost::spirit::parse (precondition.c_str (),
+                            this->condition_parser_,
+                            boost::spirit::space_p);
+    }
+    else
+    {
+      CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
+    }
 
-  // We are now ready to write the branch statements.
-  CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate ();
+    CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
 
-  PICML::ActionBase action_base = transition.dstBranchTransition_end ();
-  this->Visit_ActionBase (action_base);
+    // We are now ready to write the branch statements.
+    CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate ();
 
-  CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
+    PICML::ActionBase action_base = transition.dstBranchTransition_end ();
+    this->Visit_ActionBase (action_base);
+
+    CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
+  }
 }
 
 //

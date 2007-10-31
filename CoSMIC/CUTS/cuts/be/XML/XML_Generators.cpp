@@ -27,6 +27,21 @@ CUTS_BE_Xml::CUTS_BE_Xml (void)
 }
 
 //
+// write_precondition_tag
+//
+void CUTS_BE_Xml::write_precondition_tag (void)
+{
+  if (!this->precondition_.empty ())
+  {
+    this->outfile_
+      << "<precondition>" << this->precondition_ << "</precondition>"
+      << std::endl;
+
+    this->precondition_.clear ();
+  }
+}
+
+//
 // CUTS_BE_File_Open_T
 //
 bool CUTS_BE_File_Open_T <CUTS_BE_Xml>::
@@ -182,6 +197,8 @@ generate (const PICML::Worker & worker, const PICML::Action & action)
     << "<action parent=\"" << action.name () << "\" name=\""
     << action_type.name () << "\">" << std::endl;
 
+  CUTS_BE_XML ()->write_precondition_tag ();
+
   return true;
 }
 
@@ -319,6 +336,8 @@ generate (const PICML::OutputAction & action)
 {
   CUTS_BE_XML ()->outfile_
     << "<output name=\"" << action.name () << "\">" << std::endl;
+
+  CUTS_BE_XML ()->write_precondition_tag ();
   return true;
 }
 
@@ -356,9 +375,8 @@ bool CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>::generate (size_t branches)
 //
 bool CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>::generate (void)
 {
-  CUTS_BE_XML ()->outfile_
-    << "<branch>" << std::endl;
-
+  CUTS_BE_XML ()->outfile_ << "<branch>" << std::endl;
+  CUTS_BE_XML ()->write_precondition_tag ();
   return true;
 }
 
@@ -380,3 +398,12 @@ bool CUTS_BE_Branches_End_T <CUTS_BE_Xml>::generate (void)
   return true;
 };
 
+//
+// CUTS_BE_Precondition_T
+//
+bool CUTS_BE_Precondition_T <CUTS_BE_Xml>::
+generate (const std::string & precondition)
+{
+  CUTS_BE_XML ()->precondition_ = precondition;
+  return true;
+}

@@ -17,14 +17,14 @@
 
 #include "PICML/PICML.h"
 
-#if !defined (_MSC_VER) || _MSC_VER > 1310
-#define CUTS_BE_EXPLICIT_SPECIALIZATION template < >
-#else
-#define CUTS_BE_EXPLICIT_SPECIALIZATION
-#endif
-
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_Write_Variables_Last_T
+{
+  static const bool result_type = true;
+};
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Parse_Precondition_T
 {
   static const bool result_type = true;
 };
@@ -529,6 +529,19 @@ template <typename IMPL_STRATEGY>
 struct CUTS_BE_Postcondition_T
 {
   static bool generate (const std::string & postcondition)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Precondition_T
+{
+  static bool generate (const std::string & precondition)
     { return false; }
 };
 

@@ -740,8 +740,10 @@ void CUTS_CIAO_Exec_Source_Traits::write_branch_condition_begin (void)
 {
   // We need to generate an "else if" statement if this is not
   // the first transition.
-  if (this->branches_.top () ++ > 1)
+  if (!this->branches_.empty () && this->branches_.top () ++ > 1)
+  {
     this->outfile () << "else ";
+  }
 
   this->outfile () << "if (";
 }
@@ -751,7 +753,7 @@ void CUTS_CIAO_Exec_Source_Traits::write_branch_condition_begin (void)
 //
 void CUTS_CIAO_Exec_Source_Traits::write_branch_condition_end (void)
 {
-  this->outfile () << ")";
+  this->outfile () << ")" << std::endl;
 }
 
 //

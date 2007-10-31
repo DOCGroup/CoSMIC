@@ -1,3 +1,21 @@
+Wed Oct 31 22:47:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+        * cuts/be/BE_Generators_T.h:
+
+          Implemented a new trait that lets backends determine if the
+          preconditions should be parsed, or copied directly over.
+
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+
+          Fixed formating problems with single liner if statements.
+
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+
+          Fixed bug that was causing the preconditions for branch
+          statements to appear in the incorrect location.
+
 Wed Oct 31 21:05:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Condition_Parser_T.h:

@@ -40,6 +40,8 @@ class CUTS_BE_Xml
 public:
   CUTS_BE_Xml (void);
 
+  void write_precondition_tag ();
+
   /// Target TIOA output file.
   std::ofstream outfile_;
 
@@ -49,6 +51,8 @@ public:
 
   /// Pointer to the formatter.
   std::auto_ptr <_formatter_type> formatter_;
+
+  std::string precondition_;
 };
 
 //
@@ -64,6 +68,12 @@ namespace CUTS_BE
   CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::OnewayOperation);
   CUTS_BE_NOT_VISIT (CUTS_BE_Xml, PICML::TwowayOperation);
 }
+
+template < >
+struct CUTS_BE_Parse_Precondition_T <CUTS_BE_Xml>
+{
+  static const bool result_type = false;
+};
 
 //=============================================================================
 /**
@@ -187,6 +197,18 @@ struct CUTS_BE_WorkerAction_Begin_T <CUTS_BE_Xml>
 {
   static bool generate (const PICML::Worker & worker,
                         const PICML::Action & action);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Precondition_T <CUTS_BE_Xml>
+{
+  static bool generate (const std::string & precondition);
 };
 
 //=============================================================================
