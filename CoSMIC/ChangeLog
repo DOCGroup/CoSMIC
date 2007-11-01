@@ -1,9 +1,22 @@
+Thu Nov  1 00:00:00 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Connections from createTargetObjects to 
+          createAssociations were incorrect. 
+          Corrected the generation of associations between SRC 
+          and TRGT elements.
+          Fixed generation of names for source and target elements.
+
+* Attribute generation from input and output metamodels with matching types.
+          
+
 Tue Oct 30 15:18:45 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
 
           Fixed the rule for creation of target elements
-	  in value mapping block.
+          in value mapping block.
 
         * Transformations/PIM/paradigms/WSRML.xme:
         * Transformations/PIM/paradigms/WSRML.xmp:
