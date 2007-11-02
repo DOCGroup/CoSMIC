@@ -235,19 +235,14 @@ Visit_BranchState (const PICML::BranchState & state)
   typedef std::set <PICML::BranchTransition> Transition_Set;
   Transition_Set transitions = state.dstBranchTransition ();
 
-  // Save the number of branches we are operating on.
-  size_t transition_size = transitions.size ();
-  //this->branches_.push (transition_size);
-
   // Signal the backend we are starting a branch state.
-  CUTS_BE_Branches_Begin_T <BE_STRATEGY>::generate (transition_size);
+  CUTS_BE_Branches_Begin_T <BE_STRATEGY>::generate (transitions.size ());
 
   CUTS_BE::visit <BE_STRATEGY> (transitions,
     boost::bind (&PICML::BranchTransition::Accept, _1, boost::ref (*this)));
 
   // Signal the backend we are starting a branch state.
   CUTS_BE_Branches_End_T <BE_STRATEGY>::generate ();
-  //this->branches_.pop ();
 
   // Since we have finished the branching, we can continue generating
   // the remainder of the behavior that occurs after the branching.

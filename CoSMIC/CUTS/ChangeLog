@@ -1,3 +1,20 @@
+Fri Nov  2 22:17:54 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Execution_Visitor_T.cpp:
+
+          Removed the push/pop statements for the number of
+          transitions in a branch.
+
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+
+          Fixed bug that was causing branch conditions to be generated
+          in the wrong location.
+
+        * integration/autobuild.build:
+
+          Changes all project.* to env.* properties.
+
 Fri Nov  2 20:52:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.h:

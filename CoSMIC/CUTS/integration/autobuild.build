@@ -11,8 +11,8 @@
       -->
 
   <target name="build" depends="svn.update">
-    <property name="build.workspace" value="${project.CUTS_ROOT}/CUTS.sln" />
-    <property name="mpc.workspace" value="${project.CUTS_ROOT}/CUTS.mwc" />
+    <property name="build.workspace" value="${env.CUTS_ROOT}/CUTS.sln" />
+    <property name="mpc.workspace" value="${env.CUTS_ROOT}/CUTS.mwc" />
     <property name="mpc.features" value="modeling=1,cosmic=1" />
 
     <antcall target="workspace.generate" />
@@ -21,8 +21,8 @@
   </target>
 
   <target name="build.modeling" depends="svn.update">
-    <property name="build.workspace" value="${project.CUTS_ROOT}/CUTS_CoSMIC.sln" />
-    <property name="mpc.workspace" value="${project.CUTS_ROOT}/CUTS_CoSMIC.mwc" />
+    <property name="build.workspace" value="${env.CUTS_ROOT}/CUTS_CoSMIC.sln" />
+    <property name="mpc.workspace" value="${env.CUTS_ROOT}/CUTS_CoSMIC.mwc" />
     <property name="mpc.features" value="modeling=1,cosmic=1" />
 
     <antcall target="workspace.generate" />
@@ -31,8 +31,8 @@
   </target>
 
   <target name="build.runtime" depends="svn.update">
-    <property name="build.workspace" value="${project.CUTS_ROOT}/CUTS.sln" />
-    <property name="mpc.workspace" value="${project.CUTS_ROOT}/CUTS.mwc" />
+    <property name="build.workspace" value="${env.CUTS_ROOT}/CUTS.sln" />
+    <property name="mpc.workspace" value="${env.CUTS_ROOT}/CUTS.mwc" />
     <property name="mpc.features" value="modeling=0,cosmic=0" />
 
     <antcall target="workspace.generate" />
@@ -42,10 +42,10 @@
 
   <target name="build.installers">
     <!-- we only distribute the release version -->
-    <property name="build.workspace" value="${project.CUTS_ROOT}/install/CUTS_installers.sln" />
+    <property name="build.workspace" value="${env.CUTS_ROOT}/install/CUTS_installers.sln" />
     <property name="build.configuration" value="release" />
 
-    <property name="mpc.workspace" value="${project.CUTS_ROOT}/install/CUTS_installers.sln" />
+    <property name="mpc.workspace" value="${env.CUTS_ROOT}/install/CUTS_installers.sln" />
     <property name="mpc.features" value="modeling=1,cosmic=1" />
 
     <antcall target="workspace.generate" />
@@ -60,7 +60,7 @@
   <target name="svn.update">
     <exec executable="svn">
       <arg value="update" />
-      <arg path="${project.COSMIC_ROOT}" />
+      <arg path="${env.COSMIC_ROOT}" />
     </exec>
   </target>
 
@@ -72,7 +72,7 @@
     <!-- this uses the CUTS.mwc workspace -->
     <exec executable="perl">
       <arg value="--" />
-      <arg path="${project.ACE_ROOT}/bin/mwc.pl" />
+      <arg path="${env.ACE_ROOT}/bin/mwc.pl" />
       <arg line="-type ${mpc.type} -features ${mpc.features} ${mpc.workspace}" />
     </exec>
   </target>

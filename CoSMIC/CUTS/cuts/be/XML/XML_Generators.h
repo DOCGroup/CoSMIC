@@ -40,8 +40,6 @@ class CUTS_BE_Xml
 public:
   CUTS_BE_Xml (void);
 
-  void write_precondition_tag ();
-
   /// Target TIOA output file.
   std::ofstream outfile_;
 
@@ -51,8 +49,6 @@ public:
 
   /// Pointer to the formatter.
   std::auto_ptr <_formatter_type> formatter_;
-
-  std::string precondition_;
 };
 
 //
@@ -388,7 +384,7 @@ struct CUTS_BE_Branches_Begin_T <CUTS_BE_Xml>
 //=============================================================================
 
 template < >
-struct CUTS_BE_Branch_Begin_T <CUTS_BE_Xml>
+struct CUTS_BE_Branch_Condition_Begin_T <CUTS_BE_Xml>
 {
   static bool generate (void);
 };
