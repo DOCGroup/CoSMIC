@@ -1,3 +1,13 @@
+Fri Nov  2 20:51:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Fixed bug that was preventing terminal effects from connecting
+          to branch states.
+
 Fri Nov  2 15:28:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
