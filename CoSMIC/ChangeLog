@@ -1,10 +1,22 @@
+Fri Nov  2 15:28:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Control block sequences, such as branches and loops, must
+          use a terminal element to signify the end of the control
+          block sequence. The semantics of terminal elements is
+          a join point between two states.
+
 Fri Nov  2 16:10:32 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
 
-          Added a rule for checking the bounds on a conditional value 
+          Added a rule for checking the bounds on a conditional value
           mapping block.
-          Removed temporary variables, modified rules for multiple 
+          Removed temporary variables, modified rules for multiple
           conditional value mappings in the same CodePoint.
           Updated conditional creation mapping rules.
 

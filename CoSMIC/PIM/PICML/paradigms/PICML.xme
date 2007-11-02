@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{2846469A-1174-4707-8E95-EBF504569577}" cdate="Fri Sep 28 15:37:58 2007" mdate="Fri Sep 28 15:37:58 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{46ADB04D-8E1D-4CC0-9BB0-446F5C6FE908}" cdate="Fri Sep 28 15:37:58 2007" mdate="Fri Sep 28 15:37:58 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2285,7 +2285,7 @@ not worker.Abstract</value>
 				</set>
 			</model>
 		</folder>
-		<folder id="id-006a-00000003" relid="0x8" childrelidcntr="0x8" kind="SheetFolder" guid="{4E855120-6BFC-4ef8-B941-B304C287901E}">
+		<folder id="id-006a-00000003" relid="0x8" childrelidcntr="0x9" kind="SheetFolder" guid="{4E855120-6BFC-4ef8-B941-B304C287901E}">
 			<name>CBML</name>
 			<regnode name="CBML" status="undefined">
 				<value></value>
@@ -3690,6 +3690,126 @@ not worker.Abstract</value>
 						</regnode>
 					</regnode>
 				</regnode>
+				<regnode name="ControlBlock" status="undefined">
+					<value></value>
+					<regnode name="Terminal-1-Atom" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4035</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="Terminal" isopaque="yes">
+									<value>4038</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4041</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="Terminal" isopaque="yes">
+									<value>4044</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4047</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:Terminal" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:Terminal" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="TerminalEffect-11-Connection" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4036</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="TerminalEffect" isopaque="yes">
+									<value>4039</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4042</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="TerminalEffect" isopaque="yes">
+									<value>4045</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4048</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:TerminalEffect" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:TerminalEffect" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="TerminalTransition-f-Connection" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4037</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="TerminalTransition" isopaque="yes">
+									<value>4040</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4043</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="TerminalTransition" isopaque="yes">
+									<value>4046</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4049</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:TerminalTransition" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:TerminalTransition" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
 				<regnode name="InputHooks" status="undefined">
 					<value></value>
 					<regnode name="Environment-24-Model" status="undefined">
@@ -4207,6 +4327,126 @@ not worker.Abstract</value>
 								</regnode>
 							</regnode>
 							<regnode name="CompositeAction:Transition" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Terminals" status="undefined">
+					<value></value>
+					<regnode name="Terminal-1-Atom" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4035</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="Terminal" isopaque="yes">
+									<value>4038</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4041</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="Terminal" isopaque="yes">
+									<value>4044</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4047</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:Terminal" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:Terminal" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="TerminalEffect-11-Connection" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4036</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="TerminalEffect" isopaque="yes">
+									<value>4039</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4042</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="TerminalEffect" isopaque="yes">
+									<value>4045</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4048</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:TerminalEffect" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:TerminalEffect" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="TerminalTransition-f-Connection" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4037</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="TerminalTransition" isopaque="yes">
+									<value>4040</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4043</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="TerminalTransition" isopaque="yes">
+									<value>4046</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4049</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:TerminalTransition" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:TerminalTransition" status="undefined">
 								<value></value>
 								<regnode name="Behavior" isopaque="yes">
 									<value>yes</value>
@@ -5353,7 +5593,7 @@ not worker.Abstract</value>
 					</regnode>
 				</regnode>
 			</regnode>
-			<model id="id-0065-00000002" kind="ParadigmSheet" guid="{7E2A096F-3DEB-49f2-B746-8F25185EEECE}" relid="0x1" childrelidcntr="0x339">
+			<model id="id-0065-00000002" kind="ParadigmSheet" guid="{7E2A096F-3DEB-49f2-B746-8F25185EEECE}" relid="0x1" childrelidcntr="0x33b">
 				<name>BehaviorModel</name>
 				<atom id="id-0066-00000010" kind="Reference" role="Reference" guid="{761A32DC-C226-424f-8681-70E8725C36CB}" relid="0x2ae">
 					<name>Variable</name>
@@ -8235,7 +8475,7 @@ endif</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>373,275</value>
+								<value>367,257</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8265,7 +8505,7 @@ endif</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>135,275</value>
+								<value>150,257</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -8287,6 +8527,12 @@ endif</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>323,153</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>323,153</value>
@@ -8358,6 +8604,12 @@ endif</value>
 								<value>106,153</value>
 							</regnode>
 						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>106,153</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="Decorator" status="meta">
 						<value></value>
@@ -8424,6 +8676,12 @@ endif</value>
 								<value>78,313</value>
 							</regnode>
 						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>78,313</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="Decorator" status="meta">
 						<value></value>
@@ -8485,6 +8743,12 @@ endif</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>295,314</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>295,314</value>
@@ -8567,7 +8831,7 @@ endif</value>
 					<connpoint role="dst" target="id-0067-00000073"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x4c">
+			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x4e">
 				<name>TopLevelBehaviorModel</name>
 				<atom id="id-0066-00000030" kind="Connection" role="Connection" guid="{37F75581-48A5-47ad-B6B0-BAB12CDB995C}" relid="0x10">
 					<name>Input</name>
@@ -9603,7 +9867,7 @@ dName = dstMultiInput</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000007" kind="ParadigmSheet" guid="{A8CFA571-FC25-4945-AAE3-58CB6FEDFA30}" relid="0x7" childrelidcntr="0x40">
+			<model id="id-0065-00000007" kind="ParadigmSheet" guid="{A8CFA571-FC25-4945-AAE3-58CB6FEDFA30}" relid="0x7" childrelidcntr="0x46">
 				<name>StateTypes</name>
 				<atom id="id-0066-0000003c" kind="Connection" role="Connection" guid="{E6FEAC71-73F2-4b1f-95F2-24C4149536CA}" relid="0x32">
 					<name>Transition</name>
@@ -9618,7 +9882,7 @@ dName = dstMultiInput</value>
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>127,307</value>
+								<value>22,293</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -9692,7 +9956,7 @@ dName = dstTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>295,244</value>
+								<value>190,230</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -9764,7 +10028,7 @@ dName = dstTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>456,244</value>
+								<value>351,230</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -9836,7 +10100,7 @@ dName = dstTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>402,180</value>
+								<value>297,166</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -9866,7 +10130,7 @@ dName = dstTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>561,306</value>
+								<value>456,292</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -9934,7 +10198,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>326,333</value>
+								<value>221,319</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -9952,7 +10216,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>494,333</value>
+								<value>389,319</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -9976,7 +10240,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>379,97</value>
+								<value>274,97</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -10096,7 +10360,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>358,328</value>
+								<value>253,314</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -10171,7 +10435,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>358,13</value>
+								<value>253,13</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -10424,6 +10688,658 @@ dName = dstBranchTransition</value>
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>617,209</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+				</set>
+			</model>
+			<model id="id-0065-00000021" kind="ParadigmSheet" guid="{CC338D45-46E6-461d-9DED-317FDCE60093}" relid="0x9" childrelidcntr="0x25">
+				<name>Terminals</name>
+				<atom id="id-0066-0000025c" kind="Atom" role="Atom" guid="{B686DF2A-D3B5-4181-ACC7-EB4B2DBDC1C1}" relid="0x1">
+					<name>Terminal</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>121,156</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>176,153</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>190,132</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>113,160</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon">
+						<value>Connector.bmp</value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000025d" kind="Connector" role="Connector" guid="{B200D0E1-AF54-4353-A4DE-55D750B15230}" relid="0x3">
+					<name>Connector</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>319,137</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>256,144</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-0000025e" kind="Connector" role="Connector" guid="{9285E8D1-3EF6-414f-BCFD-AB2B887FDD66}" relid="0x2">
+					<name>Connector</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>319,214</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>256,221</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-0000025f" kind="SameAspect" role="SameAspect" guid="{93E73ACD-9591-457a-84F7-3BB5642C9236}" relid="0xa">
+					<name>SameAspect</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>512,136</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
+				<atom id="id-0066-00000260" kind="Connection" role="Connection" guid="{46E24260-3BB1-4e2c-B23F-A36F9ADBE66F}" relid="0xf">
+					<name>TerminalTransition</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>177,30</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>260,27</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>246,34</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>197,34</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Color" status="meta">
+						<value>0x000000</value>
+					</attribute>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
+					</attribute>
+					<attribute kind="ConnLineStart" status="meta">
+						<value>butt</value>
+					</attribute>
+					<attribute kind="ConnLineType" status="meta">
+						<value>solid</value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcTerminalTransition
+dName = dstTerminalTransition</value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="SrcAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SrcAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000261" kind="Connection" role="Connection" guid="{A0D50C22-912B-4b66-8A80-4C25EDFF6276}" relid="0x11">
+					<name>TerminalEffect</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>170,303</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>267,251</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>253,279</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>204,279</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Color" status="meta">
+						<value>0x000000</value>
+					</attribute>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
+					</attribute>
+					<attribute kind="ConnLineStart" status="meta">
+						<value>butt</value>
+					</attribute>
+					<attribute kind="ConnLineType" status="meta">
+						<value>solid</value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcTerminalEffect
+dName = dstTerminalEffect</value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="SrcAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SrcAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000263" kind="Constraint" role="Constraint" guid="{B44E0C77-C8C6-430e-997F-2711F5A985EA}" relid="0x1b">
+					<name>TerminalCount</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>62,132</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="AddSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeAttributeEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangePropertyEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ChangeRelationEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="CloseEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ConstraintDescription">
+						<value>Number of terminals must equal the number of branches.</value>
+					</attribute>
+					<attribute kind="ConstraintEqn">
+						<value>let branches = self.parts (meta::BranchState) in
+let terminals = self.parts (meta::Terminal) in
+
+branches-&gt;size = terminals-&gt;size</value>
+					</attribute>
+					<attribute kind="ConstraintParam" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="ConstraintPriority" status="meta">
+						<value>2</value>
+					</attribute>
+					<attribute kind="CreateEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DeleteEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Depth" status="meta">
+						<value>1</value>
+					</attribute>
+					<attribute kind="DeriveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="DisconnectEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="LostChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="MoveEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NewChildEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="ReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="RemoveSetEvent" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="UnReferenceEvent" status="meta">
+						<value>false</value>
+					</attribute>
+				</atom>
+				<reference id="id-0067-000000b8" kind="AtomProxy" role="AtomProxy" guid="{328C1A8E-0FB6-4930-A3FB-9922A74F743B}" relid="0x6" referred="id-0066-0000003e">
+					<name>State</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>393,146</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>379,153</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>330,153</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<reference id="id-0067-000000b9" kind="AspectProxy" role="AspectProxy" guid="{1D6C8AB0-6524-4995-B376-87095B7CDB4F}" relid="0x9" referred="id-0069-00000002">
+					<name>Behavior</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>477,34</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-000000ba" kind="ModelProxy" role="ModelProxy" guid="{81AE5C37-8F85-4b10-B4B8-9672E4367366}" relid="0x13" referred="id-0066-00000012">
+					<name>BehaviorModel</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>36,27</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,34</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,34</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeInfoShown" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<connection id="id-0068-000003e2" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{B158BF1A-3642-46c1-A951-548AB933FE59}" relid="0x5">
+					<name>ConnectorToDestination</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>We</value>
+					</regnode>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="dstRolename" status="meta">
+						<value>dst</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-0000025c"/>
+					<connpoint role="src" target="id-0066-0000025d"/>
+				</connection>
+				<connection id="id-0068-000003e3" kind="SourceToConnector" role="SourceToConnector" guid="{9C0F8AB4-0087-4572-A9D3-262349FBB4A2}" relid="0x4">
+					<name>SourceToConnector</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ew</value>
+					</regnode>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="srcRolename" status="meta">
+						<value>src</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000025c"/>
+					<connpoint role="dst" target="id-0066-0000025e"/>
+				</connection>
+				<connection id="id-0068-000003e4" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{15C9A627-AC58-4c42-80CB-B8EBD83CE89C}" relid="0x7">
+					<name>ConnectorToDestination</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ew</value>
+					</regnode>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="dstRolename" status="meta">
+						<value>dst</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000025e"/>
+					<connpoint role="dst" target="id-0067-000000b8"/>
+				</connection>
+				<connection id="id-0068-000003e6" kind="SourceToConnector" role="SourceToConnector" guid="{7982C8B2-94C5-452c-8BED-E33E618E1FB4}" relid="0x8">
+					<name>SourceToConnector</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>We</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="srcRolename" status="meta">
+						<value>src</value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-0000025d"/>
+					<connpoint role="src" target="id-0067-000000b8"/>
+				</connection>
+				<connection id="id-0068-000003e8" kind="SameAspectRight" role="SameAspectRight" guid="{6C3344B2-0089-44f6-A980-E8231E3AC3B5}" relid="0xc">
+					<name>SameAspectRight</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000025f"/>
+					<connpoint role="src" target="id-0067-000000b9"/>
+				</connection>
+				<connection id="id-0068-000003e9" kind="SameAspectLeft" role="SameAspectLeft" guid="{05AC69C6-2BD5-42a0-99E4-C1F3BF1BF3B5}" relid="0xe">
+					<name>SameAspectLeft</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-0000025f"/>
+					<connpoint role="dst" target="id-0069-00000021"/>
+				</connection>
+				<connection id="id-0068-000003ea" kind="AssociationClass" role="AssociationClass" guid="{ED6D4A13-7822-43d3-B019-616ACD06B4C0}" relid="0x10">
+					<name>AssociationClass</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>S</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000025d"/>
+					<connpoint role="src" target="id-0066-00000260"/>
+				</connection>
+				<connection id="id-0068-000003ec" kind="AssociationClass" role="AssociationClass" guid="{139E8DE2-F8C6-4758-8EFE-554AA7F83DA3}" relid="0x12">
+					<name>AssociationClass</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000025e"/>
+					<connpoint role="src" target="id-0066-00000261"/>
+				</connection>
+				<connection id="id-0068-000003ed" kind="Containment" role="Containment" guid="{8E0A551A-1B59-49f1-9470-C55EFFCD0EBD}" relid="0x14">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>We</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000260"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
+				</connection>
+				<connection id="id-0068-000003ef" kind="Containment" role="Containment" guid="{8033E49A-5542-413a-A981-E016B4ABCAFD}" relid="0x15">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ws</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000025c"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
+				</connection>
+				<connection id="id-0068-000003f0" kind="Containment" role="Containment" guid="{D349C29A-03DD-4476-84B4-5091ECDBF832}" relid="0x16">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ws</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000261"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
+				</connection>
+				<connection id="id-0068-000003fb" kind="HasConstraint" role="HasConstraint" guid="{CCFB9D03-E94C-4a08-ACC2-BAECB56F4450}" relid="0x25">
+					<name>HasConstraint</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000263"/>
+					<connpoint role="dst" target="id-0067-000000ba"/>
+				</connection>
+				<set id="id-0069-00000021" kind="Aspect" role="Aspect" guid="{0272BF6E-AE37-4bfe-AA1A-77DEAA76CD68}" relid="0xd" members="id-0066-0000025c id-0066-00000260 id-0066-00000261">
+					<name>BehaviorTerminal</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>477,216</value>
 							</regnode>
 						</regnode>
 					</regnode>
