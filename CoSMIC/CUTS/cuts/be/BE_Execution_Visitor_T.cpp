@@ -188,56 +188,15 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_State (const PICML::State & state)
 {
-  if (this->ignore_effects_)
-  {
-    this->ignore_effects_ = false;
-  }
-  else
-  {
-    if (!this->holding_state_.empty () &&
-        this->holding_state_.top () == state)
-    {
-      // We have reached the end of this workflow.
-      return;
-    }
-    else
-    {
-      // Get all the effects that are connected to this state. We know that
-      // if we have more than 1 effect, then we are looking at state where
-      // there either some, or all the branches come together (or there is
-      // sharing of workload.
-
-      typedef std::set <PICML::Effect> Effect_Set;
-      Effect_Set effects = state.srcEffect ();
-
-      if (effects.size () > 1)
-      {
-        if (!this->branches_.empty ())
-        {
-          // Ok, we have more than one effect entering this state and
-          // we have some branching in effect. This mean this is a joining
-          // state for one or more branches.
-          size_t remaining = this->branches_.top () - effects.size () + 1;
-          this->branches_.top () = remaining;
-
-          if (remaining == 1)
-          {
-            // We reached end of the line for this branch state.
-            this->holding_state_.push (state);
-            return;
-          }
-        }
-      }
-    }
-  }
-
-  // Check for a finishing transition from this state.
-  typedef std::set <PICML::Finish> Finish_Set;
-  Finish_Set finish_set = state.dstFinish ();
+  // Generate information about the state.
+  CUTS_BE_State_T <BE_STRATEGY>::generate (state);
 
   // Check to see if this state has any finish connections. If it
   // does, then we need to see if any of the finish connections is
   // for the current input action.
+  typedef std::set <PICML::Finish> Finish_Set;
+  Finish_Set finish_set = state.dstFinish ();
+
   PICML::Finish finish;
 
   if (Udm::contains (boost::bind (std::equal_to <PICML::InputAction> (),
@@ -248,14 +207,22 @@ Visit_State (const PICML::State & state)
     return;
   }
 
-  // Generate information about the state.
-  CUTS_BE_State_T <BE_STRATEGY>::generate (state);
-
   // Visit the transition that connected to this state.
-  PICML::Transition transition = state.dstInternalPrecondition ();
+  PICML::Transition transition = state.dstTransition ();
 
-  CUTS_BE::visit <BE_STRATEGY> (transition,
-    boost::bind (&PICML::Transition::Accept, _1, boost::ref (*this)));
+  if (transition != Udm::null)
+  {
+    CUTS_BE::visit <BE_STRATEGY> (transition,
+      boost::bind (&PICML::Transition::Accept, _1, boost::ref (*this)));
+  }
+  else
+  {
+    // Ok, so we are at a terminal transition.
+    PICML::TerminalTransition term = state.dstTerminalTransition ();
+
+    CUTS_BE::visit <BE_STRATEGY> (term,
+      boost::bind (&PICML::TerminalTransition::Accept, _1, boost::ref (*this)));
+  }
 }
 
 //
@@ -270,7 +237,7 @@ Visit_BranchState (const PICML::BranchState & state)
 
   // Save the number of branches we are operating on.
   size_t transition_size = transitions.size ();
-  this->branches_.push (transition_size);
+  //this->branches_.push (transition_size);
 
   // Signal the backend we are starting a branch state.
   CUTS_BE_Branches_Begin_T <BE_STRATEGY>::generate (transition_size);
@@ -280,18 +247,55 @@ Visit_BranchState (const PICML::BranchState & state)
 
   // Signal the backend we are starting a branch state.
   CUTS_BE_Branches_End_T <BE_STRATEGY>::generate ();
-  this->branches_.pop ();
+  //this->branches_.pop ();
 
   // Since we have finished the branching, we can continue generating
   // the remainder of the behavior that occurs after the branching.
-  if (!this->holding_state_.empty ())
+  if (!this->terminal_state_.empty ())
   {
-    PICML::State jmpstate = this->holding_state_.top ();
-    this->holding_state_.pop ();
+    PICML::Terminal terminal = this->terminal_state_.top ();
+    this->terminal_state_.pop ();
 
-    this->ignore_effects_ = true;
-    jmpstate.Accept (*this);
+    terminal.Accept (*this);
   }
+}
+
+//
+// Visit_TerminalTransition
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_TerminalTransition (const PICML::TerminalTransition & transition)
+{
+  PICML::Terminal terminal = transition.dstTerminalTransition_end ();
+
+  if (this->terminal_state_.empty () ||
+      this->terminal_state_.top () != terminal)
+  {
+    this->terminal_state_.push (terminal);
+  }
+}
+
+//
+// Visit_Terminal
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_Terminal (const PICML::Terminal & terminal)
+{
+  PICML::TerminalEffect effect = terminal.dstTerminalEffect ();
+  effect.Accept (*this);
+}
+
+//
+// Visit_TerminalEffect
+//
+template <typename BE_STRATEGY>
+void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
+Visit_TerminalEffect (const PICML::TerminalEffect & effect)
+{
+  PICML::StateBase state = effect.dstTerminalEffect_end ();
+  this->Visit_StateBase (state);
 }
 
 //
@@ -301,42 +305,20 @@ template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_Transition (const PICML::Transition & transition)
 {
-  std::string precondition = transition.Precondition ();
-
-  if (!precondition.empty ())
-  {
-    // We first need to write the condition for the branch before
-    // we can start writing the actual branch statements.
-    CUTS_BE_Branch_Condition_Begin_T <BE_STRATEGY>::generate ();
-
-    if (CUTS_BE_Parse_Precondition_T <BE_STRATEGY>::result_type)
-    {
-      boost::spirit::parse (precondition.c_str (),
-                            this->condition_parser_,
-                            boost::spirit::space_p);
-    }
-    else
-    {
-      CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
-    }
-
-    CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
-  }
-
-  PICML::ActionBase action_base = transition.dstInternalPrecondition_end ();
-  this->Visit_ActionBase (action_base);
+  PICML::ActionBase action = transition.dstTransition_end ();
+  this->Visit_ActionBase (action);
 }
 
 //
-// Visit_Transition
+// Visit_BranchTransition
 //
 template <typename BE_STRATEGY>
 void CUTS_BE_Execution_Visitor_T <BE_STRATEGY>::
 Visit_BranchTransition (const PICML::BranchTransition & transition)
 {
-  std::string precondition = transition.Precondition ();
+  std::string condition = transition.Condition ();
 
-  if (!precondition.empty ())
+  if (!condition.empty ())
   {
     // We first need to write the condition for the branch before
     // we can start writing the actual branch statements.
@@ -344,25 +326,25 @@ Visit_BranchTransition (const PICML::BranchTransition & transition)
 
     if (CUTS_BE_Parse_Precondition_T <BE_STRATEGY>::result_type)
     {
-      boost::spirit::parse (precondition.c_str (),
+      boost::spirit::parse (condition.c_str (),
                             this->condition_parser_,
                             boost::spirit::space_p);
     }
     else
     {
-      CUTS_BE_Precondition_T <BE_STRATEGY>::generate (precondition);
+      CUTS_BE_Precondition_T <BE_STRATEGY>::generate (condition);
     }
 
     CUTS_BE_Branch_Condition_End_T <BE_STRATEGY>::generate ();
-
-    // We are now ready to write the branch statements.
-    CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate ();
-
-    PICML::ActionBase action_base = transition.dstBranchTransition_end ();
-    this->Visit_ActionBase (action_base);
-
-    CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
   }
+
+  // We are now ready to write the branch statements.
+  CUTS_BE_Branch_Begin_T <BE_STRATEGY>::generate ();
+
+  PICML::ActionBase action = transition.dstBranchTransition_end ();
+  this->Visit_ActionBase (action);
+
+  CUTS_BE_Branch_End_T <BE_STRATEGY>::generate ();
 }
 
 //

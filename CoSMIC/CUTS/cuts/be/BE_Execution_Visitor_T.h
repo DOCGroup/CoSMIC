@@ -83,6 +83,12 @@ protected:
   /// Visit a CompositeAction element.
   void Visit_CompositeAction (const PICML::CompositeAction &);
 
+  void Visit_TerminalTransition (const PICML::TerminalTransition &);
+
+  void Visit_Terminal (const PICML::Terminal &);
+
+  void Visit_TerminalEffect (const PICML::TerminalEffect &);
+
 protected:
   void Visit_OutputAction_Property (const PICML::Property & property);
 
@@ -98,10 +104,10 @@ private:
   int depth_;
 
   /// Type definition for a ordered collection of return states
-  typedef std::stack <PICML::State> Holding_State;
+  typedef std::stack <PICML::Terminal> Terminal_State;
 
   /// Collection of ordered return states.
-  Holding_State holding_state_;
+  Terminal_State terminal_state_;
 
   typedef std::stack <PICML::InputAction> Action_Stack;
 
