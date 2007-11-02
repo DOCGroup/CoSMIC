@@ -1,15 +1,35 @@
+Fri Nov  2 14:08:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated example to new paradigm.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Removed preconditions from all transition elements. This
+            is not necessary since the preconditions do not translate
+            directly to C++ or TIOA.
+
+        * PIM/PICML/paradigms/icons/BranchState.bmp:
+        * PIM/PICML/paradigms/icons/State.bmp:
+
+          Recreated the images from native Visio files.
+
 Thu Nov  1 00:00:00 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
 
-          Connections from createTargetObjects to 
-          createAssociations were incorrect. 
-          Corrected the generation of associations between SRC 
+          Connections from createTargetObjects to
+          createAssociations were incorrect.
+          Corrected the generation of associations between SRC
           and TRGT elements.
           Fixed generation of names for source and target elements.
 
-* Attribute generation from input and output metamodels with matching types.
-          
+        * Attribute generation from input and output metamodels with matching types.
+
 
 Tue Oct 30 15:18:45 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 

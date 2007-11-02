@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{525FE668-6953-4C7B-B381-780F8B2C3343}" cdate="Wed Aug 22 16:29:08 2007" mdate="Wed Aug 22 16:29:08 2007" >
+<paradigm name="PICML" guid="{1B76FEB3-3F84-4756-A57D-06838924BB1D}" cdate="Fri Sep 28 15:37:58 2007" mdate="Fri Sep 28 15:37:58 2007" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -123,6 +123,11 @@ endif]]>
 			<dispname>Abstract:</dispname>
 			<regnode name="help" value = "Flag that specifys if the worker is abstract. An abstract worker is one that cannot be used directly in a class as a worker. However, it can be subclassed by other workers."></regnode>
 		</attrdef>
+		<attrdef name="Condition" metaref = "4024" valuetype = "string" defvalue = "">
+			<dispname>Condition:</dispname>
+			<regnode name="multiLine" value = "2"></regnode>
+			<regnode name="help" value = "Expression that determines if branch is executed."></regnode>
+		</attrdef>
 		<attrdef name="ConfigureRTQoS" metaref = "3818" valuetype = "boolean" defvalue = "true">
 		</attrdef>
 		<attrdef name="ConsumerBasedFiltering" metaref = "3819" valuetype = "boolean" defvalue = "true">
@@ -165,10 +170,6 @@ endif]]>
 			<dispname>Effects:</dispname>
 			<regnode name="multiLine" value = "10"></regnode>
 			<regnode name="help" value = "Defines the effects of executing the previous action."></regnode>
-		</attrdef>
-		<attrdef name="Precondition" metaref = "3969" valuetype = "string" defvalue = "">
-			<dispname>Precondition:</dispname>
-			<regnode name="help" value = "Defines the condition that allows execution of the next action."></regnode>
 		</attrdef>
 		<attrdef name="PrefixTag" metaref = "1023" valuetype = "string" defvalue = "">
 		</attrdef>
@@ -1042,17 +1043,13 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "BranchTransition" metaref = "3972" attributes = "Precondition" >
+		<connection name = "BranchTransition" metaref = "4025" attributes = "Condition" >
 				<regnode name = "sName" value ="srcBranchTransition"></regnode>
 				<regnode name = "dName" value ="dstBranchTransition"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
 				<regnode name = "lineType" value ="solid"></regnode>
-			<constraint name="HasPrecondition" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self->Precondition.trim ().size > 0]]>
-				<dispname>All branch transitions must have a precondition.</dispname>
-			</constraint>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "BranchState"></pointeritem>
@@ -1948,9 +1945,9 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 			</connjoint>
 		</connection>
-		<connection name = "Transition" metaref = "3976" attributes = "Precondition" >
-				<regnode name = "sName" value ="srcInternalPrecondition"></regnode>
-				<regnode name = "dName" value ="dstInternalPrecondition"></regnode>
+		<connection name = "Transition" metaref = "4026" >
+				<regnode name = "sName" value ="srcTransition"></regnode>
+				<regnode name = "dName" value ="dstTransition"></regnode>
 				<regnode name = "color" value ="0x000000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -3214,6 +3211,11 @@ endif
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyWorkerType"></regnode>
+			<constraint name="AbstractWorker" eventmask = "0x400" depth = "1" priority = "2">
+				<![CDATA[let worker : Worker = self->refersTo () in
+not worker.Abstract]]>
+				<dispname>Cannot reference an abstract worker</dispname>
+			</constraint>
 			<constraint name="NotNull" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[not self.refersTo ().isNull ()]]>
 				<dispname>Undefined type (null reference)</dispname>
@@ -3239,8 +3241,19 @@ endif]]>
 				<dispname>The name of action instances must match the name of a worker.</dispname>
 			</constraint>
 			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self.attachingConnections( "src", Effect) -> size = 1]]>
+				<![CDATA[let name = self->parent ().kindName in
+
+if name <> "Worker" then
+  self->attachingConnections( "src", Effect) -> size = 1
+else
+  true
+endif]]>
 				<dispname>Action is missing effect connection</dispname>
+			</constraint>
+			<constraint name="ValidBranchTransitionsrcCardinality27" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BranchTransition ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over BranchTransition, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidEffectdstCardinality48" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Effect ) -> size in
@@ -3556,7 +3569,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "Action" metaref = "3646" kind = "Action"></role>
 			<role name = "Attribute" metaref = "1294" kind = "Attribute"></role>
 			<role name = "BranchState" metaref = "3978" kind = "BranchState"></role>
-			<role name = "BranchTransition" metaref = "3979" kind = "BranchTransition"></role>
+			<role name = "BranchTransition" metaref = "4027" kind = "BranchTransition"></role>
 			<role name = "CompositeAction" metaref = "3762" kind = "CompositeAction"></role>
 			<role name = "Effect" metaref = "3980" kind = "Effect"></role>
 			<role name = "Environment" metaref = "3806" kind = "Environment"></role>
@@ -3574,7 +3587,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "RequiredRequestPort" metaref = "1299" kind = "RequiredRequestPort"></role>
 			<role name = "State" metaref = "3983" kind = "State"></role>
 			<role name = "Supports" metaref = "1300" kind = "Supports"></role>
-			<role name = "Transition" metaref = "3984" kind = "Transition"></role>
+			<role name = "Transition" metaref = "4028" kind = "Transition"></role>
 			<role name = "Variable" metaref = "3787" kind = "Variable"></role>
 			<role name = "WorkerType" metaref = "3659" kind = "WorkerType"></role>
 			<aspect name = "InterfaceDefinition" metaref = "1301" attributes = "VersionTag SpecifyIdTag UUID label" >
@@ -3589,7 +3602,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<aspect name = "Behavior" metaref = "1978" attributes = "VersionTag SpecifyIdTag UUID label" >
 				<part metaref = "3660" role = "Action" primary = "yes" linked = "no"></part>
 				<part metaref = "3985" role = "BranchState" primary = "yes" linked = "no"></part>
-				<part metaref = "3986" role = "BranchTransition" primary = "yes" linked = "no"></part>
+				<part metaref = "4029" role = "BranchTransition" primary = "yes" linked = "no"></part>
 				<part metaref = "3766" role = "CompositeAction" primary = "yes" linked = "no"></part>
 				<part metaref = "3987" role = "Effect" primary = "yes" linked = "no"></part>
 				<part metaref = "3808" role = "Environment" primary = "yes" linked = "no"></part>
@@ -3605,7 +3618,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "2002" role = "ProvidedRequestPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "2003" role = "RequiredRequestPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "3990" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "3991" role = "Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "4030" role = "Transition" primary = "yes" linked = "no"></part>
 				<part metaref = "3793" role = "Variable" primary = "yes" linked = "no"></part>
 				<part metaref = "3673" role = "WorkerType" primary = "yes" kindaspect = "Behavior" linked = "no"></part>
 			</aspect>
@@ -3869,14 +3882,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality147" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidComponentImplementationContainerPartCardinality148" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentImplementation" ) -> size + self.parts( "MonolithicImplementation" ) -> size + self.parts( "ComponentAssembly" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidComponentImplementationContainerPartCardinality148" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality149" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
@@ -3939,7 +3952,13 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="composite.bmp"></regnode>
 			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self.attachingConnections( "src", Effect) -> size = 1]]>
+				<![CDATA[let name = self->parent ().kindName in
+
+if name <> "Worker" then
+  self->attachingConnections( "src", Effect) -> size = 1
+else
+  true
+endif]]>
 				<dispname>Action is missing effect connection</dispname>
 			</constraint>
 			<constraint name="SingleInputAction" eventmask = "0x4" depth = "1" priority = "1">
@@ -3947,6 +3966,11 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 inputs.size () = 1
 ]]>
 				<dispname>Composite actions must contain one InputAction</dispname>
+			</constraint>
+			<constraint name="ValidBranchTransitionsrcCardinality27" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BranchTransition ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over BranchTransition, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidEffectdstCardinality48" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Effect ) -> size in
@@ -3960,7 +3984,7 @@ inputs.size () = 1
 			</constraint>
 			<role name = "Action" metaref = "3675" kind = "Action"></role>
 			<role name = "BranchState" metaref = "3992" kind = "BranchState"></role>
-			<role name = "BranchTransition" metaref = "3993" kind = "BranchTransition"></role>
+			<role name = "BranchTransition" metaref = "4031" kind = "BranchTransition"></role>
 			<role name = "CompositeAction" metaref = "3771" kind = "CompositeAction"></role>
 			<role name = "Effect" metaref = "3994" kind = "Effect"></role>
 			<role name = "Finish" metaref = "3995" kind = "Finish"></role>
@@ -3969,12 +3993,12 @@ inputs.size () = 1
 			<role name = "OutputAction" metaref = "3680" kind = "OutputAction"></role>
 			<role name = "Property" metaref = "3326" kind = "Property"></role>
 			<role name = "State" metaref = "3997" kind = "State"></role>
-			<role name = "Transition" metaref = "3998" kind = "Transition"></role>
+			<role name = "Transition" metaref = "4032" kind = "Transition"></role>
 			<role name = "Variable" metaref = "3798" kind = "Variable"></role>
 			<aspect name = "Behavior" metaref = "3329" >
 				<part metaref = "3684" role = "Action" primary = "yes" linked = "no"></part>
 				<part metaref = "3999" role = "BranchState" primary = "yes" linked = "no"></part>
-				<part metaref = "4000" role = "BranchTransition" primary = "yes" linked = "no"></part>
+				<part metaref = "4033" role = "BranchTransition" primary = "yes" linked = "no"></part>
 				<part metaref = "3773" role = "CompositeAction" primary = "yes" linked = "no"></part>
 				<part metaref = "4001" role = "Effect" primary = "yes" linked = "no"></part>
 				<part metaref = "4002" role = "Finish" primary = "yes" linked = "no"></part>
@@ -3983,7 +4007,7 @@ inputs.size () = 1
 				<part metaref = "3689" role = "OutputAction" primary = "yes" linked = "no"></part>
 				<part metaref = "3331" role = "Property" primary = "yes" linked = "no"></part>
 				<part metaref = "4004" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "4005" role = "Transition" primary = "yes" linked = "no"></part>
+				<part metaref = "4034" role = "Transition" primary = "yes" linked = "no"></part>
 				<part metaref = "3803" role = "Variable" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
@@ -4531,7 +4555,13 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="OutputAction.bmp"></regnode>
 			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[self.attachingConnections( "src", Effect) -> size = 1]]>
+				<![CDATA[let name = self->parent ().kindName in
+
+if name <> "Worker" then
+  self->attachingConnections( "src", Effect) -> size = 1
+else
+  true
+endif]]>
 				<dispname>Action is missing effect connection</dispname>
 			</constraint>
 			<constraint name="UnknownOutput" eventmask = "0x0" depth = "1" priority = "2">
@@ -4540,6 +4570,11 @@ let ports = parent.parts (OutEventPort) in
 
 ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>Name of the output action must match the name of output port</dispname>
+			</constraint>
+			<constraint name="ValidBranchTransitionsrcCardinality27" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BranchTransition ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over BranchTransition, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidEffectdstCardinality48" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Effect ) -> size in
@@ -4620,32 +4655,32 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality159" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality160" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality157" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality158" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality159" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality160" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4803,12 +4838,12 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 				<regnode name = "icon" value ="rtrequirements.bmp"></regnode>
 			<constraint name="ValidRTRequirementsPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRTRequirementsPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceProvider" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceConsumer" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RTRequirements, has to match 0..1.</dispname>
 			</constraint>
@@ -4922,14 +4957,14 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidServantProjectPartCardinality169" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidServantProjectPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidServantProjectPartCardinality170" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by ServantProject, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="servantOneInstance" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[self.instances ()->size <= 1]]>
@@ -4946,12 +4981,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="provider.bmp"></regnode>
 			<constraint name="ValidServiceProviderPartCardinality171" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
+				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidServiceProviderPartCardinality172" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
@@ -4983,12 +5018,12 @@ let props = self.connectedFCOs(AttributeValue) in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="project.bmp"></regnode>
 			<constraint name="ValidStubProjectPartCardinality173" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidStubProjectPartCardinality174" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ImplementationArtifactReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "FileRef" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by StubProject, has to match 1.</dispname>
 			</constraint>
@@ -5037,19 +5072,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality175" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality176" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality177" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
