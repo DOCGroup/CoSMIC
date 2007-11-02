@@ -1,3 +1,13 @@
+Fri Nov  2 16:10:32 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Added a rule for checking the bounds on a conditional value 
+          mapping block.
+          Removed temporary variables, modified rules for multiple 
+          conditional value mappings in the same CodePoint.
+          Updated conditional creation mapping rules.
+
 Fri Nov  2 14:08:52 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
