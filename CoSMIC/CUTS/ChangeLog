@@ -1,3 +1,9 @@
+Mon Nov  5 19:50:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          Changed the name managling for channel ids.
+
 Mon Nov  5 19:39:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/TIOA/Host.tioa:

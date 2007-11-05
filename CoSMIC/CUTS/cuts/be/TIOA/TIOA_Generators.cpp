@@ -288,7 +288,7 @@ void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
 write_param_InEventPort (const PICML::InEventPort & input)
 {
   CUTS_BE_TIOA ()->outfile_
-    << ", " << input.name () << "_chid : Int";
+    << ", chid_" << input.name () << " : Int";
 }
 
 //
@@ -298,7 +298,7 @@ void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
 write_param_OutEventPort (const PICML::OutEventPort & output)
 {
   CUTS_BE_TIOA ()->outfile_
-    << ", " << output.name () << "_chid : Int";
+    << ", chid_" << output.name () << " : Int";
 }
 
 //
@@ -423,19 +423,19 @@ write_system_calls (const PICML::InEventPort & input)
   std::string name = input.name ();
 
   CUTS_BE_TIOA ()->outfile_
+    << std::endl
     << "    %% event : " << name << std::endl
     << "    output thr_release (hid)" << std::endl
     << "      pre hid = host /\\ thr_state[port_" << name << "] = complete;" << std::endl
     << "      eff thr_state[port_" << name << "] := nil;" << std::endl
     << std::endl
     << "    output thr_request (hid, cid, chid)" << std::endl
-    << "      pre hid = host /\\ cid = myid /\\ chid = " << name
-    << "_chid /\\ queue_size[port_" << name << "] > 0 /\\ mode = nil;" << std::endl
+    << "      pre hid = host /\\ cid = myid /\\ chid = chid_" << name
+    << " /\\ queue_size[port_" << name << "] > 0 /\\ mode = nil;" << std::endl
     << std::endl
     << "    input thr_assign (cid, chid)" << std::endl
-    << "      eff if cid = myid /\\ chid = " << name << "_chid" << std::endl
-    << "          then thr_state[port_" << name << "] := ready; fi;" << std::endl
-    << std::endl;
+    << "      eff if cid = myid /\\ chid = chid_" << name << std::endl
+    << "          then thr_state[port_" << name << "] := ready; fi;" << std::endl;
 }
 
 //
@@ -489,7 +489,7 @@ generate (const PICML::InEventPort & sink)
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
     << "    input recv_event (chid)" << std::endl
     // 'where' clause goes here...
-    << "      eff if chid = " << name << "_chid " << std::endl
+    << "      eff if chid = chid_" << name << std::endl
     << "          then queue_size[port_" << name
     << "] := succ (queue_size[port_" << name << "]); fi;" << std::endl
     << std::endl
@@ -527,8 +527,8 @@ generate (const PICML::OutputAction & action)
     << "mode := " << last_state << ";" << std::endl
     << std::endl
     << "    output send_event (chid)" << std::endl
-    << "      pre mode = " << last_state << " /\\ chid = "
-    << action.name () << "_chid;" << std::endl
+    << "      pre mode = " << last_state << " /\\ chid = chid_"
+    << action.name () << ";" << std::endl
     << "      eff ";
 
   return true;
