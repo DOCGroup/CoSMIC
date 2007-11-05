@@ -40,7 +40,8 @@ static std::string TIOA_Signature (const PICML::Action & action)
 //
 CUTS_BE_Tioa::CUTS_BE_Tioa (void)
 : last_state_id_ (0),
-  env_done_ (false)
+  env_done_ (false),
+  state_count_ (0)
 {
 
 }
@@ -52,6 +53,7 @@ void CUTS_BE_Tioa::reset (void)
 {
   this->last_state_id_ = 0;
   this->env_done_ = false;
+  this->state_count_ = 0;
 
   this->input_events_.clear ();
 }
@@ -143,16 +145,35 @@ generate (const PICML::MonolithicImplementation & mono,
                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
                               write_vocabulary_State, _1));
 
-  CUTS_BE_TIOA ()->outfile_
-    << "]" << std::endl
-    << "end" << std::endl
-    << std::endl
-    << "automaton " << name << " (host : Int";
-
   // Write the parameters for all the event sinks.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set inputs = component.InEventPort_kind_children ();
 
+
+  CUTS_BE_TIOA ()->outfile_
+    << "]" << std::endl
+    << "  types Thread_State : Enumeration[nil, blocked, ready, running, complete]" << std::endl;
+
+  if (!inputs.empty ())
+  {
+    CUTS_BE_TIOA ()->outfile_
+      << "  types Port_ID : Enumeration[unknown";
+
+    // Write the parameters for all the event sinks.
+    std::for_each (inputs.begin (),
+                  inputs.end (),
+                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
+                                write_portid_InEventPort, _1));
+
+    CUTS_BE_TIOA ()->outfile_ << "]" << std::endl;
+  }
+
+  CUTS_BE_TIOA ()->outfile_
+    << "end" << std::endl
+    << std::endl
+    << "automaton " << name << " (myid : Int, host : Int";
+
+  // Write the parameters for all the event sinks.
   std::for_each (inputs.begin (),
                  inputs.end (),
                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
@@ -175,6 +196,11 @@ generate (const PICML::MonolithicImplementation & mono,
     << "    %% input/output connections between components" << std::endl
     << "    input  recv_event (chid : Int)" << std::endl
     << "    output send_event (chid : Int)" << std::endl
+    << std::endl
+    << "    %% system calls for requesting threads to process events" << std::endl
+    << "    input  thr_assign (cid : Int, chid : Int)" << std::endl
+    << "    output thr_request (host : Int, cid : Int, chid : Int)" << std::endl
+    << "    output thr_release (host : Int)" << std::endl
     << "    " << std::endl;
 
   // Write the signature for all the internal actions
@@ -234,7 +260,25 @@ generate (const PICML::MonolithicImplementation & mono,
 void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
 write_vocabulary_State (const PICML::State & state)
 {
-  CUTS_BE_TIOA ()->outfile_ << ", " << TIOA_State_ID (state.uniqueId ());
+  CUTS_BE_TIOA ()->outfile_ << ", ";
+
+  if (++ CUTS_BE_TIOA ()->state_count_ % 5 == 0)
+  {
+    CUTS_BE_TIOA ()->outfile_
+      << std::endl
+      << "                                ";
+  }
+
+  CUTS_BE_TIOA ()->outfile_ << TIOA_State_ID (state.uniqueId ());
+}
+
+//
+// CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::write_portid_InEventPort
+//
+void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
+write_portid_InEventPort (const PICML::InEventPort & input)
+{
+  CUTS_BE_TIOA ()->outfile_ << ", port_" << input.name ();
 }
 
 //
@@ -336,13 +380,9 @@ generate (const PICML::Component & component)
     << std::endl
     << "  states" << std::endl
     << "    mode : Location := nil;" << std::endl
-    << "    time : Real;" << std::endl;
-
-  // Write the queue states for each of the inputs.
-  std::for_each (CUTS_BE_TIOA ()->input_events_.begin (),
-                 CUTS_BE_TIOA ()->input_events_.end (),
-                 boost::bind (&CUTS_BE_Variables_Begin_T <CUTS_BE_Tioa>::
-                                write_state_InEventPort, _1));
+    << "    time : Real;" << std::endl
+    << "    thr_state : Array[Port_ID, Thread_State];" << std::endl
+    << "    queue_size : Array[Port_ID, Int];" << std::endl;
 
   return true;
 }
@@ -355,19 +395,47 @@ generate (const PICML::Component & component)
 {
   CUTS_BE_TIOA ()->outfile_
     << std::endl
-    << "  transitions" << std::endl;
+    << "  transitions" << std::endl
+    << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
+    << "    % system calls" << std::endl
+    << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl;
+
+  // We need to create all the transitions for the system calls,
+  // which is based on the input ports for the component.
+
+  typedef std::vector <PICML::InEventPort> InEventPort_Set;
+  InEventPort_Set inputs = component.InEventPort_kind_children ();
+
+  std::for_each (inputs.begin (),
+                 inputs.end (),
+                 boost::bind (&CUTS_BE_Variables_End_T <CUTS_BE_Tioa>::
+                              write_system_calls, _1));
 
   return true;
 }
 
 //
-// write_state_InEventPort
+// CUTS_BE_Variables_End_T <CUTS_BE_Tioa>::write_system_calls
 //
-void CUTS_BE_Variables_Begin_T <CUTS_BE_Tioa>::
-write_state_InEventPort (const std::string & input)
+void CUTS_BE_Variables_End_T <CUTS_BE_Tioa>::
+write_system_calls (const PICML::InEventPort & input)
 {
+  std::string name = input.name ();
+
   CUTS_BE_TIOA ()->outfile_
-    << "    queue_" << input << " : Int := 0;" << std::endl;
+    << "    %% event : " << name << std::endl
+    << "    output thr_release (hid)" << std::endl
+    << "      pre hid = host /\\ thr_state[port_" << name << "] = complete;" << std::endl
+    << "      eff thr_state[port_" << name << "] := nil;" << std::endl
+    << std::endl
+    << "    output thr_request (hid, cid, chid)" << std::endl
+    << "      pre hid = host /\\ cid = myid /\\ chid = " << name
+    << "_chid /\\ queue_size[port_" << name << "] > 0 /\\ mode = nil;" << std::endl
+    << std::endl
+    << "    input thr_assign (cid, chid)" << std::endl
+    << "      eff if cid = myid /\\ chid = " << name << "_chid" << std::endl
+    << "          then thr_state[port_" << name << "] := ready; fi;" << std::endl
+    << std::endl;
 }
 
 //
@@ -421,12 +489,16 @@ generate (const PICML::InEventPort & sink)
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
     << "    input recv_event (chid)" << std::endl
     // 'where' clause goes here...
-    << "      eff if chid = " << name << "_chid then queue_" << name
-    << " := queue_" << name << " + 1; fi;" << std::endl
+    << "      eff if chid = " << name << "_chid " << std::endl
+    << "          then queue_size[port_" << name
+    << "] := succ (queue_size[port_" << name << "]); fi;" << std::endl
     << std::endl
     << "    internal handle_" << name << std::endl
-    << "      pre mode = nil /\\ queue_" << name << " > 0;" << std::endl
-    << "      eff queue_" << name << " := queue_" << name << " - 1;" << std::endl
+    << "      pre thr_state[port_" << name
+    << "] = ready /\\ mode = nil /\\ queue_size[port_"
+    << name << "] > 0;" << std::endl
+    << "      eff queue_size[port_" << name
+    << "] := pred (queue_size[port_" << name << "]);" << std::endl
     << "          ";
 
   return true;

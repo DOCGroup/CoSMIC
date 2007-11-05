@@ -46,6 +46,9 @@ public:
 
   /// Done generating the environment section.
   bool env_done_;
+
+  /// Keeps track of how many states written.
+  long state_count_;
 };
 
 //
@@ -127,6 +130,8 @@ struct CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>
                         const PICML::Component & component);
 
 private:
+  static void write_portid_InEventPort (const PICML::InEventPort &);
+
   static void write_param_InEventPort (const PICML::InEventPort &);
   static void write_param_OutEventPort (const PICML::OutEventPort &);
 
@@ -162,9 +167,6 @@ template < >
 struct CUTS_BE_Variables_Begin_T <CUTS_BE_Tioa>
 {
   static bool generate (const PICML::Component & component);
-
-private:
-  static void write_state_InEventPort (const std::string & input);
 };
 
 //=============================================================================
@@ -177,6 +179,9 @@ template < >
 struct CUTS_BE_Variables_End_T <CUTS_BE_Tioa>
 {
   static bool generate (const PICML::Component & component);
+
+private:
+  static void write_system_calls (const PICML::InEventPort &);
 };
 
 //=============================================================================

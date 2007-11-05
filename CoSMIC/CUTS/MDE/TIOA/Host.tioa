@@ -1,0 +1,85 @@
+%% -*- TIOA -*-
+
+%%=============================================================================
+%% @file       Host.tioa
+%%
+%% Defines the automaton for a host in the system. The host is assigned
+%% a set of components in the system. The components on a host request
+%% threads of execution from the host to process received events.
+%%
+%% $Id$
+%%
+%% @author     James H. Hill
+%%=============================================================================
+
+vocabulary Thread_Pool
+  types Location : Enumeration[waiting, dispatching, blocked]
+end
+
+automaton Host (hid : Int, thr_count : Int)
+  imports Thread_Pool
+
+  signature
+    %% system calls for assigning threads to process events
+    input thr_request (host : Int, cid : Int, chid : Int)
+    input thr_release (host : Int)
+    output thr_assign (cid : Int, chid : Int)
+
+    %%
+    %% private operations
+    %%
+    internal i_block
+    internal i_unblock
+
+  states
+    %% required states
+    mode : Location := waiting;
+    time : Real;
+
+    %% automaton specific states
+    thr_inuse : Int := 0;
+    target_cid : Int;
+    target_chid : Int;
+
+  transitions
+    %%
+    %% thr_request
+    %%
+    input thr_request (host, cid, chid)
+      eff if host = hid /\ mode = waiting /\ thr_inuse ~= thr_count
+          then mode := dispatching;
+               target_cid := cid;
+               target_chid := chid; fi;
+
+    %%
+    %% thr_release
+    %%
+    input thr_release (host)
+      eff if host = hid /\ thr_inuse > 0
+          then thr_inuse := pred(thr_inuse); fi;
+
+    %%
+    %% thr_assign
+    %%
+    output thr_assign (cid, chid)
+      pre cid = target_cid /\ chid = target_chid /\ mode = dispatching /\ thr_inuse < thr_count;
+      eff thr_inuse := succ(thr_inuse); mode := waiting;
+
+    %%
+    %% i_unblock
+    %%
+    internal i_unblock
+      pre mode = blocked /\ thr_inuse ~= thr_count;
+      eff mode := waiting;
+
+    %%
+    %% i_block
+    %%
+    internal i_block
+      pre mode = waiting /\ thr_inuse = thr_count;
+      eff mode := blocked;
+
+  trajectories
+    trajdef traj
+      evolve d(time) = 1;
+

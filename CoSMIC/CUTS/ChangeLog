@@ -1,3 +1,17 @@
+Mon Nov  5 19:39:21 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/TIOA/Host.tioa:
+
+          Initial implementation of a Host automaton used for scheduling
+          threads to run.
+
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          Component automaton are now able to request threads to handle
+          events. Right now, you can only have one thread active per event
+          port.
+
 Mon Nov  5 15:21:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MDE/TIOA/Unbounded_Event_Connection.tioa:
