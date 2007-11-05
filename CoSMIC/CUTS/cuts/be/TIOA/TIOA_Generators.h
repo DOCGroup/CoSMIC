@@ -115,11 +115,13 @@ struct CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>
                         const PICML::Component & component);
 
 private:
+  static void write_param_InEventPort (const PICML::InEventPort &);
+  static void write_param_OutEventPort (const PICML::OutEventPort &);
+
   static void write_vocabulary_State (const PICML::State &);
-  static void write_signature_InEventPort (const PICML::InEventPort &);
-  static void write_signature_OutEventPort (const PICML::OutEventPort &);
   static void write_signature_Action (const PICML::Action &);
   static void write_signature_PeriodicEvent (const PICML::PeriodicEvent &);
+  static void write_signature_InEventPort (const PICML::InEventPort &);
 
   static void visit_Environment (const PICML::Environment &);
   static void visit_MultiInput (const PICML::MultiInput &);

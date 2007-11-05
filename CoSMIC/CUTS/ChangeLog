@@ -1,3 +1,12 @@
+Mon Nov  5 14:50:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          The component automaton now are able to send events across
+          specific connections. These connections are derived from the
+          assembly view of the system.
+
 Mon Nov  5 02:21:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * etc/SQL/CUTS-execution.sql:

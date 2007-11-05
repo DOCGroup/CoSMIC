@@ -14,7 +14,7 @@
 static std::string TIOA_State_ID (long id)
 {
   std::ostringstream ostr;
-  ostr << "st_" << id;
+  ostr << "s_" << id;
 
   return ostr.str ();
 }
@@ -105,9 +105,7 @@ generate (const PICML::MonolithicImplementation & mono,
 
   CUTS_BE_TIOA ()->outfile_
     << "vocabulary " << name << "_vocab" << std::endl
-    << "  types Location : Enumeration [nil, activate, passivate, remove]"
-    << std::endl
-    << "  types " << name << "_states : Enumeration [nil";
+    << "  types Location : Enumeration [nil";
 
   // Write the state enumeration vocabulary.
   typedef std::vector <PICML::State> State_Set;
@@ -122,29 +120,35 @@ generate (const PICML::MonolithicImplementation & mono,
     << "]" << std::endl
     << "end" << std::endl
     << std::endl
-    << "automaton " << name << " (host: Int)" << std::endl
-    << "  imports " << name << "_vocab" << std::endl
-    << std::endl
-    << "  signature" << std::endl
-    << "    input cuts_fini" << std::endl;
+    << "automaton " << name << " (host : Int";
 
-  // Write the signature for all the input ports.
+  // Write the parameters for all the event sinks.
   typedef std::vector <PICML::InEventPort> InEventPort_Set;
   InEventPort_Set inputs = component.InEventPort_kind_children ();
 
   std::for_each (inputs.begin (),
                  inputs.end (),
                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
-                                write_signature_InEventPort, _1));
+                              write_param_InEventPort, _1));
 
-  // Write the signature for all the output ports.
+  // Write the parameters for all the event sources.
   typedef std::vector <PICML::OutEventPort> OutEventPort_Set;
   OutEventPort_Set outputs = component.OutEventPort_kind_children ();
 
   std::for_each (outputs.begin (),
                  outputs.end (),
                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
-                                write_signature_OutEventPort, _1));
+                              write_param_OutEventPort, _1));
+
+  CUTS_BE_TIOA ()->outfile_
+    << ")" << std::endl
+    << "  imports " << name << "_vocab" << std::endl
+    << std::endl
+    << "  signature" << std::endl
+    << "    %% input/output connections between components" << std::endl
+    << "    input  recv_event (chid : Int)" << std::endl
+    << "    output send_event (chid : Int)" << std::endl
+    << "    " << std::endl;
 
   // Write the signature for all the internal actions
   typedef std::vector <PICML::Action> Action_Set;
@@ -154,6 +158,12 @@ generate (const PICML::MonolithicImplementation & mono,
                  actions.end (),
                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
                               write_signature_Action, _1));
+
+  // Write the signature for event handlers.
+  std::for_each (inputs.begin (),
+                 inputs.end (),
+                 boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
+                              write_signature_InEventPort, _1));
 
   // Write the signature for the periodic events.
   typedef std::vector <PICML::PeriodicEvent> Periodic_Set;
@@ -201,29 +211,23 @@ write_vocabulary_State (const PICML::State & state)
 }
 
 //
-// CUTS_BE_Component_Impl_Begin_T::write_signature_InEventPort
+// CUTS_BE_Component_Impl_Begin_T::write_param_InEventPort
 //
 void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
-write_signature_InEventPort (const PICML::InEventPort & input)
+write_param_InEventPort (const PICML::InEventPort & input)
 {
-  std::string input_name = input.name ();
-
   CUTS_BE_TIOA ()->outfile_
-    << "    input " << input_name << std::endl
-    << "    internal handle_" << input_name << std::endl;
-
-  // Insert the name into the <input_events_>.
-  CUTS_BE_TIOA ()->input_events_.insert (input_name);
+    << ", " << input.name () << "_chid : Int";
 }
 
 //
-// CUTS_BE_Component_Impl_Begin_T::write_signature_OutEventPort
+// CUTS_BE_Component_Impl_Begin_T::write_param_InEventPort
 //
 void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
-write_signature_OutEventPort (const PICML::OutEventPort & output)
+write_param_OutEventPort (const PICML::OutEventPort & output)
 {
   CUTS_BE_TIOA ()->outfile_
-    << "    output " << output.name () << std::endl;
+    << ", " << output.name () << "_chid : Int";
 }
 
 //
@@ -234,6 +238,20 @@ write_signature_Action (const PICML::Action & action)
 {
   CUTS_BE_TIOA ()->outfile_
     << "    internal " << TIOA_Signature (action) << std::endl;
+}
+
+//
+// CUTS_BE_Component_Impl_Begin_T::write_signature_InEventPort
+//
+void CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
+write_signature_InEventPort (const PICML::InEventPort & input)
+{
+  std::string name = input.name ();
+
+  CUTS_BE_TIOA ()->outfile_
+    << "    internal handle_" << name << std::endl;
+
+  CUTS_BE_TIOA ()->input_events_.insert (name);
 }
 
 //
@@ -291,8 +309,7 @@ generate (const PICML::Component & component)
     << std::endl
     << "  states" << std::endl
     << "    mode : Location := nil;" << std::endl
-    << "    time : Real := 0.0;" << std::endl
-    << "    thr_state : " << component.name () << "_states := nil;" << std::endl;
+    << "    time : Real;" << std::endl;
 
   // Write the queue states for each of the inputs.
   std::for_each (CUTS_BE_TIOA ()->input_events_.begin (),
@@ -311,13 +328,7 @@ generate (const PICML::Component & component)
 {
   CUTS_BE_TIOA ()->outfile_
     << std::endl
-    << "  transitions" << std::endl
-    << "  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
-    << "  %% required: cuts_fini" << std::endl
-    << "  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
-    << "     input cuts_fini" << std::endl
-    << "       eff" << std::endl
-    << "         mode := nil;" << std::endl;
+    << "  transitions" << std::endl;
 
   return true;
 }
@@ -349,15 +360,14 @@ bool CUTS_BE_WorkerAction_Begin_T <CUTS_BE_Tioa>::
 generate (const PICML::Worker & worker, const PICML::Action & action)
 {
   CUTS_BE_TIOA ()->outfile_
-    << "        thr_state := " << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_)
+    << "mode := " << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_)
     << ";" << std::endl
     << std::endl
     << "    internal " << TIOA_Signature (action) << std::endl
-    << "      pre" << std::endl
-    << "        thr_state = "
+    << "      pre mode = "
     << TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_) << ";" << std::endl
-    << "      eff" << std::endl
-    << "        time := time + " << action.Duration () << ";" << std::endl;
+    << "      eff time := time + " << action.Duration () << ";" << std::endl
+    << "          ";
   return true;
 }
 
@@ -382,16 +392,15 @@ generate (const PICML::InEventPort & sink)
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
     << "    % event input: " << name << std::endl
     << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
-    << "    input " << name << std::endl
+    << "    input recv_event (chid)" << std::endl
     // 'where' clause goes here...
-    << "      eff" << std::endl
-    << "        queue_" << name << " := queue_" << name << " + 1;" << std::endl
+    << "      eff if chid = " << name << "_chid then queue_" << name
+    << " := queue_" << name << " + 1; fi;" << std::endl
     << std::endl
     << "    internal handle_" << name << std::endl
-    << "      pre" << std::endl
-    << "        queue_" << name << " > 0;" << std::endl
-    << "      eff" << std::endl
-    << "        queue_" << name << " := queue_" << name << " - 1;" << std::endl;
+    << "      pre mode = nil /\\ queue_" << name << " > 0;" << std::endl
+    << "      eff queue_" << name << " := queue_" << name << " - 1;" << std::endl
+    << "          ";
 
   return true;
 };
@@ -403,9 +412,7 @@ bool CUTS_BE_InEventPort_End_T <CUTS_BE_Tioa>::
 generate (const PICML::InEventPort & sink)
 {
 
-  CUTS_BE_TIOA ()->outfile_
-    << "        thr_state := nil;" << std::endl;
-
+  CUTS_BE_TIOA ()->outfile_ << "mode := nil;" << std::endl;
   return true;
 }
 
@@ -418,12 +425,12 @@ generate (const PICML::OutputAction & action)
   std::string last_state = TIOA_State_ID (CUTS_BE_TIOA ()->last_state_id_);
 
   CUTS_BE_TIOA ()->outfile_
-    << "        thr_state := " << last_state << ";" << std::endl
+    << "mode := " << last_state << ";" << std::endl
     << std::endl
-    << "    output " << action.name () << std::endl
-    << "      pre" << std::endl
-    << "        thr_state = " << last_state << ";" << std::endl
-    << "      eff" << std::endl;
+    << "    output send_event (chid)" << std::endl
+    << "      pre mode = " << last_state << " /\\ chid = "
+    << action.name () << "_chid;" << std::endl
+    << "      eff ";
 
   return true;
 }
@@ -454,12 +461,7 @@ generate (const PICML::InputAction & action)
     << "    input env_" << name << std::endl;
 
   if (!CUTS_BE_TIOA ()->env_done_)
-  {
-    CUTS_BE_TIOA ()->outfile_
-      // 'where' clause goes here...
-      << "      eff" << std::endl
-      << "        mode := " << name << ";" << std::endl;
-  }
+    CUTS_BE_TIOA ()->outfile_ << "      eff ";
 
   return true;
 }
@@ -470,9 +472,7 @@ generate (const PICML::InputAction & action)
 bool CUTS_BE_Environment_Method_End_T <CUTS_BE_Tioa>::
 generate (const PICML::InputAction & action)
 {
-  CUTS_BE_TIOA ()->outfile_
-    << "        thr_state := nil;" << std::endl;
-
+  CUTS_BE_TIOA ()->outfile_ << "mode := nil;" << std::endl;
   return true;
 }
 
@@ -495,7 +495,7 @@ generate (const PICML::PeriodicEvent & periodic)
       << "    % periodic input: " << name << std::endl
       << "    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" << std::endl
       << "    input periodic_" << name << std::endl
-      << "      eff" << std::endl;
+      << "      eff ";
   }
 
   return true;
@@ -507,8 +507,6 @@ generate (const PICML::PeriodicEvent & periodic)
 bool CUTS_BE_PeriodicEvent_End_T <CUTS_BE_Tioa>::
 generate (const PICML::PeriodicEvent & periodic)
 {
-  CUTS_BE_TIOA ()->outfile_
-    << "        thr_state := nil;" << std::endl;
-
+  CUTS_BE_TIOA ()->outfile_ << "mode := nil;" << std::endl;
   return true;
 }
