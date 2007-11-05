@@ -1,3 +1,12 @@
+Mon Nov  5 15:18:36 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MDE/TIOA:
+        * MDE/TIOA/Unbounded_Event_Connection.tioa:
+
+          Initial checkin of CUTS for TIOA. Currently, we only have
+          an unbounded event connection defined. We still need to
+          define the behavior of individual hosts.
+
 Mon Nov  5 15:07:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/TIOA/TIOA_Generators.h:

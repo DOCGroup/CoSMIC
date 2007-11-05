@@ -1,0 +1,78 @@
+%% -*- TIOA -*-
+
+%%=============================================================================
+%% @file       Unbounded_Event_Connection.tioa
+%%
+%% Defines the automaton for an unbounded event connection. Unbounded
+%% event connections can handle any number of events. It, therefore,
+%% never reaches the state of full. The connection will hold the event
+%% until the destination is ready to receive the event.
+%%
+%% Right now, we do not keep list of outstanding events. Eventually,
+%% when the UPPAAL plugin supports queues, we will enable this feature.
+%%
+%% $Id$
+%%
+%% @author     James H. Hill
+%%=============================================================================
+
+vocabulary Unbounded_Event_Connection_Vocab
+  types Location : Enumeration [empty, not_empty]
+end
+
+automaton Unbounded_Event_Connection (ecid : Int)
+  imports Unbounded_Event_Connection_Vocab
+
+  signature
+    %% input/output connections between components
+    input  send_event (chid : Int)
+    output recv_event (chid : Int)
+
+    %% internal actions that define the connection's behavior
+    internal i_set_empty
+    internal i_set_not_empty
+
+  states
+    %% required states
+    mode : Location := empty;
+    time : Real;
+
+    %% automaton specific states
+    count : Int := 0;
+
+  transitions
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% input: send_event
+    %%
+    %% This action is called by components that want to send an event
+    %% to another component. It will update the event count for the
+    %% connection and signal all components on the receiving side that
+    %% a new event is coming.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    input send_event (chid)
+      eff if chid = ecid then count := succ (count); fi;
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% output: recv_event
+    %%
+    %% This action is called by connection to signal all receiving
+    %% components that a new event is arriving.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    output recv_event (chid)
+      pre mode = not_empty /\ count > 0 /\ chid = ecid;
+      eff count := pred (count);
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% internal actions
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    internal i_set_empty
+      pre mode = not_empty /\ count = 0;
+      eff mode := empty;
+
+    internal i_set_not_empty
+      pre mode = empty /\ count > 0;
+      eff mode := not_empty;
+
+  trajectories
+    trajdef traj
+      evolve d(time) = 1;
