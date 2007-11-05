@@ -1,3 +1,10 @@
+Mon Nov  5 15:07:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          Added a prologue to the generated TIOA files.
+
 Mon Nov  5 14:50:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/TIOA/TIOA_Generators.h:
