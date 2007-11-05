@@ -1,3 +1,10 @@
+Mon Nov  5 02:21:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * etc/SQL/CUTS-execution.sql:
+
+          Implemented stored procedures that calculate the delta in
+          processing time specific timestamps and overall test.
+
 Fri Nov  2 22:17:54 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Execution_Visitor_T.cpp:

@@ -364,4 +364,50 @@ BEGIN
   ORDER BY t9.component_name, srcname, dstname;
 END ; //
 
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_execution_time_delta
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_time_delta //
+
+CREATE PROCEDURE
+  cuts.select_execution_time_delta (IN test INT, IN coll_time DATETIME)
+BEGIN
+  SELECT
+      t1.test_number, t1.collection_time, t1.component, t1.sender, t1.src, t1.dst,
+      t1.best_time - t2.best_time AS best_time,
+      (t1.total_time / t1.metric_count) - (t2.total_time / t2.event_count) AS avg_time,
+      t1.worst_time - t2.worst_time AS worst_time
+    FROM execution_time AS t1, baseline AS t2
+    WHERE t1.test_number = test AND t1.collection_time = coll_time
+      AND t1.component = t2.instance AND t1.src = t2.inport
+      AND t1.dst = t2.outport
+    ORDER BY t1.component, t1.src, t1.dst, t1.sender;
+END ; //
+
+-------------------------------------------------------------------------------
+-- PROCEDURE: cuts.select_execution_time_cumulative_delta
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_time_cumulative_delta //
+
+CREATE PROCEDURE
+  cuts.select_execution_time_cumulative_delta (IN test INT)
+BEGIN
+  SELECT
+      t1.test_number, t1.component, t1.sender, t1.src, t1.dst,
+      SUM(t1.metric_count) AS metric_count,
+      MIN(t1.best_time) - t2.best_time AS best_time,
+      (SUM(t1.total_time) / SUM(t1.metric_count)) - (t2.total_time / t2.event_count) AS avg_time,
+      MAX(t1.worst_time) - t2.worst_time AS worst_time
+  FROM execution_time AS t1, baseline AS t2
+  WHERE t1.test_number = test
+        AND t1.component = t2.instance AND t1.src = t2.inport
+        AND t1.dst = t2.outport
+  GROUP BY component, metric_type, src, dst
+  ORDER BY collection_time;
+END ; //
+
 delimiter ;
