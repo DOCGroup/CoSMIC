@@ -63,64 +63,44 @@ namespace CUTS
       set { this.service_time_ = value; }
     }
 
-    public ArrayList ExitTimes
+    public void InsertExitPoint (CUTS.ExitPoint ep)
     {
-      get { return this.exittimes_; }
-    }
-
-    public override void DataBind()
-    {
-      if (this.exittimes_.Count > 0)
-      {
+      if (!this.exittime_row_.Visible)
         this.exittime_row_.Visible = true;
 
-        foreach (object item in this.exittimes_)
-        {
-          try
-          {
-            // Create a new row for the exit point.
-            CUTS.ExitPoint ep = (CUTS.ExitPoint)item;
-            TableRow row = new TableRow();
+      // Create a new row for the exit point.
+      this.exittimes_.Add(ep);
+      TableRow row = new TableRow();
 
-            // Create the cell that contains the name.
-            TableCell cell = new TableCell();
-            cell.Text = ep.Name + ":";
-            cell.CssClass = "performance-name";
-            row.Cells.Add(cell);
+      // Create the cell that contains the name.
+      TableCell cell = new TableCell();
+      cell.Text = ep.Name + ":";
+      cell.CssClass = "performance-name";
+      row.Cells.Add(cell);
 
-            // Create cells for each of the performance metrics.
-            cell = new TableCell();
-            cell.Text = ep.Performance.Count.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      // Create cells for each of the performance metrics.
+      cell = new TableCell();
+      cell.Text = ep.Performance.Count.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = ep.Performance.Minimum.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = ep.Performance.Minimum.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = Math.Round(ep.Performance.Average, 2).ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = Math.Round(ep.Performance.Average, 2).ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = ep.Performance.Maximum.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = ep.Performance.Maximum.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            // Add the new row to the table.
-            this.portperf_table_.Rows.Add(row);
-          }
-          catch (Exception)
-          {
-
-          }
-        }
-      }
-
-      // Pass control to the base class.
-      base.DataBind();
+      // Add the new row to the table.
+      this.portperf_table_.Rows.Add(row);
     }
 
     /// Number of events on this port.

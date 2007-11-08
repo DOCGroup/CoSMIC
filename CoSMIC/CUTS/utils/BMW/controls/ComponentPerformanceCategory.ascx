@@ -3,5 +3,7 @@
             CodeFile="ComponentPerformanceCategory.ascx.cs"
             Inherits="CUTS.ComponentPerformanceCategory" %>
 
-<asp:label runat="server" id="category_" font-italic="true" />
+<%@ reference control="~/controls/PortPerformance.ascx" %>
+
+<div>Category: <asp:label runat="server" id="category_"/></div>
 <asp:placeholder runat="server" id="ports_" />

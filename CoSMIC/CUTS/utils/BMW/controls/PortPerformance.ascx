@@ -12,11 +12,11 @@
       <asp:tableheadercell runat="server"
                            cssclass="performance-data">Count</asp:tableheadercell>
       <asp:tableheadercell runat="server"
-                           cssclass="performance-data">Min.<br />(msec)</asp:tableheadercell>
+                           cssclass="performance-data">Min. (msec)</asp:tableheadercell>
       <asp:tableheadercell runat="server"
-                           cssclass="performance-data">Avg.<br />(msec)</asp:tableheadercell>
+                           cssclass="performance-data">Avg. (msec)</asp:tableheadercell>
       <asp:tableheadercell runat="server"
-                           cssclass="performance-data">Max.<br />(msec)</asp:tableheadercell>
+                           cssclass="performance-data">Max. (msec)</asp:tableheadercell>
     </asp:tablerow>
 
     <asp:tablerow runat="server" id="queueing_time_row_">
@@ -65,7 +65,8 @@
 
     <asp:tablerow runat="server" id="exittime_row_" visible="false">
       <asp:tablecell runat="server"
-                     id="exittime_name_">Exit Time(s):</asp:tablecell>
+                     id="exittime_name_"
+                     style="text-decoration:underline">Exit Points:</asp:tablecell>
     </asp:tablerow>
   </asp:table>
 </div>

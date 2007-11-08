@@ -21,6 +21,7 @@ using System.Web.SessionState;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 namespace CUTS
 {
@@ -81,12 +82,18 @@ namespace CUTS
           this.collection_time_ =
             this.cutsdb_.get_latest_collection_time(this.test_number_);
 
+          DataSet ds = new DataSet();
+          this.cutsdb_.get_critical_paths(ref ds);
+          this.execution_path_.DataSource = ds;
+          this.execution_path_.DataMember = "critical_path";
+          this.execution_path_.DataBind();
+
           this.collection_times_.SelectedValue = this.collection_time_.ToString();
           this.load_execution_times();
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
+          this.show_error_message(ex.Message);
         }
       }
     }
@@ -127,9 +134,7 @@ namespace CUTS
 
       // Bind the metrics to the system performance control.
       this.sysperf_.DataSource = ds;
-      this.sysperf_.ExecutionTimeDataMember = "execution_time";
-      this.sysperf_.DistinctComponentDataMember = "distinct_components";
-      this.sysperf_.CumulativeDataMember = "cumulative";
+      this.sysperf_.DataMember = "execution_time";
 
       // Bind the data to the control.
       this.sysperf_.DataBind();
@@ -140,9 +145,50 @@ namespace CUTS
       this.collection_time_ =
         DateTime.Parse(this.collection_times_.SelectedValue);
 
-      this.load_execution_times();
+      try
+      {
+        this.load_execution_times();
+      }
+      catch (Exception ex)
+      {
+        this.show_error_message(ex.Message);
+      }
     }
 
+    #region Event Handlers
+    protected void handle_on_command(Object sender, CommandEventArgs e)
+    {
+      if (e.CommandName == "viewpath")
+      {
+        String url = String.Format ("~/Critical_Path_Timeline.aspx?t={0}&p={1}",
+                                    this.test_number_,
+                                    this.execution_path_.SelectedValue);
+
+        this.Response.Redirect(url);
+      }
+    }
+
+    protected void handle_onmenuitemclick(Object sender, MenuEventArgs e)
+    {
+      this.multiview_.ActiveViewIndex = int.Parse (e.Item.Value);
+    }
+
+    protected void handle_onactiveviewchanged(Object sender, EventArgs e)
+    {
+      switch (this.multiview_.ActiveViewIndex)
+      {
+        case 0:
+          if (this.Page.IsPostBack)
+            this.collection_time_ = DateTime.Parse(this.collection_times_.SelectedValue);
+
+          this.load_execution_times();
+          break;
+
+        case 1:
+          break;
+      }
+    }
+    #endregion
     /**
      * Show an error message. This formats the message
      * and displays it to the user.
@@ -151,8 +197,10 @@ namespace CUTS
      */
     private void show_error_message(string message)
     {
-      this.message_.Text = message;
-      this.message_.ForeColor = Color.Red;
+      Label label = (Label) this.Master.FindControl("message_");
+
+      label.Text = message;
+      label.ForeColor = Color.Red;
     }
 
 #region Web Form Designer generated code
@@ -175,6 +223,7 @@ namespace CUTS
     }
     #endregion
 
+    #region Member Variables
     /// Utility class for interacting with the CUTS database.
     private CUTS_Database_Utility cutsdb_ =
       new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
@@ -184,6 +233,6 @@ namespace CUTS
 
     /// The current collection time for the performance metrics.
     private DateTime collection_time_;
-
+    #endregion
   }
 }

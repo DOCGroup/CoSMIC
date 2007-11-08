@@ -23,9 +23,21 @@ namespace CUTS
       get { return this.category_.Text; }
     }
 
-    public Control Ports
+    public CUTS.PortPerformance FindPortPerformance (string name)
     {
-      get { return this.ports_; }
+      foreach (CUTS.PortPerformance item in this.ports_.Controls)
+      {
+        if (item.PortName == name)
+          return item;
+      }
+
+      Control control = this.LoadControl("~/controls/PortPerformance.ascx");
+      this.ports_.Controls.Add(control);
+
+      CUTS.PortPerformance port = (CUTS.PortPerformance)control;
+      port.PortName = name;
+
+      return port;
     }
 
     protected void Page_Load(object sender, EventArgs e)

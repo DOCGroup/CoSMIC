@@ -8,6 +8,16 @@
 #include "Uml.h"
 #include <sstream>
 
+template <typename T>
+struct Sorted_By_Name
+{
+  bool operator () (const T & lhs, const T & rhs)
+  {
+    std::string name = lhs.name ();
+    return name.compare (rhs.name ()) > 0;
+  }
+};
+
 //
 // TIAO_State_ID
 //
@@ -161,8 +171,8 @@ generate (const PICML::MonolithicImplementation & mono,
 
     // Write the parameters for all the event sinks.
     std::for_each (inputs.begin (),
-                  inputs.end (),
-                  boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
+                   inputs.end (),
+                   boost::bind (&CUTS_BE_Component_Impl_Begin_T <CUTS_BE_Tioa>::
                                 write_portid_InEventPort, _1));
 
     CUTS_BE_TIOA ()->outfile_ << "]" << std::endl;

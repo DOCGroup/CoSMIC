@@ -3,7 +3,7 @@
            inherits="CUTS.BMW_Master"%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
   <title>CUTS Benchmark Manager Web Utility</title>
   <link rel="stylesheet" href="styles/default.css" type="text/css" />
 
@@ -63,10 +63,8 @@
                        text="Execution Paths" /></div>
     </td>
     <td>
-      <!--
-          Maybe we should place a status placeholder here?? This would
-          give us a common location to display status messages.
-          -->
+      <!-- status/error message label for the page. -->
+      <asp:label id="message_" runat="server" />
       <asp:contentplaceholder runat="server" id="MainContent" />
     </td>
   </tr>

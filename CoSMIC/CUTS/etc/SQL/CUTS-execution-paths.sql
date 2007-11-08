@@ -154,6 +154,19 @@ BEGIN
 END; //
 
 -------------------------------------------------------------------------------
+-- cuts.select_execution_path_names_all
+-------------------------------------------------------------------------------
+
+DROP PROCEDURE IF EXISTS
+  cuts.select_execution_path_names_all; //
+
+CREATE PROCEDURE
+  cuts.select_execution_path_names_all ()
+BEGIN
+  SELECT * FROM critical_path;
+END; //
+
+-------------------------------------------------------------------------------
 -- cuts.execution_path_deadline_i
 -------------------------------------------------------------------------------
 

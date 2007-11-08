@@ -1,3 +1,66 @@
+Thu Nov  8 23:30:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.h:
+        * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.cpp:
+        * etc/SQL/CUTS-baseline.sql:
+
+          The baseline metrics now stores overall processing and queueing
+          performance times for each port.
+
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          Tried to sort the ports by name, but that apparently
+          is not working. :)
+
+        * etc/SQL/CUTS-execution-paths.sql:
+
+          Implemented a new procedure to select all the execution
+          paths from the database.
+
+        * utils/BMW/BMW.master:
+
+          The head now has the runat="server" attribute and added a message
+          label the main page. This is used by all the content pages to display
+          messages to the user.
+
+        * utils/BMW/Critical_Path_Timeline.aspx.cs:
+
+        * utils/BMW/Database_Utility/Database_Utility.cs (get_baseline_data):
+
+          Now this method operates on a dataset instead of returning
+          a IDataReader object.
+
+        * utils/BMW/baseline.aspx:
+        * utils/BMW/baseline.aspx.cs:
+        * utils/BMW/controls/ComponentPerformanceCategory.ascx:
+        * utils/BMW/controls/ComponentPerformanceCategory.ascx.cs:
+        * utils/BMW/controls/ComponentPerformanceGrid.ascx:
+        * utils/BMW/controls/ComponentPerformanceGrid.ascx.cs:
+        * utils/BMW/controls/PortPerformance.ascx:
+        * utils/BMW/controls/PortPerformance.ascx.cs:
+        * utils/BMW/controls/SystemPerformance.ascx:
+        * utils/BMW/controls/SystemPerformance.ascx.cs:
+
+          Converted the system metrics to a reusable control. This
+          will make the result display consistent across multiple
+          pages.
+
+        * utils/BMW/performance.aspx:
+        * utils/BMW/performance.aspx.cs:
+
+          Same as above, but this page now has a multiview control. One
+          view displays the current snapshot and the other view displays
+          the cumulative results.
+
+        * utils/BMW/styles/default.css:
+
+          Removed the a:* tags and change the width of .performance-name.
+
+        * utils/BMW/controls/ComponentPerformance.ascx:
+        * utils/BMW/controls/ComponentPerformance.ascx.cs:
+
+          Removed these files.
+
 Mon Nov  5 19:50:50 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/TIOA/TIOA_Generators.cpp:

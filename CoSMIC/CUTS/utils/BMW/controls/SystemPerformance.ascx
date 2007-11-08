@@ -3,4 +3,6 @@
             codefile="SystemPerformance.ascx.cs"
             inherits="CUTS.SystemPerformance" %>
 
-<%@ reference control="~/controls/ComponentPerformance.ascx" %>
+<%@ reference control="~/controls/ComponentPerformanceCategory.ascx" %>
+<%@ reference control="~/controls/ComponentPerformanceGrid.ascx" %>
+<%@ reference control="~/controls/PortPerformance.ascx" %>

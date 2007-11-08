@@ -30,18 +30,12 @@ namespace CUTS
    *
    */
   //===========================================================================
+
   public partial class ComponentPerformanceGrid : System.Web.UI.UserControl
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      if (!this.Page.IsPostBack)
-        this.load_categories();
-    }
 
-    /// Get the collection of categories.
-    public ArrayList Categories
-    {
-      get { return this.categories_; }
     }
 
     /// Get/set the title of the grid.
@@ -51,29 +45,21 @@ namespace CUTS
       set { this.title_.Text = value; }
     }
 
-    /// Load the category controls into the grid.
-    private void load_categories()
+    public CUTS.ComponentPerformanceCategory FindCategory(string name)
     {
-      if (this.categories_.Count > 0)
+      foreach (CUTS.ComponentPerformanceCategory item in this.categories_.Controls)
       {
-        // Make sure the placeholder is visible.
-        this.categories_placeholder_.Visible = true;
-
-        foreach (object item in categories_)
-        {
-          CUTS.ComponentPerformanceCategory category =
-            (CUTS.ComponentPerformanceCategory)item;
-
-          this.categories_placeholder_.Controls.Add(category);
-        }
+        if (item.Title == name)
+          return item;
       }
-      else
-      {
-        this.categories_placeholder_.Visible = false;
-      }
+
+      Control control = this.LoadControl ("~/controls/ComponentPerformanceCategory.ascx");
+      this.categories_.Controls.Add(control);
+
+      CUTS.ComponentPerformanceCategory category = (CUTS.ComponentPerformanceCategory)control;
+      category.Title = name;
+
+      return category;
     }
-
-    /// Collection of ComponentPerformanceCategory controls.
-    private ArrayList categories_ = new ArrayList ();
   }
 }

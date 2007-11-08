@@ -171,7 +171,7 @@ namespace CUTS
     private int get_deadline(MySqlConnection conn)
     {
       MySqlCommand command = conn.CreateCommand();
-      command.CommandText = "SELECT cuts.select_execution_path_deadline_i(?path)";
+      command.CommandText = "SELECT cuts.get_execution_path_deadline_i(?path)";
       command.Parameters.AddWithValue("?path", this.path_);
 
       return (int) command.ExecuteScalar();

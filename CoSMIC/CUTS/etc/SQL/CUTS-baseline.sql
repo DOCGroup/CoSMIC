@@ -20,7 +20,10 @@ CREATE TABLE IF NOT EXISTS baseline
   instance        INT             NOT NULL,
   host            INT             NOT NULL DEFAULT 0,
   inport          INT             NOT NULL,
-  outport         INT             NOT NULL,
+  outport         INT,
+  metric_type     ENUM ('transit',
+                        'queue',
+                        'process')  NOT NULL,
   event_count     INT,
   best_time       INT,
   worst_time      INT,
@@ -30,7 +33,7 @@ CREATE TABLE IF NOT EXISTS baseline
   PRIMARY KEY (bid),
 
   -- set the unique keys
-  UNIQUE (instance, host, inport, outport),
+  UNIQUE (instance, host, metric_type, inport, outport),
 
   -- set the foreign key(s)
   FOREIGN KEY (instance) REFERENCES component_instances (component_id)
@@ -62,6 +65,7 @@ CREATE PROCEDURE
   cuts.insert_component_baseline (
     IN hid INT,
     IN inst VARCHAR (255),
+    IN mtype VARCHAR (10),
     IN inport VARCHAR (255),
     IN outport VARCHAR (255),
     IN ec INT,
@@ -102,12 +106,12 @@ BEGIN
     -- update an existing baseline metric
     UPDATE cuts.baseline
       SET event_count = ec, best_time = bt, worst_time = wt, total_time = tt
-      WHERE (instance = cid AND host = hid AND inport = iid AND outport = oid);
+      WHERE (instance = cid AND host = hid AND inport = iid AND outport = oid AND metric_type = mtype);
   ELSE
     -- create a new baseline metric
-    INSERT INTO cuts.baseline (instance, host, inport, outport,
+    INSERT INTO cuts.baseline (instance, host, metric_type, inport, outport,
       event_count, best_time, worst_time, total_time)
-      VALUES (cid, hid, iid, oid, ec, bt, wt, tt);
+      VALUES (cid, hid, mtype, iid, oid, ec, bt, wt, tt);
   END IF;
 END; //
 
@@ -121,6 +125,7 @@ CREATE PROCEDURE
   cuts.insert_component_baseline_using_ipaddr (
     IN ip_addr VARCHAR (40),
     IN inst VARCHAR (255),
+    IN mtype VARCHAR (10),
     IN inport VARCHAR (255),
     IN outport VARCHAR (255),
     IN ec INT,
@@ -133,7 +138,7 @@ BEGIN
   SELECT hostid INTO hid FROM ipaddr_host_map
     WHERE ipaddr = ip_addr;
 
-  CALL insert_component_baseline(hid, inst, inport, outport, ec, bt, wt, tt);
+  CALL insert_component_baseline(hid, inst, mtype, inport, outport, ec, bt, wt, tt);
 END; //
 
 -------------------------------------------------------------------------------
@@ -146,6 +151,7 @@ CREATE PROCEDURE
   cuts.insert_component_baseline_using_hostname (
     IN host VARCHAR (40),
     IN inst VARCHAR (255),
+    IN mtype VARCHAR (10),
     IN inport VARCHAR (255),
     IN outport VARCHAR (255),
     IN ec INT,
@@ -158,7 +164,7 @@ BEGIN
   SELECT hostid INTO hid FROM ipaddr_host_map
     WHERE hostname = host;
 
-  CALL insert_component_baseline(hid, inst, inport, outport, ec, bt, wt, tt);
+  CALL insert_component_baseline(hid, inst, mtype, inport, outport, ec, bt, wt, tt);
 END; //
 
 -------------------------------------------------------------------------------

@@ -84,6 +84,9 @@ private:
   /// Name of the instance being archived.
   char instance_[256];
 
+  /// Name of the instance being archived.
+  char metric_type_[10];
+
   /// The input port for the baseline metric.
   char inport_[256];
 
