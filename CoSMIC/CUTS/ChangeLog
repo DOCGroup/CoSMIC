@@ -1,3 +1,21 @@
+Fri Nov  9 19:19:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/assemblies/CUTS.Web:
+        * utils/BMW/assemblies/CUTS.Data:
+
+          Finally decided on a layout for partitioning CUTS assemblies.
+
+        * utils/BMW/assemblies/CUTS:
+        * utils/BMW/assemblies/CUTS.Data/CUTS.Data:
+        * utils/BMW/assemblies/CUTS.Data/CUTS.WebControls:
+        * utils/BMW/assemblies/CUTS.Data/WebControls:
+        * utils/BMW/assemblies/CUTS/Data:
+        * utils/BMW/assemblies/CUTS/Data/Database_Utility.cs:
+        * utils/BMW/assemblies/CUTS/Data/Database_Utility.mpc:
+        * utils/BMW/assemblies/CUTS/WebControls:
+
+          Removed these files.
+
 Fri Nov  9 16:12:57 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/assemblies/CUTS/Data:
