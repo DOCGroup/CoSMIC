@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      CUTS.Data.Database
+ * @file      Database.cs
  *
  * $Id$
  *
@@ -21,72 +21,11 @@ using System.Text;
 using MySql.Data.MySqlClient;
 using MySql.Data.Types;
 
-//=============================================================================
-/**
- * @struct ExectionTime
- *
- * @brief Structure for returning the execution times used be methods
- * of the web service.
- */
-//=============================================================================
-
-public struct ExecutionTime
-{
-  public long samples;
-
-  public long recentmin;
-  public long recentmax;
-  public long recentavg;
-
-  public long absmin;
-  public long absmax;
-
-  public long avgmin;
-  public long avgavg;
-  public long avgmax;
-
-  public DateTime lastsample;
-}
-
-//=============================================================================
-/**
- * @class CUTS_Path_Element
- *
- * @brief Database utility component for accessing the CUTS database
- * from a .NET application.
- */
-//=============================================================================
-
-struct CUTS_Path_Element
-{
-  public CUTS_Path_Element(long component, string src, string dst)
-  {
-    this.component_ = component;
-    this.src_ = src;
-    this.dst_ = dst;
-  }
-
-  public long component_;
-  public string src_;
-  public string dst_;
-}
-
-//=============================================================================
-/**
- * @class CUTS.Data.Database
- *
- * @brief Database utility component for accessing the CUTS database
- * from a .NET application.
- */
-//=============================================================================
-
 namespace CUTS.Data
 {
   public class Database
   {
-    /**
-     * Default constructor.
-     */
+    /// Default contructor.
     public Database()
     {
       this.conn_ = new MySqlConnection();
@@ -100,14 +39,11 @@ namespace CUTS.Data
      */
     public Database(string connstr)
     {
-      this.conn_ = new MySqlConnection();
-      this.conn_.ConnectionString = connstr;
+      this.conn_ = new MySqlConnection(connstr);
       this.conn_.Open();
     }
 
-    /**
-     * Destructor.
-     */
+    /// Destructor.
     ~Database()
     {
       if (this.conn_.State == ConnectionState.Open)
@@ -251,11 +187,10 @@ namespace CUTS.Data
       // the reader.
       while (reader.Read())
       {
-        CUTS_Path_Element element =
-          new CUTS_Path_Element(reader.GetInt32(1),
-                                reader.GetString(2),
-                                reader.GetString(3));
-        critical_path.Add(element);
+        CUTS.Data.PathElement element =
+          new CUTS.Data.PathElement(reader.GetInt32(1), reader.GetString(2), reader.GetString(3));
+
+        critical_path.Add (element);
       }
 
       reader.Close();
@@ -281,10 +216,8 @@ namespace CUTS.Data
         // a path element out of it.
         collection_time = reader.GetDateTime(0);
 
-        CUTS_Path_Element element =
-          new CUTS_Path_Element(reader.GetUInt32(1),
-                                reader.GetString(3),
-                                reader.GetString(4));
+        CUTS.Data.PathElement element =
+          new CUTS.Data.PathElement(reader.GetUInt32(1), reader.GetString(3), reader.GetString(4));
 
         // Locate the following metrics in the collection.
         try
@@ -296,8 +229,8 @@ namespace CUTS.Data
           {
             // Check if the sender of this metric is indeed the previous
             // instance in the critical path for this element.
-            CUTS_Path_Element prev_element =
-              (CUTS_Path_Element)critical_path[index - 1];
+            CUTS.Data.PathElement prev_element =
+              (CUTS.Data.PathElement)critical_path[index - 1];
 
             if (prev_element.component_ != reader.GetInt32(2))
             {

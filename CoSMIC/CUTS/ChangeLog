@@ -1,3 +1,18 @@
+Fri Nov  9 21:02:27 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/Web.config:
+
+          Updated the assembly reference section to include the
+          CUTS.Data assembly.
+
+        * utils/BMW/assemblies/CUTS.Data/CUTS.Data.mpc:
+        * utils/BMW/assemblies/CUTS.Data/Database.cs:
+        * utils/BMW/assemblies/CUTS.Data/ExecutionTime.cs:
+        * utils/BMW/assemblies/CUTS.Data/PathElement.cs:
+
+          Place the ExecutionTime and PathElement structures in their
+          own file.
+
 Fri Nov  9 20:46:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/App_Code/BMW_Service.cs:
@@ -15,7 +30,7 @@ Fri Nov  9 20:46:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
           Changes all occurences of CUTS_Database_Utility to
           CUTS.Data.Database. The CUTS.Data assembly is coming
-          to live!! :)
+          to life!! :)
 
         * utils/BMW/bin/WebChart.dll:
 

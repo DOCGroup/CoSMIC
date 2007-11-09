@@ -18,5 +18,7 @@ project (CUTS.Data) {
 
   Source_Files {
     Database.cs
+    ExecutionTime.cs
+    PathElement.cs
   }
 }
