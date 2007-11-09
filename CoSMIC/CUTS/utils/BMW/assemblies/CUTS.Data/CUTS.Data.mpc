@@ -1,9 +1,9 @@
 // $Id$
 
-project (CUTS_Database_Utility) {
-  sharedname = CUTS_Database_Utility
+project (CUTS.Data) {
+  sharedname = CUTS.Data
 
-  dllout     = ../bin
+  dllout     = ../../bin
 
   lit_libs   = System \
                System.Data \
@@ -17,6 +17,6 @@ project (CUTS_Database_Utility) {
   }
 
   Source_Files {
-    Database_Utility.cs
+    Database.cs
   }
 }

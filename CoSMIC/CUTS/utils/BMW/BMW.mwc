@@ -5,10 +5,7 @@ workspace (BMW) {
   BMW.mpc
 
   csharp {
-    // process the following directories using C#
-    // as the target language.
     cmdline += -language csharp
-
-    Database_Utility
+    assemblies
   }
 }

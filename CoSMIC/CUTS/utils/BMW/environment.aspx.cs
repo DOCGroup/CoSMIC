@@ -34,8 +34,8 @@ namespace CUTS
 
   public partial class Environment : System.Web.UI.Page
   {
-    private CUTS_Database_Utility cuts_database_ =
-      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+    private CUTS.Data.Database cuts_database_ =
+      new CUTS.Data.Database(ConfigurationManager.AppSettings["MySQL"]);
 
     private DataGridItem prev_item_ = null;
 

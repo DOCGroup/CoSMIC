@@ -225,8 +225,8 @@ namespace CUTS
 
     #region Member Variables
     /// Utility class for interacting with the CUTS database.
-    private CUTS_Database_Utility cutsdb_ =
-      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+    private CUTS.Data.Database cutsdb_ =
+      new CUTS.Data.Database(ConfigurationManager.AppSettings["MySQL"]);
 
     /// The current test number for the performance metrics.
     private int test_number_;

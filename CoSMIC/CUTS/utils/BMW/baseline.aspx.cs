@@ -37,8 +37,8 @@ namespace CUTS
 
   public partial class Baseline_Metrics : System.Web.UI.Page
   {
-    private CUTS_Database_Utility cuts_ =
-      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+    private CUTS.Data.Database cuts_ =
+      new CUTS.Data.Database(ConfigurationManager.AppSettings["MySQL"]);
 
     /**
      * Callback method for when the page is loading.

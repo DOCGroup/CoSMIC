@@ -1,3 +1,31 @@
+Fri Nov  9 20:46:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/App_Code/BMW_Service.cs:
+        * utils/BMW/BMW.mpc:
+        * utils/BMW/BMW.mwc:
+        * utils/BMW/Timeline.aspx.cs:
+        * utils/BMW/Web.config:
+        * utils/BMW/assemblies/CUTS.Data/CUTS.Data.mpc:
+        * utils/BMW/assemblies/CUTS.Data/Database.cs:
+        * utils/BMW/baseline.aspx.cs:
+        * utils/BMW/components.aspx.cs:
+        * utils/BMW/default.aspx.cs:
+        * utils/BMW/environment.aspx.cs:
+        * utils/BMW/performance.aspx.cs:
+
+          Changes all occurences of CUTS_Database_Utility to
+          CUTS.Data.Database. The CUTS.Data assembly is coming
+          to live!! :)
+
+        * utils/BMW/bin/WebChart.dll:
+
+          Added the WebChart assembly to the distribution.
+
+        * utils/BMW/assemblies/CUTS.Data/Database_Utility.cs:
+        * utils/BMW/assemblies/CUTS.Data/Database_Utility.mpc:
+
+          Removed these files.
+
 Fri Nov  9 19:31:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/assemblies/CUTS.Data/Data:

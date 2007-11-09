@@ -35,8 +35,8 @@ namespace CUTS
 
   public partial class Components : System.Web.UI.Page
   {
-    private CUTS_Database_Utility cutsdb_ =
-      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+    private CUTS.Data.Database cutsdb_ =
+      new CUTS.Data.Database(ConfigurationManager.AppSettings["MySQL"]);
 
     private DataGridItem prev_item_ = null;
 

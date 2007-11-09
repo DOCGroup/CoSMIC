@@ -36,7 +36,7 @@ public class BMW_Web_Service : System.Web.Services.WebService
   public BMW_Web_Service()
   {
     this.util_ =
-      new CUTS_Database_Utility(ConfigurationManager.AppSettings["MySQL"]);
+      new CUTS.Data.Database (ConfigurationManager.AppSettings["MySQL"]);
   }
 
   /**
@@ -46,5 +46,5 @@ public class BMW_Web_Service : System.Web.Services.WebService
    * closing the connection because it is handled when the
    * object is destroyed.
    */
-  private CUTS_Database_Utility util_;
+  private CUTS.Data.Database util_;
 }
