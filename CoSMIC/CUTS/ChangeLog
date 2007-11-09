@@ -1,3 +1,16 @@
+Fri Nov  9 15:45:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/assemblies:
+        * utils/BMW/assemblies/Database_Utility:
+
+          Moved all .NET assemblies to the assemblies directory.
+
+        * utils/BMW/Database_Utility:
+        * utils/BMW/Database_Utility/Database_Utility.cs:
+        * utils/BMW/Database_Utility/Database_Utility.mpc:
+
+          Removed these files.
+
 Thu Nov  8 23:30:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/svcs/baseline/Baseline_Archiver_DB.h:
