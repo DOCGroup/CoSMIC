@@ -1,3 +1,17 @@
+Fri Nov  9 15:53:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/assemblies/CUTS.Data:
+        * utils/BMW/assemblies/CUTS.WebControls:
+
+          Moved the Database_Utility assembly to CUTS.Data folder. Also,
+          started initial folder for the CUTS.WebControls assembly.
+
+        * utils/BMW/assemblies/Database_Utility:
+        * utils/BMW/assemblies/Database_Utility/Database_Utility.cs:
+        * utils/BMW/assemblies/Database_Utility/Database_Utility.mpc:
+
+          Removed these files.
+
 Fri Nov  9 15:45:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/assemblies:
