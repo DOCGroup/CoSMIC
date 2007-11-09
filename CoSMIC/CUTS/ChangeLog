@@ -1,3 +1,15 @@
+Fri Nov  9 19:28:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/assemblies/CUTS.Data/Database_Utility.cs:
+        * utils/BMW/assemblies/CUTS.Data/Database_Utility.mpc:
+
+          Relocated the database source files.
+
+        * utils/BMW/assemblies/CUTS.Data/Data/Database_Utility.cs:
+        * utils/BMW/assemblies/CUTS.Data/Data/Database_Utility.mpc:
+
+          Removed these files.
+
 Fri Nov  9 19:19:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/assemblies/CUTS.Web:
