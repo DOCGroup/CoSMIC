@@ -1,3 +1,9 @@
+Fri Nov  9 19:31:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/BMW/assemblies/CUTS.Data/Data:
+
+          Removed this file.
+
 Fri Nov  9 19:28:37 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/assemblies/CUTS.Data/Database_Utility.cs:
