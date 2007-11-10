@@ -90,7 +90,8 @@ struct CUTS_BE_Write_Variables_Last_T <CUTS_BE_Tioa>
 template < >
 struct CUTS_BE_File_Open_T <CUTS_BE_Tioa>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &);
 };
 
 //=============================================================================
@@ -102,7 +103,8 @@ struct CUTS_BE_File_Open_T <CUTS_BE_Tioa>
 template < >
 struct CUTS_BE_Prologue_T <CUTS_BE_Tioa>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &);
 };
 
 //=============================================================================
@@ -114,7 +116,8 @@ struct CUTS_BE_Prologue_T <CUTS_BE_Tioa>
 template < >
 struct CUTS_BE_File_Close_T <CUTS_BE_Tioa>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation & );
 };
 
 //=============================================================================

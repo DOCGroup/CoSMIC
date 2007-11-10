@@ -52,42 +52,36 @@ void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_ComponentImplementationContainer (
 const PICML::ComponentImplementationContainer & container)
 {
-  // There is a chance that this <container> doesn't have any
-  // monolithic implemenations. If this is the case, then we
-  // don't want to visit it.
-  typedef std::vector <PICML::MonolithicImplementation> MonoImpl_Set;
-  MonoImpl_Set monos = container.MonolithicImplementation_kind_children ();
+  // Get this component implementation. This can either be an
+  // assembly, or a monolithic implementation.
+  PICML::ComponentImplementation impl = container.ComponentImplementation_child ();
 
-  if (monos.empty ())
-    return;
-
-  // Preprocess the container and extract as much information
-  // as we can about the current component's implementation.
-  CUTS_BE_PREPROCESSOR ()->preprocess (container);
-
-  if (CUTS_BE_File_Open_T <IMPL_STRATEGY>::generate (container))
+  if (impl != Udm::null)
   {
-    // Write the prologue for the file.
-    CUTS_BE_Prologue_T <IMPL_STRATEGY>::generate (container);
+    if (impl.type () == PICML::MonolithicImplementation::meta)
+    {
+      PICML::MonolithicImplementation monoimpl =
+        PICML::MonolithicImplementation::Cast (impl);
 
-    // Get the implementation node and write all the includes.
-    const CUTS_BE_Impl_Node * impl = 0;
-    CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), impl);
+      CUTS_BE::visit <IMPL_STRATEGY> (monoimpl,
+        boost::bind (&PICML::MonolithicImplementation::Accept, _1, boost::ref (*this)));
+    }
+    else if (impl.type () == PICML::ComponentAssembly::meta)
+    {
+      PICML::ComponentAssembly assembly = PICML::ComponentAssembly::Cast (impl);
 
-    // Write the include files for this implementation.
-    CUTS_BE::visit <IMPL_STRATEGY> (impl->include_,
-      boost::bind (&CUTS_BE_Impl_Generator_T::Visit_Include,
-      boost::ref (this), _1));
-
-    CUTS_BE::visit <IMPL_STRATEGY> (monos,
-      boost::bind (&MonoImpl_Set::value_type::Accept, _1, boost::ref (*this)));
-
-    // Write the epilogue for the file, then close it.
-    CUTS_BE_Epilogue_T <IMPL_STRATEGY>::generate (container);
-    CUTS_BE_File_Close_T <IMPL_STRATEGY>::generate (container);
+      CUTS_BE::visit <IMPL_STRATEGY> (assembly,
+        boost::bind (&PICML::ComponentAssembly::Accept, _1, boost::ref (*this)));
+    }
+    else
+    {
+      // Um, why do we not know about this type!?!?
+    }
   }
   else
-    CUTS_BE_PREPROCESSOR ()->remove (container);
+  {
+    // Wow, this does not contain any children!!
+  }
 }
 
 //
@@ -98,55 +92,86 @@ void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
 Visit_MonolithicImplementation (
 const PICML::MonolithicImplementation & monoimpl)
 {
-  // Figure out what type of component we are implementing. Right
-  // now there is a one-to-one implementation to component type
-  // mapping. Therefore, the component has the known behavior
-  // for this respective implementation.
-  PICML::Implements implements = monoimpl.dstImplements ();
+  // Get the parent of the monolithic implementation.
+  PICML::ComponentImplementationContainer container =
+    monoimpl.ComponentImplementationContainer_parent ();
 
-  if (implements != Udm::null)
+  // Preprocess the container and extract as much information
+  // as we can about the current component's implementation.
+  CUTS_BE_PREPROCESSOR ()->preprocess (container);
+
+  if (CUTS_BE_File_Open_T <IMPL_STRATEGY>::generate (container, monoimpl))
   {
-    // Extract the component type being implemented.
-    PICML::ComponentRef ref = implements.dstImplements_end ();
-    PICML::Component component = ref.ref ();
+    // Write the prologue for the file.
+    CUTS_BE_Prologue_T <IMPL_STRATEGY>::generate (container, monoimpl);
 
-    // Write the beginning of the component's implementation.
-    CUTS_BE_Component_Impl_Begin_T <IMPL_STRATEGY>::
-      generate (monoimpl, component);
+    // Get the implementation node and write all the includes.
+    const CUTS_BE_Impl_Node * impl = 0;
+    CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), impl);
 
-    // Visit the component.
-    CUTS_BE::visit <IMPL_STRATEGY> (component,
-      boost::bind (&PICML::Component::Accept, _1, boost::ref (*this)));
-
-    // Write the end of the component's implementation.
-    CUTS_BE_Component_Impl_End_T <IMPL_STRATEGY>::
-      generate (monoimpl, component);
-
-    // Get all the facets in the component so that we can
-    // generate their implementation.
-    typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
-    Facet_Set facets = component.ProvidedRequestPort_kind_children ();
-
-    CUTS_BE::visit <IMPL_STRATEGY> (facets,
-      boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ProvidedRequestPort_impl,
+    // Write the include files for this implementation.
+    CUTS_BE::visit <IMPL_STRATEGY> (impl->include_,
+      boost::bind (&CUTS_BE_Impl_Generator_T::Visit_Include,
       boost::ref (this), _1));
 
-    PICML::ComponentFactory factory;
+    // Figure out what type of component we are implementing. Right
+    // now there is a one-to-one implementation to component type
+    // mapping. Therefore, the component has the known behavior
+    // for this respective implementation.
+    PICML::Implements implements = monoimpl.dstImplements ();
 
-    if (this->get_component_factory (component, factory))
+    if (implements != Udm::null)
     {
-      // Write the beginning of the factory's implementation.
-      CUTS_BE_Factory_Impl_Begin_T <IMPL_STRATEGY>::
-        generate (factory, monoimpl, component);
+      // Extract the component type being implemented.
+      PICML::ComponentRef ref = implements.dstImplements_end ();
+      PICML::Component component = ref.ref ();
 
-      CUTS_BE::visit <IMPL_STRATEGY> (factory,
-        boost::bind (&PICML::ComponentFactory::Accept,
-        _1, boost::ref (*this)));
+      // Write the beginning of the component's implementation.
+      CUTS_BE_Component_Impl_Begin_T <IMPL_STRATEGY>::
+        generate (monoimpl, component);
 
-      // Write the end of the factory's implementation.
-      CUTS_BE_Factory_Impl_End_T <IMPL_STRATEGY>::
-        generate (factory, monoimpl, component);
+      // Visit the component.
+      CUTS_BE::visit <IMPL_STRATEGY> (component,
+        boost::bind (&PICML::Component::Accept, _1, boost::ref (*this)));
+
+      // Write the end of the component's implementation.
+      CUTS_BE_Component_Impl_End_T <IMPL_STRATEGY>::
+        generate (monoimpl, component);
+
+      // Get all the facets in the component so that we can
+      // generate their implementation.
+      typedef std::vector <PICML::ProvidedRequestPort> Facet_Set;
+      Facet_Set facets = component.ProvidedRequestPort_kind_children ();
+
+      CUTS_BE::visit <IMPL_STRATEGY> (facets,
+        boost::bind (&CUTS_BE_Impl_Generator_T::Visit_ProvidedRequestPort_impl,
+        boost::ref (this), _1));
+
+      PICML::ComponentFactory factory;
+
+      if (this->get_component_factory (component, factory))
+      {
+        // Write the beginning of the factory's implementation.
+        CUTS_BE_Factory_Impl_Begin_T <IMPL_STRATEGY>::
+          generate (factory, monoimpl, component);
+
+        CUTS_BE::visit <IMPL_STRATEGY> (factory,
+          boost::bind (&PICML::ComponentFactory::Accept,
+          _1, boost::ref (*this)));
+
+        // Write the end of the factory's implementation.
+        CUTS_BE_Factory_Impl_End_T <IMPL_STRATEGY>::
+          generate (factory, monoimpl, component);
+      }
     }
+
+    // Write the epilogue for the file, then close it.
+    CUTS_BE_Epilogue_T <IMPL_STRATEGY>::generate (container, monoimpl);
+    CUTS_BE_File_Close_T <IMPL_STRATEGY>::generate (container, monoimpl);
+  }
+  else
+  {
+    CUTS_BE_PREPROCESSOR ()->remove (container);
   }
 }
 

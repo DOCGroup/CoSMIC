@@ -72,7 +72,8 @@ void CUTS_BE_Tioa::reset (void)
 // CUTS_BE_File_Open_T
 //
 bool CUTS_BE_File_Open_T <CUTS_BE_Tioa>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   // Locate the preprocessing of the implementation. If this is a
   // proxy implementation, then we ignore it. It's going to cause
@@ -98,7 +99,8 @@ generate (const PICML::ComponentImplementationContainer & container)
 // CUTS_BE_Prologue_T
 //
 bool CUTS_BE_Prologue_T <CUTS_BE_Tioa>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   std::string name = container.name ();
 
@@ -125,7 +127,8 @@ generate (const PICML::ComponentImplementationContainer & container)
 // CUTS_BE_File_Close_T
 //
 bool CUTS_BE_File_Close_T <CUTS_BE_Tioa>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   if (CUTS_BE_TIOA ()->outfile_.is_open ())
     CUTS_BE_TIOA ()->outfile_.close ();

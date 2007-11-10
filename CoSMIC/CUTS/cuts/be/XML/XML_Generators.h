@@ -80,7 +80,8 @@ struct CUTS_BE_Parse_Precondition_T <CUTS_BE_Xml>
 template < >
 struct CUTS_BE_File_Open_T <CUTS_BE_Xml>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+            const PICML::MonolithicImplementation &);
 };
 
 //=============================================================================
@@ -92,7 +93,8 @@ struct CUTS_BE_File_Open_T <CUTS_BE_Xml>
 template < >
 struct CUTS_BE_File_Close_T <CUTS_BE_Xml>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &);
 };
 
 //=============================================================================
@@ -104,7 +106,8 @@ struct CUTS_BE_File_Close_T <CUTS_BE_Xml>
 template < >
 struct CUTS_BE_Prologue_T <CUTS_BE_Xml>
 {
-  static bool generate (const PICML::ComponentImplementationContainer &);
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation & );
 };
 
 //=============================================================================

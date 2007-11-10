@@ -38,8 +38,11 @@ struct CUTS_BE_Parse_Precondition_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_File_Open_T
 {
-  static bool generate (const PICML::ComponentImplementationContainer &)
-    { return false; }
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
 };
 
 //=============================================================================
@@ -51,8 +54,11 @@ struct CUTS_BE_File_Open_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_File_Close_T
 {
-  static bool generate (const PICML::ComponentImplementationContainer &)
-    { return false; }
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
 };
 
 //=============================================================================
@@ -77,8 +83,11 @@ struct CUTS_BE_Include_File_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_Prologue_T
 {
-  static bool generate (const PICML::ComponentImplementationContainer &)
-    { return false; }
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
 };
 
 //=============================================================================
@@ -90,8 +99,11 @@ struct CUTS_BE_Prologue_T
 template <typename IMPL_STRATEGY>
 struct CUTS_BE_Epilogue_T
 {
-  static bool generate (const PICML::ComponentImplementationContainer &)
-    { return false; }
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
 };
 
 //=============================================================================

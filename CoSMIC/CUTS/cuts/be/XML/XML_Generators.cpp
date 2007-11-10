@@ -30,7 +30,8 @@ CUTS_BE_Xml::CUTS_BE_Xml (void)
 // CUTS_BE_File_Open_T
 //
 bool CUTS_BE_File_Open_T <CUTS_BE_Xml>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   // Locate the preprocessing of the implementation. If this is a
   // proxy implementation, then we ignore it. It's going to cause
@@ -69,7 +70,8 @@ generate (const PICML::ComponentImplementationContainer & container)
 // CUTS_BE_File_Close_T
 //
 bool CUTS_BE_File_Close_T <CUTS_BE_Xml>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   if (CUTS_BE_XML ()->outfile_.is_open ())
   {
@@ -84,7 +86,8 @@ generate (const PICML::ComponentImplementationContainer & container)
 // CUTS_BE_Prologue_T
 //
 bool CUTS_BE_Prologue_T <CUTS_BE_Xml>::
-generate (const PICML::ComponentImplementationContainer & container)
+generate (const PICML::ComponentImplementationContainer & container,
+          const PICML::MonolithicImplementation & impl)
 {
   CUTS_BE_XML ()->outfile_
     << "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>"

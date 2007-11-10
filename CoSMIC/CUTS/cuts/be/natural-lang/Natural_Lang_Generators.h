@@ -65,7 +65,8 @@ template < >
 struct CUTS_BE_File_Open_T <CUTS_BE_Natural_Lang>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container);
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl);
 };
 
 //=============================================================================
@@ -78,7 +79,8 @@ template < >
 struct CUTS_BE_File_Close_T <CUTS_BE_Natural_Lang>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container);
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl);
 };
 
 //=============================================================================

@@ -1,3 +1,19 @@
+Sat Nov 10 00:30:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+        * cuts/be/CIAO/CIAO_Traits.h:
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+        * cuts/be/XML/XML_Generators.h:
+        * cuts/be/XML/XML_Generators.cpp:
+        * cuts/be/natural-lang/Natural_Lang_Generators.h:
+        * cuts/be/natural-lang/Natural_Lang_Generators.cpp:
+
+          The backend generators are now able to distinguish between
+          generating a file for an mononlithic implementation vs. a
+          component assembly.
+
 Fri Nov  9 21:02:27 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/BMW/Web.config:

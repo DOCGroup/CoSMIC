@@ -21,7 +21,7 @@
 #include "CIAO_Proxy_Source_Traits.h"
 
 /// Specialization struct for the CUTS_BE_CIAO backend.
-struct CUTS_BE_CIAO;        /* CUTS_BE_DECLARE (CUTS_BE_CIAO); */
+struct CUTS_BE_CIAO;
 
 //=============================================================================
 /**
@@ -33,7 +33,8 @@ template < >
 struct CUTS_BE_File_Open_T <CUTS_BE_CIAO>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container)
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl)
   {
     return CIAO_EXEC_HEADER_GENERATOR ()->open_file (container) |
            CIAO_EXEC_SOURCE_GENERATOR ()->open_file (container) |
@@ -52,7 +53,8 @@ template < >
 struct CUTS_BE_File_Close_T <CUTS_BE_CIAO>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container)
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl)
   {
     CIAO_EXEC_HEADER_GENERATOR ()->close_file (container);
     CIAO_EXEC_SOURCE_GENERATOR ()->close_file (container);
@@ -73,7 +75,8 @@ template < >
 struct CUTS_BE_Prologue_T <CUTS_BE_CIAO>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container)
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl)
   {
     CIAO_EXEC_HEADER_GENERATOR ()->write_prologue (container);
     CIAO_EXEC_SOURCE_GENERATOR ()->write_prologue (container);
@@ -94,7 +97,8 @@ template < >
 struct CUTS_BE_Epilogue_T <CUTS_BE_CIAO>
 {
   static bool
-  generate (const PICML::ComponentImplementationContainer & container)
+  generate (const PICML::ComponentImplementationContainer & container,
+            const PICML::MonolithicImplementation & impl)
   {
     CIAO_EXEC_HEADER_GENERATOR ()->write_epilogue (container);
     CIAO_EXEC_SOURCE_GENERATOR ()->write_epilogue (container);
