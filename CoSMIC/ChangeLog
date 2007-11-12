@@ -1,3 +1,16 @@
+Mon Nov 12 20:43:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/DoWhileState.bmp:
+        * PIM/PICML/paradigms/icons/ForState.bmp:
+        * PIM/PICML/paradigms/icons/WhileState.bmp:
+
+          Added modeling support for do-while, for, and while loops. The
+          have the same modeling semantics as branch states.
+
 Mon Nov  5 19:34:37 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
 
         * Transformations/MTTVar/paradigms/MTTVar.xme:
