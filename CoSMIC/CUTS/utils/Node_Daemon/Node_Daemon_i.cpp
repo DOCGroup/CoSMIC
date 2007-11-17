@@ -30,6 +30,7 @@ CUTS_Node_Daemon_i::CUTS_Node_Daemon_i (::CORBA::ORB_ptr orb)
     orb_ (::CORBA::ORB::_duplicate (orb))
 {
   this->init ();
+  this->recover ();
 }
 
 //
@@ -44,14 +45,16 @@ CUTS_Node_Daemon_i::~CUTS_Node_Daemon_i (void)
   // event handler. This means waiting for all processes
   // created by this process manager to exit.
   VERBOSE_MESSAGE ((LM_DEBUG,
-                    "waiting for %u NodeManager(s) to exit\n",
+                    "*** info (node daemon): waiting for %u tasks(s) to exit\n",
                     this->pm_.managed ()));
   this->pm_.wait ();
 
-  VERBOSE_MESSAGE ((LM_DEBUG, "deactivating the process listener\n"));
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "*** info (node daemon): deactivating the process listener\n"));
   this->event_handler_.deactivate ();
 
-  VERBOSE_MESSAGE ((LM_DEBUG, "deactivating the timer queue\n"));
+  VERBOSE_MESSAGE ((LM_DEBUG,
+                    "*** info (node daemon) : deactivating the timer queue\n"));
   this->timer_queue_.deactivate ();
   this->timer_queue_.cancel (this->timer_);
 }
