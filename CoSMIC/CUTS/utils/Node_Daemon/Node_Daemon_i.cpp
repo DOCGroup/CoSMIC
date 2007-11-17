@@ -292,7 +292,7 @@ size_t CUTS_Node_Daemon_i::recover (void)
       else
       {
         ACE_ERROR ((LM_ERROR,
-                    "*** info (node daemon): failed to remove pid %u "
+                    "*** error (node daemon): failed to remove pid %u "
                     "from log\n",
                     ple->pid_));
       }

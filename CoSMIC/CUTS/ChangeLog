@@ -1,3 +1,9 @@
+Sat Nov 17 18:14:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+
+          Fixed an typo in a error message.
+
 Sat Nov 17 17:59:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/client:
