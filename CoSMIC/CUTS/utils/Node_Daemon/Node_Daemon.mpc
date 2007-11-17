@@ -1,6 +1,6 @@
 // $Id$
 
-project (Node_Daemon_Server) : taoserver, iortable, cutsexe {
+project (CUTS_Node_Daemon) : taoserver, iortable, cutsexe {
   exename = cutsnode_d
 
   libs  -= CUTS
@@ -24,7 +24,7 @@ project (Node_Daemon_Server) : taoserver, iortable, cutsexe {
   }
 }
 
-project (Node_Daemon_Client): taoclient, anytypecode, cutsexe {
+project (CUTS_Node_Daemon_Client): taoclient, anytypecode, cutsexe {
   exename  = cutsnode
   after   += Node_Daemon_Server
 

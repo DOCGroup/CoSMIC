@@ -1,3 +1,35 @@
+Sat Nov 17 17:59:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/client:
+
+          Orginally, the BDC client located in utils/BDC.
+
+        * utils/Node_Daemon/Node_Daemon.idl:
+        * utils/Node_Daemon/Node_Daemon.mpc:
+        * utils/Node_Daemon/Node_Daemon_Client.cpp:
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.h:
+        * utils/Node_Daemon/Node_Daemon_Event_Handler.cpp:
+        * utils/Node_Daemon/Node_Daemon_Server.cpp:
+        * utils/Node_Daemon/Node_Daemon_i.h:
+        * utils/Node_Daemon/Node_Daemon_i.inl:
+        * utils/Node_Daemon/Node_Daemon_i.cpp:
+        * utils/Node_Daemon/Process_Log.h:
+        * utils/Node_Daemon/Process_Log.inl:
+        * utils/Node_Daemon/Process_Log.cpp:
+        * utils/Node_Daemon/Server_Options.h:
+        * utils/Node_Daemon/Server_Options.cpp:
+
+          Re-implemented the node daemon such that it is not used to
+          only spawn node managers. It can be used to spawn any process
+          on the hosting node. It can be viewed as a remote CORBA shell.
+
+        * utils/BDC:
+        * utils/BDC/Client_Options.h:
+        * utils/BDC/client.mpc:
+        * utils/BDC/client.cpp:
+
+          Removed these files.
+
 Sat Nov 10 00:30:46 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Generators_T.h:

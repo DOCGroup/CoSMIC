@@ -15,6 +15,9 @@
 
 module CUTS
 {
+  /// Type definition of the property string list.
+  typedef sequence <string> Properties;
+
   struct Node_Binding
   {
     boolean localhost;
@@ -22,24 +25,50 @@ module CUTS
     unsigned short port;
   };
 
-  typedef sequence <Node_Binding> Node_Bindings;
-
-  struct Spawn_Detail
+  struct Node_Task
   {
-    string params;
+    /// Human readable name of the task.
+    string name;
 
-    Node_Bindings bindings;
+    /// Executable name of the task.
+    string execname;
+
+    /// The arguments for the task.
+    string arguments;
   };
 
-  interface Node_Daemon
+  /**
+   * @class Task_Manager
+   *
+   * Task manager interface for the node daemon. This allows client
+   * to control the spawning/killing of child processes on the
+   * hosting node.
+   */
+  interface Task_Manager
   {
-    unsigned long spawn (in Spawn_Detail detail);
+    /**
+     * Spawn a new task in the task manager. The task is spawned
+     * immediately and runs infinitely or to completion.
+     *
+     * @param[in]       task      Target task to spawn.
+     * @retval          -1        The task failed to spawn.
+     * @retval          0         Failed to spawn the task.
+     */
+    unsigned long spawn_task (in Node_Task task);
 
-    unsigned long kill (in Node_Bindings nodes);
+    /**
+     * Kill an existing task. If the task exist in the task manager,
+     * then it will receive the SIGINT signal. Otherwise, this method
+     * has no side effects.
+     *
+     * @param[in]     name        Name of the task.
+     * @retval        -1          The task failed to spawn.
+     * @retval        0           Failed to spawn the task.
+     */
+    unsigned long kill_task (in string name);
 
-    Node_Bindings details ();
-
-    void shutdown ();
+    /// Shutdown the task manager.
+    oneway void shutdown ();
   };
 };
 

@@ -35,21 +35,6 @@ public:
   /// Destructor.
   ~Server_Options (void);
 
-  /**
-   * Set the path to the node manager. This method makes sure
-   * the path ends in a slash.
-   *
-   * @param[in]         path          Path to store.
-   */
-  void node_manager_path (const char * path);
-
-  /**
-   * Get the path to the node manager.
-   *
-   * @return  NULL-terminated string.
-   */
-  const ACE_CString & node_manager_path (void) const;
-
   /// Flag specifying the verbosity of the server
   bool verbose_;
 
@@ -58,10 +43,6 @@ public:
 
   /// The initial directory for starting the node daemon.
   ACE_CString init_dir_;
-
-private:
-  /// The path of the node daemon.
-  ACE_CString path_;
 };
 
 #define SERVER_OPTIONS() \

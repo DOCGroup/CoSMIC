@@ -46,10 +46,6 @@ int parse_args (int argc, char * argv [])
       SERVER_OPTIONS ()->ior_file_ = get_opt.opt_arg ();
       break;
 
-    case 'p':
-      SERVER_OPTIONS ()->node_manager_path (get_opt.opt_arg ());
-      break;
-
     case 'v':
       SERVER_OPTIONS ()->verbose_ = true ;
       break;
@@ -134,14 +130,14 @@ int main (int argc, char * argv [])
   if (guard.locked () == 0)
   {
     ACE_ERROR_RETURN ((LM_ERROR,
-                       "cutsnode_d is already active\n"),
+                       "*** error: cutsnode_d is already active\n"),
                        1);
   }
 
   try
   {
     // Initalize the ORB
-    CORBA::ORB_var orb = CORBA::ORB_init (argc, argv);
+    ::CORBA::ORB_var orb = ::CORBA::ORB_init (argc, argv);
 
     if (parse_args (argc, argv) < 0)
       return 1;
@@ -175,8 +171,8 @@ int main (int argc, char * argv [])
     // Create a <CUTS::Node_Daemon>
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "creating the node daemon server\n"));
-    CUTS::Node_Daemon_i * daemon_i = 0;
-    ACE_NEW_RETURN (daemon_i, CUTS::Node_Daemon_i (orb.in ()), 1);
+    CUTS_Node_Daemon_i * daemon_i = 0;
+    ACE_NEW_RETURN (daemon_i, CUTS_Node_Daemon_i (orb.in ()), 1);
 
     // Attempt the recover any lost nodes.
     size_t count = daemon_i->recover ();
@@ -186,12 +182,15 @@ int main (int argc, char * argv [])
                       count));
 
     // Activate the <CUTS::Node_Daemon> and write it's IOR to file.
-    CUTS::Node_Daemon_var daemon = daemon_i->_this ();
+    CUTS::Task_Manager_var daemon = daemon_i->_this ();
 
     // Convert the object to its string format and write the
     // IOR to file and to the IOR table.
     ::CORBA::String_var objstr = orb->object_to_string (daemon);
-    VERBOSE_MESSAGE ((LM_DEBUG, "NodeDaemon %s\n", objstr.in ()));
+
+    VERBOSE_MESSAGE ((LM_DEBUG,
+                      "*** info: CUTS/NodeDaemon %s\n",
+                      objstr.in ()));
 
     write_ior_to_file (objstr.in ());
     ior_table->bind ("CUTS/NodeDaemon", objstr.in ());

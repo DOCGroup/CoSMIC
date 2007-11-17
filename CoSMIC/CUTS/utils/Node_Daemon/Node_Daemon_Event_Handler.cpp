@@ -6,8 +6,8 @@
 //
 // Node_Daemon_Event_Handler
 //
-Node_Daemon_Event_Handler::Node_Daemon_Event_Handler (
-  ::CUTS::Node_Daemon_i * daemon)
+Node_Daemon_Event_Handler::
+Node_Daemon_Event_Handler (CUTS_Node_Daemon_i & daemon)
 : daemon_ (daemon),
   active_ (false)
 {
@@ -27,13 +27,28 @@ Node_Daemon_Event_Handler::~Node_Daemon_Event_Handler (void)
 //
 int Node_Daemon_Event_Handler::handle_exit (ACE_Process * process)
 {
-  ACE_DEBUG ((LM_DEBUG, "handle_exit\n"));
-
   if (process != 0)
-    this->daemon_->unmanage (process->getpid ());
+  {
+    this->daemon_.unmanage (process->getpid ());
+  }
   else
-    ACE_ERROR ((LM_WARNING, "unknown process has exited\n"));
+  {
+    ACE_ERROR ((LM_WARNING, "*** warning: unknown process has exited\n"));
+  }
 
+  return 0;
+}
+
+//
+// handle_exit
+//
+int Node_Daemon_Event_Handler::
+handle_timeout (const ACE_Time_Value & tv, const void * act)
+{
+  this->daemon_.clean ();
+
+  ACE_UNUSED_ARG (tv);
+  ACE_UNUSED_ARG (act);
   return 0;
 }
 

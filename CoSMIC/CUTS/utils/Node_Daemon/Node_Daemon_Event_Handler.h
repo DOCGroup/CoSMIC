@@ -17,11 +17,8 @@
 #include "ace/Task.h"
 #include "ace/Reactor.h"
 
-namespace CUTS
-{
-  // Forward decl.
-  class Node_Daemon_i;
-}
+// Forward decl.
+class CUTS_Node_Daemon_i;
 
 //=============================================================================
 /**
@@ -32,7 +29,12 @@ namespace CUTS
 class Node_Daemon_Event_Handler : public ACE_Task_Base
 {
 public:
-  Node_Daemon_Event_Handler (::CUTS::Node_Daemon_i * daemon);
+  /**
+   * Default constructor.
+   *
+   * @param[in]       deamon
+   */
+  Node_Daemon_Event_Handler (CUTS_Node_Daemon_i & daemon);
 
   virtual ~Node_Daemon_Event_Handler (void);
 
@@ -41,14 +43,21 @@ public:
   void deactivate (void);
 
 private:
+  /// Callback routine for handling process termination.
   int handle_exit (ACE_Process * process);
+
+  /// Callback routine for handling timeout.
+  int handle_timeout (const ACE_Time_Value & tv, const void * act);
 
   int svc (void);
 
-  ::CUTS::Node_Daemon_i * daemon_;
+  /// The target node daemon associated with handler.
+  CUTS_Node_Daemon_i & daemon_;
 
+  /// Target reactor for the handler.
   ACE_Reactor reactor_;
 
+  /// The active state of the handler.
   bool active_;
 };
 

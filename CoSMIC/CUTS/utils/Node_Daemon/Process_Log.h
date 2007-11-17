@@ -18,64 +18,47 @@
 #include "cuts/config.h"
 #include "ace/SString.h"
 #include "ace/Thread_Mutex.h"
-#include "ace/Unbounded_Set.h"
+#include "ace/Containers_T.h"
 #include "ace/iosfwd.h"
 
-// Forward decl.
-class Process_Log;
-
-// Forward decl.
-class Process_Log_Entry;
-
-typedef ACE_Unbounded_Set <Process_Log_Entry> Process_List;
+#define PROCESS_LOG_NAME_MAX_LENGTH  256
 
 //=============================================================================
 /**
- * @class Process_Log_Entry
+ * @struct Process_Log_Entry
+ *
+ * Data representation of an in the process log database.
  */
 //=============================================================================
 
-class Process_Log_Entry
+struct Process_Log_Entry
 {
-  // Friend decl.
-  friend class Process_Log;
-
-public:
-  Process_Log_Entry (void);
-
-  Process_Log_Entry (const Process_Log_Entry & entry);
-
-  bool is_localhost (void) const;
-
-  bool is_active (void) const;
-
-  const Process_Log_Entry & operator = (const Process_Log_Entry &);
-
-  u_short port (void) const;
-
-  pid_t pid (void) const;
-
-  bool operator == (const Process_Log_Entry & entry);
-
-private:
-  enum Flags
-  {
-    /// The process is active.
-    PLE_ACTIVE  =   0x0001,
-
-    /// The port visibility is local.
-    PLE_LOCAL   =   0x0002
-  };
-
-  /// Flags for the entry.
-  u_short flags_;
+  /// The active state of the entry.
+  bool active_;
 
   /// Process id for the entry.
   pid_t pid_;
 
-  /// The port number of the entry.
-  u_short port_;
+  /// Human readable name of the process.
+  char name_[PROCESS_LOG_NAME_MAX_LENGTH];
+
+  /**
+   * Test the log entry for equality. Two log entries are equal
+   * if both have the same name. We do not care about the process's
+   * id.
+   *
+   * @param[in]       rhs       Right hand side of the operator.
+   * @retval          true      The log entries are equal.
+   * @retval          false     The log entries are not equal.
+   */
+  inline operator == (const Process_Log_Entry & rhs)
+  {
+    return ACE_OS::strcmp (this->name_, rhs.name_) == 0;
+  }
 };
+
+/// Type definition for a listing of processes.
+typedef ACE_Unbounded_Set <Process_Log_Entry> Process_List;
 
 //=============================================================================
 /**
@@ -118,7 +101,7 @@ public:
    */
   const ACE_CString & log_file (void) const;
 
-  bool process_spawn (pid_t id, u_short port, bool localhost);
+  bool process_spawn (const ACE_CString & name, pid_t id);
 
   bool process_exit (pid_t id);
 

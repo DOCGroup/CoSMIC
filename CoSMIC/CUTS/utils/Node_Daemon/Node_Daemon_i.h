@@ -2,7 +2,7 @@
 
 //=============================================================================
 /**
- * @file      Node_Daemon_i.h
+ * @file      CUTS_Node_Daemon_i.h
  *
  * $Id$
  *
@@ -23,150 +23,87 @@
 #include "ace/Timer_Heap.h"
 #include "ace/Timer_Queue_Adapters.h"
 
-namespace CUTS
+//===========================================================================
+/**
+  * @class CUTS_Node_Daemon_i
+  *
+  * Main implementation of the Task_Manager interface.
+  */
+//===========================================================================
+
+class CUTS_Node_Daemon_i :
+  public virtual POA_CUTS::Task_Manager
 {
-  //===========================================================================
+public:
+  /// Friend class.
+  friend class Node_Daemon_Event_Handler;
+
+  /// Default contructor.
+  CUTS_Node_Daemon_i (::CORBA::ORB_ptr orb);
+
+  /// Destructor.
+  virtual ~CUTS_Node_Daemon_i (void);
+
   /**
-   * @class Node_Daemon_i
+   * Spawn a set of node daemons.
    *
-   * Implementation of the CUTS::Node_Daemon interface.
+   * @param[in]     task      Task to spawn
+   * @return        Number of nodes successfully spawned.
    */
-  //===========================================================================
+  virtual CORBA::ULong spawn_task (const CUTS::Node_Task & task);
 
-  class Node_Daemon_i :
-    public virtual POA_CUTS::Node_Daemon,
-    public ACE_Event_Handler
-  {
-  public:
-    /// Default contructor.
-    Node_Daemon_i (::CORBA::ORB_ptr orb);
+  /**
+   * Kill a node in the task manager.
+   *
+   * @param[in]     name      Name of the task.
+   */
+  virtual CORBA::ULong kill_task (const char * name);
 
-    /// Destructor.
-    virtual ~Node_Daemon_i (void);
+  /// Shutdown the node daemon server.
+  virtual void shutdown (void);
 
-    /**
-     * Spawn a set of node daemons.
-     *
-     * @param[in]     nodes       Details of nodes to spawn.
-     * @return        Number of nodes successfully spawned.
-     */
-    virtual ::CORBA::ULong spawn (const ::CUTS::Spawn_Detail & detail);
+  /// Recover as many processes as possible.
+  size_t recover (void);
 
-    /**
-     * Kill a set of node daemons.
-     *
-     * @param[in]     nodes       Node bindings to kill.
-     * @return        Number of nodes successfully killed.
-     */
-    virtual ::CORBA::ULong kill (const ::CUTS::Node_Bindings & nodes);
+private:
+  /// Initialize the class.
+  void init (void);
 
-    /// Get the details of the spawned node managers.
-    virtual ::CUTS::Node_Bindings * details (void);
+  /// Unmanage the specified process id.
+  void unmanage (pid_t pid);
 
-    /// Shutdown the node daemon server.
-    virtual void shutdown (void);
+  /// Cleanup the process log.
+  void clean (void);
 
-    /**
-     * Determine the availability of a specific binding.
-     *
-     * @param[in]       port          The port of interest.
-     * @param[in]       localhost     The locality of the port.
-     * @retval          true          The binding is available.
-     * @retval          false         The binding is not available.
-     */
-    bool is_port_available (u_short port, bool localhost) const;
+  /// Type definition of mapping ports to processes.
+  typedef ACE_Hash_Map_Manager <ACE_CString,
+                                pid_t,
+                                ACE_RW_Thread_Mutex> Process_Map;
 
-    /// Recover the node daemon to its previous state. This will
-    /// cause to node daemon to manage any active processes it
-    /// knew about before the failure.
-    size_t recover (void);
+  /// Mapping of task names to their process ids.
+  Process_Map process_map_;
 
-    /// Clean the log file.
-    void clean (void);
+  /// Process manager of the daemon used to spawn managers.
+  ACE_Process_Manager pm_;
 
-    /**
-     * Notify the node daemon to stop managing particular process.
-     * This can be the result of the process exiting, or no longer
-     * a concern. In either case, it will remove the process for
-     * monitoring by the daemon.
-     *
-     * @param[in]     pid         Id of the process.
-     */
-    void unmanage (pid_t pid);
+  /// Event handler for the node daemon.
+  Node_Daemon_Event_Handler event_handler_;
 
-  private:
-    /// Timeout handler for the cleaning thread.
-    int handle_timeout (const ACE_Time_Value & tv,
-                        const void * act);
+  /// Common process options used by the daemon.
+  ACE_Process_Options p_options_;
 
-    /// Initialize the class.
-    void init (void);
+  /// The timer queue for the periodic task.
+  ACE_Thread_Timer_Queue_Adapter <ACE_Timer_Heap> timer_queue_;
 
-    /// Initialize the \a p_options_ variable.
-    void init_p_options (void);
+  /// Timeout value for the cleaning thread.
+  long timer_;
 
-    void bind_pid (pid_t pid,
-                   u_short port,
-                   bool localhost);
+  /// Locking mechanism for the mappings.
+  ACE_RW_Thread_Mutex lock_;
 
-    /**
-     * Helper method for spawning a node manager.
-     *
-     * @param[in]     port        Target port number.
-     * @param[in]     localhost   Visibility of the port.
-     * @param[in]     p_options   Process options for spawing.
-     */
-    pid_t spawn_i (u_short port,
-                   bool localhost,
-                   ACE_Process_Options & p_options);
-
-    /// Type definition of mapping ports to processes.
-    typedef ACE_Hash_Map_Manager <u_short,
-                                  pid_t,
-                                  ACE_Null_Mutex> Node_Detail_Map;
-
-    /// Type definition for indexing the pid to it's entry.
-    typedef ACE_Hash_Map_Manager <pid_t,
-                                  Node_Detail_Map::ENTRY *,
-                                  ACE_Null_Mutex> Process_Map;
-
-    /// Mapping of process-ids to their node detail entry.
-    Process_Map proc_map_;
-
-    /// Collection of used local ports.
-    Node_Detail_Map local_;
-
-    /// Collection of used global ports.
-    Node_Detail_Map global_;
-
-    /// Process manager of the daemon used to spawn managers.
-    ACE_Process_Manager pm_;
-
-    /// IP-address of the node daemon.
-    ACE_CString ip_addr_;
-
-    /// Full path name of the node manager.
-    ACE_CString node_manager_;
-
-    /// Event handler for the node daemon.
-    Node_Daemon_Event_Handler event_handler_;
-
-    /// Common process options used by the daemon.
-    ACE_Process_Options p_options_;
-
-    /// The timer queue for the periodic task.
-    ACE_Thread_Timer_Queue_Adapter <ACE_Timer_Heap> timer_queue_;
-
-    /// Timeout value for the cleaning thread.
-    long timer_;
-
-    /// Locking mechanism for the mappings.
-    ACE_RW_Thread_Mutex lock_;
-
-    /// The ORB hosting the node daemon.
-    ::CORBA::ORB_var orb_;
-  };
-}
+  /// The ORB hosting the node daemon.
+  ::CORBA::ORB_var orb_;
+};
 
 #if defined (__CUTS_INLINE__)
 #include "Node_Daemon_i.inl"

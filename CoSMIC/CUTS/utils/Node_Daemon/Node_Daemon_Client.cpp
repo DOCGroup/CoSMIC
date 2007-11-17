@@ -140,88 +140,6 @@ int parse_args (int argc, char * argv[])
 }
 
 //
-// process_spawn_action
-//
-void process_spawn_action (::CUTS::Node_Daemon_ptr daemon)
-{
-  if (CLIENT_OPTIONS ()->count_ < 1)
-    return;
-
-  // We only permit one spawn type at a time from the client.
-  ::CUTS::Spawn_Detail detail;
-  detail.bindings.length (CLIENT_OPTIONS ()->count_);
-  detail.params = ::CORBA::string_dup (CLIENT_OPTIONS ()->args_.c_str ());
-
-  VERBOSE_MESSAGE ((LM_DEBUG,
-                    "scheduled to spawn %u node manager(s)\n",
-                    CLIENT_OPTIONS ()->count_));
-
-  u_short port = CLIENT_OPTIONS ()->port_;
-
-  for (size_t i = 0; i < CLIENT_OPTIONS ()->count_; i ++)
-  {
-    ::CUTS::Node_Binding & binding = detail.bindings[i];
-
-    binding.localhost = CLIENT_OPTIONS ()->localhost_;
-    binding.port = port ++;
-  }
-
-  // Signal the server to spawn the nodes.
-  size_t spawn_count = daemon->spawn (detail);
-  VERBOSE_MESSAGE ((LM_DEBUG,
-                    "successfully spawned %u node manager(s)\n",
-                    spawn_count));
-}
-
-//
-// process_kill_action
-//
-void process_kill_action (::CUTS::Node_Daemon_ptr daemon)
-{
-  if (CLIENT_OPTIONS ()->count_ < 1)
-    return;
-
-  // Create a node bindings data type for killing.
-  ::CUTS::Node_Bindings bindings (CLIENT_OPTIONS ()->count_);
-  bindings.length (CLIENT_OPTIONS ()->count_);
-  u_short port = CLIENT_OPTIONS ()->port_;
-
-  // Initialize the node bindings.
-  for (size_t i = 0; i < CLIENT_OPTIONS ()->count_; i ++)
-  {
-    ::CUTS::Node_Binding & binding = bindings[i];
-
-    binding.localhost = CLIENT_OPTIONS ()->localhost_;
-    binding.port = port ++;
-  }
-
-  // Signal the daemon to kill.
-  daemon->kill (bindings);
-}
-
-//
-// process_client_options
-//
-void process_client_options (::CUTS::Node_Daemon_ptr daemon)
-{
-  VERBOSE_MESSAGE ((LM_DEBUG, "processing client options\n"));
-
-  switch (CLIENT_OPTIONS ()->action_)
-  {
-  case Client_Options::CA_SPAWN:
-    process_spawn_action (daemon);
-    break;
-
-  case Client_Options::CA_KILL:
-    process_kill_action (daemon);
-    break;
-
-  default:
-    VERBOSE_MESSAGE ((LM_DEBUG, "no client options to process\n"));
-  }
-}
-
-//
 // main
 //
 int main (int argc, char * argv [])
@@ -256,8 +174,8 @@ int main (int argc, char * argv [])
     VERBOSE_MESSAGE ((LM_DEBUG,
                       "extracting node daemon from object reference\n"));
 
-    ::CUTS::Node_Daemon_var daemon =
-      ::CUTS::Node_Daemon::_narrow (obj.in ());
+    CUTS::Task_Manager_var daemon =
+      CUTS::Task_Manager::_narrow (obj.in ());
 
     if (::CORBA::is_nil (daemon.in ()))
     {
@@ -266,8 +184,6 @@ int main (int argc, char * argv [])
                          daemon->_interface_repository_id ()),
                          1);
     }
-
-    process_client_options (daemon.in ());
 
     // Shutdown the target node daemon, if necessary.
     if (CLIENT_OPTIONS ()->shutdown_)
