@@ -1,3 +1,28 @@
+Sat Nov 17 18:05:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IOAutomata:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata.mpc:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.h:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.cpp:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata_Export.h:
+        * PIM/PICML/interpreters/IOAutomata/README.txt:
+        * PIM/PICML/interpreters/IOAutomataComponent:
+        * PIM/PICML/interpreters/IOAutomataComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.def:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.rc:
+        * PIM/PICML/interpreters/IOAutomataComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/IOAutomataComponent.mpc:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/resource.h:
+
+          Removed these files.
+
 Fri Nov 16 22:34:29 UTC 2007  Nishanth Shankaran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/RACE_devl.xme:
