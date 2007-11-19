@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{5031B9CC-0753-46F7-AC2E-77514CE08207}" cdate="Fri Sep 28 15:37:58 2007" mdate="Fri Sep 28 15:37:58 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{07AC1903-7140-4AF5-ABBD-70CB125A9B20}" cdate="Fri Sep 28 15:37:58 2007" mdate="Fri Sep 28 15:37:58 2007" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -10128,7 +10128,7 @@ dName = dstMultiInput</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000007" kind="ParadigmSheet" guid="{A8CFA571-FC25-4945-AAE3-58CB6FEDFA30}" relid="0x7" childrelidcntr="0x60">
+			<model id="id-0065-00000007" kind="ParadigmSheet" guid="{A8CFA571-FC25-4945-AAE3-58CB6FEDFA30}" relid="0x7" childrelidcntr="0x61">
 				<name>StateTypes</name>
 				<atom id="id-0066-0000003c" kind="Connection" role="Connection" guid="{E6FEAC71-73F2-4b1f-95F2-24C4149536CA}" relid="0x32">
 					<name>Transition</name>
@@ -10964,8 +10964,10 @@ dName = dstBranchTransition</value>
 					<attribute kind="DstAttrLabel2" status="meta">
 						<value></value>
 					</attribute>
-					<attribute kind="GeneralPreferences" status="meta">
-						<value></value>
+					<attribute kind="GeneralPreferences">
+						<value>
+sName = srcLoopTransition
+dName = dstLoopTransition</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -11490,14 +11492,6 @@ dName = dstBranchTransition</value>
 					<connpoint role="src" target="id-0066-0000026c"/>
 					<connpoint role="dst" target="id-0067-00000006"/>
 				</connection>
-				<connection id="id-0068-00000413" kind="AssociationClass" role="AssociationClass" guid="{335B3F35-9172-4716-B725-726A4BAE8FB4}" relid="0x53">
-					<name>AssociationClass</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>Ew</value>
-					</regnode>
-					<connpoint role="dst" target="id-0066-0000026c"/>
-					<connpoint role="src" target="id-0066-0000026d"/>
-				</connection>
 				<connection id="id-0068-00000414" kind="Containment" role="Containment" guid="{BB1B4FE0-4656-4885-92A2-7B3613EB125E}" relid="0x54">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
@@ -11570,6 +11564,14 @@ dName = dstBranchTransition</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000269"/>
 					<connpoint role="src" target="id-0066-00000271"/>
+				</connection>
+				<connection id="id-0068-0000041d" kind="AssociationClass" role="AssociationClass" guid="{7BBD200A-2642-48fa-9A7F-66BF19ACFDFE}" relid="0x61">
+					<name>AssociationClass</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>We</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-0000026c"/>
+					<connpoint role="dst" target="id-0066-0000026d"/>
 				</connection>
 				<set id="id-0069-00000004" kind="Aspect" role="Aspect" guid="{F3C13D22-10C2-4e63-BCE7-CA59B3AD970D}" relid="0x25" members="id-0066-0000003c id-0066-00000041 id-0066-00000044 id-0066-0000026d">
 					<name>BehaviorState</name>

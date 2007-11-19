@@ -1,3 +1,13 @@
+Mon Nov 19 22:19:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          There was an inconsistency between the UDM model and the
+          PICML paradigm.
+
 Sat Nov 17 18:05:18 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IOAutomata:
