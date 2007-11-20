@@ -6,7 +6,6 @@
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
 
-#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Preprocessor.h"
 #include "cuts/be/BE_Options.h"
 
@@ -66,11 +65,10 @@ CUTS_CIAO_Exec_Header_Traits::~CUTS_CIAO_Exec_Header_Traits (void)
 bool CUTS_CIAO_Exec_Header_Traits::
 open_file (const PICML::ComponentImplementationContainer & container)
 {
-  const CUTS_BE_Impl_Node * node = 0;
-  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node))
+  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), this->node_))
     return false;
 
-  if (node->is_proxy_)
+  if (this->node_->is_proxy_)
     return false;
 
   return this->_super::open_file (container);

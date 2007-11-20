@@ -56,6 +56,10 @@ protected:
   void Visit_MonolithicImplementation (
     const PICML::MonolithicImplementation & monoimpl);
 
+  /// Visit a MonolithicImplementation element.
+  void Visit_ComponentAssembly (
+    const PICML::ComponentAssembly & assembly);
+
   /// Visit a Component element.
   void Visit_Component (
     const PICML::Component & component);

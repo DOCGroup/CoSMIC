@@ -12,6 +12,7 @@
 
 #include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Options.h"
+#include "cuts/be/BE_Impl_Node.h"
 
 // UDM headers
 #include "Uml.h"
@@ -23,6 +24,36 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
+
+//
+// Element_Name_End_With
+//
+template <typename T>
+struct Element_Name_End_With
+{
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]     substring       Target substring in question.
+   */
+  Element_Name_End_With (const std::string & substring)
+    : substring_ (substring) { }
+
+  bool operator () (const T & element)
+  {
+    std::string name = element.name ();
+    std::string::size_type npos = name.rfind (this->substring_);
+
+    if (npos == std::string::npos)
+      return false;
+
+    return npos + this->substring_.length () == name.length ();
+  }
+
+private:
+  /// Substring in question.
+  const std::string & substring_;
+};
 
 //
 // CUTS_CIAO_Header_Traits
@@ -516,12 +547,19 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
     PICML::ComponentImplementationContainer::Cast (impl.parent ());
 
   std::string exportfile =
-    (std::string) container.name () + CUTS_BE_OPTIONS ()->exec_suffix_;
+    std::string (container.name ()) + CUTS_BE_OPTIONS ()->exec_suffix_;
 
-  std::string exportname = exportfile;
-  std::replace (exportname.begin (), exportname.end (), '/', '_');
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_exec =
+    std::find_if (this->node_->artifacts_.begin (),
+                  this->node_->artifacts_.end (),
+                  Element_Name_End_With <
+                    CUTS_BE_Impl_Node::Artifact_Set::value_type> (
+                    CUTS_BE_OPTIONS ()->exec_suffix_));
 
-  CUTS_Export_File_Generator export_file (exportname, exportfile);
+  //std::string exportname = exportfile;
+  //std::replace (exportname.begin (), exportname.end (), '/', '_');
+
+  CUTS_Export_File_Generator export_file (iter_exec->name (), exportfile);
   export_file.generate ();
 
   // Close off the class definition.

@@ -176,6 +176,33 @@ const PICML::MonolithicImplementation & monoimpl)
 }
 
 //
+// Visit_MonolithicImplementation
+//
+template <typename IMPL_STRATEGY>
+void CUTS_BE_Impl_Generator_T <IMPL_STRATEGY>::
+Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
+{
+  // Get the parent of the monolithic implementation.
+  PICML::ComponentImplementationContainer container =
+    assembly.ComponentImplementationContainer_parent ();
+
+  if (CUTS_BE_ComponentAssembly_File_Open_T <IMPL_STRATEGY>::
+      generate (container, assembly))
+  {
+    // Write the prologue for the file.
+    CUTS_BE_ComponetAssembly_Prologue_T <
+      IMPL_STRATEGY>::generate (container, assembly);
+
+    // Write the epilogue for the file, then close it.
+    CUTS_BE_ComponentAssembly_Epilogue_T <
+      IMPL_STRATEGY>::generate (container, assembly);
+
+    CUTS_BE_ComponentAssembly_File_Close_T <
+      IMPL_STRATEGY>::generate (container, assembly);
+  }
+}
+
+//
 // Visit_Component
 //
 template <typename IMPL_STRATEGY>

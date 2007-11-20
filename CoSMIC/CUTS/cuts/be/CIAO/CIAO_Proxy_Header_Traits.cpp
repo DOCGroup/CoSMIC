@@ -44,11 +44,10 @@ CUTS_CIAO_Proxy_Header_Traits::
 bool CUTS_CIAO_Proxy_Header_Traits::
 open_file (const PICML::ComponentImplementationContainer & container)
 {
-  const CUTS_BE_Impl_Node * node = 0;
-  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), node))
+  if (!CUTS_BE_PREPROCESSOR ()->impls ().find (container.name (), this->node_))
     return false;
 
-  if (!node->is_proxy_)
+  if (!this->node_->is_proxy_)
     return false;
 
   return this->_super::open_file (container);

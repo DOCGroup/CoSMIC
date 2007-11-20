@@ -6,6 +6,7 @@
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_IDL_Node.h"
 #include "cuts/be/BE_Impl_Node.h"
+#include "cuts/be/modelgen.h"
 
 #include "boost/bind.hpp"
 
@@ -20,11 +21,46 @@
 #define CLIENT_SUFFIX     "C"
 #define SERVER_SUFFIX     "S"
 
+std::string basename (const std::string & filename)
+{
+  std::string::size_type npos = filename.find_last_of ("/\\");
+  return filename.substr (npos + 1);
+}
+
+//
+// Element_Name_End_With
+//
+template <typename T>
+struct Element_Name_End_With
+{
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]     substring       Target substring in question.
+   */
+  Element_Name_End_With (const std::string & substring)
+    : substring_ (substring) { }
+
+  bool operator () (const T & element)
+  {
+    std::string name = element.name ();
+    std::string::size_type npos = name.rfind (this->substring_);
+
+    if (npos == std::string::npos)
+      return false;
+
+    return npos + this->substring_.length () == name.length ();
+  }
+
+private:
+  /// Substring in question.
+  const std::string & substring_;
+};
+
 //
 // CUTS_CIAO_Project_Generator
 //
-CUTS_CIAO_Project_Generator::
-CUTS_CIAO_Project_Generator (void)
+CUTS_CIAO_Project_Generator::CUTS_CIAO_Project_Generator (void)
 {
 
 }
@@ -32,8 +68,7 @@ CUTS_CIAO_Project_Generator (void)
 //
 // ~CUTS_CIAO_Project_Generator
 //
-CUTS_CIAO_Project_Generator::
-~CUTS_CIAO_Project_Generator (void)
+CUTS_CIAO_Project_Generator::~CUTS_CIAO_Project_Generator (void)
 {
 
 }
@@ -44,6 +79,7 @@ CUTS_CIAO_Project_Generator::
 bool CUTS_CIAO_Project_Generator::
 write_exec_project (const CUTS_BE_Impl_Node & node)
 {
+
   // Construct the filename of the MPC file.
   std::ostringstream ostr;
   ostr
@@ -196,36 +232,45 @@ generate_impl_project (std::ofstream & outfile,
                        const CUTS_BE_Impl_Node & node,
                        bool executor_type)
 {
+  // We need to first locate the artifact that ends with
+  // exec_suffix_. If we can't find one, then we need to
+  // just abort!!
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_exec =
+    std::find_if (node.artifacts_.begin (), node.artifacts_.end (),
+                  Element_Name_End_With <
+                    CUTS_BE_Impl_Node::Artifact_Set::value_type> (
+                    CUTS_BE_OPTIONS ()->exec_suffix_));
+
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_svnt =
+    std::find_if (node.artifacts_.begin (), node.artifacts_.end (),
+                  Element_Name_End_With <
+                    CUTS_BE_Impl_Node::Artifact_Set::value_type> (
+                    SVNT_SUFFIX));
+
+  if (iter_exec == node.artifacts_.end () ||
+      iter_svnt == node.artifacts_.end ())
+  {
+    return;
+  }
+
   // Generate the export_file file for the project.
-  std::string impl_project = node.name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
-  std::string impl_export (impl_project.size (), '\0');
+  std::string impl_project = iter_exec->name ();
+  std::string export_filename = node.name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
 
-  std::replace_copy (impl_project.begin (),
-                     impl_project.end (),
-                     impl_export.begin (),
-                     '/', '_');
-
-  CUTS_Export_File_Generator efg (impl_export, impl_project);
+  CUTS_Export_File_Generator efg (impl_project, export_filename);
   efg.generate ();
-
-  // Convert the name to a valid project name.
-  std::replace (impl_project.begin (), impl_project.end (), '/', '_');
-
-  // Construct the name of the servant project.
-  std::string svnt_project = node.name_ + SVNT_SUFFIX;
-  std::replace (svnt_project.begin (), svnt_project.end (), '/', '_');
 
   // Generate the executor project.
   outfile
-    << "project (" << impl_project << ") : cuts_coworker_exec {" << std::endl
-    << "  sharedname   = " << impl_project << std::endl
+    << "project (" << std::string (iter_exec->name ())
+    << ") : cuts_coworker_exec {" << std::endl
+    << "  sharedname   = " << basename (iter_exec->location ()) << std::endl
     << std::endl
     << "  dynamicflags = " << efg.build_flag () << std::endl
     << std::endl
-    << "  after  += " << svnt_project << std::endl
+    << "  after += " << std::string (iter_svnt->name ()) << std::endl
     << std::endl
-    << "  libs   += \\ " << std::endl
-    << "    " << svnt_project;
+    << "  libs  += " << basename (iter_svnt->location ());
 
   // Generate the stub import libraries for this node.
   std::for_each (node.references_.begin (),
@@ -272,36 +317,37 @@ generate_impl_project (std::ofstream & outfile,
 // write_svnt_project
 //
 void CUTS_CIAO_Project_Generator::
-generate_svnt_project (std::ofstream & outfile,
-                       const CUTS_BE_Impl_Node & node)
+generate_svnt_project (std::ofstream & outfile, const CUTS_BE_Impl_Node & node)
 {
-  // Generator the export file.
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_svnt =
+    std::find_if (node.artifacts_.begin (), node.artifacts_.end (),
+                  Element_Name_End_With <
+                    CUTS_BE_Impl_Node::Artifact_Set::value_type> (
+                    SVNT_SUFFIX));
+
+  if (iter_svnt == node.artifacts_.end ())
+    return;
+
+  // Generator the export file for the CIAO servant project.
   std::string svnt_project = node.name_ + SVNT_SUFFIX;
-  std::string svnt_export = node.basename_ + SVNT_SUFFIX;
+  std::string svnt_export = iter_svnt->name ();
 
   CUTS_Export_File_Generator efg (svnt_export, svnt_project);
   efg.generate ();
 
-  // Convert the <svnt_project> to a valid name.
-  std::replace (svnt_project.begin (), svnt_project.end (), '/', '_');
-
-  std::string efg_basename = efg.export_file ();
-  size_t index = efg_basename.find_last_of ('/');
-
-  if (index != std::string::npos)
-    efg_basename.erase (0, index + 1);
-
   outfile
-    << "project (" << svnt_project << ") : cuts_coworker_svnt {" << std::endl
-    << "  sharedname   = " << svnt_project << std::endl
+    << "project (" << std::string (iter_svnt->name ())
+    << ") : cuts_coworker_svnt {" << std::endl
+    << "  sharedname   = " << basename (iter_svnt->location ()) << std::endl
     << std::endl
     << "  dynamicflags = " << efg.build_flag () << std::endl
     << std::endl
-
-    // Generate the IDL flag definitions.
+    << "  cidlflags -= --" << std::endl
+    << "  cidlflags += --svnt-export-macro " << efg.export_macro () << " --"
+    << std::endl << std::endl
     << "  idlflags += -Wb,export_macro=" << efg.export_macro ()
     << " \\" << std::endl
-    << "              -Wb,export_include=" << efg_basename
+    << "              -Wb,export_include=" << basename (efg.export_file ())
     << std::endl
     << std::endl;
 

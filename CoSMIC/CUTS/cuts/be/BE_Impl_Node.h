@@ -46,8 +46,7 @@ struct CUTS_BE_Export CUTS_BE_Impl_Node :
   /// Collection of import libraries.
   CUTS_String_Set lib_;
 
-  /// Flag that determines if the implementation is a
-  /// CUTS CoWorkEr proxy.
+  /// Flag that determines if implementation is a proxy.
   bool is_proxy_;
 
   /// Type definition of a collection of artifacts for this.

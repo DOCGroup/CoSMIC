@@ -162,6 +162,9 @@ protected:
   /// Entry point for the implementation.
   std::string entry_point_;
 
+  /// The current implementation node.
+  const CUTS_BE_Impl_Node * node_;
+
 private:
   enum _env_bit
   {

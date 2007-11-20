@@ -1,3 +1,31 @@
+Tue Nov 20 01:20:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/BE_Impl_Generator_T.h:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+
+          Added the initial point-of-interpretation and point-of-generation
+          tags for handling component assemblies.
+
+        * cuts/be/BE_Impl_Node.h:
+
+          Reformatted the Doxygen text.
+
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Exec_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Traits_Base.h:
+        * cuts/be/CIAO/CIAO_Traits_Base.cpp:
+
+          The naming of executor and servant projects are now based
+          on the values extracted from the model. For example, the
+          project name is based on the artifact's name and the sharedname
+          is based on the location attribute of the corresponding
+          artifact.
+
 Sat Nov 17 18:56:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * utils/Node_Daemon/Node_Daemon_i.cpp:

@@ -57,6 +57,7 @@ close_file (const PICML::ComponentImplementationContainer & container)
 {
   this->formatter_.reset ();
   this->outfile ().close ();
+  this->node_ = 0;
 }
 
 //

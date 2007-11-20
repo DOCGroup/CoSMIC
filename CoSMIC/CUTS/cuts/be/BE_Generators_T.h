@@ -52,10 +52,42 @@ struct CUTS_BE_File_Open_T
 //=============================================================================
 
 template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_File_Open_T
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &)
+  {
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
 struct CUTS_BE_File_Close_T
 {
   static bool generate (const PICML::ComponentImplementationContainer &,
                         const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_File_Close_T
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &)
   {
     return false;
   }
@@ -97,10 +129,42 @@ struct CUTS_BE_Prologue_T
 //=============================================================================
 
 template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponetAssembly_Prologue_T
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &)
+  {
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
 struct CUTS_BE_Epilogue_T
 {
   static bool generate (const PICML::ComponentImplementationContainer &,
                         const PICML::MonolithicImplementation &)
+  {
+    return false;
+  }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_Epilogue_T
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &)
   {
     return false;
   }
