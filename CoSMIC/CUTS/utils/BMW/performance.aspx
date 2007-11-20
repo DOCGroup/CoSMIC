@@ -4,6 +4,9 @@
 <%@ register tagprefix="cuts" tagname="systemperformance"
              src="~/controls/SystemPerformance.ascx" %>
 
+<%@ register tagprefix="cuts" tagname="cumulativesystemperformance"
+             src="~/controls/CumulativeSystemPerformance.ascx" %>
+
 <asp:content runat="server" id="main_content"
              contentplaceholderid="MainContent">
   <h2>System-wide Performance Metrics</h2>
@@ -82,7 +85,24 @@
 
 
     <asp:view runat="server" id="cumulative_view_">
-
+      <cuts:cumulativesystemperformance
+          runat="server"
+          id="cumulative_sysperf_"
+          datatestnumber="test_number"
+          datacomponentname="component_name"
+          datacomponentid="component"
+          datacategoryname="sender_name"
+          datacategoryid="sender"
+          datametrictype="metric_type"
+          datasrcname="srcname"
+          datasrcid="src"
+          datadstname="dstname"
+          datadstid="dst"
+          dataeventcount="metric_count"
+          databesttime="best_time"
+          dataavgtime="avg_time"
+          dataworsttime="worst_time"
+          enableviewstate="false" />
     </asp:view>
   </asp:multiview>
 </asp:content>

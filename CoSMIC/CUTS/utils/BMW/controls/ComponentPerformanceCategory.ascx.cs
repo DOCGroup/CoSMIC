@@ -25,16 +25,49 @@ namespace CUTS
 
     public CUTS.PortPerformance FindPortPerformance (string name)
     {
-      foreach (CUTS.PortPerformance item in this.ports_.Controls)
+      // Try to locate the port with the specified name.
+      foreach (Control item in this.ports_.Controls)
       {
-        if (item.PortName == name)
-          return item;
+        if (item is CUTS.PortPerformance)
+        {
+          CUTS.PortPerformance temp = (CUTS.PortPerformance)item;
+
+          if (temp.PortName == name)
+            return temp;
+        }
       }
 
+      // Since we could not find the port, we need to create
+      // a new port performance control.
       Control control = this.LoadControl("~/controls/PortPerformance.ascx");
       this.ports_.Controls.Add(control);
 
       CUTS.PortPerformance port = (CUTS.PortPerformance)control;
+      port.PortName = name;
+
+      return port;
+    }
+
+    public CUTS.CumulativePortPerformance FindCumulativePortPerformance(string name)
+    {
+      // Try to locate the port with the specified name.
+      foreach (Control item in this.ports_.Controls)
+      {
+        if (item is CUTS.CumulativePortPerformance)
+        {
+          CUTS.CumulativePortPerformance temp = (CUTS.CumulativePortPerformance)item;
+
+          if (temp.PortName == name)
+            return temp;
+        }
+      }
+
+      // Since we could not find the port, we need to create
+      // a new port performance control.
+      Control control = this.LoadControl("~/controls/CumulativePortPerformance.ascx");
+      this.ports_.Controls.Add(control);
+
+      CUTS.CumulativePortPerformance port = (CUTS.CumulativePortPerformance)control;
       port.PortName = name;
 
       return port;

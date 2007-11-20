@@ -121,23 +121,29 @@ namespace CUTS
       // Get all the execution times from the database.
       this.cutsdb_.get_execution_times(this.test_number_,
                                        this.collection_time_,
-                                       ref ds);
-
-      // Get the listing of all the distinct components.
-      this.cutsdb_.select_distinct_components_in_execution_time(this.test_number_,
-                                                                this.collection_time_,
-                                                                ref ds);
-
-      // Get the cumulative performance metrics for this test.
-      this.cutsdb_.select_execution_time_cumulative(this.test_number_,
-                                                    ref ds);
+                                       ref ds,
+                                       "execution_time");
 
       // Bind the metrics to the system performance control.
       this.sysperf_.DataSource = ds;
       this.sysperf_.DataMember = "execution_time";
-
-      // Bind the data to the control.
       this.sysperf_.DataBind();
+
+    }
+
+    private void load_cumulative_times()
+    {
+      DataSet ds = new DataSet();
+
+      // Get the cumulative performance metrics for this test.
+      this.cutsdb_.select_execution_time_cumulative(this.test_number_,
+                                                    ref ds,
+                                                    "cumulative");
+
+      // Bind the cumulative metrics to the control.
+      this.cumulative_sysperf_.DataSource = ds;
+      this.cumulative_sysperf_.DataMember = "cumulative";
+      this.cumulative_sysperf_.DataBind();
     }
 
     protected void on_collection_time_changed(Object sender, EventArgs e)
@@ -185,6 +191,7 @@ namespace CUTS
           break;
 
         case 1:
+          this.load_cumulative_times();
           break;
       }
     }

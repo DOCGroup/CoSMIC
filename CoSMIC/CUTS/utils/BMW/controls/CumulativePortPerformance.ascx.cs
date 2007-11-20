@@ -13,22 +13,9 @@ namespace CUTS
 {
   public partial class CumulativePortPerformance : System.Web.UI.UserControl
   {
-    /**
-     *
-     */
-    protected void Page_Load(object sender, EventArgs e)
+    public CumulativePortPerformance()
     {
-      if (this.service_timeline_url_query_ != null)
-      {
-        this.service_timeline_link_.NavigateUrl =
-          "~/timeline.aspx?" + this.service_timeline_url_query_;
-      }
 
-      if (this.queueing_timeline_url_query_ != null)
-      {
-        this.queueing_timeline_link_.NavigateUrl =
-          "~/timeline.aspx?" + this.queueing_timeline_url_query_;
-      }
     }
 
     /// Get/set the port name for the performance metrics.
@@ -61,80 +48,93 @@ namespace CUTS
       get { return this.exittimes_; }
     }
 
-    public override void DataBind()
+    public void InsertExitPoint(CUTS.CumulativeExitPoint ep)
     {
-      if (this.exittimes_.Count > 0)
-      {
+      if (!this.exittime_row_.Visible)
         this.exittime_row_.Visible = true;
 
-        foreach (object item in this.exittimes_)
-        {
-          try
-          {
-            // Create a new row for the exit point.
-            CUTS.CumulativeExitPoint ep = (CUTS.CumulativeExitPoint)item;
-            TableRow row = new TableRow();
+      this.exittimes_.Add(ep);
+      TableRow row = new TableRow();
 
-            // Create the cell that contains the name.
-            TableCell cell = new TableCell();
-            cell.Text = ep.Name + ":";
-            cell.CssClass = "performance-name";
-            row.Cells.Add(cell);
+      // Create the cell that contains the name.
+      TableCell cell = new TableCell();
+      cell.Text = ep.Name + ":";
+      cell.CssClass = "performance-name";
+      row.Cells.Add(cell);
 
-            // Create the timeline cell for the new row
-            HyperLink link = new HyperLink();
-            link.ImageUrl = "~/images/graph.gif";
-            link.NavigateUrl = "~/timeline.aspx?" + ep.TimelineURLQuery;
+      // Create the timeline cell for the new row
+      HyperLink link = new HyperLink();
+      link.ImageUrl = "~/images/graph.gif";
+      link.NavigateUrl = "~/timeline.aspx?" + ep.TimelineURLQuery;
 
-            cell = new TableCell();
-            cell.Controls.Add(link);
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Controls.Add(link);
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            // Create cells for each of the performance metrics.
-            cell = new TableCell();
-            cell.Text = ep.Performance.Count.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      // Create cells for each of the performance metrics.
+      cell = new TableCell();
+      cell.Text = ep.Performance.Count.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = ep.Performance.Minimum.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = ep.Performance.Minimum.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = Math.Round(ep.Performance.Average, 2).ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = Math.Round(ep.Performance.Average, 2).ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            cell = new TableCell();
-            cell.Text = ep.Performance.Maximum.ToString();
-            cell.CssClass = "performance-data";
-            row.Cells.Add(cell);
+      cell = new TableCell();
+      cell.Text = ep.Performance.Maximum.ToString();
+      cell.CssClass = "performance-data";
+      row.Cells.Add(cell);
 
-            // Add the new row to the table.
-            this.portperf_table_.Rows.Add(row);
-          }
-          catch (Exception)
-          {
-
-          }
-        }
-      }
-      // Pass control to the base class.
-      base.DataBind();
+      // Add the new row to the table.
+      this.portperf_table_.Rows.Add(row);
     }
 
     public string QueueingTimelineURLQuery
     {
       get { return this.queueing_timeline_url_query_; }
-      set { this.queueing_timeline_url_query_ = value; }
+
+      set
+      {
+        this.queueing_timeline_url_query_ = value;
+
+        if (value != null && value != String.Empty)
+        {
+          this.queueing_timeline_link_.NavigateUrl = "~/timeline.aspx?" + value;
+          this.queueing_timeline_link_.Visible = true;
+        }
+        else
+        {
+          this.queueing_timeline_link_.Visible = false;
+        }
+      }
     }
 
     public string ServiceTimelineURLQuery
     {
       get { return this.service_timeline_url_query_; }
-      set { this.service_timeline_url_query_ = value; }
+
+      set
+      {
+        this.service_timeline_url_query_ = value;
+
+        if (value != null && value != String.Empty)
+        {
+          this.service_timeline_link_.NavigateUrl = "~/timeline.aspx?" + value;
+          this.service_timeline_link_.Visible = true;
+        }
+        else
+        {
+          this.service_timeline_link_.Visible = false;
+        }
+      }
     }
 
     /// Number of events on this port.

@@ -1,5 +1,5 @@
 <%@ control language="C#"
-            autoeventwireup="true"
+            autoeventwireup="false"
             codefile="CumulativePortPerformance.ascx.cs"
             inherits="CUTS.CumulativePortPerformance" %>
 
@@ -31,7 +31,8 @@
                      id="queueing_timeline_">
         <asp:hyperlink id="queueing_timeline_link_"
                        runat="server"
-                       imageurl="~/images/graph.gif" /></asp:tablecell>
+                       imageurl="~/images/graph.gif"
+                       visible="false" /></asp:tablecell>
       <asp:tablecell runat="server"
                      cssclass="performance-data"
                      id="queueing_time_count_">
@@ -59,7 +60,8 @@
                      id="service_timeline_">
         <asp:hyperlink id="service_timeline_link_"
                        runat="server"
-                       imageurl="~/images/graph.gif" /></asp:tablecell>
+                       imageurl="~/images/graph.gif"
+                       visible="false" /></asp:tablecell>
       <asp:tablecell runat="server"
                      cssclass="performance-data"
                      id="service_time_count_">
@@ -80,7 +82,8 @@
 
     <asp:tablerow runat="server" id="exittime_row_" visible="false">
       <asp:tablecell runat="server"
-                     id="exittime_name_">Exit Time(s):</asp:tablecell>
+                     id="exittime_name_"
+                     style="text-decoration:underline">Exit Points:</asp:tablecell>
     </asp:tablerow>
   </asp:table>
 </div>

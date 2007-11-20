@@ -1,3 +1,27 @@
+Tue Nov 20 07:05:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/client/Client_Options.h:
+        * cuts/BDC/client/client.mpc:
+        * cuts/BDC/client/client.cpp:
+
+          The new location of the BDC client application.
+
+        * utils/BMW/assemblies/CUTS.Data/Database.cs:
+
+          Clients can select the table name for storing (cumulative)
+          performance metrics.
+
+        * utils/BMW/controls/ComponentPerformanceCategory.ascx.cs:
+        * utils/BMW/controls/CumulativePortPerformance.ascx:
+        * utils/BMW/controls/CumulativePortPerformance.ascx.cs:
+        * utils/BMW/controls/CumulativeSystemPerformance.ascx:
+        * utils/BMW/controls/CumulativeSystemPerformance.ascx.cs:
+        * utils/BMW/performance.aspx:
+        * utils/BMW/performance.aspx.cs:
+
+          Created a custom control to display the cumulative metrics of
+          a test in the "Cumulative Performance" tab.
+
 Tue Nov 20 01:20:24 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Generators_T.h:

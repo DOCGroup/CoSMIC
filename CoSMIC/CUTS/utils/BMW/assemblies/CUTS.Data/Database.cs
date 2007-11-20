@@ -136,7 +136,8 @@ namespace CUTS.Data
 
     public void get_execution_times(Int32 test_number,
                                     DateTime collection_time,
-                                    ref DataSet ds)
+                                    ref DataSet ds,
+                                    string tablename)
     {
       MySqlCommand command = this.conn_.CreateCommand();
       command.CommandText = "CALL cuts.select_execution_time(?t, ?ct)";
@@ -147,7 +148,7 @@ namespace CUTS.Data
       command.Parameters.AddWithValue("?ct", collection_time);
 
       MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-      adapter.Fill(ds, "execution_time");
+      adapter.Fill(ds, tablename);
     }
 
     /**
@@ -604,7 +605,8 @@ namespace CUTS.Data
     }
 
     public void select_execution_time_cumulative(Int32 test,
-                                                 ref DataSet ds)
+                                                 ref DataSet ds,
+                                                 string tablename)
     {
       MySqlCommand command = this.conn_.CreateCommand();
       command.CommandText = "CALL cuts.select_execution_time_cumulative(?t)";
@@ -613,7 +615,7 @@ namespace CUTS.Data
       command.Parameters.AddWithValue("?t", test);
 
       MySqlDataAdapter adapter = new MySqlDataAdapter(command);
-      adapter.Fill(ds, "cumulative");
+      adapter.Fill(ds, tablename);
     }
 
     public string get_component_name(Int32 id)
