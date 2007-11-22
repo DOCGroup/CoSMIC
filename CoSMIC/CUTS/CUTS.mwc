@@ -26,7 +26,6 @@ workspace (CUTS) : CUTS_CoSMIC {
   cuts/workers
 
   //-- utility applications
-  utils/BDC
   utils/calibrate
   utils/Node_Daemon
 

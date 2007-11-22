@@ -107,8 +107,9 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << single_line_comment ("for string variable types")
     << include ("ace/SString")
     << std::endl
-    << single_line_comment ("servant header")
-    << "#include \"" << container.name () << "_svnt.h\"" << std::endl
+    << single_line_comment ("executor client")
+    << "#include \"" << container.name () << "EC.h\"" << std::endl
+    << "#include \"tao/LocalObject.h\"" << std::endl
     << std::endl
     << "#include \"cuts/config.h\"" << std::endl;
 }
@@ -194,8 +195,8 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
 
   this->outfile ()
     << "class " << name << " :" << std::endl
-    << "  public virtual " << exec << "," << std::endl
-    << "  public virtual TAO_Local_RefCounted_Object {"
+    << "  public " << exec << "," << std::endl
+    << "  public TAO_Local_RefCounted_Object {"
     << "public:" << std::endl
 
     // Write the default constructor.

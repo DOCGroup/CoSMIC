@@ -1,3 +1,35 @@
+Thu Nov 22 19:36:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * CUTS.mwc:
+
+          Remove the util/BDC declaration since the directory
+          no longer exists.
+
+        * cuts/Async_Event_Handler_T.h:
+
+          Added a missing include file since removing the _svnt.h include
+          files broke builds.
+
+        * cuts/be/BE.mpc:
+        * cuts/be/CIAO/CIAO_Exec_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Project_Generator.h:
+        * cuts/be/CIAO/CIAO_Project_Generator.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          - Decoupled the servant and executor project such that the
+            executor no longer depends on the servant project. Instead,
+            a skeleton project is now built, which both the servant and
+            executor projects depend.
+          - The export files for all projects are generated in the
+            prebuild stage of the project.
+
+        * cuts/be/Export_File_Generator.h:
+        * cuts/be/Export_File_Generator.cpp:
+
+          Removed these files.
+
 Tue Nov 20 07:05:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/client/Client_Options.h:

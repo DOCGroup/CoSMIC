@@ -46,13 +46,15 @@ public:
   virtual bool write_exec_project (const CUTS_BE_Impl_Node & node);
 
 private:
-  void generate_impl_project (std::ofstream & out,
+  void generate_exec_project (std::ofstream & out,
                               const CUTS_BE_Impl_Node & node,
                               bool executor_type);
 
   void generate_svnt_project (std::ofstream & out,
                               const CUTS_BE_Impl_Node & node);
 
+  void generate_skel_project (std::ofstream & out,
+                              const CUTS_BE_Impl_Node & node);
 
   /**
    * Generates a listing of stubs.

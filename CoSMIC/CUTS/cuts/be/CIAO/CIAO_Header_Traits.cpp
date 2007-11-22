@@ -10,7 +10,6 @@
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
 
-#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_Impl_Node.h"
 
@@ -546,9 +545,6 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
   PICML::ComponentImplementationContainer container =
     PICML::ComponentImplementationContainer::Cast (impl.parent ());
 
-  std::string exportfile =
-    std::string (container.name ()) + CUTS_BE_OPTIONS ()->exec_suffix_;
-
   CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_exec =
     std::find_if (this->node_->artifacts_.begin (),
                   this->node_->artifacts_.end (),
@@ -556,23 +552,27 @@ write_factory_impl_end (const PICML::ComponentFactory & factory,
                     CUTS_BE_Impl_Node::Artifact_Set::value_type> (
                     CUTS_BE_OPTIONS ()->exec_suffix_));
 
-  //std::string exportname = exportfile;
-  //std::replace (exportname.begin (), exportname.end (), '/', '_');
-
-  CUTS_Export_File_Generator export_file (iter_exec->name (), exportfile);
-  export_file.generate ();
-
   // Close off the class definition.
   this->outfile ()
     << "};";
 
   this->_super::write_factory_impl_end (factory, impl, type);
 
+  // Construct the export macro and export filename.
+  std::string exportfile =
+    std::string (container.name ()) + CUTS_BE_OPTIONS ()->exec_suffix_;
+
+  std::string export_macro = iter_exec->name ();
+  std::transform (export_macro.begin (),
+                  export_macro.end (),
+                  export_macro.begin (),
+                  &toupper);
+
   this->outfile ()
-    << "#include \"" << export_file.export_file () << "\"" << std::endl
+    << "#include \"" << exportfile << "_export.h\"" << std::endl
     << std::endl
     << single_line_comment (this->entry_point_)
-    << "extern \"C\" " << export_file.export_macro () << std::endl
+    << "extern \"C\" " << export_macro << "_Export" << std::endl
     << "::Components::HomeExecutorBase_ptr " << std::endl
     << this->entry_point_ + " (void);"
     << std::endl;
@@ -594,9 +594,9 @@ write_object_impl_begin (const PICML::Component & component,
   this->outfile ()
     << single_line_comment ("Facet: " + (std::string) facet.name ())
     << "class " << facet_name << " :" << std::endl
-    << "  public virtual " << scope << "CCM_" << object_name
+    << "  public " << scope << "CCM_" << object_name
     << "," << std::endl
-    << "  public virtual TAO_Local_RefCounted_Object {"
+    << "  public TAO_Local_RefCounted_Object {"
     << "public:" << std::endl
     << single_line_comment ("Default constructor")
     << facet_name << " (void);"

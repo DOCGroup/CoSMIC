@@ -6,7 +6,6 @@
 #include "CIAO_Retn_Type.h"
 #include "CIAO_In_Type.h"
 
-#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Impl_Node.h"
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_Preprocessor.h"
@@ -83,8 +82,9 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << std::endl
     << "#include /**/ \"ace/pre.h\"" << std::endl
     << std::endl
-    << single_line_comment ("servant header")
-    << "#include \"" << container.name () << "_svnt.h\"" << std::endl
+    << single_line_comment ("executor client")
+    << "#include \"" << container.name () << "EC.h\"" << std::endl
+    << "#include \"tao/LocalObject.h\"" << std::endl
     << std::endl
     << single_line_comment ("proxy header file")
     << include ("cuts/CCM_CoWorkEr_Proxy_T")

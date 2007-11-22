@@ -1,15 +1,11 @@
 // $Id$
 
 #include "CIAO_Project_Generator.h"
-
-#include "cuts/be/Export_File_Generator.h"
 #include "cuts/be/BE_Options.h"
 #include "cuts/be/BE_IDL_Node.h"
 #include "cuts/be/BE_Impl_Node.h"
 #include "cuts/be/modelgen.h"
-
 #include "boost/bind.hpp"
-
 #include <algorithm>
 #include <fstream>
 #include <sstream>
@@ -17,6 +13,7 @@
 #define EXEC_SUFFIX       "_exec"
 #define SVNT_SUFFIX       "_svnt"
 #define STUB_SUFFIX       "_stub"
+#define SKEL_SUFFIX       "_skel"
 
 #define CLIENT_SUFFIX     "C"
 #define SERVER_SUFFIX     "S"
@@ -105,8 +102,9 @@ write_exec_project (const CUTS_BE_Impl_Node & node)
     this->visited_nodes_.clear ();
 
   // Generate the executor and servant projects.
-  this->generate_impl_project (outfile, node, true);
+  this->generate_skel_project (outfile, node);
   this->generate_svnt_project (outfile, node);
+  this->generate_exec_project (outfile, node, true);
 
   // Close the output file and return its status.
   outfile.close ();
@@ -142,20 +140,29 @@ write_stub_project (const CUTS_BE_IDL_Node & node)
 
   // Generate the export file for the project.
   std::string stub_name = node.basename_ + STUB_SUFFIX;
-  CUTS_Export_File_Generator export_file (stub_name);
-  export_file.generate ();
+
+  // Construct the export name for the project.
+  std::string stub_export = stub_name;
+  std::transform (stub_export.begin (),
+                  stub_export.end (),
+                  stub_export.begin (),
+                  &toupper);
+
+  std::string stub_export_macro = stub_export + "_Export";
+  std::string stub_export_file = stub_name + "_export.h";
 
   // Generate the project.
   outfile
     << "project (" << stub_name << ") : cuts_coworker_stub {" << std::endl
     << "  sharedname   = " << stub_name << std::endl
     << std::endl
-    << "  dynamicflags = " << export_file.build_flag () << std::endl
+    << "  dynamicflags = " << stub_export << "_BUILD_DLL" << std::endl
     << std::endl
-    << "  idlflags += -Wb,export_macro=" << export_file.export_macro ()
-    << " \\" << std::endl
-    << "              -Wb,export_include=" << export_file.export_file ()
-    << std::endl;
+    << "  prebuild = perl -- $(ACE_ROOT)/bin/generate_export_file.pl "
+    << stub_export << " > $(PROJECT_ROOT)/" << stub_export_file << std::endl
+    << std::endl
+    << "  idlflags += -Wb,export_macro=" << stub_export_macro << " \\" << std::endl
+    << "              -Wb,export_include=" << stub_export_file << std::endl;
 
   if (!node.references_.empty ())
   {
@@ -228,7 +235,7 @@ write_stub_project (const CUTS_BE_IDL_Node & node)
 // write_exec_project
 //
 void CUTS_CIAO_Project_Generator::
-generate_impl_project (std::ofstream & outfile,
+generate_exec_project (std::ofstream & outfile,
                        const CUTS_BE_Impl_Node & node,
                        bool executor_type)
 {
@@ -257,8 +264,16 @@ generate_impl_project (std::ofstream & outfile,
   std::string impl_project = iter_exec->name ();
   std::string export_filename = node.name_ + CUTS_BE_OPTIONS ()->exec_suffix_;
 
-  CUTS_Export_File_Generator efg (impl_project, export_filename);
-  efg.generate ();
+  std::string skel_project = node.name_ + SKEL_SUFFIX;
+  std::replace (skel_project.begin (), skel_project.end (), '/', '_');
+  std::replace (skel_project.begin (), skel_project.end (), '\\', '_');
+
+  // Create the export name for the project.
+  std::string exec_export = impl_project;
+  std::transform (exec_export.begin (),
+                  exec_export.end (),
+                  exec_export.begin (),
+                  &toupper);
 
   // Generate the executor project.
   outfile
@@ -266,25 +281,50 @@ generate_impl_project (std::ofstream & outfile,
     << ") : cuts_coworker_exec {" << std::endl
     << "  sharedname   = " << basename (iter_exec->location ()) << std::endl
     << std::endl
-    << "  dynamicflags = " << efg.build_flag () << std::endl
+    << "  dynamicflags = " << exec_export << "_BUILD_DLL" << std::endl
     << std::endl
-    << "  after += " << std::string (iter_svnt->name ()) << std::endl
-    << std::endl
-    << "  libs  += " << basename (iter_svnt->location ());
+    << "  prebuild = perl -- $(ACE_ROOT)/bin/generate_export_file.pl "
+    << exec_export << " > $(PROJECT_ROOT)/"
+    << export_filename << "_export.h" << std::endl;
 
-  // Generate the stub import libraries for this node.
-  std::for_each (node.references_.begin (),
-                 node.references_.end (),
-                 boost::bind (&CUTS_CIAO_Project_Generator::
-                              generate_stub_listing,
-                              this,
-                              boost::ref (outfile),
-                              _1));
+  if (!node.references_.empty ())
+  {
+    this->visited_nodes_.clear ();
 
-  // Generate the remaining MPC stuff for this project.
-  outfile
-    << std::endl
-    << std::endl;
+    outfile
+      << "  after += " << skel_project;
+
+    std::for_each (node.references_.begin (),
+                   node.references_.end (),
+                   boost::bind (&CUTS_CIAO_Project_Generator::
+                                generate_stub_listing,
+                                this,
+                                boost::ref (outfile),
+                                _1));
+
+    outfile
+      << std::endl
+      << std::endl;
+
+    // Clear the visited nodes so we can iterate over them once
+    // more. This time we are generating the libs declaration.
+    this->visited_nodes_.clear ();
+
+    outfile
+      << "  libs += " << skel_project;
+
+    std::for_each (node.references_.begin (),
+                   node.references_.end (),
+                   boost::bind (&CUTS_CIAO_Project_Generator::
+                                generate_stub_listing,
+                                this,
+                                boost::ref (outfile),
+                                _1));
+
+    outfile
+      << std::endl
+      << std::endl;
+  }
 
   if (executor_type)
     this->generate_mpc_i (outfile, node);
@@ -328,26 +368,154 @@ generate_svnt_project (std::ofstream & outfile, const CUTS_BE_Impl_Node & node)
   if (iter_svnt == node.artifacts_.end ())
     return;
 
-  // Generator the export file for the CIAO servant project.
+  // Construct the names of the servant and skeleton project.
   std::string svnt_project = node.name_ + SVNT_SUFFIX;
-  std::string svnt_export = iter_svnt->name ();
+  std::string skel_project = node.name_ + SKEL_SUFFIX;
+  std::replace (skel_project.begin (), skel_project.end (), '/', '_');
+  std::replace (skel_project.begin (), skel_project.end (), '\\', '_');
 
-  CUTS_Export_File_Generator efg (svnt_export, svnt_project);
-  efg.generate ();
+  // Create the export name for the project.
+  std::string svnt_export = iter_svnt->name ();
+  std::transform (svnt_export.begin (),
+                  svnt_export.end (),
+                  svnt_export.begin (),
+                  &toupper);
 
   outfile
     << "project (" << std::string (iter_svnt->name ())
     << ") : cuts_coworker_svnt {" << std::endl
     << "  sharedname   = " << basename (iter_svnt->location ()) << std::endl
     << std::endl
-    << "  dynamicflags = " << efg.build_flag () << std::endl
+    << "  dynamicflags = " << svnt_export << "_BUILD_DLL" << std::endl
+    << std::endl
+    << "  prebuild = perl -- $(ACE_ROOT)/bin/generate_export_file.pl "
+    << svnt_export << " > $(PROJECT_ROOT)/" << svnt_project << "_export.h" << std::endl
+    << std::endl;
+
+  // Generate the STUB dependencies for this node.
+  if (!node.references_.empty ())
+  {
+    this->visited_nodes_.clear ();
+
+    outfile
+      << "  after += " << skel_project;
+
+    std::for_each (node.references_.begin (),
+                   node.references_.end (),
+                   boost::bind (&CUTS_CIAO_Project_Generator::
+                                generate_stub_listing,
+                                this,
+                                boost::ref (outfile),
+                                _1));
+
+    outfile
+      << std::endl
+      << std::endl;
+
+    // Clear the visited nodes so we can iterate over them once
+    // more. This time we are generating the libs declaration.
+    this->visited_nodes_.clear ();
+
+    outfile
+      << "  libs += " << skel_project;
+
+    std::for_each (node.references_.begin (),
+                   node.references_.end (),
+                   boost::bind (&CUTS_CIAO_Project_Generator::
+                                generate_stub_listing,
+                                this,
+                                boost::ref (outfile),
+                                _1));
+
+    outfile
+      << std::endl
+      << std::endl;
+  }
+
+  outfile
+    // Generate the CIDL files
+    << "  CIDL_Files {" << std::endl
+    << std::endl
+    << "  }" << std::endl
+    << std::endl
+
+    // Generate the IDL files
+    << "  IDL_Files {" << std::endl
+    << std::endl
+    << "  }" << std::endl
+    << std::endl
+
+    // Generate the source files
+    << "  Source_Files {" << std::endl
+    << "    " << node.basename_ << SVNT_SUFFIX << ".cpp" << std::endl
+    << "  }" << std::endl
+    << std::endl
+
+    // Generate the header files
+    << "  Header_Files {" << std::endl
+    << std::endl
+    << "  }" << std::endl
+    << "}" << std::endl
+    << std::endl;
+}
+
+//
+// write_svnt_project
+//
+void CUTS_CIAO_Project_Generator::
+generate_skel_project (std::ofstream & outfile, const CUTS_BE_Impl_Node & node)
+{
+  // The skeleton project for a component needs to ensure that there
+  // is a servant project present. This is because the skeleton project
+  // is responsible for generating the servant source files.
+  CUTS_BE_Impl_Node::Artifact_Set::const_iterator iter_svnt =
+    std::find_if (node.artifacts_.begin (), node.artifacts_.end (),
+                  Element_Name_End_With <
+                    CUTS_BE_Impl_Node::Artifact_Set::value_type> (
+                    SVNT_SUFFIX));
+
+  if (iter_svnt == node.artifacts_.end ())
+    return;
+
+  // Generator the export file for the CIAO servant project.
+  std::string skel_project_name = node.name_ + SKEL_SUFFIX;
+  std::string skel_export_file = node.name_ + SKEL_SUFFIX + "_export.h";
+
+  std::replace (skel_project_name.begin (), skel_project_name.end (), '/', '_');
+  std::replace (skel_project_name.begin (), skel_project_name.end (), '\\', '_');
+
+  // Create the export name for the project.
+  std::string skel_export = skel_project_name;
+  std::transform (skel_export.begin (),
+                  skel_export.end (),
+                  skel_export.begin (),
+                  &toupper);
+
+  // Generator the export file for the CIAO servant project.
+  std::string svnt_export_file = node.name_ + SVNT_SUFFIX + "_export.h";
+  std::string svnt_export = iter_svnt->name ();
+
+  std::transform (svnt_export.begin (),
+                  svnt_export.end (),
+                  svnt_export.begin (),
+                  &toupper);
+
+  outfile
+    << "project (" << skel_project_name
+    << ") : cuts_coworker_skel {" << std::endl
+    << "  sharedname   = " << skel_project_name << std::endl
+    << std::endl
+    << "  dynamicflags = " << skel_export << "_BUILD_DLL" << std::endl
+    << std::endl
+    << "  prebuild = perl -- $(ACE_ROOT)/bin/generate_export_file.pl "
+    << skel_export << " > $(PROJECT_ROOT)/" << skel_export_file << std::endl
     << std::endl
     << "  cidlflags -= --" << std::endl
-    << "  cidlflags += --svnt-export-macro " << efg.export_macro () << " --"
+    << "  cidlflags += --svnt-export-macro " << svnt_export << "_Export"
+    << " --svnt-export-include " << basename (svnt_export_file) << " --"
     << std::endl << std::endl
-    << "  idlflags += -Wb,export_macro=" << efg.export_macro ()
-    << " \\" << std::endl
-    << "              -Wb,export_include=" << basename (efg.export_file ())
+    << "  idlflags += -Wb,export_macro=" << skel_export << "_Export \\" << std::endl
+    << "              -Wb,export_include=" << basename (skel_export_file)
     << std::endl
     << std::endl;
 
@@ -407,7 +575,6 @@ generate_svnt_project (std::ofstream & outfile, const CUTS_BE_Impl_Node & node)
     // Generate the source files
     << "  Source_Files {" << std::endl
     << "    " << node.basename_ << "EC.cpp" << std::endl
-    << "    " << node.basename_ << SVNT_SUFFIX << ".cpp" << std::endl
     << "  }" << std::endl
     << std::endl
 

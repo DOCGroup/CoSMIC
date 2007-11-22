@@ -33,7 +33,6 @@ project (CUTS_BE) : picml_udm, boost_base, cosmic_lib {
     BE_Traits.cpp
     BE_Type_Map.cpp
     BE_Workspace_Strategy.cpp
-    Export_File_Generator.cpp
   }
 
   Header_Files {

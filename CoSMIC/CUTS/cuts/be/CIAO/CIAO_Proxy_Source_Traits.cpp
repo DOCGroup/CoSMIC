@@ -426,10 +426,6 @@ write_set_session_context (const PICML::Component & component)
     << context_proxy << " (ctx, this->agent_)," << std::endl
     << "::CORBA::NO_MEMORY ());"
     << "this->context_.reset (temp);"
-    << std::endl
-    << single_line_comment ("cache the instance name of hosted component")
-    << context << " * ciao_ctx = " << context << "::_narrow (ctx);"
-    << "this->instance_ = ciao_ctx->_ciao_instance_id ();"
     << "}";
 }
 

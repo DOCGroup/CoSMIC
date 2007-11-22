@@ -21,7 +21,7 @@
 #include "cuts/Async_Event_Handler_Queue_T.h"
 #include "cuts/Event_Handler_T.h"
 #include "ace/Atomic_Op.h"
-#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Map_Manager.h"
 #include "ace/Thread_Manager.h"
 #include "ace/Unbounded_Set.h"
 
