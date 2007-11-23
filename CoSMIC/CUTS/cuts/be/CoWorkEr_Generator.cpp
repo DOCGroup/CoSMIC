@@ -399,6 +399,28 @@ Visit_Component (const PICML::Component & component)
   if (mtype != CUTS_BE_PROJECT ()->get_string_type ())
     member.ref () = CUTS_BE_PROJECT ()->get_string_type ();
 
+  // 2.1 We need to locate the <name> attribute. This attribute
+  //     is the human readable name of the component.
+  PICML::Attribute coworker_name;
+
+  if (create_if_not (component, coworker_name,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     "cuts_name",
+                     boost::bind (&PICML::Attribute::name, _1)))))
+  {
+    coworker_name.SetStrValue ("name", "cuts_name");
+  }
+
+  member = coworker_name.AttributeMember_child ();
+
+  if (member == Udm::null)
+    member = PICML::AttributeMember::Create (coworker_name);
+
+  mtype = member.ref ();
+
+  if (mtype != CUTS_BE_PROJECT ()->get_string_type ())
+    member.ref () = CUTS_BE_PROJECT ()->get_string_type ();
+
   // 3. Lastly, we need to create a home for this <coworker_>. The home
   //    must be a subtype of the real components home.
   PICML::Component basetype = PICML::Component::Cast (component.archetype ());
@@ -921,6 +943,19 @@ find_artifact_i (PICML::ComponentImplementationContainer & container,
 
   // Create the <primaryArtifact> connection between the <monolithic>
   // and the <artifact_ref>.
+  typedef std::vector <PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_Set;
+  MonolithprimaryArtifact_Set primary_set = container.MonolithprimaryArtifact_children ();
+
+  for (MonolithprimaryArtifact_Set::iterator iter = primary_set.begin ();
+       iter != primary_set.end ();
+       iter ++)
+  {
+    PICML::ImplementationArtifactReference ref = iter->dstMonolithprimaryArtifact_end ();
+
+    if (ref == artifact_ref)
+      return;
+  }
+
   PICML::MonolithprimaryArtifact primaryArtifact =
     PICML::MonolithprimaryArtifact::Create (container);
 

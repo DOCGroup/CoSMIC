@@ -1,3 +1,14 @@
+Fri Nov 23 04:13:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CoWorkEr_Generator.cpp:
+
+          - The CoWorkEr now has an attributed name 'cuts_name'. This is used
+            to assign a human readable name to the CoWorkEr, which does not
+            have to be the same name used in the deployment descriptors.
+          - Fixed bug that was causing muliple MonolithprimaryArtifact
+            connections to occur between the same a MonolithicImplementation
+            and a ImplementationArtificatReference.
+
 Thu Nov 22 19:36:49 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS.mwc:
