@@ -8,6 +8,7 @@
 #include "boost/bind.hpp"
 #include <stack>
 #include <sstream>
+#include <functional>
 
 // Static decl.
 static const char * COWORKER_SUFFIX = "_CoWorkEr";
@@ -919,18 +920,19 @@ find_artifact_i (PICML::ComponentImplementationContainer & container,
   PICML::ImplementationArtifactReference artifact_ref;
   std::string artifact_name = artifact.name ();
 
-  if (Udm::create_if_not (container, refs, artifact_ref,
-      Udm::contains (boost::bind (std::equal_to <std::string> (),
-                     artifact_name,
-                     boost::bind (&PICML::ImplementationArtifactReference::name,
+  if (Udm::create_if_not (container, artifact_ref,
+      Udm::contains (boost::bind (std::equal_to <PICML::ImplementationArtifact> (),
+                     artifact,
+                     boost::bind (&PICML::ImplementationArtifactReference::ref,
                                   _1)))))
   {
-    artifact_ref.SetStrValue ("name", artifact_name);
+    // Reference the target artifact since we don't already have a
+    // connection to it.
+    artifact_ref.ref () = artifact;
   }
 
-  // Verify we are reference the correct artifact.
-  if (artifact != artifact_ref.ref ())
-    artifact_ref.ref () = artifact;
+  // Regardless, we are going to make sure the names are the same.
+  artifact_ref.SetStrValue ("name", artifact_name);
 
   // Position the artifact correctly on the palette.
   std::ostringstream position;
@@ -941,26 +943,22 @@ find_artifact_i (PICML::ComponentImplementationContainer & container,
   artifact_ref.position () = position.str ();
   this->artifact_position_y_ += this->artifact_position_delta_y_;
 
-  // Create the <primaryArtifact> connection between the <monolithic>
+  // Create the <MonolithprimaryArtifact> connection between the <monolithic>
   // and the <artifact_ref>.
-  typedef std::vector <PICML::MonolithprimaryArtifact> MonolithprimaryArtifact_Set;
-  MonolithprimaryArtifact_Set primary_set = container.MonolithprimaryArtifact_children ();
+  PICML::MonolithprimaryArtifact primaryArtifact;
 
-  for (MonolithprimaryArtifact_Set::iterator iter = primary_set.begin ();
-       iter != primary_set.end ();
-       iter ++)
+  if (Udm::create_if_not (container, primaryArtifact,
+      Udm::contains (boost::bind (std::logical_and <bool> (),
+                       boost::bind (std::equal_to <PICML::MonolithicImplementation> (),
+                         monolithic,
+                         boost::bind (&PICML::MonolithprimaryArtifact::srcMonolithprimaryArtifact_end, _1)),
+                       boost::bind (std::equal_to <PICML::ImplementationArtifactReference> (),
+                         artifact_ref,
+                         boost::bind (&PICML::MonolithprimaryArtifact::dstMonolithprimaryArtifact_end, _1))))))
   {
-    PICML::ImplementationArtifactReference ref = iter->dstMonolithprimaryArtifact_end ();
-
-    if (ref == artifact_ref)
-      return;
+    primaryArtifact.srcMonolithprimaryArtifact_end () = monolithic;
+    primaryArtifact.dstMonolithprimaryArtifact_end () = artifact_ref;
   }
-
-  PICML::MonolithprimaryArtifact primaryArtifact =
-    PICML::MonolithprimaryArtifact::Create (container);
-
-  primaryArtifact.srcMonolithprimaryArtifact_end () = monolithic;
-  primaryArtifact.dstMonolithprimaryArtifact_end () = artifact_ref;
 }
 
 //

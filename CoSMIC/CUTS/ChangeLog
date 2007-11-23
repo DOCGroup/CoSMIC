@@ -1,3 +1,12 @@
+Fri Nov 23 06:03:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CoWorkEr_Generator.cpp (find_artifact_i):
+
+          Improved the recognition of missing primary artifacts. Instead
+          of using the artifact reference's name, we now use the actual
+          reference. This is just in case the user accidently changes the
+          name of the reference.
+
 Fri Nov 23 04:13:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp:
