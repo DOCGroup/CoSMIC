@@ -1,3 +1,12 @@
+Fri Nov 23 06:18:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/CoWorkEr_Generator.cpp (generate_monolithic_implementation):
+
+          Improved the logic that determines if a monolithic implementation
+          container is missing a component reference. This is determined
+          by checking the actual component reference, instead of relying
+          on the name alone.
+
 Fri Nov 23 06:03:00 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp (find_artifact_i):

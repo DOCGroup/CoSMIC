@@ -880,16 +880,19 @@ generate_monolithic_implementation (const Artifact_Set & artifacts,
   // Create reference to the component that we are implementing. We need
   // to ensure that whatever reference exist in this container points
   // the correct component (CoWorkEr).
-  PICML::ComponentRef component_ref = container.ComponentRef_child ();
 
-  if (component_ref == Udm::null)
-    component_ref = PICML::ComponentRef::Create (container);
+  PICML::ComponentRef component_ref;
+
+  if (Udm::create_if_not (container, component_ref,
+      Udm::contains (boost::bind (std::equal_to <PICML::Component> (),
+                     this->coworker_,
+                     boost::bind (&PICML::ComponentRef::ref, _1)))))
+  {
+    component_ref.ref () = this->coworker_;
+  }
 
   component_ref.name () = this->coworker_.name ();
   component_ref.position () = "(125,20)";
-
-  if (PICML::Component (component_ref.ref ()) != this->coworker_)
-    component_ref.ref () = this->coworker_;
 
   // Create the <Implements> connection between the <monolithic>
   // an the <component_ref>.
