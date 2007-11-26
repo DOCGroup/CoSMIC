@@ -1,3 +1,16 @@
+Sun Nov 25 20:32:23 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added version number and author information to the paradigm.
+
+Sun Nov 25 16:43:48 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xmp:
+
 Wed Nov 21 19:46:50 UTC 2007  Nishanth Shankaran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/RACE_devl.xme:
