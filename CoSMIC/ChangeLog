@@ -1,3 +1,34 @@
+Tue Nov 27 22:28:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager:
+
+          The old UUIDManager add-on project.
+
+        * PIM/WSML/paradigms/WSML-uml.xme:
+        * PIM/WSML/paradigms/WSML.xme:
+        * PIM/WSML/paradigms/WSML.xml:
+        * PIM/WSML/paradigms/WSML.xmp:
+
+          Updated WSML to the latest version of GME.
+
+        * PIM/PICML/addons/UUIDManager:
+        * PIM/PICML/addons/UUIDManager/BON2Component.h:
+        * PIM/PICML/addons/UUIDManager/BON2Component.cpp:
+        * PIM/PICML/addons/UUIDManager/Component.rc:
+        * PIM/PICML/addons/UUIDManager/ComponentConfig.h:
+        * PIM/PICML/addons/UUIDManager/RawComponent.h:
+        * PIM/PICML/addons/UUIDManager/RawComponent.cpp:
+        * PIM/PICML/addons/UUIDManager/Resource.h:
+        * PIM/PICML/addons/UUIDManager/StdAfx.h:
+        * PIM/PICML/addons/UUIDManager/StdAfx.cpp:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.mpc:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.reg:
+        * PIM/PICML/addons/UUIDManager/UUIDManager.wxs:
+        * PIM/PICML/addons/UUIDManager/UUIDManagerd.reg:
+        * PIM/PICML/addons/UUIDManager/component.def:
+
+          Removed these files.
+
 Tue Nov 27 07:18:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
