@@ -54,13 +54,10 @@ public:
    * Open the service manager. This will cause all services
    * opened in this manager to use the specified system metrics.
    *
-   * @param[in]       orb         Target CORBA ORB.
    * @param[in]       metrics     Pointer to the system metrics.
    * @param[in]       tsvc        Target testing service.
-   * @param[in]       notify      Notification event.
    */
-  int open (::CORBA::ORB_ptr orb,
-            CUTS_System_Metric * metrics,
+  int open (CUTS_System_Metric * metrics,
             CUTS_Testing_Service * tsvc);
 
   /**
@@ -143,14 +140,6 @@ public:
    * @param[in]       names         Target object for names.
    */
   void get_service_names (CUTS_BDC_Service_Names & names);
-
-  /**
-   * Get the ORB for the manager. The client must store this in
-   * a _var since its reference count will be duplicated.
-   *
-   * @return      Pointer reference to the ORB.
-   */
-  ::CORBA::ORB_ptr get_orb (void) const;
 
   /**
    * Get a pointer to the system metrics.

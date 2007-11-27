@@ -11,16 +11,6 @@ get_service_count (void) const
 }
 
 //
-// get_orb
-//
-CUTS_INLINE
-::CORBA::ORB_ptr CUTS_BDC_Service_Manager::
-get_orb (void) const
-{
-  return ::CORBA::ORB::_duplicate (this->orb_.in ());
-}
-
-//
 // metrics
 //
 CUTS_INLINE

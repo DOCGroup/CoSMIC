@@ -1,0 +1,17 @@
+// $Id$
+
+project : ciao_server_dnc, ciaocidldefaults, utils, cutslib {
+  // -- specify the output relative to the project root directory.
+  dllout = $(PROJECT_ROOT)/lib
+  libout = $(PROJECT_ROOT)/lib
+
+  // -- specify the location of headers and libraries
+  includes += $(PROJECT_ROOT)
+  libpaths += $(PROJECT_ROOT)/lib
+
+  // -- necesssary flags for the IDL and CIDL compiler.
+  idlflags += -I$(PROJECT_ROOT) -I$(CUTS_ROOT)
+
+  cidlflags -= --
+  cidlflags += -I $(PROJECT_ROOT) -I$(CUTS_ROOT) --
+}

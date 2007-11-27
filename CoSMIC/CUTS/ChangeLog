@@ -1,3 +1,22 @@
+Tue Nov 27 21:54:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/BDC_Service_Manager.h:
+        * cuts/BDC/BDC_Service_Manager.inl:
+        * cuts/BDC/BDC_Service_Manager.cpp:
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.h:
+        * cuts/BDC/Benchmark_Data_Collector_exec_i.cpp:
+        * cuts/BDC/Benchmark_Data_Collector_skel_export.h:
+        * cuts/BDC/Benchmark_Data_Collector_svnt_export.h:
+
+          Decoupled the BDC servant and executor project so that the
+          executor is not dependent on the servant project. This included
+          removing the reference to the ORB owned by the service manager.
+
+        * etc/config/cuts_coworker_skel.mpb:
+
+          Missing base project for compiling coworker applications.
+
 Tue Nov 27 19:55:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/CCM_CoWorkEr_Proxy_T.h:

@@ -10,7 +10,7 @@
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
 #include "Benchmark_Data_Collector_exec_export.h"
-#include "Benchmark_Data_Collector_svnt.h"
+#include "Benchmark_Data_CollectorEC.h"
 #include "BDC_Task.h"
 #include "cuts/System_Metric.h"
 #include "tao/LocalObject.h"
@@ -46,7 +46,8 @@ namespace CUTS
       /// Destructor.
       virtual ~Benchmark_Data_Collector_exec_i (void);
 
-      virtual void set_session_context (Components::SessionContext_ptr ctx);
+      virtual void set_session_context (
+        ::Components::SessionContext::_ptr_type ctx);
 
       virtual void ciao_preactivate (void);
 
@@ -78,7 +79,7 @@ namespace CUTS
 
     private:
       /// Pointer to it context.
-      Benchmark_Data_Collector_Context * context_;
+      ::CUTS::CCM_Benchmark_Data_Collector_Context::_var_type context_;
 
       /// Testing service object.
       ACE_Auto_Ptr <Testing_Service_exec_i> tsvc_;

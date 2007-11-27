@@ -80,8 +80,7 @@ int CUTS_BDC_Service_Manager::close (ACE_Time_Value * timeout)
 // open
 //
 int CUTS_BDC_Service_Manager::
-open (::CORBA::ORB_ptr orb,
-      CUTS_System_Metric * metrics,
+open (CUTS_System_Metric * metrics,
       CUTS_Testing_Service * tsvc)
 {
   if (this->is_opened ())
@@ -92,7 +91,6 @@ open (::CORBA::ORB_ptr orb,
   // to ingore any debug information.
   this->metrics_ = metrics;
   this->tsvc_ = tsvc;
-  this->orb_ = ::CORBA::ORB::_duplicate (orb);
 
   if (ACE_Service_Gestalt::open ("CUTS_BDC",
                                  ACE_DEFAULT_LOGGER_KEY,

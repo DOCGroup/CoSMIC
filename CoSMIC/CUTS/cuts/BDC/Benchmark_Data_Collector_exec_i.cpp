@@ -51,19 +51,15 @@ namespace CUTS
     // set_session_context
     //
     void Benchmark_Data_Collector_exec_i::
-      set_session_context (::Components::SessionContext_ptr ctx)
+    set_session_context (::Components::SessionContext::_ptr_type ctx)
     {
       this->context_ =
-        Benchmark_Data_Collector_Context::_narrow (ctx);
+        ::CUTS::CCM_Benchmark_Data_Collector_Context::_narrow (ctx);
 
-      if (this->context_ == 0)
+      if (::CORBA::is_nil (this->context_.in ()))
         throw ::CORBA::INTERNAL ();
 
-      CORBA::ORB_var orb =
-        this->context_->_ciao_the_Container ()->the_ORB ();
-
-      CUTS_BDC_SVC_MANAGER ()->open (orb.in (),
-                                     &this->metrics_,
+      CUTS_BDC_SVC_MANAGER ()->open (&this->metrics_,
                                      this->tsvc_.get ());
     }
 
