@@ -88,9 +88,7 @@ write_prologue (const PICML::ComponentImplementationContainer & container)
     << std::endl
     << single_line_comment ("proxy header file")
     << include ("cuts/CCM_CoWorkEr_Proxy_T")
-    << include ("cuts/CCM_Context_T")
-    << include ("cuts/Event_Handler_Manager_T")
-    << std::endl;
+    << include ("cuts/CCM_Context_T");
 }
 
 //
@@ -345,3 +343,52 @@ write_id_variable (const PICML::OutEventPort & source)
     << "static const size_t push_" << name << "_id_ = "
     << this->endpoint_id_ ++ << ";" << std::endl;
 }
+
+//
+// write_ReadonlyAttribute_begin
+//
+void CUTS_CIAO_Proxy_Header_Traits::
+write_ReadonlyAttribute_begin (const PICML::ReadonlyAttribute & attr)
+{
+  std::string name = attr.name ();
+
+  if (name.find ("cuts_") != 0)
+    this->_super::write_ReadonlyAttribute_begin (attr);
+}
+
+//
+// write_ReadonlyAttribute_begin
+//
+void CUTS_CIAO_Proxy_Header_Traits::
+write_ReadonlyAttribute_end (const PICML::ReadonlyAttribute & attr)
+{
+  std::string name = attr.name ();
+
+  if (name.find ("cuts_") != 0)
+    this->_super::write_ReadonlyAttribute_end (attr);
+}
+
+//
+// write_ReadonlyAttribute_begin
+//
+void CUTS_CIAO_Proxy_Header_Traits::
+write_Attribute_begin (const PICML::Attribute & attr)
+{
+  std::string name = attr.name ();
+
+  if (name.find ("cuts_") != 0)
+    this->_super::write_Attribute_begin (attr);
+}
+
+//
+// write_ReadonlyAttribute_end
+//
+void CUTS_CIAO_Proxy_Header_Traits::
+write_Attribute_end (const PICML::Attribute & attr)
+{
+  std::string name = attr.name ();
+
+  if (name.find ("cuts_") != 0)
+    this->_super::write_Attribute_end (attr);
+}
+

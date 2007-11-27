@@ -40,15 +40,42 @@ cuts_proxy_impl (const char * impl)
   // This method can only be called once during the lifetime of
   // the proxy if it has already been contaminated.
   if (!::CORBA::is_nil (this->type_impl_.in ()))
+  {
+    ACE_ERROR ((LM_ERROR,
+                "*** error (cuts proxy): proxy already has implementation\n"));
     return;
+  }
 
   // Now, lets butcher the original string. :o) We are going
   // to seperate the module from the entry point. The <impl>
   // string is in the format [module:entry]
-  this->cuts_proxy_impl_.set (impl);
   char * entry = ACE_OS::strchr (const_cast <char *> (impl), ':');
 
-  if (entry == 0)
+  if (entry != 0)
+  {
+    *entry ++ = '\0';
+
+    if (this->load_implementation (impl, entry) == -1)
+      throw ::CORBA::BAD_PARAM ();
+
+    // We can now save the actual implementation.
+    this->cuts_proxy_impl_ = impl;
+
+    // Let's set the session context in the hosted component.
+    if (!::CORBA::is_nil (this->sc_.in ()))
+      this->sc_->set_session_context (this->context_.get ());
+
+    // We need to configure the component in all the event handlers.
+    Event_Handler_Set::ITERATOR iter (this->event_handlers_);
+
+    for ( ; !iter.done (); iter ++)
+      (*iter)->bind (this->type_impl_.ptr ());
+
+    // We need to process any pending operations.
+    if (this->pending_ops_.size () > 0)
+      this->pending_ops_.process (this->type_impl_.ptr ());
+  }
+  else
   {
     ACE_ERROR ((LM_ERROR,
                 "failed to located entry point in %s\n",
@@ -56,11 +83,6 @@ cuts_proxy_impl (const char * impl)
 
     throw ::CORBA::BAD_PARAM ();
   }
-
-  *entry ++ = '\0';
-
-  if (this->load_implementation (impl, entry) == -1)
-    throw ::CORBA::BAD_PARAM ();
 }
 
 //
@@ -73,6 +95,31 @@ cuts_proxy_impl (void)
 {
   ::CORBA::String_var str =
     ::CORBA::string_dup (this->cuts_proxy_impl_.c_str ());
+
+  return str._retn ();
+}
+
+//
+// cuts_name
+//
+template <typename PROXY_EXEC, typename CTX_TYPE,
+          typename CCM_TYPE, typename CCM_HOME>
+void CUTS_CCM_CoWorkEr_Proxy_T <PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::
+cuts_name (const char * name)
+{
+  this->instance_ = name;
+}
+
+//
+// cuts_name
+//
+template <typename PROXY_EXEC, typename CTX_TYPE,
+          typename CCM_TYPE, typename CCM_HOME>
+char * CUTS_CCM_CoWorkEr_Proxy_T <
+  PROXY_EXEC, CTX_TYPE, CCM_TYPE, CCM_HOME>::cuts_name (void)
+{
+  ::CORBA::String_var str =
+    ::CORBA::string_dup (this->instance_.c_str ());
 
   return str._retn ();
 }

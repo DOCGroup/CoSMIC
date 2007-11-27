@@ -1,3 +1,20 @@
+Tue Nov 27 19:55:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/CCM_CoWorkEr_Proxy_T.h:
+        * cuts/CCM_CoWorkEr_Proxy_T.cpp:
+        * cuts/Event_Handler_Manager_T.h:
+        * cuts/Event_Handler_Manager_T.inl:
+        * cuts/be/CIAO/CIAO_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Header_Traits.cpp:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.h:
+        * cuts/be/CIAO/CIAO_Proxy_Source_Traits.cpp:
+
+          Refactored the component proxy so that all the cuts_* specific
+          implementation for configuring the proxy has been moved down
+          into the proxy template class.
+
 Tue Nov 27 03:04:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/BE_Assembly_Generator.h:

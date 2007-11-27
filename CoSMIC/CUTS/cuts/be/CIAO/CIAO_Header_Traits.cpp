@@ -123,19 +123,6 @@ write_impl_begin (const PICML::MonolithicImplementation & monoimpl,
 }
 
 //
-// write_environment_begin
-//
-void CUTS_CIAO_Header_Traits::
-write_environment_begin (const PICML::Component & component)
-{
-  this->outfile ()
-    << "protected:" << std::endl;
-
-  this->_super::write_environment_begin (component);
-}
-
-
-//
 // write_method_begin
 //
 void CUTS_CIAO_Header_Traits::

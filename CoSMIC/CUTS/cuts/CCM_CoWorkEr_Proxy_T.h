@@ -14,9 +14,11 @@
 #define _CUTS_CCM_COWORKER_PROXY_T_H_
 
 #include "cuts/CCM_CoWorkEr_Proxy.h"
+#include "cuts/Event_Handler_Manager_T.h"
 #include "cuts/Pending_Op_List_T.h"
 #include "ace/SStringfwd.h"
 #include "ace/String_Base.h"
+#include "ace/Unbounded_Set.h"
 
 //=============================================================================
 /**
@@ -68,6 +70,22 @@ public:
    */
   virtual char * cuts_proxy_impl (void);
 
+  /**
+   * Set the name of the proxy. This maps to the cuts_name attribute
+   * of the proxy component.
+   *
+   * @param[in]       str         Name of the component.
+   */
+  virtual void cuts_name (const char * str);
+
+  /**
+   * Get the name of the component. This is the accessor method for
+   * the cuts_name attribute of the proxy component.
+   *
+   * @return          Name of the component.
+   */
+  virtual char * cuts_name (void);
+
   virtual void ciao_preactivate (void);
 
   virtual void ccm_activate (void);
@@ -97,13 +115,21 @@ protected:
   /// Original implementation string.
   ACE_CString cuts_proxy_impl_;
 
+  /// Type definition for a collection of event handlers.
+  typedef ACE_Unbounded_Set <
+    CUTS_Event_Handler_Manager_Component_T <CCM_TYPE> * >
+    Event_Handler_Set;
+
+  /// Collection of event handlers in this component.
+  Event_Handler_Set event_handlers_;
+
+private:
   /// Type definition for a list of pending operations.
   typedef CUTS_Pending_Op_List_T <CCM_TYPE> Pending_Op_List;
 
   /// Collection of pending operations.
   Pending_Op_List pending_ops_;
 
-private:
   /**
    * Helper method for loading the proxy with an implemenation.
    *

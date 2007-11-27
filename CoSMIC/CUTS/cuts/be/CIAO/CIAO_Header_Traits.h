@@ -41,9 +41,6 @@ public:
     const PICML::MonolithicImplementation & monoimpl,
     const PICML::Component & component);
 
-  virtual void write_environment_begin (
-    const PICML::Component & component);
-
   virtual void write_InEventPort_begin (
     const PICML::InEventPort & sink);
 

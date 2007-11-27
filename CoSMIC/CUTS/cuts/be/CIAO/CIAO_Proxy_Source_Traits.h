@@ -63,7 +63,10 @@ public:
     const PICML::Attribute & sink);
 
   virtual void write_ReadonlyAttribute_begin (
-    const PICML::ReadonlyAttribute & sink);
+    const PICML::ReadonlyAttribute & attr);
+
+  virtual void write_ReadonlyAttribute_end (
+    const PICML::ReadonlyAttribute & attr);
 
 protected:
   void write_event_handler_bind (

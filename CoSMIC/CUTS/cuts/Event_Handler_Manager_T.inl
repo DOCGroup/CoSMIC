@@ -1,5 +1,27 @@
 // $Id$
 
+///////////////////////////////////////////////////////////////////////////////
+// CUTS_Event_Handler_Manager_Component_T
+
+template <typename COMPONENT>
+CUTS_INLINE
+CUTS_Event_Handler_Manager_Component_T <COMPONENT>::
+CUTS_Event_Handler_Manager_Component_T (void)
+{
+
+}
+
+template <typename COMPONENT>
+CUTS_INLINE
+CUTS_Event_Handler_Manager_Component_T <COMPONENT>::
+~CUTS_Event_Handler_Manager_Component_T (void)
+{
+
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// CUTS_Event_Handler_Manager_T
+
 //
 // handle_event
 //
@@ -29,12 +51,20 @@ port_agent (void)
 //
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_INLINE
-void
-CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::
-bind (Component_Type * component,
-      Event_Method method)
+void CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::
+bind (typename Component_Type * component)
 {
   this->config_.component_ = component;
+}
+
+//
+// bind
+//
+template <typename COMPONENT, typename EVENTTYPE>
+CUTS_INLINE
+void CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::
+bind (Event_Method method)
+{
   this->config_.method_ = method;
 }
 
@@ -43,9 +73,7 @@ bind (Component_Type * component,
 //
 template <typename COMPONENT, typename EVENTTYPE>
 CUTS_INLINE
-void
-CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::
-unbind (void)
+void CUTS_Event_Handler_Manager_T <COMPONENT, EVENTTYPE>::unbind (void)
 {
   this->config_.component_ = 0;
   this->config_.method_ = 0;

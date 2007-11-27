@@ -57,6 +57,18 @@ public:
   virtual void write_variables_begin (
     const PICML::Component & component);
 
+  virtual void write_ReadonlyAttribute_begin (
+    const PICML::ReadonlyAttribute & attr);
+
+  virtual void write_ReadonlyAttribute_end (
+    const PICML::ReadonlyAttribute & attr);
+
+  virtual void write_Attribute_begin (
+    const PICML::Attribute & attr);
+
+  virtual void write_Attribute_end (
+    const PICML::Attribute & attr);
+
 private:
   bool get_component_factory (
     const PICML::Component & component,

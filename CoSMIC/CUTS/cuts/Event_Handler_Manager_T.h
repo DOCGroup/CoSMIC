@@ -17,6 +17,35 @@
 
 //=============================================================================
 /**
+ * @class CUTS_Event_Handler_Manager_Component_T
+ */
+//=============================================================================
+
+template <typename COMPONENT>
+class CUTS_Event_Handler_Manager_Component_T
+{
+public:
+  /// Type definition of the component type.
+  typedef COMPONENT _type;
+
+  /// Destructor.
+  virtual ~CUTS_Event_Handler_Manager_Component_T (void);
+
+  /**
+   * Bind the component to the manager. This method is required
+   * required to be implemented by all event managers.
+   *
+   * @param[in]       c         The target component.
+   */
+  virtual void bind (typename _type * c) = 0;
+
+protected:
+  /// Default constructor.
+  CUTS_Event_Handler_Manager_Component_T (void);
+};
+
+//=============================================================================
+/**
  * @class CUTS_Event_Handler_Manager_T
  *
  * Container class for managing event handler implemenatations. The
@@ -26,6 +55,7 @@
 
 template <typename COMPONENT, typename EVENTTYPE>
 class CUTS_Event_Handler_Manager_T :
+  public CUTS_Event_Handler_Manager_Component_T <COMPONENT>,
   public CUTS_Event_Handler_T <COMPONENT, EVENTTYPE>
 {
 public:
@@ -33,8 +63,8 @@ public:
   typedef CUTS_Event_Handler_T <COMPONENT, EVENTTYPE> Event_Handler_Type;
 
   /// Type definition of the event handler configuration.
-  typedef CUTS_Event_Handler_Config_T <COMPONENT,
-                                       EVENTTYPE> Config_Type;
+  typedef CUTS_Event_Handler_Config_T <
+    COMPONENT, EVENTTYPE> Config_Type;
 
   /// Type definition for the component owning the event handler.
   typedef typename Config_Type::Component_Type Component_Type;
@@ -56,9 +86,15 @@ public:
   /// Destructor.
   virtual ~CUTS_Event_Handler_Manager_T (void);
 
-  /// Bind the event handler to the port agent and callback method.
-  void bind (Component_Type * component,
-             Event_Method method);
+  // Bind the component to the manager.
+  virtual void bind (typename Component_Type * method);
+
+  /**
+   * @overload
+   *
+   * @param[in]         method            The target method.
+   */
+  void bind (typename Event_Method method);
 
   /// Unbind the event handler from the agent and method.
   void unbind (void);
