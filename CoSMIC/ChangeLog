@@ -1,3 +1,18 @@
+Tue Nov 27 07:18:51 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          The selection of the component implementation's details should
+          not have any bearing on the name of the component instance in an
+          assembly. The name of the component instance's implementation
+          details should be derived from the component instance's typename.
+          We are going to use this technique since we currently do not
+          support multiple component implementations in PICML correctly.
+          This was an even bigger problem when a subtype of a component,
+          or any component instance, was given the incorrect name. Ideally,
+          we should be using references to monolithic implementations in
+          the component assemblies.
+
 Sun Nov 25 20:32:23 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

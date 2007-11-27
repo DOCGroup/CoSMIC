@@ -487,9 +487,8 @@ namespace PICML
     Implements iface = mimpl.dstImplements();
     const ComponentRef iface_ref = iface.dstImplements_end();
     const Component comp_ref = iface_ref.ref();
-    std::string refName (comp_ref.name());
 
-    // std::string impl_name = mimpl.name ();
+    std::string refName (comp_ref.name());
     this->monoimpls_.insert (make_pair (refName, mimpl));
 
     std::string implName = mimpl.getPath (".",false,true,"name",true);
@@ -1249,10 +1248,10 @@ namespace PICML
         if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
         {
           ComponentRef component_ref = ComponentRef::Cast (comp_type);
-          std::string comp_ref_name = component_ref.name ();
+          //std::string comp_ref_name = component_ref.name ();
           Component comp = component_ref.ref();
           this->monolith_components_.insert (comp);
-          std::string comp_name = comp.name ();
+
           update_component_parents (comp);
           update_component_instance (comp, nodeRefName);
         }
@@ -1271,11 +1270,12 @@ namespace PICML
           {
             Component comp = *iter;
             Component typeParent;
-            std::string comp_in_assembly_name = comp.name ();
-            std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
+            //std::string comp_in_assembly_name = comp.name ();
+            //std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
             update_component_instance (comp, nodeRefName);
             this->final_assembly_components_.insert (comp);
           }
+
           this->containing_assemblies_.insert(comp_assembly);
           update_component_assembly_parents (comp_assembly);
         }
@@ -1430,33 +1430,20 @@ namespace PICML
     }
   }
 
-  void DeploymentPlanVisitor::update_monolith_impl (Component& comp, std::string& comp_ref_name)
+  void DeploymentPlanVisitor::
+  update_monolith_impl (Component& comp, std::string& comp_ref_name)
   {
-    Component typeParent;
-    std::string component_name = comp.name ();
+    if (comp.isInstance ())
+    {
+      Component typeParent = PICML::Component::Cast (comp.Archetype ());
+      std::string component_name = typeParent.name ();
 
-    if (this->monoimpls_.find (component_name)
-      != this->monoimpls_.end ())
-    {
-      this->mimpl_ = this->monoimpls_[component_name];
-    }
-    else
-    {
-      if (comp.isInstance())
+      if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
       {
-        typeParent = comp.Archetype();
-        while (typeParent.isInstance())
-          typeParent = typeParent.Archetype();
-      }
-      std::string refName = typeParent.name();
-      if (this->monoimpls_.find (refName)
-        != this->monoimpls_.end ())
-      {
-        this->mimpl_ = this->monoimpls_[refName];
+        this->mimpl_ = this->monoimpls_[component_name];
+        this->selected_impls_.insert (make_pair (comp_ref_name, this->mimpl_));
       }
     }
-
-    this->selected_impls_.insert (make_pair (comp_ref_name, this->mimpl_));
   }
 
   void DeploymentPlanVisitor::update_component_assembly_parents (ComponentAssembly& comp_assembly)
