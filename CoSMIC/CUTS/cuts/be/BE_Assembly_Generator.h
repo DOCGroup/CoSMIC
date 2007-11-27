@@ -93,6 +93,13 @@ private:
 
   bool locate_executor_entry_point (const PICML::Component & component);
 
+  bool create_attribute_property (const PICML::ReadonlyAttribute & attr,
+                                  const Udm::Object & parent,
+                                  PICML::Property & property);
+
+  void generate_scoped_instance_name (const PICML::Component & component,
+                                      std::string & name);
+
   /// Type definition for a queue of components.
   typedef std::set <PICML::Component> Component_Set;
 

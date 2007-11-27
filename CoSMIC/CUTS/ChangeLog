@@ -1,3 +1,11 @@
+Tue Nov 27 03:04:34 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE_Assembly_Generator.h:
+        * cuts/be/BE_Assembly_Generator.cpp:
+
+          The assembly generator now creates unique 'cuts_name' property
+          elements for all the proxy instances.
+
 Fri Nov 23 06:18:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/be/CoWorkEr_Generator.cpp (generate_monolithic_implementation):

@@ -220,67 +220,49 @@ Visit_Component (const PICML::Component & component)
     typedef std::vector <PICML::Attribute> Attribute_Set;
     Attribute_Set attributes = proxy_component.Attribute_kind_children ();
 
-    PICML::Attribute cuts_proxy_impl;
+    PICML::Attribute attribute;
+    PICML::Property property;
+    std::string propval;
 
     if (Udm::contains (boost::bind (std::equal_to <std::string> (),
                        "cuts_proxy_impl",
                        boost::bind (&PICML::Attribute::name,
-                                    _1))) (proxy_component, cuts_proxy_impl))
+                                    _1))) (proxy_component, attribute))
     {
-      // Create the property value for cuts_proxy_impl.
-      this->locate_executor_entry_point (interface_type);
-      std::string propval = this->artifact_name_ + ":" + this->entry_point_;
-
-      // Get the connection from the cuts_proxy_impl its property. If
-      // we cannot find it, then we need to create one and attach it to
-      // the connection.
-      PICML::AttributeValue attrval = cuts_proxy_impl.dstAttributeValue ();
-
-      if (attrval == Udm::null)
+      if (this->create_attribute_property (attribute,
+                                           this->target_assembly_,
+                                           property))
       {
-        attrval = PICML::AttributeValue::Create (this->target_assembly_);
-        attrval.srcAttributeValue_end () = cuts_proxy_impl;
-      }
+        // Create the property value for cuts_proxy_impl.
+        this->locate_executor_entry_point (interface_type);
+        propval = this->artifact_name_ + ":" + this->entry_point_;
 
-      // Get the property that is connected to the attribute value. If we
-      // cannot find one, then we need to create one and attach it to
-      // the connection.
-      PICML::Property property = attrval.dstAttributeValue_end ();
-
-      if (property == Udm::null)
-      {
-        property = PICML::Property::Create (this->target_assembly_);
-        property.name () = "cuts_proxy_impl";
-
-        attrval.dstAttributeValue_end () = property;
-      }
-
-      if (std::string (property.name ()) != "cuts_proxy_impl")
-        property.name () = "cuts_proxy_impl";
-
-      if (std::string (property.DataValue ()) != propval)
-        property.DataValue () = propval;
-
-      // Make sure the property has a datatype.
-      PICML::DataType datatype = property.DataType_child ();
-
-      if (datatype == Udm::null)
-      {
-        datatype = PICML::DataType::Create (property);
-        datatype.name () = CUTS_BE_PROJECT ()->get_string_type ().name ();
-      }
-
-      // Verify the datatype is referencing the correct string.
-      if (PICML::String::Cast (datatype.ref ()) !=
-          CUTS_BE_PROJECT ()->get_string_type ())
-      {
-        datatype.ref () = CUTS_BE_PROJECT ()->get_string_type ();
+        if (std::string (property.DataValue ()) != propval)
+          property.DataValue () = propval;
       }
     }
 
     // Save the proxy by name for later usage.
     this->proxy_map_.insert (
       std::make_pair (proxy_component.name (), proxy_component));
+
+    // We need to make sure their is a property set for the
+    // name of the proxy.
+    if (Udm::contains (boost::bind (std::equal_to <std::string> (),
+                       "cuts_name",
+                       boost::bind (&PICML::Attribute::name,
+                                    _1))) (proxy_component, attribute))
+    {
+      if (this->create_attribute_property (attribute,
+                                           this->target_assembly_,
+                                           property))
+      {
+        this->generate_scoped_instance_name (component, propval);
+
+        if (std::string (property.DataValue ()) != propval)
+          property.DataValue () = propval;
+      }
+    }
   }
 }
 
@@ -622,4 +604,105 @@ Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter & param)
 
   if ((std::string) property.name () == "entryPoint")
     this->entry_point_ = property.DataValue ();
+}
+
+//
+// create_attribute_property
+//
+bool CUTS_BE_Assembly_Generator::
+create_attribute_property (const PICML::ReadonlyAttribute & attr,
+                           const Udm::Object & parent,
+                           PICML::Property & property)
+{
+  // Get the connection from the cuts_proxy_impl its property. If
+  // we cannot find it, then we need to create one and attach it to
+  // the connection.
+  PICML::AttributeValue attrval = attr.dstAttributeValue ();
+
+  if (attrval == Udm::null)
+  {
+    attrval = PICML::AttributeValue::Create (parent);
+    attrval.srcAttributeValue_end () = attr;
+  }
+
+  // Get the property that is connected to the attribute value. If we
+  // cannot find one, then we need to create one and attach it to
+  // the connection.
+  property = attrval.dstAttributeValue_end ();
+
+  if (property == Udm::null)
+  {
+    // Create the new property and connect it with the attribute
+    // value connection.
+    property = PICML::Property::Create (parent);
+    attrval.dstAttributeValue_end () = property;
+  }
+
+  if (std::string (property.name ()) != std::string (attr.name ()))
+    property.name () = attr.name ();
+
+  // We need to get the target attribute data type. We want to
+  // reference the same data object in the property. This will
+  // make life a LOT simplier.
+  PICML::AttributeMember attr_member = attr.AttributeMember_child ();
+
+  if (attr_member == Udm::null)
+    return false;
+
+  try
+  {
+    // Let's see what kind of member type we have in this attribute.
+    PICML::MemberType member_type = attr_member.ref ();
+
+    if (member_type == Udm::null)
+      return false;
+
+    PICML::PredefinedType target_type = PICML::PredefinedType::Cast (member_type);
+
+    if (target_type == Udm::null)
+      return false;
+
+    // Now that we have the predefined type of the attribute, we need
+    // to see if the property has a data type element.
+    PICML::DataType datatype = property.DataType_child ();
+
+    if (datatype == Udm::null)
+      datatype = PICML::DataType::Create (property);
+
+    // Make sure the name of the data type and the actual reference
+    // to the predefined type is of <type>.
+    if (std::string (datatype.name ()) != std::string (target_type.name ()))
+      datatype.name () = target_type.name ();
+
+    PICML::PredefinedType curr_type = datatype.ref ();
+
+    if (curr_type != target_type)
+      datatype.ref () = target_type;
+
+    return true;
+  }
+  catch (udm_exception & )
+  {
+
+  }
+
+  return false;
+}
+
+//
+// generate_scoped_instance_name
+//
+void CUTS_BE_Assembly_Generator::
+generate_scoped_instance_name (const PICML::Component & component,
+                               std::string & name)
+{
+  // Initialize the scoped name for the component instance.
+  name = component.name ();
+  PICML::MgaObject parent = component.parent ();
+
+  do
+  {
+    name.insert (0, ".").insert (0, parent.name ());
+    parent = PICML::MgaObject::Cast (parent.parent ());
+  } while (parent.type () != PICML::ComponentImplementationContainer::meta);
 }
