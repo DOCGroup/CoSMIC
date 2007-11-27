@@ -7,18 +7,18 @@
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "79101B9E-B765-4902-B82B-DC33939722D6"
-#define TYPELIB_NAME "MGA AddOn TypeLibrary (UUIDManager)"
+#define TYPELIB_NAME "MGA AddOn TypeLibrary (PICMLManager)"
 #define COCLASS_UUID "B744B044-436A-4463-AF72-41D1D94815D9"
-#define COCLASS_NAME "MGA AddOn CoClass (UUIDManager)"
-#define COCLASS_PROGID "MGA.AddOn.UUIDManager"
+#define COCLASS_NAME "MGA AddOn CoClass (PICMLManager)"
+#define COCLASS_PROGID "MGA.AddOn.PICMLManager"
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "UUIDManager"
+#define COMPONENT_NAME "PICMLManager"
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "PICML Component UUID Manager"
+#define TOOLTIP_TEXT "Simplies the creation of PICML models"
 
 
 // This #define determines the interpreter type:

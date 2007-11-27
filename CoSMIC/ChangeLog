@@ -1,3 +1,22 @@
+Tue Nov 27 22:42:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+        * PIM/PICML/addons/PICMLManager/PICMLManagerd.reg:
+        * cosmic.mwc:
+
+          Successfully converted all artifacts of the old UUIDManager
+          class to PICMLManager class.
+
+        * PIM/PICML/addons/PICMLManager/UUIDManager.mpc:
+        * PIM/PICML/addons/PICMLManager/UUIDManager.reg:
+        * PIM/PICML/addons/PICMLManager/UUIDManager.wxs:
+        * PIM/PICML/addons/PICMLManager/UUIDManagerd.reg:
+
+          Removed these files.
+
 Tue Nov 27 22:28:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager:

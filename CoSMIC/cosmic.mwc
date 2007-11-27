@@ -1,15 +1,17 @@
+// $Id$
+
 workspace {
   cmdline += -feature_file default.features
 
   Utils/Utils.mpc
   Utils/gme/GME.mpc
   $(ACE_ROOT)/ace/ace.mpc
-  
+
   PIM/PICML/interpreters/Interpreters.mwc
   PIM/CQML/interpreters/Interpreters.mwc
   PIM/WSML/interpreters/Interpreters.mwc
   PIM/SIML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
-  PIM/PICML/addons/UUIDManager
+  PIM/PICML/addons/PICMLManager
   PIM/PICML/decorators/Decorators.mwc
 }
