@@ -13,15 +13,11 @@
 #ifndef _BENCHMARK_DATA_COLLECTOR_IDL_
 #define _BENCHMARK_DATA_COLLECTOR_IDL_
 
-#include "service.idl"
 #include "cuts/CUTS.idl"
+#include "service.idl"
 
 module CUTS
 {
-  /// Exception thrown when the specified service name is
-  /// not found in the manager.
-  exception Service_Not_Found { };
-
   /// Type definition for a listing of service names.
   typedef sequence <string> BDC_Service_Names;
 
@@ -76,6 +72,8 @@ module CUTS
     provides Testing_Service testing_service;
 
     provides BDC_Control_Handle controls;
+
+    // provides BDC_Service_Manager service_manager;
 
     attribute long timeout;
 

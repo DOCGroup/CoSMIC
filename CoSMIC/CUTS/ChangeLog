@@ -1,3 +1,12 @@
+Tue Nov 27 22:26:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/BDC/Benchmark_Data_Collector.idl:
+        * cuts/BDC/Benchmark_Data_Collector.mpc:
+        * cuts/BDC/service.idl:
+
+          Started fleshing out the remoting service manager/interface
+          provided by the BDC.
+
 Tue Nov 27 21:54:43 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Service_Manager.h:

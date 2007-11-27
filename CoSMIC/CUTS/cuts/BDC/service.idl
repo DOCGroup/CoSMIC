@@ -15,6 +15,10 @@
 
 module CUTS
 {
+  /// Exception thrown when the specified service name is
+  /// not found in the manager.
+  exception Service_Not_Found { };
+
   //===========================================================================
   /**
    * @struct BDC_Service_Descriptor
@@ -58,6 +62,23 @@ module CUTS
   {
 
   };
+
+  /// Type definition for a listing of services.
+  typedef sequence <BDC_Service> BDC_Services;
+
+  //interface BDC_Service_Manager
+  //{
+  //  int load_service (in BDC_Service_Descriptor desc);
+
+  //  int unload_service (in string name);
+
+  //  BDC_Service get_service (in string name)
+  //    raises (Service_Not_Found);
+
+  //  BDC_Service_Names get_sevice_names ();
+
+  //  BDC_Services get_services ();
+  //};
 };
 
 #endif  // !defined _CUTS_BDC_SERVICE_IDL_
