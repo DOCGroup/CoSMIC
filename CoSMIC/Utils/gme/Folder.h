@@ -14,8 +14,8 @@
 #define _GME_FOLDER_H_
 
 #include "Folder_Model_T.h"
-#include "MetaFolder.h"
 #include "RegistryNode.h"
+#include "Object.h"
 
 namespace GME
 {
@@ -60,6 +60,11 @@ namespace GME
      */
     Folder _create (const std::string & type, Folder & parent);
 
+    /**
+     * Extract the folder element from the object.
+     *
+     * @param[in]       object        The source object.
+     */
     Folder _narrow (const GME::Object & object);
 
     /// Destructor.
@@ -92,7 +97,7 @@ namespace GME
      *
      * @return      The folders meta information.
      */
-    MetaFolder meta (void) const;
+    Meta::Folder meta (void) const;
 
     /**
      * Get a registry value.

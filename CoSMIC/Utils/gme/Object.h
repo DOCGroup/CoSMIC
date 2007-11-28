@@ -13,11 +13,22 @@
 #ifndef _GME_OBJECT_H_
 #define _GME_OBJECT_H_
 
-#include "MetaBase.h"
 #include <vector>
+#include <atlbase.h>
+#include <string>
+#include "GME_export.h"
+
+#if !defined (__ComponentLib_h__)
+#include "Mga.h"
+#endif
 
 namespace GME
 {
+  namespace Meta
+  {
+    class Base;
+  }
+
   //===========================================================================
   /**
    * @class Object
@@ -191,7 +202,7 @@ namespace GME
      *
      * @return      The meta info for the object.
      */
-    MetaBase meta (void) const;
+    Meta::Base meta (void) const;
 
     /**
      * Get the object's type.

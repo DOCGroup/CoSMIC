@@ -8,47 +8,6 @@
 #include "RawComponent.h"
 #include "Utils/Utils.h"
 
-//=============================================================================
-/**
- * @class COM_Exception
- *
- * COM exception helper class.
- */
-//=============================================================================
-
-class COM_Exception
-{
-public:
-  /**
-   * Constructor.
-   *
-   * @param[in]     hr        COM result.
-   */
-  inline COM_Exception (HRESULT hr)
-    : hr_ (hr) { }
-
-  /// Destructor.
-  inline ~COM_Exception (void) { }
-
-private:
-  /// The COM result.
-  HRESULT hr_;
-};
-
-/// Macro that verify the success of a COM operation. If
-/// the operation does not succeed it throws an exception.
-#define VERIFY_RESULT(x) \
-  do { \
-    HRESULT hr = x; \
-    if (FAILED (hr)) \
-      throw COM_Exception (hr); \
-  } while (0)
-
-//
-// picml_types_
-//
-std::set <std::wstring> RawComponent::picml_types_;
-
 //
 // RawComponent
 //
@@ -75,15 +34,16 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 
   /// Create a collection of PICML types that contain a UUID
   /// attribute. This will allow the addon to manage it's UUID.
-  RawComponent::picml_types_.insert (L"Component");
-  RawComponent::picml_types_.insert (L"ComponentAssembly");
-  RawComponent::picml_types_.insert (L"ComponentPackage");
-  RawComponent::picml_types_.insert (L"ComponentImplementation");
-  RawComponent::picml_types_.insert (L"DeploymentPlan");
-  RawComponent::picml_types_.insert (L"Domain");
-  RawComponent::picml_types_.insert (L"ImplementationArtifact");
-  RawComponent::picml_types_.insert (L"MonolithicImplementation");
-  RawComponent::picml_types_.insert (L"PackageConfiguration");
+  this->uuid_types_.insert ("Component");
+  this->uuid_types_.insert ("ComponentAssembly");
+  this->uuid_types_.insert ("ComponentPackage");
+  this->uuid_types_.insert ("ComponentImplementation");
+  this->uuid_types_.insert ("DeploymentPlan");
+  this->uuid_types_.insert ("Domain");
+  this->uuid_types_.insert ("ImplementationArtifact");
+  this->uuid_types_.insert ("MonolithicImplementation");
+  this->uuid_types_.insert ("PackageConfiguration");
+
   return S_OK;
 }
 
@@ -187,9 +147,8 @@ STDMETHODIMP RawComponent::GlobalEvent (globalevent_enum event)
 //
 // ObjectEvent
 //
-STDMETHODIMP RawComponent::ObjectEvent (IMgaObject * obj,
-                                        unsigned long eventmask,
-                                        VARIANT v)
+STDMETHODIMP RawComponent::
+ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
   //if (this->pending_.GetCount ())
   //  this->handle_pending ();
@@ -197,39 +156,30 @@ STDMETHODIMP RawComponent::ObjectEvent (IMgaObject * obj,
   //if (this->importing_)
   //  return S_OK;
 
-  CComPtr <IMgaObject> object (obj);
-
-  // Determine if the object is a library object before
-  // continuing.
   try
   {
-    VARIANT_BOOL lib_object;
-    VERIFY_RESULT (object->get_IsLibObject (&lib_object));
+    GME::Object object (obj);
 
-    if (lib_object == VARIANT_FALSE)
+    if (!object.is_lib_object ())
     {
-      CComPtr <IMgaFCO> fco;
-      VERIFY_RESULT (object.QueryInterface (&fco));
-
       // Get the meta information for the object.
-      CComPtr <IMgaMetaFCO> fco_meta;
-      VERIFY_RESULT (fco->get_Meta (&fco_meta));
+      GME::FCO fco = GME::FCO::_narrow (object);
 
-      // Get the "type" of the object.
-      CComBSTR bstr;
-      VERIFY_RESULT (fco_meta->get_Name (&bstr));
-
-      if (RawComponent::picml_types_.find (bstr.m_str) !=
-          RawComponent::picml_types_ .end ())
+      if (this->uuid_types_.find (fco.meta ().name ()) !=
+          this->uuid_types_ .end ())
       {
         if ((eventmask & OBJEVENT_CREATED) != 0)
+        {
           this->create_uuid (fco);
+        }
         else if ((eventmask & OBJEVENT_ATTR) != 0)
+        {
           this->verify_uuid (fco);
+        }
       }
     }
   }
-  catch (COM_Exception &)
+  catch (GME::Exception &)
   {
     /* what should we really do right here??? */
   }
@@ -244,29 +194,29 @@ STDMETHODIMP RawComponent::ObjectEvent (IMgaObject * obj,
 //
 // create_uuid
 //
-void RawComponent::create_uuid (IMgaFCO * _fco)
+void RawComponent::
+create_uuid (const GME::FCO & fco)
 {
-  CComPtr <IMgaFCO> fco (_fco);
-  CComPtr <IMgaAttribute> uuid_attr;
-  long status;
+  GME::Attribute uuid_attr;
 
-  if (this->get_uuid_i (fco, &uuid_attr, status))
+  if (this->get_uuid_i (fco, uuid_attr))
   {
+    long status = uuid_attr.status ();
+
     if (status == ATTSTATUS_METADEFAULT ||
         status == ATTSTATUS_UNDEFINED ||
         status > 0)
     {
-      // This will force the generation of an <UUID> for
-      // any new component/assembly inserted, as well as
-      // instances and subtypes.
+      // This will force the generation of an <UUID> for any new
+      // component/assembly inserted, as well as instances and
+      // subtypes.
       try
       {
-        VERIFY_RESULT (uuid_attr->put_StringValue (
-                       CComBSTR (Utils::CreateUuid ().c_str ())));
+        uuid_attr.string_value (Utils::CreateUuid ());
       }
       catch (...)
       {
-        this->pending_.AddTail (fco);
+        this->pending_.push_back (fco);
       }
     }
   }
@@ -275,81 +225,57 @@ void RawComponent::create_uuid (IMgaFCO * _fco)
 //
 // verify_uuid
 //
-void RawComponent::verify_uuid (IMgaFCO * _fco)
+void RawComponent::verify_uuid (const GME::FCO & fco)
 {
-  CComPtr <IMgaFCO> fco (_fco);
-  CComPtr <IMgaAttribute> uuid_attr;
-  long status;
+  GME::Attribute uuid_attr;
 
-  if (!this->get_uuid_i (fco, &uuid_attr, status))
-    return;
-
-  // This will validate <UUID> of existing components.
-  // This is mainly useful during the "import" phase.
-  CComBSTR uuid_bstr;
-  VERIFY_RESULT (uuid_attr->get_StringValue (&uuid_bstr));
-
-  CW2A uuid_str (uuid_bstr);
-  if (Utils::ValidUuid (std::string (uuid_str)))
-    return;
-
-  try
+  if (this->get_uuid_i (fco, uuid_attr))
   {
-    VERIFY_RESULT (uuid_attr->put_StringValue (
-                   CComBSTR (Utils::CreateUuid ().c_str ())));
-  }
-  catch (COM_Exception & ex)
-  {
-    this->pending_.AddTail (fco);
-    ex;
+    if (Utils::ValidUuid (uuid_attr.string_value ()))
+      return;
+
+    try
+    {
+      uuid_attr.string_value (Utils::CreateUuid ());
+    }
+    catch (GME::Exception &)
+    {
+      this->pending_.push_back (fco);
+    }
+    catch (...)
+    {
+
+    }
   }
 }
 
 //
 // get_uuid_i
 //
-bool RawComponent::get_uuid_i (IMgaFCO * _fco,
-                               IMgaAttribute ** attr,
-                               long & status)
+bool RawComponent::
+get_uuid_i (const GME::FCO & fco, GME::Attribute & attr)
 {
-  CComPtr <IMgaFCO> fco (_fco);
+  typedef GME::Collection_T <GME::Attribute> Attribute_Set;
+  Attribute_Set attrs;
 
-  // Get the <IMgaAttributes> of the <fco_object>.
-  CComPtr <IMgaAttributes> attrs;
-  VERIFY_RESULT (fco->get_Attributes (&attrs));
-
-  long count;
-  VERIFY_RESULT (attrs->get_Count (&count));
-
-  CComPtr <IMgaAttribute> uuid_attr;
-  CComPtr <IMgaMetaAttribute> meta_attr;
-  CComBSTR attr_name;
-
-  // We have to enumerate thru all the attributes b/c the method
-  // that gets the attribute directly is *broken*.
-  for (long i = 1; i <= count; i ++)
+  // Get all the attributes of this FCO. It would be nice to query
+  // the FCO for the attribute of interest, however, that capability
+  // seems to be broken in the current MGA library.
+  if (fco.attributes (attrs))
   {
-    // Get the next <IMgaAttribute>.
-    VERIFY_RESULT (attrs->get_Item (i, &uuid_attr));
-
-    // Determine if this is the UUID <attribute>.
-    VERIFY_RESULT (uuid_attr->get_Status (&status));
-    VERIFY_RESULT (uuid_attr->get_Meta (&meta_attr));
-    VERIFY_RESULT (meta_attr->get_Name (&attr_name));
-
-    if (attr_name == L"UUID")
+    // We need to iterate over all the attribute until we find the
+    // attribute with the name of UUID. That will be the attribute
+    // we return to the caller.
+    for (Attribute_Set::iterator iter = attrs.items ().begin ();
+         iter != attrs.items ().end ();
+         iter ++)
     {
-      *attr = uuid_attr.Detach ();
-      return true;
+      if (iter->meta ().name () == "UUID")
+      {
+        attr = *iter;
+        return true;
+      }
     }
-
-    // Apparently the implementation of CComPtr and CComBSTR
-    // do not allow usage of "initialized" objects for holding
-    // data. Therefore we have to "manually" release everything
-    // which is really STUPID!!!!
-    uuid_attr.Release ();
-    meta_attr.Release ();
-    attr_name.Empty ();
   }
 
   return false;
@@ -366,17 +292,17 @@ void RawComponent::verify_all_uuids (void)
 
   // Get all the component (component assembly) objects.
   CComPtr <IMgaFilter> filter;
-  this->project_->CreateFilter (&filter);
+  this->project_.impl ()->CreateFilter (&filter);
 
   long status;
-  this->project_->get_ProjectStatus (&status);
+  this->project_.impl ()->get_ProjectStatus (&status);
 
   filter->put_Kind (L"Component ComponentAssembly");
   filter->put_Level (L"0-");
   filter->put_ObjType (L"OBJTYPE_MODEL");
 
   CComPtr <IMgaFCOs> fcos;
-  VERIFY_RESULT (this->project_->AllFCOs (filter, &fcos));
+  VERIFY_HRESULT (this->project_.impl ()->AllFCOs (filter, &fcos));
 
   long count;
   fcos->get_Count (&count);
@@ -390,7 +316,7 @@ void RawComponent::verify_all_uuids (void)
     fco->get_IsLibObject (&lib_object);
 
     if (lib_object == VARIANT_FALSE)
-      this->verify_uuid (fco);
+      this->verify_uuid (fco.p);
   }
 }
 
@@ -400,13 +326,11 @@ void RawComponent::verify_all_uuids (void)
 void RawComponent::handle_pending (void)
 {
   long status;
-  this->project_->get_ProjectStatus (&status);
+  this->project_.impl ()->get_ProjectStatus (&status);
 
-  size_t count = this->pending_.GetCount ();
-
-  while (count -- > 0)
+  while (!this->pending_.empty ())
   {
-    CComPtr <IMgaFCO> fco = this->pending_.RemoveHead ();
-    this->verify_uuid (fco);
+    this->verify_uuid (this->pending_.back ());
+    this->pending_.pop_back ();
   }
 }

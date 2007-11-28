@@ -1,6 +1,8 @@
 // $Id$
 
 #include "Object.h"
+#include "Exception.h"
+#include "MetaBase.h"
 #include <stack>
 #include <sstream>
 
@@ -205,12 +207,12 @@ namespace GME
   //
   // meta
   //
-  MetaBase Object::meta (void) const
+  Meta::Base Object::meta (void) const
   {
     CComPtr <IMgaMetaBase> meta;
-    VERIFY_HRESULT (this->object_->get_MetaBase (&meta));
+    VERIFY_HRESULT (this->impl ()->get_Base (&meta));
 
-    return MetaBase (meta);
+    return Meta::Base (meta);
   }
 
   //

@@ -6,12 +6,16 @@
 #include "MetaRole.inl"
 #endif
 
+#include "MetaModel.h"
+
 namespace GME
+{
+namespace Meta
 {
   //
   // impl
   //
-  IMgaMetaRole * MetaRole::impl (void) const
+  IMgaMetaRole * Role::impl (void) const
   {
     // Optimize for the short path.
     if (this->metarole_.p == this->metabase_.p)
@@ -28,11 +32,23 @@ namespace GME
   //
   // kind
   //
-  MetaFCO MetaRole::kind (void) const
+  FCO Role::kind (void) const
   {
     CComPtr <IMgaMetaFCO> metafco;
     VERIFY_HRESULT (this->impl ()->get_Kind (&metafco));
 
     return metafco.p;
   }
+
+  //
+  // parent
+  //
+  Model Role::parent (void) const
+  {
+    CComPtr <IMgaMetaModel> model;
+    VERIFY_HRESULT (this->impl ()->get_ParentModel (&model));
+
+    return model.p;
+  }
+}
 }

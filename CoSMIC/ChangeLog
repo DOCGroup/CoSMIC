@@ -1,3 +1,58 @@
+Wed Nov 28 20:47:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Updated the PICML manager to use the new and improved
+          implementation for the GME wrappers.
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Attribute.h:
+        * Utils/gme/Attribute.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/GME.h:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/MetaAttribute.h:
+        * Utils/gme/MetaAttribute.inl:
+        * Utils/gme/MetaAttribute.cpp:
+        * Utils/gme/MetaBase.h:
+        * Utils/gme/MetaBase.inl:
+        * Utils/gme/MetaBase.cpp:
+        * Utils/gme/MetaEnumItem.h:
+        * Utils/gme/MetaEnumItem.inl:
+        * Utils/gme/MetaEnumItem.cpp:
+        * Utils/gme/MetaFCO.h:
+        * Utils/gme/MetaFCO.inl:
+        * Utils/gme/MetaFCO.cpp:
+        * Utils/gme/MetaFolder.h:
+        * Utils/gme/MetaFolder.inl:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/MetaModel.h:
+        * Utils/gme/MetaModel.inl:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/MetaRole.h:
+        * Utils/gme/MetaRole.inl:
+        * Utils/gme/MetaRole.cpp:
+        * Utils/gme/Model.h:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/Set.cpp:
+
+          - Refactored the wrappers so that all meta class are define in the
+            GME::Meta namespace. Also, removed all unnecessary includes from
+            headers so, and use forward declarations whenever possible, to
+            prevent circular dependencies.
+
+          - Initial support for handling enumerated types at the meta model
+            level.
+
 Wed Nov 28 08:09:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Attribute.h:

@@ -36,6 +36,7 @@ project (GME) : cosmic_common {
 
     MetaAttribute.cpp
     MetaBase.cpp
+    MetaEnumItem.cpp
     MetaFolder.cpp
     MetaFCO.cpp
     MetaModel.cpp

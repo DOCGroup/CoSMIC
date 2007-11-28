@@ -21,36 +21,38 @@
 
 namespace GME
 {
+namespace Meta
+{
   //===========================================================================
   /**
-   * @class MetaBase
+   * @class Base
    *
    * Wrapper class for the IMgaMetaBase interface.
    */
   //===========================================================================
 
-  class GME_Export MetaBase
+  class GME_Export Base
   {
   public:
     /// Default constructor.
-    MetaBase (void);
+    Base (void);
 
     /**
      * Initializing constructor.
      *
      * @param[in]       meta        Pointer to the source interface.
      */
-    MetaBase (IMgaMetaBase * meta);
+    Base (IMgaMetaBase * meta);
 
     /**
      * Copy constructor.
      *
      * @param[in]       meta        The source object.
      */
-    MetaBase (const MetaBase & meta);
+    Base (const Base & meta);
 
     /// Destructor.
-    virtual ~MetaBase (void);
+    virtual ~Base (void);
 
     /**
      * Get the actual meta name.
@@ -71,14 +73,14 @@ namespace GME
      *
      * @return          The displayed name.
      */
-    std::string displayed_name (void) const;
+    std::string display_name (void) const;
 
     /**
      * Set the displayed meta name.
      *
      * @param[in]       name      The name of the meta object.
      */
-    void displayed_name (const std::string & name);
+    void display_name (const std::string & name);
 
     /**
      * Attach to an existing interface.
@@ -93,7 +95,7 @@ namespace GME
      * @param[in]       meta        The source meta.
      * @return          Reference to this object.
      */
-    const MetaBase & operator = (const MetaBase & meta);
+    const Base & operator = (const Base & meta);
 
     /**
      * Convert the object to a IMgaMetaBase pointer.
@@ -114,13 +116,13 @@ namespace GME
     bool operator == (const std::string & name) const;
 
     /**
-     * Determine if two MetaBase objects are equal.
+     * Determine if two Base objects are equal.
      *
      * @param[in]       meta        The source object.
      * @retval          true        The two objects are the same
      * @retval          false       The two objects are not the name.
      */
-    bool operator == (const MetaBase & meta) const;
+    bool operator == (const Base & meta) const;
 
     /**
      * Get the meta reference id.
@@ -184,5 +186,10 @@ namespace GME
     CComPtr <IMgaMetaBase> metabase_;
   };
 }
+}
+
+#if defined (__GME_INLINE__)
+#include "MetaBase.inl"
+#endif
 
 #endif  // !defined _GME_METABASE_H_

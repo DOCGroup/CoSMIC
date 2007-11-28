@@ -16,10 +16,17 @@
 #define _GME_ATTRIBUTE_H_
 
 #include "FCO.h"
-#include "MetaAttribute.h"
 
 namespace GME
 {
+  //===========================================================================
+  /**
+   * @class Attribute
+   *
+   * Wrapper class for the IMgaAttribute interface.
+   */
+  //===========================================================================
+
   class GME_Export Attribute
   {
   public:
@@ -116,7 +123,7 @@ namespace GME
      */
     void float_value (double val);
 
-    MetaAttribute meta (void) const;
+    Meta::Attribute meta (void) const;
 
   private:
     /// The underlying COM pointer to the attribute.

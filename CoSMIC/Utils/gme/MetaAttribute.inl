@@ -2,41 +2,44 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
-  // MetaAttribute
+  // Attribute
   //
   GME_INLINE
-  MetaAttribute::MetaAttribute (void)
+  Attribute::Attribute (void)
   {
 
   }
 
   //
-  // MetaAttribute
+  // Attribute
   //
   GME_INLINE
-  MetaAttribute::MetaAttribute (IMgaMetaAttribute * meta)
-    : MetaBase (meta)
+  Attribute::Attribute (IMgaMetaAttribute * meta)
+    : Base (meta)
   {
 
   }
 
   //
-  // MetaAttribute
+  // Attribute
   //
   GME_INLINE
-  MetaAttribute::MetaAttribute (const MetaAttribute & meta)
-    : MetaBase (meta)
+  Attribute::Attribute (const Attribute & meta)
+    : Base (meta)
   {
 
   }
 
   //
-  // ~MetaAttribute
+  // ~Attribute
   //
   GME_INLINE
-  MetaAttribute::~MetaAttribute (void)
+  Attribute::~Attribute (void)
   {
 
   }
+}
 }

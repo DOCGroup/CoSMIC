@@ -17,8 +17,8 @@
 #error   This file should only be included in the RAW COM configurations
 #endif
 
-#include <string>
 #include <set>
+#include "Utils/gme/GME.h"
 
 //=============================================================================
 /**
@@ -55,14 +55,14 @@ private:
    *
    * @param[in]       fco         Target FCO.
    */
-  void create_uuid (IMgaFCO * fco);
+  void create_uuid (const GME::FCO & fco);
 
   /**
    * Verify the UUID of an FCO.
    *
    * @param[in]       fco         Target FCO.
    */
-  void verify_uuid (IMgaFCO * fco);
+  void verify_uuid (const GME::FCO & fco);
 
   /// This verifies all UUID's in the project.
   void verify_all_uuids (void);
@@ -74,23 +74,23 @@ private:
    *
    * @param[in]     fco       Source FCO
    * @param[out]    attr      Pointer to the UUID attribute.
-   * @param[out]    status    The status of the attribute.
    * @retval        true      The attribute was found.
    * @retval        false     The attribute was not found.
    */
-  bool get_uuid_i (IMgaFCO * fco, IMgaAttribute ** attr, long & status);
+  bool get_uuid_i (const GME::FCO & fco,
+                   GME::Attribute & attr);
 
   /// The project is in import mode.
   int importing_;
 
   /// Collection of pending FCO's to validate.
-  CInterfaceList <IMgaFCO> pending_;
+  std::vector <GME::FCO> pending_;
 
   /// Interface pointer to the hosting project.
-  CComPtr <IMgaProject> project_;
+  GME::Project project_;
 
   /// PICML types with a UUID attribute.
-  static std::set <std::wstring> picml_types_;
+  std::set <std::string> uuid_types_;
 };
 
 

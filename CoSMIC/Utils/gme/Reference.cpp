@@ -1,11 +1,14 @@
 // $Id$
 
 #include "Reference.h"
-#include "Model.h"
 
 #if !defined (__GME_INLINE__)
 #include "Reference.inl"
 #endif
+
+#include "Model.h"
+#include "MetaRole.h"
+#include "MetaModel.h"
 
 namespace GME
 {
@@ -67,7 +70,7 @@ namespace GME
   Reference Reference::_create (const std::string & role, Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = parent.meta ().role (role);
+    Meta::Role metarole = parent.meta ().role (role);
 
     VERIFY_HRESULT (
       parent.impl ()->CreateChildObject (metarole, &child));

@@ -2,6 +2,9 @@
 
 #include "FCO.h"
 #include "Model.h"
+#include "Attribute.h"
+#include "MetaRole.h"
+#include "MetaModel.h"
 
 namespace GME
 {
@@ -106,7 +109,7 @@ namespace GME
   //
   // meta
   //
-  MetaFCO FCO::meta (void) const
+  Meta::FCO FCO::meta (void) const
   {
     CComPtr <IMgaMetaFCO> meta;
     VERIFY_HRESULT (this->impl ()->get_Meta (&meta));
@@ -117,10 +120,10 @@ namespace GME
   //
   // meta
   //
-  MetaRole FCO::metarole (void) const
+  Meta::Role FCO::role (void) const
   {
     CComPtr <IMgaMetaRole> meta;
-    VERIFY_HRESULT (this->impl ()->get_MetaRole (&meta));
+    VERIFY_HRESULT (this->impl ()->get_Role (&meta));
 
     return meta.p;
   }
@@ -173,7 +176,7 @@ namespace GME
   FCO FCO::create_subtype (Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = this->metarole ();
+    Meta::Role metarole = this->role ();
 
     VERIFY_HRESULT (
       parent.impl ()->DeriveChildObject (
@@ -188,7 +191,7 @@ namespace GME
   FCO FCO::create_instance (Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = this->metarole ();
+    Meta::Role metarole = this->role ();
 
     VERIFY_HRESULT (
       parent.impl ()->DeriveChildObject (
@@ -200,13 +203,13 @@ namespace GME
   //
   // _create
   //
-  FCO FCO::_create (const std::string & role, Model & parent)
+  FCO FCO::_create (const std::string & name, Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = parent.meta ().role (role);
+    Meta::Role role = parent.meta ().role (name);
 
     VERIFY_HRESULT (
-      parent.impl ()->CreateChildObject (metarole, &child));
+      parent.impl ()->CreateChildObject (role, &child));
 
     return child.p;
   }

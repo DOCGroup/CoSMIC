@@ -18,36 +18,38 @@
 
 namespace GME
 {
+namespace Meta
+{
   //===========================================================================
   /**
-   * @class MetaFolder
+   * @class Folder
    *
    * Wrapper class for the IMgaMetaFolder interface.
    */
   //===========================================================================
 
-  class GME_Export MetaFolder : public MetaBase
+  class GME_Export Folder : public Base
   {
   public:
     /// Default constructor.
-    MetaFolder (void);
+    Folder (void);
 
     /**
      * Initializing constructor.
      *
      * @param[in]     meta        The source object.
      */
-    MetaFolder (IMgaMetaFolder * meta);
+    Folder (IMgaMetaFolder * meta);
 
     /**
      * Copy constructor.
      *
      * @param[in]     meta        The meta folder.
      */
-    MetaFolder (const MetaFolder & meta);
+    Folder (const Folder & meta);
 
     /// Destructor.
-    virtual ~MetaFolder (void);
+    virtual ~Folder (void);
 
     /**
      * Attach to an existing meta folder.
@@ -62,7 +64,7 @@ namespace GME
      * @param[in]       name            The type name of the folder.
      * @return          The meta information for the folder.
      */
-    MetaFolder folder (const std::string & type) const;
+    Folder folder (const std::string & type) const;
 
     /**
      * Get all the subfolders defined by this folder.
@@ -70,7 +72,7 @@ namespace GME
      * @param[out]      metafolder      Collection of meta folders
      * @return          Number of folders in \a metafolders.
      */
-    size_t folders (std::vector <MetaFolder> & metafolders) const;
+    size_t folders (std::vector <Folder> & metafolders) const;
 
     /**
      * Convert the object to an implementation pointer.
@@ -90,6 +92,7 @@ namespace GME
     /// Cached pointer to the metafolder.
     mutable CComPtr <IMgaMetaFolder> metafolder_;
   };
+}
 }
 
 #if defined (__GME_INLINE__)

@@ -1,42 +1,43 @@
-// -*- C++ -*-
 // $Id$
 
 namespace GME
 {
+namespace Meta
+{
   //
-  // MetaModel
+  // Model
   //
   GME_INLINE
-  MetaModel::MetaModel (void)
+  Model::Model (void)
   {
 
   }
 
   //
-  // MetaModel
+  // Model
   //
   GME_INLINE
-  MetaModel::MetaModel (IMgaMetaModel * meta)
-    : MetaFCO (meta)
+  Model::Model (IMgaMetaModel * meta)
+    : FCO (meta)
   {
 
   }
 
   //
-  // MetaModel
+  // Model
   //
   GME_INLINE
-  MetaModel::MetaModel (const MetaModel & meta)
-    : MetaFCO (meta)
+  Model::Model (const Model & meta)
+    : FCO (meta)
   {
 
   }
 
   //
-  // ~MetaModel
+  // ~Model
   //
   GME_INLINE
-  MetaModel::~MetaModel (void)
+  Model::~Model (void)
   {
 
   }
@@ -45,9 +46,9 @@ namespace GME
   // operator =
   //
   GME_INLINE
-  MetaModel & MetaModel::operator = (const MetaModel & meta)
+  const Model & Model::operator = (const Model & meta)
   {
-    MetaFCO::attach (meta);
+    FCO::attach (meta);
     return *this;
   }
 
@@ -55,8 +56,9 @@ namespace GME
   // operator IMgaMetaModel *
   //
   GME_INLINE
-  MetaModel::operator IMgaMetaModel * (void) const
+  Model::operator IMgaMetaModel * (void) const
   {
     return this->impl ();
   }
+}
 }

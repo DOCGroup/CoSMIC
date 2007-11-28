@@ -8,10 +8,12 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
   // subfolder
   //
-  MetaFolder MetaFolder::folder (const std::string & type) const
+  Folder Folder::folder (const std::string & type) const
   {
     CComPtr <IMgaMetaFolder> folder;
     CComBSTR name (type.length (), type.c_str ());
@@ -25,7 +27,7 @@ namespace GME
   //
   // subfolders
   //
-  size_t MetaFolder::folders (std::vector <MetaFolder> & folders) const
+  size_t Folder::folders (std::vector <Folder> & folders) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFolders> metas;
@@ -55,7 +57,7 @@ namespace GME
   //
   // impl
   //
-  IMgaMetaFolder * MetaFolder::impl (void) const
+  IMgaMetaFolder * Folder::impl (void) const
   {
     if (this->metabase_.p == this->metafolder_.p)
       return this->metafolder_.p;
@@ -66,4 +68,5 @@ namespace GME
     VERIFY_HRESULT (this->metabase_.QueryInterface (&this->metafolder_));
     return this->metafolder_.p;
   }
+}
 }

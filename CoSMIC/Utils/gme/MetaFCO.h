@@ -1,5 +1,17 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file      MetaFCO.h
+ *
+ * Defines the GME::Meta::FCO object.
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
 #ifndef _GME_METAFCO_H_
 #define _GME_METAFCO_H_
 
@@ -7,31 +19,41 @@
 
 namespace GME
 {
-  class GME_Export MetaFCO : public MetaBase
+namespace Meta
+{
+  //===========================================================================
+  /**
+   * @class FCO
+   *
+   * Wrapper class for the IMgaMetaFCO interface.
+   */
+  //===========================================================================
+
+  class GME_Export FCO : public Base
   {
   public:
     /// Type definition of the interface pointer.
     typedef IMgaMetaFCO _type;
 
     /// Default constructor.
-    MetaFCO (void);
+    FCO (void);
 
     /**
      * Initializing constructor.
      *
      * @param[in]     meta        Pointer to the meta information.
      */
-    MetaFCO (IMgaMetaFCO * meta);
+    FCO (IMgaMetaFCO * meta);
 
     /**
      * Copy constructor.
      *
      * @param[in]     meta        The source object.
      */
-    MetaFCO (const MetaFCO & meta);
+    FCO (const FCO & meta);
 
     /// Destructor.
-    virtual ~MetaFCO (void);
+    virtual ~FCO (void);
 
     /**
      * Assignment operator.
@@ -39,7 +61,7 @@ namespace GME
      * @param[in]     meta        The source object.
      * @return        Reference to this object.
      */
-    const MetaFCO & operator = (const MetaFCO & meta);
+    const FCO & operator = (const FCO & meta);
 
     /**
      * Convert this object into a IMgaMetaFCO pointer.
@@ -48,7 +70,12 @@ namespace GME
      */
     operator IMgaMetaFCO * (void) const;
 
-    MetaBase defined_in (void) const;
+    /**
+     * Get the meta object this FCO is defined in.
+     *
+     * @return        Base meta object.
+     */
+    Base defined_in (void) const;
 
   protected:
     /// Helper method to the correct implementation.
@@ -58,6 +85,7 @@ namespace GME
     /// Cached pointer to the implementation.
     mutable CComPtr <IMgaMetaFCO> meta_fco_;
   };
+}
 }
 
 #if defined (__GME_INLINE__)

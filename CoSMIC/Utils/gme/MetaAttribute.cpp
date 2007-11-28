@@ -8,10 +8,23 @@
 
 namespace GME
 {
+namespace Meta
+{
+  //
+  // _narrow
+  //
+  Attribute Attribute::_narrow (const Base & base)
+  {
+    CComPtr <IMgaMetaAttribute> attr;
+    VERIFY_HRESULT (base.impl ()->QueryInterface (&attr));
+
+    return attr.p;
+  }
+
   //
   // impl
   //
-  IMgaMetaAttribute * MetaAttribute::impl (void) const
+  IMgaMetaAttribute * Attribute::impl (void) const
   {
     // Optimize for the quick path.
     if (this->meta_attr_.p == this->metabase_.p)
@@ -28,18 +41,18 @@ namespace GME
   //
   // defined_in
   //
-  MetaBase MetaAttribute::defined_in (void) const
+  Base Attribute::defined_in (void) const
   {
     IMgaMetaBase * meta = 0;
     VERIFY_HRESULT (this->impl ()->get_DefinedIn (&meta));
 
-    return MetaBase (meta);
+    return Base (meta);
   }
 
   //
   // viewable
   //
-  bool MetaAttribute::viewable (void) const
+  bool Attribute::viewable (void) const
   {
     VARIANT_BOOL value;
     VERIFY_HRESULT (this->impl ()->get_Viewable (&value));
@@ -50,7 +63,7 @@ namespace GME
   //
   // viewable
   //
-  void MetaAttribute::viewable (bool value)
+  void Attribute::viewable (bool value)
   {
     VERIFY_HRESULT (
       this->impl ()->put_Viewable (value ? VARIANT_TRUE : VARIANT_FALSE));
@@ -59,7 +72,7 @@ namespace GME
   //
   // value_type
   //
-  attval_enum MetaAttribute::value_type (void) const
+  attval_enum Attribute::value_type (void) const
   {
     attval_enum val;
     VERIFY_HRESULT (this->impl ()->get_ValueType (&val));
@@ -70,8 +83,9 @@ namespace GME
   //
   // value_type
   //
-  void MetaAttribute::value_type (attval_enum val)
+  void Attribute::value_type (attval_enum val)
   {
     VERIFY_HRESULT (this->impl ()->put_ValueType (val));
   }
+}
 }

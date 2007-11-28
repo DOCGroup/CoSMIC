@@ -1,6 +1,7 @@
 // $Id$
 
 #include "Folder.h"
+#include "MetaFolder.h"
 
 namespace GME
 {
@@ -84,7 +85,7 @@ namespace GME
   Folder Folder::_create (const std::string & type, Folder & parent)
   {
     CComPtr <IMgaFolder> folder;
-    MetaFolder meta = parent.meta ().folder (type);
+    Meta::Folder meta = parent.meta ().folder (type);
 
     if (meta)
     {
@@ -119,10 +120,10 @@ namespace GME
   //
   // meta
   //
-  MetaFolder Folder::meta (void) const
+  Meta::Folder Folder::meta (void) const
   {
     CComPtr <IMgaMetaFolder> meta;
-    VERIFY_HRESULT (this->impl ()->get_MetaFolder (&meta));
+    VERIFY_HRESULT (this->impl ()->get_Folder (&meta));
 
     return meta.p;
   }

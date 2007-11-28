@@ -14,8 +14,8 @@
 #define _GME_MODEL_H_
 
 #include "GME_fwd.h"
-#include "MetaModel.h"
 #include "Folder_Model_T.h"
+#include "FCO.h"
 
 namespace GME
 {
@@ -97,7 +97,7 @@ namespace GME
      *
      * @return      The meta information for the model.
      */
-    MetaModel meta (void) const;
+    Meta::Model meta (void) const;
   };
 }
 

@@ -41,6 +41,30 @@ namespace GME
 
   // Forward decl.
   class Folder;
+
+  namespace Meta
+  {
+    // Forward decl.
+    class Attribute;
+
+    // Forward decl.
+    class Base;
+
+    // Forward decl.
+    class EnumItem;
+
+    // Forward decl.
+    class FCO;
+
+    // Forward decl.
+    class Folder;
+
+    // Forward decl.
+    class Model;
+
+    // Forward decl.
+    class Role;
+  }
 }
 
 #endif  // !defined _GME_FWD_H_

@@ -15,8 +15,6 @@
 
 #include "GME_fwd.h"
 #include "Object.h"
-#include "MetaRole.h"
-#include "Attribute.h"
 #include "Collection_T.h"
 
 namespace GME
@@ -126,14 +124,14 @@ namespace GME
      *
      * @return        Its meta information.
      */
-    MetaFCO meta (void) const;
+    Meta::FCO meta (void) const;
 
     /**
      * Get the meta information about its role.
      *
      * @return        Its role's meta information.
      */
-    MetaRole metarole (void) const;
+    Meta::Role role (void) const;
 
     /**
      * Helper method to return this IMgaFCO implementation from

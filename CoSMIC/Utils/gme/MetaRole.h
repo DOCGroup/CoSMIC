@@ -1,36 +1,107 @@
 // -*- C++ -*-
 
+//=============================================================================
+/**
+ * @file        MetaRole.h
+ *
+ * Defines the GME::Meta::Role class
+ *
+ * $Id$
+ *
+ * @author      James H. Hill
+ */
+//=============================================================================
+
 #ifndef _GME_METAROLE_H_
 #define _GME_METAROLE_H_
 
-#include "MetaFCO.h"
+#include "MetaBase.h"
 
 namespace GME
 {
-  class GME_Export MetaRole : public MetaBase
+namespace Meta
+{
+  // Forward decl.
+  class Model;
+
+  // Forward decl.
+  class FCO;
+
+  //===========================================================================
+  /**
+   * @class Role
+   *
+   * Wrapper class for the IMgaMetaRole interface.
+   */
+  //===========================================================================
+
+  class GME_Export Role : public Base
   {
   public:
+    /// Type definition of the COM interface.
     typedef IMgaMetaRole _type;
 
-    MetaRole (void);
+    /// Default constructor.
+    Role (void);
 
-    MetaRole (IMgaMetaRole * role);
+    /**
+     * Initializing constructor.
+     *
+     * @param[in]     role        Pointer to a COM interface.
+     */
+    Role (IMgaMetaRole * role);
 
-    MetaRole (const MetaRole & role);
+    /**
+     * Copy constructor.
+     *
+     * @param[in]     role        The source object.
+     */
+    Role (const Role & role);
 
-    virtual ~MetaRole (void);
+    /// Destructor.
+    virtual ~Role (void);
 
-    const MetaRole & operator = (const MetaRole & role);
+    /**
+     * Assignment operator.
+     *
+     * @param[in]       role      The source role.
+     * @return          Reference to self.
+     */
+    const Role & operator = (const Role & role);
 
-    MetaFCO kind (void) const;
+    /**
+     * Get the meta FCO for the role.
+     *
+     * @return          The meta FCO of the role.
+     */
+    FCO kind (void) const;
 
+    /**
+     * Conversion operator.
+     *
+     * @return          Pointer to the COM interface.
+     */
     operator IMgaMetaRole * (void) const;
 
+    /**
+     * Get a raw pointer to the underlying COM object.
+     *
+     * @return        Pointer to the raw COM object.
+     */
     IMgaMetaRole * impl (void) const;
 
+    /**
+     * Get the parent model of the role.
+     *
+     * @return        Parent model of the role.
+     */
+    Model parent (void) const;
+
   private:
+    /// Pointer to the COM object.
     mutable CComPtr <IMgaMetaRole> metarole_;
   };
+}
 }
 
 #if defined (__GME_INLINE__)

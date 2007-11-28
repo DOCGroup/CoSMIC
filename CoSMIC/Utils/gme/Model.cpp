@@ -2,6 +2,8 @@
 
 #include "Model.h"
 #include "Folder.h"
+#include "MetaModel.h"
+#include "MetaRole.h"
 
 namespace GME
 {
@@ -53,9 +55,9 @@ namespace GME
   //
   // meta
   //
-  MetaModel Model::meta (void) const
+  Meta::Model Model::meta (void) const
   {
-    return MetaModel::_narrow (FCO::meta ());
+    return Meta::Model::_narrow (FCO::meta ());
   }
 
   //
@@ -75,7 +77,7 @@ namespace GME
   Model Model::_create (const std::string & role, Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = parent.meta ().role (role);
+    Meta::Role metarole = parent.meta ().role (role);
 
     VERIFY_HRESULT (
       parent.impl ()->CreateChildObject (metarole, &child));
@@ -89,7 +91,7 @@ namespace GME
   Model Model::_create (const std::string & role, Folder & parent)
   {
     CComPtr <IMgaFCO> child;
-    //MetaRole metarole = parent.meta ().role (role);
+    //Role metarole = parent.meta ().role (role);
 
     //VERIFY_HRESULT (
     //  parent.impl ()->CreateChildObject (metarole, &child));

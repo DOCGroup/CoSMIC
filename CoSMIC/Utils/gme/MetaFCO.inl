@@ -3,40 +3,42 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
-  // MetaFCO
+  // FCO
   //
   GME_INLINE
-  MetaFCO::MetaFCO (void)
+  FCO::FCO (void)
   {
 
   }
 
   //
-  // MetaFCO
+  // FCO
   //
   GME_INLINE
-  MetaFCO::MetaFCO (const MetaFCO & meta)
-  : MetaBase (meta)
+  FCO::FCO (const FCO & meta)
+  : Base (meta)
   {
 
   }
 
   //
-  // MetaFCO
+  // FCO
   //
   GME_INLINE
-  MetaFCO::MetaFCO (IMgaMetaFCO * meta)
-  : MetaBase (meta)
+  FCO::FCO (IMgaMetaFCO * meta)
+  : Base (meta)
   {
 
   }
 
   //
-  // ~MetaFCO
+  // ~FCO
   //
   GME_INLINE
-  MetaFCO::~MetaFCO (void)
+  FCO::~FCO (void)
   {
 
   }
@@ -45,7 +47,7 @@ namespace GME
   // operator IMgaMetaFCO *
   //
   GME_INLINE
-  MetaFCO::operator IMgaMetaFCO * (void) const
+  FCO::operator IMgaMetaFCO * (void) const
   {
     return this->impl ();
   }
@@ -54,9 +56,10 @@ namespace GME
   // operator =
   //
   GME_INLINE
-  const MetaFCO & MetaFCO::operator = (const MetaFCO & meta)
+  const FCO & FCO::operator = (const FCO & meta)
   {
-    MetaBase::attach (meta);
+    Base::attach (meta);
     return *this;
   }
+}
 }

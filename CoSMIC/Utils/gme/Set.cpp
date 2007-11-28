@@ -2,6 +2,8 @@
 
 #include "Set.h"
 #include "Model.h"
+#include "MetaRole.h"
+#include "MetaModel.h"
 
 namespace GME
 {
@@ -129,7 +131,7 @@ namespace GME
                     Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    MetaRole metarole = parent.meta ().role (role);
+    Meta::Role metarole = parent.meta ().role (role);
 
     VERIFY_HRESULT (
       parent.impl ()->CreateChildObject (metarole, &child));

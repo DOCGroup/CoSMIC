@@ -2,46 +2,18 @@
 
 #include "MetaBase.h"
 
+#if !defined (__GME_INLINE__)
+#include "MetaBase.inl"
+#endif
+
 namespace GME
 {
-  //
-  // MetaBase
-  //
-  MetaBase::MetaBase (void)
-  {
-
-  }
-
-  //
-  // MetaBase
-  //
-  MetaBase::MetaBase (IMgaMetaBase * meta)
-  : metabase_ (meta)
-  {
-
-  }
-
-  //
-  // MetaBase
-  //
-  MetaBase::MetaBase (const MetaBase & meta)
-    : metabase_ (meta.metabase_)
-  {
-
-  }
-
-  //
-  // ~MetaBase
-  //
-  MetaBase::~MetaBase (void)
-  {
-
-  }
-
+namespace Meta
+{
   //
   // name
   //
-  std::string MetaBase::name (void) const
+  std::string Base::name (void) const
   {
     CComBSTR bstr;
     VERIFY_HRESULT (this->metabase_->get_Name (&bstr));
@@ -53,16 +25,16 @@ namespace GME
   //
   // name
   //
-  void MetaBase::name (const std::string & name)
+  void Base::name (const std::string & name)
   {
     CComBSTR bstr (name.length (), name.c_str ());
     VERIFY_HRESULT (this->metabase_->put_Name (bstr));
   }
 
   //
-  // displayed_name
+  // display_name
   //
-  std::string MetaBase::displayed_name (void) const
+  std::string Base::display_name (void) const
   {
     CComBSTR bstr;
     VERIFY_HRESULT (this->metabase_->get_DisplayedName (&bstr));
@@ -72,26 +44,18 @@ namespace GME
   }
 
   //
-  // displayed_name
+  // display_name
   //
-  void MetaBase::displayed_name (const std::string & name)
+  void Base::display_name (const std::string & name)
   {
     CComBSTR bstr (name.length (), name.c_str ());
     VERIFY_HRESULT (this->metabase_->put_DisplayedName (bstr));
   }
 
   //
-  // attach
-  //
-  void MetaBase::attach (IMgaMetaBase * metabase)
-  {
-    this->metabase_.Attach (metabase);
-  }
-
-  //
   // operator =
   //
-  const MetaBase & MetaBase::operator = (const MetaBase & metabase)
+  const Base & Base::operator = (const Base & metabase)
   {
     if (this != &metabase)
       this->metabase_ = metabase.metabase_;
@@ -100,33 +64,9 @@ namespace GME
   }
 
   //
-  // operator IMgaMetaBase *
-  //
-  MetaBase::operator IMgaMetaBase * (void) const
-  {
-    return this->metabase_.p;
-  }
-
-  //
-  // operator ==
-  //
-  bool MetaBase::operator == (const std::string & name) const
-  {
-    return this->name () == name;
-  }
-
-  //
-  // operator ==
-  //
-  bool MetaBase::operator == (const MetaBase & meta) const
-  {
-    return this->metabase_ == meta.metabase_;
-  }
-
-  //
   // refid
   //
-  long MetaBase::refid (void) const
+  long Base::refid (void) const
   {
     long refid;
     VERIFY_HRESULT (this->metabase_->get_MetaRef (&refid));
@@ -137,7 +77,7 @@ namespace GME
   //
   // refid
   //
-  void MetaBase::refid (long refid)
+  void Base::refid (long refid)
   {
     VERIFY_HRESULT (this->metabase_->put_MetaRef (refid));
   }
@@ -145,7 +85,7 @@ namespace GME
   //
   // type
   //
-  objtype_enum MetaBase::type (void) const
+  objtype_enum Base::type (void) const
   {
     objtype_enum type;
     VERIFY_HRESULT (this->metabase_->get_ObjType (&type));
@@ -156,7 +96,7 @@ namespace GME
   //
   // destroy
   //
-  void MetaBase::destroy (void)
+  void Base::destroy (void)
   {
     VERIFY_HRESULT (this->metabase_->Delete ());
     this->metabase_.Release ();
@@ -165,7 +105,7 @@ namespace GME
   //
   // registry_value
   //
-  std::string MetaBase::
+  std::string Base::
   registry_value (const std::string & path) const
   {
     CComBSTR bstrval;
@@ -180,7 +120,7 @@ namespace GME
   //
   // registry_value
   //
-  void MetaBase::registry_value (const std::string & path,
+  void Base::registry_value (const std::string & path,
                                  const std::string & value)
   {
     CComBSTR bstrpath (path.length (), path.c_str ());
@@ -188,20 +128,5 @@ namespace GME
 
     VERIFY_HRESULT (this->metabase_->put_RegistryValue (bstrpath, bstrval));
   }
-
-  //
-  // impl
-  //
-  IMgaMetaBase * MetaBase::impl (void) const
-  {
-    return this->metabase_;
-  }
-
-  //
-  // operator bool
-  //
-  MetaBase::operator bool (void) const
-  {
-    return this->metabase_.p != 0;
-  }
+}
 }

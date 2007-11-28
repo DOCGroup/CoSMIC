@@ -6,12 +6,16 @@
 #include "MetaModel.inl"
 #endif
 
+#include "MetaRole.h"
+
 namespace GME
+{
+namespace Meta
 {
   //
   // impl
   //
-  IMgaMetaModel * MetaModel::impl (void) const
+  IMgaMetaModel * Model::impl (void) const
   {
     // Optimize for the quick path.
     if (this->metamodel_.p == this->metabase_.p)
@@ -28,12 +32,12 @@ namespace GME
   //
   // role
   //
-  MetaRole MetaModel::role (const std::string & role) const
+  Role Model::role (const std::string & name) const
   {
     CComPtr <IMgaMetaRole> tempptr;
-    CComBSTR bstr_role (role.length (), role.c_str ());
+    CComBSTR bstr (name.c_str ());
 
-    VERIFY_HRESULT (this->impl ()->get_RoleByName (bstr_role, &tempptr));
+    VERIFY_HRESULT (this->impl ()->get_RoleByName (bstr, &tempptr));
 
     return tempptr.p;
   }
@@ -41,11 +45,12 @@ namespace GME
   //
   // _narrow
   //
-  MetaModel MetaModel::_narrow (MetaBase & meta)
+  Model Model::_narrow (Base & meta)
   {
     CComPtr <IMgaMetaModel> model;
     VERIFY_HRESULT (meta.impl ()->QueryInterface (&model));
 
     return model.p;
   }
+}
 }

@@ -3,40 +3,42 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
-  // MetaFolder
+  // Folder
   //
   GME_INLINE
-  MetaFolder::MetaFolder (void)
+  Folder::Folder (void)
   {
 
   }
 
   //
-  // MetaFolder
+  // Folder
   //
   GME_INLINE
-  MetaFolder::MetaFolder (IMgaMetaFolder * meta)
-  : MetaBase (meta)
+  Folder::Folder (IMgaMetaFolder * meta)
+  : Base (meta)
   {
 
   }
 
   //
-  // MetaFolder
+  // Folder
   //
   GME_INLINE
-  MetaFolder::MetaFolder (const MetaFolder & meta)
-  : MetaBase (meta)
+  Folder::Folder (const Folder & meta)
+  : Base (meta)
   {
 
   }
 
   //
-  // ~MetaFolder
+  // ~Folder
   //
   GME_INLINE
-  MetaFolder::~MetaFolder (void)
+  Folder::~Folder (void)
   {
 
   }
@@ -45,17 +47,18 @@ namespace GME
   // attach
   //
   GME_INLINE
-  void MetaFolder::attach (IMgaMetaFolder * meta)
+  void Folder::attach (IMgaMetaFolder * meta)
   {
-    MetaBase::attach (meta);
+    Base::attach (meta);
   }
 
   //
   // operator IMgaMetaFolder *
   //
   GME_INLINE
-  MetaFolder::operator IMgaMetaFolder * (void) const
+  Folder::operator IMgaMetaFolder * (void) const
   {
     return this->impl ();
   }
+}
 }

@@ -3,40 +3,42 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
-  // MetaRole
+  // Role
   //
   GME_INLINE
-  MetaRole::MetaRole (void)
+  Role::Role (void)
   {
 
   }
 
   //
-  // MetaRole
+  // Role
   //
   GME_INLINE
-  MetaRole::MetaRole (IMgaMetaRole * meta)
-  : MetaBase (meta)
+  Role::Role (IMgaMetaRole * meta)
+  : Base (meta)
   {
 
   }
 
   //
-  // MetaRole
+  // Role
   //
   GME_INLINE
-  MetaRole::MetaRole (const MetaRole & role)
-  : MetaBase (role)
+  Role::Role (const Role & role)
+  : Base (role)
   {
 
   }
 
   //
-  // ~MetaRole
+  // ~Role
   //
   GME_INLINE
-  MetaRole::~MetaRole (void)
+  Role::~Role (void)
   {
 
   }
@@ -45,9 +47,9 @@ namespace GME
   // operator =
   //
   GME_INLINE
-  const MetaRole & MetaRole::operator = (const MetaRole & role)
+  const Role & Role::operator = (const Role & role)
   {
-    MetaBase::attach (role);
+    Base::attach (role);
     return *this;
   }
 
@@ -55,8 +57,9 @@ namespace GME
   // operater IMgaMetaRole *
   //
   GME_INLINE
-  MetaRole::operator IMgaMetaRole * (void) const
+  Role::operator IMgaMetaRole * (void) const
   {
     return this->impl ();
   }
+}
 }

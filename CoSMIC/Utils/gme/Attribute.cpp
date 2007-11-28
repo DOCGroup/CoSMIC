@@ -6,6 +6,8 @@
 #include "Attribute.inl"
 #endif
 
+#include "MetaAttribute.h"
+
 namespace GME
 {
   //
@@ -131,11 +133,11 @@ namespace GME
   //
   // meta
   //
-  MetaAttribute Attribute::meta (void) const
+  Meta::Attribute Attribute::meta (void) const
   {
-    IMgaMetaAttribute * attr = 0;
+    CComPtr <IMgaMetaAttribute> attr;
     VERIFY_HRESULT (this->attr_->get_Meta (&attr));
 
-    return MetaAttribute (attr);
+    return attr.p;
   }
 }

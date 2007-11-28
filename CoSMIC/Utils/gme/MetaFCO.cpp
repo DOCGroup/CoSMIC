@@ -8,10 +8,12 @@
 
 namespace GME
 {
+namespace Meta
+{
   //
   // impl
   //
-  IMgaMetaFCO * MetaFCO::impl (void) const
+  IMgaMetaFCO * FCO::impl (void) const
   {
     // Optimize for the quick path.
     if (this->meta_fco_.p == this->metabase_.p)
@@ -28,11 +30,12 @@ namespace GME
   //
   // defined_in
   //
-  MetaBase MetaFCO::defined_in (void) const
+  Base FCO::defined_in (void) const
   {
     CComPtr <IMgaMetaBase> meta;
     VERIFY_HRESULT (this->impl ()->get_DefinedIn (&meta));
 
     return meta.p;
   }
+}
 }
