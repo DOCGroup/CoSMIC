@@ -16,6 +16,8 @@ project (GME) : cosmic_common {
   Source_Files {
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
+
+    Attribute.cpp
     Atom.cpp
     Component.cpp
     ComponentEx.cpp
@@ -24,18 +26,20 @@ project (GME) : cosmic_common {
     Folder.cpp
     GME.cpp
     Interpreter.cpp
-    Object.cpp
-    MetaBase.cpp
-    MetaFolder.cpp
-    MetaFCO.cpp
-    MetaModel.cpp
-    MetaRole.cpp
     Model.cpp
+    Object.cpp
     Project.cpp
     Reference.cpp
     RegistryNode.cpp
     Set.cpp
     Territory.cpp
+
+    MetaAttribute.cpp
+    MetaBase.cpp
+    MetaFolder.cpp
+    MetaFCO.cpp
+    MetaModel.cpp
+    MetaRole.cpp
   }
 
   Template_Files {

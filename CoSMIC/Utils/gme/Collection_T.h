@@ -21,6 +21,8 @@
 #include "Mga.h"
 #endif
 
+#include "GME_fwd.h"
+
 namespace GME
 {
 //=============================================================================
@@ -53,6 +55,12 @@ template < >
 struct collection_traits <IMgaFolders>
 {
   typedef IMgaFolder _item_type;
+};
+
+template < >
+struct collection_traits <IMgaAttributes>
+{
+  typedef IMgaAttribute _item_type;
 };
 
 //=============================================================================
@@ -111,6 +119,12 @@ struct item_traits <Folder>
   typedef IMgaFolders _collection_type;
 };
 
+template < >
+struct item_traits <Attribute>
+{
+  typedef IMgaAttributes _collection_type;
+};
+
 //=============================================================================
 /**
  * @class Collection_T
@@ -131,6 +145,10 @@ public:
 
   /// Type definition for the container type.
   typedef std::vector <T> _container_type;
+
+  typedef typename _container_type::iterator iterator;
+
+  typedef typename _container_type::const_iterator const_iterator;
 
   /// Default constructor.
   Collection_T (void);

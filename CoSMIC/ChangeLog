@@ -1,3 +1,22 @@
+Wed Nov 28 08:09:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Attribute.h:
+        * Utils/gme/Attribute.inl:
+        * Utils/gme/Attribute.cpp:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/MetaAttribute.h:
+        * Utils/gme/MetaAttribute.inl:
+        * Utils/gme/MetaAttribute.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          Added basis support for handling the attributes of an FCO and
+          all types derived from an FCO, of course.
+
 Tue Nov 27 22:42:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/ComponentConfig.h:

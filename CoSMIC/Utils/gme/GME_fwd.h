@@ -16,6 +16,9 @@
 namespace GME
 {
   // Forward decl.
+  class Attribute;
+
+  // Forward decl.
   class FCO;
 
   // Forward decl.

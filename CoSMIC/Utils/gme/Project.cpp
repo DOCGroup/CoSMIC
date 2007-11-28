@@ -307,4 +307,12 @@ namespace GME
   {
     return this->project_;
   }
+
+  //
+  // impl
+  //
+  IMgaProject * Project::impl (void)
+  {
+    return this->project_.p;
+  }
 }

@@ -16,6 +16,8 @@
 #include "GME_fwd.h"
 #include "Object.h"
 #include "MetaRole.h"
+#include "Attribute.h"
+#include "Collection_T.h"
 
 namespace GME
 {
@@ -203,6 +205,14 @@ namespace GME
      * @param[in]   value     The new value of \a path.
      */
     void registry_value (const std::string & path, const std::string & value);
+
+    /**
+     * Get the attributes of the FCO.
+     *
+     * @param[out]  attrs     The attributes of the FCO.
+     * @return      Number of attributes.
+     */
+    size_t attributes (Collection_T <Attribute> & attrs) const;
 
   private:
     /// The COM pointer for the FCO type.

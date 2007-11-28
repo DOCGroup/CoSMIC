@@ -202,7 +202,10 @@ namespace GME
     Folder root_folder (void) const;
 
     Folder folder_by_path (const std::string & path) const;
+
     Object object_by_path (const std::string & path) const;
+
+    IMgaProject * impl (void);
 
   private:
     /// The project type.
