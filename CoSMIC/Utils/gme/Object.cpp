@@ -321,4 +321,26 @@ namespace GME
   {
     return this->object_.p;
   }
+
+  //
+  // operator ==
+  //
+  bool Object::operator == (const Object & object)
+  {
+    VARIANT_BOOL equal;
+    VERIFY_HRESULT (this->impl ()->get_IsEqual (object.object_, &equal));
+
+    return equal == VARIANT_TRUE ? true : false;
+  }
+
+  //
+  // operator !=
+  //
+  bool Object::operator != (const Object & object)
+  {
+    VARIANT_BOOL equal;
+    VERIFY_HRESULT (this->impl ()->get_IsEqual (object.object_, &equal));
+
+    return equal == VARIANT_FALSE ? true : false;
+  }
 }

@@ -247,8 +247,11 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
               }
 
               // Set the name of the data type and its reference.
-              datatype.name (attr_type.name ());
-              datatype.refers_to (attr_type);
+              if (datatype.name () != attr_type.name ())
+                datatype.name (attr_type.name ());
+
+              if (datatype.refers_to () != attr_type)
+                datatype.refers_to (attr_type);
             }
           }
         }

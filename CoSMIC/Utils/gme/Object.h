@@ -230,6 +230,23 @@ namespace GME
      */
     IMgaObject * impl (void) const;
 
+    /**
+     * Test the equality of an object with this object.
+     *
+     * @param[in]       object        The source object.
+     * @retval          true          The objects are equal.
+     * @retval          false         The objects are not equal.
+     */
+    bool operator == (const Object & object);
+
+    /**
+     * Test the inequality of an object with this object.
+     *
+     * @param[in]       object        The source object.
+     * @retval          true          The objects are not equal.
+     * @retval          false         The objects are equal.
+     */
+    bool operator != (const Object & object);
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

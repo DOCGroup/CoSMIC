@@ -1,3 +1,16 @@
+Thu Nov 29 06:58:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Added checks that will only set the name of the data type and
+          its reference if neither do not match the target name and data,
+          respectively.
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          Added equality and inequality test to the object.
+
 Thu Nov 29 06:38:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
