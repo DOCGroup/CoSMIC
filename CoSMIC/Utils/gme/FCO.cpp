@@ -3,6 +3,7 @@
 #include "FCO.h"
 #include "Model.h"
 #include "Folder.h"
+#include "Connection.h"
 #include "Attribute.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
@@ -284,5 +285,17 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
 
     return folder.p;
+  }
+
+  //
+  // in_connection_points
+  //
+  size_t FCO::in_connection_points (Collection_T <ConnectionPoint> & points)
+  {
+    CComPtr <IMgaConnPoints> temp;
+    VERIFY_HRESULT (this->impl ()->get_PartOfConns (&temp));
+
+    points.attach (temp.Detach ());
+    return points.items ().size ();
   }
 }

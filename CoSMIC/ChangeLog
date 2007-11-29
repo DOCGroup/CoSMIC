@@ -1,3 +1,30 @@
+Thu Nov 29 15:50:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+
+          Fixed build dependencies.
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          When an attribute's value (i.e., its AttributeMember reference)
+          changes, the manager will ensure that all property datatypes in
+          component assemblies are updated to reflect the new value. This
+          removes the complexity of requiring the model to manually update
+          all the property data types, especially in large models.
+
+          TODO: Allow the user to select whether the update should occur so
+          we don't do this unnecessarily (especially in large models). Also
+          add a progress dialog, if necessary.
+
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+
+          Added support for getting the connection points that an FCO
+          is part of. This will allow you to walk connection starting
+          at a model element.
+
 Thu Nov 29 06:58:06 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:

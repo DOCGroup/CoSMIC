@@ -5,6 +5,8 @@ project (PICMLManager): cosmic_common, mfc, cosmic_utils, register {
 
   includes += . $(GME_ROOT)/SDK/BON
 
+  after += GME
+
   libs += GME
 
   pch_header = StdAfx.h

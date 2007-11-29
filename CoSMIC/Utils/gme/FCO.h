@@ -226,6 +226,15 @@ namespace GME
      */
     Folder parent_folder (void) const;
 
+    /**
+     * Get the collection of connection points that are using
+     * this FCO. It can be either the src or dst connection point
+     * of a connection.
+     *
+     * @param[out]      points      Collection of connection points.
+     */
+    size_t in_connection_points (Collection_T <ConnectionPoint> & points);
+
   private:
     /// The COM pointer for the FCO type.
     mutable CComPtr <IMgaFCO> fco_;

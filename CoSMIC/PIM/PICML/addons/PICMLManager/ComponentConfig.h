@@ -24,7 +24,10 @@
 // This #define determines the interpreter type:
 #define GME_ADDON
 
-#define ADDON_EVENTMASK   (OBJEVENT_CREATED | OBJEVENT_ATTR)
+#define ADDON_EVENTMASK   (OBJEVENT_CREATED | OBJEVENT_ATTR | \
+                           OBJEVENT_RELATION)
+
+//#define ADDON_EVENTMASK   0xFFFFFFFF
 
 // The name of the paradigm(s). The GME will use this component
 // for this paradigm. Separate the names of paradigms by commas.

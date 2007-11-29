@@ -23,6 +23,8 @@
 //=============================================================================
 /**
  * @class RawComponent
+ *
+ * Raw COM implementation of the PICML manager add-on.
  */
 //=============================================================================
 
@@ -79,6 +81,9 @@ private:
    */
   bool get_uuid_i (const GME::FCO & fco,
                    GME::Attribute & attr);
+
+  void set_property_datatype (GME::Model & property,
+                              const GME::FCO & type);
 
   /// The project is in import mode.
   int importing_;

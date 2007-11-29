@@ -166,14 +166,18 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
   {
     GME::Object object (obj);
 
-    if (!object.is_lib_object ())
-    {
-      // Get the meta information for the object.
-      GME::FCO fco = GME::FCO::_narrow (object);
-      std::string type = fco.meta ().name ();
+    if (object.is_lib_object ())
+      return 0;
 
+    // Get the meta information for the object.
+    GME::FCO fco = GME::FCO::_narrow (object);
+    std::string type = fco.meta ().name ();
+
+    if ((eventmask & (OBJEVENT_CREATED | OBJEVENT_ATTR)))
+    {
       if (this->uuid_types_.find (type) != this->uuid_types_ .end ())
       {
+        // We are managing an object that has a UUID.
         if ((eventmask & OBJEVENT_CREATED) != 0)
         {
           this->create_uuid (fco);
@@ -185,6 +189,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       }
       else if (type == "PublishConnector")
       {
+        // We need to set the name of the newly create connector.
         if ((eventmask & OBJEVENT_CREATED))
           fco.name (fco.id ());
       }
@@ -197,6 +202,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
           // Get the set of connection points from the connection.
           ConnectionPoint_Set conn_points;
+
           if (attr_value.connection_points (conn_points) >= 2)
           {
             GME::FCO attr_type;
@@ -204,8 +210,8 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
             ConnectionPoint_Set::iterator iter;
 
             for (iter = conn_points.items ().begin ();
-                 iter != conn_points.items ().end ();
-                 iter ++)
+                  iter != conn_points.items ().end ();
+                  iter ++)
             {
               if (iter->role () == "src")
               {
@@ -231,27 +237,59 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
             }
 
             if (attr_type)
+              this->set_property_datatype (property, attr_type);
+          }
+        }
+      }
+    }
+    else if ((eventmask & OBJEVENT_RELATION))
+    {
+      if (type == "AttributeMember")
+      {
+        // The reference for the attribute changes. This is either
+        // because the reference was cleared, or another data type
+        // was referenced. Either way, we need to update all the
+        // properties in component assemblies for this attribute.
+
+        GME::Reference member = GME::Reference::_narrow (fco);
+        GME::FCO attr_type = member.refers_to ();
+
+        if (attr_type)
+        {
+          GME::Model attr = member.parent_model ();
+
+          ConnectionPoint_Set points;
+          attr.in_connection_points (points);
+
+          GME::Connection attr_value;
+
+          for (ConnectionPoint_Set::iterator iter = points.items ().begin ();
+               iter != points.items ().end ();
+               iter ++)
+          {
+            // Get the own of this connection. If this is an AttributeValue
+            // connection, then we should continue walking the connection
+            // until we get to the property.
+            attr_value = iter->owner ();
+
+            if (attr_value.meta ().name () == "AttributeValue")
             {
-              // We need to make sure there isn't a data type already
-              // present in the target property.
-              Reference_Set datatypes;
-              GME::Reference datatype;
+              // We need to find the 'dst' connection point in this collection.
+              // It will point to the target property model.
+              ConnectionPoint_Set cps;
+              attr_value.connection_points (cps);
 
-              if (property.references ("DataType", datatypes) == 0)
+              for (ConnectionPoint_Set::iterator it = cps.items ().begin ();
+                  it != cps.items ().end ();
+                  it ++)
               {
-                datatype = GME::Reference::_create ("DataType", property);
+                if (it->role () == "dst")
+                {
+                  // Extract the property model and set its data type.
+                  GME::Model property = GME::Model::_narrow (it->target ());
+                  this->set_property_datatype (property, attr_type);
+                }
               }
-              else
-              {
-                datatype = datatypes.items ().front ();
-              }
-
-              // Set the name of the data type and its reference.
-              if (datatype.name () != attr_type.name ())
-                datatype.name (attr_type.name ());
-
-              if (datatype.refers_to () != attr_type)
-                datatype.refers_to (attr_type);
             }
           }
         }
@@ -412,4 +450,32 @@ void RawComponent::handle_pending (void)
     this->verify_uuid (this->pending_.back ());
     this->pending_.pop_back ();
   }
+}
+
+//
+// set_property_datatype
+//
+void RawComponent::
+set_property_datatype (GME::Model & property, const GME::FCO & type)
+{
+  // We need to make sure there isn't a data type already
+  // present in the target property.
+  Reference_Set datatypes;
+  GME::Reference datatype;
+
+  if (property.references ("DataType", datatypes) == 0)
+  {
+    datatype = GME::Reference::_create ("DataType", property);
+  }
+  else
+  {
+    datatype = datatypes.items ().front ();
+  }
+
+  // Set the name of the data type and its reference.
+  if (datatype.name () != type.name ())
+    datatype.name (type.name ());
+
+  if (datatype.refers_to () != type)
+    datatype.refers_to (type);
 }
