@@ -11,6 +11,7 @@
 //=============================================================================
 
 #include "Attribute.h"
+#include "Connection.h"
 #include "Project.h"
 #include "Folder.h"
 #include "Model.h"

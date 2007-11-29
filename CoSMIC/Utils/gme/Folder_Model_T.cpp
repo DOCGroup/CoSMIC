@@ -40,12 +40,12 @@ namespace GME
   get_children (const std::string & type,
                 GME::Collection_T <T2> & children) const
   {
-    IMgaFCOs * fcos = 0;
+    CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
     // Determine how many folders there are.
-    children.attach (fcos);
+    children.attach (fcos.Detach ());
     return children.items ().size ();
   }
 }

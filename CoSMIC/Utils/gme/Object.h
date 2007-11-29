@@ -17,6 +17,7 @@
 #include <atlbase.h>
 #include <string>
 #include "GME_export.h"
+#include "GME_fwd.h"
 
 #if !defined (__ComponentLib_h__)
 #include "Mga.h"
@@ -24,11 +25,6 @@
 
 namespace GME
 {
-  namespace Meta
-  {
-    class Base;
-  }
-
   //===========================================================================
   /**
    * @class Object

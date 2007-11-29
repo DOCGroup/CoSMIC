@@ -47,10 +47,11 @@ namespace GME
   //
   IMgaReference * Reference::impl (void) const
   {
-    if (this->ref_.p != this->object_.p)
-      VERIFY_HRESULT (this->object_.QueryInterface (&this->ref_));
+    if (this->ref_.p == this->object_.p)
+      return this->ref_.p;
 
-    return this->ref_;
+    VERIFY_HRESULT (this->object_.QueryInterface (&this->ref_));
+    return this->ref_.p;
   }
 
   //

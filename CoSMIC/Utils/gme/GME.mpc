@@ -19,6 +19,7 @@ project (GME) : cosmic_common {
 
     Attribute.cpp
     Atom.cpp
+    Connection.cpp
     Component.cpp
     ComponentEx.cpp
     Exception.cpp

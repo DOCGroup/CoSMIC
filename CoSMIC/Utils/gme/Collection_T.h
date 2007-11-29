@@ -63,6 +63,12 @@ struct collection_traits <IMgaAttributes>
   typedef IMgaAttribute _item_type;
 };
 
+template < >
+struct collection_traits <IMgaConnPoints>
+{
+  typedef IMgaConnPoint _item_type;
+};
+
 //=============================================================================
 /**
  * @struct item_traits
@@ -114,6 +120,12 @@ struct item_traits <Reference>
 };
 
 template < >
+struct item_traits <Connection>
+{
+  typedef IMgaFCOs _collection_type;
+};
+
+template < >
 struct item_traits <Folder>
 {
   typedef IMgaFolders _collection_type;
@@ -123,6 +135,12 @@ template < >
 struct item_traits <Attribute>
 {
   typedef IMgaAttributes _collection_type;
+};
+
+template < >
+struct item_traits <ConnectionPoint>
+{
+  typedef IMgaConnPoints _collection_type;
 };
 
 //=============================================================================

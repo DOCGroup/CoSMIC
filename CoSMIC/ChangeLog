@@ -1,3 +1,46 @@
+Thu Nov 29 06:38:38 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          - The manager handles generating a unique name for the
+            PublishConnector object when its added to a component
+            assembly.
+
+          - When an AttributeValue connection is added to a model, i.e.,
+            creating a connection between an attribute and a property,
+            the manager ensures the referenced data type in the property
+            is the correct type. This includes autonomously adding the
+            correct data type to the property, or making sure the current
+            referenced data type is the same type as the attribute.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Disabled the names of the PublishConnector becauese (1) the
+          name in the model was causing clutter, and (2) because the
+          PICMLManager handles generating a unique name for the connector.
+
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Connection.h:
+        * Utils/gme/Connection.inl:
+        * Utils/gme/Connection.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/GME.h:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/Object.h:
+        * Utils/gme/Reference.cpp:
+
+          - Added support for managing connections. This includes creating
+            connections and editing existing ones.
+
+          - BUG: COM pointers were being freed at the wrong time, which
+            resulted in accessing previously deallocated memory. The
+            intention was correct, however, the implementation wasn't.
+
 Wed Nov 28 20:47:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

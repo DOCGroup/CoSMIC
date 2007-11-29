@@ -212,6 +212,20 @@ namespace GME
      */
     size_t attributes (Collection_T <Attribute> & attrs) const;
 
+    /**
+     * Get the parent of the FCO, which is a model.
+     *
+     * @return      Parent folder object.
+     */
+    Model parent_model (void) const;
+
+    /**
+     * Get the parent of the FCO, which is a folder.
+     *
+     * @return      Parent model object.
+     */
+    Folder parent_folder (void) const;
+
   private:
     /// The COM pointer for the FCO type.
     mutable CComPtr <IMgaFCO> fco_;

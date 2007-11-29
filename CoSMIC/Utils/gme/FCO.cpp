@@ -2,6 +2,7 @@
 
 #include "FCO.h"
 #include "Model.h"
+#include "Folder.h"
 #include "Attribute.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
@@ -91,7 +92,7 @@ namespace GME
     if (this->fco_.p == this->object_.p)
       return this->fco_.p;
 
-    if (this->fco_.p)
+    if (this->fco_)
       this->fco_.Release ();
 
     VERIFY_HRESULT (this->object_.QueryInterface (&this->fco_));
@@ -261,5 +262,27 @@ namespace GME
 
     attrs.attach (coll);
     return attrs.items ().size ();
+  }
+
+  //
+  // parent_model
+  //
+  Model FCO::parent_model (void) const
+  {
+    CComPtr <IMgaModel> model;
+    VERIFY_HRESULT (this->impl ()->get_ParentModel (&model));
+
+    return model.p;
+  }
+
+  //
+  // parent_model
+  //
+  Folder FCO::parent_folder (void) const
+  {
+    CComPtr <IMgaFolder> folder;
+    VERIFY_HRESULT (this->impl ()->get_ParentFolder (&folder));
+
+    return folder.p;
   }
 }

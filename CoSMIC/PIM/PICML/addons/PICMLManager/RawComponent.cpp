@@ -8,6 +8,12 @@
 #include "RawComponent.h"
 #include "Utils/Utils.h"
 
+// Type definition
+typedef GME::Collection_T <GME::Reference> Reference_Set;
+
+// Type definition
+typedef GME::Collection_T <GME::ConnectionPoint> ConnectionPoint_Set;
+
 //
 // RawComponent
 //
@@ -164,9 +170,9 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     {
       // Get the meta information for the object.
       GME::FCO fco = GME::FCO::_narrow (object);
+      std::string type = fco.meta ().name ();
 
-      if (this->uuid_types_.find (fco.meta ().name ()) !=
-          this->uuid_types_ .end ())
+      if (this->uuid_types_.find (type) != this->uuid_types_ .end ())
       {
         if ((eventmask & OBJEVENT_CREATED) != 0)
         {
@@ -175,6 +181,76 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
         else if ((eventmask & OBJEVENT_ATTR) != 0)
         {
           this->verify_uuid (fco);
+        }
+      }
+      else if (type == "PublishConnector")
+      {
+        if ((eventmask & OBJEVENT_CREATED))
+          fco.name (fco.id ());
+      }
+      else if (type == "AttributeValue")
+      {
+        if ((eventmask & OBJEVENT_CREATED))
+        {
+          // Extract the connection from the object.
+          GME::Connection attr_value = GME::Connection::_narrow (object);
+
+          // Get the set of connection points from the connection.
+          ConnectionPoint_Set conn_points;
+          if (attr_value.connection_points (conn_points) >= 2)
+          {
+            GME::FCO attr_type;
+            GME::Model property;
+            ConnectionPoint_Set::iterator iter;
+
+            for (iter = conn_points.items ().begin ();
+                 iter != conn_points.items ().end ();
+                 iter ++)
+            {
+              if (iter->role () == "src")
+              {
+                // We have the source connection point. This should be
+                // an attribute in a component.
+                GME::Model attr = GME::Model::_narrow (iter->target ());
+                Reference_Set attr_members;
+
+                if (attr.references ("AttributeMember", attr_members) == 1)
+                {
+                  // Let's get the data type of the attribute. Since there
+                  // is only 1 attribute member, we can just get the front
+                  // element in the container.
+                  attr_type = attr_members.items ().front ().refers_to ();
+                }
+              }
+              else if (iter->role () == "dst")
+              {
+                // We have the destination connection point. This should
+                // be a property in an assembly.
+                property = GME::Model::_narrow (iter->target ());
+              }
+            }
+
+            if (attr_type)
+            {
+              // We need to make sure there isn't a data type already
+              // present in the target property.
+              Reference_Set datatypes;
+              GME::Reference datatype;
+
+              if (property.references ("DataType", datatypes) == 0)
+              {
+                datatype = GME::Reference::_create ("DataType", property);
+              }
+              else
+              {
+                datatype = datatypes.items ().front ();
+              }
+
+              // Set the name of the data type and its reference.
+              datatype.name (attr_type.name ());
+              datatype.refers_to (attr_type);
+            }
+          }
         }
       }
     }

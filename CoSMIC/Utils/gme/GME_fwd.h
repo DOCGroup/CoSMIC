@@ -42,6 +42,12 @@ namespace GME
   // Forward decl.
   class Folder;
 
+  // Forward decl.
+  class Connection;
+
+  // Forward decl.
+  class ConnectionPoint;
+
   namespace Meta
   {
     // Forward decl.
