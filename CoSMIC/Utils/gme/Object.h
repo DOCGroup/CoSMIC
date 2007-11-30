@@ -247,6 +247,15 @@ namespace GME
      * @retval          false         The objects are equal.
      */
     bool operator != (const Object & object);
+
+    /**
+     * Determine if the object is NIL.
+     *
+     * @retval          true          Object is NIL.
+     * @retval          false         Object is not NIL.
+     */
+    bool is_nil (void) const;
+
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

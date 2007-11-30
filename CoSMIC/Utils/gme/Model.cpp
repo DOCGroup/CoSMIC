@@ -4,6 +4,7 @@
 #include "Folder.h"
 #include "MetaModel.h"
 #include "MetaRole.h"
+#include "MetaFolder.h"
 
 namespace GME
 {
@@ -90,8 +91,11 @@ namespace GME
   //
   Model Model::_create (const std::string & role, Folder & parent)
   {
+    //// Get the meta information about the role.
+    //Meta::Role metarole = parent.meta ().role (role);
+
+    // Create the new child element.
     CComPtr <IMgaFCO> child;
-    //Role metarole = parent.meta ().role (role);
 
     //VERIFY_HRESULT (
     //  parent.impl ()->CreateChildObject (metarole, &child));

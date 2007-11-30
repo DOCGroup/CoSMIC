@@ -290,12 +290,12 @@ namespace GME
   //
   // in_connection_points
   //
-  size_t FCO::in_connection_points (Collection_T <ConnectionPoint> & points)
+  size_t FCO::in_connection_points (ConnectionPoints & points)
   {
     CComPtr <IMgaConnPoints> temp;
     VERIFY_HRESULT (this->impl ()->get_PartOfConns (&temp));
 
     points.attach (temp.Detach ());
-    return points.items ().size ();
+    return points.size ();
   }
 }

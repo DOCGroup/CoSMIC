@@ -85,6 +85,9 @@ private:
   void set_property_datatype (GME::Model & property,
                               const GME::FCO & type);
 
+  void verify_property_datatype (GME::ConnectionPoint & attr,
+                                 const GME::FCO & attr_type);
+
   /// The project is in import mode.
   int importing_;
 

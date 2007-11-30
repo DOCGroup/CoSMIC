@@ -67,6 +67,67 @@ namespace GME
   }
 
   //===========================================================================
+  // ConnectionPoints
+
+  ConnectionPoints::ConnectionPoints (IMgaConnPoints * points)
+    : points_ (points)
+  {
+    this->populate ();
+  }
+
+  //
+  // attach
+  //
+  void ConnectionPoints::attach (IMgaConnPoints * points)
+  {
+    this->points_.Attach (points);
+    this->populate ();
+  }
+
+  //
+  // populate
+  //
+  void ConnectionPoints::populate (void)
+  {
+    if (this->points_mgr_.current_size () > 0)
+      this->points_mgr_.unbind_all ();
+
+    long count;
+    VERIFY_HRESULT (this->points_->get_Count (&count));
+
+    if (count > 0)
+    {
+      // Get the interface to all the members.
+      CComPtr <IMgaConnPoint> * array =
+        new CComPtr <IMgaConnPoint> [count];
+
+      VERIFY_HRESULT (this->points_->GetAll (count, &(*array)));
+
+      // Store the members in a collection.
+      for (long i = 0; i < count; i ++)
+      {
+        ConnectionPoint point (array[i]);
+        this->points_mgr_.bind (point.role (), point);
+      }
+
+      // Release the temp storage.
+      delete [] array;
+    }
+  }
+
+  //
+  // operator []
+  //
+  ConnectionPoint ConnectionPoints::
+  operator [] (const std::string & role) const
+  {
+    ConnectionPoint point;
+    this->points_mgr_.find (role, point);
+
+    return point;
+  }
+
+  //===========================================================================
   // Connection
 
   //
@@ -128,12 +189,12 @@ namespace GME
   //
   // points
   //
-  size_t Connection::connection_points (Collection_T <ConnectionPoint> & points)
+  size_t Connection::connection_points (ConnectionPoints & points)
   {
     CComPtr <IMgaConnPoints> temp;
     VERIFY_HRESULT (this->impl ()->get_ConnPoints (&temp));
 
     points.attach (temp);
-    return points.items ().size ();
+    return points.size ();
   }
 }

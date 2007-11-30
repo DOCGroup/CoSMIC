@@ -1,16 +1,16 @@
 // $Id$
 
-project (GME) : cosmic_common {
+project (GME) : acedefaults, acenosubsets, cosmic_common {
   sharedname = GME
 
   macros += _WIN32_DCOM
   dynamicflags += GME_BUILD_DLL
 
   specific {
-    compile_flags  += /wd4290 /wd4251
-     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
-     midl_notlb     = 1
-     midl_flags    += /server none /client none
+    compile_flags += /wd4290 /wd4251 /wd4273
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    midl_notlb     = 1
+    midl_flags    += /server none /client none
   }
 
   Source_Files {
@@ -42,6 +42,8 @@ project (GME) : cosmic_common {
     MetaFCO.cpp
     MetaModel.cpp
     MetaRole.cpp
+
+    stlace.cpp
   }
 
   Template_Files {

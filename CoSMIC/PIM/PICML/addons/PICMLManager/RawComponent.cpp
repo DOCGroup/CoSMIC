@@ -7,12 +7,11 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "Utils/Utils.h"
+#include "boost/bind.hpp"
+#include <algorithm>
 
 // Type definition
 typedef GME::Collection_T <GME::Reference> Reference_Set;
-
-// Type definition
-typedef GME::Collection_T <GME::ConnectionPoint> ConnectionPoint_Set;
 
 //
 // RawComponent
@@ -197,44 +196,32 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       {
         if ((eventmask & OBJEVENT_CREATED))
         {
-          // Extract the connection from the object.
+          // Extract the connection from the object and get
+          // the connection points in model.
           GME::Connection attr_value = GME::Connection::_narrow (object);
+          GME::ConnectionPoints connpoints;
 
-          // Get the set of connection points from the connection.
-          ConnectionPoint_Set conn_points;
-
-          if (attr_value.connection_points (conn_points) >= 2)
+          if (attr_value.connection_points (connpoints) >= 2)
           {
+            // Get the attribute at the 'src' of the connection.
+            GME::Model attr =
+              GME::Model::_narrow (connpoints["src"].target ());
+
             GME::FCO attr_type;
-            GME::Model property;
-            ConnectionPoint_Set::iterator iter;
+            Reference_Set attr_members;
 
-            for (iter = conn_points.items ().begin ();
-                  iter != conn_points.items ().end ();
-                  iter ++)
+            if (attr.references ("AttributeMember", attr_members) == 1)
             {
-              if (iter->role () == "src")
-              {
-                // We have the source connection point. This should be
-                // an attribute in a component.
-                GME::Model attr = GME::Model::_narrow (iter->target ());
-                Reference_Set attr_members;
-
-                if (attr.references ("AttributeMember", attr_members) == 1)
-                {
-                  // Let's get the data type of the attribute. Since there
-                  // is only 1 attribute member, we can just get the front
-                  // element in the container.
-                  attr_type = attr_members.items ().front ().refers_to ();
-                }
-              }
-              else if (iter->role () == "dst")
-              {
-                // We have the destination connection point. This should
-                // be a property in an assembly.
-                property = GME::Model::_narrow (iter->target ());
-              }
+              // Let's get the data type of the attribute. Since there
+              // is only 1 attribute member, we can just get the front
+              // element in the container.
+              attr_type = attr_members.items ().front ().refers_to ();
             }
+
+            // We have the destination connection point. This should
+            // be a property in an assembly.
+            GME::Model property =
+              GME::Model::_narrow (connpoints["dst"].target ());
 
             if (attr_type)
               this->set_property_datatype (property, attr_type);
@@ -256,42 +243,19 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
         if (attr_type)
         {
+          // Get the AttributeValue connection.
           GME::Model attr = member.parent_model ();
 
-          ConnectionPoint_Set points;
-          attr.in_connection_points (points);
+          // Get all connection points that connect to this attribute.
+          GME::ConnectionPoints connpoints;
+          attr.in_connection_points (connpoints);
 
-          GME::Connection attr_value;
-
-          for (ConnectionPoint_Set::iterator iter = points.items ().begin ();
-               iter != points.items ().end ();
-               iter ++)
-          {
-            // Get the own of this connection. If this is an AttributeValue
-            // connection, then we should continue walking the connection
-            // until we get to the property.
-            attr_value = iter->owner ();
-
-            if (attr_value.meta ().name () == "AttributeValue")
-            {
-              // We need to find the 'dst' connection point in this collection.
-              // It will point to the target property model.
-              ConnectionPoint_Set cps;
-              attr_value.connection_points (cps);
-
-              for (ConnectionPoint_Set::iterator it = cps.items ().begin ();
-                  it != cps.items ().end ();
-                  it ++)
-              {
-                if (it->role () == "dst")
-                {
-                  // Extract the property model and set its data type.
-                  GME::Model property = GME::Model::_narrow (it->target ());
-                  this->set_property_datatype (property, attr_type);
-                }
-              }
-            }
-          }
+          std::for_each (connpoints.begin (),
+                         connpoints.end (),
+                         boost::bind (&RawComponent::verify_property_datatype,
+                                      this,
+                                      boost::bind (&GME::ConnectionPoints::value_type::item, _1),
+                         attr_type));
         }
       }
     }
@@ -476,6 +440,38 @@ set_property_datatype (GME::Model & property, const GME::FCO & type)
   if (datatype.name () != type.name ())
     datatype.name (type.name ());
 
-  if (datatype.refers_to () != type)
+  // Get the current data type.
+  GME::FCO curr_type = datatype.refers_to ();
+
+  if (curr_type.is_nil () || (curr_type != type))
     datatype.refers_to (type);
+}
+
+//
+// verify_property_datatype
+//
+void RawComponent::
+verify_property_datatype (GME::ConnectionPoint & attr,
+                          const GME::FCO & attr_type)
+{
+  // Get the own of this connection. If this is an AttributeValue
+  // connection, then we should continue walking the connection
+  // until we get to the property.
+  GME::Connection attr_value = GME::Connection::_narrow (attr.owner ());
+
+  if (attr_value.meta ().name () == "AttributeValue")
+  {
+    // We need to find the 'dst' connection point in this collection.
+    // It will point to the target property model.
+    GME::ConnectionPoints connpoints;
+    attr_value.connection_points (connpoints);
+
+    // Get the property element from the connection. It will be
+    // the 'dst' connection point.
+    GME::Model property =
+      GME::Model::_narrow (connpoints["dst"].target ());
+
+    // Set the data type for the property.
+    this->set_property_datatype (property, attr_type);
+  }
 }

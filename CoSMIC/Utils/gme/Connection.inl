@@ -73,6 +73,79 @@ namespace GME
   }
 
   //===========================================================================
+  // ConnectionPoint
+
+  GME_INLINE
+  ConnectionPoints::ConnectionPoints (void)
+  {
+
+  }
+
+  //
+  // find
+  //
+  GME_INLINE
+  bool ConnectionPoints::find (const std::string & role)
+  {
+    return this->points_mgr_.find (role) == 0 ? true : false;
+  }
+
+  //
+  // find
+  //
+  GME_INLINE
+  bool ConnectionPoints::
+  find (const std::string & role, ConnectionPoint & point)
+  {
+    return this->points_mgr_.find (role, point) == 0 ? true : false;
+  }
+
+  //
+  // size
+  //
+  GME_INLINE
+  size_t ConnectionPoints::size (void) const
+  {
+    return this->points_mgr_.current_size ();
+  }
+
+  //
+  // begin
+  //
+  GME_INLINE
+  ConnectionPoints::iterator ConnectionPoints::begin (void)
+  {
+    return this->points_mgr_.begin ();
+  }
+
+  //
+  // begin
+  //
+  GME_INLINE
+  ConnectionPoints::const_iterator ConnectionPoints::begin (void) const
+  {
+    return this->points_mgr_.begin ();
+  }
+
+  //
+  // end
+  //
+  GME_INLINE
+  ConnectionPoints::iterator ConnectionPoints::end (void)
+  {
+    return this->points_mgr_.end ();
+  }
+
+  //
+  // end
+  //
+  GME_INLINE
+  ConnectionPoints::const_iterator ConnectionPoints::end (void) const
+  {
+    return this->points_mgr_.end ();
+  }
+
+  //===========================================================================
   // Connection
 
   //

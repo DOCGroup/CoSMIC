@@ -1,3 +1,37 @@
+Fri Nov 30 03:35:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Refactored the add-ons to use the new ConnectionPoints
+          container. Also, replaced applicable for loops with
+          std::for_each function calls.
+
+        * Utils/gme/Connection.h:
+        * Utils/gme/Connection.inl:
+        * Utils/gme/Connection.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/Model.cpp:
+
+          Implemented a container abstraction for connection points named
+          ConnectionPoints.
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          Implemented an is_nil () method to determine if the
+          object is valid.
+
+        * Utils/gme/stlace.h:
+        * Utils/gme/stlace.inl:
+        * Utils/gme/stlace.cpp:
+
+          Specialzations of functors for using STL with ACE containers.
+
 Thu Nov 29 15:50:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:

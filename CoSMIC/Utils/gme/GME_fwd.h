@@ -48,6 +48,9 @@ namespace GME
   // Forward decl.
   class ConnectionPoint;
 
+  // Forward decl.
+  class ConnectionPoints;
+
   namespace Meta
   {
     // Forward decl.

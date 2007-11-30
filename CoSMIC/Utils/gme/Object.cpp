@@ -343,4 +343,12 @@ namespace GME
 
     return equal == VARIANT_FALSE ? true : false;
   }
+
+  //
+  // is_nil
+  //
+  bool Object::is_nil (void) const
+  {
+    return this->object_.p == 0;
+  }
 }

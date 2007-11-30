@@ -1,6 +1,7 @@
 // $Id$
 
-project (PICMLManager): cosmic_common, mfc, cosmic_utils, register {
+project (PICMLManager): acedefaults, acenosubsets, mfc, boost_base, \
+  cosmic_utils, register, cosmic_common {
   sharedname = PICMLManager
 
   includes += . $(GME_ROOT)/SDK/BON

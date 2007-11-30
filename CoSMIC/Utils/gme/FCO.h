@@ -233,7 +233,7 @@ namespace GME
      *
      * @param[out]      points      Collection of connection points.
      */
-    size_t in_connection_points (Collection_T <ConnectionPoint> & points);
+    size_t in_connection_points (ConnectionPoints & points);
 
   private:
     /// The COM pointer for the FCO type.
