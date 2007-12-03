@@ -111,7 +111,7 @@ CORBA::ULong CUTS_Node_Daemon_i::spawn_task (const CUTS::Node_Task & task)
 CORBA::ULong CUTS_Node_Daemon_i::kill_task (const char * name)
 {
   // Locate the pid for the task.
-  pid_t pid;
+  pid_t pid = 0;
   int retval = this->process_map_.find (name, pid);
 
   if (retval == 0)

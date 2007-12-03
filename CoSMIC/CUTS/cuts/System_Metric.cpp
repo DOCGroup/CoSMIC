@@ -26,7 +26,7 @@ CUTS_System_Metric::~CUTS_System_Metric (void)
 {
   CUTS_Component_Metric_Map::ITERATOR iter (this->component_metrics_);
 
-  for (iter; !iter.done (); iter ++)
+  for ( ; !iter.done (); iter ++)
     delete iter->item ();
 }
 

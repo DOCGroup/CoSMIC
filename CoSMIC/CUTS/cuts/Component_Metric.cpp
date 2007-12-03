@@ -24,7 +24,7 @@ CUTS_Component_Metric::~CUTS_Component_Metric (void)
 {
   CUTS_Port_Metric_Map::ITERATOR iter (this->port_metrics_);
 
-  for (iter; !iter.done (); iter ++)
+  for ( ; !iter.done (); iter ++)
     delete iter->item ();
 }
 

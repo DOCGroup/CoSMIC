@@ -51,7 +51,7 @@ struct Process_Log_Entry
    * @retval          true      The log entries are equal.
    * @retval          false     The log entries are not equal.
    */
-  inline operator == (const Process_Log_Entry & rhs)
+  inline bool operator == (const Process_Log_Entry & rhs)
   {
     return ACE_OS::strcmp (this->name_, rhs.name_) == 0;
   }

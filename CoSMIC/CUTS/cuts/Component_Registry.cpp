@@ -36,7 +36,7 @@ CUTS_Component_Registry::~CUTS_Component_Registry (void)
   // Delete all the types in the registry.
   CUTS_Component_Type_Map::CONST_ITERATOR type_iter (this->component_types_);
 
-  for (type_iter; !type_iter.done (); type_iter ++)
+  for ( ; !type_iter.done (); type_iter ++)
     delete type_iter->item ();
 }
 
@@ -47,7 +47,6 @@ int CUTS_Component_Registry::
 register_component (CUTS_Component_Registry_Node * info)
 {
   // Insert the <info> into the component registry.
-  CUTS_Component_Registry_Node * old_info = 0;
   int retval = this->registry_.bind (info->info_.inst_, info);
 
   if (retval == 0)
@@ -114,7 +113,7 @@ ACE_THR_FUNC_RETURN CUTS_Component_Registry::thr_svc (void * param)
       // Notify all loaded services to handle the component.
       CUTS_Handler_Set::ITERATOR iter (reg->handlers_);
 
-      for (iter; !iter.done (); iter ++)
+      for ( ; !iter.done (); iter ++)
         (*iter)->handle_component (node->info_);
 
       if (node->delete_)

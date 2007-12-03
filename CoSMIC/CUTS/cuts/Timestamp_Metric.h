@@ -33,6 +33,13 @@ public:
   CUTS_Timestamp_Metric (void);
 
   /**
+   * Copy constructor.
+   *
+   * @param[in]     tm        The source object.
+   */
+  CUTS_Timestamp_Metric (const CUTS_Timestamp_Metric & tm);
+
+  /**
    * Initializing constructor.
    *
    * @param[in]     tv        The initial value of the timestamp.

@@ -147,7 +147,7 @@ namespace CUTS
         {
           // We need to get the benchmark agent from the node.
           CUTS::CCM_Component_Registry_Node * node =
-            dynamic_cast <::CUTS::CCM_Component_Registry_Node *> (iter->int_id_);
+            dynamic_cast < ::CUTS::CCM_Component_Registry_Node * > (iter->int_id_);
           CUTS::Benchmark_Agent_ptr agent = node->benchmark_agent ();
 
           // Verify this is actual an agent connected to the testing
@@ -215,7 +215,7 @@ namespace CUTS
     // them that the metrics have been updated.
     CUTS_Handler_Set::ITERATOR iter (this->handles_);
 
-    for (iter; !iter.done (); iter ++)
+    for ( ; !iter.done (); iter ++)
     {
       CUTS_System_Metric_Handler ** handle = 0;
 

@@ -79,7 +79,7 @@ visit_system_metric (const CUTS_System_Metric & system_metric)
   CUTS_Component_Metric_Map::
     CONST_ITERATOR iter (system_metric.component_metrics ());
 
-  for (iter; !iter.done (); iter ++)
+  for ( ; !iter.done (); iter ++)
   {
     // There is no need to continue if there isn't any
     // up-to-date information.
@@ -116,7 +116,7 @@ visit_component_metric (const CUTS_Component_Metric & metrics)
   ACE_CString portname;
   CUTS_Port_Metric_Map::CONST_ITERATOR iter (metrics.port_metrics ());
 
-  for (iter; !iter.done (); iter ++)
+  for ( ; !iter.done (); iter ++)
   {
     // There is no need to continue if metrics our out-of-date.
     if (iter->item ()->timestamp () != this->timestamp_)
@@ -151,7 +151,7 @@ visit_port_metric (const CUTS_Port_Metric & metrics)
   int retval;
   const CUTS_Component_Info * sender = 0;
 
-  for (sender_iter; !sender_iter.done (); sender_iter ++)
+  for ( ; !sender_iter.done (); sender_iter ++)
   {
     // There is no need to continue if there isn't any
     // up-to-date information.

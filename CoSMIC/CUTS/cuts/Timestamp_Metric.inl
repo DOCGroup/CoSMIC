@@ -15,6 +15,16 @@ CUTS_Timestamp_Metric::CUTS_Timestamp_Metric (void)
 // CUTS_Timestamp_Metric
 //
 CUTS_INLINE
+CUTS_Timestamp_Metric::CUTS_Timestamp_Metric (const CUTS_Timestamp_Metric & tm)
+  : timestamp_ (tm.timestamp_)
+{
+
+}
+
+//
+// CUTS_Timestamp_Metric
+//
+CUTS_INLINE
 CUTS_Timestamp_Metric::CUTS_Timestamp_Metric (const ACE_Time_Value & tv)
 : timestamp_ (tv)
 {

@@ -14,10 +14,11 @@
 //
 CUTS_Time_Measurement::
 CUTS_Time_Measurement (const CUTS_Time_Measurement &tm)
-: count_ (tm.count_),
-  total_ (tm.total_),
-  max_ (tm.max_),
-  min_ (tm.min_)
+  : CUTS_Timestamp_Metric (tm),
+    count_ (tm.count_),
+    total_ (tm.total_),
+    max_ (tm.max_),
+    min_ (tm.min_)
 {
 
 }

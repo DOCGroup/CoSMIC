@@ -75,8 +75,8 @@ template <typename T, typename LOCK>
 void CUTS_Log_T <T, LOCK>::copy_log_i (const CUTS_Log_T & log)
 {
   // Copy all the entry from the source log.
-  typename const_iterator iter = log.begin ();
-  typename const_iterator iter_stop = iter + this->size ();
+  const_iterator iter = log.begin ();
+  const_iterator iter_stop = iter + this->size ();
 
   for (; iter != iter_stop; iter ++)
     *this->next_free_record_i () = *iter;
