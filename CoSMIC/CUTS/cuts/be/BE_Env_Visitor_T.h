@@ -13,6 +13,9 @@
 #ifndef _CUTS_BE_ENV_VISITOR_H_
 #define _CUTS_BE_ENV_VISITOR_H_
 
+#include "PICML/PICML.h"
+#include "BE_Generators_T.h"
+
 //=============================================================================
 /**
  * @class CUTS_BE_Env_Visitor_T

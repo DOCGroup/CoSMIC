@@ -14,6 +14,7 @@
 #define _CUTS_BE_EXECUTION_VISITOR_H_
 
 #include "PICML/PICML.h"
+#include "BE_Generators_T.h"
 #include "BE_Condition_Parser_T.h"
 #include <stack>
 

@@ -129,7 +129,7 @@ struct CUTS_BE_Prologue_T
 //=============================================================================
 
 template <typename IMPL_STRATEGY>
-struct CUTS_BE_ComponetAssembly_Prologue_T
+struct CUTS_BE_ComponentAssembly_Prologue_T
 {
   static bool generate (const PICML::ComponentImplementationContainer &,
                         const PICML::ComponentAssembly &)
@@ -957,6 +957,97 @@ template <typename IMPL_STRATEGY>
 struct CUTS_BE_Or_T
 {
   static bool generate (const char * begin, const char * end)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_Begin_T
+{
+  static bool generate (const PICML::ComponentAssembly & assembly)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_End_T
+{
+  static bool generate (const PICML::ComponentAssembly & assembly)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_Component_Instance_T
+{
+  static bool generate (const PICML::Component & component)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_Connections_Begin_T
+{
+  static bool generate (const PICML::ComponentAssembly & assembly)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_emit_T
+{
+  static bool generate (const PICML::emit & emit)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_PublishConnector_T
+{
+  static bool generate (const PICML::PublishConnector & connector)
+    { return false; }
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template <typename IMPL_STRATEGY>
+struct CUTS_BE_ComponentAssembly_Connections_End_T
+{
+  static bool generate (const PICML::ComponentAssembly & assembly)
     { return false; }
 };
 

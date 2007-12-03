@@ -8,8 +8,7 @@
 #include "BE_Preprocessor.h"
 #include "BE_Env_Visitor_T.h"
 #include "BE_Execution_Visitor_T.h"
-#include "BE_Generators_T.h"
-
+#include "BE_Assembly_Generator_T.h"
 #include "UDM_Utility_T.h"
 
 #include "boost/bind.hpp"
@@ -190,15 +189,18 @@ Visit_ComponentAssembly (const PICML::ComponentAssembly & assembly)
       generate (container, assembly))
   {
     // Write the prologue for the file.
-    CUTS_BE_ComponetAssembly_Prologue_T <
-      IMPL_STRATEGY>::generate (container, assembly);
+    CUTS_BE_ComponentAssembly_Prologue_T <IMPL_STRATEGY>::
+      generate (container, assembly);
+
+    CUTS_BE_Assembly_Generator_T <IMPL_STRATEGY> generator;
+    PICML::ComponentAssembly (assembly).Accept (generator);
 
     // Write the epilogue for the file, then close it.
-    CUTS_BE_ComponentAssembly_Epilogue_T <
-      IMPL_STRATEGY>::generate (container, assembly);
+    CUTS_BE_ComponentAssembly_Epilogue_T <IMPL_STRATEGY>::
+      generate (container, assembly);
 
-    CUTS_BE_ComponentAssembly_File_Close_T <
-      IMPL_STRATEGY>::generate (container, assembly);
+    CUTS_BE_ComponentAssembly_File_Close_T <IMPL_STRATEGY>::
+      generate (container, assembly);
   }
 }
 

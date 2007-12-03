@@ -1,3 +1,21 @@
+Mon Dec  3 19:20:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cuts/be/BE.mpc:
+        * cuts/be/BE_Env_Visitor_T.h:
+        * cuts/be/BE_Execution_Visitor_T.h:
+        * cuts/be/BE_Generators_T.h:
+        * cuts/be/BE_Impl_Generator_T.cpp:
+
+          Added support to generating basic assembly information from the
+          PICML model.
+
+        * cuts/be/TIOA/TIOA_Generators.h:
+        * cuts/be/TIOA/TIOA_Generators.cpp:
+
+          The TIOA backend now can generate basic assembly infomration
+          about the instances declared and the connections between each
+          instance.
+
 Tue Nov 27 22:26:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/Benchmark_Data_Collector.idl:

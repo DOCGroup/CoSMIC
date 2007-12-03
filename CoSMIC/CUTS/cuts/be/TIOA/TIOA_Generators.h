@@ -101,10 +101,49 @@ struct CUTS_BE_File_Open_T <CUTS_BE_Tioa>
 //=============================================================================
 
 template < >
+struct CUTS_BE_ComponentAssembly_File_Open_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_ComponentAssembly_File_Close_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
 struct CUTS_BE_Prologue_T <CUTS_BE_Tioa>
 {
   static bool generate (const PICML::ComponentImplementationContainer &,
                         const PICML::MonolithicImplementation &);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_ComponentAssembly_Prologue_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::ComponentImplementationContainer &,
+                        const PICML::ComponentAssembly &);
 };
 
 //=============================================================================
@@ -318,6 +357,74 @@ template < >
 struct CUTS_BE_PeriodicEvent_End_T <CUTS_BE_Tioa>
 {
   static bool generate (const PICML::PeriodicEvent & periodic);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_ComponentAssembly_Begin_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::ComponentAssembly &);
+
+private:
+  static void write_host_id (const PICML::Component &);
+  static void write_host_id_i (const PICML::Component &);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_Component_Instance_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::Component & component);
+
+private:
+  static void Visit_OutEventPort (const PICML::OutEventPort & oep);
+  static void Visit_InEventPort (const PICML::InEventPort & oep);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_ComponentAssembly_Connections_Begin_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::ComponentAssembly & assembly);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_emit_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::emit & e);
+};
+
+//=============================================================================
+/**
+ *
+ */
+//=============================================================================
+
+template < >
+struct CUTS_BE_PublishConnector_T <CUTS_BE_Tioa>
+{
+  static bool generate (const PICML::PublishConnector & connector);
 };
 
 #endif  // !defined _CUTS_BE_TIOA_GENERATORS_H_
