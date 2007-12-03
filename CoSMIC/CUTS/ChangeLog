@@ -1,3 +1,9 @@
+Mon Dec  3 19:31:12 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * utils/Node_Daemon/Process_Log.cpp:
+
+          Fixed build errors on Windows.
+
 Mon Dec  3 19:26:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cuts/BDC/BDC_Task.cpp:
@@ -12,7 +18,7 @@ Mon Dec  3 19:26:08 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
         * utils/Node_Daemon/Node_Daemon_i.cpp:
         * utils/Node_Daemon/Process_Log.h:
         * utils/Node_Daemon/Process_Log.cpp:
-        
+
           Fixed build errors and warnings on Linux.
 
 Mon Dec  3 19:20:41 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>

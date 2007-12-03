@@ -9,9 +9,13 @@
 #include "ace/Guard_T.h"
 #include "ace/Log_Msg.h"
 #include "ace/OS_NS_stdio.h"
-#include "ace/OS_NS_stdlib.h"
 #include "ace/OS_NS_unistd.h"
 #include "ace/streams.h"
+
+#ifdef min
+#undef min
+#endif
+
 #include <algorithm>
 
 #define ENTRY_BUFFER_SIZE  10
@@ -164,7 +168,7 @@ bool Process_Log::process_exit (pid_t pid)
     // Try and find the entry inside the collection of
     // records read in from the file.
     Process_Log_Entry * last_entry =
-      buffer + std::min (entry_count, (size_t)ENTRY_BUFFER_SIZE);
+      buffer + std::min (entry_count, static_cast <size_t> (ENTRY_BUFFER_SIZE));
 
     Process_Log_Entry * entry =
       std::find_if (buffer, last_entry, Find_By_PID (pid));
