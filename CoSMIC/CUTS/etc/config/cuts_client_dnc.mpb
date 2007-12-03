@@ -1,8 +1,0 @@
-// $Id$
-
-project : ciao_servant_dnc, cutslib {
-  idlflags += -I $(CUTS_ROOT)
-
-  //-- project dependencies
-  after += CUTS_stub
-}

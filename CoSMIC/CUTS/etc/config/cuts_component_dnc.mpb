@@ -1,5 +1,0 @@
-// $Id$
-
-project : ciao_component_dnc, cutslib {
-
-}

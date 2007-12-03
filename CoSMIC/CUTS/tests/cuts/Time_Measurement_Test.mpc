@@ -1,9 +1,0 @@
-// $Id$
-
-project (CUTS_Time_Measurement_Test) : cuts_test {
-  exename = CUTS_Time_Measurement_Test
-
-  Source_Files {
-    Time_Measurement_Test.cpp
-  }
-}
