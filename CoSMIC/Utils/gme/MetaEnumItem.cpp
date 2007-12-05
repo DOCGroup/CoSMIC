@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "MetaEnumItem.h"
 
 #if !defined (__GME_INLINE__)

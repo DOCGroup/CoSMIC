@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "FCO.h"
 #include "Model.h"
 #include "Folder.h"

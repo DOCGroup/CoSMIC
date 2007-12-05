@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Atom.h"
 #include "Model.h"
 #include "MetaRole.h"

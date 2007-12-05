@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Exception.h"
 
 #if !defined (__GME_INLINE__)

@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Object.h"
 #include "Exception.h"
 #include "MetaBase.h"

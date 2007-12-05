@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Attribute.h"
 
 #if !defined (__GME_INLINE__)

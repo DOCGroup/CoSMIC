@@ -3,8 +3,12 @@
 project (GME) : acedefaults, acenosubsets, cosmic_common {
   sharedname = GME
 
-  macros += _WIN32_DCOM
   dynamicflags += GME_BUILD_DLL
+  macros += _WIN32_DCOM
+
+  // -- precompiled header
+  pch_header = stdafx.h
+  pch_source = stdafx.cpp
 
   specific {
     compile_flags += /wd4290 /wd4251 /wd4273

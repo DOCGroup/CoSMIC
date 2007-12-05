@@ -1,3 +1,36 @@
+Wed Dec  5 14:43:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Attribute.cpp:
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.cpp:
+        * Utils/gme/Connection.cpp:
+        * Utils/gme/Exception.cpp:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/GME.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/Interpreter.cpp:
+        * Utils/gme/MetaAttribute.cpp:
+        * Utils/gme/MetaBase.cpp:
+        * Utils/gme/MetaEnumItem.cpp:
+        * Utils/gme/MetaFCO.cpp:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/MetaRole.cpp:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Project.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/RegistryNode.cpp:
+        * Utils/gme/Set.cpp:
+        * Utils/gme/Territory.cpp:
+        * Utils/gme/stlace.cpp:
+
+          Fixed build errors for the release version of the GME project by
+          using precompiled headers and define the _WIN32_WINNT macro as
+          0x0400.
+
 Wed Dec  5 14:08:10 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:

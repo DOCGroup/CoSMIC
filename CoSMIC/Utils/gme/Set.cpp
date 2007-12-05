@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Set.h"
 #include "Model.h"
 #include "MetaRole.h"

@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "ComponentEx.h"
 #include "FCO.h"
 

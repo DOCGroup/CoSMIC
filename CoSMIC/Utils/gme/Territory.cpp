@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Territory.h"
 
 namespace GME

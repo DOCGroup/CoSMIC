@@ -1,5 +1,6 @@
 // $Id$
 
+#include "stdafx.h"
 #include "Folder.h"
 #include "MetaFolder.h"
 
