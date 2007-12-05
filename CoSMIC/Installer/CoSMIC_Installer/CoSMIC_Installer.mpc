@@ -11,7 +11,7 @@ project (CoSMIC_Installer) : wix {
 
   Wxi_Files {
     EnvironmentVars.wxi
-  }  
+  }
 
   Wxs_Files {
 
@@ -24,7 +24,7 @@ project (CoSMIC_Installer) : wix {
     ./vc8_assemblies.wxs
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
-    $(COSMIC_ROOT)/PIM/PICML/addons/UUIDManager/UUIDManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
 
 /////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PIM/PICML/docs/PICMLDocs.wxs
     $(COSMIC_ROOT)/PIM/PICML/examples/PICMLExamples.wxs
 
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs    
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs
     $(COSMIC_ROOT)/PIM/PICML/paradigms/PICMLParadigm.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
 

@@ -1,3 +1,11 @@
+Wed Dec  5 14:08:10 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+
+          The installer was stilling using UUIDManager, which has changed
+          to PICMLManager.
+
 Wed Dec  5 04:42:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/FCO.cpp:
