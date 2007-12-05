@@ -195,7 +195,7 @@ namespace GME
     CComPtr <IMgaConnPoints> temp;
     VERIFY_HRESULT (this->impl ()->get_ConnPoints (&temp));
 
-    points.attach (temp);
+    points.attach (temp.Detach ());
     return points.size ();
   }
 }

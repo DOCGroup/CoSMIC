@@ -1,3 +1,10 @@
+Wed Dec  5 18:45:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Connection.cpp (connection_points):
+
+          BUG: The pointer for the connection points of a connection
+          was not reference counted correctly.
+
 Wed Dec  5 14:45:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/stdafx.h:
