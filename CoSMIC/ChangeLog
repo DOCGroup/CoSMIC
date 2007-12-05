@@ -1,3 +1,11 @@
+Wed Dec  5 14:45:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/stdafx.h:
+        * Utils/gme/stdafx.cpp:
+
+          Forgot to commit the precompiled headers for the previous
+          ChangeLog entry.
+
 Wed Dec  5 14:43:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Atom.cpp:
