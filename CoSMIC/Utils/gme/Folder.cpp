@@ -123,7 +123,7 @@ namespace GME
   Meta::Folder Folder::meta (void) const
   {
     CComPtr <IMgaMetaFolder> meta;
-    VERIFY_HRESULT (this->impl ()->get_Folder (&meta));
+    VERIFY_HRESULT (this->impl ()->get_MetaFolder (&meta));
 
     return meta.p;
   }

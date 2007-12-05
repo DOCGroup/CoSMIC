@@ -125,7 +125,7 @@ namespace GME
   Meta::Role FCO::role (void) const
   {
     CComPtr <IMgaMetaRole> meta;
-    VERIFY_HRESULT (this->impl ()->get_Role (&meta));
+    VERIFY_HRESULT (this->impl ()->get_MetaRole (&meta));
 
     return meta.p;
   }

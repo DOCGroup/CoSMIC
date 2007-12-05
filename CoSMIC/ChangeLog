@@ -1,3 +1,12 @@
+Wed Dec  5 04:42:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/Object.cpp:
+
+          Fixed build errors related to incorrect version of GME being
+          installed.
+
 Mon Dec  3 23:43:40 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * CUTS:
