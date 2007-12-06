@@ -14,7 +14,7 @@
       <ComponentRef Id='CQMLLibrary'/>
       <ComponentRef Id='UtilsLibrary'/>
       <ComponentRef Id='PICMLDecoratorLibrary' />
-      <ComponentRef Id='UUIDManagerLibrary' />
+      <ComponentRef Id='PICMLManagerLibrary' />
 
       <ComponentRef Id='DeploymentPlanFrameworkLibrary'/>
       <ComponentRef Id='FaultToleranceComponentLibrary' />
@@ -50,8 +50,8 @@
               Source='$(var.COSMIC_ROOT)\PSM\CQML\paradigms\CQML.xmp' />
 
         <!-- GUID match warning begins here. -->
-        <!-- The GUID in the .xmp has to match exactly here 
-             for the registry entries. This needs to be done 
+        <!-- The GUID in the .xmp has to match exactly here
+             for the registry entries. This needs to be done
              everytime the paradigm is freshly interpreted. -->
 
         <!-- The registry writing way of registring paradims is disabled now because
@@ -78,14 +78,14 @@
         -->
         <!-- GUID match Warning ends here. -->
 
-        <!-- No matter which paradigm registration technique you 
+        <!-- No matter which paradigm registration technique you
              use, .mta file should be removed while uninstalling. -->
         <RemoveFile Id='CQMLMTA' Name='CQML.mta' On='uninstall' />
 
       </Component>
     </DirectoryRef>
-    
-    
+
+
     <DirectoryRef Id='CQMLParadigmDir'>
       <Component Id="CQMLRegistryComponent"
                  Guid="0325154E-0908-4003-8E9E-84F3EA0C80EA" >
@@ -96,8 +96,8 @@
         </RegistryKey>
       </Component>
     </DirectoryRef>
-    
-    
+
+
     <DirectoryRef Id="CQMLIconsDir">
       <Component Id='CQMLParadigmIcons' Guid='41164BC0-C12C-46C3-A3DB-F2CD835BF550'>
 

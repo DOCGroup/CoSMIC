@@ -1,3 +1,11 @@
+Thu Dec  6 18:12:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Fixing build errors related to the name change of UUIDManager
+          to PICMLManager, which is preventing the installer from building.
+
 Wed Dec  5 18:45:22 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Connection.cpp (connection_points):
