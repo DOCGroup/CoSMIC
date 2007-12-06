@@ -1,3 +1,13 @@
+Thu Dec  6 23:06:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Fixed constaint violations related to aspects with duplicate
+          names.
+
 Thu Dec  6 18:12:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
