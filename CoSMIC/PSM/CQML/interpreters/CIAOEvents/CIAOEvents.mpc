@@ -1,0 +1,16 @@
+project(CIAOEvents): cqmllib {
+
+   after += CQML
+   sharedname = CIAOEvents
+   macros += CIAO_EVENTS_BUILD_DLL CQML_HAS_DLL
+   libs += CQML
+
+   Source_Files {
+     CIAOEventsVisitor.cpp
+   }
+
+   Header_Files {
+     CIAOEventsVisitor.h
+     CIAOEvents_Export.h
+   }
+}

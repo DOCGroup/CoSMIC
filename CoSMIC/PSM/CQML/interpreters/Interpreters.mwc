@@ -3,6 +3,8 @@ workspace {
              -include $COSMIC_ROOT
 
   CQML
+  CIAOEvents
+  CIAOEventsComponent
   NetQoS
   NetQoSComponent
   BIRSpecification
