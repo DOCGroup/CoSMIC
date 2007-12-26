@@ -1,3 +1,12 @@
+Wed Dec 26 14:52:11 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/MTTVar.xme:
+
+          Fixed the problems with multiple CodePoint blocks
+          of different types. This was caused due to firing of
+          each `ConditionalCreation' rules only once (as opposed
+          to for each packet).
+
 Wed Dec 12 20:17:33 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Release.mwc:
