@@ -1,3 +1,9 @@
+Tue Jan  8 19:16:07 UTC 2008  Nishanth Shankaran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+        Added the Input_Adapter_Base component.
+
 Tue Jan  8 16:21:03 UTC 2008  Nishanth Shankaran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/RACE_devl.xme:
