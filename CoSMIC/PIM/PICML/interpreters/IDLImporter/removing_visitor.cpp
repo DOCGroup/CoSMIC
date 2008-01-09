@@ -65,9 +65,15 @@ bool
 removing_visitor::found_in_idl (DOMElement *node)
 {
   this->id_holder_ = node->getAttribute (X ("id"));
+  
+  if (node->hasAttribute (X ("derivedfrom")))   
+    {
+      return true;
+    }
+    
   int status = be_global->gme_id_set ().find (this->id_holder_);
   
-  if (0 != status)
+  if (status != 0)
     {
       // Remove the node we were passed.
       be_global->release_node (node);    

@@ -70,8 +70,9 @@ removing_closure_visitor::check_endpoint (DOMElement *endpoint,
                                           DOMElement *node)
 {
   // Quick check (see last line below) in case PICML ever
-  // allows something to be connected to itself.
-  if (0 == node)
+  // allows something to be connected to itself, or in case
+  // the endpoint has already been removed.
+  if (0 == node || 0 == endpoint)
     {
       return;
     }
@@ -104,8 +105,17 @@ bool
 removing_closure_visitor::remove_and_do_closure (DOMElement *node)
 {
   const XMLCh *id = node->getAttribute (X ("id"));
+  const XMLCh *kind = node->getAttribute (X ("kind"));
+
   be_global->release_node (node);
   node = 0;
+  
+  // No need to traverse the whole tree for this kind.
+  if (X ("Supports") == kind)
+    {
+      return true;
+    }
+    
   removing_closure_visitor rc_visitor (id);
   return rc_visitor.visit_root (be_global->root_folder ());
 }
@@ -152,6 +162,5 @@ removing_closure_visitor::visit_gme_set (DOMElement *node)
   
   XMLString::release (&members_str);
   XMLString::release (&id_str);
-  
   return (remove ? this->remove_and_do_closure (node) : true);
 }

@@ -292,6 +292,11 @@ public:
                                       const char *tag_name,
                                       const char *kind_name);
   // Utility operation.
+  
+  DOMElement *lookup_by_tag_and_id (DOMElement *scope,
+                                    const char *tag_name,
+                                    const char *gme_id);
+  // Utility operation.
 
   void init_ids (DOMElement *sub_tree);
   // Recursive functions that traverses the imported DOM tree and

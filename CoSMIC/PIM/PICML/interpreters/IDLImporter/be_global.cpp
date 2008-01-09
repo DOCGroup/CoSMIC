@@ -1182,6 +1182,28 @@ BE_GlobalData::lookup_by_tag_and_kind (DOMElement *scope,
   return 0;
 }
 
+DOMElement *
+BE_GlobalData::lookup_by_tag_and_id (DOMElement *scope,
+                                     const char *tag_name,
+                                     const char *gme_id)
+{
+  DOMNodeList *children = scope->getElementsByTagName (X (tag_name));
+
+  for (XMLSize_t i = 0; i < children->getLength (); ++i)
+    {
+      DOMElement *child =
+        dynamic_cast<DOMElement *> (children->item (i));
+      const XMLCh *id_attr = child->getAttribute (X ("id"));
+
+      if (X (gme_id) == id_attr)
+        {
+          return child;
+        }
+    }
+
+  return 0;
+}
+
 void
 BE_GlobalData::init_ids (DOMElement *sub_tree)
 {
@@ -1243,7 +1265,9 @@ BE_GlobalData::release_node (DOMElement *node)
 {
   this->emit_diagnostic (node, REMOVING);
   DOMNode *parent = node->getParentNode ();
+  if (parent == 0) ACE_ERROR ((LM_ERROR, "parent, release_node\n"));
   DOMNode *releasable = parent->removeChild (node);
+  if (releasable == 0) ACE_ERROR ((LM_ERROR, "releasable, release_node\n"));
   releasable->release ();
 }
 
@@ -1288,10 +1312,14 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       char *r_kind = 0;
       DOMElement *parent =
         dynamic_cast<DOMElement *> (referred->getParentNode ());
-      const XMLCh *parent_kind = parent->getAttribute (X ("kind"));
+        
+      // What's referred to may have already been removed.  
+      const XMLCh *parent_kind =
+        (parent != 0 ? parent->getAttribute (X ("kind")) : 0);
+        
       ACE_CString r_kind_str;
 
-      if (X ("PredefinedTypes") == parent_kind)
+      if (parent_kind != 0 && X ("PredefinedTypes") == parent_kind)
         {
           // Here, the name and kind are the same, so we use the
           // parent kind, minus the final letter, see below.
