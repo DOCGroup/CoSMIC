@@ -1,17 +1,23 @@
+Wed Jan  9 21:39:17 UTC 2008  Nishanth Shanakran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+        Updated the model to include the Interactive Input Adapter.
+
 Wed Jan  9 19:21:07 UTC 2008  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/removing_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
-          - Fixed problem with handling component attributes inherited 
+
+          - Fixed problem with handling component attributes inherited
             from a base component.
-            
+
           - Fixed problem with composing a diagnostic message about the
             removal of a GME Reference whose referent has already been
             removed.
-            
+
           Thanks to Nishanth Shankaran <nshankar@nospam.com> and the
           new Input_Adapter_Base example for uncovering these bugs.
 
