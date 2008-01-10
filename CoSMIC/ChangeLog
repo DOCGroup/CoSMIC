@@ -1,3 +1,20 @@
+Thu Jan 10 20:22:08 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Added CIAOEvents project into the CoSMIC installer.
+          CoSMIC installer now specifically checks for GME version.
+          Currently it checks for GME version 6.11.9
+
 Wed Jan  9 21:39:17 UTC 2008  Nishanth Shanakran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/RACE_devl.xme:

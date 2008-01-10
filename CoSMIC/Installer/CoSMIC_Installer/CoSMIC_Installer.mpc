@@ -59,6 +59,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/psm/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs
+    $(COSMIC_ROOT)/psm/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs
     $(COSMIC_ROOT)/psm/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs

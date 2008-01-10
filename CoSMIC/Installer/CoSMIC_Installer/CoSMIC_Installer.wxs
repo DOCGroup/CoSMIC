@@ -13,14 +13,14 @@
 
     <!-- Wix variables -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.COSMIC_ROOT)/License.rtf" />
-    
+
     <Condition Message='CoSMIC Installer is not suported on Windows 95/98/ME.'>
       NOT Version9X
     </Condition>
     <Condition Message="You need to be an administrator to install this product.">
       Privileged
     </Condition>
-    <Condition Message="Could not find GME on your machine. Please install GME (6.11.9 or better) before installing CoSMIC.">
+    <Condition Message="Could not find GME on your machine. Please install GME 6.11.9 before installing CoSMIC.">
       GMEINSTALLED
     </Condition>
     
@@ -32,7 +32,7 @@
                       Root="HKLM" Key="SOFTWARE\GME\Paradigms\MetaGME"
                       Name="CurrentVersion" Type="raw" />
     </Property>
-    
+
     <!-- UI -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
     <!-- 
@@ -55,6 +55,9 @@
     <FeatureRef Id="vc_merge_modules" />
     
     <InstallExecuteSequence>
+     <Custom Action='GMEVersion' After='InstallInitialize' >
+        NOT Installed
+      </Custom>
       <Custom Action='ParadigmRegister' After='PublishProduct' >
         NOT Installed
       </Custom>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="CIAOEventsComponentFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='CIAOEventsComponentLibrary' Guid='73334395-0002-4FEC-80FA-C0BA284074CB'>
+        <File Id='CIAOEventsDLL'
+              Name='CIAOEvents.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\CIAOEvents.dll' />
+        <File Id='CIAOEventsComponentDLL'
+              Name='CIAOEventsComponent.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\CIAOEventsComponent.dll' />
+
+        <RegistryKey Root="HKLM" Key="Software\Classes" 
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID"
+                     Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{73334395-0002-4FEC-80FA-C0BA284074CB}"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.CIAOEventsComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{73334395-0002-4FEC-80FA-C0BA284074CB}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.CIAOEventsComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{73334395-0002-4FEC-80FA-C0BA284074CB}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="CIAOEventsComponent.dll" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.CIAOEventsComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="MGA.Interpreter.CIAOEventsComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.CIAOEventsComponent\CLSID"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Value="{73334395-0002-4FEC-80FA-C0BA284074CB}" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.CIAOEventsComponent"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="Tooltip" Value="CIAOEventsComponent Interpreter" Type="string" />
+          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Paradigm" Value="CQML" Type="string" />
+          <RegistryValue Name="Type" Value="1" Type="integer" />
+          <RegistryValue Name="Description" Value="CIAOEventsComponent" Type="string" />
+        </RegistryKey>
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.CIAOEventsComponent\Associated"
+                     Action="createAndRemoveOnUninstall">
+          <RegistryValue Name="CQML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

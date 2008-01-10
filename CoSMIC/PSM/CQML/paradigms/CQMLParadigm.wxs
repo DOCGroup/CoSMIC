@@ -19,6 +19,7 @@
       <ComponentRef Id='DeploymentPlanFrameworkLibrary'/>
       <ComponentRef Id='FaultToleranceComponentLibrary' />
       <ComponentRef Id='NetQoSComponentLibrary' />
+      <ComponentRef Id='CIAOEventsComponentLibrary' />
       <ComponentRef Id='SecurityQoSComponentLibrary' />
       <!--<ComponentRef Id='BIRSpecificationComponentLibrary' />-->
       <ComponentRef Id='RTConfigurationComponentLibrary' />

@@ -3,6 +3,13 @@
   <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="CustomActionsFrag">
+    <CustomAction Id='GMEVersion'
+              BinaryKey='RegistrationBinary'
+              DllEntry='CheckGMEVersion'
+              Execute='deferred'
+              Impersonate='no'
+              Return='check' />
+
     <CustomAction Id='ParadigmRegister'
                   BinaryKey='RegistrationBinary'
                   DllEntry='RegisterParadigms'

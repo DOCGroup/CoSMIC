@@ -11,16 +11,19 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
 #include "mgautil.h"
 
 #define PARADIGMCOST 30000
+#define GME_VERSION "6.11.9"
 
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  ul_reason_for_call,
                       LPVOID lpReserved)
 {
   return TRUE;
 }
+
 
 const TCHAR* LastError()
 {
@@ -216,6 +219,7 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
   char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
                                   "SOFTWARE\\ISIS\\CoSMIC",
                                   "TargetDir");
+
   if (value == 0)
     {
       SendErrorMsg (hInstall, "Unable to access Registry Key "
@@ -324,5 +328,57 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
     }
   // Don't change this return value or BAD THINGS[TM] will happen.
   return ERROR_SUCCESS;
+}
+
+UINT check_GME_version (std::string const & version)
+{
+	const char * const GME_ROOT = getenv("GME_ROOT");
+	std::string path = GME_ROOT;
+	path += "\\Interfaces\\GMEVersion.h";
+
+	std::ifstream infile(path.c_str());
+	if (infile)
+	{
+		std::string token;
+		int major = 0, minor = 0, plevel = 0;
+		while (infile >> token)
+		{
+			if (token == "GME_VERSION_MAJOR")
+				infile >> major;
+			else if (token == "GME_VERSION_MINOR")
+				infile >> minor;
+			else if (token == "GME_VERSION_PLEVEL")
+			{
+				infile >> plevel;
+				break;
+			}
+		}
+		std::ostringstream ostr;
+		ostr << major << "." << minor << "." << plevel;
+		if (ostr.str() == version)
+			return ERROR_SUCCESS;
+		else
+			return ERROR_INSTALL_FAILURE;
+	}
+	else
+	{
+		return ERROR_INSTALL_FAILURE;
+	}
+}
+
+
+UINT __stdcall CheckGMEVersion (MSIHANDLE hInstall)
+{
+	if (check_GME_version (GME_VERSION) == ERROR_INSTALL_FAILURE)
+	{
+		MessageBox(NULL, 
+			       TEXT("GME " GME_VERSION " is not installed or could not determine "
+			       "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
+				   TEXT("CoSMIC Installer Error"), 
+				   MB_OK);
+		return ERROR_INSTALL_FAILURE;
+	}
+	else
+		return ERROR_SUCCESS;
 }
 
