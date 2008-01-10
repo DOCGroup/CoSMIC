@@ -1,0 +1,2699 @@
+Fri Dec 16 16:21:14 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+
+          Fixed a bug in which a Collection of PredefinedType was not
+          getting mapped to generated IDL. Thanks to Prakash Manghwani
+          <pmanghwani@bbn.com> for reporting the problem.
+
+Thu Dec 15 17:55:07 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+        Made changes to the monolithic implementation visitor
+        to keep track of the interface or the type name, so that
+        they can be referenced and matched, when creating the deployment
+        plan.
+
+Wed Dec 14 21:10:33 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata.mpc:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.h:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomataVisitor.cpp:
+        * PIM/PICML/interpreters/IOAutomata/IOAutomata_Export.h:
+
+        Added the IOAutomata interpreter. IOAutomata is used to model the intra-component
+        behavior in PICML. To find out the capabilities of the interpreter as of this date
+        please see www.dre.vanderbilt.edu/~sutambe/files/IOAutomta_report_Dec_13.doc
+
+        * PIM/PICML/interpreters/IOAutomataComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.aps:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.def:
+        * PIM/PICML/interpreters/IOAutomataComponent/Component.rc:
+        * PIM/PICML/interpreters/IOAutomataComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/IOAutomataComponent.mpc:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/IOAutomataComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/IOAutomataComponent/resource.h:
+
+        The IOAutomataComponent implementation for integration with GME
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+        Changed mwc file to build the IOAutomata interpreter and the IOAutomataComponent
+        as a part of the CoSMIC solution.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        Changed the PICML meta-model to support behavior representation within a component.
+
+        * PIM/PICML/paradigms/icons/InternalAction.bmp:
+        * PIM/PICML/paradigms/icons/ShutdownState.bmp:
+        * PIM/PICML/paradigms/icons/StartupState.bmp:
+        * PIM/PICML/paradigms/icons/TimerState.bmp:
+
+        Added a few extra icons for the behavior representation of PICML components
+        in GME
+
+Wed Dec 14 14:14:42 2005  William Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.tpp
+
+        Added a file that should have been part of my previous
+        commit.
+
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+
+        Fixes for compile problems caused by the QoSConfiguration rename.
+
+Wed Dec 14 00:13:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+          * PIM/PICML/interpreters/Interpreters.mwc
+          * PIM/PICML/interpreters/RTConfig/CIAOServerResources.xsd
+          * PIM/PICML/interpreters/RTConfig/RTConfig.mpc
+          * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.cpp
+          * PIM/PICML/interpreters/RTConfig/RTConfigVisitor.h
+          * PIM/PICML/interpreters/RTConfig/RTConfig_Export.h
+          * PIM/PICML/interpreters/RTConfig/constraints.txt
+          * PIM/PICML/interpreters/RTConfigComponent/CompIcon_RTConfig.ico
+          * PIM/PICML/interpreters/RTConfigComponent/Component.def
+          * PIM/PICML/interpreters/RTConfigComponent/Component.rc
+          * PIM/PICML/interpreters/RTConfigComponent/ComponentConfig.h
+          * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc
+          * PIM/PICML/interpreters/RTConfigComponent/RawComponent.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/RawComponent.h
+          * PIM/PICML/interpreters/RTConfigComponent/StdAfx.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h
+          * PIM/PICML/interpreters/RTConfigComponent/UdmApp.cpp
+          * PIM/PICML/interpreters/RTConfigComponent/UdmApp.h
+          * PIM/PICML/interpreters/RTConfigComponent/UdmConfig.h
+          * PIM/PICML/interpreters/RTConfigComponent/resource.h
+
+            Checking in the RTConfig and the RTConfigComponent which comprise
+            the interpreter for what was formerly known as QoSML and QoSPML.
+            This interpreter is complient with CIAOServerResources.xsd version 1.8
+
+
+Tue Dec 13 20:50:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/BandedConnection.bmp
+        * PIM/PICML/paradigms/icons/BandedConnectionRef.bmp
+        * PIM/PICML/paradigms/icons/ConnectionBand.bmp
+        * PIM/PICML/paradigms/icons/EnvironmentConf.bmp
+        * PIM/PICML/paradigms/icons/PolicySet.bmp
+        * PIM/PICML/paradigms/icons/PolicySetRef.bmp
+        * PIM/PICML/paradigms/icons/PriorityModelPolicy.bmp
+        * PIM/PICML/paradigms/icons/RTModel.bmp
+        * PIM/PICML/paradigms/icons/ResourceContainer.bmp
+        * PIM/PICML/paradigms/icons/SimpleThreadPool.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolLane.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolRef.bmp
+        * PIM/PICML/paradigms/icons/ThreadPoolWithLanes.bmp
+
+          Checking in newest changes to the paradigm and the icons.
+            As per Will's request QoS* has been changed to RT*.
+
+
+Tue Dec 13 22:59:45 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+
+          Fixed bug in IDL generation from PICML Components - eliminated
+          generation of attribute declarations from parent Components.
+
+2005-12-13  William Otte <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping.mpc
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.cpp
+        * PIM/PICML/interpreters/QoSMapping/QoSMappingVisitor.h
+        * PIM/PICML/interpreters/QoSMapping/QoSMapping_Export.h
+        * PIM/PICML/interpreters/QoSMappingComponent/CompIcon.ico
+        * PIM/PICML/interpreters/QoSMappingComponent/Component.def
+        * PIM/PICML/interpreters/QoSMappingComponent/Component.rc
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentConfig.h
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.h
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib.tlb
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_i.c
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_p.c
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc
+        * PIM/PICML/interpreters/QoSMappingComponent/RawComponent.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmApp.cpp
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmApp.h
+        * PIM/PICML/interpreters/QoSMappingComponent/UdmConfig.h
+        * PIM/PICML/interpreters/QoSMappingComponent/dlldata.c
+        * PIM/PICML/interpreters/QoSMappingComponent/resource.h
+
+        Added first cut of QoSMapping interpreters.  These will likely be
+        redesigned copmletely in the coming weeks.
+
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+
+        Changes to the model necessary to accomodate the interpreters.
+
+2005-12-11  William Otte   <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc
+
+        Removed QoSMapping/Component from the workspace.
+
+2005-12-09  William Otte <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme
+        * PIM/PICML/paradigms/PICML.xme
+        * PIM/PICML/paradigms/PICML.xml
+        * PIM/PICML/paradigms/PICML.xmp
+
+        Added initial cut of QoSModeling.
+
+Thu Dec  8 23:54:16 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+
+          Corrections and updates to IDL Importer documentation.
+
+Wed Dec  7 21:18:21 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/be_extern.h:
+        * PIM/PICML/interpreters/ILDImporter/be_global.h:
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
+
+          Changed 'TAO_PICML_' prefix in ifdef guards to 'IDL_TO_PICML_'.
+
+Wed Dec  7 18:29:19 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/EntityResolver.cpp:
+        * PIM/PICML/interpreters/ILDImporter/EntityResolver.h:
+
+          New files containing a subclass of DOMEntityResolver, used in
+          the change below.
+
+        * PIM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/ILDImporter/be_global.cpp:
+        * PIM/PICML/interpreters/ILDImporter/be_global.h:
+
+          Added code for the IDL importer to locate mga.dtd, which
+          is the DTD file used by GME for its XML imports/exports.
+          Locating this file is necessary if the IDL importer is
+          inputting an XME file to modify instead of creating one
+          from scratch. Thanks to Will Otte <wotte@dre.vanderbilt.edu>
+          for the CIAO code example that these changes are based on.
+
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
+
+          Updated a comment.
+
+Wed Dec  7 000:31:42 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/Interpreters/IDLImporter.mpc:
+        * PIM/PICML/Interpreters/XML_Error_Handler.h:
+        * PIM/PICML/Interpreters/be_extern.h:
+        * PIM/PICML/Interpreters/be_global.cpp:
+        * PIM/PICML/Interpreters/be_global.h:
+        * PIM/PICML/Interpreters/be_init.cpp:
+        * PIM/PICML/Interpreters/be_produce.cpp:
+
+          Renamed executable, backend library, export file and
+          export macro contain 'IDL_TO_PICML_' instead of
+          'TAO_PICML_', since this tool has nothing to do with
+          TAO, and the name was confusing to users.
+
+        * PIM/PICML/Interpreters/IDL_TO_PICML_BE_Export.h:
+
+          New file, the result of the renaming described above.
+
+        * PIM/PICML/Interpreters/TAO_PICML_BE_Export.h:
+
+          Removed file, the results of the renaming described above.
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+
+          Updated documentation to reflect the above changes.
+
+Tue Dec  6 20:44:18 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/Interpreters/IDLGenerator/BON2Component.cpp:
+
+          Corrected the type of message box that appears when IDL
+          generation completes successfully.
+
+Wed Nov 23 17:07:01 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/Component.rc:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.mpc:
+        * PIM/OCML/interpreters/OCML_Interpreter/component.def:
+
+          Futile attempt to get OCML in a better shape.  It seems that
+          some elements have been removed from the metamodel, and the BON
+          Xtender code has not been updated.  Checking it in just in case,
+          we want to make it work in the future.
+
+        * PIM/PICML/interpreters/BGML/BGML.mpc:
+        * PIM/PICML/interpreters/BGML/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/Global_Data.h:
+        * PIM/PICML/interpreters/BGML/IDL_Util.h:
+        * PIM/PICML/interpreters/BGML/IDL_Util.cpp:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.h:
+        * PIM/PICML/interpreters/BGML/MetricEmitter.cpp:
+        * PIM/PICML/interpreters/BGML/Timer_Stream.h:
+        * PIM/PICML/interpreters/BGML/Timer_Stream.cpp:
+        * PIM/PICML/interpreters/BGML/TypeEmitter.h:
+        * PIM/PICML/interpreters/BGML/TypeEmitter.cpp:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGMLComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.h:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/CIDL_Interpreter.mpc:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/Cidlc_Visitor.cpp:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.h:
+        * PIM/PICML/interpreters/CIDL_Interpreter/IDLStream.cpp:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
+        * PIM/PICML/interpreters/Configurator/UdmConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlan.mpc:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.h:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/FlatPlanComponent/FlatPlanComponent.mpc:
+        * PIM/PICML/interpreters/FlatPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/FlatPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/IDLImporter/XML_Error_Handler.cpp:
+        * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/MPCComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Interpreter.mpc:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+        * PIM/PICML/interpreters/PICML/XercesString.cpp:
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/Target/Domain.mpc:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/TargetComponent/Component.rc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/TargetComponent/UdmConfig.h:
+
+          Updated the files to fix the include directives.  The preferred
+          method to include the files is to use the format:
+
+          #include "PICML/PICML.h"
+          #include "Package/PackageVisitor.h"
+
+          instead of
+
+          #include "PICML.h"
+          #include "PackageVisitor.h"
+
+        * PIM/PICML/paradigms/icons/Any.bmp:
+        * PIM/PICML/paradigms/icons/Assembly.bmp:
+        * PIM/PICML/paradigms/icons/AttributeMapping.bmp:
+        * PIM/PICML/paradigms/icons/Average.bmp:
+        * PIM/PICML/paradigms/icons/Bridge.bmp:
+        * PIM/PICML/paradigms/icons/Capability.bmp:
+        * PIM/PICML/paradigms/icons/ComponentPackage.bmp:
+        * PIM/PICML/paradigms/icons/ComponentProperty.bmp:
+        * PIM/PICML/paradigms/icons/ComponentSet.bmp:
+        * PIM/PICML/paradigms/icons/DataType.bmp:
+        * PIM/PICML/paradigms/icons/Discrete-Benchmark.bmp:
+        * PIM/PICML/paradigms/icons/Domain.bmp:
+        * PIM/PICML/paradigms/icons/ExternalReferenceEndPoint.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationArtifact.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationArtifactReference.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationDependency.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationReference.bmp:
+        * PIM/PICML/paradigms/icons/ImplementationRequirement.bmp:
+        * PIM/PICML/paradigms/icons/InputState.bmp:
+        * PIM/PICML/paradigms/icons/Interconnect.bmp:
+        * PIM/PICML/paradigms/icons/Jitter.bmp:
+        * PIM/PICML/paradigms/icons/Latency.bmp:
+        * PIM/PICML/paradigms/icons/Max.bmp:
+        * PIM/PICML/paradigms/icons/Min.bmp:
+        * PIM/PICML/paradigms/icons/MonolithicImplementation.bmp:
+        * PIM/PICML/paradigms/icons/Node.bmp:
+        * PIM/PICML/paradigms/icons/OutputState.bmp:
+        * PIM/PICML/paradigms/icons/PackageConfiguration.bmp:
+        * PIM/PICML/paradigms/icons/PackageConfigurationReference.bmp:
+        * PIM/PICML/paradigms/icons/PackageReference.bmp:
+        * PIM/PICML/paradigms/icons/Periodic-Bench.bmp:
+        * PIM/PICML/paradigms/icons/Property.bmp:
+        * PIM/PICML/paradigms/icons/Requirement.bmp:
+        * PIM/PICML/paradigms/icons/Resource.bmp:
+        * PIM/PICML/paradigms/icons/SatisfierProperty.bmp:
+        * PIM/PICML/paradigms/icons/SharedResource.bmp:
+        * PIM/PICML/paradigms/icons/StartState.bmp:
+        * PIM/PICML/paradigms/icons/State.bmp:
+        * PIM/PICML/paradigms/icons/Throughput.bmp:
+        * PIM/PICML/paradigms/icons/TopLevelPackage.bmp:
+        * PIM/PICML/paradigms/icons/Trigger-Bench.bmp:
+        * PIM/PICML/paradigms/icons/aggregate.bmp:
+        * PIM/PICML/paradigms/icons/aggregateref.bmp:
+        * PIM/PICML/paradigms/icons/alias.bmp:
+        * PIM/PICML/paradigms/icons/aliasref.bmp:
+        * PIM/PICML/paradigms/icons/attribute.bmp:
+        * PIM/PICML/paradigms/icons/boolean.bmp:
+        * PIM/PICML/paradigms/icons/boxed.bmp:
+        * PIM/PICML/paradigms/icons/boxedref.bmp:
+        * PIM/PICML/paradigms/icons/byte.bmp:
+        * PIM/PICML/paradigms/icons/comp-proj.bmp:
+        * PIM/PICML/paradigms/icons/componentfactory.bmp:
+        * PIM/PICML/paradigms/icons/componentfactoryref.bmp:
+        * PIM/PICML/paradigms/icons/conjunction_group.bmp:
+        * PIM/PICML/paradigms/icons/const.bmp:
+        * PIM/PICML/paradigms/icons/discriminator.bmp:
+        * PIM/PICML/paradigms/icons/disjunction_group.bmp:
+        * PIM/PICML/paradigms/icons/ec_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ec_dependency.bmp:
+        * PIM/PICML/paradigms/icons/ec_event.bmp:
+        * PIM/PICML/paradigms/icons/ec_option.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ec_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ec_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/ec_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ec_supplier_id.bmp:
+        * PIM/PICML/paradigms/icons/enum.bmp:
+        * PIM/PICML/paradigms/icons/enumref.bmp:
+        * PIM/PICML/paradigms/icons/enumvalue.bmp:
+        * PIM/PICML/paradigms/icons/event.bmp:
+        * PIM/PICML/paradigms/icons/event_sink.bmp:
+        * PIM/PICML/paradigms/icons/event_source.bmp:
+        * PIM/PICML/paradigms/icons/eventref.bmp:
+        * PIM/PICML/paradigms/icons/eventtype-port.bmp:
+        * PIM/PICML/paradigms/icons/eventtype.bmp:
+        * PIM/PICML/paradigms/icons/exception.bmp:
+        * PIM/PICML/paradigms/icons/exceptionref.bmp:
+        * PIM/PICML/paradigms/icons/factory.bmp:
+        * PIM/PICML/paradigms/icons/fileref.bmp:
+        * PIM/PICML/paradigms/icons/genericobject.bmp:
+        * PIM/PICML/paradigms/icons/genericvalue.bmp:
+        * PIM/PICML/paradigms/icons/genericvalueobject.bmp:
+        * PIM/PICML/paradigms/icons/getexception.bmp:
+        * PIM/PICML/paradigms/icons/in.bmp:
+        * PIM/PICML/paradigms/icons/inevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/inevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/ineventport.bmp:
+        * PIM/PICML/paradigms/icons/inherits.bmp:
+        * PIM/PICML/paradigms/icons/inout.bmp:
+        * PIM/PICML/paradigms/icons/label.bmp:
+        * PIM/PICML/paradigms/icons/logical_and_group.bmp:
+        * PIM/PICML/paradigms/icons/long.bmp:
+        * PIM/PICML/paradigms/icons/lookup.bmp:
+        * PIM/PICML/paradigms/icons/lookupkey.bmp:
+        * PIM/PICML/paradigms/icons/member.bmp:
+        * PIM/PICML/paradigms/icons/ns_admin.bmp:
+        * PIM/PICML/paradigms/icons/ns_config.bmp:
+        * PIM/PICML/paradigms/icons/ns_constraint.bmp:
+        * PIM/PICML/paradigms/icons/ns_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ns_event.bmp:
+        * PIM/PICML/paradigms/icons/ns_filter-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_filter.bmp:
+        * PIM/PICML/paradigms/icons/ns_option.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/ns_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/ns_qos-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_qos.bmp:
+        * PIM/PICML/paradigms/icons/ns_resource_factory-port.bmp:
+        * PIM/PICML/paradigms/icons/ns_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/ns_supplier.bmp:
+        * PIM/PICML/paradigms/icons/object.bmp:
+        * PIM/PICML/paradigms/icons/objectref.bmp:
+        * PIM/PICML/paradigms/icons/oneway.bmp:
+        * PIM/PICML/paradigms/icons/operationref.bmp:
+        * PIM/PICML/paradigms/icons/out.bmp:
+        * PIM/PICML/paradigms/icons/outevent_lf.bmp:
+        * PIM/PICML/paradigms/icons/outevent_rt.bmp:
+        * PIM/PICML/paradigms/icons/outeventport.bmp:
+        * PIM/PICML/paradigms/icons/package.bmp:
+        * PIM/PICML/paradigms/icons/private.bmp:
+        * PIM/PICML/paradigms/icons/project.bmp:
+        * PIM/PICML/paradigms/icons/providedrequestport.bmp:
+        * PIM/PICML/paradigms/icons/readonlyattribute.bmp:
+        * PIM/PICML/paradigms/icons/realnumber.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_lf.bmp:
+        * PIM/PICML/paradigms/icons/receptacle_rt.bmp:
+        * PIM/PICML/paradigms/icons/requiredrequestport.bmp:
+        * PIM/PICML/paradigms/icons/return.bmp:
+        * PIM/PICML/paradigms/icons/rt_info-port.bmp:
+        * PIM/PICML/paradigms/icons/rt_info.bmp:
+        * PIM/PICML/paradigms/icons/rtec_proxy_consumer.bmp:
+        * PIM/PICML/paradigms/icons/rtec_proxy_supplier.bmp:
+        * PIM/PICML/paradigms/icons/rtec_resource_factory-port.bmp:
+        * PIM/PICML/paradigms/icons/rtec_resource_factory.bmp:
+        * PIM/PICML/paradigms/icons/setexception.bmp:
+        * PIM/PICML/paradigms/icons/setexceptionref.bmp:
+        * PIM/PICML/paradigms/icons/short.bmp:
+        * PIM/PICML/paradigms/icons/string.bmp:
+        * PIM/PICML/paradigms/icons/supports.bmp:
+        * PIM/PICML/paradigms/icons/switchedaggregate.bmp:
+        * PIM/PICML/paradigms/icons/switchedaggregateref.bmp:
+        * PIM/PICML/paradigms/icons/task.bmp:
+        * PIM/PICML/paradigms/icons/taskset.bmp:
+        * PIM/PICML/paradigms/icons/timer.bmp:
+        * PIM/PICML/paradigms/icons/twoway.bmp:
+        * PIM/PICML/paradigms/icons/typeencoding.bmp:
+        * PIM/PICML/paradigms/icons/typekind.bmp:
+        * PIM/PICML/paradigms/icons/value.bmp:
+        * PIM/PICML/paradigms/icons/valueref.bmp:
+        * PIM/PICML/paradigms/icons/variablecollection.bmp:
+        * PIM/PICML/paradigms/icons/variablecollectionref.bmp:
+        * PIM/PICML/paradigms/icons/workspace.bmp:
+
+          Scaled down the icons to be 32x32 pixels, since we were losing a
+          lot of screen real-estate to icons, especially at lower
+          resolutions.  It looks fine even at 1600x1200.  This will be our
+          future standard icon size.
+
+        * picmllib.mpb:  Updated to fix the include paths as noted above.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.old:
+        * PIM/OCML/interpreters/OCML_Interpreter/ConfigureComponent.exe:
+        * PIM/OCML/interpreters/OCML_Interpreter/GMESources.txt:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.dsw:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/domain/UdmConfig.h:
+
+          Removed these files.
+
+Mon Nov 21 15:10:05 2005  Stoyan Paunov  <spaunov@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Integrated the QoSPML metamodel in PICML.
+          Will add the interpreter soon.
+
+
+Sat Nov 19 15:21:26 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.h:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPC_Visitor.cpp:
+
+          Added fix to the MPC generation based on problem reported by
+          Vasili Goutos. The fix was to update the dependencies between
+          the implementation artifacts when there was a base project
+          associated.
+
+Sun Nov 13 19:15:06 2005  Sumant Tambe  <sutambe@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added support for capturing internal behaviour of components.
+          We use I/O Automata to represent behaviour of components.  Also
+          merged in changes from Nilabja for determining individual control
+          flows in an assembly.
+
+        * PIM/PICML/paradigms/icons/InOutAction.bmp:
+        * PIM/PICML/paradigms/icons/InputAction.bmp:
+        * PIM/PICML/paradigms/icons/InputState.bmp:
+        * PIM/PICML/paradigms/icons/InternalAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputState.bmp:
+        * PIM/PICML/paradigms/icons/StartState.bmp:
+        * PIM/PICML/paradigms/icons/State.bmp:
+
+          Added icons for the I/O Automata extensions.
+
+Fri Nov 11 01:09:24 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Fixed incorrect XML generation for IDL enum values.
+
+Thu Nov 10 23:18:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Fixed incorrect XML generation for IDL constants.
+
+Mon Nov  7 23:12:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Fixed a problem with passing a string to an internal table
+          that was later deleted and was thus retrieved from the
+          table as a garbage value.
+
+Mon Oct 31 15:57:54 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
+
+          Fixed cut-and-paste error that was causing incorrect XML to
+          me generated for IDL typedefs. Thanks to Peter Oslej
+          <peter.oslej@vrm.sk> for reporting the problem.
+
+Sun Oct 23 19:10:00 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to reflect the change
+          in version.
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf: Updated to reflect CoSMIC version
+          0.4.7.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:  Removed the
+          default.features argument passed to the command-line.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Relax the rule that prohibited a
+          single Property from being used to provide values for multiple
+          AttributeMappings.  Thanks to Steven D Baker
+          <steven_d_baker@raytheon.com> for motivating this change.
+
+        * Installer/MergeModules/atl.msm:
+        * Installer/MergeModules/comcat.msm:
+        * Installer/MergeModules/comct232.msm:
+        * Installer/MergeModules/comct332.msm:
+        * Installer/MergeModules/comctl32.msm:
+        * Installer/MergeModules/comdlg32.msm:
+        * Installer/MergeModules/dbgrid32.msm:
+        * Installer/MergeModules/dblist32.msm:
+        * Installer/MergeModules/mci32.msm:
+        * Installer/MergeModules/mfc42.msm:
+        * Installer/MergeModules/mfc42u.msm:
+        * Installer/MergeModules/msadodc.msm:
+        * Installer/MergeModules/msbind.msm:
+        * Installer/MergeModules/mschrt20.msm:
+        * Installer/MergeModules/mscomct2.msm:
+        * Installer/MergeModules/mscomctl.msm:
+        * Installer/MergeModules/mscomm32.msm:
+        * Installer/MergeModules/msdatgrd.msm:
+        * Installer/MergeModules/msdatlst.msm:
+        * Installer/MergeModules/msdatrep.msm:
+        * Installer/MergeModules/msdbrptr.msm:
+        * Installer/MergeModules/msderun.msm:
+        * Installer/MergeModules/msflxgrd.msm:
+        * Installer/MergeModules/mshflxgd.msm:
+        * Installer/MergeModules/mshtmpgr.msm:
+        * Installer/MergeModules/msinet.msm:
+        * Installer/MergeModules/msmapi32.msm:
+        * Installer/MergeModules/msmask32.msm:
+        * Installer/MergeModules/msrdc20.msm:
+        * Installer/MergeModules/msrdo20.msm:
+        * Installer/MergeModules/msstdfmt.msm:
+        * Installer/MergeModules/msstkprp.msm:
+        * Installer/MergeModules/msvbvm60.msm:
+        * Installer/MergeModules/msvcirt.msm:
+        * Installer/MergeModules/msvcp60.msm:
+        * Installer/MergeModules/msvcrt.msm:
+        * Installer/MergeModules/mswcrun.msm:
+        * Installer/MergeModules/mswinsck.msm:
+        * Installer/MergeModules/oareg.msm:
+        * Installer/MergeModules/oleaut32.msm:
+        * Installer/MergeModules/picclp32.msm:
+        * Installer/MergeModules/sysinfo.msm:
+        * Installer/MergeModules/tabctl32.msm:
+
+        * PIM/PICML/interpreters/default.features:
+        * PIM/PICML/interpreters/picmllib.mpb:
+
+          Removed these files as we don't need them anymore.
+
+Fri Oct 21 000:10:58 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Fixed a bug in visit_component() and visit_home() where
+          an attemp to access the GME id of the component or home
+          (in an internally maintained table) is made before the
+          GME is stored there. Thanks to Like Ma <likemartinma@gmail.com>
+          and Hubert Talbot <Hubert.Talbot@criq.qc.ca> for reporting
+          the resulting lookup failure.
+
+Sun Oct  9 21:56:25 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to correspond to
+          CoSMIC-0.4.6
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:  Return 0 from
+          the custom actions so that the installation rolls back instead
+          of proceeding as if nothing happened.
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:  Updated to reflect the changes
+          corresponding to CoSMIC-0.4.6.
+
+Sun Oct  9 20:33:54 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.h:
+
+          Added changes to visit the property elements like
+          config property using a separate helper function.
+
+Sun Oct  9 19:46:31 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+          Added changes to create config property tags for individual
+          component instances in a flattened deployment plan.
+
+Thu Oct  6 23:26:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+
+          Updated IDL importing documentation.
+
+Thu Oct  6 22:49:51 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDImporter/XML_Error_Handler.cpp:
+        * PIM/PICML/interpreters/ILDImporter/XML_Error_Handler.h:
+
+          New files defining an error handler which is then attached
+          to a DOM parser before it reads in an XML file (see new
+          feature added below).
+
+        * PIM/PICML/interpreters/ILDImporter/IDLImporter.mpc:
+
+          Added new files above to the project generator.
+
+        * PIM/PICML/interpreters/ILDImporter/XercesString.cpp:
+        * PIM/PICML/interpreters/ILDImporter/XercesString.h:
+        * PIM/PICML/interpreters/ILDImporter/be_produce.cpp:
+
+          Cosmetic changes.
+
+        * PIM/PICML/interpreters/ILDImporter/be_global.cpp:
+        * PIM/PICML/interpreters/ILDImporter/be_global.h:
+        * PIM/PICML/interpreters/ILDImporter/be_init.cpp:
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/ILDImporter/picml_visitor.h:
+
+          Added capability to read in an XML file, with the new
+          option '-i <xxx.xme>' and, when processing the IDL
+          files, check for the existence of each IDL declaration
+          and reference in the resulting DOM tree before adding
+          it. This means that IDL files updated WITH ADDITIONS ONLY
+          can be processed to create an XME file which preserves
+          all existing PICML assemblies, packages, implementations,
+          etc.
+
+Wed Oct  5 17:23:34 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+          Made changes to generate read only attributes as part
+          of the deployment plan, when component instances are selected
+          for deployment.
+
+          Thanks to James Hill <james.h.hill@vanderbilt.edu> for pointing
+          the bug.
+
+Wed Oct  5 16:19:27 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Included
+          Meta.idl to the list of files to be compiled.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed a
+          unintended side-effect where the name of the property attached
+          to an attribute value was modified to match the name of the
+          attribute upon running the interpreter.  Thanks to Steven D
+          Baker <Steven_D_Baker@raytheon.com> for reporting the behaviour
+          and giving a motivating example where this modification is
+          undesirable.
+
+Sun Oct  2 22:14:06 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+
+        * Installer/RegisterParadigm/Register_Paradigm.mpc:
+
+          Removed this file.
+
+Sun Oct 02 21:55:05 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+          Removed the ComponentLib.idl from under a separate MIDL_Files
+          section.
+
+Sun Oct  2 21:20:07 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated in preparation for
+          CoSMIC release 0.4.6.  Specifically, the installer now creates
+          the registry entries for all the interpreters manually instead
+          of relying on regsvr32.exe to register.
+
+        * Installer/RegisterParadigm/RegisterParadigm.def:  Updated to
+          point to the correct functions to export.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:  Refactored the
+          code to remove unused code, and made it more modular.
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Created a new
+          file with the contents of Register_Paradigm.mpc which was
+          removed.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentLib_p.c:
+          Removed this file.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.sln:
+
+          Updated to include the paths to the directory on my machine.  We
+          should write an MPC file to get rid of this file altogether.
+
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.cpp:
+
+          Fixed line-endings and whitespaces.
+
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:  Fixed problem
+          with the OCML configurator GUI not waiting for the user to enter
+          values before proceeding to set the value of the attribute
+          "value".
+
+        * PIM/PICML/decorators/DecoratorConfig.h:
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/Configurator/ComponentConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/EQAL/ComponentConfig.h:
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+        * PIM/PICML/interpreters/FlatPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/FlatPlanComponent/FlatPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+
+          Updated ComponentConfig.h in all the above directories to define
+          the appropriate value of GME_INTERFACES_BASE and GME_BASE
+          instead of hardcoding them to C:\Program Files\GME, which
+          doesn't work on Windows x64.  Also updated the MPC files to
+          build using the MPC built-in MIDL keyword instead of defining a
+          custom build.  This fixes some annoying problems with spaces in
+          file paths, which causes problems with midl.exe on Windows x64
+          (unlike Windows x86).
+
+        * picmllib.mpb:  Removed the MIDL custom definition.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/MPC_Interpreter/MPCStream.cpp:  Updated
+          to accomodate the change in the metamodel, where the cardinality
+          of <implements> connection was changed from 0..* to 0..1.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated the metamodel to fix
+          problems with constraint definitions for catching invalid uses
+          of the publish connection.  Specifically, the metamodel will
+          flag violations when trying to connect a publish event port
+          using an emit connection.  Add a bunch of constraint related to
+          the same.
+
+
+Thu Sep 29 15:19:28 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+
+          Modified the getPath() method, which pops up a message box
+          prompting the user for an output directory, to return a
+          boolean, and modified the usage to return immediately if
+          getPath() returns 'false'. This enables the interpreter
+          to correctly abort if the user clicks on 'Cancel' in
+          the message box.
+
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+
+          Added code to make sure a component's parent (if any) gets
+          handled when dependencies, and therefore code generation
+          order, are getting sorted out.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+
+          Added virtual initialize() method for inserted class Orderable,
+          to remove ambiguity about which method in the inheritance
+          hierarchy will get called.
+
+Wed Sep 28 16:02:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+      * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+
+        Fixed a bug in the MPC interpreter reported by an user. The
+        issue was the interpreter was generating projects without the
+        _dnc suffix.
+
+Wed Sep 14 16:31:05 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+        Made some cosmetic changes.
+
+Wed Sep 14 14:46:08 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+        Fixed the interpreter to get rid of duplicate connections
+        from the parent assembly.
+
+Mon Sep 12 10:00:05 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+        Fixed the flat plan interpreter to create connections
+        involving the parents of an assembly, when an assembly
+        is chosen as an instance in the deployment plan
+        paradigm sheet.
+
+Sat Sep 10 21:40:55 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+        Fixed the flat plan interpreter to create the
+        right port kinds within the connections of the
+        deployment plan.
+
+Wed Sep 7 16:50:35 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.h:
+
+          Made changes to the flat plan interpreter to generate
+          configProperty along with instance tags of the
+          deployment plan.
+
+Wed Sep 7 15:50:35 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlanVisitor.h:
+
+          Made changes to the flat plan interpreter to attach
+          node and collocation group name while creating
+          an unique ID for the instances within the deployment
+          plan.
+
+Mon Sep 5 20:37:37 2005 Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlanVisitor.cpp:
+
+          Fixed the flat plan interpreter to generate
+          configProperty elements for InstanceDeploymentDescription
+          elements.
+
+          Using the configProperty elements, InstanceDeploymentDescriptions
+          could have properties like CPU Utilization associated with
+          components.
+
+          Thanks to Josh Chattin <jchattin@atl.lmco.com> and
+          Krishnakumar Balasubramanian <kitty@dre.vanderbilt.edu>
+          for reporting the problem.
+
+Mon Sep  5 18:57:22 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/License.rtf:
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:
+        * Installer/CoSMIC-Installer.ise:  Updated to reflect the move
+          towards newer release.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Refactored the
+          code to register paradigms.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed a bug
+          with generating configProperty elements where the contents were
+          hooked up to the parent of configProperty.  Thanks to Jai for
+          reporting the problem.
+
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+          Fixed the GUIDs to be upper-case.  This actually turned out to
+          be not an issue at all.
+
+Thu Sep  1 21:13:26 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+
+          Add generation of model elements in the ComponentImplementations
+          folder, for each component a collection of model elements
+          representing a monolithic implementation is generated.
+
+Mon Aug 29 23:35:05 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+
+          Added more generation of boilerplate model elements to
+          the ImplementationArtifacts folder, now including the
+          *_stub, *_svnt, and *_exec artifacts, the entryPoint
+          properties, the dependsOn connections and the execParameter
+          connections.
+
+Tue Aug 23 22:17:32 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+
+          Add generation of XML elements corresponding to the top-level
+          folders in PICML, apart from InterfaceDefinitions and
+          PredefinedTypes, which were already generated. These folders
+          are all empty at this point except for ComponentTypes,
+          which contains a ComponentContainer model for each component
+          processed in IDL, with a default name of the component's
+          local name with "Container" appended. Each of these models
+          in turn contains a reference to the component type in
+          the InterfaceDefinitions folder, the reference having the
+          default name of the component's local name with "Ref"
+          appended. This checkin is the first of several that will
+          eventually generate the boilerplate model elements needed
+          for a complete PICML model, guided in some cases by
+          interaction with the modeler.
+
+Wed Aug 10 19:45:04 UTC 2005  Jaiganesh B  <jai@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.h:
+
+          Made changes to modify the flat plan interpreter to
+          confirm to the modified deployment schema.
+
+          Also, made lot of cosmetic changes to use cool STL features.
+
+Tue Aug  2 18:30:02 UTC 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Add no-op (for now) implementation of visit_valuebox(),
+          since a  pure virtual version was added to the base class
+          ast_visitor.
+
+Wed May 25 20:02:39 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:  Updated the
+          interpreter to add support for the items mentioned in the
+          changelog entry below.
+
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.cpp:  Fixed some
+          warnings related to pre-compiled headers.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to add more constraints
+          and fixed some cardinalities.
+
+Tue May 24 20:26:00 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to add support for AttributeMapping, allowing delegation
+          of multiple ports to a single delegate, and allowing
+          specification of dependency of an ImplementationArtifact on
+          another without going through a reference. Enhanced the
+          metamodel to add a lot of constraints that should have existed
+          all along.
+
+Tue May 24 20:19:49 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.cpp:
+          Silenced some warnings.
+
+Wed May 18 14:30:13 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:
+
+          Updated to fix minor problems with the installer.  Hopefully the
+          next version should be easier to release.
+
+Tue May 17 09:47:48 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/resource.h:
+
+          Added support for displaying the referenced type of a DataType.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated to add support for attribute mapping, exposing
+          attributes of a component as ports, and associating property
+          values to both attribute mappings and attributes.  Added a bunch
+          of constraints.
+
+        * PIM/PICML/paradigms/icons/DataType.bmp:
+        * PIM/PICML/paradigms/icons/attribute.bmp:
+        * PIM/PICML/paradigms/icons/readonlyattribute.bmp:
+
+          Updated to make these icons look nicer when used as ports.
+
+        * PIM/PICML/paradigms/icons/ExternalReferenceEndPoint.bmp:
+        * PIM/PICML/paradigms/icons/AttributeMapping.bmp:
+
+          New icons for these new elements in the metamodel.
+
+Sat May 14 16:26:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/IDLMDecorators.cpp:
+
+          Fixed cut and paste error that was keeping facets from beeing
+          displayed as ports. Thanks to Krishnakumar B
+          <kitty@nospam.invalid.domain> for pointing out the problem.
+
+Fri May 13 16:43:15 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+
+          Added a check for modules that contain only nested modules
+          and/or forward declarations. Such modules need not be imported
+          into PICML, where forward declarations are not necessary.
+          Skipping the importation of such modules also avoids a PICML
+          constraint violation that checks for an empty Package model
+          element.
+
+Fri May 13 15:38:49 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/resource.h:
+
+          Added capability to draw attributes as ports in a PICML model.
+          Future changes to PICML will use this capability, so that a
+          Property model element can be connected to the attribute 'port',
+          causing an interpreter to initialize the attribute's value in
+          the component instance.
+
+Wed May 11 17:50:59 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:  Fixed a
+          bug with using names outside of scope, which resulted in wrong
+          names getting generated for nodes.
+
+Fri Apr 29 17:12:46 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed a bug
+          with duplicate connections being generated when publish
+          connections are used.  Thanks to Jai for reporting the problem.
+
+Thu Apr 28 16:14:46 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          In the OCL constraint that checks for unique operation names
+          over local, inherited, and supported operations, removed the
+          inclusion of model elements FactoryOperation and LookupOperation.
+          In CORBA, valuetype factory operations are not inherited, and
+          the same name may be reused in derived valuetypes. Neither the
+          CCM nor the CORBA spec says anything along these lines about
+          home factory and finder operations, so the same ruls is assumed.
+
+Thu Apr 28 15:05:14 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to fix the error where
+          the constraint enforcing the requirement that each
+          ComponentPackage to contain a reference to the Component
+          interface that it contains an implementation of.
+
+Thu Apr 28 01:54:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp: Updated to
+          fix bugs with generation of incorrect package names.  This
+          completes the fix that was made previously.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:  Updated to add a
+          constraint to check that the ImplementationArtifact names are
+          unique, that only instances of component assemblies can be used
+          in a deployment plan, as well as requiring each ComponentPackage
+          to contain a reference to the Component interface that it
+          contains an implementation of.  This is needed to ensure that
+          correct package names are generated as outlined in the fix
+          above.
+
+Wed Apr 27 22:50:18 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added a fix
+          so that the generated package names for component instances in
+          an assembly correspond to the actual names of the packages in
+          the model.  This fix is partial.
+
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to add a constraint to
+          enforce the condition that ImplementationArtifacts should be
+          unique.
+
+Wed Apr 27 17:56:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/PICML/interpreters/FlatPlan/FlatPlanVisitor.cpp:
+
+         Added code to find the assembly from the component reference.
+
+Tue Apr 26 18:21:27 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  Updated to check-in the latest
+          version.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Updated to
+          fix the generation of properties other than "string" type.
+          Thanks to Steven D Baker <Steven_D_Baker@raytheon.com> for
+          reporting the problem.
+
+Mon Apr 25 16:14:55 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:  Updated
+          to reflect dependency on config_exe project.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLTemplate.xme:  Updated to fix the
+          problem with Require2Connections constraint.  Thanks to Diana
+          Ukleja <Diana_Ukleja@raytheon.com> for reporting the problem.
+
+Wed Apr 20 20:43:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * gtk.mpb:
+
+          The mpb file for gtk+. This is specific for win32.
+
+Wed Apr 20 20:30:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/gtkui/ocml_configurator_ui.mpc (project):
+        * PIM/OCML/gtkui/main_window.hpp:
+        * PIM/OCML/gtkui/configurator_ui.hpp:
+        * PIM/OCML/gtkui/configurator_ui.cpp:
+        * PIM/OCML/gtkui/CONFIGURATOR_UI_EXPORT.h:
+
+          Added the gtkui directory, this is the placeholder for
+          Configurator UI gtk+ implementation.
+
+Wed Apr 20 14:43:05 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/docs/Importing_IDL.doc:
+        * PIM/PICML/docs/Importing_IDL.pdf:
+
+          Updated documentation, removed statement that recursive IDL
+          types cannot be imported.
+
+Wed Apr 20 14:28:56 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+
+          Added support for recursive IDL types.
+
+Wed Apr 20 09:04:23 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+       * PIM/PICML/interpreters/BGML/BGML_Visitor.cpp:
+       * PIM/PICML/interpreters/BGML/TypeEmitter.cpp:
+
+         Added support for handling Valuetype Objects. This was earlier
+         added as GenericValue Object and was changed to ValueObject.
+
+Tue Apr 19 21:35:28 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/OCML/ui/ocml_configurator_ui.mpc:
+
+         Added one missing dependent library.
+
+Tue Apr 19 17:31:35 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+
+         Added cvs tag and fixed a typo.
+
+Tue Apr 19 16:59:53 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/OCML/ui/ocml_configurator_ui.mpc:
+
+         Added CVS tag id.
+
+Sun Apr 17 13:18:12 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/OCML/ocml.mwc:
+
+         Deleted OCML tests from the workspace.
+
+Fri Apr 15 12:55:06 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+       * PIM/PICML/Configurator/UdmApp.cpp:
+
+         Changed the code calling Configurator via the ocml_configurator
+         library, now it spawns config_exe.
+
+Fri Apr 15 12:53:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/ocml.mwc:
+        * PIM/OCML/config_exe/config_exe.cpp:
+        * PIM/OCML/config_exe/config_exe.mpc:
+
+          Added config_exe, a binary executable displays the Configurator GUI.
+
+Fri Apr 15 11:04:17 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/MPCComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+
+          Fixed the interpreters to generate code from any paradigm if
+          possible. Tested for corner cases to make sure they work.
+
+Fri Apr 15 10:02:38 2005  Gan deng  <dengg@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/BON2Component.cpp:
+
+          Fixed to make the interpreter work from any model.
+
+Fri Apr 15 00:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/CoSMIC-Installer.ise:  New project file to create
+          CoSMIC-Installer using InstallShield-X.
+
+Thu Apr 14 23:27:23 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/ReleaseNotes.rtf:
+        * PIM/PICML/Readme.rtf:
+
+          Updated the Readme and ReleaseNotes for the 0.4.5 version.
+
+Thu Apr 14 23:14:31 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp: Return 1 from
+          the RegisterParadigm() and UnRegisterParadigm() functions.
+          All other return codes are considered to be error codes by
+          Windows Installer.
+
+        * PIM/PICML/interpreters/BGMLComponent/ComponentConfig.h: This
+          component is not a BON2COMPONENT.  So define it to be a
+          RAWCOMPONENT.
+
+Thu Apr 14 18:41:19 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.def:  Removed the
+          DESCRIPTION comment line.
+
+        * Installer/RegisterParadigm/Register_Paradigm.mpc: Fixed the file
+          to include the RegisterParadigm.def file on the link line.
+
+        * PIM/OCML/ui/ocml_configurator_ui.mpc: Updated to use
+          boost_base as a base project.
+
+Thu Apr 14 17:44:53 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/OCML/engine/ocml_engine.mpc:  Changed to use the boost_base
+          project as a base project.
+
+        * default.features:  Added boost=1 and wxWindows=1 to the
+          default.features list.
+
+Thu Apr 14 14:27:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Added
+          support for attributes via configProperty in an assembly.  This
+          takes care of the case when an attribute is set on an individual
+          component instance of a component assembly.
+
+Thu Apr 14 09:48:34 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Added EQAL to the interpreters.mwc file.
+
+Wed Apr 13 17:17:31 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC-Installer.aip:
+
+          Added UdmDll.dll to the installer.
+
+        * default.features:
+
+          Added wxwindows=1 to the file.
+
+Wed Apr 13 17:04:35 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme: Updated to reflect changes
+          in the meta-model.  The user-visible change is due to the fact
+          that an attribute, tree_file_name of ImplementationArtifact was
+          removed.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Reverted to
+          using the component instance's name for the
+          MonolithicImplementation's package.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the constraints to allow connections between a derived
+          eventtype publisher and a base eventtype consumer.  As part of
+          this, connections can only be made between base receptacle and
+          derived facet, in addition to normal same type connections.
+          Disallowed creation of references to component types inside
+          Deployment Plan.
+
+Wed Apr 13 13:02:29 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC-Installer.aip:
+
+          Updated the installer file for the 0.4.5 release.
+
+Wed Apr 13 12:17:43 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/paradigms/OCML.xmp:
+
+          Added the OCML.xmp file into the repo.
+
+Wed Apr 13 11:32:14 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Updated to be compatible with the most recent versions
+          of ACE_MPC and the Xerces library naming conventions in
+          CoSMIC.
+
+Wed Apr 13 07:53:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/interpreters.mwc:
+
+          Added IDLImporter directory.
+
+Tue Apr 12 22:23:40 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
+
+          Deleted include to an invalid header file.
+
+Tue Apr 12 22:09:25 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
+
+          Changed export macros from the class level to the individual
+          public methods. Fixed a pointer error, causing interpreter to crash.
+
+Tue Apr 12 17:16:39 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * cosmic.mwc:
+
+          Added Installer/RegisterParadigm to the root mwc file.
+
+Tue Apr 12 17:01:56 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp: Updated
+          to start intepretation from the RootFolder.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.def:
+          Updated to refer to DeploymentPlanComponent.DLL instead of
+          DeploymentPlan.DLL.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+
+        * PIM/PICML/interpreters/PICML/XercesString.h: Added exports for
+          comparison operator functions for XercesString.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp: Updated the
+          getPath() function to use "_" as the path delimiter since "/"
+          creates invalid XML files.  The long term fix is to use "." as
+          well as preventing the initial "." from being generated.  But
+          this will need the next version of UDM.
+
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+        * PIM/PICML/interpreters/TargetComponent/Component.def: Updated to
+          fix the name
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added support for deploying component assemblies in addition to
+          plain component instances.  Relaxed a constraint which required
+          an assembly to contain atleast one component, which caused
+          problems when a hierarchical assembly contained just two
+          sub-assemblies.
+
+Tue Apr 12 17:09:21 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsp:
+        * Installer/RegisterParadigm/RegisterParadigm.dsw:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Created mpc file for the RegisterParadigm and ported to VC71.
+
+Tue Apr 12 14:40:10 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+
+          Added some missing checks for null objects before calling
+          operations on them.
+
+Tue Apr 12 12:13:04 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+          Fixed error, which is causing wrong Utils.h to be included.
+
+Tue Apr 12 12:08:31 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          Fixed error, which is causing wrong Utils.h to be included.
+
+Tue Apr 12 11:50:56 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/ocml_common.mpc:
+
+          Fixed link error.
+
+Tue Apr 12 11:20:31 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/decorators/Decorators.mwc:
+
+          New file, omitted from checkin of
+
+Tue Apr 12 10:55:37 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Configurator/CompIcon.ico:
+        * PIM/PICML/interpreters/Configurator/Component.def:
+        * PIM/PICML/interpreters/Configurator/Component.rc:
+        * PIM/PICML/interpreters/Configurator/ComponentConfig.h:
+        * PIM/PICML/interpreters/Configurator/Configurator.mpc:
+        * PIM/PICML/interpreters/Configurator/RawComponent.cpp:
+        * PIM/PICML/interpreters/Configurator/RawComponent.h:
+        * PIM/PICML/interpreters/Configurator/resource.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.cpp:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/UdmApp.cpp:
+        * PIM/PICML/interpreters/Configurator/UdmApp.h:
+        * PIM/PICML/interpreters/Configurator/UdmConfig.h:
+
+          Added the UDM - Configurator interpreter.
+
+Tue Apr 12 10:40:26 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/common_test.cpp:
+        * PIM/OCML/common/ocml_common.mpc :
+        * PIM/OCML/common/xerces_helpers.cpp:
+        * PIM/OCML/engine/configurator.cpp :
+        * PIM/OCML/engine/configurator.hpp:
+        * PIM/OCML/engine/constraint_engine.cpp :
+        * PIM/OCML/engine/constraint_engine.hpp:
+        * PIM/OCML/engine/definitions.hpp :
+        * PIM/OCML/engine/logic_rules.hpp:
+        * PIM/OCML/engine/ocml_engine.mpc :
+        * PIM/OCML/engine/option.hpp:
+        * PIM/OCML/engine/option.ipp:
+        * PIM/OCML/engine/option.tpp :
+        * PIM/OCML/engine/option_interface.hpp:
+        * PIM/OCML/engine/rule.hpp :
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/test/configurator_test.cpp :
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.cpp :
+        * PIM/OCML/test/constraint_engine_test_driver.cpp:
+        * PIM/OCML/test/definitions_test_driver.cpp:
+        * PIM/OCML/test/ocml_test.mpc :
+        * PIM/OCML/test/option_value_test_driver.cpp:
+        * PIM/OCML/test/rules_test_driver.cpp :
+        * PIM/OCML/test/value_test_driver.cpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp :
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc :
+
+          More ACE dependency extraction.
+
+Mon Apr 11 22:15:44 2005  Gan Deng <gan.deng@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/EQAL/EQAL.mpc:
+
+          New files to generate VC projects, replacing the hand-written
+          projects below.
+
+        * PIM/PICML/interpreters/EQAL/IDLGenerator.dsp:
+        * PIM/PICML/interpreters/EQAL/IDLGenerator.dsw:
+
+          Removed files, replace by corresponding MPC files.
+
+Mon Apr 11 19:59:06 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGMLComponent/UdmApp.cpp:
+
+          Fixed the interpreter to use the getPath function defined in Utils
+          directory than define its own!
+
+       * PIM/PICML/interpreters/CIDL_Interpreter/*:
+
+         Created directory to hold the cidl interpreter files. This directory
+         holds only the logic (files required for interpretation)
+
+       * PIM/PICML/interpreters/CIDLComponent/*:
+
+         Holds the wrapper classes to create interpreter DLL to register with
+         the paradigm
+
+       * PIM/PICML/interpreters/MPC_Interpreter/*:
+
+         Interpreter logic for generating MPC files
+
+       * PIM/PICML/interpreters/MPCComponent/*:
+
+         Wrapper for Registering MPC with GME
+
+       * PIM/PICML/interpreters/Interpreters.mwc:
+
+         Added these interpreters to the list of interpreters
+
+Mon Apr 11 20:12:44 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * cosmic.mwc:
+
+          Added directory PIM/PICML/decorators.
+
+        * PIM/PICML/decorators/DecoratorApp.def:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/MaskedBitmap.cpp:
+        * PIM/PICML/decorators/StdAfx.cpp:
+
+          Minor changes to enable compilation with VC 7.1.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Added the IDLGenerator directory.
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          New files to generate VC projects, replacing the hand-written
+          projects below.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.dsw:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.sln:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.vcproj:
+        * PIM/PICML/decorators/Decorator.dsp:
+        * PIM/PICML/decorators/Decorator.dsw:
+
+          Removed files, replace by corresponding MPC files.
+
+Mon Apr 11 14:55:19 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/engine/ocml_engine.mpc
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+
+          Removed ACE dependency from the project files.
+
+Mon Apr 11 14:50:28 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/ocml.mwc:
+        * cosmic.mwc:
+        * default.features:
+        * picmllib.mpb:
+
+          Added a top-level mwc file.
+
+Mon Apr 11 14:01:52 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/configurator_ui.hpp:
+        * PIM/OCML/ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/OCML/ui/option_editor.hpp:
+        * PIM/OCML/ui/string_option_editor.hpp:
+
+          Fixed directory and project issues.
+
+Mon Apr 11 13:55:33 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML:
+
+          Directory that contains the interpreter logic
+
+        * PIM/PICML/interpreters/BGMLComponent:
+
+          Directory that contains the wrapper files needed to create DLL
+          and register with GME
+
+Sun Apr 10 22:49:38 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+
+          Modified to include the directory of the interpreter, i.e,
+          ConfigExport in the search path for header files.
+
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+
+          Modified to get the getPath() function working.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/Plan_Export.h:
+
+          New files migrated from the old plan directory.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.def:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/resource.h:
+
+          New files migrated from the old plan directory.
+
+        * PIM/PICML/interpreters/Interpreters.mwc: Added the
+          DeploymentPlan directory to the list of directories to be
+          built.
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/Utils.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+
+          Modifications to refactor common code (like getPath()) lying
+          around in multiple files.
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+
+          Removed references to XercesString which has been refactored as
+          above.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Updated to use the archetype()'s name when dumping out names of
+          the package references.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+          Changes related to the above mentioned refactoring.
+
+        * PIM/PICML/interpreters/picmllib.mpb: Updated to use xerces.mpb.
+
+        * PIM/PICML/interpreters/plan/CompIcon.ico:
+        * PIM/PICML/interpreters/plan/Component.def:
+        * PIM/PICML/interpreters/plan/Component.rc:
+        * PIM/PICML/interpreters/plan/ComponentConfig.h:
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsp:
+        * PIM/PICML/interpreters/plan/DeploymentPlan.dsw:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PlanVisitor.h:
+        * PIM/PICML/interpreters/plan/PlanVisitor.cpp:
+        * PIM/PICML/interpreters/plan/RawComponent.h:
+        * PIM/PICML/interpreters/plan/RawComponent.cpp:
+        * PIM/PICML/interpreters/plan/StdAfx.h:
+        * PIM/PICML/interpreters/plan/StdAfx.cpp:
+        * PIM/PICML/interpreters/plan/UdmApp.h:
+        * PIM/PICML/interpreters/plan/UdmApp.cpp:
+        * PIM/PICML/interpreters/plan/UdmConfig.h:
+        * PIM/PICML/interpreters/plan/UuidString.h:
+        * PIM/PICML/interpreters/plan/UuidString.cpp:
+        * PIM/PICML/interpreters/plan/XercesString.h:
+        * PIM/PICML/interpreters/plan/XercesString.cpp:
+        * PIM/PICML/interpreters/plan/resource.h:
+
+          Removed these files.
+
+Sun Apr 10 20:27:53 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+
+          Deleted the getPath() function, which is moved into the
+          PICML/Utils.h file.
+
+Sun Apr 10 20:17:04 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Utils.h:
+        * PIM/PICML/interpreters/PICML/XercesString.cpp:
+        * PIM/PICML/interpreters/PICML/XercesString.h:
+        * PIM/PICML/interpreters/Package/XercesString.cpp:
+        * PIM/PICML/interpreters/Package/XercesString.h:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+          Moved XercesString.* files into the PICML directory (these two
+          are common files for all the interpreters.) Created the
+          PICML/Utils.h file which includes getPath() function, to display
+          a directory selection dialog.
+
+Sun Apr 10 19:52:27 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
+        * PIM/PICML/interpreters/ConfigExport/Component.def:
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/ConfigExport/CompIcon.ico:
+        * PIM/PICML/interpreters/ConfigExport/Component.def:
+        * PIM/PICML/interpreters/ConfigExport/Component.rc:
+        * PIM/PICML/interpreters/ConfigExport/ComponentConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExport.mpc:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.cpp:
+        * PIM/PICML/interpreters/ConfigExport/ConfigExportVisitor.h:
+        * PIM/PICML/interpreters/ConfigExport/RawComponent.cpp:
+        * PIM/PICML/interpreters/ConfigExport/RawComponent.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.cpp:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.cpp:
+        * PIM/PICML/interpreters/ConfigExport/UdmApp.h:
+        * PIM/PICML/interpreters/ConfigExport/UdmConfig.h:
+        * PIM/PICML/interpreters/ConfigExport/resource.h:
+
+          Switched OCML Service Configuration export interpreter from BON
+          to UDM. Now, the interpreter always generates all the service
+          configuration files at each interpret request, independent of
+          the selected/focused object.
+
+Fri Apr 8 11:11:23 CDT 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-UML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+
+          Updates to the BGML meta model.
+
+        * PIM/PICML/paradigms/icons/Discrete-Benchmark.bmp:
+        * PIM/PICML/paradigms/icons/Periodic-Bench.bmp:
+        * PIM/PICML/paradigms/icons/Trigger-Bench.bmp:
+
+          New Icons for the BGML additions to the meta-model.
+
+
+        * PIM/PICML/interpreters/BGML_Base/BGML_Task_Base.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Global_Data.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+
+          Enhancements to the BGML interpreter to do the following:
+          --  generate code from any paradigm sheet and not requiring the
+              user to choose the BGML paradigm
+          --  rate based benchmarking
+          --  allowing the background operations to be different than the
+              main benchmarking task
+
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+
+          Update all Udm based interpreters of the change to BGML!
+
+
+Fri Apr  8 06:09:13 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PROBLEM-REPORT-FORM:
+
+          Added a problem report form.
+
+Wed Mar 30 22:51:19 2005  Krishnakumar B  <kitty@spam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:  Fixed bug
+          which required users to uniquely name multiple instances of a
+          single component within the same assembly.  Fixed bug where the
+          top-level exploded assembly didn't contain connections between
+          components in sub-assemblies.  Thanks to Steven D Baker
+          <steven_d_baker@raytheon.com>  for reporting these.
+
+        * PIM/PICML/interpreters/picmllib.mpb:  Added current directory,
+          .\ explicitly to the include path.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+
+          Removed these leftover erroneous files.
+
+Mon Mar 14 14:50:39 2005  Arvind S. Krishna  <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+
+          Provide a standard interface get_stats () operation to access
+          the Benchmark data generated from the experiment. Users now will
+          be able to interface the data with external tools to analyze the
+          statistics.
+
+Sat Mar 05 15:08:24 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/option_rules.tpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp:
+
+          Fixed an issue regarding the boolean options. (Displaying wrong
+          default value).
+
+Fri Mar 04 09:00:20 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/constraint_engine.cpp engine/option_interface.ipp:
+        * PIM/OCML/engine/option_rules.hpp engine/option_rules.tpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.h:
+        * PIM/OCML/ui/boolean_option_editor.cpp ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/integer_option_editor.cpp ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/option_editor.hpp ui/option_editor.ipp:
+        * PIM/OCML/ui/string_option_editor.cpp ui/string_option_editor.hpp:
+
+          Fixed possible sources for memory leak/invalid pointer problems.
+
+Thu Mar 03 15:52:30 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentLib_p.c:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.ncb:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.suo:
+
+          Changed OCML interpreter so that it exports enum options as
+          string options. The idea is to get rid of the enum option
+          concept in the configurator perspective.
+
+Wed Mar 02 21:10:25 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/ocml.mwc:
+        * PIM/OCML/common/FileSaveDlg.cpp:
+        * PIM/OCML/common/FileSaveDlg.hpp:
+        * PIM/OCML/common/algorithm.hpp:
+        * PIM/OCML/common/algorithm.tpp:
+        * PIM/OCML/common/callback_manager.hpp:
+        * PIM/OCML/common/common_test.cpp:
+        * PIM/OCML/common/exception.hpp:
+        * PIM/OCML/common/function.hpp:
+        * PIM/OCML/common/function.ipp:
+        * PIM/OCML/common/iterator.hpp:
+        * PIM/OCML/common/iterator.tpp:
+        * PIM/OCML/common/line_parser.hpp:
+        * PIM/OCML/common/line_parser.ipp:
+        * PIM/OCML/common/line_parser.tpp:
+        * PIM/OCML/common/string_utils.hpp:
+        * PIM/OCML/common/string_utils.ipp:
+        * PIM/OCML/common/xerces_helpers.cpp:
+        * PIM/OCML/common/xerces_helpers.hpp:
+        * PIM/OCML/common/xerces_helpers.ipp:
+        * PIM/OCML/engine/actions.hpp:
+        * PIM/OCML/engine/configurator.cpp:
+        * PIM/OCML/engine/configurator.hpp:
+        * PIM/OCML/engine/configurator.ipp:
+        * PIM/OCML/engine/constraint_engine.cpp:
+        * PIM/OCML/engine/constraint_engine.hpp:
+        * PIM/OCML/engine/constraint_engine.ipp:
+        * PIM/OCML/engine/definitions.cpp:
+        * PIM/OCML/engine/definitions.hpp:
+        * PIM/OCML/engine/definitions.ipp:
+        * PIM/OCML/engine/definitions.tpp:
+        * PIM/OCML/engine/logic_rules.cpp:
+        * PIM/OCML/engine/logic_rules.hpp:
+        * PIM/OCML/engine/logic_rules.ipp:
+        * PIM/OCML/engine/logic_rules.tpp:
+        * PIM/OCML/engine/option.hpp:
+        * PIM/OCML/engine/option.ipp:
+        * PIM/OCML/engine/option.tpp:
+        * PIM/OCML/engine/option_interface.hpp:
+        * PIM/OCML/engine/option_interface.ipp:
+        * PIM/OCML/engine/option_reference.hpp:
+        * PIM/OCML/engine/option_reference.ipp:
+        * PIM/OCML/engine/option_reference.tpp:
+        * PIM/OCML/engine/option_rules.hpp:
+        * PIM/OCML/engine/option_rules.ipp:
+        * PIM/OCML/engine/option_rules.tpp:
+        * PIM/OCML/engine/option_traits.hpp:
+        * PIM/OCML/engine/option_traits.ipp:
+        * PIM/OCML/engine/option_value.hpp:
+        * PIM/OCML/engine/option_value.ipp:
+        * PIM/OCML/engine/option_value.tpp:
+        * PIM/OCML/engine/rule.cpp:
+        * PIM/OCML/engine/rule.hpp:
+        * PIM/OCML/engine/rule.ipp:
+        * PIM/OCML/engine/rules_grammar.cpp:
+        * PIM/OCML/engine/rules_grammar.hpp:
+        * PIM/OCML/engine/rules_grammar.tpp:
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/engine/tree_parser.hpp:
+        * PIM/OCML/engine/tree_parser.ipp:
+        * PIM/OCML/engine/value_parser.cpp:
+        * PIM/OCML/engine/value_parser.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/DLLEntry.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/extern_declarations.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/ClearButton.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/ClearButton.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainApp.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainApp.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditor.ipp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditorPanel.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditorPanel.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Application.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Utility.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/visitor.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.hpp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.vcproj:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/extern_declarations.hpp:
+        * PIM/OCML/test/configurator_test.cpp:
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.hpp:
+        * PIM/OCML/test/constraint_engine_test_driver.cpp:
+        * PIM/OCML/test/definitions_test.cpp:
+        * PIM/OCML/test/definitions_test.hpp:
+        * PIM/OCML/test/definitions_test.tpp:
+        * PIM/OCML/test/definitions_test_driver.cpp:
+        * PIM/OCML/test/option_value_test.hpp:
+        * PIM/OCML/test/option_value_test.ipp:
+        * PIM/OCML/test/option_value_test.tpp:
+        * PIM/OCML/test/option_value_test_driver.cpp:
+        * PIM/OCML/test/rules_test.cpp:
+        * PIM/OCML/test/rules_test.hpp:
+        * PIM/OCML/test/rules_test.tpp:
+        * PIM/OCML/test/rules_test_driver.cpp:
+        * PIM/OCML/test/test.hpp:
+        * PIM/OCML/test/test.ipp:
+        * PIM/OCML/test/ui_test.cpp:
+        * PIM/OCML/test/value_test.hpp:
+        * PIM/OCML/test/value_test.ipp:
+        * PIM/OCML/test/value_test.tpp:
+        * PIM/OCML/test/value_test_driver.cpp:
+        * PIM/OCML/text/Exception.hpp:
+        * PIM/OCML/text/application.cpp:
+        * PIM/OCML/text/application.hpp:
+        * PIM/OCML/text/basic_commands.cpp:
+        * PIM/OCML/text/basic_commands.hpp:
+        * PIM/OCML/text/category_commands.cpp:
+        * PIM/OCML/text/category_commands.hpp:
+        * PIM/OCML/text/category_commands.tpp:
+        * PIM/OCML/text/category_parser.hpp:
+        * PIM/OCML/text/environment.cpp:
+        * PIM/OCML/text/environment.hpp:
+        * PIM/OCML/text/environment.ipp:
+        * PIM/OCML/text/main.cpp:
+        * PIM/OCML/text/ocml_console_application.cpp:
+        * PIM/OCML/text/ocml_console_application.hpp:
+        * PIM/OCML/text/option_commands.cpp:
+        * PIM/OCML/text/option_commands.hpp:
+        * PIM/OCML/text/rule_commands.cpp:
+        * PIM/OCML/text/rule_commands.hpp:
+        * PIM/OCML/ui/boolean_edit_control.cpp:
+        * PIM/OCML/ui/boolean_edit_control.hpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp:
+        * PIM/OCML/ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/clear_button.cpp:
+        * PIM/OCML/ui/clear_button.hpp:
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/configurator_ui.hpp:
+        * PIM/OCML/ui/editor_panel.cpp:
+        * PIM/OCML/ui/editor_panel.hpp:
+        * PIM/OCML/ui/enum_edit_control.cpp:
+        * PIM/OCML/ui/enum_edit_control.hpp:
+        * PIM/OCML/ui/enum_option_editor.cpp:
+        * PIM/OCML/ui/enum_option_editor.hpp:
+        * PIM/OCML/ui/integer_edit_control.cpp:
+        * PIM/OCML/ui/integer_edit_control.hpp:
+        * PIM/OCML/ui/integer_option_editor.cpp:
+        * PIM/OCML/ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/main_app.cpp:
+        * PIM/OCML/ui/main_app.hpp:
+        * PIM/OCML/ui/main_frame.cpp:
+        * PIM/OCML/ui/main_frame.hpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/OCML/ui/option_editor.hpp:
+        * PIM/OCML/ui/option_editor.ipp:
+        * PIM/OCML/ui/string_edit_control.cpp:
+        * PIM/OCML/ui/string_edit_control.hpp:
+        * PIM/OCML/ui/string_option_editor.cpp:
+        * PIM/OCML/ui/string_option_editor.hpp:
+
+          Fixed project files invalid file names and changed unix style
+          end of line with CRLF.
+
+Wed Mar  2 15:01:40 2005  Emre Turkay  <turkaye@dre.vanderbilt.edu>
+
+        * PIM/OCML/ocml.mwc:
+        * PIM/OCML/common/FileSaveDlg.cpp:
+        * PIM/OCML/common/FileSaveDlg.hpp:
+        * PIM/OCML/common/OCML_Common_Export.h:
+        * PIM/OCML/common/algorithm.hpp:
+        * PIM/OCML/common/algorithm.tpp:
+        * PIM/OCML/common/callback_manager.hpp:
+        * PIM/OCML/common/common_test.cpp:
+        * PIM/OCML/common/exception.hpp:
+        * PIM/OCML/common/function.hpp:
+        * PIM/OCML/common/function.ipp:
+        * PIM/OCML/common/iterator.hpp:
+        * PIM/OCML/common/iterator.tpp:
+        * PIM/OCML/common/line_parser.hpp:
+        * PIM/OCML/common/line_parser.ipp:
+        * PIM/OCML/common/line_parser.tpp:
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/common/spirit_helpers.hpp:
+        * PIM/OCML/common/string_utils.hpp:
+        * PIM/OCML/common/string_utils.ipp:
+        * PIM/OCML/common/xerces_helpers.cpp:
+        * PIM/OCML/common/xerces_helpers.hpp:
+        * PIM/OCML/common/xerces_helpers.ipp:
+        * PIM/OCML/engine/OCML_Engine_Export.h:
+        * PIM/OCML/engine/actions.hpp:
+        * PIM/OCML/engine/common_parsers.hpp:
+        * PIM/OCML/engine/configurator.cpp:
+        * PIM/OCML/engine/configurator.hpp:
+        * PIM/OCML/engine/configurator.ipp:
+        * PIM/OCML/engine/constraint_engine.cpp:
+        * PIM/OCML/engine/constraint_engine.hpp:
+        * PIM/OCML/engine/constraint_engine.ipp:
+        * PIM/OCML/engine/definitions.cpp:
+        * PIM/OCML/engine/definitions.hpp:
+        * PIM/OCML/engine/definitions.ipp:
+        * PIM/OCML/engine/definitions.tpp:
+        * PIM/OCML/engine/logic_rules.cpp:
+        * PIM/OCML/engine/logic_rules.hpp:
+        * PIM/OCML/engine/logic_rules.ipp:
+        * PIM/OCML/engine/logic_rules.tpp:
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/engine/option.hpp:
+        * PIM/OCML/engine/option.ipp:
+        * PIM/OCML/engine/option.tpp:
+        * PIM/OCML/engine/option_interface.hpp:
+        * PIM/OCML/engine/option_interface.ipp:
+        * PIM/OCML/engine/option_reference.hpp:
+        * PIM/OCML/engine/option_reference.ipp:
+        * PIM/OCML/engine/option_reference.tpp:
+        * PIM/OCML/engine/option_rules.hpp:
+        * PIM/OCML/engine/option_rules.ipp:
+        * PIM/OCML/engine/option_rules.tpp:
+        * PIM/OCML/engine/option_traits.hpp:
+        * PIM/OCML/engine/option_traits.ipp:
+        * PIM/OCML/engine/option_value.hpp:
+        * PIM/OCML/engine/option_value.ipp:
+        * PIM/OCML/engine/option_value.tpp:
+        * PIM/OCML/engine/rule.cpp:
+        * PIM/OCML/engine/rule.hpp:
+        * PIM/OCML/engine/rule.ipp:
+        * PIM/OCML/engine/rules_grammar.cpp:
+        * PIM/OCML/engine/rules_grammar.hpp:
+        * PIM/OCML/engine/rules_grammar.tpp:
+        * PIM/OCML/engine/spirit_helpers.hpp:
+        * PIM/OCML/engine/tree_parser.cpp:
+        * PIM/OCML/engine/tree_parser.hpp:
+        * PIM/OCML/engine/tree_parser.ipp:
+        * PIM/OCML/engine/value_parser.cpp:
+        * PIM/OCML/engine/value_parser.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/BON2Component.h:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/CompIcon.ico:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/Component.rc:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/ComponentConfig.h:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/ConfigureComponent.exe:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/DLLEntry.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/GMESources.txt:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/OCMLConfigurationInterpreterBON2Component.dsw:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/Resource.h:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/component.def:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/dlldata.c:
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/extern_declarations.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/BooleanOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/ClearButton.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/ClearButton.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/DLLEntry.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/EnumOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/GNUmakefile:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/IntegerOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainApp.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainApp.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/MainFrame.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/Makefile:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditor.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditor.ipp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditorPanel.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/OptionEditorPanel.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringEditControl.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringEditControl.hpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringOptionEditor.cpp:
+        * PIM/OCML/interpreters/OCMLConfiguratorLibrary/StringOptionEditor.hpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/BON2Component.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/CompIcon.ico:
+        * PIM/OCML/interpreters/OCML_Interpreter/Component.rc:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentConfig.old:
+        * PIM/OCML/interpreters/OCML_Interpreter/ComponentLib_p.c:
+        * PIM/OCML/interpreters/OCML_Interpreter/ConfigureComponent.exe:
+        * PIM/OCML/interpreters/OCML_Interpreter/GMESources.txt:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.dsp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBON2Component.vcproj:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBONExt.log:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonExtension_Manual.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLBonX.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.dsw:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.ncb:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.sln:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLInterpreter.suo:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLUtils.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCMLVisitor.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Application.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Application.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Utility.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/OCML_Utility.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/Resource.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/component.def:
+        * PIM/OCML/interpreters/OCML_Interpreter/fco_utils.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/visitor.cpp:
+        * PIM/OCML/interpreters/OCML_Interpreter/visitor.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/BON2Component.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/BON2Component.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/CompIcon.ico:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/Component.rc:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/ComponentConfig.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/GMESources.txt:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsp:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/OCML_Svc_Conf_ExporterBON2Component.dsw:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/Resource.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/component.def:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/GNUmakefile.SvcConfExporter:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.cpp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.dsp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.hpp:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.mpc:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/SvcConfExporter.vcproj:
+        * PIM/OCML/interpreters/TAOServiceConfExporter/extern_declarations.hpp:
+        * PIM/OCML/paradigms/OCML.xme:
+        * PIM/OCML/paradigms/TAO_Options.xme:
+        * PIM/OCML/paradigms/icons/and.bmp:
+        * PIM/OCML/paradigms/icons/connector.bmp:
+        * PIM/OCML/paradigms/icons/enum_option.bmp:
+        * PIM/OCML/paradigms/icons/flag_option.bmp:
+        * PIM/OCML/paradigms/icons/if.bmp:
+        * PIM/OCML/paradigms/icons/if2.bmp:
+        * PIM/OCML/paradigms/icons/not.bmp:
+        * PIM/OCML/paradigms/icons/option_enum.bmp:
+        * PIM/OCML/paradigms/icons/option_flag.bmp:
+        * PIM/OCML/paradigms/icons/option_integer.bmp:
+        * PIM/OCML/paradigms/icons/option_port.bmp:
+        * PIM/OCML/paradigms/icons/option_string.bmp:
+        * PIM/OCML/paradigms/icons/option_toggle.bmp:
+        * PIM/OCML/paradigms/icons/or.bmp:
+        * PIM/OCML/test/configurator_test.cpp:
+        * PIM/OCML/test/configurator_ui_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.cpp:
+        * PIM/OCML/test/constraint_engine_test.hpp:
+        * PIM/OCML/test/constraint_engine_test_driver.cpp:
+        * PIM/OCML/test/definitions_test.cpp:
+        * PIM/OCML/test/definitions_test.hpp:
+        * PIM/OCML/test/definitions_test.tpp:
+        * PIM/OCML/test/definitions_test_driver.cpp:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/test/option_value_test.hpp:
+        * PIM/OCML/test/option_value_test.ipp:
+        * PIM/OCML/test/option_value_test.tpp:
+        * PIM/OCML/test/option_value_test_driver.cpp:
+        * PIM/OCML/test/rules_test.cpp:
+        * PIM/OCML/test/rules_test.hpp:
+        * PIM/OCML/test/rules_test.tpp:
+        * PIM/OCML/test/rules_test_driver.cpp:
+        * PIM/OCML/test/test.hpp:
+        * PIM/OCML/test/test.ipp:
+        * PIM/OCML/test/test.rules:
+        * PIM/OCML/test/ui_test.cpp:
+        * PIM/OCML/test/value_test.hpp:
+        * PIM/OCML/test/value_test.ipp:
+        * PIM/OCML/test/value_test.tpp:
+        * PIM/OCML/test/value_test_driver.cpp:
+        * PIM/OCML/text/Exception.hpp:
+        * PIM/OCML/text/application.cpp:
+        * PIM/OCML/text/application.hpp:
+        * PIM/OCML/text/basic_commands.cpp:
+        * PIM/OCML/text/basic_commands.hpp:
+        * PIM/OCML/text/category_commands.cpp:
+        * PIM/OCML/text/category_commands.hpp:
+        * PIM/OCML/text/category_commands.tpp:
+        * PIM/OCML/text/category_parser.hpp:
+        * PIM/OCML/text/environment.cpp:
+        * PIM/OCML/text/environment.hpp:
+        * PIM/OCML/text/environment.ipp:
+        * PIM/OCML/text/main.cpp:
+        * PIM/OCML/text/ocml_console_application.cpp:
+        * PIM/OCML/text/ocml_console_application.hpp:
+        * PIM/OCML/text/ocml_console_application.mpc:
+        * PIM/OCML/text/option_commands.cpp:
+        * PIM/OCML/text/option_commands.hpp:
+        * PIM/OCML/text/options.bnf:
+        * PIM/OCML/text/rule_commands.cpp:
+        * PIM/OCML/text/rule_commands.hpp:
+        * PIM/OCML/text/test.cmd:
+        * PIM/OCML/text/test2.cmd:
+        * PIM/OCML/ui/CONFIGURATOR_UI_EXPORT.h:
+        * PIM/OCML/ui/boolean_edit_control.cpp:
+        * PIM/OCML/ui/boolean_edit_control.hpp:
+        * PIM/OCML/ui/boolean_option_editor.cpp:
+        * PIM/OCML/ui/boolean_option_editor.hpp:
+        * PIM/OCML/ui/clear_button.cpp:
+        * PIM/OCML/ui/clear_button.hpp:
+        * PIM/OCML/ui/configurator_ui.cpp:
+        * PIM/OCML/ui/configurator_ui.hpp:
+        * PIM/OCML/ui/editor_panel.cpp:
+        * PIM/OCML/ui/editor_panel.hpp:
+        * PIM/OCML/ui/enum_edit_control.cpp:
+        * PIM/OCML/ui/enum_edit_control.hpp:
+        * PIM/OCML/ui/enum_option_editor.cpp:
+        * PIM/OCML/ui/enum_option_editor.hpp:
+        * PIM/OCML/ui/integer_edit_control.cpp:
+        * PIM/OCML/ui/integer_edit_control.hpp:
+        * PIM/OCML/ui/integer_option_editor.cpp:
+        * PIM/OCML/ui/integer_option_editor.hpp:
+        * PIM/OCML/ui/main_app.cpp:
+        * PIM/OCML/ui/main_app.hpp:
+        * PIM/OCML/ui/main_frame.cpp:
+        * PIM/OCML/ui/main_frame.hpp:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/OCML/ui/option_editor.hpp:
+        * PIM/OCML/ui/option_editor.ipp:
+        * PIM/OCML/ui/string_edit_control.cpp:
+        * PIM/OCML/ui/string_edit_control.hpp:
+        * PIM/OCML/ui/string_option_editor.cpp:
+        * PIM/OCML/ui/string_option_editor.hpp:
+
+          OCML is moved from PSM into PIM, constraint validation is added
+          together with many other features.
+
+Fri Feb 25 18:49:53 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Package_Export.h:
+        * PIM/PICML/interpreters/Package/XercesString.h:
+        * PIM/PICML/interpreters/Package/XercesString.cpp: Missed checkin
+          of these files.
+
+Fri Feb 25 18:31:54 2005  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+        * PIM/PICML/interpreters/default.features:
+        * PIM/PICML/interpreters/picmllib.mpb:
+        * PIM/PICML/interpreters/Interpreters.mwc: New MWC file to build
+          interpreters using MPC.
+
+        * PIM/PICML/interpreters/PackageComponent/CompIcon.ico:
+        * PIM/PICML/interpreters/PackageComponent/Component.def:
+        * PIM/PICML/interpreters/PackageComponent/Component.rc:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/resource.h:  Moved to
+          a new directory.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:  Updated to reflect changes.
+
+Wed Feb 16 11:10:36 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+       * PIM/PICML/examples/BasicSP.xme:
+       * PIM/PICML/examples/RobotAssembly.xme:
+
+         Updated examples to reflect changes to the BGML meta model.
+
+       * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+       * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/IDL_Util.h:
+       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/MetricEmitter.h:
+       * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+       * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+
+         Resolved the issue where two operations in different
+         components have same name. In this case, the unique name
+         will be a combination of component and operation name. This
+         was changed due to an update in the BasicSP example. Thanks
+         to Diana Ukleja for pointing this out.
+
+       * PIM/PICML/interpreters/MPC/PICML.cpp:
+       * PIM/PICML/interpreters/MPC/PICML.h:
+       * PIM/PICML/interpreters/MPC/PICML.xsd:
+       * PIM/PICML/interpreters/cidl/PICML.cpp:
+       * PIM/PICML/interpreters/cidl/PICML.h:
+       * PIM/PICML/interpreters/cidl/PICML.xsd:
+       * PIM/PICML/interpreters/domain/PICML.cpp:
+       * PIM/PICML/interpreters/domain/PICML.h:
+       * PIM/PICML/interpreters/domain/PICML.xsd:
+       * PIM/PICML/interpreters/packaging/PICML.cpp:
+       * PIM/PICML/interpreters/packaging/PICML.h:
+       * PIM/PICML/interpreters/packaging/PICML.xsd:
+       * PIM/PICML/interpreters/plan/PICML.cpp:
+       * PIM/PICML/interpreters/plan/PICML.h:
+       * PIM/PICML/interpreters/plan/PICML.xsd:
+
+         Updated other interpreters to reflect changes to PICML
+         meta model.
+
+       * PIM/PICML/paradigms/PICML-uml.xme:
+       * PIM/PICML/paradigms/PICML.xme:
+       * PIM/PICML/paradigms/PICML.xml:
+       * PIM/PICML/paradigms/PICML.xmp:
+
+         Updated the meta model to add a Reference to a Component
+         in BGML paradigm when two operations have same name within
+         two different components.
+
+Tue Feb 15 22:43:34 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+
+          Fixed bug involving non generation of remote reference data
+          member within a benchmarking class if the operation takes in
+          no arguments. Thanks to Diana Ukleja <Diana_Ukleja@raytheon.com>
+          for pointing this out.
+
+Mon Feb 14 16:34:19 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/examples/BasicSP.xme:
+
+          Updated the BasicSP example to include a benchmark example as
+          well.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/BenchmarkStream.cpp:
+          Fixed a wait on thread manager to the corresponding wait call
+          on a ACE_Task. Thus preventing a task waiting on itself to
+          finish.
+
+Mon Feb  7 20:37:13 2005  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/picml_visitor.h:
+
+          Added code to BE_GlobalData::cache_files() to create a DOM
+          element and GME id for each file, and store these created
+          items in their respective tables in the backend. Then, when
+          processing the file as part of visit_root(), the DOM element
+          and the GME id are simple looked up in the tables. This change
+          enables better error checking during the processing of
+          included IDL files, since it now doesn't matter if a particular
+          included file has not yet been processed as a command line file.
+          Previous to this change, a command line omission or misspelling
+          would not be caught, and the generated file simple would not
+          load into GME. Spelling of the filename on the command line is
+          required to be case-sensitive, since tao_picml could be executed
+          on a UNIX platform, where case matters in filename spelling.
+          Thanks to Sam Abbe <Sam_abbe@raytheon.com> for reporting a
+          problem loading an XME file generated from the BasicSP example.
+
+Fri Feb 4 16:17:05 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+
+          Eliminated the generation of export files and export definitions
+          these are not needed as currently, all the generated code is
+          templatized. This was an error which came out by help from Diana
+          Ukleja <diana_ukleja@raytheon.com> and Kitty
+          <kitty@dre.vanderbilt.edu>
+
+Thu Jan 27 21:18:11 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+
+          These commits fix the problem that was foundout in the PCES PI
+          meeting Dec 12th with the BGML Generated code. The problem was
+          when tasks were spawned from an already spawned task and not
+          the main thread, waiting on the global thread manager deadlocks
+          the system. The solution then is to wait on the tasks one by one
+          rather on the thred manager. Thanks to Theckla Lochious
+          <theckla@lmco.com> for reporting this problem.
+
+Tue Jan 25 16:08:22 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+
+          Fixed compilation errors from the generated code. Things should
+          work fine now.
+
+Tue Jan 25 13:15:59 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Added a priority and rate attributed to the BGML tasks and the
+          main benchmarking task. This enables the generation of the main
+          task and the background tasks at a given rate or priority. Updated
+          the example to refect this.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Benchmark_Stream.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/Metric_Emitter.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/BGML_Visitor.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/UdmApp.cpp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Component.dsp:
+        * PIM/PICML/interpreters/BGML_Interpreter/Global_Data.h:
+
+          Updated the interpreter to generate the benchmark code that
+          honor the rate and priority of the benchmarking tasks.
+
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.h:
+        * PIM/PICML/interpreters/BGML_Interpreter/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.h:
+        * PIM/PICML/interpreters/MPC/PICML.cpp:
+        * PIM/PICML/interpreters/MPC/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.h:
+        * PIM/PICML/interpreters/cidl/PICML.xsd:
+        * PIM/PICML/interpreters/cidl/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.h:
+        * PIM/PICML/interpreters/domain/PICML.cpp:
+        * PIM/PICML/interpreters/domain/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.h:
+        * PIM/PICML/interpreters/packaging/PICML.xsd:
+        * PIM/PICML/interpreters/packaging/PICML.cpp:
+        * PIM/PICML/interpreters/plan/PICML.h:
+        * PIM/PICML/interpreters/plan/PICML.xsd:
+        * PIM/PICML/interpreters/plan/PICML.cpp:
+
+            Regenerated the above files to reflect changes to the paradigm
+
+Tue Jan 25 12:49:33 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+       * PIM/PICML/docs/BGML/BGML_Documentation_Guide.tex:
+
+         Added expiliciltly the fact that user needs to run $ACE_ROOT/bin/mwc.pl
+         and not $ACE_ROOT/MPC/mwc.pl. This was thanks to Diana Ukleja
+         <diana_ukleja@raytheon.com>
+
+Tue Jan 25 11:57:36 CST 2005 Arvind S. Krishna <arvindk@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.mpc:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.h:
+        * PIM/PICML/interpreters/BGML_Base/BGML_Base.cpp:
+
+          Fixed the MPC file to explicitly state the ouput for the BGML_Base
+          library as "$ACE_ROOT"/lib. This aviods the problem with VC6 which
+          otherwise creates a $ACE_ROOT/lib directory. Cleaned up some of the
+          functions in BGML_Base class.

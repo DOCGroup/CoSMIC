@@ -1,0 +1,2189 @@
+Sat May 19 06:30:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Update the example to the latest version of PICML.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          The transition element was missing a precondition.
+
+Fri May 18 03:25:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/EUCON.xme:
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RACE_NetQoS.xme:
+        * PIM/PICML/examples/RACE_devl.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/SLICE-Path.xme:
+        * PIM/PICML/examples/SLICE.xme:
+        * PIM/PICML/examples/SPACE.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+          Update the examples to the latest version of PICML.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added a new modeling element name BranchState, which
+          is used to create braching workflows in the CBML model.
+          State elements now can only be connected to a single action.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refresh the PICML library.
+
+Thu May 17 18:44:35 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/EUCON.xme:
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RACE_NetQoS.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/SLICE-Path.xme:
+        * PIM/PICML/examples/SLICE.xme:
+        * PIM/PICML/examples/SPACE.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+          Updated the examples to the latest version of PICML.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Removed Repetition attribute and added Duration attribute
+          to Action elements.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refreshed the PICML library.
+
+Thu May 17 00:06:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the SLICE example to support the new additions to
+          the CUTS framework.
+
+Wed May  2 19:11:11 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * ReleaseNotes.rtf:
+
+          Added release notes for Security QoS interpreter.
+
+Tue Apr 24 00:30:54 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          Updated the documentation.
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Refactored the PICML wxs files to better capture the WiX components.
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
+
+        * PIM/POSAML/paradigms/POSAMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Refactored the CQML WiX files to better capture the WiX components.
+
+        * ReleaseNotes.rtf:
+
+          Included POSAML and its interpreters into the CoSMIC installer.
+
+Fri Apr 20 20:32:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Transformations/QUICKER/QUICKER.wxs:
+
+          Added QUICKER transformations project to the CoSMIC installer.
+
+Thu Apr 19 20:29:23 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
+
+          Minor modifications in .mpc file for Benchmark Interpreter
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.reg:
+
+          Added this file for registering benchmark interpreter in Release
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
+
+          Added this file to integrate it with the Installer
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreterd.reg:
+
+          Added this file for registering benchmark interpreter in Debug
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.reg:
+
+          Added this file for registering OMNeT++ interpreter in Release
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
+
+          Added this file to integrate it with the Installer
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreterd.reg:
+
+          Added this file for registering OMNeT++ interpreter in Debug
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+
+          Minor modifications in .mpc file for OMNeT++ Interpreter
+
+Thu Apr 19 19:33:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Updated the mpc file to include *Paradigm.wxs from paradigms.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+        * PSM/CQML/paradigms/CQMLParadigm.wxs:
+
+          Moved the above two files from .../interpreters/PICML/
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Removed these files.
+
+Thu Apr 19 18:49:46 UTC 2007  dkaul  <dkaul@dre.vanderbilt.edu>
+
+        * PIM/POSAML/docs:
+
+          Directory created to store documents for POSAML paradigm
+
+        * PIM/POSAML/examples/POSAMLExamples.wxs:
+
+          WXS file for example directory
+
+        * PIM/POSAML/examples/Test_Model.xme:
+
+          Corrected Acceptor-Connector in example model
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
+
+          Added File.cpp and File.h file in mpc
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.reg:
+
+          Added this file to register this interpreter
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs:
+
+          Added new WXS file for Aspect Interpreter
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreterd.reg:
+
+          Added this file to register debug version of this interpreter
+
+        * PIM/POSAML/interpreters/AspectInterpreter/Component.rc:
+
+          Added missing file
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
+
+          Some minor modifications in mpc file
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.reg:
+
+          Added this file to register this interpreter
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs:
+
+          Added new WXS file for Configurator Interpreter
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreterd.reg:
+
+          Added this file to register this interpreter
+
+        * PIM/POSAML/paradigms/POSAML.xmp:
+
+          Added XMP file of POSAML
+
+        * PIM/POSAML/paradigms/POSAMLParadigm.wxs:
+
+          Main WXS file of POSAML paradigm
+
+Wed Apr 18 13:36:37 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+
+          Fixed warnings due to _itoa. The visit functions now use
+          ostringstream instead.
+
+Wed Apr 18 04:57:12 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Added RTConfigurationComponent
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          Removed BGML
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+          Removed BGML
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added RTConfigurationComponent
+
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Updated notes for 0.5.7 release
+
+        * cosmic.mwc:
+
+          Added POSAML interpreters.
+
+Tue Apr 17 17:02:33 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Appended ACE_DIRECTORY_SEPARATOR_CHAR_A to the path to mga.dtd,
+          whether it is set from the command line or by checking GME_ROOT.
+          This change makes composition of the full path to mga.dtd more
+          robust - if the trailing directory separator is already there,
+          the addition of another one has no effect.
+
+Mon Apr 16 21:41:41 UTC 2007  John S. Kinnebrew  <john.s.kinnebrew@vanderbilt.edu>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+        Revised RACE development model to include SA-POP component
+
+Sat Apr 14 01:43:16 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed the Period and Probability attribute to string types.
+
+Fri Apr 13 17:10:42 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/xme_dom_visitor.cpp:
+
+          Replaced C-style downcasts of DOMNode* with dynamic_cast<>.
+
+Thu Apr 12 22:08:37 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Changed location of update to 'previous_' member variable
+          (used to facilitate ordered insertion of new elements into
+          the DOM tree) so the update will happen only for IDL
+          declarations that aren't from an included IDL file, since
+          the insertion of elements into the DOM tree happens only
+          for elements created from IDL that is in the main file.
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+
+          Fixed a bug in the matching of nodes in the AST corresponding
+          to IDL modules with corresponding nodes in the DOM tree
+          (which have a 'kind' attribute of "Package"). When there
+          are nested multiple openings of such modules in the IDL,
+          sometimes the matching DOM tree node was not found. Thanks
+          to Nishanth Shankaran <nshankar at dre dot vanderbilt dot edu>
+          and John Kinnebrew <john dot s dot kinnebrew at vanderbilt dot edu>
+          for supplying the IDL that uncovered the bug.
+
+Thu Apr 12 20:50:15 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.cpp:
+
+          Modified injector interface, DPFramework such that it has references
+          to appropriate policy sets.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Added RtConfiguration entry.
+
+        * PSM/CQML/interpreters/RTConfiguration:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfiguration.mpc:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfiguration_Export.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTInjector.cpp:
+
+        * PSM/CQML/interpreters/RTConfigurationComponent:
+        * PSM/CQML/interpreters/RTConfigurationComponent/Component.def:
+        * PSM/CQML/interpreters/RTConfigurationComponent/Component.rc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfiguration.ico:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.reg:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponentd.reg:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/resource.h:
+
+          Added new RtConfiguration interpreter, that uses UDM. Changed the
+         DPFramework such that it can read the new rt injectors at appropriate
+         locations and adds policy sets in the deployedResources tag.
+
+Wed Apr 11 19:01:26 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/examples/Test_Model.xme:
+
+          Added new test model
+
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AOP.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.cpp:
+
+          Modified Aspect Interpreter to take file path for storing
+          aspect file.
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.cpp:
+
+          Modified OMNeT++ interpreter so that it generates .ini files
+          for Reactor.
+
+        * PIM/POSAML/paradigms/POSAML.xme:
+
+          Merged Aspect, Bridge, Active Object and Simulation paradigms.
+
+        * PIM/POSAML/examples/test_model_arun.xme:
+        * PIM/POSAML/examples/test_model_dk.xme:
+
+          Removed these files.
+
+Wed Apr 11 14:13:02 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          Updated the documentation.
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          Added the merge modules back again. Removed the private assembly
+          approach.
+
+        * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
+
+          This file is linked in but most of the part is commented out.
+
+Tue Apr 10 05:48:18 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+          Added ZLIB_ROOT.
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs:
+
+          Added zlib1.dll to be included with the PackageComponent.
+          CoSMIC_Installer generated with the sources with this revision
+          works fine. ALL interpreters were able to run on the test
+          target machine (Win XP)
+
+Fri Apr  6 06:28:53 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          Added VC8 assemblies.
+
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+          Added MFC, CRT, and ATL directories under CoSMIC\bin
+
+        * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
+
+          Added support for VC8 private assemblies. Most of the interpreters get
+          installed correctly with this installer except the PackageInterpreter
+          and the PICMLDecorator.
+
+Fri Apr  6 01:08:31 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * cosmic_utils.mpb:  Updated the after clause to CoSMIC_Utils to
+          reflect the correct name of the Utils project.
+
+Thu Apr  5 20:52:13 UTC 2007  Nihsanth Shankaran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+        Added the new mode for RACE.
+
+Wed Apr  4 22:32:48 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Change ComponentBuild rules such that correct number of
+          projects get created in the output model.
+
+Wed Apr  4 19:36:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PackageComponent/Component.rc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageMainDialog.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageMainDialog.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageOptions.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageOptions.cpp:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.h:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/resource.h:
+
+          Added a new front-end dialog to the package interpreter that
+          allows the user to select the different output/input directories
+          from a single dialog instead of 3 separate dialogs.
+
+Wed Apr  4 00:27:57 UTC 2007  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/QUICKER/README:
+        * Transformations/QUICKER/examples/BasicSP.xme:
+        * Transformations/QUICKER/paradigms/QoSMapping.xme:
+
+          Added a README file for running the GReAT transformation project.
+          Added BasicSP in example annotated with RTRequirements which can
+          be used for QUICKER transformations.
+          Updated QoSMapping.xme with new rules, as per changes in PICML
+          RtRequirements.
+
+Tue Apr  3 19:11:25 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Utils/Utils.mpc:
+
+          Changed project name from Utils to CoSMIC_Utils to avoid namespace
+          pollution, since MPC doesn't accept duplicate project names
+          anywhere in the tree where it is generating.
+
+Mon Apr  2 18:49:54 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Changed RTRequirements sheet, separated client and
+          server component requirements. Requirements expressed
+          as more abstract models.
+
+        * PIM/PICML/paradigms/icons/consumer.bmp:
+        * PIM/PICML/paradigms/icons/multiinvocations.bmp:
+        * PIM/PICML/paradigms/icons/provider.bmp:
+        * PIM/PICML/paradigms/icons/rtrequirements.bmp:
+        * PIM/PICML/paradigms/icons/servicelevels.bmp:
+
+          Added icons for the newly added RtRequirements elements.
+
+Sun Apr  1 07:10:37 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Now uses QoSCharRef and NetQoS as per the new CQML metamodel.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Fixed the redundant inheritance of QoSCharacteristicBase and
+          connections to ComponentQoS, AssemblyQoS, PortQoS, and ConnectionQoS.
+
+        * PSM/CQML/paradigms/icons/port_qos.bmp:
+
+          Removed some noise.
+
+Fri Mar 30 20:39:44 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/Component.def:
+
+          Fixed the warning during BIRSpecification interpreter build.
+
+Fri Mar 30 19:44:15 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Removed RTConfig interpreter from CQML Interpreters build.
+          This interpreter requires namespace support in CQML, which
+          will cause other interpreters to fail.
+
+
+Fri Mar 30 19:24:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added QoS characteristics and behavior in the WSM component type.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+
+          Fixed a use of local classes inside a function, which VC71 does
+          not seem to like.
+
+        * PSM/CQML/paradigms/icons/assembly_qos.bmp:
+        * PSM/CQML/paradigms/icons/component_qos.bmp:
+        * PSM/CQML/paradigms/icons/ns_qos.bmp:
+        * PSM/CQML/paradigms/icons/port_qos.bmp:
+
+          Added cool icons for SecurityQoS and NetQoS.
+
+Fri Mar 30 02:49:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+
+          Forgot to checkin the UDM file for PICML.
+
+Fri Mar 30 02:40:29 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xml:
+
+          UDM XML file was inconsistent with PICML paradigm.
+
+Thu Mar 29 18:15:06 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+          Added the VC8 dlls directly in the installer. This may change in the future.
+          Version number changed to 0.5.7
+
+Thu Mar 29 17:47:49 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+        * PSM/CQML/paradigms/icons/BandedConnection.bmp:
+        * PSM/CQML/paradigms/icons/Lanes.bmp:
+        * PSM/CQML/paradigms/icons/ThreadPool.bmp:
+
+          Reduced the icon size, fixed CQML so that RTModel elements show up
+          in final CQML model.
+
+Thu Mar 29 08:00:31 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+          Uses WiX variables now instead of command line arguments.
+
+        * PSM/CQML/docs/robotmodel422-0001.ppt:
+
+          Activity diagram of the Robot Assembly.
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added QoS examples and behavior for the WatchSettingManager component.
+
+Wed Mar 28 22:34:25 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/RTConfig/ComponentConfig.h:
+
+          Removed the hard-coded path.
+
+Mon Mar 26 23:11:38 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+          Fixed __int64 to int loss of data warnings through explicit (int) cast.
+          Still losing data but nevertheless it will never take the max value.
+
+Sun Mar 25 06:44:20 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+        * PSM/CQML/examples/SLICE.xme:
+
+          Synchronized Aspects.
+
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability.mpc:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability_Export.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+
+          Removed Security QoS code. Now its an empty interpreter that does
+          nothing. Added id tags too.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSAdder.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSInjector.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+
+          Added id tags.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Ensured the CQML models work. Just checking in the regenerated files.
+
+Sat Mar 24 05:17:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Project.cpp:
+
+          Fixed bug in __OutputDir__ stored in the model's registry. The
+          path contained a leading forward slash, which resulted in a
+          registry node with an empty name. This would cause GME not to
+          import any .xme files.
+
+Sat Mar 24 01:20:53 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+          Now integrates the CoSMIC_Installer project. You need WiX and Votive
+          (both version 3 or better) to build the installer. WIX_ROOT also
+          needs to be set.
+
+
+Sat Mar 24 01:07:46 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PIM/PICML/examples/RobotAssembly.xme:
+
+          Removed configuration attribute XML values of the Implementation Artifact
+          and fixed them to have the property status="meta". Now RobotAssembly Should work.
+
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+          Added Robot Assembly example to CQML examples for a scenario and
+          performing RT Schedulability analysis.
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.aps:
+
+          Removed this file.
+
+Fri Mar 23 23:54:16 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+
+          Updates in conditions, registry, merge-modules, and mpc.
+
+        * License.rtf:
+
+          Moved from PIM/PICML.
+
+        * PIM/PICML/docs/PICMLDocs.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PSM/CQML/docs/CQMLDocs.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Moved from PIM/PICML.
+
+        * Installer/License.rtf:
+
+        * PIM/PICML/Readme.rtf:
+        * PIM/PICML/ReleaseNotes.rtf:
+
+          Move the rtf files from PICML directory to the COSMIC_ROOT
+          directory. This checkin marks the first full-fledged version of the
+          WiX based CoSMIC installer that can be built using WiX 3
+          and Votive 3. It creates two features: PICML and CQML, which can
+          be optionally selected to install.
+
+Fri Mar 23 22:10:21 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated paradigm to remove warnings during meta-interpretation.
+          Fixed constraints that checked the validity of the UUID in
+          ComponentAssembly, Component and MonolithicImplementation.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updates to sync up to changes in PICML.
+
+        * cosmic.mwc:  Explicitly add the list of MPC files under Utils to
+          build.
+
+Fri Mar 23 10:45:36 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Fixed the location of License.rtf
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Now supports selection of features like PICML, CQML and
+          combinations of them at the time of installation. Changing
+          the installation afterwards needs manual registration of
+          paradigms. This needs to be fixed.
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+          Added a registry entry in HKLM\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added a registry entry in HKLM\\SOFTWARE\\ISIS\\CoSMIC\\CQMLParadigm
+
+Fri Mar 23 09:09:26 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/list_icons.sh:
+
+          Updates to the installer. New shortcuts and registry entries.
+
+        * Installer/License.rtf:
+        * Installer/README.rtf:
+        * Installer/ReleaseNotes.rtf:
+
+          Moved all to the Installer directory.
+
+        * PIM/PICML/docs/PICMLDocs.wxs:
+
+        * PIM/PICML/examples/PICMLExamples.wxs:
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.wxs:
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+          Updates to the installer. New shortcuts and registry entries.
+
+        * PSM/CQML/docs/CQMLDocs.wxs:
+        * PSM/CQML/docs/SQML - Project Report.pdf:
+
+        * PSM/CQML/examples/CQMLExamples.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+          Added examples and documentation.
+
+        * Installer/CoSMIC_Installer/README.txt:
+
+        * PIM/PICML/License.rtf:
+
+          Removed the license file from PICML to Installer.
+
+Thu Mar 22 16:29:13 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/RTSchedulability:
+
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability.mpc:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityAdder.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityInjector.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulability_Export.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent:
+
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/CompIcon.ico:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.aps:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.def:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/Component.rc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib.tlb:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_i.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_p.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.reg:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponentd.reg:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RawComponent.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/dlldata.c:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/resource.h:
+
+          Added a new interpreter that generates RT Schedulability Data. It takes the
+          RT Config Info, Behavior Model and interprets them into a equivalent Timed
+          Automaton for analysis, model checking, simulation and verfication by the
+          Times Tool (http://www.timestool.com).
+
+          P.S.: It's work in progress. Currently it's just a copy of SecurityQoS.
+
+Thu Mar 22 02:26:09 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer/list_icons.sh:
+
+        * MPC/config/wix.mpb:
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.wxs:
+
+        * PIM/PICML/decorators/PICMLDecorator.wxs:
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.wxs:
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.wxs:
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs:
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.wxs:
+
+        * PIM/PICML/interpreters/PICML/PICML.wxs:
+        * PIM/PICML/interpreters/PICML/PICMLParadigm.wxs:
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs:
+
+        * PIM/PICML/interpreters/PathComponent/PathComponent.wxs:
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.wxs:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs:
+
+        * PSM/CQML/interpreters/CQML/CQML.wxs:
+        * PSM/CQML/interpreters/CQML/CQMLParadigm.wxs:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.wxs:
+
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.wxs:
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs:
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs:
+
+        * Utils/Utils.wxs:
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/EventBusComponent.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+        * Installer/CoSMIC_common.wxs:
+        * Installer/list_icons.sh:
+
+          The CoSMIC installer sources were distributed to the respective
+          directories. Merge modules were added. CoSMIC's common dependencies
+          were added.
+
+Wed Mar 21 20:59:28 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+
+          Removed these files because those are now generated using
+          MPC.
+
+Wed Mar 21 20:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/CoSMIC_Installer/EventBusComponent.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+          Updates to the CoSMIC installer using WiX 3. The sources
+          now conform with wiX 3.
+
+        * Installer/list_icons.sh:
+
+          Edited the script to conform with WiX 3 sources.
+
+        * MPC:
+
+        * MPC/config:
+
+        * MPC/config/wix.mpb:
+
+          MPC base project to to generate wiX solution for VS.
+
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.reg:
+
+          Fixed the GUID.
+
+Tue Mar 20 18:49:05 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/BIRSpecificationComponent.wxs:
+        * Installer/CoSMIC_Installer/CQML.wxs:
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/DeploymentPlanFramework.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/NetQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/SecurityQoSComponent.wxs:
+        * Installer/CoSMIC_Installer/Utils.wxs:
+
+          Few more components for the CoSMIC installer. Now it removes
+          the <paradigm>.mta file also if the product is uninstallled.
+
+Tue Mar 20 17:43:31 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/GME.mpc:
+
+          Forgot to remove CUTS specific base projects.
+
+Tue Mar 20 07:13:38 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CQMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+
+          Updated the CoSMIC installer. Now installs, registers and
+          unregisters PICML and CQML.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Removed "\\" before paradigms directory because TargetDir
+          registry entry has a '\' already.
+
+Mon Mar 19 22:54:14 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cosmic.mwc
+
+          The main workspace now build everything under the 'Utils'
+          directory.
+
+        * Utils/gme:
+        * Utils/gme/Application.h:
+        * Utils/gme/Application.cpp:
+        * Utils/gme/Atom.h:
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Component.h:
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.h:
+        * Utils/gme/ComponentEx.cpp:
+        * Utils/gme/Exception.h:
+        * Utils/gme/Exception.inl:
+        * Utils/gme/Exception.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/Folder_Model_T.h:
+        * Utils/gme/Folder_Model_T.inl:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/GME.h:
+        * Utils/gme/GME.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_export.h:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/Interpreter.h:
+        * Utils/gme/Interpreter.cpp:
+        * Utils/gme/MetaBase.h:
+        * Utils/gme/MetaBase.cpp:
+        * Utils/gme/MetaFCO.h:
+        * Utils/gme/MetaFCO.inl:
+        * Utils/gme/MetaFCO.cpp:
+        * Utils/gme/MetaFolder.h:
+        * Utils/gme/MetaFolder.inl:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/MetaModel.h:
+        * Utils/gme/MetaModel.inl:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/MetaRole.h:
+        * Utils/gme/MetaRole.inl:
+        * Utils/gme/MetaRole.cpp:
+        * Utils/gme/Model.h:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+        * Utils/gme/Reference.h:
+        * Utils/gme/Reference.inl:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/RegistryNode.inl:
+        * Utils/gme/RegistryNode.cpp:
+        * Utils/gme/Set.h:
+        * Utils/gme/Set.cpp:
+        * Utils/gme/Territory.h:
+        * Utils/gme/Territory.cpp:
+
+          This is a utility library pushed down from the CUTS workspace.
+          It is a set of wrappers for GME (which are still a work in
+          progress) to provide a programmatic front-end to GME and its
+          interpreters for any project/paradigm.
+
+Mon Mar 19 07:27:42 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer:
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.sln:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wixproj:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+        * Installer/CoSMIC_Installer/FaultToleranceComponent.wxs:
+        * Installer/CoSMIC_Installer/PICMLParadigm.wxs:
+        * Installer/CoSMIC_Installer/README.txt:
+
+          Created a separate directory for the CoSMIC installer and
+          the WiX project files.
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+
+          Changed RegisterParadigm to return ERROR_SUCCESS rather
+          than return 0.
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/Directories.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+        * Installer/PICMLParadigm.wxs:
+        * Installer/README.txt:
+
+          Removed these files and moved them to the CoSMIC_Installer sub folder.
+
+Fri Mar 16 21:38:27 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/RTConfig:
+
+        * PSM/CQML/interpreters/RTConfig/BON2Component.h:
+        * PSM/CQML/interpreters/RTConfig/BON2Component.cpp:
+        * PSM/CQML/interpreters/RTConfig/Component.rc:
+        * PSM/CQML/interpreters/RTConfig/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfig/RTConfig.mpc:
+        * PSM/CQML/interpreters/RTConfig/RTConfig.reg:
+        * PSM/CQML/interpreters/RTConfig/RTConfigVisitor.h:
+        * PSM/CQML/interpreters/RTConfig/RTConfigVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfig/RTConfigd.reg:
+        * PSM/CQML/interpreters/RTConfig/RTConfiguration.ico:
+        * PSM/CQML/interpreters/RTConfig/Resource.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.cpp:
+        * PSM/CQML/interpreters/RTConfig/component.def:
+
+          Added the RTConfig interpreter for the new RTConfiguration
+          defined in CQML.
+
+Thu Mar 15 04:53:01 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/Directories.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+        * Installer/PICMLParadigm.wxs:
+        * Installer/README.txt:
+        * Installer/list_icons.sh:
+
+          list_icons.sh creates a list of "File" tags as WiX source
+          of all the icons in a given directory. Please see the README
+          for more information.
+
+          Updates to the CoSMIC installer. It is now
+          split into multiple WiX source files and fragments.
+
+Thu Mar 15 04:45:56 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/Directories.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+        * Installer/PICMLParadigm.wxs:
+        * Installer/list_icons.sh:
+
+          Creates a list of "File" tags as WiX source of all the icons
+          in a given directory.
+
+          Updates to the CoSMIC installer. It is now
+          split into multiple WiX source files and fragments.
+
+Thu Mar 15 01:47:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer.wxs:
+        * Installer/FaultToleranceComponent.wxs:
+
+          Added first cut of simple WiX installer source files for
+          CoSMIC and FT.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          Fixed a #ifdef _DEBUG and #endif for a function SetParameter.
+
+        * Release.mwc:
+        * cosmic.mwc:
+
+          Added $ACE_ROOT/contrib/minizip into the main build process.
+
+Wed Mar 14 01:23:47 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/EventBus/EventBus.mpc:
+
+          Fixed a bug related to libout. The order of derivation
+          of base projects does matter to the variables that are
+          assigned. for example, libout. if acelib is after
+          cqmllib then libout takes the value defined in acelib
+          and thats what created a linking bug. This problem
+          should not occur for variables that are assigned using +=.
+
+Wed Mar 14 00:40:02 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          Updated the interpreter to use accept macros from Acceptor.h
+          and removed commented debug statements.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated QoSModeling sheet to show explicit composition for
+          Port and Assembly QoS to eliminate metainterpretation errors.
+
+Mon Mar 12 02:08:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+
+          Removed hard-coded dependency in the macro GME_BASE.
+
+        * PSM/CQML/interpreters/EventBus:
+
+        * PSM/CQML/interpreters/EventBus/BaseMessage.h:
+        * PSM/CQML/interpreters/EventBus/EventBus.mpc:
+        * PSM/CQML/interpreters/EventBus/EventBusMember.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitor.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitor.cpp:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitorImpl.h:
+        * PSM/CQML/interpreters/EventBus/EventBusVisitorImpl.cpp:
+        * PSM/CQML/interpreters/EventBus/EventBus_Export.h:
+
+          EventBus is a new project that is basically an anonymous pub-sub
+          mechanism to be used in a single process. It provides a software-bus
+          like abstraction to allow anonymous communication between different
+          QoS interpreters.
+
+        * PSM/CQML/interpreters/EventBusComponent:
+
+        * PSM/CQML/interpreters/EventBusComponent/Component.def:
+        * PSM/CQML/interpreters/EventBusComponent/Component.rc:
+        * PSM/CQML/interpreters/EventBusComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.reg:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponentd.reg:
+        * PSM/CQML/interpreters/EventBusComponent/RawComponent.h:
+        * PSM/CQML/interpreters/EventBusComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/UdmApp.h:
+        * PSM/CQML/interpreters/EventBusComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/compicon.ico:
+        * PSM/CQML/interpreters/EventBusComponent/resource.h:
+
+          EventBusComponent makes EventBus invocable from GME GUI.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Added EventBus and EventBusComponent.
+
+Fri Mar  9 01:20:24 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+          Now BasicSP has a working example of a FT model and node placement using
+          DomainRiskGrouping.
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+          Fixed a bug that used to produce duplicate component instances.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Fixed a node assignment bug and added support for QoSCharRef.
+
+Thu Mar  8 04:17:43 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+
+          Fixed some macros for visitor traversal.
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+          Refactored connection generation part of the Deploymentplan Framework.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Fixed bugs related to component addition and connection addition.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Now uses accept_each* macros.
+
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+
+          Removed an include: CQML.h
+
+Thu Mar  8 02:12:10 UTC 2007  Akshay V. Dabholkar <aky@nospam.domain>
+
+        * PSM/CQML/docs:
+
+          Created a new directory for documentation, reports, posters,
+          presentations, etc.
+
+        * PSM/CQML/docs/SQML - Project Report.doc:
+        * PSM/CQML/docs/SQML-SecurityQoSDSML.ppt:
+
+          Moved the Security QoS report and presentation under docs.
+
+        * PSM/CQML/examples/SLICE.xme:
+
+          Updated the SecurityQoS example.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          Added functionality for including Critical Path functionality.
+          Not yet completely working, so currently its essentially a no-op.
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/Component.def:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.reg:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponentd.reg:
+
+          Made entries so that the interpreter will automatically register in a
+          more general way on any Windows OS. Needed this to register on Vista.
+
+        * PSM/CQML/SQML - Project Report.doc:
+        * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+
+          Removed these files.
+
+Wed Mar  7 15:12:19 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+         Corrected compilation problem in visitor.
+
+Wed Mar  7 15:04:27 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/BIRSpecification:
+
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecification.mpc:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecification_Export.h:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecification.ico:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.reg:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponentd.reg:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/Component.def:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/Component.rc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/RawComponent.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/resource.h:
+
+          Added BIRSpecification interpreter for generation of BIR input from
+          RTConfiguration.
+
+        * PSM/CQML/interpreters/Interpreters.mwc:
+          Added BIRSpecification interpreter.
+
+Wed Mar  7 03:29:43 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:  Updated the
+          MPC file to specifically include the midl_notlb option.  This
+          fixes a longstanding bug with the idl files always getting
+          recompiled.  Thanks to James for the hint.
+
+        * Utils/Utils.mpc:  Fixed a problem with leaving out a \ between
+          $(GME_ROOT) and "Interfaces" in the idl file definition.  If
+          GME_ROOT doesn't have a \ at the end, it resulted in a
+          compilation error.
+
+Mon Mar  5 00:33:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLImporter/XercesString.h:
+        * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
+
+          Removed the inclusion of ACE/Swap.h file in the header file
+          since it was removed from ACE.  Any use of ACE_Swap is to be
+          substituted by std::swap per ACE's Changelog entry. We made this
+          change in the cpp file.
+
+Thu Mar  1 21:00:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Gave the *cached_dir () methods more meaningful names. The following
+          is how each changed.
+
+            - cached_dir => {get,set}_default_output_dir
+            - global_cached_dir => {get,set}_global_default_output_dir
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+          Changed the cached_dir () methods to
+          {get,set}_default_output_dir
+
+Thu Mar  1 19:16:03 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+          Added preprocess () and postprocess () method to restore
+          and cache, respectively, the selected output directory.
+
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.h:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+
+          Exposed the output directory variable as a static variable
+          so the RawComponent can access it (mainly to cache/restore
+          the current/previous output directory).
+
+        * Utils/Utils.mpc:
+
+          - Added Project{.h,.cpp} to the Util project.
+          - Added Meta.idl and Mga.idl to the source files since the
+            generated stubs are used by Utils::Project class.
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Implemented a utility class for projects that can cache the
+          output directory for later retrieval when the interpreter is
+          invoked again.
+
+Wed Feb 28 03:23:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Changed the display name of the Postcondition attribute
+            to "Effect".
+          - Changed Postcondition attribute value to display 10
+            lines of input.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refreshed the attached PICML library.
+
+Tue Feb 27 05:26:53 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+
+          Close zip file at the end of get_exist_files_in_zip () function.
+
+Mon Feb 26 17:09:52 UTC 2007  Dimple Kaul  <dkaul@isis.vanderbilt.edu>
+
+        * PIM/POSAML/examples/test_model_dk.xme:
+
+        * PIM/POSAML/interpreters/AspectInterpreter:
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AOP.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/AOP.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
+        * PIM/POSAML/interpreters/AspectInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/CompIcon.ico:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/File.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/Resource.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.cpp:
+        * PIM/POSAML/interpreters/AspectInterpreter/component.def:
+        * PIM/POSAML/interpreters/AspectInterpreter/dlldata.c:
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+        * PIM/POSAML/paradigms/icons/and.bmp:
+        * PIM/POSAML/paradigms/icons/equation.bmp:
+        * PIM/POSAML/paradigms/icons/myaspect.bmp:
+        * PIM/POSAML/paradigms/icons/not.bmp:
+        * PIM/POSAML/paradigms/icons/or.bmp:
+
+          Added new interpreter to automate generation of specialization
+            files and Updated modeling example xme files
+
+Mon Feb 26 17:08:13 UTC 2007  Nishanth Shanakran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/EUCON.xme:
+
+          Added a new example.
+
+Mon Feb 26 06:42:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          - Removed the vc8 policy merge modules since it is strongly
+            encouraged not the redistribute those for vc8.
+          - Removed the vc71 debug modules since it debug modules
+            are not allowed to be distrubuted to the public under the
+            EULA.
+          - The merge modules are now defined under one a single
+            feature called *vc_merge_modules*.
+
+Sun Feb 25 06:19:19 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_common.wxs:
+
+          - Added the merge modules declarations for vc71.
+          - Defined a feature for vc71 and vc8 merge modules that can
+            can be included by other .wxs files.
+
+Thu Feb 22 08:11:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Did a refresh of the PICML library.
+
+Thu Feb 22 07:21:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added an abstract reference called 'ParameterType', which is
+          the base element type of a 'InParameter', 'OutParameter', and
+          'InoutParameter'. I have verified that this modification does
+          not affect existing models, the IDLGenerator, or idl_to_picml.
+
+Tue Feb 20 17:10:16 UTC 2007  Amogh Kavimandan  <amoghk@dre.vanderbilt.edu>
+
+        * Transformations:
+        * Transformations/QUICKER:
+        * Transformations/QUICKER/QoSMapping.xme:
+
+          Added QUICKER transformations that take PICML model annotated with
+          RealTime Requirements and produces the CQML model with
+          RTConfiguration.
+
+        * Transformations/QUICKER/examples:
+        * Transformations/QUICKER/examples/Sample_Strings.xme:
+
+          Example uses the Sample_Strings from PICML/examples, with added
+          Real Time QoS requirements.
+
+Tue Feb 20 03:43:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+
+          Added some macros and function templates to replace the stereotypical
+          visitor traversal code with a one-liner shorthand.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+
+          FT interpreter uses the above new macros.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          NetQoS interpreter also uses the above new macros.
+
+Sat Feb 17 09:18:53 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.cpp:
+
+          Fixed bug that was causing invalid generation of
+          hashdefs for CIDL files defined in subdirectories.
+
+Sat Feb 17 00:06:59 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.cpp:
+
+          If the ComponentImplementationContainer contains slashes,
+          the CIDL interpreter treat this is a directory specification
+          and honor it in the selected output directory.
+
+Fri Feb 16 04:51:48 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Added support for generation of the execParameters for
+          ImplementationArtifacts to help installation of artifacts into
+          the component repository.  Filled in empty functions for
+          generating infoProperty and configProperty on a bunch of
+          elements.
+
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+
+          Don't duplicate the code for exception handling between
+          PackageVisitor and PackagerVisitor.
+
+        * .svnignore:  Updated the list of files to ignore.
+
+Thu Feb 15 23:15:15 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          Changed CreatePropertyElement and Visit_DataType implementation
+          to compare the meta information of a predefined type when generating
+          the XML instead of the name of the predefined type.
+
+Thu Feb 15 07:19:39 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Utils.h:
+        * Utils/Utils.cpp:
+
+          - Overloaded getPath (...) so that you can specify an initial
+            directory to select. This is part of the initiative to allow
+            model interpreters to recall their last output directory.
+          - Added a new method called CreatePath (...) that will create
+            a path on disk, regardless of if it all its parent directories
+            are created. It will create any missing parent directories.
+
+        * Utils/Utils.mpc:
+
+          Cleaned up the project file.
+
+Mon Feb 12 20:02:07 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/BasicSP.xme:
+
+          - An example that shows NetQoS.
+
+Mon Feb 12 11:44:32 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+
+          An Acceptor functor was added to facilitate writing visitors.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+
+          FTVisitor now uses the Acceptor functor.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+
+          NetQoSVisitor also uses the Acceptor functor.
+
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+
+          SecurityQoSVisitor also uses the Acceptor functor.
+
+Sat Feb 10 22:08:58 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          - Implemented the put_ComponentParameter () method. This will
+            allow external applications, such as CUTS, to set parameters to
+            be used by the interpreter.
+          - The interpreter now handles the 'output' parameter. If this
+            parameter is set before interpretation, then the interpreter
+            does not prompt the user for an output directory.
+
+Thu Feb  8 07:26:19 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Added a constraint to identify cyclic references of QoSCharRef.
+
+Thu Feb  8 05:44:05 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Made more robust. Added meaningful error messages.
+
+Wed Feb  7 22:43:03 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+          Made it a singleton and lifecycle management functions of the singelton.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          Some more changes to the FT interpreter.
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+
+          Works for CQML now.
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Fixed the NetQoS interpreter. Tested.
+
+        * PSM/CQML/interpreters/NetQoSComponent/compicon.ico:
+
+          New Icon
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Changed the QoSModeling paradigm sheet.
+
+Wed Feb  7 22:09:16 UTC 2007  Aniruddha Gokhale  <gokhale@nospam.invalid.domain>
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.reg:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponentd.reg:
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.reg:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponentd.reg:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.reg:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponentd.reg:
+
+          Added the missing *.reg files to register the interpreters using
+          explicit registry keys instead of relying on self-registration.
+          This makes it possible to build CQML under Windows Vista.
+
+Wed Feb  7 17:11:37 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+
+          Fixed a typo where instead of setting the Namespace to PICML,
+          the code actually set the name of the project.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          Updated to register IDLGenerator for SIML in addition to PICML.
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.reg:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratord.reg:
+
+          Added new files to allow registration of GatewayGenerator.
+
+        * demos/STI/BDCWebService.NET/BDC.mpc:
+        * demos/STI/BDCWebService.NET/BDCWebService.vcproj:
+        * demos/STI/BDCWebService/BDC.mpc:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.h:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.cpp:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollector.nsmap:
+        * demos/STI/BDCWebService/Benchmark_USCOREData_USCORECollectorService.cpp:
+        * demos/STI/BDCWebService/CORBA.nsmap:
+        * demos/STI/BDCWebService/CORBA_.nsmap:
+        * demos/STI/BDCWebService/SLICE.h:
+        * demos/STI/BDCWebService/SLICE.wsdl:
+        * demos/STI/BDCWebService/SLICEC.cpp:
+        * demos/STI/BDCWebService/SLICEH.h:
+        * demos/STI/BDCWebService/SLICEStub.h:
+        * demos/STI/BDC_WSClient/BDCClient.csproj:
+
+          Updated the demos directory to contain the latest set of fixes
+          done during the last demo.
+
+Wed Feb  7 16:07:46 UTC 2007  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ILDGenerator/DependencyVisitor.cpp:
+
+          Changed a guard around debugging output code to be active -
+          it had accidentally been switched off somehow, and lots
+          of extraneous file were being generated. Thanks to James
+          Hill <hillj@isis.vanderbilt.edu> for reporting the problem.
+
+Wed Feb  7 02:42:01 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/PackagerVisitor.cpp
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+        * PIM/PICML/interpreters/Package/ZIP_create.h
+
+          Added new functionality to Packager to deal with different
+          versions and operating systems.
+
+Tue Feb  6 23:03:49 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+
+          Checking in .reg files for these interpreters.  I had missed
+          them in the previous check-in.
+
+Mon Feb  5 18:28:37 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+
+          Fixed the NetQoS interpreter.
+
+Mon Feb  5 09:13:59 UTC 2007  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/Injector.h:
+
+          Fixed the DP Framework to suite the needs of FT interpreter.
+
+        * PSM/CQML/interpreters/FaultTolerance/FTAdders.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTInjector.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.h:
+        * PSM/CQML/interpreters/FaultTolerance/FTVisitors.cpp:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.h:
+        * PSM/CQML/interpreters/FaultTolerance/FaultToleranceVisitor.cpp:
+
+          FT interpreter compiles but not tested yet.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Some QoSModeling and FT paradigm sheets of CQML were modified.
+
+Sat Feb  3 05:29:33 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/addons/UUIDManager/UUIDManager.reg:
+        * PIM/PICML/addons/UUIDManager/UUIDManagerd.reg:
+        * PIM/PICML/decorators/PICMLDecorator.reg:
+        * PIM/PICML/decorators/PICMLDecoratord.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.reg:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponentd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.reg:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponentd.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.reg:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponentd.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.reg:
+        * PIM/PICML/interpreters/PathComponent/PathComponentd.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.reg:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponentd.reg:
+        * cosmic.mwc:
+        * default.features:
+        * picml.mwc:
+        * register.mpb:
+
+          Register the interpreters, addons and decorators using explicit
+          registry keys instead of relying on self-registration.  This
+          makes it possible to build PICML under Windows Vista.
+
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+
+          Use the type of a PredefinedType instead of the name to
+          check for type conformance, when outputting Property types.
+
+
+Tue Jan 30 20:25:08 UTC 2007  unknown  <unknown@vuse.vanderbilt.edu>
+
+        * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+          Updated the Security PPT
+
+Tue Jan 30 19:46:02 UTC 2007  Akshay V. Dabholkar  <aky@dre.vanderbilt.edu>
+
+        * PSM/CQML/SQML - Project Report.doc:
+        * PSM/CQML/SQML-SecurityQoSDSML.ppt:
+
+          Added the Security Modeling report and presentation
+
+Tue Jan 30 18:43:21 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+        * PIM/PICML/interpreters/Package/ZIP_create.h
+
+          Remove the use of ACE_ERROR.
+
+Mon Jan 29 22:27:08 UTC 2007  Shanshan Jiang <shanshan.jiang@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Package/Packager_Export.h
+        * PIM/PICML/interpreters/Package/PackagerVisitor.cpp
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp
+        * PIM/PICML/interpreters/Package/ZIP_create.h
+
+          Added these files to add the packager tool, which copies the descriptor
+          files and implementation files for a component package into a directory
+          and zip it into a component package file.
+
+        * PIM/PICML/interpreters/Package/Package.mpc
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp
+
+          Updated these files to add the above functionality.
+
+Sat Jan 27 10:18:24 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the paradigm to change the type of the attribute
+          configuration into an enumeration used to differentiate an
+          ImplementationArtifact based on whether it is a Debug version or
+          a Release version.  Fixed some erroneous constraint
+          definitions.
+
+        * PIM/PICML/examples/BasicSP.xme:  Updated the model to add
+          multiple implementations of a single component.
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updates to reflect changes in PICML.
+
+Fri Jan 26 05:12:55 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * .svnignore: Added a new file which contains a list of patterns
+          that we want to be ignored by svn status and friends.
+
+        * */*:  Applied the patterns in .svnignore to all directories
+          recursively.  If you make changes to this file, please update
+          the svn:ignore property on all the directories by first changing
+          to $(COSMIC_ROOT) and running,
+                 svn propset -R svn:ignore -F .svnignore .\
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the metamodel to remove an error in the constraint
+          UniqueGlobalDeclNames which used stringified GME kind names
+          which doesn't work with composed languages.
+
+        * PIM/PICML/examples/SLICE-Path.xme:  Resurrected this file after
+          migrating the file to the current version of PICML metamodel.
+
+        * PIM/SIML/examples/SLICE.xme:
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Fixes to match the changes in PICML.
+
+Wed Jan 24 19:11:49 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
+
+        * PIM/POSAML/examples/test_model_dk.xme:
+
+
+Wed Jan 24 19:05:46 UTC 2007  akogekar  <akogekar@dre.vanderbilt.edu>
+
+        * PIM/POSAML/examples:
+
+        * PIM/POSAML/examples/test_model_arun.xme:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+
+        * PIM/POSAML/paradigms/POSAML.xme:
+
+        * PIM/POSAML/paradigms/icons/activation_queue.bmp:
+        * PIM/POSAML/paradigms/icons/active_object.bmp:
+        * PIM/POSAML/paradigms/icons/method_request.bmp:
+        * PIM/POSAML/paradigms/icons/proxy.bmp:
+        * PIM/POSAML/paradigms/icons/scheduler.bmp:
+        * PIM/POSAML/paradigms/icons/servant.bmp:
+
+        * PIM/POSAML/paradigms/POSAML.xmp:
+
+          Removed this file.
+
+Wed Jan 24 17:17:52 UTC 2007  DimpleKaul  <dkaul@isis.vanderbilt.edu>
+
+        * PIM/POSAML/paradigms/icons/Implementation.bmp:
+        * PIM/POSAML/paradigms/icons/Pointcut.bmp:
+        * PIM/POSAML/paradigms/icons/abstract.bmp:
+        * PIM/POSAML/paradigms/icons/advice.bmp:
+        * PIM/POSAML/paradigms/icons/myaspect.bmp:
+        * PIM/POSAML/paradigms/icons/myclass.bmp:
+
+          Icons for Automation of Aspects
+
+Sat Jan 20 09:28:27 UTC 2007  Krishnakumar B  <kitty@nospam.invalid.domain>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Updated the paradigm to add defaultVersion attribute to
+          MonolithicImplementation and artifactVersion, operatingSystem,
+          architecture attributes to ImplementationArtifact.  Added new
+          constraints to check for valid version numbers, modified
+          constraints that check for unique component names and also
+          removed a redundant constraint constraint
+          "RequireComponentPackage", that was getting triggered if the
+          user didn't model any packaging related elements at all.
+
+        * PIM/PICML/examples/BasicSP.xme:
+        * PIM/PICML/examples/RACE.xme:
+        * PIM/PICML/examples/RobotAssembly.xme:
+        * PIM/PICML/examples/SLICE.xme:
+        * PIM/PICML/examples/SPACE.xme:
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+          Updated the models to the latest paradigm.
+
+
+        * PIM/SIML/paradigms/SIML.xme:
+        * PIM/SIML/paradigms/SIML.xmp:
+
+          Updated the referenced PICML library due to the above changes.
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Updated the referenced PICML library due to the changes in PICML
+          noted above.
+
+        * PIM/PICML/examples/SLICE-Path.xme:
+
+          Removed this file.
+
+Thu Jan 18 20:53:42 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Fixed broken entry points for implementation artifacts in the
+          non-CoWorkEr version of the strings.
+
+Thu Jan 18 05:24:20 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Added the proxy version of the SLICE assembly to the model.
+          It, however, is missing the necessary attribute values.
+
+Wed Jan 17 04:00:30 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the SLICE scenarios to support the proxy-based
+          version of CUTS.
+
+Tue Jan 16 00:54:09 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp
+
+          Implemented a partial fix for the subtype issue. For the time
+          being, it may be best to not turn on this add-on until the
+          next release of GME. The main problem is that when a new child
+          element is added to a model, the OBJEVENT_CREATED event is sent
+          for the GME subtypes and instances of the newly created child
+          element before it sent for the source element. This poses a
+          major problem because the add-on has to determine whehter or
+          not the auto generation of elements should take occur because
+          it can add unnecessary elements to the model. A fix is going
+          into GME to reverse the ordering of tranmitting events, i.e,
+          the source element then the subtypes and instances.
+
+Sat Jan 13 09:12:25 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+
+          Fixed bug that was causing the add-on to try and auto-generate
+          elements for instances.
+
+          Still trying to resolve the same bug related to subtypes.
+
+Thu Jan 11 08:51:04 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          - Fixed bug that was preventing a newly added state from becoming
+            the active state for the next action.
+          - Fixed bug that involved trying to connect a state to an action
+            that was not in the same model.
+
+          - TODO: fix bug that is affecting adding behavior to a component
+                  that has subtypes.
+
+Thu Jan 11 01:26:11 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/Component.def:
+        * PIM/PICML/addons/CBMLManager/Component.rc:
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.inl:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.cpp:
+
+          Initial implementation of an add-on that simplifies the generation
+          of CBML models in PICML. Currently, the add-on fails with
+          behavior models are pasted.
+
+Fri Jan  5 06:19:28 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Refreshed the attached PICML library.
+
+Fri Jan  5 05:41:17 UTC 2007  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Fixed equality of MustHaveFinish constraint.
+          - Fixed cardinality of Environment element.
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the model to the latest versoin of PICML.
