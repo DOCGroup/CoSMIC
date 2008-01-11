@@ -10,6 +10,11 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\PICMLManager.dll' />
 
+        <File Id='GMEDLL'
+              Name='GME.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\GME.dll' />
+
         <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create" />
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}"
@@ -34,7 +39,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.PICMLManager"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="Tooltip" Value="Simplies the creation of PICML models" Type="string" />
+          <RegistryValue Name="Tooltip" Value="Simplifies creation of PICML and CQML models" Type="string" />
           <RegistryValue Name="Paradigm" Value="PICML, CQML" Type="string" />
           <RegistryValue Name="Type" Value="2" Type="integer" />
           <RegistryValue Name="Description" Value="PICMLManager" Type="string" />
@@ -42,6 +47,7 @@
         <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.PICMLManager\Associated"
                      Action="createAndRemoveOnUninstall">
           <RegistryValue Name="PICML" Value="" Type="string" />
+          <RegistryValue Name="CQML" Value="" Type="string" />
         </RegistryKey>
 
       </Component>
