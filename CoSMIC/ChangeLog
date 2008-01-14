@@ -1,3 +1,10 @@
+Mon Jan 14 05:15:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * ReleaseNotes.rtf:
+
+          Updated the release notes to contain a missing feature of
+          the PICMLManager.
+
 Fri Jan 11 03:28:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
