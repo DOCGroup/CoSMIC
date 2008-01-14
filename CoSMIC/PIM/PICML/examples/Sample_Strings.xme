@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{750E93DF-AEB0-4A43-A5E5-D2D78779DB89}" cdate="Thu May 17 21:42:31 2007" mdate="Thu May 17 21:42:31 2007" version="" metaguid="{3DAED5DF-672E-416D-BBA5-339D4CF9E4CA}" metaversion="" metaname="PICML">
+<project guid="{486CBB49-F1C8-406C-AC07-99FCD29E96B0}" cdate="Thu Jan 10 11:39:49 2008" mdate="Thu Jan 10 11:39:49 2008" version="" metaguid="{525FE668-6953-4C7B-B381-780F8B2C3343}" metaversion="" metaname="PICML">
 	<name>Sample_Strings</name>
 	<comment></comment>
 	<author></author>
@@ -1365,7 +1365,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>117A32C5-4705-438F-8D44-A6E7CE0E7F82</value>
+						<value>192F3FA8-A636-4556-9860-81CAE83D7179</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -9510,7 +9510,7 @@
 						</regnode>
 					</regnode>
 					<attribute kind="UUID">
-						<value>117A32C5-4705-438F-8D44-A6E7CE0E7F82</value>
+						<value>743C6C79-A90A-44D5-845A-AFCE493BBBEC</value>
 					</attribute>
 					<attribute kind="label" status="meta">
 						<value></value>
@@ -14073,6 +14073,9 @@
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
+				<attribute kind="path" status="meta">
+					<value></value>
+				</attribute>
 				<model id="id-0065-00000087" kind="Package" role="Package" guid="{E17E637E-ED6A-41ed-AB41-F82B2748ACAD}" relid="0x1" childrelidcntr="0x8">
 					<name>SPACE</name>
 					<regnode name="PartRegs" status="undefined">
@@ -14146,6 +14149,9 @@
 			<model id="id-0065-00000089" kind="File" guid="{9BC00A34-2A68-45dd-AD81-6C1D24552BE0}" relid="0x5" childrelidcntr="0x2">
 				<name>Compression</name>
 				<attribute kind="PrefixTag" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="path" status="meta">
 					<value></value>
 				</attribute>
 				<model id="id-0065-0000008a" kind="Package" role="Package" guid="{183B921B-D73E-428d-95F2-AC198B333CF2}" relid="0x2" childrelidcntr="0x3">
@@ -14297,6 +14303,9 @@
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
+				<attribute kind="path" status="meta">
+					<value></value>
+				</attribute>
 				<model id="id-0065-0000008e" kind="Package" role="Package" guid="{C5700BD3-B041-49ce-BCFE-5EDCC13C5DC1}" relid="0x2" childrelidcntr="0x6">
 					<name>SPACE</name>
 					<regnode name="PartRegs" status="undefined">
@@ -14446,6 +14455,9 @@
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
+				<attribute kind="path" status="meta">
+					<value></value>
+				</attribute>
 				<model id="id-0065-00000092" kind="Package" role="Package" guid="{312CC9CF-0AE4-437d-856F-9D8C303CE150}" relid="0x2" childrelidcntr="0x6">
 					<name>SPACE</name>
 					<regnode name="PartRegs" status="undefined">
@@ -14593,6 +14605,9 @@
 			<model id="id-0065-00000095" kind="File" guid="{ED601A8A-FBC7-4c8b-800D-36FCA8337C74}" relid="0x3" childrelidcntr="0x1">
 				<name>Gizmo</name>
 				<attribute kind="PrefixTag" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="path" status="meta">
 					<value></value>
 				</attribute>
 				<model id="id-0065-00000096" kind="Package" role="Package" guid="{0B7DE1DF-E94F-41cb-9577-516F023A5826}" relid="0x1" childrelidcntr="0x5">
@@ -14747,6 +14762,9 @@
 				<attribute kind="PrefixTag" status="meta">
 					<value></value>
 				</attribute>
+				<attribute kind="path" status="meta">
+					<value></value>
+				</attribute>
 				<model id="id-0065-0000009a" kind="Package" role="Package" guid="{D0A81901-3E31-4fdf-884D-186304584792}" relid="0x1" childrelidcntr="0x3">
 					<name>SPACE</name>
 					<regnode name="PartRegs" status="undefined">
@@ -14894,6 +14912,9 @@
 			<model id="id-0065-0000009d" kind="File" guid="{523C6A0B-922F-4477-9967-1F5FA3B9FA73}" relid="0x9" childrelidcntr="0x1">
 				<name>Trigger</name>
 				<attribute kind="PrefixTag" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="path" status="meta">
 					<value></value>
 				</attribute>
 				<model id="id-0065-0000009e" kind="Package" role="Package" guid="{5C12CB61-757B-477d-9673-1C1A2855C34F}" relid="0x1" childrelidcntr="0x3">
@@ -15070,6 +15091,9 @@
 			<model id="id-0065-000000a3" kind="File" guid="{B4927089-1B39-4df4-94D2-E08C2910C517}" relid="0xa" childrelidcntr="0x1">
 				<name>Ground</name>
 				<attribute kind="PrefixTag" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="path" status="meta">
 					<value></value>
 				</attribute>
 				<model id="id-0065-000000a4" kind="Package" role="Package" guid="{B71D43A0-8B97-4eb5-BE97-1FA1FD40B233}" relid="0x1" childrelidcntr="0x3">

@@ -1,3 +1,13 @@
+Mon Jan 14 22:38:45 UTC 2008  Nishanth Shankaran  <nshankar@nospam.com>
+
+        * PIM/PICML/examples/RACE_devl.xme:
+
+        Updated the model to include the Effector components.
+
+        * PIM/PICML/examples/Sample_Strings.xme:
+
+        Updated the model to include min and max execution rates.
+
 Mon Jan 14 05:15:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * ReleaseNotes.rtf:
