@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{486CBB49-F1C8-406C-AC07-99FCD29E96B0}" cdate="Thu Jan 10 11:39:49 2008" mdate="Thu Jan 10 11:39:49 2008" version="" metaguid="{525FE668-6953-4C7B-B381-780F8B2C3343}" metaversion="" metaname="PICML">
+<project guid="{46CC650E-FFFD-40CA-801F-E7B523CA9648}" cdate="Thu Jan 10 11:39:49 2008" mdate="Thu Jan 10 11:39:49 2008" version="" metaguid="{525FE668-6953-4C7B-B381-780F8B2C3343}" metaversion="" metaname="PICML">
 	<name>Sample_Strings</name>
 	<comment></comment>
 	<author></author>
@@ -1347,7 +1347,7 @@
 			</model>
 			<model id="id-0065-0000001b" kind="ComponentImplementationContainer" guid="{29129ED1-8A92-4547-87E4-E8A5E7E471A5}" relid="0x9" childrelidcntr="0xf">
 				<name>String1</name>
-				<model id="id-0065-0000001c" kind="ComponentAssembly" role="ComponentAssembly" guid="{865BEAD5-ADE9-4d8f-8287-74A72EDF53DE}" relid="0x1" childrelidcntr="0xea">
+				<model id="id-0065-0000001c" kind="ComponentAssembly" role="ComponentAssembly" guid="{865BEAD5-ADE9-4d8f-8287-74A72EDF53DE}" relid="0x1" childrelidcntr="0x109">
 					<name>String1</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -1377,7 +1377,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>132,370</value>
+									<value>20,447</value>
 								</regnode>
 							</regnode>
 							<regnode name="QoS" status="undefined">
@@ -1388,7 +1388,7 @@
 							</regnode>
 						</regnode>
 						<attribute kind="DataValue">
-							<value>700</value>
+							<value>1000000</value>
 						</attribute>
 						<reference id="id-0067-00000015" kind="DataType" role="DataType" guid="{792760ED-1A6F-4b59-B8B0-2DE0DF8DBB68}" relid="0x1" referred="id-0066-00000007">
 							<name>DataType</name>
@@ -1410,7 +1410,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>223,342</value>
+									<value>209,517</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1437,7 +1437,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>376,152</value>
+									<value>362,327</value>
 								</regnode>
 							</regnode>
 							<regnode name="QoSModelAspect" status="undefined">
@@ -1509,7 +1509,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>166,152</value>
+									<value>152,327</value>
 								</regnode>
 							</regnode>
 							<regnode name="QoSModelAspect" status="undefined">
@@ -1596,7 +1596,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>621,152</value>
+									<value>607,327</value>
 								</regnode>
 							</regnode>
 							<regnode name="QoSModelAspect" status="undefined">
@@ -1668,7 +1668,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1426,152</value>
+									<value>1412,327</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1734,7 +1734,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1132,152</value>
+									<value>1118,327</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1800,7 +1800,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>887,152</value>
+									<value>873,327</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1866,7 +1866,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1699,152</value>
+									<value>1685,327</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1925,6 +1925,237 @@
 							</attribute>
 						</reference>
 					</model>
+					<model id="id-0065-00000185" kind="Property" role="Property" guid="{5A333364-5C8F-49a5-B74F-31F770BFFCAE}" relid="0xeb" childrelidcntr="0x1">
+						<name>WCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>979,552</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>107444</value>
+						</attribute>
+						<reference id="id-0067-00000244" kind="DataType" role="DataType" guid="{9B907CAE-C5F9-401f-83B3-1B7758ECAAE2}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-00000186" kind="Property" role="Property" guid="{6A8F318B-1365-4abd-8FE1-9A87D425638D}" relid="0xec" childrelidcntr="0x1">
+						<name>BCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>972,83</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>35815</value>
+						</attribute>
+						<reference id="id-0067-00000245" kind="DataType" role="DataType" guid="{44CEEDDE-FE64-496e-B85A-DE73148A038F}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-00000188" kind="Property" role="Property" guid="{76B6213A-3DF0-4a23-BE76-99197899DA9F}" relid="0xfc" childrelidcntr="0x1">
+						<name>load</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>76,461</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>0.5</value>
+						</attribute>
+						<reference id="id-0067-00000247" kind="DataType" role="DataType" guid="{E284D426-A82D-43a2-A998-D01BEE401F5C}" relid="0x1" referred="id-0066-00000006">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-00000189" kind="Property" role="Property" guid="{409DA52E-D8C5-4ead-897C-A7C608C9A770}" relid="0xfe" childrelidcntr="0x1">
+						<name>BCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1056,83</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>26118</value>
+						</attribute>
+						<reference id="id-0067-00000248" kind="DataType" role="DataType" guid="{07DA7F2A-3BC5-4619-BE02-FB79E36A750A}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-0000018a" kind="Property" role="Property" guid="{CC75E842-385F-4b92-9AB6-3B3E52CBD96D}" relid="0xff" childrelidcntr="0x1">
+						<name>BCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1140,83</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>40707</value>
+						</attribute>
+						<reference id="id-0067-00000249" kind="DataType" role="DataType" guid="{C8D38112-3CCC-41f8-B9EA-64C430D189B5}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-0000018c" kind="Property" role="Property" guid="{F323EEA3-F98E-4645-8CC9-AB5B3098ABB3}" relid="0x104" childrelidcntr="0x1">
+						<name>WCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1126,552</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>122120</value>
+						</attribute>
+						<reference id="id-0067-0000024b" kind="DataType" role="DataType" guid="{2EA2FACF-F3C6-4e4c-A831-F6DAC531A8DD}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
+					<model id="id-0065-0000018d" kind="Property" role="Property" guid="{B8AECCB3-671A-41de-8C11-2C08C1C4248A}" relid="0x105" childrelidcntr="0x1">
+						<name>WCET</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>1049,552</value>
+								</regnode>
+							</regnode>
+							<regnode name="QoS" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>219,394</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="DataValue">
+							<value>78355</value>
+						</attribute>
+						<reference id="id-0067-0000024c" kind="DataType" role="DataType" guid="{5FF873AE-B6DF-40aa-AEEE-6881E240F98C}" relid="0x1" referred="id-0066-00000007">
+							<name>DataType</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Packaging" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>205,387</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</reference>
+					</model>
 					<atom id="id-0066-00000012" kind="PublishConnector" role="PublishConnector" guid="{B21BE5F7-CDF7-44ee-864A-DAF5435CAEEC}" relid="0x2e">
 						<name>013</name>
 						<regnode name="PartRegs" status="undefined">
@@ -1932,7 +2163,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1631,182</value>
+									<value>1617,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1947,7 +2178,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1078,182</value>
+									<value>1064,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1962,7 +2193,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>1344,182</value>
+									<value>1330,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1977,7 +2208,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>833,182</value>
+									<value>819,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -1992,7 +2223,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>336,182</value>
+									<value>322,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2007,7 +2238,7 @@
 							<regnode name="Packaging" status="undefined">
 								<value></value>
 								<regnode name="Position" isopaque="yes">
-									<value>560,182</value>
+									<value>546,357</value>
 								</regnode>
 							</regnode>
 						</regnode>
@@ -2105,6 +2336,89 @@
 						</regnode>
 						<connpoint role="dst" target="id-0065-0000001e"/>
 						<connpoint role="src" target="id-0065-0000010d"/>
+					</connection>
+					<connection id="id-0068-000002b1" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{9495BF46-4382-45ea-AC64-D7CF46BC1A06}" relid="0xf0">
+						<name>AssemblyConfigProperty</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000010c"/>
+						<connpoint role="dst" target="id-0065-00000185"/>
+					</connection>
+					<connection id="id-0068-000002b4" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{0D93EC4E-9A22-48bf-A8D4-861257A2A739}" relid="0xf3">
+						<name>AssemblyConfigProperty</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000112"/>
+						<connpoint role="dst" target="id-0065-00000185"/>
+					</connection>
+					<connection id="id-0068-000002b7" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{C821A550-95E0-4263-BC3A-D16C03B0B5C6}" relid="0xf6">
+						<name>AssemblyConfigProperty</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>s</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000010c"/>
+						<connpoint role="dst" target="id-0065-00000186"/>
+					</connection>
+					<connection id="id-0068-000002ba" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{F289CF7A-9362-4dc1-BB68-B9FE4E37B546}" relid="0xf9">
+						<name>AssemblyConfigProperty</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>s</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000112"/>
+						<connpoint role="dst" target="id-0065-00000186"/>
+					</connection>
+					<connection id="id-0068-000002bd" kind="AttributeValue" role="AttributeValue" guid="{0B789326-F892-45e1-9C03-DBCED3787CD5}" relid="0xfd">
+						<name>AttributeValue</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-0000010f"/>
+						<connpoint role="dst" target="id-0065-00000188"/>
+					</connection>
+					<connection id="id-0068-000002be" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{9940A375-B663-41f3-A83E-F415F7064BB8}" relid="0x100">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000110"/>
+						<connpoint role="dst" target="id-0065-00000189"/>
+					</connection>
+					<connection id="id-0068-000002bf" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{6D35B57F-F9C1-4b3a-978B-47B36F73D13A}" relid="0x101">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000111"/>
+						<connpoint role="dst" target="id-0065-00000189"/>
+					</connection>
+					<connection id="id-0068-000002c0" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{8DD6A1F9-A961-4a4f-BCA3-29B64D0F6C4C}" relid="0x102">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000113"/>
+						<connpoint role="dst" target="id-0065-0000018a"/>
+					</connection>
+					<connection id="id-0068-000002c1" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{1EBF77C9-DFD5-4a2b-8693-3629E1112657}" relid="0x103">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000114"/>
+						<connpoint role="dst" target="id-0065-0000018a"/>
+					</connection>
+					<connection id="id-0068-000002c2" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{4618CBA5-C0FF-4192-A7A8-2E4D26FC003F}" relid="0x106">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000110"/>
+						<connpoint role="dst" target="id-0065-0000018d"/>
+					</connection>
+					<connection id="id-0068-000002c3" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{185164E6-9820-4255-A01F-164ABCDAA791}" relid="0x107">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000111"/>
+						<connpoint role="dst" target="id-0065-0000018d"/>
+					</connection>
+					<connection id="id-0068-000002c4" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{C35F542C-83EC-48e5-916B-DBD57AA93F99}" relid="0x108">
+						<name>AssemblyConfigProperty</name>
+						<regnode name="autorouterPref" isopaque="yes">
+							<value>n</value>
+						</regnode>
+						<connpoint role="src" target="id-0065-00000113"/>
+						<connpoint role="dst" target="id-0065-0000018c"/>
+					</connection>
+					<connection id="id-0068-000002c5" kind="AssemblyConfigProperty" role="AssemblyConfigProperty" guid="{13A9FA90-38D6-465b-B29C-B691FC3BE175}" relid="0x109">
+						<name>AssemblyConfigProperty</name>
+						<connpoint role="src" target="id-0065-00000114"/>
+						<connpoint role="dst" target="id-0065-0000018c"/>
 					</connection>
 				</model>
 				<model id="id-0065-0000001f" kind="Property" role="Property" guid="{B9382217-7051-4696-A2FE-E9C6185F49D0}" relid="0x6" childrelidcntr="0x1">
@@ -15241,7 +15555,7 @@
 				</model>
 			</model>
 		</folder>
-		<folder id="id-006a-00000007" relid="0x7" childrelidcntr="0x1" kind="Targets" guid="{F2CA6D32-4154-426a-906E-48CCDAB6C02E}">
+		<folder id="id-006a-00000007" relid="0x7" childrelidcntr="0x2" kind="Targets" guid="{F2CA6D32-4154-426a-906E-48CCDAB6C02E}">
 			<name>Targets</name>
 			<model id="id-0065-000000a7" kind="Domain" guid="{2A796B34-51A4-4845-AEB8-97291D9FF73A}" relid="0x1" childrelidcntr="0xb">
 				<name>Domain</name>
@@ -15816,10 +16130,121 @@
 					</model>
 				</model>
 			</model>
+			<model id="id-0065-00000192" kind="Domain" guid="{0D1494B2-3AEE-4243-8B27-6F2B7FD376F0}" relid="0x2" childrelidcntr="0x1">
+				<name>Domain_1</name>
+				<attribute kind="UUID">
+					<value>F17D5FBF-CB9C-4BBA-BC20-A0AF8E8B77A5</value>
+				</attribute>
+				<attribute kind="label" status="meta">
+					<value></value>
+				</attribute>
+				<model id="id-0065-00000193" kind="Node" role="Node" guid="{893580B5-C842-4222-9136-E7AA980A1E30}" relid="0x1" childrelidcntr="0x1">
+					<name>blade36</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Target" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>30,128</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="label" status="meta">
+						<value></value>
+					</attribute>
+					<model id="id-0065-00000194" kind="Resource" role="Resource" guid="{072B0390-7482-4058-ABF3-B5AC1994CE36}" relid="0x1" childrelidcntr="0x2">
+						<name>Processor</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Target" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>657,335</value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<attribute kind="resourceType">
+							<value>CPULoad</value>
+						</attribute>
+						<model id="id-0065-00000195" kind="SatisfierProperty" role="SatisfierProperty" guid="{A19F4671-33D4-46c9-82B1-C49A72C085EF}" relid="0x1" childrelidcntr="0x1">
+							<name>Setpoint</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Target" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>496,209</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="DataValue">
+								<value>0.7</value>
+							</attribute>
+							<attribute kind="SatisfierPropertyKind" status="meta">
+								<value>Quantity</value>
+							</attribute>
+							<attribute kind="dynamic" status="meta">
+								<value>false</value>
+							</attribute>
+							<reference id="id-0067-0000025e" kind="DataType" role="DataType" guid="{275303E5-6F3E-4ec4-A4B1-865AE5859B72}" relid="0x1" referred="id-0066-00000006">
+								<name>RealNumber</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Target" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>207,186</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</reference>
+						</model>
+						<model id="id-0065-00000196" kind="SatisfierProperty" role="SatisfierProperty" guid="{2A90FB84-AE80-46bd-AEEE-165DE5B7EAA4}" relid="0x2" childrelidcntr="0x1">
+							<name>Current</name>
+							<regnode name="PartRegs" status="undefined">
+								<value></value>
+								<regnode name="Target" status="undefined">
+									<value></value>
+									<regnode name="Position" isopaque="yes">
+										<value>569,548</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<attribute kind="DataValue">
+								<value>0.2</value>
+							</attribute>
+							<attribute kind="SatisfierPropertyKind" status="meta">
+								<value>Quantity</value>
+							</attribute>
+							<attribute kind="dynamic">
+								<value>true</value>
+							</attribute>
+							<reference id="id-0067-0000025f" kind="DataType" role="DataType" guid="{F8915DB0-D0EC-486b-844A-65E67F386E5C}" relid="0x1" referred="id-0066-00000006">
+								<name>DataType</name>
+								<regnode name="PartRegs" status="undefined">
+									<value></value>
+									<regnode name="Packaging" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>394,485</value>
+										</regnode>
+									</regnode>
+									<regnode name="Target" status="undefined">
+										<value></value>
+										<regnode name="Position" isopaque="yes">
+											<value>394,485</value>
+										</regnode>
+									</regnode>
+								</regnode>
+							</reference>
+						</model>
+					</model>
+				</model>
+			</model>
 		</folder>
-		<folder id="id-006a-00000008" relid="0x8" childrelidcntr="0x13" kind="DeploymentPlans" guid="{A2AA8024-1A21-448b-8C1C-19E1FC8BE703}">
+		<folder id="id-006a-00000008" relid="0x8" childrelidcntr="0x14" kind="DeploymentPlans" guid="{A2AA8024-1A21-448b-8C1C-19E1FC8BE703}">
 			<name>DeploymentPlans</name>
-			<model id="id-0065-000000c2" kind="DeploymentPlan" guid="{56F8AD0D-F382-4bdf-ABC8-9D49516646C2}" relid="0x6" childrelidcntr="0x37">
+			<model id="id-0065-000000c2" kind="DeploymentPlan" guid="{56F8AD0D-F382-4bdf-ABC8-9D49516646C2}" relid="0x6" childrelidcntr="0x3a">
 				<name>String1</name>
 				<attribute kind="UUID">
 					<value>8E8594AF-3310-446F-95E2-4440D622D5CE</value>
@@ -15827,6 +16252,87 @@
 				<attribute kind="label" status="meta">
 					<value></value>
 				</attribute>
+				<model id="id-0065-00000183" kind="Property" role="Property" guid="{8B9DD440-ABEF-4987-9E5F-25C4F08890C1}" relid="0x38" childrelidcntr="0x1">
+					<name>min_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>772,611</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>1</value>
+					</attribute>
+					<reference id="id-0067-00000242" kind="DataType" role="DataType" guid="{C12F7B3D-A2C6-449d-90FD-D6C961C6CB9F}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>128,604</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<model id="id-0065-00000184" kind="Property" role="Property" guid="{9D298539-6525-403d-BD14-0665D7EF2F23}" relid="0x39" childrelidcntr="0x1">
+					<name>curr_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>818,713</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>1</value>
+					</attribute>
+					<reference id="id-0067-00000243" kind="DataType" role="DataType" guid="{4362621E-AA3E-4fa0-97D3-3D260F312C36}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>338,576</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<model id="id-0065-00000187" kind="Property" role="Property" guid="{CE663064-2DFB-42e2-A11C-23F5AB51944D}" relid="0x3a" childrelidcntr="0x1">
+					<name>max_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>940,611</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>10</value>
+					</attribute>
+					<reference id="id-0067-00000246" kind="DataType" role="DataType" guid="{E026592C-0272-46b2-A785-1A29A8CD9D4E}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>338,576</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
 				<reference id="id-0067-0000007a" kind="NodeReference" role="NodeReference" guid="{9DADECF4-7949-4fd4-8E32-D296EC42CA23}" relid="0x1" referred="id-0065-000000a8">
 					<name>alpha</name>
 					<regnode name="PartRegs" status="undefined">
@@ -19670,6 +20176,239 @@
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>1098,118</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</set>
+			</model>
+			<model id="id-0065-0000018e" kind="DeploymentPlan" guid="{4D8BFB41-52D2-4726-B280-DC38F8BEE7C5}" relid="0x14" childrelidcntr="0x3b">
+				<name>String1_Single_Node</name>
+				<attribute kind="UUID">
+					<value>9A5AC9E4-9FE5-4F26-8F59-79DCA5AC915F</value>
+				</attribute>
+				<attribute kind="label" status="meta">
+					<value></value>
+				</attribute>
+				<model id="id-0065-0000018f" kind="Property" role="Property" guid="{1A7DF253-551A-45db-989C-B37DFC6628E5}" relid="0x38" childrelidcntr="0x1">
+					<name>Effector_ID</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>643,454</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>String1</value>
+					</attribute>
+					<reference id="id-0067-0000024f" kind="DataType" role="DataType" guid="{577C36BD-6D5E-4aa4-A819-2A4A376BF8D9}" relid="0x1" referred="id-0066-00000003">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>128,604</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<model id="id-0065-00000190" kind="Property" role="Property" guid="{17EF1850-5362-4b5a-9546-2363CA6EA895}" relid="0x3a" childrelidcntr="0x1">
+					<name>max_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>503,454</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>10</value>
+					</attribute>
+					<reference id="id-0067-00000253" kind="DataType" role="DataType" guid="{FFEBF374-C29D-4593-8CF9-4A3909BFCB64}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>338,576</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<model id="id-0065-00000191" kind="Property" role="Property" guid="{F659A51A-5873-4844-AF82-5F860113A1AF}" relid="0x39" childrelidcntr="0x1">
+					<name>curr_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>398,454</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>1</value>
+					</attribute>
+					<reference id="id-0067-00000254" kind="DataType" role="DataType" guid="{59F0B826-DB55-4dd3-8A28-F892DCC2AA7C}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>338,576</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<model id="id-0065-00000197" kind="Property" role="Property" guid="{92E3BD1F-BA6F-49d5-A005-D44B78294E69}" relid="0x3b" childrelidcntr="0x1">
+					<name>min_rate</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>300,454</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="DataValue">
+						<value>1</value>
+					</attribute>
+					<reference id="id-0067-00000260" kind="DataType" role="DataType" guid="{3FEE1A9A-D621-4d65-9A0C-35A472AD2F2F}" relid="0x1" referred="id-0066-00000007">
+						<name>DataType</name>
+						<regnode name="PartRegs" status="undefined">
+							<value></value>
+							<regnode name="Packaging" status="undefined">
+								<value></value>
+								<regnode name="Position" isopaque="yes">
+									<value>128,604</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</reference>
+				</model>
+				<reference id="id-0067-0000024d" kind="ComponentRef" role="ComponentRef" guid="{EE9E4CF7-55B6-4b46-A53B-4E2432D8CC71}" relid="0x36" referred="id-0065-00000111">
+					<name>Comm2</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>418,222</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000024e" kind="ComponentRef" role="ComponentRef" guid="{27A4032A-4CAF-451e-B123-2C50AC81A94E}" relid="0x26" referred="id-0065-0000010d">
+					<name>Trigger</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>40,222</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-00000251" kind="ComponentRef" role="ComponentRef" guid="{DEFD35DD-D135-4e16-B958-1E17DFB6B767}" relid="0x25" referred="id-0065-00000110">
+					<name>Comm1</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>600,327</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-00000252" kind="NodeReference" role="NodeReference" guid="{D707ADAC-12C6-4227-BD25-990B33D426DE}" relid="0x2b" referred="id-0065-00000193">
+					<name>blade36</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>438,39</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-00000255" kind="ComponentRef" role="ComponentRef" guid="{11DA723C-2CB4-421d-9662-5B3639DF943E}" relid="0x22" referred="id-0065-0000010c">
+					<name>Compression1</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>229,222</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-00000259" kind="ComponentRef" role="ComponentRef" guid="{FBBFE39E-CF62-4d74-8E27-FF5F493F57F3}" relid="0x1c" referred="id-0065-00000113">
+					<name>Gizmo1</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>600,222</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000025a" kind="ComponentRef" role="ComponentRef" guid="{D106F735-9689-440a-83C7-0294D998E7D1}" relid="0x1e" referred="id-0065-00000114">
+					<name>Gizmo2</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>229,327</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<reference id="id-0067-0000025b" kind="ComponentRef" role="ComponentRef" guid="{C30C4F15-659C-4915-B92F-610A8EA74049}" relid="0x20" referred="id-0065-00000112">
+					<name>Compression2</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>418,327</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</reference>
+				<connection id="id-0068-000002c8" kind="InstanceMapping" role="InstanceMapping" guid="{AC657540-74A4-42c0-9561-DE09E51C8F7D}" relid="0x35">
+					<name>InstanceMapping</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>N</value>
+					</regnode>
+					<connpoint role="dst" target="id-0067-00000252"/>
+					<connpoint role="src" target="id-0069-00000055"/>
+				</connection>
+				<set id="id-0069-00000055" kind="CollocationGroup" role="CollocationGroup" guid="{40853DE1-F3EB-4ccd-B6B9-60CAB6FCDA66}" relid="0x32" members="id-0067-0000024d id-0067-0000024e id-0067-00000251 id-0067-00000255 id-0067-00000259 id-0067-0000025a id-0067-0000025b">
+					<name>blade36Group</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="NodeMapping" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>440,132</value>
 							</regnode>
 						</regnode>
 					</regnode>
