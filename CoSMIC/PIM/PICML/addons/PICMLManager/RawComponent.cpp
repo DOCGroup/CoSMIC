@@ -223,6 +223,11 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
             GME::Model property =
               GME::Model::_narrow (connpoints["dst"].target ());
 
+            // Set the name of the Property. We want to ensure the name
+            // to the property matches the name of the attribute.
+            if (property.name () != attr.name ())
+              property.name (attr.name ());
+
             if (attr_type)
               this->set_property_datatype (property, attr_type);
           }
@@ -255,7 +260,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
                          boost::bind (&RawComponent::verify_property_datatype,
                                       this,
                                       boost::bind (&GME::ConnectionPoints::value_type::item, _1),
-                         attr_type));
+                                      attr_type));
         }
       }
     }

@@ -1,3 +1,10 @@
+Mon Jan 21 16:54:16 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          The name of a property is set to the name of its connected
+          attribute in component assembly model.
+
 Mon Jan 21 04:23:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
