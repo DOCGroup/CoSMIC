@@ -1,3 +1,23 @@
+Mon Jan 21 04:23:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated example to latest version of PICML.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Component.rc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_MainDialog.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/resource.h:
+
+          Bug fix/enhancement to the deployment plan interpreter so that
+          descriptors contain only the necessary artifacts and implementation
+          tags needed to deploy the system. The user has the option of
+          disabling this optimazation.
+
 Thu Jan 17 18:04:41 UTC 2008  Nishanth Shanakran  <nshankar@nospam.com>
 
         * PIM/PICML/examples/Sample_Strings.xme:

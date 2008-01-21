@@ -1,3 +1,5 @@
+// $Id$
+
 project (DeploymentPlanComponent): mfc, picmllib, register {
   after += PICML DeploymentPlan
 
@@ -19,6 +21,7 @@ project (DeploymentPlanComponent): mfc, picmllib, register {
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
     Component.rc
     Component.def
+    DeploymentPlan_MainDialog.cpp
     RawComponent.cpp
     UdmApp.cpp
   }
@@ -41,12 +44,3 @@ project (DeploymentPlanComponent): mfc, picmllib, register {
     CompIcon.ico
   }
 }
-
-// project (RegisterDeploymentPlanComponent): register {
-//   after += DeploymentPlanComponent
-//   custom_only           = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\DeploymentPlanComponent.dll
-//   }
-// }

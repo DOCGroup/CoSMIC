@@ -17,9 +17,10 @@ using Utils::CreateUuid;
 
 namespace PICML
 {
-  DeploymentPlanVisitor::DeploymentPlanVisitor (const std::string& outputPath)
+  DeploymentPlanVisitor::
+  DeploymentPlanVisitor (const std::string& outputPath, int disable_opt)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-    outputPath_ (outputPath)
+      outputPath_ (outputPath), disable_opt_ (disable_opt)
   {
     this->init();
   }
@@ -253,6 +254,13 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_ImplementationArtifact (
     const ImplementationArtifact& ia)
   {
+    // We only need to continue if we need this artifact.
+    if (this->disable_opt_ == 0)
+    {
+      if (this->artifacts_.find (ia) == this->artifacts_.end ())
+        return;
+    }
+
     this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
 
@@ -467,11 +475,12 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_ComponentImplementationContainer (
     const ComponentImplementationContainer& cic)
   {
-    std::set<MonolithicImplementation>
+    std::set <MonolithicImplementation>
       mimpls = cic.MonolithicImplementation_kind_children();
-    for (std::set<MonolithicImplementation>::iterator iter = mimpls.begin();
-      iter != mimpls.end();
-      ++iter)
+
+    for (std::set <MonolithicImplementation>::iterator iter = mimpls.begin();
+         iter != mimpls.end();
+         ++iter)
     {
       MonolithicImplementation mimpl = *iter;
       mimpl.Accept (*this);
@@ -481,12 +490,23 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_MonolithicImplementation
     (const MonolithicImplementation& mimpl)
   {
-    this->push();
-    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
-
+    // Get the component type for this monolithic implementation. We
+    // need to make sure we really need this type before generating
+    // any of the descriptor XML.
     Implements iface = mimpl.dstImplements();
     const ComponentRef iface_ref = iface.dstImplements_end();
     const Component comp_ref = iface_ref.ref();
+
+    if (this->disable_opt_ == 0)
+    {
+      if (this->monolith_types_.find (comp_ref) == this->monolith_types_.end ())
+        return;
+    }
+
+    // We can begin the generation of this monolithic implemenation's
+    // descriptor meta data.
+    this->push();
+    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
 
     std::string refName (comp_ref.name());
     this->monoimpls_.insert (make_pair (refName, mimpl));
@@ -505,6 +525,7 @@ namespace PICML
 
     const std::set<MonolithprimaryArtifact>
       mpas = mimpl.dstMonolithprimaryArtifact();
+
     for (std::set<MonolithprimaryArtifact>::const_iterator it = mpas.begin();
       it != mpas.end();
       ++it)
@@ -525,6 +546,7 @@ namespace PICML
 
     const std::set<MonolithExecParameter>
       mexecs = mimpl.dstMonolithExecParameter();
+
     for (std::set<MonolithExecParameter>::const_iterator it2 = mexecs.begin();
       it2 != mexecs.end();
       ++it2)
@@ -565,9 +587,13 @@ namespace PICML
     (const MonolithprimaryArtifact& mpa)
   {
     this->push();
+
     const ImplementationArtifactReference iaref =
       mpa.dstMonolithprimaryArtifact_end();
     const ImplementationArtifact ref = iaref.ref();
+
+    // Cache the artifact.
+    this->artifacts_.insert (ref);
 
     // std::string uniqueName = ref.getPath ("_",false,true,"name",true);
     std::string uniqueName = ref.UUID();
@@ -1207,6 +1233,8 @@ namespace PICML
       this->deployed_instances_.clear ();
       this->selected_impls_.clear ();
       this->monolith_components_.clear ();
+      this->monolith_types_.clear ();
+      this->artifacts_.clear ();
       this->final_assembly_components_.clear ();
     }
   }
@@ -1245,12 +1273,15 @@ namespace PICML
         comp_type_iter != comp_types.end (); ++comp_type_iter)
       {
         CollocationGroup_Members_Base comp_type = *comp_type_iter;
+
         if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
         {
           ComponentRef component_ref = ComponentRef::Cast (comp_type);
-          //std::string comp_ref_name = component_ref.name ();
           Component comp = component_ref.ref();
+
+          // Save the component instance and it's type.
           this->monolith_components_.insert (comp);
+          this->monolith_types_.insert (comp.Archetype ());
 
           update_component_parents (comp);
           update_component_instance (comp, nodeRefName);
@@ -1264,16 +1295,16 @@ namespace PICML
           ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
           comp_assembly.Accept (*this);
 
-          for (std::set<Component>::iterator iter = this->assembly_components_.begin();
-            iter != this->assembly_components_.end();
-            ++iter)
+          for (std::set <Component>::iterator iter = this->assembly_components_.begin();
+               iter != this->assembly_components_.end();
+               ++iter)
           {
             Component comp = *iter;
-            Component typeParent;
-            //std::string comp_in_assembly_name = comp.name ();
-            //std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
             update_component_instance (comp, nodeRefName);
+
+            // Save the component instance and it's type.
             this->final_assembly_components_.insert (comp);
+            this->monolith_types_.insert (comp.Archetype ());
           }
 
           this->containing_assemblies_.insert(comp_assembly);
@@ -1285,7 +1316,11 @@ namespace PICML
           std::string shared_comp_ref_name = shared_component_ref.name ();
           ComponentRef shared_comp = shared_component_ref.ref();
           Component referred_comp = shared_comp.ref();
+
+          // Save the component instance and it's type.
           this->monolith_components_.insert (referred_comp);
+          this->monolith_types_.insert (referred_comp.Archetype ());
+
           std::string referred_component_name = referred_comp.name ();
           update_shared_component_parents (shared_comp);
           update_component_instance (referred_comp, nodeRefName);

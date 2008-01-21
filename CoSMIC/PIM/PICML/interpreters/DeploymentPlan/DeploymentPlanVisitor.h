@@ -31,7 +31,9 @@ namespace PICML
   class DeploymentPlanVisitor: public Visitor
   {
   public:
-    DeploymentPlan_Export DeploymentPlanVisitor (const std::string& outputPath);
+    DeploymentPlan_Export DeploymentPlanVisitor (const std::string& outputPath,
+                                                 int disable_optmize);
+
     DeploymentPlan_Export ~DeploymentPlanVisitor();
 
     DeploymentPlan_Export void init();
@@ -300,24 +302,37 @@ namespace PICML
     RootFolder          root_folder_;
 
     // Maintain associations between PublishConnector and event publishers
-    std::map<std::string, OutEventPort> publishers_;
-    std::map<std::string, MonolithicImplementation> monoimpls_;
-    std::set<std::string> selected_instances_;
-    std::set<PICML::ComponentAssembly> path_parents_;
-    std::set<PICML::ComponentAssembly> containing_assemblies_;
-    std::set<PICML::Component> assembly_components_;
+    std::map <std::string, OutEventPort> publishers_;
+    std::map <std::string, MonolithicImplementation> monoimpls_;
+    std::set <std::string> selected_instances_;
+    std::set <PICML::ComponentAssembly> path_parents_;
+    std::set <PICML::ComponentAssembly> containing_assemblies_;
+    std::set <PICML::Component> assembly_components_;
     PICML::MonolithicImplementation mimpl_;
-    std::map<std::string, MonolithicImplementation> selected_impls_;
-    std::map<std::string, std::string> deployed_instances_;
-    std::set<PICML::Component> monolith_components_;
-    std::set<PICML::Component> final_assembly_components_;
+    std::map <std::string, MonolithicImplementation> selected_impls_;
+    std::map <std::string, std::string> deployed_instances_;
 
-    // Maintain associations between PublishConnector and event consumers
+    /// Collection of instances for current deployment.
+    std::set <PICML::Component> monolith_components_;
+
+    /// Collection of implementations for current deployment.
+    std::set <PICML::Component> monolith_types_;
+
+    /// Collection of instances from an assembly for current deployment.
+    std::set <PICML::Component> final_assembly_components_;
+
+    /// Collection of valid artifacts for the current deployment.
+    std::set <PICML::ImplementationArtifact> artifacts_;
+
+    /// Maintain associations between PublishConnector and event consumers
     std::multimap<std::string, InEventPort> consumers_;
 
     std::map<std::string, std::string> interfaces_;
     std::map<std::pair<std::string, std::string>, Property> attrValues_;
     std::map<std::pair< std::string, std::set<PICML::Component> >, std::string> cg_set_;
+
+    /// Disable the deployment plan optmizations.
+    int disable_opt_;
   };
 }
 

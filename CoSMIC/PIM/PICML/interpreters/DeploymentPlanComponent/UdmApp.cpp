@@ -41,7 +41,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "Utils/Utils.h"
+#include "DeploymentPlan_MainDialog.h"
 #include "PICML/PICML.h"
 #include "DeploymentPlan/DeploymentPlanVisitor.h"
 
@@ -77,14 +77,14 @@ int CUdmApp::Initialize()
 
   2. The possible values for param (from GME DecoratorLib.h
   component_startmode_enum):
-  GME_MAIN_START		=   0,
-  GME_BROWSER_START		=   1,
-  GME_CONTEXT_START		=   2,
-  GME_EMBEDDED_START		=   3,
-  GME_MENU_START		=  16,
-  GME_BGCONTEXT_START	=  18,
-  GME_ICON_START		=  32,
-  METAMODEL_CHECK_SYNTAX	= 101
+  GME_MAIN_START    =   0,
+  GME_BROWSER_START    =   1,
+  GME_CONTEXT_START    =   2,
+  GME_EMBEDDED_START    =   3,
+  GME_MENU_START    =  16,
+  GME_BGCONTEXT_START  =  18,
+  GME_ICON_START    =  32,
+  METAMODEL_CHECK_SYNTAX  = 101
 
   3. The framework catches all the exceptions and reports the error in a
   message box, clean up and close the transactions aborting the changes.
@@ -98,8 +98,8 @@ int CUdmApp::Initialize()
 
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,	// Selected objects
-                      long param)			// Parameters
+                      set<Udm::Object> selectedObjects,  // Selected objects
+                      long param)      // Parameters
 {
   try
     {
@@ -111,16 +111,25 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
           // is by some external application invoking put_ComponentParameter
           // method for the interpreter. :o)
 
+          int disable_optimize = 0;
+
           if (CUdmApp::output_path_.empty ())
           {
-            std::string message = "Please specify the output directory";
-            if (!getPath (message, CUdmApp::output_path_))
+            DeploymentPlan_MainDialog dialog (::AfxGetMainWnd ());
+
+            if (dialog.DoModal () == IDCANCEL)
               return;
+
+            CUdmApp::output_path_ = dialog.output_directory ();
+            disable_optimize = dialog.disable_optimization ();
           }
 
-          PICML::DeploymentPlanVisitor visitor (CUdmApp::output_path_);
+          PICML::DeploymentPlanVisitor
+            visitor (CUdmApp::output_path_, disable_optimize);
+
           PICML::RootFolder
             start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+
           start.Accept (visitor);
         }
       catch(udm_exception &e)
@@ -162,8 +171,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 /* Debug time helper function. If the object has an  */
 /* attribute called "name", this function retreives  */
 /* it to help you to find it in the model during the */
-/* application development.	Usualy every GME Object	 */
-/* has a "name" attribute. If an object hapens not	 */
+/* application development.  Usualy every GME Object   */
+/* has a "name" attribute. If an object hapens not   */
 /* to have it,function retreives <no name specified>.*/
 /*****************************************************/
 
