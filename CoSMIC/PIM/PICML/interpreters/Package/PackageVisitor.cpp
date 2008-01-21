@@ -322,7 +322,9 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
   DOMElement* val = this->doc_->createElement (XStr ("value"));
   this->curr_->appendChild (val);
   this->curr_ = val;
-  PredefinedType ref = type.ref();
+
+  PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+
   const Uml::Class& refType = ref.type();
   if (refType == Boolean::meta)
     {
@@ -359,7 +361,8 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
 
 void PackageVisitor::Visit_DataType(const DataType& type)
 {
-  PredefinedType ref = type.ref();
+  PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+
   const Uml::Class& refType = ref.type();
   if (refType == Boolean::meta)
     {

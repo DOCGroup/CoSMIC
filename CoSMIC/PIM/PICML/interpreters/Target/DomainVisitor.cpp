@@ -392,7 +392,12 @@ namespace PICML
     DOMElement* val = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
-    PredefinedType ref = type.ref();
+
+    /// @note If the domain interpreter is to support complex types,
+    ///       then this section of the code will need changing.
+
+    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+
     std::string refName = ref.name();
     if (refName == "Boolean")
       {
@@ -430,7 +435,8 @@ namespace PICML
 
   void DomainVisitor::Visit_DataType(const DataType& type)
   {
-    PredefinedType ref = type.ref();
+    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+
     std::string kindName = ref.name();
     if (kindName == "Boolean")
       {

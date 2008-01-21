@@ -362,7 +362,8 @@ namespace PICML
     this->curr_->appendChild (val);
     this->curr_ = val;
 
-    PredefinedType ref = type.ref();
+    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+
     std::string refName = ref.name();
 
     if (ref.type () == PICML::Boolean::meta)
@@ -400,7 +401,7 @@ namespace PICML
 
   void DeploymentPlanVisitor::Visit_DataType (const DataType& type)
   {
-    PredefinedType ref = type.ref();
+    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
     // std::string kindName = ref.name();
 
     if (ref.type () == PICML::Boolean::meta)

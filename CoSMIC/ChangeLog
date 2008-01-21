@@ -1,3 +1,22 @@
+Mon Jan 21 17:53:05 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Added support for using complex types with properties at the
+          modeling level.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+
+          Updated the interpreters to still use PredefinedType elements
+          until we have full support for updating the values of complex
+          types in the model.
+
 Mon Jan 21 16:54:16 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
