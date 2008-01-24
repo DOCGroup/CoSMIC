@@ -155,7 +155,13 @@ namespace GME
 
     // Create a new connection.
     CComPtr <IMgaFCO> conn;
-    parent.impl ()->CreateSimpleConn (role, src, dst, 0, 0, &conn);
+
+    VERIFY_HRESULT (parent.impl ()->CreateSimpleConn (role,
+                                                      src.impl (),
+                                                      dst.impl (),
+                                                      0,
+                                                      0,
+                                                      &conn));
 
     return Connection::_narrow (FCO (conn));
   }

@@ -113,13 +113,6 @@ namespace GME
     void attach (IMgaFCO * fco);
 
     /**
-     * Convert this object into a IMgaFCO pointer.
-     *
-     * @return        IMgaFCO pointer of this object.
-     */
-    operator IMgaFCO * (void) const;
-
-    /**
      * Get the meta information for this object.
      *
      * @return        Its meta information.
@@ -205,6 +198,14 @@ namespace GME
     void registry_value (const std::string & path, const std::string & value);
 
     /**
+     * Get an attribute by name.
+     *
+     * @param[in]       name        Name of the attribute.
+     * @return          Attribute object.
+     */
+    Attribute attribute (const std::string & name) const;
+
+    /**
      * Get the attributes of the FCO.
      *
      * @param[out]  attrs     The attributes of the FCO.
@@ -234,6 +235,14 @@ namespace GME
      * @param[out]      points      Collection of connection points.
      */
     size_t in_connection_points (ConnectionPoints & points);
+
+    /**
+     * Get the collection of objects this object is derived
+     * from.
+     *
+     * @return          The FCO this FCO is derived from.
+     */
+    FCO derived_from (void) const;
 
   private:
     /// The COM pointer for the FCO type.

@@ -43,7 +43,10 @@ namespace GME
                             std::vector <FCO> & selected,
                             long param)
   {
-    VERIFY_HRESULT (this->impl ()->InvokeEx (project, current, 0, param));
+    VERIFY_HRESULT (this->impl ()->InvokeEx (project,
+                                             current.impl (),
+                                             0,
+                                             param));
   }
 
   //

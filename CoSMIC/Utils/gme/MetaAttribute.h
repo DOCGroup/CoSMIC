@@ -111,7 +111,6 @@ namespace Meta
      */
     void value_type (attval_enum val);
 
-  private:
     /// Helper method to the correct implementation.
     IMgaMetaAttribute * impl (void) const;
 

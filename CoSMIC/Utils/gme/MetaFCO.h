@@ -15,7 +15,7 @@
 #ifndef _GME_METAFCO_H_
 #define _GME_METAFCO_H_
 
-#include "MetaBase.h"
+#include "MetaAttribute.h"
 
 namespace GME
 {
@@ -64,20 +64,28 @@ namespace Meta
     const FCO & operator = (const FCO & meta);
 
     /**
-     * Convert this object into a IMgaMetaFCO pointer.
-     *
-     * @return        IMgaMetaFCO pointer.
-     */
-    operator IMgaMetaFCO * (void) const;
-
-    /**
      * Get the meta object this FCO is defined in.
      *
      * @return        Base meta object.
      */
     Base defined_in (void) const;
 
-  protected:
+    /**
+     * Get an attributes meta information by its name.
+     *
+     * @param[in]       name        Name of the attribute.
+     * @return          Meta information about the attribute.
+     */
+    Attribute attribute (const std::string & name) const;
+
+    /**
+     * Get an attributes meta information by its display name.
+     *
+     * @param[in]       name        Display name.
+     * @return          Meta information about the attribute.
+     */
+    Attribute attribute_by_display_name (const std::string & name) const;
+
     /// Helper method to the correct implementation.
     IMgaMetaFCO * impl (void) const;
 

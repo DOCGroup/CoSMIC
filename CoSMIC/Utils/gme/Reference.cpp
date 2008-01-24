@@ -40,7 +40,7 @@ namespace GME
   //
   void Reference::refers_to (const FCO & fco)
   {
-    VERIFY_HRESULT (this->impl ()->put_Referred (fco));
+    VERIFY_HRESULT (this->impl ()->put_Referred (fco.impl ()));
   }
 
   //

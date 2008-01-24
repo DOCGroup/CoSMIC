@@ -38,5 +38,31 @@ namespace Meta
 
     return meta.p;
   }
+
+  //
+  // attribute
+  //
+  Attribute FCO::attribute (const std::string & name) const
+  {
+    CComBSTR bstr_name (name.length (), name.c_str ());
+
+    CComPtr <IMgaMetaAttribute> attr;
+    VERIFY_HRESULT (this->impl ()->get_AttributeByName (bstr_name, &attr));
+
+    return attr.p;
+  }
+
+  //
+  // attribute_by_display_name
+  //
+  Attribute FCO::attribute_by_display_name (const std::string & name) const
+  {
+    CComBSTR bstr_name (name.length (), name.c_str ());
+
+    CComPtr <IMgaMetaAttribute> attr;
+    VERIFY_HRESULT (this->impl ()->GetAttributeByNameDisp (bstr_name, &attr));
+
+    return attr.p;
+  }
 }
 }

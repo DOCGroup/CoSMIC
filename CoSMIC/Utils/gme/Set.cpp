@@ -55,7 +55,7 @@ namespace GME
   //
   void Set::insert (const FCO & fco)
   {
-    VERIFY_HRESULT (this->impl ()->AddMember (fco));
+    VERIFY_HRESULT (this->impl ()->AddMember (fco.impl ()));
   }
 
   //
@@ -63,7 +63,7 @@ namespace GME
   //
   void Set::remove (const FCO & fco)
   {
-    VERIFY_HRESULT (this->impl ()->RemoveMember (fco));
+    VERIFY_HRESULT (this->impl ()->RemoveMember (fco.impl ()));
   }
 
   //
@@ -72,7 +72,7 @@ namespace GME
   bool Set::contains (const FCO & fco)
   {
     VARIANT_BOOL is_member;
-    VERIFY_HRESULT (this->impl ()->get_IsMember (fco, &is_member));
+    VERIFY_HRESULT (this->impl ()->get_IsMember (fco.impl (), &is_member));
 
     return is_member == VARIANT_TRUE ? true : false;
   }

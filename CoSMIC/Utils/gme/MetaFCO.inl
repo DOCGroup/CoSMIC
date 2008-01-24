@@ -44,15 +44,6 @@ namespace Meta
   }
 
   //
-  // operator IMgaMetaFCO *
-  //
-  GME_INLINE
-  FCO::operator IMgaMetaFCO * (void) const
-  {
-    return this->impl ();
-  }
-
-  //
   // operator =
   //
   GME_INLINE

@@ -8,6 +8,7 @@
 #include "Attribute.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
+#include "MetaAttribute.h"
 
 namespace GME
 {
@@ -99,14 +100,6 @@ namespace GME
 
     VERIFY_HRESULT (this->object_.QueryInterface (&this->fco_));
     return this->fco_.p;
-  }
-
-  //
-  // operator IMgaFCO *
-  //
-  FCO::operator IMgaFCO * (void) const
-  {
-    return this->impl ();
   }
 
   //
@@ -298,5 +291,31 @@ namespace GME
 
     points.attach (temp.Detach ());
     return points.size ();
+  }
+
+  //
+  // derived_from
+  //
+  FCO FCO::derived_from (void) const
+  {
+    CComPtr <IMgaFCO> fco;
+    VERIFY_HRESULT (this->impl ()->get_DerivedFrom (&fco));
+
+    return fco.p;
+  }
+
+  //
+  // attribute
+  //
+  Attribute FCO::attribute (const std::string & name) const
+  {
+    // Get the meta attribute with the specified name.
+    GME::Meta::Attribute meta_attr = this->meta ().attribute (name);
+
+    // Get the attribute that corresponds to the meta information.
+    CComPtr <IMgaAttribute> attr;
+    VERIFY_HRESULT (this->impl ()->get_Attribute (meta_attr.impl (), &attr));
+
+    return attr.p;
   }
 }
