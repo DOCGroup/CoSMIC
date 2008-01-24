@@ -1,6 +1,6 @@
 // $Id$
 
-project (CoSMIC_Utils) : xerces, cosmic_common {
+project (CoSMIC_Utils) : xerces, boost_base, cosmic_common {
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
@@ -12,17 +12,27 @@ project (CoSMIC_Utils) : xerces, cosmic_common {
      midl_includes += $(GME_ROOT)/Interfaces
      midl_flags    += /client stub /server none
      midl_notlb     = 1
+
+     compile_flags += /wd4251
   }
 
   Source_Files {
-    $(GME_ROOT)/Interfaces/Mga.idl
-    $(GME_ROOT)/Interfaces/Meta.idl
+    Data_Value.cpp
+    Data_Value_Parser.cpp
+    Data_Value_Visitor.cpp
     Project.cpp
     Utils.cpp
     XercesString.cpp
+
+    $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/Meta.idl
   }
 
   Header_Files {
     Utils_Export.h
+  }
+
+  Template_Files {
+    Data_Value_Parser_T.cpp
   }
 }

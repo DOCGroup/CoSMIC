@@ -1,3 +1,5 @@
+// $Id$
+
 project (PICML): cosmic_common, udm, xerces, cosmic_utils {
 
    UDM_Files {
@@ -7,14 +9,18 @@ project (PICML): cosmic_common, udm, xerces, cosmic_utils {
    }
 
    sharedname = PICML
+
+   libs  += GME
+   after += GME
+
    macros += PICML_HAS_DLL PICML_EXPORT
 
    Source_Files {
+     Data_Value_Builder.cpp
      PICML.cpp
    }
 
    Header_Files {
-     PICML.h
      PICML_Export.h
    }
 }

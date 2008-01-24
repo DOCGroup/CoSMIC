@@ -1,6 +1,9 @@
-// MPC file to generate base Utils library
-project {
-   after += CoSMIC_Utils
+// $Id$
+
+project : acelib {
+   after  += CoSMIC_Utils
    macros += UTILS_HAS_DLL
-   libs += Utils
+
+   includes += $(COSMIC_ROOT)/Utils
+   libs     += Utils
 }
