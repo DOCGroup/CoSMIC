@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML): udm, xerces, boost_base, cosmic_common {
+project (PICML): acedefaults, udm, xerces, boost_base, cosmic_common {
 
   UDM_Files {
     gendir = .
@@ -27,5 +27,9 @@ project (PICML): udm, xerces, boost_base, cosmic_common {
 
   Header_Files {
     PICML_Export.h
+  }
+
+  Template_Files {
+    Data_Value_Parser_T.cpp
   }
 }

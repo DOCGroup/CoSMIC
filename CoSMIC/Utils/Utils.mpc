@@ -28,8 +28,4 @@ project (CoSMIC_Utils) : xerces, cosmic_common {
   Header_Files {
     Utils_Export.h
   }
-
-  Template_Files {
-    Data_Value_Parser_T.cpp
-  }
 }
