@@ -1,6 +1,6 @@
 // $Id$
 
-project : acelib {
+project {
    after  += CoSMIC_Utils
    macros += UTILS_HAS_DLL
 
