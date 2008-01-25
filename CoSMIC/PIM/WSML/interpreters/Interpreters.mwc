@@ -1,5 +1,5 @@
 workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
-             -include $COSMIC_ROOT
+             -include $COSMIC_ROOT/MPC/config
   IDL_to_WSDL
 }

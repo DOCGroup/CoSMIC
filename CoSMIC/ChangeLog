@@ -1,3 +1,12 @@
+Fri Jan 25 19:20:55 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+        * PIM/WSML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/Interpreters.mwc:
+
+          Updated the command line to include the $COSMIC_ROOT/MPC/config.
+
 Fri Jan 25 18:59:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cosmic.mwc:
