@@ -1,3 +1,40 @@
+Fri Jan 25 16:35:30 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/bon.mpb:
+        * MPC/config/cosmic_common.mpb:
+        * MPC/config/cosmic_utils.mpb:
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/gtk.mpb:
+        * MPC/config/picmllib.mpb:
+        * MPC/config/register.mpb:
+        * MPC/config/udm.mpb:
+        * MPC/config/vc8warnings.mpb:
+
+          Moved all the MPC base project to this directory from the
+          root directory with hopes of cleaning the cluter in the
+          directories.
+
+        * Release.mwc:
+        * Release_idl_to_picml.mwc:
+        * cosmic.mwc:
+        * cosmic_common.mwb:
+        * picml.mwc:
+
+          All workspaces inherit from 'cosmic_common.mwb', which defines
+          defualt setting need for all the workspaces in CoSMIC.
+
+        * bon.mpb:
+        * cosmic_common.mpb:
+        * cosmic_utils.mpb:
+        * cqmllib.mpb:
+        * gtk.mpb:
+        * picmllib.mpb:
+        * register.mpb:
+        * udm.mpb:
+        * vc8warnings.mpb:
+
+          Removed these files.
+
 Fri Jan 25 16:14:21 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * cosmic_utils.mpb:

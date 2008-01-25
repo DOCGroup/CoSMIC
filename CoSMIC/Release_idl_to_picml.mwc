@@ -1,6 +1,6 @@
-workspace {
-  cmdline += -feature_file default.features
+// $Id$
 
+workspace : cosmic_common {
   static {
     cmdline += -static
 

@@ -1,9 +1,8 @@
-workspace {
-  cmdline += -feature_file default.features
+// $Id$
 
+workspace : cosmic_common {
   // Entire CoSMIC.mwc expanded inline.
-  Utils/Utils.mpc
-  Utils/gme/GME.mpc
+  Utils
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
 

@@ -1,10 +1,7 @@
 // $Id$
 
-workspace {
-  cmdline += -feature_file default.features
-
-  Utils/Utils.mpc
-  Utils/gme/GME.mpc
+workspace : cosmic_common {
+  Utils
   $(ACE_ROOT)/ace/ace.mpc
 
   PIM/PICML/interpreters/Interpreters.mwc

@@ -1,7 +1,9 @@
-workspace {
-  cmdline += -feature_file default.features
-  Utils/Utils.mpc
+// $Id$
+
+workspace : cosmic_common {
+  Utils
+
   PIM/PICML/interpreters/Interpreters.mwc
-  PIM/PICML/addons/UUIDManager
+  PIM/PICML/addons/PICMLManager
   PIM/PICML/decorators/Decorators.mwc
 }

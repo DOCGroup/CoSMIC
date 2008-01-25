@@ -1,0 +1,6 @@
+// $Id$
+
+workspace {
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+}
