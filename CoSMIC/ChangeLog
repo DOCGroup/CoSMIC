@@ -1,3 +1,39 @@
+Fri Jan 25 01:31:00 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser_T.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * Utils/Utils.mpc:
+
+          Moved the all the data value classes to the PICML
+          directory.
+
+        * Utils/gme/stdafx.cpp:
+        * Utils/gme/stlace.h:
+        * Utils/gme/stlace.cpp:
+
+          Hide the dependency on ACE.
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib.tlb:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib_i.c:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib_p.c:
+        * Utils/Data_Value.h:
+        * Utils/Data_Value.cpp:
+        * Utils/Data_Value_Parser.h:
+        * Utils/Data_Value_Parser.cpp:
+        * Utils/Data_Value_Parser_T.cpp:
+        * Utils/Data_Value_Visitor.h:
+        * Utils/Data_Value_Visitor.cpp:
+        * Utils/gme/stlace.inl:
+
+          Removed these files.
+
 Thu Jan 24 20:28:15 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:

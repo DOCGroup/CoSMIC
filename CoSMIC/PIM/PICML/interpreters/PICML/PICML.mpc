@@ -1,26 +1,31 @@
 // $Id$
 
-project (PICML): cosmic_common, udm, xerces, cosmic_utils {
+project (PICML): udm, xerces, boost_base, cosmic_common {
 
-   UDM_Files {
-      gendir = .
-      $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xml
-      commandflags      = -l PICML_Export -v
-   }
+  UDM_Files {
+    gendir = .
+    $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xml
+    commandflags      = -l PICML_Export -v
+  }
 
-   sharedname = PICML
+  sharedname = PICML
 
-   libs  += GME
-   after += GME
+  macros += PICML_HAS_DLL PICML_EXPORT
 
-   macros += PICML_HAS_DLL PICML_EXPORT
+  after    += GME
+  libs     += GME
+  includes += $(COSMIC_ROOT)/Utils
 
-   Source_Files {
-     Data_Value_Builder.cpp
-     PICML.cpp
-   }
 
-   Header_Files {
-     PICML_Export.h
-   }
+  Source_Files {
+    Data_Value.cpp
+    Data_Value_Parser.cpp
+    Data_Value_Visitor.cpp
+    Data_Value_Builder.cpp
+    PICML.cpp
+  }
+
+  Header_Files {
+    PICML_Export.h
+  }
 }

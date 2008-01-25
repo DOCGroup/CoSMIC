@@ -16,9 +16,11 @@
 #define _STLACE_H_
 
 #include <string>
-#include "ace/Functor_T.h"
-#include "ace/ACE.h"
 #include "GME_export.h"
+
+// Forward decl.
+template <typename T>
+class ACE_Hash;
 
 //=============================================================================
 /**
@@ -45,9 +47,5 @@ class GME_Export ACE_Hash <std::wstring>
 public:
   unsigned long operator () (const std::wstring & lhs) const;
 };
-
-#if defined (__GME_INLINE__)
-#include "stlace.inl"
-#endif
 
 #endif

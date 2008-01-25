@@ -1,6 +1,6 @@
 // $Id$
 
-project (CoSMIC_Utils) : xerces, boost_base, cosmic_common {
+project (CoSMIC_Utils) : xerces, cosmic_common {
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
@@ -17,9 +17,6 @@ project (CoSMIC_Utils) : xerces, boost_base, cosmic_common {
   }
 
   Source_Files {
-    Data_Value.cpp
-    Data_Value_Parser.cpp
-    Data_Value_Visitor.cpp
     Project.cpp
     Utils.cpp
     XercesString.cpp
