@@ -1,3 +1,12 @@
+Fri Jan 25 18:59:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * cosmic.mwc:
+        * cosmic_ace.mwc:
+        * picml.mwc:
+
+          Refactored the workspace so that ACE is not include by
+          default in the development build.
+
 Fri Jan 25 17:57:26 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * build.pl:
