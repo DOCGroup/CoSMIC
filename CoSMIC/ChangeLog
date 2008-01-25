@@ -1,3 +1,11 @@
+Fri Jan 25 16:53:22 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Release.mwc:
+        * cosmic_common.mwb:
+        * picml.mwc:
+
+          Set the appropriate SVN properties for these files.
+
 Fri Jan 25 16:35:30 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/bon.mpb:
