@@ -14,6 +14,22 @@
 namespace GME
 {
 //
+// PICML_Data_Value_Builder
+//
+PICML_Data_Value_Builder::PICML_Data_Value_Builder (void)
+{
+
+}
+
+//
+//
+//
+PICML_Data_Value_Builder::~PICML_Data_Value_Builder (void)
+{
+
+}
+
+//
 // build_complex
 //
 bool PICML_Data_Value_Builder::

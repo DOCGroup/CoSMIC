@@ -1,3 +1,10 @@
+Tue Jan 29 19:06:06 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          GME::PICML_Data_Value_Builder was missing its constructor
+          and destructor's implementation.
+
 Tue Jan 29 19:03:25 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
