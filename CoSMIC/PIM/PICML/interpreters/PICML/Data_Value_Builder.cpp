@@ -1,12 +1,46 @@
 // $Id$
 
+// The following is a hack!!
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x0400
+#endif
+
 #include "Data_Value_Builder.h"
 #include "Data_Value.h"
 #include "Uml.h"
+#include "gme/GME.h"
 #include <memory>
 
 namespace GME
 {
+//
+// build_complex
+//
+bool PICML_Data_Value_Builder::
+build_complex (const GME::FCO & datatype, PICML_Data_Value * & value)
+{
+  std::string name = datatype.meta ().name ();
+  return this->build_complex_i (name, datatype, value);
+}
+
+//
+// build_complex
+//
+bool PICML_Data_Value_Builder::
+build_complex_i (const std::string & name,
+                 const GME::FCO & fco,
+                 PICML_Data_Value * & value)
+{
+  if (name == "Aggregate")
+    return this->build_aggregate (GME::Model::_narrow (fco), value);
+  else if (name  == "Enum")
+    return this->build_enum (GME::Model::_narrow (fco), value);
+  else if (name == "Collection")
+    return this->build_collection (GME::Reference::_narrow (fco), value);
+  else
+    return false;
+}
+
 //
 // build_aggregate
 //
@@ -116,20 +150,8 @@ create_data_value (const GME::FCO & type, PICML_Data_Value * & value)
   {
     value = new PICML_Boolean_Data_Value ();
   }
-  else if (meta == "Enum")
-  {
-    return this->build_enum (GME::Model::_narrow (type), value);
-  }
-  else if (meta == "Aggregate")
-  {
-    return this->build_aggregate (GME::Model::_narrow (type), value);
-  }
-  else if (meta == "Collection")
-  {
-    return this->build_collection (GME::Reference::_narrow (type), value);
-  }
   else
-    return false;
+    return this->build_complex_i (meta, type, value);
 
   return true;
 }

@@ -1,3 +1,21 @@
+Tue Jan 29 16:19:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          Added a hack to define _WIN32_WINNT to the correct version
+          since it is being set to a different value elsewhere.
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * Utils/gme/GME.mpc:
+
+          The project was not linking with ACE properly in release
+          mode.
+
+        * cosmic_ace.mwc:
+
+          Added minizip project to the build.
+
 Fri Jan 25 19:20:55 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

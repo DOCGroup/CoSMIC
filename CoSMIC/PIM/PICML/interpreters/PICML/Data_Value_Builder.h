@@ -16,7 +16,7 @@
 #define _DATA_VALUE_BUILDER_H_
 
 #include "PICML.h"
-#include "gme/GME.h"
+#include "gme/GME_fwd.h"
 
 // Forward decl.
 class PICML_Data_Value;
@@ -31,6 +31,8 @@ class PICML_Data_Value;
 
 namespace GME
 {
+  class FCO;
+
 class PICML_Data_Value_Builder
 {
 public:
@@ -39,6 +41,9 @@ public:
 
   /// Destructor.
   ~PICML_Data_Value_Builder (void);
+
+  bool build_complex (const GME::FCO & datatype,
+                      PICML_Data_Value * & value);
 
   bool build_aggregate (const GME::Model & aggregate,
                         PICML_Data_Value * & value);
@@ -50,6 +55,10 @@ public:
                    PICML_Data_Value * & value);
 
 private:
+  bool build_complex_i (const std::string & name,
+                        const GME::FCO & model,
+                        PICML_Data_Value * & value);
+
   bool create_data_value (const GME::FCO & type,
                           PICML_Data_Value * & value);
 };

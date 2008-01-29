@@ -1,6 +1,6 @@
 // $Id$
 
-project (GME) : acedefaults, acenosubsets, cosmic_common {
+project (GME) : acelib, cosmic_common {
   sharedname = GME
 
   dynamicflags += GME_BUILD_DLL

@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML): acedefaults, udm, xerces, boost_base, cosmic_common {
+project (PICML): acelib, udm, xerces, boost_base, cosmic_common {
 
   UDM_Files {
     gendir = .

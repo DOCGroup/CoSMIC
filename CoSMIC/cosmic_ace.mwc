@@ -1,6 +1,6 @@
 // $Id$
 
 workspace : cosmic {
-  // -- include the ACE project
   $(ACE_ROOT)/ace/ace.mpc
+  $(ACE_ROOT)/contrib/minizip
 }
