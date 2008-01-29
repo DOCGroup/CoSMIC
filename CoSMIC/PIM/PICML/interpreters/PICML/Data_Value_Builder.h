@@ -33,7 +33,7 @@ namespace GME
 {
   class FCO;
 
-class PICML_Data_Value_Builder
+class PICML_Export PICML_Data_Value_Builder
 {
 public:
   /// Default constructor.
@@ -66,7 +66,7 @@ private:
 
 namespace PICML
 {
-class Data_Value_Builder
+class PICML_Export Data_Value_Builder
 {
 public:
   /// Default constructor.

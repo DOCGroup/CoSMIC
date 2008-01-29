@@ -1,3 +1,9 @@
+Tue Jan 29 19:03:25 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+
+          Builder classes were missing export declaration.
+
 Tue Jan 29 16:19:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
