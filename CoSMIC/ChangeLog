@@ -1,3 +1,19 @@
+Wed Jan 30 23:30:18 UTC 2008  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        
+          Changed name of thrown exception FE_Bailout to Bailout,
+          reflecting the change in the IDL compiler front end.
+          
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        
+          Removed the "meta" tag from the GME attributes corresponding
+          to the PICML PrefixTag, SpecifyIdTag and VersionTag model
+          elements, since it was preventing them from being visible
+          in PICML models. Thanks to Will Otte
+          <w dot otte at vanderbilt dot edu> for reporting the problem.
+
 Tue Jan 29 19:06:06 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:

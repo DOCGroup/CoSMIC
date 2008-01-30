@@ -2480,7 +2480,7 @@ adding_visitor::add_file_element (DOMElement *parent,
                       "file %s not found in decl table\n",
                       tmp_cstr));
 
-          throw FE_Bailout ();
+          throw Bailout ();
         }
 
       char *hex_relid = be_global->hex_string (rel_id);
@@ -2498,7 +2498,7 @@ adding_visitor::add_file_element (DOMElement *parent,
                       "Error: file %s id not found in id table\n",
                       tmp_cstr));
 
-          throw FE_Bailout ();
+          throw Bailout ();
         }
 
       file->setAttribute (X ("id"), file_id);
@@ -2557,7 +2557,7 @@ adding_visitor::add_prefix_element (DOMElement *parent, AST_Decl *node)
         }
     }
 
-  this->add_tag_common (prefix, "PrefixTag", parent);
+  this->add_tag_common (prefix, "PrefixTag", parent, false);
 }
 
 void
@@ -2574,7 +2574,7 @@ adding_visitor::add_replace_id_element (DOMElement *parent, AST_Decl *node)
       id = node->prefix ();
     }
 
-  this->add_tag_common (id, "SpecifyIdTag", parent);
+  this->add_tag_common (id, "SpecifyIdTag", parent, false);
 }
 
 void
@@ -2597,7 +2597,7 @@ adding_visitor::add_version_element (DOMElement *parent, AST_Decl *node)
         }
    }
 
-  this->add_tag_common (version, "VersionTag", parent);
+  this->add_tag_common (version, "VersionTag", parent, false);
 }
 
 void
@@ -2768,7 +2768,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
                       fname.c_str (),
                       idl_global->filename ()->get_string ()));
 
-          throw FE_Bailout ();
+          throw Bailout ();
         }
 
       DOMElement *fileref =

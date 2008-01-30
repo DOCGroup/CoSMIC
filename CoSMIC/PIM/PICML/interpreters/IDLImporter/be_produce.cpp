@@ -94,10 +94,8 @@ BE_abort (void)
   ACE_ERROR ((LM_ERROR,
               ACE_TEXT ("Fatal Error - Aborting\n")));
 
-  idl_global->set_err_count (idl_global->err_count () + 1);
-
   // BE_cleanup will be called after the exception is caught.
-  throw FE_Bailout ();
+  throw Bailout ();
 }
 
 // Do the work of this BE. This is the starting point for code generation.
@@ -182,7 +180,7 @@ BE_produce (void)
       XMLString::release (&message);
       BE_abort ();
     }
-  catch (FE_Bailout)
+  catch (Bailout)
     {
       throw;
     }
