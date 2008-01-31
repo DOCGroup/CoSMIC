@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{AC82DCC7-8CD8-4AA8-AAAD-6F85EBAC19A6}" cdate="Sun Jan 20 20:07:00 2008" mdate="Sun Jan 20 20:07:00 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{799F68B1-AE44-427B-8D4E-FCB72D67F86F}" cdate="Wed Jan 30 17:59:48 2008" mdate="Wed Jan 30 17:59:48 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2223,8 +2223,8 @@ not worker.Abstract</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000000a"/>
 					<connpoint role="dst" target="id-0066-0000000a"/>
+					<connpoint role="src" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -31876,6 +31876,12 @@ dName = dstTerminalEffect</value>
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="bound-145-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4103</value>
+				</regnode>
+			</regnode>
 		</regnode>
 		<regnode name="OperationTypes" isopaque="yes">
 			<value></value>
@@ -45803,8 +45809,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000007e"/>
 				<connpoint role="src" target="id-0066-0000007e"/>
+				<connpoint role="dst" target="id-0066-0000007e"/>
 			</connection>
 			<connection id="id-0068-000000ce" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -47365,7 +47371,7 @@ ResourceUsesPort</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000000e" kind="ParadigmSheet" guid="{81E9E2D8-857D-48c4-B68A-D668100A2C62}" relid="0x3" childrelidcntr="0x144">
+		<model id="id-0065-0000000e" kind="ParadigmSheet" guid="{81E9E2D8-857D-48c4-B68A-D668100A2C62}" relid="0x3" childrelidcntr="0x146">
 			<name>NamedTypes</name>
 			<atom id="id-0066-000000a5" kind="Model" role="Model" guid="{92FB942C-B67B-4b1b-9C4F-E18532BC85FD}" relid="0x6">
 				<name>Enum</name>
@@ -49193,6 +49199,42 @@ name &lt;&gt; &quot;&quot; implies name.match( &quot;^[a-zA-Z][_a-zA-Z0-9]*$&quo
 					<value>false</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-0000026a" kind="FieldAttribute" role="FieldAttribute" guid="{5588AAA7-E7DC-47d5-AAFF-0DD4D42E5066}" relid="0x145">
+				<name>bound</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>261,387</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000000e" kind="FCOProxy" role="FCOProxy" guid="{27840314-B409-42d8-9BF4-ACFBFB7938AE}" relid="0x106" referred="id-0066-00000098">
 				<name>PredefinedType</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -49984,6 +50026,11 @@ name &lt;&gt; &quot;&quot; implies name.match( &quot;^[a-zA-Z][_a-zA-Z0-9]*$&quo
 				</regnode>
 				<connpoint role="src" target="id-0066-000000be"/>
 				<connpoint role="dst" target="id-0067-000000a1"/>
+			</connection>
+			<connection id="id-0068-000003e8" kind="HasAttribute" role="HasAttribute" guid="{6D098655-7AB7-45a8-9495-5FEB9BE0C0B7}" relid="0x146">
+				<name>HasAttribute</name>
+				<connpoint role="dst" target="id-0066-000000b8"/>
+				<connpoint role="src" target="id-0066-0000026a"/>
 			</connection>
 			<set id="id-0069-0000001c" kind="Aspect" role="Aspect" guid="{1D144FE6-49DD-46d9-A3FD-8C935A3D6E15}" relid="0x0" members="id-0066-000000a5 id-0066-000000a6 id-0066-000000a7 id-0066-000000a8 id-0066-000000a9 id-0066-000000aa id-0066-000000b6 id-0066-000000b8 id-0066-000000b9 id-0066-000000ba id-0066-000000bb id-0067-0000000e id-0067-00000010 id-0067-000000a0">
 				<name>NamedTypeAspect</name>
@@ -89123,8 +89170,8 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000242"/>
 				<connpoint role="dst" target="id-0066-00000242"/>
+				<connpoint role="src" target="id-0066-00000242"/>
 			</connection>
 			<connection id="id-0068-000003a4" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>

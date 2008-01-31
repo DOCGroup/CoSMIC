@@ -1,13 +1,22 @@
+Thu Jan 31 00:12:39 UTC 2008  William R. Otte <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+	
+  	  Added support for describing bounded collections.
+
 Wed Jan 30 23:30:18 UTC 2008  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/be_produce.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
-        
+
           Changed name of thrown exception FE_Bailout to Bailout,
           reflecting the change in the IDL compiler front end.
-          
+
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
-        
+
           Removed the "meta" tag from the GME attributes corresponding
           to the PICML PrefixTag, SpecifyIdTag and VersionTag model
           elements, since it was preventing them from being visible
