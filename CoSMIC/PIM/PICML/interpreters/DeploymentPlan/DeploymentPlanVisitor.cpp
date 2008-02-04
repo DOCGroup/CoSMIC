@@ -1268,12 +1268,13 @@ namespace PICML
         this->initNodeRefName (nodeRefName);
       }
 
-      std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
-      for (std::set<CollocationGroup_Members_Base>::const_iterator
-        comp_type_iter = comp_types.begin();
-        comp_type_iter != comp_types.end (); ++comp_type_iter)
+      std::set<CollocationGroupMember> comp_types = cg.members ();
+
+      for (std::set<CollocationGroupMember>::const_iterator
+           comp_type_iter = comp_types.begin();
+           comp_type_iter != comp_types.end (); ++comp_type_iter)
       {
-        CollocationGroup_Members_Base comp_type = *comp_type_iter;
+        CollocationGroupMember comp_type = *comp_type_iter;
 
         if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
         {
@@ -1287,11 +1288,11 @@ namespace PICML
           update_component_parents (comp);
           update_component_instance (comp, nodeRefName);
         }
-        else if (Udm::IsDerivedFrom
-          (comp_type.type(), ComponentAssemblyReference::meta))
+        else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
         {
           ComponentAssemblyReference comp_assembly_ref =
             ComponentAssemblyReference::Cast (comp_type);
+
           std::string comp_assembly_ref_name = comp_assembly_ref.name ();
           ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
           comp_assembly.Accept (*this);

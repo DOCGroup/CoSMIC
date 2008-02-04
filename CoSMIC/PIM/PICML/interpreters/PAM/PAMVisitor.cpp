@@ -108,7 +108,7 @@ namespace PICML
 
   void PAMVisitor::Visit_CollocationGroup (const CollocationGroup& cg)
   {
-    set<CollocationGroup_Members_Base> cgmembers = cg.members();
+    set<CollocationGroupMember> cgmembers = cg.members();
     set<Component> candidateTypes;
     set<Component> candidateInstances;
     this->CreateCandidateComponents (cgmembers,
@@ -221,7 +221,7 @@ namespace PICML
          ++cgBegin)
       {
         CollocationGroup cg = cgBegin->second;
-        set<CollocationGroup_Members_Base> cgmembers = cg.members();
+        set<CollocationGroupMember> cgmembers = cg.members();
         this->CreateCandidateComponents (cgmembers,
                                          candidateTypes,
                                          candidateInstances);
@@ -355,7 +355,7 @@ namespace PICML
             CollocationGroup cg = *cgBegin;
             this->asmCg_ = Clone (cg, this->asmPlan_);
             this->ConnectCgNodeRef(cg);
-            set<CollocationGroup_Members_Base> cgmembers = cg.members();
+            set<CollocationGroupMember> cgmembers = cg.members();
             set<Component> types, instances;
             this->CreateCandidateComponents (cgmembers,
                                              types,
@@ -1268,15 +1268,15 @@ namespace PICML
       }
   }
 
-  void PAMVisitor::CreateCandidateComponents (set<CollocationGroup_Members_Base>& cgmembers,
+  void PAMVisitor::CreateCandidateComponents (set<CollocationGroupMember>& cgmembers,
                                               set<Component>& candidateTypes,
                                               set<Component>& candidateInstances)
   {
-    for (set<CollocationGroup_Members_Base>::iterator iter = cgmembers.begin();
+    for (set<CollocationGroupMember>::iterator iter = cgmembers.begin();
          iter != cgmembers.end();
          ++iter)
       {
-        CollocationGroup_Members_Base cgmem (*iter);
+        CollocationGroupMember cgmem (*iter);
         if (Udm::IsDerivedFrom (cgmem.type(), ComponentRef::meta))
           {
             ComponentRef compRef = ComponentRef::Cast (cgmem);

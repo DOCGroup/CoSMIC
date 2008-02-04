@@ -1,11 +1,43 @@
+Mon Feb  4 05:33:26 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.h:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.cpp:
+
+          Fixed build errors related to the refactoring of the PICML
+          metamodel.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          We are now able to model the deployments of component home (i.e,
+          ComponentFactory) object. To deploy a component home, you must
+          first create a ComponentFactoryImplemenationContainer. This
+          container houses a reference to a ComponentFactory object. To
+          deploy the factory implementation, create a reference to it
+          in the deployment plan. To associate a deployed factory with
+          a component instance, create a connection from the factory to
+          the instance in the deployment plan. A component factory can
+          deploy multiple instances. Also, if a component factory
+          deploys a component instance, the component instance can not
+          be included in the CollocationGroup. Instead, the component's
+          home must be placed in the CollocationGroup.
+
+        * PIM/PICML/paradigms/icons/sharedcomponentref.bmp:
+
+          Added a icon for shared components in the deployment plan.
+
 Thu Jan 31 00:12:39 UTC 2008  William R. Otte <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-	
-  	  Added support for describing bounded collections.
+
+          Added support for describing bounded collections.
 
 Wed Jan 30 23:30:18 UTC 2008  Jeff Parsons <j.parsons@vanderbilt.edu>
 
