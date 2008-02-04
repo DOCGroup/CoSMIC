@@ -1,3 +1,15 @@
+Mon Feb  4 16:15:45 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/register.mpb:
+        * default.features:
+
+          Registering an interpreter is now a feature of the project
+          parent project. This allows developers to disable auto
+          registration of a GME component on the fly without removing
+          the register.mpb base project from their project. To disable
+          component auto registration, add '-features register=0' to the
+          command-line, or disable it in default.features.
+
 Mon Feb  4 05:33:26 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:

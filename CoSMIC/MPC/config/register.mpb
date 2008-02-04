@@ -1,6 +1,6 @@
 // $Id$
 
-project {
+feature (register) {
   specific (vc6, vc7, vc71, vc8, nmake) {
     postbuild += \
       echo Registering \
