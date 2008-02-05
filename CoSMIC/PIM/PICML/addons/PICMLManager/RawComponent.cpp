@@ -43,12 +43,12 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
   this->uuid_types_.insert ("ComponentAssembly");
   this->uuid_types_.insert ("ComponentPackage");
   this->uuid_types_.insert ("ComponentImplementation");
+  this->uuid_types_.insert ("ComponentFactoryInstance");
   this->uuid_types_.insert ("DeploymentPlan");
   this->uuid_types_.insert ("Domain");
   this->uuid_types_.insert ("ImplementationArtifact");
   this->uuid_types_.insert ("MonolithicImplementation");
   this->uuid_types_.insert ("PackageConfiguration");
-
   return S_OK;
 }
 

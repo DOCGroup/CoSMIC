@@ -450,13 +450,15 @@ MPCStream::create_cidl_defn (PICML::ImplementationArtifact& artifact)
 
   bool entered_loop = 0;
   for (std::set<PICML::ImplementationArtifactReference>::iterator iter =
-    impl_refs.begin ();
-    iter != impl_refs.end ();
-    iter ++)
+       impl_refs.begin ();
+       iter != impl_refs.end ();
+       iter ++)
   {
-    try {
+    try
+    {
       PICML::ComponentImplementationContainer parent =
-        iter->ComponentImplementationContainer_parent();
+        PICML::ComponentImplementationContainer::Cast (iter->parent ());
+
       // @@ There should only be one Container that should hold
       // a reference to this
       entered_loop = 1;

@@ -1,3 +1,22 @@
+Tue Feb  5 19:26:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          UUID's are automatically generated for component home
+          implementations.
+
+        * PIM/PICML/interpreters/MPC/MPCStream.cpp:
+
+          Fixed build errors related to the change below.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Refactored PICML so implementation artifacts can be associated
+          with component home implemenations.
+
 Mon Feb  4 16:15:45 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/register.mpb:
