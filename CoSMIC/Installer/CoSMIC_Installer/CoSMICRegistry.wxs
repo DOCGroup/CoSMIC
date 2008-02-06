@@ -8,13 +8,14 @@
              Display="hidden"
              TypicalDefault="install"
              Level='1'>
-      <ComponentRef Id='CoSMICRegistry' />
+      <ComponentRef Id='CoSMICRegistryValues' />
       <ComponentRef Id='NotesShortcutComponent' />
       <ComponentRef Id="DocsShortcutComponent" />
+      <ComponentRef Id='CoSMICRegistryFiles' />
     </Feature>
 
     <DirectoryRef Id="INSTALLDIR">
-      <Component Id='CoSMICRegistry' Guid='C4DA0B16-D93C-407A-AFFD-E4C918C2884D'>
+      <Component Id='CoSMICRegistryValues' Guid='C4DA0B16-D93C-407A-AFFD-E4C918C2884D'>
         <RegistryKey Root='HKLM' Key='Software\ISIS'
                      Action="create"/>
         <RegistryValue Id='CoSMICTargetDir'
@@ -79,5 +80,94 @@
       </Component>
     </DirectoryRef>
 
-  </Fragment>
+    <DirectoryRef Id="CoSMICRegDir">
+      <Component Id='CoSMICRegistryFiles' Guid='98AB6F4A-F154-44a2-B257-84156D80CB09'>
+        <File Id='PICMLManager_Reg'
+              Name='PICMLManager.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\addons\PICMLManager\PICMLManager.reg' />
+
+        <File Id='PICMLDecorator_Reg'
+              Name='PICMLDecorator.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\decorators\PICMLDecorator.reg' />
+
+        <File Id='BGMLComponent_Reg'
+              Name='BGMLComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\BGMLComponent\BGMLComponent.reg' />
+
+        <File Id='CIDLComponent_Reg'
+              Name='CIDLComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\CIDLComponent\CIDLComponent.reg' />
+
+        <File Id='DeploymentPlanComponent_Reg'
+              Name='DeploymentPlanComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\DeploymentPlanComponent\DeploymentPlanComponent.reg' />
+
+        <File Id='IDLGenerator_Reg'
+              Name='IDLGenerator.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\IDLGenerator\IDLGenerator.reg' />
+
+        <File Id='MPCComponent_Reg'
+              Name='MPCComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\MPCComponent\MPCComponent.reg' />
+
+        <File Id='PackageComponent_Reg'
+              Name='PackageComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\PackageComponent\PackageComponent.reg' />
+
+        <File Id='PAMComponent_Reg'
+              Name='PAMComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\PAMComponent\PAMComponent.reg' />
+
+        <File Id='PathComponent_Reg'
+              Name='PathComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\PathComponent\PathComponent.reg' />
+
+        <File Id='DomainComponent_Reg'
+              Name='DomainComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\TargetComponent\DomainComponent.reg' />
+
+        <File Id='BIRSpecificationComponent_Reg'
+              Name='BIRSpecificationComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\BIRSpecificationComponent\BIRSpecificationComponent.reg' />
+
+        <File Id='CIAOEventsComponent_Reg'
+              Name='CIAOEventsComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\CIAOEventsComponent\CIAOEventsComponent.reg' />
+
+        <File Id='FaultToleranceComponent_Reg'
+              Name='FaultToleranceComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\FaultToleranceComponent\FaultToleranceComponent.reg' />
+
+        <File Id='NetQoSComponent_Reg'
+              Name='NetQoSComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\NetQoSComponent\NetQoSComponent.reg' />
+
+        <File Id='RTConfigurationComponent_Reg'
+              Name='RTConfigurationComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\RTConfigurationComponent\RTConfigurationComponent.reg' />
+
+        <File Id='SecurityQoSComponent_Reg'
+              Name='SecurityQoSComponent.reg'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PSM\CQML\interpreters\SecurityQoSComponent\SecurityQoSComponent.reg' />
+
+      </Component>
+    </DirectoryRef>
+        </Fragment>
 </Wix>

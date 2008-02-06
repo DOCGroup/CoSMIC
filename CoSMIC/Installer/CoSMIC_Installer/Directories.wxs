@@ -9,6 +9,7 @@
           <Directory Id='INSTALLDIR' Name='CoSMIC'>
             <Directory Id='CoSMICDocsDir' Name='docs' FileSource='[INSTALLDIR]docs' />
             <Directory Id='CoSMICBinDir' Name='bin' FileSource='[INSTALLDIR]bin'>
+              <Directory Id='CoSMICRegDir' Name='Registry' FileSource='[CoSMICBinDir]Registry' />
               <Directory Id='CoSMICMicrosoft.VC80.ATLDir' Name='Microsoft.VC80.ATL' FileSource='[CoSMICBinDir]Microsoft.VC80.ATL' />
               <Directory Id='CoSMICMicrosoft.VC80.CRTDir' Name='Microsoft.VC80.CRT' FileSource='[CoSMICBinDir]Microsoft.VC80.CRT' />
               <Directory Id='CoSMICMicrosoft.VC80.MFCDir' Name='Microsoft.VC80.MFC' FileSource='[CoSMICBinDir]Microsoft.VC80.MFC' />
