@@ -1,0 +1,55 @@
+// $Id$
+
+project (PropertyManager): acelib, mfc, boost_base, picmllib {
+  sharedname = PropertyManager
+
+  includes +=  . \
+               $(GME_ROOT)/SDK/BON \
+               $(COSMIC_ROOT)/Utils
+
+  libs  += GME
+  after += GME
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  specific {
+     midl_flags += /server none /client none
+     midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
+   }
+
+  specific (vc6, vc7, vc71, vc8) {
+    use_lib_modifier = 0
+    link_options += /DEF:Component.def
+  }
+
+  Source_Files {
+    DT_Controls.cpp
+    PropertyManager_Dialog.cpp
+    RawComponent.cpp
+
+    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
+    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+  }
+
+  Header_Files {
+    RawComponent.h
+    Resource.h
+    ComponentLib.h
+    ComponentConfig.h
+
+    $(GME_ROOT)/SDK/BON/ComHelp.h
+    $(GME_ROOT)/SDK/BON/ComponentDll.h
+    $(GME_ROOT)/SDK/BON/ComponentObj.h
+  }
+
+  Resource_Files {
+    PropertyManager.rc
+  }
+
+  Template_Files {
+    DT_Controls_T.cpp
+  }
+}

@@ -21,4 +21,5 @@ workspace {
   CIDLComponent
   Path
   PathComponent
+  PropertyManager
 }

@@ -1,3 +1,41 @@
+Sun Feb 10 21:44:27 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser_T.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/PropertyManager:
+        * PIM/PICML/interpreters/PropertyManager/Component.def:
+        * PIM/PICML/interpreters/PropertyManager/ComponentConfig.h:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls.h:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls.cpp:
+        * PIM/PICML/interpreters/PropertyManager/DT_Controls_T.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.aps:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.reg:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.wxs:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManagerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.h:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.inl:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.cpp:
+        * PIM/PICML/interpreters/PropertyManager/blank.bmp:
+        * PIM/PICML/interpreters/PropertyManager/minus.bmp:
+        * PIM/PICML/interpreters/PropertyManager/plus.bmp:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          Initial checkin of the interpreter/utility that simplifies
+          setting the values of complex types in the model.
+
 Wed Feb  6 18:20:00 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
@@ -5,7 +43,7 @@ Wed Feb  6 18:20:00 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/paradigms/CQMLParadigm.wxs:
 
-          Added registry files of GME components in the CoSMIC 
+          Added registry files of GME components in the CoSMIC
           installer for troubleshooting component registration.
 
 Tue Feb  5 19:26:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>

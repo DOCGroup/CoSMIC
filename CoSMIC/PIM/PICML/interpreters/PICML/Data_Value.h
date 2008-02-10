@@ -19,7 +19,7 @@
 #include <map>
 #include <set>
 #include <vector>
-#include "Utils_Export.h"
+#include "PICML_Export.h"
 
 // Forward decl.
 class PICML_Data_Value_Visitor;
@@ -32,27 +32,41 @@ class PICML_Data_Value_Visitor;
  */
 //=============================================================================
 
-class Utils_Export PICML_Data_Value
+class PICML_Export PICML_Data_Value
 {
 public:
   /// Default constructor.
-  PICML_Data_Value (void);
+  PICML_Data_Value (const std::string & name,
+                    PICML_Data_Value * parent = 0);
 
   /// Destructor.
   virtual ~PICML_Data_Value (void);
 
-  const std::string & value (void) const;
+  virtual const std::string & value (void);
 
   virtual void value (const std::string & value);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor) = 0;
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const = 0;
 
-  virtual PICML_Data_Value * _create (void) const = 0;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const = 0;
 
-private:
+  const std::string & name (void) const;
+
+  bool is_uptodate (void) const;
+
+protected:
+  /// Name associated w/ the data value.
+  std::string name_;
+
   /// Value of the data value.
   std::string value_;
 
+  bool is_uptodate_;
+
+  PICML_Data_Value * parent_;
+
+private:
   // prevent the following operations
   PICML_Data_Value (const PICML_Data_Value & );
   const PICML_Data_Value & operator = (const PICML_Data_Value &);
@@ -64,16 +78,18 @@ private:
  */
 //=============================================================================
 
-class Utils_Export PICML_String_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_String_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_String_Data_Value (void);
+  PICML_String_Data_Value (const std::string & name,
+                           PICML_Data_Value * parent = 0);
 
   virtual ~PICML_String_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -82,16 +98,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_Char_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Char_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_Char_Data_Value (void);
+  PICML_Char_Data_Value (const std::string & name,
+                         PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Char_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -100,16 +118,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_Short_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Short_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_Short_Data_Value (void);
+  PICML_Short_Data_Value (const std::string & name,
+                          PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Short_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -118,16 +138,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_UShort_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_UShort_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_UShort_Data_Value (void);
+  PICML_UShort_Data_Value (const std::string & name,
+                           PICML_Data_Value * parent = 0);
 
   virtual ~PICML_UShort_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -136,16 +158,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_Long_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Long_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_Long_Data_Value (void);
+  PICML_Long_Data_Value (const std::string & name,
+                         PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Long_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -154,16 +178,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_ULong_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_ULong_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_ULong_Data_Value (void);
+  PICML_ULong_Data_Value (const std::string & name,
+                          PICML_Data_Value * parent = 0);
 
   virtual ~PICML_ULong_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -172,16 +198,18 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_Boolean_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Boolean_Data_Value : public PICML_Data_Value
 {
 public:
-  PICML_Boolean_Data_Value (void);
+  PICML_Boolean_Data_Value (const std::string & name,
+                            PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Boolean_Data_Value (void);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 };
 
 //=============================================================================
@@ -190,12 +218,13 @@ public:
  */
 //=============================================================================
 
-class Utils_Export PICML_Enum_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Enum_Data_Value : public PICML_Data_Value
 {
 public:
   typedef std::set <std::string> container_type;
 
-  PICML_Enum_Data_Value (void);
+  PICML_Enum_Data_Value (const std::string & name,
+                         PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Enum_Data_Value (void);
 
@@ -203,9 +232,10 @@ public:
 
   const container_type & options (void) const;
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 
 private:
   std::set <std::string> options_;
@@ -217,7 +247,7 @@ private:
  */
 //=============================================================================
 
-class Utils_Export PICML_Aggregate_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Aggregate_Data_Value : public PICML_Data_Value
 {
 public:
   typedef std::map <std::string, PICML_Data_Value *> container_type;
@@ -226,13 +256,17 @@ public:
 
   typedef container_type::const_iterator const_iterator;
 
-  PICML_Aggregate_Data_Value (void);
+  PICML_Aggregate_Data_Value (const std::string & name,
+                              PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Aggregate_Data_Value (void);
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
+
+  virtual const std::string & value (void);
 
   virtual void value (const std::string & value);
 
@@ -244,13 +278,15 @@ public:
   bool find_member (const std::string & name,
                     PICML_Data_Value * & member) const;
 
-  PICML_Data_Value * operator [] (const std::string & member);
+  const PICML_Data_Value * operator [] (const std::string & member);
 
   iterator begin (void);
   iterator end (void);
 
   const_iterator begin (void) const;
   const_iterator end (void) const;
+
+  size_t size (void) const;
 
 private:
   std::map <std::string, PICML_Data_Value *> members_;
@@ -262,7 +298,7 @@ private:
  */
 //=============================================================================
 
-class Utils_Export PICML_Sequence_Data_Value : public PICML_Data_Value
+class PICML_Export PICML_Sequence_Data_Value : public PICML_Data_Value
 {
 public:
   typedef std::vector <PICML_Data_Value *> container_type;
@@ -271,17 +307,23 @@ public:
 
   typedef container_type::const_iterator const_iterator;
 
-  PICML_Sequence_Data_Value (PICML_Data_Value * type);
+  PICML_Sequence_Data_Value (const std::string & name,
+                             PICML_Data_Value * type,
+                             PICML_Data_Value * parent = 0);
 
   virtual ~PICML_Sequence_Data_Value (void);
 
-  virtual PICML_Data_Value * _create (void) const;
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
+
+  virtual const std::string & value (void);
 
   virtual void value (const std::string & value);
 
-  virtual void accept (PICML_Data_Value_Visitor & visitor);
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 
   PICML_Data_Value * operator [] (int index);
+
   const PICML_Data_Value * operator [] (int index) const;
 
   size_t size (void) const;

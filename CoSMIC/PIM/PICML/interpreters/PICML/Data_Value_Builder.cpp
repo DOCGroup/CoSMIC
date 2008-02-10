@@ -33,10 +33,13 @@ PICML_Data_Value_Builder::~PICML_Data_Value_Builder (void)
 // build_complex
 //
 bool PICML_Data_Value_Builder::
-build_complex (const GME::FCO & datatype, PICML_Data_Value * & value)
+build_complex (const std::string & name,
+               const GME::FCO & datatype,
+               PICML_Data_Value * & value,
+               PICML_Data_Value * parent)
 {
-  std::string name = datatype.meta ().name ();
-  return this->build_complex_i (name, datatype, value);
+  std::string meta = datatype.meta ().name ();
+  return this->build_complex_i (name, meta, datatype, value, parent);
 }
 
 //
@@ -44,15 +47,17 @@ build_complex (const GME::FCO & datatype, PICML_Data_Value * & value)
 //
 bool PICML_Data_Value_Builder::
 build_complex_i (const std::string & name,
+                 const std::string & meta,
                  const GME::FCO & fco,
-                 PICML_Data_Value * & value)
+                 PICML_Data_Value * & value,
+                 PICML_Data_Value * parent)
 {
-  if (name == "Aggregate")
-    return this->build_aggregate (GME::Model::_narrow (fco), value);
-  else if (name  == "Enum")
-    return this->build_enum (GME::Model::_narrow (fco), value);
-  else if (name == "Collection")
-    return this->build_collection (GME::Reference::_narrow (fco), value);
+  if (meta == "Aggregate")
+    return this->build_aggregate (name, GME::Model::_narrow (fco), value, parent);
+  else if (meta  == "Enum")
+    return this->build_enum (name, GME::Model::_narrow (fco), value, parent);
+  else if (meta == "Collection")
+    return this->build_collection (name, GME::Reference::_narrow (fco), value, parent);
   else
     return false;
 }
@@ -61,10 +66,12 @@ build_complex_i (const std::string & name,
 // build_aggregate
 //
 bool PICML_Data_Value_Builder::
-build_aggregate (const GME::Model & aggregate,
-                 PICML_Data_Value * & value)
+build_aggregate (const std::string & name,
+                 const GME::Model & aggregate,
+                 PICML_Data_Value * & value,
+                 PICML_Data_Value * parent)
 {
-  PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value ();
+  PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value (name, parent);
   std::auto_ptr <PICML_Aggregate_Data_Value> auto_clean (aggr);
 
   typedef GME::Collection_T <GME::Reference> Member_Set;
@@ -80,7 +87,7 @@ build_aggregate (const GME::Model & aggregate,
 
     for (; iter != iter_end; iter ++)
     {
-      if (this->create_data_value (iter->refers_to (), temp))
+      if (this->create_data_value (iter->name (), iter->refers_to (), temp, aggr))
         aggr->insert_member (iter->name (), temp);
       else
         return false;
@@ -95,8 +102,10 @@ build_aggregate (const GME::Model & aggregate,
 // build_collection
 //
 bool PICML_Data_Value_Builder::
-build_collection (const GME::Reference & collection,
-                  PICML_Data_Value * & value)
+build_collection (const std::string & name,
+                  const GME::Reference & collection,
+                  PICML_Data_Value * & value,
+                  PICML_Data_Value * parent)
 {
   GME::FCO mt = collection.refers_to ();
 
@@ -105,10 +114,10 @@ build_collection (const GME::Reference & collection,
 
   PICML_Data_Value * type = 0;
 
-  if (!this->create_data_value (mt, type))
+  if (!this->create_data_value (name, mt, type))
     return false;
 
-  value = new PICML_Sequence_Data_Value (type);
+  value = new PICML_Sequence_Data_Value (name, type, parent);
   return true;
 }
 
@@ -116,9 +125,12 @@ build_collection (const GME::Reference & collection,
 // build_enum
 //
 bool PICML_Data_Value_Builder::
-build_enum (const GME::Model & e, PICML_Data_Value * & value)
+build_enum (const std::string & name,
+            const GME::Model & e,
+            PICML_Data_Value * & value,
+            PICML_Data_Value * parent)
 {
-  PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value ();
+  PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value (name, parent);
   std::auto_ptr <PICML_Enum_Data_Value> auto_clean (e_val);
 
   typedef GME::Collection_T <GME::Atom> EnumValue_Set;
@@ -142,32 +154,35 @@ build_enum (const GME::Model & e, PICML_Data_Value * & value)
 // create_data_value
 //
 bool PICML_Data_Value_Builder::
-create_data_value (const GME::FCO & type, PICML_Data_Value * & value)
+create_data_value (const std::string & name,
+                   const GME::FCO & type,
+                   PICML_Data_Value * & value,
+                   PICML_Data_Value * parent)
 {
   std::string meta = type.meta ().name ();
 
   if (meta == "String")
   {
-    value = new PICML_String_Data_Value ();
+    value = new PICML_String_Data_Value (name, parent);
   }
   else if (meta == "LongInteger")
   {
-    value = new PICML_Long_Data_Value ();
+    value = new PICML_Long_Data_Value (name, parent);
   }
   else if (meta == "Byte")
   {
-    value = new PICML_Char_Data_Value ();
+    value = new PICML_Char_Data_Value (name, parent);
   }
   else if (meta == "ShortInteger")
   {
-    value = new PICML_Short_Data_Value ();
+    value = new PICML_Short_Data_Value (name, parent);
   }
   else if (meta == "Boolean")
   {
-    value = new PICML_Boolean_Data_Value ();
+    value = new PICML_Boolean_Data_Value (name, parent);
   }
   else
-    return this->build_complex_i (meta, type, value);
+    return this->build_complex_i (name, meta, type, value, parent);
 
   return true;
 }
@@ -195,7 +210,9 @@ Data_Value_Builder::~Data_Value_Builder (void)
 // build
 //
 bool Data_Value_Builder::
-build (const PICML::Collection & collection, PICML_Data_Value * & value)
+build (const std::string & name,
+       const PICML::Collection & collection,
+       PICML_Data_Value * & value)
 {
   PICML::MemberType mt = collection.ref ();
 
@@ -204,10 +221,10 @@ build (const PICML::Collection & collection, PICML_Data_Value * & value)
 
   PICML_Data_Value * type = 0;
 
-  if (!this->create_data_value (mt, type))
+  if (!this->create_data_value (name, mt, type))
     return false;
 
-  value = new PICML_Sequence_Data_Value (type);
+  value = new PICML_Sequence_Data_Value (name, type);
   return true;
 }
 
@@ -215,9 +232,11 @@ build (const PICML::Collection & collection, PICML_Data_Value * & value)
 // build
 //
 bool Data_Value_Builder::
-build (const PICML::Enum & e, PICML_Data_Value * & value)
+build (const std::string & name,
+       const PICML::Enum & e,
+       PICML_Data_Value * & value)
 {
-  PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value ();
+  PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value (name);
   std::auto_ptr <PICML_Enum_Data_Value> auto_clean (e_val);
 
   typedef std::vector <PICML::EnumValue> EnumValue_Set;
@@ -238,9 +257,11 @@ build (const PICML::Enum & e, PICML_Data_Value * & value)
 // build
 //
 bool Data_Value_Builder::
-build (const PICML::Aggregate & aggregate, PICML_Data_Value * & value)
+build (const std::string & name,
+       const PICML::Aggregate & aggregate,
+       PICML_Data_Value * & value)
 {
-  PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value ();
+  PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value (name);
   std::auto_ptr <PICML_Aggregate_Data_Value> auto_clean (aggr);
 
   typedef std::vector <PICML::Member> Member_Set;
@@ -254,7 +275,7 @@ build (const PICML::Aggregate & aggregate, PICML_Data_Value * & value)
 
   for (; iter != iter_end; iter ++)
   {
-    if (this->create_data_value (iter->ref (), temp))
+    if (this->create_data_value (iter->name (), iter->ref (), temp))
       aggr->insert_member (iter->name (), temp);
     else
       return false;
@@ -268,41 +289,43 @@ build (const PICML::Aggregate & aggregate, PICML_Data_Value * & value)
 // create_data_value
 //
 bool Data_Value_Builder::
-create_data_value (const PICML::MemberType & type, PICML_Data_Value * & value)
+create_data_value (const std::string & name,
+                   const PICML::MemberType & type,
+                   PICML_Data_Value * & value)
 {
   Uml::Class meta = type.type ();
 
   if (meta == PICML::String::meta)
   {
-    value = new PICML_String_Data_Value ();
+    value = new PICML_String_Data_Value (name);
   }
   else if (meta == PICML::LongInteger::meta)
   {
-    value = new PICML_Long_Data_Value ();
+    value = new PICML_Long_Data_Value (name);
   }
   else if (meta == PICML::Byte::meta)
   {
-    value = new PICML_Char_Data_Value ();
+    value = new PICML_Char_Data_Value (name);
   }
   else if (meta == PICML::ShortInteger::meta)
   {
-    value = new PICML_Short_Data_Value ();
+    value = new PICML_Short_Data_Value (name);
   }
   else if (meta == PICML::Boolean::meta)
   {
-    value = new PICML_Boolean_Data_Value ();
+    value = new PICML_Boolean_Data_Value (name);
   }
   else if (meta == PICML::Enum::meta)
   {
-    return this->build (PICML::Enum::Cast (type), value);
+    return this->build (name, PICML::Enum::Cast (type), value);
   }
   else if (meta == PICML::Aggregate::meta)
   {
-    return this->build (PICML::Aggregate::Cast (type), value);
+    return this->build (name, PICML::Aggregate::Cast (type), value);
   }
   else if (meta == PICML::Collection::meta)
   {
-    return this->build (PICML::Collection::Cast (type), value);
+    return this->build (name, PICML::Collection::Cast (type), value);
   }
   else
     return false;

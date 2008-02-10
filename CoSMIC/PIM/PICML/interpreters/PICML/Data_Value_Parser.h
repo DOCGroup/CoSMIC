@@ -49,6 +49,8 @@ public:
 
   void set_member_value (const char * start, const char * end) const;
 
+  void insert_sequence_value (const char * start, const char * end) const;
+
   template <typename ScannerT>
   class definition
   {
@@ -80,6 +82,12 @@ public:
     /// rule: member_
     boost::spirit::rule <ScannerT> member_;
 
+    /// rule: member_
+    boost::spirit::rule <ScannerT> member_name_;
+
+    /// rule: member_
+    boost::spirit::rule <ScannerT> member_value_;
+
     /// rule: member_list_
     boost::spirit::rule <ScannerT> member_list_;
 
@@ -90,10 +98,15 @@ public:
     boost::spirit::rule <ScannerT> sequence_;
 
     /// rule: sequence_
+    boost::spirit::rule <ScannerT> sequence_value_;
+
+    /// rule: sequence_
     boost::spirit::rule <ScannerT> sequence_list_;
 
+    boost::spirit::rule <ScannerT> operators_;
     /// rule: start_
     boost::spirit::rule <ScannerT> start_;
+
   };
 
   parser_type type (void) const;

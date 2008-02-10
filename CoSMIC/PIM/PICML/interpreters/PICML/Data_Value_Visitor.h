@@ -25,7 +25,7 @@
  */
 //=============================================================================
 
-class Utils_Export PICML_Data_Value_Visitor
+class PICML_Export PICML_Data_Value_Visitor
 {
 public:
   /// Default constructor.

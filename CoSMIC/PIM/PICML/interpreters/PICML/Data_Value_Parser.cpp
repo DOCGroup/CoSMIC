@@ -42,5 +42,22 @@ set_member_value (const char * start, const char * end) const
   PICML_Aggregate_Data_Value * value =
     dynamic_cast <PICML_Aggregate_Data_Value *> (this->value_);
 
-  (*value)[this->token_]->value (std::string (start, end));
+  PICML_Data_Value * member = 0;
+
+  if (value->find_member (this->token_, member))
+    member->value (std::string (start, end));
+}
+
+//
+// select_member
+//
+void PICML_Data_Value_Parser::
+insert_sequence_value (const char * start, const char * end) const
+{
+  PICML_Sequence_Data_Value * value =
+    dynamic_cast <PICML_Sequence_Data_Value *> (this->value_);
+
+  // Create a new element in the sequence and set its value.
+  PICML_Data_Value * element = value->new_element ();
+  element->value (std::string (start, end));
 }

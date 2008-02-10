@@ -42,25 +42,37 @@ public:
   /// Destructor.
   ~PICML_Data_Value_Builder (void);
 
-  bool build_complex (const GME::FCO & datatype,
-                      PICML_Data_Value * & value);
+  bool build_complex (const std::string & name,
+                      const GME::FCO & datatype,
+                      PICML_Data_Value * & value,
+                      PICML_Data_Value * parent = 0);
 
-  bool build_aggregate (const GME::Model & aggregate,
-                        PICML_Data_Value * & value);
+  bool build_aggregate (const std::string & name,
+                        const GME::Model & aggregate,
+                        PICML_Data_Value * & value,
+                        PICML_Data_Value * parent = 0);
 
-  bool build_collection (const GME::Reference & collection,
-                         PICML_Data_Value * & value);
+  bool build_collection (const std::string & name,
+                         const GME::Reference & collection,
+                         PICML_Data_Value * & value,
+                         PICML_Data_Value * parent = 0);
 
-  bool build_enum (const GME::Model & e,
-                   PICML_Data_Value * & value);
+  bool build_enum (const std::string & name,
+                   const GME::Model & en,
+                   PICML_Data_Value * & value,
+                   PICML_Data_Value * parent = 0);
 
 private:
   bool build_complex_i (const std::string & name,
+                        const std::string & meta,
                         const GME::FCO & model,
-                        PICML_Data_Value * & value);
+                        PICML_Data_Value * & value,
+                        PICML_Data_Value * parent = 0);
 
-  bool create_data_value (const GME::FCO & type,
-                          PICML_Data_Value * & value);
+  bool create_data_value (const std::string & name,
+                          const GME::FCO & type,
+                          PICML_Data_Value * & value,
+                          PICML_Data_Value * parent = 0);
 };
 }
 
@@ -75,14 +87,21 @@ public:
   /// Destructor.
   ~Data_Value_Builder (void);
 
-  bool build (const PICML::Aggregate & aggregate, PICML_Data_Value * & value);
+  bool build (const std::string & name,
+              const PICML::Aggregate & aggregate,
+              PICML_Data_Value * & value);
 
-  bool build (const PICML::Collection & collection, PICML_Data_Value * & value);
+  bool build (const std::string & name,
+              const PICML::Collection & collection,
+              PICML_Data_Value * & value);
 
-  bool build (const PICML::Enum & e, PICML_Data_Value * & value);
+  bool build (const std::string & name,
+              const PICML::Enum & e,
+              PICML_Data_Value * & value);
 
 private:
-  bool create_data_value (const PICML::MemberType & type,
+  bool create_data_value (const std::string & name,
+                          const PICML::MemberType & type,
                           PICML_Data_Value * & value);
 };
 }

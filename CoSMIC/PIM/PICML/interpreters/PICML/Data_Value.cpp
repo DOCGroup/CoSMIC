@@ -3,6 +3,7 @@
 #include "Data_Value.h"
 #include "Data_Value_Visitor.h"
 #include "Data_Value_Parser.h"
+#include <sstream>
 
 ///////////////////////////////////////////////////////////////////////////////
 // class PICML_Data_Value
@@ -10,7 +11,10 @@
 //
 // PICML_Data_Value
 //
-PICML_Data_Value::PICML_Data_Value (void)
+PICML_Data_Value::
+PICML_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: name_ (name),
+  parent_ (parent)
 {
 
 }
@@ -28,15 +32,43 @@ PICML_Data_Value::~PICML_Data_Value (void)
 //
 void PICML_Data_Value::value (const std::string & v)
 {
+  // Set the new value and invalidate the object.
+  this->is_uptodate_ = false;
   this->value_ = v;
+
+  // Notify all parents that they are invalid.
+  PICML_Data_Value * parent = this->parent_;
+
+  while (parent != 0)
+  {
+    parent->is_uptodate_ = false;
+    parent = parent->parent_;
+  }
 }
 
 //
 // value
 //
-const std::string & PICML_Data_Value::value (void) const
+const std::string & PICML_Data_Value::value (void)
 {
+  this->is_uptodate_ = true;
   return this->value_;
+}
+
+//
+// name
+//
+const std::string & PICML_Data_Value::name (void) const
+{
+  return this->name_;
+}
+
+//
+// name
+//
+bool PICML_Data_Value::is_uptodate (void) const
+{
+  return this->is_uptodate_;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,7 +77,9 @@ const std::string & PICML_Data_Value::value (void) const
 //
 // PICML_String_Data_Value
 //
-PICML_String_Data_Value::PICML_String_Data_Value (void)
+PICML_String_Data_Value::
+PICML_String_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -59,14 +93,16 @@ PICML_String_Data_Value::~PICML_String_Data_Value (void)
 }
 
 void PICML_String_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_String_Data_Value (*this);
 }
 
-PICML_Data_Value * PICML_String_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_String_Data_Value::_create (const std::string & name,
+                                  PICML_Data_Value * parent) const
 {
-  return new PICML_String_Data_Value ();
+  return new PICML_String_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -75,7 +111,9 @@ PICML_Data_Value * PICML_String_Data_Value::_create (void) const
 //
 // PICML_Char_Data_Value
 //
-PICML_Char_Data_Value::PICML_Char_Data_Value (void)
+PICML_Char_Data_Value::
+PICML_Char_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -89,14 +127,16 @@ PICML_Char_Data_Value::~PICML_Char_Data_Value (void)
 }
 
 void PICML_Char_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Char_Data_Value (*this);
 }
 
-PICML_Data_Value * PICML_Char_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Char_Data_Value::_create (const std::string & name,
+                                PICML_Data_Value * parent) const
 {
-  return new PICML_Char_Data_Value ();
+  return new PICML_Char_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -105,7 +145,9 @@ PICML_Data_Value * PICML_Char_Data_Value::_create (void) const
 //
 // PICML_Short_Data_Value
 //
-PICML_Short_Data_Value::PICML_Short_Data_Value (void)
+PICML_Short_Data_Value::
+PICML_Short_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -119,7 +161,7 @@ PICML_Short_Data_Value::~PICML_Short_Data_Value (void)
 }
 
 void PICML_Short_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Short_Data_Value (*this);
 }
@@ -127,9 +169,11 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // _create
 //
-PICML_Data_Value * PICML_Short_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Short_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  return new PICML_Short_Data_Value ();
+  return new PICML_Short_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -138,7 +182,9 @@ PICML_Data_Value * PICML_Short_Data_Value::_create (void) const
 //
 // PICML_UShort_Data_Value
 //
-PICML_UShort_Data_Value::PICML_UShort_Data_Value (void)
+PICML_UShort_Data_Value::
+PICML_UShort_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -152,7 +198,7 @@ PICML_UShort_Data_Value::~PICML_UShort_Data_Value (void)
 }
 
 void PICML_UShort_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_UShort_Data_Value (*this);
 }
@@ -160,9 +206,11 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // _create
 //
-PICML_Data_Value * PICML_UShort_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_UShort_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  return new PICML_UShort_Data_Value ();
+  return new PICML_UShort_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -171,7 +219,9 @@ PICML_Data_Value * PICML_UShort_Data_Value::_create (void) const
 //
 // PICML_Long_Data_Value
 //
-PICML_Long_Data_Value::PICML_Long_Data_Value (void)
+PICML_Long_Data_Value::
+PICML_Long_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -185,7 +235,7 @@ PICML_Long_Data_Value::~PICML_Long_Data_Value (void)
 }
 
 void PICML_Long_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Long_Data_Value (*this);
 }
@@ -193,9 +243,11 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // _create
 //
-PICML_Data_Value * PICML_Long_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Long_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  return new PICML_Long_Data_Value ();
+  return new PICML_Long_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -204,7 +256,10 @@ PICML_Data_Value * PICML_Long_Data_Value::_create (void) const
 //
 // PICML_ULong_Data_Value
 //
-PICML_ULong_Data_Value::PICML_ULong_Data_Value (void)
+PICML_ULong_Data_Value::
+PICML_ULong_Data_Value (const std::string & name,
+                        PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -218,7 +273,7 @@ PICML_ULong_Data_Value::~PICML_ULong_Data_Value (void)
 }
 
 void PICML_ULong_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_ULong_Data_Value (*this);
 }
@@ -226,9 +281,11 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // _create
 //
-PICML_Data_Value * PICML_ULong_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_ULong_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  return new PICML_ULong_Data_Value ();
+  return new PICML_ULong_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -237,7 +294,9 @@ PICML_Data_Value * PICML_ULong_Data_Value::_create (void) const
 //
 // PICML_Boolean_Data_Value
 //
-PICML_Boolean_Data_Value::PICML_Boolean_Data_Value (void)
+PICML_Boolean_Data_Value::
+PICML_Boolean_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -251,7 +310,7 @@ PICML_Boolean_Data_Value::~PICML_Boolean_Data_Value (void)
 }
 
 void PICML_Boolean_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Boolean_Data_Value (*this);
 }
@@ -259,9 +318,11 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // _create
 //
-PICML_Data_Value * PICML_Boolean_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Boolean_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  return new PICML_Boolean_Data_Value ();
+  return new PICML_Boolean_Data_Value (name, parent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -270,7 +331,9 @@ PICML_Data_Value * PICML_Boolean_Data_Value::_create (void) const
 //
 // PICML_Enum_Data_Value
 //
-PICML_Enum_Data_Value::PICML_Enum_Data_Value (void)
+PICML_Enum_Data_Value::
+PICML_Enum_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -284,7 +347,7 @@ PICML_Enum_Data_Value::~PICML_Enum_Data_Value (void)
 }
 
 void PICML_Enum_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Enum_Data_Value (*this);
 }
@@ -309,9 +372,12 @@ PICML_Enum_Data_Value::options (void) const
 //
 // _create
 //
-PICML_Data_Value * PICML_Enum_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Enum_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  PICML_Enum_Data_Value * value = new PICML_Enum_Data_Value ();
+  PICML_Enum_Data_Value * value =
+    new PICML_Enum_Data_Value (name, parent);
 
   container_type::const_iterator
     iter = this->options_.begin (),
@@ -329,7 +395,10 @@ PICML_Data_Value * PICML_Enum_Data_Value::_create (void) const
 //
 // PICML_Aggregate_Data_Value
 //
-PICML_Aggregate_Data_Value::PICML_Aggregate_Data_Value (void)
+PICML_Aggregate_Data_Value::
+PICML_Aggregate_Data_Value (const std::string & name,
+                            PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent)
 {
 
 }
@@ -350,16 +419,22 @@ PICML_Aggregate_Data_Value::~PICML_Aggregate_Data_Value (void)
 //
 // _create
 //
-PICML_Data_Value * PICML_Aggregate_Data_Value::_create (void) const
+PICML_Data_Value *
+PICML_Aggregate_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
-  PICML_Aggregate_Data_Value * value = new PICML_Aggregate_Data_Value ();
+  PICML_Aggregate_Data_Value * value =
+    new PICML_Aggregate_Data_Value (name, parent);
 
   const_iterator
     iter = this->members_.begin (),
     iter_end = this->members_.end ();
 
   for (; iter != iter_end; iter ++)
-    value->insert_member (iter->first, iter->second->_create ());
+  {
+    value->insert_member (iter->first,
+                          iter->second->_create (iter->first));
+  }
 
   return value;
 }
@@ -368,7 +443,7 @@ PICML_Data_Value * PICML_Aggregate_Data_Value::_create (void) const
 // accept
 //
 void PICML_Aggregate_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Aggregate_Data_Value (*this);
 }
@@ -376,12 +451,15 @@ accept (PICML_Data_Value_Visitor & visitor)
 //
 // value
 //
-void PICML_Aggregate_Data_Value::value (const std::string & value)
+void PICML_Aggregate_Data_Value::value (const std::string & v)
 {
-  this->PICML_Data_Value::value (value);
+  this->value_ = v;
+  this->is_uptodate_ = true;
 
   PICML_Data_Value_Parser parser (this, PICML_Data_Value_Parser::PARSER_STRUCT);
-  boost::spirit::parse (value.c_str (), parser, boost::spirit::space_p);
+  boost::spirit::parse (this->value_.c_str (),
+                        parser,
+                        boost::spirit::space_p);
 }
 
 //
@@ -396,7 +474,6 @@ insert_member (const std::string & name, PICML_Data_Value * value)
   {
     // Delete the old data value.
     delete temp;
-
     this->members_[name] = value;
   }
   else
@@ -441,19 +518,10 @@ find_member (const std::string & name, PICML_Data_Value * & member) const
 //
 // operator []
 //
-PICML_Data_Value * PICML_Aggregate_Data_Value::
+const PICML_Data_Value * PICML_Aggregate_Data_Value::
 operator [] (const std::string & name)
 {
   return this->members_[name];
-}
-
-//
-// begin
-//
-PICML_Aggregate_Data_Value::iterator
-PICML_Aggregate_Data_Value::begin (void)
-{
-  return this->members_.begin ();
 }
 
 //
@@ -466,12 +534,12 @@ PICML_Aggregate_Data_Value::begin (void) const
 }
 
 //
-// end
+// begin
 //
 PICML_Aggregate_Data_Value::iterator
-PICML_Aggregate_Data_Value::end (void)
+PICML_Aggregate_Data_Value::begin (void)
 {
-  return this->members_.end ();
+  return this->members_.begin ();
 }
 
 //
@@ -483,6 +551,58 @@ PICML_Aggregate_Data_Value::end (void) const
   return this->members_.end ();
 }
 
+//
+// end
+//
+PICML_Aggregate_Data_Value::iterator
+PICML_Aggregate_Data_Value::end (void)
+{
+  return this->members_.end ();
+}
+
+
+//
+// value
+//
+const std::string &
+PICML_Aggregate_Data_Value::value (void)
+{
+  if (!this->is_uptodate_)
+  {
+    // Reconstruct the value of the aggregate.
+    std::ostringstream ostr;
+    ostr << "{";
+
+    container_type::const_iterator
+      iter = this->members_.begin (),
+      iter_end = this->members_.end ();
+
+    if (iter != iter_end)
+    {
+      ostr << " " << iter->first << "=" << iter->second->value ();
+
+      for (++ iter; iter != iter_end; iter ++)
+        ostr << "; " << iter->first << "=" << iter->second->value ();
+    }
+
+    ostr << " }";
+
+    // Save the value. This will force all the parents to
+    // update themselves as well.
+    PICML_Data_Value::value (ostr.str ());
+  }
+
+  return PICML_Data_Value::value ();
+}
+
+//
+// size
+//
+size_t PICML_Aggregate_Data_Value::size (void) const
+{
+  return this->members_.size ();
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // class PICML_Sequence_Data_Value
 
@@ -490,8 +610,11 @@ PICML_Aggregate_Data_Value::end (void) const
 // PICML_Sequence_Data_Value
 //
 PICML_Sequence_Data_Value::
-PICML_Sequence_Data_Value (PICML_Data_Value * type)
-: type_ (type)
+PICML_Sequence_Data_Value (const std::string & name,
+                           PICML_Data_Value * type,
+                           PICML_Data_Value * parent)
+: PICML_Data_Value (name, parent),
+  type_ (type)
 {
 
 }
@@ -510,7 +633,7 @@ PICML_Sequence_Data_Value::~PICML_Sequence_Data_Value (void)
 }
 
 void PICML_Sequence_Data_Value::
-accept (PICML_Data_Value_Visitor & visitor)
+accept (PICML_Data_Value_Visitor & visitor) const
 {
   visitor.visit_PICML_Sequence_Data_Value (*this);
 }
@@ -527,8 +650,8 @@ operator [] (int index)
 //
 // operator []
 //
-const PICML_Data_Value * PICML_Sequence_Data_Value::
-operator [] (int index) const
+const PICML_Data_Value *
+PICML_Sequence_Data_Value::operator [] (int index) const
 {
   return this->sequence_[index];
 }
@@ -580,10 +703,11 @@ size_t PICML_Sequence_Data_Value::size (void) const
 //
 // _create
 //
-PICML_Data_Value * PICML_Sequence_Data_Value::_create (void) const
+PICML_Data_Value * PICML_Sequence_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
 {
   PICML_Sequence_Data_Value * value =
-    new PICML_Sequence_Data_Value (this->type_);
+    new PICML_Sequence_Data_Value (name, this->type_, parent);
 
   return value;
 }
@@ -593,7 +717,13 @@ PICML_Data_Value * PICML_Sequence_Data_Value::_create (void) const
 //
 PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
 {
-  PICML_Data_Value * value = this->type_->_create ();
+  std::ostringstream ostr;
+  ostr << "[" << this->sequence_.size () << "]";
+
+  // Create a new sequence element.
+  PICML_Data_Value * value =
+    this->type_->_create (ostr.str (), this);
+
   this->sequence_.push_back (value);
 
   return value;
@@ -602,10 +732,47 @@ PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
 //
 // value
 //
-void PICML_Sequence_Data_Value::value (const std::string & value)
+void PICML_Sequence_Data_Value::value (const std::string & v)
 {
-  this->PICML_Data_Value::value (value);
+  this->value_ = v;
+  this->is_uptodate_ = true;
 
   PICML_Data_Value_Parser parser (this, PICML_Data_Value_Parser::PARSER_SEQUENCE);
-  boost::spirit::parse (value.c_str (), parser, boost::spirit::space_p);
+
+  boost::spirit::parse (this->value_.c_str (),
+                        parser,
+                        boost::spirit::space_p);
+}
+
+//
+// value
+//
+const std::string &
+PICML_Sequence_Data_Value::value (void)
+{
+  if (!this->is_uptodate_)
+  {
+    std::ostringstream ostr;
+
+    container_type::const_iterator
+      iter = this->sequence_.begin (),
+      iter_end = this->sequence_.end ();
+
+    if (iter != iter_end)
+    {
+      // Reconstruct the value of the aggregate.
+      ostr << "[ " << (*iter)->value ();
+
+      for (++ iter; iter != iter_end; iter ++)
+        ostr << "; " << (*iter)->value ();
+
+      ostr << " ]";
+    }
+
+    // Save the new value. This will cause all parent to
+    // update themselves as well.
+    PICML_Data_Value::value (ostr.str ());
+  }
+
+  return PICML_Data_Value::value ();
 }
