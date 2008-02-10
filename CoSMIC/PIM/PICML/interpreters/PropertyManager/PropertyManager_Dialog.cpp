@@ -354,24 +354,24 @@ BOOL PICML_Property_Manager_ListCtrl::InitControl (void)
   // Create the image list for the items.
   CImageList * image_list = new CImageList ();
   std::auto_ptr <CImageList> auto_clean (image_list);
-  image_list->Create (16, 16, ILC_MASK | ILC_COLOR32, 3, 0);
+
+  image_list->Create (::GetSystemMetrics (SM_CXSMICON),
+                      ::GetSystemMetrics (SM_CXSMICON),
+                      ILC_COLOR32 | ILC_MASK,
+                      0,
+                      3);
+  image_list->SetBkColor (CLR_NONE);
 
   // Insert the images into the image list.
-  CBitmap bitmap;
-  int bitmaps [3] = {IDB_BLANK, IDB_PLUS, IDB_MINUS};
+  int icons [3] = {IDI_BLANK, IDI_EXPAND, IDI_COLLAPSE};
 
   for (size_t i = 0; i < 3; i ++)
-  {
-    bitmap.LoadBitmap (bitmaps[i]);
-
-    if (image_list->Add (&bitmap, RGB (255, 0, 0)) != -1)
-      bitmap.Detach ();
-  }
-
+    image_list->Add (::AfxGetApp ()->LoadIcon (icons[i]));
 
   // Install the image list. Since we are only showing in report
   // view, we only need to worry about the small images.
   this->SetImageList (image_list, LVSIL_SMALL);
+
   auto_clean.release ();
 
   return TRUE;
@@ -471,24 +471,22 @@ DrawItem (LPDRAWITEMSTRUCT item)
 
   // Let's erase the entire background for this item. Should we
   // do this when WM_ERASEBKGROUND message is sent??
-  CRect bkgnd (item->rcItem.left,
-               item->rcItem.top + 1,
-               item->rcItem.right,
-               item->rcItem.bottom);
-
-  device.FillSolidRect (bkgnd, RGB (255, 255, 255));
+  device.FillSolidRect (&item->rcItem, RGB (255, 255, 255));
 
   // Select the pen for outlining the items.
   CPen grey_pen (PS_SOLID, 1, RGB (230, 230, 230));
   CPen * old_pen = device.SelectObject (&grey_pen);
 
   // Draw a line at the bottom of the rectangle.
-  device.MoveTo (item->rcItem.left, item->rcItem.bottom);
-  device.LineTo (item->rcItem.right, item->rcItem.bottom);
+  int vert_y = item->rcItem.bottom - 1;
+  device.MoveTo (item->rcItem.left, vert_y);
+  device.LineTo (item->rcItem.right, vert_y);
 
   // Draw a line between the name and value.
-  device.MoveTo (rect_name.right, item->rcItem.top);
-  device.LineTo (rect_name.right, item->rcItem.bottom);
+  int horiz_x = rect_name.right - 1;
+
+  device.MoveTo (horiz_x, item->rcItem.top);
+  device.LineTo (horiz_x, vert_y);
 
   // Restore the original pen.
   device.SelectObject (old_pen);
@@ -501,6 +499,9 @@ DrawItem (LPDRAWITEMSTRUCT item)
 
   if (this->GetItem (&lvitem) != 0)
   {
+    // Make sure we don't draw on our horizontal line.
+    -- rect_image.bottom;
+
     // Draw the image for the list view item.
     this->GetImageList (LVSIL_SMALL)->DrawEx (&device,
                                               lvitem.iImage,
@@ -638,8 +639,7 @@ OnLButtonDown (UINT flags, CPoint point)
 
           // Shrink the height of the control so we do not draw it
           // over the horizontal borders.
-          subitem_rect.top += 1;
-          subitem_rect.left += 1;
+          -- subitem_rect.bottom;
 
           // Initialize the control.
           this->edit_control_->InitControl (info.iItem, value);

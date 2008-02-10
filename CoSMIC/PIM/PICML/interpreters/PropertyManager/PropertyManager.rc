@@ -100,7 +100,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,198,84,50,14
     CONTROL         "",IDC_DATAVALUE,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_OWNERDRAWFIXED | LVS_ALIGNLEFT | 
-                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,0,0,252,78
+                    LVS_NOSORTHEADER | WS_TABSTOP,0,0,252,78
 END
 
 
@@ -125,12 +125,14 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Bitmap
+// Icon
 //
 
-IDB_PLUS                BITMAP                  "plus.bmp"
-IDB_MINUS               BITMAP                  "minus.bmp"
-IDB_BLANK               BITMAP                  "blank.bmp"
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_EXPAND              ICON                    "expand.ico"
+IDI_BLANK               ICON                    "blank.ico"
+IDI_COLLAPSE            ICON                    "collapse.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

@@ -1,3 +1,22 @@
+Sun Feb 10 23:28:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/blank.ico:
+        * PIM/PICML/interpreters/PropertyManager/collapse.ico:
+        * PIM/PICML/interpreters/PropertyManager/expand.ico:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          Bug fix that was preventing the expand/collapse buttons
+          from appearing next to their respective items.
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.aps:
+        * PIM/PICML/interpreters/PropertyManager/blank.bmp:
+        * PIM/PICML/interpreters/PropertyManager/minus.bmp:
+        * PIM/PICML/interpreters/PropertyManager/plus.bmp:
+
+          Removed these files.
+
 Sun Feb 10 21:44:27 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
