@@ -58,6 +58,8 @@ build_complex_i (const std::string & name,
     return this->build_enum (name, GME::Model::_narrow (fco), value, parent);
   else if (meta == "Collection")
     return this->build_collection (name, GME::Reference::_narrow (fco), value, parent);
+  else if (meta == "Alias")
+    return this->build_alias (name, GME::Reference::_narrow (fco), value, parent);
   else
     return false;
 }
@@ -119,6 +121,24 @@ build_collection (const std::string & name,
 
   value = new PICML_Sequence_Data_Value (name, type, parent);
   return true;
+}
+
+//
+// build_enum
+//
+bool PICML_Data_Value_Builder::
+build_alias (const std::string & name,
+             const GME::Reference & alias,
+             PICML_Data_Value * & value,
+             PICML_Data_Value * parent)
+{
+  // Get the alias type.
+  GME::FCO ref = alias.refers_to ();
+
+  if (ref)
+    return this->create_data_value (name, ref, value, parent);
+  else
+    return false;
 }
 
 //
@@ -233,6 +253,22 @@ build (const std::string & name,
 //
 bool Data_Value_Builder::
 build (const std::string & name,
+       const PICML::Alias & alias,
+       PICML_Data_Value * & value)
+{
+  PICML::MemberType ref = alias.ref ();
+
+  if (ref != Udm::null)
+    return this->create_data_value (name, ref, value);
+  else
+    return false;
+}
+
+//
+// build
+//
+bool Data_Value_Builder::
+build (const std::string & name,
        const PICML::Enum & e,
        PICML_Data_Value * & value)
 {
@@ -326,6 +362,10 @@ create_data_value (const std::string & name,
   else if (meta == PICML::Collection::meta)
   {
     return this->build (name, PICML::Collection::Cast (type), value);
+  }
+  else if (meta == PICML::Alias::meta)
+  {
+    return this->build (name, PICML::Alias::Cast (type), value);
   }
   else
     return false;

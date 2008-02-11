@@ -47,6 +47,7 @@ public:
                           PICML_Data_Value * & value,
                           PICML_Data_Value * parent = 0);
 
+private:
   bool build_complex (const std::string & name,
                       const GME::FCO & datatype,
                       PICML_Data_Value * & value,
@@ -67,7 +68,11 @@ public:
                    PICML_Data_Value * & value,
                    PICML_Data_Value * parent = 0);
 
-private:
+  bool build_alias (const std::string & name,
+                    const GME::Reference & alias,
+                    PICML_Data_Value * & value,
+                    PICML_Data_Value * parent = 0);
+
   bool build_complex_i (const std::string & name,
                         const std::string & meta,
                         const GME::FCO & model,
@@ -88,6 +93,10 @@ public:
   /// Destructor.
   ~Data_Value_Builder (void);
 
+  bool create_data_value (const std::string & name,
+                          const PICML::MemberType & type,
+                          PICML_Data_Value * & value);
+private:
   bool build (const std::string & name,
               const PICML::Aggregate & aggregate,
               PICML_Data_Value * & value);
@@ -100,10 +109,9 @@ public:
               const PICML::Enum & e,
               PICML_Data_Value * & value);
 
-private:
-  bool create_data_value (const std::string & name,
-                          const PICML::MemberType & type,
-                          PICML_Data_Value * & value);
+  bool build (const std::string & name,
+              const PICML::Alias & alias,
+              PICML_Data_Value * & value);
 };
 }
 
