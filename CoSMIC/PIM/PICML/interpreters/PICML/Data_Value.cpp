@@ -13,7 +13,7 @@
 //
 PICML_Data_Value::
 PICML_Data_Value (const std::string & name, PICML_Data_Value * parent)
-: name_ (name),
+: ident_ (name),
   parent_ (parent)
 {
 
@@ -60,7 +60,7 @@ const std::string & PICML_Data_Value::value (void)
 //
 const std::string & PICML_Data_Value::name (void) const
 {
-  return this->name_;
+  return this->ident_;
 }
 
 //
@@ -453,13 +453,14 @@ accept (PICML_Data_Value_Visitor & visitor) const
 //
 void PICML_Aggregate_Data_Value::value (const std::string & v)
 {
-  this->value_ = v;
-  this->is_uptodate_ = true;
+  PICML_Data_Value_Parser p (this);
 
-  PICML_Data_Value_Parser parser (this, PICML_Data_Value_Parser::PARSER_STRUCT);
-  boost::spirit::parse (this->value_.c_str (),
-                        parser,
-                        boost::spirit::space_p);
+  if (boost::spirit::parse (v.c_str (),
+                            p.use_parser <PICML_Data_Value_Parser::aggregate> (),
+                            boost::spirit::space_p).full)
+  {
+    PICML_Data_Value::value (v);
+  }
 }
 
 //
@@ -734,14 +735,14 @@ PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
 //
 void PICML_Sequence_Data_Value::value (const std::string & v)
 {
-  this->value_ = v;
-  this->is_uptodate_ = true;
+  PICML_Data_Value_Parser p (this);
 
-  PICML_Data_Value_Parser parser (this, PICML_Data_Value_Parser::PARSER_SEQUENCE);
-
-  boost::spirit::parse (this->value_.c_str (),
-                        parser,
-                        boost::spirit::space_p);
+  if (boost::spirit::parse (v.c_str (),
+                            p.use_parser <PICML_Data_Value_Parser::sequence> (),
+                            boost::spirit::space_p).full)
+  {
+    PICML_Data_Value::value (v);
+  }
 }
 
 //

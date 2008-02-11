@@ -16,7 +16,7 @@
 #define _DATAVALUE_PARSER_H_
 
 #include "boost/spirit/core.hpp"
-#include <stack>
+#include "boost/spirit/utility/grammar_def.hpp"
 
 // Forward decl.
 class PICML_Data_Value;
@@ -33,26 +33,26 @@ class PICML_Data_Value_Parser :
   public boost::spirit::grammar <PICML_Data_Value_Parser>
 {
 public:
-  enum parser_type
+  enum
   {
-    /// Start with a struct parser.
-    PARSER_STRUCT,
-
-    /// Start with a sequence parser.
-    PARSER_SEQUENCE
+    aggregate = 0,
+    sequence  = 1
   };
 
-  PICML_Data_Value_Parser (PICML_Data_Value * const value,
-                           PICML_Data_Value_Parser::parser_type type);
 
-  void select_member (const char * start, const char * end) const;
+  PICML_Data_Value_Parser (PICML_Data_Value * const value);
 
-  void set_member_value (const char * start, const char * end) const;
+  void aggregate_member (const char * start, const char * end) const;
+
+  void aggregate_member_value (const char * start, const char * end) const;
 
   void insert_sequence_value (const char * start, const char * end) const;
 
   template <typename ScannerT>
-  class definition
+  class definition :
+    public boost::spirit::grammar_def <boost::spirit::rule <ScannerT>,
+                                       boost::spirit::same,
+                                       boost::spirit::same>
   {
   public:
     /**
@@ -62,16 +62,12 @@ public:
      */
     definition (PICML_Data_Value_Parser const & self);
 
-    /**
-     * Start of the input grammar.
-     *
-     * @return        Starting expression for the grammar.
-     */
-    const boost::spirit::rule <ScannerT> & start (void) const;
-
   private:
-    /// rule: name_
-    boost::spirit::rule <ScannerT> name_;
+    /// rule: ident_
+    boost::spirit::rule <ScannerT> ident_;
+
+    /// rule: operators_
+    boost::spirit::rule <ScannerT> operators_;
 
     /// rule: string_
     boost::spirit::rule <ScannerT> string_;
@@ -82,14 +78,17 @@ public:
     /// rule: member_
     boost::spirit::rule <ScannerT> member_;
 
-    /// rule: member_
+    /// rule: member_name_
     boost::spirit::rule <ScannerT> member_name_;
 
-    /// rule: member_
+    /// rule: member_value_
     boost::spirit::rule <ScannerT> member_value_;
 
     /// rule: member_list_
     boost::spirit::rule <ScannerT> member_list_;
+
+    /// rule: struct_value_
+    boost::spirit::rule <ScannerT> struct_value_;
 
     /// rule: struct_
     boost::spirit::rule <ScannerT> struct_;
@@ -97,26 +96,20 @@ public:
     /// rule: sequence_
     boost::spirit::rule <ScannerT> sequence_;
 
-    /// rule: sequence_
+    /// rule: sequence_value_
     boost::spirit::rule <ScannerT> sequence_value_;
 
-    /// rule: sequence_
+    /// rule: sequence_item_
+    boost::spirit::rule <ScannerT> sequence_item_;
+
+    /// rule: sequence_list_
     boost::spirit::rule <ScannerT> sequence_list_;
-
-    boost::spirit::rule <ScannerT> operators_;
-    /// rule: start_
-    boost::spirit::rule <ScannerT> start_;
-
   };
-
-  parser_type type (void) const;
 
 private:
   PICML_Data_Value * const value_;
 
-  parser_type type_;
-
-  mutable std::string token_;
+  mutable std::string member_;
 };
 
 #include "Data_Value_Parser_T.cpp"

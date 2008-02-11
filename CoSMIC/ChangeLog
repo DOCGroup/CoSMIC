@@ -1,3 +1,15 @@
+Mon Feb 11 02:33:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser_T.cpp:
+
+          Bug fix that was causing the parser to incorrectly handle
+          sequences and structs of sequences or structs. We still, however,
+          can't dynamically add a new value to the sequence.
+
 Sun Feb 10 23:28:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:

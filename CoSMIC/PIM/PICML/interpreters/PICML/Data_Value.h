@@ -57,7 +57,7 @@ public:
 
 protected:
   /// Name associated w/ the data value.
-  std::string name_;
+  std::string ident_;
 
   /// Value of the data value.
   std::string value_;

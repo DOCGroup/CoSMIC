@@ -13,57 +13,51 @@ definition <ScannerT>::definition (PICML_Data_Value_Parser const & self)
 {
   using namespace boost::spirit;
 
-  this->operators_ =
-    ch_p (';') | '[' | ']' | '{' | '}';
-
-  this->name_ =
+  this->ident_ =
     lexeme_d [alpha_p >> *(alnum_p | '_')];
+
+  this->operators_ =
+    boost::spirit::ch_p (';') | ']' | '}';
 
   this->string_ =
     confix_p ('\"', *boost::spirit::anychar_p, '\"');
 
-  this->value_ =
-    longest_d [this->sequence_ | this->struct_ |
-      this->string_ | *(anychar_p - this->operators_)];
+  this->struct_value_ =
+    confix_p ('{', *boost::spirit::anychar_p, '}');
+
+  this->sequence_value_ =
+    confix_p ('[', *boost::spirit::anychar_p, ']');
+
+  this->value_ = boost::spirit::longest_d [
+    this->struct_value_ | this->sequence_value_ |
+    this->string_ | *(anychar_p - this->operators_)];
 
   this->member_name_ =
-    this->name_[boost::bind (&PICML_Data_Value_Parser::select_member, boost::ref (self), _1, _2)];
+    this->ident_[boost::bind (&PICML_Data_Value_Parser::aggregate_member,
+                              boost::ref (self), _1, _2)];
 
   this->member_value_ =
-    this->value_[boost::bind (&PICML_Data_Value_Parser::set_member_value, boost::ref (self), _1, _2)];
+    this->value_[boost::bind (&PICML_Data_Value_Parser::aggregate_member_value,
+                              boost::ref (self), _1, _2)];
 
   this->member_ =
     this->member_name_ >> "=" >> this->member_value_;
 
-  this->member_list_ = list_p (this->member_, ';');
+  this->member_list_ =
+    list_p (this->member_, ';');
 
-  this->sequence_value_ =
-    this->value_[boost::bind (&PICML_Data_Value_Parser::insert_sequence_value, boost::ref (self), _1, _2)];
+  this->sequence_item_ =
+    this->value_[boost::bind (&PICML_Data_Value_Parser::insert_sequence_value,
+                              boost::ref (self), _1, _2)];
 
-  this->sequence_list_ = list_p (this->sequence_value_, ';');
+  this->sequence_list_ =
+    list_p (this->sequence_item_, ';');
 
-  this->sequence_ = confix_p ('[', this->sequence_list_, ']');
+  this->sequence_ =
+    boost::spirit::confix_p ('[', this->sequence_list_, ']');
 
-  this->struct_ = confix_p ('{', this->member_list_, '}');
+  this->struct_ =
+    boost::spirit::confix_p ('{', this->member_list_, '}');
 
-  switch (self.type ())
-  {
-  case PICML_Data_Value_Parser::PARSER_SEQUENCE:
-    this->start_ = this->sequence_;
-    break;
-
-  case PICML_Data_Value_Parser::PARSER_STRUCT:
-    this->start_ = this->struct_;
-    break;
-  }
-}
-
-//
-// start
-//
-template <typename ScannerT>
-const boost::spirit::rule <ScannerT> &
-PICML_Data_Value_Parser::definition <ScannerT>::start (void) const
-{
-  return this->start_;
+  this->start_parsers (this->struct_, this->sequence_);
 }
