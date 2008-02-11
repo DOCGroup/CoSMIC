@@ -88,9 +88,9 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
             PICML_Data_Value * value = 0;
             GME::PICML_Data_Value_Builder data_value_builder;
 
-            if (data_value_builder.build_complex (iter->name (),
-                                                  datatype,
-                                                  value))
+            if (data_value_builder.create_data_value (iter->name (),
+                                                      datatype,
+                                                      value))
             {
               std::auto_ptr <PICML_Data_Value> auto_clean (value);
 
@@ -112,7 +112,8 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
             }
             else
             {
-              ::AfxMessageBox ("Property is not a complex type", MB_OK);
+              ::AfxMessageBox ("Failed to create data value",
+                               MB_OK | MB_ICONERROR);
             }
           }
         }

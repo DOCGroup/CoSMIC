@@ -42,6 +42,11 @@ public:
   /// Destructor.
   ~PICML_Data_Value_Builder (void);
 
+  bool create_data_value (const std::string & name,
+                          const GME::FCO & type,
+                          PICML_Data_Value * & value,
+                          PICML_Data_Value * parent = 0);
+
   bool build_complex (const std::string & name,
                       const GME::FCO & datatype,
                       PICML_Data_Value * & value,
@@ -69,10 +74,6 @@ private:
                         PICML_Data_Value * & value,
                         PICML_Data_Value * parent = 0);
 
-  bool create_data_value (const std::string & name,
-                          const GME::FCO & type,
-                          PICML_Data_Value * & value,
-                          PICML_Data_Value * parent = 0);
 };
 }
 

@@ -383,12 +383,16 @@ BOOL PICML_Property_Manager_ListCtrl::InitControl (void)
 void PICML_Property_Manager_ListCtrl::
 SetDataValue (PICML_Data_Value * value)
 {
+  // Select the correct image.
+  PICML_Property_Manager_ListView_Image image;
+  value->accept (image);
+
   // Initialize the list view item's properties.
   LVITEM lvitem;
   ZeroMemory (&lvitem, sizeof (LVITEM));
 
   lvitem.mask     = LVIF_PARAM | LVIF_TEXT | LVIF_INDENT | LVIF_IMAGE;
-  lvitem.iImage   = 1;
+  lvitem.iImage   = image.index_;
   lvitem.pszText  = LPSTR_TEXTCALLBACK;
   lvitem.lParam   = reinterpret_cast <LPARAM> (value);
 
