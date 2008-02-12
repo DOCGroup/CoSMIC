@@ -440,7 +440,7 @@ _create (const std::string & name, PICML_Data_Value * parent) const
     PICML_Data_Value * member =
       iter->second->_create (iter->first, value.get ());
 
-    value->insert_member (iter->first, member);
+    value->insert_member (member);
   }
 
   return value.release ();
@@ -474,18 +474,24 @@ void PICML_Aggregate_Data_Value::value (const std::string & v)
 // insert_member
 //
 void PICML_Aggregate_Data_Value::
-insert_member (const std::string & name, PICML_Data_Value * value)
+insert_member (PICML_Data_Value * value)
 {
   PICML_Data_Value * temp = 0;
 
-  if (this->find_member (name, temp))
+  // Make sure the parent is this object.
+  if (value->parent_ != this)
+    value->parent_ = this;
+
+  if (this->find_member (value->name (), temp))
   {
     // Delete the old data value.
     delete temp;
-    this->members_[name] = value;
+
+    // Save the new value.
+    this->members_[value->name ()] = value;
   }
   else
-    this->members_.insert (std::make_pair (name, value));
+    this->members_.insert (std::make_pair (value->name (), value));
 }
 
 //
@@ -593,7 +599,7 @@ PICML_Aggregate_Data_Value::value (void)
         ostr << "; " << iter->first << "=" << iter->second->value ();
     }
 
-    ostr << " }";
+    ostr << "}";
 
     // Save the value. This will force all the parents to
     // update themselves as well.
@@ -751,6 +757,43 @@ PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
 }
 
 //
+// delete_element
+//
+void PICML_Sequence_Data_Value::delete_element (size_t index)
+{
+  if (index < this->sequence_.size ())
+  {
+    // Delete the data value at the specified index.
+    delete this->sequence_[index];
+
+    // Remove the data value from the collection.
+    this->sequence_.erase ((this->begin () + index));
+
+    // Force ourselves to update.
+    this->is_uptodate_ = false;
+    PICML_Data_Value::value (PICML_Data_Value::value ());
+
+    // Update names of all elements after the deleted items.
+    container_type::iterator
+      iter = this->sequence_.begin () + index,
+      iter_end = this->sequence_.end ();
+
+    std::ostringstream ostr;
+
+    for (; iter != iter_end; iter ++)
+    {
+      // Set the name of the item.
+      ostr << "[" << index ++ << "]";
+      (*iter)->name_ = ostr.str ();
+
+      // Reset the stream.
+      ostr.str ("");
+      ostr.clear ();
+    }
+  }
+}
+
+//
 // value
 //
 void PICML_Sequence_Data_Value::value (const std::string & v)
@@ -782,12 +825,12 @@ PICML_Sequence_Data_Value::value (void)
     if (iter != iter_end)
     {
       // Reconstruct the value of the aggregate.
-      ostr << "[ " << (*iter)->value ();
+      ostr << "[" << (*iter)->value ();
 
       for (++ iter; iter != iter_end; iter ++)
         ostr << "; " << (*iter)->value ();
 
-      ostr << " ]";
+      ostr << "]";
     }
 
     // Save the new value. This will cause all parent to

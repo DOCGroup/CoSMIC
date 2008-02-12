@@ -19,6 +19,9 @@
 class PICML_Data_Value;
 
 // Forward decl.
+class PICML_Sequence_Data_Value;
+
+// Forward decl.
 class PICML_Data_Value_Control;
 
 //=============================================================================
@@ -46,9 +49,13 @@ protected:
 
   afx_msg void OnLButtonDown (UINT flags, CPoint point);
 
+  afx_msg void OnContextMenu (CWnd * parent, CPoint point);
+
   afx_msg void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 
   afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+
+  afx_msg void OnCommand_DeleteItem (void);
 
 private:
   void end_label_edit (void);
@@ -57,8 +64,17 @@ private:
 
   PICML_Data_Value_Control * edit_control_;
 
-  /// The current dimensions of the subitem rect.
-  CRect subitem_rect_;
+  /// Target value of the operation.
+  PICML_Sequence_Data_Value  * sequence_;
+
+  /// Delete item of the operation.
+  int delete_item_;
+
+  /// Delete index of the operation.
+  int delete_index_;
+
+  /// Index of the parent.
+  int parent_index_;
 };
 
 //=============================================================================

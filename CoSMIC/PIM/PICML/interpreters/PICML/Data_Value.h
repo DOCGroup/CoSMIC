@@ -24,6 +24,12 @@
 // Forward decl.
 class PICML_Data_Value_Visitor;
 
+// Forward decl.
+class PICML_Sequence_Data_Value;
+
+// Forward decl.
+class PICML_Aggregate_Data_Value;
+
 //=============================================================================
 /**
  * @class PICML_Data_Value
@@ -34,6 +40,9 @@ class PICML_Data_Value_Visitor;
 
 class PICML_Export PICML_Data_Value
 {
+  friend class PICML_Aggregate_Data_Value;
+  friend class PICML_Sequence_Data_Value;
+
 public:
   /// Destructor.
   virtual ~PICML_Data_Value (void);
@@ -269,8 +278,7 @@ public:
 
   virtual void value (const std::string & value);
 
-  void insert_member (const std::string & name,
-                      PICML_Data_Value * member);
+  void insert_member (PICML_Data_Value * member);
 
   void remove_member (const std::string & name);
 
@@ -289,6 +297,10 @@ public:
 
 private:
   std::map <std::string, PICML_Data_Value *> members_;
+
+  // prevent the following operations
+  PICML_Aggregate_Data_Value (const PICML_Aggregate_Data_Value &);
+  const PICML_Aggregate_Data_Value & operator = (const PICML_Aggregate_Data_Value &);
 };
 
 //=============================================================================
@@ -329,6 +341,8 @@ public:
 
   PICML_Data_Value * new_element (void);
 
+  void delete_element (size_t index);
+
   iterator begin (void);
   iterator end (void);
 
@@ -339,6 +353,10 @@ private:
   std::auto_ptr <PICML_Data_Value> type_;
 
   container_type sequence_;
+
+  // prevent the following operations
+  PICML_Sequence_Data_Value (const PICML_Sequence_Data_Value &);
+  const PICML_Sequence_Data_Value & operator = (const PICML_Sequence_Data_Value &);
 };
 
 #endif  /* !defined _DATA_VALUE_H_ */

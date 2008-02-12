@@ -90,7 +90,7 @@ build_aggregate (const std::string & name,
     for (; iter != iter_end; iter ++)
     {
       if (this->create_data_value (iter->name (), iter->refers_to (), temp, aggr))
-        aggr->insert_member (iter->name (), temp);
+        aggr->insert_member (temp);
       else
         return false;
     }
@@ -312,7 +312,7 @@ build (const std::string & name,
   for (; iter != iter_end; iter ++)
   {
     if (this->create_data_value (iter->name (), iter->ref (), temp))
-      aggr->insert_member (iter->name (), temp);
+      aggr->insert_member (temp);
     else
       return false;
   }

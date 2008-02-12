@@ -322,9 +322,12 @@ private:
 
 BEGIN_MESSAGE_MAP (PICML_Property_Manager_ListCtrl, CListCtrl)
   ON_WM_LBUTTONDOWN ()
+  ON_WM_CONTEXTMENU ()
   ON_WM_HSCROLL ()
   ON_WM_VSCROLL ()
   ON_NOTIFY_REFLECT (LVN_GETDISPINFO, GetDispInfo)
+
+  ON_COMMAND (ID_IDR_DELETEITEM, OnCommand_DeleteItem)
 END_MESSAGE_MAP ()
 
 //
@@ -332,7 +335,8 @@ END_MESSAGE_MAP ()
 //
 PICML_Property_Manager_ListCtrl::
 PICML_Property_Manager_ListCtrl (void)
-: edit_control_ (0)
+: edit_control_ (0),
+  sequence_ (0)
 {
 
 }
@@ -566,8 +570,120 @@ void PICML_Property_Manager_ListCtrl::DrawItem (LPDRAWITEMSTRUCT item)
   device.Detach ();
 }
 
+
 //
 // OnLButtonDblClk
+//
+void PICML_Property_Manager_ListCtrl::
+OnContextMenu (CWnd * parent, CPoint point)
+{
+  // We need to cleanup the current edit control if we are receiving
+  // this message because the user has clicked somewhere else on
+  // the listview control (i.e., outside the edit control).
+  this->end_label_edit ();
+
+  // We can only continue if we have really destroyed the edit
+  // control. Otherwise, we need to leave it active.
+  if (this->edit_control_ != 0)
+    return;
+
+  // Convert the screen coordinates to client coordinates.
+  CPoint pt (point);
+  this->ScreenToClient (&pt);
+
+  // Prepare the hit test structure using the client coordinates.
+  LVHITTESTINFO info;
+  info.pt.x = pt.x;
+  info.pt.y = pt.y;
+
+  // Determine what item in the list was selected. Also, we only
+  // care about the 'value' column being clicked.
+  if (this->SubItemHitTest (&info) != -1 && info.iSubItem == 1)
+  {
+    LVITEM lvitem;
+    lvitem.mask     = LVIF_INDENT | LVIF_PARAM;
+    lvitem.iItem    = info.iItem;
+    lvitem.iSubItem = 0;
+
+    // Get the information about the selected item.
+    this->GetItem (&lvitem);
+    int indent = lvitem.iIndent;
+
+    // Determine if the value belongs to a sequence. This means
+    // locating is parent, if it has one.
+    do
+    {
+      -- lvitem.iItem;
+    }
+    while (this->GetItem (&lvitem) != 0 && lvitem.iIndent == indent);
+
+    // Get the data value from the item.
+    PICML_Data_Value * value =
+      reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
+
+    if (typeid (*value) == typeid (PICML_Sequence_Data_Value))
+    {
+      try
+      {
+        // Convert the value into a sequence value.
+        this->sequence_ =
+          dynamic_cast <PICML_Sequence_Data_Value *> (value);
+
+        // Save the item and index of the value to delete.
+        this->delete_item_  = info.iItem;
+        this->delete_index_ = info.iItem - lvitem.iItem - 1;
+        this->parent_index_ = lvitem.iItem;
+
+        // Load the main menu from the resources.
+        CMenu menu;
+        menu.LoadMenu (IDR_LISTCTRL_CTX);
+
+        // Get the first submenu, which is our context menu.
+        CMenu * popup = menu.GetSubMenu (0);
+
+        if (popup != 0)
+        {
+          // Initialize the menu flags.
+          UINT flags = MF_BYCOMMAND;
+
+          flags |=
+            this->delete_item_ != 0 &&
+            this->delete_index_ < this->sequence_->size () ?
+            MF_ENABLED : MF_GRAYED;
+
+          // Enable/disable the menu item accordingly.
+          popup->EnableMenuItem (ID_IDR_DELETEITEM, flags);
+
+          // Create it as a popup menu.
+          popup->TrackPopupMenu (TPM_LEFTALIGN | TPM_LEFTBUTTON,
+                                 point.x,
+                                 point.y,
+                                 this);
+
+          // We are going to return from here since we do not
+          // need to perform any of the default operation(s).
+          return;
+        }
+        else
+        {
+          ::AfxMessageBox ("Failed to create popup menu",
+                           MB_OK | MB_ICONEXCLAMATION);
+        }
+      }
+      catch (std::bad_cast &)
+      {
+
+      }
+    }
+  }
+
+  // Perform the default operation(s).
+  this->sequence_ = 0;
+  CListCtrl::OnContextMenu (parent, point);
+}
+
+//
+// OnLButtonDown
 //
 void PICML_Property_Manager_ListCtrl::
 OnLButtonDown (UINT flags, CPoint point)
@@ -800,6 +916,35 @@ void PICML_Property_Manager_ListCtrl::end_label_edit (void)
   // Force the entire window to redraw itself. This is kind
   // of overkill, but I'm crutched for time.
   this->InvalidateRect (0);
+}
+
+//
+// OnCommand_DeleteItem
+//
+void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
+{
+  // Delete the item from the list control.
+  this->DeleteItem (this->delete_item_);
+
+  // Delete the item from the sequence.
+  this->sequence_->delete_element (this->delete_index_);
+
+  // Get the size of the sequence.
+  size_t size = this->sequence_->size ();
+
+  // Generate the "click here to insert new item" name.
+  std::ostrstream ostr;
+  ostr << "[" << size << "]" << std::ends;
+
+  // Update the "click here to insert new item" name.
+  int dummy = this->delete_item_ + (size - this->delete_index_);
+  this->SetItemText (dummy, 0, ostr.str ());
+
+  // Release our target sequence.
+  this->sequence_ = 0;
+
+  // Update the parent.
+  this->Update (this->parent_index_);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

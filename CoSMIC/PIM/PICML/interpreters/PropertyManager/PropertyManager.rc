@@ -136,6 +136,20 @@ IDI_COLLAPSE            ICON                    "collapse.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// Menu
+//
+
+IDR_LISTCTRL_CTX MENU 
+BEGIN
+    POPUP "IDR_LISTCTRL_CTX"
+    BEGIN
+        MENUITEM "&Delete element...",          ID_IDR_DELETEITEM
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 

@@ -1,3 +1,25 @@
+Tue Feb 12 21:37:30 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          - PICML_Sequence_Data_Value and PICML_Aggregate_Data_Value are now
+            friends of the PICML_Data_Value.
+
+          - Implemented delete_element () for PICML_Sequence_Data_Value
+            for deleting elements in the sequence.
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.reg:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManagerd.reg:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          First complete beta version of the property manager with support
+          for adding/deleting sequence elements.
+
 Tue Feb 12 15:50:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
