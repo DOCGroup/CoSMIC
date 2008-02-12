@@ -1,3 +1,24 @@
+Tue Feb 12 15:50:11 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          The name of the sequence's data value type is set to the
+          name of the sequence type (i.e., its reference's name).
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+
+            Fixed memory leak where the sequence's type was not being
+            destoryed by it's owner.
+          - Bux fix where using the _create () method to create a
+            new sequence failed to duplicate the sequence's type. This
+            resulted in double deletions of the sequence's type.
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+
+          Added support for inserting new elements into a sequence using
+          the dialog.
+
 Mon Feb 11 15:59:15 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:

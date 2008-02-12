@@ -35,10 +35,6 @@ class PICML_Data_Value_Visitor;
 class PICML_Export PICML_Data_Value
 {
 public:
-  /// Default constructor.
-  PICML_Data_Value (const std::string & name,
-                    PICML_Data_Value * parent = 0);
-
   /// Destructor.
   virtual ~PICML_Data_Value (void);
 
@@ -56,8 +52,11 @@ public:
   bool is_uptodate (void) const;
 
 protected:
+  /// Default constructor.
+  PICML_Data_Value (const std::string & name, PICML_Data_Value * parent = 0);
+
   /// Name associated w/ the data value.
-  std::string ident_;
+  std::string name_;
 
   /// Value of the data value.
   std::string value_;
@@ -337,7 +336,7 @@ public:
   const_iterator end (void) const;
 
 private:
-  PICML_Data_Value * type_;
+  std::auto_ptr <PICML_Data_Value> type_;
 
   container_type sequence_;
 };

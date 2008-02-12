@@ -12,6 +12,7 @@
 #include "ace/Null_Mutex.h"
 
 #include <memory>
+#include <strstream>
 
 ///////////////////////////////////////////////////////////////////////////////
 // PICML_Property_Manager_ListView_Item
@@ -95,7 +96,8 @@ class PICML_Property_Manager_ListView_Image :
   public PICML_Data_Value_Visitor
 {
 public:
-  PICML_Property_Manager_ListView_Image (void)
+  PICML_Property_Manager_ListView_Image (int & image)
+    : index_ (image)
   {
 
   }
@@ -167,8 +169,9 @@ public:
     this->index_ = 0;
   }
 
+private:
   /// The index of the image.
-  int index_;
+  int & index_;
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -182,7 +185,8 @@ public:
     PICML_Property_Manager_ListCtrl & parent,
     LVITEM & item)
     : parent_ (parent),
-      item_ (item)
+      item_ (item),
+      image_ (item_.iImage)
   {
     // Increment the index value. This should on be done
     // once during the lifetime fo the builder.
@@ -239,6 +243,26 @@ public:
 
     for ( ; iter != iter_end; iter ++)
       this->insert_item (*(*iter));
+
+    std::ostrstream ostr;
+    ostr << "[" << value.size () << "]" << std::ends;
+
+    // Initialize the item's properties.
+    this->item_.mask     = LVIF_PARAM | LVIF_TEXT | LVIF_INDENT;
+    this->item_.pszText  = ostr.str ();
+    this->item_.lParam   = 0;
+    this->item_.iSubItem = 0;
+
+    // Move to the next item in the list.
+    ++ this->item_.iItem;
+
+    // Insert the item into the listview control.
+    if (this->parent_.InsertItem (&this->item_) != -1)
+    {
+      this->parent_.SetItemText (this->item_.iItem,
+                                 1,
+                                 "Click here to insert item...");
+    }
   }
 
   virtual void visit_PICML_Short_Data_Value (
@@ -268,32 +292,19 @@ public:
 private:
   void insert_item (const PICML_Data_Value & value)
   {
+    // Initialize the item's properties.
+    this->item_.mask    = LVIF_PARAM | LVIF_INDENT | LVIF_IMAGE;
+    this->item_.lParam  = reinterpret_cast <LPARAM> (&value);
+
     // Get the correct image for the value.
     value.accept (this->image_);
 
-    // Initialize the item's properties.
-    this->item_.mask    = LVIF_PARAM | LVIF_TEXT | LVIF_INDENT | LVIF_IMAGE;
-    this->item_.pszText = LPSTR_TEXTCALLBACK;
-    this->item_.iImage  = this->image_.index_;
-    this->item_.lParam  = reinterpret_cast <LPARAM> (&value);
-
     // Move to the next item in the list.
     ++ this->item_.iItem;
-    this->item_.iSubItem = 0;
 
     // Insert the item into the listview control.
-    if (this->parent_.InsertItem (&this->item_)!= -1)
-    {
-      // Insert the subitem, which is really the value.
-      this->item_.mask = LVIF_TEXT;
-      this->item_.iSubItem = 1;
-
-      this->parent_.InsertItem (&this->item_);
-    }
-    else
-    {
+    if (this->parent_.InsertItem (&this->item_) == -1)
       ::AfxMessageBox ("Failed to insert new item", MB_OK | MB_ICONEXCLAMATION);
-    }
   }
 
   /// Parent control of the item.
@@ -383,18 +394,17 @@ BOOL PICML_Property_Manager_ListCtrl::InitControl (void)
 void PICML_Property_Manager_ListCtrl::
 SetDataValue (PICML_Data_Value * value)
 {
-  // Select the correct image.
-  PICML_Property_Manager_ListView_Image image;
-  value->accept (image);
-
   // Initialize the list view item's properties.
   LVITEM lvitem;
   ZeroMemory (&lvitem, sizeof (LVITEM));
 
-  lvitem.mask     = LVIF_PARAM | LVIF_TEXT | LVIF_INDENT | LVIF_IMAGE;
-  lvitem.iImage   = image.index_;
-  lvitem.pszText  = LPSTR_TEXTCALLBACK;
-  lvitem.lParam   = reinterpret_cast <LPARAM> (value);
+  lvitem.mask    = LVIF_PARAM | /*LVIF_TEXT |*/ LVIF_INDENT | LVIF_IMAGE;
+  lvitem.lParam  = reinterpret_cast <LPARAM> (value);
+  lvitem.iIndent = 0;
+
+  // Select the correct image.
+  PICML_Property_Manager_ListView_Image image (lvitem.iImage);
+  value->accept (image);
 
   if (this->InsertItem (&lvitem) != -1)
   {
@@ -453,11 +463,35 @@ GetDispInfo (NMHDR * notify, LRESULT * result)
 //
 // DrawItem
 //
-void PICML_Property_Manager_ListCtrl::
-DrawItem (LPDRAWITEMSTRUCT item)
+void PICML_Property_Manager_ListCtrl::DrawItem (LPDRAWITEMSTRUCT item)
 {
-  PICML_Data_Value * value =
-    reinterpret_cast <PICML_Data_Value *> (item->itemData);
+  int image = 0;
+  std::string str_name, str_value;
+
+  LVITEM lvitem;
+
+  if (item->itemData != 0)
+  {
+    // Get the name and value from the data item.
+    PICML_Data_Value * value =
+      reinterpret_cast <PICML_Data_Value *> (item->itemData);
+
+    str_name = value->name ();
+    str_value = value->value ();
+
+    // Get the image index for the item.
+    lvitem.mask     = LVIF_IMAGE;
+    lvitem.iItem    = item->itemID;
+    lvitem.iSubItem = 0;
+
+    if (this->GetItem (&lvitem) != 0)
+      image = lvitem.iImage;
+  }
+  else
+  {
+    str_name  = this->GetItemText (item->itemID, 0).GetBuffer ();
+    str_value = this->GetItemText (item->itemID, 1).GetBuffer ();
+  }
 
   // Get the dimension of each item in the column. This will
   // be the image, name, and value dimensions.
@@ -495,41 +529,38 @@ DrawItem (LPDRAWITEMSTRUCT item)
   // Restore the original pen.
   device.SelectObject (old_pen);
 
-  // Get the image index for this item.
-  LVITEM lvitem;
-  lvitem.mask     = LVIF_IMAGE;
-  lvitem.iItem    = item->itemID;
-  lvitem.iSubItem = 0;
+  // Make sure we don't draw on our horizontal line.
+  -- rect_image.bottom;
 
-  if (this->GetItem (&lvitem) != 0)
-  {
-    // Make sure we don't draw on our horizontal line.
-    -- rect_image.bottom;
-
-    // Draw the image for the list view item.
-    this->GetImageList (LVSIL_SMALL)->DrawEx (&device,
-                                              lvitem.iImage,
-                                              rect_image.TopLeft (),
-                                              rect_image.Size (),
-                                              CLR_DEFAULT,
-                                              CLR_DEFAULT,
-                                              ILD_NORMAL);
-  }
+  // Draw the image for the list view item.
+  this->GetImageList (LVSIL_SMALL)->DrawEx (&device,
+                                            image,
+                                            rect_image.TopLeft (),
+                                            rect_image.Size (),
+                                            CLR_DEFAULT,
+                                            CLR_DEFAULT,
+                                            ILD_NORMAL);
 
   UINT format = DT_LEFT | DT_END_ELLIPSIS |
     DT_VCENTER | DT_SINGLELINE;
 
-  // Draw the name of the value to the device.
-  device.DrawText (value->name ().c_str (),
-                   value->name ().length (),
-                   rect_name,
-                   format);
+  if (!str_name.empty ())
+  {
+    // Draw the name of the value to the device.
+    device.DrawText (str_name.c_str (),
+                    str_name.length (),
+                    rect_name,
+                    format);
+  }
 
-  // Draw the actual value to the device.
-  device.DrawText (value->value ().c_str (),
-                   value->value ().length (),
-                   rect_value,
-                   format);
+  if (!str_value.empty ())
+  {
+    // Draw the actual value to the device.
+    device.DrawText (str_value.c_str (),
+                    str_value.length (),
+                    rect_value,
+                    format);
+  }
 
   // Release device context since it was temporary ownership.
   device.Detach ();
@@ -576,36 +607,39 @@ OnLButtonDown (UINT flags, CPoint point)
 
         if (this->GetItem (&lvitem) != 0)
         {
-          // Get the data value from the parameter.
-          PICML_Data_Value * value =
-            reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
-
-          if (lvitem.iImage == 1)
+          if (lvitem.lParam != 0)
           {
-            // Set image to collapse image since we have expanded list.
-            lvitem.iImage = 2;
-            this->SetItem (&lvitem);
+            // Get the data value from the parameter.
+            PICML_Data_Value * value =
+              reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
 
-            // Insert the child items into the control.
-            PICML_Property_Manager_ListView_Expand builder (*this, lvitem);
-            value->accept (builder);
-          }
-          else if (lvitem.iImage == 2)
-          {
-            // Set image to expand image since we have collapsed list.
-            lvitem.iImage = 1;
-            this->SetItem (&lvitem);
+            if (lvitem.iImage == 1)
+            {
+              // Set image to collapse image since we have expanded list.
+              lvitem.iImage = 2;
+              this->SetItem (&lvitem);
 
-            // Save the indentation value.
-            int indent = lvitem.iIndent;
+              // Insert the child items into the control.
+              PICML_Property_Manager_ListView_Expand builder (*this, lvitem);
+              value->accept (builder);
+            }
+            else if (lvitem.iImage == 2)
+            {
+              // Set image to expand image since we have collapsed list.
+              lvitem.iImage = 1;
+              this->SetItem (&lvitem);
 
-            // Initialize the list item properties.
-            lvitem.mask     = LVIF_INDENT;
-            lvitem.iSubItem = 0;
-            ++ lvitem.iItem;
+              // Save the indentation value.
+              int indent = lvitem.iIndent;
 
-            while (this->GetItem (&lvitem) != 0 && lvitem.iIndent > indent)
-              this->DeleteItem (lvitem.iItem);
+              // Initialize the list item properties.
+              lvitem.mask     = LVIF_INDENT;
+              lvitem.iSubItem = 0;
+              ++ lvitem.iItem;
+
+              while (this->GetItem (&lvitem) != 0 && lvitem.iIndent > indent)
+                this->DeleteItem (lvitem.iItem);
+            }
           }
         }
         else
@@ -619,40 +653,106 @@ OnLButtonDown (UINT flags, CPoint point)
     {
       // Get the data for the item.
       LVITEM lvitem;
-      lvitem.mask     = LVIF_PARAM;
+      lvitem.mask     = LVIF_PARAM | LVIF_INDENT;
       lvitem.iItem    = info.iItem;
       lvitem.iSubItem = 0;
 
       if (this->GetItem (&lvitem) != 0)
       {
-        // Get the correct edit control to display for the item.
-        PICML_Data_Value * value =
-          reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
-
-        PICML_Data_Value_Control_Selector selector (this->edit_control_);
-        value->accept (selector);
-
-        if (this->edit_control_ != 0)
+        if (lvitem.lParam != 0)
         {
-          // Get the dimensions of the subitem.
-          CRect subitem_rect;
-          this->GetSubItemRect (info.iItem,
-                                info.iSubItem,
-                                LVIR_BOUNDS,
-                                subitem_rect);
+          // Get the correct edit control to display for the item.
+          PICML_Data_Value * value =
+            reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
 
-          // Shrink the height of the control so we do not draw it
-          // over the horizontal borders.
-          -- subitem_rect.bottom;
+          PICML_Data_Value_Control_Selector selector (this->edit_control_);
+          value->accept (selector);
 
-          // Initialize the control.
-          this->edit_control_->InitControl (info.iItem, value);
+          if (this->edit_control_ != 0)
+          {
+            // Get the dimensions of the subitem.
+            CRect subitem_rect;
+            this->GetSubItemRect (info.iItem,
+                                  info.iSubItem,
+                                  LVIR_BOUNDS,
+                                  subitem_rect);
 
-          // Create the control.
-          this->edit_control_->Create (0,
-                                       subitem_rect,
-                                       this,
-                                       IDC_EDIT_CONTROL);
+            // Shrink the height of the control so we do not draw it
+            // over the horizontal borders.
+            -- subitem_rect.bottom;
+
+            // Initialize the control.
+            this->edit_control_->InitControl (info.iItem, value);
+
+            // Create the control.
+            this->edit_control_->Create (0,
+                                        subitem_rect,
+                                        this,
+                                        IDC_EDIT_CONTROL);
+          }
+        }
+        else
+        {
+          // The user wants to insert a new item into a sequence. We
+          // need to find the parent of this item. This will be the
+          // item that's one indentation less than the current one.
+          int item   = lvitem.iItem;
+          int indent = lvitem.iIndent;
+
+          lvitem.mask = LVIF_INDENT | LVIF_PARAM;
+
+          do
+          {
+            // Get the previous item in the listing.
+            -- lvitem.iItem;
+            this->GetItem (&lvitem);
+
+            // Check the indentation of this item.
+          } while (lvitem.iIndent == indent);
+
+          if (lvitem.lParam != 0)
+          {
+            try
+            {
+              // Extract the sequence value.
+              PICML_Sequence_Data_Value * sequence =
+                dynamic_cast <PICML_Sequence_Data_Value *> (
+                reinterpret_cast <PICML_Data_Value *> (lvitem.lParam));
+
+              // Create a new element in the sequence.
+              PICML_Data_Value * value = sequence->new_element ();
+
+              lvitem.mask     = LVIF_IMAGE | LVIF_INDENT | LVIF_PARAM;
+              lvitem.iItem    = item;
+              lvitem.iSubItem = 0;
+              lvitem.iIndent  = indent;
+              lvitem.lParam   = reinterpret_cast <LPARAM> (value);
+
+              // Select the correct image for the item.
+              PICML_Property_Manager_ListView_Image image (lvitem.iImage);
+              value->accept (image);
+
+              // Insert the item into the list.
+              if (this->InsertItem (&lvitem) != -1)
+              {
+                // Update the "insert" items name.
+                std::ostrstream name;
+                name << "[" << sequence->size () << "]" << std::ends;
+
+                this->SetItemText (item + 1, 0, name.str ());
+              }
+              else
+              {
+                ::AfxMessageBox ("Failed to create new element in sequence",
+                                 MB_OK | MB_ICONWARNING);
+              }
+            }
+            catch (...)
+            {
+              ::AfxMessageBox ("Failed to extract sequence from item",
+                               MB_OK | MB_ICONWARNING);
+            }
+          }
         }
       }
     }

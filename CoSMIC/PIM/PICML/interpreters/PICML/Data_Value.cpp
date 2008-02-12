@@ -13,8 +13,9 @@
 //
 PICML_Data_Value::
 PICML_Data_Value (const std::string & name, PICML_Data_Value * parent)
-: ident_ (name),
-  parent_ (parent)
+: name_ (name),
+  parent_ (parent),
+  is_uptodate_ (true)
 {
 
 }
@@ -60,7 +61,7 @@ const std::string & PICML_Data_Value::value (void)
 //
 const std::string & PICML_Data_Value::name (void) const
 {
-  return this->ident_;
+  return this->name_;
 }
 
 //
@@ -413,7 +414,10 @@ PICML_Aggregate_Data_Value::~PICML_Aggregate_Data_Value (void)
     iter_end = this->members_.end ();
 
   for ( ; iter != iter_end; iter ++)
-    delete iter->second;
+  {
+    if (iter->second != 0)
+      delete iter->second;
+  }
 }
 
 //
@@ -423,8 +427,8 @@ PICML_Data_Value *
 PICML_Aggregate_Data_Value::
 _create (const std::string & name, PICML_Data_Value * parent) const
 {
-  PICML_Aggregate_Data_Value * value =
-    new PICML_Aggregate_Data_Value (name, parent);
+  std::auto_ptr <PICML_Aggregate_Data_Value>
+    value (new PICML_Aggregate_Data_Value (name, parent));
 
   const_iterator
     iter = this->members_.begin (),
@@ -432,11 +436,14 @@ _create (const std::string & name, PICML_Data_Value * parent) const
 
   for (; iter != iter_end; iter ++)
   {
-    value->insert_member (iter->first,
-                          iter->second->_create (iter->first));
+    // Create the new member for the aggregate.
+    PICML_Data_Value * member =
+      iter->second->_create (iter->first, value.get ());
+
+    value->insert_member (iter->first, member);
   }
 
-  return value;
+  return value.release ();
 }
 
 //
@@ -707,8 +714,16 @@ size_t PICML_Sequence_Data_Value::size (void) const
 PICML_Data_Value * PICML_Sequence_Data_Value::
 _create (const std::string & name, PICML_Data_Value * parent) const
 {
+  // Create a new type for the sequence, which has no parent.
+  std::auto_ptr <PICML_Data_Value>
+    type (this->type_->_create (this->type_->name ()));
+
+  // Create the new sequence data type.
   PICML_Sequence_Data_Value * value =
-    new PICML_Sequence_Data_Value (name, this->type_, parent);
+    new PICML_Sequence_Data_Value (name, type.get (), parent);
+
+  // Release the auto pointer.
+  type.release ();
 
   return value;
 }
@@ -722,10 +737,15 @@ PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
   ostr << "[" << this->sequence_.size () << "]";
 
   // Create a new sequence element.
-  PICML_Data_Value * value =
-    this->type_->_create (ostr.str (), this);
+  PICML_Data_Value * value = this->type_->_create (ostr.str (), this);
+  std::auto_ptr <PICML_Data_Value> auto_clean (value);
 
+  // Insert the element into the end of the list.
   this->sequence_.push_back (value);
+  auto_clean.release ();
+
+  // We are not up-to-date.
+  this->is_uptodate_ = false;
 
   return value;
 }

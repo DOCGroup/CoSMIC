@@ -116,7 +116,7 @@ build_collection (const std::string & name,
 
   PICML_Data_Value * type = 0;
 
-  if (!this->create_data_value (name, mt, type))
+  if (!this->create_data_value (mt.name (), mt, type))
     return false;
 
   value = new PICML_Sequence_Data_Value (name, type, parent);
