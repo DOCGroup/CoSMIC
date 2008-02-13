@@ -758,16 +758,18 @@ OnLButtonDown (UINT flags, CPoint point)
             this->GetItem (&lvitem);
 
             // Check the indentation of this item.
-          } while (lvitem.iIndent == indent);
+          } while (lvitem.iIndent >= indent);
 
           if (lvitem.lParam != 0)
           {
             try
             {
               // Extract the sequence value.
+              PICML_Data_Value * v =
+                reinterpret_cast <PICML_Data_Value *> (lvitem.lParam);
+
               PICML_Sequence_Data_Value * sequence =
-                dynamic_cast <PICML_Sequence_Data_Value *> (
-                reinterpret_cast <PICML_Data_Value *> (lvitem.lParam));
+                dynamic_cast <PICML_Sequence_Data_Value *> (v);
 
               // Create a new element in the sequence.
               PICML_Data_Value * value = sequence->new_element ();

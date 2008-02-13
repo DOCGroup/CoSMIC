@@ -1,3 +1,11 @@
+Wed Feb 13 06:17:48 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+
+          Bug fix where inserting a new element into a sequence failed if
+          the elements above it had a greater indentation (i.e., the
+          previous element was expanded).
+
 Wed Feb 13 04:34:07 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
