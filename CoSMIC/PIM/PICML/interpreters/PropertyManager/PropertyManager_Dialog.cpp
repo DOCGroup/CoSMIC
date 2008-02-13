@@ -923,8 +923,23 @@ void PICML_Property_Manager_ListCtrl::end_label_edit (void)
 //
 void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
 {
-  // Delete the item from the list control.
-  this->DeleteItem (this->delete_item_);
+  // We need to get information about the item that's about to
+  // be deleted. We need to make sure it's not expanded. If so,
+  // then we need to delete all it's child elements.
+  LVITEM lvitem;
+  lvitem.mask     = LVIF_INDENT;
+  lvitem.iItem    = this->delete_item_;
+  lvitem.iSubItem = 0;
+
+  // Get the indentation value of the target deletion.
+  this->GetItem (&lvitem);
+  int indent = lvitem.iIndent;
+
+  do
+  {
+    // Delete the item from and it's children, if necessary.
+    this->DeleteItem (lvitem.iItem);
+  } while (this->GetItem (&lvitem) != -1 && lvitem.iIndent > indent);
 
   // Delete the item from the sequence.
   this->sequence_->delete_element (this->delete_index_);
@@ -936,7 +951,7 @@ void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
   std::ostrstream ostr;
   ostr << "[" << size << "]" << std::ends;
 
-  // Update the "click here to insert new item" name.
+  // Update the "click here to insert new item" name and value.
   int dummy = this->delete_item_ + (size - this->delete_index_);
   this->SetItemText (dummy, 0, ostr.str ());
 

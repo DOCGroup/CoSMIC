@@ -1,3 +1,10 @@
+Wed Feb 13 02:32:22 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+
+          Bug fix where deleting an expanded item would cause the
+          property manager to crash.
+
 Tue Feb 12 21:37:30 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value.h:
