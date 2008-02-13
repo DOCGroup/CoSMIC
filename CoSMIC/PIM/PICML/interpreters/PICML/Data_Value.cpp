@@ -72,6 +72,15 @@ bool PICML_Data_Value::is_uptodate (void) const
   return this->is_uptodate_;
 }
 
+//
+// reset
+//
+void PICML_Data_Value::reset (void)
+{
+  this->value_.clear ();
+  this->is_uptodate_ = false;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // class PICML_String_Data_Value
 
@@ -447,6 +456,21 @@ _create (const std::string & name, PICML_Data_Value * parent) const
 }
 
 //
+// reset
+//
+void PICML_Aggregate_Data_Value::reset (void)
+{
+  PICML_Data_Value::reset ();
+
+  container_type::iterator
+    iter = this->members_.begin (),
+    iter_end = this->members_.end ();
+
+  for (; iter != iter_end; iter ++)
+    iter->second->reset ();
+}
+
+//
 // accept
 //
 void PICML_Aggregate_Data_Value::
@@ -460,6 +484,9 @@ accept (PICML_Data_Value_Visitor & visitor) const
 //
 void PICML_Aggregate_Data_Value::value (const std::string & v)
 {
+  // Reset our before parsing the new value.
+  this->reset ();
+
   PICML_Data_Value_Parser p (this);
 
   if (boost::spirit::parse (v.c_str (),
@@ -798,6 +825,9 @@ void PICML_Sequence_Data_Value::delete_element (size_t index)
 //
 void PICML_Sequence_Data_Value::value (const std::string & v)
 {
+  // Reset our value first.
+  this->reset ();
+
   PICML_Data_Value_Parser p (this);
 
   if (boost::spirit::parse (v.c_str (),
@@ -839,4 +869,21 @@ PICML_Sequence_Data_Value::value (void)
   }
 
   return PICML_Data_Value::value ();
+}
+
+//
+// reset
+//
+void PICML_Sequence_Data_Value::reset (void)
+{
+  PICML_Data_Value::reset ();
+
+  container_type::iterator
+    iter = this->sequence_.begin (),
+    iter_end = this->sequence_.end ();
+
+  for (; iter != iter_end; iter ++)
+    delete (*iter);
+
+  this->sequence_.resize (0);
 }

@@ -143,7 +143,10 @@ IDR_LISTCTRL_CTX MENU
 BEGIN
     POPUP "IDR_LISTCTRL_CTX"
     BEGIN
-        MENUITEM "&Delete element...",          ID_IDR_DELETEITEM
+        MENUITEM "Move &up",                    ID_IDR_MOVEUP
+        MENUITEM "Move &down",                  ID_IDR_MOVEDOWN
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     ID_IDR_DELETEITEM
     END
 END
 

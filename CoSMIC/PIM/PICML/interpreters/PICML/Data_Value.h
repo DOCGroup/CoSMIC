@@ -56,6 +56,9 @@ public:
   virtual PICML_Data_Value * _create (const std::string & name,
                                       PICML_Data_Value * parent = 0) const = 0;
 
+  /// Reset the data value.
+  virtual void reset (void);
+
   const std::string & name (void) const;
 
   bool is_uptodate (void) const;
@@ -278,6 +281,8 @@ public:
 
   virtual void value (const std::string & value);
 
+  virtual void reset (void);
+
   void insert_member (PICML_Data_Value * member);
 
   void remove_member (const std::string & name);
@@ -330,6 +335,8 @@ public:
   virtual const std::string & value (void);
 
   virtual void value (const std::string & value);
+
+  virtual void reset (void);
 
   virtual void accept (PICML_Data_Value_Visitor & visitor) const;
 

@@ -1,3 +1,13 @@
+Wed Feb 13 04:34:07 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.rc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/resource.h:
+
+          Enhanced property manager so user's can move sequence values
+          up/down without having to delete them.
+
 Wed Feb 13 02:32:22 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:

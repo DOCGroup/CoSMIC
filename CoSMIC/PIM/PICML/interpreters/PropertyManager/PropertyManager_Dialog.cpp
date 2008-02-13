@@ -325,9 +325,11 @@ BEGIN_MESSAGE_MAP (PICML_Property_Manager_ListCtrl, CListCtrl)
   ON_WM_CONTEXTMENU ()
   ON_WM_HSCROLL ()
   ON_WM_VSCROLL ()
-  ON_NOTIFY_REFLECT (LVN_GETDISPINFO, GetDispInfo)
+  ON_WM_INITMENUPOPUP ()
 
   ON_COMMAND (ID_IDR_DELETEITEM, OnCommand_DeleteItem)
+  ON_COMMAND (ID_IDR_MOVEUP, OnCommand_MoveUp)
+  ON_COMMAND (ID_IDR_MOVEDOWN, OnCommand_MoveDown)
 END_MESSAGE_MAP ()
 
 //
@@ -425,46 +427,6 @@ SetDataValue (PICML_Data_Value * value)
 }
 
 //
-// GetDispInfo
-//
-void PICML_Property_Manager_ListCtrl::
-GetDispInfo (NMHDR * notify, LRESULT * result)
-{
-  // Get the display info for the listview item.
-  NMLVDISPINFO * info = reinterpret_cast <NMLVDISPINFO *> (notify);
-
-  // Get the data value associated w/ the listview item.
-  PICML_Data_Value * value =
-    reinterpret_cast <PICML_Data_Value *> (info->item.lParam);
-
-  if ((info->item.mask & LVIF_TEXT))
-  {
-    // Get the display text for this item.
-    switch (info->item.iSubItem)
-    {
-    case 0:
-      // Get the name of the item.
-      strncpy (info->item.pszText,
-               value->name ().c_str (),
-               info->item.cchTextMax);
-      break;
-
-    case 1:
-      // Get the value of the item.
-      strncpy (info->item.pszText,
-               value->value ().c_str (),
-               info->item.cchTextMax);
-      break;
-    }
-
-    // Cache the text in the system's memory.
-    //info->item.mask |= LVIF_DI_SETITEM;
-  }
-
-  *result = 1;
-}
-
-//
 // DrawItem
 //
 void PICML_Property_Manager_ListCtrl::DrawItem (LPDRAWITEMSTRUCT item)
@@ -511,8 +473,6 @@ void PICML_Property_Manager_ListCtrl::DrawItem (LPDRAWITEMSTRUCT item)
   CDC device;
   device.Attach (item->hDC);
 
-  // Let's erase the entire background for this item. Should we
-  // do this when WM_ERASEBKGROUND message is sent??
   device.FillSolidRect (&item->rcItem, RGB (255, 255, 255));
 
   // Select the pen for outlining the items.
@@ -630,9 +590,9 @@ OnContextMenu (CWnd * parent, CPoint point)
           dynamic_cast <PICML_Sequence_Data_Value *> (value);
 
         // Save the item and index of the value to delete.
-        this->delete_item_  = info.iItem;
-        this->delete_index_ = info.iItem - lvitem.iItem - 1;
-        this->parent_index_ = lvitem.iItem;
+        this->parent_item_  = lvitem.iItem;
+        this->target_item_  = info.iItem;
+        this->target_index_ = info.iItem - lvitem.iItem - 1;
 
         // Load the main menu from the resources.
         CMenu menu;
@@ -643,17 +603,6 @@ OnContextMenu (CWnd * parent, CPoint point)
 
         if (popup != 0)
         {
-          // Initialize the menu flags.
-          UINT flags = MF_BYCOMMAND;
-
-          flags |=
-            this->delete_item_ != 0 &&
-            this->delete_index_ < this->sequence_->size () ?
-            MF_ENABLED : MF_GRAYED;
-
-          // Enable/disable the menu item accordingly.
-          popup->EnableMenuItem (ID_IDR_DELETEITEM, flags);
-
           // Create it as a popup menu.
           popup->TrackPopupMenu (TPM_LEFTALIGN | TPM_LEFTBUTTON,
                                  point.x,
@@ -740,22 +689,7 @@ OnLButtonDown (UINT flags, CPoint point)
               value->accept (builder);
             }
             else if (lvitem.iImage == 2)
-            {
-              // Set image to expand image since we have collapsed list.
-              lvitem.iImage = 1;
-              this->SetItem (&lvitem);
-
-              // Save the indentation value.
-              int indent = lvitem.iIndent;
-
-              // Initialize the list item properties.
-              lvitem.mask     = LVIF_INDENT;
-              lvitem.iSubItem = 0;
-              ++ lvitem.iItem;
-
-              while (this->GetItem (&lvitem) != 0 && lvitem.iIndent > indent)
-                this->DeleteItem (lvitem.iItem);
-            }
+              this->collapse_item (lvitem.iItem, lvitem.iIndent);
           }
         }
         else
@@ -919,6 +853,112 @@ void PICML_Property_Manager_ListCtrl::end_label_edit (void)
 }
 
 //
+// OnInitMenuPopup
+//
+void PICML_Property_Manager_ListCtrl::
+OnInitMenuPopup (CMenu * popup, UINT index, BOOL sysmenu)
+{
+  if (index == 0)
+  {
+    size_t size = this->sequence_->size ();
+
+    // Enable/disable the "Delete item..." command.
+    UINT flags = MF_BYCOMMAND |
+      (this->target_item_ != 0 &&
+       static_cast <size_t> (this->target_index_) < size ? MF_ENABLED : MF_GRAYED);
+
+    popup->EnableMenuItem (ID_IDR_DELETEITEM, flags);
+
+    // Enable/disable the "Move up" command.
+    flags = MF_BYCOMMAND |
+      (this->target_index_ != 0 ? MF_ENABLED : MF_GRAYED);
+
+    popup->EnableMenuItem (ID_IDR_MOVEUP, flags);
+
+    // Enable/disable the "Move down" command.
+    flags = MF_BYCOMMAND |
+      (static_cast <size_t> (this->target_index_) < size - 1 ? MF_ENABLED : MF_GRAYED);
+
+    popup->EnableMenuItem (ID_IDR_MOVEDOWN, flags);
+  }
+}
+
+//
+// OnCommand_MoveUp
+//
+void PICML_Property_Manager_ListCtrl::OnCommand_MoveUp (void)
+{
+  // Get a reference to the target sequence.
+  int prev_index = this->target_index_ - 1;
+  int prev_item = this->target_item_ - 1;
+
+  this->swap_and_update_sequence (this->target_index_,
+                                  this->target_item_,
+                                  prev_index,
+                                  prev_item);
+}
+
+//
+// OnCommand_MoveDown
+//
+void PICML_Property_Manager_ListCtrl::OnCommand_MoveDown (void)
+{
+  // Get a reference to the target sequence.
+  int next_index = this->target_index_ + 1;
+  int next_item = this->target_item_ + 1;
+
+  this->swap_and_update_sequence (this->target_index_,
+                                  this->target_item_,
+                                  next_index,
+                                  next_item);
+}
+
+//
+// swap_and_update_sequence
+//
+void PICML_Property_Manager_ListCtrl::
+swap_and_update_sequence (int i, int item1, int j, int item2)
+{
+  if (this->sequence_ != 0)
+  {
+    // Get a reference to the target sequence.
+    PICML_Sequence_Data_Value & sequence = *this->sequence_;
+
+    // Get the current and previous data value.
+    PICML_Data_Value
+      * value1 = sequence[i],
+      * value2 = sequence[j];
+
+    if (value1 != 0 && value2 != 0)
+    {
+      // Swap the values of the items.
+      std::string temp_value = value1->value ();
+      value1->value (value2->value ());
+      value2->value (temp_value);
+
+      // Collapse the values if necessary. It's too hard, and
+      // expensive, to move expanded items.
+      LVITEM lvitem;
+      lvitem.mask     = LVIF_IMAGE | LVIF_INDENT;
+      lvitem.iItem    = item1;
+      lvitem.iSubItem = 0;
+
+      if (this->GetItem (&lvitem) != 0 && lvitem.iImage == 2)
+        this->collapse_item (lvitem.iItem, lvitem.iIndent);
+
+      lvitem.iItem = item2;
+      if (this->GetItem (&lvitem) != 0 && lvitem.iImage == 2)
+        this->collapse_item (lvitem.iItem, lvitem.iIndent);
+
+      // Update the appropriate items in the control.
+      this->Update (item1);
+      this->Update (item2);
+      this->Update (this->parent_item_);
+    }
+  }
+}
+
+//
 // OnCommand_DeleteItem
 //
 void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
@@ -928,21 +968,20 @@ void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
   // then we need to delete all it's child elements.
   LVITEM lvitem;
   lvitem.mask     = LVIF_INDENT;
-  lvitem.iItem    = this->delete_item_;
+  lvitem.iItem    = this->target_item_;
   lvitem.iSubItem = 0;
 
   // Get the indentation value of the target deletion.
   this->GetItem (&lvitem);
   int indent = lvitem.iIndent;
 
-  do
-  {
-    // Delete the item from and it's children, if necessary.
-    this->DeleteItem (lvitem.iItem);
-  } while (this->GetItem (&lvitem) != -1 && lvitem.iIndent > indent);
+  // Collapse the item, if necessary, then delete the main
+  // item.
+  this->collapse_item (lvitem.iItem, lvitem.iIndent);
+  this->DeleteItem (lvitem.iItem);
 
   // Delete the item from the sequence.
-  this->sequence_->delete_element (this->delete_index_);
+  this->sequence_->delete_element (this->target_index_);
 
   // Get the size of the sequence.
   size_t size = this->sequence_->size ();
@@ -952,14 +991,60 @@ void PICML_Property_Manager_ListCtrl::OnCommand_DeleteItem (void)
   ostr << "[" << size << "]" << std::ends;
 
   // Update the "click here to insert new item" name and value.
-  int dummy = this->delete_item_ + (size - this->delete_index_);
+  int dummy = this->target_item_ + (size - this->target_index_);
   this->SetItemText (dummy, 0, ostr.str ());
 
   // Release our target sequence.
   this->sequence_ = 0;
 
   // Update the parent.
-  this->Update (this->parent_index_);
+  this->Update (this->parent_item_);
+}
+
+void PICML_Property_Manager_ListCtrl::collapse_item (int item, int indent)
+{
+  LVITEM lvitem;
+  lvitem.mask     = LVIF_IMAGE;
+  lvitem.iItem    = item;
+  lvitem.iSubItem = 0;
+  lvitem.iImage   = 1;
+  this->SetItem (&lvitem);
+
+  // Initialize the list item properties.
+  lvitem.mask     = LVIF_INDENT;
+  lvitem.iSubItem = 0;
+  ++ lvitem.iItem;
+
+  while (this->GetItem (&lvitem) != 0 && lvitem.iIndent > indent)
+    this->DeleteItem (lvitem.iItem);
+}
+
+//
+// delete_children
+//
+void PICML_Property_Manager_ListCtrl::delete_children (int item, int indent)
+{
+  LVITEM lvitem;
+  lvitem.mask     = LVIF_INDENT;
+  lvitem.iItem    = item;
+  lvitem.iSubItem = 0;
+
+  // Get the indentation value of the item.
+  if (indent == -1)
+  {
+    if (this->GetItem (&lvitem) != 0)
+      indent = lvitem.iIndent;
+  }
+
+  // Save the indentation value.
+  if (indent != -1)
+  {
+    // Initialize the list item properties.
+    ++ lvitem.iItem;
+
+    while (this->GetItem (&lvitem) != 0 && lvitem.iIndent > indent)
+      this->DeleteItem (lvitem.iItem);
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

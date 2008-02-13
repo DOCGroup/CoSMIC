@@ -45,8 +45,6 @@ public:
 protected:
   virtual void DrawItem (LPDRAWITEMSTRUCT item);
 
-  afx_msg void GetDispInfo (NMHDR * pNotifyStruct, LRESULT* result );
-
   afx_msg void OnLButtonDown (UINT flags, CPoint point);
 
   afx_msg void OnContextMenu (CWnd * parent, CPoint point);
@@ -55,10 +53,22 @@ protected:
 
   afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 
+  afx_msg void OnInitMenuPopup (CMenu * popup, UINT index, BOOL sysmenu);
+
   afx_msg void OnCommand_DeleteItem (void);
+
+  afx_msg void OnCommand_MoveUp (void);
+
+  afx_msg void OnCommand_MoveDown (void);
 
 private:
   void end_label_edit (void);
+
+  void swap_and_update_sequence (int i, int item1, int j, int item2);
+
+  void delete_children (int item, int indent = -1);
+
+  void collapse_item (int item, int indent = -1);
 
   DECLARE_MESSAGE_MAP ();
 
@@ -68,13 +78,13 @@ private:
   PICML_Sequence_Data_Value  * sequence_;
 
   /// Delete item of the operation.
-  int delete_item_;
+  int target_item_;
 
   /// Delete index of the operation.
-  int delete_index_;
+  int target_index_;
 
   /// Index of the parent.
-  int parent_index_;
+  int parent_item_;
 };
 
 //=============================================================================
