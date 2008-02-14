@@ -69,7 +69,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
       typedef GME::Collection_T <GME::FCO> FCO_set;
       FCO_set properties (selected);
 
-      typedef FCO_set::_container_type::iterator iterator;
+      typedef FCO_set::container_type::iterator iterator;
 
       for (iterator iter = properties.items ().begin ();
            iter != properties.items ().end ();

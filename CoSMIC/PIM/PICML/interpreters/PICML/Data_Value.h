@@ -348,7 +348,8 @@ public:
 
   PICML_Data_Value * new_element (void);
 
-  void delete_element (size_t index);
+  void remove (PICML_Data_Value * value);
+  void remove (size_t index);
 
   iterator begin (void);
   iterator end (void);
@@ -356,7 +357,15 @@ public:
   const_iterator begin (void) const;
   const_iterator end (void) const;
 
+  bool move_up (PICML_Data_Value * value);
+
+  bool move_down (PICML_Data_Value * value);
+
+  bool get_index (const PICML_Data_Value * value, size_t & index) const;
+
 private:
+  void remove_i (size_t index);
+
   std::auto_ptr <PICML_Data_Value> type_;
 
   container_type sequence_;

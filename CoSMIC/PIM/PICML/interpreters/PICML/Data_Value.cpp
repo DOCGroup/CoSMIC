@@ -784,39 +784,56 @@ PICML_Data_Value * PICML_Sequence_Data_Value::new_element (void)
 }
 
 //
-// delete_element
+// remove
 //
-void PICML_Sequence_Data_Value::delete_element (size_t index)
+void PICML_Sequence_Data_Value::remove (size_t index)
 {
   if (index < this->sequence_.size ())
+    this->remove_i (index);
+}
+
+//
+// remove
+//
+void PICML_Sequence_Data_Value::remove (PICML_Data_Value * value)
+{
+  size_t index;
+
+  if (this->get_index (value, index))
+    this->remove_i (index);
+}
+
+//
+// remove_i
+//
+void PICML_Sequence_Data_Value::remove_i (size_t index)
+{
+  // Delete the data value at the specified index.
+  delete this->sequence_[index];
+
+  // Remove the data value from the collection.
+  this->sequence_.erase ((this->begin () + index));
+
+  // Force ourselves to update.
+  this->is_uptodate_ = false;
+  PICML_Data_Value::value (PICML_Data_Value::value ());
+
+  // Update names of all elements after the deleted items.
+  container_type::iterator
+    iter = this->sequence_.begin () + index,
+    iter_end = this->sequence_.end ();
+
+  std::ostringstream ostr;
+
+  for (; iter != iter_end; iter ++)
   {
-    // Delete the data value at the specified index.
-    delete this->sequence_[index];
+    // Set the name of the item.
+    ostr << "[" << index ++ << "]";
+    (*iter)->name_ = ostr.str ();
 
-    // Remove the data value from the collection.
-    this->sequence_.erase ((this->begin () + index));
-
-    // Force ourselves to update.
-    this->is_uptodate_ = false;
-    PICML_Data_Value::value (PICML_Data_Value::value ());
-
-    // Update names of all elements after the deleted items.
-    container_type::iterator
-      iter = this->sequence_.begin () + index,
-      iter_end = this->sequence_.end ();
-
-    std::ostringstream ostr;
-
-    for (; iter != iter_end; iter ++)
-    {
-      // Set the name of the item.
-      ostr << "[" << index ++ << "]";
-      (*iter)->name_ = ostr.str ();
-
-      // Reset the stream.
-      ostr.str ("");
-      ostr.clear ();
-    }
+    // Reset the stream.
+    ostr.str ("");
+    ostr.clear ();
   }
 }
 
@@ -886,4 +903,85 @@ void PICML_Sequence_Data_Value::reset (void)
     delete (*iter);
 
   this->sequence_.resize (0);
+}
+
+//
+// move_up
+//
+bool PICML_Sequence_Data_Value::move_up (PICML_Data_Value * value)
+{
+  size_t index;
+
+  if (this->get_index (value, index))
+  {
+    if (index != 0)
+    {
+      size_t swap_index = index - 1;
+      PICML_Data_Value * prev = this->sequence_[swap_index];
+
+      // Swap the 'index' names of the items.
+      std::swap (value->name_, prev->name_);
+
+      // Swap the actual items.
+      std::swap (this->sequence_[index], this->sequence_[swap_index]);
+      return true;
+    }
+  }
+
+  return false;
+}
+
+//
+// move_down
+//
+bool PICML_Sequence_Data_Value::move_down (PICML_Data_Value * value)
+{
+  size_t index;
+
+  if (this->get_index (value, index))
+  {
+    if (index != this->sequence_.size () - 1)
+    {
+      size_t swap_index = index + 1;
+      PICML_Data_Value * next = this->sequence_[swap_index];
+
+      // Swap the 'index' names of the items.
+      std::swap (value->name_, next->name_);
+
+      // Swap the actual items.
+      std::swap (this->sequence_[index], this->sequence_[swap_index]);
+      return true;
+    }
+  }
+
+  return false;
+}
+
+//
+// get_index
+//
+bool PICML_Sequence_Data_Value::
+get_index (const PICML_Data_Value * value, size_t & index) const
+{
+  container_type::const_iterator
+    iter = this->sequence_.begin (),
+    iter_end = this->sequence_.end ();
+
+  size_t i = 0;
+
+  // Search the list in sequential order.
+  for (; iter != iter_end; iter ++)
+  {
+    if (*iter == value)
+    {
+      // We found the value.
+      index = i;
+      return true;
+    }
+
+    // Move the the next index.
+    ++ i;
+  }
+
+  return false;
 }

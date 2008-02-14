@@ -64,18 +64,25 @@ protected:
 private:
   void end_label_edit (void);
 
-  void swap_and_update_sequence (int i, int item1, int j, int item2);
+  void collapse_item (int item);
 
-  void delete_children (int item, int indent = -1);
+  int find_prev_item (int item);
 
-  void collapse_item (int item, int indent = -1);
+  int find_next_item (int item);
+
+  int find_item_i (int item, int step);
+
+  void swap_item_data (int i, int j);
 
   DECLARE_MESSAGE_MAP ();
 
   PICML_Data_Value_Control * edit_control_;
 
-  /// Target value of the operation.
+  /// Target sequence of the operation.
   PICML_Sequence_Data_Value  * sequence_;
+
+  /// Target value of the operation.
+  PICML_Data_Value * target_value_;
 
   /// Delete item of the operation.
   int target_item_;
@@ -85,6 +92,9 @@ private:
 
   /// Index of the parent.
   int parent_item_;
+
+  /// Global listview item structure.
+  LVITEM lvitem_;
 };
 
 //=============================================================================

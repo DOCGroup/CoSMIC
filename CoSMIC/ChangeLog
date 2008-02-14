@@ -1,3 +1,15 @@
+Thu Feb 14 19:27:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.h:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager_Dialog.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+
+          Bug fix where moving an item in a sequence up/down did not
+          update the GUI/sequence correctly. Now, the operations available
+          on the menu are mapped to operations of the sequence.
+
 Thu Feb 14 15:22:24 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Collection_T.h:
