@@ -36,7 +36,7 @@ namespace Meta
   {
   public:
     /// Type definition of COM type.
-    typedef IMgaMetaModel _type;
+    typedef IMgaMetaModel interface_type;
 
     /**
      * Extract the meta model object from the base meta object.

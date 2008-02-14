@@ -31,7 +31,7 @@ namespace GME
   {
   public:
     /// Type definition of the COM pointer type.
-    typedef IMgaAttribute _type;
+    typedef IMgaAttribute interface_type;
 
     Attribute (void);
 

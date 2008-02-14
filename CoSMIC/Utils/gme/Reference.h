@@ -29,7 +29,7 @@ namespace GME
   {
   public:
     /// Type definition of the COM interface.
-    typedef IMgaReference _type;
+    typedef IMgaReference interface_type;
 
     /**
      * Convert a FCO into an atom.

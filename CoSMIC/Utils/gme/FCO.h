@@ -31,7 +31,7 @@ namespace GME
   {
   public:
     /// Type definition of the COM pointer type.
-    typedef IMgaFCO _type;
+    typedef IMgaFCO interface_type;
 
     /**
      * Create a new atom element.
@@ -85,7 +85,7 @@ namespace GME
      * @retval        The instance's type. NULL if the object is
      *                not an instance.
      */
-    FCO instance_type (void) const;
+    FCO instanceinterface_type (void) const;
 
     /**
      * Determine if the FCO is the first derivation of anohter

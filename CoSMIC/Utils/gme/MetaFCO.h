@@ -33,7 +33,7 @@ namespace Meta
   {
   public:
     /// Type definition of the interface pointer.
-    typedef IMgaMetaFCO _type;
+    typedef IMgaMetaFCO interface_type;
 
     /// Default constructor.
     FCO (void);

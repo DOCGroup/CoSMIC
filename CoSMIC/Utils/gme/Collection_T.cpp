@@ -23,15 +23,15 @@ void Collection_T <T>::populate (void)
   {
     // Get the interface to all the members.
     typedef typename collection_traits <
-      typename item_traits <T>::_collection_type>::_item_type _item_type;
+      typename item_traits <T>::_collectioninterface_type>::_iteminterface_type _iteminterface_type;
 
-    CComPtr <_item_type> * array =
-      new CComPtr <_item_type> [count];
+    CComPtr <_iteminterface_type> * array =
+      new CComPtr <_iteminterface_type> [count];
 
     VERIFY_HRESULT (this->collection_->GetAll (count, &(*array)));
 
     // Store the members in a collection.
-    typename T::_type * temp = 0;
+    typename T::interface_type * temp = 0;
 
     for (long i = 0; i < count; i ++)
     {

@@ -42,7 +42,7 @@ namespace Meta
   {
   public:
     /// Type definition of the COM type.
-    typedef IMgaMetaEnumItem _type;
+    typedef IMgaMetaEnumItem interface_type;
 
     /// Default constructor.
     EnumItem (void);

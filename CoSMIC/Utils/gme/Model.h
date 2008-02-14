@@ -35,7 +35,7 @@ namespace GME
 
   public:
     /// Type definition of the COM interface.
-    typedef IMgaModel _type;
+    typedef IMgaModel interface_type;
 
     /**
      * Convert a FCO into a Model.

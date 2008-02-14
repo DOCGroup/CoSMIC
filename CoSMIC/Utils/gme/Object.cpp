@@ -217,7 +217,7 @@ namespace GME
   }
 
   //
-  // object_type
+  // objectinterface_type
   //
   objtype_enum Object::type (void) const
   {

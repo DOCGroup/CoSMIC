@@ -152,7 +152,7 @@ namespace GME
     /**
      * Get all the child registry nodes of this node.
      *
-     * @param[in]       virtual_types       Include the virtual nodes.
+     * @param[in]       virtualinterface_types       Include the virtual nodes.
      * @return          Collection of child nodes.
      */
     size_t children (RegistryNodes & nodes,

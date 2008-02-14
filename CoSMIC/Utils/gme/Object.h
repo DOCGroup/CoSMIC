@@ -37,7 +37,7 @@ namespace GME
   {
   public:
     /// Type definition of the COM pointer type.
-    typedef IMgaObject _type;
+    typedef IMgaObject interface_type;
 
     /// Default constructor.
     Object (void);

@@ -30,10 +30,13 @@ namespace GME
   class GME_Export Folder :
     public Folder_Model_T <IMgaFolder, Object>
   {
+  public:
     /// Type definition of the base type.
     typedef Folder_Model_T <IMgaFolder, Object> _base_type;
 
-  public:
+    /// Type definition of the interface type.
+    typedef IMgaFolder interface_type;
+
     /// Default constructor.
     Folder (void);
 
@@ -83,7 +86,7 @@ namespace GME
      *
      * @return      Collection of folder objects.
      */
-    size_t folders (std::vector <Folder> & folders) const;
+    size_t folders (GME::Collection_T <GME::Folder> & folders) const;
 
     /**
      * Get the parent of this folder.

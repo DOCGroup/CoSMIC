@@ -156,9 +156,9 @@ namespace GME
   }
 
   //
-  // instance_type
+  // instanceinterface_type
   //
-  FCO FCO::instance_type (void) const
+  FCO FCO::instanceinterface_type (void) const
   {
     CComPtr <IMgaFCO> fco;
     VERIFY_HRESULT (this->impl ()->get_Type (&fco));

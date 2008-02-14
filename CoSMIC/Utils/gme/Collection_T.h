@@ -42,31 +42,31 @@ struct collection_traits
 template < >
 struct collection_traits <IMgaObjects>
 {
-  typedef IMgaObject _item_type;
+  typedef IMgaObject _iteminterface_type;
 };
 
 template < >
 struct collection_traits <IMgaFCOs>
 {
-  typedef IMgaFCO _item_type;
+  typedef IMgaFCO _iteminterface_type;
 };
 
 template < >
 struct collection_traits <IMgaFolders>
 {
-  typedef IMgaFolder _item_type;
+  typedef IMgaFolder _iteminterface_type;
 };
 
 template < >
 struct collection_traits <IMgaAttributes>
 {
-  typedef IMgaAttribute _item_type;
+  typedef IMgaAttribute _iteminterface_type;
 };
 
 template < >
 struct collection_traits <IMgaConnPoints>
 {
-  typedef IMgaConnPoint _item_type;
+  typedef IMgaConnPoint _iteminterface_type;
 };
 
 //=============================================================================
@@ -86,61 +86,61 @@ struct item_traits
 template < >
 struct item_traits <Object>
 {
-  typedef IMgaObjects _collection_type;
+  typedef IMgaObjects _collectioninterface_type;
 };
 
 template < >
 struct item_traits <FCO>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Atom>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Model>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Set>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Reference>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Connection>
 {
-  typedef IMgaFCOs _collection_type;
+  typedef IMgaFCOs _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Folder>
 {
-  typedef IMgaFolders _collection_type;
+  typedef IMgaFolders _collectioninterface_type;
 };
 
 template < >
 struct item_traits <Attribute>
 {
-  typedef IMgaAttributes _collection_type;
+  typedef IMgaAttributes _collectioninterface_type;
 };
 
 template < >
 struct item_traits <ConnectionPoint>
 {
-  typedef IMgaConnPoints _collection_type;
+  typedef IMgaConnPoints _collectioninterface_type;
 };
 
 //=============================================================================
@@ -156,17 +156,17 @@ class Collection_T
 {
 public:
   /// Type definition for the item type.
-  typedef T _item_type;
+  typedef T _iteminterface_type;
 
   /// Type definition for the collection type.
-  typedef typename item_traits <T>::_collection_type _collection_type;
+  typedef typename item_traits <T>::_collectioninterface_type _collectioninterface_type;
 
   /// Type definition for the container type.
-  typedef std::vector <T> _container_type;
+  typedef std::vector <T> _containerinterface_type;
 
-  typedef typename _container_type::iterator iterator;
+  typedef typename _containerinterface_type::iterator iterator;
 
-  typedef typename _container_type::const_iterator const_iterator;
+  typedef typename _containerinterface_type::const_iterator const_iterator;
 
   /// Default constructor.
   Collection_T (void);
@@ -176,7 +176,7 @@ public:
    *
    * @param[in]     collection      The source collection.
    */
-  Collection_T (typename _collection_type * collection);
+  Collection_T (typename _collectioninterface_type * collection);
 
   /// Destructor.
   ~Collection_T (void);
@@ -186,35 +186,35 @@ public:
    *
    * @param[in]     collection      The source collection.
    */
-  void attach (typename _collection_type * collection);
+  void attach (typename _collectioninterface_type * collection);
 
   /**
    * Get the collection of items.
    *
    * @return        The collection of items.
    */
-  typename _container_type & items (void);
+  typename _containerinterface_type & items (void);
 
   /**
    * Get the collection of items.
    *
    * @return        The collection of items.
    */
-  const typename _container_type & items (void) const;
+  const typename _containerinterface_type & items (void) const;
 
   /**
    * Get the underlying implementation.
    *
    * @return        Pointer to the implementation.
    */
-  typename _collection_type * impl (void) const;
+  typename _collectioninterface_type * impl (void) const;
 
 private:
   /// Populate the collection object with the items.
   void populate (void);
 
   /// The underlying collection.
-  CComPtr <typename _collection_type> collection_;
+  CComPtr <typename _collectioninterface_type> collection_;
 
   /// The collection of items.
   std::vector <T> items_;

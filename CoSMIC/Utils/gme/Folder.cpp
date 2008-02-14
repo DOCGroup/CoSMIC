@@ -43,30 +43,13 @@ namespace GME
   //
   // folders
   //
-  size_t Folder::folders (std::vector <Folder>  & folders) const
+  size_t Folder::folders (GME::Collection_T <GME::Folder> & folders) const
   {
     CComPtr <IMgaFolders> tempptr;
     VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
 
-    // Determine how many folders there are.
-    long count;
-    VERIFY_HRESULT (tempptr->get_Count (&count));
-    folders.resize (count);
-
-    if (count > 0)
-    {
-      // Store all the folders in a vector.
-      CComPtr <IMgaFolder> * array = new CComPtr <IMgaFolder> [count];
-      VERIFY_HRESULT (tempptr->GetAll (count, &(*array)));
-
-      for (long i = 0; i < count; i ++)
-        folders[i].attach (array[i]);
-
-      // Delete the temp array.
-      delete [] array;
-    }
-
-    return count;
+    folders.attach (tempptr.Detach ());
+    return folders.items ().size ();
   }
 
   //
@@ -171,11 +154,11 @@ namespace GME
   // registry_nodes
   //
   size_t Folder::registry_nodes (RegistryNodes & nodes,
-                                 bool virtual_types) const
+                                 bool virtualinterface_types) const
   {
     // Get all the subnodes.
     CComPtr <IMgaRegNodes> rawnodes;
-    VARIANT_BOOL vtypes = !virtual_types ? VARIANT_FALSE : VARIANT_TRUE;
+    VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
     // Get the count and resize the nodes.

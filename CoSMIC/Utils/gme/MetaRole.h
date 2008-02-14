@@ -39,7 +39,7 @@ namespace Meta
   {
   public:
     /// Type definition of the COM interface.
-    typedef IMgaMetaRole _type;
+    typedef IMgaMetaRole interface_type;
 
     /// Default constructor.
     Role (void);

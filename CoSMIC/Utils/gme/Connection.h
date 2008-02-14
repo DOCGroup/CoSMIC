@@ -34,7 +34,7 @@ namespace GME
   {
   public:
     /// Type definition of the interface type.
-    typedef IMgaConnPoint _type;
+    typedef IMgaConnPoint interface_type;
 
     /// Default constructor.
     ConnectionPoint (void);
@@ -246,7 +246,7 @@ namespace GME
   {
   public:
     /// Type definition of the interface type.
-    typedef IMgaConnection _type;
+    typedef IMgaConnection interface_type;
 
     /**
      * Create a new connection in an existing model.

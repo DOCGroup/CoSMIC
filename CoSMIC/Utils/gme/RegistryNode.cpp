@@ -100,11 +100,11 @@ namespace GME
   // children
   //
   size_t RegistryNode::
-  children (RegistryNodes & nodes, bool virtual_types) const
+  children (RegistryNodes & nodes, bool virtualinterface_types) const
   {
     // Get all the subnodes.
     CComPtr <IMgaRegNodes> rawnodes;
-    VARIANT_BOOL vtypes = !virtual_types ? VARIANT_FALSE : VARIANT_TRUE;
+    VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->node_->get_SubNodes (vtypes, &rawnodes));
 
     // Get the count and resize the nodes.

@@ -29,7 +29,7 @@ namespace GME
   {
   public:
     /// Type definition for the interface.
-    typedef IMgaAtom _type;
+    typedef IMgaAtom interface_type;
 
     /**
      * Convert a FCO into an atom.

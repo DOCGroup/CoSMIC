@@ -30,7 +30,7 @@ namespace GME
   {
   public:
     /// Type definition for the interface pointer.
-    typedef IMgaSet _type;
+    typedef IMgaSet interface_type;
 
     /**
      * Convert a FCO into an set.

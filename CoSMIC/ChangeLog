@@ -1,3 +1,33 @@
+Thu Feb 14 14:46:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Atom.h:
+        * Utils/gme/Attribute.h:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.inl:
+        * Utils/gme/Collection_T.cpp:
+        * Utils/gme/Connection.h:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/MetaEnumItem.h:
+        * Utils/gme/MetaFCO.h:
+        * Utils/gme/MetaModel.h:
+        * Utils/gme/MetaRole.h:
+        * Utils/gme/Model.h:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Reference.h:
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/RegistryNode.cpp:
+        * Utils/gme/Set.h:
+
+          Changed the '_type' type definition to 'interface_type'.
+
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+
+          - Changed the '_type' type definition to 'interface_type'.
+          - The folders () method now uses the GME::Collection_T object.
+
 Wed Feb 13 15:56:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * docs/doxygen:
