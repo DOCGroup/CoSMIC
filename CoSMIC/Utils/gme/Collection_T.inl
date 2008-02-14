@@ -17,7 +17,7 @@ Collection_T <T>::Collection_T (void)
 //
 template <typename T>
 GME_INLINE
-Collection_T <T>::Collection_T (typename _collectioninterface_type * collection)
+Collection_T <T>::Collection_T (typename collection_type * collection)
 : collection_ (collection)
 {
   this->populate ();
@@ -38,7 +38,7 @@ Collection_T <T>::~Collection_T (void)
 //
 template <typename T>
 GME_INLINE
-typename Collection_T <T>::_collectioninterface_type *
+typename Collection_T <T>::collection_type *
 Collection_T <T>::impl (void) const
 {
   return this->collection_.p;
@@ -49,7 +49,7 @@ Collection_T <T>::impl (void) const
 //
 template <typename T>
 GME_INLINE
-typename Collection_T <T>::_containerinterface_type &
+typename Collection_T <T>::container_type &
 Collection_T <T>::items (void)
 {
   return this->items_;
@@ -60,7 +60,7 @@ Collection_T <T>::items (void)
 //
 template <typename T>
 GME_INLINE
-const typename Collection_T <T>::_containerinterface_type &
+const typename Collection_T <T>::container_type &
 Collection_T <T>::items (void) const
 {
   return this->items_;
@@ -71,7 +71,7 @@ Collection_T <T>::items (void) const
 //
 template <typename T>
 GME_INLINE
-void Collection_T <T>::attach (typename _collectioninterface_type * collection)
+void Collection_T <T>::attach (typename collection_type * collection)
 {
   this->collection_.Attach (collection);
   this->populate ();

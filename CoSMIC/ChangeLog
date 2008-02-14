@@ -1,3 +1,15 @@
+Thu Feb 14 15:22:24 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.inl:
+        * Utils/gme/Collection_T.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          - Removed the leading underscore from the type definitions.
+          - Implemented the ObjectByPath () and get_Chilren () method
+            of the IMgaObject interface.
+
 Thu Feb 14 14:46:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Atom.h:

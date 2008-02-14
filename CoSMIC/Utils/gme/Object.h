@@ -13,15 +13,9 @@
 #ifndef _GME_OBJECT_H_
 #define _GME_OBJECT_H_
 
-#include <vector>
 #include <atlbase.h>
 #include <string>
-#include "GME_export.h"
-#include "GME_fwd.h"
-
-#if !defined (__ComponentLib_h__)
-#include "Mga.h"
-#endif
+#include "Collection_T.h"
 
 namespace GME
 {
@@ -255,6 +249,21 @@ namespace GME
      * @retval          false         Object is not NIL.
      */
     bool is_nil (void) const;
+
+    /**
+     * Find a GME object relative to this location.
+     *
+     * @param[in]       path          Path name of the object.
+     */
+    GME::Object find_object_by_path (const std::string & path) const;
+
+    /**
+     * Get the child objects of this object.
+     *
+     * @param[out]      children     Children of this object.
+     * @return          Number of children.
+     */
+    size_t children (GME::Collection_T <GME::Object> & children) const;
 
   protected:
     /// The underlying COM pointer.
