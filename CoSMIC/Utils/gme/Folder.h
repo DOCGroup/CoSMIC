@@ -61,14 +61,14 @@ namespace GME
      * @param[in]       parent        The parent folder.
      * @return          The newly created folder.
      */
-    Folder _create (const std::string & type, Folder & parent);
+    static Folder _create (const std::string & type, Folder & parent);
 
     /**
      * Extract the folder element from the object.
      *
      * @param[in]       object        The source object.
      */
-    Folder _narrow (const GME::Object & object);
+    static Folder _narrow (const GME::Object & object);
 
     /// Destructor.
     virtual ~Folder (void);
