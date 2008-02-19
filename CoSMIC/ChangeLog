@@ -1,7 +1,14 @@
+Tue Feb 19 15:51:40 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        
+          It is now possible to get child folders by their type.
+
 Mon Feb 18 21:05:12 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Folder.h:
-        
+
           _create () and _narrow () were missing the 'static' keyword.
 
 Thu Feb 14 19:27:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>

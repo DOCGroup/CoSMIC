@@ -89,6 +89,14 @@ namespace GME
     size_t folders (GME::Collection_T <GME::Folder> & folders) const;
 
     /**
+     * Get all the first-level child folders of this folder.
+     *
+     * @return      Collection of folder objects.
+     */
+    size_t folders (const std::string & type,
+                    GME::Collection_T <GME::Folder> & folders) const;
+
+    /**
      * Get the parent of this folder.
      *
      * @return      The parent folder.

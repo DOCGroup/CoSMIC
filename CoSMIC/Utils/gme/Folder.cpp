@@ -53,6 +53,37 @@ namespace GME
   }
 
   //
+  // folders
+  //
+  size_t Folder::folders (const std::string & type,
+                          GME::Collection_T <GME::Folder> & folders) const
+  {
+    // Clear the folders in the collection.
+    folders.items ().clear ();
+
+    // Get all the child folders in this folder.
+    typedef GME::Collection_T <GME::Folder> Folder_Set;
+    Folder_Set temp;
+
+    if (this->folders (temp) > 0)
+    {
+      // Get iterators to beginning and end of container.
+      Folder_Set::const_iterator
+        iter = temp.items ().begin (),
+        iter_end = temp.items ().end ();
+
+      for ( ; iter != iter_end; iter ++)
+      {
+        // Filter the folders based on their type.
+        if (iter->meta ().name () == type)
+          folders.items ().push_back (*iter);
+      }
+    }
+
+    return folders.items ().size ();
+  }
+
+  //
   // operator =
   //
   const Folder & Folder::operator = (const Folder & folder)
