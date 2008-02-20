@@ -1,7 +1,15 @@
+Wed Feb 20 03:34:52 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        
+         Added 'non-interactive' parameter for preventing progress
+         dialogs from dispaying.         
+
 Wed Feb 20 03:17:02 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
-        
+
           Bug fix where assemblies that contained instances of other
           assemblies were not processed correctly.
 
