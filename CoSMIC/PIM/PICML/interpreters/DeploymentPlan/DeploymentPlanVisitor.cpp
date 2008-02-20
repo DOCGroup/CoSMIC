@@ -1283,7 +1283,14 @@ namespace PICML
 
           // Save the component instance and it's type.
           this->monolith_components_.insert (comp);
-          this->monolith_types_.insert (comp.Archetype ());
+
+          PICML::Component monotype = 
+            PICML::Component::Cast (comp.Archetype ());
+
+          while (monotype.isInstance ())
+            monotype = PICML::Component::Cast (monotype.Archetype ());
+
+          this->monolith_types_.insert (monotype);
 
           update_component_parents (comp);
           update_component_instance (comp, nodeRefName);
@@ -1321,9 +1328,15 @@ namespace PICML
 
           // Save the component instance and it's type.
           this->monolith_components_.insert (referred_comp);
-          this->monolith_types_.insert (referred_comp.Archetype ());
 
-          std::string referred_component_name = referred_comp.name ();
+          PICML::Component monotype = 
+            PICML::Component::Cast (referred_comp.Archetype ());
+
+          while (monotype.isInstance ())
+            monotype = PICML::Component::Cast (monotype.Archetype ());
+
+          this->monolith_types_.insert (monotype);
+
           update_shared_component_parents (shared_comp);
           update_component_instance (referred_comp, nodeRefName);
         }
@@ -1472,7 +1485,12 @@ namespace PICML
   {
     if (comp.isInstance ())
     {
-      Component typeParent = PICML::Component::Cast (comp.Archetype ());
+      Component typeParent = 
+        PICML::Component::Cast (comp.Archetype ());
+
+      while (typeParent.isInstance ())
+        typeParent = PICML::Component::Cast (typeParent.Archetype ());
+      
       std::string component_name = typeParent.name ();
 
       if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
@@ -2116,12 +2134,14 @@ namespace PICML
       instance->appendChild (this->createSimpleContent ("name",
         uniqueName));
       Component typeParent;
+
       if (comp.isInstance())
       {
         typeParent = comp.Archetype();
         while (typeParent.isInstance())
           typeParent = typeParent.Archetype();
       }
+
       std::string interfaceName = typeParent.name();
       std::string refName = this->interfaces_[interfaceName];
       refName += ".cpd";
