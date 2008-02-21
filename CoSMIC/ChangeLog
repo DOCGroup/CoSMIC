@@ -1,10 +1,18 @@
+Thu Feb 21 07:08:24 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/GME.mpc:
+        * Utils/gme/GME_export.h:
+        
+          Added support for building the static version of the GME
+          backend framework.
+
 Wed Feb 20 03:34:52 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
         * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
-        
+
          Added 'non-interactive' parameter for preventing progress
-         dialogs from dispaying.         
+         dialogs from dispaying.
 
 Wed Feb 20 03:17:02 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 

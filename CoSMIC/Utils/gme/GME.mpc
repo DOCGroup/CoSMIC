@@ -4,6 +4,8 @@ project (GME) : acelib, cosmic_common {
   sharedname = GME
 
   dynamicflags += GME_BUILD_DLL
+  staticflags  += GME_AS_STATIC_LIBS
+  
   macros += _WIN32_DCOM
 
   // -- precompiled header
