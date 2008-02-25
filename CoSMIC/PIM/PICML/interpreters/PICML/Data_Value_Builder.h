@@ -96,6 +96,8 @@ public:
   bool create_data_value (const std::string & name,
                           const PICML::MemberType & type,
                           PICML_Data_Value * & value);
+
+   static std::string create_repo_id (const ::PICML::MgaObject &type);
 private:
   bool build (const std::string & name,
               const PICML::Aggregate & aggregate,
@@ -109,9 +111,24 @@ private:
               const PICML::Enum & e,
               PICML_Data_Value * & value);
 
+  //private:
+
   bool build (const std::string & name,
               const PICML::Alias & alias,
               PICML_Data_Value * & value);
+  
+private:
+  struct RepoID
+  {
+    std::string format;
+    std::string prefix;
+    std::string rest;
+    std::string version;
+  };
+  
+  static void create_repositoryID_Impl (const ::PICML::MgaObject &type, 
+					RepoID &repoid);
+
 };
 }
 

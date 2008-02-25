@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML): acelib, udm, xerces, boost_base, cosmic_common {
+project (PICML): acelib, udm, xerces, boost_base, cosmic_common, cosmic_utils {
 
   UDM_Files {
     gendir = .
@@ -21,6 +21,7 @@ project (PICML): acelib, udm, xerces, boost_base, cosmic_common {
     Data_Value.cpp
     Data_Value_Parser.cpp
     Data_Value_Visitor.cpp
+    Data_Value_XML_Visitor.cpp
     Data_Value_Builder.cpp
     PICML.cpp
   }

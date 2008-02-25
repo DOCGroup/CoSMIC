@@ -330,7 +330,7 @@ create_data_value (const std::string & name,
                    PICML_Data_Value * & value)
 {
   Uml::Class meta = type.type ();
-
+  
   if (meta == PICML::String::meta)
   {
     value = new PICML_String_Data_Value (name);
@@ -371,6 +371,72 @@ create_data_value (const std::string & name,
     return false;
 
   return true;
+}
+  
+void 
+Data_Value_Builder::create_repositoryID_Impl (const ::PICML::MgaObject &type, 
+					      RepoID &repoid)
+{
+  ::Uml::Class const &metatype = type.type ();
+  
+  if (metatype != PICML::File::meta)
+    create_repositoryID_Impl (::PICML::MgaObject::Cast (type.parent ()), repoid);
+  else
+    {
+      repoid.format = "IDL";
+      repoid.version = "1.0"; // Default version
+      Prefixable pfx = Prefixable::Cast (type);
+      repoid.prefix = pfx.PrefixTag ();
+      return;
+    }
+  
+  // at this point, all of our parents are properly included in the repository ID
+  if (metatype == PICML::Package::meta)
+    {
+      Package pkg = Package::Cast (type);
+      repoid.prefix = pkg.PrefixTag ();
+      repoid.rest += "/";
+      repoid.rest += pkg.name ();
+      return;
+    }
+  
+  // In theory, if we get to this point, we are NOT a package and NOT a file
+  // so it is PROBABLY safe to assume this is the end of the repoid.
+  
+  // Check if there is a version
+  try
+    {
+      Taggable tg = Taggable::Cast (type);
+      repoid.version = tg.VersionTag ();
+    }
+  catch (...) {}
+  
+  repoid.rest += "/";
+  repoid.rest += type.name ();
+  return;
+}
+  
+std::string 
+Data_Value_Builder::create_repo_id (const ::PICML::MgaObject &type)
+{
+  try
+    { // Check to see if the element has a hardcoded
+      // RepoId
+      Taggable tg = Taggable::Cast (type);
+      if (std::string (tg.SpecifyIdTag ()) != "")
+	return tg.SpecifyIdTag ();
+      }
+  catch (...) {}
+  
+  RepoID repoid;
+  create_repositoryID_Impl (type, repoid);
+  
+  std::string retval (repoid.format + ':' + repoid.prefix + repoid.rest);
+  
+  if (repoid.version != "")
+    retval += ":" + repoid.version;
+
+  return retval;
 }
 
 }

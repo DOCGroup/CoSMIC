@@ -47,7 +47,7 @@ public:
   /// Destructor.
   virtual ~PICML_Data_Value (void);
 
-  virtual const std::string & value (void);
+  virtual const std::string & value (void) const;
 
   virtual void value (const std::string & value);
 
@@ -73,7 +73,7 @@ protected:
   /// Value of the data value.
   std::string value_;
 
-  bool is_uptodate_;
+  mutable bool is_uptodate_;
 
   PICML_Data_Value * parent_;
 

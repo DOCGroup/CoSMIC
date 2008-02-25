@@ -50,7 +50,7 @@ void PICML_Data_Value::value (const std::string & v)
 //
 // value
 //
-const std::string & PICML_Data_Value::value (void)
+const std::string & PICML_Data_Value::value (void) const
 {
   this->is_uptodate_ = true;
   return this->value_;
