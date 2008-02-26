@@ -1,10 +1,23 @@
+Tue Feb 26 18:28:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/BasicSP.xme:
+        * PSM/CQML/examples/RobotAssembly.xme:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Added a few more constrains to the NetQoS language and updated
+          the examples.
+
 Tue Feb 26 06:23:02 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           Changed external port elements to a reference, which refers
           to its type, and changed its source connection to a port.
 
@@ -15,7 +28,7 @@ Tue Feb 26 17:33:47 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-          Enhanced NetQoS with a bunch of constraints and a few 
+          Enhanced NetQoS with a bunch of constraints and a few
           new attributes.
 
 Tue Feb 26 01:02:58 UTC 2008  Sumant Tambe  <sutambe@nospam>
