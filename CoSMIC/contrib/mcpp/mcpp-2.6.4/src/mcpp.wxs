@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="MCPPFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='MCPPExecutable' Guid='91e376a3-5500-480b-8fa7-974f5e432d71'>
+        <File Id='MCPP_EXE'
+              Name='mcpp.exe'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\mcpp.exe' />
+        <!--
+          The following files are commented because IDL_TO_PICML.EXE
+          is now released as a statically linked executable.
+        <File Id='IDL_TO_PICML_BE_DLL'
+              Name='IDL_TO_PICML_BE.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\IDL_TO_PICML_BE.dll' />
+        <File Id='TAO_IDL_BE_DLL'
+              Name='TAO_IDL_BE.dll'
+              DiskId='1'
+              Source='$(var.ACE_ROOT)\lib\TAO_IDL_BE.dll' />
+        <File Id='TAO_IDL_FE_DLL'
+              Name='TAO_IDL_FE.dll'
+              DiskId='1'
+              Source='$(var.ACE_ROOT)\lib\TAO_IDL_FE.dll' />
+         -->
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>
