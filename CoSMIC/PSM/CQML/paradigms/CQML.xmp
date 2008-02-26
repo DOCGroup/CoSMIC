@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="CQML" guid="{CCFD3E00-1C2B-46A6-ADDA-CFDFB6E2CA41}" cdate="Mon Feb 25 19:31:06 2008" mdate="Mon Feb 25 19:31:06 2008" >
+<paradigm name="CQML" guid="{75B7B581-AA7B-44C2-8AA2-5963500CB715}" cdate="Mon Feb 25 19:31:06 2008" mdate="Mon Feb 25 19:31:06 2008" >
 
 	<comment></comment>
 
@@ -279,6 +279,7 @@ endif]]>
 		<attrdef name="NetPriorityModel" metaref = "7088" valuetype = "enum" defvalue = "CLIENT_PROPAGATED">
 			<enumitem dispname = "CLIENT_PROPAGATED" value = "CLIENT_PROPAGATED"></enumitem>
 			<enumitem dispname = "SERVER_DECLARED" value = "SERVER_DECLARED"></enumitem>
+			<enumitem dispname = "REQUEST_ONLY" value = "REQUEST_ONLY"></enumitem>
 		</attrdef>
 		<attrdef name="NonRepudiation" metaref = "4219" valuetype = "boolean" defvalue = "false">
 		</attrdef>
@@ -523,6 +524,14 @@ endif]]>
 		<attrdef name="resourceType" metaref = "1056" valuetype = "string" defvalue = "">
 		</attrdef>
 		<attrdef name="revBW" metaref = "3464" valuetype = "integer" defvalue = "">
+		</attrdef>
+		<attrdef name="rev_quality" metaref = "7256" valuetype = "enum" defvalue = "BEST_EFFORT">
+			<enumitem dispname = "BEST_EFFORT" value = "BEST_EFFORT"></enumitem>
+			<enumitem dispname = "HIGH_PRIORITY" value = "HIGH_PRIORITY"></enumitem>
+			<enumitem dispname = "HIGH_RELIABILITY" value = "HIGH_RELIABILITY"></enumitem>
+			<enumitem dispname = "HIGH_THROUGHPUT" value = "HIGH_THROUGHPUT"></enumitem>
+			<enumitem dispname = "VOICE" value = "VOICE"></enumitem>
+			<enumitem dispname = "VIDEO" value = "VIDEO"></enumitem>
 		</attrdef>
 		<attrdef name="rolekind" metaref = "4006" valuetype = "enum" defvalue = "CONSUMER">
 			<enumitem dispname = "SUPPLIER" value = "SUPPLIER"></enumitem>
@@ -962,17 +971,21 @@ let version = self.defaultVersion.trim() in
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="multiinvocations.bmp"></regnode>
 		</atom>
-		<atom name = "NetQoS" metaref = "3741"  attributes = "quality custom admissionPriority fwdBW revBW NetPriorityModel">
+		<atom name = "NetQoS" metaref = "3741"  attributes = "rev_quality custom quality admissionPriority fwdBW revBW NetPriorityModel">
 				<regnode name = "namePosition" value ="4"></regnode>
-			<constraint name="FacetOnlyServerDeclared" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[(not self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "InEventPort"))
+			<constraint name="BandwidthChecks" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[((self.NetPriorityModel = #SERVER_DECLARED) 
+implies 
+(self.quality = #BEST_EFFORT and self.fwdBW = 0 and self.rev_quality <> #BEST_EFFORT and self.revBW <> 0))
 and
-(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "ProvidedRequestPort") implies (self.NetPriorityModel = #SERVER_DECLARED))
+((self.NetPriorityModel = #CLIENT_PROPAGATED) 
+implies 
+(self.quality <> #BEST_EFFORT and self.fwdBW <> 0 and self.rev_quality <> #BEST_EFFORT and self.revBW <> 0))
 and
-(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "RequiredRequestPort") implies (self.NetPriorityModel = #CLIENT_PROPAGATED))
-and
-(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "OutEventPort") implies (self.NetPriorityModel = #CLIENT_PROPAGATED))]]>
-				<dispname>Facets must be SERVER_DECLARED; Receptacles and OutEventPorts must be CLIENT_PROPAGATED; and no network priority model for  InEventPorts.</dispname>
+((self.NetPriorityModel = #REQUEST_ONLY) 
+implies 
+(self.quality <> #BEST_EFFORT and self.fwdBW <> 0 and self.rev_quality = #BEST_EFFORT and self.revBW = 0))]]>
+				<dispname>CLIENT_PROPAGATED must have request and reply values; SERVER_DECLARED must have reply values; REQUEST_ONLY must have request values.</dispname>
 			</constraint>
 			<constraint name="MustSetNetQoSProperty" eventmask = "0x0" depth = "1" priority = "2">
 				<![CDATA[let deploymentplans = project.allInstancesOf (DeploymentPlan) in
@@ -980,11 +993,47 @@ deploymentplans->forAll (p: DeploymentPlan | let properties = p.models(Property)
 properties->exists ( i : Property | i.name().trim() = "CIAONetworkQoS"))]]>
 				<dispname>If a NetQoS element is defined, a CIAONetworkQoS infoProperty must be set in all the deployment plans. (A weaker constraint is being worked upon.)</dispname>
 			</constraint>
+			<constraint name="NetPriorityModelCheckforPorts" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(not self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "InEventPort"))
+and
+(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "ProvidedRequestPort") implies (self.NetPriorityModel = #SERVER_DECLARED))
+and
+(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "RequiredRequestPort") implies ((self.NetPriorityModel = #CLIENT_PROPAGATED) or (self.NetPriorityModel = #REQUEST_ONLY)))
+and
+(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "OutEventPort") implies (self.NetPriorityModel = #SERVER_DECLARED))
+and
+((self.NetPriorityModel = #SERVER_DECLARED) 
+implies
+(self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "ProvidedRequestPort")
+or
+self.connectedFCOs(PortQoS)->exists(p: gme::FCO | p.kindName() = "OutEventPort")
+))]]>
+				<dispname>Facets and OutEventPorts must be SERVER_DECLARED; Receptacles must be CLIENT_PROPAGATED and REQUEST_ONLY; and no network priority model for InEventPorts.</dispname>
+			</constraint>
+			<constraint name="NetPriorityModelOnewayCheck" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[(let qos_connectors = self.connectedFCOs(QoSReq) in
+let facets = qos_connectors->iterate(qc: QoSConnector; fset = Set{} | fset + qc.connectedFCOs(FacetInvoke)) in 
+let ports = self.connectedFCOs(PortQoS) in
+ports.union(facets)->select(p:gme::FCO | 
+(p.kindName() = "RequiredRequestPort") or 
+(p.kindName() = "ProvidedRequestPort"))->forAll (r: gme::Reference | 
+(r.refersTo().oclAsType(gme::Model).models(TwowayOperation)->isEmpty() implies (self.NetPriorityModel = #REQUEST_ONLY))))
+]]>
+				<dispname>Oneway functions must have REQUEST_ONLY network priority model</dispname>
+			</constraint>
+			<constraint name="NoFloatingNetQoS" eventmask = "0x0" depth = "1" priority = "2">
+				<![CDATA[self.connectedFCOs(PortQoS)->notEmpty()
+or
+self.connectedFCOs(QoSReq)->notEmpty()]]>
+				<dispname>NetQoS elements must be connected to either a port or a QoSConnector.</dispname>
+			</constraint>
 			<constraint name="OnlyOneNetPriorityModel" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[let qos_connectors = self.connectedFCOs(QoSReq) in
+				<![CDATA[((self.NetPriorityModel = #CLIENT_PROPAGATED) and (self.NetPriorityModel = #REQUEST_ONLY))
+implies
+(let qos_connectors = self.connectedFCOs(QoSReq) in
 let facets = qos_connectors->iterate(qc: QoSConnector; fset = Bag{} | fset + qc.connectedFCOs(FacetInvoke)) in
 let netqos = facets->iterate(f: ProvidedRequestPort; nq = Bag{} | nq + f.connectedFCOs(PortQoS)) in
-netqos->isEmpty()]]>
+netqos->isEmpty())]]>
 				<dispname>SERVER_DECLARED and CLIENT_DECLARED network priority models can&apos;t be mixed together on the same connection.</dispname>
 			</constraint>
 				<regnode name = "icon" value ="ns_qos.bmp"></regnode>
@@ -5741,14 +5790,14 @@ ctrlblocks->size = terminals->size]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="Requirement.bmp"></regnode>
 			<constraint name="ValidECRequirementsPartCardinality217" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ECRole" ) -> size in
-                     (partCount = 2)]]>
-				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 2.</dispname>
-			</constraint>
-			<constraint name="ValidECRequirementsPartCardinality218" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "ECBehavior" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidECRequirementsPartCardinality218" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ECRole" ) -> size in
+                     (partCount = 2)]]>
+				<dispname>Multiplicity of parts, which are contained by ECRequirements, has to match 2.</dispname>
 			</constraint>
 			<role name = "ECBehavior" metaref = "4013" kind = "ECBehavior"></role>
 			<role name = "ECRole" metaref = "4014" kind = "ECRole"></role>
@@ -6416,19 +6465,19 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality221" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality222" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality223" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality223" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality224" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
@@ -6486,17 +6535,17 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				<dispname>Monolithic implementation in a ComponentPackage should all implement the same component interface</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality227" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality228" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageContainerPartCardinality229" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageInterface" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -6776,17 +6825,17 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 				<dispname>Can not connect to different QoSCharacteristic type</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality234" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
+				<![CDATA[let partCount = self.parts( "ThreadPool" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality235" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
+				<![CDATA[let partCount = self.parts( "PriorityModelPolicy" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidRealTimeConfigurationPartCardinality236" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ThreadPool" ) -> size in
+				<![CDATA[let partCount = self.parts( "EnvironmentConf" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by RealTimeConfiguration, has to match 0..1.</dispname>
 			</constraint>
@@ -6920,12 +6969,12 @@ self.connectedFCOs(PortQoS)->size() = 0]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="provider.bmp"></regnode>
 			<constraint name="ValidServiceProviderPartCardinality240" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
+				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidServiceProviderPartCardinality241" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "MultipleServiceRequests" ) -> size in
+				<![CDATA[let partCount = self.parts( "ServiceLevels" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ServiceProvider, has to match 0..1.</dispname>
 			</constraint>
@@ -7036,19 +7085,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality244" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Label" ) -> size in
-                     (partCount >= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality245" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality246" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality245" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality246" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Label" ) -> size in
+                     (partCount >= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -7098,19 +7147,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality248" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "package" ) -> size in
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality249" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "package" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality250" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality250" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "PackageConfigurationReference" metaref = "1840" kind = "PackageConfigurationReference"></role>
 			<role name = "TopLevelPackage" metaref = "1841" kind = "TopLevelPackage"></role>
@@ -7309,17 +7358,17 @@ self.connectedFCOs(ComponentQoS)->size() = 0]]>
 				<dispname>Can not connect to different QoSCharacteristic type</dispname>
 			</constraint>
 			<constraint name="ValideventServiceConfigurationPartCardinality252" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "EventChannelFactory" ) -> size in
+				<![CDATA[let partCount = self.parts( "ConsumerBehavior" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by eventServiceConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValideventServiceConfigurationPartCardinality253" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "SupplierBehavior" ) -> size in
+				<![CDATA[let partCount = self.parts( "EventChannelFactory" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by eventServiceConfiguration, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValideventServiceConfigurationPartCardinality254" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ConsumerBehavior" ) -> size in
+				<![CDATA[let partCount = self.parts( "SupplierBehavior" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by eventServiceConfiguration, has to match 0..1.</dispname>
 			</constraint>
