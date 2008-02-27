@@ -1,21 +1,27 @@
+Wed Feb 27 06:46:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * ReleaseNotes.rtf:
+        
+          Updated the release notes.
+
 Wed Feb 27 05:04:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.h:
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
-        
+
           - Refactored add-on implementation to use a message map
             for dispatching object events.
-          - When a ExternalDelegate connection is made, the 
-            ExternalPortReference reference is set the correct 
-            port type.          
+          - When a ExternalDelegate connection is made, the
+            ExternalPortReference reference is set the correct
+            port type.
 
 Tue Feb 26 18:46:41 UTC 2008  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PropertyManager/PropertyManager.wxs:
-        
+
           Corrected registry entried to register this as an interpreter
           instead of an add-on.
-        
+
 Tue Feb 26 18:33:14 UTC 2008  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * contrib/mcpp/mcpp-2.6.4:
