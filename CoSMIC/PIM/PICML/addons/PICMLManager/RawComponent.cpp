@@ -39,16 +39,48 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 
   /// Create a collection of PICML types that contain a UUID
   /// attribute. This will allow the addon to manage it's UUID.
-  this->uuid_types_.insert ("Component");
-  this->uuid_types_.insert ("ComponentAssembly");
-  this->uuid_types_.insert ("ComponentPackage");
-  this->uuid_types_.insert ("ComponentImplementation");
-  this->uuid_types_.insert ("ComponentFactoryInstance");
-  this->uuid_types_.insert ("DeploymentPlan");
-  this->uuid_types_.insert ("Domain");
-  this->uuid_types_.insert ("ImplementationArtifact");
-  this->uuid_types_.insert ("MonolithicImplementation");
-  this->uuid_types_.insert ("PackageConfiguration");
+  this->handlers_.bind ("ExternalDelegate", 
+                        &RawComponent::handle_ExternalDelegate);
+
+  this->handlers_.bind ("PublishConnector",
+                        &RawComponent::handle_PublishConnector);
+
+  this->handlers_.bind ("AttributeValue",
+                        &RawComponent::handle_AttributeValue);
+
+  this->handlers_.bind ("AttributeMember",
+                        &RawComponent::handle_AttributeMember);
+
+  this->handlers_.bind ("Component",
+                        &RawComponent::handle_Component);
+
+  this->handlers_.bind ("ComponentAssembly",
+                        &RawComponent::handle_ComponentAssembly);
+
+  this->handlers_.bind ("ComponentPackage",
+                        &RawComponent::handle_ComponentPackage);
+
+  this->handlers_.bind ("Domain",
+                        &RawComponent::handle_Domain);
+
+  this->handlers_.bind ("PackageConfiguration",
+                        &RawComponent::handle_PackageConfiguration);
+
+  this->handlers_.bind ("MonolithicImplementation",
+                        &RawComponent::handle_MonolithicImplementation);
+
+  this->handlers_.bind ("ImplementationArtifact",
+                        &RawComponent::handle_ImplementationArtifact);
+
+  this->handlers_.bind ("ComponentImplementation",
+                        &RawComponent::handle_ComponentImplementation);
+
+  this->handlers_.bind ("ComponentFactoryInstance",
+                        &RawComponent::handle_ComponentFactoryInstance);
+
+  this->handlers_.bind ("DeploymentPlan",
+                        &RawComponent::handle_DeploymentPlan);
+
   return S_OK;
 }
 
@@ -169,101 +201,13 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
       return 0;
 
     // Get the meta information for the object.
-    GME::FCO fco = GME::FCO::_narrow (object);
-    std::string type = fco.meta ().name ();
+    std::string type = object.meta ().name ();
 
-    if ((eventmask & (OBJEVENT_CREATED | OBJEVENT_ATTR)))
-    {
-      if (this->uuid_types_.find (type) != this->uuid_types_ .end ())
-      {
-        // We are managing an object that has a UUID.
-        if ((eventmask & OBJEVENT_CREATED) != 0)
-        {
-          this->create_uuid (fco);
-        }
-        else if ((eventmask & OBJEVENT_ATTR) != 0)
-        {
-          this->verify_uuid (fco);
-        }
-      }
-      else if (type == "PublishConnector")
-      {
-        // We need to set the name of the newly create connector.
-        if ((eventmask & OBJEVENT_CREATED))
-          fco.name (fco.id ());
-      }
-      else if (type == "AttributeValue")
-      {
-        if ((eventmask & OBJEVENT_CREATED))
-        {
-          // Extract the connection from the object and get
-          // the connection points in model.
-          GME::Connection attr_value = GME::Connection::_narrow (object);
-          GME::ConnectionPoints connpoints;
+    // Locate the handler for this object type.
+    _member_function handler;
 
-          if (attr_value.connection_points (connpoints) >= 2)
-          {
-            // Get the attribute at the 'src' of the connection.
-            GME::Model attr =
-              GME::Model::_narrow (connpoints["src"].target ());
-
-            GME::FCO attr_type;
-            Reference_Set attr_members;
-
-            if (attr.references ("AttributeMember", attr_members) == 1)
-            {
-              // Let's get the data type of the attribute. Since there
-              // is only 1 attribute member, we can just get the front
-              // element in the container.
-              attr_type = attr_members.items ().front ().refers_to ();
-            }
-
-            // We have the destination connection point. This should
-            // be a property in an assembly.
-            GME::Model property =
-              GME::Model::_narrow (connpoints["dst"].target ());
-
-            // Set the name of the Property. We want to ensure the name
-            // to the property matches the name of the attribute.
-            if (property.name () != attr.name ())
-              property.name (attr.name ());
-
-            if (attr_type)
-              this->set_property_datatype (property, attr_type);
-          }
-        }
-      }
-    }
-    else if ((eventmask & OBJEVENT_RELATION))
-    {
-      if (type == "AttributeMember")
-      {
-        // The reference for the attribute changes. This is either
-        // because the reference was cleared, or another data type
-        // was referenced. Either way, we need to update all the
-        // properties in component assemblies for this attribute.
-
-        GME::Reference member = GME::Reference::_narrow (fco);
-        GME::FCO attr_type = member.refers_to ();
-
-        if (attr_type)
-        {
-          // Get the AttributeValue connection.
-          GME::Model attr = member.parent_model ();
-
-          // Get all connection points that connect to this attribute.
-          GME::ConnectionPoints connpoints;
-          attr.in_connection_points (connpoints);
-
-          std::for_each (connpoints.begin (),
-                         connpoints.end (),
-                         boost::bind (&RawComponent::verify_property_datatype,
-                                      this,
-                                      boost::bind (&GME::ConnectionPoints::value_type::item, _1),
-                                      attr_type));
-        }
-      }
-    }
+    if (this->handlers_.find (type, handler) != -1)
+      (this->*handler) (eventmask, object);
   }
   catch (GME::Exception &)
   {
@@ -478,5 +422,238 @@ verify_property_datatype (GME::ConnectionPoint & attr,
 
     // Set the data type for the property.
     this->set_property_datatype (property, attr_type);
+  }
+}
+
+//
+// handle_ExternalDelegate
+//
+void RawComponent::
+handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj)
+{
+  // Extract the connection for the FCO.
+  GME::Connection ext_conn = GME::Connection::_narrow (obj);
+  GME::ConnectionPoints points;
+
+  if (ext_conn.connection_points (points))
+  {
+    // Get the connection points.
+    GME::ConnectionPoint ext_src = points["src"];
+    GME::ConnectionPoint ext_dst = points["dst"];
+
+    // Get the destination port type (i.e., the target delegation port).
+    GME::Reference dst_port = GME::Reference::_narrow (ext_dst.target ());
+    GME::Reference src_port = GME::Reference::_narrow (ext_src.target ());
+
+    GME::FCO dst_type = dst_port.refers_to ();
+    
+    if (dst_type)
+    {
+      if (!src_port.refers_to ())
+      {
+        src_port.refers_to (dst_type);
+        src_port.name (dst_port.name ());
+      }
+    }
+  }
+}
+
+//
+// handle_PublishConnector
+//
+void RawComponent::
+handle_PublishConnector (unsigned long eventmask, GME::Object & obj)
+{
+  // We need to set the name of the newly create connector.
+  if ((eventmask & OBJEVENT_CREATED))
+    obj.name (obj.id ());
+}
+
+//
+// handle_AttributeValue
+//
+void RawComponent::
+handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_RELATION))
+  {
+    // The reference for the attribute changes. This is either
+    // because the reference was cleared, or another data type
+    // was referenced. Either way, we need to update all the
+    // properties in component assemblies for this attribute.
+
+    GME::Reference member = GME::Reference::_narrow (obj);
+    GME::FCO attr_type = member.refers_to ();
+
+    if (attr_type)
+    {
+      // Get the AttributeValue connection.
+      GME::Model attr = member.parent_model ();
+
+      // Get all connection points that connect to this attribute.
+      GME::ConnectionPoints connpoints;
+      attr.in_connection_points (connpoints);
+
+      std::for_each (connpoints.begin (),
+                     connpoints.end (),
+                     boost::bind (&RawComponent::verify_property_datatype,
+                                  this,
+                                  boost::bind (&GME::ConnectionPoints::value_type::item, 
+                                               _1),
+                                  attr_type));
+    }
+  }
+}
+
+//
+// handle_AttributeValue
+//
+void RawComponent::
+handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_CREATED))
+  {
+    // Extract the connection from the object and get
+    // the connection points in model.
+    GME::Connection attr_value = GME::Connection::_narrow (obj);
+    GME::ConnectionPoints connpoints;
+
+    if (attr_value.connection_points (connpoints) >= 2)
+    {
+      // Get the attribute at the 'src' of the connection.
+      GME::Model attr =
+        GME::Model::_narrow (connpoints["src"].target ());
+
+      GME::FCO attr_type;
+      Reference_Set attr_members;
+
+      if (attr.references ("AttributeMember", attr_members) == 1)
+      {
+        // Let's get the data type of the attribute. Since there
+        // is only 1 attribute member, we can just get the front
+        // element in the container.
+        attr_type = attr_members.items ().front ().refers_to ();
+      }
+
+      // We have the destination connection point. This should
+      // be a property in an assembly.
+      GME::Model property =
+        GME::Model::_narrow (connpoints["dst"].target ());
+
+      // Set the name of the Property. We want to ensure the name
+      // to the property matches the name of the attribute.
+      if (property.name () != attr.name ())
+        property.name (attr.name ());
+
+      if (attr_type)
+        this->set_property_datatype (property, attr_type);
+    }
+  }
+}
+
+//
+// handle_Component 
+//
+void RawComponent::
+handle_Component (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_ComponentAssembly
+//
+void RawComponent::
+handle_ComponentAssembly (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_ComponentPackage
+//
+void RawComponent::
+handle_ComponentPackage (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_ComponentFactoryInstance
+//
+void RawComponent::
+handle_ComponentFactoryInstance (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_Domain
+//
+void RawComponent::
+handle_Domain (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_MonolithicImplementation
+//
+void RawComponent::
+handle_MonolithicImplementation (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_PackageConfiguration
+//
+void RawComponent::
+handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_ComponentImplementation
+//
+void RawComponent::
+handle_ComponentImplementation (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_DeploymentPlan
+//
+void RawComponent::
+handle_DeploymentPlan (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_ImplementationArtifact
+//
+void RawComponent::
+handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj)
+{
+  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+}
+
+//
+// handle_UUID
+//
+void RawComponent::
+handle_UUID (unsigned long eventmask, GME::FCO & fco)
+{
+  // We are managing an object that has a UUID.
+  if ((eventmask & OBJEVENT_CREATED) != 0)
+  {
+    this->create_uuid (fco);
+  }
+  else if ((eventmask & OBJEVENT_ATTR) != 0)
+  {
+    this->verify_uuid (fco);
   }
 }

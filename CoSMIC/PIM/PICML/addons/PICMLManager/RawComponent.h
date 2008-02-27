@@ -19,6 +19,8 @@
 
 #include <set>
 #include "Utils/gme/GME.h"
+#include "ace/Hash_Map_Manager_T.h"
+#include "ace/Null_Mutex.h"
 
 //=============================================================================
 /**
@@ -52,6 +54,22 @@ public:
   STDMETHODIMP ObjectEvent (IMgaObject *, unsigned long, VARIANT);
 
 private:
+  void handle_AttributeMember (unsigned long eventmask, GME::Object & obj);
+  void handle_AttributeValue (unsigned long eventmask, GME::Object & obj);
+  void handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj);
+  void handle_PublishConnector (unsigned long eventmask, GME::Object & obj);
+  void handle_Component (unsigned long eventmask, GME::Object & obj);
+  void handle_DeploymentPlan (unsigned long eventmask, GME::Object & obj);
+  void handle_ComponentAssembly (unsigned long eventmask, GME::Object & obj);
+  void handle_ComponentPackage (unsigned long eventmask, GME::Object & obj);
+  void handle_ComponentImplementation (unsigned long eventmask, GME::Object & obj);
+  void handle_ComponentFactoryInstance (unsigned long eventmask, GME::Object & obj);
+  void handle_Domain (unsigned long eventmask, GME::Object & obj);
+  void handle_MonolithicImplementation (unsigned long eventmask, GME::Object & obj);
+  void handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj);
+  void handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj);
+  void handle_UUID (unsigned long eventmask, GME::FCO & fco);
+
   /**
    * Create a UUID for the FCO.
    *
@@ -99,6 +117,14 @@ private:
 
   /// PICML types with a UUID attribute.
   std::set <std::string> uuid_types_;
+
+  typedef 
+    void (RawComponent::*_member_function) (unsigned long,
+                                            GME::Object &);
+
+  ACE_Hash_Map_Manager <std::string, 
+                        _member_function,
+                        ACE_Null_Mutex> handlers_;
 };
 
 
