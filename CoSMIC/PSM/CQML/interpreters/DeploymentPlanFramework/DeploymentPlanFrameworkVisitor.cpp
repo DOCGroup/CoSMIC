@@ -376,7 +376,7 @@ namespace CQML
     DOMElement* val = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
-    PredefinedType ref = type.ref();
+    PredefinedType ref = CQML::PredefinedType::Cast (type.ref());
     std::string refName = ref.name();
     if (refName == "Boolean")
       {
@@ -413,7 +413,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::Visit_DataType (const DataType& type)
   {
-    PredefinedType ref = type.ref();
+    PredefinedType ref = CQML::PredefinedType::Cast (type.ref());
     std::string kindName = ref.name();
     if (kindName == "Boolean")
       {
@@ -1266,12 +1266,12 @@ namespace CQML
             this->initNodeRefName (nodeRefName);
           }
 
-        std::set<CollocationGroup_Members_Base> comp_types = cg.members ();
-        for (std::set<CollocationGroup_Members_Base>::const_iterator
+        std::set<CollocationGroupMember> comp_types = cg.members ();
+        for (std::set<CollocationGroupMember>::const_iterator
              comp_type_iter = comp_types.begin();
              comp_type_iter != comp_types.end (); ++comp_type_iter)
           {
-            CollocationGroup_Members_Base comp_type = *comp_type_iter;
+            CollocationGroupMember comp_type = *comp_type_iter;
             if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
               {
                 ComponentRef component_ref = ComponentRef::Cast (comp_type);

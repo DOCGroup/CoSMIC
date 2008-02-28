@@ -833,7 +833,7 @@ namespace CQML
     void CreateMonolithicImplementation (const ImplementationArtifact& stub,
                                          const ImplementationArtifact& svnt,
                                          const ImplementationArtifact& exec);
-    void CreateCandidateComponents (set<CollocationGroup_Members_Base>& cgmembers,
+    void CreateCandidateComponents (set<CollocationGroupMember>& cgmembers,
                                     set<Component>& candidateTypes,
                                     set<Component>& candidateInstances);
 

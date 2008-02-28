@@ -1,7 +1,27 @@
+Thu Feb 28 03:11:23 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+        * PSM/CQML/interpreters/PAM/PAMVisitor.h:
+        * PSM/CQML/interpreters/PAM/PAMVisitor.cpp:
+
+        * PSM/CQML/paradigms/CQML-uml.xme:
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          Fixed CollocationGroup_Members_Base to CollocationGroupMember in 
+          all the source files.
+
 Wed Feb 27 06:46:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * ReleaseNotes.rtf:
-        
+
           Updated the release notes.
 
 Wed Feb 27 05:04:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
