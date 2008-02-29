@@ -14,7 +14,12 @@
               Name='GME.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\GME.dll' />
-
+      </Component>
+      <!-- 
+           PICMLManager is separated in two components because its
+           registry keys are per-user whereas the files are per-machine. 
+      -->
+      <Component Id='PICMLManagerRegistry' Guid='D3B54E68-8CE5-45f2-99BD-5F028AA633E8'>
         <RegistryKey Root="HKCU" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKCU" Key="Software\Classes\CLSID" Action="create" />
         <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}"

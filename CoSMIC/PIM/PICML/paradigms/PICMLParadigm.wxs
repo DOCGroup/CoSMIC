@@ -15,7 +15,8 @@
       <ComponentRef Id='UtilsLibrary'/>
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='PICMLManagerLibrary' />
-
+      <ComponentRef Id='PICMLManagerRegistry' />
+      
       <ComponentRef Id='PackageComponentLibrary' />
       <ComponentRef Id='DomainComponentLibrary' />
       <ComponentRef Id='DeploymentPlanComponentLibrary' />
