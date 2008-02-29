@@ -3,7 +3,7 @@
   <?include EnvironmentVars.wxi ?>
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
-           Language='1033' Codepage='1252' Version='0.6' Manufacturer='ISIS'
+           Language='1033' Codepage='1252' Version='0.6.3' Manufacturer='ISIS'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
     <Package Keywords='Installer'
