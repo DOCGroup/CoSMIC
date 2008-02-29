@@ -1,3 +1,11 @@
+Fri Feb 29 02:18:44 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+
+          Changed the root of the registery keys of PICMLManager from HKLM to HKCU.
+
 Thu Feb 28 03:11:23 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -15,7 +23,7 @@ Thu Feb 28 03:11:23 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-          Fixed CollocationGroup_Members_Base to CollocationGroupMember in 
+          Fixed CollocationGroup_Members_Base to CollocationGroupMember in
           all the source files.
 
 Wed Feb 27 06:46:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
