@@ -131,7 +131,6 @@ Tue Feb 26 01:02:58 UTC 2008  Sumant Tambe  <sutambe@nospam>
           Updated the release notes for CoSMIC beta release version 0.6.3.
           It has been tagged CoSMIC-beta-0.6.3.
 
->>>>>>> .r1770
 Mon Feb 25 19:30:58 UTC 2008  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/Data_Value.h:
