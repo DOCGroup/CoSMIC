@@ -22,7 +22,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{A5B6B00A-ABB6-4CF0-B8CB-BDEC1B64C41E}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="ConfiguratorInterpreter.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]ConfiguratorInterpreter.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.ConfiguratorInterpreter"
                      Action="createAndRemoveOnUninstall">

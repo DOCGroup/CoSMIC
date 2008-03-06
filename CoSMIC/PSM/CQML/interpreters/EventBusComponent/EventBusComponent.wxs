@@ -29,7 +29,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{d019f067-40e2-445f-833c-439eb3878ba5}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="EventBusComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]EventBusComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.EventBusComponent"
                      Action="createAndRemoveOnUninstall">

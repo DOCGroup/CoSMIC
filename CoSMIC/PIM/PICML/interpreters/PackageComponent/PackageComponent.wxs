@@ -34,7 +34,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{61C41FFD-3A5E-468D-9B1E-BD2A89FED148}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="PackageComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]PackageComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PackageComponent"
                      Action="createAndRemoveOnUninstall">

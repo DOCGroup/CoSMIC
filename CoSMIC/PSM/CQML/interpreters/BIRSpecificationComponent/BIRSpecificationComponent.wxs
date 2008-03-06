@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{529AD9E3-6AF7-4C59-8720-834BE28D1A32}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="BIRSpecificationComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]BIRSpecificationComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.BIRSpecification"
                      Action="createAndRemoveOnUninstall">

@@ -23,7 +23,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{D6EE34AA-1B7E-4273-A13A-A1C3CB7B818A}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="AspectInterpreter.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]AspectInterpreter.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.AspectInterpreter"
                      Action="createAndRemoveOnUninstall">

@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{73334395-0002-4FEC-80FA-C0BA284074CB}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="CIAOEventsComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]CIAOEventsComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.CIAOEventsComponent"
                      Action="createAndRemoveOnUninstall">

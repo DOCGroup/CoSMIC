@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{7A933614-ECC0-4F43-9EAE-4516F99076BD}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="DomainComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]DomainComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.Domain"
                      Action="createAndRemoveOnUninstall">

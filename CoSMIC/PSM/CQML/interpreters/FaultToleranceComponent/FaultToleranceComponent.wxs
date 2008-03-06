@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{6e84cd34-4808-4880-b22a-60752e49a589}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="FaultToleranceComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]FaultToleranceComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.FaultToleranceComponent"
                      Action="createAndRemoveOnUninstall" >

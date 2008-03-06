@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{15DED4A6-FA24-431F-B18E-58E575E61B59}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="BGMLComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]BGMLComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.BGML"
                      Action="createAndRemoveOnUninstall">

@@ -22,7 +22,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{07C59323-16B3-452a-AE8E-980203BB524F}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="PICMLDecorator.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]PICMLDecorator.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Decorator.IDMLDecorator"
                      Action="createAndRemoveOnUninstall">

@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{99D69971-71E1-44D8-926F-B3B8EF93DB28}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="NetQoSComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]NetQoSComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.NetQoSComponent"
                      Action="createAndRemoveOnUninstall">

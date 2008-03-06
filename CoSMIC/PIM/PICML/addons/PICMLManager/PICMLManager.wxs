@@ -32,7 +32,7 @@
         </RegistryKey>
         <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{B744B044-436A-4463-AF72-41D1D94815D9}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="PICMLManager.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]PICMLManager.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKCU" Key="Software\Classes\MGA.AddOn.PICMLManager"
                      Action="createAndRemoveOnUninstall">

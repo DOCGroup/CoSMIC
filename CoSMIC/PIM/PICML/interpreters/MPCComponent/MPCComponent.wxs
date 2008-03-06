@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FECCFB52-4281-4C58-8673-11D9593EF453}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="MPCComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]MPCComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.MPC"
                      Action="createAndRemoveOnUninstall">

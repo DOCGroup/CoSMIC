@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{D89ECDF9-A314-47A7-8115-640F807E743D}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="RTConfigurationComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]RTConfigurationComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.RTConfigurationComponent"
                      Action="createAndRemoveOnUninstall" >

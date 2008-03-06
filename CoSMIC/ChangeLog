@@ -1,3 +1,54 @@
+Thu Mar  6 02:49:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+
+        * PIM/PICML/decorators/PICMLDecorator.wxs:
+
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.wxs:
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.wxs:
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs:
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.wxs:
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs:
+
+        * PIM/PICML/interpreters/PathComponent/PathComponent.wxs:
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.wxs:
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.wxs:
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.wxs:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/OMNeTInterpreter.wxs:
+
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.wxs:
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.wxs:
+
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.wxs:
+
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.wxs:
+
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.wxs:
+
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.wxs:
+
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs:
+
+          Added absolute path to the interpreter DLLs registry settings of the 
+          CoSMIC installer. This version is tagged as CoSMIC stable version 0.6.3.
+
 Fri Feb 29 08:20:33 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
@@ -128,8 +179,7 @@ Tue Feb 26 17:33:47 UTC 2008  Sumant Tambe  <sutambe@nospam>
 Tue Feb 26 01:02:58 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * ReleaseNotes.rtf:
-          Updated the release notes for CoSMIC beta release version 0.6.3.
-          It has been tagged CoSMIC-beta-0.6.3.
+          Updated the release notes for CoSMIC release version 0.6.3.
 
 Mon Feb 25 19:30:58 UTC 2008  William R. Otte  <wotte@dre.vanderbilt.edu>
 

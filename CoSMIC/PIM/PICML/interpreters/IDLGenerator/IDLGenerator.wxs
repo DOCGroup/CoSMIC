@@ -22,7 +22,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="IDLGenerator.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]IDLGenerator.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLGenerator"
                      Action="createAndRemoveOnUninstall">

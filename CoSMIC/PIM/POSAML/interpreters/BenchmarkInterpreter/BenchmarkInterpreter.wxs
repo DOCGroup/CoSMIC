@@ -22,7 +22,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{3F471E3D-D697-4A44-8097-0C0050E50D0E}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="BenchmarkInterpreter.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]BenchmarkInterpreter.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.BenchmarkInterpreter"
                      Action="createAndRemoveOnUninstall">

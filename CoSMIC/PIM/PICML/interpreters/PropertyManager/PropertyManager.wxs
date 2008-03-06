@@ -22,7 +22,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{A6C5F848-5439-4549-831F-62ABAD36FCD3}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="PropertyManager.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]PropertyManager.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.PropertyManager"
                      Action="createAndRemoveOnUninstall">

@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{44E85E1D-2D5F-4FC2-963F-2DF070BBC577}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="DeploymentPlanComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]DeploymentPlanComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.DeploymentPlan"
                      Action="createAndRemoveOnUninstall">

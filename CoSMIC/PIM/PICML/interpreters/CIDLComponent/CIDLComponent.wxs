@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{112EBB7F-5519-4D45-9873-09D7E83458A0}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="CIDLComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]CIDLComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.CIDL"
                      Action="createAndRemoveOnUninstall">

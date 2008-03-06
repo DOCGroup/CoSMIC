@@ -28,7 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="SecurityQoSComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]SecurityQoSComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.SecurityQoSComponent"
                      Action="createAndRemoveOnUninstall">

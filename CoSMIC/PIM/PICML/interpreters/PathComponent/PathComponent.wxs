@@ -26,7 +26,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{190B51F0-06ED-4EF2-B425-71B36FA2C219}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="PathComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]PathComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.PathComponent"
                      Action="createAndRemoveOnUninstall">
