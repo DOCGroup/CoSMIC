@@ -30,4 +30,18 @@
 #define GME_INLINE
 #endif
 
+#if defined (_WIN32_WINNT)
+# if _WIN32_WINNT < 0x0400
+#   undef _WIN32_WINNT
+# endif
+#endif
+
+#ifndef _WIN32_WINNT
+#define _WIN32_WINNT 0x0400
+#endif
+
+#if _MSC_VER > 1000
+#pragma once
+#endif // _MSC_VER > 1000
+
 #endif /* !defined _GME_EXPORT_H_ */

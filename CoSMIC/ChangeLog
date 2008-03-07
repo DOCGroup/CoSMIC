@@ -1,7 +1,14 @@
+Fri Mar  7 06:55:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/GME_export.h:
+        * Utils/gme/stdafx.h:
+        
+          Fixed build errors in the release version.
+
 Fri Mar  7 04:58:49 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
-        
+
           Removed stale source code.
 
         * Utils/gme/Component.cpp:
@@ -12,7 +19,7 @@ Fri Mar  7 04:58:49 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * Utils/gme/Model.cpp:
         * Utils/gme/Project.h:
         * Utils/gme/Project.cpp:
-        
+
           - Enabled support for creating models in folders.
           - Enabled support for exporting/importing XML documents into
             a project.
