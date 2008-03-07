@@ -78,7 +78,7 @@ namespace GME
   //
   void Component::invoke (Project & project, std::vector <FCO> & selected, long param)
   {
-    VERIFY_HRESULT (this->component_->Invoke (project, 0, param));
+    VERIFY_HRESULT (this->component_->Invoke (project.impl (), 0, param));
   }
 
   //
@@ -86,6 +86,6 @@ namespace GME
   //
   void Component::initialize (Project & project)
   {
-    VERIFY_HRESULT (this->component_->Initialize (project));
+    VERIFY_HRESULT (this->component_->Initialize (project.impl ()));
   }
 }

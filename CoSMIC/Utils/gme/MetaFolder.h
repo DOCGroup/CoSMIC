@@ -13,7 +13,7 @@
 #ifndef _GME_METAFOLDER_H_
 #define _GME_METAFOLDER_H_
 
-#include "MetaBase.h"
+#include "MetaFCO.h"
 #include <vector>
 
 namespace GME
@@ -87,6 +87,15 @@ namespace Meta
      * @return          Pointer to the implementation.
      */
     IMgaMetaFolder * impl (void) const;
+
+    /**
+     * Get the meta FCO for the specified name.
+     *
+     * @param[in]       name        Name of the FCO.
+     * @param[in]       in_scope    Scope of the FCO.
+     * @return          Meta FCO object.
+     */
+    GME::Meta::FCO fco (const std::string & name, bool in_scope = true);
 
   private:
     /// Cached pointer to the metafolder.

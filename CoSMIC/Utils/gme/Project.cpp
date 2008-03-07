@@ -83,7 +83,7 @@ namespace GME
     CComBSTR tempstr (saveas.length (), saveas.c_str ());
 
     VERIFY_HRESULT (this->project_->Save (
-                   tempstr, keep_old_name ? VARIANT_TRUE : VARIANT_FALSE));
+                    tempstr, keep_old_name ? VARIANT_TRUE : VARIANT_FALSE));
   }
 
   //
@@ -302,18 +302,69 @@ namespace GME
   }
 
   //
-  // operator IMgaProject *
-  //
-  Project::operator IMgaProject * (void) const
-  {
-    return this->project_;
-  }
-
-  //
   // impl
   //
   IMgaProject * Project::impl (void)
   {
     return this->project_.p;
+  }
+
+  //
+  // xml_import
+  //
+  void Project::xml_import (const std::string & xmlfile)
+  {
+    this->xml_importer ()->parse (xmlfile);
+  }
+
+  //
+  // xml_export
+  //
+  void Project::xml_export (const std::string & xmlfile)
+  {
+    this->xml_exporter ()->write (xmlfile);
+  }
+
+  //
+  // xml_importer
+  //
+  GME::XML_Parser * const Project::xml_importer (void)
+  {
+    if (this->xml_parser_.get () == 0)
+      this->xml_parser_.reset (new GME::XML_Parser (*this));
+
+    return this->xml_parser_.get ();
+  }
+
+  //
+  // xml_exporter
+  //
+  GME::XML_Dumper * const Project::xml_exporter (void)
+  {
+    if (this->xml_dumper_.get () == 0)
+      this->xml_dumper_.reset (new GME::XML_Dumper (*this));
+
+    return this->xml_dumper_.get ();
+  }
+
+  //
+  // operator =
+  //
+  const Project & Project::operator = (IMgaProject * project)
+  {
+    this->project_ = project;
+    return *this;
+  }
+
+  //
+  // connstr
+  //
+  std::string Project::connstr (void) const
+  {
+    CComBSTR bstr;
+    VERIFY_HRESULT (this->project_->get_ProjectConnStr (&bstr));
+
+    CW2A tempstr (bstr);
+    return tempstr.m_psz;
   }
 }

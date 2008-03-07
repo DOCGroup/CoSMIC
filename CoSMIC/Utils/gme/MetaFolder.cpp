@@ -69,5 +69,23 @@ namespace Meta
     VERIFY_HRESULT (this->metabase_.QueryInterface (&this->metafolder_));
     return this->metafolder_.p;
   }
+
+  //
+  // fco
+  //
+  GME::Meta::FCO Folder::fco (const std::string & name, bool in_scope)
+  {
+    // Convert the parameters values to COM.
+    CComBSTR bstr (name.length (), name.c_str ());
+    VARIANT_BOOL scope = in_scope ? VARIANT_TRUE : VARIANT_FALSE;
+
+    CComPtr <IMgaMetaFCO> fco;
+
+    // Get the defined meta FCO.
+    VERIFY_HRESULT (
+      this->impl ()->get_DefinedFCOByName (bstr, scope, &fco));
+
+    return fco.p;
+  }
 }
 }

@@ -16,6 +16,7 @@
 #include "Territory.h"
 #include "Folder.h"
 #include "Object.h"
+#include "XML.h"
 
 namespace GME
 {
@@ -54,13 +55,6 @@ namespace GME
     ~Project (void);
 
     /**
-     * Convert the object to a IMgaProject pointer.
-     *
-     * @return      Pointer to a IMgaProject object.
-     */
-    operator IMgaProject * (void) const;
-
-    /**
      * Create a new project. The name of the project is specified
      * in the \a name parameter. The project type, i.e., its paradigm,
      * is specified by the \a paradigm parameter.
@@ -84,7 +78,7 @@ namespace GME
      * @param[in]     path            Location of the new project.
      * @param[in]     keep_old_name   Keep the old name for the new project.
      */
-    void save (const std::string & path, bool keep_old_name);
+    void save (const std::string & path = "", bool keep_old_name = true);
 
     /***
      * Close the current project.
@@ -207,9 +201,53 @@ namespace GME
 
     IMgaProject * impl (void);
 
+    /**
+     * Import an XML file into the project.
+     *
+     * @param[in]       xmlfile       Target XML file.
+     */
+    void xml_import (const std::string & xmlfile);
+
+    /**
+     * Export the project to an XML file.
+     *
+     * @param[in]       xmlfile       Target XML file.
+     */
+    void xml_export (const std::string & xmlfile);
+
+    const Project & operator = (IMgaProject * project);
+
+    /**
+     * Get the connection string for the project.
+     *
+     * @return          The connection string.
+     */
+    std::string connstr (void) const;
+
+  protected:
+    /**
+     * Get the XML parser for the project.
+     *
+     * @return      Pointer to the parser.
+     */
+    GME::XML_Parser * const xml_importer (void);
+
+    /**
+     * Get the XML dumper for the project.
+     *
+     * @return      Pointer to the dumper.
+     */
+    GME::XML_Dumper * const xml_exporter (void);
+
   private:
     /// The project type.
     CComPtr <IMgaProject> project_;
+
+    /// The XML parser for the project.
+    std::auto_ptr <GME::XML_Parser> xml_parser_;
+
+    /// The XML parser for the project.
+    std::auto_ptr <GME::XML_Dumper> xml_dumper_;
 
     /// Default territory for the project.
     Territory terr_;

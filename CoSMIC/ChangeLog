@@ -1,3 +1,27 @@
+Fri Mar  7 04:58:49 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        
+          Removed stale source code.
+
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/MetaFolder.h:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+        
+          - Enabled support for creating models in folders.
+          - Enabled support for exporting/importing XML documents into
+            a project.
+
+        * PIM/PICML/addons/PICMLManager/BON2Component.h:
+        * PIM/PICML/addons/PICMLManager/BON2Component.cpp:
+
+          Removed these files.
+
 Thu Mar  6 02:49:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
@@ -46,7 +70,7 @@ Thu Mar  6 02:49:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.wxs:
 
-          Added absolute path to the interpreter DLLs registry settings of the 
+          Added absolute path to the interpreter DLLs registry settings of the
           CoSMIC installer. This version is tagged as CoSMIC stable version 0.6.3.
 
 Fri Feb 29 08:20:33 UTC 2008  Sumant Tambe  <sutambe@nospam>

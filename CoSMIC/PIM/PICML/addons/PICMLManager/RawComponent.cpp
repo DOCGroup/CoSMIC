@@ -316,10 +316,6 @@ get_uuid_i (const GME::FCO & fco, GME::Attribute & attr)
 //
 void RawComponent::verify_all_uuids (void)
 {
-  //// Get the <project> hosting the add-on.
-  //CComPtr <IMgaProject> project;
-  //VERIFY_RESULT (this->addon->get_Project (&project));
-
   // Get all the component (component assembly) objects.
   CComPtr <IMgaFilter> filter;
   this->project_.impl ()->CreateFilter (&filter);

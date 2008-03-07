@@ -22,6 +22,7 @@ project (GME) : acelib, cosmic_common {
   Source_Files {
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
+    $(GME_ROOT)/Interfaces/Parser.idl
 
     Attribute.cpp
     Atom.cpp
@@ -40,6 +41,7 @@ project (GME) : acelib, cosmic_common {
     RegistryNode.cpp
     Set.cpp
     Territory.cpp
+    XML.cpp
 
     MetaAttribute.cpp
     MetaBase.cpp

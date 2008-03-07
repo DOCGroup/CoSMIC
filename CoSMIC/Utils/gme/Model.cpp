@@ -92,14 +92,14 @@ namespace GME
   //
   Model Model::_create (const std::string & role, Folder & parent)
   {
-    //// Get the meta information about the role.
-    //Meta::Role metarole = parent.meta ().role (role);
+    // Get the meta information about the role.
+    Meta::FCO metafco = parent.meta ().fco (role);
 
     // Create the new child element.
     CComPtr <IMgaFCO> child;
 
-    //VERIFY_HRESULT (
-    //  parent.impl ()->CreateChildObject (metarole, &child));
+    VERIFY_HRESULT (
+      parent.impl ()->CreateRootObject (metafco.impl (), &child));
 
     return Model::_narrow (FCO (child));
   }
