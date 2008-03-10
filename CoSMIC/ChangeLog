@@ -1,9 +1,21 @@
+Mon Mar 10 23:08:45 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/wix_ui.mpb:
+        * MPC/config/wix_xml.mpb:
+        
+          Base projects for using various extension in Wix.
+
+        * cosmic_ace.mwc:
+        
+          Bug fix where generate workspace had duplicate project 
+          names.
+
 Sun Mar  9 15:04:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/XML.h:
         * Utils/gme/XML.inl:
         * Utils/gme/XML.cpp:
-        
+
           Mising source files that enable the importing/exporting
           of GME projects.
 
