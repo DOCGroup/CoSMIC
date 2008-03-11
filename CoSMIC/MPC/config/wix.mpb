@@ -10,7 +10,7 @@ project {
     inputext              = .wxs
     output_option         = -out
     commandflags          = -nologo
-    source_outputext      = .wixobj
+    generic_outputext     = .wixobj
     keyword wix_flags     = commandflags
   }
 
