@@ -1,10 +1,14 @@
-project (PackageComponent): acedefaults, mfc, picmllib, register {
-  after += Package
-  libpaths    += $(ACE_ROOT)/lib
-  libs += ACE
+// $Id$
 
-  macros +=  _USRDLL _WINDLL
+project (PackageComponent): acelib, mfc, picmllib, register {
   sharedname = PackageComponent
+
+  // prevent build if Package project does not build.
+  requires += zlib
+  after    += Package
+  
+  macros   +=  _USRDLL _WINDLL
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

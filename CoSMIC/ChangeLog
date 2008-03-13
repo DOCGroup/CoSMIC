@@ -1,7 +1,16 @@
+Thu Mar 13 20:28:50 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        
+          Fixed build errors related to disabling zlib at the workspace
+          level. The PackageComponent project would still exist even though 
+          the Package project was not present becuase zlib=0. If Package[d].lib 
+          was not previously built, then the solution build would fail.
+
 Tue Mar 11 00:01:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/wix.mpb:
-        
+
           Changed the 'source_outputext' to 'generic_outputext'.
 
 Mon Mar 10 23:08:45 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
