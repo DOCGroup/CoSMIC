@@ -169,6 +169,10 @@ public:
 
   typedef typename container_type::const_iterator const_iterator;
 
+  typedef typename container_type::size_type size_type;
+
+  typedef typename container_type::value_type value_type;
+
   /// Default constructor.
   Collection_T (void);
 
@@ -204,11 +208,43 @@ public:
   const typename container_type & items (void) const;
 
   /**
+   * Get the number of items in the collection.
+   *
+   * @return        Number of items in the collection.
+   */
+  typename size_type size (void) const;
+
+  /**
+   * Determine if the collection is empty.
+   *
+   * @retval        true      The collection is empty.
+   * @retval        false     The collection is not empty.
+   */
+  bool empty (void) const;
+
+  /**
    * Get the underlying implementation.
    *
    * @return        Pointer to the implementation.
    */
   typename collection_type * impl (void) const;
+
+  /// Clear the collection.
+  void clear (void);
+
+  /**
+   * @name iterators
+   *
+   * Standard Template Library (STL) iterator methods.
+   */
+  // @{
+
+  typename iterator begin (void);
+  typename iterator end (void);
+
+  typename const_iterator begin (void) const;
+  typename const_iterator end (void) const;
+  // @}
 
 private:
   /// Populate the collection object with the items.

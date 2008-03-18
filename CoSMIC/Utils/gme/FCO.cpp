@@ -256,7 +256,7 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_Attributes (&coll));
 
     attrs.attach (coll);
-    return attrs.items ().size ();
+    return attrs.size ();
   }
 
   //

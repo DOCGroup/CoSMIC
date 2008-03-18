@@ -49,7 +49,7 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
 
     folders.attach (tempptr.Detach ());
-    return folders.items ().size ();
+    return folders.size ();
   }
 
   //
@@ -59,7 +59,7 @@ namespace GME
                           GME::Collection_T <GME::Folder> & folders) const
   {
     // Clear the folders in the collection.
-    folders.items ().clear ();
+    folders.clear ();
 
     // Get all the child folders in this folder.
     typedef GME::Collection_T <GME::Folder> Folder_Set;
@@ -69,8 +69,7 @@ namespace GME
     {
       // Get iterators to beginning and end of container.
       Folder_Set::const_iterator
-        iter = temp.items ().begin (),
-        iter_end = temp.items ().end ();
+        iter = temp.begin (), iter_end = temp.end ();
 
       for ( ; iter != iter_end; iter ++)
       {
@@ -80,7 +79,7 @@ namespace GME
       }
     }
 
-    return folders.items ().size ();
+    return folders.size ();
   }
 
   //

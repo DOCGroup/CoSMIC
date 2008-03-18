@@ -265,6 +265,11 @@ namespace GME
      */
     size_t children (GME::Collection_T <GME::Object> & children) const;
 
+    /// Release the pointer to the object. This does not actually
+    /// delete the object. Please see destory () to delete the
+    /// object from the model.
+    void release (void);
+
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

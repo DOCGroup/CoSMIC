@@ -376,7 +376,15 @@ children (GME::Collection_T <GME::Object> & children) const
   VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
 
   children.attach (temp.Detach ());
-  return children.items ().size ();
+  return children.size ();
+}
+
+//
+// release
+//
+void Object::release (void)
+{
+  this->object_.Release ();
 }
 
 }
