@@ -1,21 +1,34 @@
+Wed Mar 19 15:35:29 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/Set.cpp:
+        
+          Bug fix where using a previously released object would cause
+          an assertion failure because the target reference was not
+          nil. The middleware, therefore, assumed the object was not
+          properly released (or ref counted).
+
 Tue Mar 18 22:15:16 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Collection_T.h:
         * Utils/gme/Collection_T.inl:
-        
+
           Aggregated the methods to the actual container object. This
           makes it a LOT easier to use the collection object becuase
-          you do not have to use the items () method to access the 
+          you do not have to use the items () method to access the
           container's properties.
-          
+
         * Utils/gme/FCO.cpp:
         * Utils/gme/Folder.cpp:
         * Utils/gme/Folder_Model_T.cpp:
         * Utils/gme/Object.h:
         * Utils/gme/Object.cpp:
         * Utils/gme/Set.cpp:
-        
-          Updated the usage of the collection object based on the 
+
+          Updated the usage of the collection object based on the
           change above.
 
 Thu Mar 13 20:28:50 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>

@@ -51,6 +51,9 @@ namespace GME
     if (this->ref_.p == this->object_.p)
       return this->ref_.p;
 
+    if (this->ref_.p != 0)
+      this->ref_.Release ();
+
     VERIFY_HRESULT (this->object_.QueryInterface (&this->ref_));
     return this->ref_.p;
   }

@@ -65,9 +65,13 @@ namespace GME
   //
   IMgaAtom * Atom::impl (void) const
   {
-    if (this->atom_.p != this->object_.p)
-      VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
+    if (this->atom_.p == this->object_.p)
+      return this->atom_.p;
 
+    if (this->atom_.p != 0)
+      this->atom_.Release ();
+
+    VERIFY_HRESULT (this->object_.QueryInterface (&this->atom_));
     return this->atom_;
   }
 

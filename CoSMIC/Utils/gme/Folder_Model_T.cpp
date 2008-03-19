@@ -17,17 +17,13 @@ namespace GME
   template <typename T, typename BASE>
   T * Folder_Model_T <T, BASE>::impl (void) const
   {
-    if (this->type_.p != this->object_.p)
-    {
-      // We need to release the current interface since there
-      // is no guarantee the QueryInterface method will release
-      // the current interface in <type_>.
-      if (this->type_)
-        this->type_.Release ();
+    if (this->type_.p == this->object_.p)
+      return this->type_.p;
 
-      this->object_.QueryInterface (&this->type_);
-    }
+    if (this->type_.p != 0)
+      this->type_.Release ();
 
+    VERIFY_HRESULT (this->object_.QueryInterface (&this->type_));
     return this->type_.p;
   }
 

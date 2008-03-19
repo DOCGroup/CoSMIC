@@ -95,7 +95,7 @@ namespace GME
     if (this->fco_.p == this->object_.p)
       return this->fco_.p;
 
-    if (this->fco_)
+    if (this->fco_.p != 0)
       this->fco_.Release ();
 
     VERIFY_HRESULT (this->object_.QueryInterface (&this->fco_));

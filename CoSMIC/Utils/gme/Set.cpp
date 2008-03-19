@@ -97,9 +97,13 @@ namespace GME
   //
   IMgaSet * Set::impl (void) const
   {
-    if (this->set_.p != this->object_.p)
-      VERIFY_HRESULT (this->object_.QueryInterface (&this->set_));
+    if (this->set_.p == this->object_.p)
+      return this->set_.p;
 
+    if (this->set_.p != 0)
+      this->set_.Release ();
+    
+    VERIFY_HRESULT (this->object_.QueryInterface (&this->set_));
     return this->set_;
   }
 
