@@ -49,6 +49,7 @@ static const char* PICML_COMPONENTASSEMBLY_NAME = "ComponentAssembly";
 static const char* PICML_DATATYPE_NAME =          "DataType";
 static const char* PICML_ATTRIBUTEMAPPING_NAME =  "AttributeMapping";
 static const char* PICML_COMPONENTASMREF_NAME =   "ComponentAssemblyReference";
+static const char* PICML_SUPPORTS_NAME =          "Supports";
 static const char* PREF_TYPESHOWN = "isTypeShown";
 
 class PortDecorator;

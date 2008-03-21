@@ -27,18 +27,18 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE
+2 TEXTINCLUDE 
 BEGIN
     "#include ""winres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE
+3 TEXTINCLUDE 
 BEGIN
     "1 TYPELIB ""DecoratorLib.tlb""\r\n"
     "\0"
@@ -135,13 +135,14 @@ IDB_BITMAP_ATTRIBUTEMAPPING BITMAP                  "..\\paradigms\\icons\\Attri
 IDB_BITMAP_DATATYPE     BITMAP                  "..\\paradigms\\icons\\DataType.bmp"
 IDB_BITMAP_COMPONENTASSEMBLY BITMAP                  "..\\paradigms\\icons\\componentassembly.bmp"
 IDB_BITMAP_COMPONENTASSEMBLYREF BITMAP                  "..\\paradigms\\icons\\componentassemblyref.bmp"
+IDB_BITMAP_OBJECT       BITMAP                  "..\\paradigms\\icons\\object.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // String Table
 //
 
-STRINGTABLE
+STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "Decorator"
 END
@@ -160,3 +161,4 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 #endif    // not APSTUDIO_INVOKED
+

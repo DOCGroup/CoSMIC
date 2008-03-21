@@ -414,6 +414,9 @@ PortDecorator::LoadBitmap()
     else if (NamespaceEquals (bstr, PICML_ATTRIBUTEMAPPING_NAME)) {
       m_bitmap.ReadFromResource (IDB_BITMAP_ATTRIBUTEMAPPING);
     }
+    else if (NamespaceEquals (bstr, PICML_SUPPORTS_NAME)) {
+      m_bitmap.ReadFromResource (IDB_BITMAP_OBJECT);
+    }
   }
 }
 

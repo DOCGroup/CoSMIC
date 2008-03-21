@@ -137,6 +137,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Bridge.bmp' />
 
+        <File Id='BranchState.bmp'
+        Name='BranchState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\BranchState.bmp' />
+
         <File Id='PICML_icon_8'
         Name='Capability.bmp'
         DiskId='1'
@@ -182,6 +187,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Domain.bmp' />
 
+        <File Id='DoWhileState.bmp'
+        Name='DoWhileState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\DoWhileState.bmp' />
+
         <File Id='PICML_icon_17'
         Name='EnvironmentConf.bmp'
         DiskId='1'
@@ -191,6 +201,11 @@
         Name='ExternalReferenceEndPoint.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ExternalReferenceEndPoint.bmp' />
+
+        <File Id='ForState.bmp'
+        Name='ForState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ForState.bmp' />
 
         <File Id='PICML_icon_19'
         Name='FOU.bmp'
@@ -391,6 +406,11 @@
         Name='Trigger-Bench.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Trigger-Bench.bmp' />
+
+        <File Id='WhileState.bmp'
+        Name='WhileState.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\WhileState.bmp' />
 
         <File Id='PICML_icon_59'
         Name='action.bmp'

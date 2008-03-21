@@ -569,7 +569,7 @@ namespace PICML
          ++iBegin)
       {
         Conn conn = *iBegin;
-        PortType port = (conn.*portEnd)();
+        PortType port = PortType::Cast ((conn.*portEnd)());
         Comp portComp = Comp::Cast ((port.*parent)());
         set<Comp>::const_iterator portCompIter;
         portCompIter = find (clique.begin(), clique.end(), portComp);

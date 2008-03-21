@@ -869,8 +869,9 @@ namespace PICML
     // Get the receptacle end
     RequiredRequestPort receptacle = iv.srcinvoke_end();
 
-    // Get the facet end
-    ProvidedRequestPort facet = iv.dstinvoke_end();
+    // Get the facet end. This could be a supported interface.
+    ProvidedRequestPort facet = 
+      PICML::ProvidedRequestPort::Cast (iv.dstinvoke_end());
 
     std::map<Component,std::string> receptacles;
     std::map<Component,std::string> facets;

@@ -2099,7 +2099,7 @@ void PackageVisitor::Visit_invoke(const invoke& iv)
   RequiredRequestPort receptacle = iv.srcinvoke_end();
 
   // Get the facet end
-  ProvidedRequestPort facet = iv.dstinvoke_end();
+  ProvidedRequestPort facet = ProvidedRequestPort::Cast (iv.dstinvoke_end());
 
   map<Component,string> receptacles;
   map<Component,string> facets;

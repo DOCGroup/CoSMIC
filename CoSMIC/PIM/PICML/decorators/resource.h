@@ -42,12 +42,14 @@
 #define IDB_BITMAP_DATATYPE             244
 #define IDB_BITMAP_COMPONENTASSEMBLY    246
 #define IDB_BITMAP_COMPONENTASSEMBLYREF 247
+#define IDB_BITMAP1                     252
+#define IDB_BITMAP_OBJECT               252
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        252
+#define _APS_NEXT_RESOURCE_VALUE        253
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         201
 #define _APS_NEXT_SYMED_VALUE           103
