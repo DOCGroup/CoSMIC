@@ -1,8 +1,26 @@
+Mon Mar 24 22:34:41 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          - Bug fix where the modeling of connections between Node, 
+            Interconnect, and Bridge elements prevented anyone from being
+            able to model a network topology.
+            
+          - Change operatingSystem, configuration, and architecture
+            macros from enum types to field types. This will allow users
+            to entire any arbitrary value for the respective element.
+
 Fri Mar 21 20:34:34 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * ChangeLog:
         * ChangeLogs/ChangeLog-08a:
-        
+
           Refreshed the current ChangeLog and save the ChangeLog for the
           previous version to the ChangeLogs directory.
 
@@ -14,7 +32,7 @@ Fri Mar 21 20:34:34 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/decorators/IDMLDecorators.h:
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/resource.h:
-        
+
           Update the decorator to display supported interfaces as ports
           on the parent component.
 
@@ -22,8 +40,8 @@ Fri Mar 21 20:34:34 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/interpreters/PAM/PAMVisitor.h:
         * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
         * PIM/PICML/interpreters/Path/PathVisitor.cpp:
-        
-          Update the implemenation to handle the new addition for the 
+
+          Update the implemenation to handle the new addition for the
           creating connections to supported interfaces at the assembly
           level. I just casted the object instead of creating implementation
           to handle such cases.
@@ -31,11 +49,11 @@ Fri Mar 21 20:34:34 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
 
           Added the missing CBML images to the installer.
-          
+
         * PIM/PICML/paradigms/icons/object.bmp:
-        
+
           Change the color of the cloud from white to gray since it was
-          causing the decorator to treat the white in the cloud as 
+          causing the decorator to treat the white in the cloud as
           the transparent color.
 
 Wed Mar 19 15:35:29 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{C10FF653-65ED-45AF-A397-CB07C6C9FCA5}" cdate="Tue Feb 26 11:02:21 2008" mdate="Tue Feb 26 11:02:21 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{CBE5A4F9-E2C7-4208-B4B3-69A3DF1E7BBC}" cdate="Tue Feb 26 11:02:21 2008" mdate="Tue Feb 26 11:02:21 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -24121,10 +24121,40 @@ dName = dstTerminalEffect</value>
 					</regnode>
 				</regnode>
 			</regnode>
+			<regnode name="BridgeConnection-163-Connection" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4174</value>
+					<regnode name="Domain" status="undefined">
+						<value></value>
+						<regnode name="BridgeConnection" isopaque="yes">
+							<value>4176</value>
+							<regnode name="Target" isopaque="yes">
+								<value>4178</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Domain:BridgeConnection" status="undefined">
+						<value></value>
+						<regnode name="Target" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
 			<regnode name="Domain-ae-Model" isopaque="yes">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1467</value>
+					<regnode name="Property" status="undefined">
+						<value></value>
+						<regnode name="Domain" isopaque="yes">
+							<value>4180</value>
+						</regnode>
+					</regnode>
 				</regnode>
 			</regnode>
 			<regnode name="Interconnect2Bridge-163-Connection" isopaque="yes">
@@ -24181,6 +24211,30 @@ dName = dstTerminalEffect</value>
 						<regnode name="ElementsTarget" isopaque="yes">
 							<value>yes</value>
 						</regnode>
+						<regnode name="Target" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="InterconnectConnection-159-Connection" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4175</value>
+					<regnode name="Domain" status="undefined">
+						<value></value>
+						<regnode name="InterconnectConnection" isopaque="yes">
+							<value>4177</value>
+							<regnode name="Target" isopaque="yes">
+								<value>4179</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="Domain:InterconnectConnection" status="undefined">
+						<value></value>
 						<regnode name="Target" isopaque="yes">
 							<value>yes</value>
 						</regnode>
@@ -29806,6 +29860,12 @@ dName = dstTerminalEffect</value>
 					<value>3883</value>
 				</regnode>
 			</regnode>
+			<regnode name="architecture-6a-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4171</value>
+				</regnode>
+			</regnode>
 			<regnode name="artifactVersion-58-FieldAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
@@ -29824,10 +29884,22 @@ dName = dstTerminalEffect</value>
 					<value>3887</value>
 				</regnode>
 			</regnode>
+			<regnode name="configuration-68-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4172</value>
+				</regnode>
+			</regnode>
 			<regnode name="operatingSystem-5b-EnumAttribute" status="undefined">
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>3886</value>
+				</regnode>
+			</regnode>
+			<regnode name="operatingSystem-66-FieldAttribute" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>4173</value>
 				</regnode>
 			</regnode>
 		</regnode>
@@ -41445,7 +41517,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>610,327</value>
+							<value>596,339</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -41523,7 +41595,7 @@ ResourceUsesPort</value>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>589,138</value>
+							<value>575,152</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -42402,7 +42474,7 @@ ResourceUsesPort</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>827,321</value>
+							<value>792,356</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -59677,110 +59749,8 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000013" kind="ParadigmSheet" guid="{0BDEEE67-10B9-484e-A58E-25FA2446A5DC}" relid="0x1" childrelidcntr="0x16c">
+		<model id="id-0065-00000013" kind="ParadigmSheet" guid="{0BDEEE67-10B9-484e-A58E-25FA2446A5DC}" relid="0x1" childrelidcntr="0x17b">
 			<name>Domain</name>
-			<atom id="id-0066-0000011c" kind="Inheritance" role="Inheritance" guid="{C1163E55-8EEC-4cbb-8D5E-ADDDBE3C0F3F}" relid="0xb5">
-				<name>Inheritance</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>542,299</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>479,187</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>542,299</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>479,201</value>
-						</regnode>
-					</regnode>
-				</regnode>
-			</atom>
-			<atom id="id-0066-0000011d" kind="FCO" role="FCO" guid="{43F654D7-0B93-441f-89E7-673995969294}" relid="0xb3">
-				<name>Elements</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>519,188</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>456,111</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>519,188</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>456,111</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Decorator" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="Icon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="InstanceIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsAbstract">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsHotspotEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsNameEnabled" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="IsTypeShown" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="NameWrapNum" status="meta">
-					<value>0</value>
-				</attribute>
-				<attribute kind="PortIcon" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SubTypeIcon" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
 			<atom id="id-0066-0000011e" kind="Model" role="Model" guid="{12FBCC56-4ADF-4350-ACFE-4B98DD1E2001}" relid="0xae">
 				<name>Domain</name>
 				<regnode name="MetaRef" isopaque="yes">
@@ -59797,7 +59767,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>449,12</value>
+							<value>491,110</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -59809,7 +59779,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>477,12</value>
+							<value>491,110</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -59875,7 +59845,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>58,23</value>
+							<value>358,34</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -59887,7 +59857,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>57,20</value>
+							<value>358,34</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -59905,13 +59875,13 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>760,326</value>
+							<value>795,354</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>844,326</value>
+							<value>788,354</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -59926,13 +59896,13 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>228,389</value>
+							<value>284,354</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>263,389</value>
+							<value>284,354</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -59947,13 +59917,13 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>487,326</value>
+							<value>529,354</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>536,326</value>
+							<value>529,354</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -59974,7 +59944,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>176,461</value>
+							<value>232,223</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -59986,7 +59956,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>211,468</value>
+							<value>232,118</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60032,41 +60002,20 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<value></value>
 				</attribute>
 			</atom>
-			<atom id="id-0066-00000124" kind="Connector" role="Connector" guid="{52167C5D-000B-474d-A5A1-750B9DE6D68A}" relid="0x156">
-				<name>Connector</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>487,389</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>536,389</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value></value>
-				</regnode>
-			</atom>
 			<atom id="id-0066-00000125" kind="Connection" role="Connection" guid="{BEB7C12C-9B9D-4d2a-B623-A15715BDB6E2}" relid="0x159">
-				<name>Node2Interconnect</name>
+				<name>InterconnectConnection</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>590,471</value>
+							<value>575,482</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>428,251</value>
+							<value>456,223</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60078,7 +60027,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>477,251</value>
+							<value>456,223</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60105,171 +60054,8 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				</attribute>
 				<attribute kind="GeneralPreferences">
 					<value>
-            sName = srcNode2Interconnect
-          dName = dstNode2Interconnect</value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="SrcAttrLabel1" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SrcAttrLabel2" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000126" kind="Connection" role="Connection" guid="{B906538F-E371-41d2-B3B3-6696CE7F82BD}" relid="0x15a">
-				<name>Bridge2Interconnect</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>793,478</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>701,475</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>785,482</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>792,475</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Color" status="meta">
-					<value>0x000000</value>
-				</attribute>
-				<attribute kind="ConnLineEnd" status="meta">
-					<value>butt</value>
-				</attribute>
-				<attribute kind="ConnLineStart" status="meta">
-					<value>butt</value>
-				</attribute>
-				<attribute kind="ConnLineType" status="meta">
-					<value>solid</value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DstAttrLabel1" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DstAttrLabel2" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcBridge2Interconnect
-          dName = dstBridge2Interconnect</value>
-				</attribute>
-				<attribute kind="InRootFolder" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NamePosition" status="meta">
-					<value>4</value>
-				</attribute>
-				<attribute kind="SrcAttrLabel1" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="SrcAttrLabel2" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000127" kind="Connector" role="Connector" guid="{6708F830-A400-46b0-9838-4ABB6307AE45}" relid="0x15d">
-				<name>Connector</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>760,389</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>851,389</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value></value>
-				</regnode>
-			</atom>
-			<atom id="id-0066-00000128" kind="Connection" role="Connection" guid="{ACE097F0-BDD1-4529-B2A6-0EB52039F862}" relid="0x161">
-				<name>Interconnect2Node</name>
-				<regnode name="PartRegs" isopaque="yes">
-					<value></value>
-					<regnode name="Attributes" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>450,485</value>
-						</regnode>
-					</regnode>
-					<regnode name="ClassDiagram" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>428,482</value>
-						</regnode>
-					</regnode>
-					<regnode name="Constraints" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>450,485</value>
-						</regnode>
-					</regnode>
-					<regnode name="Visualization" isopaque="yes">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>477,482</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="Color" status="meta">
-					<value>0x000000</value>
-				</attribute>
-				<attribute kind="ConnLineEnd" status="meta">
-					<value>butt</value>
-				</attribute>
-				<attribute kind="ConnLineStart" status="meta">
-					<value>butt</value>
-				</attribute>
-				<attribute kind="ConnLineType" status="meta">
-					<value>solid</value>
-				</attribute>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DstAttrLabel1" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="DstAttrLabel2" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="GeneralPreferences">
-					<value>
-            sName = srcInterconnect2Node
-          dName = dstInterconnect2Node</value>
+sName = srcInterconnectConnection
+dName = dstInterconnectConnection</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -60288,7 +60074,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000129" kind="Connection" role="Connection" guid="{96EBB673-F42B-46e3-8172-31CE0B1C626A}" relid="0x163">
-				<name>Interconnect2Bridge</name>
+				<name>BridgeConnection</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
 					<regnode name="Attributes" isopaque="yes">
@@ -60300,7 +60086,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>701,202</value>
+							<value>743,188</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60312,7 +60098,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>785,251</value>
+							<value>736,195</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60339,8 +60125,8 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				</attribute>
 				<attribute kind="GeneralPreferences">
 					<value>
-            sName = srcInterconnect2Bridge
-          dName = dstInterconnect2Bridge</value>
+sName = srcBridgeConnection
+dName = dstBridgeConnection</value>
 				</attribute>
 				<attribute kind="InRootFolder" status="meta">
 					<value>false</value>
@@ -60371,7 +60157,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>701,13</value>
+							<value>617,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60383,7 +60169,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>701,13</value>
+							<value>617,27</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60440,13 +60226,13 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>813,404</value>
+							<value>806,391</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>288,356</value>
+							<value>330,307</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60458,7 +60244,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>344,356</value>
+							<value>330,306</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60521,7 +60307,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>561,356</value>
+							<value>596,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60533,7 +60319,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>645,356</value>
+							<value>596,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60596,7 +60382,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>820,356</value>
+							<value>862,321</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60608,7 +60394,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>939,356</value>
+							<value>862,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60671,7 +60457,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>22,363</value>
+							<value>113,328</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -60683,7 +60469,7 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,363</value>
+							<value>113,328</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -60733,88 +60519,6 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<value></value>
 				</attribute>
 			</reference>
-			<connection id="id-0068-000001c9" kind="HasAspect" role="HasAspect" guid="{8BA055F0-26CE-4ba9-8506-33F8B67FD360}" relid="0x11a">
-				<name>HasAspect</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>En</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000011e"/>
-				<connpoint role="src" target="id-0069-0000001f"/>
-			</connection>
-			<connection id="id-0068-000001ca" kind="BaseInheritance" role="BaseInheritance" guid="{6375AF67-E7D8-4835-83A9-7DA63EB5162F}" relid="0xb6">
-				<name>BaseInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>S</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-0000011c"/>
-				<connpoint role="src" target="id-0066-0000011d"/>
-			</connection>
-			<connection id="id-0068-000001cb" kind="Containment" role="Containment" guid="{3A8B5F78-45C7-4245-BB2A-63BEABE2F930}" relid="0xb4">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="src" target="id-0066-0000011d"/>
-				<connpoint role="dst" target="id-0066-0000011e"/>
-			</connection>
-			<connection id="id-0068-000001cc" kind="DerivedInheritance" role="DerivedInheritance" guid="{B7F9E8E7-7146-44f8-860C-D863BC50CA19}" relid="0x144">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000011c"/>
-				<connpoint role="dst" target="id-0067-000000aa"/>
-			</connection>
-			<connection id="id-0068-000001cd" kind="DerivedInheritance" role="DerivedInheritance" guid="{45DBE2AB-008A-49f1-88BC-6ECFAB5208BD}" relid="0x146">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000011c"/>
-				<connpoint role="dst" target="id-0067-000000ac"/>
-			</connection>
-			<connection id="id-0068-000001ce" kind="DerivedInheritance" role="DerivedInheritance" guid="{4AC82356-9A56-48a2-ACFF-2EC9B38F8C25}" relid="0x147">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000011c"/>
-				<connpoint role="dst" target="id-0067-000000ad"/>
-			</connection>
-			<connection id="id-0068-000001cf" kind="Containment" role="Containment" guid="{974F58C4-CE10-4c2d-8676-853C549A5873}" relid="0x148">
-				<name>Containment</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-0000011e"/>
-				<connpoint role="src" target="id-0067-000000a9"/>
-			</connection>
-			<connection id="id-0068-000001d0" kind="FolderContainment" role="FolderContainment" guid="{82A0C4C6-AA35-41e2-8831-2A943F637275}" relid="0x14a">
-				<name>FolderContainment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-0000011e"/>
-				<connpoint role="dst" target="id-0066-0000011f"/>
-			</connection>
 			<connection id="id-0068-000001d1" kind="SourceToConnector" role="SourceToConnector" guid="{7F7680C2-BA94-4db3-99A7-A67550B5E43D}" relid="0x151">
 				<name>SourceToConnector</name>
 				<attribute kind="Cardinality">
@@ -60837,172 +60541,15 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				<connpoint role="src" target="id-0066-00000121"/>
 				<connpoint role="dst" target="id-0067-000000ad"/>
 			</connection>
-			<connection id="id-0068-000001d3" kind="AssociationClass" role="AssociationClass" guid="{638BFB7F-213E-4d47-9240-858C1495ABA7}" relid="0x153">
-				<name>AssociationClass</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>n</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-00000121"/>
-				<connpoint role="dst" target="id-0066-00000123"/>
-			</connection>
-			<connection id="id-0068-000001d4" kind="SourceToConnector" role="SourceToConnector" guid="{CE114D16-3267-47fd-B771-93F2DC58BE9D}" relid="0x154">
-				<name>SourceToConnector</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000122"/>
-				<connpoint role="src" target="id-0067-000000aa"/>
-			</connection>
-			<connection id="id-0068-000001d5" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{DB55DAC7-71A5-4d3b-A95A-27270DE0B58F}" relid="0x155">
-				<name>ConnectorToDestination</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>n</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000122"/>
-				<connpoint role="dst" target="id-0067-000000ab"/>
-			</connection>
-			<connection id="id-0068-000001d6" kind="SourceToConnector" role="SourceToConnector" guid="{4C99E24C-0328-46b2-BA2F-711D7BD28DBB}" relid="0x157">
-				<name>SourceToConnector</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000124"/>
-				<connpoint role="src" target="id-0067-000000ab"/>
-			</connection>
-			<connection id="id-0068-000001d7" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{6196E17E-2896-4a70-94FB-07BD543B21DA}" relid="0x158">
-				<name>ConnectorToDestination</name>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000124"/>
-				<connpoint role="dst" target="id-0067-000000aa"/>
-			</connection>
-			<connection id="id-0068-000001d8" kind="SourceToConnector" role="SourceToConnector" guid="{400C4EB6-D5DD-4079-8729-48B7065710FA}" relid="0x15b">
-				<name>SourceToConnector</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000120"/>
-				<connpoint role="src" target="id-0067-000000ab"/>
-			</connection>
-			<connection id="id-0068-000001d9" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{F26D6B4A-CA0A-4cd0-B152-5518B733AF24}" relid="0x15c">
-				<name>ConnectorToDestination</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>n</value>
-				</regnode>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000120"/>
-				<connpoint role="dst" target="id-0067-000000ac"/>
-			</connection>
-			<connection id="id-0068-000001da" kind="SourceToConnector" role="SourceToConnector" guid="{1891E717-EA05-4fc3-A7FE-C13ECF140267}" relid="0x15e">
-				<name>SourceToConnector</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="srcRolename" status="meta">
-					<value>src</value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-00000127"/>
-				<connpoint role="src" target="id-0067-000000ac"/>
-			</connection>
-			<connection id="id-0068-000001db" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{07752218-9377-4247-84ED-6B58B1E9AE46}" relid="0x15f">
-				<name>ConnectorToDestination</name>
-				<attribute kind="Cardinality">
-					<value>1..*</value>
-				</attribute>
-				<attribute kind="dstRolename" status="meta">
-					<value>dst</value>
-				</attribute>
-				<connpoint role="src" target="id-0066-00000127"/>
-				<connpoint role="dst" target="id-0067-000000ab"/>
-			</connection>
-			<connection id="id-0068-000001dc" kind="DerivedInheritance" role="DerivedInheritance" guid="{CE46D075-DF40-4872-84F1-32E2B299352B}" relid="0x162">
-				<name>DerivedInheritance</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Sn</value>
-				</regnode>
-				<connpoint role="src" target="id-0066-0000011c"/>
-				<connpoint role="dst" target="id-0067-000000ab"/>
-			</connection>
 			<connection id="id-0068-000001dd" kind="AssociationClass" role="AssociationClass" guid="{D4A19812-0BFD-42b9-BF18-55106E39392F}" relid="0x164">
 				<name>AssociationClass</name>
 				<connpoint role="src" target="id-0066-00000122"/>
 				<connpoint role="dst" target="id-0066-00000125"/>
 			</connection>
-			<connection id="id-0068-000001de" kind="AssociationClass" role="AssociationClass" guid="{23853E9F-7E50-4716-AFE4-1D3B6641EB03}" relid="0x165">
-				<name>AssociationClass</name>
-				<connpoint role="src" target="id-0066-00000124"/>
-				<connpoint role="dst" target="id-0066-00000128"/>
-			</connection>
-			<connection id="id-0068-000001df" kind="AssociationClass" role="AssociationClass" guid="{DE87C788-8D74-480a-ACB6-D9A94C651E01}" relid="0x166">
-				<name>AssociationClass</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value></value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000126"/>
-				<connpoint role="src" target="id-0066-00000127"/>
-			</connection>
 			<connection id="id-0068-000001e0" kind="AssociationClass" role="AssociationClass" guid="{AB60B8C4-A44A-4d13-AA32-0DFF9583422E}" relid="0x167">
 				<name>AssociationClass</name>
 				<connpoint role="src" target="id-0066-00000120"/>
 				<connpoint role="dst" target="id-0066-00000129"/>
-			</connection>
-			<connection id="id-0068-000001e1" kind="Containment" role="Containment" guid="{96254732-C569-44f3-8F40-2BDAF89716E0}" relid="0x168">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-0000011e"/>
-				<connpoint role="src" target="id-0066-00000123"/>
-			</connection>
-			<connection id="id-0068-000001e2" kind="Containment" role="Containment" guid="{3D83F62F-A252-47fe-A3B2-C551F9617BB2}" relid="0x169">
-				<name>Containment</name>
-				<attribute kind="Cardinality" status="meta">
-					<value>0..*</value>
-				</attribute>
-				<attribute kind="IsPort" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Rolename" status="meta">
-					<value></value>
-				</attribute>
-				<connpoint role="dst" target="id-0066-0000011e"/>
-				<connpoint role="src" target="id-0066-00000128"/>
 			</connection>
 			<connection id="id-0068-000001e3" kind="Containment" role="Containment" guid="{A1380171-C364-49bf-A7D3-3326ACA1ECC3}" relid="0x16a">
 				<name>Containment</name>
@@ -61018,8 +60565,109 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				<connpoint role="dst" target="id-0066-0000011e"/>
 				<connpoint role="src" target="id-0066-00000125"/>
 			</connection>
-			<connection id="id-0068-000001e4" kind="Containment" role="Containment" guid="{1F89B921-600B-4c58-A830-471C306A1565}" relid="0x16b">
+			<connection id="id-0068-0000043f" kind="AssociationClass" role="AssociationClass" guid="{8F18FB92-DCF2-4e71-BAEF-33AB51E6734A}" relid="0x16d">
+				<name>AssociationClass</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>s</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-00000121"/>
+				<connpoint role="dst" target="id-0066-00000123"/>
+			</connection>
+			<connection id="id-0068-00000440" kind="SourceToConnector" role="SourceToConnector" guid="{F18AA430-3CCF-41ad-9EC3-1F7A4B4E1AE0}" relid="0x16e">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000122"/>
+				<connpoint role="src" target="id-0067-000000aa"/>
+			</connection>
+			<connection id="id-0068-00000441" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{85A238B0-8BA7-4f43-B54B-39AEC5EB36DC}" relid="0x16f">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>w</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000122"/>
+				<connpoint role="dst" target="id-0067-000000ab"/>
+			</connection>
+			<connection id="id-0068-00000442" kind="SourceToConnector" role="SourceToConnector" guid="{2138BF0F-F859-4efb-9535-9FD6CBC935FB}" relid="0x170">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000120"/>
+				<connpoint role="src" target="id-0067-000000ab"/>
+			</connection>
+			<connection id="id-0068-00000443" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{EA794767-FFC3-449d-BD1A-EB6F8A389C0D}" relid="0x171">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ew</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000120"/>
+				<connpoint role="dst" target="id-0067-000000ac"/>
+			</connection>
+			<connection id="id-0068-00000444" kind="Containment" role="Containment" guid="{9E48F8E0-F895-4565-BB14-D319957FB576}" relid="0x172">
 				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0067-000000ab"/>
+			</connection>
+			<connection id="id-0068-00000445" kind="Containment" role="Containment" guid="{CC52C4F3-C7D5-49bf-9AFA-75BA40D6C15C}" relid="0x173">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0067-000000aa"/>
+			</connection>
+			<connection id="id-0068-00000447" kind="Containment" role="Containment" guid="{3C4B34A8-7B91-4b53-A64F-D0F59E7F12C9}" relid="0x174">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
 				</attribute>
@@ -61032,8 +60680,11 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 				<connpoint role="dst" target="id-0066-0000011e"/>
 				<connpoint role="src" target="id-0066-00000129"/>
 			</connection>
-			<connection id="id-0068-000001e5" kind="Containment" role="Containment" guid="{3B001AC1-D5D3-41ab-9F21-AFAF68ACC628}" relid="0x16c">
+			<connection id="id-0068-00000448" kind="Containment" role="Containment" guid="{47FE1AE5-3267-42c0-BA14-275B5BA7AF77}" relid="0x175">
 				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
 				</attribute>
@@ -61044,9 +60695,79 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<value></value>
 				</attribute>
 				<connpoint role="dst" target="id-0066-0000011e"/>
-				<connpoint role="src" target="id-0066-00000126"/>
+				<connpoint role="src" target="id-0067-000000ac"/>
 			</connection>
-			<set id="id-0069-0000001f" kind="Aspect" role="Aspect" guid="{016F74CF-91FA-46f3-AC6B-8AE20BD4DBD4}" relid="0x2a" members="id-0066-0000011d id-0066-0000011e id-0066-00000123 id-0066-00000125 id-0066-00000126 id-0066-00000128 id-0066-00000129 id-0067-000000a9">
+			<connection id="id-0068-00000449" kind="FolderContainment" role="FolderContainment" guid="{D0F7103A-B31E-453c-B581-F29A2A898F96}" relid="0x176">
+				<name>FolderContainment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-0000011e"/>
+				<connpoint role="dst" target="id-0066-0000011f"/>
+			</connection>
+			<connection id="id-0068-0000045c" kind="HasAspect" role="HasAspect" guid="{33C46D4D-9F4A-4590-A68E-ADE1F1AD2F8D}" relid="0x178">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>S</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0069-0000001f"/>
+			</connection>
+			<connection id="id-0068-0000045d" kind="Containment" role="Containment" guid="{DE86ABBF-4D0B-44ea-BC6E-B64BA87A6B82}" relid="0x179">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0067-000000ad"/>
+			</connection>
+			<connection id="id-0068-0000045e" kind="Containment" role="Containment" guid="{10C57AF5-34E1-446e-A6B6-0F54E944DC18}" relid="0x17a">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0066-00000123"/>
+			</connection>
+			<connection id="id-0068-0000045f" kind="Containment" role="Containment" guid="{86A0C0CB-9BBA-4023-867D-4EEF9BBA27C1}" relid="0x17b">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Wn</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000011e"/>
+				<connpoint role="src" target="id-0067-000000a9"/>
+			</connection>
+			<set id="id-0069-0000001f" kind="Aspect" role="Aspect" guid="{016F74CF-91FA-46f3-AC6B-8AE20BD4DBD4}" relid="0x2a" members="id-0066-0000011e id-0066-00000123 id-0066-00000125 id-0066-00000129 id-0067-000000a9 id-0067-000000aa id-0067-000000ab id-0067-000000ac id-0067-000000ad">
 				<name>Target</name>
 				<regnode name="MetaRef" isopaque="yes">
 					<value></value>
@@ -61083,12 +60804,12 @@ referenceParts (RequiredRequestPort)-&gt;forAll (a, b : gme::Reference | a &lt;&
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>729,125</value>
+							<value>785,27</value>
 						</regnode>
 					</regnode>
 				</regnode>
-				<attribute kind="DisplayedName" status="meta">
-					<value></value>
+				<attribute kind="DisplayedName">
+					<value>Domain</value>
 				</attribute>
 			</set>
 		</model>
@@ -66842,7 +66563,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000018" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x65">
+		<model id="id-0065-00000018" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x78">
 			<name>ImplementationArtifact</name>
 			<atom id="id-0066-0000015d" kind="Folder" role="Folder" guid="{BA2B5669-4736-422d-811B-5A33CBBD032C}" relid="0xc">
 				<name>ImplementationArtifacts</name>
@@ -67658,7 +67379,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>345,191</value>
+							<value>456,464</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68141,7 +67862,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Attributes" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>442,433</value>
+							<value>281,678</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68157,8 +67878,8 @@ dName = dstArtifactDependency</value>
 				<attribute kind="GlobalScope" status="meta">
 					<value>true</value>
 				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
+				<attribute kind="Help">
+					<value>Set the version number of the artifact (e.g., 2.1.0.124)</value>
 				</attribute>
 				<attribute kind="IsViewable" status="meta">
 					<value>true</value>
@@ -68166,88 +67887,8 @@ dName = dstArtifactDependency</value>
 				<attribute kind="Multiline" status="meta">
 					<value>1</value>
 				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000171" kind="EnumAttribute" role="EnumAttribute" guid="{03C73BB3-1269-4dd8-BD84-AF914758E820}" relid="0x5b">
-				<name>operatingSystem</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>597,422</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="DefaultItem">
-					<value>Linux</value>
-				</attribute>
-				<attribute kind="GlobalScope" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsViewable" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="MenuItems">
-					<value>Linux
-Win32
-Darwin
-Win64
-SunOS
-VxWorks
-FreeBSD
-NetBSD
-OpenBSD
-AIX
-BSDi
-VMS
-Tru64
-DigitalUnix
-HPUX
-IRIX</value>
-				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000172" kind="EnumAttribute" role="EnumAttribute" guid="{9EDC50DC-E1C2-48d3-B335-AA8C43392E7E}" relid="0x5d">
-				<name>architecture</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>366,513</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="DefaultItem">
-					<value>x86</value>
-				</attribute>
-				<attribute kind="GlobalScope" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsViewable" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="MenuItems">
-					<value>x86
-x86_64
-PowerPC
-SPARC
-MIPS
-HPPA</value>
-				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
+				<attribute kind="Prompt">
+					<value>Articfact Version:</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000173" kind="Constraint" role="Constraint" guid="{59891F8C-8A72-42d7-AC9E-0B9938781595}" relid="0x5f">
@@ -68334,37 +67975,6 @@ let version = self.artifactVersion.trim() in
 				</attribute>
 				<attribute kind="UnReferenceEvent" status="meta">
 					<value>false</value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000174" kind="EnumAttribute" role="EnumAttribute" guid="{8D811433-E5FC-4570-913D-DBF586586247}" relid="0x61">
-				<name>configuration</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Attributes" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>218,398</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="DefaultItem">
-					<value>Release</value>
-				</attribute>
-				<attribute kind="GlobalScope" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="Help" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="IsViewable" status="meta">
-					<value>true</value>
-				</attribute>
-				<attribute kind="MenuItems">
-					<value>Release
-Debug</value>
-				</attribute>
-				<attribute kind="Prompt" status="meta">
-					<value></value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000175" kind="ConstraintFunc" role="ConstraintFunc" guid="{69945D9E-7789-498b-8AA1-00FAAF2C72A6}" relid="0x63">
@@ -68473,6 +68083,114 @@ self.architecture &lt;&gt; j.architecture </value>
 					<value>false</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-0000028d" kind="FieldAttribute" role="FieldAttribute" guid="{3AE5D6ED-0BD8-43b1-92D6-18B93E613F4F}" relid="0x66">
+				<name>operatingSystem</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>533,678</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help">
+					<value>Set the operating system of the element (e.g, WinVista, Linux, or SuSE10)</value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>Operating System:</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000028e" kind="FieldAttribute" role="FieldAttribute" guid="{8C53B587-4975-48eb-BF3B-A34A5143B878}" relid="0x68">
+				<name>configuration</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>400,678</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help">
+					<value>Set the configuration of the artifact (e.g., debug or release)</value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>Configuration:</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000028f" kind="FieldAttribute" role="FieldAttribute" guid="{3A23325F-D070-4baa-9510-212AE65760C0}" relid="0x6a">
+				<name>architecture</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>659,678</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help">
+					<value>Set the architecture for the element (e.g., x86, PowerPC, or MIPS)</value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>Architecture:</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-0000002e" kind="ModelProxy" role="ModelProxy" guid="{0C52CBD6-CB4C-418e-811A-6A3E55EBAE45}" relid="0x18" referred="id-0066-0000012b">
 				<name>Requirement</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -68480,7 +68198,7 @@ self.architecture &lt;&gt; j.architecture </value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,83</value>
+							<value>64,97</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68555,7 +68273,7 @@ self.architecture &lt;&gt; j.architecture </value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>204,216</value>
+							<value>197,209</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -68634,6 +68352,69 @@ self.architecture &lt;&gt; j.architecture </value>
 						</regnode>
 					</regnode>
 				</regnode>
+			</reference>
+			<reference id="id-0067-000000d2" kind="ModelProxy" role="ModelProxy" guid="{FF08F2A3-A5CC-4462-9847-81D85307E2C0}" relid="0x76" referred="id-0066-000001fa">
+				<name>Node</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>575,768</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>687,454</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
 			</reference>
 			<connection id="id-0068-0000023c" kind="SameAspectLeft" role="SameAspectLeft" guid="{C5BC2818-2EF1-42ae-93BB-4A2C8D77EB2E}" relid="0xa">
 				<name>SameAspectLeft</name>
@@ -68965,30 +68746,6 @@ self.architecture &lt;&gt; j.architecture </value>
 				<connpoint role="dst" target="id-0066-00000169"/>
 				<connpoint role="src" target="id-0066-0000016f"/>
 			</connection>
-			<connection id="id-0068-0000025d" kind="HasAttribute" role="HasAttribute" guid="{CEBA1C95-8471-4bf9-9B7E-1DB33AD4289A}" relid="0x59">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000169"/>
-				<connpoint role="src" target="id-0066-00000170"/>
-			</connection>
-			<connection id="id-0068-0000025e" kind="HasAttribute" role="HasAttribute" guid="{AF2D6BDE-225D-4282-A844-9CC1EA37BECF}" relid="0x5c">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000169"/>
-				<connpoint role="src" target="id-0066-00000171"/>
-			</connection>
-			<connection id="id-0068-0000025f" kind="HasAttribute" role="HasAttribute" guid="{76B58C7F-B2EE-4352-88FF-76AB086F3989}" relid="0x5e">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>N</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000169"/>
-				<connpoint role="src" target="id-0066-00000172"/>
-			</connection>
 			<connection id="id-0068-00000260" kind="HasConstraint" role="HasConstraint" guid="{58D43F5D-6BE1-4c2f-A97C-829E2930B37F}" relid="0x60">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -68997,14 +68754,6 @@ self.architecture &lt;&gt; j.architecture </value>
 				<connpoint role="dst" target="id-0066-00000169"/>
 				<connpoint role="src" target="id-0066-00000173"/>
 			</connection>
-			<connection id="id-0068-00000261" kind="HasAttribute" role="HasAttribute" guid="{1F08E07F-2253-4d46-BE49-2D090DFF717C}" relid="0x62">
-				<name>HasAttribute</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>Ns</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000169"/>
-				<connpoint role="src" target="id-0066-00000174"/>
-			</connection>
 			<connection id="id-0068-00000262" kind="HasConstraint" role="HasConstraint" guid="{A272D106-DF61-40b2-A2DE-699330CE379E}" relid="0x65">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
@@ -69012,6 +68761,54 @@ self.architecture &lt;&gt; j.architecture </value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000164"/>
 				<connpoint role="src" target="id-0066-00000176"/>
+			</connection>
+			<connection id="id-0068-00000455" kind="HasAttribute" role="HasAttribute" guid="{93509B63-E42E-444a-9D6B-A05BE2960507}" relid="0x71">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000169"/>
+				<connpoint role="src" target="id-0066-0000028d"/>
+			</connection>
+			<connection id="id-0068-00000456" kind="HasAttribute" role="HasAttribute" guid="{48B3DD4D-4334-4e9f-ADDB-AA31FFB7188A}" relid="0x72">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000169"/>
+				<connpoint role="src" target="id-0066-0000028e"/>
+			</connection>
+			<connection id="id-0068-00000458" kind="HasAttribute" role="HasAttribute" guid="{1977353C-6EEB-45bf-B4CD-B2EC33869915}" relid="0x74">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000169"/>
+				<connpoint role="src" target="id-0066-00000170"/>
+			</connection>
+			<connection id="id-0068-00000459" kind="HasAttribute" role="HasAttribute" guid="{A6FFAE83-0564-455c-9E11-6655E7AF5311}" relid="0x75">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000169"/>
+				<connpoint role="src" target="id-0066-0000028f"/>
+			</connection>
+			<connection id="id-0068-0000045a" kind="HasAttribute" role="HasAttribute" guid="{05CFC17A-1200-4280-A74E-988093B56DBE}" relid="0x77">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000028d"/>
+				<connpoint role="dst" target="id-0067-000000d2"/>
+			</connection>
+			<connection id="id-0068-0000045b" kind="HasAttribute" role="HasAttribute" guid="{E4BE2EE8-4F9C-488d-8899-D3F156FB83AE}" relid="0x78">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000028f"/>
+				<connpoint role="dst" target="id-0067-000000d2"/>
 			</connection>
 			<set id="id-0069-00000010" kind="Aspect" role="Aspect" guid="{546DA4BE-FC88-46e4-9A0F-C7E2EBF39D74}" relid="0x0" members="id-0066-0000015f id-0066-00000160 id-0066-00000162 id-0066-00000164 id-0066-00000165 id-0066-00000166 id-0066-00000169 id-0066-0000016d id-0067-0000002e id-0067-0000002f">
 				<name>ArtifactPackaging</name>
@@ -81421,7 +81218,7 @@ dName = dstDeploys</value>
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-0000001d" kind="ParadigmSheet" guid="{6CB1E9F0-1D5D-40e2-8C1A-133276B0B63E}" relid="0x26" childrelidcntr="0x34">
+		<model id="id-0065-0000001d" kind="ParadigmSheet" guid="{6CB1E9F0-1D5D-40e2-8C1A-133276B0B63E}" relid="0x26" childrelidcntr="0x39">
 			<name>TargetElements</name>
 			<atom id="id-0066-000001f8" kind="Model" role="Model" guid="{6DE6130B-0762-4086-B346-CB0BCD639DFE}" relid="0x1">
 				<name>Bridge</name>
@@ -81430,13 +81227,13 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>393,47</value>
+							<value>274,159</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>274,244</value>
+							<value>337,243</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -81448,7 +81245,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>274,244</value>
+							<value>337,243</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -81505,7 +81302,7 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>540,47</value>
+							<value>673,271</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -81523,7 +81320,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>673,244</value>
+							<value>673,243</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -81580,13 +81377,13 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>337,131</value>
+							<value>484,130</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>512,131</value>
+							<value>484,130</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -81598,7 +81395,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>512,132</value>
+							<value>484,116</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -81655,7 +81452,7 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>337,265</value>
+							<value>498,27</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -81729,13 +81526,13 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>505,138</value>
+							<value>505,342</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>477,398</value>
+							<value>505,342</value>
 						</regnode>
 					</regnode>
 					<regnode name="Constraints" isopaque="yes">
@@ -81747,7 +81544,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>288,363</value>
+							<value>631,34</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -81807,7 +81604,7 @@ dName = dstDeploys</value>
 					<regnode name="Attributes" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>610,278</value>
+							<value>512,244</value>
 						</regnode>
 					</regnode>
 					<regnode name="ClassDiagram" isopaque="yes">
@@ -81882,7 +81679,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>841,94</value>
+							<value>904,143</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -81969,7 +81766,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>953,76</value>
+							<value>988,125</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -82077,7 +81874,7 @@ dName = dstDeploys</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>687,76</value>
+							<value>771,125</value>
 						</regnode>
 					</regnode>
 				</regnode>

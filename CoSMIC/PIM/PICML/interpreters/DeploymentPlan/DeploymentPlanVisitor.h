@@ -162,11 +162,7 @@ namespace PICML
     DeploymentPlan_Export virtual void Visit_Interconnect(const Interconnect&){};
     DeploymentPlan_Export virtual void Visit_Domain(const Domain&){};
     DeploymentPlan_Export virtual void Visit_Targets(const Targets&){};
-    DeploymentPlan_Export virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
-    DeploymentPlan_Export virtual void Visit_Bridge2Interconnect(const Bridge2Interconnect&){};
     DeploymentPlan_Export virtual void Visit_Shares(const Shares&){};
-    DeploymentPlan_Export virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
-    DeploymentPlan_Export virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
     DeploymentPlan_Export virtual void Visit_InstanceMapping(const InstanceMapping&);
     DeploymentPlan_Export virtual void Visit_CollocationGroup(const CollocationGroup&){};
     DeploymentPlan_Export virtual void Visit_InParameter(const InParameter&){};

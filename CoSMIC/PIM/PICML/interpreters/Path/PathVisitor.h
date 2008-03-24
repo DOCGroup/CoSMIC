@@ -190,11 +190,7 @@ namespace PICML
     virtual void Visit_Interconnect(const Interconnect&){};
     virtual void Visit_Domain(const Domain&){};
     virtual void Visit_Targets(const Targets&){};
-    virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
-    virtual void Visit_Bridge2Interconnect(const Bridge2Interconnect&){};
     virtual void Visit_Shares(const Shares&){};
-    virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
-    virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
     virtual void Visit_InstanceMapping(const InstanceMapping&){};
     virtual void Visit_DeploymentPlan(const DeploymentPlan&){};
     virtual void Visit_DeploymentPlans(const DeploymentPlans&){};
