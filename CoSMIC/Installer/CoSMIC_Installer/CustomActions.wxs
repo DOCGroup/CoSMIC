@@ -5,7 +5,7 @@
   <Fragment Id="CustomActionsFrag">
     <CustomAction Id='GMEVersion'
               BinaryKey='RegistrationBinary'
-              DllEntry='CheckGMEVersion'
+              DllEntry='CheckGMEVersion_$(var.GME_VERSION)'
               Execute='deferred'
               Impersonate='no'
               Return='check' />

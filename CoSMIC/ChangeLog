@@ -1,3 +1,17 @@
+Tue Apr  8 22:32:19 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+
+          Added support for building GME 7.6.29 version of 
+          the CoSMIC installer. A new environmental variable
+          GME_VERSION is now required to build CoSMIC msi
+          installer successfully.
+
 Mon Mar 24 22:34:41 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
@@ -7,11 +21,11 @@ Mon Mar 24 22:34:41 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-        
-          - Bug fix where the modeling of connections between Node, 
+
+          - Bug fix where the modeling of connections between Node,
             Interconnect, and Bridge elements prevented anyone from being
             able to model a network topology.
-            
+
           - Change operatingSystem, configuration, and architecture
             macros from enum types to field types. This will allow users
             to entire any arbitrary value for the respective element.

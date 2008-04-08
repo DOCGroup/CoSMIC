@@ -6,4 +6,5 @@ LIBRARY    "RegisterParadigm"
 EXPORTS
         RegisterParadigms @1
         UnRegisterParadigms @2
-        CheckGMEVersion @3
+        CheckGMEVersion_6_11_9 @3
+        CheckGMEVersion_7_6_29 @4

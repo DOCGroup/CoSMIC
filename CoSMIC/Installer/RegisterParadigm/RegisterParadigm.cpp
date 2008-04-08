@@ -16,7 +16,6 @@
 #include "mgautil.h"
 
 #define PARADIGMCOST 30000
-#define GME_VERSION "6.11.9"
 
 BOOL APIENTRY DllMain(HANDLE hModule, DWORD  ul_reason_for_call,
                       LPVOID lpReserved)
@@ -367,12 +366,27 @@ UINT check_GME_version (std::string const & version)
 }
 
 
-UINT __stdcall CheckGMEVersion (MSIHANDLE hInstall)
+UINT __stdcall CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
 {
-	if (check_GME_version (GME_VERSION) == ERROR_INSTALL_FAILURE)
+	if (check_GME_version ("6.11.9") == ERROR_INSTALL_FAILURE)
 	{
 		MessageBox(NULL, 
-			       TEXT("GME " GME_VERSION " is not installed or could not determine "
+			       TEXT("GME version 6.11.9 is not installed or could not determine "
+			       "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
+				   TEXT("CoSMIC Installer Error"), 
+				   MB_OK);
+		return ERROR_INSTALL_FAILURE;
+	}
+	else
+		return ERROR_SUCCESS;
+}
+
+UINT __stdcall CheckGMEVersion_7_6_29 (MSIHANDLE hInstall)
+{
+	if (check_GME_version ("7.6.29") == ERROR_INSTALL_FAILURE)
+	{
+		MessageBox(NULL, 
+			       TEXT("GME version 7.6.29 is not installed or could not determine "
 			       "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
 				   TEXT("CoSMIC Installer Error"), 
 				   MB_OK);

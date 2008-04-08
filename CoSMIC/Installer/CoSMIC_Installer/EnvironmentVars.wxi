@@ -4,6 +4,8 @@
      <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
      <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
      <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+     <?define UDM_VERSION = "$(env.UDM_VERSION)" ?>
+     <?define GME_VERSION = "$(env.GME_VERSION)" ?>
      <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
      <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
      <?if $(var.type) = vc71 ?>

@@ -62,10 +62,10 @@
     </DirectoryRef>
 
     <DirectoryRef Id='CoSMICBinDir'>
-      <!-- UDM 3.1.1 -->
-      <Component Id="UDM_3_1_1" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
-        <File Id="UDMDLL_3_1_1.DLL" Name="UDMDLL_3_1_1.DLL"
-              Source="$(var.UDM_PATH)\bin\UDMDLL_3_1_1.DLL"
+      <!-- UDM uses UDM_VERSION environmental variable -->
+      <Component Id="$(var.UDM_VERSION)" Guid="F069845F-C8E8-48e6-98CB-F9FBDFE76EDD">
+        <File Id="$(var.UDM_VERSION).DLL" Name="$(var.UDM_VERSION).DLL"
+              Source="$(var.UDM_PATH)\bin\$(var.UDM_VERSION).DLL"
               DiskId="1" />
 
         <File Id="XERCES_C_2_5_0.DLL" Name="XERCES-C_2_5_0.DLL"
@@ -86,7 +86,7 @@
 
     <Feature Id="CoSMICCommonFeature" Display="hidden"
              TypicalDefault="install" Level="1" >
-      <ComponentRef Id="UDM_3_1_1" />
+      <ComponentRef Id="$(var.UDM_VERSION)" />
       <ComponentRef Id="CoSMICCommon" />
       <ComponentRef Id="CoSMICNotes" />
       <ComponentRef Id="CoSMICReadme" />
