@@ -14,20 +14,12 @@
 #define _GME_REGISTRYNODE_H_
 
 #include "Exception.h"
-
-#if !defined (__ComponentLib_h__)
-#include "Mga.h"
-#endif
-
-#include <vector>
+#include "Collection_T.h"
 
 namespace GME
 {
   // Forward decl.
   class RegistryNode;
-
-  /// Collection of registry nodes.
-  typedef std::vector <RegistryNode> RegistryNodes;
 
   //===========================================================================
   /**
@@ -40,6 +32,9 @@ namespace GME
   class GME_Export RegistryNode
   {
   public:
+    /// Type definition for the interface.
+    typedef IMgaRegNode interface_type;
+
     /// Default constructor.
     RegistryNode (void);
 
@@ -155,11 +150,11 @@ namespace GME
      * @param[in]       virtualinterface_types       Include the virtual nodes.
      * @return          Collection of child nodes.
      */
-    size_t children (RegistryNodes & nodes,
+    size_t children (GME::Collection_T <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
-    /// Empty the current value in this node.
-    void empty (void);
+    /// Clear the current value of this node.
+    void clear (void);
 
     /**
      * Get the opacity value.

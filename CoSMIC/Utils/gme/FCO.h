@@ -244,6 +244,15 @@ namespace GME
      */
     FCO derived_from (void) const;
 
+    /**
+     * Get the registry for the FCO.
+     *
+     * @param[out]      nodes         The collection of registry nodes.
+     * @param[in]       vtypes        Include virtual registry nodes.
+     */
+    size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
+                     bool vtypes = false) const;
+
   private:
     /// The COM pointer for the FCO type.
     mutable CComPtr <IMgaFCO> fco_;

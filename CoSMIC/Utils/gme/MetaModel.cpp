@@ -49,7 +49,9 @@ namespace Meta
   Model Model::_narrow (Base & meta)
   {
     CComPtr <IMgaMetaModel> model;
-    VERIFY_HRESULT (meta.impl ()->QueryInterface (&model));
+
+    VERIFY_HRESULT_THROW_EX (meta.impl ()->QueryInterface (&model), 
+                             GME::Invalid_Cast ());
 
     return model.p;
   }

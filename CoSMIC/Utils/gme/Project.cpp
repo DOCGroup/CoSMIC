@@ -310,44 +310,6 @@ namespace GME
   }
 
   //
-  // xml_import
-  //
-  void Project::xml_import (const std::string & xmlfile)
-  {
-    this->xml_importer ()->parse (xmlfile);
-  }
-
-  //
-  // xml_export
-  //
-  void Project::xml_export (const std::string & xmlfile)
-  {
-    this->xml_exporter ()->write (xmlfile);
-  }
-
-  //
-  // xml_importer
-  //
-  GME::XML_Parser * const Project::xml_importer (void)
-  {
-    if (this->xml_parser_.get () == 0)
-      this->xml_parser_.reset (new GME::XML_Parser (*this));
-
-    return this->xml_parser_.get ();
-  }
-
-  //
-  // xml_exporter
-  //
-  GME::XML_Dumper * const Project::xml_exporter (void)
-  {
-    if (this->xml_dumper_.get () == 0)
-      this->xml_dumper_.reset (new GME::XML_Dumper (*this));
-
-    return this->xml_dumper_.get ();
-  }
-
-  //
   // operator =
   //
   const Project & Project::operator = (IMgaProject * project)

@@ -99,8 +99,8 @@ namespace GME
   //
   // children
   //
-  size_t RegistryNode::
-  children (RegistryNodes & nodes, bool virtualinterface_types) const
+  size_t RegistryNode::children (GME::Collection_T <GME::RegistryNode> & nodes, 
+                                 bool virtualinterface_types) const
   {
     // Get all the subnodes.
     CComPtr <IMgaRegNodes> rawnodes;
@@ -108,29 +108,14 @@ namespace GME
     VERIFY_HRESULT (this->node_->get_SubNodes (vtypes, &rawnodes));
 
     // Get the count and resize the nodes.
-    long count;
-    VERIFY_HRESULT (rawnodes->get_Count (&count));
-    nodes.resize (count);
-
-    if (count > 0)
-    {
-      // Store each subnode in the collection.
-      CComPtr <IMgaRegNode> * array = new CComPtr <IMgaRegNode> [count];
-      VERIFY_HRESULT (rawnodes->GetAll (count, &(*array)));
-
-      for (long i = 0; i < count; i ++)
-        nodes[i].attach (array[i]);
-
-      delete [] array;
-    }
-
-    return count;
+    nodes.attach (rawnodes.Detach ());
+    return nodes.size ();
   }
 
   //
-  // empty
+  // clear
   //
-  void RegistryNode::empty (void)
+  void RegistryNode::clear (void)
   {
     VERIFY_HRESULT (this->node_->Clear ());
   }

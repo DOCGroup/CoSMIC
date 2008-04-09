@@ -34,6 +34,9 @@ namespace GME
   class Reference;
 
   // Forward decl.
+  class RegistryNode;
+
+  // Forward decl.
   class Project;
 
   // Forward decl.

@@ -115,7 +115,9 @@ namespace GME
   Folder Folder::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaFolder> folder;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&folder));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&folder),
+                             GME::Invalid_Cast ());
 
     return folder.p;
   }
@@ -181,33 +183,17 @@ namespace GME
   }
 
   //
-  // registry_nodes
+  // registry
   //
-  size_t Folder::registry_nodes (RegistryNodes & nodes,
-                                 bool virtualinterface_types) const
+  size_t Folder::registry (GME::Collection_T <GME::RegistryNode> & nodes,
+                           bool virtualinterface_types) const
   {
     // Get all the subnodes.
     CComPtr <IMgaRegNodes> rawnodes;
     VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
-    // Get the count and resize the nodes.
-    long count;
-    VERIFY_HRESULT (rawnodes->get_Count (&count));
-    nodes.resize (count);
-
-    if (count > 0)
-    {
-      // Store each subnode in the collection.
-      CComPtr <IMgaRegNode> * array = new CComPtr <IMgaRegNode> [count];
-      VERIFY_HRESULT (rawnodes->GetAll (count, &(*array)));
-
-      for (long i = 0; i < count; i ++)
-        nodes[i].attach (array[i]);
-
-      delete [] array;
-    }
-
-    return count;
+    nodes.attach (rawnodes.Detach ());
+    return nodes.size ();
   }
 }

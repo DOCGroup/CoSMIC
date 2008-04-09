@@ -24,6 +24,23 @@ namespace GME
 {
 //=============================================================================
 /**
+ * @struct XML_Info
+ */
+//=============================================================================
+
+struct GME_Export XML_Info
+{
+  std::string paradigm_;
+  
+  std::string paradigm_version_;
+
+  std::string basename_;
+
+  std::string version_;
+};
+
+//=============================================================================
+/**
  * @class XML_Parser
  *
  * Wrapper class for the IMgaParser interface. This class simplifies
@@ -35,22 +52,27 @@ class GME_Export XML_Parser
 {
 public:
   /// Default constructor.
-  XML_Parser (GME::Project & project);
+  XML_Parser (void);
 
   /// Destructor.
   ~XML_Parser (void);
+
+  /**
+   * Get XML information from the specified file.
+   *
+   * @param[in]     xmlfile       Target XML file
+   * @param[out]    info          Extracted XML information.
+   */
+  void get_info (const std::string & xmlfile, XML_Info & info);
 
   /**
    * Parser the specified XML file.
    *
    * @param[in]       xmlfile         Target XML file.
    */
-  void parse (const std::string & xmlfile);
+  void parse (const std::string & xmlfile, GME::Project & project);
 
 private:
-  /// Project that owns the parser.
-  GME::Project & project_;
-
   /// Pointer to the parser's interface.
   CComPtr <IMgaParser> parser_;
 
@@ -72,7 +94,7 @@ class GME_Export XML_Dumper
 {
 public:
   /// Default constructor.
-  XML_Dumper (GME::Project & project);
+  XML_Dumper (void);
 
   /// Destructor.
   ~XML_Dumper (void);
@@ -82,12 +104,9 @@ public:
    *
    * @param[in]       xmlfile         Target XML file.
    */
-  void write (const std::string & xmlfile);
+  void write (const std::string & xmlfile, GME::Project & project);
 
 private:
-  /// Project that owns the parser.
-  GME::Project & project_;
-
   /// Pointer to the parser's interface.
   CComPtr <IMgaDumper> dumper_;
 

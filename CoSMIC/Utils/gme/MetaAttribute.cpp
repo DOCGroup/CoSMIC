@@ -17,7 +17,9 @@ namespace Meta
   Attribute Attribute::_narrow (const Base & base)
   {
     CComPtr <IMgaMetaAttribute> attr;
-    VERIFY_HRESULT (base.impl ()->QueryInterface (&attr));
+
+    VERIFY_HRESULT_THROW_EX (base.impl ()->QueryInterface (&attr), 
+                             GME::Invalid_Cast ());
 
     return attr.p;
   }

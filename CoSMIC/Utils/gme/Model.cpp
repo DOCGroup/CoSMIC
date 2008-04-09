@@ -68,7 +68,9 @@ namespace GME
   Model Model::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaModel> model;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&model));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&model), 
+                             GME::Invalid_Cast ());
 
     return model.p;
   }

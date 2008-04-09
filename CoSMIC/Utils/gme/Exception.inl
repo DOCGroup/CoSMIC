@@ -47,4 +47,22 @@ namespace GME
   {
     return this->value_;
   }
+
+  //
+  // Invalid_Cast
+  //
+  GME_INLINE
+  Invalid_Cast::Invalid_Cast (void)
+  {
+
+  }
+
+  //
+  // Invalid_Cast
+  //
+  GME_INLINE
+  Invalid_Cast::~Invalid_Cast (void)
+  {
+
+  }
 }

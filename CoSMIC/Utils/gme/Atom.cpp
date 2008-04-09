@@ -81,7 +81,9 @@ namespace GME
   Atom Atom::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaAtom> atom;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&atom));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&atom),
+                             GME::Invalid_Cast ());
 
     return atom.p;
   }

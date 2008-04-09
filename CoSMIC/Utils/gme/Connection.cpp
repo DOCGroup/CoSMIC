@@ -137,7 +137,9 @@ namespace GME
   Connection Connection::_narrow (const Object & obj)
   {
     CComPtr <IMgaConnection> conn;
-    VERIFY_HRESULT (obj.impl ()->QueryInterface (&conn));
+
+    VERIFY_HRESULT_THROW_EX (obj.impl ()->QueryInterface (&conn),
+                             GME::Invalid_Cast ());
 
     return conn.p;
   }

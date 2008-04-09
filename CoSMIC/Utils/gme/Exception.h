@@ -17,16 +17,15 @@
 #include <atlbase.h>
 #include <string>
 
-/**
- * Helper method that will verify the success of a COM operation and
- * if it fails, throw the GME::Failed_Result exception.
- */
-#define VERIFY_HRESULT(method) \
+#define VERIFY_HRESULT_THROW_EX(method, ex) \
   { \
     HRESULT hr = method; \
     if (FAILED (hr)) \
-      throw GME::Failed_Result (hr); \
+      throw ex; \
   }
+
+#define VERIFY_HRESULT(method) \
+  VERIFY_HRESULT_THROW_EX (method, GME::Failed_Result (hr))
 
 namespace GME
 {
@@ -88,6 +87,16 @@ namespace GME
   private:
     /// The resulting error code.
     const HRESULT value_;
+  };
+
+  class GME_Export Invalid_Cast
+  {
+  public:
+    /// Default constructor.
+    Invalid_Cast (void);
+
+    /// Destructor.
+    virtual ~Invalid_Cast (void);
   };
 }
 

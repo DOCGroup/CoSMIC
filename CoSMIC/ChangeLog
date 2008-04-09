@@ -1,3 +1,46 @@
+Wed Apr  9 02:48:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+        
+          The XML parser and dumper are no longer part of the project
+          object. Instead they are standalone objects that operate
+          on project objects.
+
+        * Utils/gme/XML.h:
+        * Utils/gme/XML.cpp:
+        
+          . Re-implemented the XML parser and dumper so they are 
+            standalone objects that operate on project elements.
+            
+          . It is now possible to retrieve the XML information from
+            an GME XML project file.
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Connection.cpp:
+        * Utils/gme/Exception.h:
+        * Utils/gme/Exception.inl:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/MetaAttribute.cpp:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/Set.cpp:
+
+          Implemented a new exception named 'Invalid_Cast ()', which
+          is thrown when a _narrow () operation fails.
+
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/RegistryNode.cpp:
+        
+          Re-implemented the RegistryNodes collection as a 
+          GME::Collection_T object.        
+
 Tue Apr  8 22:32:19 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:

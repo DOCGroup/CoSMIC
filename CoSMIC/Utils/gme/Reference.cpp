@@ -64,7 +64,9 @@ namespace GME
   Reference Reference::_narrow (const GME::Object & object)
   {
     CComPtr <IMgaReference> ref;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&ref));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&ref),
+                             GME::Invalid_Cast ());
 
     return ref.p;
   }

@@ -70,6 +70,12 @@ struct collection_traits <IMgaConnPoints>
   typedef IMgaConnPoint interface_type;
 };
 
+template < >
+struct collection_traits <IMgaRegNodes>
+{
+  typedef IMgaRegNode interface_type;
+};
+
 //=============================================================================
 /**
  * @struct item_traits
@@ -144,6 +150,12 @@ struct item_traits <ConnectionPoint>
   typedef IMgaConnPoints collection_type;
 };
 
+template < >
+struct item_traits <RegistryNode>
+{
+  typedef IMgaRegNodes collection_type;
+};
+
 //=============================================================================
 /**
  * @class Collection_T
@@ -165,12 +177,16 @@ public:
   /// Type definition for the container type.
   typedef std::vector <T> container_type;
 
+  /// Type definition for the interator type.
   typedef typename container_type::iterator iterator;
 
+  /// Type definition for the const iterator type.
   typedef typename container_type::const_iterator const_iterator;
 
+  /// Type definition for the size type.
   typedef typename container_type::size_type size_type;
 
+  /// Type definition for the value type.
   typedef typename container_type::value_type value_type;
 
   /// Default constructor.

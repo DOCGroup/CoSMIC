@@ -124,7 +124,9 @@ namespace GME
   Set Set::_narrow (GME::Object & object)
   {
     CComPtr <IMgaSet> set;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&set));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&set),
+                             GME::Invalid_Cast ());
 
     return set.p;
   }

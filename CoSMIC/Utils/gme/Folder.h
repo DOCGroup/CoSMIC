@@ -140,8 +140,8 @@ namespace GME
      * @param[in]   vtypes    The the virtual nodes as well.
      * @return      Number of elements in \a nodes.
      */
-    size_t registry_nodes (RegistryNodes & nodes,
-                           bool vtypes = false) const;
+    size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
+                     bool vtypes = false) const;
   };
 }
 

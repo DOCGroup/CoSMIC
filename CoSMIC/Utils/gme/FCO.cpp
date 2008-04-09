@@ -216,7 +216,9 @@ namespace GME
   FCO FCO::_narrow (const Object & object)
   {
     CComPtr <IMgaFCO> fco;
-    VERIFY_HRESULT (object.impl ()->QueryInterface (&fco));
+
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&fco),
+                             GME::Invalid_Cast ());
 
     return fco.p;
   }
@@ -317,5 +319,20 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_Attribute (meta_attr.impl (), &attr));
 
     return attr.p;
+  }
+
+  //
+  // registry
+  //
+  size_t FCO::registry (GME::Collection_T <GME::RegistryNode> & nodes,
+                        bool virtualinterface_types) const
+  {
+    // Get all the subnodes.
+    CComPtr <IMgaRegNodes> rawnodes;
+    VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
+    VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
+
+    nodes.attach (rawnodes.Detach ());
+    return nodes.size ();
   }
 }
