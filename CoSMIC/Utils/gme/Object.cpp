@@ -293,12 +293,27 @@ std::string Object::path (const std::string & separator,
   // Write the first element, which could be the only one.
   if (leading_separator)
     pathstr << separator;
-  pathstr << stack_trace.top ().name ();
+
+  std::string name = stack_trace.top ().name ();
+
+  if (!name.empty ())
+    pathstr << name;
+  else
+    pathstr << "<noname>";
+
   stack_trace.pop ();
 
   while (!stack_trace.empty ())
   {
-    pathstr << separator << stack_trace.top ().name ();
+    name = stack_trace.top ().name ();
+
+    pathstr << separator;
+
+    if (!name.empty ())
+      pathstr << name;
+    else
+      pathstr << "<noname>";
+
     stack_trace.pop ();
   }
 
@@ -372,10 +387,23 @@ find_object_by_path (const std::string & path) const
 size_t Object::
 children (GME::Collection_T <GME::Object> & children) const
 {
-  CComPtr <IMgaObjects> temp;
-  VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
+  switch (this->type ())
+  {
+  case OBJTYPE_FOLDER:
+  case OBJTYPE_MODEL:
+    {
+      CComPtr <IMgaObjects> temp;
+      VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
 
-  children.attach (temp.Detach ());
+      children.attach (temp.Detach ());
+    }
+    break;
+
+  default:
+    children.clear ();
+    break;
+  }
+
   return children.size ();
 }
 

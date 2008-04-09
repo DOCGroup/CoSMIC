@@ -1,18 +1,34 @@
+Wed Apr  9 22:51:31 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        
+          Replaced the code that prompts the user for a output
+          directory with the getPath () method in the CoSMIC 
+          utilities project.
+
+        * Utils/gme/Object.cpp:
+        * Utils/gme/XML.cpp:
+        
+          Bug fix where if any of the output parameters of the XML
+          info were not defined, then it would cause a segementation
+          fault.
+
 Wed Apr  9 02:48:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Project.h:
         * Utils/gme/Project.cpp:
-        
+
           The XML parser and dumper are no longer part of the project
           object. Instead they are standalone objects that operate
           on project objects.
 
         * Utils/gme/XML.h:
         * Utils/gme/XML.cpp:
-        
-          . Re-implemented the XML parser and dumper so they are 
+
+          . Re-implemented the XML parser and dumper so they are
             standalone objects that operate on project elements.
-            
+
           . It is now possible to retrieve the XML information from
             an GME XML project file.
 
@@ -37,9 +53,9 @@ Wed Apr  9 02:48:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/RegistryNode.h:
         * Utils/gme/RegistryNode.cpp:
-        
-          Re-implemented the RegistryNodes collection as a 
-          GME::Collection_T object.        
+
+          Re-implemented the RegistryNodes collection as a
+          GME::Collection_T object.
 
 Tue Apr  8 22:32:19 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
@@ -50,7 +66,7 @@ Tue Apr  8 22:32:19 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Installer/RegisterParadigm/RegisterParadigm.cpp:
         * Installer/RegisterParadigm/RegisterParadigm.def:
 
-          Added support for building GME 7.6.29 version of 
+          Added support for building GME 7.6.29 version of
           the CoSMIC installer. A new environmental variable
           GME_VERSION is now required to build CoSMIC msi
           installer successfully.

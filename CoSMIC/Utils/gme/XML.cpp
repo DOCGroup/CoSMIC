@@ -28,9 +28,9 @@ XML_Parser::XML_Parser (void)
 void XML_Parser::
 get_info (const std::string & xmlfile, XML_Info & info)
 {
-  CComBSTR filename (xmlfile.length (), xmlfile.c_str ());
+  CComVariant guid;
   CComBSTR paradigm, parversion, basename, version;
-  VARIANT guid;
+  CComBSTR filename (xmlfile.length (), xmlfile.c_str ());
 
   VERIFY_HRESULT (this->parser_->GetXMLInfo (filename, 
                                              &paradigm, 
@@ -39,10 +39,49 @@ get_info (const std::string & xmlfile, XML_Info & info)
                                              &basename, 
                                              &version));
 
-  info.paradigm_ = CW2A (paradigm).m_psz;
-  info.paradigm_version_ = CW2A (parversion).m_psz;
-  info.basename_ = CW2A (basename).m_psz;
-  info.version_ = CW2A (version).m_psz;
+  // Save information about the paradigm.
+  if (paradigm)
+  {
+    CW2A tmp_paradigm (paradigm);
+    info.paradigm_ = tmp_paradigm.m_psz;
+  }
+  else if (!info.paradigm_.empty ())
+  {
+    info.paradigm_.clear ();
+  }
+
+  // Save information about the paradigm version.
+  if (parversion)
+  {
+    CW2A tmp_parversion (parversion);
+    info.paradigm_version_ = tmp_parversion.m_psz;
+  }
+  else if (!info.paradigm_version_.empty ())
+  {
+    info.paradigm_version_.clear ();
+  }
+
+  // Save information about the project's basename.
+  if (basename)
+  {
+    CW2A tmp_basename (basename);
+    info.basename_ = tmp_basename.m_psz;
+  }
+  else if (!info.basename_.empty ())
+  {
+    info.basename_.clear ();
+  }
+
+  // Save information about the project version.
+  if (version)
+  {
+    CW2A tmp_version (version);
+    info.version_ = tmp_version.m_psz;
+  }
+  else if (!info.version_.empty ())
+  {
+    info.version_.clear ();
+  }
 }
 
 //

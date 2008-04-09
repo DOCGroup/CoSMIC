@@ -1,4 +1,6 @@
-project (IDLGenerator): bon, register {
+// $Id$
+
+project (IDLGenerator): cosmic_utils, bon, register {
    sharedname = IDLGenerator
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator
 
