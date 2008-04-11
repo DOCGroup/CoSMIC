@@ -1,3 +1,9 @@
+Fri Apr 11 21:11:15 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+        
+          Resolved all the constraint errors.
+
 Fri Apr 11 00:49:46 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
