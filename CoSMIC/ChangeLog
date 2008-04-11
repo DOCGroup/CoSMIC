@@ -1,15 +1,21 @@
+Fri Apr 11 00:49:46 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          GME_VERSION environmental variable documented.
+
 Wed Apr  9 22:51:31 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
-        
+
           Replaced the code that prompts the user for a output
-          directory with the getPath () method in the CoSMIC 
+          directory with the getPath () method in the CoSMIC
           utilities project.
 
         * Utils/gme/Object.cpp:
         * Utils/gme/XML.cpp:
-        
+
           Bug fix where if any of the output parameters of the XML
           info were not defined, then it would cause a segementation
           fault.
