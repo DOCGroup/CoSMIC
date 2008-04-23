@@ -209,6 +209,20 @@ namespace GME
      */
     std::string connstr (void) const;
 
+    /**
+     * Get the name of the paradigm.
+     *
+     * @return          Name of the paradigm.
+     */
+    std::string paradigm_name (void) const;
+
+    /**
+     * Get the version of the paradigm.
+     *
+     * @return          Version of the paradigm.
+     */
+    std::string paradigm_version (void) const;
+
   private:
     /// The project type.
     CComPtr <IMgaProject> project_;

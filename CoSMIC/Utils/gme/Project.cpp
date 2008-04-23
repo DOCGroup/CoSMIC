@@ -329,4 +329,28 @@ namespace GME
     CW2A tempstr (bstr);
     return tempstr.m_psz;
   }
+
+  //
+  // paradigm_name
+  //
+  std::string Project::paradigm_name (void) const
+  {
+    CComBSTR bstr;
+    VERIFY_HRESULT (this->project_->get_MetaName (&bstr));
+
+    CW2A tempstr (bstr);
+    return tempstr.m_psz;
+  }
+
+  //
+  // paradigm_version
+  //
+  std::string Project::paradigm_version (void) const
+  {
+    CComBSTR bstr;
+    VERIFY_HRESULT (this->project_->get_MetaVersion (&bstr));
+
+    CW2A tempstr (bstr);
+    return tempstr.m_psz;
+  }
 }

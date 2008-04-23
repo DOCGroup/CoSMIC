@@ -270,6 +270,13 @@ namespace GME
     /// object from the model.
     void release (void);
 
+    /**
+     * Get the project that owns the object.
+     *
+     * @return          The GME project that owns the object.
+     */
+    GME::Project project (void) const;
+
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

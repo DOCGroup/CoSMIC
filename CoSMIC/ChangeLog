@@ -1,7 +1,24 @@
+Wed Apr 23 22:53:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        
+          Implemented the project () method, which retrieves the project 
+          that owns the parent object.
+          
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+        
+          . Implemented paradigm_name (), which returns the paradigm name
+            for the project.
+          
+          . Implemented paradigm_version (), which returns the paradigm
+            version of the project.
+
 Fri Apr 11 21:11:15 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
-        
+
           Resolved all the constraint errors.
 
 Fri Apr 11 00:49:46 UTC 2008  Sumant Tambe  <sutambe@nospam>

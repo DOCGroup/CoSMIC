@@ -9,6 +9,11 @@
               Name='Utils.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\Utils.dll' />
+
+        <File Id='UtilsdDLL'
+              Name='Utilsd.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\Utilsd.dll' />
       </Component>
     </DirectoryRef>
 

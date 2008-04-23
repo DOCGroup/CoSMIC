@@ -4,6 +4,7 @@
 #include "Object.h"
 #include "Exception.h"
 #include "MetaBase.h"
+#include "Project.h"
 #include <stack>
 #include <sstream>
 
@@ -413,6 +414,17 @@ children (GME::Collection_T <GME::Object> & children) const
 void Object::release (void)
 {
   this->object_.Release ();
+}
+
+//
+// project
+//
+GME::Project Object::project (void) const
+{
+  CComPtr <IMgaProject> proj;
+  VERIFY_HRESULT (this->object_->get_Project (&proj));
+
+  return proj.p;
 }
 
 }
