@@ -6,9 +6,14 @@
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='IDLGeneratorLibrary' Guid='E9D28F15-DE39-4BD6-9DDE-05D31A597E39'>
          <File Id='IDLGeneratorDLL'
+<?if $(var.GME_VERSION) = 6_11_9 ?>
+              Name='IDLGeneratord.dll'
+              Source='$(var.COSMIC_ROOT)\bin\IDLGeneratord.dll'
+<?else ?>
               Name='IDLGenerator.dll'
-              DiskId='1'
-              Source='$(var.COSMIC_ROOT)\bin\IDLGenerator.dll' />
+              Source='$(var.COSMIC_ROOT)\bin\IDLGenerator.dll'
+<?endif ?>
+              DiskId='1' />
 
         <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
@@ -22,7 +27,11 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
+<?if $(var.GME_VERSION) = 6_11_9 ?>
+          <RegistryValue Value="[CoSMICBinDir]IDLGeneratord.dll" Type="string" />
+<?else ?>
           <RegistryValue Value="[CoSMICBinDir]IDLGenerator.dll" Type="string" />
+<?endif ?>
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLGenerator"
                      Action="createAndRemoveOnUninstall">

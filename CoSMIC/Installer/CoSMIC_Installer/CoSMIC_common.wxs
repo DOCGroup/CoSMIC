@@ -77,10 +77,16 @@
               Name='ACE.dll'
               DiskId='1'
               Source='$(var.ACE_ROOT)\lib\ACE.dll'  />
-        <File Id='XERCESCDLL'
-              Name='xerces-c_2_7.dll'
+              
+        <File Id='xerces_c.dll'
+              Name='xerces-c_$(var.XERCESC_VERSION).dll'
               DiskId='1'
-              Source='$(var.XERCESCROOT)\bin\xerces-c_2_7.dll'  />
+              Source='$(var.XERCESCROOT)\lib\xerces-c_$(var.XERCESC_VERSION).dll'  />
+
+        <File Id='xerces_cd.dll'
+              Name='xerces-c_$(var.XERCESC_VERSION)D.dll'
+              DiskId='1'
+              Source='$(var.XERCESCROOT)\lib\xerces-c_$(var.XERCESC_VERSION)D.dll'  />
       </Component>
     </DirectoryRef>
 

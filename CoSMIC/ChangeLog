@@ -1,17 +1,33 @@
+Wed Apr 30 05:45:21 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        
+          . The installer now requires definition of the 
+            XERCESC_VERSION environment variable. This is used to select
+            the correct version of Xerces-C for the installer.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+        
+          . The 6.11.9 version of the IDL generator only works in debug
+            mode. Added preprocessor statements to select the correct
+            version of the binary for the installer.
+
 Wed Apr 23 22:53:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Object.h:
         * Utils/gme/Object.cpp:
-        
-          Implemented the project () method, which retrieves the project 
+
+          Implemented the project () method, which retrieves the project
           that owns the parent object.
-          
+
         * Utils/gme/Project.h:
         * Utils/gme/Project.cpp:
-        
+
           . Implemented paradigm_name (), which returns the paradigm name
             for the project.
-          
+
           . Implemented paradigm_version (), which returns the paradigm
             version of the project.
 
