@@ -1,15 +1,30 @@
+Fri May  2 04:35:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/paradigms/icons/QueryAction.bmp:
+        
+          . Implemented support for query-based actions. A query action
+            is one that tests a specified input port for an event. This
+            is similar to how event-based systems and architectures, 
+            such as DDS and Apollo, operate. Query actions have the same
+            modeling semantics as regular actions.
+
 Wed Apr 30 05:45:21 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
 
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
         * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
-        
-          . The installer now requires definition of the 
+
+          . The installer now requires definition of the
             XERCESC_VERSION environment variable. This is used to select
             the correct version of Xerces-C for the installer.
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
-        
+
           . The 6.11.9 version of the IDL generator only works in debug
             mode. Added preprocessor statements to select the correct
             version of the binary for the installer.

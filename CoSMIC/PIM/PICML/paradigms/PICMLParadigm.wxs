@@ -327,6 +327,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Property.bmp' />
 
+        <File Id='QueryAction.bmp'
+        Name='QueryAction.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\QueryAction.bmp' />
+
         <File Id='PICML_icon_43'
         Name='RPG.bmp'
         DiskId='1'
