@@ -1,3 +1,16 @@
+Thu May  8 21:28:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/QueryAction.bmp:
+        * PIM/PICML/paradigms/icons/QueryInputAction.bmp:
+        
+          . Completed support for modelig query-based actions. Query-based
+            actions are modeled by connecting a query input action to the 
+            desired input port and using query actions in the workload.
+
 Fri May  2 04:35:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -6,10 +19,10 @@ Fri May  2 04:35:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
         * PIM/PICML/paradigms/icons/QueryAction.bmp:
-        
+
           . Implemented support for query-based actions. A query action
             is one that tests a specified input port for an event. This
-            is similar to how event-based systems and architectures, 
+            is similar to how event-based systems and architectures,
             such as DDS and Apollo, operate. Query actions have the same
             modeling semantics as regular actions.
 

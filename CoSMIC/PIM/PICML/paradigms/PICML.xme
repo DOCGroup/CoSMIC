@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{1FAA61F2-F4B9-4E9C-B1A7-2DB27EDD25CC}" cdate="Thu May 01 22:58:08 2008" mdate="Thu May 01 22:58:08 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{F8107E89-6149-4046-8D1E-67BABB28290D}" cdate="Thu May 01 22:58:08 2008" mdate="Thu May 01 22:58:08 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -3014,6 +3014,60 @@ not worker.Abstract</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="QueryInputAction-be-Model" status="undefined">
+						<value></value>
+						<regnode name="KindAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:QueryInputAction" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value> </value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:QueryInputAction" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value> </value>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4197</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="QueryInputAction" isopaque="yes">
+									<value>4191</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4193</value>
+									</regnode>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction" status="undefined">
+								<value></value>
+								<regnode name="QueryInputAction" isopaque="yes">
+									<value>4195</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4196</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:QueryInputAction" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+							<regnode name="CompositeAction:QueryInputAction" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="Repetitions-23-FieldAttribute" status="undefined">
 						<value></value>
 						<regnode name="MetaRef" isopaque="yes">
@@ -5015,6 +5069,30 @@ not worker.Abstract</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="QueryInput-50-Connection" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4189</value>
+							<regnode name="Component" status="undefined">
+								<value></value>
+								<regnode name="QueryInput" isopaque="yes">
+									<value>4190</value>
+									<regnode name="Behavior" isopaque="yes">
+										<value>4192</value>
+									</regnode>
+								</regnode>
+							</regnode>
+						</regnode>
+						<regnode name="PrimaryAspects" status="undefined">
+							<value></value>
+							<regnode name="Component:QueryInput" status="undefined">
+								<value></value>
+								<regnode name="Behavior" isopaque="yes">
+									<value>yes</value>
+								</regnode>
+							</regnode>
+						</regnode>
+					</regnode>
 				</regnode>
 				<regnode name="TransitionTypes" status="undefined">
 					<value></value>
@@ -6419,7 +6497,7 @@ rrName = referedbyVariable</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xbd">
+			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xc1">
 				<name>ActionTypes</name>
 				<atom id="id-0066-00000014" kind="Constraint" role="Constraint" guid="{6CED5690-C242-4364-9F2A-F6002AA1A862}" relid="0xa7">
 					<name>MustHaveFinish</name>
@@ -6812,7 +6890,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>561,356</value>
+								<value>540,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6887,7 +6965,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>591,292</value>
+								<value>640,292</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6947,7 +7025,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>407,356</value>
+								<value>393,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7087,7 +7165,7 @@ inputs.size () = 1
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>711,130</value>
+								<value>711,137</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7105,7 +7183,7 @@ inputs.size () = 1
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>214,158</value>
+								<value>214,137</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7123,7 +7201,7 @@ inputs.size () = 1
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>8,111</value>
+								<value>15,111</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -7135,7 +7213,7 @@ inputs.size () = 1
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>29,131</value>
+								<value>15,111</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7197,7 +7275,7 @@ dName = dstFinish</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>158,158</value>
+								<value>158,137</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7239,7 +7317,7 @@ dName = dstFinish</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>561,195</value>
+								<value>610,216</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7395,7 +7473,7 @@ endif</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>779,352</value>
+								<value>792,356</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7410,6 +7488,81 @@ endif</value>
 					</attribute>
 					<attribute kind="Icon">
 						<value>QueryAction.bmp</value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeInfoShown" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-0000027f" kind="Model" role="Model" guid="{5EAC3EAC-0923-4ddc-98A2-65443727028A}" relid="0xbe">
+					<name>QueryInputAction</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>37,247</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>15,244</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>37,247</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>15,244</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon">
+						<value>QueryInputAction.bmp</value>
 					</attribute>
 					<attribute kind="InRootFolder" status="meta">
 						<value>false</value>
@@ -7632,7 +7785,7 @@ endif</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>393,55</value>
+								<value>393,34</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7689,6 +7842,12 @@ endif</value>
 								<value>246,111</value>
 							</regnode>
 						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>246,111</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="DisplayedName" status="meta">
 						<value></value>
@@ -7708,6 +7867,12 @@ endif</value>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>519,111</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>519,111</value>
@@ -8090,7 +8255,49 @@ endif</value>
 					<connpoint role="dst" target="id-0066-00000024"/>
 					<connpoint role="src" target="id-0067-00000073"/>
 				</connection>
-				<set id="id-0069-0000001a" kind="Aspect" role="Aspect" guid="{A44EF0A7-4025-48fb-9E4C-32DDA6C9F2AD}" relid="0xa1" members="id-0066-00000018 id-0066-00000021 id-0066-00000024 id-0067-00000073">
+				<connection id="id-0068-00000409" kind="Containment" role="Containment" guid="{CAB4FC8D-7C30-4245-A405-5CBD37504FC5}" relid="0xbf">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Nw</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="src" target="id-0066-0000027f"/>
+					<connpoint role="dst" target="id-0067-00000001"/>
+				</connection>
+				<connection id="id-0068-00000415" kind="HasAspect" role="HasAspect" guid="{BAAABF9A-C8DD-40a5-92E7-CAC495BDFD3A}" relid="0xc0">
+					<name>HasAspect</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-0000027f"/>
+					<connpoint role="src" target="id-0069-0000001a"/>
+				</connection>
+				<connection id="id-0068-00000416" kind="Containment" role="Containment" guid="{2216EFB5-39E1-4788-B0A7-57E360FE19DC}" relid="0xc1">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ws</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-0000027f"/>
+					<connpoint role="src" target="id-0067-00000073"/>
+				</connection>
+				<set id="id-0069-0000001a" kind="Aspect" role="Aspect" guid="{A44EF0A7-4025-48fb-9E4C-32DDA6C9F2AD}" relid="0xa1" members="id-0066-00000018 id-0066-00000021 id-0066-00000024 id-0066-0000027f id-0067-00000073">
 					<name>BehaviorAction</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8106,7 +8313,7 @@ endif</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000004" kind="ParadigmSheet" guid="{78F92886-1E8E-4717-A3C0-BCD84BF757DF}" relid="0x4" childrelidcntr="0x46">
+			<model id="id-0065-00000004" kind="ParadigmSheet" guid="{78F92886-1E8E-4717-A3C0-BCD84BF757DF}" relid="0x4" childrelidcntr="0x4e">
 				<name>InputHooks</name>
 				<atom id="id-0066-00000026" kind="Inheritance" role="Inheritance" guid="{93D51FA7-3D2F-4da6-8D2D-20805002E7EE}" relid="0xa">
 					<name>Inheritance</name>
@@ -8383,6 +8590,36 @@ endif</value>
 					<attribute kind="SubTypeIcon" status="meta">
 						<value></value>
 					</attribute>
+				</atom>
+				<atom id="id-0066-00000284" kind="Inheritance" role="Inheritance" guid="{DFFDFFAE-C000-415a-9BE4-AAF617C23C07}" relid="0x4c">
+					<name>Inheritance</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>303,142</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>304,138</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>303,142</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>303,142</value>
+							</regnode>
+						</regnode>
+					</regnode>
 				</atom>
 				<reference id="id-0067-00000077" kind="ReferenceProxy" role="ReferenceProxy" guid="{52CD0E38-0EC3-429d-9F70-4835FC5B15EB}" relid="0x39" referred="id-0066-00000100">
 					<name>ProvidedRequestPort</name>
@@ -8747,6 +8984,60 @@ endif</value>
 						<value></value>
 					</attribute>
 				</reference>
+				<reference id="id-0067-000000d1" kind="FCOProxy" role="FCOProxy" guid="{D7A4A3A0-09E3-47bd-8D1D-BF3C97DDCCE5}" relid="0x48" referred="id-0066-00000281">
+					<name>QueryInputBase</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>260,55</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
 				<connection id="id-0068-0000003e" kind="BaseInheritance" role="BaseInheritance" guid="{9834D689-7472-49af-A863-1900EE6F3FA5}" relid="0x1e">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
@@ -8844,6 +9135,22 @@ endif</value>
 					</attribute>
 					<connpoint role="src" target="id-0066-0000002b"/>
 					<connpoint role="dst" target="id-0067-0000007b"/>
+				</connection>
+				<connection id="id-0068-00000413" kind="BaseInheritance" role="BaseInheritance" guid="{FA070C36-729D-4015-86C8-4ACDD6C81DDC}" relid="0x4d">
+					<name>BaseInheritance</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-00000284"/>
+					<connpoint role="src" target="id-0067-000000d1"/>
+				</connection>
+				<connection id="id-0068-00000414" kind="DerivedInheritance" role="DerivedInheritance" guid="{0E82123E-B1ED-488b-9798-75A5554EBDA1}" relid="0x4e">
+					<name>DerivedInheritance</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Sn</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000284"/>
+					<connpoint role="dst" target="id-0067-00000078"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000005" kind="ParadigmSheet" guid="{8D015BFE-EE7F-4bf2-867B-CAF32F18355D}" relid="0x5" childrelidcntr="0xb">
@@ -9229,7 +9536,7 @@ endif</value>
 					<connpoint role="dst" target="id-0067-0000007f"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x4e">
+			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x58">
 				<name>TopLevelBehaviorModel</name>
 				<atom id="id-0066-0000002e" kind="Connection" role="Connection" guid="{37F75581-48A5-47ad-B6B0-BAB12CDB995C}" relid="0x10">
 					<name>Input</name>
@@ -9678,7 +9985,7 @@ dName = dstInput</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>638,73</value>
+								<value>638,31</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -9865,6 +10172,171 @@ dName = dstMultiInput</value>
 						<value>0x000000</value>
 					</regnode>
 				</atom>
+				<atom id="id-0066-00000280" kind="Connection" role="Connection" guid="{9CD3CDE7-F82A-4ede-BA38-E23D3E3714E0}" relid="0x50">
+					<name>QueryInput</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>653,135</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>155,118</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>653,135</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>155,118</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="color" isopaque="yes">
+						<value>0x0000ff</value>
+					</regnode>
+					<attribute kind="Color">
+						<value>0x008000</value>
+					</attribute>
+					<attribute kind="ConnLineEnd">
+						<value>arrow</value>
+					</attribute>
+					<attribute kind="ConnLineStart" status="meta">
+						<value>butt</value>
+					</attribute>
+					<attribute kind="ConnLineType">
+						<value>dash</value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DstAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="SrcAttrLabel1" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SrcAttrLabel2" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000281" kind="FCO" role="FCO" guid="{19B394A6-71D9-4146-8AB0-E5B38FAAA735}" relid="0x52">
+					<name>QueryInputBase</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="Attributes" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>674,240</value>
+							</regnode>
+						</regnode>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,188</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>674,240</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,188</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="color" isopaque="yes">
+						<value>0xff0000</value>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</atom>
+				<atom id="id-0066-00000282" kind="Connector" role="Connector" guid="{B9C1D7A6-FF04-49f6-8009-98C38FE365E0}" relid="0x55">
+					<name>Connector</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>74,144</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>74,144</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</atom>
 				<reference id="id-0067-00000003" kind="ModelProxy" role="ModelProxy" guid="{075156CD-EEE9-4cb1-A9BB-9DB6FA816706}" relid="0xa" referred="id-0066-00000013">
 					<name>BehaviorModel</name>
 					<regnode name="PartRegs" status="undefined">
@@ -10010,7 +10482,7 @@ dName = dstMultiInput</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>694,55</value>
+								<value>694,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10040,6 +10512,69 @@ dName = dstMultiInput</value>
 					</regnode>
 					<regnode name="color" isopaque="yes">
 						<value>0x32cd32</value>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeInfoShown" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<reference id="id-0067-000000d0" kind="ModelProxy" role="ModelProxy" guid="{FB63C011-FEE9-4b2e-9C88-741812B9F712}" relid="0x51" referred="id-0066-0000027f">
+					<name>QueryInputAction</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,48</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>22,48</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="Decorator" status="meta">
 						<value></value>
@@ -10249,14 +10784,67 @@ dName = dstMultiInput</value>
 					<connpoint role="dst" target="id-0066-00000038"/>
 					<connpoint role="src" target="id-0069-00000003"/>
 				</connection>
-				<set id="id-0069-00000003" kind="Aspect" role="Aspect" guid="{2DCD04D2-A814-43c1-9A77-18637EFA5F94}" relid="0x2a" members="id-0066-0000002e id-0066-00000031 id-0066-00000032 id-0066-00000033 id-0066-00000034 id-0066-00000037 id-0067-00000004">
+				<connection id="id-0068-0000040b" kind="Containment" role="Containment" guid="{53A35038-DD9A-416e-93D8-43544C7862F7}" relid="0x54">
+					<name>Containment</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ew</value>
+					</regnode>
+					<attribute kind="Cardinality" status="meta">
+						<value>0..*</value>
+					</attribute>
+					<attribute kind="IsPort" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="Rolename" status="meta">
+						<value></value>
+					</attribute>
+					<connpoint role="dst" target="id-0066-00000038"/>
+					<connpoint role="src" target="id-0066-00000280"/>
+				</connection>
+				<connection id="id-0068-0000040e" kind="SourceToConnector" role="SourceToConnector" guid="{FB81555F-9F30-4a1f-A51B-D6B1BA5F9242}" relid="0x56">
+					<name>SourceToConnector</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="srcRolename" status="meta">
+						<value>src</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000281"/>
+					<connpoint role="dst" target="id-0066-00000282"/>
+				</connection>
+				<connection id="id-0068-0000040f" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{468361D8-EC2B-4231-AC3D-4E22B792AC6C}" relid="0x57">
+					<name>ConnectorToDestination</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>Ns</value>
+					</regnode>
+					<attribute kind="Cardinality">
+						<value>0..1</value>
+					</attribute>
+					<attribute kind="dstRolename" status="meta">
+						<value>dst</value>
+					</attribute>
+					<connpoint role="src" target="id-0066-00000282"/>
+					<connpoint role="dst" target="id-0067-000000d0"/>
+				</connection>
+				<connection id="id-0068-00000410" kind="AssociationClass" role="AssociationClass" guid="{BA30B8C9-1A87-40a8-9BB7-608FFEA3176F}" relid="0x58">
+					<name>AssociationClass</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>w</value>
+					</regnode>
+					<connpoint role="dst" target="id-0066-00000280"/>
+					<connpoint role="src" target="id-0066-00000282"/>
+				</connection>
+				<set id="id-0069-00000003" kind="Aspect" role="Aspect" guid="{2DCD04D2-A814-43c1-9A77-18637EFA5F94}" relid="0x2a" members="id-0066-0000002e id-0066-00000031 id-0066-00000032 id-0066-00000033 id-0066-00000034 id-0066-00000037 id-0066-00000280 id-0067-00000004">
 					<name>TopLevelBehaviorAspect</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>463,55</value>
+								<value>463,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -12939,6 +13527,9 @@ dName = dstTerminalEffect</value>
 						<regnode name="QueryAction" isopaque="yes">
 							<value>4187</value>
 						</regnode>
+						<regnode name="QueryInputAction" isopaque="yes">
+							<value>4199</value>
+						</regnode>
 						<regnode name="Variable" isopaque="yes">
 							<value>3432</value>
 						</regnode>
@@ -14249,6 +14840,18 @@ dName = dstTerminalEffect</value>
 						<value></value>
 						<regnode name="SupportsDelegate" isopaque="yes">
 							<value>4170</value>
+							<regnode name="Packaging" isopaque="yes">
+								<value>4194</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="ComponentAssembly:SupportsDelegate" status="undefined">
+						<value></value>
+						<regnode name="Packaging" isopaque="yes">
+							<value>yes</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -18997,6 +19600,12 @@ dName = dstTerminalEffect</value>
 							<value> </value>
 						</regnode>
 					</regnode>
+					<regnode name="QueryInputAction:Property" status="undefined">
+						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
 					<regnode name="RTConfiguration:Property" status="undefined">
 						<value></value>
 						<regnode name="Packaging" isopaque="yes">
@@ -19372,6 +19981,15 @@ dName = dstTerminalEffect</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="QueryInputAction" status="undefined">
+						<value></value>
+						<regnode name="Property" isopaque="yes">
+							<value>4198</value>
+							<regnode name="Behavior" isopaque="yes">
+								<value>4200</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="RTConfiguration" status="undefined">
 						<value></value>
 						<regnode name="Property" isopaque="yes">
@@ -19670,6 +20288,12 @@ dName = dstTerminalEffect</value>
 						</regnode>
 					</regnode>
 					<regnode name="QueryAction:Property" status="undefined">
+						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="QueryInputAction:Property" status="undefined">
 						<value></value>
 						<regnode name="Behavior" isopaque="yes">
 							<value>yes</value>
@@ -73685,7 +74309,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>610,601</value>
+							<value>456,734</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -73756,7 +74380,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>529,585</value>
+							<value>403,760</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -73822,7 +74446,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>435,111</value>
+							<value>470,62</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -73938,7 +74562,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>218,83</value>
+							<value>162,125</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74126,7 +74750,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>886,333</value>
+							<value>830,333</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74305,7 +74929,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>715,307</value>
+							<value>673,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74427,7 +75051,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>694,391</value>
+							<value>722,419</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74614,7 +75238,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>725,648</value>
+							<value>543,851</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74644,7 +75268,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>813,622</value>
+							<value>589,825</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74706,7 +75330,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>669,515</value>
+							<value>823,669</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74736,7 +75360,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>715,461</value>
+							<value>883,643</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -74985,7 +75609,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>522,249</value>
+							<value>578,249</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -75018,7 +75642,7 @@ let version = self.defaultVersion.trim() in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>470,342</value>
+							<value>526,321</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -76119,7 +76743,7 @@ dName = dstAttributeDelegate</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>120,552</value>
+							<value>169,552</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -76273,7 +76897,7 @@ let delegates = self.connectedFCOs(AttributeDelegate) in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>274,496</value>
+							<value>295,433</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -76335,7 +76959,7 @@ dName = dstAttributeMappingValue</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>242,522</value>
+							<value>249,459</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -76508,7 +77132,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>165,655</value>
+							<value>214,655</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -76541,7 +77165,7 @@ let props = self.connectedFCOs(AttributeMappingValue) in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>92,678</value>
+							<value>141,678</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78052,7 +78676,7 @@ endif
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>576,569</value>
+							<value>605,593</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78082,9 +78706,12 @@ endif
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>639,744</value>
+							<value>645,727</value>
 						</regnode>
 					</regnode>
+				</regnode>
+				<regnode name="color" isopaque="yes">
+					<value>0x0000ff</value>
 				</regnode>
 				<attribute kind="Color" status="meta">
 					<value>0x000000</value>
@@ -78141,7 +78768,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>604,667</value>
+							<value>613,669</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78171,7 +78798,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>709,534</value>
+							<value>568,510</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78319,7 +78946,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>323,13</value>
+							<value>330,20</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78394,7 +79021,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>36,181</value>
+							<value>71,216</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78619,7 +79246,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>428,601</value>
+							<value>323,818</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78910,7 +79537,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>134,13</value>
+							<value>456,223</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -78982,7 +79609,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>78,83</value>
+							<value>645,643</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -79054,7 +79681,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>456,643</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -79126,7 +79753,7 @@ dName = dstSupportsDelegate</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>148,152</value>
+							<value>617,208</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -88176,7 +88803,7 @@ let instances = components-&gt;select (x : Component | x.isInstance()) in
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1121,293</value>
+							<value>1121,292</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -88250,7 +88877,7 @@ rrName = referedbyExternalPortReference</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1346,436</value>
+							<value>1310,300</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -88322,7 +88949,7 @@ rrName = referedbyExternalPortReference</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1409,380</value>
+							<value>1382,376</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -89897,7 +90524,7 @@ rrName = referedbyExternalPortReference</value>
 					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>1310,293</value>
+							<value>1289,412</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -89966,6 +90593,12 @@ rrName = referedbyExternalPortReference</value>
 							<value>8,13</value>
 						</regnode>
 					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>1401,412</value>
+						</regnode>
+					</regnode>
 				</regnode>
 				<attribute kind="Decorator" status="meta">
 					<value></value>
@@ -90018,6 +90651,12 @@ rrName = referedbyExternalPortReference</value>
 				<regnode name="PartRegs" status="undefined">
 					<value></value>
 					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>337,146</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>337,146</value>
@@ -90715,7 +91354,7 @@ rrName = referedbyExternalPortReference</value>
 				<connpoint role="dst" target="id-0066-0000023f"/>
 				<connpoint role="src" target="id-0067-00000068"/>
 			</connection>
-			<set id="id-0069-00000016" kind="Aspect" role="Aspect" guid="{4C55F5AF-0CC7-4ae4-8021-F92243E4CF0E}" relid="0x0" members="id-0066-0000023f id-0066-00000243 id-0066-0000024c id-0067-0000004a id-0067-0000004b id-0067-0000004c id-0067-0000004d id-0067-0000004e id-0067-0000004f id-0067-00000050 id-0067-00000051 id-0067-00000052 id-0067-00000053 id-0067-00000054 id-0067-00000055 id-0067-00000056 id-0067-00000057 id-0067-00000058 id-0067-00000059 id-0067-0000005a id-0067-0000005b id-0067-0000005c id-0067-0000005d id-0067-0000005e id-0067-0000005f id-0067-00000060 id-0067-00000061 id-0067-00000062 id-0067-00000063 id-0067-00000064 id-0067-00000065">
+			<set id="id-0069-00000016" kind="Aspect" role="Aspect" guid="{4C55F5AF-0CC7-4ae4-8021-F92243E4CF0E}" relid="0x0" members="id-0066-0000023f id-0066-00000243 id-0066-0000024c id-0067-0000004a id-0067-0000004b id-0067-0000004c id-0067-0000004d id-0067-0000004e id-0067-0000004f id-0067-00000050 id-0067-00000051 id-0067-00000052 id-0067-00000053 id-0067-00000054 id-0067-00000055 id-0067-00000056 id-0067-00000057 id-0067-00000058 id-0067-00000059 id-0067-0000005a id-0067-0000005b id-0067-0000005c id-0067-0000005d id-0067-0000005e id-0067-0000005f id-0067-00000060 id-0067-00000061 id-0067-00000062 id-0067-00000063 id-0067-00000064 id-0067-00000065 id-0067-00000068">
 				<name>AssemblyPackaging</name>
 				<regnode name="PartRegs" isopaque="yes">
 					<value></value>
