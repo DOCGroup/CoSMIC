@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="PICML" guid="{AD2BE473-B52B-4E0B-A8F6-FD4E156B2F19}" cdate="Thu May 01 22:58:08 2008" mdate="Thu May 01 22:58:08 2008" >
+<paradigm name="PICML" guid="{E206422A-7D23-41E5-A9F2-1334D0BCE60D}" cdate="Thu May 08 18:29:11 2008" mdate="Thu May 08 18:29:11 2008" >
 
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -10,6 +10,12 @@ middleware-based applications.</comment>
 	<author>DOC Group at Vanderbilt University</author>
 
 	<folder name = "RootFolder" metaref = "1000"  subfolders = "ComponentAnalyses ComponentBuild ComponentFactoryImplementations ComponentImplementations ComponentPackages ComponentTypes DeploymentPlans ImplementationArtifacts InterfaceDefinitions PackageConfigurations PathDiagrams PredefinedTypes Targets TopLevelPackages WorkerLibraries" >
+		<constraint name="SingleInputAction" eventmask = "0x4" depth = "1" priority = "1">
+			<![CDATA[let inputs = self.models (InputAction) in
+inputs.size () = 1
+]]>
+			<dispname>Composite actions must contain one InputAction</dispname>
+		</constraint>
 		<constraint type="function" name="AllParams">
 			<![CDATA[method;gme::Model;;ocl::Set;
 			parts (InParameter) + parts (InoutParameter) + parts (OutParameter)]]>
@@ -1114,7 +1120,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Action"></pointeritem>
-					<pointeritem desc = "CompositeAction"></pointeritem>
 					<pointeritem desc = "OutputAction"></pointeritem>
 					<pointeritem desc = "QueryAction"></pointeritem>
 				</pointerspec>
@@ -1307,7 +1312,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "Action"></pointeritem>
-					<pointeritem desc = "CompositeAction"></pointeritem>
 					<pointeritem desc = "OutputAction"></pointeritem>
 					<pointeritem desc = "QueryAction"></pointeritem>
 				</pointerspec>
@@ -1466,6 +1470,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "InputAction"></pointeritem>
+					<pointeritem desc = "MultiInputAction"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1586,6 +1591,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<connjoint>
 				<pointerspec name = "src">
 					<pointeritem desc = "InputAction"></pointeritem>
+					<pointeritem desc = "MultiInputAction"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "BranchState"></pointeritem>
@@ -1660,7 +1666,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Action"></pointeritem>
-					<pointeritem desc = "CompositeAction"></pointeritem>
 					<pointeritem desc = "OutputAction"></pointeritem>
 					<pointeritem desc = "QueryAction"></pointeritem>
 				</pointerspec>
@@ -1774,7 +1779,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 		<connection name = "MultiInput" metaref = "3811" >
 				<regnode name = "sName" value ="srcMultiInput"></regnode>
 				<regnode name = "dName" value ="dstMultiInput"></regnode>
-				<regnode name = "color" value ="0x0000FF"></regnode>
+				<regnode name = "color" value ="0xFF8000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
 				<regnode name = "lineType" value ="dash"></regnode>
@@ -1784,7 +1789,7 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 					<pointeritem desc = "ProvidedRequestPort"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
-					<pointeritem desc = "InputAction"></pointeritem>
+					<pointeritem desc = "MultiInputAction"></pointeritem>
 				</pointerspec>
 			</connjoint>
 		</connection>
@@ -1943,6 +1948,8 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			</connjoint>
 		</connection>
 		<connection name = "QueryInput" metaref = "4189" >
+				<regnode name = "sName" value ="srcQueryInput"></regnode>
+				<regnode name = "dName" value ="dstQueryInput"></regnode>
 				<regnode name = "color" value ="0x008000"></regnode>
 				<regnode name = "dstStyle" value ="arrow"></regnode>
 				<regnode name = "srcStyle" value ="butt"></regnode>
@@ -2130,7 +2137,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				</pointerspec>
 				<pointerspec name = "dst">
 					<pointeritem desc = "Action"></pointeritem>
-					<pointeritem desc = "CompositeAction"></pointeritem>
 					<pointeritem desc = "OutputAction"></pointeritem>
 					<pointeritem desc = "QueryAction"></pointeritem>
 				</pointerspec>
@@ -3808,7 +3814,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "Attribute" metaref = "1294" kind = "Attribute"></role>
 			<role name = "BranchState" metaref = "3978" kind = "BranchState"></role>
 			<role name = "BranchTransition" metaref = "4027" kind = "BranchTransition"></role>
-			<role name = "CompositeAction" metaref = "3762" kind = "CompositeAction"></role>
 			<role name = "DoWhileState" metaref = "4091" kind = "DoWhileState"></role>
 			<role name = "Effect" metaref = "4054" kind = "Effect"></role>
 			<role name = "Environment" metaref = "3806" kind = "Environment"></role>
@@ -3816,10 +3821,11 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "ForState" metaref = "4092" kind = "ForState"></role>
 			<role name = "InEventPort" metaref = "1295" kind = "InEventPort"></role>
 			<role name = "Input" metaref = "3784" kind = "Input"></role>
-			<role name = "InputAction" metaref = "3652" kind = "InputAction"></role>
+			<role name = "InputAction" metaref = "4201" kind = "InputAction"></role>
 			<role name = "InputEffect" metaref = "4055" kind = "InputEffect"></role>
 			<role name = "LoopTransition" metaref = "4075" kind = "LoopTransition"></role>
 			<role name = "MultiInput" metaref = "3813" kind = "MultiInput"></role>
+			<role name = "MultiInputAction" metaref = "4202" kind = "MultiInputAction"></role>
 			<role name = "OutEventPort" metaref = "1296" kind = "OutEventPort"></role>
 			<role name = "OutputAction" metaref = "3654" kind = "OutputAction"></role>
 			<role name = "PeriodicEvent" metaref = "3807" kind = "PeriodicEvent"></role>
@@ -3851,7 +3857,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "3660" role = "Action" primary = "yes" linked = "no"></part>
 				<part metaref = "3985" role = "BranchState" primary = "yes" linked = "no"></part>
 				<part metaref = "4029" role = "BranchTransition" primary = "yes" linked = "no"></part>
-				<part metaref = "3766" role = "CompositeAction" primary = "yes" linked = "no"></part>
 				<part metaref = "4094" role = "DoWhileState" primary = "yes" linked = "no"></part>
 				<part metaref = "4057" role = "Effect" primary = "yes" linked = "no"></part>
 				<part metaref = "3808" role = "Environment" primary = "yes" linked = "no"></part>
@@ -3859,10 +3864,11 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "4095" role = "ForState" primary = "yes" linked = "no"></part>
 				<part metaref = "2000" role = "InEventPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "3790" role = "Input" primary = "yes" linked = "no"></part>
-				<part metaref = "3666" role = "InputAction" primary = "yes" linked = "no"></part>
+				<part metaref = "4203" role = "InputAction" primary = "yes" linked = "no"></part>
 				<part metaref = "4058" role = "InputEffect" primary = "yes" linked = "no"></part>
 				<part metaref = "4079" role = "LoopTransition" primary = "yes" linked = "no"></part>
 				<part metaref = "3814" role = "MultiInput" primary = "yes" linked = "no"></part>
+				<part metaref = "4204" role = "MultiInputAction" primary = "yes" linked = "no"></part>
 				<part metaref = "2001" role = "OutEventPort" primary = "no" kindaspect = "InterfaceDefinition" linked = "yes"></part>
 				<part metaref = "3668" role = "OutputAction" primary = "yes" linked = "no"></part>
 				<part metaref = "3809" role = "PeriodicEvent" primary = "yes" linked = "no"></part>
@@ -4160,17 +4166,17 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>ComponentImplementation can either be Monolithic or be assembly based, but not both</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality154" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality155" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
+				<![CDATA[let partCount = self.parts( "PathReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidComponentImplementationContainerPartCardinality156" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentRef" ) -> size in
+				<![CDATA[let partCount = self.parts( "Implements" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by ComponentImplementationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -4224,103 +4230,6 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<role name = "DataType" metaref = "1452" kind = "DataType"></role>
 			<aspect name = "Packaging" metaref = "1453" >
 				<part metaref = "1454" role = "DataType" primary = "yes" linked = "no"></part>
-			</aspect>
-		</model>
-		<model name = "CompositeAction" metaref = "3770" >
-				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "icon" value ="composite.bmp"></regnode>
-			<constraint name="HasEffect" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[let name = self->parent ().kindName in
-
-if name <> "Worker" then
-  self->attachingConnections( "src", Effect) -> size = 1
-else
-  true
-endif]]>
-				<dispname>Action is missing effect connection</dispname>
-			</constraint>
-			<constraint name="SingleInputAction" eventmask = "0x4" depth = "1" priority = "1">
-				<![CDATA[let inputs = self.models (InputAction) in
-inputs.size () = 1
-]]>
-				<dispname>Composite actions must contain one InputAction</dispname>
-			</constraint>
-			<constraint name="TerminalCount" eventmask = "0x0" depth = "1" priority = "2">
-				<![CDATA[let ctrlblocks = 
-  self.parts (meta::BranchState) + 
-  self.parts (meta::ForState) + self.parts (meta::DoWhileState) +
-  self.parts (meta::WhileState) in
-
-let terminals = self.parts (meta::Terminal) in
-
-ctrlblocks->size = terminals->size]]>
-				<dispname>Number of terminals must equal the number of control blocks (i.e., BranchState, ForState, DoWhileState, and WhileState).</dispname>
-			</constraint>
-			<constraint name="ValidBranchTransitionsrcCardinality27" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::BranchTransition ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over BranchTransition, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidEffectdstCardinality50" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let dstCount = self.attachingConnections( "src", meta::Effect ) -> size in
-                     (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;dst&quot; over Effect, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidLoopTransitionsrcCardinality83" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::LoopTransition ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over LoopTransition, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTransitionsrcCardinality135" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Transition ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to ActionBase as &quot;src&quot; over Transition, has to match 0..1.</dispname>
-			</constraint>
-			<role name = "Action" metaref = "3675" kind = "Action"></role>
-			<role name = "BranchState" metaref = "3992" kind = "BranchState"></role>
-			<role name = "BranchTransition" metaref = "4031" kind = "BranchTransition"></role>
-			<role name = "CompositeAction" metaref = "3771" kind = "CompositeAction"></role>
-			<role name = "DoWhileState" metaref = "4097" kind = "DoWhileState"></role>
-			<role name = "Effect" metaref = "4060" kind = "Effect"></role>
-			<role name = "Finish" metaref = "3995" kind = "Finish"></role>
-			<role name = "ForState" metaref = "4098" kind = "ForState"></role>
-			<role name = "InputAction" metaref = "3679" kind = "InputAction"></role>
-			<role name = "InputEffect" metaref = "4061" kind = "InputEffect"></role>
-			<role name = "LoopTransition" metaref = "4083" kind = "LoopTransition"></role>
-			<role name = "OutputAction" metaref = "3680" kind = "OutputAction"></role>
-			<role name = "Property" metaref = "3326" kind = "Property"></role>
-			<role name = "QueryAction" metaref = "4183" kind = "QueryAction"></role>
-			<role name = "QueryInputAction" metaref = "4195" kind = "QueryInputAction"></role>
-			<role name = "State" metaref = "3997" kind = "State"></role>
-			<role name = "Terminal" metaref = "4044" kind = "Terminal"></role>
-			<role name = "TerminalEffect" metaref = "4062" kind = "TerminalEffect"></role>
-			<role name = "TerminalTransition" metaref = "4046" kind = "TerminalTransition"></role>
-			<role name = "Transition" metaref = "4032" kind = "Transition"></role>
-			<role name = "Variable" metaref = "3798" kind = "Variable"></role>
-			<role name = "WhileState" metaref = "4099" kind = "WhileState"></role>
-			<aspect name = "Behavior" metaref = "3329" >
-				<part metaref = "3684" role = "Action" primary = "yes" linked = "no"></part>
-				<part metaref = "3999" role = "BranchState" primary = "yes" linked = "no"></part>
-				<part metaref = "4033" role = "BranchTransition" primary = "yes" linked = "no"></part>
-				<part metaref = "3773" role = "CompositeAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4100" role = "DoWhileState" primary = "yes" linked = "no"></part>
-				<part metaref = "4063" role = "Effect" primary = "yes" linked = "no"></part>
-				<part metaref = "4002" role = "Finish" primary = "yes" linked = "no"></part>
-				<part metaref = "4101" role = "ForState" primary = "yes" linked = "no"></part>
-				<part metaref = "3688" role = "InputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4064" role = "InputEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "4087" role = "LoopTransition" primary = "yes" linked = "no"></part>
-				<part metaref = "3689" role = "OutputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "3331" role = "Property" primary = "yes" linked = "no"></part>
-				<part metaref = "4184" role = "QueryAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4196" role = "QueryInputAction" primary = "yes" linked = "no"></part>
-				<part metaref = "4004" role = "State" primary = "yes" linked = "no"></part>
-				<part metaref = "4047" role = "Terminal" primary = "yes" linked = "no"></part>
-				<part metaref = "4065" role = "TerminalEffect" primary = "yes" linked = "no"></part>
-				<part metaref = "4049" role = "TerminalTransition" primary = "yes" linked = "no"></part>
-				<part metaref = "4034" role = "Transition" primary = "yes" linked = "no"></part>
-				<part metaref = "3803" role = "Variable" primary = "yes" linked = "no"></part>
-				<part metaref = "4102" role = "WhileState" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "ConnectedComponent" metaref = "2011" >
@@ -4640,8 +4549,9 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<part metaref = "1605" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
-		<model name = "InputAction" metaref = "3693" >
+		<model name = "InputAction" metaref = "4209" >
 				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 				<regnode name = "icon" value ="InputAction.bmp"></regnode>
 			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[self.attachingConnections( "dst", Finish ) -> size = 1]]>
@@ -4650,22 +4560,17 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<constraint name="ValidFinishsrcCardinality61" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Finish ) -> size in
                      (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to InputAction as &quot;src&quot; over Finish, has to match 0..1.</dispname>
+				<dispname>Multiplicity of objects, which are associated to BehaviorInputAction as &quot;src&quot; over Finish, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidInputEffectdstCardinality76" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let dstCount = self.attachingConnections( "src", meta::InputEffect ) -> size in
                      (dstCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to InputAction as &quot;dst&quot; over InputEffect, has to match 0..1.</dispname>
+				<dispname>Multiplicity of objects, which are associated to BehaviorInputAction as &quot;dst&quot; over InputEffect, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidInputsrcCardinality73" eventmask = "0x800" depth = "1" priority = "1">
 				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Input ) -> size in
                      (srcCount <= 1)]]>
 				<dispname>Multiplicity of objects, which are associated to InputAction as &quot;src&quot; over Input, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidMultiInputsrcCardinality97" eventmask = "0x800" depth = "1" priority = "1">
-				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MultiInput ) -> size in
-                     (srcCount <= 1)]]>
-				<dispname>Multiplicity of objects, which are associated to InputAction as &quot;src&quot; over MultiInput, has to match 0..1.</dispname>
 			</constraint>
 			<role name = "Property" metaref = "2023" kind = "Property"></role>
 			<aspect name = "Behavior" metaref = "2934" >
@@ -4744,6 +4649,34 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 			<aspect name = "Workspace" metaref = "1629" >
 				<part metaref = "1630" role = "Project" primary = "yes" linked = "no"></part>
 				<part metaref = "1631" role = "Workspaces" primary = "yes" linked = "no"></part>
+			</aspect>
+		</model>
+		<model name = "MultiInputAction" metaref = "4210" >
+				<regnode name = "namePosition" value ="4"></regnode>
+				<regnode name = "icon" value ="InputAction.bmp"></regnode>
+				<regnode name = "icon" value ="MultiInputAction.bmp"></regnode>
+			<constraint name="MustHaveFinish" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[self.attachingConnections( "dst", Finish ) -> size = 1]]>
+				<dispname>Input actions must have one finish connection</dispname>
+			</constraint>
+			<constraint name="ValidFinishsrcCardinality61" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::Finish ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to BehaviorInputAction as &quot;src&quot; over Finish, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidInputEffectdstCardinality76" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let dstCount = self.attachingConnections( "src", meta::InputEffect ) -> size in
+                     (dstCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to BehaviorInputAction as &quot;dst&quot; over InputEffect, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidMultiInputsrcCardinality97" eventmask = "0x800" depth = "1" priority = "1">
+				<![CDATA[let srcCount = self.attachingConnections( "dst", meta::MultiInput ) -> size in
+                     (srcCount <= 1)]]>
+				<dispname>Multiplicity of objects, which are associated to MultiInputAction as &quot;src&quot; over MultiInput, has to match 0..1.</dispname>
+			</constraint>
+			<role name = "Property" metaref = "4211" kind = "Property"></role>
+			<aspect name = "Behavior" metaref = "4212" >
+				<part metaref = "4213" role = "Property" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "Node" metaref = "1632" attributes = "label operatingSystem architecture" >
@@ -4962,32 +4895,32 @@ ports.exists (iter : OutEventPort | iter->name () = self.name ())]]>
 				<dispname>A PackageConfiguration can either specialize another PackageConfiguration, or contain a ComponentPackage, or contain a reference to a ComponentPackage</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality162" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfSpecializedConfig" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
-			<constraint name="ValidPackageConfigurationContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidPackageConfigurationContainerPartCardinality163" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfiguration" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 1..*.</dispname>
 			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality164" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "PackageConfBasePackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
+			<constraint name="ValidPackageConfigurationContainerPartCardinality165" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
+			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality166" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
+				<![CDATA[let partCount = self.parts( "ComponentPackageReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidPackageConfigurationContainerPartCardinality167" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "ComponentPackage" ) -> size in
+				<![CDATA[let partCount = self.parts( "PackageConfReference" ) -> size in
                      (partCount <= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by PackageConfigurationContainer, has to match 0..1.</dispname>
 			</constraint>
@@ -5430,19 +5363,19 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<dispname>Not a valid identifier</dispname>
 			</constraint>
 			<constraint name="ValidSwitchedAggregatePartCardinality182" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
-                     (partCount = 1)]]>
-				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
-			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "Label" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
 			</constraint>
-			<constraint name="ValidSwitchedAggregatePartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+			<constraint name="ValidSwitchedAggregatePartCardinality183" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "LabelConnection" ) -> size in
                      (partCount >= 1)]]>
 				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1..*.</dispname>
+			</constraint>
+			<constraint name="ValidSwitchedAggregatePartCardinality184" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "Discriminator" ) -> size in
+                     (partCount = 1)]]>
+				<dispname>Multiplicity of parts, which are contained by SwitchedAggregate, has to match 1.</dispname>
 			</constraint>
 			<constraint name="ValidVersion" eventmask = "0x1" depth = "1" priority = "1">
 				<![CDATA[VersionTag <> "" implies VersionTag.trim ().match ("^[0-9]+\.[0-9]+$")]]>
@@ -5492,14 +5425,14 @@ name <> "" implies name.match( "^[a-zA-Z][_a-zA-Z0-9]*$" )]]>
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "icon" value ="TopLevelPackageConfiguration.bmp"></regnode>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality186" eventmask = "0x0" depth = "1" priority = "1">
-				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
-                     (partCount <= 1)]]>
-				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
-			</constraint>
-			<constraint name="ValidTopLevelPackageContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "PackageConfigurationReference" ) -> size in
                      (partCount = 1)]]>
 				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 1.</dispname>
+			</constraint>
+			<constraint name="ValidTopLevelPackageContainerPartCardinality187" eventmask = "0x0" depth = "1" priority = "1">
+				<![CDATA[let partCount = self.parts( "TopLevelPackage" ) -> size in
+                     (partCount <= 1)]]>
+				<dispname>Multiplicity of parts, which are contained by TopLevelPackageContainer, has to match 0..1.</dispname>
 			</constraint>
 			<constraint name="ValidTopLevelPackageContainerPartCardinality188" eventmask = "0x0" depth = "1" priority = "1">
 				<![CDATA[let partCount = self.parts( "package" ) -> size in

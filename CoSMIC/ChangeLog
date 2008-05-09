@@ -1,3 +1,25 @@
+Fri May  9 18:08:59 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/MultiInputAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputAction.bmp:
+        * PIM/PICML/migration/InputAction_to_MultiInputAction.xsl:
+
+          Although the previous update to PICML was valid, UDM did not 
+          like it. :-( It had problems resolving the association between
+          MultiInput, QueryInput, Input. To resolve this problem, MultiInput
+          connections connect to MultiInputAction element. This does break
+          existing models, however, we have created an .xslt script to
+          migrate old models.
+          
+          To apply the transformation script, use Model Migrate, which
+          is provide with GME. Or, import the old model using GME and 
+          locate InputAction_to_MultiInputAction.xsl as the tranformation
+          script to apply on the model.
+          
 Thu May  8 21:28:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -6,9 +28,9 @@ Thu May  8 21:28:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/icons/QueryAction.bmp:
         * PIM/PICML/paradigms/icons/QueryInputAction.bmp:
-        
+
           . Completed support for modelig query-based actions. Query-based
-            actions are modeled by connecting a query input action to the 
+            actions are modeled by connecting a query input action to the
             desired input port and using query actions in the workload.
 
 Fri May  2 04:35:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
