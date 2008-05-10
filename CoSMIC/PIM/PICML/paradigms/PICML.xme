@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{7C4AF583-8AC6-4C6D-AA89-D6E49368C2E1}" cdate="Thu May 08 18:29:11 2008" mdate="Thu May 08 18:29:11 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{699C7679-8A8D-483D-A580-C93677307007}" cdate="Thu May 08 18:29:11 2008" mdate="Thu May 08 18:29:11 2008" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -6605,7 +6605,7 @@ rrName = referedbyVariable</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xc7">
+			<model id="id-0065-00000003" kind="ParadigmSheet" guid="{F9D65805-B9E0-42c5-B793-08376706A5E9}" relid="0x2" childrelidcntr="0xc8">
 				<name>ActionTypes</name>
 				<atom id="id-0066-00000014" kind="Constraint" role="Constraint" guid="{6CED5690-C242-4364-9F2A-F6002AA1A862}" relid="0xa7">
 					<name>MustHaveFinish</name>
@@ -6614,7 +6614,7 @@ rrName = referedbyVariable</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>174,328</value>
+								<value>174,174</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -6842,7 +6842,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>148,244</value>
+								<value>176,244</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -6917,7 +6917,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>659,355</value>
+								<value>652,355</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7067,7 +7067,7 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>591,292</value>
+								<value>696,292</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7077,83 +7077,6 @@ ports.exists (iter : OutEventPort | iter-&gt;name () = self.name ())</value>
 							</regnode>
 						</regnode>
 					</regnode>
-				</atom>
-				<atom id="id-0066-0000001e" kind="Constraint" role="Constraint" guid="{E3317EEA-FD5A-411c-BA09-2E1F4DEE87C5}" relid="0x7b">
-					<name>SingleInputAction</name>
-					<regnode name="PartRegs" status="undefined">
-						<value></value>
-						<regnode name="Constraints" status="undefined">
-							<value></value>
-							<regnode name="Position" isopaque="yes">
-								<value>461,447</value>
-							</regnode>
-						</regnode>
-					</regnode>
-					<attribute kind="AddSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeAttributeEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangePropertyEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ChangeRelationEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="CloseEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="ConstraintDescription">
-						<value>Composite actions must contain one InputAction</value>
-					</attribute>
-					<attribute kind="ConstraintEqn">
-						<value>let inputs = self.models (InputAction) in
-inputs.size () = 1
-</value>
-					</attribute>
-					<attribute kind="ConstraintParam" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="ConstraintPriority">
-						<value>1</value>
-					</attribute>
-					<attribute kind="CreateEvent">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DeleteEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="Depth" status="meta">
-						<value>1</value>
-					</attribute>
-					<attribute kind="DeriveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="DisconnectEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="LostChildEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="MoveEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="NewChildEvent">
-						<value>true</value>
-					</attribute>
-					<attribute kind="ReferenceEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="RemoveSetEvent" status="meta">
-						<value>false</value>
-					</attribute>
-					<attribute kind="UnReferenceEvent" status="meta">
-						<value>false</value>
-					</attribute>
 				</atom>
 				<atom id="id-0066-0000001f" kind="Connector" role="Connector" guid="{4A53BD13-6B5C-4586-8E1D-FBF6DF763BE9}" relid="0x83">
 					<name>Connector</name>
@@ -7210,7 +7133,7 @@ inputs.size () = 1
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>29,131</value>
+								<value>50,111</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7314,7 +7237,7 @@ dName = dstFinish</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>561,195</value>
+								<value>624,174</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7377,7 +7300,7 @@ dName = dstFinish</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>716,212</value>
+								<value>713,209</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7470,7 +7393,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>779,352</value>
+								<value>778,356</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7545,7 +7468,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>37,247</value>
+								<value>50,244</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7620,7 +7543,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>86,408</value>
+								<value>127,405</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7695,7 +7618,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>219,408</value>
+								<value>253,405</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7770,7 +7693,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>233,338</value>
+								<value>227,341</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7800,7 +7723,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>393,195</value>
+								<value>449,195</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -7887,7 +7810,7 @@ endif</value>
 						<regnode name="Constraints" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>260,342</value>
+								<value>316,300</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" isopaque="yes">
@@ -7962,7 +7885,7 @@ endif</value>
 						<regnode name="Constraints" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>393,55</value>
+								<value>449,34</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -8025,6 +7948,12 @@ endif</value>
 								<value>302,111</value>
 							</regnode>
 						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>302,111</value>
+							</regnode>
+						</regnode>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
@@ -8053,6 +7982,12 @@ endif</value>
 							<value></value>
 							<regnode name="Position" isopaque="yes">
 								<value>575,111</value>
+							</regnode>
+						</regnode>
+						<regnode name="Constraints" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>568,104</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -8315,14 +8250,6 @@ endif</value>
 					<connpoint role="dst" target="id-0066-00000024"/>
 					<connpoint role="src" target="id-0069-0000001a"/>
 				</connection>
-				<connection id="id-0068-00000037" kind="HasConstraint" role="HasConstraint" guid="{641958BD-B533-4437-9973-9E1AF248BE48}" relid="0xb0">
-					<name>HasConstraint</name>
-					<regnode name="autorouterPref" isopaque="yes">
-						<value>Ns</value>
-					</regnode>
-					<connpoint role="src" target="id-0066-00000014"/>
-					<connpoint role="dst" target="id-0066-00000018"/>
-				</connection>
 				<connection id="id-0068-00000038" kind="HasConstraint" role="HasConstraint" guid="{F79F2787-DA2A-4a03-9251-8A26C998BDA4}" relid="0xb2">
 					<name>HasConstraint</name>
 					<regnode name="autorouterPref" isopaque="yes">
@@ -8471,6 +8398,14 @@ endif</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-00000284"/>
 					<connpoint role="src" target="id-0066-00000286"/>
+				</connection>
+				<connection id="id-0068-00000415" kind="HasConstraint" role="HasConstraint" guid="{829F5F27-971B-4d64-8C12-14EDBB36E12F}" relid="0xc8">
+					<name>HasConstraint</name>
+					<regnode name="autorouterPref" isopaque="yes">
+						<value>En</value>
+					</regnode>
+					<connpoint role="src" target="id-0066-00000014"/>
+					<connpoint role="dst" target="id-0066-00000018"/>
 				</connection>
 				<set id="id-0069-0000001a" kind="Aspect" role="Aspect" guid="{A44EF0A7-4025-48fb-9E4C-32DDA6C9F2AD}" relid="0xa1" members="id-0066-00000018 id-0066-00000021 id-0066-00000024 id-0066-00000027 id-0067-00000074">
 					<name>BehaviorAction</name>
