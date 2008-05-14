@@ -1,8 +1,15 @@
+Wed May 14 05:15:06 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+        
+          The installer will install the debug version of the IDL generator
+          for GME 6.11.9 and the release version of GME 7.x.x.
+
 Sat May 10 05:12:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           Removed the constraint for ensuring that a composite action
           had only 1 InputAction element since component actions are
           no longer supported at this time.
