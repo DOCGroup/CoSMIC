@@ -81,12 +81,12 @@
         <File Id='xerces_c.dll'
               Name='xerces-c_$(var.XERCESC_VERSION).dll'
               DiskId='1'
-              Source='$(var.XERCESCROOT)\lib\xerces-c_$(var.XERCESC_VERSION).dll'  />
+              Source='$(var.XERCESCROOT)\bin\xerces-c_$(var.XERCESC_VERSION).dll'  />
 
         <File Id='xerces_cd.dll'
               Name='xerces-c_$(var.XERCESC_VERSION)D.dll'
               DiskId='1'
-              Source='$(var.XERCESCROOT)\lib\xerces-c_$(var.XERCESC_VERSION)D.dll'  />
+              Source='$(var.XERCESCROOT)\bin\xerces-c_$(var.XERCESC_VERSION)D.dll'  />
       </Component>
     </DirectoryRef>
 

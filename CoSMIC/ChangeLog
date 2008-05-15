@@ -1,7 +1,12 @@
+Thu May 15 17:28:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        Fixed XERCESC path from lib to bin.
+
 Wed May 14 05:15:06 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
-        
+
           The installer will install the debug version of the IDL generator
           for GME 6.11.9 and the release version of GME 7.x.x.
 
