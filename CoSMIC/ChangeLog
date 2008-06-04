@@ -1,3 +1,11 @@
+Wed Jun  4 23:45:54 UTC 2008  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/Specialize.xme:
+
+          The second higher-order transformation that generates
+          specialized instances of templatized transformation from
+          VarML initially created using MTTVar paradigm.
+
 Thu May 15 17:28:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
