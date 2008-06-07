@@ -1,3 +1,8 @@
+Sat Jun  7 03:06:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+          Updated install condition message with GME version.
+
 Sat Jun  7 00:17:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/Utils.wxs:

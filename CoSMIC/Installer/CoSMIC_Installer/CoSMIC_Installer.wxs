@@ -23,10 +23,19 @@
     <Condition Message="You need to be an administrator to install this product.">
       Privileged
     </Condition>
+
+<?if $(var.GME_VERSION) = 6_11_9 ?>
     <Condition Message="Could not find GME on your machine. Please install GME 6.11.9 before installing CoSMIC.">
       GMEINSTALLED
     </Condition>
-    
+<?endif ?>
+
+<?if $(var.GME_VERSION) = 7_6_29 ?>
+    <Condition Message="Could not find GME on your machine. Please install GME 7.6.29 before installing CoSMIC.">
+      GMEINSTALLED
+    </Condition>
+<?endif ?>
+
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
 
