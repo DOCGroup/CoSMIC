@@ -10,10 +10,13 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\Utils.dll' />
 
+<?if $(var.GME_VERSION) = 6_11_9 ?>
         <File Id='UtilsdDLL'
               Name='Utilsd.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\Utilsd.dll' />
+<?endif ?>
+
       </Component>
     </DirectoryRef>
 
