@@ -1,3 +1,14 @@
+Mon Jun  9 02:49:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/CAML:
+
+        * Transformations/CAML/FOUAspect-CompCloning.txt:
+        * Transformations/CAML/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/CAML/FOUAspect-Everything.txt:
+        * Transformations/CAML/FOUAspect.txt:
+          Embedded Contraint Language (ECL) specification for FailOverUnit.
+          Latest version of C-SAW is required to interpret these specifications.
+
 Sat Jun  7 03:06:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:

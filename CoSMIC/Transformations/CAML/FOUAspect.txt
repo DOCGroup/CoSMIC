@@ -1,0 +1,195 @@
+aspect FOU()
+{
+  assembly_clone();
+}
+
+
+strategy assembly_clone()
+{
+  declare container, src, dest : model;
+  declare fou_list : modelList;
+  
+  container := rootFolder().findFolder("ComponentImplementations").
+                            findModel("AssemblyContainer");
+  src := container.findModel("HelloAssembly");
+  dest := src.clone(container);
+  dest.setName(src.name() + "_Replica");
+  fou_list := dest.models("FailOverUnit");
+  fou_list->ProcessFOU(dest);
+  fou_list->RemoveFOU(dest);
+}
+
+
+strategy ProcessFOU(parent_assembly : model)
+{
+  declare r : integer;
+  declare fou : model;
+  declare CQ_conn_list : objectList;
+  declare comp_list : objectList;
+
+  fou := self;
+  r := fou.getAttribute("Replica");
+
+  CQ_conn_list := parent_assembly.connections("ComponentQoS")
+                                 ->select (c | c.destination() == fou);
+  
+  // Create Replica components of all the FOU components.
+  CQ_conn_list->createReplicas(parent_assembly, r, 1);
+  
+  
+  // Create interconnections between all the FOU components.
+  CQ_conn_list->ReplicateConnections(parent_assembly, CQ_conn_list, r, 1);
+  
+  
+  // For all the clients of FOU components, create replica receptacals.
+  comp_list := CQ_conn_list->source();
+  comp_list->ReplicateClientPorts(parent_assembly, comp_list, r, 1);
+}
+
+
+strategy ReplicateClientPorts (parent_assembly : model; comp_list : objectList;
+                               replica, loop : integer)
+{
+  declare comp : object;
+  comp := self;
+
+  comp.references("ProvidedRequestPort")
+      ->findIncomingConnections(parent_assembly, comp_list, comp, replica, loop);
+}
+
+
+strategy findIncomingConnections(parent_assembly : model; comp_list : objectList;
+                                 comp : model; replica, loop : integer)
+{
+  declare facet : object;
+  facet := self;
+  
+  parent_assembly.connections("invoke")
+                 ->select(c | c.destination() == facet)
+                 ->filterFOUComponents(parent_assembly, comp_list, comp, replica, loop);
+}
+
+
+strategy filterFOUComponents(parent_assembly : model; comp_list : objectList;
+                             comp : model; replica, loop : integer)
+{
+  declare invoke_conn : object;
+  declare non_fou_comp, nfc_type : model;
+  declare nfc_recep, nfc_recep_type : object;
+  declare nfc_recep_replica : object;
+  declare comp_replica : model;
+  declare comp_replica_facet : object;
+  declare name : string;
+  
+  if loop<=replica then
+    
+    invoke_conn := self;
+    nfc_recep := invoke_conn.source();
+  
+    if comp_list->select(c | nfc_recep.parent() == c)->isEmpty() then
+        
+      non_fou_comp := nfc_recep.parent();
+      //show(non_fou_comp.name());
+      nfc_type := non_fou_comp.type();
+      
+      nfc_recep_type := nfc_type.findObject(nfc_recep.name());
+      nfc_recep_replica := nfc_recep_type.clone(nfc_type);
+      nfc_recep_replica.setName(nfc_recep.name() + "_R" + intToString(loop));
+      
+      //nfc_recep_replica := non_fou_comp.findObject(nfc_recep_type.name() + "_R" + intToString(loop));
+      nfc_recep_replica := non_fou_comp.findObject(nfc_recep_type.name());
+    
+      comp_replica := parent_assembly.findModel(comp.name() + "_Replica" + intToString(loop));
+      comp_replica_facet := comp_replica.findObject(invoke_conn.destination().name());
+      parent_assembly.addConnection("invoke", nfc_recep_replica, comp_replica_facet);
+      
+      invoke_conn.filterFOUComponents(parent_assembly, comp_list, comp, replica, loop+1);
+    
+    endif;
+  
+  endif;
+}
+
+
+strategy ReplicateConnections(parent_assembly : model; CQ_conn_list : objectList;
+                              replica, loop : integer)
+{
+  declare this_connection : object;
+  this_connection := self;
+  
+  CQ_conn_list->select (c | c <> this_connection)
+              ->cloneInvokeConnections(parent_assembly, this_connection.source(), 
+                                       replica, loop);
+}
+
+strategy cloneInvokeConnections (parent_assembly : model; comp1 : model; 
+                                 replica, loop : integer)
+{
+  declare comp2 : model;
+  comp2 := self.source();
+  
+  comp1.references("RequiredRequestPort")
+       ->findInvoke(parent_assembly, comp1, comp2, replica, loop);
+}
+
+
+strategy findInvoke(parent_assembly : model; comp1, comp2 : model; replica, loop : integer)
+{
+  declare recep : object;
+  recep := self;
+  
+  parent_assembly.connections("invoke")
+                 ->select(c | c.source() == recep)
+                 ->select(c | c.destination().parent() == comp2)
+                 ->cloneInvoke(parent_assembly, comp1, comp2, replica, loop);
+}
+
+
+strategy cloneInvoke(parent_assembly : model; comp1, comp2 : model; replica, loop : integer)
+{
+  declare conn, recep, facet : object;
+  declare comp1_rep, comp2_rep : model;
+  declare recep_rep, facet_rep : object;
+  conn := self;
+  
+  if (loop<=replica) then
+    recep := conn.source();
+    facet := conn.destination();
+  
+    comp1_rep := parent_assembly.findModel(comp1.name() + "_Replica" + intToString(loop));
+    comp2_rep := parent_assembly.findModel(comp2.name() + "_Replica" + intToString(loop));
+    recep_rep := comp1_rep.findObject(recep.name());
+    facet_rep := comp2_rep.findObject(facet.name());
+  
+    parent_assembly.addConnection("invoke", recep_rep, facet_rep);
+    conn.cloneInvoke(parent_assembly, comp1, comp2, replica, loop+1);
+  endif;
+}
+
+
+strategy createReplicas(parent_assembly : model; replica, loop : integer)
+{
+  declare connection : object;
+  connection := self;
+
+  if (loop<=replica) then
+     connection.source().cloneComponent(parent_assembly, loop);
+     connection.createReplicas(parent_assembly, replica, loop+1);
+  endif;
+}
+
+
+strategy cloneComponent(parent_assembly : model; loop : integer)
+{
+  declare comp_src, comp_dst : model;
+  comp_src := self;
+
+  comp_dst := comp_src.clone(parent_assembly);
+  comp_dst.setName(comp_src.name() + "_Replica" + intToString(loop));
+}
+
+
+strategy RemoveFOU(parent_assembly : model)
+{
+  parent_assembly.removeModel(self);
+}
