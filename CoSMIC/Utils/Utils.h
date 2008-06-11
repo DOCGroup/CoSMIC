@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <memory>
 #include <cctype>
-#include "Utils/Utils_Export.h"
+#include "Utils_export.h"
 
 namespace Utils
 {
