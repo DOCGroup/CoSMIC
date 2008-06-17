@@ -23,31 +23,52 @@
 #include "UmlExt.h"
 
 #ifdef _USE_DOM
-	#include "UdmDOM.h"
+  #include "UdmDOM.h"
 #endif
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
 
+namespace PICML
+{
+  // Forward decl.
+  class Visitor;
+}
 
+/**
+ * @class CUdmApp
+ *
+ * Main application class for the UDM interpreter.
+ */
 class CUdmApp
 {
 
 public:
-	static int Initialize();
-	static void UdmMain(Udm::DataNetwork* p_backend,
+  static int Initialize();
+  static void UdmMain(Udm::DataNetwork* p_backend,
                       Udm::Object currentObject,
-                      set<Udm::Object> selectedObjects,
+                      set <Udm::Object> selectedObjects,
                       long param);
 
   static void SetParameter (const std::string & name,
                             const std::string & value);
 
 #ifdef _DEBUG
-	static string ExtractName(Udm::Object ob);
+  static string ExtractName(Udm::Object ob);
 #endif
 
 private:
+  /**
+   * Generate the deployment plan for the specified object. If
+   * the object is not a PICML::DeploymentPlan object, then
+   * it will be ignored.
+   *
+   * @param[in]         obj           Target object.
+   * @param[in]         visitor       Deployment plan visitor.
+   */
+  static void generate_deployment_plan (const Udm::Object & obj,
+                                        PICML::Visitor & visitor);
+
   /// Output path for the deployment plan files.
   static std::string output_path_;
 

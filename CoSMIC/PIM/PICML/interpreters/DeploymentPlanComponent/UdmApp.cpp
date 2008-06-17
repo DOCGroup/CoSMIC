@@ -44,6 +44,7 @@ this software.
 #include "DeploymentPlan_MainDialog.h"
 #include "PICML/PICML.h"
 #include "DeploymentPlan/DeploymentPlanVisitor.h"
+#include "boost/bind.hpp"
 
 using xercesc::XMLPlatformUtils;
 using xercesc::XMLException;
@@ -98,14 +99,15 @@ udm_exception::what() to form an error message.
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
 
-void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
-                      Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,  // Selected objects
-                      long param)      // Parameters
+void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
+                       Udm::Object focusObject,            // Focus object
+                       set <Udm::Object> selected,         // Selected objects
+                       long param)                         // Parameters
 {
   try
   {
     XMLPlatformUtils::Initialize();
+
     try
     {
       // We only need to ask for the output path it wasn't already
@@ -129,10 +131,26 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
       PICML::DeploymentPlanVisitor
         visitor (CUdmApp::output_path_, disable_optimize);
 
-      PICML::RootFolder
-        start = PICML::RootFolder::Cast (p_backend->GetRootObject());
+      if (selected.empty ())
+      {
+        // Since nothing was selected, we are going to generate
+        // deployment plans for all the PICML::DeploymentPlan elements
+        // defined in the RootFolder.
+        PICML::RootFolder
+          start = PICML::RootFolder::Cast (p_backend->GetRootObject());
 
-      start.Accept (visitor);
+        start.Accept (visitor);
+      }
+      else
+      {
+        // Only generate the deployment plan for the objects that
+        // the user selected.
+        std::for_each (selected.begin (),
+                       selected.end (),
+                       boost::bind (&CUdmApp::generate_deployment_plan,
+                                    _1,
+                                    boost::ref (visitor)));
+      }
     }
     catch(udm_exception &e)
     {
@@ -172,6 +190,36 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   return;
 }
 
+//
+// SetParameter
+//
+void CUdmApp::
+SetParameter (const std::string & name, const std::string & value)
+{
+  if (name == "output")
+  {
+    CUdmApp::output_path_ = value;
+  }
+  else if (name == "non-interactive")
+  {
+    CUdmApp::interactive_ = false;
+  }
+}
+
+//
+// generate_deployment_plan
+//
+void CUdmApp::
+generate_deployment_plan (const Udm::Object & obj,
+                          PICML::Visitor & visitor)
+{
+  if (obj.type () == PICML::DeploymentPlan::meta)
+  {
+    PICML::DeploymentPlan plan = PICML::DeploymentPlan::Cast (obj);
+    plan.Accept (visitor);
+  }
+}
+
 #ifdef _DEBUG
 
 /*****************************************************/
@@ -209,14 +257,3 @@ string CUdmApp::ExtractName(Udm::Object ob)
 }
 
 #endif // _DEBUG
-
-void CUdmApp::SetParameter (const std::string & name,
-                            const std::string & value)
-{
-  if (name == "output")
-    CUdmApp::output_path_ = value;
-  else if (name == "non-interactive")
-    CUdmApp::interactive_ = false;
-}
-
-

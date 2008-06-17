@@ -22,4 +22,6 @@ workspace {
   Path
   PathComponent
   PropertyManager
+  
+  QEDDeployment
 }

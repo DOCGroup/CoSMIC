@@ -1,15 +1,30 @@
 // $Id$
 
-project (DeploymentPlanComponent): boost_base, mfc, picmllib, register {
-  after += PICML DeploymentPlan
+project (QEDDeployment): boost_base, picmllib {
+  sharedname    = QEDDeployment
+  dynamicflags += QED_DEPLOYMENT_BUILD_DLL
 
-  macros += PICML_HAS_DLL _USRDLL _WINDLL
-  sharedname = DeploymentPlanComponent
-  libs += PICML DeploymentPlan
+  Source_Files {
+    QED_Deployment_Visitor.cpp
+    QED_Implementation_Finder.cpp
+  }
+
+  Header_Files {
+    QED_Deployment_Export.h
+  }
+}
+
+project (QEDDeploymentComponent) : mfc, picmllib, register {
+  sharedname    = QEDDeploymentComponent
+  dynamicflags += _USRDLL _WINDLL
+
+  after += QEDDeployment
+  libs  += QEDDeployment
+
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
-  specific (vc6,vc7,vc71,vc8) {
+  specific (nmake, vc6, vc7, vc71, vc8, vc9) {
      link_options += /DEF:Component.def
   }
 
@@ -21,7 +36,6 @@ project (DeploymentPlanComponent): boost_base, mfc, picmllib, register {
     $(GME_ROOT)/SDK/BON/ComponentObj.cpp
     Component.rc
     Component.def
-    DeploymentPlan_MainDialog.cpp
     RawComponent.cpp
     UdmApp.cpp
   }

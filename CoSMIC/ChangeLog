@@ -1,3 +1,44 @@
+Tue Jun 17 21:56:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          It is now possible to generate the deployment plan for a select
+          number of deployments by right-clicking the target deployment
+          plan and clicking the interpreter. The default interpretation
+          is the generate all the deployment plans in the model.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/QEDDeployment:
+        * PIM/PICML/interpreters/QEDDeployment/Component.def:
+        * PIM/PICML/interpreters/QEDDeployment/Component.rc:
+        * PIM/PICML/interpreters/QEDDeployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.h:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.h:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.h:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/compicon.ico:
+        * PIM/PICML/interpreters/QEDDeployment/resource.h:
+
+          Initial implementation of the QED deployment plan generator. This
+          should NOT be included in the standard CoSMIC release.
+
 Wed Jun 11 15:18:24 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/Utils.h:

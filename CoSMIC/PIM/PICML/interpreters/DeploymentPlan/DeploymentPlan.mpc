@@ -1,4 +1,6 @@
-project(DeploymentPlan): picmllib {
+// $Id$
+
+project(DeploymentPlan): boost_base, picmllib {
 
    after += PICML
    sharedname = DeploymentPlan

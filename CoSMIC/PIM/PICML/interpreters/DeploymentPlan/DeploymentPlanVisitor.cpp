@@ -1,7 +1,14 @@
+// $Id$
+
 #include <algorithm>
 #include <functional>
-#include "DeploymentPlan/DeploymentPlanVisitor.h"
+#include "DeploymentPlanVisitor.h"
+#include "boost/bind.hpp"
 #include "UmlExt.h"
+#include "Utils/Utils.h"
+
+using Utils::XStr;
+using Utils::CreateUuid;
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -11,28 +18,41 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-#include "Utils/Utils.h"
-using Utils::XStr;
-using Utils::CreateUuid;
-
 namespace PICML
 {
+  //
+  // DeploymentPlanVisitor
+  //
   DeploymentPlanVisitor::
-  DeploymentPlanVisitor (const std::string& outputPath, int disable_opt)
-    : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-      outputPath_ (outputPath), disable_opt_ (disable_opt)
+  DeploymentPlanVisitor (const std::string & outputPath,
+                         int disable_opt)
+    : impl_ (0),
+      doc_ (0),
+      root_ (0),
+      curr_ (0),
+      serializer_ (0),
+      target_ (0),
+      outputPath_ (outputPath),
+      disable_opt_ (disable_opt)
   {
     this->init();
   }
 
-  DeploymentPlanVisitor::~DeploymentPlanVisitor ()
+  //
+  // ~DeploymentPlanVisitor
+  //
+  DeploymentPlanVisitor::~DeploymentPlanVisitor (void)
   {
     if (this->doc_)
       this->doc_->release();
+
     delete this->target_;
   }
 
-  void DeploymentPlanVisitor::init()
+  //
+  // init
+  //
+  void DeploymentPlanVisitor::init (void)
   {
     this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
     this->serializer_ = ((DOMImplementationLS*)impl_)->createDOMWriter();
@@ -51,33 +71,53 @@ namespace PICML
       this->serializer_->setFeature (XMLUni::fgDOMWRTBOM, false);
   }
 
-  void DeploymentPlanVisitor::initTarget (const std::string& fileName)
+  //
+  // initTarget
+  //
+  void DeploymentPlanVisitor::
+  initTarget (const std::string & fileName)
   {
     if (this->target_)
       delete this->target_;
+
     this->target_ = new LocalFileFormatTarget (fileName.c_str());
   }
 
+  //
+  // initNodeRefName
+  //
   void DeploymentPlanVisitor::initNodeRefName (const std::string& nodeRefName)
   {
     this->node_ref_name_ = nodeRefName;
   }
 
-  std::string DeploymentPlanVisitor::retNodeRefName ()
+  //
+  // retNodeRefName
+  //
+  std::string DeploymentPlanVisitor::retNodeRefName (void)
   {
     return this->node_ref_name_;
   }
 
+  //
+  // initcgName
+  //
   void DeploymentPlanVisitor::initcgName (const std::string& cgName)
   {
     this->cg_name_ = cgName;
   }
 
-  std::string DeploymentPlanVisitor::retcgName ()
+  //
+  // retcgName
+  //
+  std::string DeploymentPlanVisitor::retcgName (void)
   {
     return this->cg_name_;
   }
 
+  //
+  // initDocument
+  //
   void DeploymentPlanVisitor::initDocument (const std::string& rootName)
   {
     if (this->doc_)
@@ -133,8 +173,11 @@ namespace PICML
     }
   }
 
-  DOMElement* DeploymentPlanVisitor::createSimpleContent (const std::string& name,
-    const std::string& value)
+  //
+  // createSimpleContent
+  //
+  DOMElement* DeploymentPlanVisitor::
+  createSimpleContent (const std::string& name, const std::string& value)
   {
     DOMElement* pName = this->doc_->createElement (XStr (name.c_str()));
     DOMText* pValue = this->doc_->createTextNode (XStr (value.c_str()));
@@ -142,23 +185,28 @@ namespace PICML
     return pName;
   }
 
-  void DeploymentPlanVisitor::Visit_RootFolder(const RootFolder& rf)
+  //
+  // Visit_RootFolder
+  //
+  void DeploymentPlanVisitor::Visit_RootFolder (const RootFolder& rf)
   {
-    {
-      this->root_folder_ = rf;
-      std::set<DeploymentPlans> folders = rf.DeploymentPlans_kind_children();
-      for (std::set<DeploymentPlans>::iterator iter = folders.begin();
-        iter != folders.end();
-        ++iter)
-      {
-        DeploymentPlans folder = *iter;
-        folder.Accept (*this);
-      }
-    }
+    this->root_folder_ = rf;
+
+    typedef std::set <DeploymentPlans> DeploymentPlans_Set;
+    DeploymentPlans_Set folders = rf.DeploymentPlans_kind_children ();
+
+    std::for_each (folders.begin (),
+                   folders.end (),
+                   boost::bind (&DeploymentPlans_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
 
-  // Predefined Types
-  void DeploymentPlanVisitor::Visit_LongInteger(const LongInteger&)
+  //
+  // Visit_LongInteger
+  //
+  void DeploymentPlanVisitor::
+  Visit_LongInteger (const LongInteger &)
   {
     this->push();
     DOMElement* type = this->doc_->createElement (XStr ("type"));
@@ -169,18 +217,29 @@ namespace PICML
     this->pop();
   }
 
-  void DeploymentPlanVisitor::Visit_RealNumber(const RealNumber& real)
+  //
+  // Visit_RealNumber
+  //
+  void DeploymentPlanVisitor::
+  Visit_RealNumber (const RealNumber &)
   {
     this->push();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
+
+    DOMElement * type = this->doc_->createElement (XStr ("type"));
+
     this->curr_->appendChild (type);
     this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_double"));
+
+    this->curr_->appendChild (
+      this->createSimpleContent ("kind", "tk_double"));
+
     this->pop();
   }
 
-  void DeploymentPlanVisitor::Visit_Boolean(const Boolean&)
+  //
+  // Visit_Boolean
+  //
+  void DeploymentPlanVisitor::Visit_Boolean (const Boolean&)
   {
     this->push();
     DOMElement* type = this->doc_->createElement (XStr ("type"));
@@ -870,7 +929,7 @@ namespace PICML
     RequiredRequestPort receptacle = iv.srcinvoke_end();
 
     // Get the facet end. This could be a supported interface.
-    ProvidedRequestPort facet = 
+    ProvidedRequestPort facet =
       PICML::ProvidedRequestPort::Cast (iv.dstinvoke_end());
 
     std::map<Component,std::string> receptacles;
@@ -1206,48 +1265,65 @@ namespace PICML
     (const ComponentPackageReference&)
   {}
 
-  void DeploymentPlanVisitor::Visit_DeploymentPlans(const DeploymentPlans& dps)
+  //
+  // Visit_DeploymentPlans
+  //
+  void DeploymentPlanVisitor::
+  Visit_DeploymentPlans (const DeploymentPlans & dps)
   {
-    std::set<DeploymentPlan> plans = dps.DeploymentPlan_kind_children();
-    for (std::set<DeploymentPlan>::iterator iter = plans.begin();
-      iter != plans.end();
-      ++iter)
-    {
-      DeploymentPlan plan = *iter;
-      plan.Accept (*this);
+    typedef std::set <DeploymentPlan> DeploymentPlan_Set;
+    DeploymentPlan_Set plans = dps.DeploymentPlan_kind_children ();
 
-      this->instantiate_deployment_plan_descriptor (plan);
-      this->create_label_and_uuid (plan);
-      this->generate_implementation_descriptions ();
-      this->generate_instance_deployment_descriptions ();
-      this->generate_assembly_instance_deployment_descriptions ();
-      this->generate_parent_connections ();
-      this->generate_child_connections ();
-      this->generate_artifact_descriptions ();
-      this->generate_infoproperties(plan);
-      this->finalize_deployment_plan_descriptor ();
-
-      this->selected_instances_.clear ();
-      this->path_parents_.clear ();
-      this->containing_assemblies_.clear ();
-      this->assembly_components_.clear ();
-      this->monoimpls_.clear ();
-      this->deployed_instances_.clear ();
-      this->selected_impls_.clear ();
-      this->monolith_components_.clear ();
-      this->monolith_types_.clear ();
-      this->artifacts_.clear ();
-      this->final_assembly_components_.clear ();
-    }
+    std::for_each (plans.begin (),
+                   plans.end (),
+                   boost::bind (&DeploymentPlan_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
 
-  void DeploymentPlanVisitor::Visit_DeploymentPlan(const DeploymentPlan& dp)
+  //
+  // Visit_DeploymentPlan
+  //
+  void DeploymentPlanVisitor::
+  Visit_DeploymentPlan (const DeploymentPlan & plan)
   {
-    const std::set<CollocationGroup> dps = dp.CollocationGroup_children();
+    this->Visit_DeploymentPlan_i (plan);
 
-    for (std::set<CollocationGroup>::const_iterator iter = dps.begin();
-      iter != dps.end();
-      ++iter)
+    this->instantiate_deployment_plan_descriptor (plan);
+    this->create_label_and_uuid (plan);
+    this->generate_implementation_descriptions (plan);
+    this->generate_instance_deployment_descriptions ();
+    this->generate_assembly_instance_deployment_descriptions ();
+    this->generate_parent_connections ();
+    this->generate_child_connections ();
+    this->generate_artifact_descriptions (plan);
+    this->generate_infoproperties(plan);
+    this->finalize_deployment_plan_descriptor ();
+
+    this->selected_instances_.clear ();
+    this->path_parents_.clear ();
+    this->containing_assemblies_.clear ();
+    this->assembly_components_.clear ();
+    this->monoimpls_.clear ();
+    this->deployed_instances_.clear ();
+    this->selected_impls_.clear ();
+    this->monolith_components_.clear ();
+    this->monolith_types_.clear ();
+    this->artifacts_.clear ();
+    this->final_assembly_components_.clear ();
+  }
+
+  //
+  // Visit_DeploymentPlan_i
+  //
+  void DeploymentPlanVisitor::
+  Visit_DeploymentPlan_i (const PICML::DeploymentPlan & plan)
+  {
+    const std::set<CollocationGroup> dps = plan.CollocationGroup_children();
+
+    for (std::set <CollocationGroup>::const_iterator iter = dps.begin();
+         iter != dps.end();
+         ++ iter)
     {
       std::string nodeRefName;
       std::string cgName;
@@ -1258,9 +1334,9 @@ namespace PICML
       const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
       for (std::set<InstanceMapping>::const_iterator
-        cg_ins_map_iter = cg_ins_maps.begin();
-        cg_ins_map_iter != cg_ins_maps.end ();
-      ++cg_ins_map_iter)
+           cg_ins_map_iter = cg_ins_maps.begin();
+           cg_ins_map_iter != cg_ins_maps.end ();
+           ++ cg_ins_map_iter)
       {
         InstanceMapping cg_ins = *cg_ins_map_iter;
         NodeReference node_ref = cg_ins.dstInstanceMapping_end();
@@ -1285,7 +1361,7 @@ namespace PICML
           // Save the component instance and it's type.
           this->monolith_components_.insert (comp);
 
-          PICML::Component monotype = 
+          PICML::Component monotype =
             PICML::Component::Cast (comp.Archetype ());
 
           while (monotype.isInstance ())
@@ -1330,7 +1406,7 @@ namespace PICML
           // Save the component instance and it's type.
           this->monolith_components_.insert (referred_comp);
 
-          PICML::Component monotype = 
+          PICML::Component monotype =
             PICML::Component::Cast (referred_comp.Archetype ());
 
           while (monotype.isInstance ())
@@ -1345,7 +1421,11 @@ namespace PICML
     }
   }
 
-  void DeploymentPlanVisitor::instantiate_deployment_plan_descriptor (DeploymentPlan& dp)
+  //
+  // instantiate_deployment_plan_descriptor
+  //
+  void DeploymentPlanVisitor::
+  instantiate_deployment_plan_descriptor (const DeploymentPlan & dp)
   {
     this->push();
     std::string name = this->outputPath_ + "\\";
@@ -1356,7 +1436,11 @@ namespace PICML
     this->initRootAttributes();
   }
 
-  void DeploymentPlanVisitor::create_label_and_uuid (DeploymentPlan& dp)
+  //
+  // create_label_and_uuid
+  //
+  void DeploymentPlanVisitor::
+  create_label_and_uuid (const DeploymentPlan& dp)
   {
     std::string label = dp.label();
     if (!label.empty())
@@ -1417,33 +1501,61 @@ namespace PICML
     }
   }
 
-  void DeploymentPlanVisitor::generate_implementation_descriptions (void)
+  //
+  // generate_implementation_descriptions
+  //
+  void DeploymentPlanVisitor::
+  generate_implementation_descriptions (const PICML::DeploymentPlan & plan)
   {
-    std::set<ComponentImplementations>
-      folders = this->root_folder_.ComponentImplementations_kind_children();
-    for (std::set<ComponentImplementations>::iterator iter = folders.begin();
-      iter != folders.end();
-      ++iter)
+    if (this->root_folder_ == Udm::null)
     {
-      ComponentImplementations folder = *iter;
-      folder.Accept (*this);
+      this->root_folder_ =
+        PICML::RootFolder::Cast (
+        PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
     }
+
+    typedef std::set <ComponentImplementations> ComponentImplementations_Set;
+
+    ComponentImplementations_Set folders =
+      this->root_folder_.ComponentImplementations_kind_children();
+
+    std::for_each (folders.begin (),
+                   folders.end (),
+                   boost::bind (&ComponentImplementations_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
 
-  void DeploymentPlanVisitor::generate_artifact_descriptions (void)
+  //
+  // generate_artifact_descriptions
+  //
+  void DeploymentPlanVisitor::
+  generate_artifact_descriptions (const PICML::DeploymentPlan & plan)
   {
-    std::set<ImplementationArtifacts>
-      folders = this->root_folder_.ImplementationArtifacts_kind_children();
-    for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
-      iter != folders.end();
-      ++iter)
+    if (this->root_folder_ == Udm::null)
     {
-      ImplementationArtifacts folder = *iter;
-      folder.Accept (*this);
+      this->root_folder_ =
+        PICML::RootFolder::Cast (
+        PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
     }
+
+    typedef std::set <ImplementationArtifacts> ImplementationArtifacts_Set;
+
+    ImplementationArtifacts_Set folders =
+      this->root_folder_.ImplementationArtifacts_kind_children();
+
+    std::for_each (folders.begin (),
+                   folders.end (),
+                   boost::bind (&ImplementationArtifacts_Set::value_type::Accept,
+                                _1,
+                                boost::ref (*this)));
   }
 
-  void DeploymentPlanVisitor::generate_instance_deployment_descriptions (void)
+  //
+  // generate_instance_deployment_descriptions
+  //
+  void DeploymentPlanVisitor::
+  generate_instance_deployment_descriptions (void)
   {
     for (std::set<PICML::Component>::const_iterator monolith_iter =
       this->monolith_components_.begin ();
@@ -1486,12 +1598,12 @@ namespace PICML
   {
     if (comp.isInstance ())
     {
-      Component typeParent = 
+      Component typeParent =
         PICML::Component::Cast (comp.Archetype ());
 
       while (typeParent.isInstance ())
         typeParent = PICML::Component::Cast (typeParent.Archetype ());
-      
+
       std::string component_name = typeParent.name ();
 
       if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())

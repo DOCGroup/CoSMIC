@@ -270,20 +270,21 @@ namespace PICML
     DeploymentPlan_Export virtual void create_component_config_properties (MonolithicImplementation& mimpl);
     DeploymentPlan_Export virtual void generate_instance_deployment_descriptions (void);
     DeploymentPlan_Export virtual void generate_assembly_instance_deployment_descriptions (void);
-    DeploymentPlan_Export virtual void generate_artifact_descriptions (void);
+    DeploymentPlan_Export virtual void generate_artifact_descriptions (const PICML::DeploymentPlan & );
     DeploymentPlan_Export virtual void generate_infoproperties (const DeploymentPlan &);
-    DeploymentPlan_Export virtual void generate_implementation_descriptions (void);
+    DeploymentPlan_Export virtual void generate_implementation_descriptions (const PICML::DeploymentPlan & );
     DeploymentPlan_Export virtual void generate_child_connections (void);
     DeploymentPlan_Export virtual void generate_parent_connections (void);
-    DeploymentPlan_Export virtual void instantiate_deployment_plan_descriptor (DeploymentPlan& dp);
+    DeploymentPlan_Export virtual void instantiate_deployment_plan_descriptor (const DeploymentPlan & dp);
     DeploymentPlan_Export virtual void finalize_deployment_plan_descriptor (void);
-    DeploymentPlan_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
+    DeploymentPlan_Export virtual void create_label_and_uuid (const DeploymentPlan & dp);
 
   protected:
     template <typename T>
     std::string unique_id (const T &comp);
 
   private:
+    void Visit_DeploymentPlan_i (const PICML::DeploymentPlan & );
 
     DOMImplementation*  impl_;
     DOMDocument*        doc_;

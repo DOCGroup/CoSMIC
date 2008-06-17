@@ -1,0 +1,30 @@
+REGEDIT4
+
+[HKEY_CURRENT_USER\Software\Classes]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID]
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{8CD865CE-C4D6-402C-B5EE-C3B677EB3586}]
+@="MGA.Interpreter.QEDDeployment"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{8CD865CE-C4D6-402C-B5EE-C3B677EB3586}\ProgID]
+@="MGA.Interpreter.QEDDeployment"
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{8CD865CE-C4D6-402C-B5EE-C3B677EB3586}\InProcServer32]
+@="QEDDeploymentDeployment.dll"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.QEDDeployment]
+@="MGA.Interpreter.QEDDeployment"
+
+[HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.QEDDeployment\CLSID]
+@="{8CD865CE-C4D6-402C-B5EE-C3B677EB3586}"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.QEDDeployment]
+"Tooltip"="QED Deployment Interpreter"
+"Icon"=",IDI_COMPICON"
+"Paradigm"="PICML"
+"Type"=dword:00000001
+"Description"="QED Deployment Interpreter"
+
+[HKEY_CURRENT_USER\Software\GME\Components\MGA.Interpreter.QEDDeployment\Associated]
+"PICML"=""
