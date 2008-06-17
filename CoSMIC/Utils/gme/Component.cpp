@@ -14,6 +14,14 @@ namespace GME
   }
 
   //
+  // Component
+  //
+  Component::Component (const std::string & progid)
+  {
+    this->load (progid);
+  }
+
+  //
   // ~Component
   //
   Component::~Component (void)
@@ -76,9 +84,22 @@ namespace GME
   //
   // invoke
   //
-  void Component::invoke (Project & project, std::vector <FCO> & selected, long param)
+  void Component::invoke (Project & project,
+                          std::vector <FCO> & selected,
+                          long param)
   {
-    VERIFY_HRESULT (this->component_->Invoke (project.impl (), 0, param));
+    CComBSTR progid ("Mga.MgaFCOs");
+    CComPtr <IMgaFCOs> selected_raw;
+    VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
+
+    std::vector <GME::FCO>::const_iterator
+      iter = selected.begin (), iter_end = selected.end ();
+
+    for ( ; iter != iter_end; ++ iter)
+      VERIFY_HRESULT (selected_raw->Insert (iter->impl (), 0));
+
+    VERIFY_HRESULT (
+      this->component_->Invoke (project.impl (), selected_raw, param));
   }
 
   //

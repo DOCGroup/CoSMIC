@@ -253,6 +253,13 @@ namespace GME
     size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
+    /**
+     * Get the registry node for this folder object.
+     *
+     * @return      The registry node.
+     */
+    RegistryNode registry_node (const std::string & path) const;
+
   private:
     /// The COM pointer for the FCO type.
     mutable CComPtr <IMgaFCO> fco_;

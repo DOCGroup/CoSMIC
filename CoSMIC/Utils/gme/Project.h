@@ -171,8 +171,19 @@ namespace GME
      */
     Territory active_territory (void);
 
-    /// Begin a new transaction using the project's default territory
+    /**
+     * Begin a new transaction using the project's default territory.
+     */
     void begin_transaction (void);
+
+    /**
+     * Begin a new transaction using the project's default territory.
+     * The user has the option of commiting, or aborting, the current
+     * transition.
+     *
+     * @param[in]     commit_existing     Commit existing transaction.
+     */
+    void begin_transaction (bool commit_existing);
 
     /**
      * Begin a new transaction using the specified territory.

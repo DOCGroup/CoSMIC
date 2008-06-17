@@ -1,3 +1,25 @@
+Tue Jun 17 22:02:40 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Component.h:
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.h:
+        * Utils/gme/ComponentEx.cpp:
+
+          It is now possible to instantiate (or load) a GME component,
+          such as an interpreter, at construction time.
+
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+
+          Defined the method register_node () that can return a node
+          in the registry given its path based on its parent.
+
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          Overloadded the begin_transaction () method so that you can
+          commit/abort the current transaction, if applicable.
+
 Tue Jun 17 21:56:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:

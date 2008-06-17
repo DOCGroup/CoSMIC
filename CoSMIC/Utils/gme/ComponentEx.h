@@ -31,6 +31,14 @@ namespace GME
     /// Default constructor.
     ComponentEx (void);
 
+    /**
+     * Load the specified component based on the provided
+     * ProgID.
+     *
+     * @param[in]       progid          Program ID.
+     */
+    ComponentEx (const std::string & progid);
+
     /// Destructor
     virtual ~ComponentEx (void);
 

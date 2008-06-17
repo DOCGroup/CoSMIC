@@ -23,6 +23,15 @@ namespace GME
   }
 
   //
+  // ComponentEx
+  //
+  ComponentEx::ComponentEx (const std::string & progid)
+    : Component (progid)
+  {
+
+  }
+
+  //
   // parameter
   //
   void ComponentEx::parameter (const std::string & param,
@@ -40,12 +49,22 @@ namespace GME
   //
   void ComponentEx::invoke (Project & project,
                             FCO & current,
-                            std::vector <FCO> & selected,
+                            std::vector <GME::FCO> & selected,
                             long param)
   {
+    CComBSTR progid ("Mga.MgaFCOs");
+    CComPtr <IMgaFCOs> selected_raw;
+    VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
+
+    std::vector <GME::FCO>::const_iterator
+      iter = selected.begin (), iter_end = selected.end ();
+
+    for ( ; iter != iter_end; ++ iter)
+      VERIFY_HRESULT (selected_raw->Insert (iter->impl (), 0));
+
     VERIFY_HRESULT (this->impl ()->InvokeEx (project.impl (),
                                              current.impl (),
-                                             0,
+                                             selected_raw,
                                              param));
   }
 

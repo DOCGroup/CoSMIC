@@ -35,6 +35,14 @@ namespace GME
     /// Default constructor.
     Component (void);
 
+    /**
+     * Initializing constructor. Load the specified component based on
+     * the provided program id.
+     *
+     * @param[in]       progid          Program ID.
+     */
+    Component (const std::string & progid);
+
     /// Destructor
     virtual ~Component (void);
 
@@ -77,7 +85,8 @@ namespace GME
     void invoke (Project & project, std::vector <FCO> & selected, long param);
 
     /**
-     * Load a component with the specified program id.
+     * Load a component with the specified program id. This is useful
+     * when automating a interpreter from another client application.
      *
      * @param[in]   progid      Program id of the component.
      */

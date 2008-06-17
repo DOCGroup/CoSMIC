@@ -335,4 +335,16 @@ namespace GME
     nodes.attach (rawnodes.Detach ());
     return nodes.size ();
   }
+
+  //
+  // registry_node
+  //
+  RegistryNode FCO::registry_node (const std::string & path) const
+  {
+    CComPtr <IMgaRegNode> node;
+    CComBSTR bstrval (path.size (), path.c_str ());
+
+    VERIFY_HRESULT (this->impl ()->get_RegistryNode (bstrval, &node));
+    return node.p;
+  }
 }

@@ -237,7 +237,26 @@ namespace GME
     if (this->terr_ == 0)
       this->terr_ = this->create_territory ();
 
-    VERIFY_HRESULT (this->project_->BeginTransaction (this->terr_));
+    // Begin the default transition.
+    this->begin_transaction (this->terr_);
+  }
+
+  //
+  // begin_transaction
+  //
+  void Project::begin_transaction (bool commit_existing)
+  {
+    if (this->terr_ != 0)
+    {
+      // We need to either commit, or abort, the current transaction.
+      if (commit_existing)
+        this->commit_transaction ();
+      else
+        this->abort_transaction ();
+    }
+
+    // Begin the default transition.
+    this->begin_transaction ();
   }
 
   //
