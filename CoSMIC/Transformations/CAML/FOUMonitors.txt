@@ -1,0 +1,110 @@
+// This script is designed for CQML's BasicSP example.
+
+aspect Monitor() {
+   createHBType();
+   Monitors();
+}
+
+strategy Monitors()
+{
+  declare hbtype, container, src, dest, plan : model;
+  declare fou_list : modelList;
+  declare colloc_list : objectList;
+  
+  container := rootFolder().findFolder("ComponentImplementations").
+                            findModel("BasicSP");
+  src := container.findModel("BasicSP");
+  dest := src.clone(container);
+  dest.setName(src.name() + "WithMonitor");
+  fou_list := dest.models("FailOverUnit");
+
+  hbtype := rootFolder().findFolder("HeartbeatFolder")
+                        .findModel("HeartbeatFile")
+                        .findModel("Monitor")
+                        .findModel("Heartbeat");
+  plan := rootFolder().findFolder("DeploymentPlan")  
+                      .findModel("Plan");
+  colloc_list := plan.sets("CollocationGroup");
+
+  fou_list->createMonitors(dest, hbtype, plan, colloc_list);
+  fou_list->RemoveFOU(dest);
+}
+
+strategy createMonitors(assembly, hbtype, plan : model; colloc_list: objectList) {
+  declare fou : model;
+  declare comp_list : modelList;
+
+  fou := self;
+  comp_list := assembly.connections("ComponentQoS")
+                       ->select (c | c.destination() == fou)
+                       ->source();   
+  
+  colloc_list->hasMember(assembly, hbtype, plan, comp_list);
+}
+
+strategy hasMember(assembly, hbtype, plan : model; comp_list : modelList) {
+  declare colloc_set : object;
+  colloc_set := self;
+
+  comp_list->addHB(assembly, hbtype, plan, colloc_set);
+}
+
+strategy addHB(assembly, hbtype, plan : model; colloc_set : set) {
+  declare comp, inst : model;
+  declare ref : object;
+  comp := self;
+
+  if (colloc_set.members()
+                ->select(r | r.name() == comp.name())
+                ->isNotEmpty() ) then
+      inst := assembly.addInstance("Component","Heartbeat_"+comp.name(), hbtype);
+      connectToFaultDetector(assembly, inst, plan, colloc_set);
+      ref := plan.addReference("ComponentRef",inst.name(), inst);
+      colloc_set.addMember(ref);
+  endif;
+}
+
+strategy connectToFaultDetector (assembly, inst, plan : model; colloc_set : set) {
+  declare fd_type, fd_inst : model;
+  declare fd_port, inst_port, fd_ref : object;
+  
+  fd_type := rootFolder().findFolder("HeartbeatFolder")
+                         .findModel("HeartbeatFile")
+                         .findModel("Monitor")
+                         .findModel("FaultDetector");
+  if (assembly.findModel("FaultDetector").isNull()) then
+     fd_inst := assembly.addInstance("Component",fd_type.name(), fd_type);
+     fd_ref := plan.addReference("ComponentRef", fd_inst.name(), fd_inst);
+     colloc_set.addMember(fd_ref);
+  endif;
+  
+  fd_inst := assembly.findModel(fd_type.name());
+  fd_port := fd_inst.findObject("isAlive");
+  inst_port := inst.findObject("alive");
+  assembly.addConnection("invoke",fd_port,inst_port);
+}
+
+strategy createHBType () {
+   declare pack, hb, iface, fd : model;
+
+   if (rootFolder().findFolder("HeartbeatFolder").isNull()) then
+     pack := rootFolder().addFolder("InterfaceDefinitions","HeartbeatFolder")
+                         .addModel("File","HeartbeatFile")
+                         .addModel("Package","Monitor");
+
+     iface := pack.addModel("Object","Monitorable");
+     iface.addModel("TwowayOperation","isAlive");
+
+     hb := pack.addModel("Component","Heartbeat");
+     hb.addReference("ProvidedRequestPort","alive",iface);
+     
+     fd := pack.addModel("Component","FaultDetector");
+     fd.addReference("RequiredRequestPort","isAlive",iface)
+       .setAttribute("multiple_connections",1);
+   endif;
+}
+
+strategy RemoveFOU(parent_assembly : model)
+{
+  parent_assembly.removeModel(self);
+}
