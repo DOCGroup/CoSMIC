@@ -1,4 +1,3 @@
-// This script is designed for CQML's BasicSP example.
 
 aspect Monitor() {
    createHBType();
@@ -7,27 +6,52 @@ aspect Monitor() {
 
 strategy Monitors()
 {
-  declare hbtype, container, src, dest, plan : model;
-  declare fou_list : modelList;
-  declare colloc_list : objectList;
+  declare hbtype, plan : model;
+  declare colloc_list, container_list : objectList;
+  declare dp_folder : folder;
   
-  container := rootFolder().findFolder("ComponentImplementations").
-                            findModel("BasicSP");
-  src := container.findModel("BasicSP");
-  dest := src.clone(container);
-  dest.setName(src.name() + "WithMonitor");
-  fou_list := dest.models("FailOverUnit");
+  container_list := rootFolder().findFolder("ComponentImplementations")
+                                .models("ComponentImplementationContainer");
 
   hbtype := rootFolder().findFolder("HeartbeatFolder")
                         .findModel("HeartbeatFile")
                         .findModel("Monitor")
                         .findModel("Heartbeat");
-  plan := rootFolder().findFolder("DeploymentPlan")  
+  
+  plan := rootFolder().findFolder("DeploymentPlan")
                       .findModel("Plan");
-  colloc_list := plan.sets("CollocationGroup");
+  if (not plan.isNull()) then
+    colloc_list := plan.sets("CollocationGroup");
+    container_list->searchAssemblies(hbtype, plan, colloc_list);
+  else
+    show("Can't find deployment plan: Plan");
+  endif;
+}
 
-  fou_list->createMonitors(dest, hbtype, plan, colloc_list);
-  fou_list->RemoveFOU(dest);
+strategy searchAssemblies(hbtype, plan : model; colloc_list : objectList)
+{
+  declare container : model;
+  declare assemblies : objectList;
+  
+  container := self;
+  container.models("ComponentAssembly")
+           ->checkFOU(hbtype, plan, container, colloc_list);
+}
+
+strategy checkFOU(hbtype, plan, container : model; colloc_list : objectList) {
+  declare dest, assembly : model;
+  declare fou_list : objectList;
+  
+  assembly := self;
+  if (not assembly.models("FailOverUnit")->isEmpty()) then
+    dest := assembly.clone(container);
+    dest.setName(assembly.name() + "_WithMonitors");
+    fou_list := dest.models("FailOverUnit");
+    fou_list->createMonitors(dest, hbtype, plan, colloc_list);
+    fou_list->RemoveFOU(dest);
+  else
+    show("Can't find any assembly with FailOverUnits in it!");
+  endif;
 }
 
 strategy createMonitors(assembly, hbtype, plan : model; colloc_list: objectList) {
@@ -54,13 +78,15 @@ strategy addHB(assembly, hbtype, plan : model; colloc_set : set) {
   declare ref : object;
   comp := self;
 
-  if (colloc_set.members()
+  if (not colloc_set.members()
                 ->select(r | r.name() == comp.name())
-                ->isNotEmpty() ) then
+                ->isEmpty() ) then
       inst := assembly.addInstance("Component","Heartbeat_"+comp.name(), hbtype);
       connectToFaultDetector(assembly, inst, plan, colloc_set);
       ref := plan.addReference("ComponentRef",inst.name(), inst);
       colloc_set.addMember(ref);
+  else
+      show("Collocation group set in the deployment plan is empty!");
   endif;
 }
 
@@ -72,6 +98,7 @@ strategy connectToFaultDetector (assembly, inst, plan : model; colloc_set : set)
                          .findModel("HeartbeatFile")
                          .findModel("Monitor")
                          .findModel("FaultDetector");
+                         
   if (assembly.findModel("FaultDetector").isNull()) then
      fd_inst := assembly.addInstance("Component",fd_type.name(), fd_type);
      fd_ref := plan.addReference("ComponentRef", fd_inst.name(), fd_inst);

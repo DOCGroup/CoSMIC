@@ -1,3 +1,23 @@
+Fri Jun 20 22:07:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/FailOverUnit/FOUMonitors.txt:
+          Generalized the tranformation to search assemblies.
+
+Thu Jun 19 23:18:01 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/FailOverUnit:
+
+        * Transformations/CAML:
+
+        * Transformations/CAML/FOUAspect-CompCloning.txt:
+        * Transformations/CAML/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/CAML/FOUAspect-Everything.txt:
+        * Transformations/CAML/FOUAspect.txt:
+        * Transformations/CAML/FOUMonitors.txt:
+
+          Renamed CAML to FailOverUnit. Added FOUMonitors.txt trasformation
+          specification for generating monitoring infrastructure.
+
 Tue Jun 17 22:02:40 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/gme/Component.h:
