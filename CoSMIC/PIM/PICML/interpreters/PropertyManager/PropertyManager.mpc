@@ -1,6 +1,6 @@
 // $Id$
 
-project (PropertyManager): acelib, mfc, boost_base, picmllib {
+project (PropertyManager): register, acelib, mfc, boost_base, picmllib {
   sharedname = PropertyManager
 
   includes +=  . \

@@ -985,3 +985,42 @@ get_index (const PICML_Data_Value * value, size_t & index) const
 
   return false;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// class PICML_Event_Data_Value
+
+//
+// PICML_Event_Data_Value
+//
+PICML_Event_Data_Value::
+PICML_Event_Data_Value (const std::string & name, PICML_Data_Value * parent)
+: PICML_Aggregate_Data_Value (name, parent)
+{
+
+}
+
+//
+// ~PICML_Event_Data_Value
+//
+PICML_Event_Data_Value::~PICML_Event_Data_Value (void)
+{
+
+}
+
+//
+// _create
+//
+PICML_Data_Value * PICML_Event_Data_Value::
+_create (const std::string & name, PICML_Data_Value * parent) const
+{
+  return new PICML_Event_Data_Value (name, parent);
+}
+
+//
+// accept
+//
+void PICML_Event_Data_Value::
+accept (PICML_Data_Value_Visitor & visitor) const
+{
+  visitor.visit_PICML_Event_Data_Value (*this);
+}

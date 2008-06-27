@@ -60,6 +60,8 @@ build_complex_i (const std::string & name,
     return this->build_collection (name, GME::Reference::_narrow (fco), value, parent);
   else if (meta == "Alias")
     return this->build_alias (name, GME::Reference::_narrow (fco), value, parent);
+  else if (meta == "Event")
+    return this->build_event (name, GME::Model::_narrow (fco), value, parent);
   else
     return false;
 }
@@ -99,6 +101,43 @@ build_aggregate (const std::string & name,
   value = auto_clean.release ();
   return true;
 }
+
+//
+// build_event
+//
+bool PICML_Data_Value_Builder::
+build_event (const std::string & name,
+             const GME::Model & event,
+             PICML_Data_Value * & value,
+             PICML_Data_Value * parent)
+{
+  PICML_Event_Data_Value * ev = new PICML_Event_Data_Value (name, parent);
+  std::auto_ptr <PICML_Event_Data_Value> auto_clean (ev);
+
+  typedef GME::Collection_T <GME::Reference> Member_Set;
+  Member_Set members;
+
+  if (event.references ("Member", members) > 0)
+  {
+    Member_Set::iterator
+      iter = members.items ().begin (),
+      iter_end = members.items ().end ();
+
+    PICML_Data_Value * temp = 0;
+
+    for (; iter != iter_end; iter ++)
+    {
+      if (this->create_data_value (iter->name (), iter->refers_to (), temp, ev))
+        ev->insert_member (temp);
+      else
+        return false;
+    }
+  }
+
+  value = auto_clean.release ();
+  return true;
+}
+
 
 //
 // build_collection

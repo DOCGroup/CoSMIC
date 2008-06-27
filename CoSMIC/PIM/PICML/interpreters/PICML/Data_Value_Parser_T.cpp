@@ -17,7 +17,7 @@ definition <ScannerT>::definition (PICML_Data_Value_Parser const & self)
     lexeme_d [alpha_p >> *(alnum_p | '_')];
 
   this->operators_ =
-    boost::spirit::ch_p (';') | ']' | '}';
+    boost::spirit::ch_p (';') | ']' | '}' | '>';
 
   this->string_ =
     confix_p ('\"', *boost::spirit::anychar_p, '\"');
@@ -28,8 +28,11 @@ definition <ScannerT>::definition (PICML_Data_Value_Parser const & self)
   this->sequence_value_ =
     confix_p ('[', *boost::spirit::anychar_p, ']');
 
+  this->event_value_ =
+    confix_p ('<', *boost::spirit::anychar_p, '>');
+
   this->value_ = boost::spirit::longest_d [
-    this->struct_value_ | this->sequence_value_ |
+    this->struct_value_ | this->sequence_value_ | this->event_value_ |
     this->string_ | *(anychar_p - this->operators_)];
 
   this->member_name_ =

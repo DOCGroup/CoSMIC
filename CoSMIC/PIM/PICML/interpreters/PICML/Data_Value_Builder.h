@@ -73,6 +73,11 @@ private:
                     PICML_Data_Value * & value,
                     PICML_Data_Value * parent = 0);
 
+  bool build_event (const std::string & name,
+                    const GME::Model & model,
+                    PICML_Data_Value * & value,
+                    PICML_Data_Value * parent = 0);
+
   bool build_complex_i (const std::string & name,
                         const std::string & meta,
                         const GME::FCO & model,

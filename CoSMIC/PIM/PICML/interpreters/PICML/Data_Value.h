@@ -310,6 +310,62 @@ private:
 
 //=============================================================================
 /**
+ * @class PICML_Event_Data_Value
+ */
+//=============================================================================
+
+class PICML_Export PICML_Event_Data_Value : public PICML_Aggregate_Data_Value
+{
+public:
+  typedef PICML_Aggregate_Data_Value::container_type container_type;
+
+  typedef container_type::iterator iterator;
+
+  typedef container_type::const_iterator const_iterator;
+
+  PICML_Event_Data_Value (const std::string & name,
+                          PICML_Data_Value * parent = 0);
+
+  virtual ~PICML_Event_Data_Value (void);
+
+  virtual PICML_Data_Value * _create (const std::string & name,
+                                      PICML_Data_Value * parent = 0) const;
+
+  virtual void accept (PICML_Data_Value_Visitor & visitor) const;
+
+  //virtual const std::string & value (void);
+
+  //virtual void value (const std::string & value);
+
+  //virtual void reset (void);
+
+  //void insert_member (PICML_Data_Value * member);
+
+  //void remove_member (const std::string & name);
+
+  //bool find_member (const std::string & name,
+  //                  PICML_Data_Value * & member) const;
+
+  //const PICML_Data_Value * operator [] (const std::string & member);
+
+  //iterator begin (void);
+  //iterator end (void);
+
+  //const_iterator begin (void) const;
+  //const_iterator end (void) const;
+
+  //size_t size (void) const;
+
+private:
+  //std::map <std::string, PICML_Data_Value *> members_;
+
+  // prevent the following operations
+  PICML_Event_Data_Value (const PICML_Event_Data_Value &);
+  const PICML_Event_Data_Value & operator = (const PICML_Event_Data_Value &);
+};
+
+//=============================================================================
+/**
  * @class PICML_Sequence_Data_Value
  */
 //=============================================================================

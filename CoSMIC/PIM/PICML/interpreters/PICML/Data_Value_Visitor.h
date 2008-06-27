@@ -53,6 +53,8 @@ public:
   virtual void visit_PICML_Aggregate_Data_Value (const PICML_Aggregate_Data_Value &);
 
   virtual void visit_PICML_Sequence_Data_Value (const PICML_Sequence_Data_Value &);
+
+  virtual void visit_PICML_Event_Data_Value (const PICML_Event_Data_Value &);
 };
 
 #endif  /* !defined _DATA_VALUE_VISITOR_H_ */

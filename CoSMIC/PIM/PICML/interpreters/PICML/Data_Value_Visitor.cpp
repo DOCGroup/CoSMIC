@@ -77,3 +77,9 @@ visit_PICML_Sequence_Data_Value (const PICML_Sequence_Data_Value &)
 {
 
 }
+
+void PICML_Data_Value_Visitor::
+visit_PICML_Event_Data_Value (const PICML_Event_Data_Value &)
+{
+
+}

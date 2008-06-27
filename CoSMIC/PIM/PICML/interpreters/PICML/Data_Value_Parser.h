@@ -44,6 +44,8 @@ public:
 
   void aggregate_member (const char * start, const char * end) const;
 
+  void event_member_value (const char * start, const char * end) const;
+
   void aggregate_member_value (const char * start, const char * end) const;
 
   void insert_sequence_value (const char * start, const char * end) const;
@@ -104,6 +106,9 @@ public:
 
     /// rule: sequence_list_
     boost::spirit::rule <ScannerT> sequence_list_;
+
+    /// rule: event_value_
+    boost::spirit::rule <ScannerT> event_value_;
   };
 
 private:

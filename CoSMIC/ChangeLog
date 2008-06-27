@@ -1,3 +1,45 @@
+Fri Jun 27 20:50:23 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser_T.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.cpp:
+        
+          Begin to add support for using the property manager to input
+          the values for a event data type. 
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        
+          The property manager did not register itself as part of the 
+          build process.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/ApplicationTask.gif:
+        
+          . Disabled the name for the following elements: DoWhileState,
+            WhileState, PeriodicEvent, and ApplicationTask.
+           
+          . Added a new modeling element named ApplicationTask, which
+            is used to create a separate thread of control at the 
+            application level. It has the same modeling semantics as
+            all SingleInput elements, such as PeriodicEvent and 
+            InEventPort.
+            
+          . Variables now have an attribute named InitialValue, which
+            is used to initial the variable at construction time.
+            
+          . Condition attributes in a BranchTransition are now a single
+            line, instead of two lines. This helps with ensuring the 
+            condition doesn't have any uncessary line breaks.
+            
 Fri Jun 27 18:56:41 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Release.mwc:

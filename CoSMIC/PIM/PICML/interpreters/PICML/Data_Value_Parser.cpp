@@ -38,6 +38,21 @@ aggregate_member_value (const char * start, const char * end) const
 }
 
 //
+// event_member_value
+//
+void PICML_Data_Value_Parser::
+event_member_value (const char * start, const char * end) const
+{
+  PICML_Event_Data_Value * value =
+    dynamic_cast <PICML_Event_Data_Value *> (this->value_);
+
+  PICML_Data_Value * member = 0;
+
+  if (value->find_member (this->member_, member))
+    member->value (std::string (start, end));
+}
+
+//
 // insert_sequence_value
 //
 void PICML_Data_Value_Parser::
