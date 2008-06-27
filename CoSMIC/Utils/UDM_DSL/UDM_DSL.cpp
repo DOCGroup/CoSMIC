@@ -87,6 +87,7 @@ class KindLit
 public:
     typedef KindLit<Kind> expression_type;
 	typedef KindLit<Kind> result_type;
+	typedef KindLit<Kind> parameter_type;
 	typedef Kind result_kind;
 	typedef typename std::set<Kind>::iterator iterator;
 	typedef typename std::set<Kind>::const_iterator const_iterator;
@@ -135,25 +136,7 @@ public:
 	}
 	operator std::set<Kind> () const { return s_; } 
 	result_type operator () () const { return *this; }
-};
-
-template <class L, class H, class OP>
-struct DBinExpr
-{
-	typedef DBinExpr<L, H, OP> expression_type;
-	typedef typename OP::result_type result_type;
-	typedef typename result_type::result_kind result_kind;
-
-	L l_;
-	H h_;
-	OP op_;
-	explicit DBinExpr () {}
-	DBinExpr (DBinExpr const & e) 
-		: l_(e.l_), h_(e.h_), op_(e.op_) 
-	{}
-    explicit DBinExpr (L const &l, H const &h, OP const & op) 
-		: l_(l), h_(h), op_(op) {}
-	result_type operator () () const { return op_.apply (l_(), h_()); }
+	result_type operator () (parameter_type p) const { return p; }
 };
 
 template <class E, class OP>
@@ -162,6 +145,10 @@ struct UnaryExpr
 	typedef UnaryExpr<E, OP> expression_type;
 	typedef typename OP::result_type result_type;
 	typedef typename result_type::result_kind result_kind;
+	typedef typename E::parameter_type parameter_type;
+
+	//BOOST_CONCEPT_ASSERT((boost::is_same<typename E::parameter_type,
+	//									 typename OP::parameter_type));
 
 	E e_;
 	OP op_;
@@ -172,6 +159,7 @@ struct UnaryExpr
     explicit UnaryExpr (E const &e, OP const & op) 
 		: e_(e), op_(op) {}
 	result_type operator () () { return op_.apply (e_()); }
+	result_type operator () (parameter_type p) { return op_.apply (e_(p)); }
 };
 
 template <class E>
@@ -180,11 +168,13 @@ struct TExpr
 	typedef TExpr<E> expression_type;
 	typedef typename E::result_type result_type;
 	typedef typename result_type::result_kind result_kind;
+	typedef typename E::parameter_type parameter_type;
 
 	E expr_;
 	explicit TExpr() {} 
 	TExpr(E const &e) : expr_ (e) {}
 	result_type operator () () { return expr_(); }
+	result_type operator () (parameter_type p) { return expr_(p); }
 };
 
 template <class T>
@@ -197,6 +187,7 @@ struct ExpressionTraits
 	   sense. However, they are never instantiated and hence we are ok. */
 	typedef KindLit<T> expression_type;
 	typedef KindLit<T> result_type;
+	typedef KindLit<T> parameter_type;
 	typedef T result_kind;
 };
 
@@ -206,6 +197,7 @@ struct ExpressionTraits <std::set<Kind> >
 	BOOST_CLASS_REQUIRE(Kind, Udm, UdmObjectConcept);
 	typedef typename KindLit<Kind> expression_type;
 	typedef typename KindLit<Kind> result_type;
+	typedef typename KindLit<Kind> parameter_type;
 	typedef typename Kind result_kind;
 };
 
@@ -214,6 +206,7 @@ struct ETBase
 {
 	typedef typename T::expression_type expression_type;
 	typedef typename T::result_type result_type;
+	typedef typename T::parameter_type parameter_type;
 	typedef typename T::result_kind result_kind;
 };
 
@@ -221,9 +214,9 @@ template <class T>
 struct ExpressionTraits <KindLit<T> >
 	: public ETBase<KindLit<T> > {};
 
-template <class T, class U, class X>
-struct ExpressionTraits <DBinExpr<T,U,X> > 
-	: public ETBase <DBinExpr<T,U,X> > {};
+//template <class T, class U, class X>
+//struct ExpressionTraits <DBinExpr<T,U,X> > 
+//	: public ETBase <DBinExpr<T,U,X> > {};
 
 template <class T, class X>
 struct ExpressionTraits <UnaryExpr<T,X> > 
@@ -241,6 +234,7 @@ struct SelectorOp : public SelectorOpBase
 	typedef typename TExpr<UnaryExpr<E, SelectorOp<E> > > expression_type;
 	typedef typename ExpressionTraits<E>::result_type kind_lit;
 	typedef kind_lit result_type;
+	typedef kind_lit parameter_type;
 	typedef typename kind_lit::result_kind result_kind;
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 
@@ -284,6 +278,7 @@ struct GetChildrenOp : public GetChildrenOpBase
 	typedef typename 
 		TExpr<UnaryExpr<L,GetChildrenOp<parent_lit, child_lit> > > expression_type;
 	typedef child_lit result_type;
+	typedef parent_lit parameter_type;
 	typedef typename child_lit::result_kind result_kind;
 
 	explicit GetChildrenOp () {}
@@ -323,6 +318,7 @@ struct GetParentOp : public GetParentOpBase
 		TExpr<UnaryExpr<L,GetParentOp<child_lit, parent_lit> > > expression_type;
 
 	typedef parent_lit result_type;
+	typedef child_lit parameter_type;
 	typedef typename parent_lit::result_kind result_kind;
 
 	explicit GetParentOp () {}
@@ -356,6 +352,7 @@ struct VisitorOp : public VisitorOpBase
 		TExpr<UnaryExpr<E,VisitorOp<kind_lit> > > expression_type;
 
 	typedef kind_lit result_type;
+	typedef kind_lit parameter_type;
 	typedef typename kind_lit::result_kind result_kind;
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 
@@ -386,6 +383,7 @@ struct RegexOp : public RegexOpBase
 		TExpr<UnaryExpr<E,RegexOp<kind_lit> > > expression_type;
 
 	typedef kind_lit result_type;
+	typedef kind_lit parameter_type;
 	typedef typename kind_lit::result_kind result_kind;
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 
@@ -429,6 +427,7 @@ struct RecurseOp : public RecurseOpBase
 		TExpr<UnaryExpr<E,RecurseOp<kind_lit> > > expression_type;
 
 	typedef kind_lit result_type;
+	typedef kind_lit parameter_type;
 	typedef typename kind_lit::result_kind result_kind;
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 
@@ -449,7 +448,6 @@ struct RecurseOp : public RecurseOpBase
 	}
 	void helper (result_kind const & k)
 	{
-		
 	}
 };
 
@@ -619,6 +617,14 @@ evaluate (Expr &e)
 	return e();
 }
 
+template <class Expr, class Para>
+typename Expr::result_type
+evaluate (Expr &e, Para p)
+{
+	// BOOST_CONCEPT_CHECK(e::parameter_type should be same as p);
+	return e(p);
+}
+
 template <class T>
 T operator * (T t)
 {
@@ -629,9 +635,12 @@ int foo (HFSM::RootFolder & rf)
 {
 	try {
 		TestVisitor tv;
-		BOOST_AUTO(s, evaluate(rf > State() > SelectByName(State(),"State2")));
+		//BOOST_AUTO(e1, RootFolder() > State() > tv);
+		BOOST_AUTO(e1, RootFolder() > State() > SelectByName(State(),"State2") > tv);
+		BOOST_AUTO(s, e1(rf));
 		//AfxMessageBox (std::string(s->name()).c_str(), MB_OK| MB_ICONINFORMATION);
-		BOOST_AUTO(e, evaluate(rf > State() > !!!SelectSubSet(s) > tv));
+		//BOOST_AUTO(e2, e1 > !!!SelectSubSet(s) > tv);
+		//evaluate(e2, rf);
 		//BOOST_AUTO(t, evaluate(rf > Transition()));
 
 	}
@@ -646,55 +655,22 @@ int foo (HFSM::RootFolder & rf)
 }
 
 /*
-template <class Func>
-struct ManipOp
+template <class L, class H, class OP>
+struct DBinExpr
 {
-	typedef typename Func::kind_lit kind_lit;
-	typedef typename Func::result_type result_type;
-	typedef typename kind_lit::result_kind kind;
+	typedef DBinExpr<L, H, OP> expression_type;
+	typedef typename OP::result_type result_type;
+	typedef typename result_type::result_kind result_kind;
 
-	Func func_;
-	explicit ManipOp (Func f) 
-		: func_(f) {}
-	ManipOp (ManipOp const & mop) : func_ (mop.func_) {}
-	result_type apply (kind_lit const & k)
-	{
-		result_type retval;
-		std::set<kind> s = k();
-		for (std::set<kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
-		{
-			if (func_(*iter))
-				func_.manipulate(retval.get_inner_set(), *iter);
-		}
-		return retval;
-	}
+	L l_;
+	H h_;
+	OP op_;
+	explicit DBinExpr () {}
+	DBinExpr (DBinExpr const & e) 
+		: l_(e.l_), h_(e.h_), op_(e.op_) 
+	{}
+    explicit DBinExpr (L const &l, H const &h, OP const & op) 
+		: l_(l), h_(h), op_(op) {}
+	result_type operator () () const { return op_.apply (l_(), h_()); }
 };
-
-template <class E>
-struct Regex
-{
-	typedef typename ExpressionTraits<E>::result_type result_type;
-	typedef typename result_type kind_lit;
-	typedef typename kind_lit::result_kind kind;
-	BOOST_CLASS_REQUIRE(kind, Udm, UdmObjectConcept);
-
-	boost::regex regex_;
-	Regex(std::string const &str = ".*") { regex_.assign(str); }
-	bool operator () (kind k) const
-	{
-		if (boost::regex_match(std::string(k.name()), regex_))
-			return true;
-		else
-			return false;
-	}
-	void manipulate(std::set<kind> & s, kind k) const
-	{
-		s.insert(k);
-	}
-};
-
-
-
 */

@@ -1,8 +1,8 @@
 // $Id$
 
 workspace : cosmic_common {
-  // -- build everything in this directory
-  Utils
+
+  Utils/Utils.mpc
 
   // -- build the interpreters, addons, and decorators
   PIM/PICML/interpreters/Interpreters.mwc

@@ -1,3 +1,13 @@
+Fri Jun 27 18:56:41 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+        * picml.mwc:
+
+          Fixed a build issue with Utils          
+
 Fri Jun 27 07:11:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * UDM_DSL.mwc:
@@ -31,7 +41,7 @@ Fri Jun 27 07:11:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/UdmObjectConcept.h:
         * Utils/UDM_DSL/resource.h:
 
-          Adding UDM_DSL project. 
+          Adding UDM_DSL project.
 
 Wed Jun 25 21:29:10 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
