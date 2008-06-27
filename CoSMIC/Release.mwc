@@ -3,6 +3,7 @@
 workspace : cosmic_common {
   // Entire CoSMIC.mwc expanded inline.
   Utils/Utils.mpc
+  Utils/GME/GME.mpc
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
 

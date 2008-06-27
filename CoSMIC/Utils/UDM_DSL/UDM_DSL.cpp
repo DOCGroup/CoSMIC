@@ -191,6 +191,10 @@ struct ExpressionTraits
 	typedef T result_kind;
 };
 
+template <class T, class U>
+struct ExpressionTraits <T (*) (U)>
+	: public ExpressionTraits <U> {};
+
 template <class Kind>
 struct ExpressionTraits <std::set<Kind> >
 {
@@ -417,40 +421,46 @@ struct RegexOp : public RegexOpBase
 	}
 };
 
-struct RecurseOpBase {};
+class FilterOpBase {};
 
-template <class E>
-struct RecurseOp : public RecurseOpBase
+template <class Func>
+struct FilterOp : public FilterOpBase
 {
-	typedef typename ExpressionTraits<E>::result_type kind_lit;
+	typedef typename ExpressionTraits<Func>::result_type kind_lit;
 	typedef typename 
-		TExpr<UnaryExpr<E,RecurseOp<kind_lit> > > expression_type;
+		TExpr<UnaryExpr<kind_lit,FilterOp<Func> > > expression_type;
 
 	typedef kind_lit result_type;
 	typedef kind_lit parameter_type;
 	typedef typename kind_lit::result_kind result_kind;
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 
-	std::set<result_kind> s_;
-	RecurseOp (RecurseOp const & reop) : s_(reop.s_) {}
+	Func func_;
+	bool logical_not_; 
+	explicit FilterOp (Func f, bool logical_not = false) 
+		: func_(f), logical_not_ (logical_not) { }
+	FilterOp (FilterOp const & fop) 
+		: func_(fop.func_), logical_not_ (fop.logical_not_) {}
 	result_type apply (kind_lit const & k)
 	{
 		result_type retval;
-		std::
 		std::set<result_kind> s = k();
 		for (std::set<result_kind>::iterator iter(s.begin());
 			 iter != s.end();
 			 ++iter)
 		{
-			helper (*iter);
+			if (func_(*iter) ^ logical_not_) // Logical not of match, if required
+				retval.Union((*iter));
 		}
 		return retval;
 	}
-	void helper (result_kind const & k)
+	FilterOp operator ! () 
 	{
+		FilterOp f(*this);
+		f.logical_not_ = !this->logical_not_;
+		return f;
 	}
 };
-
 
 template <class T>
 struct ExpressionTraits <SelectorOp<T> > 
@@ -495,6 +505,18 @@ SelectSubSet (T const &t)
 	result_type kind_lit(t);
 	SelectorOp<result_type> selector(kind_lit);
 	return selector;
+}
+
+template <class Func>
+FilterOp<Func> 
+Filter (Func f)
+{
+	//typedef typename ExpressionTraits<Func>::result_type result_type;
+	//typedef typename result_type::result_kind result_kind;
+	
+	//BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	FilterOp<Func> filter(f);
+	return filter;
 }
 
 using boost::mpl::if_c;
@@ -583,6 +605,24 @@ operator > (L const &l, SelectorOp<H> const &h)
 
 template <class L, class H>
 TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename FilterOp<H>
+				>
+	 >
+operator > (L const &l, FilterOp<H> const &h)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef typename ExpressionTraits<FilterOp<H> >::result_kind ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+    typedef UnaryExpr<ParentKindExpr, FilterOp<H> > UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
+	FilterOp<H> op(h);
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
+
+template <class L, class H>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
 				typename OpSelector<L,H,GetParentOp>::Op
 				>
 	 >
@@ -630,13 +670,14 @@ T operator * (T t)
 {
 	return t;
 }
-
+bool func (State) { return true; }
 int foo (HFSM::RootFolder & rf)
 {
 	try {
 		TestVisitor tv;
 		//BOOST_AUTO(e1, RootFolder() > State() > tv);
-		BOOST_AUTO(e1, RootFolder() > State() > SelectByName(State(),"State2") > tv);
+		//BOOST_AUTO(e1, RootFolder() > State() > SelectByName(State(),"State2") > tv);
+		BOOST_AUTO(e1, RootFolder() > State() > Filter(func) > tv);
 		BOOST_AUTO(s, e1(rf));
 		//AfxMessageBox (std::string(s->name()).c_str(), MB_OK| MB_ICONINFORMATION);
 		//BOOST_AUTO(e2, e1 > !!!SelectSubSet(s) > tv);
@@ -672,5 +713,41 @@ struct DBinExpr
     explicit DBinExpr (L const &l, H const &h, OP const & op) 
 		: l_(l), h_(h), op_(op) {}
 	result_type operator () () const { return op_.apply (l_(), h_()); }
+};
+*/
+
+/*
+struct RecurseOpBase {};
+
+template <class E>
+struct RecurseOp : public RecurseOpBase
+{
+	typedef typename ExpressionTraits<E>::result_type kind_lit;
+	typedef typename 
+		TExpr<UnaryExpr<E,RecurseOp<kind_lit> > > expression_type;
+
+	typedef kind_lit result_type;
+	typedef kind_lit parameter_type;
+	typedef typename kind_lit::result_kind result_kind;
+	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+
+	std::set<result_kind> s_;
+	RecurseOp (RecurseOp const & reop) : s_(reop.s_) {}
+	result_type apply (kind_lit const & k)
+	{
+		result_type retval;
+		std::
+		std::set<result_kind> s = k();
+		for (std::set<result_kind>::iterator iter(s.begin());
+			 iter != s.end();
+			 ++iter)
+		{
+			helper (*iter);
+		}
+		return retval;
+	}
+	void helper (result_kind const & k)
+	{
+	}
 };
 */
