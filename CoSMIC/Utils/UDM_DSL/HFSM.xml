@@ -1,0 +1,58 @@
+<Diagram name="HFSM" version="1.00" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Uml.xsd">
+	<Association _id="id18" name="Transition" assocClass="id3" nonpersistent="false">
+		<AssociationRole _id="id19" max="1" min="1" name="srcTransition" target="id5" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id1a" max="1" min="1" name="dstTransition" target="id5" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Association _id="id1b" name="Sequence" assocClass="id8" nonpersistent="false">
+		<AssociationRole _id="id1c" max="1" min="0" name="srcSequence" target="id6" isPrimary="false" isNavigable="true"/>
+		<AssociationRole _id="id1d" max="1" min="0" name="dstSequence" target="id6" isPrimary="false" isNavigable="true"/>
+	</Association>
+	<Class _id="id3" name="Transition" baseTypes="id4" childRoles="idb" isAbstract="false" stereotype="Connection" association="id18">
+		<Attribute max="1" min="1" name="Event" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id5" name="State" baseTypes="id4" childRoles="id9 id11" isAbstract="false" stereotype="Model" parentRoles="ida idc" associationRoles="id19 id1a">
+		<Attribute max="1" min="1" name="StartState" type="Boolean" ordered="false" defvalue="false;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id6" name="Events" baseTypes="id4" childRoles="idf" isAbstract="false" stereotype="Atom" associationRoles="id1c id1d">
+		<Attribute max="1" min="1" name="Delay" type="Integer" ordered="false" defvalue="2;" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id7" name="InputSequence" baseTypes="id4" childRoles="id14" isAbstract="false" stereotype="Model" parentRoles="ide id10"/>
+	<Class _id="id8" name="Sequence" baseTypes="id4" childRoles="idd" isAbstract="false" stereotype="Connection" association="id1b"/>
+	<Class _id="id12" name="RootFolder" childRoles="id16" isAbstract="false" stereotype="Folder" parentRoles="id13 id15 id17">
+		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Class _id="id4" name="MgaObject" subTypes="id3 id5 id6 id7 id8" isAbstract="true">
+		<Attribute max="1" min="0" name="name" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+		<Attribute max="1" min="0" name="position" type="String" ordered="false" registry="false" visibility="public" nonpersistent="false"/>
+	</Class>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="id9" max="1" min="1" target="id5" isNavigable="true"/>
+		<CompositionParentRole _id="ida" target="id5" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="idb" max="1" min="1" target="id3" isNavigable="true"/>
+		<CompositionParentRole _id="idc" target="id5" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="idd" max="-1" min="0" target="id8" isNavigable="true"/>
+		<CompositionParentRole _id="ide" target="id7" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="idf" max="-1" min="0" target="id6" isNavigable="true"/>
+		<CompositionParentRole _id="id10" target="id7" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="id11" max="-1" min="0" target="id5" isNavigable="true"/>
+		<CompositionParentRole _id="id13" target="id12" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="id14" max="-1" min="0" target="id7" isNavigable="true"/>
+		<CompositionParentRole _id="id15" target="id12" isNavigable="true"/>
+	</Composition>
+	<Composition nonpersistent="false">
+		<CompositionChildRole _id="id16" max="-1" min="0" target="id12" isNavigable="true"/>
+		<CompositionParentRole _id="id17" target="id12" isNavigable="true"/>
+	</Composition>
+</Diagram>
+
+

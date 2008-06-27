@@ -1,0 +1,3 @@
+workspace : cosmic_common {
+  Utils/UDM_DSL
+}

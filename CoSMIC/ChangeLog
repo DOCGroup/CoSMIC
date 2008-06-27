@@ -1,15 +1,50 @@
+Fri Jun 27 07:11:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * UDM_DSL.mwc:
+
+        * Utils/UDM_DSL:
+
+        * Utils/UDM_DSL/CompIcon.ico:
+        * Utils/UDM_DSL/Component.def:
+        * Utils/UDM_DSL/Component.rc:
+        * Utils/UDM_DSL/ComponentConfig.h:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM_old.h:
+        * Utils/UDM_DSL/HFSM_old.cpp:
+        * Utils/UDM_DSL/RawComponent.h:
+        * Utils/UDM_DSL/RawComponent.cpp:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.wxs:
+        * Utils/UDM_DSL/UDM_DSL_parameter.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmApp.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmConfig.h:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+        * Utils/UDM_DSL/resource.h:
+
+          Adding UDM_DSL project. 
+
 Wed Jun 25 21:29:10 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:
-        
+
           . Updated the example to the latest version of GME.
-          
+
         * PIM/PICML/interpreters/QEDDeployment/Component.rc:
         * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
 
           . Removed the generation and inclusion of a type library for
             the component since it was breaking the builds.
-            
+
 Fri Jun 20 22:07:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Transformations/FailOverUnit/FOUMonitors.txt:

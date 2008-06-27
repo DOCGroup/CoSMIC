@@ -1,0 +1,47 @@
+project (UDM_DSL): cosmic_common, udm, mfc, register, boost_base, boost_regex {
+
+  macros += _USRDLL _WINDLL
+  sharedname = UDM_DSL
+  //includes += $(BOOST_ROOT)/include/$(BOOST_VERSION) $(BOOST_ROOT)/.
+  //libpaths += $(BOOST_ROOT)/lib
+  //lit_libs += boost_regex-vc80-mt-1_35 boost_regex-vc80-mt-gd-1_35
+
+  specific (vc6,vc7,vc71,vc8) {
+     link_options += /DEF:Component.def
+  }
+
+  Source_Files {
+    $(GME_ROOT)/SDK/BON/ComponentLib.idl
+    StdAfx.cpp
+    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+    Component.rc
+    Component.def
+    RawComponent.cpp
+    UdmApp.cpp
+    UDM_DSL.cpp
+    HFSM.cpp
+  }
+
+  Header_Files {
+    ComponentConfig.h
+    ComponentLib.h
+    $(GME_ROOT)/SDK/BON/ComHelp.h
+    $(GME_ROOT)/SDK/BON/ComponentDll.h
+    $(GME_ROOT)/SDK/BON/ComponentObj.h
+    $(GME_ROOT)/SDK/BON/GMECOM.h
+    RawComponent.h
+    Resource.h
+    StdAfx.h
+    UdmApp.h
+    UdmConfig.h
+    UDM_DSL.h
+    HFSM.h
+    UdmObjectConcept.h
+  }
+
+  Resource_Files {
+    CompIcon.ico
+  }
+}
