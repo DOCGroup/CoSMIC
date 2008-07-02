@@ -1,14 +1,20 @@
+Wed Jul  2 07:02:31 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Added new features.
+
 Wed Jul  2 04:40:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
         * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
-        
+
           Remove the 'vc8' preprocessor check since we are now using the
           conditional { } clause in the .mpc file to only include the
           vc8_assemblies.wxs file for vc8 project types.
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
-        
+
           Added new icons to the installer.
 
 Fri Jun 27 23:16:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
