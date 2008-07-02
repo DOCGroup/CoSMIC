@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-  <?if $(var.type) = vc8 ?>
   <?include EnvironmentVars.wxi ?>
 
   <Fragment Id='VC8AssemblyFrag'>
@@ -65,6 +64,4 @@
       </Component>
     </DirectoryRef>-->
   </Fragment>
-
-  <?endif ?>
 </Wix>

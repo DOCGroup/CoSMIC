@@ -99,13 +99,17 @@
       </Component>
     </DirectoryRef>
 
-
     <DirectoryRef Id="PICMLIconsDir">
       <Component Id='PICMLParadigmIcons' Guid='2AE68EFF-5F6D-4607-9D3C-485D499E0C21'>
         <File Id='PICML_icon_1'
         Name='Any.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\Any.bmp' />
+
+        <File Id='ApplicationTask.gif'
+        Name='ApplicationTask.gif'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ApplicationTask.gif' />
 
         <File Id='PICML_icon_2'
         Name='Assembly.bmp'

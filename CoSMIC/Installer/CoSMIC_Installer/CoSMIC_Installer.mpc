@@ -14,15 +14,17 @@ project (CoSMIC_Installer) : wix {
   }
 
   Wxs_Files {
-
     ./CoSMICRegistry.wxs
     ./CoSMIC_Installer.wxs
     ./CustomActions.wxs
     ./Directories.wxs
     ./CoSMIC_common.wxs
     ./CoSMICNotes.wxs
-    ./vc8_assemblies.wxs
-
+    
+    conditional (vc8) {
+      ./vc8_assemblies.wxs
+    }
+    
     $(COSMIC_ROOT)/Utils/Utils.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
