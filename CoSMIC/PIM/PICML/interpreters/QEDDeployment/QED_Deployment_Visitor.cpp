@@ -436,8 +436,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
     this->doc_->release();
 
   this->doc_ = this->impl_->createDocument (
-    Utils::XStr ("http://qed.bbn.com/deployment"),
-    Utils::XStr ("qed:deployment"),
+    Utils::XStr ("http://www.dre.vanderbilt.edu/CUTS"),
+    Utils::XStr ("jbi:deployment"),
     0);
 
   this->doc_->setEncoding (Utils::XStr("UTF-8"));
@@ -452,8 +452,16 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
   
   root->setAttribute (
     Utils::XStr ("xsi:schemaLocation"),
-    Utils::XStr ("http://qed.bbn.com/deployment qed-deployment.xsd"));
+    Utils::XStr ("http://www.dre.vanderbilt.edu/CUTS deployment.xsd"));
 
+  // Create the UUID element for the deployment plan.
+  xercesc::DOMElement * element = 
+    this->doc_->createElement (Utils::XStr ("UUID"));
+
+  element->setTextContent (Utils::XStr (std::string (plan.UUID ())));
+  root->appendChild (element);
+
+  // Save the root element.
   this->root_.push (root);
 
   // Visit the node references in this file.
@@ -516,7 +524,7 @@ Visit_Node (const PICML::Node & node)
 void QED_Deployment_Visitor::
 Visit_Domain (const PICML::Domain & domain)
 {
-  this->location_ += "." + std::string (domain.name ());
+  //this->location_ += "." + std::string (domain.name ());
 }
 
 //
@@ -539,6 +547,7 @@ Visit_CollocationGroup (const PICML::CollocationGroup & group)
     std::set <PICML::CollocationGroupMember>
     CollocationGroupMember_Set;
 
+  this->process_ = group.name ();
   CollocationGroupMember_Set members = group.members ();
 
   std::for_each (members.begin (),
@@ -586,14 +595,19 @@ Visit_ComponentRef (const PICML::ComponentRef & ref)
     Utils::XStr ("id"), 
     Utils::XStr (this->instance_names_[component]));
 
-  // Create an element for the location.
-  xercesc::DOMElement * element_location = 
+  // Create an element for the location and add it to the document.
+  xercesc::DOMElement * element = 
     this->doc_->createElement (Utils::XStr ("location"));
 
-  element_location->setTextContent (Utils::XStr (this->location_));
-  
-  // Add the elements to the XML document.
-  element_instance->appendChild (element_location);
+  element->setTextContent (Utils::XStr (this->location_));
+  element_instance->appendChild (element);
+
+  // Create the element for the process.
+  element = this->doc_->createElement (Utils::XStr ("process"));
+  element->setTextContent (Utils::XStr (this->process_));
+  element_instance->appendChild (element);
+
+  // Add the instance to the main document.
   this->root_.top ()->appendChild (element_instance);
 }
 

@@ -127,6 +127,8 @@ private:
 
   std::string location_;
 
+  std::string process_;
+
   std::map <PICML::Component, std::string> instance_names_;
 };
 
