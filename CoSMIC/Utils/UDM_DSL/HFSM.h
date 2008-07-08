@@ -81,7 +81,15 @@ namespace HFSM {
 		template <class PeersType, class RoleType> Udm::AssocAttr<PeersType> peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType, class Pred> Udm::AssocAttr<PeersType, Pred> peers_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType, Pred>(impl, _type2ARole<RoleType>()); }
 		template <class ConnectorType, class PeerType, class RoleType> Udm::AClassPointerAttr<ConnectorType, PeerType> connector() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorType, RoleType, AssociationsWAClassSingle> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassPointerAttr<ConnectorType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
-		template <class ConnectorsType, class PeerType, class RoleType> Udm::AClassAssocAttr<ConnectorsType, PeerType> connectors() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
+		
+		template <class ConnectorsType, class PeerType, class RoleType> 
+		Udm::AClassAssocAttr<ConnectorsType, PeerType> 
+		connectors() const 
+		{ 
+			boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); 
+			pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); 
+		}
+		
 		template <class ConnectorsType, class PeerType, class RoleType, class Pred> Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred> connectors_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred>(impl, *roles_mp.first, *roles_mp.second); }
 		template <class PeerType, class RoleType> Udm::CrossPointerAttr<PeerType> cross_peer() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeerType, RoleType, CrossAssociationsSingle> >(); return Udm::CrossPointerAttr<PeerType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType> Udm::CrossAssocAttr<PeersType> cross_peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, CrossAssociationsMulti> >(); return Udm::CrossAssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }
@@ -103,7 +111,12 @@ namespace HFSM {
 			return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); 
 		}
 
-		template <class EndType, class RoleType> Udm::AssocEndAttr<EndType> end() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<EndType, RoleType, AClassEnds> >(); return Udm::AssocEndAttr<EndType>(impl, _type2ARole<RoleType>()); }
+		template <class EndType, class RoleType> 
+		Udm::AssocEndAttr<EndType> end() const 
+		{ 
+			boost::function_requires< Udm::SuperSubclassTypelist2Concept<EndType, RoleType, AClassEnds> >(); 
+			return Udm::AssocEndAttr<EndType>(impl, _type2ARole<RoleType>()); 
+		}
 		template <class EndType, class RoleType> Udm::CrossAssocEndAttr<EndType> cross_end() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<EndType, RoleType, CrossAClassEnds> >(); return Udm::CrossAssocEndAttr<EndType>(impl, _type2ARole<RoleType>()); }
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
 		Udm::ChildrenAttr< ::HFSM::InputSequence> InputSequence_children() const { return Udm::ChildrenAttr< ::HFSM::InputSequence>(impl, meta_InputSequence_children); }
@@ -286,8 +299,17 @@ namespace HFSM {
 		template <class PeersType, class RoleType> Udm::AssocAttr<PeersType> peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType, class Pred> Udm::AssocAttr<PeersType, Pred> peers_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType, Pred>(impl, _type2ARole<RoleType>()); }
 		template <class ConnectorType, class PeerType, class RoleType> Udm::AClassPointerAttr<ConnectorType, PeerType> connector() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorType, RoleType, AssociationsWAClassSingle> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassPointerAttr<ConnectorType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
-		template <class ConnectorsType, class PeerType, class RoleType> Udm::AClassAssocAttr<ConnectorsType, PeerType> connectors() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
-		template <class ConnectorsType, class PeerType, class RoleType, class Pred> Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred> connectors_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred>(impl, *roles_mp.first, *roles_mp.second); }
+		
+		template <class ConnectorsType, class PeerType, class RoleType> 
+		Udm::AClassAssocAttr<ConnectorsType, PeerType> 
+		connectors() const 
+		{ 
+			boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); 
+			pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); 
+			return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); 
+		}
+		template <class ConnectorsType, class PeerType, class RoleType, class Pred> 
+		Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred> connectors_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred>(impl, *roles_mp.first, *roles_mp.second); }
 		template <class PeerType, class RoleType> Udm::CrossPointerAttr<PeerType> cross_peer() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeerType, RoleType, CrossAssociationsSingle> >(); return Udm::CrossPointerAttr<PeerType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType> Udm::CrossAssocAttr<PeersType> cross_peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, CrossAssociationsMulti> >(); return Udm::CrossAssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType, class Pred> Udm::CrossAssocAttr<PeersType, Pred> cross_peers_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, CrossAssociationsMulti> >(); return Udm::CrossAssocAttr<PeersType, Pred>(impl, _type2ARole<RoleType>()); }
@@ -308,7 +330,8 @@ namespace HFSM {
 			return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); 
 		}
 		
-		template <class EndType, class RoleType> Udm::AssocEndAttr<EndType> 
+		template <class EndType, class RoleType> 
+		Udm::AssocEndAttr<EndType> 
 		end() const 
 		{ 
 			boost::function_requires< Udm::SuperSubclassTypelist2Concept<EndType, RoleType, AClassEnds> >(); 
@@ -316,8 +339,17 @@ namespace HFSM {
 		}
 		template <class EndType, class RoleType> Udm::CrossAssocEndAttr<EndType> cross_end() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<EndType, RoleType, CrossAClassEnds> >(); return Udm::CrossAssocEndAttr<EndType>(impl, _type2ARole<RoleType>()); }
 		Udm::BooleanAttr StartState() const { return Udm::BooleanAttr(impl, meta_StartState); }
-		Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State> srcTransition() const { return Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State>(impl, meta_srcTransition, meta_srcTransition_rev); }
-		Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State> dstTransition() const { return Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State>(impl, meta_dstTransition, meta_dstTransition_rev); }
+		
+		Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State> 
+		srcTransition() const 
+		{ 
+			return Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State>(impl, meta_srcTransition, meta_srcTransition_rev); 
+		}
+		Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State> 
+		dstTransition() const 
+		{ 
+			return Udm::AClassPointerAttr< ::HFSM::Transition, ::HFSM::State>(impl, meta_dstTransition, meta_dstTransition_rev); 
+		}
 		Udm::ChildAttr< ::HFSM::Transition> Transition_child() const { return Udm::ChildAttr< ::HFSM::Transition>(impl, meta_Transition_child); }
 		Udm::ChildAttr< ::HFSM::State> State_child() const { return Udm::ChildAttr< ::HFSM::State>(impl, meta_State_child); }
 		Udm::ChildrenAttr< ::HFSM::State> State_kind_children() const { return Udm::ChildrenAttr< ::HFSM::State>(impl, Udm::NULLCHILDROLE); }
@@ -415,7 +447,9 @@ namespace HFSM {
 		template <class PeersType, class RoleType> Udm::AssocAttr<PeersType> peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType, class Pred> Udm::AssocAttr<PeersType, Pred> peers_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, AssociationsMulti> >(); return Udm::AssocAttr<PeersType, Pred>(impl, _type2ARole<RoleType>()); }
 		template <class ConnectorType, class PeerType, class RoleType> Udm::AClassPointerAttr<ConnectorType, PeerType> connector() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorType, RoleType, AssociationsWAClassSingle> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassPointerAttr<ConnectorType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
-		template <class ConnectorsType, class PeerType, class RoleType> Udm::AClassAssocAttr<ConnectorsType, PeerType> connectors() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
+		template <class ConnectorsType, class PeerType, class RoleType> 
+		Udm::AClassAssocAttr<ConnectorsType, PeerType> 
+		connectors() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType>(impl, *roles_mp.first, *roles_mp.second); }
 		template <class ConnectorsType, class PeerType, class RoleType, class Pred> Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred> connectors_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist3Concept<PeerType, ConnectorsType, RoleType, AssociationsWAClassMulti> >(); pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> roles_mp = _type2ACARole<RoleType>(); return Udm::AClassAssocAttr<ConnectorsType, PeerType, Pred>(impl, *roles_mp.first, *roles_mp.second); }
 		template <class PeerType, class RoleType> Udm::CrossPointerAttr<PeerType> cross_peer() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeerType, RoleType, CrossAssociationsSingle> >(); return Udm::CrossPointerAttr<PeerType>(impl, _type2ARole<RoleType>()); }
 		template <class PeersType, class RoleType> Udm::CrossAssocAttr<PeersType> cross_peers() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<PeersType, RoleType, CrossAssociationsMulti> >(); return Udm::CrossAssocAttr<PeersType>(impl, _type2ARole<RoleType>()); }

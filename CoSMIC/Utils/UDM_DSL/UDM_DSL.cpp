@@ -67,7 +67,12 @@ public:
 		ostr << "Visiting State: " << s.name();
 		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
 	}
-	virtual void Visit_Transition(const Transition&){};
+	virtual void Visit_Transition(const Transition &t)
+	{
+		std::ostringstream ostr;
+		ostr << "Visiting Transition: " << t.name();
+		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
+	}
 	virtual void Visit_RootFolder(const RootFolder&)
 	{
 		AfxMessageBox ("Visiting RootFolder", MB_OK| MB_ICONINFORMATION);
@@ -94,6 +99,15 @@ public:
 	explicit KindLit () {}
 	KindLit (KindLit const & k) : s_ (k.s_) {}
 	KindLit (Kind const & k) { s_.push_back(k); }	
+	KindLit & operator = (KindLit const & rhs) 
+	{ 
+		if (this != &rhs)
+		{
+			temp_kind_ = rhs.temp_kind_;
+			s_ = rhs.s_; 
+		}
+		return *this;
+	}	
 	KindLit (Container const & s) : s_(s) { }	
 	//KindLit (Udm::ChildrenAttr<Kind> const & c) : s_(c) {}
 	void Union(Kind const & k)
@@ -109,6 +123,10 @@ public:
 	{
 		Kind k = c;
 		s_.push_back(k);
+	}
+	void Union(std::vector<Kind> const & v)
+	{
+		std::copy(v.begin(), v.end(), std::back_inserter(s_));
 	}
 	//Container & get_inner_set () { return s_; } 
 	iterator begin() { return s_.begin(); }
@@ -285,6 +303,7 @@ class GetChildrenOpBase {};
 template <class L, class H>
 struct GetChildrenOp : public GetChildrenOpBase
 {
+	typedef GetChildrenOp<L,H> Self;
 	typedef typename ExpressionTraits<L>::result_type parent_lit;
 	typedef typename ExpressionTraits<H>::result_type child_lit;
 	typedef typename 
@@ -520,6 +539,42 @@ struct UniqueOp : public UniqueOpBase
 		return std::vector<result_kind>(s.begin(), new_end);
 	}
 };
+class AssociationOpBase {};
+
+template <class RESULT, class TARGETCLASS>
+struct AssociationOp : public AssociationOpBase
+{
+	typedef typename ExpressionTraits<TARGETCLASS>::result_type argument_type;
+	typedef typename ExpressionTraits<RESULT>::result_type result_type;
+	typedef typename 
+		TExpr<UnaryExpr<result_type, AssociationOp<RESULT, TARGETCLASS> > > 
+			expression_type;
+
+	typedef RESULT result_kind;
+	typedef TARGETCLASS argument_kind;
+
+	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
+
+	typedef Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*FUNC)() const;
+	FUNC func_;
+
+	explicit AssociationOp (FUNC f) : func_(f) {}
+	result_type apply (argument_type const & k)
+	{
+		std::vector<argument_kind> s = k;
+		result_type retval;
+		for (std::vector<argument_kind>::iterator iter(s.begin());
+			 iter != s.end();
+			 ++iter)
+		{
+			result_kind r = ((*iter).*func_)();
+			if (r != Udm::null)
+				retval.Union(r);
+		}
+		return retval;
+	}
+};
 
 template <class T>
 struct ExpressionTraits <SelectorOp<T> > 
@@ -552,6 +607,14 @@ struct ExpressionTraits <SortOp<T, Comp> >
 template <class T, class BinPred>
 struct ExpressionTraits <UniqueOp<T, BinPred> >
 	: public ETBase <UniqueOp<T, BinPred> > {};
+
+template <class RESULT, class TARGETCLASS>
+struct ExpressionTraits <AssociationOp<RESULT, TARGETCLASS> >
+	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
+
+template <class RESULT, class TARGETCLASS>
+struct ExpressionTraits <Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
+	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
 
 template <class T>
 RegexOp<typename ExpressionTraits<T>::result_type> 
@@ -668,6 +731,11 @@ Unique (E)
 using boost::mpl::if_c;
 using boost::is_base_of;
 
+// This is using the enable_if idiom by not defining an 
+// associated type "Self" in the disabler structure. 
+// GetChildrenOp has Self defined in it.
+struct disabler{};
+
 template <class L, class H, template <class, class> class Op>
 // Note that here H can potentially be a type that is not an
 // expression. For example, it can be a Visitor, RegexOP, SelectorOp 
@@ -681,15 +749,14 @@ struct OpSelector
 
 	typedef typename 
 		if_c<is_base_of<Visitor, H>::value, 
-		     VisitorOp<LResultType>,
+			 disabler,
 			 Op<LResultType, typename ExpressionTraits<H>::result_type> 
 		    >::type Op;
 };
 
-
 template <class L, class H>
 TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
-				typename OpSelector<L,H,GetChildrenOp>::Op
+				typename OpSelector<L,H,GetChildrenOp>::Op::Self
 				>
 	 >
 /* Note that here H can potentially be a type that is not an
@@ -699,17 +766,36 @@ construction of kinds. */
 operator > (L const &l, H const &h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
-	typedef typename OpSelector<L,H,GetChildrenOp>::Op Operator;
+	typedef typename OpSelector<L,H,GetChildrenOp>::Op::Self Operator;
 	typedef typename ExpressionTraits<Operator>::result_kind ChildKind;
 	typedef typename ParentKindExpr::result_kind ParentKind;
 
 	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
 
 	typedef UnaryExpr<ParentKindExpr, 
-		              typename OpSelector<L,H,GetChildrenOp>::Op> UnaryExpr;
+		typename OpSelector<L,H,GetChildrenOp>::Op::Self> UnaryExpr;
 	typedef TExpr<UnaryExpr> Expr;
 
 	Operator op(h);
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
+
+template <class L>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename VisitorOp<typename ExpressionTraits<L>::result_type>
+				>
+	 >
+operator > (L const &l, Visitor & v)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef VisitorOp<typename ExpressionTraits<L>::result_type> Operator;
+	typedef typename ExpressionTraits<Operator>::result_kind ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+
+	typedef UnaryExpr<ParentKindExpr, Operator> UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
+	Operator op(v);
 	return Expr (UnaryExpr(ParentKindExpr(l), op));
 }
 
@@ -803,6 +889,25 @@ operator > (L const &l, UniqueOp<H, BinPred> const &h)
 	return Expr (UnaryExpr(ParentKindExpr(l), op));
 }
 
+template <class L, class RESULT, class TARGETCLASS>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename AssociationOp<RESULT, TARGETCLASS>
+				>
+	 >
+operator > (L const &l, 
+			Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*func)() const)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef RESULT ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+    typedef UnaryExpr<ParentKindExpr, AssociationOp<RESULT, TARGETCLASS> > UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
+	AssociationOp<RESULT, TARGETCLASS> op(func);
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
+
+
 template <class L, class H>
 TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
 				typename OpSelector<L,H,GetParentOp>::Op
@@ -862,10 +967,16 @@ int foo (HFSM::RootFolder & rf)
 		//BOOST_AUTO(e1, RootFolder() > State() > tv);
 		//BOOST_AUTO(e1, RootFolder() > State() > SelectByName(State(),"State2") > tv);
 		BOOST_AUTO(e1, RootFolder() > Unique (RootFolder())
-                                    > State() 
-                                    > Select(State(), pred) 
+                                    > State()
                                     > Sort(State(), sorter) 
-                                    > tv);
+                                    > SelectByName(State(),"State2"));
+		evaluate(RootFolder() > State()
+                              > SelectByName(State(),"State2") 
+							  > State() 
+							  > SelectByName(State(),"s50") 
+                              > State()
+							  > &State::srcTransition
+                              > tv , rf);
 		std::unary_function <KindLit<RootFolder>, KindLit<State> > const & e 
 			= e1;
 		std::vector<RootFolder> v;
@@ -943,3 +1054,4 @@ struct RecurseOp : public RecurseOpBase
 	}
 };
 */
+

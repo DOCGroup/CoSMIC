@@ -1,3 +1,10 @@
+Tue Jul  8 06:59:27 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Added new features.
+
 Wed Jul  2 07:02:31 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/UDM_DSL.cpp:
