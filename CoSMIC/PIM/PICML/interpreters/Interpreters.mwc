@@ -23,5 +23,5 @@ workspace {
   PathComponent
   PropertyManager
   
-  QEDDeployment
+  arch
 }

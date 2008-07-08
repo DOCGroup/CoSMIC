@@ -1,8 +1,46 @@
+Tue Jul  8 22:12:56 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/arch:
+        * PIM/PICML/interpreters/arch/QED:
+        * PIM/PICML/interpreters/arch/QED/deployment:
+
+          Moved all the QED interepters to the arch/QED directory. Since we
+          are starting to use PICML to generate metadata for different
+          architectures/technologies, we need a directories to hold interpreters
+          specific to a particular architecture. Eventually, we will be creating
+          a CCM directory for all the CCM-speficic interpreters.
+
+        * PIM/PICML/interpreters/QEDDeployment:
+        * PIM/PICML/interpreters/QEDDeployment/Component.def:
+        * PIM/PICML/interpreters/QEDDeployment/Component.rc:
+        * PIM/PICML/interpreters/QEDDeployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.h:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.h:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.h:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/compicon.ico:
+        * PIM/PICML/interpreters/QEDDeployment/resource.h:
+
+          Removed these files.
+
 Tue Jul  8 21:55:59 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
         * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
-        
+
           Update the deployment plan generator to include the UUID of
           the deployment plan, the target process for the client,
           and use alias in the <location> tag.
