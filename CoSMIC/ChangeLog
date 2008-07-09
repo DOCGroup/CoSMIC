@@ -1,3 +1,10 @@
+Wed Jul  9 00:00:38 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          New features.
+
 Tue Jul  8 22:12:56 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

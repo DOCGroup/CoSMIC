@@ -321,9 +321,15 @@ namespace HFSM {
 		template <class ChildrenType, class RoleType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_sorted() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<ChildrenType, RoleType, ChildrenMulti> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, _type2CCRole<RoleType>()); }
 		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::SuperSubclassTypelistConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
 		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::SuperSubclassTypelistConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
-		template <class ParentType, class RoleType> Udm::ParentAttr<ParentType> parent() const { boost::function_requires< Udm::SuperSubclassTypelist2Concept<ParentType, RoleType, Parents> >(); return Udm::ParentAttr<ParentType>(impl, _type2CPRole<RoleType>()); }
+		template <class ParentType, class RoleType> 
+		Udm::ParentAttr<ParentType> parent() const 
+		{ 
+			boost::function_requires< Udm::SuperSubclassTypelist2Concept<ParentType, RoleType, Parents> >(); 
+			return Udm::ParentAttr<ParentType>(impl, _type2CPRole<RoleType>()); 
+		}
 		
-		template <class ParentType> Udm::ParentAttr<ParentType> 
+		template <class ParentType> 
+		Udm::ParentAttr<ParentType> 
 		parent_kind() const 
 		{ 
 			boost::function_requires< Udm::SuperSubclassTypelistConcept<ParentType, ParentKinds> >(); 
@@ -382,7 +388,7 @@ namespace HFSM {
 		typedef LOKI_TYPELIST_2(_PR_State_parent__State, _PR_RootFolder_parent__RootFolder) Parents;
 
 		// typelist for parent by returned type relations;
-		typedef LOKI_TYPELIST_1(Loki::NullType) ParentKinds;
+		typedef LOKI_TYPELIST_2(HFSM::State, Loki::NullType) ParentKinds;
 
 		// types and typelist for children by returned type and role relations;
 		class CR_Transition_child {};
@@ -476,7 +482,12 @@ namespace HFSM {
 		Udm::StringAttr Event() const { return Udm::StringAttr(impl, meta_Event); }
 		Udm::ParentAttr< ::HFSM::State> State_parent() const { return Udm::ParentAttr< ::HFSM::State>(impl, meta_State_parent); }
 		Udm::ParentAttr< ::HFSM::MgaObject> parent() const { return Udm::ParentAttr< ::HFSM::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		Udm::AssocEndAttr< ::HFSM::State> dstTransition_end() const { return Udm::AssocEndAttr< ::HFSM::State>(impl, meta_dstTransition_end_); }
+		
+		Udm::AssocEndAttr< ::HFSM::State> 
+		dstTransition_end() const 
+		{ 
+			return Udm::AssocEndAttr< ::HFSM::State>(impl, meta_dstTransition_end_); 
+		}
 		Udm::AssocEndAttr< ::HFSM::State> srcTransition_end() const { return Udm::AssocEndAttr< ::HFSM::State>(impl, meta_srcTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_Transition(*this); }
 

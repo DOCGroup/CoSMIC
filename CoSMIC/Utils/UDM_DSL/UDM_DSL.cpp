@@ -313,11 +313,6 @@ struct GetChildrenOp : public GetChildrenOpBase
 	typedef typename child_lit::result_kind result_kind;
 
 	explicit GetChildrenOp () {}
-	explicit GetChildrenOp (H) {}
-	/* A placehold parameter is required in above constructor because
-	   other operators take a paramter but GetChildrenOp and GetParentOp
-	   don't. So to bring syntactic consistency a dummy parameter is 
-	   used here.*/
 
 	GetChildrenOp (GetChildrenOp const &) {}
 	result_type apply (argument_type const & p)
@@ -353,7 +348,7 @@ struct GetParentOp : public GetParentOpBase
 	typedef typename parent_lit::result_kind result_kind;
 
 	explicit GetParentOp () {}
-	GetParentOp (typename ExpressionTraits<H>::expression_type) {}
+	//GetParentOp (typename ExpressionTraits<H>::expression_type) {}
 	GetParentOp (GetParentOp const &) {}
 	result_type apply (argument_type const & c)
 	{
@@ -367,7 +362,7 @@ struct GetParentOp : public GetParentOpBase
 			 iter != s.end();
 			 ++iter)
 		{
-			retval.Union((*iter).parent<parent_kind>());
+			retval.Union((*iter).parent_kind<parent_kind>());
 		}
 		return retval;
 	}
@@ -489,6 +484,41 @@ struct FilterOp : public FilterOpBase
 	}
 };
 
+class CastOpBase {};
+
+template <class L, class H>
+struct CastOp : public CastOpBase
+{
+	typedef typename ExpressionTraits<L>::result_type argument_type;
+	typedef typename ExpressionTraits<H>::result_type result_type;
+	typedef typename 
+		TExpr<UnaryExpr<L,CastOp<argument_type, result_type> > > expression_type;
+	typedef typename argument_type::result_kind result_kind;
+
+	explicit CastOp () {}
+	explicit CastOp (H) {} // dummy
+	CastOp (CastOp const &) {} 
+	result_type apply (argument_type const & p)
+	{
+		typedef typename argument_type::result_kind argument_kind;
+		typedef typename result_type::result_kind result_kind;
+
+		result_type retval;
+		std::vector<argument_kind> s = p;
+		for (std::vector<argument_kind>::iterator iter(s.begin());
+			 iter != s.end();
+			 ++iter)
+		{
+			if (Udm::IsDerivedFrom ((*iter).type(), result_kind::meta))
+			{
+				result_kind r = result_kind::Cast(*iter);
+				retval.Union(r);
+			}
+		}
+		return retval;
+	}
+};
+
 class SortOpBase {};
 
 template <class E, class Comp>
@@ -539,6 +569,7 @@ struct UniqueOp : public UniqueOpBase
 		return std::vector<result_kind>(s.begin(), new_end);
 	}
 };
+
 class AssociationOpBase {};
 
 template <class RESULT, class TARGETCLASS>
@@ -560,6 +591,79 @@ struct AssociationOp : public AssociationOpBase
 	FUNC func_;
 
 	explicit AssociationOp (FUNC f) : func_(f) {}
+	result_type apply (argument_type const & k)
+	{
+		std::vector<argument_kind> s = k;
+		result_type retval;
+		for (std::vector<argument_kind>::iterator iter(s.begin());
+			 iter != s.end();
+			 ++iter)
+		{
+			result_kind r = ((*iter).*func_)();
+			if (r != Udm::null)
+				retval.Union(r);
+		}
+		return retval;
+	}
+};
+
+class AssociationManyOpBase {};
+
+template <class RESULT, class TARGETCLASS>
+struct AssociationManyOp : public AssociationManyOpBase
+{
+	typedef typename ExpressionTraits<TARGETCLASS>::result_type argument_type;
+	typedef typename ExpressionTraits<RESULT>::result_type result_type;
+	typedef typename 
+		TExpr<UnaryExpr<result_type, AssociationManyOp<RESULT, TARGETCLASS> > > 
+			expression_type;
+
+	typedef RESULT result_kind;
+	typedef TARGETCLASS argument_kind;
+
+	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
+
+	typedef Udm::AClassAssocAttr<RESULT, TARGETCLASS> (TARGETCLASS::*FUNC)() const;
+	FUNC func_;
+
+	explicit AssociationManyOp (FUNC f) : func_(f) {}
+	result_type apply (argument_type const & k)
+	{
+		std::vector<argument_kind> s = k;
+		result_type retval;
+		for (std::vector<argument_kind>::iterator iter(s.begin());
+			 iter != s.end();
+			 ++iter)
+		{
+			std::vector<result_kind> r = ((*iter).*func_)();
+			retval.Union(r);
+		}
+		return retval;
+	}
+};
+
+class AssociationEndOpBase {};
+
+template <class RESULT, class TARGETCLASS>
+struct AssociationEndOp : public AssociationEndOpBase
+{
+	typedef typename ExpressionTraits<TARGETCLASS>::result_type argument_type;
+	typedef typename ExpressionTraits<RESULT>::result_type result_type;
+	typedef typename 
+		TExpr<UnaryExpr<result_type, AssociationEndOp<RESULT, TARGETCLASS> > > 
+			expression_type;
+
+	typedef RESULT result_kind;
+	typedef TARGETCLASS argument_kind;
+
+	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
+
+	typedef Udm::AssocEndAttr<RESULT> (TARGETCLASS::*FUNC)() const;
+	FUNC func_;
+
+	explicit AssociationEndOp (FUNC f) : func_(f) {}
 	result_type apply (argument_type const & k)
 	{
 		std::vector<argument_kind> s = k;
@@ -604,6 +708,10 @@ template <class T, class Comp>
 struct ExpressionTraits <SortOp<T, Comp> >
 	: public ETBase <SortOp<T, Comp> > {};
 
+template <class L, class H>
+struct ExpressionTraits <CastOp<L, H> >
+	: public ETBase <CastOp<L, H> > {};
+
 template <class T, class BinPred>
 struct ExpressionTraits <UniqueOp<T, BinPred> >
 	: public ETBase <UniqueOp<T, BinPred> > {};
@@ -615,6 +723,14 @@ struct ExpressionTraits <AssociationOp<RESULT, TARGETCLASS> >
 template <class RESULT, class TARGETCLASS>
 struct ExpressionTraits <Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
 	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
+
+template <class RESULT, class TARGETCLASS>
+struct ExpressionTraits <Udm::AClassAssocAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
+	: public ETBase <AssociationManyOp<RESULT, TARGETCLASS> > {};
+
+template <class RESULT, class TARGETCLASS>
+struct ExpressionTraits <Udm::AssocEndAttr<RESULT> (TARGETCLASS::*)() const>
+	: public ETBase <AssociationEndOp<RESULT, TARGETCLASS> > {};
 
 template <class T>
 RegexOp<typename ExpressionTraits<T>::result_type> 
@@ -666,6 +782,20 @@ Select (E, Result (*f) (Arg))
 	FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
 		filter(std::ptr_fun(f));
 	return filter;
+}
+
+template <class L, class H>
+CastOp<typename ExpressionTraits<L>::result_type, 
+       typename ExpressionTraits<H>::result_type> 
+CastFromTo (L, H)
+{
+	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<L>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<H>));
+
+	typedef typename ExpressionTraits<L>::result_type argument_type;
+	typedef typename ExpressionTraits<H>::result_type result_type;
+
+	return CastOp<argument_type, result_type>();
 }
 
 template <class E, class Comp>
@@ -759,11 +889,33 @@ TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type,
 				typename OpSelector<L,H,GetChildrenOp>::Op::Self
 				>
 	 >
+operator > (L const &l, H)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef typename OpSelector<L,H,GetChildrenOp>::Op::Self Operator;
+	typedef typename ExpressionTraits<Operator>::result_kind ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+
+	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
+
+	typedef UnaryExpr<ParentKindExpr, 
+		typename OpSelector<L,H,GetChildrenOp>::Op::Self> UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
+	Operator op;
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
+
+template <class L, class H>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename OpSelector<L,H,GetChildrenOp>::Op::Self
+				>
+	 >
 /* Note that here H can potentially be a type that is not an
 expression. For example, it can be a Visitor, RegexOP, SelectorOp 
 among others. H must be a const reference to support default 
 construction of kinds. */
-operator > (L const &l, H const &h)
+operator >>= (L const &l, H const &h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
 	typedef typename OpSelector<L,H,GetChildrenOp>::Op::Self Operator;
@@ -779,6 +931,7 @@ operator > (L const &l, H const &h)
 	Operator op(h);
 	return Expr (UnaryExpr(ParentKindExpr(l), op));
 }
+
 
 template <class L>
 TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
@@ -804,7 +957,7 @@ TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type,
 				typename RegexOp<H>
 				>
 	 >
-operator > (L const &l, RegexOp<H> const &h)
+operator > (L const &l, RegexOp<H> h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
 	typedef typename ExpressionTraits<RegexOp<H> >::result_kind ChildKind;
@@ -822,7 +975,7 @@ TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type,
 				typename SelectorOp<H>
 				>
 	 >
-operator > (L const &l, SelectorOp<H> const &h)
+operator > (L const &l, SelectorOp<H> h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
 	typedef typename ExpressionTraits<SelectorOp<H> >::result_kind ChildKind;
@@ -840,7 +993,7 @@ TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type,
 				typename FilterOp<H, Func>
 				>
 	 >
-operator > (L const &l, FilterOp<H, Func> const &h)
+operator > (L const &l, FilterOp<H, Func> h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
 	typedef typename ExpressionTraits<FilterOp<H, Func> >::result_kind ChildKind;
@@ -858,7 +1011,7 @@ TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type,
 				typename SortOp<H, Comp>
 				>
 	 >
-operator > (L const &l, SortOp<H, Comp> const &h)
+operator > (L const &l, SortOp<H, Comp> h)
 {
 	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
 	typedef typename ExpressionTraits<SortOp<H, Comp> >::result_kind ChildKind;
@@ -868,6 +1021,25 @@ operator > (L const &l, SortOp<H, Comp> const &h)
 
 	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
 	SortOp<H, Comp> op(h);
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
+
+template <class L, class TARGET, class RESULT>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename CastOp<TARGET, RESULT>
+				>
+	 >
+operator > (L const &l, CastOp<TARGET, RESULT> op)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef typename ExpressionTraits<CastOp<TARGET, RESULT> >::result_kind ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
+
+    typedef UnaryExpr<ParentKindExpr, CastOp<TARGET, RESULT> > UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
 	return Expr (UnaryExpr(ParentKindExpr(l), op));
 }
 
@@ -903,17 +1075,37 @@ operator > (L const &l,
     typedef UnaryExpr<ParentKindExpr, AssociationOp<RESULT, TARGETCLASS> > UnaryExpr;
 	typedef TExpr<UnaryExpr> Expr;
 
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, TARGETCLASS>));
 	AssociationOp<RESULT, TARGETCLASS> op(func);
 	return Expr (UnaryExpr(ParentKindExpr(l), op));
 }
 
+template <class L, class RESULT, class TARGETCLASS>
+TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
+				typename AssociationEndOp<RESULT, TARGETCLASS>
+				>
+	 >
+operator > (L const &l, 
+			Udm::AssocEndAttr<RESULT> (TARGETCLASS::*func)() const)
+{
+	typedef typename ExpressionTraits<L>::expression_type ParentKindExpr;
+	typedef RESULT ChildKind;
+	typedef typename ParentKindExpr::result_kind ParentKind;
+    typedef UnaryExpr<ParentKindExpr, AssociationEndOp<RESULT, TARGETCLASS> > UnaryExpr;
+	typedef TExpr<UnaryExpr> Expr;
+
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, TARGETCLASS>));
+
+	AssociationEndOp<RESULT, TARGETCLASS> op(func);
+	return Expr (UnaryExpr(ParentKindExpr(l), op));
+}
 
 template <class L, class H>
 TExpr<UnaryExpr<typename ExpressionTraits<L>::expression_type, 
 				typename OpSelector<L,H,GetParentOp>::Op
 				>
 	 >
-operator < (L const &l, H const &h)
+operator < (L const &l, H)
 {
 	//BOOST_CONCEPT_ASSERT((Convertible<H, RegexOpBase>));
 	BOOST_MPL_ASSERT_NOT((boost::is_base_of<RegexOpBase, H>));
@@ -932,7 +1124,7 @@ operator < (L const &l, H const &h)
 	typedef UnaryExpr<ChildKindExpr, 
 		              typename OpSelector<L,H,GetParentOp>::Op> UnaryExpr;
 	typedef TExpr<UnaryExpr> Expr;
-	typename OpSelector<L,H,GetParentOp>::Op op(h);
+	typename OpSelector<L,H,GetParentOp>::Op op;
 
 	return Expr (UnaryExpr(ChildKindExpr(l), op));
 }
@@ -941,7 +1133,7 @@ template <class Expr, class Para>
 typename Expr::result_type
 evaluate (Expr &e, Para p)
 {
-	// BOOST_CONCEPT_CHECK(e::argument_type should be same as p);
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename Expr::argument_type, Para>));
 	return e(p);
 }
 
@@ -950,6 +1142,7 @@ T operator * (T t)
 {
 	return t;
 }
+
 struct Predicate : std::unary_function <State, bool> {
 	result_type operator () (argument_type) { return true; }
 };	
@@ -964,29 +1157,29 @@ int foo (HFSM::RootFolder & rf)
 {
 	try {
 		TestVisitor tv;
-		//BOOST_AUTO(e1, RootFolder() > State() > tv);
-		//BOOST_AUTO(e1, RootFolder() > State() > SelectByName(State(),"State2") > tv);
 		BOOST_AUTO(e1, RootFolder() > Unique (RootFolder())
                                     > State()
                                     > Sort(State(), sorter) 
-                                    > SelectByName(State(),"State2"));
-		evaluate(RootFolder() > State()
-                              > SelectByName(State(),"State2") 
-							  > State() 
-							  > SelectByName(State(),"s50") 
-                              > State()
-							  > &State::srcTransition
-                              > tv , rf);
-		std::unary_function <KindLit<RootFolder>, KindLit<State> > const & e 
-			= e1;
+                                    > SelectByName(State(),"State2")
+									> State() < State() > State()
+									> CastFromTo(State(), State())
+									> SelectByName(State(),"s50")
+									> Transition()
+									> &Transition::srcTransition_end
+									> tv);
+		/*evaluate(RootFolder() > State() > tv
+                              > SelectByName(State(),"State2") > tv
+							  > State() > tv
+							  > SelectByName(State(),"s50") > tv
+                              > State() > tv
+							  > &State::srcTransition 
+							  > tv , rf);*/
 		std::vector<RootFolder> v;
 		v.push_back(rf);
 		v.push_back(rf);
 		BOOST_AUTO(s, e1(v));
 		//AfxMessageBox (std::string(s->name()).c_str(), MB_OK| MB_ICONINFORMATION);
 		//BOOST_AUTO(e2, e1 > !!!SelectSubSet(s) > tv);
-		//evaluate(e2, rf);
-		//BOOST_AUTO(t, evaluate(rf > Transition()));
 	}
 	catch (std::exception & e)
 	{
