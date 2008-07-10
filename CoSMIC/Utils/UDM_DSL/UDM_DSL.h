@@ -43,22 +43,23 @@ struct ParentOfChildN
 #endif // ENABLE_BOOST_MPL
 
 template <class Kind> class KindLit;
+
 template <class L, class R> struct ChainExpr;
 template <class L, class R> struct GetChildrenOp;
 template <class L, class R> struct DFSChildrenOp;
 template <class L, class R> struct GetParentOp;
 template <class L, class R> struct CastOp;
-template <class E> struct SelectorOp;
-template <class E> struct VisitorOp;
-template <class E> struct RegexOp;
-template <class E, class Func> struct FilterOp;
-template <class E, class Comp> struct SortOp;
-template <class E, class BinPred> struct UniqueOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
 template <class RESULT, class TARGETCLASS> struct AssociationManyOp;
 
+template <class E> struct SelectorOp;
+template <class E> struct VisitorOp;
+template <class E> struct RegexOp;
 
+template <class E, class Func> struct FilterOp;
+template <class E, class Comp> struct SortOp;
+template <class E, class BinPred> struct UniqueOp;
 
 template <class T>
 struct ET
@@ -197,6 +198,31 @@ struct MyUnaryFunction
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
 };
+
+#define LOCAL_TYPEDEFS(L, OP)                                           \
+	typedef typename ET< L >::expression_type ParentKindExpr;           \
+	typedef typename ET< OP >::argument_kind ChildKind;                 \
+	typedef typename ParentKindExpr::result_kind ParentKind;            \
+    typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                   \
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
+
+
+#define GT_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
+template < class L, class H >                                 \
+ChainExpr<typename ET< L >::expression_type, OPERATOR >       \
+operator > (L const &l, OPERATOR op) {                        \
+	LOCAL_TYPEDEFS(L, OPERATOR);                              \
+	return ChainExpr(ParentKindExpr(l), op);                  \
+}
+
+
+#define GT_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
+template <class L, class H, class X >                      \
+ChainExpr<typename ET< L >::expression_type, OPERATOR >    \
+operator > (L const &l, OPERATOR op) {                     \
+	LOCAL_TYPEDEFS(L, OPERATOR);                           \
+	return ChainExpr(ParentKindExpr(l), op);               \
+}
 
 
 

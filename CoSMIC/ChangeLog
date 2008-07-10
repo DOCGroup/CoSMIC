@@ -1,3 +1,10 @@
+Thu Jul 10 16:21:33 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Refactoring.
+
 Thu Jul 10 05:04:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/UDM_DSL.h:
