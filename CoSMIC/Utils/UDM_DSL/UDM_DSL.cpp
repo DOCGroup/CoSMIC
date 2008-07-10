@@ -115,8 +115,11 @@ public:
 };
 
 template <class L, class R>
-struct ChainExpr : public MyUnaryFunction <L, R>
+struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
+	           	                               typename ET<R>::result_type>
 {
+	typedef typename ET<L>::argument_kind argument_kind;
+	typedef typename ET<R>::result_kind result_kind;
 	typedef ChainExpr<L, R> expression_type;
 
 	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename ET<L>::result_kind, 
@@ -133,8 +136,41 @@ struct ChainExpr : public MyUnaryFunction <L, R>
 	result_type operator () (argument_type p) { return r_(l_(p)); }
 };
 
-struct SelectorOpBase{};
+class DFSChildrenOpBase {};
+template <class LExpr, class RExpr>
+struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, 
+	                                       void>,
+					   public DFSChildrenOpBase
+{
+	typedef DFSChildrenOp<LExpr, RExpr> Self;
+	typedef typename 
+		ChainExpr<LExpr, DFSChildrenOp<LExpr, RExpr> > expression_type;
+	typedef void result_kind;
+	typedef typename ET<LExpr>::result_kind argument_kind;
 
+	RExpr expr_;
+	explicit DFSChildrenOp () {}
+	explicit DFSChildrenOp (RExpr const & e) : expr_(e) {}
+
+	DFSChildrenOp (DFSChildrenOp const &d) : expr_(d.expr_) {}
+	result_type operator () (argument_type const & arg)
+	{
+		typedef typename ET<RExpr>::argument_kind child_kind;
+		typedef typename ET<LExpr>::result_kind parent_kind;
+
+		BOOST_CONCEPT_ASSERT((ParentChildConcept<parent_kind, child_kind>));
+
+		std::vector<parent_kind> v = arg;
+		BOOST_FOREACH(parent_kind kind, v)
+		{
+			std::vector<child_kind> children = kind.children_kind<child_kind>();
+			std::for_each(children.begin(), children.end(), expr_);
+		}
+	}
+};
+
+
+struct SelectorOpBase{};
 template <class E>
 struct SelectorOp : public MyUnaryFunction <E>, 
 	                public SelectorOpBase
@@ -149,19 +185,16 @@ struct SelectorOp : public MyUnaryFunction <E>,
 		: s_(kl), logical_not_(logical_not) {}
 	SelectorOp (SelectorOp const & sop) 
 		: logical_not_(sop.logical_not_), s_(sop.s_) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> s = k;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			//bool match = (s_.find(*iter) != s_.end());
 			std::vector<argument_kind>::iterator i = 
-				std::find(s_.begin(), s_.end(), *iter);
+				std::find(s_.begin(), s_.end(), kind);
 			if ((i != s_.end()) ^ logical_not_) // Logical not of match, if required
-				retval.Union((*iter));
+				retval.Union(kind);
 		}
 		return retval;
 	}
@@ -174,7 +207,6 @@ struct SelectorOp : public MyUnaryFunction <E>,
 };
 
 class GetChildrenOpBase {};
-
 template <class L, class H>
 struct GetChildrenOp : public MyUnaryFunction <L,H>,
 	                   public GetChildrenOpBase
@@ -186,59 +218,21 @@ struct GetChildrenOp : public MyUnaryFunction <L,H>,
 	explicit GetChildrenOp () {}
 
 	GetChildrenOp (GetChildrenOp const &) {}
-	result_type operator () (argument_type const & p)
+	result_type operator () (argument_type const & arg)
 	{
 		BOOST_CONCEPT_ASSERT((ParentChildConcept<argument_kind, result_kind>));
 
 		result_type retval;
-		std::vector<argument_kind> s = p;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			retval.Union((*iter).children_kind<result_kind>());
+			retval.Union(kind.children_kind<result_kind>());
 		}
 		return retval;
 	}
 };
-/*
-class DFSChildrenOpBase {};
 
-template <class LExpr, class RExpr>
-struct DFSChildrenOp : public unary_function <typename ET<LExpr>::result_type,
-						          	          void>,
-					   public DFSChildrenOpBase
-{
-	typedef DFSChildrenOp<LExpr, RExpr> Self;
-	typedef typename 
-		ChainExpr<LExpr, DFSChildrenOp<LExpr, RExpr> > expression_type;
-	typedef typename ET<RExpr>::argument_kind result_kind;
-	typedef typename ET<LExpr>::argument_kind result_kind;
-
-	RExpr expr_;
-	explicit DFSChildrenOp () {}
-	explicit DFSChildrenOp (RExpr const & e) : expr_(e) {}
-
-	DFSChildrenOp (DFSChildrenOp const &d) : expr_(d.expr_) {}
-	result_type operator () (argument_type const & p)
-	{
-		typedef typename argument_type::result_kind parent_kind;
-		typedef result_kind child_kind;
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<parent_kind, child_kind>));
-
-		std::vector<parent_kind> v = p;
-		for (std::vector<parent_kind>::iterator iter(v.begin());
-			 iter != v.end();
-			 ++iter)
-		{
-			std::vector<child_kind> v = (*iter).children_kind<child_kind>();
-			std::for_each(v.begin(), v.end(), expr_);
-		}
-	}
-};
-*/
 class GetParentOpBase {};
-
 template <class L, class H>
 struct GetParentOp : public MyUnaryFunction <L, H>,
 					 public GetParentOpBase
@@ -248,24 +242,21 @@ struct GetParentOp : public MyUnaryFunction <L, H>,
 
 	explicit GetParentOp () {}
 	GetParentOp (GetParentOp const &) {}
-	result_type operator () (argument_type const & c)
+	result_type operator () (argument_type const & arg)
 	{
 		BOOST_CONCEPT_ASSERT((ParentChildConcept<result_kind, argument_kind>));
 
 		result_type retval;
-		std::vector<argument_kind> s = c;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			retval.Union((*iter).parent_kind<result_kind>());
+			retval.Union(kind.parent_kind<result_kind>());
 		}
 		return retval;
 	}
 };
 
 class VisitorOpBase {};
-
 template <class E>
 struct VisitorOp : public MyUnaryFunction <E>,
 				   public VisitorOpBase
@@ -277,21 +268,19 @@ struct VisitorOp : public MyUnaryFunction <E>,
 	explicit VisitorOp (Visitor const &v) 
 		: visitor_ (const_cast<Visitor &> (v)) {}
 	VisitorOp (VisitorOp const & vop) : visitor_ (vop.visitor_) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> s = k;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			(*iter).Accept(visitor_);
+			kind.Accept(visitor_);
 		}
-		return k;
+		return arg;
 	}
 };
 
-class RegexOpBase {};
 
+class RegexOpBase {};
 template <class E>
 struct RegexOp : public MyUnaryFunction <E>,
 			     public RegexOpBase
@@ -306,18 +295,16 @@ struct RegexOp : public MyUnaryFunction <E>,
 		: logical_not_ (logical_not) { regex_.assign(str); }
 	RegexOp (RegexOp const & reop) 
 		: logical_not_ (reop.logical_not_), regex_ (reop.regex_) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> s = k;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
 			//bool match = boost::regex_match(std::string((*iter).name()), regex_);
-			bool match = (regex_ == std::string((*iter).name()));
+			bool match = (regex_ == std::string(kind.name()));
 			if (match ^ logical_not_) // Logical not of match, if required
-				retval.Union((*iter));
+				retval.Union(kind);
 		}
 		return retval;
 	}
@@ -329,8 +316,8 @@ struct RegexOp : public MyUnaryFunction <E>,
 	}
 };
 
-class FilterOpBase {};
 
+class FilterOpBase {};
 template <class E, class Func>
 struct FilterOp : public MyUnaryFunction <E>,
 				  public FilterOpBase
@@ -344,16 +331,14 @@ struct FilterOp : public MyUnaryFunction <E>,
 		: func_(f), logical_not_ (logical_not) { }
 	FilterOp (FilterOp const & fop) 
 		: func_(fop.func_), logical_not_ (fop.logical_not_) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> s = k;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			if (func_(*iter) ^ logical_not_) // Logical not of match, if required
-				retval.Union((*iter));
+			if (func_(kind) ^ logical_not_) // Logical not of match, if required
+				retval.Union(kind);
 		}
 		return retval;
 	}
@@ -365,8 +350,8 @@ struct FilterOp : public MyUnaryFunction <E>,
 	}
 };
 
-class CastOpBase {};
 
+class CastOpBase {};
 template <class L, class H>
 struct CastOp : public MyUnaryFunction <L, H>,
 				public CastOpBase
@@ -377,17 +362,15 @@ struct CastOp : public MyUnaryFunction <L, H>,
 	explicit CastOp () {}
 	explicit CastOp (H) {} // dummy
 	CastOp (CastOp const &) {} 
-	result_type operator () (argument_type const & p)
+	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> s = p;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		std::vector<argument_kind> v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			if (Udm::IsDerivedFrom ((*iter).type(), result_kind::meta))
+			if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
 			{
-				result_kind r = result_kind::Cast(*iter);
+				result_kind r = result_kind::Cast(kind);
 				retval.Union(r);
 			}
 		}
@@ -396,7 +379,6 @@ struct CastOp : public MyUnaryFunction <L, H>,
 };
 
 class SortOpBase {};
-
 template <class E, class Comp>
 struct SortOp : public MyUnaryFunction <E>,
 			    public SortOpBase
@@ -415,8 +397,8 @@ struct SortOp : public MyUnaryFunction <E>,
 	}
 };
 
-class UniqueOpBase {};
 
+class UniqueOpBase {};
 template <class E, class BinPred>
 struct UniqueOp : public MyUnaryFunction <E>,
 				  public UniqueOpBase
@@ -436,8 +418,8 @@ struct UniqueOp : public MyUnaryFunction <E>,
 	}
 };
 
-class AssociationOpBase {};
 
+class AssociationOpBase {};
 template <class RESULT, class TARGETCLASS>
 struct AssociationOp : public MyUnaryFunction <TARGETCLASS, RESULT>,
 					   public AssociationOpBase
@@ -450,15 +432,13 @@ struct AssociationOp : public MyUnaryFunction <TARGETCLASS, RESULT>,
 	FUNC func_;
 
 	explicit AssociationOp (FUNC f) : func_(f) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> s = k;
+		std::vector<argument_kind> v = arg;
 		result_type retval;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			result_kind r = ((*iter).*func_)();
+			result_kind r = (kind.*func_)();
 			if (r != Udm::null)
 				retval.Union(r);
 		}
@@ -466,8 +446,8 @@ struct AssociationOp : public MyUnaryFunction <TARGETCLASS, RESULT>,
 	}
 };
 
-class AssociationManyOpBase {};
 
+class AssociationManyOpBase {};
 template <class RESULT, class TARGETCLASS>
 struct AssociationManyOp : public MyUnaryFunction <TARGETCLASS,RESULT>,
 					       public AssociationManyOpBase
@@ -480,23 +460,19 @@ struct AssociationManyOp : public MyUnaryFunction <TARGETCLASS,RESULT>,
 	FUNC func_;
 
 	explicit AssociationManyOp (FUNC f) : func_(f) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> s = k;
+		std::vector<argument_kind> v = arg;
 		result_type retval;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			std::vector<result_kind> r = ((*iter).*func_)();
+			std::vector<result_kind> r = (kind.*func_)();
 			retval.Union(r);
 		}
 		return retval;
 	}
 };
-
 class AssociationEndOpBase {};
-
 template <class RESULT, class TARGETCLASS>
 struct AssociationEndOp : public MyUnaryFunction <TARGETCLASS,RESULT>,
 					      public AssociationEndOpBase
@@ -509,21 +485,21 @@ struct AssociationEndOp : public MyUnaryFunction <TARGETCLASS,RESULT>,
 	FUNC func_;
 
 	explicit AssociationEndOp (FUNC f) : func_(f) {}
-	result_type operator () (argument_type const & k)
+	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> s = k;
+		std::vector<argument_kind> v = arg;
 		result_type retval;
-		for (std::vector<argument_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
+		BOOST_FOREACH(argument_kind kind, v)
 		{
-			result_kind r = ((*iter).*func_)();
+			result_kind r = (kind.*func_)();
 			if (r != Udm::null)
 				retval.Union(r);
 		}
 		return retval;
 	}
 };
+
+
 
 template <class T>
 RegexOp<typename ET<T>::result_type> 
@@ -570,6 +546,7 @@ Select (E, Result (*f) (Arg))
 	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
+	
 	FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
 		filter(std::ptr_fun(f));
 	return filter;
@@ -648,6 +625,18 @@ Unique (E)
 	return UniqueOp<E, EQ>(EQ());
 }
 
+template <class L>
+ChainExpr<typename ET<L>::expression_type, 
+ 		  typename VisitorOp<typename ET<L>::result_type>
+		 >
+operator > (L const &l, Visitor & v)
+{
+	typedef VisitorOp<typename ET<L>::result_type> OP;
+	LOCAL_TYPEDEFS(L, OP);
+
+	return ChainExpr(ParentKindExpr(l), OP(v));
+}
+
 using boost::mpl::if_c;
 using boost::is_base_of;
 
@@ -674,6 +663,7 @@ struct OpSelector
 		    >::type Op;
 };
 
+
 template <class L, class H>
 ChainExpr<typename ET<L>::expression_type, 
 		  typename OpSelector<L,H,GetChildrenOp>::Op::Self
@@ -686,58 +676,23 @@ operator > (L const &l, H)
 	return ChainExpr(ParentKindExpr(l), OP());
 }
 
-/*
-template <class L, class R>
-ChainExpr<typename ET<L>::expression_type, 
-		  DFSChildrenOp<typename ET<L>::expression_type,
-		 			    typename ET<R>::expression_type
-				       >
-		 >
-operator >>= (L const &l, R const &r)
-{
-	typedef typename ET<L>::expression_type ParentExpr;
-	typedef typename ET<R>::expression_type ChildExpr;
-	typedef typename DFSChildrenOp<ParentExpr, ChildExpr> Operator;
-	typedef typename ET<L>::result_kind ParentKind;
-	typedef typename ET<R>::result_kind ChildKind;
-
-	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
-
-	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
-
-	Operator op(r);
-	return ChainExpr(ParentExpr(l), op);
-}
-*/
-template <class L>
-ChainExpr<typename ET<L>::expression_type, 
- 		  typename VisitorOp<typename ET<L>::result_type>
-		 >
-operator > (L const &l, Visitor & v)
-{
-	typedef VisitorOp<typename ET<L>::result_type> OP;
-	LOCAL_TYPEDEFS(L, OP);
-
-	return ChainExpr(ParentKindExpr(l), OP(v));
-}
-
 #define REGEX_OP RegexOp<H>
-GT_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
+GT_PARA_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
 
 #define SELECTOR_OP SelectorOp<H>
-GT_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
+GT_PARA_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
 
 #define FILTER_OP FilterOp<H, Func>
-GT_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
+GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
 
 #define SORT_OP SortOp<H, Comp>
-GT_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);
+GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);
 
 #define CAST_OP CastOp<TARGET, RESULT>
-GT_OPERATOR_DEFINITION_3T(L,TARGET,RESULT,CAST_OP);
+GT_PARA_OPERATOR_DEFINITION_3T(L,TARGET,RESULT,CAST_OP);
 
 #define UNIQUE_OP UniqueOp<H, BinPred>
-GT_OPERATOR_DEFINITION_3T(L,H,BinPred,UNIQUE_OP);
+GT_PARA_OPERATOR_DEFINITION_3T(L,H,BinPred,UNIQUE_OP);
 
 template <class L, class RESULT, class TARGETCLASS>
 ChainExpr<typename ET<L>::expression_type, 
@@ -778,6 +733,7 @@ operator < (L const &l, H)
 	//BOOST_CONCEPT_ASSERT((Convertible<H, Visitor>));
 	BOOST_MPL_ASSERT_NOT((boost::is_base_of<Visitor, H>));
 	
+	// Don't replace the following with LOCAL_TYPEDEFS.
 	typedef typename OpSelector<L,H,GetParentOp>::Op OP;
 	typedef typename ET<L>::expression_type ChildKindExpr;
 	typedef typename ET<H>::result_kind ParentKind;
@@ -789,11 +745,38 @@ operator < (L const &l, H)
 	return ChainExpr(ChildKindExpr(l), OP());
 }
 
+
+template <class L, class R>
+ChainExpr<typename ET<L>::expression_type, 
+		  DFSChildrenOp<typename ET<L>::expression_type,
+		 			    typename ET<R>::expression_type
+				       >
+		 >
+operator >>= (L const &l, R const &r)
+{
+	typedef typename ET<L>::expression_type ParentExpr;
+	typedef typename ET<R>::expression_type ChildExpr;
+	typedef typename DFSChildrenOp<ParentExpr, ChildExpr> Operator;
+	typedef typename ET<L>::result_kind ParentKind;
+	typedef typename ET<R>::argument_kind ChildKind;
+
+	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
+
+	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
+
+	Operator op(r);
+	return ChainExpr(ParentExpr(l), op);
+}
+
+
+
+
 template <class Para, class Expr>
 typename Expr::result_type
 evaluate (Para p, Expr &e)
 {
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename Expr::argument_type, Para>));
+	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename ET<Expr>::argument_kind, 
+											  typename ET<Para>::result_kind>));
 	return e(p);
 }
 
@@ -818,7 +801,7 @@ int foo (HFSM::RootFolder & rf)
 	try {
 		TestVisitor tv;
 		BOOST_AUTO(e1, RootFolder() >  State()
-								    >  SelectSubSet(State())
+								    //>  SelectSubSet(State())
                                     >  Sort(State(), sorter) 
 									>  Select(State(), pred)
                                     >  SelectByName(State(),"State2")
@@ -829,9 +812,14 @@ int foo (HFSM::RootFolder & rf)
 									>& Transition::srcTransition_end
 									>& State::srcTransition
 									>  tv > tv);
-		e1(rf);
-		//BOOST_AUTO(e2, RootFolder() >>= State() >>= State());
-		//evaluate(rf, e2);
+		//e1(rf);
+		BOOST_AUTO(e2, RootFolder() >>=  State() 
+                                      >  tv 
+								      >  SelectByName(State(),"State2")
+									  >  State() < State() > Unique(State())
+									>>=  State()
+                                      > tv);//>>= Transition());
+		evaluate(rf, e2);
 		//AfxMessageBox (std::string(s->name()).c_str(), MB_OK| MB_ICONINFORMATION);
 		//BOOST_AUTO(e2, e1 > !!!SelectSubSet(s) > tv);
 	}

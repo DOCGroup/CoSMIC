@@ -9,6 +9,7 @@
 #include <boost/concept/assert.hpp>
 #include <boost/concept_check.hpp>
 #include <boost/regex.hpp>
+#include <boost/foreach.hpp>
 #include <loki/TypeManip.h>
 
 int foo (HFSM::RootFolder &);
@@ -192,8 +193,8 @@ struct MyUnaryFunction
 	: public std::unary_function <typename ET<L>::argument_type,
 	           	                  typename ET<R>::result_type>
 {
-	typedef typename argument_type::argument_kind argument_kind;
-	typedef typename result_type::result_kind result_kind;
+	typedef typename ET<L>::argument_kind argument_kind;
+	typedef typename ET<R>::result_kind result_kind;
 
 	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
@@ -207,7 +208,7 @@ struct MyUnaryFunction
 	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
 
 
-#define GT_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
+#define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                 \
 ChainExpr<typename ET< L >::expression_type, OPERATOR >       \
 operator > (L const &l, OPERATOR op) {                        \
@@ -216,7 +217,7 @@ operator > (L const &l, OPERATOR op) {                        \
 }
 
 
-#define GT_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
+#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
 template <class L, class H, class X >                      \
 ChainExpr<typename ET< L >::expression_type, OPERATOR >    \
 operator > (L const &l, OPERATOR op) {                     \

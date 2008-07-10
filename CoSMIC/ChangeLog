@@ -1,3 +1,11 @@
+Thu Jul 10 19:59:11 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Pretty much final version of the UDM embedded DSL. 
+          Very expressive and composable.
+
 Thu Jul 10 16:21:33 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/UDM_DSL.h:
