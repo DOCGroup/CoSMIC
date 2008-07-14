@@ -6,8 +6,8 @@
 
 #include <iosfwd>
 #include <string>
-#include <xercesc/util/XMLString.hpp>
-#include "Utils/Utils_Export.h"
+#include "xercesc/util/XMLString.hpp"
+#include "Utils_export.h"
 
 // Utility class that provides a std::string like facade to XMLString.
 // Doesn't implement all of the methods of std::string.
