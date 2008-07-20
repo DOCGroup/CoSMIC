@@ -1,7 +1,15 @@
+Sun Jul 20 20:24:35 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          New improvements with traversal of multiple members.
+
 Mon Jul 14 19:42:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/XercesString.h:
-        
+
           Fixed the #include preprocessor definition for Utils_export.h
 
 Thu Jul 10 19:59:11 UTC 2008  Sumant Tambe  <sutambe@nospam>
@@ -9,7 +17,7 @@ Thu Jul 10 19:59:11 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/UDM_DSL.h:
         * Utils/UDM_DSL/UDM_DSL.cpp:
 
-          Pretty much final version of the UDM embedded DSL. 
+          Pretty much final version of the UDM embedded DSL.
           Very expressive and composable.
 
 Thu Jul 10 16:21:33 UTC 2008  Sumant Tambe  <sutambe@nospam>

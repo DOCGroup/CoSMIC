@@ -1,6 +1,8 @@
 #ifndef __UDM_DSL_H
 #define __UDM_DSL_H
 
+#include <vector>
+
 #include "HFSM.h"
 #include "uml.h"
 
@@ -11,6 +13,7 @@
 #include <boost/regex.hpp>
 #include <boost/foreach.hpp>
 #include <loki/TypeManip.h>
+
 
 int foo (HFSM::RootFolder &);
 
@@ -43,11 +46,20 @@ struct ParentOfChildN
 
 #endif // ENABLE_BOOST_MPL
 
-template <class Kind> class KindLit;
+namespace HFSM {
 
+template <class Kind> class KindLit;
 template <class L, class R> struct ChainExpr;
+template <class L, class R> struct SequenceExpr;
+
+//template <class A, class B, class C> struct Members2Op;
+//template <class A, class B, class C, class D> struct Members3Op;
+//template <class A, class B, class C, class D, class E> struct Members4Op;
+//template <class A, class B, class C, class D, class E, class F> struct Members5Op;
+
 template <class L, class R> struct GetChildrenOp;
 template <class L, class R> struct DFSChildrenOp;
+template <class L, class R> struct DFSOp;
 template <class L, class R> struct GetParentOp;
 template <class L, class R> struct CastOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
@@ -127,6 +139,10 @@ template <class T, class X>
 struct ET <ChainExpr<T, X> > 
 	: public ETBase <ChainExpr<T, X> > {};
 
+template <class T, class X>
+struct ET <SequenceExpr<T, X> > 
+	: public ETBase <SequenceExpr<T, X> > {};
+
 template <class T>
 struct ET <SelectorOp<T> > 
 	: public ETBase <SelectorOp<T> > { };
@@ -146,6 +162,10 @@ struct ET <GetChildrenOp<T, U> >
 template <class T, class U> 
 struct ET <DFSChildrenOp<T, U> > 
 	: public ETBase <DFSChildrenOp<T, U> > {};
+
+template <class T, class U> 
+struct ET <DFSOp<T, U> > 
+	: public ETBase <DFSOp<T, U> > {};
 
 template <class T, class U>
 struct ET <GetParentOp<T, U> > 
@@ -196,9 +216,11 @@ struct MyUnaryFunction
 	typedef typename ET<L>::argument_kind argument_kind;
 	typedef typename ET<R>::result_kind result_kind;
 
-	BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
 	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
 };
+
+} // namespace HFSM
 
 #define LOCAL_TYPEDEFS(L, OP)                                           \
 	typedef typename ET< L >::expression_type ParentKindExpr;           \
@@ -211,7 +233,7 @@ struct MyUnaryFunction
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                 \
 ChainExpr<typename ET< L >::expression_type, OPERATOR >       \
-operator > (L const &l, OPERATOR op) {                        \
+operator >> (L const &l, OPERATOR op) {                        \
 	LOCAL_TYPEDEFS(L, OPERATOR);                              \
 	return ChainExpr(ParentKindExpr(l), op);                  \
 }
@@ -220,7 +242,7 @@ operator > (L const &l, OPERATOR op) {                        \
 #define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
 template <class L, class H, class X >                      \
 ChainExpr<typename ET< L >::expression_type, OPERATOR >    \
-operator > (L const &l, OPERATOR op) {                     \
+operator >> (L const &l, OPERATOR op) {                     \
 	LOCAL_TYPEDEFS(L, OPERATOR);                           \
 	return ChainExpr(ParentKindExpr(l), op);               \
 }
