@@ -68,6 +68,7 @@ private:
   void handle_MonolithicImplementation (unsigned long eventmask, GME::Object & obj);
   void handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj);
   void handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj);
+  void handle_NodeReference (unsigned long eventmask, GME::Object & obj);
   void handle_UUID (unsigned long eventmask, GME::FCO & fco);
 
   /**

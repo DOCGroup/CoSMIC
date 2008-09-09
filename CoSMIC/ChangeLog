@@ -1,7 +1,17 @@
+Tue Sep  9 03:01:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          A default collocation group is generated for a node whenever a
+          new node reference is added to the deployment plan. This should
+          help reduce the effort in creating a deployment plan.
+
 Mon Jul 21 21:41:04 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
-	  Updated version to 0.6.4 and GME installation message.
+
+          Updated version to 0.6.4 and GME installation message.
 
 Sun Jul 20 20:24:35 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

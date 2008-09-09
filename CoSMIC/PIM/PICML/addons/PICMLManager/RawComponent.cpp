@@ -9,9 +9,60 @@
 #include "Utils/Utils.h"
 #include "boost/bind.hpp"
 #include <algorithm>
+#include <sstream>
 
 // Type definition
 typedef GME::Collection_T <GME::Reference> Reference_Set;
+
+/**
+ * @struct point_t
+ *
+ * Structure that contains an x-coordinate and y-coordinate.
+ */
+struct point_t
+{
+  /// Default constructor.
+  point_t (void)
+    : x_ (0), y_ (0) { }
+
+  /**
+   * Shift the point.
+   *
+   * @param[in]     x       X-coordinate shift value.
+   * @param[in]     y       Y-coordinate shift value.
+   */
+  void shift (long x, long y)
+  {
+    this->x_ += x;
+    this->y_ += y;
+  }
+
+  bool operator <<= (const std::string & str)
+  {
+    std::istringstream istr (str);
+
+    istr >> this->x_;
+    istr.ignore (1);
+    istr >> this->y_;
+
+    return istr.good ();
+  }
+
+  bool operator >>= (std::string & str)
+  {
+    std::ostringstream ostr;
+    ostr << this->x_ << "," << this->y_;
+    str = ostr.str ();
+
+    return ostr.good ();
+  }
+
+  /// X-coordinate
+  long x_;
+
+  /// Y-coordinate
+  long y_;
+};
 
 //
 // RawComponent
@@ -37,9 +88,7 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 {
   this->project_ = project;
 
-  /// Create a collection of PICML types that contain a UUID
-  /// attribute. This will allow the addon to manage it's UUID.
-  this->handlers_.bind ("ExternalDelegate", 
+  this->handlers_.bind ("ExternalDelegate",
                         &RawComponent::handle_ExternalDelegate);
 
   this->handlers_.bind ("PublishConnector",
@@ -80,6 +129,9 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 
   this->handlers_.bind ("DeploymentPlan",
                         &RawComponent::handle_DeploymentPlan);
+
+  this->handlers_.bind ("NodeReference",
+                        &RawComponent::handle_NodeReference);
 
   return S_OK;
 }
@@ -442,7 +494,7 @@ handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj)
     GME::Reference src_port = GME::Reference::_narrow (ext_src.target ());
 
     GME::FCO dst_type = dst_port.refers_to ();
-    
+
     if (dst_type)
     {
       if (!src_port.refers_to ())
@@ -494,7 +546,7 @@ handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
                      connpoints.end (),
                      boost::bind (&RawComponent::verify_property_datatype,
                                   this,
-                                  boost::bind (&GME::ConnectionPoints::value_type::item, 
+                                  boost::bind (&GME::ConnectionPoints::value_type::item,
                                                _1),
                                   attr_type));
     }
@@ -548,7 +600,7 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
 }
 
 //
-// handle_Component 
+// handle_Component
 //
 void RawComponent::
 handle_Component (unsigned long eventmask, GME::Object & obj)
@@ -651,5 +703,40 @@ handle_UUID (unsigned long eventmask, GME::FCO & fco)
   else if ((eventmask & OBJEVENT_ATTR) != 0)
   {
     this->verify_uuid (fco);
+  }
+}
+
+//
+// handle_NodeReference
+//
+void RawComponent::
+handle_NodeReference (unsigned long eventmask, GME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_CREATED) != 0)
+  {
+    static const char * _REGPATH_ = "PartRegs/NodeMapping/Position";
+
+    // Get the parent model for the node reference.
+    GME::Reference node = GME::Reference::_narrow (obj);
+    GME::Model parent = GME::Model::_narrow (node.parent ());
+
+    // Create a 'default' collocation group for the node reference
+    GME::Set group = GME::Set::_create ("CollocationGroup", parent);
+    group.name ("DefaultGroup");
+
+    // Create an InstanceMapping connection between the node reference
+    // and the collocation group.
+    GME::Connection mapping =
+      GME::Connection::_create ("InstanceMapping", parent, group, node);
+
+    // Align the collocation group with its corresponding node.
+    std::string pos = node.registry_value (_REGPATH_);
+
+    point_t pt;
+    pt <<= pos;
+    pt.shift (4, 128);
+    pt >>= pos;
+
+    group.registry_value (_REGPATH_, pos);
   }
 }
