@@ -342,23 +342,17 @@ IMgaObject * Object::impl (void) const
 //
 // operator ==
 //
-bool Object::operator == (const Object & object)
+bool Object::operator == (const Object & obj)
 {
-  VARIANT_BOOL equal;
-  VERIFY_HRESULT (this->impl ()->get_IsEqual (object.object_, &equal));
-
-  return equal == VARIANT_TRUE ? true : false;
+  return this->equals (obj);
 }
 
 //
 // operator !=
 //
-bool Object::operator != (const Object & object)
+bool Object::operator != (const Object & obj)
 {
-  VARIANT_BOOL equal;
-  VERIFY_HRESULT (this->impl ()->get_IsEqual (object.object_, &equal));
-
-  return equal == VARIANT_FALSE ? true : false;
+  return !this->equals (obj);
 }
 
 //
@@ -425,6 +419,17 @@ GME::Project Object::project (void) const
   VERIFY_HRESULT (this->object_->get_Project (&proj));
 
   return proj.p;
+}
+
+//
+// project
+//
+bool Object::equals (const GME::Object & obj) const
+{
+  VARIANT_BOOL equal;
+  VERIFY_HRESULT (this->impl ()->get_IsEqual (obj.object_, &equal));
+
+  return equal == VARIANT_TRUE ? true : false;
 }
 
 }

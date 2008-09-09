@@ -24,8 +24,10 @@
 // This #define determines the interpreter type:
 #define GME_ADDON
 
-#define ADDON_EVENTMASK   (OBJEVENT_CREATED | OBJEVENT_ATTR | \
-                           OBJEVENT_RELATION)
+#define ADDON_EVENTMASK                             \
+  (OBJEVENT_CREATED | OBJEVENT_ATTR |               \
+   OBJEVENT_RELATION |  OBJEVENT_SELECT |           \
+   OBJEVENT_SETINCLUDED | OBJEVENT_SETEXCLUDED)
 
 //#define ADDON_EVENTMASK   0xFFFFFFFF
 

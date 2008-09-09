@@ -251,6 +251,13 @@ namespace GME
     bool is_nil (void) const;
 
     /**
+     * Test if an object is equal to another object.
+     *
+     * @param[in]       obj           Object for comparison.
+     */
+    bool equals (const GME::Object & obj) const;
+
+    /**
      * Find a GME object relative to this location.
      *
      * @param[in]       path          Path name of the object.

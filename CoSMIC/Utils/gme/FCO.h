@@ -232,9 +232,18 @@ namespace GME
      * this FCO. It can be either the src or dst connection point
      * of a connection.
      *
-     * @param[out]      points      Collection of connection points.
+     * @param[out]      points      Collection of connection points
+     * @return          Number of items in \a points
      */
-    size_t in_connection_points (ConnectionPoints & points);
+    size_t in_connection_points (ConnectionPoints & points) const;
+
+    /**
+     * Get the sets that contains this FCO.
+     *
+     * @param[out]      sets        Collection of sets
+     * @return          Number of items in \a sets
+     */
+    size_t in_sets (GME::Collection_T <GME::Set> & sets) const;
 
     /**
      * Get the collection of objects this object is derived
@@ -247,8 +256,8 @@ namespace GME
     /**
      * Get the registry for the FCO.
      *
-     * @param[out]      nodes         The collection of registry nodes.
-     * @param[in]       vtypes        Include virtual registry nodes.
+     * @param[out]      nodes         The collection of registry nodes
+     * @param[in]       vtypes        Include virtual registry nodes
      */
     size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;

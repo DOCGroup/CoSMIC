@@ -286,7 +286,7 @@ namespace GME
   //
   // in_connection_points
   //
-  size_t FCO::in_connection_points (ConnectionPoints & points)
+  size_t FCO::in_connection_points (ConnectionPoints & points) const
   {
     CComPtr <IMgaConnPoints> temp;
     VERIFY_HRESULT (this->impl ()->get_PartOfConns (&temp));
@@ -325,11 +325,11 @@ namespace GME
   // registry
   //
   size_t FCO::registry (GME::Collection_T <GME::RegistryNode> & nodes,
-                        bool virtualinterface_types) const
+                        bool virtual_types) const
   {
     // Get all the subnodes.
     CComPtr <IMgaRegNodes> rawnodes;
-    VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
+    VARIANT_BOOL vtypes = !virtual_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
     nodes.attach (rawnodes.Detach ());
@@ -346,5 +346,17 @@ namespace GME
 
     VERIFY_HRESULT (this->impl ()->get_RegistryNode (bstrval, &node));
     return node.p;
+  }
+
+  //
+  // in_sets
+  //
+  size_t FCO::in_sets (GME::Collection_T <GME::Set> & sets) const
+  {
+    CComPtr <IMgaFCOs> temp;
+    VERIFY_HRESULT (this->impl ()->get_MemberOfSets (&temp));
+
+    sets.attach (temp.Detach ());
+    return sets.size ();
   }
 }

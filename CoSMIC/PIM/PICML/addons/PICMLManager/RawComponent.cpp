@@ -100,6 +100,9 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
   this->handlers_.bind ("AttributeMember",
                         &RawComponent::handle_AttributeMember);
 
+  this->handlers_.bind ("CollocationGroup",
+                        &RawComponent::handle_CollocationGroup);
+
   this->handlers_.bind ("Component",
                         &RawComponent::handle_Component);
 
@@ -108,6 +111,9 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 
   this->handlers_.bind ("ComponentPackage",
                         &RawComponent::handle_ComponentPackage);
+
+  this->handlers_.bind ("ComponentRef",
+                        &RawComponent::handle_ComponentRef);
 
   this->handlers_.bind ("Domain",
                         &RawComponent::handle_Domain);
@@ -197,38 +203,35 @@ STDMETHODIMP RawComponent::GlobalEvent (globalevent_enum event)
    * ObjectEvent is sent.
    */
 
-  //try
-  //{
-  //  switch (event)
-  //  {
-  //  case APPEVENT_XML_IMPORT_BEGIN:
-  //    this->importing_ = 1;
+  try
+  {
+    switch (event)
+    {
+    case APPEVENT_XML_IMPORT_BEGIN:
+      this->importing_ = 1;
+      break;
 
-  //  case GLOBALEVENT_OPEN_PROJECT:
-  //    this->verify_all_uuids ();
-  //    break;
+    case GLOBALEVENT_OPEN_PROJECT:
+      // this->verify_all_uuids ();
+      break;
 
-  //  case APPEVENT_XML_IMPORT_END:
-  //    this->importing_ = 0;
-  //    this->verify_all_uuids ();
-  //    break;
+    case APPEVENT_XML_IMPORT_END:
+      this->importing_ = 0;
+      // this->verify_all_uuids ();
+      break;
 
-  //  case GLOBALEVENT_NOTIFICATION_READY:
-  //    this->handle_pending ();
-  //    break;
+    case GLOBALEVENT_NOTIFICATION_READY:
+      //this->handle_pending ();
+      break;
 
-  //  default:
-  //    /* do nothing */;
-  //  }
-  //}
-  //catch (COM_Exception &)
-  //{
-  //  AfxMessageBox ("Caught a COM exception");
-  //}
-  //catch (...)
-  //{
-  //  AfxMessageBox ("Caught an unknown exception");
-  //}
+    default:
+      /* do nothing */;
+    }
+  }
+  catch (...)
+  {
+    AfxMessageBox ("Caught an unknown exception");
+  }
 
   return S_OK;
 }
@@ -712,6 +715,9 @@ handle_UUID (unsigned long eventmask, GME::FCO & fco)
 void RawComponent::
 handle_NodeReference (unsigned long eventmask, GME::Object & obj)
 {
+  if (this->importing_)
+    return;
+
   if ((eventmask & OBJEVENT_CREATED) != 0)
   {
     static const char * _REGPATH_ = "PartRegs/NodeMapping/Position";
@@ -738,5 +744,53 @@ handle_NodeReference (unsigned long eventmask, GME::Object & obj)
     pt >>= pos;
 
     group.registry_value (_REGPATH_, pos);
+  }
+}
+
+//
+// handle_CollocationGroup
+//
+void RawComponent::
+handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
+{
+  if (this->cg_member_)
+  {
+    // Get all sets that contain previously inserted collocation group member.
+    typedef GME::Collection_T <GME::Set> Sets;
+    Sets sets;
+
+    size_t count = this->cg_member_.in_sets (sets);
+
+    if (count > 1)
+    {
+      // Get the updated collocation group.
+      GME::Set group = GME::Set::_narrow (obj);
+
+      Sets::iterator
+        iter = sets.items ().begin (), iter_end = sets.items ().end ();
+
+      // Make sure the last object added to this group does not appear
+      // in any collocation group.
+      for ( ; iter != iter_end; ++ iter)
+      {
+        if (!iter->equals (group))
+          iter->remove (this->cg_member_);
+      }
+    }
+
+    // Release our reference to this element.
+    this->cg_member_.release ();
+  }
+}
+
+//
+// handle_ComponentRef
+//
+void RawComponent::
+handle_ComponentRef (unsigned long eventmask, GME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_SETINCLUDED) != 0)
+  {
+    this->cg_member_ = GME::FCO::_narrow (obj);
   }
 }

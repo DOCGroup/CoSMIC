@@ -62,6 +62,7 @@ private:
   void handle_DeploymentPlan (unsigned long eventmask, GME::Object & obj);
   void handle_ComponentAssembly (unsigned long eventmask, GME::Object & obj);
   void handle_ComponentPackage (unsigned long eventmask, GME::Object & obj);
+  void handle_ComponentRef (unsigned long eventmask, GME::Object & obj);
   void handle_ComponentImplementation (unsigned long eventmask, GME::Object & obj);
   void handle_ComponentFactoryInstance (unsigned long eventmask, GME::Object & obj);
   void handle_Domain (unsigned long eventmask, GME::Object & obj);
@@ -69,6 +70,7 @@ private:
   void handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj);
   void handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj);
   void handle_NodeReference (unsigned long eventmask, GME::Object & obj);
+  void handle_CollocationGroup (unsigned long eventmask, GME::Object & obj);
   void handle_UUID (unsigned long eventmask, GME::FCO & fco);
 
   /**
@@ -119,13 +121,16 @@ private:
   /// PICML types with a UUID attribute.
   std::set <std::string> uuid_types_;
 
-  typedef 
+  typedef
     void (RawComponent::*_member_function) (unsigned long,
                                             GME::Object &);
 
-  ACE_Hash_Map_Manager <std::string, 
+  ACE_Hash_Map_Manager <std::string,
                         _member_function,
                         ACE_Null_Mutex> handlers_;
+
+  /// Latest member of the collocation group.
+  GME::FCO cg_member_;
 };
 
 

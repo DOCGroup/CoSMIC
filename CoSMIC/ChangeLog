@@ -1,3 +1,30 @@
+Tue Sep  9 21:54:28 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Bug fix where importing an XML document caused the add-on to
+            generate an unwanted collocation group. This was fixed by
+            disabling this part of the handler/add-on during imports.
+
+          . Whenever the user is selecting components for a collocation
+            group, the add-on will ensure that the active component is not
+            deployed on any other node. This is handled by removing the
+            component from all the other collocation groups.
+
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+
+          . Implementned in_sets () method, which returns are the sets
+            elements that contain the specified FCO.
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          . Implemented the equals () method, which can be used to test for
+            equality with any object type.
+
 Tue Sep  9 03:01:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.h:
