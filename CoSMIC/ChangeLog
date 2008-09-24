@@ -1,7 +1,13 @@
+Wed Sep 24 05:10:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/dlldata.c:
+
+          . Removed this file.
+
 Tue Sep 16 20:06:03 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
-	  Changed version from 0.6.4 to 0.6.6
+          Changed version from 0.6.4 to 0.6.6
 
 Fri Sep 12 19:11:57 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
