@@ -1,7 +1,6 @@
 #include <iostream>
 //#include <strstream>
 #include <functional>
-#include <boost/mpl/vector.hpp>
 
 #include "stdafx.h"
 #include "UDM_DSL.h"
@@ -49,7 +48,7 @@ class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 	typedef std::vector<Kind> Container;
 	Kind temp_kind_;
 	Container s_;
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
 	// This is an important concept. Don't remove.
 
 public:
@@ -605,7 +604,7 @@ SelectByName (T, const char * str)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	RegexOp<result_type> regex(str);
 	return regex;
 }
@@ -617,7 +616,7 @@ SelectSubSet (T const &t)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	return SelectorOp<result_type> (t);
 }
 
@@ -627,7 +626,7 @@ Select (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Func::result_type, bool>));
 	
@@ -640,7 +639,7 @@ Select (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
 	
@@ -654,8 +653,8 @@ CastOp<typename ET<L>::result_type,
        typename ET<H>::result_type> 
 CastFromTo (L, H)
 {
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<L>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<H>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<L>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<H>));
 
 	typedef typename ET<L>::argument_type argument_type;
 	typedef typename ET<H>::result_type result_type;
@@ -669,7 +668,7 @@ Sort (E, Comp c)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Comp::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Comp::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Comp::result_type, bool>));
@@ -683,7 +682,7 @@ Sort (E, Result (*f) (Arg1, Arg2))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg1, result_kind>));	
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg2, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
@@ -699,7 +698,7 @@ Unique (E, BinPred c)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::result_type, bool>));
@@ -714,7 +713,7 @@ Unique (E)
 	typedef typename ET<E>::result_kind result_kind;
 	typedef std::equal_to<result_kind> EQ;	
 
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<EQ::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<EQ::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<EQ::result_type, bool>));
@@ -755,15 +754,14 @@ struct OpSelector
 
 	typedef typename 
 		if_c<is_base_of<Visitor, H>::value, 
-			 disabler,
-			 Op<LResultType, typename ET<H>::result_type> 
+			   disabler,
+			   Op<LResultType, typename ET<H>::result_type> 
 		    >::type Op;
 };
 
-
 template <class L, class H>
 ChainExpr<typename ET<L>::expression_type, 
-		  typename OpSelector<L,H,GetChildrenOp>::Op::Self
+		      typename OpSelector<L,H,GetChildrenOp>::Op::Self
 		 >
 operator >> (L const &l, H)
 {
@@ -943,6 +941,8 @@ bool sorter (State s1, State s2)
 }
 
 #define MembersOf(A,B) (A && B)
+#define DEPTH_FIRST >>=
+#define BREADTH_FIRST >>
 
 int foo (HFSM::RootFolder & rf)
 {
@@ -951,9 +951,9 @@ int foo (HFSM::RootFolder & rf)
 		/*
 		BOOST_AUTO(e1, RootFolder() >>  State()
 								    //>>  SelectSubSet(State())
-                                    >>  Sort(State(), sorter) 
+                  >>  Sort(State(), sorter) 
 									>>  Select(State(), pred)
-                                    >>  SelectByName(State(),"State2")
+                  >>  SelectByName(State(),"State2")
 									>>  State() << State() >> Unique(State()) >> State()
 									>>  CastFromTo(State(), State())
 									>>  SelectByName(State(),"s50")
@@ -964,17 +964,19 @@ int foo (HFSM::RootFolder & rf)
 									>>  tv);
 		e1(rf);
 		BOOST_AUTO(e2, RootFolder() >>=  State()
-                                    >>   tv 
-								    >>   SelectByName(State(),"State2")
-									>>   State() << State() >> Unique(State())
-									>>=  State()
-                                    >>   tv);//>>= Transition());
+                                >>   tv 
+								                >>   SelectByName(State(),"State2")
+									              >>   State() << State() >> Unique(State())
+									              >>=  State()
+                                >>   tv);//>>= Transition());
         
-		evaluate(rf, e2);*/
+		evaluate(rf, e2); */
 		BOOST_AUTO(visit_state, State() >> tv);
 		BOOST_AUTO(visit_transition, Transition() >> tv);
-		BOOST_AUTO(e3, RootFolder() >> State() 
-			           >>= MembersOf(State(), visit_state && visit_transition));
+		BOOST_AUTO(e3, RootFolder() DEPTH_FIRST State() >> tv
+                                DEPTH_FIRST State() >> tv 
+                                BREADTH_FIRST State() >> tv);
+			           //>>= MembersOf(State(), visit_state && visit_transition));
 		evaluate (rf,e3);
 		//BOOST_AUTO(e4, RootFolder() >> State() 
 		//	                        >> (State() ^ State() >> tv, Transition() >> tv));
@@ -984,9 +986,9 @@ int foo (HFSM::RootFolder & rf)
 	}
 	catch (std::exception &)
 	{
-		std::ostringstream ostr;
-		//ostr << "Exception: " << e.what() << std::endl;
-		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
+		//std::ostringstream ostr;
+		//ostr << "Exception (UDM_DSL.CPP): " << e.what() << std::endl;
+		AfxMessageBox ("Exception (UDM_DSL.CPP)", MB_OK| MB_ICONINFORMATION);
 	}
 
 	return 999;
@@ -1005,7 +1007,7 @@ struct RecurseOp : public RecurseOpBase
 	typedef kind_lit result_type;
 	typedef kind_lit argument_type;
 	typedef typename kind_lit::result_kind result_kind;
-	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
+	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmKindConcept);
 
 	std::vector<result_kind> s_;
 	RecurseOp (RecurseOp const & reop) : s_(reop.s_) {}
@@ -1090,9 +1092,9 @@ Members (A, B b, C c)
 	typedef typename ET<B>::argument_kind B_arg_kind;
 	typedef typename ET<C>::argument_kind C_arg_kind;
 
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<parent_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<B_arg_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmObjectConcept<C_arg_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<parent_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<B_arg_kind>));
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<C_arg_kind>));
 
 	BOOST_CONCEPT_ASSERT((ParentChildConcept <parent_kind, B_arg_kind>));
 	BOOST_CONCEPT_ASSERT((ParentChildConcept <parent_kind, C_arg_kind>));

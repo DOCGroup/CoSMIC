@@ -1,3 +1,17 @@
+Wed Oct  8 04:21:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+		
+		  Updated LEESA to work with latest UDM trunk (Revision: 2745)
+
 Wed Sep 24 05:10:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PSM/CQML/interpreters/CIAOEventsComponent/dlldata.c:

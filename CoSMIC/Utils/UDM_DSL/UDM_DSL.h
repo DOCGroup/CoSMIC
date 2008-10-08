@@ -12,39 +12,23 @@
 #include <boost/concept_check.hpp>
 #include <boost/regex.hpp>
 #include <boost/foreach.hpp>
-#include <loki/TypeManip.h>
+#include <boost/mpl/contains.hpp>
+#include <boost/mpl/size.hpp>
+#include <boost/mpl/if.hpp>
 
+#include "UdmObjectConcept.h"
 
 int foo (HFSM::RootFolder &);
 
 template <class ParentKind, class ChildKind>
-struct ParentChildConcept
+struct ParentChildConcept 
 {
-	typedef typename ParentKind::ChildrenKinds ChildrenKinds;
 	void constraints()
 	{
-		enum { val = Loki::TL::IndexOf<ChildrenKinds, ChildKind>::value < 0 ? -1 : 1 };
-		char temp[val];
-		boost::ignore_unused_variable_warning(temp);
-	}
-};
-
-#ifdef ENABLE_BOOST_MPL
-#include "boost/mpl/vector.hpp"
-#include "boost/mpl/size.hpp"
-#include <boost/mpl/if.hpp>
-
-template <class ParentKind, class ChildKind>
-struct ParentOfChildN 
-{
-	typedef typename ParentKind::ChildrenKinds ChildrenKinds;
-	void constraints()
-	{
+    typedef typename ParentKind::ChildrenKinds ChildrenKinds;
 		BOOST_MPL_ASSERT((boost::mpl::contains<ChildrenKinds, ChildKind > ));
 	}
 };
-
-#endif // ENABLE_BOOST_MPL
 
 namespace HFSM {
 
@@ -77,8 +61,8 @@ template <class E, class BinPred> struct UniqueOp;
 template <class T>
 struct ET
 {
-	/* BOOST_CLASS_REQUIRE(T, Udm, UdmObjectConcept);
-	   UdmObjectConcept check is disabled because user-defined
+	/* BOOST_CLASS_REQUIRE(T, Udm, UdmKindConcept);
+	   UdmKindConcept check is disabled because user-defined
 	   visitor types are possible parameters of this trait class.
 	   In such a case, the following associated types do not make
 	   sense. However, they are never instantiated and hence we are ok. */
@@ -102,7 +86,7 @@ struct ET <T (*) (U)>
 template <class Kind>
 struct ET <std::set<Kind> >
 {
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
 	typedef typename KindLit<Kind> expression_type;
 	typedef typename KindLit<Kind> result_type;
 	typedef typename KindLit<Kind> argument_type;
@@ -113,7 +97,7 @@ struct ET <std::set<Kind> >
 template <class Kind>
 struct ET <std::vector<Kind> >
 {
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmObjectConcept);
+	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
 	typedef typename KindLit<Kind> expression_type;
 	typedef typename KindLit<Kind> result_type;
 	typedef typename KindLit<Kind> argument_type;
@@ -216,8 +200,8 @@ struct MyUnaryFunction
 	typedef typename ET<L>::argument_kind argument_kind;
 	typedef typename ET<R>::result_kind result_kind;
 
-	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmObjectConcept);
-	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmObjectConcept);
+	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmKindConcept);
+	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmKindConcept);
 };
 
 } // namespace HFSM

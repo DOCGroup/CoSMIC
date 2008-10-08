@@ -3,79 +3,33 @@
 
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/contains.hpp>
+#include <boost/type_traits.hpp>
 
-//#define ENABLE_BOOST_MPL
-#define ENABLE_LOKI
-
-#ifdef ENABLE_LOKI
-
-struct ModelMetaTag {};
-struct AtomMetaTag {};
-struct ConnectionMetaTag {};
-struct ReferenceMetaTag {};
-struct SetMetaTag {};
-
-typedef LOKI_TYPELIST_5 (ModelMetaTag, AtomMetaTag, 
-ConnectionMetaTag, ReferenceMetaTag, SetMetaTag) MetaTagList;
+namespace Udm {
 
 template <class T>
-struct UdmObjectConcept {
-	typedef typename T::MetaKind meta_kind;
-	void constraints()
-	{
-		enum { val = Loki::TL::IndexOf<MetaTagList, meta_kind>::value < 0 ? -1 : 1 };
-		char temp[val];
-		boost::ignore_unused_variable_warning(temp);
-	}
+struct UdmKindConcept 
+{
+   void constraints()
+   {
+     typedef typename T::MetaKind MetaKind;
+     BOOST_MPL_ASSERT((boost::mpl::contains<Udm::MetaTagList, MetaKind> ));
+   }
 };
 
-template <class T, class U>
+template <class L, class H>
 struct SameUdmKindsConcept
 {
-	void constraints()
-	{
-		enum { val = Loki::IsSameType<T, U>::value ? 
-			Loki::IsSameType<T::MetaKind, U::MetaKind>::value ? 1 : -1 : -1 };
-		char temp[val];
-		boost::ignore_unused_variable_warning(temp);
-	}
+  BOOST_CLASS_REQUIRE(L, Udm, UdmKindConcept);
+  BOOST_CLASS_REQUIRE(H, Udm, UdmKindConcept);
+
+  void constraints()
+  {
+    BOOST_MPL_ASSERT((boost::is_same<L, H>));
+    BOOST_MPL_ASSERT((boost::is_same<L::MetaKind, H::MetaKind> ));
+  }
 };
 
-#endif // ENABLE_LOKI
-
-#ifdef ENABLE_BOOST_MPL
-	//#include <boost/mpl/vector.hpp>
-	//#include <boost/mpl/contains.hpp>
-    //#include <boost/mpl/assert.hpp>
-
-struct ModelMetaTag {};
-struct AtomMetaTag {};
-struct ConnectionMetaTag {};
-struct ReferenceMetaTag {};
-struct SetMetaTag {};
-
-typedef boost::mpl::vector <ModelMetaTag, AtomMetaTag, 
-ConnectionMetaTag, ReferenceMetaTag, SetMetaTag> MetaTagList;
-
-template <class T>
-struct UdmObjectConcept {
-	typedef typename T::MetaKind meta_kind;
-	void constraints()
-	{
-		BOOST_MPL_ASSERT((boost::mpl::contains<MetaTagList, meta_kind> ));
-	}
-};
-
-template <class T, class U>
-struct SameUdmKindsConcept 
-{
-	void constraints()
-	{
-		BOOST_MPL_ASSERT((boost::is_same<T, U>));
-		BOOST_MPL_ASSERT((boost::is_same<T::MetaTag, U::MetaTag>));
-	}
-};
-
-#endif // ENABLE_BOOST_MPL
+} // namespace Udm
 
 #endif // __UDM_OBJECT_CONCEPT_H
