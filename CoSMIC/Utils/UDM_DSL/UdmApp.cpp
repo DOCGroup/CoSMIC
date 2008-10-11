@@ -34,9 +34,11 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "HFSM.h"
-#include "UDM_DSL.h"
+//#include "UDM_DSL.h"
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
 
+#include "HFSM.h"
 
 extern void dummy(void); // Dummy function for UDM meta initialization
 
@@ -77,6 +79,22 @@ int CUdmApp::Initialize()
 /***********************************************/
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
+using namespace HFSM;
+bool always_true (State)
+{
+  return true;
+}
+std::vector<State> leesa_example(RootFolder rf)
+{
+  // Operators: Unique, SelectByName, CastFromTo, Select, SelectSubSet
+  using namespace LEESA;
+  BOOST_AUTO(states, RootFolder() >> State() >> State() >> State());
+  std::vector<State> v = evaluate(rf, states);
+  BOOST_AUTO(parent_of_s11_s12, State() << State() 
+                                        >> Unique(State())
+                                        >> Select(State(), always_true));
+  return evaluate(v, parent_of_s11_s12);
+}
 
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                                                         // (already open!)
@@ -86,10 +104,15 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 {
   HFSM::RootFolder rf = HFSM::RootFolder::Cast (p_backend->GetRootObject());
 
-  int retval = foo(rf);
+  //foo(rf);
+  
+  std::vector<State> v = leesa_example(rf);
+  std::string name = v.front().name();
   std::ostringstream ostr;
-  ostr << "UDM_DSL finished: " << retval;
+  ostr << "UDM_DSL finished: " << v.size() << ": " << name;
+  //ostr << "UDM_DSL finished: " << leesa_example1(rf);
 
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
   return;
 }
+

@@ -1,57 +1,42 @@
-#include <iostream>
-//#include <strstream>
-#include <functional>
-#include <boost/mpl/accumulate.hpp>
-#include <boost/mpl/inserter.hpp>
-#include <boost/mpl/copy.hpp>
-#include <boost/mpl/unique.hpp>
-#include <boost/type_traits.hpp>
-#include <boost/mpl/placeholders.hpp>
-#include <boost/mpl/insert.hpp>
-#include <boost/mpl/eval_if.hpp>
-#include <boost/mpl/identity.hpp>
-#include <boost/mpl/front.hpp>
+#ifndef __LEESA_CPP
+#define __LEESA_CPP
 
-#include "stdafx.h"
-#include "UDM_DSL.h"
+#include "LEESA.h"
+#include "uml.h"
+#include <boost/foreach.hpp>
+#include <boost/regex.hpp>
 
-using namespace HFSM;
-using namespace boost;
-//using namespace boost::mpl;
-using namespace Udm;
+#define LOCAL_TYPEDEFS(L, OP)                                           \
+	typedef typename ET< L >::expression_type ParentKindExpr;             \
+	typedef typename ET< OP >::argument_kind ChildKind;                   \
+	typedef typename ParentKindExpr::result_kind ParentKind;              \
+    typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                   \
+    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
-class TestVisitor : public Visitor
-{
-public:
-	virtual void Visit_InputSequence(const InputSequence&)
-	{	}
-	virtual void Visit_Events(const Events &e)
-	{
-		std::ostringstream ostr;
-		ostr << "Visiting Event: " << e.name();
-		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
-	}
-	virtual void Visit_Sequence(const HFSM::Sequence&){};
-	virtual void Visit_State(const State &s)
-	{
-		std::ostringstream ostr;
-		ostr << "Visiting State: " << s.name();
-		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
-	}
-	virtual void Visit_Transition(const Transition &t)
-	{
-		std::ostringstream ostr;
-		ostr << "Visiting Transition: " << t.name();
-		AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
-	}
-	virtual void Visit_RootFolder(const RootFolder&)
-	{
-		AfxMessageBox ("Visiting RootFolder", MB_OK| MB_ICONINFORMATION);
-	}
-	virtual void Visit_Object(const Udm::Object&){};
-};
 
-namespace HFSM {
+#define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
+template < class L, class H >                                      \
+ChainExpr<typename ET< L >::expression_type, OPERATOR >            \
+operator >> (L const &l, OPERATOR op) {                            \
+	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
+	return ChainExpr(ParentKindExpr(l), op);                         \
+}
+
+
+#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
+template <class L, class H, class X >                           \
+ChainExpr<typename ET< L >::expression_type, OPERATOR >         \
+operator >> (L const &l, OPERATOR op) {                         \
+	LOCAL_TYPEDEFS(L, OPERATOR);                                  \
+	return ChainExpr(ParentKindExpr(l), op);                      \
+}
+
+#define MembersOf(A,B) (A && B)
+#define DEPTH_FIRST >>=
+#define BREADTH_FIRST >>
+
+
+namespace LEESA {
 
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
@@ -134,7 +119,7 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 	typedef typename ET<R>::result_kind result_kind;
 	typedef ChainExpr<L, R> expression_type;
 
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename ET<L>::result_kind, 
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<L>::result_kind, 
 											  typename ET<R>::argument_kind>));
 
 	L l_;
@@ -156,7 +141,7 @@ struct SequenceExpr : public std::unary_function <typename ET<L>::argument_type,
 	typedef void result_kind;
 	typedef typename SequenceExpr<L, R> expression_type;
 	typedef typename ET<R>::argument_kind child_kind;
-	BOOST_CONCEPT_ASSERT((ParentChildConcept<argument_kind, child_kind>));
+  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<argument_kind, child_kind>));
 
 	L l_;
 	R r_;
@@ -205,7 +190,7 @@ struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type,
 		typedef typename ET<RExpr>::argument_kind child_kind;
 		typedef typename ET<LExpr>::result_kind parent_kind;
 
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<parent_kind, child_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
 
 		std::vector<parent_kind> v = arg;
 		BOOST_FOREACH(parent_kind kind, v)
@@ -230,7 +215,7 @@ struct DFSOp : std::unary_function<typename ET<LExpr>::result_type,
 	typedef typename ET<LExpr>::result_kind LKind;
 	typedef typename ET<RExpr>::argument_kind RKind;
 
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
 
 	RExpr expr_;
 	explicit DFSOp () {}
@@ -266,7 +251,7 @@ struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type,
 		typedef typename ET<RExpr>::argument_kind parent_kind;
 		typedef typename ET<LExpr>::result_kind child_kind;
 
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<parent_kind, child_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
 
 		std::vector<child_kind> v = arg;
 		BOOST_FOREACH(child_kind kind, v)
@@ -327,7 +312,7 @@ struct GetChildrenOp : public MyUnaryFunction <L,H>,
 	GetChildrenOp (GetChildrenOp const &) {}
 	result_type operator () (argument_type const & arg)
 	{
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<argument_kind, result_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<argument_kind, result_kind>));
 
 		result_type retval;
 		std::vector<argument_kind> v = arg;
@@ -351,7 +336,7 @@ struct GetParentOp : public MyUnaryFunction <L, H>,
 	GetParentOp (GetParentOp const &) {}
 	result_type operator () (argument_type const & arg)
 	{
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<result_kind, argument_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<result_kind, argument_kind>));
 
 		result_type retval;
 		std::vector<argument_kind> v = arg;
@@ -371,9 +356,9 @@ struct VisitorOp : public MyUnaryFunction <E>,
 	typedef typename 
 		ChainExpr<E, VisitorOp<argument_type> > expression_type;
 
-	Visitor & visitor_;
-	explicit VisitorOp (Visitor const &v) 
-		: visitor_ (const_cast<Visitor &> (v)) {}
+  PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
+  explicit VisitorOp (PARADIGM_NAMESPACE_FOR_LEESA::Visitor const &v) 
+    : visitor_ (const_cast<PARADIGM_NAMESPACE_FOR_LEESA::Visitor &> (v)) {}
 	VisitorOp (VisitorOp const & vop) : visitor_ (vop.visitor_) {}
 	result_type operator () (argument_type const & arg)
 	{
@@ -395,11 +380,11 @@ struct RegexOp : public MyUnaryFunction <E>,
 	typedef typename 
 		ChainExpr<E, RegexOp<argument_type> > expression_type;
 
-	//boost::regex regex_;
-	std::string regex_;
+	boost::regex regex_;
+	//std::string regex_;
 	bool logical_not_; 
 	explicit RegexOp (std::string const & str = ".*", bool logical_not = false) 
-		: logical_not_ (logical_not) { regex_.assign(str); }
+		: regex_(str), logical_not_ (logical_not) {  }
 	RegexOp (RegexOp const & reop) 
 		: logical_not_ (reop.logical_not_), regex_ (reop.regex_) {}
 	result_type operator () (argument_type const & arg)
@@ -408,8 +393,8 @@ struct RegexOp : public MyUnaryFunction <E>,
 		std::vector<argument_kind> v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			//bool match = boost::regex_match(std::string((*iter).name()), regex_);
-			bool match = (regex_ == std::string(kind.name()));
+			bool match = boost::regex_match(std::string(kind.name()), regex_);
+			//bool match = (regex_ == std::string(kind.name()));
 			if (match ^ logical_not_) // Logical not of match, if required
 				retval.Union(kind);
 		}
@@ -606,8 +591,6 @@ struct AssociationEndOp : public MyUnaryFunction <TARGETCLASS,RESULT>,
 	}
 };
 
-
-
 template <class T>
 RegexOp<typename ET<T>::result_type> 
 SelectByName (T, const char * str)
@@ -736,7 +719,7 @@ template <class L>
 ChainExpr<typename ET<L>::expression_type, 
  		  typename VisitorOp<typename ET<L>::result_type>
 		 >
-operator >> (L const &l, Visitor & v)
+operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
@@ -764,7 +747,7 @@ struct OpSelector
 	// obtained only when required as done below.
 
 	typedef typename 
-		if_c<is_base_of<Visitor, H>::value, 
+    if_c<is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>::value, 
 			   disabler,
 			   Op<LResultType, typename ET<H>::result_type> 
 		    >::type Op;
@@ -828,7 +811,7 @@ operator >> (L const &l,
 
 template <class L, class H>
 SequenceExpr<typename ET<L>::expression_type, 
-		     typename ET<H>::expression_type
+		         typename ET<H>::expression_type
 		    >
 operator && (L const &l, H const &h)
 {
@@ -849,7 +832,7 @@ operator >> (L const &l, SequenceExpr<H,X> const & s)
 	typedef typename ET<OP>::argument_kind RKind;
 	typedef typename ChainExpr<LExpr, OP> ChainExpr;
 
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
 	return ChainExpr(LExpr(l), OP(s));
 }
 
@@ -873,7 +856,7 @@ operator << (L const &l, H)
 	typedef typename ChildKindExpr::result_kind ChildKind;
 	typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
 
-	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
 
 	return ChainExpr(ChildKindExpr(l), OP());
 }
@@ -893,7 +876,7 @@ operator >>= (L const &l, R const &r)
 	typedef typename ET<L>::result_kind ParentKind;
 	typedef typename ET<R>::argument_kind ChildKind;
 
-	BOOST_CONCEPT_ASSERT((ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
 
 	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
 
@@ -916,7 +899,7 @@ operator >>= (L const &l, SequenceExpr<R,X> const &r)
 	typedef typename ET<L>::result_kind LKind;
 	typedef typename ET<Operator>::argument_kind RKind;
 
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
 
 	typedef ChainExpr<LExpr, Operator> ChainExpr;
 
@@ -924,269 +907,15 @@ operator >>= (L const &l, SequenceExpr<R,X> const &r)
 	return ChainExpr(LExpr(l), op);
 }
 
-template <class T, class U>
-struct Merge
-{
-  typedef typename mpl::copy <U, mpl::back_inserter<T> >::type type;
-  //typedef typename mpl::insert<T,typename mpl::end<T>::type, U>::type type;
-};
-
-struct ChildrenGetter
-{
-  template <class Vector, class Kind>
-  struct apply
-  {
-    typedef typename Kind::ChildrenKinds Children;
-    typedef typename Merge<Vector, Children>::type type;
-  };
-};
-
-template <class L>
-struct ExpandSearchSet
-{
-  typedef typename mpl::accumulate<L, mpl::vector<>, ChildrenGetter>::type type1;
-  typedef typename mpl::unique<type1, is_same<mpl::_1,mpl::_2> >::type type;
-};
-
-template <class Vector, class R>
-struct HasPath
-{
-  typedef HasPath type;
-  typedef typename ExpandSearchSet<Vector>::type VExpand1;
-  typedef typename ExpandSearchSet<VExpand1>::type VExpand2;
-  static const int value = boost::mpl::contains<Vector, R>::value ||
-                           boost::mpl::contains<VExpand1, R>::value ||
-                           boost::mpl::contains<VExpand2, R>::value;
-                           //HasPath<VExpand, R>::value;
-};
-
-template <class L, class R>
-void BFS(L, R)
-{
-  typedef boost::mpl::vector<L> SearchSet;
-  BOOST_MPL_ASSERT((HasPath<SearchSet, R>));
-}
-
-template <class Vector, class R>
-struct FindPath
-{
-  typedef FindPath type;
-  typedef typename mpl::front<Vector>::type Head;
-  typedef typename mpl::pop_front<Vector>::type Tail;
-  typedef typename Head::ChildrenKinds Children;
-  enum { value = is_same<Head, R>::value ? 1 : 
-                 FindPath<Children, R>::value; };
-};
-
-template <class L, class R>
-void DFS(L, R)
-{
-  typedef mpl::vector<L> SearchSet;
-  BOOST_MPL_ASSERT((FindPath<SearchSet, R>));
-}
-
 template <class Para, class Expr>
 typename Expr::result_type
 evaluate (Para p, Expr &e)
 {
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<typename ET<Expr>::argument_kind, 
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<Expr>::argument_kind, 
 											  typename ET<Para>::result_kind>));
 	return e(p);
 }
 
-} // namespace HFSM
+} // end namespace LEESA
 
-template <class T>
-T operator * (T t)
-{
-	return t;
-}
-
-struct Predicate : std::unary_function <State, bool> {
-	result_type operator () (argument_type) { return true; }
-};	
-
-bool pred (State) { return true; }
-bool sorter (State s1, State s2) 
-{
-	return (std::string(s1.name()) < std::string(s2.name()));
-}
-
-#define MembersOf(A,B) (A && B)
-#define DEPTH_FIRST >>=
-#define BREADTH_FIRST >>
-
-int foo (HFSM::RootFolder & rf)
-{
-	try {
-    //BFS(RootFolder(), Transition());
-    //DFS(RootFolder(), Transition());
-		TestVisitor tv;
-		/*
-		BOOST_AUTO(e1, RootFolder() >>  State()
-								    //>>  SelectSubSet(State())
-                  >>  Sort(State(), sorter) 
-									>>  Select(State(), pred)
-                  >>  SelectByName(State(),"State2")
-									>>  State() << State() >> Unique(State()) >> State()
-									>>  CastFromTo(State(), State())
-									>>  SelectByName(State(),"s50")
-									>>  Transition()
-									>>& Transition::srcTransition_end
-									>>& State::srcTransition
-									>>  tv 
-									>>  tv);
-		e1(rf);
-		BOOST_AUTO(e2, RootFolder() >>=  State()
-                                >>   tv 
-								                >>   SelectByName(State(),"State2")
-									              >>   State() << State() >> Unique(State())
-									              >>=  State()
-                                >>   tv);//>>= Transition());
-        
-		evaluate(rf, e2); */
-		BOOST_AUTO(visit_state, State() >> tv);
-		BOOST_AUTO(visit_transition, Transition() >> tv);
-		BOOST_AUTO(e3, RootFolder() DEPTH_FIRST State() >> tv
-                                DEPTH_FIRST State() >> tv 
-                                BREADTH_FIRST State() >> tv);
-			           //>>= MembersOf(State(), visit_state && visit_transition));
-		evaluate (rf,e3);
-		//BOOST_AUTO(e4, RootFolder() >> State() 
-		//	                        >> (State() ^ State() >> tv, Transition() >> tv));
-		//evaluate(rf, e4);
-		//AfxMessageBox (std::string(s->name()).c_str(), MB_OK| MB_ICONINFORMATION);
-		//BOOST_AUTO(e2, e1 > !!!SelectSubSet(s) > tv);
-	}
-	catch (std::exception &)
-	{
-		//std::ostringstream ostr;
-		//ostr << "Exception (UDM_DSL.CPP): " << e.what() << std::endl;
-		AfxMessageBox ("Exception (UDM_DSL.CPP)", MB_OK| MB_ICONINFORMATION);
-	}
-
-	return 999;
-}
-
-/*
-struct RecurseOpBase {};
-
-template <class E>
-struct RecurseOp : public RecurseOpBase
-{
-	typedef typename ET<E>::result_type kind_lit;
-	typedef typename 
-		ChainExpr<E,RecurseOp<kind_lit> > expression_type;
-
-	typedef kind_lit result_type;
-	typedef kind_lit argument_type;
-	typedef typename kind_lit::result_kind result_kind;
-	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmKindConcept);
-
-	std::vector<result_kind> s_;
-	RecurseOp (RecurseOp const & reop) : s_(reop.s_) {}
-	result_type operator () (kind_lit const & k)
-	{
-		result_type retval;
-		std::
-		std::vector<result_kind> s = k();
-		for (std::vector<result_kind>::iterator iter(s.begin());
-			 iter != s.end();
-			 ++iter)
-		{
-			helper (*iter);
-		}
-		return retval;
-	}
-	void helper (result_kind const & k)
-	{
-	}
-};
-
-
-class MembersOpBase {};
-template <class A, class B, class C>
-struct Members2Op : std::unary_function<typename ET<A>::argument_type, 
-	                                     void>,
-	                 public MembersOpBase
-{
-	typedef typename ET<A>::expression_type AExpr;
-	typedef typename ET<B>::expression_type BExpr;
-	typedef typename ET<C>::expression_type CExpr;
-	typedef typename ET<A>::argument_kind argument_kind;
-	typedef void result_kind;
-	typedef typename ET<B>::argument_kind B_arg_kind;
-	typedef typename ET<C>::argument_kind C_arg_kind;
-	typedef typename ET<A>::result_kind A_result_kind;
-
-	
-	typedef typename 
-		ChainExpr<AExpr, Members2Op<AExpr, BExpr, CExpr> > expression_type;
-
-	B b_;
-	C c_;
-
-	explicit Members2Op () {}
-	Members2Op (B b, C c) 
-		: b_(b), c_(c) 
-	{}
-
-	Members2Op (Members2Op const & mop)
-		: b_(mop.b_), c_(mop.c_) 
-	{}
-	result_type operator () (argument_type const & arg)
-	{
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<argument_kind, B_arg_kind>));
-		BOOST_CONCEPT_ASSERT((ParentChildConcept<argument_kind, C_arg_kind>));
-	
-		std::vector<argument_kind> v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-		{
-			std::vector<B_arg_kind> bvector = kind.children_kind<B_arg_kind>();
-			BOOST_FOREACH(B_arg_kind bkind, bvector)
-			{ 
-				b_(bkind); 
-			}
-			std::vector<C_arg_kind> cvector = kind.children_kind<C_arg_kind>();
-			BOOST_FOREACH(C_arg_kind ckind, cvector)
-			{ 
-				c_(ckind); 
-			}
-		}
-	}
-};
-
-template <class A, class B, class C>
-Members2Op<typename ET<A>::argument_type,
-           typename ET<B>::expression_type,
-		   typename ET<C>::expression_type> 
-Members (A, B b, C c)
-{
-	typedef typename ET<A>::argument_kind parent_kind;
-	typedef typename ET<B>::argument_kind B_arg_kind;
-	typedef typename ET<C>::argument_kind C_arg_kind;
-
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<parent_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<B_arg_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<C_arg_kind>));
-
-	BOOST_CONCEPT_ASSERT((ParentChildConcept <parent_kind, B_arg_kind>));
-	BOOST_CONCEPT_ASSERT((ParentChildConcept <parent_kind, C_arg_kind>));
-
-	typedef typename ET<A>::argument_type parent_type;
-	typedef typename ET<B>::expression_type BExpr;
-	typedef typename ET<C>::expression_type CExpr;
-
-	return Members2Op<parent_type, BExpr, CExpr> (b,c);
-}
-
-
-
-#define MEMBERS2_OP Members2Op<A, B, C>
-GT_PARA_OPERATOR_DEFINITION_3T(A,B,C,MEMBERS2_OP);
-
-
-
-*/
-
-
+#endif // __LEESA_CPP

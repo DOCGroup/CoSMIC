@@ -30,6 +30,17 @@ struct SameUdmKindsConcept
   }
 };
 
-} // namespace Udm
+template <class ParentKind, class ChildKind>
+struct ParentChildConcept 
+{
+	void constraints()
+	{
+    typedef typename ParentKind::ChildrenKinds ChildrenKinds;
+		BOOST_MPL_ASSERT((boost::mpl::contains<ChildrenKinds, ChildKind > ));
+	}
+};
+
+
+} // end namespace Udm
 
 #endif // __UDM_OBJECT_CONCEPT_H

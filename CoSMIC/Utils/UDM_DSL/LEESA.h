@@ -1,35 +1,26 @@
-#ifndef __UDM_DSL_H
-#define __UDM_DSL_H
+#ifndef __LEESA_H
+#define __LEESA_H
 
+#ifndef PARADIGM_NAMESPACE_FOR_LEESA
+#error "Please define PARADIGM_NAMESPACE_FOR_LEESA, which contains the base Visitor class."
+#endif // PARADIGM_NAMESPACE_FOR_LEESA
+
+#include <functional>
 #include <vector>
-
-#include "HFSM.h"
-#include "uml.h"
+#include <set>
 
 #include <boost/typeof/typeof.hpp>
 #include <boost/type_traits.hpp>
 #include <boost/concept/assert.hpp>
 #include <boost/concept_check.hpp>
-#include <boost/regex.hpp>
-#include <boost/foreach.hpp>
-#include <boost/mpl/contains.hpp>
-#include <boost/mpl/size.hpp>
-#include <boost/mpl/if.hpp>
 
 #include "UdmObjectConcept.h"
 
-int foo (HFSM::RootFolder &);
-
-namespace HFSM {
+namespace LEESA {
 
 template <class Kind> class KindLit;
 template <class L, class R> struct ChainExpr;
 template <class L, class R> struct SequenceExpr;
-
-//template <class A, class B, class C> struct Members2Op;
-//template <class A, class B, class C, class D> struct Members3Op;
-//template <class A, class B, class C, class D, class E> struct Members4Op;
-//template <class A, class B, class C, class D, class E, class F> struct Members5Op;
 
 template <class L, class R> struct GetChildrenOp;
 template <class L, class R> struct DFSChildrenOp;
@@ -194,34 +185,175 @@ struct MyUnaryFunction
 	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmKindConcept);
 };
 
-} // namespace HFSM
+} // end namespace LEESA
 
-#define LOCAL_TYPEDEFS(L, OP)                                           \
-	typedef typename ET< L >::expression_type ParentKindExpr;           \
-	typedef typename ET< OP >::argument_kind ChildKind;                 \
-	typedef typename ParentKindExpr::result_kind ParentKind;            \
-    typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                   \
-	BOOST_CONCEPT_ASSERT((SameUdmKindsConcept<ParentKind, ChildKind>));
+#include "LEESA.cpp"
 
+#endif // __LEESA_H
 
-#define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
-template < class L, class H >                                 \
-ChainExpr<typename ET< L >::expression_type, OPERATOR >       \
-operator >> (L const &l, OPERATOR op) {                        \
-	LOCAL_TYPEDEFS(L, OPERATOR);                              \
-	return ChainExpr(ParentKindExpr(l), op);                  \
+//*****************************************************************************
+// LEESA EXAMPLES                                                             
+// Note: These examples are written using the default HFSM paradigm that            
+//       ships with GME. 
+//*****************************************************************************
+
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<Transition> leesa_example1(RootFolder rf)
+{
+  using namespace LEESA;
+  return evaluate(rf, RootFolder() >> State() >> Transition());
 }
+*/
 
-
-#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
-template <class L, class H, class X >                      \
-ChainExpr<typename ET< L >::expression_type, OPERATOR >    \
-operator >> (L const &l, OPERATOR op) {                     \
-	LOCAL_TYPEDEFS(L, OPERATOR);                           \
-	return ChainExpr(ParentKindExpr(l), op);               \
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<Transition> leesa_example2(RootFolder rf)
+{
+  using namespace LEESA;
+  BOOST_AUTO(tran_set, RootFolder() >> State() >> Transition());
+  std::vector<Transition> v = evaluate(rf, tran_set);
+  return v;
 }
+*/
 
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<State> leesa_example3(RootFolder rf)
+{
+  using namespace LEESA;
+  // This example must link with boost-regex library.
+  BOOST_AUTO(states, RootFolder() >> State() >> State());
+  BOOST_AUTO(state_end_three, states >> SelectByName(State(), ".*3"));
+  return evaluate(rf, state_end_three);
+}
+*/
 
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<State> leesa_example4(RootFolder rf)
+{
+  // Note "!!" before SelectByName. One "!" means a logical NOT.
+  // "!!" means NOT of NOT, which is same as the original logical expression.
+  // This example must link with boost-regex library.
+  using namespace LEESA;
+  BOOST_AUTO(states, RootFolder() >> State() >> State());
+  BOOST_AUTO(state_end_three, states >> !!SelectByName(State(), ".*3"));
+  return evaluate(rf, state_end_three);
+}
+*/
 
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+bool always_true (State)
+{
+  return true;
+}
+std::vector<State> leesa_example5(RootFolder rf)
+{
+  // Operators: Unique, SelectByName, CastFromTo, Select, SelectSubSet
+  using namespace LEESA;
+  BOOST_AUTO(states, RootFolder() >> State() >> State() >> State());
+  std::vector<State> v = evaluate(rf, states);
+  BOOST_AUTO(parent_of_s11_s12, State() << State() 
+                                        >> Unique(State())
+                                        >> Select(State(), always_true));
+  return evaluate(v, parent_of_s11_s12);
+}
+*/
 
-#endif // __UDM_DSL_H
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<State> leesa_example6(RootFolder rf)
+{
+  // Traversing srcTransition association using srcTransition_end.
+  using namespace LEESA;
+  BOOST_AUTO(states, RootFolder() >> State() >> State());
+  std::vector<State> v = evaluate(rf, states);
+  BOOST_AUTO(s11, v >> Transition() >>& Transition::srcTransition_end);
+  return evaluate(v, s11);
+}
+*/
+
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+class CountVisitor : public HFSM::Visitor 
+{
+  int count_;
+public:
+  CountVisitor () : count_(0) {}
+  void Visit_Transition(const Transition &t) {
+    ++count_;
+  }
+  int get_count() { return count_; }
+};
+#define DEPTH_FIRST >>=
+int leesa_example7(RootFolder rf)
+{
+  using namespace LEESA;
+  CountVisitor cv;
+  evaluate(rf, RootFolder() DEPTH_FIRST State() >> Transition() >> cv);
+  return cv.get_count();
+}
+*/
+
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+class CountVisitor : public HFSM::Visitor 
+{
+  int seq_count_;
+  int state_count_;
+public:
+  CountVisitor () : seq_count_(0), state_count_(0) {}
+  void Visit_InputSequnce(const InputSequence &i) {
+    ++seq_count_;
+  }
+  void Visit_State(const State &t) {
+    ++state_count_;
+  }
+  int get_states() { return state_count_; }
+  int get_seq() { return seq_count_; }
+};
+int leesa_example8(RootFolder rf)
+{
+  // MembersOf is used to visit different sibling types under a common parent.
+  // E.g., In HFSM, there are State and InputSequence under RootFolder.
+  using namespace LEESA;
+  CountVisitor cv;
+  BOOST_AUTO(visit_input_sequence, InputSequence() >> cv);
+  BOOST_AUTO(visit_state, State() >> cv);
+  evaluate(rf, RootFolder() 
+    >> MembersOf(RootFolder(), visit_input_sequence && visit_state));
+  return cv.get_states();
+}
+*/
+
+/*
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA.h"
+using namespace HFSM;
+std::vector<Transition> leesa_example9(RootFolder rf)
+{
+  // This will not compile because RootFolder has no Transition directly
+  // under it.
+  using namespace LEESA;
+  return evaluate(rf, RootFolder() >> Transition()); 
+}
+*/
+

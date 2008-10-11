@@ -1,3 +1,14 @@
+Sat Oct 11 05:52:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+		
+		  Added LEESA.h, LEESA.cpp to use LEESA as a header only library.
+
 Wed Oct  8 04:21:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/HFSM.h:
@@ -9,8 +20,8 @@ Wed Oct  8 04:21:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/UDM_DSL.cpp:
         * Utils/UDM_DSL/UDM_DSLd.reg:
         * Utils/UDM_DSL/UdmObjectConcept.h:
-		
-		  Updated LEESA to work with latest UDM trunk (Revision: 2745)
+
+                  Updated LEESA to work with latest UDM trunk (Revision: 2745)
 
 Wed Sep 24 05:10:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
