@@ -390,7 +390,7 @@ struct VisitorOp : public MyUnaryFunction <E>,
 class RegexOpBase {};
 template <class E>
 struct RegexOp : public MyUnaryFunction <E>,
-			     public RegexOpBase
+			           public RegexOpBase
 {
 	typedef typename 
 		ChainExpr<E, RegexOp<argument_type> > expression_type;

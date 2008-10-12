@@ -80,20 +80,26 @@ int CUdmApp::Initialize()
 /* Main entry point for Udm-based Interpreter  */
 /***********************************************/
 using namespace HFSM;
-bool always_true (State)
+class CountVisitor : public HFSM::Visitor 
 {
-  return true;
-}
-std::vector<State> leesa_example(RootFolder rf)
+  int count_;
+public:
+  CountVisitor () : count_(0) {}
+  void Visit_Transition(const Transition &t) {
+    ++count_;
+  }
+  int get_count() { return count_; }
+};
+#define DEPTH_FIRST >>=
+int leesa_example(RootFolder rf)
 {
-  // Operators: Unique, SelectByName, CastFromTo, Select, SelectSubSet
   using namespace LEESA;
-  BOOST_AUTO(states, RootFolder() >> State() >> State() >> State());
-  std::vector<State> v = evaluate(rf, states);
-  BOOST_AUTO(parent_of_s11_s12, State() << State() 
-                                        >> Unique(State())
-                                        >> Select(State(), always_true));
-  return evaluate(v, parent_of_s11_s12);
+  CountVisitor cv;
+  BOOST_AUTO(v, RootFolder()[cv] >> State() >> cv
+                >> SelectByName(State(),"123") >> Transition()
+                >>& Transition::srcTransition_end);
+  evaluate(rf, v);
+  return cv.get_count();
 }
 
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
@@ -106,11 +112,11 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 
   //foo(rf);
   
-  std::vector<State> v = leesa_example(rf);
-  std::string name = v.front().name();
+  //std::vector<State> v = leesa_example(rf);
+  //std::string name = v.front().name();
   std::ostringstream ostr;
-  ostr << "UDM_DSL finished: " << v.size() << ": " << name;
-  //ostr << "UDM_DSL finished: " << leesa_example1(rf);
+  //ostr << "UDM_DSL finished: " << v.size() << ": " << name;
+  ostr << "UDM_DSL finished: " << leesa_example(rf);
 
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
   return;

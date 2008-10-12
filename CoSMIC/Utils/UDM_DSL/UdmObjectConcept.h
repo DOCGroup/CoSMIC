@@ -33,7 +33,10 @@ struct SameUdmKindsConcept
 template <class ParentKind, class ChildKind>
 struct ParentChildConcept 
 {
-	void constraints()
+  BOOST_CLASS_REQUIRE(ParentKind, Udm, UdmKindConcept);
+  BOOST_CLASS_REQUIRE(ChildKind, Udm, UdmKindConcept);
+	
+  void constraints()
 	{
     typedef typename ParentKind::ChildrenKinds ChildrenKinds;
 		BOOST_MPL_ASSERT((boost::mpl::contains<ChildrenKinds, ChildKind > ));

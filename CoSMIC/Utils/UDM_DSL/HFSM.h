@@ -17,6 +17,7 @@
 #include <Uml.h>
 
 #include <UdmMPL.h>
+#include "UdmObjectConcept.h"
 
 #ifdef min
 #undef min
@@ -48,15 +49,20 @@ namespace HFSM {
 		virtual void Visit_Events(const Events &) {}
 		virtual void Visit_RootFolder(const RootFolder &) {}
 		virtual void Visit_Object(const Udm::Object &) {}
-
 	};
+
+} // end namspace HFSM
+#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#include "LEESA_VisitorAsIndex.h"
+namespace HFSM {
 
 	void Initialize();
 	void Initialize(const ::Uml::Diagram &dgr);
 
 	extern Udm::UdmDiagram diagram;
 
-	class RootFolder : public Udm::Object {
+	class RootFolder : public Udm::Object, 
+                     public LEESA::VisitorAsIndex_CRTP<RootFolder>  {
 	public:
 		typedef ::Udm::FolderMetaTag MetaKind;
 
@@ -169,7 +175,7 @@ namespace HFSM {
 
 	};
 
-	class MgaObject : public Udm::Object {
+  class MgaObject : public Udm::Object {
 	public:
 		typedef ::Udm::UnknownMetaTag MetaKind;
 
@@ -256,7 +262,8 @@ namespace HFSM {
 
 	};
 
-	class Transition :  public MgaObject {
+	class Transition :  public MgaObject, 
+                      public LEESA::VisitorAsIndex_CRTP<Transition>  {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -304,8 +311,8 @@ namespace HFSM {
 		Udm::AssocEndAttr< ::HFSM::State> dstTransition_end() const { return Udm::AssocEndAttr< ::HFSM::State>(impl, meta_dstTransition_end_); }
 		Udm::AssocEndAttr< ::HFSM::State> srcTransition_end() const { return Udm::AssocEndAttr< ::HFSM::State>(impl, meta_srcTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_Transition(*this); }
-
-		static ::Uml::Class meta;
+		
+    static ::Uml::Class meta;
 		static ::Uml::Attribute meta_Event;
 		static ::Uml::CompositionParentRole meta_State_parent;
 		static ::Uml::AssociationRole meta_dstTransition_end_;
@@ -354,7 +361,8 @@ namespace HFSM {
 
 	};
 
-	class State :  public MgaObject {
+	class State :  public MgaObject,
+                 public LEESA::VisitorAsIndex_CRTP<State>  {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -411,8 +419,8 @@ namespace HFSM {
 		Udm::ParentAttr< ::HFSM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::HFSM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_State(*this); }
-
-		static ::Uml::Class meta;
+		
+    static ::Uml::Class meta;
 		static ::Uml::Attribute meta_StartState;
 		static ::Uml::AssociationRole meta_srcTransition;
 		static ::Uml::AssociationRole meta_srcTransition_rev;
