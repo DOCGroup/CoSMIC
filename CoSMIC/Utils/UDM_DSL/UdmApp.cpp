@@ -86,7 +86,12 @@ class CountVisitor : public HFSM::Visitor
 public:
   CountVisitor () : count_(0) {}
   void Visit_Transition(const Transition &t) {
-    ++count_;
+    std::string name = t.name();
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
+  void Visit_State(const State &s) {
+    std::string name = s.name();
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
   }
   int get_count() { return count_; }
 };
@@ -95,10 +100,9 @@ int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
   CountVisitor cv;
-  BOOST_AUTO(v, RootFolder()[cv] >> State() >> cv
-                >> SelectByName(State(),"123") >> Transition()
-                >>& Transition::srcTransition_end);
-  evaluate(rf, v);
+  BOOST_AUTO(members, MembersOf(State(), State() >> cv FOLLOWED_BY Transition()));
+  BOOST_AUTO(r2, RootFolder()[cv] >>= State()[cv] >> members);
+  evaluate(rf, r2);
   return cv.get_count();
 }
 

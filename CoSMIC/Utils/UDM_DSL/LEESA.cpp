@@ -13,6 +13,7 @@
 #include <boost/foreach.hpp>
 #include <boost/regex.hpp>
 #include <boost/utility/enable_if.hpp>
+#include <boost/mpl/if.hpp>
 
 #include <functional>
 #include <vector>
@@ -28,19 +29,21 @@
 
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                      \
-ChainExpr<typename ET< L >::expression_type, OPERATOR >            \
+typename disable_if<is_base_of< VisitorAsIndexBase, L >,             \
+  ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
 	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 
 
-#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)          \
-template <class L, class H, class X >                           \
-ChainExpr<typename ET< L >::expression_type, OPERATOR >         \
-operator >> (L const &l, OPERATOR op) {                         \
-	LOCAL_TYPEDEFS(L, OPERATOR);                                  \
-	return ChainExpr(ParentKindExpr(l), op);                      \
+#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)             \
+template <class L, class H, class X >                              \
+typename disable_if<is_base_of< VisitorAsIndexBase, L >,           \
+  ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
+operator >> (L const &l, OPERATOR op) {                            \
+	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
+	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 
 namespace LEESA {
@@ -213,8 +216,30 @@ struct LEESAUnaryFunction
 };
 
 class OpBase {}; // Base of all the operators
+class VisitorAsIndexBase{};
+
+template <class Kind>
+class VisitorAsIndex : public VisitorAsIndexBase
+{
+    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
+    BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
+
+  public:
+    VisitorAsIndex (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) : visitor_(v) {}
+    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & getVisitor() { return visitor_; }
+};
+
+template <class Kind>
+VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator [] 
+(PARADIGM_NAMESPACE_FOR_LEESA::Visitor &v) const 
+{ 
+  return VisitorAsIndex<Kind> (v);
+}
+
 using boost::disable_if;
+using boost::enable_if;
 using boost::is_base_of;
+using boost::mpl::if_;
 
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
@@ -916,14 +941,15 @@ operator >> (L const &l, VisitorAsIndex<H> vi)
 }
 
 template <class L, class H>
-typename disable_if<
-  is_base_of<OpBase, H>,
   ChainExpr<ChainExpr<typename ET<L>::expression_type, 
                       VisitorOp<typename ET<L>::result_type> 
                      >,
-            GetChildrenOp<typename ET<L>::result_type,  
-                          typename ET<H>::result_type>
-            > >::type
+            typename if_<is_base_of<OpBase, H>,
+                     H,
+                     GetChildrenOp<typename ET<L>::result_type,  
+                                   typename ET<H>::result_type>
+                     >::type
+            > 
 operator >> (VisitorAsIndex<L> vi, H const &h)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -1007,9 +1033,22 @@ operator && (L const &l, H const &h)
 	return OP(l, h);
 }
 
+template <class L, class H>
+SequenceExpr<typename ET<L>::expression_type, 
+             ChainExpr<typename ET<H>::result_type,
+                       VisitorOp<typename ET<H>::result_type> 
+                      >
+		        >
+operator && (L const &l, VisitorAsIndex<H> vh)
+{
+	return l && H() >> vh.getVisitor();
+}
+
+
 template <class L, class H, class X>
 ChainExpr<typename ET<L>::expression_type, 
- 		      SequenceExpr<H,X> >
+          SequenceExpr<H,X> 
+         >
 operator >> (L const &l, SequenceExpr<H,X> const & s)
 {	
 	typedef typename SequenceExpr<H,X> OP;
@@ -1020,6 +1059,19 @@ operator >> (L const &l, SequenceExpr<H,X> const & s)
 
   BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
 	return ChainExpr(LExpr(l), OP(s));
+}
+
+template <class L, class H, class X>
+ChainExpr<ChainExpr<typename ET<L>::expression_type,
+                    VisitorOp<typename ET<L>::result_type> >, 
+          SequenceExpr<H,X> >
+operator >> (VisitorAsIndex<L> vl, SequenceExpr<H,X> const & s)
+{	
+  typedef typename ET<L>::result_kind LKind;
+  typedef typename ET<H>::argument_kind RKind;
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept <LKind, RKind>));
+  
+  return L() >> vl.getVisitor() >> s;
 }
 
 template <class L, class H>
@@ -1074,7 +1126,9 @@ ChainExpr<typename ET<L>::expression_type,
           DFSChildrenOp<typename ET<L>::expression_type,
                         ChainExpr<typename ET<R>::expression_type, 
                                   VisitorOp<typename ET<R>::result_type> 
-         > > >
+                                 > 
+                       > 
+         >
 operator >>= (L const &l, VisitorAsIndex<R> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -1085,7 +1139,8 @@ operator >>= (L const &l, VisitorAsIndex<R> vi)
 }
 
 template <class L, class R>
-ChainExpr<ChainExpr<typename ET<L>::expression_type,
+typename disable_if <is_base_of <OpBase, R>,
+         ChainExpr<ChainExpr<typename ET<L>::expression_type,
                     VisitorOp<typename ET<L>::result_type>
                    >,
           DFSChildrenOp <ChainExpr<typename ET<L>::expression_type,
@@ -1093,7 +1148,7 @@ ChainExpr<ChainExpr<typename ET<L>::expression_type,
                                   >,
                          typename ET<R>::expression_type
                         >
-         >
+         > >::type
 operator >>= (VisitorAsIndex<L> vi, R const &r)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -1101,6 +1156,22 @@ operator >>= (VisitorAsIndex<L> vi, R const &r)
   BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
 
   return L() >> vi.getVisitor() >>= r;
+}
+
+template <class L, class R>
+typename enable_if<is_base_of<OpBase, R>,
+                   ChainExpr<ChainExpr<typename ET<L>::expression_type,
+                                       VisitorOp<typename ET<L>::result_type>
+                                      >,
+                             R> 
+                  >::type
+operator >>= (VisitorAsIndex<L> vi, R const &r)
+{
+  typedef typename ET<L>::result_kind ParentKind;
+  typedef typename ET<R>::argument_kind ChildKind;
+  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
+
+  return L() >> vi.getVisitor() >> r;
 }
 
 template <class L, class R>
@@ -1127,7 +1198,7 @@ operator >>= (VisitorAsIndex<L> vl, VisitorAsIndex<R> vr)
 template <class L, class R, class X>
 ChainExpr<typename ET<L>::expression_type, 
 		      DFSOp<typename ET<L>::expression_type,
-		 	          typename SequenceExpr<R,X>
+		 	          SequenceExpr<R,X>
 			   >
 		 >
 operator >>= (L const &l, SequenceExpr<R,X> const &r)
@@ -1147,6 +1218,23 @@ operator >>= (L const &l, SequenceExpr<R,X> const &r)
 	return ChainExpr(LExpr(l), op);
 }
 
+template <class L, class R, class X>
+ChainExpr<ChainExpr<typename ET<L>::expression_type,
+                    VisitorOp<typename ET<L>::result_type> >, 
+		      DFSOp<ChainExpr<typename ET<L>::expression_type,
+                          VisitorOp<typename ET<L>::result_type> >,
+		 	          SequenceExpr<R,X>
+			         >
+         >
+operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
+{
+  typedef typename ET<L>::result_kind LKind;
+  typedef typename ET<R>::argument_kind RKind;
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept <LKind, RKind>));
+
+  return L() >> vl.getVisitor() >>= r;
+}
+
 template <class Para, class Expr>
 typename Expr::result_type
 evaluate (Para p, Expr &e)
@@ -1157,23 +1245,6 @@ evaluate (Para p, Expr &e)
 	return e(p);
 }
 
-template <class Kind>
-class VisitorAsIndex
-{
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
-    BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
-
-  public:
-    VisitorAsIndex (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) : visitor_(v) {}
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & getVisitor() { return visitor_; }
-};
-
-template <class Kind>
-VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator [] 
-(PARADIGM_NAMESPACE_FOR_LEESA::Visitor &v) const 
-{ 
-  return VisitorAsIndex<Kind> (v);
-}
 
 
 } // end namespace LEESA

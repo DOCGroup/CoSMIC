@@ -61,8 +61,9 @@ namespace HFSM {
 
 	extern Udm::UdmDiagram diagram;
 
-	class RootFolder : public Udm::Object, 
-                     public LEESA::VisitorAsIndex_CRTP<RootFolder>  {
+	class RootFolder : public Udm::Object
+                     , public LEESA::VisitorAsIndex_CRTP<RootFolder>  
+  {
 	public:
 		typedef ::Udm::FolderMetaTag MetaKind;
 
@@ -262,8 +263,9 @@ namespace HFSM {
 
 	};
 
-	class Transition :  public MgaObject, 
-                      public LEESA::VisitorAsIndex_CRTP<Transition>  {
+	class Transition :  public MgaObject
+                      , public LEESA::VisitorAsIndex_CRTP<Transition>  
+  {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -361,8 +363,9 @@ namespace HFSM {
 
 	};
 
-	class State :  public MgaObject,
-                 public LEESA::VisitorAsIndex_CRTP<State>  {
+	class State :  public MgaObject
+                 , public LEESA::VisitorAsIndex_CRTP<State>  
+  {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -576,7 +579,9 @@ namespace HFSM {
 
 	};
 
-	class InputSequence :  public MgaObject {
+	class InputSequence :  public MgaObject
+                         , public LEESA::VisitorAsIndex_CRTP<InputSequence> 
+  {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 

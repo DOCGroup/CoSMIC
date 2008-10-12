@@ -1,3 +1,14 @@
+Sun Oct 12 20:16:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		
+		  Enhanced features in LEESA. Support for visitors inside square brackets
+		  is added. This feature can be used only if UDM #includes LEESA_VisitorAsIndex.h
+		  and uses VisitorAsIndex_CRTP in the header file of the paradigm.
+
 Sun Oct 12 07:54:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/HFSM.h:
@@ -7,8 +18,8 @@ Sun Oct 12 07:54:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/UDM_DSL.cpp:
         * Utils/UDM_DSL/UdmApp.cpp:
         * Utils/UDM_DSL/UdmObjectConcept.h:
-		
-		  Updates in LEESA
+
+                  Updates in LEESA
 
 Sat Oct 11 05:52:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

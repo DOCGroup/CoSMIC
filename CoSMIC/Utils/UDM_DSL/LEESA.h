@@ -5,9 +5,10 @@
 #error "Please define PARADIGM_NAMESPACE_FOR_LEESA, which contains the base Visitor class."
 #endif // PARADIGM_NAMESPACE_FOR_LEESA
 
-#define MembersOf(A,B) (A && B)
-#define DEPTH_FIRST >>=
-#define BREADTH_FIRST >>
+#define MembersOf(A,B) A && B
+#define DEPTH_FIRST    >>=
+#define BREADTH_FIRST  >>
+#define FOLLOWED_BY    &&
 
 /* LEESA Operators 
 
