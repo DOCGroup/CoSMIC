@@ -2,6 +2,7 @@ project (UDM_DSL): cosmic_common, udm, mfc, register, boost_base, boost_regex {
 
   macros += _USRDLL _WINDLL
   sharedname = UDM_DSL
+  includes += $(COSMIC_ROOT)/Utils/LEESA
   //includes += $(BOOST_ROOT)/include/$(BOOST_VERSION) $(BOOST_ROOT)/.
   //libpaths += $(BOOST_ROOT)/lib
   //lit_libs += boost_regex-vc80-mt-1_35 boost_regex-vc80-mt-gd-1_35

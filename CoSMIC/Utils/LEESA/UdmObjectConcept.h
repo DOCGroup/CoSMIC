@@ -6,7 +6,7 @@
 #include <boost/type_traits.hpp>
 
 namespace Udm {
-
+ 
 template <class T>
 struct UdmKindConcept 
 {

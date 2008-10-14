@@ -29,7 +29,7 @@
 
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                      \
-typename disable_if<is_base_of< VisitorAsIndexBase, L >,             \
+typename disable_if<is_base_of< VisitorAsIndexBase, L >,           \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
