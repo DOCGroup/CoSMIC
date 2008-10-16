@@ -19,6 +19,7 @@ CastFromTo   (From, To)
 Sort         (Kind, Comparator c)
 Unique       (Kind, BinPred c)
 Unique       (Kind)
+ForEach      (Kind, unary function)
 
 */
 

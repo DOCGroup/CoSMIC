@@ -18,6 +18,7 @@
 #include <functional>
 #include <vector>
 #include <set>
+#include <ios>
 
 #define LOCAL_TYPEDEFS(L, OP)                                             \
 	typedef typename ET< L >::expression_type ParentKindExpr;               \
@@ -29,7 +30,9 @@
 
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                      \
-typename disable_if<is_base_of< VisitorAsIndexBase, L >,           \
+typename disable_if_c<                                             \
+  is_base_of< VisitorAsIndexBase, L >::value |                     \
+  is_base_of<std::ios_base, L>::value,                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
@@ -39,7 +42,9 @@ operator >> (L const &l, OPERATOR op) {                            \
 
 #define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)             \
 template <class L, class H, class X >                              \
-typename disable_if<is_base_of< VisitorAsIndexBase, L >,           \
+typename disable_if_c<                                             \
+  is_base_of< VisitorAsIndexBase, L >::value |                     \
+  is_base_of<std::ios_base, L>::value,                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
@@ -66,6 +71,7 @@ template <class E> struct VisitorOp;
 template <class E> struct RegexOp;
 
 template <class E, class Func> struct FilterOp;
+template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
 
@@ -170,6 +176,10 @@ template <class T, class U>
 struct ET <FilterOp<T, U> > 
 	: public ETBase <FilterOp<T, U> > {};
 
+template <class T, class U>
+struct ET <ForEachOp<T, U> > 
+	: public ETBase <ForEachOp<T, U> > {};
+
 template <class T, class Comp>
 struct ET <SortOp<T, Comp> > 
 	: public ETBase <SortOp<T, Comp> > {};
@@ -236,6 +246,8 @@ VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator []
   return VisitorAsIndex<Kind> (v);
 }
 
+using boost::disable_if_c;
+using boost::enable_if_c;
 using boost::disable_if;
 using boost::enable_if;
 using boost::is_base_of;
@@ -493,6 +505,7 @@ struct SelectorOp : LEESAUnaryFunction <E>,
 	}
 };
 
+
 template <class L, class H>
 struct GetChildrenOp : LEESAUnaryFunction <L,H>,
 	                     OpBase
@@ -630,6 +643,27 @@ struct FilterOp : LEESAUnaryFunction <E>,
 	}
 };
 
+template <class E, class Func>
+struct ForEachOp : LEESAUnaryFunction <E>,
+				           OpBase
+{
+	typedef typename 
+		ChainExpr<E, ForEachOp<E, Func> > expression_type;
+
+	Func func_;
+	explicit ForEachOp (Func f) 
+		: func_(f) { }
+	ForEachOp (ForEachOp const & fop) 
+		: func_(fop.func_) {}
+	result_type operator () (argument_type const & arg)
+	{
+		result_type retval = arg;
+		std::vector<argument_kind> v = arg;
+    std::for_each (v.begin(), v.end(), func_);
+		return retval;
+	}
+};
+
 template <class L, class H>
 struct CastOp : LEESAUnaryFunction <L, H>,
 				        OpBase
@@ -687,9 +721,13 @@ struct UniqueOp : LEESAUnaryFunction <E>,
 	result_type operator () (argument_type const & k)
 	{
 		std::vector<argument_kind> s = k;
-		std::vector<argument_kind>::iterator new_end = 
-			std::unique(s.begin(), s.end(), pred_);
-		return std::vector<result_kind>(s.begin(), new_end);
+    std::vector<result_kind> retval;
+		BOOST_FOREACH(argument_kind kind, s)
+    {  
+      if (std::count (retval.begin(), retval.end(), kind) == 0)
+        retval.push_back(kind);
+    }
+		return retval;
 	}
 };
 
@@ -821,6 +859,32 @@ Select (E, Result (*f) (Arg))
 	return filter;
 }
 
+template <class E, class Func>
+ForEachOp<E, Func> 
+ForEach (E, Func f)
+{
+	typedef typename ET<E>::result_kind result_kind;
+	
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
+	
+	return ForEachOp<E, Func> (f);
+}
+
+template <class E, class Arg, class Result>
+ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+ForEach (E, Result (*f) (Arg))
+{
+	typedef typename ET<E>::result_kind result_kind;
+	
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
+	
+	ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+		foreach(std::ptr_fun(f));
+	return foreach;
+}
+
 template <class L, class H>
 CastOp<typename ET<L>::result_type, 
        typename ET<H>::result_type> 
@@ -904,8 +968,9 @@ struct ChainedOperator
 };
 
 template <class L, class H>
-typename disable_if
-  <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>,
+typename disable_if_c
+  <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>::value |
+   is_base_of<std::ios_base, L>::value,
    typename ChainedOperator<L,H,GetChildrenOp>::Op>::type
 operator >> (L const &l, H)
 {
@@ -917,8 +982,10 @@ operator >> (L const &l, H)
 }
 
 template <class L>
-ChainExpr<typename ET<L>::expression_type, 
- 		      typename VisitorOp<typename ET<L>::result_type> >
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
+            typename VisitorOp<typename ET<L>::result_type> > 
+  >::type
 operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef VisitorOp<typename ET<L>::result_type> OP;
@@ -928,9 +995,10 @@ operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 }
 
 template <class L, class H>
-ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
-          VisitorOp<typename ET<H>::result_type> 
-         >
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
+            VisitorOp<typename ET<H>::result_type>
+           > >::type
 operator >> (L const &l, VisitorAsIndex<H> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -986,6 +1054,9 @@ GT_PARA_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
 #define FILTER_OP FilterOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
 
+#define FOREACH_OP ForEachOp<H, Func>
+GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
+
 #define SORT_OP SortOp<H, Comp>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);
 
@@ -996,9 +1067,10 @@ GT_PARA_OPERATOR_DEFINITION_3T(L,TARGET,RESULT,CAST_OP);
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,BinPred,UNIQUE_OP);
 
 template <class L, class RESULT, class TARGETCLASS>
-ChainExpr<typename ET<L>::expression_type, 
+typename disable_if<is_base_of<std::ios_base, L>, 
+          ChainExpr<typename ET<L>::expression_type, 
 		      typename AssociationOp<RESULT, TARGETCLASS>
-     	   >
+          > >::type
 operator >> (L const &l, 
 			Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*func)() const)
 {
@@ -1009,9 +1081,10 @@ operator >> (L const &l,
 }
 
 template <class L, class RESULT, class TARGETCLASS>
-ChainExpr<typename ET<L>::expression_type, 
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
 		      typename AssociationEndOp<RESULT, TARGETCLASS>
-		 >
+  > >::type
 operator >> (L const &l, 
 			Udm::AssocEndAttr<RESULT> (TARGETCLASS::*func)() const)
 {
@@ -1046,9 +1119,10 @@ operator && (L const &l, VisitorAsIndex<H> vh)
 
 
 template <class L, class H, class X>
-ChainExpr<typename ET<L>::expression_type, 
-          SequenceExpr<H,X> 
-         >
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
+            SequenceExpr<H,X> 
+           > >::type
 operator >> (L const &l, SequenceExpr<H,X> const & s)
 {	
 	typedef typename SequenceExpr<H,X> OP;
@@ -1075,8 +1149,9 @@ operator >> (VisitorAsIndex<L> vl, SequenceExpr<H,X> const & s)
 }
 
 template <class L, class H>
-typename disable_if
-  <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>,
+typename disable_if_c
+  <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>::value |
+   is_base_of<std::ios_base, L>::value,
    typename ChainedOperator<L,H,GetParentOp>::Op>::type
 operator << (L const &l, H)
 {

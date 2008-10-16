@@ -96,13 +96,19 @@ public:
   int get_count() { return count_; }
 };
 #define DEPTH_FIRST >>=
+void foo (State s) 
+{
+  std::string name = s.name();
+  AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+}
 int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
   CountVisitor cv;
   BOOST_AUTO(members, MembersOf(State(), State() >> cv FOLLOWED_BY Transition()));
-  BOOST_AUTO(r2, RootFolder()[cv] >>= State()[cv] >> members);
-  evaluate(rf, r2);
+  evaluate (rf, RootFolder() >> State() 
+                >>= members);
+
   return cv.get_count();
 }
 
@@ -113,7 +119,6 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       long param)			// Parameters
 {
   HFSM::RootFolder rf = HFSM::RootFolder::Cast (p_backend->GetRootObject());
-
   //foo(rf);
   
   //std::vector<State> v = leesa_example(rf);
