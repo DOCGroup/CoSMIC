@@ -130,4 +130,3 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
   return;
 }
-
