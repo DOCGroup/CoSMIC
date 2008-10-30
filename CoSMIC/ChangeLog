@@ -1,10 +1,27 @@
+Thu Oct 30 00:20:42 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/xsd:
+
+        * Utils/LEESA/xsd/LEESA.h:
+        * Utils/LEESA/xsd/LEESA.cpp:
+        * Utils/LEESA/xsd/LEESAConcepts.h:
+        * Utils/LEESA/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/xsd/patch:
+
+        * Utils/LEESA/xsd/patch/cli.hxx:
+        * Utils/LEESA/xsd/patch/generator.cxx:
+        * Utils/LEESA/xsd/patch/template-header.cxx:
+        * Utils/LEESA/xsd/patch/template-header.hxx:
+	  Added a version of LEESA for CodeSynthesis's xsd XML data binding
+	  compiler. Also, extension to xsd itself. 
+
 Thu Oct 16 17:04:43 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.doc:
         * Utils/LEESA/LEESA.pdf:
 
         * Utils/UDM_DSL/UdmApp.cpp:
-		  Added a pdf version of the documentation.
+                  Added a pdf version of the documentation.
 
 Thu Oct 16 04:15:20 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
