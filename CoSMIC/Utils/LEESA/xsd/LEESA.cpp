@@ -16,9 +16,13 @@
 #include <boost/mpl/if.hpp>
 
 #include <functional>
-//#include <vector>
-//#include <set>
 #include <ios>
+
+#define SUPER_TYPEDEFS(Super)                                               \
+  typedef typename Super::argument_kind argument_kind;                      \
+  typedef typename Super::result_kind result_kind;                          \
+  typedef typename Super::argument_type argument_type;                      \
+  typedef typename Super::result_type result_type;             
 
 #define LOCAL_TYPEDEFS(L, OP)                                                   \
   typedef typename ET< L >::expression_type ParentKindExpr;                     \
@@ -27,7 +31,7 @@
   typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                             \
   BOOST_CONCEPT_ASSERT((LEESA::SameElementsConcept<ParentKind, ChildKind>));
 
-
+/*
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                      \
 typename disable_if_c<                                             \
@@ -50,7 +54,7 @@ operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                               \
 	return ChainExpr(ParentKindExpr(l), op);                   \
 }
-
+*/
 namespace LEESA {
 
 template <class Kind> class KindLit;
@@ -66,13 +70,16 @@ template <class L, class R> struct CastOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
 template <class RESULT, class TARGETCLASS> struct AssociationManyOp;
+*/
 
 template <class E> struct SelectorOp;
+/*
 template <class E> struct VisitorOp;
 template <class E> struct RegexOp;
-
+*/
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
+/*
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
 */
@@ -90,7 +97,7 @@ struct ET
 	typedef T result_kind;
 	typedef T argument_kind;
 };
-/*
+
 template <class T, class U>
 struct ET <T (*) (U)>
 {
@@ -100,7 +107,7 @@ struct ET <T (*) (U)>
 	typedef T result_kind;
 	typedef U argument_kind;
 };
-
+/*
 template <class Kind>
 struct ET <std::set<Kind> >
 {
@@ -149,11 +156,11 @@ template <class T, class U>
 struct ET <GetChildrenOp<T, U> > 
 	: public ETBase <GetChildrenOp<T, U> > {};
 
-/*
+
 template <class T>
 struct ET <SelectorOp<T> > 
 	: public ETBase <SelectorOp<T> > { };
-
+/*
 template <class T>
 struct ET <RegexOp<T> >	
 	: public ETBase <RegexOp<T> > {};
@@ -173,6 +180,7 @@ struct ET <DFSOp<T, U> >
 template <class T, class U>
 struct ET <GetParentOp<T, U> > 
 	: public ETBase <GetParentOp<T, U> > {};
+*/
 
 template <class T, class U>
 struct ET <FilterOp<T, U> > 
@@ -181,7 +189,7 @@ struct ET <FilterOp<T, U> >
 template <class T, class U>
 struct ET <ForEachOp<T, U> > 
 	: public ETBase <ForEachOp<T, U> > {};
-
+/*
 template <class T, class Comp>
 struct ET <SortOp<T, Comp> > 
 	: public ETBase <SortOp<T, Comp> > {};
@@ -356,7 +364,6 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 
   L l_;
   R r_;
-  //explicit ChainExpr () {} 
   ChainExpr (ChainExpr const & c) 
     : l_(c.l_), r_(c.r_) 
   {}
@@ -486,50 +493,49 @@ struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 		}
 	}
 };
+*/
 
 template <class E>
-struct SelectorOp : LEESAUnaryFunction <E>, 
-	                  OpBase
+struct SelectorOp : LEESA::LEESAUnaryFunction <E>, OpBase
 {
-	typedef typename ChainExpr<E, SelectorOp<E> > expression_type;
+  typedef LEESA::LEESAUnaryFunction <E> Super;
+  SUPER_TYPEDEFS(Super);
+  
+  typedef typename LEESA::ChainExpr<E, SelectorOp<E> > expression_type;
 	
-	std::vector<argument_kind> s_;
-	bool logical_not_; 
-	//explicit SelectorOp (result_kind const & k) { s_.push_back(k); }
-	//explicit SelectorOp (std::vector<kind_lit> const & s) : s_(s) { }
-	explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
-		: s_(kl), logical_not_(logical_not) {}
-	SelectorOp (SelectorOp const & sop) 
-		: logical_not_(sop.logical_not_), s_(sop.s_) {}
-	result_type operator () (argument_type const & arg)
-	{
-		result_type retval;
-		std::vector<argument_kind> v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-		{
-			std::vector<argument_kind>::iterator i = 
-				std::find(s_.begin(), s_.end(), kind);
-			if ((i != s_.end()) ^ logical_not_) // Logical not of match, if required
-				retval.Union(kind);
-		}
-		return retval;
-	}
-	SelectorOp operator ! () const
-	{
-		SelectorOp selector(*this);
-		selector.logical_not_ = !this->logical_not_;
-		return selector;
-	}
+  typename ContainerGen<argument_kind>::type s_;
+  bool logical_not_; 
+  explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
+    : s_(kl), logical_not_(logical_not) {}
+  SelectorOp (SelectorOp const & sop) 
+    : logical_not_(sop.logical_not_), s_(sop.s_) {}
+  result_type operator () (argument_type const & arg)
+  {
+    result_type retval;
+    typename ContainerGen<argument_kind>::type v = arg;
+    BOOST_FOREACH(argument_kind kind, v)
+    {
+      typename ContainerGen<argument_kind>::type::iterator i = 
+	std::find(s_.begin(), s_.end(), kind);
+      if ((i != s_.end()) ^ logical_not_) // Logical not of match, if required
+	retval.Union(kind);
+    }
+    return retval;
+  }
+  SelectorOp operator ! () const
+  {
+    SelectorOp selector(*this);
+    selector.logical_not_ = !this->logical_not_;
+    return selector;
+ }
 };
-*/
+
 
 template <class L, class H>
 struct GetChildrenOp : LEESA::LEESAUnaryFunction <L,H>, OpBase
 {
-  typedef typename ET<L>::argument_kind argument_kind;
-  typedef typename ET<H>::result_kind result_kind;
-  typedef typename ET<L>::argument_type argument_type;
-  typedef typename ET<H>::result_type result_type;
+  typedef LEESA::LEESAUnaryFunction <L, H> Super;
+  SUPER_TYPEDEFS(Super);
   
   typedef typename LEESA::GetChildrenOp<argument_type, result_type> Self;
   typedef typename LEESA::ChainExpr<L, Self> expression_type;
@@ -631,60 +637,62 @@ struct RegexOp : LEESAUnaryFunction <E>,
 		return r;
 	}
 };
-
+*/
 template <class E, class Func>
-struct FilterOp : LEESAUnaryFunction <E>,
-				          OpBase
+struct FilterOp : LEESAUnaryFunction <E>, OpBase
 {
-	typedef typename 
-		ChainExpr<E, FilterOp<E, Func> > expression_type;
+  typedef LEESAUnaryFunction<E> Super;
+  SUPER_TYPEDEFS(Super);
 
-	Func func_;
-	bool logical_not_; 
-	explicit FilterOp (Func f, bool logical_not = false) 
-		: func_(f), logical_not_ (logical_not) { }
-	FilterOp (FilterOp const & fop) 
-		: func_(fop.func_), logical_not_ (fop.logical_not_) {}
-	result_type operator () (argument_type const & arg)
-	{
-		result_type retval;
-		std::vector<argument_kind> v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-		{
-			if (func_(kind) ^ logical_not_) // Logical not of match, if required
-				retval.Union(kind);
-		}
-		return retval;
-	}
-	FilterOp operator ! () 
-	{
-		FilterOp f(*this);
-		f.logical_not_ = !this->logical_not_;
-		return f;
-	}
+  typedef typename LEESA::ChainExpr<E, FilterOp<E, Func> > expression_type;
+
+  Func func_;
+  bool logical_not_; 
+  explicit FilterOp (Func f, bool logical_not = false) 
+    : func_(f), logical_not_ (logical_not) { }
+  FilterOp (FilterOp const & fop) 
+    : func_(fop.func_), logical_not_ (fop.logical_not_) {}
+  result_type operator () (argument_type const & arg)
+  {
+    result_type retval;
+    typename LEESA::ContainerGen<argument_kind>::type v = arg;
+    BOOST_FOREACH(argument_kind kind, v)
+    {
+      if (func_(kind) ^ logical_not_) // Logical not of match, if required
+      	retval.Union(kind);
+    }
+    return retval;
+  }
+  FilterOp operator ! () 
+  {
+    FilterOp f(*this);
+    f.logical_not_ = !this->logical_not_;
+    return f;
+  }
 };
 
-template <class E, class Func>
-struct ForEachOp : LEESAUnaryFunction <E>,
-				           OpBase
-{
-	typedef typename 
-		ChainExpr<E, ForEachOp<E, Func> > expression_type;
 
-	Func func_;
-	explicit ForEachOp (Func f) 
-		: func_(f) { }
-	ForEachOp (ForEachOp const & fop) 
-		: func_(fop.func_) {}
-	result_type operator () (argument_type const & arg)
-	{
-		result_type retval = arg;
-		std::vector<argument_kind> v = arg;
+template <class E, class Func>
+struct ForEachOp : LEESA::LEESAUnaryFunction <E>, OpBase
+{
+  typedef LEESAUnaryFunction<E> Super;
+  SUPER_TYPEDEFS(Super);
+
+  typedef typename LEESA::ChainExpr<E, LEESA::ForEachOp<E, Func> > expression_type;
+
+  Func func_;
+  explicit ForEachOp (Func f) 
+    : func_(f) { }
+  ForEachOp (ForEachOp const & fop) 
+    : func_(fop.func_) {}
+  result_type operator () (argument_type const & arg)
+  {
+    typename ContainerGen<argument_kind>::type v = arg;
     std::for_each (v.begin(), v.end(), func_);
-		return retval;
-	}
+    return arg;
+  }
 };
-
+/*
 template <class L, class H>
 struct CastOp : LEESAUnaryFunction <L, H>,
 				        OpBase
@@ -840,7 +848,7 @@ SelectByName (T, const char * str)
 	RegexOp<result_type> regex(str);
 	return regex;
 }
-
+*/
 template <class T>
 SelectorOp<typename ET<T>::result_type> 
 SelectSubSet (T const &t)
@@ -848,64 +856,64 @@ SelectSubSet (T const &t)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ElementConcept<result_kind>));
 	return SelectorOp<result_type> (t);
 }
 
 template <class E, class Func>
-FilterOp<E, Func> 
+LEESA::FilterOp<E, Func> 
 Select (E, Func f)
 {
-	typedef typename ET<E>::result_kind result_kind;
+  typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::result_type, bool>));
+  BOOST_CONCEPT_ASSERT((LEESA::ElementConcept<result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<typename Func::result_type, bool>));
 	
-	return FilterOp<E, Func> (f);
+  return LEESA::FilterOp<E, Func> (f);
 }
 
 template <class E, class Arg, class Result>
-FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
+LEESA::FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
 Select (E, Result (*f) (Arg))
 {
-	typedef typename ET<E>::result_kind result_kind;
+  typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
+  BOOST_CONCEPT_ASSERT((LEESA::ElementConcept<result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
 	
-	FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
-		filter(std::ptr_fun(f));
-	return filter;
+  LEESA::FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
+	filter(std::ptr_fun(f));
+  return filter;
 }
 
 template <class E, class Func>
-ForEachOp<E, Func> 
+LEESA::ForEachOp<E, Func> 
 ForEach (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ElementConcept<result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
 	
-	return ForEachOp<E, Func> (f);
+	return LEESA::ForEachOp<E, Func> (f);
 }
 
 template <class E, class Arg, class Result>
-ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+LEESA::ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
 ForEach (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ElementConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	
-	ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+        LEESA::ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
 		foreach(std::ptr_fun(f));
 	return foreach;
 }
-
+/*
 template <class L, class H>
 CastOp<typename ET<L>::result_type, 
        typename ET<H>::result_type> 
@@ -990,8 +998,9 @@ struct ChainedOperator
 
 template <class L, class H>
 typename disable_if_c
-  <is_base_of<Visitor, H>::value |
-   is_base_of<std::ios_base, L>::value,
+  <is_base_of <Visitor, H>::value |
+   is_base_of <std::ios_base, L>::value |
+   is_base_of <OpBase, H>::value,                             
    typename ChainedOperator<L,H,GetChildrenOp>::Op>::type
 operator >> (L const &l, H)
 {
@@ -1074,7 +1083,19 @@ GT_PARA_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
 
 #define FILTER_OP FilterOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
-
+*/
+template <class L, class OP>                              
+typename disable_if_c<                                             
+  is_base_of <VisitorAsIndexBase, L>::value |                     
+  is_base_of <std::ios_base, L>::value |
+  !is_base_of <OpBase, OP>::value,                             
+  ChainExpr<typename ET< L >::expression_type, OP> >::type  
+operator >> (L const &l, OP op) 
+{                            
+  LOCAL_TYPEDEFS(L, OP);                               
+  return ChainExpr(ParentKindExpr(l), op);                   
+}
+/*
 #define FOREACH_OP ForEachOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
 
@@ -1335,7 +1356,7 @@ operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
 
 template <class Para, class Expr>
 typename Expr::result_type
-evaluate (Para p, Expr &e)
+evaluate (Para const & p, Expr &e)
 {
   BOOST_CONCEPT_ASSERT((LEESA::SameElementsConcept<typename ET<Expr>::argument_kind, 
 						   typename ET<Para>::result_kind>));

@@ -1,0 +1,10 @@
+all : driver
+
+driver : driver.cxx library.o $(COSMIC_ROOT)/Utils/LEESA/xsd/LEESA.cpp
+	g++ driver.cxx library.o -o driver -I /project/xsd/xsd-3.2.0/libxsd             \
+	                                   -I $(COSMIC_ROOT)/Utils/LEESA/xsd            \
+					   -I /project/boost_1_36_0                     \
+					   -l xerces-c-3.0 -Wall -O3
+library.o : library.hpp library.cpp
+	g++ -c library.cpp -o library.o -I /project/xsd/xsd-3.2.0/libxsd -Wall -O3
+
