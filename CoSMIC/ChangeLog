@@ -1,3 +1,12 @@
+Thu Oct 30 04:52:08 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/UdmObjectConcept.h:
+
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		  Some improvements from LEESA for XML.
+		  
 Thu Oct 30 04:42:45 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/xsd/LEESA.cpp:
@@ -13,7 +22,7 @@ Thu Oct 30 04:42:45 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/xsd/patch/Readme.txt:
         * Utils/LEESA/xsd/patch/makefile.txt:
-	  Improved LEESA for XML. 
+          Improved LEESA for XML.
 
 Thu Oct 30 00:20:42 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

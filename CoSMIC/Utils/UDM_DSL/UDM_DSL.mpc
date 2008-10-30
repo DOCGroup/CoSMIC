@@ -39,7 +39,6 @@ project (UDM_DSL): cosmic_common, udm, mfc, register, boost_base, boost_regex {
     UdmConfig.h
     UDM_DSL.h
     HFSM.h
-    UdmObjectConcept.h
   }
 
   Resource_Files {

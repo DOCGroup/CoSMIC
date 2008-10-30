@@ -4,6 +4,7 @@
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/contains.hpp>
 #include <boost/type_traits.hpp>
+#include <boost/concept/assert.hpp>
 
 namespace Udm {
  

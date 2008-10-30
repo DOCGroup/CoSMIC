@@ -14,6 +14,11 @@
 #include <boost/regex.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/mpl/if.hpp>
+#include <boost/mpl/front_inserter.hpp>
+#include <boost/mpl/pop_front.hpp>
+#include <boost/mpl/copy.hpp>
+#include <boost/mpl/front.hpp>
+
 
 #include <functional>
 #include <vector>
@@ -246,6 +251,12 @@ VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator []
   return VisitorAsIndex<Kind> (v);
 }
 
+template <class T>
+struct ContainerGen
+{
+  typedef typename std::vector<T> type;
+};
+
 using boost::disable_if_c;
 using boost::enable_if_c;
 using boost::disable_if;
@@ -256,14 +267,14 @@ using boost::mpl::if_;
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
-	typedef std::vector<Kind> Container;
+  typedef typename ContainerGen<Kind>::type Container;
 	Kind temp_kind_;
 	Container s_;
 	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
 	// This is an important concept. Don't remove.
 
 public:
-    typedef KindLit<Kind> expression_type;
+  typedef KindLit<Kind> expression_type;
 	typedef Kind result_kind;
 	typedef Kind argument_kind;
 	typedef typename Container::iterator iterator;
@@ -296,7 +307,7 @@ public:
 		Kind k = c;
 		s_.push_back(k);
 	}
-	void Union(std::vector<Kind> const & v)
+	void Union(typename ContainerGen<Kind>::type const & v)
 	{
 		std::copy(v.begin(), v.end(), std::back_inserter(s_));
 	}
@@ -369,11 +380,12 @@ struct SequenceExpr : public std::unary_function <typename ET<L>::argument_type,
 	result_type operator () (argument_type arg) 
 	{ 
 		l_(arg); 
-		std::vector<argument_kind> v = arg;
+    typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			std::vector<child_kind> cvector = kind.children_kind<child_kind>();
-			BOOST_FOREACH(child_kind ckind, cvector)
+			typename ContainerGen<child_kind>::type c = 
+        kind.children_kind<child_kind>();
+			BOOST_FOREACH(child_kind ckind, c)
 			{ 
 				r_(ckind); 
 			}
@@ -404,10 +416,11 @@ struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, void
 
     BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
 
-		std::vector<parent_kind> v = arg;
+    typename ContainerGen<parent_kind>::type v = arg;
 		BOOST_FOREACH(parent_kind kind, v)
 		{
-			std::vector<child_kind> children = kind.children_kind<child_kind>();
+			typename ContainerGen<child_kind>::type children = 
+        kind.children_kind<child_kind>();
 			std::for_each(children.begin(), children.end(), expr_);
 		}
 	}
@@ -434,7 +447,7 @@ struct DFSOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 	DFSOp (DFSOp const &d) : expr_(d.expr_) {}
 	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		std::for_each(v.begin(), v.end(), expr_);
 	}
 };
@@ -461,7 +474,7 @@ struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 
     BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
 
-		std::vector<child_kind> v = arg;
+		typename ContainerGen<child_kind>::type v = arg;
 		BOOST_FOREACH(child_kind kind, v)
 		{
 			parent_kind parent = kind.parent_kind<parent_kind>();
@@ -476,10 +489,8 @@ struct SelectorOp : LEESAUnaryFunction <E>,
 {
 	typedef typename ChainExpr<E, SelectorOp<E> > expression_type;
 	
-	std::vector<argument_kind> s_;
+	typename ContainerGen<argument_kind>::type s_;
 	bool logical_not_; 
-	//explicit SelectorOp (result_kind const & k) { s_.push_back(k); }
-	//explicit SelectorOp (std::vector<kind_lit> const & s) : s_(s) { }
 	explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
 		: s_(kl), logical_not_(logical_not) {}
 	SelectorOp (SelectorOp const & sop) 
@@ -487,10 +498,10 @@ struct SelectorOp : LEESAUnaryFunction <E>,
 	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			std::vector<argument_kind>::iterator i = 
+			typename ContainerGen<argument_kind>::type::iterator i = 
 				std::find(s_.begin(), s_.end(), kind);
 			if ((i != s_.end()) ^ logical_not_) // Logical not of match, if required
 				retval.Union(kind);
@@ -522,7 +533,7 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>,
     BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<argument_kind, result_kind>));
 
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			retval.Union(kind.children_kind<result_kind>());
@@ -545,7 +556,7 @@ struct GetParentOp : LEESAUnaryFunction <L, H>,
     BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<result_kind, argument_kind>));
 
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			retval.Union(kind.parent_kind<result_kind>());
@@ -567,7 +578,7 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 	VisitorOp (VisitorOp const & vop) : visitor_ (vop.visitor_) {}
 	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			kind.Accept(visitor_);
@@ -593,7 +604,7 @@ struct RegexOp : LEESAUnaryFunction <E>,
 	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			bool match = boost::regex_match(std::string(kind.name()), regex_);
@@ -627,7 +638,7 @@ struct FilterOp : LEESAUnaryFunction <E>,
 	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			if (func_(kind) ^ logical_not_) // Logical not of match, if required
@@ -657,10 +668,9 @@ struct ForEachOp : LEESAUnaryFunction <E>,
 		: func_(fop.func_) {}
 	result_type operator () (argument_type const & arg)
 	{
-		result_type retval = arg;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
     std::for_each (v.begin(), v.end(), func_);
-		return retval;
+		return arg;
 	}
 };
 
@@ -677,7 +687,7 @@ struct CastOp : LEESAUnaryFunction <L, H>,
 	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
@@ -702,7 +712,7 @@ struct SortOp : LEESAUnaryFunction <E>,
 	SortOp (SortOp const & sop) : comp_(sop.comp_) {}
 	result_type operator () (argument_type const & k)
 	{
-		std::vector<argument_kind> s = k;
+		typename ContainerGen<argument_kind>::type s = k;
 		std::sort(s.begin(), s.end(), comp_);
 		return s;
 	}
@@ -720,8 +730,8 @@ struct UniqueOp : LEESAUnaryFunction <E>,
 	UniqueOp (UniqueOp const & uop) : pred_(uop.pred_) {}
 	result_type operator () (argument_type const & k)
 	{
-		std::vector<argument_kind> s = k;
-    std::vector<result_kind> retval;
+		typename ContainerGen<argument_kind>::type s = k;
+    typename ContainerGen<result_kind>::type retval;
 		BOOST_FOREACH(argument_kind kind, s)
     {  
       if (std::count (retval.begin(), retval.end(), kind) == 0)
@@ -745,7 +755,7 @@ struct AssociationOp : LEESAUnaryFunction <TARGETCLASS, RESULT>,
 	explicit AssociationOp (FUNC f) : func_(f) {}
 	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -771,11 +781,11 @@ struct AssociationManyOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	explicit AssociationManyOp (FUNC f) : func_(f) {}
 	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			std::vector<result_kind> r = (kind.*func_)();
+			typename ContainerGen<result_kind>::type r = (kind.*func_)();
 			retval.Union(r);
 		}
 		return retval;
@@ -796,7 +806,7 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	explicit AssociationEndOp (FUNC f) : func_(f) {}
 	result_type operator () (argument_type const & arg)
 	{
-		std::vector<argument_kind> v = arg;
+		typename ContainerGen<argument_kind>::type v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -838,8 +848,8 @@ Select (E, Func f)
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::result_type, bool>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::result_type, bool>));
 	
 	return FilterOp<E, Func> (f);
 }
@@ -866,7 +876,7 @@ ForEach (E, Func f)
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Func::argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
 	
 	return ForEachOp<E, Func> (f);
 }
@@ -906,9 +916,9 @@ Sort (E, Comp c)
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Comp::first_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Comp::second_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Comp::result_type, bool>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::first_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::second_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::result_type, bool>));
 	
 	return SortOp<E, Comp> (c);
 }
@@ -936,9 +946,9 @@ Unique (E, BinPred c)
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::first_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::second_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<BinPred::result_type, bool>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::first_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::second_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::result_type, bool>));
 	
 	return UniqueOp<E, BinPred> (c);
 }
@@ -951,9 +961,9 @@ Unique (E)
 	typedef std::equal_to<result_kind> EQ;	
 
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<EQ::first_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<EQ::second_argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<EQ::result_type, bool>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::first_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::second_argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::result_type, bool>));
 	
 	return UniqueOp<E, EQ>(EQ());
 }
@@ -1312,13 +1322,84 @@ operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
 
 template <class Para, class Expr>
 typename Expr::result_type
-evaluate (Para p, Expr &e)
+evaluate (Para const & p, Expr &e)
 {
   BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<Expr>::argument_kind, 
 											                           typename ET<Para>::result_kind>));
 
 	return e(p);
 }
+
+using boost::mpl::if_c;
+
+template <class Statement>
+struct STOP
+{
+  typedef Statement type;
+};
+
+template <class Condition, class Statement>
+struct WHILE
+{
+  typedef typename if_c <Condition::template Code<Statement>::value,
+                         WHILE<Condition, typename Statement::Next>,
+                         STOP<Statement> >::type::type type;
+};
+
+template <int i_, int x_, int y>
+struct FibStatement
+{
+  enum { i = i_, x = x_ };
+  typedef FibStatement<i+1, x+y, x> Next;
+};
+
+template <int n>
+struct FibCondition
+{
+  template <class Statement>
+  struct Code
+  {
+    enum { value = Statement::i < n };
+  };
+};
+
+template <int n>
+struct Fib
+{
+  enum { value = WHILE<FibCondition<n>, FibStatement<1,1,0> >::type::x };
+};
+
+using boost::mpl::copy;
+using boost::mpl::front_inserter;
+using boost::mpl::pop_front;
+using boost::mpl::front;
+
+template <class ParentKind, class List>
+struct PushFrontChildren
+{
+  BOOST_CLASS_REQUIRE(ParentKind, Udm, UdmKindConcept);
+  typedef typename ParentKind::ChildrenKinds Children;
+  typedef typename copy <Children, front_inserter<List> >::type type;
+};
+
+template <class List>
+struct DFSStatement
+{
+  typedef typename front<List>::type head;
+  typedef typename pop_front<List>::type tail;
+  typedef typename PushFrontChildren<head, tail>::type type;
+  typedef type Next;
+};
+
+template <class AncestorKind, class DescendentKind>
+struct DFSCondition
+{
+  template <class Statement>
+  struct Code
+  {
+    enum { value = Statement::i < n };
+  };
+};
 
 
 

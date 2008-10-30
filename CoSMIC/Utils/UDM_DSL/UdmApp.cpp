@@ -101,12 +101,17 @@ void foo (State s)
   std::string name = s.name();
   AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
 }
+
+bool always_true (const State &)
+{
+  return true;
+}
 int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
   CountVisitor cv;
   BOOST_AUTO(members, MembersOf(State(), State() >> cv FOLLOWED_BY Transition()));
-  evaluate (rf, RootFolder() >> State() 
+  evaluate (rf, RootFolder() >> State() >> Select(State(), always_true)
                 >>= members);
 
   return cv.get_count();
@@ -125,7 +130,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   //std::string name = v.front().name();
   std::ostringstream ostr;
   //ostr << "UDM_DSL finished: " << v.size() << ": " << name;
-  ostr << "UDM_DSL finished: " << leesa_example(rf);
+  ostr << "UDM_DSL finished: " << LEESA::Fib<38>::value;
 
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
   return;
