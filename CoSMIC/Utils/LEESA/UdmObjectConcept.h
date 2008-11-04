@@ -1,6 +1,6 @@
 #ifndef __UDM_OBJECT_CONCEPT_H
 #define __UDM_OBJECT_CONCEPT_H
-
+/*
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/contains.hpp>
 #include <boost/type_traits.hpp>
@@ -46,5 +46,5 @@ struct ParentChildConcept
 
 
 } // end namespace Udm
-
+*/
 #endif // __UDM_OBJECT_CONCEPT_H

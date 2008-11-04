@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file HFSM.cpp
 // generated from diagram HFSM
-// generated on Thu Oct 02 10:20:50 2008
+// generated on Mon Nov 03 23:18:43 2008
 
 #include "HFSM.h"
 #include <UmlExt.h>
@@ -9,15 +9,35 @@
 
 namespace HFSM {
 
-	::Uml::Class Transition::meta;
-	::Uml::Attribute Transition::meta_Event;
-	::Uml::CompositionParentRole Transition::meta_State_parent;
-	::Uml::AssociationRole Transition::meta_dstTransition_end_;
-	::Uml::AssociationRole Transition::meta_srcTransition_end_;
+	::Uml::Class InputSequence::meta;
+	::Uml::CompositionChildRole InputSequence::meta_Events_children;
+	::Uml::CompositionChildRole InputSequence::meta_Sequence_children;
+	::Uml::CompositionParentRole InputSequence::meta_RootFolder_parent;
 
-	template <> const ::Uml::CompositionParentRole& Transition::_type2CPRole< Transition::PR_State_parent >() const { return meta_State_parent; }
-	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_dstTransition >() const { return meta_dstTransition_end_; }
-	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_srcTransition >() const { return meta_srcTransition_end_; }
+	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Events_children >() const { return meta_Events_children; }
+	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Sequence_children >() const { return meta_Sequence_children; }
+	template <> const ::Uml::CompositionParentRole& InputSequence::_type2CPRole< InputSequence::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+
+	::Uml::Class Events::meta;
+	::Uml::Attribute Events::meta_Delay;
+	::Uml::AssociationRole Events::meta_srcSequence;
+	::Uml::AssociationRole Events::meta_srcSequence_rev;
+	::Uml::AssociationRole Events::meta_dstSequence;
+	::Uml::AssociationRole Events::meta_dstSequence_rev;
+	::Uml::CompositionParentRole Events::meta_InputSequence_parent;
+
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_srcSequence >() const { return make_pair(&meta_srcSequence, &meta_srcSequence_rev); }
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_dstSequence >() const { return make_pair(&meta_dstSequence, &meta_dstSequence_rev); }
+	template <> const ::Uml::CompositionParentRole& Events::_type2CPRole< Events::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
+
+	::Uml::Class Sequence::meta;
+	::Uml::CompositionParentRole Sequence::meta_InputSequence_parent;
+	::Uml::AssociationRole Sequence::meta_dstSequence_end_;
+	::Uml::AssociationRole Sequence::meta_srcSequence_end_;
+
+	template <> const ::Uml::CompositionParentRole& Sequence::_type2CPRole< Sequence::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
+	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_dstSequence >() const { return meta_dstSequence_end_; }
+	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_srcSequence >() const { return meta_srcSequence_end_; }
 
 	::Uml::Class State::meta;
 	::Uml::Attribute State::meta_StartState;
@@ -37,45 +57,25 @@ namespace HFSM {
 	template <> const ::Uml::CompositionParentRole& State::_type2CPRole< State::PR_State_parent >() const { return meta_State_parent; }
 	template <> const ::Uml::CompositionParentRole& State::_type2CPRole< State::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
 
-	::Uml::Class Sequence::meta;
-	::Uml::CompositionParentRole Sequence::meta_InputSequence_parent;
-	::Uml::AssociationRole Sequence::meta_dstSequence_end_;
-	::Uml::AssociationRole Sequence::meta_srcSequence_end_;
+	::Uml::Class Transition::meta;
+	::Uml::Attribute Transition::meta_Event;
+	::Uml::CompositionParentRole Transition::meta_State_parent;
+	::Uml::AssociationRole Transition::meta_dstTransition_end_;
+	::Uml::AssociationRole Transition::meta_srcTransition_end_;
 
-	template <> const ::Uml::CompositionParentRole& Sequence::_type2CPRole< Sequence::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
-	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_dstSequence >() const { return meta_dstSequence_end_; }
-	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_srcSequence >() const { return meta_srcSequence_end_; }
-
-	::Uml::Class InputSequence::meta;
-	::Uml::CompositionChildRole InputSequence::meta_Sequence_children;
-	::Uml::CompositionChildRole InputSequence::meta_Events_children;
-	::Uml::CompositionParentRole InputSequence::meta_RootFolder_parent;
-
-	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Sequence_children >() const { return meta_Sequence_children; }
-	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Events_children >() const { return meta_Events_children; }
-	template <> const ::Uml::CompositionParentRole& InputSequence::_type2CPRole< InputSequence::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
-
-	::Uml::Class Events::meta;
-	::Uml::Attribute Events::meta_Delay;
-	::Uml::AssociationRole Events::meta_srcSequence;
-	::Uml::AssociationRole Events::meta_srcSequence_rev;
-	::Uml::AssociationRole Events::meta_dstSequence;
-	::Uml::AssociationRole Events::meta_dstSequence_rev;
-	::Uml::CompositionParentRole Events::meta_InputSequence_parent;
-
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_srcSequence >() const { return make_pair(&meta_srcSequence, &meta_srcSequence_rev); }
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_dstSequence >() const { return make_pair(&meta_dstSequence, &meta_dstSequence_rev); }
-	template <> const ::Uml::CompositionParentRole& Events::_type2CPRole< Events::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
+	template <> const ::Uml::CompositionParentRole& Transition::_type2CPRole< Transition::PR_State_parent >() const { return meta_State_parent; }
+	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_dstTransition >() const { return meta_dstTransition_end_; }
+	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_srcTransition >() const { return meta_srcTransition_end_; }
 
 	::Uml::Class RootFolder::meta;
 	::Uml::Attribute RootFolder::meta_name;
-	::Uml::CompositionChildRole RootFolder::meta_InputSequence_children;
 	::Uml::CompositionChildRole RootFolder::meta_State_children;
+	::Uml::CompositionChildRole RootFolder::meta_InputSequence_children;
 	::Uml::CompositionChildRole RootFolder::meta_RootFolder_children;
 	::Uml::CompositionParentRole RootFolder::meta_RootFolder_parent;
 
-	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_InputSequence_children >() const { return meta_InputSequence_children; }
 	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_State_children >() const { return meta_State_children; }
+	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_InputSequence_children >() const { return meta_InputSequence_children; }
 	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_RootFolder_children >() const { return meta_RootFolder_children; }
 	template <> const ::Uml::CompositionParentRole& RootFolder::_type2CPRole< RootFolder::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
 
@@ -138,15 +138,6 @@ namespace HFSM {
 		// associations
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "Transition");
-			State::meta_srcTransition = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(State::meta_srcTransition, "srcTransition", true, false, 1, 1);
-			State::meta_dstTransition = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(State::meta_dstTransition, "dstTransition", true, false, 1, 1);
-
-		}
-		{
-			::Uml::Association ass = ::Uml::Association::Create(meta);
 			::Uml::InitAssociationProps(ass, "Sequence");
 			Events::meta_srcSequence = ::Uml::AssociationRole::Create(ass);
 			::Uml::InitAssociationRoleProps(Events::meta_srcSequence, "srcSequence", true, false, 0, 1);
@@ -154,8 +145,35 @@ namespace HFSM {
 			::Uml::InitAssociationRoleProps(Events::meta_dstSequence, "dstSequence", true, false, 0, 1);
 
 		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "Transition");
+			State::meta_srcTransition = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(State::meta_srcTransition, "srcTransition", true, false, 1, 1);
+			State::meta_dstTransition = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(State::meta_dstTransition, "dstTransition", true, false, 1, 1);
+
+		}
 
 		// compositions
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Events::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Events::meta_InputSequence_parent, "InputSequence_parent", true);
+			InputSequence::meta_Events_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Events_children, "Events", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			Sequence::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Sequence::meta_InputSequence_parent, "InputSequence_parent", true);
+			InputSequence::meta_Sequence_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Sequence_children, "Sequence", true, 0, -1);
+
+		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
@@ -177,19 +195,10 @@ namespace HFSM {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Sequence::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Sequence::meta_InputSequence_parent, "InputSequence_parent", true);
-			InputSequence::meta_Sequence_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Sequence_children, "Sequence", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			Events::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Events::meta_InputSequence_parent, "InputSequence_parent", true);
-			InputSequence::meta_Events_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Events_children, "Events", true, 0, -1);
+			State::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(State::meta_RootFolder_parent, "RootFolder_parent", true);
+			RootFolder::meta_State_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(RootFolder::meta_State_children, "State", true, 0, -1);
 
 		}
 		{
@@ -199,15 +208,6 @@ namespace HFSM {
 			::Uml::InitCompositionParentRoleProps(InputSequence::meta_RootFolder_parent, "RootFolder_parent", true);
 			RootFolder::meta_InputSequence_children = ::Uml::CompositionChildRole::Create(comp);
 			::Uml::InitCompositionChildRoleProps(RootFolder::meta_InputSequence_children, "InputSequence", true, 0, -1);
-
-		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			State::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(State::meta_RootFolder_parent, "RootFolder_parent", true);
-			RootFolder::meta_State_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(RootFolder::meta_State_children, "State", true, 0, -1);
 
 		}
 		{
@@ -227,18 +227,18 @@ namespace HFSM {
 		Events::meta_dstSequence.target() = Events::meta;
 		InputSequence::meta_Events_children.target() = Events::meta;
 
-		Sequence::meta_InputSequence_parent.target() = InputSequence::meta;
 		Events::meta_InputSequence_parent.target() = InputSequence::meta;
+		Sequence::meta_InputSequence_parent.target() = InputSequence::meta;
 		RootFolder::meta_InputSequence_children.target() = InputSequence::meta;
 
-		MgaObject::meta.subTypes() += Transition::meta;
-		MgaObject::meta.subTypes() += State::meta;
-		MgaObject::meta.subTypes() += Sequence::meta;
 		MgaObject::meta.subTypes() += InputSequence::meta;
 		MgaObject::meta.subTypes() += Events::meta;
+		MgaObject::meta.subTypes() += Sequence::meta;
+		MgaObject::meta.subTypes() += State::meta;
+		MgaObject::meta.subTypes() += Transition::meta;
 
-		InputSequence::meta_RootFolder_parent.target() = RootFolder::meta;
 		State::meta_RootFolder_parent.target() = RootFolder::meta;
+		InputSequence::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_children.target() = RootFolder::meta;
 
@@ -293,12 +293,12 @@ namespace HFSM {
 		Events::meta_srcSequence_rev = Events::meta_dstSequence;
 		::Uml::SetParentRole(Events::meta_InputSequence_parent, Events::meta, InputSequence::meta, "", "");
 
-		::Uml::SetChildRole(InputSequence::meta_Sequence_children, InputSequence::meta, Sequence::meta, "", "");
 		::Uml::SetChildRole(InputSequence::meta_Events_children, InputSequence::meta, Events::meta, "", "");
+		::Uml::SetChildRole(InputSequence::meta_Sequence_children, InputSequence::meta, Sequence::meta, "", "");
 		::Uml::SetParentRole(InputSequence::meta_RootFolder_parent, InputSequence::meta, RootFolder::meta, "", "");
 
-		::Uml::SetChildRole(RootFolder::meta_InputSequence_children, RootFolder::meta, InputSequence::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_State_children, RootFolder::meta, State::meta, "", "");
+		::Uml::SetChildRole(RootFolder::meta_InputSequence_children, RootFolder::meta, InputSequence::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_RootFolder_children, RootFolder::meta, RootFolder::meta, "", "");
 		::Uml::SetParentRole(RootFolder::meta_RootFolder_parent, RootFolder::meta, RootFolder::meta, "", "");
 

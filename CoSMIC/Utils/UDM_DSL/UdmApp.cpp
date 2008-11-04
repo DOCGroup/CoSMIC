@@ -113,6 +113,7 @@ int leesa_example(RootFolder rf)
   BOOST_AUTO(members, MembersOf(State(), State() >> cv FOLLOWED_BY Transition()));
   evaluate (rf, RootFolder() >> State() >> Select(State(), always_true)
                 >>= members);
+  evaluate(rf, RootFolder() >> State() >> Transition() >>& Transition::srcTransition_end);
 
   return cv.get_count();
 }
@@ -126,11 +127,12 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
   HFSM::RootFolder rf = HFSM::RootFolder::Cast (p_backend->GetRootObject());
   //foo(rf);
   
+  int n = leesa_example(rf);
   //std::vector<State> v = leesa_example(rf);
   //std::string name = v.front().name();
   std::ostringstream ostr;
-  //ostr << "UDM_DSL finished: " << v.size() << ": " << name;
-  ostr << "UDM_DSL finished: " << LEESA::Fib<38>::value;
+  ostr << "UDM_DSL finished: " << n; //v.size() << ": " << name;
+  //ostr << "UDM_DSL finished: " << LEESA::Fib<38>::value;
 
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
   return;

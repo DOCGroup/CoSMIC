@@ -21,7 +21,6 @@ project (UDM_DSL): cosmic_common, udm, mfc, register, boost_base, boost_regex {
     Component.def
     RawComponent.cpp
     UdmApp.cpp
-    UDM_DSL.cpp
     HFSM.cpp
   }
 
@@ -37,7 +36,6 @@ project (UDM_DSL): cosmic_common, udm, mfc, register, boost_base, boost_regex {
     StdAfx.h
     UdmApp.h
     UdmConfig.h
-    UDM_DSL.h
     HFSM.h
   }
 

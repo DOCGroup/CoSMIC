@@ -3,8 +3,6 @@
 
 #include "LEESA.h"
 #include "LEESA_VisitorAsIndex.h"
-#include "UdmObjectConcept.h"
-#include "uml.h"
 
 #include <boost/typeof/typeof.hpp>
 #include <boost/type_traits.hpp>
@@ -18,7 +16,6 @@
 #include <boost/mpl/pop_front.hpp>
 #include <boost/mpl/copy.hpp>
 #include <boost/mpl/front.hpp>
-
 
 #include <functional>
 #include <vector>
