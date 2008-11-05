@@ -29,7 +29,6 @@
   typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                       \
   BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
-
 #define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
 template < class L, class H >                                      \
 typename disable_if_c<                                             \
@@ -71,6 +70,8 @@ template <class RESULT, class TARGETCLASS> struct AssociationManyOp;
 template <class E> struct SelectorOp;
 template <class E> struct VisitorOp;
 template <class E> struct RegexOp;
+template <class E> struct IdOp;
+template <class E> struct NonNullOp;
 
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
@@ -155,8 +156,16 @@ struct ET <RegexOp<T> >
 	: public ETBase <RegexOp<T> > {};
 
 template <class T>
+struct ET <NonNullOp<T> >	
+	: public ETBase <NonNullOp<T> > {};
+
+template <class T>
 struct ET <VisitorOp<T> > 
 	: public ETBase <VisitorOp<T> > { };
+
+template <class T>
+struct ET <IdOp<T> > 
+	: public ETBase <IdOp<T> > { };
 
 template <class T, class U> 
 struct ET <GetChildrenOp<T, U> > 
@@ -343,7 +352,7 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 	typedef ChainExpr<L, R> expression_type;
 
   BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<L>::result_kind, 
-											  typename ET<R>::argument_kind>));
+											                           typename ET<R>::argument_kind>));
 
 	L l_;
 	R r_;
@@ -585,6 +594,18 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 };
 
 template <class E>
+struct IdOp : LEESAUnaryFunction <E>, OpBase
+{
+	typedef typename 
+		ChainExpr<E, IdOp<argument_type> > expression_type;
+
+	result_type operator () (argument_type const & arg)
+	{
+		return arg;
+	}
+};
+
+template <class E>
 struct RegexOp : LEESAUnaryFunction <E>,
 			           OpBase
 {
@@ -616,6 +637,37 @@ struct RegexOp : LEESAUnaryFunction <E>,
 		RegexOp r(*this);
 		r.logical_not_ = !this->logical_not_;
 		return r;
+	}
+};
+
+template <class E>
+struct NonNullOp : LEESAUnaryFunction <E>, OpBase
+{
+	typedef typename 
+		ChainExpr<E, NonNullOp<argument_type> > expression_type;
+
+	bool logical_not_; 
+	explicit NonNullOp (bool logical_not = false) 
+		: logical_not_ (logical_not) {  }
+	NonNullOp (NonNullOp const & nnop) 
+		: logical_not_ (nnop.logical_not_) {}
+	result_type operator () (argument_type const & arg)
+	{
+		result_type retval;
+		typename ContainerGen<argument_kind>::type c = arg;
+		BOOST_FOREACH(argument_kind kind, c)
+		{
+      bool match = (Udm::null != kind);
+			if (match ^ logical_not_) // Logical not of match, if required
+				retval.Union(kind);
+		}
+		return retval;
+	}
+	NonNullOp operator ! () 
+	{
+		NonNullOp n(*this);
+		n.logical_not_ = !this->logical_not_;
+		return n;
 	}
 };
 
@@ -814,6 +866,30 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 		return retval;
 	}
 };
+
+template <class T>
+IdOp<typename ET<T>::result_type> 
+Id (T)
+{
+	typedef typename ET<T>::result_kind result_kind;
+  typedef typename ET<T>::result_type result_type;
+	
+	BOOST_MPL_ASSERT((Udm::UdmKindConcept<result_kind>));
+	IdOp<result_type> id;
+	return id;
+}
+
+template <class T>
+NonNullOp<typename ET<T>::result_type> 
+SelectNonNull (T)
+{
+	typedef typename ET<T>::result_type result_type;
+	typedef typename ET<T>::result_kind result_kind;
+	
+	BOOST_MPL_ASSERT((Udm::UdmKindConcept<result_kind>));
+	NonNullOp<result_type> n;
+	return n;
+}
 
 template <class T>
 RegexOp<typename ET<T>::result_type> 
@@ -1054,6 +1130,12 @@ operator >> (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
 
 #define REGEX_OP RegexOp<H>
 GT_PARA_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
+
+#define NONNULL_OP NonNullOp<H>
+GT_PARA_OPERATOR_DEFINITION_2T(L,H,NONNULL_OP);
+
+#define ID_OP IdOp<H>
+GT_PARA_OPERATOR_DEFINITION_2T(L,H,ID_OP);
 
 #define SELECTOR_OP SelectorOp<H>
 GT_PARA_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
@@ -1321,8 +1403,10 @@ template <class Para, class Expr>
 typename Expr::result_type
 evaluate (Para const & p, Expr &e)
 {
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<Expr>::argument_kind, 
-											                           typename ET<Para>::result_kind>));
+  typedef typename ET<Expr>::argument_kind argument_kind;
+  typedef typename ET<Para>::result_kind result_kind;
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
+  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
 
 	return e(p);
 }

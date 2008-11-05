@@ -1,3 +1,12 @@
+Wed Nov  5 00:46:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+          New features Id, SelectNonNull in LEESA and its documentation. 
+		  
 Tue Nov  4 05:26:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.cpp:
