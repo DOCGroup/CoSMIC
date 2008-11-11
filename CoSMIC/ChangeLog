@@ -1,3 +1,14 @@
+Tue Nov 11 06:35:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		  Strategic programming combinator Full_TD is now supported.
+
 Wed Nov  5 00:46:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.h:
@@ -5,8 +16,8 @@ Wed Nov  5 00:46:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/LEESA.cpp:
         * Utils/LEESA/LEESA.docx:
         * Utils/LEESA/LEESA.pdf:
-          New features Id, SelectNonNull in LEESA and its documentation. 
-		  
+          New features Id, SelectNonNull in LEESA and its documentation.
+
 Tue Nov  4 05:26:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.cpp:

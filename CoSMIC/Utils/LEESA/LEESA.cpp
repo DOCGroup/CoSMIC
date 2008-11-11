@@ -10,6 +10,7 @@
 #include <boost/concept_check.hpp>
 #include <boost/foreach.hpp>
 #include <boost/regex.hpp>
+#include <boost/bind.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/front_inserter.hpp>
@@ -69,6 +70,7 @@ template <class RESULT, class TARGETCLASS> struct AssociationManyOp;
 
 template <class E> struct SelectorOp;
 template <class E> struct VisitorOp;
+//template <class E> struct DFSVisitorOp;
 template <class E> struct RegexOp;
 template <class E> struct IdOp;
 template <class E> struct NonNullOp;
@@ -77,6 +79,8 @@ template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
+
+template <class K, class Expr> struct FullTDOp;
 
 template <class T>
 struct ET
@@ -147,6 +151,10 @@ template <class T, class X>
 struct ET <SequenceExpr<T, X> > 
 	: public ETBase <SequenceExpr<T, X> > {};
 
+template <class K, class Expr>
+struct ET <FullTDOp<K, Expr> > 
+	: public ETBase <FullTDOp<K, Expr> > {};
+
 template <class T>
 struct ET <SelectorOp<T> > 
 	: public ETBase <SelectorOp<T> > { };
@@ -163,6 +171,10 @@ template <class T>
 struct ET <VisitorOp<T> > 
 	: public ETBase <VisitorOp<T> > { };
 
+/*template <class T>
+struct ET <DFSVisitorOp<T> > 
+	: public ETBase <DFSVisitorOp<T> > { };
+*/
 template <class T>
 struct ET <IdOp<T> > 
 	: public ETBase <IdOp<T> > { };
@@ -367,7 +379,7 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 
 template <class L, class R>
 struct SequenceExpr : public std::unary_function <typename ET<L>::argument_type,
-	                                              void>
+	                                                void>
 {
 	typedef typename ET<L>::argument_kind argument_kind;
 	typedef void result_kind;
@@ -522,7 +534,6 @@ struct SelectorOp : LEESAUnaryFunction <E>,
 	}
 };
 
-
 template <class L, class H>
 struct GetChildrenOp : LEESAUnaryFunction <L,H>,
 	                     OpBase
@@ -592,7 +603,45 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 		return arg;
 	}
 };
+/*
+template <class LExpr, class RExpr>
+struct DFSVisitorOp : std::unary_function<typename ET<LExpr>::result_type, void>,
+			                OpBase
+{
+	typedef DFSOp<LExpr, RExpr> Self;
+	typedef typename 
+		ChainExpr<LExpr, DFSVisitorOp<LExpr, RExpr> > expression_type;
+	typedef void result_kind;
+	typedef typename ET<LExpr>::result_kind argument_kind;
+	typedef typename ET<LExpr>::result_kind LKind;
+	typedef typename ET<RExpr>::argument_kind RKind;
 
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+
+  PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
+	RExpr expr_;
+  explicit DFSVisitorOp (PARADIGM_NAMESPACE_FOR_LEESA::Visitor const &v,
+                         RExpr const & e) 
+    : visitor_ (const_cast<PARADIGM_NAMESPACE_FOR_LEESA::Visitor &> (v)),
+      expr_(e)
+  {}
+	DFSVisitorOp (DFSVisitorOp const & dvop) 
+    : visitor_ (dvop.visitor_),
+      expr_ (dvop.expr_) {}
+
+	result_type operator () (argument_type const & arg)
+	{
+		typename ContainerGen<argument_kind>::type v = arg;
+		std::for_each(v.begin(), v.end(), helper);
+	}
+  static void helper (argument_kind kind)
+  {
+     kind.Accept(visitor_);
+     expr_(kind);
+     kind.Leave(visitor_);
+  }
+};
+*/
 template <class E>
 struct IdOp : LEESAUnaryFunction <E>, OpBase
 {
@@ -867,6 +916,35 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	}
 };
 
+template <class K, class Expr>
+struct FullTDOp : LEESAUnaryFunction <K>,
+                  //std::unary_function<typename ET<K>::argument_type, void>,
+					        OpBase
+{
+  typedef typename 
+		ChainExpr<K, FullTDOp<K, Expr> > expression_type;  
+	typedef void result_kind;
+	typedef typename ET<K>::result_kind argument_kind;
+  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, 
+                                             typename ET<Expr>::argument_kind>));
+
+  Expr expr_;
+  explicit FullTDOp (Expr const & e)
+    : expr_(e) {} 
+  result_type operator () (argument_type const & arg)
+  {
+    typename ContainerGen<argument_kind>::type v = arg;
+		BOOST_FOREACH(argument_kind kind, v)
+    {
+      evaluate(kind, expr_);
+      evaluate(kind, MembersOf(K(), K() >> ForEach(K(), *this)));
+    }
+    return arg;
+  }
+};
+
+
 template <class T>
 IdOp<typename ET<T>::result_type> 
 Id (T)
@@ -943,19 +1021,21 @@ Select (E, Result (*f) (Arg))
 }
 
 template <class E, class Func>
-ForEachOp<E, Func> 
+ForEachOp<typename ET<E>::result_type, Func> 
 ForEach (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
+	//BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
 	
-	return ForEachOp<E, Func> (f);
+  return ForEachOp<typename ET<E>::result_type, Func> (f);
 }
 
 template <class E, class Arg, class Result>
-ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+ForEachOp<typename ET<E>::result_type, 
+          std::pointer_to_unary_function<Arg, Result> > 
 ForEach (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
@@ -963,7 +1043,8 @@ ForEach (E, Result (*f) (Arg))
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	
-	ForEachOp<E, std::pointer_to_unary_function<Arg, Result> > 
+	ForEachOp<typename ET<E>::result_type, 
+            std::pointer_to_unary_function<Arg, Result> > 
 		foreach(std::ptr_fun(f));
 	return foreach;
 }
@@ -1076,7 +1157,20 @@ operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
+/*
+template <class L>
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
+            typename DFSVisitorOp<typename ET<L>::result_type> > 
+  >::type
+operator >>= (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
+{
+	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
+	LOCAL_TYPEDEFS(L, OP);
 
+	return ChainExpr(ParentKindExpr(l), OP(v));
+}
+*/
 template <class L, class H>
 typename disable_if<is_base_of<std::ios_base, L>, 
   ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
@@ -1128,6 +1222,29 @@ operator >> (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
   return L() >> vl.getVisitor() >> H() >> vh.getVisitor();
 }
 
+template <class Kind, class Expr>
+FullTDOp <typename ET<Kind>::result_type,
+          typename ET<Expr>::expression_type>
+Full_TD(Kind k, Expr const & e)
+{
+  BOOST_MPL_ASSERT((Udm::UdmKindConcept<Kind>));
+  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<Kind, typename ET<Expr>::argument_kind>));
+  
+  return FullTDOp <typename ET<Kind>::result_type, 
+                   typename ET<Expr>::expression_type > (e);
+}
+
+template <class Kind>
+FullTDOp <typename ET<Kind>::result_type, KindLit<Kind> >
+Full_TD(Kind k)
+{
+  BOOST_MPL_ASSERT((Udm::UdmKindConcept<Kind>));
+  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<Kind, typename ET<Expr>::argument_kind>));
+
+  return FullTDOp <typename ET<Kind>::result_type, 
+                   KindLit<Kind> > (KindLit<Kind>());
+}
+
 #define REGEX_OP RegexOp<H>
 GT_PARA_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
 
@@ -1145,6 +1262,9 @@ GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
 
 #define FOREACH_OP ForEachOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
+
+#define FULLTD_OP FullTDOp<K, Expr>
+GT_PARA_OPERATOR_DEFINITION_3T(L,K,Expr,FULLTD_OP);
 
 #define SORT_OP SortOp<H, Comp>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);

@@ -8,7 +8,9 @@
 #define MembersOf(A,B) A && B
 #define DEPTH_FIRST    >>=
 #define BREADTH_FIRST  >>
+#define PARENT         <<
 #define FOLLOWED_BY    &&
+#define Association(X) &X
 
 /* LEESA Operators 
 
@@ -103,10 +105,10 @@ std::vector<State> leesa_example5(RootFolder rf)
   using namespace LEESA;
   BOOST_AUTO(states, RootFolder() >> State() >> State() >> State());
   std::vector<State> v = evaluate(rf, states);
-  BOOST_AUTO(parent_of_s11_s12, State() << State() 
+  BOOST_AUTO(parent, State() << State() 
                                         >> Unique(State())
                                         >> Select(State(), always_true));
-  return evaluate(v, parent_of_s11_s12);
+  return evaluate(v, parent);
 }
 */
 
@@ -120,7 +122,7 @@ std::vector<State> leesa_example6(RootFolder rf)
   using namespace LEESA;
   BOOST_AUTO(states, RootFolder() >> State() >> State());
   std::vector<State> v = evaluate(rf, states);
-  BOOST_AUTO(s11, v >> Transition() >>& Transition::srcTransition_end);
+  BOOST_AUTO(s11, State() >> Transition() >> Association(Transition::srcTransition_end));
   return evaluate(v, s11);
 }
 */
@@ -139,7 +141,7 @@ public:
   }
   int get_count() { return count_; }
 };
-#define DEPTH_FIRST >>=
+
 int leesa_example7(RootFolder rf)
 {
   using namespace LEESA;
@@ -177,7 +179,7 @@ int leesa_example8(RootFolder rf)
   BOOST_AUTO(visit_input_sequence, InputSequence() >> cv);
   BOOST_AUTO(visit_state, State() >> cv);
   evaluate(rf, RootFolder() 
-    >> MembersOf(RootFolder(), visit_input_sequence && visit_state));
+    >> MembersOf(RootFolder(), visit_input_sequence  FOLLOWED_BY  visit_state));
   return cv.get_states();
 }
 */

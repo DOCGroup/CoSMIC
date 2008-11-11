@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file HFSM.cpp
 // generated from diagram HFSM
-// generated on Mon Nov 03 23:18:43 2008
+// generated on Sun Nov 09 19:35:12 2008
 
 #include "HFSM.h"
 #include <UmlExt.h>

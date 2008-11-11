@@ -34,7 +34,6 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-//#include "UDM_DSL.h"
 #define PARADIGM_NAMESPACE_FOR_LEESA HFSM
 #include "LEESA.h"
 
@@ -76,9 +75,7 @@ int CUdmApp::Initialize()
   udm_exception::what() to form an error message.
 */
 
-/***********************************************/
-/* Main entry point for Udm-based Interpreter  */
-/***********************************************/
+
 using namespace HFSM;
 class CountVisitor : public HFSM::Visitor 
 {
@@ -86,38 +83,49 @@ class CountVisitor : public HFSM::Visitor
 public:
   CountVisitor () : count_(0) {}
   void Visit_Transition(const Transition &t) {
-    std::string name = t.name();
+    std::string name = std::string("Transition: ") + std::string(t.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
   }
   void Visit_State(const State &s) {
-    std::string name = s.name();
+    std::string name = std::string("State: ") + std::string(s.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    count_++;
   }
   int get_count() { return count_; }
 };
-#define DEPTH_FIRST >>=
-void foo (State s) 
-{
-  std::string name = s.name();
-  AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
-}
-
 bool always_true (const State &)
 {
   return true;
 }
+
+CountVisitor cv;
+void recurse (State s) 
+{
+  using namespace LEESA;
+  //BOOST_AUTO(expr, State() >> cv >> State() >> ForEach(State(), recurse));
+  //BOOST_AUTO(expr, State() >> State() >> ForEach(State(), recurse) >> cv );
+  //BOOST_AUTO(expr, State() >> expr2 >> ForEach(State(), recurse));
+  BOOST_AUTO(expr, State() >> cv
+    >> MembersOf(State(), Transition() >> cv && State() >> ForEach(State(), recurse))
+    );
+  evaluate(s, expr);
+}
+
 int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
-  CountVisitor cv;
-  BOOST_AUTO(members, MembersOf(State(), State() >> cv FOLLOWED_BY Transition()));
-  evaluate (rf, RootFolder() >> State() >> Select(State(), always_true)
-                >>= members);
-  evaluate(rf, RootFolder() >> State() >> Transition() >>& Transition::srcTransition_end);
+  BOOST_AUTO(expr, RootFolder() >> State() 
+    >> Full_TD(State(), State() >> cv >> MembersOf(State(), Transition() >> cv)));
+  evaluate(rf, expr);
 
   return cv.get_count();
 }
 
+
+
+/***********************************************/
+/* Main entry point for Udm-based Interpreter  */
+/***********************************************/
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                                                         // (already open!)
                       Udm::Object focusObject,          // Focus object
@@ -125,15 +133,10 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                       long param)			// Parameters
 {
   HFSM::RootFolder rf = HFSM::RootFolder::Cast (p_backend->GetRootObject());
-  //foo(rf);
   
   int n = leesa_example(rf);
-  //std::vector<State> v = leesa_example(rf);
-  //std::string name = v.front().name();
   std::ostringstream ostr;
-  ostr << "UDM_DSL finished: " << n; //v.size() << ": " << name;
-  //ostr << "UDM_DSL finished: " << LEESA::Fib<38>::value;
+  ostr << "UDM_DSL finished: " << n;
 
   AfxMessageBox (ostr.str().c_str(), MB_OK| MB_ICONINFORMATION);
-  return;
 }
