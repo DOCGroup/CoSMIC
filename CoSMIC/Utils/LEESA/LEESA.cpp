@@ -10,13 +10,8 @@
 #include <boost/concept_check.hpp>
 #include <boost/foreach.hpp>
 #include <boost/regex.hpp>
-#include <boost/bind.hpp>
 #include <boost/utility/enable_if.hpp>
 #include <boost/mpl/if.hpp>
-#include <boost/mpl/front_inserter.hpp>
-#include <boost/mpl/pop_front.hpp>
-#include <boost/mpl/copy.hpp>
-#include <boost/mpl/front.hpp>
 
 #include <functional>
 #include <vector>
@@ -77,10 +72,9 @@ template <class E> struct NonNullOp;
 
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
+template <class E, class Func> struct CallerOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
-
-template <class K, class Expr> struct FullTDOp;
 
 template <class T>
 struct ET
@@ -151,10 +145,6 @@ template <class T, class X>
 struct ET <SequenceExpr<T, X> > 
 	: public ETBase <SequenceExpr<T, X> > {};
 
-template <class K, class Expr>
-struct ET <FullTDOp<K, Expr> > 
-	: public ETBase <FullTDOp<K, Expr> > {};
-
 template <class T>
 struct ET <SelectorOp<T> > 
 	: public ETBase <SelectorOp<T> > { };
@@ -202,6 +192,10 @@ struct ET <FilterOp<T, U> >
 template <class T, class U>
 struct ET <ForEachOp<T, U> > 
 	: public ETBase <ForEachOp<T, U> > {};
+
+template <class T, class U>
+struct ET <CallerOp<T, U> > 
+	: public ETBase <CallerOp<T, U> > {};
 
 template <class T, class Comp>
 struct ET <SortOp<T, Comp> > 
@@ -282,6 +276,7 @@ using boost::enable_if;
 using boost::is_base_of;
 using boost::mpl::if_;
 
+
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
@@ -299,7 +294,9 @@ public:
 	typedef typename Container::const_iterator const_iterator;
 
 	explicit KindLit () {}
-	KindLit (KindLit const & k) : s_ (k.s_) {}
+  template <class U>
+	KindLit (KindLit<U> const & ) {}
+  KindLit (KindLit const & k) : s_ (k.s_) {}
 	KindLit (Kind const & k) { s_.push_back(k); }	
 	KindLit & operator = (KindLit const & rhs) 
 	{ 
@@ -753,8 +750,7 @@ struct FilterOp : LEESAUnaryFunction <E>,
 };
 
 template <class E, class Func>
-struct ForEachOp : LEESAUnaryFunction <E>,
-				           OpBase
+struct ForEachOp : LEESAUnaryFunction <E>, OpBase
 {
 	typedef typename 
 		ChainExpr<E, ForEachOp<E, Func> > expression_type;
@@ -768,6 +764,22 @@ struct ForEachOp : LEESAUnaryFunction <E>,
 	{
 		typename ContainerGen<argument_kind>::type v = arg;
     std::for_each (v.begin(), v.end(), func_);
+		return arg;
+	}
+};
+
+template <class E, class Func>
+struct CallerOp : LEESAUnaryFunction <E>, OpBase
+{
+	typedef typename 
+		ChainExpr<E, CallerOp > expression_type;
+
+	Func func_;
+	explicit CallerOp (Func f) : func_(f) { }
+	CallerOp (CallerOp const & fop) : func_(fop.func_) {}
+	result_type operator () (argument_type const & arg)
+	{
+    func_(arg);
 		return arg;
 	}
 };
@@ -916,34 +928,6 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	}
 };
 
-template <class K, class Expr>
-struct FullTDOp : LEESAUnaryFunction <K>,
-                  //std::unary_function<typename ET<K>::argument_type, void>,
-					        OpBase
-{
-  typedef typename 
-		ChainExpr<K, FullTDOp<K, Expr> > expression_type;  
-	typedef void result_kind;
-	typedef typename ET<K>::result_kind argument_kind;
-  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, 
-                                             typename ET<Expr>::argument_kind>));
-
-  Expr expr_;
-  explicit FullTDOp (Expr const & e)
-    : expr_(e) {} 
-  result_type operator () (argument_type const & arg)
-  {
-    typename ContainerGen<argument_kind>::type v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-    {
-      evaluate(kind, expr_);
-      evaluate(kind, MembersOf(K(), K() >> ForEach(K(), *this)));
-    }
-    return arg;
-  }
-};
-
 
 template <class T>
 IdOp<typename ET<T>::result_type> 
@@ -1047,6 +1031,35 @@ ForEach (E, Result (*f) (Arg))
             std::pointer_to_unary_function<Arg, Result> > 
 		foreach(std::ptr_fun(f));
 	return foreach;
+}
+
+template <class E, class Func>
+CallerOp<typename ET<E>::result_type, Func> 
+Call (E, Func f)
+{
+	typedef typename ET<E>::result_kind result_kind;
+	
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	//BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
+	
+  return CallerOp<typename ET<E>::result_type, Func> (f);
+}
+
+template <class E, class Arg, class Result>
+CallerOp<typename ET<E>::result_type, 
+         std::pointer_to_unary_function<Arg, Result> > 
+Call (E, Result (*f) (Arg))
+{
+	typedef typename ET<E>::result_kind result_kind;
+	
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
+	
+	CallerOp<typename ET<E>::result_type, 
+           std::pointer_to_unary_function<Arg, Result> > 
+		caller(std::ptr_fun(f));
+	return caller;
 }
 
 template <class L, class H>
@@ -1222,29 +1235,6 @@ operator >> (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
   return L() >> vl.getVisitor() >> H() >> vh.getVisitor();
 }
 
-template <class Kind, class Expr>
-FullTDOp <typename ET<Kind>::result_type,
-          typename ET<Expr>::expression_type>
-Full_TD(Kind k, Expr const & e)
-{
-  BOOST_MPL_ASSERT((Udm::UdmKindConcept<Kind>));
-  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<Kind, typename ET<Expr>::argument_kind>));
-  
-  return FullTDOp <typename ET<Kind>::result_type, 
-                   typename ET<Expr>::expression_type > (e);
-}
-
-template <class Kind>
-FullTDOp <typename ET<Kind>::result_type, KindLit<Kind> >
-Full_TD(Kind k)
-{
-  BOOST_MPL_ASSERT((Udm::UdmKindConcept<Kind>));
-  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<Kind, typename ET<Expr>::argument_kind>));
-
-  return FullTDOp <typename ET<Kind>::result_type, 
-                   KindLit<Kind> > (KindLit<Kind>());
-}
-
 #define REGEX_OP RegexOp<H>
 GT_PARA_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
 
@@ -1263,8 +1253,8 @@ GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
 #define FOREACH_OP ForEachOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
 
-#define FULLTD_OP FullTDOp<K, Expr>
-GT_PARA_OPERATOR_DEFINITION_3T(L,K,Expr,FULLTD_OP);
+#define CALLER_OP CallerOp<K, Expr>
+GT_PARA_OPERATOR_DEFINITION_3T(L,K,Expr,CALLER_OP);
 
 #define SORT_OP SortOp<H, Comp>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);
@@ -1531,6 +1521,7 @@ evaluate (Para const & p, Expr &e)
 	return e(p);
 }
 
+/*
 using boost::mpl::if_c;
 
 template <class Statement>
@@ -1602,8 +1593,10 @@ struct DFSCondition
   };
 };
 
-
+*/
 
 } // end namespace LEESA
+
+#include "SP.cpp"
 
 #endif // __LEESA_CPP

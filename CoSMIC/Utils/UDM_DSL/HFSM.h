@@ -41,13 +41,13 @@ namespace HFSM {
 	public:
 		virtual ~Visitor() {}
 
-		virtual void Visit_InputSequence(const InputSequence &) {}
+    virtual void Visit_InputSequence(const InputSequence &) {}
 		virtual void Visit_Events(const Events &) {}
 		virtual void Visit_Sequence(const Sequence &) {}
 		virtual void Visit_State(const State &) {}
 		virtual void Visit_Transition(const Transition &) {}
 		virtual void Visit_RootFolder(const RootFolder &) {}
-		virtual void Visit_Object(const Udm::Object &) {}
+		virtual void Visit_Object(const Udm::Object & o) const; 
 
 	};
 
@@ -214,6 +214,7 @@ namespace HFSM {
 		Udm::StringAttr position() const { return Udm::StringAttr(impl, meta_position); }
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+    void Accept(Visitor &v);
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_position;

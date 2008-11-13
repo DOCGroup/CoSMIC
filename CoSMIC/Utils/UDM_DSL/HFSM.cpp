@@ -2,10 +2,11 @@
 // generated from diagram HFSM
 // generated on Sun Nov 09 19:35:12 2008
 
+#include "stdafx.h"
 #include "HFSM.h"
 #include <UmlExt.h>
 #include <UdmStatic.h>
-
+#include <windows.h>
 
 namespace HFSM {
 
@@ -369,6 +370,38 @@ namespace HFSM {
 			Udm::MetaDepository::RemoveDiagram("HFSM");
 		}
 	} __regUnUsed;
+
+
+  void HFSM::Visitor::Visit_Object(const Udm::Object & o) const
+  {
+    if (Udm::IsDerivedFrom (o.type(), MgaObject::meta))
+    {
+      MgaObject mga = MgaObject::Cast(o);
+      mga.Accept(const_cast<HFSM::Visitor &>(*this));
+    }
+  }
+
+  template <class T>
+  static bool dispatchIf(MgaObject mga, Visitor & v)
+  {
+    if (Udm::IsDerivedFrom(mga.type(), T::meta))  
+    {
+      T t = T::Cast(mga);
+      t.Accept(v);
+      return true;
+    }
+    return false;
+  }
+
+  void MgaObject::Accept(Visitor &v)
+  {
+    /*    Short Circuit using ||     */
+    dispatchIf <InputSequence> (*this, v) ||
+    dispatchIf <Events> (*this, v)        || 
+    dispatchIf <Sequence> (*this, v)      ||
+    dispatchIf <State> (*this, v )        ||
+    dispatchIf <Transition> (*this, v);
+  }
 
 }
 

@@ -91,33 +91,78 @@ public:
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     count_++;
   }
+  void Visit_InputSequence(const InputSequence &i) {
+    std::string name = std::string("InputSequence: ") + std::string(i.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
+  void Visit_Sequence(const Sequence &s) {
+    std::string name = std::string("Sequence: ") + std::string(s.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
+  void Visit_Events(const Events &e) {
+    std::string name = std::string("Events: ") + std::string(e.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
   int get_count() { return count_; }
 };
-bool always_true (const State &)
-{
-  return true;
-}
 
 CountVisitor cv;
+
+void print (State s)
+{
+  //MgaObject o = s;
+  Udm::Object o = s;
+  o.Accept(cv);
+}
+
+void dispatch (MgaObject mga)
+{
+  mga.Accept(cv);
+}
+
 void recurse (State s) 
 {
   using namespace LEESA;
   //BOOST_AUTO(expr, State() >> cv >> State() >> ForEach(State(), recurse));
   //BOOST_AUTO(expr, State() >> State() >> ForEach(State(), recurse) >> cv );
   //BOOST_AUTO(expr, State() >> expr2 >> ForEach(State(), recurse));
-  BOOST_AUTO(expr, State() >> cv
+  /*BOOST_AUTO(expr, State() >> cv
     >> MembersOf(State(), Transition() >> cv && State() >> ForEach(State(), recurse))
-    );
-  evaluate(s, expr);
+    );*/
+  //evaluate(s, expr);
 }
+/*
+template <>
+struct LEESA::FullTD_Custom::ChildrenKinds <State>
+{
+  typedef boost::mpl::vector<Transition> type;
+};
+template <>
+struct LEESA::FullTD_Custom::ChildrenKinds <InputSequence>
+{
+  typedef boost::mpl::vector<Events, int> type;
+  //typedef  LEESA::EmptyMPLVector type;
+};
+*/
 
 int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
   BOOST_AUTO(expr, RootFolder() >> State() 
-    >> Full_TD(State(), State() >> cv >> MembersOf(State(), Transition() >> cv)));
+                    >> Call(State(), State() >> cv)
+                    >> Call(State(), State() >> cv));
+  //BOOST_AUTO(expr, RootFolder() >> State() >> ForEach(State(), print));
   evaluate(rf, expr);
+  //std::set<State> s = rf.children_kind<State>();
+  std::set<InputSequence> s = rf.children_kind<InputSequence>();
+  
+  VisitStrategy<RootFolder> vs(cv);
+  FullTDOp<RootFolder, VisitStrategy> a(vs);
+  a(rf);
 
+  //MgaObject mga = *(s.begin());
+  //s = mga.children<MgaObject>();
+  //std::for_each(s.begin(), s.end(), dispatch);
   return cv.get_count();
 }
 

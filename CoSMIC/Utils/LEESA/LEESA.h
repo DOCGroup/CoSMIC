@@ -10,21 +10,22 @@
 #define BREADTH_FIRST  >>
 #define PARENT         <<
 #define FOLLOWED_BY    &&
+#define AND            &&
 #define Association(X) &X
 
 /* LEESA Operators 
 
 SelectByName (Kind, String)
-SelectSubSet (Kind, set)
+SelectSubSet (Kind, Set)
 SelectNonNull(Kind)
-Select       (Kind, predicate)
+Select       (Kind, Predicate)
 CastFromTo   (From, To)
 Sort         (Kind, Comparator c)
 Unique       (Kind, BinPred c)
 Unique       (Kind)
-ForEach      (Kind, unary function)
+ForEach      (Kind, Unary function)
 Id           (Kind)
-
+Call         (Kind, What)
 */
 
 #include "LEESA.cpp"
