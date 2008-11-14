@@ -91,6 +91,21 @@ public:
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     count_++;
   }
+  void Visit_StartState(const StartState &s) {
+    std::string name = std::string("StartState: ") + std::string(s.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    count_++;
+  }
+  void Visit_FinalState(const FinalState &s) {
+    std::string name = std::string("FinalState: ") + std::string(s.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    count_++;
+  }
+  void Visit_BaseState(const BaseState &s) {
+    std::string name = std::string("BaseState: ") + std::string(s.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    count_++;
+  }
   void Visit_InputSequence(const InputSequence &i) {
     std::string name = std::string("InputSequence: ") + std::string(i.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
@@ -103,6 +118,11 @@ public:
     std::string name = std::string("Events: ") + std::string(e.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
   }
+  void Visit_StateMachine(const StateMachine &e) {
+    std::string name = std::string("StateMachine: ") + std::string(e.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
+  void Visit_Object(const Udm::Object &) const {}
   int get_count() { return count_; }
 };
 
@@ -148,21 +168,23 @@ struct LEESA::FullTD_Custom::ChildrenKinds <InputSequence>
 int leesa_example(RootFolder rf)
 {
   using namespace LEESA;
-  BOOST_AUTO(expr, RootFolder() >> State() 
-                    >> Call(State(), State() >> cv)
-                    >> Call(State(), State() >> cv));
-  //BOOST_AUTO(expr, RootFolder() >> State() >> ForEach(State(), print));
-  evaluate(rf, expr);
-  //std::set<State> s = rf.children_kind<State>();
-  std::set<InputSequence> s = rf.children_kind<InputSequence>();
+  std::set<StateMachine> s = rf.children_kind<StateMachine>();
+  StateMachine sm = *(s.begin());
+  Udm::Object o = sm;
+  sm.Accept (cv);
+  //std::set<InputSequence> s = rf.children_kind<InputSequence>();
   
-  VisitStrategy<RootFolder> vs(cv);
-  FullTDOp<RootFolder, VisitStrategy> a(vs);
-  a(rf);
+  VisitStrategy<State> vs(cv);
+  typedef LEESA::Sequence<State, VisitStrategy<State>, VisitStrategy<State> > SeqVisitVisit;
+  SeqVisitVisit c (vs,vs);
+  FullTD<State, SeqVisitVisit> z (c);
+  //evaluate(rf, RootFolder() >> StateMachine());// State() >> CallStrategyOn(State(), z));
 
-  //MgaObject mga = *(s.begin());
-  //s = mga.children<MgaObject>();
-  //std::for_each(s.begin(), s.end(), dispatch);
+
+  typedef FullTD<RootFolder, VisitStrategy<RootFolder> > FullRoot;
+  evaluate (rf, RootFolder() 
+    >> CallStrategy(RootFolder(), FullRoot(VisitStrategy<RootFolder> (cv))));
+
   return cv.get_count();
 }
 

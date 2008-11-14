@@ -72,7 +72,6 @@ template <class E> struct NonNullOp;
 
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
-template <class E, class Func> struct CallerOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
 
@@ -193,10 +192,6 @@ template <class T, class U>
 struct ET <ForEachOp<T, U> > 
 	: public ETBase <ForEachOp<T, U> > {};
 
-template <class T, class U>
-struct ET <CallerOp<T, U> > 
-	: public ETBase <CallerOp<T, U> > {};
-
 template <class T, class Comp>
 struct ET <SortOp<T, Comp> > 
 	: public ETBase <SortOp<T, Comp> > {};
@@ -292,6 +287,12 @@ public:
 	typedef Kind argument_kind;
 	typedef typename Container::iterator iterator;
 	typedef typename Container::const_iterator const_iterator;
+
+  template <class U>
+  struct rebind
+  {
+    typedef KindLit<U> type;
+  };
 
 	explicit KindLit () {}
   template <class U>
@@ -768,22 +769,6 @@ struct ForEachOp : LEESAUnaryFunction <E>, OpBase
 	}
 };
 
-template <class E, class Func>
-struct CallerOp : LEESAUnaryFunction <E>, OpBase
-{
-	typedef typename 
-		ChainExpr<E, CallerOp > expression_type;
-
-	Func func_;
-	explicit CallerOp (Func f) : func_(f) { }
-	CallerOp (CallerOp const & fop) : func_(fop.func_) {}
-	result_type operator () (argument_type const & arg)
-	{
-    func_(arg);
-		return arg;
-	}
-};
-
 template <class L, class H>
 struct CastOp : LEESAUnaryFunction <L, H>,
 				        OpBase
@@ -1011,7 +996,6 @@ ForEach (E, Func f)
 	typedef typename ET<E>::result_kind result_kind;
 	
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	//BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
 	
   return ForEachOp<typename ET<E>::result_type, Func> (f);
@@ -1031,35 +1015,6 @@ ForEach (E, Result (*f) (Arg))
             std::pointer_to_unary_function<Arg, Result> > 
 		foreach(std::ptr_fun(f));
 	return foreach;
-}
-
-template <class E, class Func>
-CallerOp<typename ET<E>::result_type, Func> 
-Call (E, Func f)
-{
-	typedef typename ET<E>::result_kind result_kind;
-	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	//BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
-	
-  return CallerOp<typename ET<E>::result_type, Func> (f);
-}
-
-template <class E, class Arg, class Result>
-CallerOp<typename ET<E>::result_type, 
-         std::pointer_to_unary_function<Arg, Result> > 
-Call (E, Result (*f) (Arg))
-{
-	typedef typename ET<E>::result_kind result_kind;
-	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
-	
-	CallerOp<typename ET<E>::result_type, 
-           std::pointer_to_unary_function<Arg, Result> > 
-		caller(std::ptr_fun(f));
-	return caller;
 }
 
 template <class L, class H>
@@ -1252,9 +1207,6 @@ GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
 
 #define FOREACH_OP ForEachOp<H, Func>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
-
-#define CALLER_OP CallerOp<K, Expr>
-GT_PARA_OPERATOR_DEFINITION_3T(L,K,Expr,CALLER_OP);
 
 #define SORT_OP SortOp<H, Comp>
 GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);

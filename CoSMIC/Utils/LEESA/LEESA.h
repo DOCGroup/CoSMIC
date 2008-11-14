@@ -15,17 +15,29 @@
 
 /* LEESA Operators 
 
-SelectByName (Kind, String)
-SelectSubSet (Kind, Set)
-SelectNonNull(Kind)
-Select       (Kind, Predicate)
-CastFromTo   (From, To)
-Sort         (Kind, Comparator c)
-Unique       (Kind, BinPred c)
-Unique       (Kind)
-ForEach      (Kind, Unary function)
-Id           (Kind)
-Call         (Kind, What)
+SelectByName   (Kind, String)
+SelectSubSet   (Kind, Set)
+SelectNonNull  (Kind)
+Select         (Kind, Predicate)
+CastFromTo     (From, To)
+Sort           (Kind, Comparator c)
+Unique         (Kind, BinPred c)
+Unique         (Kind)
+ForEach        (Kind, Unary function)
+Id             (Kind)
+CallStrategy   (Kind, Strategy)
+
+Strategies for Strategic Programming:
+
+KindLit<Kind> is Id.
+Fail<Kind> 
+Choice<Kind, Strategy1, Strategy2>
+Sequence<Kind, Strategy1, Strategy2>
+All<Kind, Strategy1>
+One<Kind, Strategy1>
+FullTD<Kind, Strategy1>
+VisitStrategy<Kind>
+
 */
 
 #include "LEESA.cpp"
