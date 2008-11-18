@@ -1,3 +1,13 @@
+Tue Nov 18 02:51:17 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          . First attempt to add the QED interpreter to the installer.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Added missing icons to the installer.
+
 Fri Nov 14 06:13:07 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.h:
@@ -9,8 +19,8 @@ Fri Nov 14 06:13:07 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/HFSM.xml:
         * Utils/UDM_DSL/HFSM.xsd:
         * Utils/UDM_DSL/UdmApp.cpp:
-		
-		  Strong support for typed strategic programming using UDM.
+
+                  Strong support for typed strategic programming using UDM.
 
 Thu Nov 13 20:31:46 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

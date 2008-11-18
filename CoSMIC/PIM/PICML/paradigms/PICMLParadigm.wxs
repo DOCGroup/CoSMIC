@@ -16,7 +16,7 @@
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='PICMLManagerLibrary' />
       <ComponentRef Id='PICMLManagerRegistry' />
-      
+
       <ComponentRef Id='PackageComponentLibrary' />
       <ComponentRef Id='DomainComponentLibrary' />
       <ComponentRef Id='DeploymentPlanComponentLibrary' />
@@ -276,6 +276,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\MonolithicImplementation.bmp' />
 
+        <File Id='MultiInputAction.bmp'
+        Name='MultiInputAction.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\MultiInputAction.bmp' />
+
         <File Id='PICML_icon_32'
         Name='Node.bmp'
         DiskId='1'
@@ -335,6 +340,11 @@
         Name='QueryAction.bmp'
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\QueryAction.bmp' />
+
+        <File Id='QueryInputAction.bmp'
+        Name='QueryInputAction.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\QueryInputAction.bmp' />
 
         <File Id='PICML_icon_43'
         Name='RPG.bmp'
