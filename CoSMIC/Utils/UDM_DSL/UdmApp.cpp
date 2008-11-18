@@ -121,8 +121,9 @@ public:
   void Visit_StateMachine(const StateMachine &e) {
     std::string name = std::string("StateMachine: ") + std::string(e.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    //throw LEESA::LEESAException("Exception in StateMachine.");
   }
-  void Visit_Object(const Udm::Object &) const {}
+  //void Visit_Object(const Udm::Object &) const {}
   int get_count() { return count_; }
 };
 
@@ -151,19 +152,13 @@ void recurse (State s)
     );*/
   //evaluate(s, expr);
 }
-/*
-template <>
-struct LEESA::FullTD_Custom::ChildrenKinds <State>
+
+struct MyFullTD_Custom
 {
-  typedef boost::mpl::vector<Transition> type;
+  CUSTOM_COMMON;
+  CUSTOM_PARENT(StateMachine, CHILDREN(BaseState));
+  CUSTOM_PARENT(BaseState, CHILDREN(BaseState));
 };
-template <>
-struct LEESA::FullTD_Custom::ChildrenKinds <InputSequence>
-{
-  typedef boost::mpl::vector<Events, int> type;
-  //typedef  LEESA::EmptyMPLVector type;
-};
-*/
 
 int leesa_example(RootFolder rf)
 {
@@ -171,19 +166,27 @@ int leesa_example(RootFolder rf)
   std::set<StateMachine> s = rf.children_kind<StateMachine>();
   StateMachine sm = *(s.begin());
   Udm::Object o = sm;
-  sm.Accept (cv);
-  //std::set<InputSequence> s = rf.children_kind<InputSequence>();
-  
+  //sm.Accept (cv);
+/*
+  evaluate(rf, RootFolder()
+    >> Choice(RootFolder(), 
+              RootFolder() >>= StateMachine() >> cv,
+              RootFolder() >> StateMachine() >> Transition() >> cv)
+    >> StateMachine()
+    >> Choice(StateMachine(),
+              StateMachine() >>= BaseState() >> cv,
+              StateMachine() >> BaseState()));
+*/
+/*
   VisitStrategy<State> vs(cv);
   typedef LEESA::Sequence<State, VisitStrategy<State>, VisitStrategy<State> > SeqVisitVisit;
   SeqVisitVisit c (vs,vs);
   FullTD<State, SeqVisitVisit> z (c);
-  //evaluate(rf, RootFolder() >> StateMachine());// State() >> CallStrategyOn(State(), z));
+  evaluate(rf, RootFolder() >> StateMachine());// State() >> CallStrategyOn(State(), z));
+*/
 
-
-  typedef FullTD<RootFolder, VisitStrategy<RootFolder> > FullRoot;
-  evaluate (rf, RootFolder() 
-    >> CallStrategy(RootFolder(), FullRoot(VisitStrategy<RootFolder> (cv))));
+  typedef FullTD<RootFolder, VisitStrategy<RootFolder>, MyFullTD_Custom> FullRoot;
+  evaluate (rf, Call(RootFolder(), FullRoot(VisitStrategy<RootFolder> (cv))));
 
   return cv.get_count();
 }
