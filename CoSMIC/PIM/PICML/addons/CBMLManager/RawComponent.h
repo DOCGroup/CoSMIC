@@ -20,15 +20,14 @@
 #include <string>
 #include <set>
 #include <map>
+#include "GME/FCO.h"
+#include "GME/Object.h"
 
-//=============================================================================
 /**
  * @struct point_t
  *
  * Structure that contains an x-coordinate and y-coordinate.
  */
-//=============================================================================
-
 struct point_t
 {
   /// Default constructor.
@@ -54,14 +53,11 @@ struct point_t
   long y_;
 };
 
-//=============================================================================
 /**
  * @class RawComponent
  *
  * Raw component interface for the add-on.
  */
-//=============================================================================
-
 class RawComponent
 {
 public:
@@ -114,39 +110,17 @@ public:
 
 private:
   /// Event handler for OBJEVENT_CREATED.
-  void handle_objevent_created (IMgaObject * object);
+  void handle_objevent_created (GME::Object & obj);
 
   /// Event handler for OBJEVENT_SELECT.
-  void handle_objevent_select (IMgaObject * object);
+  void handle_objevent_select (GME::Object & obj);
 
   /// Event handler for OBJEVENT_DESTROYED.
-  void handle_objevent_destroyed (IMgaObject * object);
+  void handle_objevent_destroyed (GME::Object & obj);
 
-  /**
-   * Helper method for creating a state element programmtically.
-   *
-   * @param[in]       parent        Pointer to the parent model.
-   * @param[in]       state         Pointer to the newly created state.
-   * @return          Result of the creation operation.
-   */
-  HRESULT create_model (const std::wstring & type,
-                        IMgaModel * parent,
-                        IMgaFCO ** state);
+  void handle_objevent_modelopen (GME::Object & obj);
 
-  /**
-   * Helper method for creating a connection.
-   *
-   * @param[in]       type      Type of connection.
-   * @param[in]       parent    Parent model of the connection.
-   * @param[in]       src       Source FCO in connection.
-   * @param[in]       dst       Destination FCO in connection.
-   * @param[out]      conn      Pointer to new connection.
-   */
-  HRESULT create_connection (const std::wstring & type,
-                             IMgaModel * parent,
-                             IMgaFCO * src,
-                             IMgaFCO * dst,
-                             IMgaFCO ** conn);
+  void handle_objevent_modelclose (GME::Object & obj);
 
   /**
    * Helper method that will create a state and connect it to the
@@ -155,20 +129,8 @@ private:
    * @param[in]     src         Source object in connection.
    * @param[in]     conntype    Connection type between source and state.
    */
-  HRESULT create_state_and_connect (IMgaObject * src,
-                                    const std::wstring & conntype);
-
-  /**
-   * Helper method for getting the role of a child element from a
-   * model.
-   *
-   * @param[in]     model         Target model.
-   * @param[in]     rolename      Name of the role.
-   * @param[out]    role          Pointer to the role.
-   */
-  HRESULT get_role (IMgaModel * model,
-                    const std::wstring & rolename,
-                    IMgaMetaRole ** role);
+  void create_state_and_connect (GME::Object & src,
+                                 const std::string & conntype);
 
   /**
    * Helper method to get the position of an FCO.
@@ -176,7 +138,7 @@ private:
    * @param[in]     fco         Target FCO.
    * @param[out]    pt          Buffer to receive the position.
    */
-  HRESULT get_position (IMgaFCO * fco, point_t & pt);
+  bool get_position (GME::FCO & fco, point_t & pt);
 
   /**
    * Helper method to set the position of an FCO.
@@ -184,7 +146,7 @@ private:
    * @param[in]     fco         Target FCO.
    * @param[in]     pt          New position of the FCO.
    */
-  HRESULT set_position (IMgaFCO * fco, const point_t & pt);
+  bool set_position (GME::FCO & fco, const point_t & pt);
 
   /**
    * Load the active state for the current model. This will allow
@@ -193,7 +155,7 @@ private:
    *
    * @param[in]     model       Parent model.
    */
-  HRESULT load_active_state (IMgaObject * model);
+  void load_active_state (GME::Object & model);
 
   /**
    * Save the active state. This will store in the parent model's
@@ -201,24 +163,32 @@ private:
    * use to retrieve/set the active state when the user return's
    * to the model.
    */
-  HRESULT save_active_state (void);
+  void save_active_state (void);
 
-  /// Type definition for a collection of strings.
-  typedef std::set <std::wstring> wstring_set;
+  void cache_worker_type (const GME::Reference & worker_type);
+
+  void resolve_worker_action (GME::FCO & action);
+
+  typedef std::set <std::string> string_set;
+
+  /// Type definition for mapping worker types to instances.
+  typedef std::map <GME::Model, string_set> worker_map_type;
 
   /// Collection of action types we are monitoring.
-  static wstring_set actions_types_;
-
-  /// Type definition for a mapping role names to role objects.
-  typedef std::map <std::wstring, CComPtr <IMgaMetaRole> > MgaMetaRole_Map;
-
-  /// Mapping of role names to role objects.
-  MgaMetaRole_Map role_map_;
+  static string_set actions_types_;
 
   /// The active state in the model.
-  CComPtr <IMgaFCO> active_state_;
+  GME::FCO active_state_;
 
-  CComPtr <IMgaFCO> last_action_;
+  GME::FCO last_action_;
+
+  std::set <GME::Model> worker_types_;
+
+  /// Collection of worker types.
+  worker_map_type workers_;
+
+  /// List of output ports in current model.
+  string_set outputs_;
 
   /// Flag specifying if the add-on is importing.
   bool importing_;

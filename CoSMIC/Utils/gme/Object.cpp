@@ -432,4 +432,32 @@ bool Object::equals (const GME::Object & obj) const
   return equal == VARIANT_TRUE ? true : false;
 }
 
+//
+// child_by_relative_id
+//
+GME::Object Object::child_by_relative_id (long relid)
+{
+  CComPtr <IMgaObject> object;
+  VERIFY_HRESULT (this->impl ()->get_ChildObjectByRelID (relid, &object));
+
+  return object.p;
+}
+
+//
+// operator <
+//
+bool Object::operator < (const GME::Object & obj) const
+{
+  return this->object_.p < obj.object_.p;
+}
+
+//
+// operator >
+//
+bool Object::operator > (const GME::Object & obj) const
+{
+  return this->object_.p > obj.object_.p;
+}
+
+
 }

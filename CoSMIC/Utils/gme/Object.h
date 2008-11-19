@@ -284,6 +284,17 @@ namespace GME
      */
     GME::Project project (void) const;
 
+    /**
+     * Get the child object by its relative id.
+     *
+     * @param[in]       relid         Relative id of child object.
+     * @return          The child object.
+     */
+    GME::Object child_by_relative_id (long relid);
+
+    bool operator < (const GME::Object & obj) const;
+    bool operator > (const GME::Object & obj) const;
+
   protected:
     /// The underlying COM pointer.
     CComPtr <IMgaObject> object_;

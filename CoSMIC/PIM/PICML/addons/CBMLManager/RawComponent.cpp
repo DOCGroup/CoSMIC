@@ -5,22 +5,28 @@
 #include "GMECOM.h"
 #include "ComponentConfig.h"
 #include "RawComponent.h"
-
+#include "GME/Connection.h"
+#include "GME/MetaBase.h"
+#include "GME/Model.h"
+#include "GME/Object.h"
+#include "boost/bind.hpp"
+#include <algorithm>
 #include <sstream>
 
 #define OFFSET_Y  7
 #define OFFSET_X  50
 
-#define PREF_AUTOROUTER           L"autorouterPref"
-#define PREF_AUTOROUTER_ALL       L"NEWSnews"
-
+#define PREF_AUTOROUTER           "autorouterPref"
+#define PREF_AUTOROUTER_ALL       "NEWSnews"
 
 //
 // operator >>=
 //
-bool operator >>= (std::wstring & str, point_t & pt)
+template <typename T>
+bool operator >>= (std::basic_string <T> & str, point_t & pt)
 {
-  std::wistringstream istr (str);
+  std::basic_istringstream <T> istr (str);
+
   istr >> pt.x_;
   istr.ignore (1);
   istr >> pt.y_;
@@ -31,9 +37,11 @@ bool operator >>= (std::wstring & str, point_t & pt)
 //
 // operator <<=
 //
-bool operator <<= (std::wstring & str, const point_t & pt)
+template <typename T>
+bool operator <<= (std::basic_string <T> & str, const point_t & pt)
 {
-  std::wostringstream ostr;
+  std::basic_ostringstream <T> ostr;
+
   ostr << pt.x_ << "," << pt.y_;
   str = ostr.str ().c_str ();
 
@@ -43,7 +51,7 @@ bool operator <<= (std::wstring & str, const point_t & pt)
 //
 // action_types_
 //
-RawComponent::wstring_set RawComponent::actions_types_;
+RawComponent::string_set RawComponent::actions_types_;
 
 //
 // RawComponent
@@ -54,9 +62,8 @@ RawComponent::RawComponent (void)
   // in when creating action -> state transitions.
   if (RawComponent::actions_types_.empty ())
   {
-    RawComponent::actions_types_.insert (L"Action");
-    RawComponent::actions_types_.insert (L"CompositeAction");
-    RawComponent::actions_types_.insert (L"OutputAction");
+    RawComponent::actions_types_.insert ("Action");
+    RawComponent::actions_types_.insert ("OutputAction");
   }
 }
 
@@ -80,9 +87,8 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject *)
 //
 // Invoke
 //
-STDMETHODIMP RawComponent::Invoke (IMgaProject* gme,
-                                   IMgaFCOs *models,
-                                   long param)
+STDMETHODIMP RawComponent::
+Invoke (IMgaProject* gme, IMgaFCOs *models, long param)
 {
   return E_MGA_NOT_SUPPORTED;
 }
@@ -90,10 +96,11 @@ STDMETHODIMP RawComponent::Invoke (IMgaProject* gme,
 //
 // InvokeEx
 //
-STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
-                                     IMgaFCO *currentobj,
-                                     IMgaFCOs *selectedobjs,
-                                     long param)
+STDMETHODIMP RawComponent::
+InvokeEx (IMgaProject *project,
+          IMgaFCO *currentobj,
+          IMgaFCOs *selectedobjs,
+          long param)
 {
   return E_MGA_NOT_SUPPORTED;
 }
@@ -101,10 +108,11 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
 //
 // ObjectsInvokeEx
 //
-STDMETHODIMP RawComponent::ObjectsInvokeEx (IMgaProject *project,
-                                            IMgaObject *currentobj,
-                                            IMgaObjects *selectedobjs,
-                                            long param)
+STDMETHODIMP RawComponent::
+ObjectsInvokeEx (IMgaProject *project,
+                 IMgaObject *currentobj,
+                 IMgaObjects *selectedobjs,
+                 long param)
 {
   return E_MGA_NOT_SUPPORTED;
 }
@@ -112,8 +120,8 @@ STDMETHODIMP RawComponent::ObjectsInvokeEx (IMgaProject *project,
 //
 // get_ComponentParameter
 //
-STDMETHODIMP RawComponent::get_ComponentParameter (BSTR name,
-                                                   VARIANT *pVal)
+STDMETHODIMP RawComponent::
+get_ComponentParameter (BSTR name, VARIANT *pVal)
 {
   return S_OK;
 }
@@ -121,8 +129,8 @@ STDMETHODIMP RawComponent::get_ComponentParameter (BSTR name,
 //
 // put_ComponentParameter
 //
-STDMETHODIMP RawComponent::put_ComponentParameter(BSTR name,
-                                                  VARIANT newVal)
+STDMETHODIMP RawComponent::
+put_ComponentParameter(BSTR name, VARIANT newVal)
 {
   return S_OK;
 }
@@ -145,33 +153,50 @@ STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event)
 //
 // ObjectEvent
 //
-STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj,
-                                       unsigned long eventmask,
-                                       VARIANT v)
+STDMETHODIMP RawComponent::
+ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
 {
-  if (this->importing_)
+  try
+  {
+    if (!this->importing_)
+    {
+      GME::Object object (obj);
+
+      // This is a cool case of optimizing for the mostly frequently
+      // taken path. We know for a fact that the elements will be
+      // created more than anything else in the model. We, therefore,
+      // explicitly check for OBJEVENT_CREATED to show that we are
+      // favoring this event more than anything. We then assume that
+      // all other events have the same probability of being triggered.
+
+      if ((eventmask & OBJEVENT_CREATED))
+        this->handle_objevent_created (object);
+
+      if ((eventmask & OBJEVENT_SELECT))
+        this->handle_objevent_select (object);
+
+      if ((eventmask & OBJEVENT_CLOSEMODEL))
+        this->handle_objevent_modelclose (object);
+
+      if ((eventmask & OBJEVENT_OPENMODEL))
+        this->handle_objevent_modelopen (object);
+
+      if ((eventmask & OBJEVENT_DESTROYED))
+        this->handle_objevent_destroyed (object);
+    }
+
     return S_OK;
+  }
+  catch (const GME::Failed_Result & ex)
+  {
+    HRESULT hr = ex.value ();
+  }
+  catch (...)
+  {
 
-  // This is a cool case of optimizing for the mostly frequently
-  // taken path. We know for a fact that the elements will be
-  // created more than anything else in the model. We, therefore,
-  // explicitly check for OBJEVENT_CREATED to show that we are
-  // favoring this event more than anything. We then assume that
-  // all other events have the same probability of being triggered.
+  }
 
-  if ((eventmask & OBJEVENT_CREATED))
-    this->handle_objevent_created (obj);
-
-  if ((eventmask & OBJEVENT_SELECT))
-    this->handle_objevent_select (obj);
-
-  //if ((eventmask & OBJEVENT_CLOSEMODEL))
-  //  AfxMessageBox ("OBJEVENT_CLOSEMODEL");
-
-  if ((eventmask & OBJEVENT_DESTROYED))
-    this->handle_objevent_destroyed (obj);
-
-  return S_OK;
+  return S_FALSE;
 }
 
 #endif
@@ -179,383 +204,326 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj,
 //
 // save_active_state
 //
-HRESULT RawComponent::save_active_state (void)
+void RawComponent::save_active_state (void)
 {
-  // Get the parent of the <active_state_>
-  CComPtr <IMgaObject> parent;
-  this->active_state_->GetParent (&parent);
+  // Get the parent of the active state.
+  GME::FCO parent = GME::FCO::_narrow (this->active_state_.parent ());
 
-  CComPtr <IMgaFCO> fco;
-  parent->QueryInterface (&fco);
-
-  // Get the relative id for the <active_state_>
-  long relid;
-  fco->get_RelID (&relid);
+  // Get the relative id for the active state
+  long relid = parent.relative_id ();
 
   // Place the relative id for the <active_state_> in its parent
   // models registry.
-  std::wostringstream ostr;
+  std::ostringstream ostr;
   ostr << relid;
 
-  CComBSTR value (ostr.str ().c_str ());
-  return fco->put_RegistryValue (L"CBML/ActiveState", value);
+  parent.registry_value ("CBML/ActiveState", ostr.str ());
 }
 
 //
-// save_active_state
+// load_active_state
 //
-HRESULT RawComponent::load_active_state (IMgaObject * model)
+void RawComponent::load_active_state (GME::Object & model)
 {
-  // Get the parent of the <active_state_>
-  CComPtr <IMgaFCO> fco;
-  CComPtr <IMgaObject> parent (model);
-  parent->QueryInterface (&fco);
+  // Get the parent of the active state.
+  GME::FCO parent = GME::FCO::_narrow (model);
 
   // Get the relative id from the registry.
-  CComBSTR value;
-  fco->get_RegistryValue (L"CBML/ActiveState", &value);
+  std::string value = parent.registry_value ("CBML/ActiveState");
 
-  long relid = _wtol (value.m_str);
+  // Convert the relative id to its integer format.
+  long relid;
+  std::istringstream istr (value);
+  istr >> relid;
 
-  CComPtr <IMgaObject> relobj;
-  parent->get_ChildObjectByRelID (relid, &relobj);
+  // Locate the child with the relative id. We need to then save the
+  // object as the active state.
+  GME::Object relobj = parent.child_by_relative_id (relid);
 
   if (relobj)
-    relobj->QueryInterface (&this->active_state_);
-
-  return S_OK;
+    this->active_state_ = GME::FCO::_narrow (relobj);
 }
 
 //
 // handle_objevent_destroyed
 //
-void RawComponent::handle_objevent_destroyed (IMgaObject * obj)
+void RawComponent::handle_objevent_destroyed (GME::Object & obj)
 {
-  CComPtr <IMgaFCO> fco;
-  obj->QueryInterface (&fco);
+  GME::FCO fco = GME::FCO::_narrow (obj);
 
   if (this->active_state_ == fco)
-    this->active_state_.Release ();
+    this->active_state_ = 0;
 }
 
 //
 // handle_objevent_select
 //
-void RawComponent::handle_objevent_select (IMgaObject * obj)
+void RawComponent::handle_objevent_select (GME::Object & obj)
 {
-  // Let's determine if this object is an action that
-  // we need to manage.
-  CComPtr <IMgaObject> object (obj);
-
-  CComPtr <IMgaMetaBase> metabase;
-  obj->get_MetaBase (&metabase);
-
-  CComBSTR metaname;
-  metabase->get_Name (&metaname);
-
-  if (metaname == L"State")
+  if (obj.meta ().name () == "State")
   {
-    this->active_state_.Release ();
-    object->QueryInterface (&this->active_state_);
+    // Set the active state of the behavior.
+    this->active_state_ = GME::FCO::_narrow (obj);
+
+    // We no longer need to last action.
+    this->last_action_ = 0;
   }
 }
 
 //
 // handle_objevent_created
 //
-void RawComponent::handle_objevent_created (IMgaObject * obj)
+void RawComponent::handle_objevent_created (GME::Object & obj)
 {
-  CComPtr <IMgaObject> object (obj);
-
   // We need to get the parent of the newly created object and determine
   // its type. We only need to continue if the parent's type is a
   // component.
 
-  objtype_enum objtype;
-  CComPtr <IMgaObject> parent;
-  object->GetParent (&parent, &objtype);
+  GME::Object parent = obj.parent ();
+  std::string metaname = parent.meta ().name ();
 
-  CComPtr <IMgaMetaBase> metabase;
-  parent->get_MetaBase (&metabase);
-
-  CComBSTR metaname;
-  metabase->get_Name (&metaname);
-
-  if (metaname == L"Component")
+  if (metaname == "Component")
   {
-    metaname.Empty ();
-    metabase.Release ();
+    // Narrow the parent to its FCO type.
+    GME::FCO parent_fco = GME::FCO::_narrow (parent);
 
-    CComPtr <IMgaFCO> parent_fco;
-    parent->QueryInterface (&parent_fco);
-
-    // There is no need to run the rest of this auto handle method
-    // if we are interacting with an instance of a component. There
-    // is no way possible we can add to it.
-    VARIANT_BOOL is_instance;
-    parent_fco->get_IsInstance (&is_instance);
-
-    if (is_instance == VARIANT_TRUE)
-      return;
-
-    // Determine if this object is an action we need to manage.
-    object->get_MetaBase (&metabase);
-    metabase->get_Name (&metaname);
-
-    // We check the map before comparing the name because it's the
-    // more likeable. User's will create more Action -> State
-    // transition than InputAction -> State transitions.
-    if (RawComponent::actions_types_.find (metaname.m_str) !=
-        RawComponent::actions_types_.end ())
+    if (!parent_fco.is_instance ())
     {
-      CComPtr <IMgaFCO> base_type;
-      parent_fco->get_DerivedFrom (&base_type);
+      // Get the type of the newly created object.
+      metaname = obj.meta ().name ();
 
-      // First, go ahead and connect the state to the action.
-      this->create_state_and_connect (object, L"Effect");
-
-      if (this->last_action_)
-        this->last_action_.Release ();
-
-      object->QueryInterface (&this->last_action_);
-    }
-    else if (metaname == L"InputAction")
-    {
-      if (this->active_state_)
-        this->active_state_.Release ();
-
-      this->create_state_and_connect (object, L"InputEffect");
-
-      if (this->last_action_)
-        this->last_action_.Release ();
-
-      object->QueryInterface (&this->last_action_);
-    }
-  }
-}
-
-//
-// create_model
-//
-HRESULT RawComponent::create_model (const std::wstring & type,
-                                    IMgaModel * parent,
-                                    IMgaFCO ** state)
-{
-  // Get the role "State" from the parent model.
-  CComPtr <IMgaMetaRole> role;
-  this->get_role (parent, type, &role);
-
-  // Create the child object using the provide role.
-  return parent->CreateChildObject (role, state);
-}
-
-//
-// create_connection
-//
-HRESULT RawComponent::create_connection (const std::wstring & type,
-                                         IMgaModel * model,
-                                         IMgaFCO * src,
-                                         IMgaFCO * dst,
-                                         IMgaFCO ** conn)
-{
-  // Get the role for the connection.
-  CComPtr <IMgaModel> parent (model);
-  CComPtr <IMgaFCO> src_ptr (src);
-  CComPtr <IMgaFCO> dst_ptr (dst);
-
-  CComPtr <IMgaMetaRole> role;
-  this->get_role (model, type, &role);
-
-  // Create the connection using the provided role.
-  return parent->CreateSimpleConn (role, src_ptr, dst_ptr, 0, 0, conn);
-}
-
-//
-// get_role
-//
-HRESULT RawComponent::get_role (IMgaModel * parent,
-                                const std::wstring & rolename,
-                                IMgaMetaRole ** role)
-{
-  MgaMetaRole_Map::iterator iter = this->role_map_.find (rolename);
-
-  if (iter == this->role_map_.end ())
-  {
-    // Get the interface the meta information for the model.
-    CComPtr <IMgaMetaBase> metabase;
-    parent->get_MetaBase (&metabase);
-
-    CComPtr <IMgaMetaModel> metamodel;
-    metabase->QueryInterface (&metamodel);
-
-    // Get all the roles/types of elements that can be contained
-    // by this parent object.
-    CComPtr <IMgaMetaRoles> roles;
-    metamodel->get_Roles (&roles);
-
-    // Get the number of roles in this model.
-    long count;
-    roles->get_Count (&count);
-
-    // Iterate over all roles looking for the one of interest.
-    CComPtr <IMgaMetaRole> current_role;
-
-    for (long i = 1; i <= count; i ++)
-    {
-      // Get the next child element/role.
-      roles->get_Item (i, &current_role);
-
-      CComBSTR name;
-      current_role->get_Name (&name);
-
-      if (name == rolename.c_str ())
+      // We check the map before comparing the name because it's the
+      // more likeable. User's will create more Action -> State
+      // transition than InputAction -> State transitions.
+      if (RawComponent::actions_types_.find (metaname) !=
+          RawComponent::actions_types_.end ())
       {
-        // Insert the role into <role_map_> for quick access in
-        // the near future.
-        this->role_map_.insert (
-          MgaMetaRole_Map::value_type (rolename, current_role));
+        GME::FCO base_type = parent_fco.derived_from ();
 
-        // Return the <current_role> to the client.
-        *role = current_role;
-        break;
+        // First, go ahead and connect the state to the action.
+        this->create_state_and_connect (obj, "Effect");
+
+        if (this->last_action_)
+          this->last_action_ = 0;
+
+        // Save the action as the last action.
+        this->last_action_ = GME::FCO::_narrow (obj);
       }
-      current_role.Release ();
+      else if (metaname == "InputAction" ||
+               metaname == "MultiInputAction")
+      {
+        if (this->active_state_)
+          this->active_state_ = 0;
+
+        this->create_state_and_connect (obj, "InputEffect");
+
+        if (this->last_action_)
+          this->last_action_ = 0;
+
+        // Save the action as the last action.
+        this->last_action_ = GME::FCO::_narrow (obj);
+      }
+      else if (metaname == "State")
+      {
+        this->active_state_ = GME::FCO::_narrow (obj);
+      }
     }
   }
-  else
-    *role = iter->second;
-
-  (*role)->AddRef ();
-  return S_OK;
 }
 
 //
 // get_position
 //
-HRESULT RawComponent::get_position (IMgaFCO * fco, point_t & pt)
+bool RawComponent::get_position (GME::FCO & fco, point_t & pt)
 {
-  CComBSTR value;
-  HRESULT hr = fco->get_RegistryValue (L"PartRegs/Behavior/Position", &value);
-  std::wstring (value.m_str) >>= pt;
-
-  return S_OK;
+  std::string pos = fco.registry_value ("PartRegs/Behavior/Position");
+  return pos >>= pt;
 }
 
 //
-// get_position
+// set_position
 //
-HRESULT RawComponent::set_position (IMgaFCO * fco, const point_t & pt)
+bool RawComponent::set_position (GME::FCO & fco, const point_t & pt)
 {
-  std::wstring str;
-  str <<= pt;
+  std::string str;
 
-  CComBSTR bstr (str.c_str ());
-  return fco->put_RegistryValue (L"PartRegs/Behavior/Position", bstr);
+  if (!(str <<= pt))
+    return false;
+
+  fco.registry_value ("PartRegs/Behavior/Position", str);
+  return true;
 }
 
 //
 // create_state_and_connect
 //
-HRESULT RawComponent::
-create_state_and_connect (IMgaObject * src,
-                          const std::wstring & conntype)
+void RawComponent::
+create_state_and_connect (GME::Object & src, const std::string & conntype)
 {
   if (this->last_action_)
   {
     // Delete the <active_state_> if the <last_action_> is a subtype
     // of the newly created action.
-    CComPtr <IMgaFCO> basetype;
-    this->last_action_->get_DerivedFrom (&basetype);
+    GME::FCO basetype = this->last_action_.derived_from ();
 
-    if (basetype)
-    {
-      VARIANT_BOOL is_equal;
-      basetype->get_IsEqual (src, &is_equal);
-
-      if (is_equal == VARIANT_TRUE)
-      {
-        this->active_state_->DestroyObject ();
-        this->active_state_.Release ();
-      }
-    }
+    if (basetype && (basetype == src))
+      this->active_state_.destroy ();
   }
 
-  // Get the parent of the current action element.
-  CComPtr <IMgaObject> parent;
-  CComPtr <IMgaObject> object (src);
-  object->GetParent (&parent);
-
   // Get the model interface from the parent.
-  CComPtr <IMgaModel> parent_model;
-  parent->QueryInterface (&parent_model);
+  GME::Model parent = GME::Model::_narrow (src.parent ());
 
   if (this->active_state_)
   {
     // Get the parent of the active state and determine if this
     // state is in the same model as the current action.
-    CComPtr <IMgaObject> temp;
-    this->active_state_->GetParent (&temp);
+    GME::Object temp = this->active_state_.parent ();
 
-    VARIANT_BOOL is_equal;
-    parent->get_IsEqual (temp, &is_equal);
-
-    if (is_equal == VARIANT_FALSE)
-      this->active_state_.Release ();
+    if (!parent == temp)
+      this->active_state_ = 0;
   }
 
+  // Get the FCO interface from the object. We also need to change
+  // the auto router preferences for the action.
+  GME::FCO action = GME::FCO::_narrow (src);
+  action.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
-  // Get the FCO interface from the object. We also need to
-  // change the auto router preferences for the action.
-  CComPtr <IMgaFCO> action;
-  object->QueryInterface (&action);
-  action->put_RegistryValue (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
+  // Resolve worker that own the newly created action.
+  if (action.is_instance ())
+    this->resolve_worker_action (action);
 
   point_t position;
 
   if (this->active_state_)
   {
-    // Create a connection between the <active_state_> and the <action>.
-    CComPtr <IMgaFCO> transition;
+    // Align newly created action with previous state.
+    this->get_position (this->active_state_, position);
 
-    this->create_connection (L"Transition",
-                             parent_model,
-                             this->active_state_,
-                             action,
-                             &transition);
+    position.shift (OFFSET_X, OFFSET_Y);
+    this->set_position (action, position);
+
+    // Create a connection between the <active_state_> and the <action>.
+    GME::Connection transition =
+      GME::Connection::_create ("Transition",
+                                parent,
+                                this->active_state_,
+                                action);
   }
 
-  // Create the new state element for the action.
-  CComPtr <IMgaFCO> state;
-  this->create_model (L"State", parent_model, &state);
+  // Create the new State element for the action.
+  GME::Atom state = GME::Atom::_create ("State", parent);
+  state.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
-  if (state)
+  // Create the effect connection from the action to the state.
+  GME::Connection effect =
+    GME::Connection::_create (conntype,
+                              parent,
+                              action,
+                              state);
+
+  // Align the <state> to the right of the <action>.
+  this->get_position (action, position);
+  position.shift (OFFSET_X, -OFFSET_Y);
+  this->set_position (state, position);
+}
+
+//
+// handle_objevent_modelopen
+//
+void RawComponent::
+handle_objevent_modelopen (GME::Object & obj)
+{
+  // Get the metaname of the object
+  std::string metaname = obj.meta ().name ();
+
+  if (metaname == "Component")
   {
-    state->put_RegistryValue (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
+    // Extract the FCO object from the object.
+    GME::Model model = GME::Model::_narrow (obj);
 
-    if (this->active_state_ != 0)
+    if (!model.is_instance ())
     {
-      // Align newly created action with previous state.
-      this->get_position (this->active_state_, position);
-      position.shift (OFFSET_X, OFFSET_Y);
-      this->set_position (action, position);
+      // Gather all the workers in the component.
+      typedef GME::Collection_T <GME::Reference> worker_set_type;
+      worker_set_type workers;
+
+      model.references ("WorkerType", workers);
+
+      // Cache information about worker's in this component.
+      std::for_each (workers.begin (),
+                     workers.end (),
+                     boost::bind (&RawComponent::cache_worker_type,
+                                  this,
+                                  _1));
+    }
+  }
+}
+
+//
+// handle_objevent_modelopen
+//
+void RawComponent::
+handle_objevent_modelclose (GME::Object & obj)
+{
+  // Clear the worker infomration.
+  this->workers_.clear ();
+  this->worker_types_.clear ();
+
+  // Clear the output information.
+  this->outputs_.clear ();
+}
+
+//
+// cache_worker_type
+//
+void RawComponent::cache_worker_type (const GME::Reference & worker)
+{
+  // Get the reference for this worker.
+  GME::FCO ref = worker.refers_to ();
+
+  if (ref)
+  {
+    // Cache this worker type for the component.
+    GME::Model model = GME::Model::_narrow (ref);
+    this->worker_types_.insert (model);
+
+    // Also, save the worker instance information.
+    this->workers_[model].insert (worker.name ());
+  }
+}
+
+//
+// resolve_worker_action
+//
+void RawComponent::
+resolve_worker_action (GME::FCO & action)
+{
+  // Locate the archetype for this action instance.
+  GME::FCO basetype = action.archetype ();
+
+  while (basetype.is_instance ())
+    basetype = basetype.archetype ();
+
+  // Get the parent of this instance. It should be a Worker.
+  GME::Model worker = GME::Model::_narrow (basetype.parent ());
+
+  // Determine many workers this model contains that match this worker.
+  worker_map_type::iterator iter = this->workers_.find (worker);
+
+  if (iter != this->workers_.end ())
+  {
+    std::string name;
+
+    if (iter->second.size () == 1)
+    {
+      name = *iter->second.begin ();
+    }
+    else
+    {
+      // Need to display a dialog for selecting a name.
     }
 
-    this->active_state_ = state;
-
-    // Create the effect connection from the action to the state.
-    CComPtr <IMgaFCO> effect;
-
-    this->create_connection (conntype.c_str (),
-                             parent_model,
-                             action,
-                             this->active_state_,
-                             &effect);
-
-    // Align the <state> to the right of the <action>.
-    this->get_position (action, position);
-    position.shift (OFFSET_X, -OFFSET_Y);
-    this->set_position (this->active_state_, position);
+    if (!name.empty ())
+      action.name (name);
   }
-
-  return S_OK;
 }
