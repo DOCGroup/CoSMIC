@@ -19,6 +19,7 @@ project (CBMLManager): boost_base, game, cosmic_common, mfc, cosmic_utils, regis
 
   Source_Files {
     RawComponent.cpp
+    String_Selection_Dialog.cpp
 
     $(GME_ROOT)/SDK/BON/ComHelp.cpp
     $(GME_ROOT)/SDK/BON/ComponentLib.idl
@@ -28,15 +29,16 @@ project (CBMLManager): boost_base, game, cosmic_common, mfc, cosmic_utils, regis
 
   Header_Files {
     RawComponent.h
-    Resource.h
+    resource.h
     ComponentLib.h
     ComponentConfig.h
+
     $(GME_ROOT)/SDK/BON/ComHelp.h
     $(GME_ROOT)/SDK/BON/ComponentDll.h
     $(GME_ROOT)/SDK/BON/ComponentObj.h
   }
 
   Resource_Files {
-
+    Component.rc
   }
 }

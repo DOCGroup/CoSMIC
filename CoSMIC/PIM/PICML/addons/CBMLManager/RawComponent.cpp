@@ -5,6 +5,7 @@
 #include "GMECOM.h"
 #include "ComponentConfig.h"
 #include "RawComponent.h"
+#include "String_Selection_Dialog.h"
 #include "GME/Connection.h"
 #include "GME/MetaBase.h"
 #include "GME/Model.h"
@@ -495,8 +496,7 @@ void RawComponent::cache_worker_type (const GME::Reference & worker)
 //
 // resolve_worker_action
 //
-void RawComponent::
-resolve_worker_action (GME::FCO & action)
+void RawComponent::resolve_worker_action (GME::FCO & action)
 {
   // Locate the archetype for this action instance.
   GME::FCO basetype = action.archetype ();
@@ -521,6 +521,17 @@ resolve_worker_action (GME::FCO & action)
     else
     {
       // Need to display a dialog for selecting a name.
+      String_Selection_Dialog dialog (iter->second, ::AfxGetMainWnd ());
+
+      // Set the title of the dialog box.
+      std::ostringstream ostr;
+      ostr << "Select target " << worker.name () << " worker";
+
+      dialog.title (ostr.str ().c_str ());
+
+      // Display the dialog for the end-user.
+      if (dialog.DoModal () == IDOK)
+        name = dialog.selection ();
     }
 
     if (!name.empty ())

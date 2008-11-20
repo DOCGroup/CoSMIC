@@ -1,3 +1,17 @@
+Thu Nov 20 04:57:35 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/Component.rc:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.cpp:
+
+          . Improved the intellisense for setting the name of a newly
+            created worker action. If a component model has more then
+            one worker of the same type, a dialog is displayed to allow
+            end-users to select the target worker of the action.
+
 Thu Nov 20 00:48:06 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.cpp:
@@ -5,8 +19,8 @@ Thu Nov 20 00:48:06 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/HFSM.h:
         * Utils/UDM_DSL/UdmApp.cpp:
-		
-		  Improved FullTD. Now FullTD uses All.
+
+      Improved FullTD. Now FullTD uses All.
 
 Wed Nov 19 17:18:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
