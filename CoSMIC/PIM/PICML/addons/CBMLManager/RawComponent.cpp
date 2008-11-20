@@ -252,7 +252,7 @@ void RawComponent::handle_objevent_destroyed (GME::Object & obj)
 {
   GME::FCO fco = GME::FCO::_narrow (obj);
 
-  if (this->active_state_ == fco)
+  if (this->active_state_ && this->active_state_ == fco)
     this->active_state_ = 0;
 }
 
@@ -327,6 +327,11 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
       else if (metaname == "State")
       {
         this->active_state_ = GME::FCO::_narrow (obj);
+      }
+      else if (metaname == "WorkerType")
+      {
+        GME::Reference ref = GME::Reference::_narrow (obj);
+        this->cache_worker_type (ref);
       }
     }
   }
