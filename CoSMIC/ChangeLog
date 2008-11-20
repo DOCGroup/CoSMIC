@@ -1,3 +1,9 @@
+Thu Nov 20 05:03:23 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+
+          . Missing source file.
+
 Thu Nov 20 04:57:35 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
