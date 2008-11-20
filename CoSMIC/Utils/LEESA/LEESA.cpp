@@ -592,17 +592,29 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 	}
 };
 
-template <class E>
-struct FailOp : LEESAUnaryFunction <E>, OpBase
+template <class Kind>
+struct FailOp : public LEESAUnaryFunction<Kind>, OpBase
 {
-	typedef typename 
-		ChainExpr<E, FailOp<argument_type> > expression_type;
+  public:
+    typedef ChainExpr<Kind, FailOp> expression_type;
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
 
-	result_type operator () (argument_type const & arg)
-	{
-		throw LEESAException("FailOp");
-    return arg;
-	}
+    template <class U>
+    struct rebind
+    {
+      typedef FailOp<U> type;
+    };
+
+    explicit FailOp (){}
+
+    template <class U>
+    explicit FailOp (FailOp<U> const &) {}
+
+    result_type operator ()(argument_type k)
+    {
+      throw LEESA::LEESAException<argument_type> ("From FailOp");      
+      return k;
+    }
 };
 
 template <class K, class C1, class C2>

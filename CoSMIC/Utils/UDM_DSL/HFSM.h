@@ -635,7 +635,7 @@ namespace HFSM {
 		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< > ChildrenKinds;
+		typedef boost::mpl::vector0< > ChildrenKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;

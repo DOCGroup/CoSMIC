@@ -82,6 +82,10 @@ class CountVisitor : public HFSM::Visitor
   int count_;
 public:
   CountVisitor () : count_(0) {}
+  void Visit_RootFolder(const RootFolder &rf) {
+    std::string name = std::string("RootFolder: ") + std::string(rf.name());
+    AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  }
   void Visit_Transition(const Transition &t) {
     std::string name = std::string("Transition: ") + std::string(t.name());
     AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
@@ -129,7 +133,7 @@ public:
 
 CountVisitor cv;
 
-void print (State s)
+void print (RootFolder s)
 {
   //MgaObject o = s;
   Udm::Object o = s;
@@ -153,7 +157,7 @@ void recurse (State s)
   //evaluate(s, expr);
 }
 
-struct MyFullTD_Custom
+struct MyCustom
 {
   CUSTOM_COMMON;
   CUSTOM_PARENT(StateMachine, CHILDREN(BaseState));
@@ -177,16 +181,15 @@ int leesa_example(RootFolder rf)
               StateMachine() >>= BaseState() >> cv,
               StateMachine() >> BaseState()));
 */
-/*
-  VisitStrategy<State> vs(cv);
-  typedef LEESA::Sequence<State, VisitStrategy<State>, VisitStrategy<State> > SeqVisitVisit;
-  SeqVisitVisit c (vs,vs);
-  FullTD<State, SeqVisitVisit> z (c);
-  evaluate(rf, RootFolder() >> StateMachine());// State() >> CallStrategyOn(State(), z));
-*/
 
-  typedef FullTD<RootFolder, VisitStrategy<RootFolder>, MyFullTD_Custom> FullRoot;
-  evaluate (rf, Call(RootFolder(), FullRoot(VisitStrategy<RootFolder> (cv))));
+  try {
+    BOOST_AUTO(expr, RootFolder() >>= StateMachine()
+      >> FullTD(StateMachine(), VisitStrategy(cv)));
+    evaluate(rf, expr);
+  }
+  catch(const std::runtime_error & e) {
+    AfxMessageBox (e.what(), MB_OK| MB_ICONINFORMATION);
+  }
 
   return cv.get_count();
 }

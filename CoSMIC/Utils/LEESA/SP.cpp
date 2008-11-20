@@ -30,6 +30,25 @@
 
 #define CHILDREN(...) __VA_ARGS__
 
+#define FUNCTION_FOR_SP_OP(OP)                                      \
+  template <class X, class Y, class Z>                              \
+  OP##Op<X, Y, Z>                                                   \
+  OP (X, Y const & y, Z) {                                          \
+	  typedef typename ET<X>::argument_kind argument_kind;            \
+	  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
+    return OP##Op<X, Y, Z> (y);                                     \
+  }                                                                 \
+  template <class X, class Y>                                       \
+  OP##Op<X, Y, AllChildrenKinds>                                    \
+  OP (X, Y const & y)  {                                            \
+	  typedef typename ET<X>::argument_kind argument_kind;            \
+	  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
+    return OP##Op<X, Y, AllChildrenKinds> (y);                      \
+  }
+
+
+
+
 namespace LEESA {
 
 using boost::mpl::front;
@@ -54,7 +73,7 @@ using boost::mpl::push_back;
    result of using mpl::pop_back on a specialization of mpl::vector will 
    not be another specialization of mpl::vector!
 */
-//typedef boost::mpl::vector0<boost::mpl::na> EmptyMPLVector;
+typedef boost::mpl::vector<> EmptyMPLVectorB;
 typedef boost::mpl::vector0<> EmptyMPLVector;
 /*
 template <class T = EmptyMPLVector >
@@ -84,29 +103,22 @@ struct Intersection <V1, EmptyMPLVector >
   typedef EmptyMPLVector type;
 };
 
+template <class V1>
+struct Intersection <V1, EmptyMPLVectorB >
+{
+  typedef EmptyMPLVector type;
+};
+
+template <class T = void>
 struct LEESAException : public std::runtime_error
 {
   LEESAException (const std::string &s = "")
-    : std::runtime_error (std::string("LEESAException: ") + s) 
+    : std::runtime_error (std::string("LEESAException (") +
+                          typeid(T).name() + "): " + s) 
   {}
 };
 
-struct FullTD_Custom
-{
-  template <class T>
-  struct ChildrenKinds
-  {
-    typedef typename T::ChildrenKinds type;
-  };
-  /*
-  template <>
-  struct ChildrenKinds <PARADIGM_NAMESPACE_FOR_LEESA::StateMachine>
-  {
-    typedef boost::mpl::vector<PARADIGM_NAMESPACE_FOR_LEESA::BaseState> type;
-  };*/
-};
-
-struct All_Custom
+struct AllChildrenKinds
 {
   template <class T>
   struct ChildrenKinds
@@ -115,20 +127,27 @@ struct All_Custom
   };
 };
 
-struct One_Custom
-{
-  template <class T>
-  struct ChildrenKinds
-  {
-    typedef typename T::ChildrenKinds type;
-  };
-};
 
 template <class T, class Func> struct CallerOp;
+template <class X, class Y, class Z> struct OneOp;
+template <class X, class Y, class Z> struct AllOp;
+template <class X, class Y, class Z> struct FullTDOp;
 
 template <class T, class U>
 struct ET <CallerOp<T, U> > 
 	: public ETBase <CallerOp<T, U> > {};
+
+template <class X, class Y, class Z>
+struct ET <OneOp<X, Y, Z> > 
+	: public ETBase <OneOp<X, Y, Z> > {};
+
+template <class X, class Y, class Z>
+struct ET <AllOp<X, Y, Z> > 
+	: public ETBase <AllOp<X, Y, Z> > {};
+
+template <class X, class Y, class Z>
+struct ET <FullTDOp<X, Y, Z> > 
+	: public ETBase <FullTDOp<X, Y, Z> > {};
 
 template <class E, class Func>
 struct CallerOp : LEESAUnaryFunction <E>, OpBase
@@ -145,10 +164,212 @@ struct CallerOp : LEESAUnaryFunction <E>, OpBase
 		return arg;
 	}
 };
-/*
-#define CALLER_OP CallerOp<K, Expr>
-GT_PARA_OPERATOR_DEFINITION_3T(L,K,Expr,CALLER_OP);
-*/
+
+
+
+template <class K, class Strategy = KindLit<K>, class Custom = AllChildrenKinds>
+struct OneOp : LEESAUnaryFunction <K>, OpBase
+{
+    typedef typename 
+		  ChainExpr<K, OneOp> expression_type;  
+	  typedef typename ET<K>::result_kind argument_kind;
+
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+
+    template <class U>
+    struct rebind
+    {
+      typedef OneOp<U, typename Strategy::template rebind<U>::type, Custom > type;
+    };
+
+    Strategy strategy_;
+    bool success_;
+
+    explicit OneOp (Strategy const & s)
+      : strategy_(s), success_(false) {} 
+
+    template <class X, class Y, class Z>
+    explicit OneOp (OneOp <X, Y, Z> const & o)
+      : strategy_(o.strategy_)
+    {}
+
+    result_type operator () (argument_type const & arg)
+    {
+      if (!arg.isEmpty())
+      {
+        typedef typename Custom::template 
+          ChildrenKinds<argument_kind>::type CustomChildren;
+        typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type 
+          CommonChildrenTypes;
+        
+        success_ = false;
+        children(arg, CommonChildrenTypes());
+        if(!success_) throw LEESAException<argument_type>();
+      }
+      else
+        throw LEESAException<argument_type>();
+      return arg;
+    }
+
+  private:
+    // Called when ChildrenVector is non-empty. 
+    template <class KindLit, class ChildrenVector>
+    void children(KindLit arg, ChildrenVector)
+    {
+      typedef typename ET<KindLit>::argument_kind K;
+      typedef typename front<ChildrenVector>::type head;
+      typedef typename pop_front<ChildrenVector>::type tail;
+      typename Strategy::template rebind<head>::type s(strategy_);
+      typedef typename ContainerGen<head>::type HeadVector;
+      HeadVector head_vector = evaluate (arg, K() >> head());
+      for (HeadVector::iterator iter = head_vector.begin();
+           iter != head_vector.end() && !success_;)
+      {
+        try {
+          s(*iter);
+          success_ = true;
+          break;
+        }
+        catch (...) {
+          ++iter;
+        }
+      }
+      if (!success_)
+        children(arg, tail());
+    }
+    // Called when ChildrenVector is empty.
+    template <class KindLit>
+    void children(KindLit const & arg, EmptyMPLVector)
+    {
+    }
+};
+
+template <class K, class Strategy = KindLit<K>, class Custom = AllChildrenKinds>
+struct AllOp : LEESAUnaryFunction <K>, OpBase
+{
+    typedef typename 
+		  ChainExpr<K, AllOp> expression_type;  
+	  typedef typename ET<K>::result_kind argument_kind;
+
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+
+    template <class U>
+    struct rebind
+    {
+      typedef AllOp<U, typename Strategy::template rebind<U>::type, Custom> type;
+    };
+
+    Strategy strategy_;
+    explicit AllOp (Strategy const & s)
+      : strategy_(s) {} 
+
+    template <class X, class Y, class Z>
+    explicit AllOp (AllOp <X, Y, Z> const & a)
+      : strategy_(a.strategy_)
+    {}
+
+    result_type operator () (argument_type const & arg)
+    {
+      if (!arg.isEmpty())
+      {
+        typedef typename Custom::template 
+          ChildrenKinds<argument_kind>::type CustomChildren;
+        typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type 
+          CommonChildrenTypes;
+        children(arg, CommonChildrenTypes());
+      }
+      return arg;
+    }
+
+  private:
+    // Called when ChildrenVector is non-empty. 
+    template <class KindLit, class ChildrenVector>
+    void children(KindLit arg, ChildrenVector)
+    {
+      typedef typename ET<KindLit>::argument_kind K;
+      typedef typename front<ChildrenVector>::type head;
+      typedef typename pop_front<ChildrenVector>::type tail;
+      typedef typename Strategy::template rebind<head>::type HeadStrategy;
+      HeadStrategy hs(strategy_);
+      //hs(evaluate(arg, K() >> head()));
+      typedef GetChildrenOp<KindLit, typename ET<head>::argument_type > GC;
+      GC gc;
+      ChainExpr<KindLit, GC> c(KindLit(), gc);
+      hs(evaluate(arg, c));
+      children(arg, tail());
+    }
+    // Called when ChildrenVector is empty.
+    template <class KindLit>
+    void children(KindLit, EmptyMPLVector)
+    {
+    }
+};
+
+template <class K, class Strategy, class Custom = AllChildrenKinds>
+struct FullTDOp : LEESAUnaryFunction <K>, OpBase
+{
+    typedef typename 
+		  ChainExpr<K, FullTDOp> expression_type;  
+	  typedef typename ET<K>::result_kind argument_kind;
+
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+
+    template <class U>
+    struct rebind
+    {
+      typedef FullTDOp<U, typename Strategy::template rebind<U>::type, Custom> type;
+    };
+
+    Strategy strategy_;
+
+    template <class X, class Y, class Z>
+    explicit FullTDOp (FullTDOp<X, Y, Z> const & f)
+      : strategy_(f.strategy_)
+    {}
+
+    explicit FullTDOp (Strategy const & s) 
+      : strategy_(s) {} 
+
+    result_type operator () (argument_type const & arg)
+    {
+      if (!arg.isEmpty())
+      {
+        strategy_(arg);
+        AllOp<K, FullTDOp, Custom> all(*this);
+        all(arg);
+      }
+      return arg;
+    }
+};
+
+class VisitStrategy
+{
+    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
+  public:
+
+    template <class U>
+    struct rebind
+    {
+      typedef VisitStrategy type;
+    };
+  
+    explicit VisitStrategy (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) 
+      : visitor_(v) {} 
+
+    template <class U>
+    U operator ()(U const & k)
+    {
+      using namespace LEESA;
+      typedef typename ET<U>::argument_kind Kind;
+      BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<Kind>));
+      evaluate(k, Kind() >> visitor_);
+      return k;
+    }
+    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & getVisitor() const
+    {
+      return visitor_;
+    }
+};
 
 template <class E, class Func>
 CallerOp<typename ET<E>::result_type, Func> 
@@ -178,353 +399,10 @@ Call (E, Result (*f) (Arg))
 	return caller;
 }
 
-template <class K, class Strategy, class Custom = FullTD_Custom>
-struct FullTD : LEESAUnaryFunction <K>, OpBase
-{
-    typedef typename 
-		  ChainExpr<K, FullTD> expression_type;  
-	  typedef void result_kind;
-	  typedef typename ET<K>::result_kind argument_kind;
+FUNCTION_FOR_SP_OP(One);
+FUNCTION_FOR_SP_OP(All);
+FUNCTION_FOR_SP_OP(FullTD);
 
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-    //enum { MODEL_OR_FOLDER = 
-    //boost::is_same<typename K::MetaKind, Udm::ModelMetaTag>::value |
-    //boost::is_same<typename K::MetaKind, Udm::FolderMetaTag>::value };
-    //BOOST_MPL_ASSERT_RELATION(MODEL_OR_FOLDER, !=, 0);
-
-    template <class U>
-    struct rebind
-    {
-      typedef FullTD<U, typename Strategy::template rebind<U>::type, Custom> type;
-    };
-
-    Strategy strategy_;
-
-    template <class X, class Y, class Z>
-    explicit FullTD (FullTD<X, Y, Z> const & f)
-      : strategy_(f.strategy_)
-    {}
-
-    explicit FullTD (Strategy const & s) 
-      : strategy_(s) {} 
-    result_type operator () (argument_type const & arg)
-    {
-      if (!arg.isEmpty())
-      {
-        strategy_(arg);
-        children(arg, typename argument_kind::MetaKind());
-      }
-      return arg;
-    }
-
-  private:
-    /* Called when MetaTag is ModelMetaTag. */
-    template <class KindLit>
-    void children (KindLit const & arg, Udm::ModelMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    /* Called when MetaTag is FolderMetaTag. */
-    template <class KindLit>
-    void children (KindLit const & arg, Udm::FolderMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    /* Called when MetaTag is something other that Model, Folder. */
-    template <class KindLit>
-    void children (KindLit, Udm::MetaTagBase)
-    {
-    }
-    /* Called when ChildrenVector is non-empty. */
-    template <class KindLit, class ChildrenVector>
-    void has_member(KindLit const & arg, ChildrenVector)
-    {
-      typedef typename front<ChildrenVector>::type head;
-      typedef typename pop_front<ChildrenVector>::type tail;
-      typedef typename ET<KindLit>::result_kind Kind;
-      typedef typename Strategy::template rebind<head>::type HeadStrategy;
-      HeadStrategy head_strategy(strategy_);
-      FullTD<head, HeadStrategy, Custom> ftd (head_strategy);
-      ftd(evaluate(arg, Kind() >> head()));
-      has_member(arg, tail());
-    }
-    /* Called when ChildrenVector is empty. */
-    template <class KindLit>
-    void has_member (KindLit, EmptyMPLVector)
-    {
-    }
-};
-
-
-template <class K, class Strategy = KindLit, class Custom = All_Custom>
-struct All : LEESAUnaryFunction <K>, OpBase
-{
-    typedef typename 
-		  ChainExpr<K, All> expression_type;  
-	  typedef void result_kind;
-	  typedef typename ET<K>::result_kind argument_kind;
-
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-    //enum { MODEL_OR_FOLDER = 
-    //  boost::is_same<typename K::MetaKind, Udm::ModelMetaTag>::value |
-    //  boost::is_same<typename K::MetaKind, Udm::FolderMetaTag>::value };
-    //BOOST_MPL_ASSERT_RELATION(MODEL_OR_FOLDER, !=, 0);
-
-    template <class U>
-    struct rebind
-    {
-      typedef All<U, typename Strategy::template rebind<U>::type, Custom > type;
-    };
-
-    Strategy strategy_;
-    explicit All (Strategy const & s)
-      : strategy_(s) {} 
-    result_type operator () (argument_type const & arg)
-    {
-      if (!arg.isEmpty())
-      {
-        strategy_(arg);
-        children(arg, typename argument_kind::MetaKind());
-      }
-      return arg;
-    }
-
-  private:
-    // Called when MetaTag is ModelMetaTag.
-    template <class KindLit>
-    void children (KindLit arg, Udm::ModelMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    // Called when MetaTag is FolderMetaTag.
-    template <class KindLit>
-    void children (KindLit arg, Udm::FolderMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    // Called when MetaTag is something other that Model, Folder.
-    template <class KindLit>
-    void children (KindLit, Udm::MetaTagBase const &)
-    {
-    }
-    // Called when ChildrenVector is non-empty. 
-    template <class KindLit, class ChildrenVector>
-    void has_member(KindLit arg, ChildrenVector)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename front<ChildrenVector>::type head;
-      typedef typename pop_front<ChildrenVector>::type tail;
-      typename Strategy::template rebind<head>::type s(strategy_);
-      s(evaluate(arg, K() >> head()));
-      has_member(arg, tail());
-    }
-    // Called when ChildrenVector is empty.
-    template <class KindLit>
-    void has_member (KindLit, EmptyMPLVector)
-    {
-    }
-};
-
-template <class K, class Strategy = KindLit, class Custom = One_Custom>
-struct One : LEESAUnaryFunction <K>, OpBase
-{
-    typedef typename 
-		  ChainExpr<K, One> expression_type;  
-	  typedef void result_kind;
-	  typedef typename ET<K>::result_kind argument_kind;
-
-    //BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-    //enum { MODEL_OR_FOLDER = 
-    //  boost::is_same<typename K::MetaKind, Udm::ModelMetaTag>::value |
-    //  boost::is_same<typename K::MetaKind, Udm::FolderMetaTag>::value };
-    //BOOST_MPL_ASSERT_RELATION(MODEL_OR_FOLDER, !=, 0);
-
-    template <class U>
-    struct rebind
-    {
-      typedef One<U, typename Strategy::template rebind<U>::type, Custom > type;
-    };
-
-    Strategy strategy_;
-    explicit One (Strategy const & s)
-      : strategy_(s) {} 
-    result_type operator () (argument_type const & arg)
-    {
-      if (!arg.isEmpty())
-        children(arg, typename argument_kind::MetaKind());
-      else
-        throw LEESAException();
-      return arg;
-    }
-
-  private:
-    // Called when MetaTag is ModelMetaTag.
-    template <class KindLit>
-    void children (KindLit const & arg, Udm::ModelMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    // Called when MetaTag is FolderMetaTag.
-    template <class KindLit>
-    void children (KindLit const & arg, Udm::FolderMetaTag)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename Custom::template ChildrenKinds<K>::type CustomChildren;
-      typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type Members;
-      has_member(arg, Members());
-    }
-    // Called when MetaTag is something other that Model, Folder.
-    template <class KindLit>
-    void children (KindLit, Udm::MetaTagBase const &)
-    {
-    }
-    // Called when ChildrenVector is non-empty. 
-    template <class KindLit, class ChildrenVector>
-    void has_member(KindLit arg, ChildrenVector)
-    {
-      typedef typename ET<KindLit>::argument_kind K;
-      typedef typename front<ChildrenVector>::type head;
-      typedef typename pop_front<ChildrenVector>::type tail;
-      typename Strategy::template rebind<head>::type s(strategy_);
-      try {
-        bool success = false;
-        typedef typename ContainerGen<head>::type HeadVector;
-        HeadVector head_vector = evaluate (arg, K() >> head());
-        BOOST_FOREACH (head h, head_vector)
-        {
-          try {
-            s(h);
-            success = true;
-            break;
-          }
-          catch (...) {
-          }
-        }
-        if(!success) throw LEESAException();
-      }
-      catch (...) {
-        has_member(arg, tail());
-      }
-    }
-    // Called when ChildrenVector is empty.
-    template <class KindLit>
-    void has_member (KindLit const & arg, EmptyMPLVector)
-    {
-      throw LEESAException();
-    }
-};
-
-template <class Kind>
-class Failure : public LEESAUnaryFunction<Kind>
-{
-  public:
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-
-    template <class U>
-    struct rebind
-    {
-      typedef Failure<U> type;
-    };
-
-    explicit Failure (){}
-
-    template <class U>
-    explicit Failure (Failure<U> const &) {}
-
-    result_type operator ()(argument_type k)
-    {
-      throw LEESA::LEESAException();      
-      return k;
-    }
-};
-
-template <class Kind>
-class VisitStrategy : public LEESAUnaryFunction<Kind>
-{
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
-  public:
-
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-
-    template <class U>
-    struct rebind
-    {
-      typedef VisitStrategy<U> type;
-    };
-  
-    template <class U>
-    explicit VisitStrategy (VisitStrategy<U> const & vs) 
-      : visitor_(vs.getVisitor()) {} 
-    explicit VisitStrategy (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) 
-      : visitor_(v) {} 
-
-    void operator ()(argument_type k)
-    {
-      using namespace LEESA;
-      evaluate(k, Kind() >> visitor_);
-    }
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & getVisitor() const
-    {
-      return visitor_;
-    }
-};
-template <class Kind, 
-          class Strategy1 = KindLit<Kind>, 
-          class Strategy2 = KindLit<Kind> >
-class Sequence : public LEESAUnaryFunction<Kind>
-{
-  public:
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind,
-                                                   Strategy1::argument_kind>));
-    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind,
-                                                   Strategy2::argument_kind>));
-    
-    template <class U>
-    struct rebind
-    {
-      typedef Sequence<U, 
-        typename Strategy1::template rebind<U>::type, 
-        typename Strategy2::template rebind<U>::type> type;
-    };
-
-    Strategy1 strategy1_;
-    Strategy2 strategy2_;
-
-    explicit Sequence (Strategy1 const & s1,
-                       Strategy2 const & s2)
-      : strategy1_(s1), 
-        strategy2_(s2) 
-    {}
-    
-    template <class X, class Y, class Z>
-    explicit Sequence (Sequence <X, Y, Z> const & c)
-      : strategy1_(c.strategy1_), 
-        strategy2_(c.strategy2_)
-    {}
-    result_type operator ()(argument_type k)
-    {
-      using namespace LEESA;
-      evaluate(k, Call(Kind(), strategy1_));
-      evaluate(k, Call(Kind(), strategy2_));
-      return k;
-    }
-};
 
 } // namespace LEESA
 
@@ -579,4 +457,49 @@ class Choice : public LEESAUnaryFunction<Kind>
     }
 };
 
+*/
+
+/*
+template <class Kind, 
+          class Strategy1 = KindLit<Kind>, 
+          class Strategy2 = KindLit<Kind> >
+class Sequence : public LEESAUnaryFunction<Kind>
+{
+  public:
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind,
+                                                   Strategy1::argument_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind,
+                                                   Strategy2::argument_kind>));
+    
+    template <class U>
+    struct rebind
+    {
+      typedef Sequence<U, 
+        typename Strategy1::template rebind<U>::type, 
+        typename Strategy2::template rebind<U>::type> type;
+    };
+
+    Strategy1 strategy1_;
+    Strategy2 strategy2_;
+
+    explicit Sequence (Strategy1 const & s1,
+                       Strategy2 const & s2)
+      : strategy1_(s1), 
+        strategy2_(s2) 
+    {}
+    
+    template <class X, class Y, class Z>
+    explicit Sequence (Sequence <X, Y, Z> const & c)
+      : strategy1_(c.strategy1_), 
+        strategy2_(c.strategy2_)
+    {}
+    result_type operator ()(argument_type k)
+    {
+      using namespace LEESA;
+      evaluate(k, Call(Kind(), strategy1_));
+      evaluate(k, Call(Kind(), strategy2_));
+      return k;
+    }
+};
 */

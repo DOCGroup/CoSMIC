@@ -1,3 +1,13 @@
+Thu Nov 20 00:48:06 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		
+		  Improved FullTD. Now FullTD uses All.
+
 Wed Nov 19 17:18:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/game.mpb:
