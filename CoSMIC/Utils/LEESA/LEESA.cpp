@@ -41,6 +41,7 @@ template <class L, class R> struct GetChildrenOp;
 template <class L, class R> struct DFSChildrenOp;
 template <class L, class R> struct DFSOp;
 template <class L, class R> struct GetParentOp;
+template <class L, class R> struct DFSParentOp;
 template <class L, class R> struct CastOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
@@ -166,12 +167,16 @@ struct ET <DFSChildrenOp<T, U> >
 	: public ETBase <DFSChildrenOp<T, U> > {};
 
 template <class T, class U> 
-struct ET <DFSOp<T, U> > 
-	: public ETBase <DFSOp<T, U> > {};
+struct ET <DFSParentOp<T, U> > 
+	: public ETBase <DFSParentOp<T, U> > {};
 
-template <class T, class U>
+template <class T, class U> 
 struct ET <GetParentOp<T, U> > 
 	: public ETBase <GetParentOp<T, U> > {};
+
+template <class T, class U> 
+struct ET <DFSOp<T, U> > 
+	: public ETBase <DFSOp<T, U> > {};
 
 template <class T, class U>
 struct ET <FilterOp<T, U> > 
@@ -402,7 +407,7 @@ template <class LExpr, class RExpr>
 struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 					             OpBase
 {
-	typedef DFSChildrenOp<LExpr, RExpr> Self;
+	//typedef DFSChildrenOp<LExpr, RExpr> Self;
 	typedef typename 
 		ChainExpr<LExpr, DFSChildrenOp<LExpr, RExpr> > expression_type;
 	typedef void result_kind;
@@ -431,6 +436,38 @@ struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, void
 };
 
 template <class LExpr, class RExpr>
+struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
+					           OpBase
+{
+	typedef DFSParentOp<LExpr, RExpr> Self;
+	typedef typename 
+		ChainExpr<LExpr, DFSParentOp<LExpr, RExpr> > expression_type;
+	typedef void result_kind;
+	typedef typename ET<LExpr>::result_kind argument_kind;
+
+	RExpr expr_;
+	explicit DFSParentOp () {}
+	explicit DFSParentOp (RExpr const & e) : expr_(e) {}
+
+	DFSParentOp (DFSParentOp const &d) : expr_(d.expr_) {}
+	result_type operator () (argument_type const & arg)
+	{
+		typedef typename ET<RExpr>::argument_kind parent_kind;
+		typedef typename ET<LExpr>::result_kind child_kind;
+
+    BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept<child_kind, parent_kind>));
+
+		typename ContainerGen<child_kind>::type v = arg;
+		BOOST_FOREACH(child_kind kind, v)
+		{
+			parent_kind parent = kind.parent_kind<parent_kind>();
+			expr_(parent);
+		}
+	}
+};
+
+
+template <class LExpr, class RExpr>
 struct DFSOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 			         OpBase
 {
@@ -453,37 +490,6 @@ struct DFSOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 	{
 		typename ContainerGen<argument_kind>::type v = arg;
 		std::for_each(v.begin(), v.end(), expr_);
-	}
-};
-
-template <class LExpr, class RExpr>
-struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
-					           OpBase
-{
-	typedef DFSParentOp<LExpr, RExpr> Self;
-	typedef typename 
-		ChainExpr<LExpr, DFSParentOp<LExpr, RExpr> > expression_type;
-	typedef void result_kind;
-	typedef typename ET<LExpr>::result_kind argument_kind;
-
-	RExpr expr_;
-	explicit DFSParentOp () {}
-	explicit DFSParentOp (RExpr const & e) : expr_(e) {}
-
-	DFSParentOp (DFSParentOp const &d) : expr_(d.expr_) {}
-	result_type operator () (argument_type const & arg)
-	{
-		typedef typename ET<RExpr>::argument_kind parent_kind;
-		typedef typename ET<LExpr>::result_kind child_kind;
-
-    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
-
-		typename ContainerGen<child_kind>::type v = arg;
-		BOOST_FOREACH(child_kind kind, v)
-		{
-			parent_kind parent = kind.parent_kind<parent_kind>();
-			expr_(parent);
-		}
 	}
 };
 
@@ -548,8 +554,7 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>,
 };
 
 template <class L, class H>
-struct GetParentOp : LEESAUnaryFunction <L, H>,
-					           OpBase
+struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
 {
 	typedef typename 
 		ChainExpr<L, GetParentOp<argument_type, result_type> > expression_type;
@@ -558,13 +563,15 @@ struct GetParentOp : LEESAUnaryFunction <L, H>,
 	GetParentOp (GetParentOp const &) {}
 	result_type operator () (argument_type const & arg)
 	{
-    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<result_kind, argument_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <argument_kind, result_kind>));
 
 		result_type retval;
 		typename ContainerGen<argument_kind>::type v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			retval.Union(kind.parent_kind<result_kind>());
+      result_kind parent = kind.parent_kind<result_kind>();
+      if (std::count (retval.begin(), retval.end(), parent) == 0)
+			  retval.Union(parent);
 		}
 		return retval;
 	}
@@ -852,8 +859,8 @@ struct AssociationOp : LEESAUnaryFunction <TARGETCLASS, RESULT>,
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			result_kind r = (kind.*func_)();
-			//if (r != Udm::null)
-				retval.Union(r);
+      if (r != Udm::null) // This check is important. Don't remove.
+		    retval.Union(r);
 		}
 		return retval;
 	}
@@ -903,8 +910,8 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			result_kind r = (kind.*func_)();
-			//if (r != Udm::null)
-				retval.Union(r);
+      if (r != Udm::null) // This check is important. Don't remove.
+        retval.Union(r);
 		}
 		return retval;
 	}
@@ -1301,7 +1308,8 @@ operator >> (VisitorAsIndex<L> vl, SequenceExpr<H,X> const & s)
 template <class L, class H>
 typename disable_if_c
   <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>::value |
-   is_base_of<std::ios_base, L>::value,
+   is_base_of<std::ios_base, L>::value |
+   is_base_of <OpBase, H>::value,
    typename ChainedOperator<L,H,GetParentOp>::Op>::type
 operator << (L const &l, H)
 {
@@ -1311,16 +1319,68 @@ operator << (L const &l, H)
 	
 	// Don't replace the following with LOCAL_TYPEDEFS.
 	typedef GetParentOp<typename ET<L>::result_type, 
-                      typename ET<H>::result_type>  OP;
+                      typename ET<H>::argument_type>  OP;
 	typedef typename ET<L>::expression_type ChildKindExpr;
-	typedef typename ET<H>::result_kind ParentKind;
-	typedef typename ChildKindExpr::result_kind ChildKind;
+	typedef typename ET<H>::argument_kind ParentKind;
+	typedef typename ET<L>::result_kind ChildKind;
 	typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
 
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <ChildKind, ParentKind>));
 
 	return ChainExpr(ChildKindExpr(l), OP());
 }
+
+template <class L, class H>
+typename disable_if
+  <is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>,
+   ChainExpr<typename ET<L>::expression_type, 
+ 		         DFSParentOp<typename ET<L>::expression_type,
+		 			               typename ET<H>::expression_type>
+		        >
+  >::type
+operator <<= (L const &l, H const & h)
+{
+	BOOST_MPL_ASSERT_NOT((boost::is_base_of<OpBase, H>));
+  BOOST_MPL_ASSERT_NOT((boost::is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>));
+	
+	typedef typename ET<L>::expression_type ParentExpr;
+	typedef typename ET<H>::expression_type ChildExpr;
+	typedef typename DFSParentOp<ParentExpr, ChildExpr> Operator;
+	typedef typename ET<L>::result_kind ChildKind;
+	typedef typename ET<H>::argument_kind ParentKind;
+	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
+
+  BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <ChildKind, ParentKind>));
+
+  Operator op(h);
+	return ChainExpr(ParentExpr(l), op);
+}
+
+template <class L, class OP>                              
+typename disable_if_c<                                             
+  is_base_of <VisitorAsIndexBase, L>::value |                     
+  is_base_of <std::ios_base, L>::value |
+  !is_base_of <OpBase, OP>::value,                             
+  ChainExpr<typename ET< L >::expression_type, OP> >::type  
+operator << (L const &l, OP op) 
+{                            
+  LOCAL_TYPEDEFS(L, OP);                               
+  return ChainExpr(ParentKindExpr(l), op);                   
+}
+
+template <class L>
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
+            typename VisitorOp<typename ET<L>::result_type> > 
+  >::type
+operator << (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
+{
+	typedef VisitorOp<typename ET<L>::result_type> OP;
+	LOCAL_TYPEDEFS(L, OP);
+
+	return ChainExpr(ParentKindExpr(l), OP(v));
+}
+
 
 template <class L, class R>
 typename disable_if

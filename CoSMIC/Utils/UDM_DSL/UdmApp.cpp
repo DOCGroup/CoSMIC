@@ -182,10 +182,18 @@ int leesa_example(RootFolder rf)
               StateMachine() >> BaseState()));
 */
 
+  ContainerGen<State>::type states = 
+    evaluate(rf, RootFolder() >> StateMachine() 
+              >> BaseState() >> CastFromTo(BaseState(), State()));
+  evaluate(states, State() << StateMachine() 
+                    << RootFolder() << Unique(RootFolder()) << cv);
+
   try {
-    BOOST_AUTO(expr, RootFolder() >>= StateMachine()
-      >> FullTD(StateMachine(), VisitStrategy(cv)));
-    evaluate(rf, expr);
+    BOOST_AUTO(expr, RootFolder()
+      //>> FullTD(RootFolder(), VisitStrategy(cv))
+      >> InputSequence() >> Events()
+      >>& Events::srcSequence >> cv);
+    //evaluate(rf, expr);
   }
   catch(const std::runtime_error & e) {
     AfxMessageBox (e.what(), MB_OK| MB_ICONINFORMATION);
