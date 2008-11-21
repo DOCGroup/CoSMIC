@@ -1340,9 +1340,8 @@ typename disable_if
   >::type
 operator <<= (L const &l, H const & h)
 {
-	BOOST_MPL_ASSERT_NOT((boost::is_base_of<OpBase, H>));
-  BOOST_MPL_ASSERT_NOT((boost::is_base_of<PARADIGM_NAMESPACE_FOR_LEESA::Visitor, H>));
-	
+  BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, H>));
+
 	typedef typename ET<L>::expression_type ParentExpr;
 	typedef typename ET<H>::expression_type ChildExpr;
 	typedef typename DFSParentOp<ParentExpr, ChildExpr> Operator;
@@ -1369,12 +1368,15 @@ operator << (L const &l, OP op)
 }
 
 template <class L>
-typename disable_if<is_base_of<std::ios_base, L>, 
+typename disable_if<
+  is_base_of<std::ios_base, L>, 
   ChainExpr<typename ET<L>::expression_type, 
             typename VisitorOp<typename ET<L>::result_type> > 
   >::type
 operator << (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
+  BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, L>));
+
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
 
@@ -1392,6 +1394,8 @@ typename disable_if
 >::type
 operator >>= (L const &l, R const &r)
 {
+  BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, H>));
+
 	typedef typename ET<L>::expression_type ParentExpr;
 	typedef typename ET<R>::expression_type ChildExpr;
 	typedef typename DFSChildrenOp<ParentExpr, ChildExpr> Operator;

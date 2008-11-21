@@ -1,4 +1,4 @@
-project : vc8warnings  {
+project : vc8warnings, boost_base  {
    libout = $(COSMIC_ROOT)/lib
    dllout = $(COSMIC_ROOT)/bin
    includes += $(COSMIC_ROOT)

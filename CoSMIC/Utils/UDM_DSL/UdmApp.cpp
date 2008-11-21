@@ -182,12 +182,15 @@ int leesa_example(RootFolder rf)
               StateMachine() >> BaseState()));
 */
 
-  ContainerGen<State>::type states = 
-    evaluate(rf, RootFolder() >> StateMachine() 
-              >> BaseState() >> CastFromTo(BaseState(), State()));
-  evaluate(states, State() << StateMachine() 
-                    << RootFolder() << Unique(RootFolder()) << cv);
+  ContainerGen<StartState>::type states = 
+  evaluate(rf, RootFolder() >> StateMachine()
+              >> BaseState() >> CastFromTo(BaseState(), State())
+              >> BaseState() >> CastFromTo(BaseState(), StartState()));
 
+  evaluate(states, StartState() << Unique(StartState()) << cv 
+                 << BaseState() << cv 
+                 <<= StateMachine() << Unique(StateMachine()) << cv
+                 <<= RootFolder() << Unique(RootFolder()) << cv);
   try {
     BOOST_AUTO(expr, RootFolder()
       //>> FullTD(RootFolder(), VisitStrategy(cv))

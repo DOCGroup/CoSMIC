@@ -1,10 +1,16 @@
+Fri Nov 21 05:16:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cosmic_common.mpb:
+		  Added boost_base. Now all Udm projects need boost because UdmMPL.h
+		  depends on it.
+
 Thu Nov 20 05:56:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.cpp:
 
         * Utils/UDM_DSL/UdmApp.cpp:
-		
-		  Complete support for children and parent axis.
+
+                  Complete support for children and parent axis.
 
 Thu Nov 20 05:20:56 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
