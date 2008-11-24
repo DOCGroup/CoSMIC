@@ -1,3 +1,9 @@
+Mon Nov 24 06:46:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/UdmMPL.h:
+		
+		  New concepts for Adaptive Programming.
+
 Mon Nov 24 06:41:22 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/AP.cpp:
@@ -5,11 +11,11 @@ Mon Nov 24 06:41:22 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/HFSM.h:
         * Utils/UDM_DSL/UdmApp.cpp:
-		
-		  This vesion adds Adpative Programming (AP.cpp) support in LEESA. 
-		  Descendant axis now works as expected but can be made more efficient.
-		  HFSM.h has manually added DescendantKinds meta information. 
-		  UDM should be extended to generate that automatically.
+
+                  This vesion adds Adpative Programming (AP.cpp) support in LEESA.
+                  Descendant axis now works as expected but can be made more efficient.
+                  HFSM.h has manually added DescendantKinds meta information.
+                  UDM should be extended to generate that automatically.
 
 Fri Nov 21 05:16:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
