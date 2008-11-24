@@ -1,8 +1,21 @@
+Mon Nov 24 06:41:22 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		
+		  This vesion adds Adpative Programming (AP.cpp) support in LEESA. 
+		  Descendant axis now works as expected but can be made more efficient.
+		  HFSM.h has manually added DescendantKinds meta information. 
+		  UDM should be extended to generate that automatically.
+
 Fri Nov 21 05:16:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/cosmic_common.mpb:
-		  Added boost_base. Now all Udm projects need boost because UdmMPL.h
-		  depends on it.
+                  Added boost_base. Now all Udm projects need boost because UdmMPL.h
+                  depends on it.
 
 Thu Nov 20 05:56:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

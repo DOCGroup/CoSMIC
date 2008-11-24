@@ -1539,82 +1539,10 @@ evaluate (Para const & p, Expr &e)
 } // end namespace LEESA
 
 #include "SP.cpp"
+#include "AP.cpp"
 
 #endif // __LEESA_CPP
 
-/*
-using boost::mpl::if_c;
-
-template <class Statement>
-struct STOP
-{
-  typedef Statement type;
-};
-
-template <class Condition, class Statement>
-struct WHILE
-{
-  typedef typename if_c <Condition::template Code<Statement>::value,
-                         WHILE<Condition, typename Statement::Next>,
-                         STOP<Statement> >::type::type type;
-};
-
-template <int i_, int x_, int y>
-struct FibStatement
-{
-  enum { i = i_, x = x_ };
-  typedef FibStatement<i+1, x+y, x> Next;
-};
-
-template <int n>
-struct FibCondition
-{
-  template <class Statement>
-  struct Code
-  {
-    enum { value = Statement::i < n };
-  };
-};
-
-template <int n>
-struct Fib
-{
-  enum { value = WHILE<FibCondition<n>, FibStatement<1,1,0> >::type::x };
-};
-
-using boost::mpl::copy;
-using boost::mpl::front_inserter;
-using boost::mpl::pop_front;
-using boost::mpl::front;
-
-template <class ParentKind, class List>
-struct PushFrontChildren
-{
-  BOOST_CLASS_REQUIRE(ParentKind, Udm, UdmKindConcept);
-  typedef typename ParentKind::ChildrenKinds Children;
-  typedef typename copy <Children, front_inserter<List> >::type type;
-};
-
-template <class List>
-struct DFSStatement
-{
-  typedef typename front<List>::type head;
-  typedef typename pop_front<List>::type tail;
-  typedef typename PushFrontChildren<head, tail>::type type;
-  typedef type Next;
-};
-
-template <class AncestorKind, class DescendentKind>
-struct DFSCondition
-{
-  template <class Statement>
-  struct Code
-  {
-    enum { value = Statement::i < n };
-  };
-};
-
-*/
 
 
 /*

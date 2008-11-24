@@ -75,7 +75,6 @@ int CUdmApp::Initialize()
   udm_exception::what() to form an error message.
 */
 
-
 using namespace HFSM;
 class CountVisitor : public HFSM::Visitor 
 {
@@ -135,7 +134,6 @@ CountVisitor cv;
 
 void print (RootFolder s)
 {
-  //MgaObject o = s;
   Udm::Object o = s;
   o.Accept(cv);
 }
@@ -143,18 +141,6 @@ void print (RootFolder s)
 void dispatch (MgaObject mga)
 {
   mga.Accept(cv);
-}
-
-void recurse (State s) 
-{
-  using namespace LEESA;
-  //BOOST_AUTO(expr, State() >> cv >> State() >> ForEach(State(), recurse));
-  //BOOST_AUTO(expr, State() >> State() >> ForEach(State(), recurse) >> cv );
-  //BOOST_AUTO(expr, State() >> expr2 >> ForEach(State(), recurse));
-  /*BOOST_AUTO(expr, State() >> cv
-    >> MembersOf(State(), Transition() >> cv && State() >> ForEach(State(), recurse))
-    );*/
-  //evaluate(s, expr);
 }
 
 struct MyCustom
@@ -181,7 +167,7 @@ int leesa_example(RootFolder rf)
               StateMachine() >>= BaseState() >> cv,
               StateMachine() >> BaseState()));
 */
-
+/*
   ContainerGen<StartState>::type states = 
   evaluate(rf, RootFolder() >> StateMachine()
               >> BaseState() >> CastFromTo(BaseState(), State())
@@ -191,12 +177,12 @@ int leesa_example(RootFolder rf)
                  << BaseState() << cv 
                  <<= StateMachine() << Unique(StateMachine()) << cv
                  <<= RootFolder() << Unique(RootFolder()) << cv);
+*/
   try {
-    BOOST_AUTO(expr, RootFolder()
-      //>> FullTD(RootFolder(), VisitStrategy(cv))
-      >> InputSequence() >> Events()
-      >>& Events::srcSequence >> cv);
-    //evaluate(rf, expr);
+    BOOST_AUTO(expr, RootFolder() 
+      >> DescendantFrom(RootFolder(), Sequence())
+      >> cv);
+    evaluate(rf, expr);
   }
   catch(const std::runtime_error & e) {
     AfxMessageBox (e.what(), MB_OK| MB_ICONINFORMATION);
