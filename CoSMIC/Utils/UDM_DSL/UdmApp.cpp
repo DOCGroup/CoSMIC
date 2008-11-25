@@ -179,10 +179,7 @@ int leesa_example(RootFolder rf)
                  <<= RootFolder() << Unique(RootFolder()) << cv);
 */
   try {
-    BOOST_AUTO(expr, RootFolder() 
-      >> DescendantFrom(RootFolder(), Sequence())
-      >> cv);
-    evaluate(rf, expr);
+    evaluate(rf, RootFolder() >> DescendantFrom(RootFolder(), State()) >> cv);
   }
   catch(const std::runtime_error & e) {
     AfxMessageBox (e.what(), MB_OK| MB_ICONINFORMATION);

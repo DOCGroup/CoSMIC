@@ -1,8 +1,14 @@
+Tue Nov 25 06:28:50 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+		  NEw optimized support for AP.
+
 Mon Nov 24 06:46:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/UdmMPL.h:
-		
-		  New concepts for Adaptive Programming.
+
+                  New concepts for Adaptive Programming.
 
 Mon Nov 24 06:41:22 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
