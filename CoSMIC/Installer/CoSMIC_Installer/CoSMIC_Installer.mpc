@@ -27,6 +27,7 @@ project (CoSMIC_Installer) : wix {
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/addons/CBMLManager/CBMLManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
 
 /////////////////////////////////////////////////////////////////////////

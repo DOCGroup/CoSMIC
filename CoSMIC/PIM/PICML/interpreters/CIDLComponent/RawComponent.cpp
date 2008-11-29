@@ -87,11 +87,8 @@ invoke_ex (GME::Project & project,
       PICML::Cidlc_Visitor visitor (this->output_);
       root.Accept (visitor);
 
-      if (this->is_interactive_)
-      {
-        ::AfxMessageBox ("Successfully generated CIDL files",
-                        MB_OK | MB_ICONINFORMATION);
-      }
+      ::AfxMessageBox ("Successfully generated CIDL files",
+                       MB_OK | MB_ICONINFORMATION);
 
       // Post process the project.
       this->postprocess (GME::Project (project));

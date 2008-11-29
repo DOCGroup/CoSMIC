@@ -16,6 +16,8 @@
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='PICMLManagerLibrary' />
       <ComponentRef Id='PICMLManagerRegistry' />
+      <ComponentRef Id='CBMLManagerLibrary' />
+      <ComponentRef Id='CBMLManagerRegistry' />
 
       <ComponentRef Id='PackageComponentLibrary' />
       <ComponentRef Id='DomainComponentLibrary' />
@@ -25,6 +27,7 @@
       <ComponentRef Id='PathComponentLibrary' />
       <ComponentRef Id='IDLGeneratorLibrary' />
       <ComponentRef Id='IDLImporterExecutable' />
+      <ComponentRef Id='QEDDeploymentLibrary' />
 
       <ComponentRef Id='PICMLDocs' />
       <ComponentRef Id='PICMLExamples' />

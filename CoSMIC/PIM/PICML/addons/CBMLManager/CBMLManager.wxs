@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="CBMLManagerFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='CBMLManagerLibrary' Guid='9B03A15E-379C-4ee4-A341-46E35D7955C2'>
+        <File Id='CBMLManager.dll'
+              Name='CBMLManager.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\CBMLManager.dll' />
+      </Component>
+
+      <!--
+           PICMLManager is separated in two components because its
+           registry keys are per-user whereas the files are per-machine.
+      -->
+      <Component Id='CBMLManagerRegistry' Guid='7CBE0FBA-E3A4-46A0-9422-E2833C86D78A'>
+        <RegistryKey Root="HKCU" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID" Action="create" />
+        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\ProgID"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\InProcServer32"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Value="[CoSMICBinDir]CBMLManager.dll" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\Classes\MGA.AddOn.CBMLManager"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\Classes\MGA.AddOn.CBMLManager\CLSID"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Value="{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\GME\Components\MGA.AddOn.CBMLManager"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Name="Tooltip" Value="Manages complexity of CBML models" Type="string" />
+          <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
+          <RegistryValue Name="Type" Value="2" Type="integer" />
+          <RegistryValue Name="Description" Value="CBMLManager" Type="string" />
+        </RegistryKey>
+
+        <RegistryKey Root="HKCU" Key="Software\GME\Components\MGA.AddOn.CBMLManager\Associated"
+                     Action="createAndRemoveOnUninstall">
+
+          <RegistryValue Name="PICML" Value="" Type="string" />
+        </RegistryKey>
+
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

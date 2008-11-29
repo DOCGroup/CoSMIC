@@ -5,11 +5,5 @@ project : game {
 
   Source_Files {
     $(COSMIC_ROOT)/Utils/gme/be/ComponentDLL.cpp
-    //ComponentLib_i.c
-  }
-
-  Template_Files {
-    //$(COSMIC_ROOT)/Utils/gme/be/ComponentDLL_T.cpp
-    //$(COSMIC_ROOT)/Utils/gme/be/ComponentEx_T.cpp
   }
 }

@@ -4,12 +4,12 @@
 
   <Fragment Id="QEDDeploymentFrag">
     <DirectoryRef Id="CoSMICBinDir">
-      <Component Id='QEDDeployment' Guid='8CD865CE-C4D6-402C-B5EE-C3B677EB3586'>
+      <Component Id='QEDDeploymentLibrary' Guid='8CD865CE-C4D6-402C-B5EE-C3B677EB3586'>
         <File Id='QEDDeployment.dll'
               Name='QEDDeployment.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\QEDDeployment.dll' />
-              
+
         <File Id='QEDDeploymentComponent.dll'
               Name='QEDDeploymentComponent.dll'
               DiskId='1'
@@ -35,17 +35,17 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.QEDDeployment\CLSID"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="{112EBB7F-5519-4D45-9873-09D7E83458A0}" Type="string" />
+          <RegistryValue Value="{8CD865CE-C4D6-402C-B5EE-C3B677EB3586}" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.CIDL"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.QEDDeployment"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="Tooltip" Value="CIDL Interpreter" Type="string" />
+          <RegistryValue Name="Tooltip" Value="QED Deployment Generator" Type="string" />
           <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
           <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
           <RegistryValue Name="Type" Value="1" Type="integer" />
-          <RegistryValue Name="Description" Value="CIDL" Type="string" />
+          <RegistryValue Name="Description" Value="QEDDeployment" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.CIDL\Associated"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.QEDDeployment\Associated"
                      Action="createAndRemoveOnUninstall">
           <RegistryValue Name="PICML" Value="" Type="string" />
         </RegistryKey>
