@@ -297,7 +297,7 @@ namespace GME
 
   protected:
     /// The underlying COM pointer.
-    CComPtr <IMgaObject> object_;
+    ATL::CComPtr <IMgaObject> object_;
   };
 }
 

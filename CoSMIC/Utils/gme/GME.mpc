@@ -5,7 +5,7 @@ project (GME) : acelib, cosmic_common {
 
   dynamicflags += GME_BUILD_DLL
   staticflags  += GME_AS_STATIC_LIBS
-  
+
   macros += _WIN32_DCOM
 
   // -- precompiled header
@@ -13,7 +13,7 @@ project (GME) : acelib, cosmic_common {
   pch_source = stdafx.cpp
 
   specific {
-    compile_flags += /wd4290 /wd4251 /wd4273
+    compile_flags += /wd4290 /wd4251 /wd4273 /wd4275
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
     midl_notlb     = 1
     midl_flags    += /server none /client none
@@ -36,6 +36,7 @@ project (GME) : acelib, cosmic_common {
     Interpreter.cpp
     Model.cpp
     Object.cpp
+    Point.cpp
     Project.cpp
     Reference.cpp
     RegistryNode.cpp
@@ -52,6 +53,8 @@ project (GME) : acelib, cosmic_common {
     MetaRole.cpp
 
     stlace.cpp
+
+    be/Interpreter_Impl_Base.cpp
   }
 
   Template_Files {

@@ -9,6 +9,7 @@
 #include "MetaRole.h"
 #include "MetaModel.h"
 #include "MetaAttribute.h"
+#include <sstream>
 
 namespace GME
 {
@@ -358,5 +359,41 @@ namespace GME
 
     sets.attach (temp.Detach ());
     return sets.size ();
+  }
+
+  //
+  // position
+  //
+  void FCO::position (const std::string & aspect, const GME::Point & pt)
+  {
+    // Convert the point in a position value.
+    std::ostringstream position;
+    position << pt.x_ << "," << pt.y_;
+
+    // Set the string version of the position
+    std::ostringstream regval;
+    regval << "PartRegs/" << aspect << "/Position";
+    this->registry_value (regval.str (), position.str ());
+  }
+
+  //
+  // position
+  //
+  GME::Point FCO::position (const std::string & aspect) const
+  {
+    // Get the string version of the position
+    std::ostringstream regval;
+    regval << "PartRegs/" << aspect << "/Position";
+    std::string position = this->registry_value (regval.str ());
+
+    // Extract the points from the position.
+    std::istringstream istr (position);
+
+    Point pt;
+    istr >> pt.x_;
+    istr.ignore (1);
+    istr >> pt.y_;
+
+    return pt;
   }
 }

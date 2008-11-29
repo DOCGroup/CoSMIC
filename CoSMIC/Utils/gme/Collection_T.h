@@ -267,7 +267,7 @@ private:
   void populate (void);
 
   /// The underlying collection.
-  CComPtr <typename collection_type> collection_;
+  ATL::CComPtr <typename collection_type> collection_;
 
   /// The collection of items.
   std::vector <T> items_;

@@ -8,6 +8,7 @@
 #include "String_Selection_Dialog.h"
 #include "GME/Connection.h"
 #include "GME/MetaBase.h"
+#include "GME/MetaFCO.h"
 #include "GME/Model.h"
 #include "GME/Object.h"
 #include "boost/bind.hpp"
@@ -19,35 +20,6 @@
 
 #define PREF_AUTOROUTER           "autorouterPref"
 #define PREF_AUTOROUTER_ALL       "NEWSnews"
-
-//
-// operator >>=
-//
-template <typename T>
-bool operator >>= (std::basic_string <T> & str, point_t & pt)
-{
-  std::basic_istringstream <T> istr (str);
-
-  istr >> pt.x_;
-  istr.ignore (1);
-  istr >> pt.y_;
-
-  return istr.good ();
-}
-
-//
-// operator <<=
-//
-template <typename T>
-bool operator <<= (std::basic_string <T> & str, const point_t & pt)
-{
-  std::basic_ostringstream <T> ostr;
-
-  ostr << pt.x_ << "," << pt.y_;
-  str = ostr.str ().c_str ();
-
-  return ostr.good ();
-}
 
 //
 // action_types_
@@ -252,8 +224,17 @@ void RawComponent::handle_objevent_destroyed (GME::Object & obj)
 {
   GME::FCO fco = GME::FCO::_narrow (obj);
 
-  if (this->active_state_ && this->active_state_ == fco)
-    this->active_state_ = 0;
+  std::string metaname = obj.meta ().name ();
+
+  if (metaname == "State")
+  {
+    if (this->active_state_ && this->active_state_ == fco)
+      this->active_state_ = 0;
+  }
+  else if (metaname == "OutEventPort")
+  {
+    this->outputs_.erase (obj.name ());
+  }
 }
 
 //
@@ -324,6 +305,10 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
         // Save the action as the last action.
         this->last_action_ = GME::FCO::_narrow (obj);
       }
+      else if (metaname == "OutputAction")
+      {
+        this->resolve_output_action (GME::FCO::_narrow (obj));
+      }
       else if (metaname == "State")
       {
         this->active_state_ = GME::FCO::_narrow (obj);
@@ -333,31 +318,12 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
         GME::Reference ref = GME::Reference::_narrow (obj);
         this->cache_worker_type (ref);
       }
+      else if (metaname == "OutEventPort")
+      {
+        this->outputs_.insert (obj.name ());
+      }
     }
   }
-}
-
-//
-// get_position
-//
-bool RawComponent::get_position (GME::FCO & fco, point_t & pt)
-{
-  std::string pos = fco.registry_value ("PartRegs/Behavior/Position");
-  return pos >>= pt;
-}
-
-//
-// set_position
-//
-bool RawComponent::set_position (GME::FCO & fco, const point_t & pt)
-{
-  std::string str;
-
-  if (!(str <<= pt))
-    return false;
-
-  fco.registry_value ("PartRegs/Behavior/Position", str);
-  return true;
 }
 
 //
@@ -395,18 +361,21 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
   action.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
   // Resolve worker that own the newly created action.
-  if (action.is_instance ())
-    this->resolve_worker_action (action);
+  std::string metaname = action.meta ().name ();
 
-  point_t position;
+  if (action.is_instance () && metaname == "Action")
+    this->resolve_worker_action (action);
+  else if (metaname == "OutputAction")
+    this->resolve_output_action (action);
+
+  GME::Point position;
 
   if (this->active_state_)
   {
     // Align newly created action with previous state.
-    this->get_position (this->active_state_, position);
-
+    position = this->active_state_.position ("Behavior");
     position.shift (OFFSET_X, OFFSET_Y);
-    this->set_position (action, position);
+    action.position ("Behavior", position);
 
     // Create a connection between the <active_state_> and the <action>.
     GME::Connection transition =
@@ -427,10 +396,13 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
                               action,
                               state);
 
+  // Get the position of the action, if not already set.
+  if (!this->active_state_)
+    position = action.position ("Behavior");
+
   // Align the <state> to the right of the <action>.
-  this->get_position (action, position);
   position.shift (OFFSET_X, -OFFSET_Y);
-  this->set_position (state, position);
+  state.position ("Behavior", position);
 }
 
 //
@@ -450,8 +422,8 @@ handle_objevent_modelopen (GME::Object & obj)
     if (!model.is_instance ())
     {
       // Gather all the workers in the component.
-      typedef GME::Collection_T <GME::Reference> worker_set_type;
-      worker_set_type workers;
+      typedef GME::Collection_T <GME::Reference> reference_set_type;
+      reference_set_type workers;
 
       model.references ("WorkerType", workers);
 
@@ -461,6 +433,16 @@ handle_objevent_modelopen (GME::Object & obj)
                      boost::bind (&RawComponent::cache_worker_type,
                                   this,
                                   _1));
+
+      reference_set_type outputs;
+      model.references ("OutEventPort", outputs);
+
+      std::for_each (outputs.begin (),
+                     outputs.end (),
+                     boost::bind (&string_set::insert,
+                                  boost::ref (this->outputs_),
+                                  boost::bind (&GME::Reference::name,
+                                               _1)));
     }
   }
 }
@@ -496,6 +478,34 @@ void RawComponent::cache_worker_type (const GME::Reference & worker)
     // Also, save the worker instance information.
     this->workers_[model].insert (worker.name ());
   }
+}
+
+//
+// resolve_output_action
+//
+void RawComponent::resolve_output_action (GME::FCO & action)
+{
+  std::string name;
+
+  if (this->outputs_.size () == 1)
+  {
+    name = *this->outputs_.begin ();
+  }
+  else if (this->outputs_.size () > 1)
+  {
+    // Need to display a dialog for selecting a name.
+    String_Selection_Dialog dialog (this->outputs_, ::AfxGetMainWnd ());
+
+    // Set the title of the dialog box.
+    dialog.title ("Select target output event port");
+
+    // Display the dialog for the end-user.
+    if (dialog.DoModal () == IDOK)
+      name = dialog.selection ();
+  }
+
+  if (!name.empty ())
+    action.name (name);
 }
 
 //

@@ -74,7 +74,7 @@ namespace GME
 
   private:
     /// The COM pointer to the underlying territory.
-    CComPtr <IMgaTerritory> terr_;
+    ATL::CComPtr <IMgaTerritory> terr_;
   };
 }
 

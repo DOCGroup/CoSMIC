@@ -26,8 +26,8 @@ void Collection_T <T>::populate (void)
       typename item_traits <T>::collection_type>::
       interface_type interface_type;
 
-    CComPtr <interface_type> * array =
-      new CComPtr <interface_type> [count];
+    ATL::CComPtr <interface_type> * array =
+      new ATL::CComPtr <interface_type> [count];
 
     VERIFY_HRESULT (this->collection_->GetAll (count, &(*array)));
 

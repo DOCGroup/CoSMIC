@@ -1,356 +1,160 @@
-///////////////////////////////////////////////////////////////////////////
-// RawComponent.cpp, the main RAW COM component implementation file
-// This is the file (along with its header RawComponent.h)
-// that the component implementor is expected to modify in the first place
-//
-///////////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
+// $Id$
 
-#include "ComHelp.h"
-#include "GMECOM.h"
-#include "ComponentConfig.h"
-#include "UdmConfig.h"
+#include "StdAfx.h"
 #include "RawComponent.h"
-
-// Udm includes
-#include "UdmBase.h"
-#include "Uml.h"
-#include "UmlExt.h"
-
-#ifdef _USE_DOM
-#include "UdmDOM.h"
-#endif
-
-#include "UdmGme.h"
-#include "UdmStatic.h"
-#include "UdmUtil.h"
-
-#include "UdmApp.h"
-
+#include "gme/be/ComponentDLL.h"
+#include "CIDL/Cidlc_Visitor.h"
 #include "Utils/Project.h"
+#include "Utils/Utils.h"
+#include "PICML/PICML.h"
+#include "UdmGme.h"
 
-// Global config object
-_config config;
+#define INTERPRETER_NAME          "CIDL File Generator"
+#define INTERPRETER_PARADIGMS     "PICML"
+#define INTERPRETER_PROGID        "MGA.Interpreter.CIDL"
 
+///////////////////////////////////////////////////////////////////////////////
+// class CIDL_Interpreter_Impl
 
-// this method is called after all the generic initialization is done
-// this should be empty, unless application-specific initialization is needed
-STDMETHODIMP RawComponent::Initialize(struct IMgaProject *) {
-  return S_OK;
-}
-
-// this is the obsolete component interface
-// this present implementation either tries to call InvokeEx, or returns an error;
-STDMETHODIMP RawComponent::Invoke(IMgaProject* gme, IMgaFCOs *models, long param) {
-#ifdef SUPPORT_OLD_INVOKE
-  CComPtr<IMgaFCO> focus;
-  CComVariant parval = param;
-  return InvokeEx(gme, focus, selected, parvar);
-#else
-  if(interactive) {
-    AfxMessageBox("This component does not support the obsolete invoke mechanism");
-  }
-  return E_MGA_NOT_SUPPORTED;
-#endif
-}
-
-#ifdef _DYNAMIC_META
-void dummy(void) {; } // Dummy function for UDM meta initialization
-#endif
-
-// This is the main component method for interpereters and plugins.
-// May als be used in case of invokeable addons
-STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
-                                     IMgaFCO *currentobj,
-                                     IMgaFCOs *selectedobjs,
-                                     long param)
+//
+// CIDL_Interpreter_Impl
+//
+CIDL_Interpreter_Impl::CIDL_Interpreter_Impl (void)
+: GME::Interpreter_Impl_Base (INTERPRETER_NAME,
+                              INTERPRETER_PARADIGMS,
+                              INTERPRETER_PROGID,
+                              false)
 {
-  // Calling the user's initialization function
-  if (CUdmApp::Initialize ())
-    return S_FALSE;
 
-  CComPtr <IMgaProject> ccpProject (project);
+}
 
+//
+// ~CIDL_Interpreter_Impl
+//
+CIDL_Interpreter_Impl::~CIDL_Interpreter_Impl (void)
+{
+
+}
+
+//
+// invoke
+//
+int CIDL_Interpreter_Impl::
+invoke_ex (GME::Project & project,
+           GME::FCO & fco,
+           GME::Collection_T <GME::FCO> & selected,
+           long flags)
+{
   try
+  {
+    // Initialize the UDM data network.
+    UdmGme::GmeDataNetwork backend (PICML::diagram);
+
+    try
     {
-      if(interactive)
-        {
-          CComBSTR projname;
-          CComBSTR focusname = "<nothing>";
-          CComPtr <IMgaTerritory> terr;
-          COMTHROW (ccpProject->CreateTerritory (NULL, &terr));
+      // Opening backend using current project.
+      backend.OpenExisting (project.impl ());
 
-          // Setting up Udm
-#ifdef _DYNAMIC_META
-#ifdef _DYNAMIC_META_DOM
-          // Loading the meta for the project
-          UdmDom::DomDataNetwork  ddnMeta (Uml::diagram);
-          Uml::Diagram theUmlDiagram;
+      // Preprocess the project.
+      this->preprocess (project);
 
-          // Opening the XML meta of the project
-          ddnMeta.OpenExisting (config.metaPath, "uml.dtd", Udm::CHANGES_LOST_DEFAULT);
+      // Convert the current object to a UDM object.
+      Udm::Object current;
 
-          // Casting the DataNetwork to diagram
-          theUmlDiagram = Uml::Diagram::Cast (ddnMeta.GetRootObject ());
+      if (fco)
+        current = backend.Gme2Udm (fco.impl ());
 
-          // Creating the UDM diagram
-          Udm::UdmDiagram udmDataDiagram;
-          udmDataDiagram.dgr = &theUmlDiagram;
-          udmDataDiagram.init = dummy;
+      // Convert the object collection to UDM objects.
+      set <Udm::Object> objs;
 
-#elif defined _DYNAMIC_META_STATIC
-          // Loading the meta for the project
-          UdmStatic::StaticDataNetwork  dnsMeta (Uml::diagram);
-          Uml::Diagram theUmlDiagram;
+      GME::Collection_T <GME::FCO>::iterator
+        iter = selected.begin (), iter_end = selected.end ();
 
-          // Opening the static meta of the project
-          dnsMeta.OpenExisting (config.metaPath, "", Udm::CHANGES_LOST_DEFAULT);
+      for ( ; iter != iter_end; ++ iter)
+        objs.insert (backend.Gme2Udm (iter->impl ()));
 
-          // Casting the DataNetwork to diagram
-          theUmlDiagram = Uml::Diagram::Cast (dnsMeta.GetRootObject ());
+      // Now, we are ready to begin interpreting the model.
+      const std::string message ("Please specify the output directory");
 
-          // Creating the UDM diagram
-          Udm::UdmDiagram udmDataDiagram;
-          udmDataDiagram.dgr = &theUmlDiagram;
-          udmDataDiagram.init = dummy;
+      // If there is no output path specified
+      if (!Utils::getPath (message, this->output_, this->output_))
+        return -1;
 
-#else
-          ASSERT((0,"Neither _DYNAMIC_META_DOM nor _DYNAMIC_META_STATIC defined for dynamic loading"));
-#endif
-          // Loading the project
-          UdmGme::GmeDataNetwork dngBackend(udmDataDiagram);
+      // Get the root object and visit it.
+      Udm::Object root_obj = backend.GetRootObject ();
+      PICML::RootFolder root = PICML::RootFolder::Cast (root_obj);
 
-#else
-          using namespace META_NAMESPACE;
+      PICML::Cidlc_Visitor visitor (this->output_);
+      root.Accept (visitor);
 
-          // Loading the project
-          UdmGme::GmeDataNetwork dngBackend(META_NAMESPACE::diagram);
+      if (this->is_interactive_)
+      {
+        ::AfxMessageBox ("Successfully generated CIDL files",
+                        MB_OK | MB_ICONINFORMATION);
+      }
 
-#endif
-          try
-            {
-              // Opening backend
-              dngBackend.OpenExisting (ccpProject);
+      // Post process the project.
+      this->postprocess (GME::Project (project));
 
-              //=======================================================================
-              // @@ preprocess method(s): MUST HAPPEN AFTER BACKEND IS OPEN
-
-              this->preprocess (ccpProject);
-
-              //
-              //=======================================================================
-
-              CComPtr <IMgaFCO> ccpFocus (currentobj);
-              Udm::Object currentObject;
-
-              if (ccpFocus)
-                currentObject = dngBackend.Gme2Udm(ccpFocus);
-
-              set <Udm::Object> selectedObjects;
-              CComPtr <IMgaFCOs> ccpSelObject (selectedobjs);
-
-              MGACOLL_ITERATE (IMgaFCO,ccpSelObject)
-                {
-                  Udm::Object currObj;
-
-                  if (MGACOLL_ITER)
-                    currObj = dngBackend.Gme2Udm(MGACOLL_ITER);
-
-                  selectedObjects.insert(currObj);
-                }
-              MGACOLL_ITERATE_END;
-
-#ifdef _ACCESS_MEMORY
-              // Creating Cache
-#ifdef _DYNAMIC_META
-              UdmStatic::StaticDataNetwork dnsCacheBackend (udmDataDiagram);
-#else
-              UdmStatic::StaticDataNetwork dnsCacheBackend (META_NAMESPACE::diagram);
-#endif
-
-              const Uml::Class & safeType =
-                Uml::SafeTypeContainer::GetSafeType (dngBackend.GetRootObject ().type ());
-
-              dnsCacheBackend.CreateNew ("", "", safeType, Udm::CHANGES_LOST_DEFAULT);
-
-              Udm::Object nullObject (&Udm::__null);
-              UdmUtil::copy_assoc_map copyAssocMap;
-
-              // currentObject may be null object
-              copyAssocMap[currentObject] = nullObject;
-
-              for (set<Udm::Object>::iterator p_CurrSelObject = selectedObjects.begin();
-                   p_CurrSelObject != selectedObjects.end();
-                   p_CurrSelObject++)
-                {
-                  pair <Udm::Object const,
-                    Udm::Object> item (*p_CurrSelObject, nullObject);
-
-                  pair <UdmUtil::copy_assoc_map::iterator,
-                    bool> insRes = copyAssocMap.insert (item);
-
-                  if (!insRes.second)
-                    ASSERT (NULL);
-                }
-
-              // Copying from GME to memory
-              UdmUtil::CopyObjectHierarchy (dngBackend.GetRootObject ().__impl (),
-                                            dnsCacheBackend.GetRootObject ().__impl (),
-                                            &dnsCacheBackend,
-                                            copyAssocMap);
-
-              // Searching for focus object
-              Udm::Object currentObjectCache;
-              UdmUtil::copy_assoc_map::iterator currObject =
-                copyAssocMap.find(currentObject);
-
-              if (currObject != copyAssocMap.end ()) // It is in the map
-                currentObjectCache = currObject->second;
-
-              // Searching for selected objects
-              set <Udm::Object> selectedObjectsCache;
-
-              for (p_CurrSelObject = selectedObjects.begin();
-                   p_CurrSelObject != selectedObjects.end();
-                   p_CurrSelObject ++)
-                {
-                  Udm::Object object;
-
-                  UdmUtil::copy_assoc_map::iterator currSelObjectIt =
-                    copyAssocMap.find (*p_CurrSelObject);
-
-                  if (currSelObjectIt != copyAssocMap.end ())
-                    {
-                      // It is in the map
-                      object = currSelObjectIt->second;
-                      selectedObjectsCache.insert (object);
-                    }
-                }
-
-              // Closing GME backend
-              dngBackend.CloseNoUpdate ();
-
-              // Calling the main entry point
-              CUdmApp::UdmMain (&dnsCacheBackend,
-                                currentObjectCache,
-                                selectedObjectsCache,
-                                param);
-
-              // Close cache backend
-              dnsCacheBackend.CloseNoUpdate();
-
-              //=====================================================================
-              //@@ postprocessing methods
-
-              this->postprocess (ccpProject);
-
-              //@@
-              //=====================================================================
-#else
-              // Calling the main entry point
-              CUdmApp::UdmMain (&dngBackend,
-                                currentObject,
-                                selectedObjects,
-                                param);
-
-              //=====================================================================
-              //@@ postprocessing methods
-
-              this->postprocess (ccpProject);
-
-              //@@
-              //=====================================================================
-
-              // Closing backend
-              dngBackend.CloseWithUpdate ();
-#endif
-            }
-          catch (udm_exception & exc)
-            {
-#ifdef _META_ACCESS_MEMORY
-              dnCacheBackend.CloseNoUpdate ();
-#endif
-              // Close GME Backend (we may close it twice, but GmeDataNetwork
-              // handles it)
-              dngBackend.CloseNoUpdate ();
-
-              AfxMessageBox (exc.what ());
-              return S_FALSE;
-            }
-        }
+      // Closing backend
+      backend.CloseWithUpdate ();
+      return 0;
     }
-  catch (udm_exception & exc)
+    catch (const udm_exception & ex)
     {
-      AfxMessageBox (exc.what ());
-      return S_FALSE;
+      // Close the data network without updates.
+      backend.CloseNoUpdate ();
+
+      // Display error message to client.
+      ::AfxMessageBox (ex.what (), MB_ICONERROR | MB_OK);
     }
-  catch (...)
-    {
-      ccpProject->AbortTransaction ();
-      AfxMessageBox ("An unexpected error has occured during the interpretation process.");
-
-      return E_UNEXPECTED;
-    }
-
-  return S_OK;
-}
-
-// GME currently does not use this function
-// you only need to implement it if other invokation mechanisms are used
-STDMETHODIMP RawComponent::ObjectsInvokeEx( IMgaProject *project,  IMgaObject *currentobj,  IMgaObjects *selectedobjs,  long param) {
-  if(interactive) {
-    AfxMessageBox("Tho ObjectsInvoke method is not implemented");
   }
-  return E_MGA_NOT_SUPPORTED;
-}
-
-
-// implement application specific parameter-mechanism in these functions:
-STDMETHODIMP RawComponent::get_ComponentParameter(BSTR name, VARIANT *pVal) {
-  return S_OK;
-}
-
-STDMETHODIMP RawComponent::put_ComponentParameter(BSTR name, VARIANT newVal) {
-  return S_OK;
-}
-
-
-#ifdef GME_ADDON
-
-// these two functions are the main
-STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) {
-  if(event == GLOBALEVENT_UNDO) {
-    AfxMessageBox("UNDO!!");
+  catch (const udm_exception & ex)
+  {
+    ::AfxMessageBox (ex.what (), MB_ICONERROR | MB_OK);
   }
-  return S_OK;
-}
 
-STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v) {
-  if(eventmask & OBJEVENT_CREATED) {
-    CComBSTR objID;
-    COMTHROW(obj->get_ID(&objID));
-    AfxMessageBox( "Object created! ObjID: " + CString(objID));
-  }
-  return S_OK;
+  return -1;
 }
-
-#endif
 
 //
 // preprocess
 //
-void RawComponent::preprocess (IMgaProject * project)
+void CIDL_Interpreter_Impl::preprocess (GME::Project & project)
 {
-  CUdmApp::outdir_ =
-    Utils::Project::get_default_output_dir (project, "CIDL");
+  using namespace Utils;
+  this->output_ = Project::get_default_output_dir (project.impl (), "CIDL");
 }
 
 //
 // postprocess
 //
-void RawComponent::postprocess (IMgaProject * project)
+void CIDL_Interpreter_Impl::postprocess (GME::Project & project)
 {
-  Utils::Project::set_default_output_dir (project,
-                                          "CIDL",
-                                          CUdmApp::outdir_);
+  using namespace Utils;
+  Project::set_default_output_dir (project.impl (), "CIDL", this->output_);
 }
+
+
+///////////////////////////////////////////////////////////////////////////////
+// class RawComponent
+
+//
+// RawComponent
+//
+RawComponent::RawComponent (void)
+{
+
+}
+
+//
+// RawComponent
+//
+RawComponent::~RawComponent (void)
+{
+
+}
+
+GME_COMPONENT_DECLARE (CIDL_ComponentDLL,
+                       INTERPRETER_NAME,
+                       LIBID_MgaComponentLib);

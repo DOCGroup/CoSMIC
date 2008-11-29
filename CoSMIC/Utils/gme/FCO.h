@@ -16,6 +16,7 @@
 #include "GME_fwd.h"
 #include "Object.h"
 #include "Collection_T.h"
+#include "Point.h"
 
 namespace GME
 {
@@ -269,9 +270,26 @@ namespace GME
      */
     RegistryNode registry_node (const std::string & path) const;
 
+    /**
+     * Get the position of the element
+     *
+     * @param[in]       aspect        Target aspect for position
+     * @return          Position of the element
+     */
+    GME::Point position (const std::string & aspect) const;
+
+    /**
+     * Get the position of the element
+     *
+     * @param[in]       aspect        Target aspect for position
+     * @param[in]       pt            New position
+     */
+    void position (const std::string & aspect,
+                   const GME::Point & pt);
+
   private:
     /// The COM pointer for the FCO type.
-    mutable CComPtr <IMgaFCO> fco_;
+    mutable ATL::CComPtr <IMgaFCO> fco_;
   };
 }
 

@@ -24,36 +24,6 @@
 #include "GME/Object.h"
 
 /**
- * @struct point_t
- *
- * Structure that contains an x-coordinate and y-coordinate.
- */
-struct point_t
-{
-  /// Default constructor.
-  point_t (void)
-    : x_ (0), y_ (0) { }
-
-  /**
-   * Shift the point.
-   *
-   * @param[in]     x       X-coordinate shift value.
-   * @param[in]     y       Y-coordinate shift value.
-   */
-  void shift (long x, long y)
-  {
-    this->x_ += x;
-    this->y_ += y;
-  }
-
-  /// X-coordinate
-  long x_;
-
-  /// Y-coordinate
-  long y_;
-};
-
-/**
  * @class RawComponent
  *
  * Raw component interface for the add-on.
@@ -133,22 +103,6 @@ private:
                                  const std::string & conntype);
 
   /**
-   * Helper method to get the position of an FCO.
-   *
-   * @param[in]     fco         Target FCO.
-   * @param[out]    pt          Buffer to receive the position.
-   */
-  bool get_position (GME::FCO & fco, point_t & pt);
-
-  /**
-   * Helper method to set the position of an FCO.
-   *
-   * @param[in]     fco         Target FCO.
-   * @param[in]     pt          New position of the FCO.
-   */
-  bool set_position (GME::FCO & fco, const point_t & pt);
-
-  /**
    * Load the active state for the current model. This will allow
    * the user to continue defining the behavior were they left
    * off.
@@ -168,6 +122,8 @@ private:
   void cache_worker_type (const GME::Reference & worker_type);
 
   void resolve_worker_action (GME::FCO & action);
+
+  void resolve_output_action (GME::FCO & action);
 
   typedef std::set <std::string> string_set;
 

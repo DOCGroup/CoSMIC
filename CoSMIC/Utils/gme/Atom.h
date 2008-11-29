@@ -89,7 +89,7 @@ namespace GME
     IMgaAtom * impl (void) const;
 
     /// The underlying interface pointer.
-    mutable CComPtr <IMgaAtom> atom_;
+    mutable ATL::CComPtr <IMgaAtom> atom_;
   };
 }
 

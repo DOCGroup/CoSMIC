@@ -110,7 +110,7 @@ namespace GME
     IMgaReference * impl (void) const;
 
     /// Pointer to the underlying COM interface.
-    mutable CComPtr <IMgaReference> ref_;
+    mutable ATL::CComPtr <IMgaReference> ref_;
   };
 }
 

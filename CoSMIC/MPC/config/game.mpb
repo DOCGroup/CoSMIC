@@ -1,6 +1,6 @@
 // $Id$
 
-project : acenosubsets, acedefaults {
+project : mfc, acenosubsets, acedefaults {
   after += GME
   libs  += GME
 }

@@ -191,7 +191,7 @@ namespace GME
 
   private:
     /// Pointer to the node.
-    CComPtr <IMgaRegNode> node_;
+    ATL::CComPtr <IMgaRegNode> node_;
   };
 }
 

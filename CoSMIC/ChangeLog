@@ -1,8 +1,74 @@
+Sat Nov 29 07:42:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Move the position () method to the GME::FCO object. This will
+            allow it the used across multiple applications.
+
+        * Utils/gme:
+        * Utils/gme/Atom.h:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder_Model_T.h:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/Object.h:
+        * Utils/gme/Point.h:
+        * Utils/gme/Point.inl:
+        * Utils/gme/Point.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Reference.h:
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/Set.h:
+        * Utils/gme/Territory.h:
+        * Utils/gme/be:
+
+          . Added the missing ATL:: scope where needed.
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_component.mpb:
+        * Utils/gme/be/ComponentDLL.h:
+        * Utils/gme/be/ComponentDLL.cpp:
+        * Utils/gme/be/ComponentEx_T.h:
+        * Utils/gme/be/ComponentEx_T.inl:
+        * Utils/gme/be/ComponentEx_T.cpp:
+        * Utils/gme/be/Interpreter_Impl_Base.h:
+        * Utils/gme/be/Interpreter_Impl_Base.inl:
+        * Utils/gme/be/Interpreter_Impl_Base.cpp:
+        * Utils/gme/be/Interpreter_T.h:
+        * Utils/gme/be/Interpreter_T.inl:
+        * Utils/gme/be/Interpreter_T.cpp:
+        * Utils/gme/stdafx.h:
+
+          . First version of backend objects for GAME. It is now possible
+            to write interpreters using GAME, which is a little cleaner
+            that the default backend framework provided with GME.
+
+            The next steps are to get rid of the ComponentConfig.h header
+            file and add support for AddOns.
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/Component.def:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.cpp:
+
+          . Re-implemented the CIDL interpreter using GAME.
+
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.h:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/UdmConfig.h:
+
+          Removed these files.
+
 Tue Nov 25 06:28:50 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/AP.cpp:
         * Utils/UDM_DSL/UdmApp.cpp:
-		  NEw optimized support for AP.
+                  NEw optimized support for AP.
 
 Mon Nov 24 06:46:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
 

@@ -126,7 +126,7 @@ namespace GME
                          GME::Collection_T <T2> & children) const;
 
     /// Cached pointer to the implementation.
-    mutable CComPtr <T> type_;
+    mutable ATL::CComPtr <T> type_;
   };
 }
 

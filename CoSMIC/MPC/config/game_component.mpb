@@ -1,0 +1,15 @@
+// $Id$
+
+project : game {
+  dynamicflags += _MIDL_USE_GUIDDEF_ _USRDLL
+
+  Source_Files {
+    $(COSMIC_ROOT)/Utils/gme/be/ComponentDLL.cpp
+    //ComponentLib_i.c
+  }
+
+  Template_Files {
+    //$(COSMIC_ROOT)/Utils/gme/be/ComponentDLL_T.cpp
+    //$(COSMIC_ROOT)/Utils/gme/be/ComponentEx_T.cpp
+  }
+}

@@ -236,7 +236,7 @@ namespace GME
 
   private:
     /// The project type.
-    CComPtr <IMgaProject> project_;
+    ATL::CComPtr <IMgaProject> project_;
 
     /// Default territory for the project.
     Territory terr_;

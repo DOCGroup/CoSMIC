@@ -123,7 +123,7 @@ namespace GME
     IMgaSet * impl (void) const;
 
     /// The underlying COM interface pointer.
-    mutable CComPtr <IMgaSet> set_;
+    mutable ATL::CComPtr <IMgaSet> set_;
   };
 }
 #endif  // !defined _GME_SET_H_
