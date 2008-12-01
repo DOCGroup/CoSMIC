@@ -1,3 +1,40 @@
+Mon Dec  1 08:14:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Collection_T.h:
+
+          . Fixed compilation errors related to missing include files.
+
+        * MPC/config/game_component.mpb:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/BE_export.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.h:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.cpp:
+
+          . Created a GAME backend project to help reduce footprint.
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * Utils/GAME/game/utils:
+        * Utils/GAME/game/utils/Project_Settings.h:
+        * Utils/GAME/game/utils/Project_Settings.inl:
+        * Utils/GAME/game/utils/Project_Settings.cpp:
+        * Utils/Utils.mpc:
+        * Utils/Utils.wxs:
+
+          . Move the code for caching the output directories in the model
+            into GAME's utilities.
+
+          . Fixed compilation errors related to above change.
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Removed these files.
+
 Mon Dec  1 07:16:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/game.mpb:

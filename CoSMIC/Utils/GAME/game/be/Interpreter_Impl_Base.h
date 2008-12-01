@@ -13,8 +13,10 @@
 #ifndef _GME_INTERPRETER_IMPL_BASE_H_
 #define _GME_INTERPRETER_IMPL_BASE_H_
 
-#include "../GME_export.h"
-#include "../Project.h"
+#include "BE_export.h"
+#include "game/GME_fwd.h"
+#include "game/Collection_T.h"
+#include <string>
 
 namespace GME
 {
@@ -24,7 +26,7 @@ namespace GME
  * Base implemenation for all interperters. Subclasses of this class
  * are used as the second parameter for GME::Interpreter_T
  */
-class GME_Export Interpreter_Impl_Base
+class GAME_BE_Export Interpreter_Impl_Base
 {
 protected:
   /// Default constructor.

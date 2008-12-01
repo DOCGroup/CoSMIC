@@ -1,0 +1,23 @@
+// $Id$
+
+project (GAME_BE) : game, cosmic_common {
+  sharedname    = GAME_BE
+  dynamicflags += GAME_BE_BUILD_DLL
+
+  Header_Files {
+
+  }
+
+  Source_Files {
+    Interpreter_Impl_Base.cpp
+  }
+
+  Inline_Files {
+
+  }
+
+  Template_Files {
+    ComponentEx_T.cpp
+    Interpreter_T.cpp
+  }
+}

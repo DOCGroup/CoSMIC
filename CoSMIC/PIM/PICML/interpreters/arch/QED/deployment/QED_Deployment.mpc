@@ -14,7 +14,7 @@ project (QEDDeployment): boost_base, picmllib {
   }
 }
 
-project (QEDDeploymentComponent) : mfc, picmllib, register {
+project (QEDDeploymentComponent) : game, mfc, picmllib, register {
   sharedname    = QEDDeploymentComponent
   dynamicflags += _USRDLL _WINDLL
 

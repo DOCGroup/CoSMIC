@@ -26,7 +26,7 @@
 #include "UdmUtil.h"
 
 #include "UdmApp.h"
-#include "Utils/Project.h"
+#include "game/utils/Project_Settings.h"
 
 // Global config object
 _config config;
@@ -314,15 +314,15 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 //
 void RawComponent::LoadPackageOptions (PackageOptions & options)
 {
+  GME::Utils::Project_Settings settings (this->project_);
   options.descriptor_directory_ =
-    Utils::Project::get_default_output_dir (this->project_,
-                                            PACKAGE_DESCRIPTOR_UUID);
+    settings.default_output_directory (PACKAGE_DESCRIPTOR_UUID);
+
   options.implementation_directory_ =
-    Utils::Project::get_default_output_dir (this->project_,
-                                            PACKAGE_IMPLEMNATION_UUID);
+    settings.default_output_directory (PACKAGE_IMPLEMNATION_UUID);
+
   options.package_directory_ =
-    Utils::Project::get_default_output_dir (this->project_,
-                                            PACKAGE_PACKAGE_UUID);
+    settings.default_output_directory (PACKAGE_PACKAGE_UUID);
 }
 
 //
@@ -330,23 +330,22 @@ void RawComponent::LoadPackageOptions (PackageOptions & options)
 //
 void RawComponent::SavePackageOptions (const PackageOptions & options)
 {
+  GME::Utils::Project_Settings settings (this->project_);
+
   // Only store the options that were used during this execution
   // of the interpreter.
   if (options.generate_descriptors_)
   {
-    Utils::Project::set_default_output_dir (this->project_,
-                                            PACKAGE_DESCRIPTOR_UUID,
-                                            options.descriptor_directory_);
+    settings.default_output_directory (PACKAGE_DESCRIPTOR_UUID,
+                                       options.descriptor_directory_);
   }
 
   if (options.generate_packages_)
   {
-    Utils::Project::set_default_output_dir (this->project_,
-                                            PACKAGE_IMPLEMNATION_UUID,
-                                            options.implementation_directory_);
+    settings.default_output_directory (PACKAGE_IMPLEMNATION_UUID,
+                                       options.implementation_directory_);
 
-    Utils::Project::set_default_output_dir (this->project_,
-                                            PACKAGE_PACKAGE_UUID,
-                                            options.package_directory_);
+    settings.default_output_directory (PACKAGE_PACKAGE_UUID,
+                                       options.package_directory_);
   }
 }

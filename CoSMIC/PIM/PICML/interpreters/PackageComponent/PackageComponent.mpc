@@ -1,12 +1,12 @@
 // $Id$
 
-project (PackageComponent): acelib, mfc, picmllib, register {
+project (PackageComponent): game, mfc, picmllib, register {
   sharedname = PackageComponent
 
   // prevent build if Package project does not build.
   requires += zlib
   after    += Package
-  
+
   macros   +=  _USRDLL _WINDLL
 
   pch_header = StdAfx.h

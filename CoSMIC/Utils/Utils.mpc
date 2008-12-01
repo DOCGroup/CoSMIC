@@ -8,21 +8,9 @@ project (CoSMIC_Utils) : xerces, cosmic_common {
   includes  += $(COSMIC_ROOT)
   lit_libs  += rpcrt4
 
-  specific {
-     midl_includes += $(GME_ROOT)/Interfaces
-     midl_flags    += /client stub /server none
-     midl_notlb     = 1
-
-     compile_flags += /wd4251
-  }
-
   Source_Files {
-    Project.cpp
     Utils.cpp
     XercesString.cpp
-
-    $(GME_ROOT)/Interfaces/Mga.idl
-    $(GME_ROOT)/Interfaces/Meta.idl
   }
 
   Header_Files {

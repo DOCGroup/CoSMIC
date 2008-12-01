@@ -21,6 +21,11 @@
               Name='GAME.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\GAME.dll' />
+
+        <File Id='GAME_BE.dll'
+              Name='GAME_BE.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\GAME_BE.dll' />
       </Component>
     </DirectoryRef>
 

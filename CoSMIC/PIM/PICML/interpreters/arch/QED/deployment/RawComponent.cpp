@@ -27,7 +27,7 @@
 
 #include "UdmApp.h"
 
-#include "Utils/Project.h"
+#include "game/utils/Project_Settings.h"
 
 // Global config object
 _config config;
@@ -341,8 +341,8 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 //
 void RawComponent::preprocess (IMgaProject * project)
 {
-  CUdmApp::outdir_ =
-    Utils::Project::get_default_output_dir (project, "QEDDeployment");
+  GME::Utils::Project_Settings settings (project);
+  CUdmApp::outdir_ = settings.default_output_directory ("QEDDeployment");
 }
 
 //
@@ -350,6 +350,6 @@ void RawComponent::preprocess (IMgaProject * project)
 //
 void RawComponent::postprocess (IMgaProject * project)
 {
-  Utils::Project::
-    set_default_output_dir (project, "QEDDeployment", CUdmApp::outdir_);
+  GME::Utils::Project_Settings settings (project);
+  settings.default_output_directory ("QEDDeployment", CUdmApp::outdir_);
 }

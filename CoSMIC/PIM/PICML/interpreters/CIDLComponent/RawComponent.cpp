@@ -3,8 +3,8 @@
 #include "StdAfx.h"
 #include "RawComponent.h"
 #include "game/be/ComponentDLL.h"
+#include "game/utils/Project_Settings.h"
 #include "CIDL/Cidlc_Visitor.h"
-#include "Utils/Project.h"
 #include "Utils/Utils.h"
 #include "PICML/PICML.h"
 #include "UdmGme.h"
@@ -119,8 +119,8 @@ invoke_ex (GME::Project & project,
 //
 void CIDL_Interpreter_Impl::preprocess (GME::Project & project)
 {
-  using namespace Utils;
-  this->output_ = Project::get_default_output_dir (project.impl (), "CIDL");
+  GME::Utils::Project_Settings settings (project);
+  this->output_ = settings.default_output_directory ("CIDL");
 }
 
 //
@@ -128,10 +128,9 @@ void CIDL_Interpreter_Impl::preprocess (GME::Project & project)
 //
 void CIDL_Interpreter_Impl::postprocess (GME::Project & project)
 {
-  using namespace Utils;
-  Project::set_default_output_dir (project.impl (), "CIDL", this->output_);
+  GME::Utils::Project_Settings settings (project);
+  settings.default_output_directory ("CIDL", this->output_);
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // class RawComponent

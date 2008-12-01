@@ -15,14 +15,14 @@
 #ifndef _GME_COLLECTION_T_H_
 #define _GME_COLLECTION_T_H_
 
-#include <vector>
-
 #if !defined (__ComponentLib_h__)
 #include "Mga.h"
 #endif
 
 #include "GME_export.h"
 #include "GME_fwd.h"
+#include <atlcomcli.h>
+#include <vector>
 
 namespace GME
 {

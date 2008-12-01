@@ -6,11 +6,9 @@ project (GAME) : acelib, cosmic_common {
   dynamicflags += GME_BUILD_DLL
   staticflags  += GME_AS_STATIC_LIBS
 
-  macros += _WIN32_DCOM
+  includes += $(COSMIC_ROOT)/Utils/GAME
 
-  // -- precompiled header
-  pch_header = stdafx.h
-  pch_source = stdafx.cpp
+  macros += _WIN32_DCOM
 
   specific {
     compile_flags += /wd4290 /wd4251 /wd4273 /wd4275
@@ -54,7 +52,7 @@ project (GAME) : acelib, cosmic_common {
 
     stlace.cpp
 
-    be/Interpreter_Impl_Base.cpp
+    utils/Project_Settings.cpp
   }
 
   Template_Files {

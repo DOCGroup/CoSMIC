@@ -3,6 +3,9 @@
 project : game {
   dynamicflags += _MIDL_USE_GUIDDEF_ _USRDLL
 
+  libs  += GAME_BE
+  after += GAME_BE
+
   Source_Files {
     $(COSMIC_ROOT)/Utils/GAME/game/be/ComponentDLL.cpp
   }
