@@ -17,6 +17,10 @@
               Source='$(var.COSMIC_ROOT)\bin\Utilsd.dll' />
 <?endif ?>
 
+        <File Id='GAME.dll'
+              Name='GAME.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\GAME.dll' />
       </Component>
     </DirectoryRef>
 

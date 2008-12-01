@@ -1,14 +1,10 @@
 // $Id$
 
-project (PropertyManager): register, acelib, mfc, boost_base, picmllib {
+project (PropertyManager): game, register, mfc, boost_base, picmllib {
   sharedname = PropertyManager
 
   includes +=  . \
-               $(GME_ROOT)/SDK/BON \
-               $(COSMIC_ROOT)/Utils
-
-  libs  += GME
-  after += GME
+               $(GME_ROOT)/SDK/BON
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

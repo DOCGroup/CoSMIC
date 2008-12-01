@@ -1,6 +1,6 @@
 // $Id$
 
-#include "gme/Project.h"
+#include "game/Project.h"
 
 //
 // Interpreter_T

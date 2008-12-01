@@ -5,7 +5,7 @@
 #include "GMECOM.h"
 #include "ComponentConfig.h"
 #include "RawComponent.h"
-#include "gme/GME.h"
+#include "game/GME.h"
 
 #include "PICML/Data_Value.h"
 #include "PICML/Data_Value_Builder.h"

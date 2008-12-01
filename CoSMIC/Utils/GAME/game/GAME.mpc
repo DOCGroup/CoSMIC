@@ -1,7 +1,7 @@
 // $Id$
 
-project (GME) : acelib, cosmic_common {
-  sharedname = GME
+project (GAME) : acelib, cosmic_common {
+  sharedname = GAME
 
   dynamicflags += GME_BUILD_DLL
   staticflags  += GME_AS_STATIC_LIBS

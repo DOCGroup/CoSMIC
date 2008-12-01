@@ -6,11 +6,11 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "String_Selection_Dialog.h"
-#include "GME/Connection.h"
-#include "GME/MetaBase.h"
-#include "GME/MetaFCO.h"
-#include "GME/Model.h"
-#include "GME/Object.h"
+#include "game/Connection.h"
+#include "game/MetaBase.h"
+#include "game/MetaFCO.h"
+#include "game/Model.h"
+#include "game/Object.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <sstream>

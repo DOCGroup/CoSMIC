@@ -17,11 +17,10 @@
 # error This file should only be included in the RAW COM configurations
 #endif
 
+#include "game/FCO.h"
 #include <string>
 #include <set>
 #include <map>
-#include "GME/FCO.h"
-#include "GME/Object.h"
 
 /**
  * @class RawComponent

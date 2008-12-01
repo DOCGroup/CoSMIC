@@ -1,14 +1,10 @@
 // $Id$
 
-project (PICMLManager): acedefaults, acenosubsets, mfc, boost_base, \
+project (PICMLManager): game, mfc, boost_base, \
   cosmic_utils, register, cosmic_common {
   sharedname = PICMLManager
 
   includes += . $(GME_ROOT)/SDK/BON
-
-  after += GME
-
-  libs += GME
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp

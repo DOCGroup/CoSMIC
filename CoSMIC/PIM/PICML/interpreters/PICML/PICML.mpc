@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICML): acelib, udm, xerces, boost_base, cosmic_common, cosmic_utils {
+project (PICML): game, udm, xerces, boost_base, cosmic_common, cosmic_utils {
 
   UDM_Files {
     gendir = .
@@ -11,11 +11,6 @@ project (PICML): acelib, udm, xerces, boost_base, cosmic_common, cosmic_utils {
   sharedname = PICML
 
   macros += PICML_HAS_DLL PICML_EXPORT
-
-  after    += GME
-  libs     += GME
-  includes += $(COSMIC_ROOT)/Utils
-
 
   Source_Files {
     Data_Value.cpp

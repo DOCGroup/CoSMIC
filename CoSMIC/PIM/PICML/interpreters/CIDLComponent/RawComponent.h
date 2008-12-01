@@ -14,8 +14,8 @@
 #define _PICML_CIDL_COMPONENT_H_
 
 #include "ComponentLib.h"
-#include "gme/be/Interpreter_T.h"
-#include "gme/be/Interpreter_Impl_Base.h"
+#include "game/be/Interpreter_T.h"
+#include "game/be/Interpreter_Impl_Base.h"
 
 /**
  * @class CIDL_Interpreter_Impl

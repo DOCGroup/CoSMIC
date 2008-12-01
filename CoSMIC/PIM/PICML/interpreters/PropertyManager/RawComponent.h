@@ -13,7 +13,7 @@
 #ifndef RAWCOMPONENT_H
 #define RAWCOMPONENT_H
 
-#include "gme/GME_fwd.h"
+#include "game/GME_fwd.h"
 
 // Forward decl.
 class PICML_DT_Control;

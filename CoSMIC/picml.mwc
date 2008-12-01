@@ -3,7 +3,7 @@
 workspace : cosmic_common {
 
   Utils/Utils.mpc
-  Utils/GME/GME.mpc
+  Utils/GAME
 
   // -- build the interpreters, addons, and decorators
   PIM/PICML/interpreters/Interpreters.mwc

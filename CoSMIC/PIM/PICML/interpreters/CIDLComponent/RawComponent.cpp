@@ -2,7 +2,7 @@
 
 #include "StdAfx.h"
 #include "RawComponent.h"
-#include "gme/be/ComponentDLL.h"
+#include "game/be/ComponentDLL.h"
 #include "CIDL/Cidlc_Visitor.h"
 #include "Utils/Project.h"
 #include "Utils/Utils.h"

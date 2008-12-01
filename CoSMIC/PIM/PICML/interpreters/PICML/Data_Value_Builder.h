@@ -16,7 +16,7 @@
 #define _DATA_VALUE_BUILDER_H_
 
 #include "PICML.h"
-#include "gme/GME_fwd.h"
+#include "game/GME_fwd.h"
 
 // Forward decl.
 class PICML_Data_Value;
@@ -121,7 +121,7 @@ private:
   bool build (const std::string & name,
               const PICML::Alias & alias,
               PICML_Data_Value * & value);
-  
+
 private:
   struct RepoID
   {
@@ -130,9 +130,9 @@ private:
     std::string rest;
     std::string version;
   };
-  
-  static void create_repositoryID_Impl (const ::PICML::MgaObject &type, 
-					RepoID &repoid);
+
+  static void create_repositoryID_Impl (const ::PICML::MgaObject &type,
+          RepoID &repoid);
 
 };
 }

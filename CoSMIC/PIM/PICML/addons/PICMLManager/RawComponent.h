@@ -17,10 +17,10 @@
 #error   This file should only be included in the RAW COM configurations
 #endif
 
-#include <set>
-#include "Utils/gme/GME.h"
+#include "game/GME.h"
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
+#include <set>
 
 //=============================================================================
 /**

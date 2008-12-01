@@ -1,3 +1,43 @@
+Mon Dec  1 07:16:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_component.mpb:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.h:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * Utils/GAME:
+        * Utils/GAME/game:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/Interpreter_T.inl:
+        * picml.mwc:
+        * Utils/GAME/game/GME.mpc:
+
+          . Moved GAME to its own folder and defined the standard directory
+            structure for its header/source files.
+
+          . Changed the shared library name from 'GME' to 'GAME'.
+
+          . Updated all the source files that were affected by relocating
+            GAME.
+
+        * Utils/Utils.wxs:
+
+          . Added GAME to the installation file.
+
+        * Utils/gme:
+
+          . Removed these files.
+
 Sat Nov 29 08:57:37 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/game_component.mpb:
