@@ -16,6 +16,7 @@
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='PICMLManagerLibrary' />
       <ComponentRef Id='PICMLManagerRegistry' />
+      <ComponentRef Id='PropertyManagerLibrary' />
       <ComponentRef Id='CBMLManagerLibrary' />
       <ComponentRef Id='CBMLManagerRegistry' />
 

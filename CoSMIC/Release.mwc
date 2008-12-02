@@ -2,8 +2,9 @@
 
 workspace : cosmic_common {
   // Entire CoSMIC.mwc expanded inline.
+
   Utils/Utils.mpc
-  Utils/GME/GME.mpc
+  Utils/GAME
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
 
@@ -24,10 +25,13 @@ workspace : cosmic_common {
   PIM/PICML/interpreters/CIDLComponent
   PIM/PICML/interpreters/Path
   PIM/PICML/interpreters/PathComponent
+  PIM/PICML/interpreters/PropertyManager
+  PIM/PICML/interpreters/arch
+
 
   PIM/SIML/interpreters/Interpreters.mwc
   PIM/CQML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
-  PIM/PICML/addons/PICMLManager
+  PIM/PICML/addons
   PIM/PICML/decorators/Decorators.mwc
 }
