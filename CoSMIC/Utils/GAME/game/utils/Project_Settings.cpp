@@ -20,17 +20,17 @@ default_output_directory (const std::string & uid) const
   GME::Folder root = this->project_.root_folder ();
 
   // Construct the registry path for the directory.
-  std::ostringstream ostr;
-  ostr << this->default_cache_loc_ << uid;
+  std::string path (this->default_cache_loc_);
+  path.append (uid);
 
   // Normalize the registry path.
-  std::replace (ostr.str ().begin (),
-                ostr.str ().end (),
+  std::replace (path.begin (),
+                path.end (),
                 ' ',
                 '_');
 
   // Store the output directory inside the model.
-  return root.registry_value (ostr.str ());
+  return root.registry_value (path);
 }
 
 //
@@ -43,15 +43,15 @@ default_output_directory (const std::string & uid, const std::string & dir)
   GME::Folder root = this->project_.root_folder ();
 
   // Construct the registry path for the directory.
-  std::ostringstream ostr;
-  ostr << this->default_cache_loc_ << uid;
+  std::string path (this->default_cache_loc_);
+  path.append (uid);
 
   // Normalize the registry path.
-  std::replace (ostr.str ().begin (),
-                ostr.str ().end (),
+  std::replace (path.begin (),
+                path.end (),
                 ' ',
                 '_');
 
   // Store the output directory inside the model.
-  root.registry_value (ostr.str (), dir);
+  root.registry_value (path, dir);
 }
