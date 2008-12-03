@@ -122,7 +122,7 @@
     <Feature Id="vc_merge_modules" Display="hidden"
              TypicalDefault="install"  Level="1">
 <?if $(var.type) = vc71 ?>
-      <MergeRef Id="VC71.Debug" />
+      <ComponentRef Id="VC71.Debug" />
       <MergeRef Id="VC_User_CRT71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_STL71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_ATL71_RTL_X86_---.msm" />
