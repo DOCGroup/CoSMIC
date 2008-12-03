@@ -5,6 +5,23 @@
   <Fragment Id='CoSMIC_common'>
     <DirectoryRef Id='CoSMICBinDir'>
 <?if $(var.type) = vc71 ?>
+      <Component Id='VC71.Debug' Guid='E679928E-B1B4-4D5E-8E61-29868410AC5A'>
+        <File Id='MFC71D.DLL'
+              Name='MFC71D.DLL'
+              DiskId='1'
+              Source='$(env.SystemRoot)\system32\MFC71D.dll' />
+
+        <File Id='MSVCP71D.DLL'
+              Name='MSVCP71D.DLL'
+              DiskId='1'
+              Source='$(env.SystemRoot)\system32\MSVCP71D.DLL' />
+
+        <File Id='MSVCR71D.DLL'
+              Name='MSVCR71D.DLL'
+              DiskId='1'
+              Source='$(env.SystemRoot)\system32\MSVCR71D.DLL' />
+      </Component>
+
       <!-- C runtime for VC71 -->
       <Merge Id='VC_User_CRT71_RTL_X86_---.msm'
              DiskId='1' Language='0'
@@ -29,7 +46,6 @@
       <Merge Id='VC_User_ATL71_RTL_X86_---.msm'
              DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\VC_User_ATL71_RTL_X86_---.msm' />
-
 
 <?elseif $(var.type) = vc8 ?>
       <!-- C runtime for VC8 -->
@@ -106,13 +122,15 @@
     <Feature Id="vc_merge_modules" Display="hidden"
              TypicalDefault="install"  Level="1">
 <?if $(var.type) = vc71 ?>
+      <MergeRef Id="VC71.Debug" />
       <MergeRef Id="VC_User_CRT71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_STL71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_ATL71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
 <?elseif $(var.type) = vc8 ?>
-<!--      <ComponentRef Id='VC8ATLAssemblies' />
+<!--
+      <ComponentRef Id='VC8ATLAssemblies' />
       <ComponentRef Id='VC8CRTAssemblies' />
       <ComponentRef Id='VC8MFCAssemblies' />
 -->
