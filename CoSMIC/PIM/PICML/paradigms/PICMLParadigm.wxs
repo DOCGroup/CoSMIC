@@ -960,6 +960,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\rtec_resource_factory.bmp' />
 
+        <File Id='rtrequirements.bmp'
+              Name='rtrequirements.bmp'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\rtrequirements.bmp' />
+
         <File Id='PICML_icon_164'
         Name='setexception.bmp'
         DiskId='1'

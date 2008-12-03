@@ -1,11 +1,21 @@
-Tue Dec  2 21:04:12 UTC 2008  Sumant Tambe  <sutambe@nospam>
-
-        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
-
-        * PIM/PICML/interpreters/Interpreters.mwc:
+Wed Dec  3 01:00:35 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
 
+          . The RTRequirement.bmp was missing from the installer.
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Utils/Utils.wxs:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          . Installed the debug version of the binaries if vc71 was used
+            as the build type.
+
+Tue Dec  2 21:04:12 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
         * Release.mwc:
 
           Updated Release build. Added QEDDeployment, CBMLManager, PropertyManager

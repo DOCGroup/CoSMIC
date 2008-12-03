@@ -5,7 +5,7 @@
   <Fragment Id="IDLGeneratorFrag">
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='IDLGeneratorLibrary' Guid='E9D28F15-DE39-4BD6-9DDE-05D31A597E39'>
-<?if $(var.GME_VERSION) = 6_11_9 ?>
+<?if $(var.type) = vc71 ?>
          <File Id='IDLGeneratorDLL'
                Name='IDLGeneratord.dll'
                Source='$(var.COSMIC_ROOT)\bin\IDLGeneratord.dll'
@@ -29,7 +29,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-<?if $(var.GME_VERSION) = 6_11_9 ?>
+<?if $(var.type) = vc71 ?>
           <RegistryValue Value="[CoSMICBinDir]IDLGeneratord.dll" Type="string" />
 <?else ?>
           <RegistryValue Value="[CoSMICBinDir]IDLGenerator.dll" Type="string" />
