@@ -238,6 +238,23 @@ namespace Udm
                                   typename H::MetaKind>::value }; 
 	};
 
+	template <class L, class H>
+	struct ConvertibleUdmKindsConcept
+	{
+		BOOST_CLASS_REQUIRE(L, Udm, UdmKindConcept);
+		BOOST_CLASS_REQUIRE(H, Udm, UdmKindConcept);
+    
+		void constraints()
+		{
+      BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
+		}
+    
+    typedef ConvertibleUdmKindsConcept type;
+    enum { value = UdmKindConcept<L>::value &&
+                   UdmKindConcept<H>::value && 
+                   boost::is_convertible<L, H>::value }; 
+	};
+
 	template <class ParentKind, class ChildKind>
 	struct ParentChildConcept 
 	{

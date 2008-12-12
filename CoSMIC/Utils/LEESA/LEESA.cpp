@@ -24,12 +24,11 @@
   typedef typename Super::argument_type argument_type;                      \
   typedef typename Super::result_type result_type;             
 
-#define LOCAL_TYPEDEFS(L, OP)                                             \
+#define LOCAL_TYPEDEFS(L, OP)                                               \
 	typedef typename ET< L >::expression_type ParentKindExpr;               \
 	typedef typename ET< OP >::argument_kind ChildKind;                     \
 	typedef typename ParentKindExpr::result_kind ParentKind;                \
-  typedef ChainExpr<ParentKindExpr, OP > ChainExpr;                       \
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+    typedef ChainExpr<ParentKindExpr, OP > ChainExpr;
 
 namespace LEESA {
 
@@ -45,7 +44,7 @@ template <class L, class R> struct DFSParentOp;
 template <class L, class R> struct CastOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
-template <class RESULT, class TARGETCLASS> struct AssociationManyOp;
+template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationManyOp;
 
 template <class E> struct SelectorOp;
 template <class E> struct VisitorOp;
@@ -202,17 +201,21 @@ template <class RESULT, class TARGETCLASS>
 struct ET <AssociationOp<RESULT, TARGETCLASS> > 
 	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
 
+template <class ASSOC, class SOURCECLASS, class TARGETCLASS>
+struct ET <AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> > 
+	: public ETBase <AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> > {};
+
 template <class RESULT, class TARGETCLASS>
 struct ET <AssociationEndOp<RESULT, TARGETCLASS> > 
-	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
+	: public ETBase <AssociationEndOp<RESULT, TARGETCLASS> > {};
 
 template <class RESULT, class TARGETCLASS>
 struct ET <Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
 	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
 
-template <class RESULT, class TARGETCLASS>
-struct ET <Udm::AClassAssocAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
-	: public ETBase <AssociationManyOp<RESULT, TARGETCLASS> > {};
+template <class ASSOC, class SOURCECLASS, class TARGETCLASS>
+struct ET <Udm::AClassAssocAttr<ASSOC, TARGETCLASS> (SOURCECLASS::*)() const>
+	: public ETBase <AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> > {};
 
 template <class RESULT, class TARGETCLASS>
 struct ET <Udm::AssocEndAttr<RESULT> (TARGETCLASS::*)() const>
@@ -255,7 +258,9 @@ VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator []
 template <class T>
 struct ContainerGen
 {
-  typedef typename std::vector<T> type;
+  // These types are interchangeable.
+  typedef typename std::set<T> type;
+  typedef typename std::vector<T> type2;
 };
 
 using boost::disable_if_c;
@@ -269,9 +274,10 @@ using boost::mpl::if_;
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
-  typedef typename ContainerGen<Kind>::type Container;
+    typedef typename ContainerGen<Kind>::type Container;
+	typedef typename ContainerGen<Kind>::type2 Container2;
 	Kind temp_kind_;
-	Container s_;
+	Container c_;
 	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
 	// This is an important concept. Don't remove.
 
@@ -288,44 +294,69 @@ public:
     typedef KindLit<U> type;
   };
 
-	explicit KindLit () {}
+  explicit KindLit () {}
   template <class U>
-	KindLit (KindLit<U> const & ) {}
-  KindLit (KindLit const & k) : s_ (k.s_) {}
-	KindLit (Kind const & k) { s_.push_back(k); }	
+  KindLit (KindLit<U> const & ukindlit)
+  {
+	  BOOST_MPL_ASSERT((is_base_of<Kind,U>));
+	  typename ContainerGen<U>::type in = ukindlit;
+	  typedef typename ContainerGen<U>::type::value_type UKind;
+	  BOOST_FOREACH(UKind u, in)
+	  {
+	    Kind k = u;
+		c_.insert(c_.end(), k);
+	  }
+  }
+  KindLit (KindLit const & k) : c_ (k.c_) {}
+	KindLit (Kind const & k) { c_.insert(c_.end(), k); }	
 	KindLit & operator = (KindLit const & rhs) 
 	{ 
 		if (this != &rhs)
 		{
 			temp_kind_ = rhs.temp_kind_;
-			s_ = rhs.s_; 
+			c_ = rhs.c_; 
 		}
 		return *this;
 	}	
-	KindLit (Container const & s) : s_(s) { }	
+	KindLit (Container const & c) : c_(c.begin(), c.end()) { }
+	KindLit (Container2 const & c2) : c_(c2.begin(), c2.end()) { }
 	void Union(Kind const & k)
 	{
-		s_.push_back(k);
-	}
-	void Union(Udm::ChildrenAttr<Kind> const & c) 
-	{
-		Container s = c;
-		std::copy(s.begin(), s.end(), std::back_inserter(s_));
+		c_.insert(c_.end(), k);
 	}
 	void Union(Udm::ParentAttr<Kind> const & c) 
 	{
 		Kind k = c;
-		s_.push_back(k);
+		c_.insert(c_.end(), k);
 	}
-	void Union(typename ContainerGen<Kind>::type const & v)
+	void Union(Udm::ChildrenAttr<Kind> const & ca) 
 	{
-		std::copy(v.begin(), v.end(), std::back_inserter(s_));
+        Container2 c = ca;
+		copy(c.begin(), c.end(), c_);
 	}
-	iterator begin() { return s_.begin(); }
-	const_iterator begin() const { return s_.begin(); }
+	void Union(Container const & in)
+	{
+		append(in.begin(), in.end(), c_);
+	}
+	void Union(Container2 const & in)
+	{
+		append(in.begin(), in.end(), c_);
+	}
+	template <class InputIterator>
+	void append(InputIterator begin, InputIterator end, std::vector<Kind> & v)
+	{
+		std::copy(begin, end, std::back_inserter(v));
+	}
+	template <class InputIterator>
+	void append(InputIterator begin, InputIterator end, std::set<Kind> & s)
+	{
+		s.insert(begin, end);
+	}
+	iterator begin() { return c_.begin(); }
+	const_iterator begin() const { return c_.begin(); }
 
-	iterator end() { return s_.end(); }
-	const_iterator end() const { return s_.end(); }
+	iterator end() { return c_.end(); }
+	const_iterator end() const { return c_.end(); }
 
 	result_kind * operator -> ()
 	{ 
@@ -341,22 +372,23 @@ public:
 	} 
 	bool isEmpty() const 
 	{
-		return s_.empty();
+		return c_.empty();
 	}
-	operator Container () const { return s_; } 
+	operator Container () const { return c_; } 
 	result_type operator () (argument_type p) const { return p; }
 };
 
 template <class L, class R>
 struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
-	           	                                 typename ET<R>::result_type>
+	           	                               typename ET<R>::result_type>
 {
 	typedef typename ET<L>::argument_kind argument_kind;
 	typedef typename ET<R>::result_kind result_kind;
 	typedef ChainExpr<L, R> expression_type;
 
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<typename ET<L>::result_kind, 
-											                           typename ET<R>::argument_kind>));
+    BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept
+							<typename ET<L>::result_kind, 
+	  						 typename ET<R>::argument_kind>));
 
 	L l_;
 	R r_;
@@ -365,7 +397,7 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 	{}
   explicit ChainExpr (L const &l, R const & r) 
 		: l_(l), r_(r) {}
-	result_type operator () (argument_type p) { return r_(l_(p)); }
+  result_type operator () (argument_type p) { return r_(l_(p)); }
 };
 
 template <class L, class R>
@@ -479,7 +511,7 @@ struct DFSOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 	typedef typename ET<LExpr>::result_kind LKind;
 	typedef typename ET<RExpr>::argument_kind RKind;
 
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
 
 	RExpr expr_;
 	explicit DFSOp () {}
@@ -500,12 +532,12 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
   SUPER_TYPEDEFS(Super);
 	typedef typename ChainExpr<E, SelectorOp> expression_type;
 	
-	typename ContainerGen<argument_kind>::type s_;
+	typename ContainerGen<argument_kind>::type c_;
 	bool logical_not_; 
 	explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
-		: s_(kl), logical_not_(logical_not) {}
+		: c_(kl), logical_not_(logical_not) {}
 	SelectorOp (SelectorOp const & sop) 
-		: logical_not_(sop.logical_not_), s_(sop.s_) {}
+		: logical_not_(sop.logical_not_), c_(sop.c_) {}
 	result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
@@ -513,8 +545,8 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			typename ContainerGen<argument_kind>::type::iterator i = 
-				std::find(s_.begin(), s_.end(), kind);
-			if ((i != s_.end()) ^ logical_not_) // Logical not of match, if required
+				std::find(c_.begin(), c_.end(), kind);
+			if ((i != c_.end()) ^ logical_not_) // Logical not of match, if required
 				retval.Union(kind);
 		}
 		return retval;
@@ -859,33 +891,35 @@ struct AssociationOp : LEESAUnaryFunction <TARGETCLASS, RESULT>,
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			result_kind r = (kind.*func_)();
-      if (r != Udm::null) // This check is important. Don't remove.
+			if (r != Udm::null) // This check is important. Don't remove.
 		    retval.Union(r);
 		}
 		return retval;
 	}
 };
 
-template <class RESULT, class TARGETCLASS>
-struct AssociationManyOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
-					                 OpBase
+template <class ASSOC, class SOURCECLASS, class TARGETCLASS>
+struct AssociationManyOp : LEESAUnaryFunction <SOURCECLASS,ASSOC>, OpBase
 {
 	typedef typename 
-		ChainExpr<RESULT, AssociationManyOp<RESULT, TARGETCLASS> >
-			expression_type;
+		ChainExpr<ASSOC, AssociationManyOp> expression_type;
 
-	typedef Udm::AClassAssocAttr<RESULT, TARGETCLASS> (TARGETCLASS::*FUNC)() const;
+	typedef Udm::AClassAssocAttr<ASSOC, TARGETCLASS> (SOURCECLASS::*FUNC)() const;
 	FUNC func_;
 
 	explicit AssociationManyOp (FUNC f) : func_(f) {}
 	result_type operator () (argument_type const & arg)
 	{
 		typename ContainerGen<argument_kind>::type v = arg;
+		if(v.empty()) 
+		{
+			//int *i = 0;
+			//*i = 100;
+		}
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			typename ContainerGen<result_kind>::type r = (kind.*func_)();
-			retval.Union(r);
+			retval.Union((kind.*func_)());
 		}
 		return retval;
 	}
@@ -1129,6 +1163,7 @@ operator >> (L const &l, H)
 	typedef GetChildrenOp<typename ET<L>::result_type, 
                         typename ET<H>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP());
 }
@@ -1142,6 +1177,7 @@ operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1155,6 +1191,7 @@ operator >>= (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1219,6 +1256,7 @@ typename disable_if_c<
 operator >> (L const &l, OP op) 
 {                            
   LOCAL_TYPEDEFS(L, OP);                               
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
@@ -1233,6 +1271,23 @@ operator >> (L const &l,
 {
 	typedef AssociationOp<RESULT, TARGETCLASS> OP;
 	LOCAL_TYPEDEFS(L, OP); 
+	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
+
+	return ChainExpr(ParentKindExpr(l), OP(func));
+}
+
+
+template <class L, class ASSOC, class SOURCECLASS, class TARGETCLASS>
+typename disable_if<is_base_of<std::ios_base, L>, 
+  ChainExpr<typename ET<L>::expression_type, 
+		    typename AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS>
+  > >::type
+operator >> (L const &l, 
+			 Udm::AClassAssocAttr<ASSOC, TARGETCLASS> (SOURCECLASS::*func)() const)
+{
+	typedef AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> OP;
+	LOCAL_TYPEDEFS(L, OP); 
+	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(func));
 }
@@ -1247,6 +1302,7 @@ operator >> (L const &l,
 {
 	typedef AssociationEndOp<RESULT, TARGETCLASS> OP;
 	LOCAL_TYPEDEFS(L, OP); 
+	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(func));
 }
@@ -1363,7 +1419,8 @@ typename disable_if_c<
   ChainExpr<typename ET< L >::expression_type, OP> >::type  
 operator << (L const &l, OP op) 
 {                            
-  LOCAL_TYPEDEFS(L, OP);                               
+  LOCAL_TYPEDEFS(L, OP);
+  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
@@ -1379,6 +1436,7 @@ operator << (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1394,7 +1452,7 @@ typename disable_if
 >::type
 operator >>= (L const &l, R const &r)
 {
-  BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, H>));
+	BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, R>));
 
 	typedef typename ET<L>::expression_type ParentExpr;
 	typedef typename ET<R>::expression_type ChildExpr;
@@ -1533,7 +1591,7 @@ evaluate (Para const & p, Expr &e)
   BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
   BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
 
-	return e(p);
+  return e(p);
 }
 
 } // end namespace LEESA
@@ -1554,6 +1612,7 @@ typename disable_if_c<                                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>)); \
 	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 
@@ -1566,6 +1625,7 @@ typename disable_if_c<                                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>)); \
 	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 */
@@ -1647,6 +1707,7 @@ operator >> (L const &l, ChoiceOp<K, C1, C2> op)
 {
 	typedef ChoiceOp<K, C1, C2> OP;
 	LOCAL_TYPEDEFS(L, OP); 
+	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(op));
 }

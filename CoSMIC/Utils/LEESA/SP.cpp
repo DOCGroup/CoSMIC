@@ -34,15 +34,15 @@
   template <class X, class Y, class Z>                              \
   OP##Op<X, Y, Z>                                                   \
   OP (X, Y const & y, Z) {                                          \
-	  typedef typename ET<X>::argument_kind argument_kind;            \
-	  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
+	typedef typename ET<X>::argument_kind argument_kind;            \
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
     return OP##Op<X, Y, Z> (y);                                     \
   }                                                                 \
   template <class X, class Y>                                       \
   OP##Op<X, Y, AllChildrenKinds>                                    \
   OP (X, Y const & y)  {                                            \
-	  typedef typename ET<X>::argument_kind argument_kind;            \
-	  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
+	typedef typename ET<X>::argument_kind argument_kind;            \
+	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));     \
     return OP##Op<X, Y, AllChildrenKinds> (y);                      \
   }
 
@@ -298,9 +298,14 @@ struct AllOp : LEESAUnaryFunction <K>, OpBase
       hs(evaluate(arg, c));
       children(arg, tail());
     }
-    // Called when ChildrenVector is empty.
+    // Called when ChildrenVector is empty as in EmptyMPLVector.
     template <class KindLit>
     void children(KindLit, EmptyMPLVector)
+    {
+    }
+    // Called when ChildrenVector is empty as in EmptyMPLVectorB.
+    template <class KindLit>
+    void children(KindLit, EmptyMPLVectorB)
     {
     }
 };
