@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="LEESAFrag">
+    <Feature Id='LEESAFeature'
+                 Level='1'
+                 Title='LEESA traversal DSL'
+                 TypicalDefault="install" >
+      <ComponentRef Id='LEESALibrary' />
+    </Feature>
+    
+      <DirectoryRef Id="LEESADir">
+        <Component Id='LEESALibrary' Guid='3C340C4B-9FB8-425B-B152-DE034C78E184'>
+          <File Id='LEESAH'
+                Name='LEESA.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.h' />
+
+          <File Id='LEESACPP'
+                Name='LEESA.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.cpp' />
+
+          <File Id='LEESA_VisitorAsIndex'
+                Name='LEESA_VisitorAsIndex.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA_VisitorAsIndex.h' />
+
+          <File Id='LEESAAP'
+                Name='AP.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\AP.cpp' />
+
+          <File Id='LEESASP'
+                Name='SP.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\SP.cpp' />
+
+          <File Id='UDMMPL'
+                Name='UDMMPL.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\UDMMPL.h' />
+
+          <File Id='LEESAconcept'
+                Name='concept-mpl.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\concept-mpl.cpp' />
+
+          <File Id='LEESADOC'
+                Name='LEESA.pdf'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.pdf' />
+
+        </Component>
+      </DirectoryRef>
+
+  </Fragment>
+</Wix>

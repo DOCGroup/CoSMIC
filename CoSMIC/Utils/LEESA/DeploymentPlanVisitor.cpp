@@ -88,9 +88,10 @@ namespace PICML
   //
   // initNodeRefName
   //
-  void DeploymentPlanVisitor::initNodeRefName (const std::string& nodeRefName)
+  void DeploymentPlanVisitor::initNodeRefName (NodeReference nodeRef)
   {
-    this->node_ref_name_ = nodeRefName;
+    Node node = nodeRef.ref();
+    this->node_ref_name_ = node.name();
   }
 
   //
@@ -104,9 +105,9 @@ namespace PICML
   //
   // initcgName
   //
-  void DeploymentPlanVisitor::initcgName (const std::string& cgName)
+  void DeploymentPlanVisitor::initcgName (CollocationGroup cg)
   {
-    this->cg_name_ = cgName;
+    this->cg_name_ = cg.name();
   }
 
   //
@@ -193,9 +194,9 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_RootFolder (const RootFolder& rf)
   {
 	using namespace LEESA;
-	VisitStrategy vs(*this);
-    BOOST_AUTO(expr, RootFolder() >> FullTD(RootFolder(), vs));
-    evaluate(rf, expr);
+	//VisitStrategy vs(*this);
+    //BOOST_AUTO(expr, RootFolder() >> FullTD(RootFolder(), vs));
+    //evaluate(rf, expr);
 	evaluate(rf,RootFolder() >>= DeploymentPlans() >>= DeploymentPlan() >> *this);
     /*this->root_folder_ = rf;
 
@@ -1364,11 +1365,8 @@ namespace PICML
          iter != dps.end();
          ++ iter)
     {
-      std::string nodeRefName;
-      std::string cgName;
       CollocationGroup cg = *iter;
-      cgName = cg.name();
-      this->initcgName (cgName);
+      this->initcgName (cg);
 
       const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
@@ -1379,9 +1377,8 @@ namespace PICML
       {
         InstanceMapping cg_ins = *cg_ins_map_iter;
         NodeReference node_ref = cg_ins.dstInstanceMapping_end();
-        const Node ref = node_ref.ref();
-        nodeRefName = ref.name();
-        this->initNodeRefName (nodeRefName);
+        const Node node = node_ref.ref();
+        this->initNodeRefName (node_ref);
       }
 
       std::set<CollocationGroupMember> comp_types = cg.members ();
@@ -1409,7 +1406,7 @@ namespace PICML
           this->monolith_types_.insert (monotype);
 
           update_component_parents (comp);
-          update_component_instance (comp, nodeRefName);
+          update_component_instance (comp, this->node_ref_name_);
         }
         else if (Udm::IsDerivedFrom (comp_type.type(), ComponentAssemblyReference::meta))
         {
@@ -1425,7 +1422,7 @@ namespace PICML
                ++iter)
           {
             Component comp = *iter;
-            update_component_instance (comp, nodeRefName);
+            update_component_instance (comp, this->node_ref_name_);
 
             // Save the component instance and it's type.
             this->final_assembly_components_.insert (comp);
@@ -1454,7 +1451,7 @@ namespace PICML
           this->monolith_types_.insert (monotype);
 
           update_shared_component_parents (shared_comp);
-          update_component_instance (referred_comp, nodeRefName);
+          update_component_instance (referred_comp, this->node_ref_name_);
         }
       }
     }
@@ -1917,22 +1914,6 @@ namespace PICML
 
   void DeploymentPlanVisitor::update_connections(const ComponentAssembly& assembly)
   {
-    // Collect all the Components of this assembly into a set.
-    std::set<Component> comps = assembly.Component_kind_children();
-
-    // Add all the shared Components of this assembly into the set.  A
-    // shared Component is implemented as a reference to a Component.  So
-    // just traverse the reference and add it to the set.
-    std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
-    for (std::set<ComponentRef>::const_iterator
-      iter = scomps.begin();
-      iter != scomps.end();
-    ++iter)
-    {
-      const ComponentRef compRef = *iter;
-      comps.insert (compRef.ref());
-    }
-
     // Collect all the immediate ComponentAssembly children of this assembly
     std::set<ComponentAssembly>
       subasms = assembly.ComponentAssembly_kind_children();
@@ -1968,43 +1949,25 @@ namespace PICML
       assemblies.push_back (rassembly);
 
       subasms.erase(rassembly);
-
-      // Get the components of the current assembly, and insert them into
-      // the component list
-      std::set<Component> rcomps = rassembly.Component_kind_children();
-
-      // Get the shared components of the current assembly
-      scomps = rassembly.ComponentRef_kind_children();
-      for (std::set<ComponentRef>::const_iterator
-        iter = scomps.begin();
-        iter != scomps.end();
-      ++iter)
-      {
-        const ComponentRef compRef = *iter;
-        rcomps.insert (compRef.ref());
-      }
-
-      comps.insert (rcomps.begin(), rcomps.end());
-
       // Get the subassemblies of the first assembly.
       std::set<ComponentAssembly>
         rasms = rassembly.ComponentAssembly_kind_children();
-
-      // Add all the shared ComponentAssemblies of the current assembly.
-      // Like shared components, shared assemblies are also implemented
-      // as references.  So just traverse the references, and add them to
-      // the set.
-      std::set<ComponentAssemblyReference>
-        sasms = rassembly.ComponentAssemblyReference_kind_children();
-      for (std::set<ComponentAssemblyReference>::const_iterator
-        iter = sasms.begin();
-        iter != sasms.end();
-      ++iter)
-      {
-        const ComponentAssemblyReference asmRef = *iter;
-        rasms.insert (asmRef.ref());
-      }
-
+	  {
+		  // Add all the shared ComponentAssemblies of the current assembly.
+		  // Like shared components, shared assemblies are also implemented
+		  // as references.  So just traverse the references, and add them to
+		  // the set.
+		  std::set<ComponentAssemblyReference>
+			sasms = rassembly.ComponentAssemblyReference_kind_children();
+		  for (std::set<ComponentAssemblyReference>::const_iterator
+			iter = sasms.begin();
+			iter != sasms.end();
+		  ++iter)
+		  {
+			const ComponentAssemblyReference asmRef = *iter;
+			rasms.insert (asmRef.ref());
+		  }
+	  }
       // Insert them to the current list.
       // std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
       subasms.insert (rasms.begin(), rasms.end());
@@ -2023,58 +1986,12 @@ namespace PICML
 				         			   publish()          >> *this AND
 							           deliverTo()        >> *this AND
 							           PublishConnector() >> *this ));
-      /*const std::set<invoke> invokes = subasm.invoke_kind_children();
-      for (std::set<invoke>::const_iterator iter = invokes.begin();
-        iter != invokes.end();
-        ++iter)
-      {
-        invoke iv = *iter;
-        iv.Accept (*this);
-      }
-
-      const std::set<emit> emits = subasm.emit_kind_children();
-      for (std::set<emit>::const_iterator iter = emits.begin();
-        iter != emits.end();
-        ++iter)
-      {
-        emit ev = *iter;
-        ev.Accept (*this);
-      }
-
-      const std::set<publish> publishers = subasm.publish_kind_children();
-      for (std::set<publish>::const_iterator iter = publishers.begin();
-        iter != publishers.end();
-        ++iter)
-      {
-        publish ev = *iter;
-        ev.Accept (*this);
-      }
-
-      const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
-      for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
-        iter != deliverTos.end();
-        ++iter)
-      {
-        deliverTo dv = *iter;
-        dv.Accept (*this);
-      }
-
-      const std::set<PublishConnector>
-        connectors = subasm.PublishConnector_kind_children();
-      for (std::set<PublishConnector>::const_iterator iter =
-        connectors.begin();
-        iter != connectors.end();
-      ++iter)
-      {
-        PublishConnector conn = *iter;
-        conn.Accept (*this);
-      }*/
-
+/*    If DP interpreter does not work as expected, uncomment this first.
       this->publishers_.erase (this->publishers_.begin(),
         this->publishers_.end());
 
       this->consumers_.erase (this->consumers_.begin(),
-        this->consumers_.end());
+        this->consumers_.end());*/
     }
   }
 
@@ -2099,7 +2016,7 @@ namespace PICML
       const ComponentRef compRef = *iter;
       comps.insert (compRef.ref());
     }
-
+	
     // Collect all the immediate ComponentAssembly children of this assembly
     std::set<ComponentAssembly>
       subasms = assembly.ComponentAssembly_kind_children();

@@ -65,6 +65,7 @@
     <FeatureRef Id='QUICKERFeature' />
     <FeatureRef Id="CoSMICCommonFeature" />
     <FeatureRef Id="vc_merge_modules" />
+    <FeatureRef Id='LEESAFeature' />
     
     <InstallExecuteSequence>
      <Custom Action='GMEVersion' After='InstallInitialize' >

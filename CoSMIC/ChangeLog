@@ -1,3 +1,14 @@
+Tue Dec 16 00:01:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Utils/LEESA/DeploymentPlanVisitor.h:
+        * Utils/LEESA/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/LEESA.wxs:
+        * Utils/LEESA/LEESA.cpp:
+
 Fri Dec 12 06:02:51 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/DeploymentPlanVisitor.cpp:
@@ -7,9 +18,9 @@ Fri Dec 12 06:02:51 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/SP.cpp:
         * Utils/LEESA/UdmMPL.h:
         * Utils/LEESA/concept-mpl.cpp:
-		
-		  Tested LEESA with PICML's DeploymentPlanVisitor and fixed/added
-		  several things. AssociationManyOp, STL container independence.
+
+                  Tested LEESA with PICML's DeploymentPlanVisitor and fixed/added
+                  several things. AssociationManyOp, STL container independence.
 
 Wed Dec  3 13:47:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 

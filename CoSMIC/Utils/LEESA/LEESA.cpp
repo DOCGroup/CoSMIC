@@ -331,8 +331,8 @@ public:
 	}
 	void Union(Udm::ChildrenAttr<Kind> const & ca) 
 	{
-        Container2 c = ca;
-		copy(c.begin(), c.end(), c_);
+        Container c = ca;
+		append(c.begin(), c.end(), c_);
 	}
 	void Union(Container const & in)
 	{
