@@ -1,3 +1,10 @@
+Wed Dec 24 19:37:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Release_idl_to_picml.mwc:
+        
+          . Added -name_modifier *_Static the command-line options to 
+            prevent modification of pre-existing non-static projects.
+
 Tue Dec 16 00:01:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
@@ -19,8 +26,8 @@ Fri Dec 12 06:02:51 UTC 2008  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/UdmMPL.h:
         * Utils/LEESA/concept-mpl.cpp:
 
-                  Tested LEESA with PICML's DeploymentPlanVisitor and fixed/added
-                  several things. AssociationManyOp, STL container independence.
+          Tested LEESA with PICML's DeploymentPlanVisitor and fixed/added
+          several things. AssociationManyOp, STL container independence.
 
 Wed Dec  3 13:47:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
