@@ -1,8 +1,14 @@
+Sat Dec 27 23:40:38 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the SLICE model to the latest version of CUTS.
+
 Wed Dec 24 19:37:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Release_idl_to_picml.mwc:
-        
-          . Added -name_modifier *_Static the command-line options to 
+
+          . Added -name_modifier *_Static the command-line options to
             prevent modification of pre-existing non-static projects.
 
 Tue Dec 16 00:01:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
