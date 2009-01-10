@@ -451,6 +451,16 @@ set_property_datatype (GME::Model & property, const GME::FCO & type)
 // verify_property_datatype
 //
 void RawComponent::
+verify_property_datatype_entry (GME::ConnectionPoints::value_type & attr,
+                                const GME::FCO & attr_type)
+{
+  verify_property_datatype (attr.item (), attr_type);
+}
+
+//
+// verify_property_datatype
+//
+void RawComponent::
 verify_property_datatype (GME::ConnectionPoint & attr,
                           const GME::FCO & attr_type)
 {
@@ -472,7 +482,7 @@ verify_property_datatype (GME::ConnectionPoint & attr,
       GME::Model::_narrow (connpoints["dst"].target ());
 
     // Set the data type for the property.
-    this->set_property_datatype (property, attr_type);
+    set_property_datatype (property, attr_type);
   }
 }
 
@@ -547,10 +557,8 @@ handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
 
       std::for_each (connpoints.begin (),
                      connpoints.end (),
-                     boost::bind (&RawComponent::verify_property_datatype,
-                                  this,
-                                  boost::bind (&GME::ConnectionPoints::value_type::item,
-                                               _1),
+                     boost::bind (&RawComponent::verify_property_datatype_entry,
+                                  _1,
                                   attr_type));
     }
   }

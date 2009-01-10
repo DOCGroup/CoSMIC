@@ -103,11 +103,14 @@ private:
   bool get_uuid_i (const GME::FCO & fco,
                    GME::Attribute & attr);
 
-  void set_property_datatype (GME::Model & property,
-                              const GME::FCO & type);
+  static void set_property_datatype (GME::Model & property,
+                                     const GME::FCO & type);
 
-  void verify_property_datatype (GME::ConnectionPoint & attr,
-                                 const GME::FCO & attr_type);
+  static void verify_property_datatype (GME::ConnectionPoint & attr,
+                                        const GME::FCO & attr_type);
+
+  static void verify_property_datatype_entry (GME::ConnectionPoints::value_type & attr,
+                                              const GME::FCO & attr_type);
 
   /// The project is in import mode.
   int importing_;

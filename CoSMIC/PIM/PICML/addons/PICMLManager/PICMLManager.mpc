@@ -27,7 +27,6 @@ project (PICMLManager): game, mfc, boost_base, \
   }
 
   Header_Files {
-    RawComponent.h
     Resource.h
     ComponentLib.h
     ComponentConfig.h

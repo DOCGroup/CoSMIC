@@ -1,3 +1,15 @@
+Sat Jan 10 20:02:03 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Fixed compiler errors on vc71 related to boost.
+
+        * Utils/GAME/game/Connection.h:
+
+          . Moved all type definitions to the public section.
+
 Sat Dec 27 23:40:38 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/examples/SLICE.xme:

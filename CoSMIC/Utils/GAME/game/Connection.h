@@ -126,11 +126,12 @@ namespace GME
 
   class GME_Export ConnectionPoints
   {
+  public:
     /// Type definition of the connection point manager.
     typedef ACE_Hash_Map_Manager <std::string,
                                   GME::ConnectionPoint,
                                   ACE_Null_Mutex> ConnectionPoint_Mgr;
-  public:
+
     /// Type definition of the iterator.
     typedef ConnectionPoint_Mgr::ITERATOR iterator;
 
