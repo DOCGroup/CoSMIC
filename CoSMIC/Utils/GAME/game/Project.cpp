@@ -372,4 +372,12 @@ namespace GME
     CW2A tempstr (bstr);
     return tempstr.m_psz;
   }
+
+  //
+  // enable_auto_addons
+  //
+  void Project::enable_auto_addons (bool flag)
+  {
+    VERIFY_HRESULT (this->project_->EnableAutoAddOns (flag ? VARIANT_TRUE : VARIANT_FALSE));
+  }
 }

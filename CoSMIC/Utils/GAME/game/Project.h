@@ -234,6 +234,13 @@ namespace GME
      */
     std::string paradigm_version (void) const;
 
+    /**
+     * Enable auto add-ons for the projet.
+     *
+     * @param[in]       flag        Setting for auto add-ons.
+     */
+    void enable_auto_addons (bool flag);
+
   private:
     /// The project type.
     ATL::CComPtr <IMgaProject> project_;
