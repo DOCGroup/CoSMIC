@@ -206,4 +206,18 @@ namespace GME
     points.attach (temp.Detach ());
     return points.size ();
   }
+
+  //
+  // operator []
+  //
+  GME::ConnectionPoint Connection:: operator [] (const std::string & role)
+  {
+    GME::ConnectionPoint point;
+    GME::ConnectionPoints points;
+
+    if (this->connection_points (points))
+      point = points[role];
+
+    return point;
+  }
 }

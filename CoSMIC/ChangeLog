@@ -1,3 +1,25 @@
+Mon Jan 12 05:27:02 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.cpp:
+
+          . Implemented the operator [], which can be used to get a
+            connection point by its role.
+
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+
+          . Bug fix with the name of the instance_type () method.
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+
+          . It's now possible to specify the type of transaction to
+            begin.
+
+          . Bug fix where commiting an existing transaction using the
+            begin_transaction () method caused a GME exception.
+
 Sun Jan 11 23:14:07 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/GAME/game/Project.h:

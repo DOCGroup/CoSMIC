@@ -232,39 +232,37 @@ namespace GME
   //
   // begin_transaction
   //
-  void Project::begin_transaction (void)
+  void Project::begin_transaction (transactiontype_enum type)
   {
     if (this->terr_ == 0)
       this->terr_ = this->create_territory ();
 
     // Begin the default transition.
-    this->begin_transaction (this->terr_);
+    this->begin_transaction (this->terr_, type);
   }
 
   //
   // begin_transaction
   //
-  void Project::begin_transaction (bool commit_existing)
+  void Project::
+  begin_transaction (bool commit_existing, transactiontype_enum type)
   {
-    if (this->terr_ != 0)
-    {
-      // We need to either commit, or abort, the current transaction.
-      if (commit_existing)
-        this->commit_transaction ();
-      else
-        this->abort_transaction ();
-    }
+    if (commit_existing)
+      this->commit_transaction ();
+    else
+      this->abort_transaction ();
 
     // Begin the default transition.
-    this->begin_transaction ();
+    this->begin_transaction (type);
   }
 
   //
   // begin_transaction
   //
-  void Project::begin_transaction (const Territory & terr)
+  void Project::
+  begin_transaction (const Territory & terr, transactiontype_enum mode)
   {
-    VERIFY_HRESULT (this->project_->BeginTransaction (terr));
+    VERIFY_HRESULT (this->project_->BeginTransaction (terr, mode));
   }
 
   //

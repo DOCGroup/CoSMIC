@@ -314,6 +314,14 @@ namespace GME
      */
     size_t connection_points (ConnectionPoints & points);
 
+    /**
+     * Get the connection point by its role.
+     *
+     * @param[in]       role        Role of the connection point.
+     * @return          The connection point
+     */
+    GME::ConnectionPoint operator [] (const std::string & role);
+
   private:
     /// Pointer to the connection object.
     mutable CComPtr <IMgaConnection> conn_;

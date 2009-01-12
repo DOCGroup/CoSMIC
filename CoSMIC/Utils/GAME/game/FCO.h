@@ -86,7 +86,7 @@ namespace GME
      * @retval        The instance's type. NULL if the object is
      *                not an instance.
      */
-    FCO instanceinterface_type (void) const;
+    FCO instance_type (void) const;
 
     /**
      * Determine if the FCO is the first derivation of anohter
