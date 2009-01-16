@@ -6,19 +6,34 @@
 
 namespace GME
 {
-  //
-  // init
-  //
-  void init (void)
+  class GME_Initializer
   {
-    VERIFY_HRESULT (::CoInitializeEx (0, COINIT_APARTMENTTHREADED));
-  }
+  public:
+    GME_Initializer (void)
+    {
+      if (!GME_Initializer::is_init_)
+      {
+        VERIFY_HRESULT (::CoInitializeEx (0, COINIT_APARTMENTTHREADED));
+        GME_Initializer::is_init_ = true;
+      }
+    }
 
-  //
-  // fini
-  //
-  void fini (void)
-  {
-    ::CoUninitialize ();
-  }
+    /// Default constructor
+    ~GME_Initializer (void)
+    {
+      if (GME_Initializer::is_init_)
+      {
+        ::CoUninitialize ();
+        GME_Initializer::is_init_ = false;
+      }
+    }
+
+  private:
+    /// Flag that determine is GME is initialized.
+    static int is_init_;
+  };
+
+  int GME_Initializer::is_init_ = false;
 }
+
+static GME::GME_Initializer init;

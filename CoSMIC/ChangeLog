@@ -1,3 +1,12 @@
+Fri Jan 16 20:23:51 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * Utils/GAME/game/GME.h:
+        * Utils/GAME/game/GME.cpp:
+
+          . Added auto-initialization to GAME and GME. You no longer
+            need to manaully invoke GME::init () and GME::fini ().
+
 Mon Jan 12 05:27:02 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/GAME/game/Connection.h:

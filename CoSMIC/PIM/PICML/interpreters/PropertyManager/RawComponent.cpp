@@ -26,7 +26,7 @@ RawComponent::RawComponent (void)
 //
 RawComponent::~RawComponent (void)
 {
-  GME::fini ();
+
 }
 
 //
@@ -34,8 +34,6 @@ RawComponent::~RawComponent (void)
 //
 STDMETHODIMP RawComponent::Initialize (struct IMgaProject *)
 {
-  GME::init ();
-
   return S_OK;
 }
 
