@@ -1,3 +1,12 @@
+Sat Jan 17 08:24:52 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/FCO.cpp:
+
+          . Bug fix where create_instance () and create_subtype () threw
+            an invalid role exception. This is because the role used to
+            generate the instance/subtype was not resolved using the
+            parent object.
+
 Fri Jan 16 20:23:51 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:

@@ -172,8 +172,12 @@ namespace GME
   //
   FCO FCO::create_subtype (Model & parent)
   {
+    // Get the metarole for this object.
+    std::string metaname = this->meta ().name ();
+    Meta::Role metarole = parent.meta ().role (metaname);
+
+    // Create the subtype.
     CComPtr <IMgaFCO> child;
-    Meta::Role metarole = this->role ();
 
     VERIFY_HRESULT (
       parent.impl ()->DeriveChildObject (
@@ -187,8 +191,12 @@ namespace GME
   //
   FCO FCO::create_instance (Model & parent)
   {
+    // Get the metarole for this object.
+    std::string metaname = this->meta ().name ();
+    Meta::Role metarole = parent.meta ().role (metaname);
+
+    // Create the instance.
     CComPtr <IMgaFCO> child;
-    Meta::Role metarole = this->role ();
 
     VERIFY_HRESULT (
       parent.impl ()->DeriveChildObject (
