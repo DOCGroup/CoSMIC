@@ -29,14 +29,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Exception
    *
    * Base type of all exceptions.
    */
-  //===========================================================================
-
   class GME_Export Exception
   {
   public:
@@ -51,7 +48,6 @@ namespace GME
     virtual ~Exception (void);
   };
 
-  //===========================================================================
   /**
    * @class Failed_Result
    *
@@ -60,9 +56,7 @@ namespace GME
    * S_OK. The value () method can be used to determine the return
    * code for the method that caused the error.
    */
-  //===========================================================================
-
-  class GME_Export Failed_Result
+  class GME_Export Failed_Result : public GME::Exception
   {
   public:
     /**
@@ -89,7 +83,10 @@ namespace GME
     const HRESULT value_;
   };
 
-  class GME_Export Invalid_Cast
+  /**
+   * @class Invalid_Cast
+   */
+  class GME_Export Invalid_Cast : public GME::Exception
   {
   public:
     /// Default constructor.
