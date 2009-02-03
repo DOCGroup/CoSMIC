@@ -1,3 +1,21 @@
+Tue Feb  3 01:00:41 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Modified the PeriodicEvent such that is specifies its rate
+            as Hertz.
+
+          . Removed the Probability attribute from the PeriodicEvent
+
+          . Added a Distribution attribute to the PeriodicEvent, which is
+            a string that determines the distribution of the interarrivals
+            for the events. Valid values for this event are determined by
+            the backend generator, which means you can have custom (or
+            domain-specific) distributions.
+
 Sat Jan 17 08:24:52 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/GAME/game/FCO.cpp:
