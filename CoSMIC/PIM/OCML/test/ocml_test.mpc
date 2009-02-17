@@ -14,7 +14,7 @@
 //                                      V
 //                                configurator_test
 
-project (ocml_definitions_test): xerces {
+project (ocml_definitions_test): xerces2 {
   exename = definitions_test
   includes += ..
   libs += ocml_common ocml_engine

@@ -1,4 +1,4 @@
-project: aceexe, xerces {
+project: aceexe, xerces2 {
   exename = ocml
   includes += ../
   libs += ocml_common ocml_engine

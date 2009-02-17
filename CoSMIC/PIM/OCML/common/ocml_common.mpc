@@ -1,4 +1,4 @@
-project: xerces {
+project: xerces2 {
   sharedname = ocml_common
   dynamicflags += OCML_COMMON_BUILD_DLL
   libout = $(COSMIC_ROOT)/lib

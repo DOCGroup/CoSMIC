@@ -129,6 +129,7 @@ struct AllChildrenKinds
 
 
 template <class T, class Func> struct CallerOp;
+template <class X, class Y, class Z> struct SequenceOp;
 template <class X, class Y, class Z> struct OneOp;
 template <class X, class Y, class Z> struct AllOp;
 template <class X, class Y, class Z> struct FullTDOp;
@@ -136,6 +137,10 @@ template <class X, class Y, class Z> struct FullTDOp;
 template <class T, class U>
 struct ET <CallerOp<T, U> > 
 	: public ETBase <CallerOp<T, U> > {};
+
+template <class X, class Y, class Z>
+struct ET <SequenceOp<X, Y, Z> > 
+	: public ETBase <SequenceOp<X, Y, Z> > {};
 
 template <class X, class Y, class Z>
 struct ET <OneOp<X, Y, Z> > 
@@ -213,10 +218,10 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase
 
   private:
     // Called when ChildrenVector is non-empty. 
-    template <class KindLit, class ChildrenVector>
-    void children(KindLit arg, ChildrenVector)
+    template <class ChildrenVector>
+    void children(argument_type arg, ChildrenVector)
     {
-      typedef typename ET<KindLit>::argument_kind K;
+      typedef typename ET<argument_type>::argument_kind K;
       typedef typename front<ChildrenVector>::type head;
       typedef typename pop_front<ChildrenVector>::type tail;
       typename Strategy::template rebind<head>::type s(strategy_);
@@ -237,9 +242,12 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase
       if (!success_)
         children(arg, tail());
     }
-    // Called when ChildrenVector is empty.
-    template <class KindLit>
-    void children(KindLit const & arg, EmptyMPLVector)
+    // Called when ChildrenVector is empty as in EmptyMPLVector.
+    void children(argument_type, EmptyMPLVector)
+    {
+    }
+	  // Called when ChildrenVector is empty as in EmptyMPLVectorB.
+    void children(argument_type, EmptyMPLVectorB)
     {
     }
 };
@@ -260,8 +268,12 @@ struct AllOp : LEESAUnaryFunction <K>, OpBase
     };
 
     Strategy strategy_;
+
     explicit AllOp (Strategy const & s)
       : strategy_(s) {} 
+
+    //explicit AllOp (Strategy * s)
+    //  : strategy_(s) {} 
 
     template <class X, class Y, class Z>
     explicit AllOp (AllOp <X, Y, Z> const & a)
@@ -274,7 +286,7 @@ struct AllOp : LEESAUnaryFunction <K>, OpBase
       {
         typedef typename Custom::template 
           ChildrenKinds<argument_kind>::type CustomChildren;
-        typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type 
+        typedef typename Intersection <CustomChildren, typename K::ChildrenKinds>::type 
           CommonChildrenTypes;
         children(arg, CommonChildrenTypes());
       }
@@ -283,34 +295,77 @@ struct AllOp : LEESAUnaryFunction <K>, OpBase
 
   private:
     // Called when ChildrenVector is non-empty. 
-    template <class KindLit, class ChildrenVector>
-    void children(KindLit arg, ChildrenVector)
+    template <class ChildrenVector>
+    void children(argument_type arg, ChildrenVector)
     {
-      typedef typename ET<KindLit>::argument_kind K;
+      typedef typename ET<argument_type>::argument_kind K;
       typedef typename front<ChildrenVector>::type head;
       typedef typename pop_front<ChildrenVector>::type tail;
       typedef typename Strategy::template rebind<head>::type HeadStrategy;
       HeadStrategy hs(strategy_);
-      //hs(evaluate(arg, K() >> head()));
-      typedef GetChildrenOp<KindLit, typename ET<head>::argument_type > GC;
+      hs(evaluate(arg, K() >> head()));
+      /*typedef GetChildrenOp<KindLit, typename ET<head>::argument_type > GC;
       GC gc;
       ChainExpr<KindLit, GC> c(KindLit(), gc);
-      hs(evaluate(arg, c));
+      hs(evaluate(arg, c));*/
       children(arg, tail());
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector.
-    template <class KindLit>
-    void children(KindLit, EmptyMPLVector)
+    void children(argument_type, EmptyMPLVector)
     {
     }
     // Called when ChildrenVector is empty as in EmptyMPLVectorB.
-    template <class KindLit>
-    void children(KindLit, EmptyMPLVectorB)
+    void children(argument_type, EmptyMPLVectorB)
     {
     }
 };
 
-template <class K, class Strategy, class Custom = AllChildrenKinds>
+template <class K, class Strategy1 = KindLit<K>, class Strategy2 = KindLit<K> >
+struct SequenceOp : LEESAUnaryFunction <K>, OpBase
+{
+    typedef typename 
+		  ChainExpr<K, SequenceOp> expression_type;  
+	  typedef typename ET<K>::result_kind argument_kind;
+
+    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
+
+    template <class U>
+    struct rebind
+    {
+      typedef 
+        SequenceOp<U, 
+                   typename Strategy1::template rebind<U>::type,
+                   typename Strategy2::template rebind<U>::type> type;
+    };
+
+    Strategy1 strategy1_;
+    Strategy2 strategy2_;
+
+    template <class X, class Y, class Z>
+    explicit SequenceOp (SequenceOp<X, Y, Z> const & f)
+      : strategy1_(f.strategy1_),
+        strategy2_(f.strategy2_)
+    {}
+
+    explicit SequenceOp (Strategy1 const & s1, Strategy2 const & s2) 
+      : strategy1_(s1),
+        strategy2_(s2) {} 
+
+    //explicit SequenceOp (Strategy1 * s1, Strategy2 * s2) 
+    //  : strategy1_(s1), strategy2_(s2) {} 
+
+    result_type operator () (argument_type const & arg)
+    {
+      if (!arg.isEmpty())
+      {
+        strategy1_(arg);
+        strategy2_(arg);
+      }
+      return arg;
+    }
+};
+
+template <class K, class Strategy = KindLit<K>, class Custom = AllChildrenKinds>
 struct FullTDOp : LEESAUnaryFunction <K>, OpBase
 {
     typedef typename 
@@ -328,20 +383,23 @@ struct FullTDOp : LEESAUnaryFunction <K>, OpBase
     Strategy strategy_;
 
     template <class X, class Y, class Z>
-    explicit FullTDOp (FullTDOp<X, Y, Z> const & f)
+    explicit FullTDOp (FullTDOp<X, Y, Z> & f)
       : strategy_(f.strategy_)
     {}
 
     explicit FullTDOp (Strategy const & s) 
       : strategy_(s) {} 
 
+    //explicit FullTDOp (Strategy * s) 
+    //  : strategy_(s) {} 
+
     result_type operator () (argument_type const & arg)
     {
       if (!arg.isEmpty())
       {
-        strategy_(arg);
-        AllOp<K, FullTDOp, Custom> all(*this);
-        all(arg);
+        typedef AllOp<K, FullTDOp, Custom> All;
+        SequenceOp<K, Strategy, All> s(strategy_, All(*this));
+        s(arg);
       }
       return arg;
     }

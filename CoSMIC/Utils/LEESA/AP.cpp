@@ -53,12 +53,13 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
     void operator () (K arg)
     {
       typedef typename ET<K>::argument_kind Kind;
-      AfxMessageBox (typeid(K).name(), MB_OK| MB_ICONINFORMATION);
+      //AfxMessageBox (typeid(K).name(), MB_OK| MB_ICONINFORMATION);
       retval_.Union(evaluate(arg, Kind() >> CastFromTo(Kind(), result_kind())));
     }
     void operator () (result_type k)
     {
 		  retval_.Union(k);
+      //AfxMessageBox (typeid(result_type).name(), MB_OK| MB_ICONINFORMATION);
     }
   };
   result_type operator () (argument_type const & arg)
@@ -75,10 +76,11 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
       typedef typename front<Vector>::type Head;
       typedef typename pop_front<Vector>::type Tail;
       typedef typename 
-        if_<contains <typename Head::DescendantKinds, result_kind>,
-            typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
-                               Head>::type,
-            typename FilterChildrenIfNotDescendant<Tail>::type 
+        if_c<//is_same<Head, result_kind>::value |
+             contains <typename Head::DescendantKinds, result_kind>::value ,
+             typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
+                                Head>::type,
+             typename FilterChildrenIfNotDescendant<Tail>::type 
         >::type type;
     };
     template <>
@@ -94,10 +96,11 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
     {
       BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<K>));
       typedef typename 
-        if_c<is_same<K, result_kind>::value |
-             is_base_of<K, result_kind>::value |
+        if_c<//is_same<K, result_kind>::value |
+             //is_base_of<K, result_kind>::value |
              contains<typename K::DescendantKinds, result_kind>::value,
              typename FilterChildrenIfNotDescendant<typename K::ChildrenKinds>::type,
+             //typename K::ChildrenKinds,
              EmptyMPLVector>::type type;
     };
     

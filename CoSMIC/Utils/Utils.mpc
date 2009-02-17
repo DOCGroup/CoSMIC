@@ -1,12 +1,15 @@
 // $Id$
 
-project (CoSMIC_Utils) : xerces, cosmic_common {
+project (CoSMIC_Utils) : xerces2, cosmic_common {
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
 
   includes  += $(COSMIC_ROOT)
-  lit_libs  += rpcrt4
+  lit_libs  += rpcrt4 
+  //lit_libs  += xerces-c_2
+  //includes  += $(XERCESCROOT)/include
+  //libpaths  += $(XERCESCROOT)/lib
 
   Source_Files {
     Utils.cpp
