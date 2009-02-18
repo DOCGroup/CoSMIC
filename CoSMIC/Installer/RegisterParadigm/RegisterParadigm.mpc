@@ -1,4 +1,4 @@
-project: picmllib {
+project {
   lit_libs += msi
   macros += _MBCS _USRDLL
   sharedname = RegisterParadigm

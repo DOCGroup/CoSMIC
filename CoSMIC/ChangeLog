@@ -1,3 +1,9 @@
+Wed Feb 18 23:10:30 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+		
+		  Removed an unnecessary dependency on picmllib.
+
 Wed Feb 18 15:50:08 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/cqmllib.mpb:
@@ -13,8 +19,8 @@ Wed Feb 18 15:50:08 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/CQML/CQML.mpc:
         * Utils/Utils.mpc:
         * default.features:
-		
-		  Added xerces2 feature. requires += xerces2 from xerces.mpb.
+
+                  Added xerces2 feature. requires += xerces2 from xerces.mpb.
 
 Tue Feb 17 22:23:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
