@@ -1,7 +1,8 @@
 // -*- MPC -*-
 // $Id: IDL_to_WSDL.mpc,v 1.4 2005/02/02 15:41:01 elliott_c Exp $
 
-project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces2 {
+project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
+  requires += xerces2
   after       += TAO_IDL_FE
   sharedname   = IDL_TO_WSDL_BE
   libs        += TAO_IDL_FE

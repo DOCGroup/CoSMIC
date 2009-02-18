@@ -1,6 +1,7 @@
 // $Id$
 
-project (ocml_configurator_ui): wxwindows, xerces2, boost_base {
+project (ocml_configurator_ui): wxwindows, xerces, boost_base {
+  requires += xerces2
   after += ocml_engine
   sharedname = ocml_configurator_ui
   includes += .. 

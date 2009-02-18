@@ -1,3 +1,21 @@
+Wed Feb 18 15:50:08 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/text/ocml_console_application.mpc:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * Utils/Utils.mpc:
+        * default.features:
+		
+		  Added xerces2 feature. requires += xerces2 from xerces.mpb.
+
 Tue Feb 17 22:23:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/cqmllib.mpb:
@@ -11,11 +29,11 @@ Tue Feb 17 22:23:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/interpreters/PICML/PICML.mpc:
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
         * PSM/CQML/interpreters/CQML/CQML.mpc:
-		* Utils/Utils.mpc:
+                * Utils/Utils.mpc:
 
-		In all the above mpc files, xerces was changed to xerces2 to inherit
-		from xerces2.mpb.
-		
+                In all the above mpc files, xerces was changed to xerces2 to inherit
+                from xerces2.mpb.
+
         * Utils/LEESA/AP.cpp:
         * Utils/LEESA/SP.cpp:
 
@@ -25,8 +43,8 @@ Tue Feb 17 22:23:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/HFSM.cpp:
         * Utils/UDM_DSL/UDM_DSL.mpc:
         * Utils/UDM_DSL/UdmApp.cpp:
-		
-		Updated implementation of LEESA.
+
+                Updated implementation of LEESA.
 
 Tue Feb  3 15:18:28 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 

@@ -1,4 +1,5 @@
-project: xerces2, boost_base {
+project: xerces, boost_base {
+  requires += xerces2
   includes += ..
   libs += ocml_common
   after += ocml_common
