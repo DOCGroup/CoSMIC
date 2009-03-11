@@ -380,6 +380,11 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\SatisfierProperty.bmp' />
 
+        <File Id='sharedcomponentref'
+        Name='sharedcomponentref.bmp'
+        DiskId='1'
+        Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\sharedcomponentref.bmp' />
+
         <File Id='PICML_icon_49'
         Name='SharedResource.bmp'
         DiskId='1'
