@@ -13,18 +13,18 @@ strategy Monitors()
   container_list := rootFolder().findFolder("ComponentImplementations")
                                 .models("ComponentImplementationContainer");
 
-  hbtype := rootFolder().findFolder("HeartbeatFolder")
+  hbtype := rootFolder().findFolder("HeartbeatIDLFolder")
                         .findModel("HeartbeatFile")
                         .findModel("Monitor")
                         .findModel("Heartbeat");
   
   plan := rootFolder().findFolder("DeploymentPlan")
                       .findModel("Plan");
-  if (not plan.isNull()) then
-    colloc_list := plan.sets("CollocationGroup");
-    container_list->searchAssemblies(hbtype, plan, colloc_list);
+  if (plan.isNull()) then
+      show("Can't find deployment plan: Plan");
   else
-    show("Can't find deployment plan: Plan");
+      colloc_list := plan.sets("CollocationGroup");
+      container_list->searchAssemblies(hbtype, plan, colloc_list);
   endif;
 }
 
@@ -75,9 +75,9 @@ strategy hasMember(assembly, hbtype, plan : model; comp_list : modelList) {
 
 strategy addHB(assembly, hbtype, plan : model; colloc_set : set) {
   declare comp, inst : model;
-  declare ref : object;
+  declare ref : object;  
   comp := self;
-
+  
   if (not colloc_set.members()
                 ->select(r | r.name() == comp.name())
                 ->isEmpty() ) then
@@ -85,8 +85,6 @@ strategy addHB(assembly, hbtype, plan : model; colloc_set : set) {
       connectToFaultDetector(assembly, inst, plan, colloc_set);
       ref := plan.addReference("ComponentRef",inst.name(), inst);
       colloc_set.addMember(ref);
-  else
-      show("Collocation group set in the deployment plan is empty!");
   endif;
 }
 
@@ -94,7 +92,7 @@ strategy connectToFaultDetector (assembly, inst, plan : model; colloc_set : set)
   declare fd_type, fd_inst : model;
   declare fd_port, inst_port, fd_ref : object;
   
-  fd_type := rootFolder().findFolder("HeartbeatFolder")
+  fd_type := rootFolder().findFolder("HeartbeatIDLFolder")
                          .findModel("HeartbeatFile")
                          .findModel("Monitor")
                          .findModel("FaultDetector");
@@ -114,8 +112,8 @@ strategy connectToFaultDetector (assembly, inst, plan : model; colloc_set : set)
 strategy createHBType () {
    declare pack, hb, iface, fd : model;
 
-   if (rootFolder().findFolder("HeartbeatFolder").isNull()) then
-     pack := rootFolder().addFolder("InterfaceDefinitions","HeartbeatFolder")
+   if (rootFolder().findFolder("HeartbeatIDLFolder").isNull()) then
+     pack := rootFolder().addFolder("InterfaceDefinitions","HeartbeatIDLFolder")
                          .addModel("File","HeartbeatFile")
                          .addModel("Package","Monitor");
 

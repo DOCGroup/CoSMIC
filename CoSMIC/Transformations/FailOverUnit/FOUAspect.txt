@@ -7,16 +7,29 @@ aspect FOU()
 strategy assembly_clone()
 {
   declare container, src, dest : model;
+  declare f : folder;
   declare fou_list : modelList;
   
-  container := rootFolder().findFolder("ComponentImplementations").
-                            findModel("AssemblyContainer");
-  src := container.findModel("HelloAssembly");
-  dest := src.clone(container);
-  dest.setName(src.name() + "_Replica");
-  fou_list := dest.models("FailOverUnit");
-  fou_list->ProcessFOU(dest);
-  fou_list->RemoveFOU(dest);
+  f := rootFolder().findFolder("ComponentImplementations");
+  if (f.isNull()) then
+    show("Can't find folder = ComponentImplementations");
+  else
+    container := f.findModel("GPSImpl");
+	if (container.isNull()) then
+	  show("Can't find container = GPSImpl");
+    else
+      src := container.findModel("GPSAssembly");
+      if (src.isNull()) then
+        show("Can't find assembly = GPSAssembly");
+      else
+        dest := src.clone(container);
+        dest.setName(src.name() + "_Replica");
+        fou_list := dest.models("FailOverUnit");
+        fou_list->ProcessFOU(dest);
+        fou_list->RemoveFOU(dest);
+      endif;
+	endif;
+  endif;
 }
 
 

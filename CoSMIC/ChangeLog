@@ -1,8 +1,57 @@
+Thu Mar 12 05:03:15 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/GPS.xme:
+
+        * Transformations/FailOverUnit/FOUAspect-CompCloning.txt:
+        * Transformations/FailOverUnit/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/FailOverUnit/FOUAspect-Everything.txt:
+        * Transformations/FailOverUnit/FOUAspect.txt:
+        * Transformations/FailOverUnit/FOUMonitors.txt:
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates:
+
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.h:
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.cpp:
+		
+		  Added updates to the C-SAW transformations with a GPS example test.
+
+        * UDM_DSL.mwc:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xme:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+        * Utils/UDM_DSL/CompIcon.ico:
+        * Utils/UDM_DSL/Component.def:
+        * Utils/UDM_DSL/Component.rc:
+        * Utils/UDM_DSL/ComponentConfig.h:
+        * Utils/UDM_DSL/HFSM_old.h:
+        * Utils/UDM_DSL/HFSM_old.cpp:
+        * Utils/UDM_DSL/RawComponent.h:
+        * Utils/UDM_DSL/RawComponent.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.wxs:
+        * Utils/UDM_DSL/UDM_DSL_parameter.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmApp.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmConfig.h:
+        * Utils/UDM_DSL/resource.h:
+
+          Removed these files. UDM_DSL builds as an executable rather
+		  than a GME component.
+
 Wed Mar 11 23:31:30 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
 
-          . Icon for SharedComponentRef was not included in the installer.
+          Icon for SharedComponentRef was not included in the installer.
 
 Wed Feb 18 23:10:30 UTC 2009  Sumant Tambe  <sutambe@nospam>
 

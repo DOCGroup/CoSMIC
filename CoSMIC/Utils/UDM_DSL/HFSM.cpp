@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file HFSM.cpp
 // generated from diagram HFSM
-// generated on Fri Feb 06 18:54:28 2009
+// generated on Sun Feb 22 10:47:44 2009
 
 #include "HFSM.h"
 #include <UmlExt.h>
@@ -9,70 +9,90 @@
 
 namespace HFSM {
 
-	::Uml::Class DataFlow::meta;
-	::Uml::Attribute DataFlow::meta_Event;
-	::Uml::CompositionParentRole DataFlow::meta_ContextDFD_parent;
-	::Uml::CompositionParentRole DataFlow::meta_Process_parent;
-	::Uml::AssociationRole DataFlow::meta_dstTransition_end_;
-	::Uml::AssociationRole DataFlow::meta_srcTransition_end_;
+	::Uml::Class State::meta;
 
-	template <> const ::Uml::CompositionParentRole& DataFlow::_type2CPRole< DataFlow::PR_ContextDFD_parent >() const { return meta_ContextDFD_parent; }
-	template <> const ::Uml::CompositionParentRole& DataFlow::_type2CPRole< DataFlow::PR_Process_parent >() const { return meta_Process_parent; }
-	template <> const ::Uml::AssociationRole& DataFlow::_type2ARole< DataFlow::ACE_dstTransition >() const { return meta_dstTransition_end_; }
-	template <> const ::Uml::AssociationRole& DataFlow::_type2ARole< DataFlow::ACE_srcTransition >() const { return meta_srcTransition_end_; }
+	::Uml::Class Transition::meta;
+	::Uml::Attribute Transition::meta_Event;
+	::Uml::CompositionParentRole Transition::meta_BaseState_parent;
+	::Uml::CompositionParentRole Transition::meta_StateMachine_parent;
+	::Uml::AssociationRole Transition::meta_dstTransition_end_;
+	::Uml::AssociationRole Transition::meta_srcTransition_end_;
 
-	::Uml::Class DataStore::meta;
-	::Uml::CompositionParentRole DataStore::meta_Process_parent;
+	template <> const ::Uml::CompositionParentRole& Transition::_type2CPRole< Transition::PR_BaseState_parent >() const { return meta_BaseState_parent; }
+	template <> const ::Uml::CompositionParentRole& Transition::_type2CPRole< Transition::PR_StateMachine_parent >() const { return meta_StateMachine_parent; }
+	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_dstTransition >() const { return meta_dstTransition_end_; }
+	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_srcTransition >() const { return meta_srcTransition_end_; }
 
-	template <> const ::Uml::CompositionParentRole& DataStore::_type2CPRole< DataStore::PR_Process_parent >() const { return meta_Process_parent; }
+	::Uml::Class StateMachine::meta;
+	::Uml::CompositionChildRole StateMachine::meta_BaseState_children;
+	::Uml::CompositionChildRole StateMachine::meta_Transition_children;
+	::Uml::CompositionParentRole StateMachine::meta_RootFolder_parent;
 
-	::Uml::Class Process::meta;
-	::Uml::AssociationRole Process::meta_srcTransition;
-	::Uml::AssociationRole Process::meta_srcTransition_rev;
-	::Uml::AssociationRole Process::meta_dstTransition;
-	::Uml::AssociationRole Process::meta_dstTransition_rev;
-	::Uml::CompositionChildRole Process::meta_Entity_children;
-	::Uml::CompositionChildRole Process::meta_DataStore_children;
-	::Uml::CompositionChildRole Process::meta_Process_children;
-	::Uml::CompositionChildRole Process::meta_DataFlow_children;
-	::Uml::CompositionParentRole Process::meta_Process_parent;
-	::Uml::CompositionParentRole Process::meta_ContextDFD_parent;
+	template <> const ::Uml::CompositionChildRole& StateMachine::_type2CCRole< StateMachine::CR_BaseState_children >() const { return meta_BaseState_children; }
+	template <> const ::Uml::CompositionChildRole& StateMachine::_type2CCRole< StateMachine::CR_Transition_children >() const { return meta_Transition_children; }
+	template <> const ::Uml::CompositionParentRole& StateMachine::_type2CPRole< StateMachine::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
 
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Process::_type2ACARole< Process::AR_srcTransition >() const { return make_pair(&meta_srcTransition, &meta_srcTransition_rev); }
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Process::_type2ACARole< Process::AR_dstTransition >() const { return make_pair(&meta_dstTransition, &meta_dstTransition_rev); }
-	template <> const ::Uml::CompositionChildRole& Process::_type2CCRole< Process::CR_Entity_children >() const { return meta_Entity_children; }
-	template <> const ::Uml::CompositionChildRole& Process::_type2CCRole< Process::CR_DataStore_children >() const { return meta_DataStore_children; }
-	template <> const ::Uml::CompositionChildRole& Process::_type2CCRole< Process::CR_Process_children >() const { return meta_Process_children; }
-	template <> const ::Uml::CompositionChildRole& Process::_type2CCRole< Process::CR_DataFlow_children >() const { return meta_DataFlow_children; }
-	template <> const ::Uml::CompositionParentRole& Process::_type2CPRole< Process::PR_Process_parent >() const { return meta_Process_parent; }
-	template <> const ::Uml::CompositionParentRole& Process::_type2CPRole< Process::PR_ContextDFD_parent >() const { return meta_ContextDFD_parent; }
+	::Uml::Class FinalState::meta;
 
-	::Uml::Class Entity::meta;
-	::Uml::CompositionParentRole Entity::meta_Process_parent;
-	::Uml::CompositionParentRole Entity::meta_ContextDFD_parent;
+	::Uml::Class StartState::meta;
 
-	template <> const ::Uml::CompositionParentRole& Entity::_type2CPRole< Entity::PR_Process_parent >() const { return meta_Process_parent; }
-	template <> const ::Uml::CompositionParentRole& Entity::_type2CPRole< Entity::PR_ContextDFD_parent >() const { return meta_ContextDFD_parent; }
+	::Uml::Class BaseState::meta;
+	::Uml::AssociationRole BaseState::meta_srcTransition;
+	::Uml::AssociationRole BaseState::meta_srcTransition_rev;
+	::Uml::AssociationRole BaseState::meta_dstTransition;
+	::Uml::AssociationRole BaseState::meta_dstTransition_rev;
+	::Uml::CompositionChildRole BaseState::meta_Transition_child;
+	::Uml::CompositionChildRole BaseState::meta_BaseState_children;
+	::Uml::CompositionParentRole BaseState::meta_StateMachine_parent;
+	::Uml::CompositionParentRole BaseState::meta_BaseState_parent;
 
-	::Uml::Class ContextDFD::meta;
-	::Uml::CompositionChildRole ContextDFD::meta_DataFlow_children;
-	::Uml::CompositionChildRole ContextDFD::meta_Process_child;
-	::Uml::CompositionChildRole ContextDFD::meta_Entity_children;
-	::Uml::CompositionParentRole ContextDFD::meta_RootFolder_parent;
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> BaseState::_type2ACARole< BaseState::AR_srcTransition >() const { return make_pair(&meta_srcTransition, &meta_srcTransition_rev); }
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> BaseState::_type2ACARole< BaseState::AR_dstTransition >() const { return make_pair(&meta_dstTransition, &meta_dstTransition_rev); }
+	template <> const ::Uml::CompositionChildRole& BaseState::_type2CCRole< BaseState::CR_Transition_child >() const { return meta_Transition_child; }
+	template <> const ::Uml::CompositionChildRole& BaseState::_type2CCRole< BaseState::CR_BaseState_children >() const { return meta_BaseState_children; }
+	template <> const ::Uml::CompositionParentRole& BaseState::_type2CPRole< BaseState::PR_StateMachine_parent >() const { return meta_StateMachine_parent; }
+	template <> const ::Uml::CompositionParentRole& BaseState::_type2CPRole< BaseState::PR_BaseState_parent >() const { return meta_BaseState_parent; }
 
-	template <> const ::Uml::CompositionChildRole& ContextDFD::_type2CCRole< ContextDFD::CR_DataFlow_children >() const { return meta_DataFlow_children; }
-	template <> const ::Uml::CompositionChildRole& ContextDFD::_type2CCRole< ContextDFD::CR_Process_child >() const { return meta_Process_child; }
-	template <> const ::Uml::CompositionChildRole& ContextDFD::_type2CCRole< ContextDFD::CR_Entity_children >() const { return meta_Entity_children; }
-	template <> const ::Uml::CompositionParentRole& ContextDFD::_type2CPRole< ContextDFD::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+	::Uml::Class InputSequence::meta;
+	::Uml::CompositionChildRole InputSequence::meta_Events_children;
+	::Uml::CompositionChildRole InputSequence::meta_Sequence_children;
+	::Uml::CompositionParentRole InputSequence::meta_RootFolder_parent;
+
+	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Events_children >() const { return meta_Events_children; }
+	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Sequence_children >() const { return meta_Sequence_children; }
+	template <> const ::Uml::CompositionParentRole& InputSequence::_type2CPRole< InputSequence::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+
+	::Uml::Class Sequence::meta;
+	::Uml::CompositionParentRole Sequence::meta_InputSequence_parent;
+	::Uml::AssociationRole Sequence::meta_dstSequence_end_;
+	::Uml::AssociationRole Sequence::meta_srcSequence_end_;
+
+	template <> const ::Uml::CompositionParentRole& Sequence::_type2CPRole< Sequence::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
+	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_dstSequence >() const { return meta_dstSequence_end_; }
+	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_srcSequence >() const { return meta_srcSequence_end_; }
+
+	::Uml::Class Events::meta;
+	::Uml::Attribute Events::meta_Delay;
+	::Uml::AssociationRole Events::meta_srcSequence;
+	::Uml::AssociationRole Events::meta_srcSequence_rev;
+	::Uml::AssociationRole Events::meta_dstSequence;
+	::Uml::AssociationRole Events::meta_dstSequence_rev;
+	::Uml::CompositionParentRole Events::meta_InputSequence_parent;
+
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_srcSequence >() const { return make_pair(&meta_srcSequence, &meta_srcSequence_rev); }
+	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_dstSequence >() const { return make_pair(&meta_dstSequence, &meta_dstSequence_rev); }
+	template <> const ::Uml::CompositionParentRole& Events::_type2CPRole< Events::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
 
 	::Uml::Class RootFolder::meta;
 	::Uml::Attribute RootFolder::meta_name;
+	::Uml::CompositionChildRole RootFolder::meta_InputSequence_children;
+	::Uml::CompositionChildRole RootFolder::meta_StateMachine_children;
 	::Uml::CompositionChildRole RootFolder::meta_RootFolder_children;
-	::Uml::CompositionChildRole RootFolder::meta_ContextDFD_children;
 	::Uml::CompositionParentRole RootFolder::meta_RootFolder_parent;
 
+	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_InputSequence_children >() const { return meta_InputSequence_children; }
+	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_StateMachine_children >() const { return meta_StateMachine_children; }
 	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_RootFolder_children >() const { return meta_RootFolder_children; }
-	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_ContextDFD_children >() const { return meta_ContextDFD_children; }
 	template <> const ::Uml::CompositionParentRole& RootFolder::_type2CPRole< RootFolder::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
 
 	::Uml::Class MgaObject::meta;
@@ -83,54 +103,83 @@ namespace HFSM {
 
 	void CreateMeta() {
 		// classes, with attributes, constraints and constraint definitions
-		ContextDFD::meta = ::Uml::Class::Create(meta);
+		BaseState::meta = ::Uml::Class::Create(meta);
 
-		DataFlow::meta = ::Uml::Class::Create(meta);
-		DataFlow::meta_Event = ::Uml::Attribute::Create(DataFlow::meta);
+		Events::meta = ::Uml::Class::Create(meta);
+		Events::meta_Delay = ::Uml::Attribute::Create(Events::meta);
 
-		DataStore::meta = ::Uml::Class::Create(meta);
+		FinalState::meta = ::Uml::Class::Create(meta);
 
-		Entity::meta = ::Uml::Class::Create(meta);
+		InputSequence::meta = ::Uml::Class::Create(meta);
 
 		MgaObject::meta = ::Uml::Class::Create(meta);
 		MgaObject::meta_position = ::Uml::Attribute::Create(MgaObject::meta);
 		MgaObject::meta_name = ::Uml::Attribute::Create(MgaObject::meta);
 
-		Process::meta = ::Uml::Class::Create(meta);
-
 		RootFolder::meta = ::Uml::Class::Create(meta);
 		RootFolder::meta_name = ::Uml::Attribute::Create(RootFolder::meta);
+
+		Sequence::meta = ::Uml::Class::Create(meta);
+
+		StartState::meta = ::Uml::Class::Create(meta);
+
+		State::meta = ::Uml::Class::Create(meta);
+
+		StateMachine::meta = ::Uml::Class::Create(meta);
+
+		Transition::meta = ::Uml::Class::Create(meta);
+		Transition::meta_Event = ::Uml::Attribute::Create(Transition::meta);
 
 	}
 
 	void InitMeta() {
 		// classes, with attributes, constraints and constraint definitions
-		::Uml::InitClassProps(ContextDFD::meta, "ContextDFD", false, "Model", NULL);
+		::Uml::InitClassProps(BaseState::meta, "BaseState", true, "Model", NULL);
 
-		::Uml::InitClassProps(DataFlow::meta, "DataFlow", false, "Connection", NULL);
-		::Uml::InitAttributeProps(DataFlow::meta_Event, "Event", "String", false, false, 1, 1, false, "public", vector<string>());
+		::Uml::InitClassProps(Events::meta, "Events", false, "Atom", NULL);
+		vector<string> Events_Delay_dva;
+		Events_Delay_dva.push_back("2");
+		::Uml::InitAttributeProps(Events::meta_Delay, "Delay", "Integer", false, false, 1, 1, false, "public", Events_Delay_dva);
 
-		::Uml::InitClassProps(DataStore::meta, "DataStore", false, "Atom", NULL);
+		::Uml::InitClassProps(FinalState::meta, "FinalState", false, "Model", NULL);
 
-		::Uml::InitClassProps(Entity::meta, "Entity", false, "Atom", NULL);
+		::Uml::InitClassProps(InputSequence::meta, "InputSequence", false, "Model", NULL);
 
 		::Uml::InitClassProps(MgaObject::meta, "MgaObject", true, NULL, NULL);
 		::Uml::InitAttributeProps(MgaObject::meta_position, "position", "String", false, false, 0, 1, false, "public", vector<string>());
 		::Uml::InitAttributeProps(MgaObject::meta_name, "name", "String", false, false, 0, 1, false, "public", vector<string>());
 
-		::Uml::InitClassProps(Process::meta, "Process", false, "Model", NULL);
-
 		::Uml::InitClassProps(RootFolder::meta, "RootFolder", false, "Folder", NULL);
 		::Uml::InitAttributeProps(RootFolder::meta_name, "name", "String", false, false, 0, 1, false, "public", vector<string>());
+
+		::Uml::InitClassProps(Sequence::meta, "Sequence", false, "Connection", NULL);
+
+		::Uml::InitClassProps(StartState::meta, "StartState", false, "Model", NULL);
+
+		::Uml::InitClassProps(State::meta, "State", false, "Model", NULL);
+
+		::Uml::InitClassProps(StateMachine::meta, "StateMachine", false, "Model", NULL);
+
+		::Uml::InitClassProps(Transition::meta, "Transition", false, "Connection", NULL);
+		::Uml::InitAttributeProps(Transition::meta_Event, "Event", "String", false, false, 1, 1, false, "public", vector<string>());
 
 		// associations
 		{
 			::Uml::Association ass = ::Uml::Association::Create(meta);
-			::Uml::InitAssociationProps(ass, "DataFlow");
-			Process::meta_srcTransition = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Process::meta_srcTransition, "srcTransition", true, false, 0, -1);
-			Process::meta_dstTransition = ::Uml::AssociationRole::Create(ass);
-			::Uml::InitAssociationRoleProps(Process::meta_dstTransition, "dstTransition", true, false, 0, -1);
+			::Uml::InitAssociationProps(ass, "Transition");
+			BaseState::meta_srcTransition = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(BaseState::meta_srcTransition, "srcTransition", true, false, 1, 1);
+			BaseState::meta_dstTransition = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(BaseState::meta_dstTransition, "dstTransition", true, false, 1, 1);
+
+		}
+		{
+			::Uml::Association ass = ::Uml::Association::Create(meta);
+			::Uml::InitAssociationProps(ass, "Sequence");
+			Events::meta_srcSequence = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Events::meta_srcSequence, "srcSequence", true, false, 0, 1);
+			Events::meta_dstSequence = ::Uml::AssociationRole::Create(ass);
+			::Uml::InitAssociationRoleProps(Events::meta_dstSequence, "dstSequence", true, false, 0, 1);
 
 		}
 
@@ -138,64 +187,73 @@ namespace HFSM {
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Entity::meta_Process_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Entity::meta_Process_parent, "Process_parent", true);
-			Process::meta_Entity_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Process::meta_Entity_children, "Entity", true, 0, -1);
+			BaseState::meta_StateMachine_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(BaseState::meta_StateMachine_parent, "StateMachine_parent", true);
+			StateMachine::meta_BaseState_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(StateMachine::meta_BaseState_children, "BaseState", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			DataStore::meta_Process_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(DataStore::meta_Process_parent, "Process_parent", true);
-			Process::meta_DataStore_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Process::meta_DataStore_children, "DataStore", true, 0, -1);
+			Transition::meta_StateMachine_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Transition::meta_StateMachine_parent, "StateMachine_parent", true);
+			StateMachine::meta_Transition_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(StateMachine::meta_Transition_children, "Transition", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Process::meta_Process_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Process::meta_Process_parent, "Process_parent", true);
-			Process::meta_Process_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Process::meta_Process_children, "Process", true, 0, -1);
+			Transition::meta_BaseState_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Transition::meta_BaseState_parent, "BaseState_parent", true);
+			BaseState::meta_Transition_child = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(BaseState::meta_Transition_child, "Transition", true, 1, 1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			DataFlow::meta_Process_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(DataFlow::meta_Process_parent, "Process_parent", true);
-			Process::meta_DataFlow_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(Process::meta_DataFlow_children, "DataFlow", true, 0, -1);
+			BaseState::meta_BaseState_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(BaseState::meta_BaseState_parent, "BaseState_parent", true);
+			BaseState::meta_BaseState_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(BaseState::meta_BaseState_children, "BaseState", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			DataFlow::meta_ContextDFD_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(DataFlow::meta_ContextDFD_parent, "ContextDFD_parent", true);
-			ContextDFD::meta_DataFlow_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ContextDFD::meta_DataFlow_children, "DataFlow", true, 0, -1);
+			Events::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Events::meta_InputSequence_parent, "InputSequence_parent", true);
+			InputSequence::meta_Events_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Events_children, "Events", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Process::meta_ContextDFD_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Process::meta_ContextDFD_parent, "ContextDFD_parent", true);
-			ContextDFD::meta_Process_child = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ContextDFD::meta_Process_child, "Process", true, 0, 1);
+			Sequence::meta_InputSequence_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(Sequence::meta_InputSequence_parent, "InputSequence_parent", true);
+			InputSequence::meta_Sequence_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(InputSequence::meta_Sequence_children, "Sequence", true, 0, -1);
 
 		}
 		{
 			::Uml::Composition comp = ::Uml::Composition::Create(meta);
 			::Uml::InitCompositionProps(comp, "", false);
-			Entity::meta_ContextDFD_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(Entity::meta_ContextDFD_parent, "ContextDFD_parent", true);
-			ContextDFD::meta_Entity_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(ContextDFD::meta_Entity_children, "Entity", true, 0, -1);
+			InputSequence::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(InputSequence::meta_RootFolder_parent, "RootFolder_parent", true);
+			RootFolder::meta_InputSequence_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(RootFolder::meta_InputSequence_children, "InputSequence", true, 0, -1);
+
+		}
+		{
+			::Uml::Composition comp = ::Uml::Composition::Create(meta);
+			::Uml::InitCompositionProps(comp, "", false);
+			StateMachine::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
+			::Uml::InitCompositionParentRoleProps(StateMachine::meta_RootFolder_parent, "RootFolder_parent", true);
+			RootFolder::meta_StateMachine_children = ::Uml::CompositionChildRole::Create(comp);
+			::Uml::InitCompositionChildRoleProps(RootFolder::meta_StateMachine_children, "StateMachine", true, 0, -1);
 
 		}
 		{
@@ -207,109 +265,126 @@ namespace HFSM {
 			::Uml::InitCompositionChildRoleProps(RootFolder::meta_RootFolder_children, "RootFolder", true, 0, -1);
 
 		}
-		{
-			::Uml::Composition comp = ::Uml::Composition::Create(meta);
-			::Uml::InitCompositionProps(comp, "", false);
-			ContextDFD::meta_RootFolder_parent = ::Uml::CompositionParentRole::Create(comp);
-			::Uml::InitCompositionParentRoleProps(ContextDFD::meta_RootFolder_parent, "RootFolder_parent", true);
-			RootFolder::meta_ContextDFD_children = ::Uml::CompositionChildRole::Create(comp);
-			::Uml::InitCompositionChildRoleProps(RootFolder::meta_ContextDFD_children, "ContextDFD", true, 0, -1);
-
-		}
 
 	}
 
 	void InitMetaLinks() {
-		DataFlow::meta_ContextDFD_parent.target() = ContextDFD::meta;
-		Process::meta_ContextDFD_parent.target() = ContextDFD::meta;
-		Entity::meta_ContextDFD_parent.target() = ContextDFD::meta;
-		RootFolder::meta_ContextDFD_children.target() = ContextDFD::meta;
+		BaseState::meta_srcTransition.target() = BaseState::meta;
+		BaseState::meta_dstTransition.target() = BaseState::meta;
+		Transition::meta_BaseState_parent.target() = BaseState::meta;
+		BaseState::meta_BaseState_parent.target() = BaseState::meta;
+		StateMachine::meta_BaseState_children.target() = BaseState::meta;
+		BaseState::meta_BaseState_children.target() = BaseState::meta;
+		BaseState::meta.subTypes() += State::meta;
+		BaseState::meta.subTypes() += FinalState::meta;
+		BaseState::meta.subTypes() += StartState::meta;
 
-		ContextDFD::meta_DataFlow_children.target() = DataFlow::meta;
-		Process::meta_DataFlow_children.target() = DataFlow::meta;
-		DataFlow::meta.association() = Process::meta_srcTransition.parent();
-		DataFlow::meta_srcTransition_end_ = Process::meta_dstTransition_rev = Process::meta_srcTransition;
-		DataFlow::meta_dstTransition_end_ = Process::meta_srcTransition_rev = Process::meta_dstTransition;
+		Events::meta_srcSequence.target() = Events::meta;
+		Events::meta_dstSequence.target() = Events::meta;
+		InputSequence::meta_Events_children.target() = Events::meta;
 
-		Process::meta_DataStore_children.target() = DataStore::meta;
+		Events::meta_InputSequence_parent.target() = InputSequence::meta;
+		Sequence::meta_InputSequence_parent.target() = InputSequence::meta;
+		RootFolder::meta_InputSequence_children.target() = InputSequence::meta;
 
-		Process::meta_Entity_children.target() = Entity::meta;
-		ContextDFD::meta_Entity_children.target() = Entity::meta;
+		MgaObject::meta.subTypes() += Transition::meta;
+		MgaObject::meta.subTypes() += StateMachine::meta;
+		MgaObject::meta.subTypes() += BaseState::meta;
+		MgaObject::meta.subTypes() += InputSequence::meta;
+		MgaObject::meta.subTypes() += Sequence::meta;
+		MgaObject::meta.subTypes() += Events::meta;
 
-		MgaObject::meta.subTypes() += DataFlow::meta;
-		MgaObject::meta.subTypes() += DataStore::meta;
-		MgaObject::meta.subTypes() += Process::meta;
-		MgaObject::meta.subTypes() += Entity::meta;
-		MgaObject::meta.subTypes() += ContextDFD::meta;
-
-		Process::meta_srcTransition.target() = Process::meta;
-		Process::meta_dstTransition.target() = Process::meta;
-		Entity::meta_Process_parent.target() = Process::meta;
-		DataStore::meta_Process_parent.target() = Process::meta;
-		Process::meta_Process_parent.target() = Process::meta;
-		DataFlow::meta_Process_parent.target() = Process::meta;
-		Process::meta_Process_children.target() = Process::meta;
-		ContextDFD::meta_Process_child.target() = Process::meta;
-
+		InputSequence::meta_RootFolder_parent.target() = RootFolder::meta;
+		StateMachine::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_parent.target() = RootFolder::meta;
-		ContextDFD::meta_RootFolder_parent.target() = RootFolder::meta;
 		RootFolder::meta_RootFolder_children.target() = RootFolder::meta;
+
+		InputSequence::meta_Sequence_children.target() = Sequence::meta;
+		Sequence::meta.association() = Events::meta_srcSequence.parent();
+		Sequence::meta_srcSequence_end_ = Events::meta_dstSequence_rev = Events::meta_srcSequence;
+		Sequence::meta_dstSequence_end_ = Events::meta_srcSequence_rev = Events::meta_dstSequence;
+
+		BaseState::meta_StateMachine_parent.target() = StateMachine::meta;
+		Transition::meta_StateMachine_parent.target() = StateMachine::meta;
+		RootFolder::meta_StateMachine_children.target() = StateMachine::meta;
+
+		BaseState::meta_Transition_child.target() = Transition::meta;
+		StateMachine::meta_Transition_children.target() = Transition::meta;
+		Transition::meta.association() = BaseState::meta_srcTransition.parent();
+		Transition::meta_srcTransition_end_ = BaseState::meta_dstTransition_rev = BaseState::meta_srcTransition;
+		Transition::meta_dstTransition_end_ = BaseState::meta_srcTransition_rev = BaseState::meta_dstTransition;
 
 	}
 
 	void InitMeta(const ::Uml::Diagram &parent) {
 		// classes, with attributes, constraints and constraint definitions
-		::Uml::SetClass(ContextDFD::meta, parent, "ContextDFD");
+		::Uml::SetClass(BaseState::meta, parent, "BaseState");
 
-		::Uml::SetClass(DataFlow::meta, parent, "DataFlow");
-		::Uml::SetAttribute(DataFlow::meta_Event, DataFlow::meta, "Event");
+		::Uml::SetClass(Events::meta, parent, "Events");
+		::Uml::SetAttribute(Events::meta_Delay, Events::meta, "Delay");
 
-		::Uml::SetClass(DataStore::meta, parent, "DataStore");
+		::Uml::SetClass(FinalState::meta, parent, "FinalState");
 
-		::Uml::SetClass(Entity::meta, parent, "Entity");
+		::Uml::SetClass(InputSequence::meta, parent, "InputSequence");
 
 		::Uml::SetClass(MgaObject::meta, parent, "MgaObject");
 		::Uml::SetAttribute(MgaObject::meta_position, MgaObject::meta, "position");
 		::Uml::SetAttribute(MgaObject::meta_name, MgaObject::meta, "name");
 
-		::Uml::SetClass(Process::meta, parent, "Process");
-
 		::Uml::SetClass(RootFolder::meta, parent, "RootFolder");
 		::Uml::SetAttribute(RootFolder::meta_name, RootFolder::meta, "name");
+
+		::Uml::SetClass(Sequence::meta, parent, "Sequence");
+
+		::Uml::SetClass(StartState::meta, parent, "StartState");
+
+		::Uml::SetClass(State::meta, parent, "State");
+
+		::Uml::SetClass(StateMachine::meta, parent, "StateMachine");
+
+		::Uml::SetClass(Transition::meta, parent, "Transition");
+		::Uml::SetAttribute(Transition::meta_Event, Transition::meta, "Event");
 
 	}
 
 	void InitMetaLinks(const ::Uml::Diagram &parent) {
 		// classes
-		::Uml::SetChildRole(ContextDFD::meta_DataFlow_children, ContextDFD::meta, DataFlow::meta, "", "");
-		::Uml::SetChildRole(ContextDFD::meta_Process_child, ContextDFD::meta, Process::meta, "", "");
-		::Uml::SetChildRole(ContextDFD::meta_Entity_children, ContextDFD::meta, Entity::meta, "", "");
-		::Uml::SetParentRole(ContextDFD::meta_RootFolder_parent, ContextDFD::meta, RootFolder::meta, "", "");
+		::Uml::SetAssocRole(BaseState::meta_srcTransition, BaseState::meta, BaseState::meta, "dstTransition");
+		BaseState::meta_dstTransition_rev = BaseState::meta_srcTransition;
+		::Uml::SetAssocRole(BaseState::meta_dstTransition, BaseState::meta, BaseState::meta, "srcTransition");
+		BaseState::meta_srcTransition_rev = BaseState::meta_dstTransition;
+		::Uml::SetChildRole(BaseState::meta_Transition_child, BaseState::meta, Transition::meta, "", "");
+		::Uml::SetChildRole(BaseState::meta_BaseState_children, BaseState::meta, BaseState::meta, "", "");
+		::Uml::SetParentRole(BaseState::meta_StateMachine_parent, BaseState::meta, StateMachine::meta, "", "");
+		::Uml::SetParentRole(BaseState::meta_BaseState_parent, BaseState::meta, BaseState::meta, "", "");
 
-		::Uml::SetParentRole(DataFlow::meta_ContextDFD_parent, DataFlow::meta, ContextDFD::meta, "", "");
-		::Uml::SetParentRole(DataFlow::meta_Process_parent, DataFlow::meta, Process::meta, "", "");
-		DataFlow::meta_dstTransition_end_ = Process::meta_dstTransition;
-		DataFlow::meta_srcTransition_end_ = Process::meta_srcTransition;
+		::Uml::SetAssocRole(Events::meta_srcSequence, Events::meta, Events::meta, "dstSequence");
+		Events::meta_dstSequence_rev = Events::meta_srcSequence;
+		::Uml::SetAssocRole(Events::meta_dstSequence, Events::meta, Events::meta, "srcSequence");
+		Events::meta_srcSequence_rev = Events::meta_dstSequence;
+		::Uml::SetParentRole(Events::meta_InputSequence_parent, Events::meta, InputSequence::meta, "", "");
 
-		::Uml::SetParentRole(DataStore::meta_Process_parent, DataStore::meta, Process::meta, "", "");
+		::Uml::SetChildRole(InputSequence::meta_Events_children, InputSequence::meta, Events::meta, "", "");
+		::Uml::SetChildRole(InputSequence::meta_Sequence_children, InputSequence::meta, Sequence::meta, "", "");
+		::Uml::SetParentRole(InputSequence::meta_RootFolder_parent, InputSequence::meta, RootFolder::meta, "", "");
 
-		::Uml::SetParentRole(Entity::meta_Process_parent, Entity::meta, Process::meta, "", "");
-		::Uml::SetParentRole(Entity::meta_ContextDFD_parent, Entity::meta, ContextDFD::meta, "", "");
-
-		::Uml::SetAssocRole(Process::meta_srcTransition, Process::meta, Process::meta, "dstTransition");
-		Process::meta_dstTransition_rev = Process::meta_srcTransition;
-		::Uml::SetAssocRole(Process::meta_dstTransition, Process::meta, Process::meta, "srcTransition");
-		Process::meta_srcTransition_rev = Process::meta_dstTransition;
-		::Uml::SetChildRole(Process::meta_Entity_children, Process::meta, Entity::meta, "", "");
-		::Uml::SetChildRole(Process::meta_DataStore_children, Process::meta, DataStore::meta, "", "");
-		::Uml::SetChildRole(Process::meta_Process_children, Process::meta, Process::meta, "", "");
-		::Uml::SetChildRole(Process::meta_DataFlow_children, Process::meta, DataFlow::meta, "", "");
-		::Uml::SetParentRole(Process::meta_Process_parent, Process::meta, Process::meta, "", "");
-		::Uml::SetParentRole(Process::meta_ContextDFD_parent, Process::meta, ContextDFD::meta, "", "");
-
+		::Uml::SetChildRole(RootFolder::meta_InputSequence_children, RootFolder::meta, InputSequence::meta, "", "");
+		::Uml::SetChildRole(RootFolder::meta_StateMachine_children, RootFolder::meta, StateMachine::meta, "", "");
 		::Uml::SetChildRole(RootFolder::meta_RootFolder_children, RootFolder::meta, RootFolder::meta, "", "");
-		::Uml::SetChildRole(RootFolder::meta_ContextDFD_children, RootFolder::meta, ContextDFD::meta, "", "");
 		::Uml::SetParentRole(RootFolder::meta_RootFolder_parent, RootFolder::meta, RootFolder::meta, "", "");
+
+		::Uml::SetParentRole(Sequence::meta_InputSequence_parent, Sequence::meta, InputSequence::meta, "", "");
+		Sequence::meta_dstSequence_end_ = Events::meta_dstSequence;
+		Sequence::meta_srcSequence_end_ = Events::meta_srcSequence;
+
+		::Uml::SetChildRole(StateMachine::meta_BaseState_children, StateMachine::meta, BaseState::meta, "", "");
+		::Uml::SetChildRole(StateMachine::meta_Transition_children, StateMachine::meta, Transition::meta, "", "");
+		::Uml::SetParentRole(StateMachine::meta_RootFolder_parent, StateMachine::meta, RootFolder::meta, "", "");
+
+		::Uml::SetParentRole(Transition::meta_BaseState_parent, Transition::meta, BaseState::meta, "", "");
+		::Uml::SetParentRole(Transition::meta_StateMachine_parent, Transition::meta, StateMachine::meta, "", "");
+		Transition::meta_dstTransition_end_ = BaseState::meta_dstTransition;
+		Transition::meta_srcTransition_end_ = BaseState::meta_srcTransition;
 
 	}
 
@@ -362,48 +437,5 @@ namespace HFSM {
 		}
 	} __regUnUsed;
 
-/* The BaseVisitor reference need not be const. This will make it consistent
-   with other Accept functions.
-*/
-//virtual void Udm::Object::Accept(const BaseVisitor & bv) { bv.Visit_Object(*this); }  
-
-//virtual void Udm::BaseVisitor::Visit_Object (const Object &) const = 0;
-
-  template <class T>
-  static bool dispatchIf(Udm::Object o, Visitor & v)
-  {
-    if (Udm::IsDerivedFrom(o.type(), T::meta))  
-    {
-      T t = T::Cast(o);
-      t.Accept(v);
-      return true;
-    }
-    return false;
-  }
-
-  /* 1. This code has a potential for slowing down dispatching 
-        linearly with the number of kinds. This is not accetable for
-        large languages. A constant time dispatch technique based on 
-        Udm's meta information could be used to do that. Perfect hashing
-        (gperf) technique by Doug Schmidt could be used to achieve absolute 
-        constant time dispatching.
-     2. If hashing (perfect or otherwise) is not used, the order in which
-        the dispatchIf occurs is very important. The base classes should
-        occur after the derived classes. Otherwise, dispatch will made 
-        prematurely.
-     3. If abstract UML types don't have their own Accept and Visit_* 
-        functions then those classes should not reappear here. 
-        It will cause infinite recursion.
-  */
-  void HFSM::Visitor::Visit_Object(const Udm::Object &o)
-  {
-    /*    Short Circuit using ||     */
-    dispatchIf <RootFolder> (o, *this) ||
-    dispatchIf <ContextDFD> (o, *this) || 
-    dispatchIf <DataFlow>   (o, *this) ||
-    dispatchIf <DataStore>  (o, *this) ||
-    dispatchIf <Entity>     (o, *this) ||
-    dispatchIf <Process>    (o, *this);
-  }
-
 }
+

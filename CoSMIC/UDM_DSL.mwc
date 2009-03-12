@@ -1,3 +1,3 @@
 workspace : cosmic_common {
-  Utils/UDM_DSL
+  Utils/UDM_DSL/UDM_DSL.mpc
 }
