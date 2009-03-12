@@ -18,6 +18,9 @@
 #endif
 
 #include "game/FCO.h"
+#include "ace/Hash_Map_Manager.h"
+#include "ace/Null_Mutex.h"
+#include "ace/SString.h"
 #include <string>
 #include <set>
 #include <map>
@@ -131,6 +134,10 @@ private:
 
   /// Collection of action types we are monitoring.
   static string_set actions_types_;
+
+  ACE_Hash_Map_Manager <ACE_CString,
+                        std::string,
+                        ACE_Null_Mutex> state_transition_map_;
 
   /// The active state in the model.
   GME::FCO active_state_;

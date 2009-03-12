@@ -1,3 +1,12 @@
+Thu Mar 12 13:46:34 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Updated the add-on to auto-generate connections to an newly
+            inserted action for the following states kinds: BranchState,
+            ForState, DoWhileState, WhichState.
+
  Thu Mar 12 05:23:41 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/RawComponent.h:

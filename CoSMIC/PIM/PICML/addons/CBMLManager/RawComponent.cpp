@@ -38,6 +38,12 @@ RawComponent::RawComponent (void)
     RawComponent::actions_types_.insert ("Action");
     RawComponent::actions_types_.insert ("OutputAction");
   }
+
+  this->state_transition_map_.bind ("State", "Transition");
+  this->state_transition_map_.bind ("ForState", "LoopTransition");
+  this->state_transition_map_.bind ("WhileState", "LoopTransition");
+  this->state_transition_map_.bind ("DoWhileState", "LoopTransition");
+  this->state_transition_map_.bind ("BranchState", "BranchTransition");
 }
 
 //
@@ -301,7 +307,7 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
         // Save the action as the last action.
         this->last_action_ = GME::FCO::_narrow (obj);
       }
-      else if (metaname == "State")
+      else if (this->state_transition_map_.find (metaname.c_str ()) == 0)
       {
         this->active_state_ = GME::FCO::_narrow (obj);
       }
@@ -366,11 +372,19 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
     action.position ("Behavior", position);
 
     // Create a connection between the <active_state_> and the <action>.
-    GME::Connection transition =
-      GME::Connection::_create ("Transition",
-                                parent,
-                                this->active_state_,
-                                action);
+    std::string transition_type;
+    int retval =
+      this->state_transition_map_.find (this->active_state_.meta ().name ().c_str (),
+                                        transition_type);
+
+    if (retval == 0)
+    {
+      GME::Connection transition =
+        GME::Connection::_create (transition_type,
+                                  parent,
+                                  this->active_state_,
+                                  action);
+    }
   }
 
   // Create the new State element for the action.
