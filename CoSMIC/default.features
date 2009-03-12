@@ -19,4 +19,5 @@ wxWindows     = 1
 boost         = 1
 cidl          = 1
 xerces2       = 1
+xerces3       = 0
 register      = 1

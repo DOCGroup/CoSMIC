@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{D7484B9D-27E6-4B3D-8284-445476B1ED1B}" cdate="Mon Feb 02 17:43:08 2009" mdate="Mon Feb 02 17:43:08 2009" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{53572CA9-B531-4486-AFC1-F68D0ACE8EF1}" cdate="Wed Mar 11 18:35:52 2009" mdate="Wed Mar 11 18:35:52 2009" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -2223,8 +2223,8 @@ not worker.Abstract</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="dst" target="id-0066-0000000a"/>
 					<connpoint role="src" target="id-0066-0000000a"/>
+					<connpoint role="dst" target="id-0066-0000000a"/>
 				</connection>
 				<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{AA6E2700-9CB2-470d-81D4-78D4E161F19A}" relid="0x6a">
 					<name>Containment</name>
@@ -4208,6 +4208,12 @@ not worker.Abstract</value>
 							</regnode>
 						</regnode>
 					</regnode>
+					<regnode name="Distribution-58-FieldAttribute" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4219</value>
+						</regnode>
+					</regnode>
 					<regnode name="Environment-24-Model" status="undefined">
 						<value></value>
 						<regnode name="KindAspects" status="undefined">
@@ -4317,6 +4323,12 @@ not worker.Abstract</value>
 									<value>yes</value>
 								</regnode>
 							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="Hertz-2b-FieldAttribute" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4220</value>
 						</regnode>
 					</regnode>
 					<regnode name="Period-2b-FieldAttribute" status="undefined">
@@ -8595,7 +8607,7 @@ endif</value>
 						<value>Hertz</value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000002c" kind="Inheritance" role="Inheritance" guid="{A7FB39F5-B592-427a-9C6F-B2A44F38C4BA}" relid="0xf">
+				<atom id="id-0066-0000002b" kind="Inheritance" role="Inheritance" guid="{A7FB39F5-B592-427a-9C6F-B2A44F38C4BA}" relid="0xf">
 					<name>Inheritance</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8625,7 +8637,7 @@ endif</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-0000002d" kind="Atom" role="Atom" guid="{94C229AA-0A03-497c-9E98-3CC0F2B74E85}" relid="0x38">
+				<atom id="id-0066-0000002c" kind="Atom" role="Atom" guid="{94C229AA-0A03-497c-9E98-3CC0F2B74E85}" relid="0x38">
 					<name>Environment</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8697,7 +8709,7 @@ endif</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000002e" kind="Atom" role="Atom" guid="{2745278E-F561-41cb-BBA9-EADF25979CAA}" relid="0x3b">
+				<atom id="id-0066-0000002d" kind="Atom" role="Atom" guid="{2745278E-F561-41cb-BBA9-EADF25979CAA}" relid="0x3b">
 					<name>PeriodicEvent</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8769,7 +8781,7 @@ endif</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-0000002f" kind="Inheritance" role="Inheritance" guid="{DFFDFFAE-C000-415a-9BE4-AAF617C23C07}" relid="0x4c">
+				<atom id="id-0066-0000002e" kind="Inheritance" role="Inheritance" guid="{DFFDFFAE-C000-415a-9BE4-AAF617C23C07}" relid="0x4c">
 					<name>Inheritance</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8799,7 +8811,7 @@ endif</value>
 						</regnode>
 					</regnode>
 				</atom>
-				<atom id="id-0066-00000030" kind="Atom" role="Atom" guid="{DE7C1677-9C1E-415d-8936-41464E8C1EC3}" relid="0x4f">
+				<atom id="id-0066-0000002f" kind="Atom" role="Atom" guid="{DE7C1677-9C1E-415d-8936-41464E8C1EC3}" relid="0x4f">
 					<name>ApplicationTask</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -8871,7 +8883,7 @@ endif</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000287" kind="FieldAttribute" role="FieldAttribute" guid="{6E94EF01-8E50-410d-92EC-45C705FAEF40}" relid="0x58">
+				<atom id="id-0066-00000030" kind="FieldAttribute" role="FieldAttribute" guid="{6E94EF01-8E50-410d-92EC-45C705FAEF40}" relid="0x58">
 					<name>Distribution</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -9343,7 +9355,7 @@ endif</value>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000002c"/>
+					<connpoint role="dst" target="id-0066-0000002b"/>
 					<connpoint role="src" target="id-0067-0000007c"/>
 				</connection>
 				<connection id="id-0068-00000044" kind="DerivedInheritance" role="DerivedInheritance" guid="{4431A926-988F-4f95-A086-C307745A4253}" relid="0x3c">
@@ -9351,15 +9363,15 @@ endif</value>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0066-0000002e"/>
+					<connpoint role="src" target="id-0066-0000002b"/>
+					<connpoint role="dst" target="id-0066-0000002d"/>
 				</connection>
 				<connection id="id-0068-00000045" kind="DerivedInheritance" role="DerivedInheritance" guid="{D9928F5A-243C-42a7-B4D1-139A60CE46D7}" relid="0x3d">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000002c"/>
+					<connpoint role="src" target="id-0066-0000002b"/>
 					<connpoint role="dst" target="id-0067-0000007a"/>
 				</connection>
 				<connection id="id-0068-00000046" kind="DerivedInheritance" role="DerivedInheritance" guid="{B92C84C8-81EF-4667-A22A-EA1B21A53C85}" relid="0x3e">
@@ -9376,7 +9388,7 @@ endif</value>
 						<value>Sn</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-00000029"/>
-					<connpoint role="dst" target="id-0066-0000002d"/>
+					<connpoint role="dst" target="id-0066-0000002c"/>
 				</connection>
 				<connection id="id-0068-00000048" kind="HasAttribute" role="HasAttribute" guid="{95EDB7F2-A800-4a19-9192-8D78183AE4DB}" relid="0x42">
 					<name>HasAttribute</name>
@@ -9384,33 +9396,33 @@ endif</value>
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="src" target="id-0066-0000002a"/>
-					<connpoint role="dst" target="id-0066-0000002e"/>
+					<connpoint role="dst" target="id-0066-0000002d"/>
 				</connection>
-				<connection id="id-0068-0000004a" kind="BaseInheritance" role="BaseInheritance" guid="{FA070C36-729D-4015-86C8-4ACDD6C81DDC}" relid="0x4d">
+				<connection id="id-0068-00000049" kind="BaseInheritance" role="BaseInheritance" guid="{FA070C36-729D-4015-86C8-4ACDD6C81DDC}" relid="0x4d">
 					<name>BaseInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000002f"/>
+					<connpoint role="dst" target="id-0066-0000002e"/>
 					<connpoint role="src" target="id-0067-0000007d"/>
 				</connection>
-				<connection id="id-0068-0000004b" kind="DerivedInheritance" role="DerivedInheritance" guid="{0E82123E-B1ED-488b-9798-75A5554EBDA1}" relid="0x4e">
+				<connection id="id-0068-0000004a" kind="DerivedInheritance" role="DerivedInheritance" guid="{0E82123E-B1ED-488b-9798-75A5554EBDA1}" relid="0x4e">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000002f"/>
+					<connpoint role="src" target="id-0066-0000002e"/>
 					<connpoint role="dst" target="id-0067-0000007a"/>
 				</connection>
-				<connection id="id-0068-0000004c" kind="DerivedInheritance" role="DerivedInheritance" guid="{39ED4A71-FB64-4a83-B1D2-D4833972AD24}" relid="0x50">
+				<connection id="id-0068-0000004b" kind="DerivedInheritance" role="DerivedInheritance" guid="{39ED4A71-FB64-4a83-B1D2-D4833972AD24}" relid="0x50">
 					<name>DerivedInheritance</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sn</value>
 					</regnode>
-					<connpoint role="src" target="id-0066-0000002c"/>
-					<connpoint role="dst" target="id-0066-00000030"/>
+					<connpoint role="src" target="id-0066-0000002b"/>
+					<connpoint role="dst" target="id-0066-0000002f"/>
 				</connection>
-				<connection id="id-0068-0000004d" kind="Containment" role="Containment" guid="{A6AB92AF-1319-4d8c-839A-383219E0E8C1}" relid="0x53">
+				<connection id="id-0068-0000004c" kind="Containment" role="Containment" guid="{A6AB92AF-1319-4d8c-839A-383219E0E8C1}" relid="0x53">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -9424,10 +9436,10 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000002e"/>
+					<connpoint role="src" target="id-0066-0000002d"/>
 					<connpoint role="dst" target="id-0067-0000007e"/>
 				</connection>
-				<connection id="id-0068-0000004e" kind="Containment" role="Containment" guid="{12D95ED1-4805-4ef3-A780-B90FB544EC93}" relid="0x54">
+				<connection id="id-0068-0000004d" kind="Containment" role="Containment" guid="{12D95ED1-4805-4ef3-A780-B90FB544EC93}" relid="0x54">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Sw</value>
@@ -9441,10 +9453,10 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-00000030"/>
+					<connpoint role="src" target="id-0066-0000002f"/>
 					<connpoint role="dst" target="id-0067-0000007e"/>
 				</connection>
-				<connection id="id-0068-0000004f" kind="Containment" role="Containment" guid="{D235DA0F-7739-4f63-A67E-A8103151726E}" relid="0x55">
+				<connection id="id-0068-0000004e" kind="Containment" role="Containment" guid="{D235DA0F-7739-4f63-A67E-A8103151726E}" relid="0x55">
 					<name>Containment</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Se</value>
@@ -9458,16 +9470,16 @@ endif</value>
 					<attribute kind="Rolename" status="meta">
 						<value></value>
 					</attribute>
-					<connpoint role="src" target="id-0066-0000002d"/>
+					<connpoint role="src" target="id-0066-0000002c"/>
 					<connpoint role="dst" target="id-0067-0000007e"/>
 				</connection>
-				<connection id="id-0068-00000413" kind="HasAttribute" role="HasAttribute" guid="{A56DFA82-34B0-4f46-A7D3-CBB48CA691D7}" relid="0x59">
+				<connection id="id-0068-0000004f" kind="HasAttribute" role="HasAttribute" guid="{A56DFA82-34B0-4f46-A7D3-CBB48CA691D7}" relid="0x59">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
-					<connpoint role="dst" target="id-0066-0000002e"/>
-					<connpoint role="src" target="id-0066-00000287"/>
+					<connpoint role="dst" target="id-0066-0000002d"/>
+					<connpoint role="src" target="id-0066-00000030"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000005" kind="ParadigmSheet" guid="{8D015BFE-EE7F-4bf2-867B-CAF32F18355D}" relid="0x5" childrelidcntr="0xb">
@@ -47695,8 +47707,8 @@ ResourceUsesPort</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-00000086"/>
 				<connpoint role="dst" target="id-0066-00000086"/>
+				<connpoint role="src" target="id-0066-00000086"/>
 			</connection>
 			<connection id="id-0068-000000db" kind="HasAspect" role="HasAspect" guid="{14F5F5EC-1F59-4f39-AB1A-4010C83B6898}" relid="0x54">
 				<name>HasAspect</name>
@@ -67784,7 +67796,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 				</attribute>
 			</set>
 		</model>
-		<model id="id-0065-00000018" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x78">
+		<model id="id-0065-00000018" kind="ParadigmSheet" guid="{CAD82429-4285-4da2-BB46-9C362FA49ED4}" relid="0x8" childrelidcntr="0x79">
 			<name>ImplementationArtifact</name>
 			<atom id="id-0066-0000015f" kind="Folder" role="Folder" guid="{BA2B5669-4736-422d-811B-5A33CBBD032C}" relid="0xc">
 				<name>ImplementationArtifacts</name>
@@ -67814,7 +67826,7 @@ let impls = self.referenceParts(ComponentImplementationReference) in
 					<regnode name="Visualization" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>29,48</value>
+							<value>106,125</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68293,7 +68305,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>64,279</value>
+							<value>64,286</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -68756,7 +68768,7 @@ rrName = referedbyImplementationArtifactReference</value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>202,426</value>
+							<value>104,419</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -68928,7 +68940,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>643,279</value>
+							<value>580,328</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69119,7 +69131,7 @@ dName = dstArtifactDependency</value>
 					<regnode name="Constraints" status="undefined">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>552,377</value>
+							<value>643,265</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69226,82 +69238,6 @@ self.architecture &lt;&gt; j.architecture </value>
 				</attribute>
 				<attribute kind="CFuncStereotype" status="meta">
 					<value>method</value>
-				</attribute>
-			</atom>
-			<atom id="id-0066-00000175" kind="Constraint" role="Constraint" guid="{EBAA890B-B456-44db-9AE1-E8669FC941BC}" relid="0x64">
-				<name>UniqueUUID</name>
-				<regnode name="PartRegs" status="undefined">
-					<value></value>
-					<regnode name="Constraints" status="undefined">
-						<value></value>
-						<regnode name="Position" isopaque="yes">
-							<value>219,303</value>
-						</regnode>
-					</regnode>
-				</regnode>
-				<attribute kind="AddSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeAttributeEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangePropertyEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ChangeRelationEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="CloseEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ConstraintDescription">
-					<value>ImplementationArtifacts should have unique UUIDs</value>
-				</attribute>
-				<attribute kind="ConstraintEqn">
-					<value>let artifacts = self.atomParts(ImplementationArtifact) in
- artifacts-&gt;isUnique (i : ImplementationArtifact | i.UUID.trim())</value>
-				</attribute>
-				<attribute kind="ConstraintParam" status="meta">
-					<value></value>
-				</attribute>
-				<attribute kind="ConstraintPriority" status="meta">
-					<value>2</value>
-				</attribute>
-				<attribute kind="CreateEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DeleteEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="Depth" status="meta">
-					<value>1</value>
-				</attribute>
-				<attribute kind="DeriveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="DisconnectEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="LostChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="MoveEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="NewChildEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="ReferenceEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="RemoveSetEvent" status="meta">
-					<value>false</value>
-				</attribute>
-				<attribute kind="UnReferenceEvent" status="meta">
-					<value>false</value>
 				</attribute>
 			</atom>
 			<atom id="id-0066-00000176" kind="FieldAttribute" role="FieldAttribute" guid="{3AE5D6ED-0BD8-43b1-92D6-18B93E613F4F}" relid="0x66">
@@ -69412,6 +69348,83 @@ self.architecture &lt;&gt; j.architecture </value>
 					<value>Architecture:</value>
 				</attribute>
 			</atom>
+			<atom id="id-0066-00000286" kind="Constraint" role="Constraint" guid="{027ADC87-48FC-4f48-87D3-1879F2F56106}" relid="0x79">
+				<name>UniqueUUIDImplementationArtifact</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>657,412</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>All implementation artifacts in a project must an unique UUID</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let artifacts = self.atoms (ImplementationArtifact) in
+  artifacts-&gt;isUnique (i : ImplementationArtifact | i.UUID.trim())
+  </value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
 			<reference id="id-0067-00000030" kind="ModelProxy" role="ModelProxy" guid="{0C52CBD6-CB4C-418e-811A-6A3E55EBAE45}" relid="0x18" referred="id-0066-0000012d">
 				<name>Requirement</name>
 				<regnode name="PartRegs" isopaque="yes">
@@ -69431,7 +69444,7 @@ self.architecture &lt;&gt; j.architecture </value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>92,97</value>
+							<value>148,41</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -69506,7 +69519,7 @@ self.architecture &lt;&gt; j.architecture </value>
 					<regnode name="Constraints" isopaque="yes">
 						<value></value>
 						<regnode name="Position" isopaque="yes">
-							<value>8,13</value>
+							<value>183,111</value>
 						</regnode>
 					</regnode>
 					<regnode name="Visualization" isopaque="yes">
@@ -69588,6 +69601,18 @@ self.architecture &lt;&gt; j.architecture </value>
 						<value></value>
 						<regnode name="Position" isopaque="yes">
 							<value>687,454</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,12</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>8,12</value>
 						</regnode>
 					</regnode>
 				</regnode>
@@ -69974,14 +69999,6 @@ self.architecture &lt;&gt; j.architecture </value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-0000016b"/>
 				<connpoint role="src" target="id-0066-00000173"/>
-			</connection>
-			<connection id="id-0068-00000261" kind="HasConstraint" role="HasConstraint" guid="{A272D106-DF61-40b2-A2DE-699330CE379E}" relid="0x65">
-				<name>HasConstraint</name>
-				<regnode name="autorouterPref" isopaque="yes">
-					<value>We</value>
-				</regnode>
-				<connpoint role="dst" target="id-0066-00000166"/>
-				<connpoint role="src" target="id-0066-00000175"/>
 			</connection>
 			<connection id="id-0068-00000262" kind="HasAttribute" role="HasAttribute" guid="{93509B63-E42E-444a-9D6B-A05BE2960507}" relid="0x71">
 				<name>HasAttribute</name>
@@ -91234,8 +91251,8 @@ rrName = referedbyExternalPortReference</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-00000247"/>
 				<connpoint role="src" target="id-0066-00000247"/>
+				<connpoint role="dst" target="id-0066-00000247"/>
 			</connection>
 			<connection id="id-0068-000003a6" kind="Containment" role="Containment" guid="{E0E0AC44-0FD0-4a4a-A7BE-BE8EC0D7A70F}" relid="0x9d">
 				<name>Containment</name>

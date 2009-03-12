@@ -231,10 +231,6 @@ void RawComponent::handle_objevent_destroyed (GME::Object & obj)
     if (this->active_state_ && this->active_state_ == fco)
       this->active_state_ = 0;
   }
-  else if (metaname == "OutEventPort")
-  {
-    this->outputs_.erase (obj.name ());
-  }
 }
 
 //
@@ -277,8 +273,8 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
       // We check the map before comparing the name because it's the
       // more likeable. User's will create more Action -> State
       // transition than InputAction -> State transitions.
-      if (RawComponent::actions_types_.find (metaname) !=
-          RawComponent::actions_types_.end ())
+      if (metaname == "Action" ||
+          metaname == "OutputAction")
       {
         GME::FCO base_type = parent_fco.derived_from ();
 
@@ -305,10 +301,6 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
         // Save the action as the last action.
         this->last_action_ = GME::FCO::_narrow (obj);
       }
-      else if (metaname == "OutputAction")
-      {
-        this->resolve_output_action (GME::FCO::_narrow (obj));
-      }
       else if (metaname == "State")
       {
         this->active_state_ = GME::FCO::_narrow (obj);
@@ -317,10 +309,6 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
       {
         GME::Reference ref = GME::Reference::_narrow (obj);
         this->cache_worker_type (ref);
-      }
-      else if (metaname == "OutEventPort")
-      {
-        this->outputs_.insert (obj.name ());
       }
     }
   }
@@ -360,7 +348,7 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
   GME::FCO action = GME::FCO::_narrow (src);
   action.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
-  // Resolve worker that own the newly created action.
+  // Resolve worker that owns the newly created action.
   std::string metaname = action.meta ().name ();
 
   if (action.is_instance () && metaname == "Action")
@@ -419,30 +407,25 @@ handle_objevent_modelopen (GME::Object & obj)
     // Extract the FCO object from the object.
     GME::Model model = GME::Model::_narrow (obj);
 
+    // Clear the model worker cache.
+    if (!this->workers_.empty ())
+      this->workers_.clear ();
+
+    if (!this->worker_types_.empty ())
+      this->worker_types_.clear ();
+
     if (!model.is_instance ())
     {
-      // Gather all the workers in the component.
       typedef GME::Collection_T <GME::Reference> reference_set_type;
-      reference_set_type workers;
+      reference_set_type refs;
 
-      model.references ("WorkerType", workers);
-
-      // Cache information about worker's in this component.
-      std::for_each (workers.begin (),
-                     workers.end (),
+      // Cache information about the workers in this component.
+      model.references ("WorkerType", refs);
+      std::for_each (refs.begin (),
+                     refs.end (),
                      boost::bind (&RawComponent::cache_worker_type,
                                   this,
                                   _1));
-
-      reference_set_type outputs;
-      model.references ("OutEventPort", outputs);
-
-      std::for_each (outputs.begin (),
-                     outputs.end (),
-                     boost::bind (&string_set::insert,
-                                  boost::ref (this->outputs_),
-                                  boost::bind (&GME::Reference::name,
-                                               _1)));
     }
   }
 }
@@ -453,12 +436,15 @@ handle_objevent_modelopen (GME::Object & obj)
 void RawComponent::
 handle_objevent_modelclose (GME::Object & obj)
 {
-  // Clear the worker infomration.
-  this->workers_.clear ();
-  this->worker_types_.clear ();
+  if (obj.meta ().name () == "Component")
+  {
+    // Clear the worker infomration.
+    if (!this->workers_.empty ())
+      this->workers_.clear ();
 
-  // Clear the output information.
-  this->outputs_.clear ();
+    if (!this->worker_types_.empty ())
+      this->worker_types_.clear ();
+  }
 }
 
 //
@@ -487,25 +473,45 @@ void RawComponent::resolve_output_action (GME::FCO & action)
 {
   std::string name;
 
-  if (this->outputs_.size () == 1)
-  {
-    name = *this->outputs_.begin ();
-  }
-  else if (this->outputs_.size () > 1)
-  {
-    // Need to display a dialog for selecting a name.
-    String_Selection_Dialog dialog (this->outputs_, ::AfxGetMainWnd ());
+  GME::Model model = action.parent_model ();
+  GME::Collection_T <GME::Reference> refs;
 
-    // Set the title of the dialog box.
-    dialog.title ("Select target output event port");
+  if (model.references ("OutEventPort", refs))
+  {
+    if (refs.size () == 1)
+    {
+      name = refs.begin ()->name ();
+    }
+    else
+    {
+      // Get the names of the output event ports.
+      string_set names;
 
-    // Display the dialog for the end-user.
-    if (dialog.DoModal () == IDOK)
-      name = dialog.selection ();
+      std::for_each (refs.begin (),
+                     refs.end (),
+                     boost::bind (&string_set::insert,
+                                  boost::ref (names),
+                                  boost::bind (&GME::Reference::name, _1)));
+
+      // Need to display a dialog for selecting a name.
+      String_Selection_Dialog dialog (names, ::AfxGetMainWnd ());
+
+      // Set the title of the dialog box.
+      dialog.title ("Select target OutEventPort");
+
+      // Display the dialog for the end-user.
+      if (dialog.DoModal () == IDOK)
+        name = dialog.selection ();
+    }
   }
 
   if (!name.empty ())
+  {
+    // Set the name of the output action.
     action.name (name);
+
+    // TODO insert empty properties for the action
+  }
 }
 
 //

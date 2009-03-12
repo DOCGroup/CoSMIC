@@ -1,21 +1,40 @@
+ Thu Mar 12 05:23:41 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Bug fix where resolving the name of the output action failed
+            when switching between models. This was resolved by not caching
+            any information about the model, and parsing the model each
+            time to get the name(s) of the possible plausible output
+            actions.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Bug fix where the constaint checker did ensure UUIDs were
+            globally unique for ImplementationArtificat elements.
+
+        * default.features:
+
+          . Disabled xerces3 feature by default since xerces2 is
+            enabled.
+
 Thu Mar 12 05:03:15 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/examples/GPS.xme:
-
         * Transformations/FailOverUnit/FOUAspect-CompCloning.txt:
         * Transformations/FailOverUnit/FOUAspect-CompCloningWithConnections.txt:
         * Transformations/FailOverUnit/FOUAspect-Everything.txt:
         * Transformations/FailOverUnit/FOUAspect.txt:
         * Transformations/FailOverUnit/FOUMonitors.txt:
         * Transformations/FailOverUnit/GME-BON-SDK-Updates:
-
         * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.h:
         * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.cpp:
-		
-		  Added updates to the C-SAW transformations with a GPS example test.
+
+          Added updates to the C-SAW transformations with a GPS example test.
 
         * UDM_DSL.mwc:
-
         * Utils/UDM_DSL/HFSM.h:
         * Utils/UDM_DSL/HFSM.cpp:
         * Utils/UDM_DSL/HFSM.xme:
@@ -45,7 +64,7 @@ Thu Mar 12 05:03:15 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/resource.h:
 
           Removed these files. UDM_DSL builds as an executable rather
-		  than a GME component.
+          than a GME component.
 
 Wed Mar 11 23:31:30 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 

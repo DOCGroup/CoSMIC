@@ -142,9 +142,6 @@ private:
   /// Collection of worker types.
   worker_map_type workers_;
 
-  /// List of output ports in current model.
-  string_set outputs_;
-
   /// Flag specifying if the add-on is importing.
   bool importing_;
 };
