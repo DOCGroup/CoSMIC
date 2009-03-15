@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{53572CA9-B531-4486-AFC1-F68D0ACE8EF1}" cdate="Wed Mar 11 18:35:52 2009" mdate="Wed Mar 11 18:35:52 2009" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+<project guid="{5C976B30-C967-438D-B9D2-E64CCEA9B747}" cdate="Wed Mar 11 18:35:52 2009" mdate="Wed Mar 11 18:35:52 2009" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -4214,6 +4214,12 @@ not worker.Abstract</value>
 							<value>4219</value>
 						</regnode>
 					</regnode>
+					<regnode name="Distribution-5a-EnumAttribute" status="undefined">
+						<value></value>
+						<regnode name="MetaRef" isopaque="yes">
+							<value>4221</value>
+						</regnode>
+					</regnode>
 					<regnode name="Environment-24-Model" status="undefined">
 						<value></value>
 						<regnode name="KindAspects" status="undefined">
@@ -6322,7 +6328,7 @@ not worker.Abstract</value>
 					</regnode>
 				</regnode>
 			</regnode>
-			<model id="id-0065-00000002" kind="ParadigmSheet" guid="{7E2A096F-3DEB-49f2-B746-8F25185EEECE}" relid="0x1" childrelidcntr="0x33d">
+			<model id="id-0065-00000002" kind="ParadigmSheet" guid="{7E2A096F-3DEB-49f2-B746-8F25185EEECE}" relid="0x1" childrelidcntr="0x33e">
 				<name>BehaviorModel</name>
 				<atom id="id-0066-00000011" kind="Reference" role="Reference" guid="{761A32DC-C226-424f-8681-70E8725C36CB}" relid="0x2ae">
 					<name>Variable</name>
@@ -6609,7 +6615,7 @@ rrName = referedbyVariable</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>414,153</value>
+								<value>519,27</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -7768,8 +7774,8 @@ endif</value>
 					<attribute kind="IsHotspotEnabled" status="meta">
 						<value>true</value>
 					</attribute>
-					<attribute kind="IsNameEnabled" status="meta">
-						<value>true</value>
+					<attribute kind="IsNameEnabled">
+						<value>false</value>
 					</attribute>
 					<attribute kind="IsTypeInfoShown" status="meta">
 						<value>true</value>
@@ -8539,7 +8545,7 @@ endif</value>
 					</attribute>
 				</set>
 			</model>
-			<model id="id-0065-00000004" kind="ParadigmSheet" guid="{78F92886-1E8E-4717-A3C0-BCD84BF757DF}" relid="0x4" childrelidcntr="0x59">
+			<model id="id-0065-00000004" kind="ParadigmSheet" guid="{78F92886-1E8E-4717-A3C0-BCD84BF757DF}" relid="0x4" childrelidcntr="0x5b">
 				<name>InputHooks</name>
 				<atom id="id-0066-00000029" kind="Inheritance" role="Inheritance" guid="{93D51FA7-3D2F-4da6-8D2D-20805002E7EE}" relid="0xa">
 					<name>Inheritance</name>
@@ -8763,7 +8769,7 @@ endif</value>
 						<value>true</value>
 					</attribute>
 					<attribute kind="IsNameEnabled">
-						<value>false</value>
+						<value>true</value>
 					</attribute>
 					<attribute kind="IsTypeShown" status="meta">
 						<value>false</value>
@@ -8883,40 +8889,35 @@ endif</value>
 						<value></value>
 					</attribute>
 				</atom>
-				<atom id="id-0066-00000030" kind="FieldAttribute" role="FieldAttribute" guid="{6E94EF01-8E50-410d-92EC-45C705FAEF40}" relid="0x58">
+				<atom id="id-0066-00000287" kind="EnumAttribute" role="EnumAttribute" guid="{D60F1293-B37F-41f2-8CCF-600B7E72AD88}" relid="0x5a">
 					<name>Distribution</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
 						<regnode name="Attributes" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>51,261</value>
+								<value>36,265</value>
 							</regnode>
 						</regnode>
 					</regnode>
-					<attribute kind="ContentType" status="meta">
-						<value></value>
-					</attribute>
-					<attribute kind="DataType" status="meta">
-						<value>string</value>
-					</attribute>
-					<attribute kind="FieldDefault" status="meta">
-						<value></value>
+					<attribute kind="DefaultItem">
+						<value>Constant</value>
 					</attribute>
 					<attribute kind="GlobalScope" status="meta">
 						<value>true</value>
 					</attribute>
-					<attribute kind="Help">
-						<value>Distribution class for the events (e.g., constant, exponential, and etc.)</value>
+					<attribute kind="Help" status="meta">
+						<value></value>
 					</attribute>
 					<attribute kind="IsViewable" status="meta">
 						<value>true</value>
 					</attribute>
-					<attribute kind="Multiline" status="meta">
-						<value>1</value>
+					<attribute kind="MenuItems">
+						<value>Constant
+Exponential</value>
 					</attribute>
-					<attribute kind="Prompt">
-						<value>Distribution</value>
+					<attribute kind="Prompt" status="meta">
+						<value></value>
 					</attribute>
 				</atom>
 				<reference id="id-0067-00000079" kind="ReferenceProxy" role="ReferenceProxy" guid="{52CD0E38-0EC3-429d-9F70-4835FC5B15EB}" relid="0x39" referred="id-0066-00000108">
@@ -9473,13 +9474,13 @@ endif</value>
 					<connpoint role="src" target="id-0066-0000002c"/>
 					<connpoint role="dst" target="id-0067-0000007e"/>
 				</connection>
-				<connection id="id-0068-0000004f" kind="HasAttribute" role="HasAttribute" guid="{A56DFA82-34B0-4f46-A7D3-CBB48CA691D7}" relid="0x59">
+				<connection id="id-0068-00000412" kind="HasAttribute" role="HasAttribute" guid="{D519049F-2973-4998-BC08-D6E9B5FC1339}" relid="0x5b">
 					<name>HasAttribute</name>
 					<regnode name="autorouterPref" isopaque="yes">
 						<value>Ew</value>
 					</regnode>
 					<connpoint role="dst" target="id-0066-0000002d"/>
-					<connpoint role="src" target="id-0066-00000030"/>
+					<connpoint role="src" target="id-0066-00000287"/>
 				</connection>
 			</model>
 			<model id="id-0065-00000005" kind="ParadigmSheet" guid="{8D015BFE-EE7F-4bf2-867B-CAF32F18355D}" relid="0x5" childrelidcntr="0xb">
@@ -9865,7 +9866,7 @@ endif</value>
 					<connpoint role="dst" target="id-0067-00000082"/>
 				</connection>
 			</model>
-			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x5d">
+			<model id="id-0065-00000006" kind="ParadigmSheet" guid="{72C02DE8-7345-4cb5-B1FC-F4FAF1E8908D}" relid="0x6" childrelidcntr="0x5e">
 				<name>TopLevelBehaviorModel</name>
 				<atom id="id-0066-00000033" kind="Connection" role="Connection" guid="{37F75581-48A5-47ad-B6B0-BAB12CDB995C}" relid="0x10">
 					<name>Input</name>
@@ -10849,7 +10850,7 @@ dName = dstQueryInput</value>
 						<regnode name="Visualization" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>113,20</value>
+								<value>113,13</value>
 							</regnode>
 						</regnode>
 					</regnode>
@@ -10999,6 +11000,69 @@ dName = dstQueryInput</value>
 					</regnode>
 					<regnode name="color" isopaque="yes">
 						<value>0x32cd32</value>
+					</regnode>
+					<attribute kind="Decorator" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="DisplayedName" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="GeneralPreferences" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="Icon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="InRootFolder" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="InstanceIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="IsAbstract" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="IsHotspotEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsNameEnabled" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeInfoShown" status="meta">
+						<value>true</value>
+					</attribute>
+					<attribute kind="IsTypeShown" status="meta">
+						<value>false</value>
+					</attribute>
+					<attribute kind="NamePosition" status="meta">
+						<value>4</value>
+					</attribute>
+					<attribute kind="NameWrapNum" status="meta">
+						<value>0</value>
+					</attribute>
+					<attribute kind="PortIcon" status="meta">
+						<value></value>
+					</attribute>
+					<attribute kind="SubTypeIcon" status="meta">
+						<value></value>
+					</attribute>
+				</reference>
+				<reference id="id-0067-000000d2" kind="ModelProxy" role="ModelProxy" guid="{7DE095D0-58F1-450d-BFFE-F8A2E37A82ED}" relid="0x5e" referred="id-0066-000000d5">
+					<name>ReadonlyAttribute</name>
+					<regnode name="PartRegs" status="undefined">
+						<value></value>
+						<regnode name="ClassDiagram" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>680,83</value>
+							</regnode>
+						</regnode>
+						<regnode name="Visualization" status="undefined">
+							<value></value>
+							<regnode name="Position" isopaque="yes">
+								<value>792,237</value>
+							</regnode>
+						</regnode>
 					</regnode>
 					<attribute kind="Decorator" status="meta">
 						<value></value>
@@ -11261,7 +11325,7 @@ dName = dstQueryInput</value>
 					<connpoint role="dst" target="id-0066-0000003d"/>
 					<connpoint role="src" target="id-0066-0000003f"/>
 				</connection>
-				<set id="id-0069-00000003" kind="Aspect" role="Aspect" guid="{2DCD04D2-A814-43c1-9A77-18637EFA5F94}" relid="0x2a" members="id-0066-00000033 id-0066-00000036 id-0066-00000037 id-0066-00000038 id-0066-00000039 id-0066-0000003c id-0066-0000003f id-0066-00000040">
+				<set id="id-0069-00000003" kind="Aspect" role="Aspect" guid="{2DCD04D2-A814-43c1-9A77-18637EFA5F94}" relid="0x2a" members="id-0066-00000033 id-0066-00000036 id-0066-00000037 id-0066-00000038 id-0066-00000039 id-0066-0000003c id-0066-0000003f id-0066-00000040 id-0067-000000d2">
 					<name>TopLevelBehaviorAspect</name>
 					<regnode name="PartRegs" status="undefined">
 						<value></value>
@@ -11292,7 +11356,7 @@ dName = dstQueryInput</value>
 						<regnode name="ClassDiagram" isopaque="yes">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>22,293</value>
+								<value>8,293</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" isopaque="yes">
@@ -11366,7 +11430,7 @@ dName = dstTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>148,223</value>
+								<value>134,223</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -11608,7 +11672,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>179,319</value>
+								<value>165,319</value>
 							</regnode>
 						</regnode>
 						<regnode name="Visualization" status="undefined">
@@ -11770,7 +11834,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>246,222</value>
+								<value>232,222</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -12076,7 +12140,7 @@ dName = dstBranchTransition</value>
 						<regnode name="ClassDiagram" status="undefined">
 							<value></value>
 							<regnode name="Position" isopaque="yes">
-								<value>120,97</value>
+								<value>92,97</value>
 							</regnode>
 						</regnode>
 						<regnode name="Constraints" status="undefined">
@@ -31342,6 +31406,9 @@ dName = dstTerminalEffect</value>
 					<value></value>
 					<regnode name="Component:Attribute" isopaque="yes">
 						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value> </value>
 						</regnode>
@@ -31377,6 +31444,9 @@ dName = dstTerminalEffect</value>
 						<value></value>
 						<regnode name="Attribute" isopaque="yes">
 							<value>1294</value>
+							<regnode name="Behavior" isopaque="yes">
+								<value>4222</value>
+							</regnode>
 							<regnode name="InterfaceDefinition" isopaque="yes">
 								<value>1302</value>
 							</regnode>
@@ -31423,6 +31493,9 @@ dName = dstTerminalEffect</value>
 					<value></value>
 					<regnode name="Component:Attribute" isopaque="yes">
 						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value>yes</value>
 						</regnode>
@@ -31888,6 +31961,9 @@ dName = dstTerminalEffect</value>
 					<value></value>
 					<regnode name="Component:ReadonlyAttribute" isopaque="yes">
 						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value> </value>
+						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value> </value>
 						</regnode>
@@ -31923,6 +31999,9 @@ dName = dstTerminalEffect</value>
 						<value></value>
 						<regnode name="ReadonlyAttribute" isopaque="yes">
 							<value>1298</value>
+							<regnode name="Behavior" isopaque="yes">
+								<value>4223</value>
+							</regnode>
 							<regnode name="InterfaceDefinition" isopaque="yes">
 								<value>1306</value>
 							</regnode>
@@ -31969,6 +32048,9 @@ dName = dstTerminalEffect</value>
 					<value></value>
 					<regnode name="Component:ReadonlyAttribute" isopaque="yes">
 						<value></value>
+						<regnode name="Behavior" isopaque="yes">
+							<value>yes</value>
+						</regnode>
 						<regnode name="InterfaceDefinition" isopaque="yes">
 							<value>yes</value>
 						</regnode>
