@@ -12,55 +12,10 @@
 #define PARADIGM_NAMESPACE_FOR_LEESA HFSM
 #include "LEESA.h"
 
+#include <boost/mpl/front.hpp>
+#include <boost/mpl/pop_front.hpp>
 using namespace HFSM;
-
-void create(const char * const);
-void open(const char * const);
-int _tmain(int argc, _TCHAR* argv[])
-{
-	try {
-    if(argc < 3) {
-      std::cerr << "Usage: " << argv[0] << " [-c | -o] <filename>" << std::endl;
-      return -1;
-    }
-
-    if (strcmp(argv[1], "-c") == 0)
-      create(argv[2]);
-    else
-      open(argv[2]);
-  }
-  catch(const udm_exception &e)
-	{
-		cout << "Exception: " << e.what() << endl;
-		return(-1);
-
-	} 
-
-  return 0;
-}
-
-void create(const char * const filename)
-{
-    Udm::SmartDataNetwork nw(diagram);
-    nw.CreateNew(filename,"HFSM", RootFolder::meta);
-		RootFolder rf = RootFolder::Cast(nw.GetRootObject());
-    State::Create(StateMachine::Create(rf));
-}
-
-template <class T>
-void print (T const & t)
-{
-  std::cout << typeid(T).name() << ": " << t.name() << std::endl;
-}
-void open(const char * const filename)
-{
-    using namespace LEESA;
-    Udm::SmartDataNetwork nw(diagram);
-    nw.OpenExisting(filename,"HFSM");
-		RootFolder rf = RootFolder::Cast(nw.GetRootObject());
-    evaluate(rf,RootFolder() >> StateMachine() 
-                             >> ForEach(StateMachine(), print<StateMachine>));
-}
+using namespace boost;
 
 using namespace HFSM;
 class CountVisitor : public HFSM::Visitor 
@@ -71,51 +26,136 @@ public:
   void Visit_RootFolder(const RootFolder &rf) {
     std::string name = std::string("RootFolder: ") + std::string(rf.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
   }
   void Visit_Transition(const Transition &t) {
     std::string name = std::string("Transition: ") + std::string(t.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
   }
   void Visit_State(const State &s) {
     std::string name = std::string("State: ") + std::string(s.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
     count_++;
   }
   void Visit_StartState(const StartState &s) {
     std::string name = std::string("StartState: ") + std::string(s.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
     count_++;
   }
   void Visit_FinalState(const FinalState &s) {
     std::string name = std::string("FinalState: ") + std::string(s.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
     count_++;
   }
   void Visit_BaseState(const BaseState &s) {
     std::string name = std::string("BaseState: ") + std::string(s.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
     count_++;
   }
   void Visit_InputSequence(const InputSequence &i) {
     std::string name = std::string("InputSequence: ") + std::string(i.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
   }
-  void Visit_Sequence(const Sequence &s) {
+  void Visit_Sequence(const HFSM::Sequence &s) {
     std::string name = std::string("Sequence: ") + std::string(s.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
   }
   void Visit_Events(const Events &e) {
     std::string name = std::string("Events: ") + std::string(e.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
   }
   void Visit_StateMachine(const StateMachine &e) {
     std::string name = std::string("StateMachine: ") + std::string(e.name());
     //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
     //throw LEESA::LEESAException("Exception in StateMachine.");
   }
   //void Visit_Object(const Udm::Object &) const {}
   int get_count() { return count_; }
 };
+
+RootFolder create(Udm::SmartDataNetwork & nw, const char * const);
+RootFolder open(Udm::SmartDataNetwork & nw, const char * const);
+int _tmain(int argc, _TCHAR* argv[])
+{
+	try {
+    if(argc < 3) {
+      std::cerr << "Usage: " << argv[0] << " [-c | -o] <filename>" << std::endl;
+      return -1;
+    }
+
+    using namespace LEESA;
+    CountVisitor cv;
+    VisitStrategy vs(cv);
+    //FullTD<VisitStrategy> fulltd (VS);
+    Udm::SmartDataNetwork nw(diagram);
+    RootFolder rf;
+
+    if (strcmp(argv[1], "-c") == 0)
+    {
+      rf = create(nw, argv[2]);
+    }
+    else if(strcmp(argv[1], "-o") == 0)
+    {
+      rf = open(nw, argv[2]);
+    }
+    else
+      std::cerr << "Invalid arguments." << std::endl;
+
+    //evaluate(rf, FullTD(RootFolder(),VS));
+    evaluate(rf, RootFolder() 
+                  >> StateMachine()
+                  >> State()
+                  >> SEQ(State(), vs, vs));
+    evaluate(rf, RootFolder() 
+                  >> FullBU(RootFolder(), vs));
+  }
+  catch(const udm_exception &e)
+	{
+		cout << "Exception: " << e.what() << endl;
+		return(-1);
+	} 
+
+  return 0;
+}
+
+RootFolder create(Udm::SmartDataNetwork & nw, const char * const filename)
+{
+    nw.CreateNew(filename,"HFSM", RootFolder::meta);
+		RootFolder rf = RootFolder::Cast(nw.GetRootObject());
+    rf.name() = "ROOTFOLDER";
+    StateMachine sm = StateMachine::Create(rf);
+    sm.name() = "SM1";
+    State s = State::Create(sm);
+    s.name() = "State1";
+
+    RootFolder r = RootFolder("ROOTFOLDER", 
+                     make_tuple(InputSequence(), StateMachine()));
+
+    return rf;
+}
+
+template <class T>
+void print (T const & t)
+{
+  std::cout << typeid(T).name() << ": " << t.name() << std::endl;
+}
+
+RootFolder open(Udm::SmartDataNetwork & nw, const char * const filename)
+{
+    nw.OpenExisting(filename,"HFSM");
+		RootFolder rf = RootFolder::Cast(nw.GetRootObject());
+    return rf;
+}
+
 
 int leesa_example(RootFolder const &rf)
 {

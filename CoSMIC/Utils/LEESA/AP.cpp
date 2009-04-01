@@ -22,9 +22,7 @@ using boost::mpl::vector;
 
 template <class L, class H> struct DescendantOp;
 
-template <class L, class H>
-struct ET <DescendantOp<L, H> > 
-	: public ETBase <DescendantOp<L, H> > {};
+ExpressionTraits2Para(DescendantOp);
 
 template <class L, class H>
 struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
@@ -110,7 +108,7 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
 template <class L, class H>
 DescendantOp<typename ET<L>::result_type, 
              typename ET<H>::result_type> 
-DescendantFrom (L, H)
+DescendantsOf (L, H)
 {
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<L>));
 	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<H>));

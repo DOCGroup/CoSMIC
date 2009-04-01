@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{6E469904-5F72-4ADA-A43A-9E43B072F331}" cdate="Wed Mar 11 16:12:00 2009" mdate="Wed Mar 11 16:12:00 2009" version="" metaguid="{A2F5203B-0483-4731-8E78-31826D826A70}" metaversion="" metaname="CQML">
-	<name>BasicSP</name>
+<project guid="{215B2263-4694-4D61-85E1-A9B8BFF3A696}" cdate="Wed Mar 11 16:12:00 2009" mdate="Wed Mar 11 16:12:00 2009" version="" metaguid="{A2F5203B-0483-4731-8E78-31826D826A70}" metaversion="" metaname="CQML">
+	<name>GPS</name>
 	<comment></comment>
 	<author></author>
 	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x17" kind="RootFolder" guid="{FEC50B2B-A9B3-4d26-94F3-89C57FF7C26C}">
-		<name>BasicSP</name>
+		<name>GPS</name>
 		<folder id="id-006a-00000002" relid="0x1" childrelidcntr="0xb" kind="PredefinedTypes" guid="{B2E93443-8DE0-4170-871A-05373948B508}">
 			<name>PredefinedTypes</name>
 			<atom id="id-0066-00000001" kind="TypeKind" guid="{F4A1C420-41B2-482e-9895-1DCDEF1E729E}" relid="0xb">
@@ -795,7 +795,7 @@
 		</folder>
 		<folder id="id-006a-00000006" relid="0x5" childrelidcntr="0x5" kind="ComponentImplementations" guid="{68721B42-95D7-4359-819F-668C1EABE837}">
 			<name>ComponentImplementations</name>
-			<model id="id-0065-00000035" kind="ComponentImplementationContainer" guid="{E79428E9-383F-46ef-8218-B927C394BB6E}" relid="0x5" childrelidcntr="0x14">
+			<model id="id-0065-00000035" kind="ComponentImplementationContainer" guid="{E79428E9-383F-46ef-8218-B927C394BB6E}" relid="0x5" childrelidcntr="0x15">
 				<name>GPSImpl</name>
 				<model id="id-0065-00000071" kind="ComponentAssembly" role="ComponentAssembly" guid="{C5DD7BA4-4C58-434c-8FD7-C9F3EA05686F}" relid="0x3" childrelidcntr="0x41">
 					<name>GPSAssembly</name>
@@ -1338,7 +1338,7 @@
 		</folder>
 		<folder id="id-006a-0000000b" relid="0xa" childrelidcntr="0x1" kind="DeploymentPlans" guid="{4A757E79-C34B-4954-836E-192D6E26E7AC}">
 			<name>DeploymentPlan</name>
-			<model id="id-0065-0000004b" kind="DeploymentPlan" guid="{FD2ED8E5-0A2A-4fc1-8E2D-85D121B35C14}" relid="0x1" childrelidcntr="0x40">
+			<model id="id-0065-0000004b" kind="DeploymentPlan" guid="{FD2ED8E5-0A2A-4fc1-8E2D-85D121B35C14}" relid="0x1" childrelidcntr="0x43">
 				<name>Plan</name>
 				<attribute kind="UUID">
 					<value>3F5ACBD5-2E23-4C3F-9980-7BEEC1D491CC</value>

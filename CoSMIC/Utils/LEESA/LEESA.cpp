@@ -30,6 +30,23 @@
 	typedef typename ParentKindExpr::result_kind ParentKind;                \
     typedef ChainExpr<ParentKindExpr, OP > ChainExpr;
 
+
+#define ExpressionTraits1Para(OP)     \
+template <class T>                    \
+struct ET <OP<T> >                    \
+  : public ETBase <OP<T> > {};
+
+#define ExpressionTraits2Para(OP)     \
+template <class T, class U>           \
+struct ET <OP<T, U> >                 \
+  : public ETBase <OP<T, U> > {};
+
+#define ExpressionTraits3Para(OP)     \
+template <class X, class Y, class Z>  \
+struct ET <OP<X, Y, Z> >              \
+  : public ETBase <OP<X, Y, Z> > {};
+
+
 namespace LEESA {
 
 template <class Kind> class KindLit;
@@ -48,11 +65,8 @@ template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationM
 
 template <class E> struct SelectorOp;
 template <class E> struct VisitorOp;
-//template <class E> struct DFSVisitorOp;
 template <class E> struct RegexOp;
-template <class E> struct FailOp;
 template <class E> struct NonNullOp;
-template <class K, class C1, class C2> struct ChoiceOp;
 
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
@@ -116,98 +130,29 @@ struct ETBase
 	typedef typename T::argument_kind argument_kind;
 };
 
-template <class T>
-struct ET <KindLit<T> >	
-	: public ETBase<KindLit<T> > {};
+ExpressionTraits1Para(KindLit);
+ExpressionTraits1Para(SelectorOp);
+ExpressionTraits1Para(RegexOp);
+ExpressionTraits1Para(NonNullOp);
+ExpressionTraits1Para(VisitorOp);
 
-template <class T, class X>
-struct ET <ChainExpr<T, X> > 
-	: public ETBase <ChainExpr<T, X> > {};
+ExpressionTraits2Para(ChainExpr);
+ExpressionTraits2Para(SequenceExpr);
+ExpressionTraits2Para(GetChildrenOp);
+ExpressionTraits2Para(DFSChildrenOp);
+ExpressionTraits2Para(DFSParentOp);
+ExpressionTraits2Para(GetParentOp);
+ExpressionTraits2Para(DFSOp);
+ExpressionTraits2Para(FilterOp);
+ExpressionTraits2Para(ForEachOp);
+ExpressionTraits2Para(SortOp);
+ExpressionTraits2Para(CastOp);
+ExpressionTraits2Para(UniqueOp);
+ExpressionTraits2Para(AssociationOp);
+ExpressionTraits2Para(AssociationEndOp);
 
-template <class T, class X>
-struct ET <SequenceExpr<T, X> > 
-	: public ETBase <SequenceExpr<T, X> > {};
+ExpressionTraits3Para(AssociationManyOp);
 
-template <class T>
-struct ET <SelectorOp<T> > 
-	: public ETBase <SelectorOp<T> > { };
-
-template <class T>
-struct ET <RegexOp<T> >	
-	: public ETBase <RegexOp<T> > {};
-
-template <class T>
-struct ET <NonNullOp<T> >	
-	: public ETBase <NonNullOp<T> > {};
-
-template <class T>
-struct ET <VisitorOp<T> > 
-	: public ETBase <VisitorOp<T> > { };
-
-/*template <class T>
-struct ET <DFSVisitorOp<T> > 
-	: public ETBase <DFSVisitorOp<T> > { };
-*/
-
-template <class K, class C1, class C2>
-struct ET <ChoiceOp<K, C1, C2> > 
-	: public ETBase <ChoiceOp<K, C1, C2> > { };
-
-template <class T>
-struct ET <FailOp<T> > 
-	: public ETBase <FailOp<T> > { };
-
-template <class T, class U> 
-struct ET <GetChildrenOp<T, U> > 
-	: public ETBase <GetChildrenOp<T, U> > {};
-
-template <class T, class U> 
-struct ET <DFSChildrenOp<T, U> > 
-	: public ETBase <DFSChildrenOp<T, U> > {};
-
-template <class T, class U> 
-struct ET <DFSParentOp<T, U> > 
-	: public ETBase <DFSParentOp<T, U> > {};
-
-template <class T, class U> 
-struct ET <GetParentOp<T, U> > 
-	: public ETBase <GetParentOp<T, U> > {};
-
-template <class T, class U> 
-struct ET <DFSOp<T, U> > 
-	: public ETBase <DFSOp<T, U> > {};
-
-template <class T, class U>
-struct ET <FilterOp<T, U> > 
-	: public ETBase <FilterOp<T, U> > {};
-
-template <class T, class U>
-struct ET <ForEachOp<T, U> > 
-	: public ETBase <ForEachOp<T, U> > {};
-
-template <class T, class Comp>
-struct ET <SortOp<T, Comp> > 
-	: public ETBase <SortOp<T, Comp> > {};
-
-template <class L, class H>
-struct ET <CastOp<L, H> > 
-	: public ETBase <CastOp<L, H> > {};
-
-template <class T, class BinPred>
-struct ET <UniqueOp<T, BinPred> > 
-	: public ETBase <UniqueOp<T, BinPred> > {};
-
-template <class RESULT, class TARGETCLASS>
-struct ET <AssociationOp<RESULT, TARGETCLASS> > 
-	: public ETBase <AssociationOp<RESULT, TARGETCLASS> > {};
-
-template <class ASSOC, class SOURCECLASS, class TARGETCLASS>
-struct ET <AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> > 
-	: public ETBase <AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> > {};
-
-template <class RESULT, class TARGETCLASS>
-struct ET <AssociationEndOp<RESULT, TARGETCLASS> > 
-	: public ETBase <AssociationEndOp<RESULT, TARGETCLASS> > {};
 
 template <class RESULT, class TARGETCLASS>
 struct ET <Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
@@ -274,7 +219,7 @@ using boost::mpl::if_;
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
-    typedef typename ContainerGen<Kind>::type Container;
+  typedef typename ContainerGen<Kind>::type Container;
 	typedef typename ContainerGen<Kind>::type2 Container2;
 	Kind temp_kind_;
 	Container c_;
@@ -304,7 +249,7 @@ public:
 	  BOOST_FOREACH(UKind u, in)
 	  {
 	    Kind k = u;
-		c_.insert(c_.end(), k);
+		  c_.insert(c_.end(), k);
 	  }
   }
   KindLit (KindLit const & k) : c_ (k.c_) {}
@@ -631,62 +576,6 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 	}
 };
 
-template <class Kind>
-struct FailOp : public LEESAUnaryFunction<Kind>, OpBase
-{
-  public:
-    typedef ChainExpr<Kind, FailOp> expression_type;
-    BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-
-    template <class U>
-    struct rebind
-    {
-      typedef FailOp<U> type;
-    };
-
-    explicit FailOp (){}
-
-    template <class U>
-    explicit FailOp (FailOp<U> const &) {}
-
-    result_type operator ()(argument_type k)
-    {
-      throw LEESA::LEESAException<argument_type> ("From FailOp");      
-      return k;
-    }
-};
-
-template <class K, class C1, class C2>
-struct ChoiceOp : LEESAUnaryFunction <K>, OpBase
-{
-	typedef typename 
-		ChainExpr<K, ChoiceOp<K, C1, C2> > expression_type;
-  BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<argument_kind>));
-
-  typedef typename ET<C1>::argument_kind c1_kind;
-  typedef typename ET<C2>::argument_kind c2_kind;
-
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, c1_kind>));
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, c2_kind>));
-
-  C1 choice1_;
-  C2 choice2_;
-  explicit ChoiceOp (C1 const &c1, C2 const &c2)
-    : choice1_(c1), choice2_ (c2)
-  {}
-
-	result_type operator () (argument_type const & arg)
-	{
-    try {
-      choice1_(arg);
-    }
-    catch(...) {
-      choice2_(arg);
-    }
-    return arg;
-	}
-};
-
 template <class E>
 struct RegexOp : LEESAUnaryFunction <E>,
 			           OpBase
@@ -951,19 +840,6 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	}
 };
 
-
-template <class T>
-FailOp<typename ET<T>::result_type> 
-Fail (T)
-{
-	typedef typename ET<T>::result_kind result_kind;
-  typedef typename ET<T>::result_type result_type;
-	
-	BOOST_MPL_ASSERT((Udm::UdmKindConcept<result_kind>));
-	FailOp<result_type> fail;
-	return fail;
-}
-
 template <class T>
 NonNullOp<typename ET<T>::result_type> 
 SelectNonNull (T)
@@ -1127,7 +1003,7 @@ Unique (E)
 	
 	return UniqueOp<E, EQ>(EQ());
 }
-
+/*
 template <class K, class C1, class C2>
 ChoiceOp<typename ET<K>::result_type, C1, C2> 
 Choice (K, C1 c1, C2 c2)
@@ -1142,7 +1018,7 @@ Choice (K, C1 c1, C2 c2)
 	
   return ChoiceOp<typename ET<K>::result_type, C1, C2>(c1, c2);
 }
-
+*/
 template <class L, class R, template<class, class> class Operator>
 struct ChainedOperator
 {
