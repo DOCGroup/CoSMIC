@@ -110,13 +110,19 @@ int _tmain(int argc, _TCHAR* argv[])
     else
       std::cerr << "Invalid arguments." << std::endl;
 
-    //evaluate(rf, FullTD(RootFolder(),VS));
+/*    evaluate(rf, RootFolder()
+      >> MembersOf(RootFolder(), 
+                   StateMachine() >>= MembersOf(StateMachine(), FinalState() >> FullTD(FinalState(), vs)),
+                   InputSequence() >> cv));
+
     evaluate(rf, RootFolder() 
-                  >> StateMachine()
-                  >> State()
-                  >> SEQ(State(), vs, vs));
-    evaluate(rf, RootFolder() 
-                  >> FullBU(RootFolder(), vs));
+              >> FullTD(RootFolder(), vs));
+*/    
+    evaluate (rf, AP(vs,
+                     FROM(RootFolder), 
+                     TO(HFSM::Sequence, Events),
+                     THROUGH(InputSequence)));
+
   }
   catch(const udm_exception &e)
 	{
@@ -131,6 +137,8 @@ RootFolder create(Udm::SmartDataNetwork & nw, const char * const filename)
 {
     nw.CreateNew(filename,"HFSM", RootFolder::meta);
 		RootFolder rf = RootFolder::Cast(nw.GetRootObject());
+    rf = RootFolder::Create(rf);
+    rf = RootFolder::Create(rf);
     rf.name() = "ROOTFOLDER";
     StateMachine sm = StateMachine::Create(rf);
     sm.name() = "SM1";

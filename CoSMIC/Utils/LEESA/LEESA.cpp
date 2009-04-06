@@ -2,6 +2,7 @@
 #define __LEESA_CPP
 
 #include "LEESA.h"
+#include "LEESA_Concepts.h"
 #include "LEESA_VisitorAsIndex.h"
 
 #include <boost/typeof/typeof.hpp>
@@ -76,7 +77,7 @@ template <class E, class BinPred> struct UniqueOp;
 template <class T>
 struct ET
 {
-	/* BOOST_CLASS_REQUIRE(T, Udm, UdmKindConcept);
+	/* BOOST_CLASS_REQUIRE(T, LEESA, UdmKindConcept);
 	   UdmKindConcept check is disabled because user-defined
 	   visitor types are possible parameters of this trait class.
 	   In such a case, the following associated types do not make
@@ -101,7 +102,7 @@ struct ET <T (*) (U)>
 template <class Kind>
 struct ET <std::set<Kind> >
 {
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
+	BOOST_CLASS_REQUIRE(Kind, LEESA, UdmKindConcept);
 	typedef typename KindLit<Kind> expression_type;
 	typedef typename KindLit<Kind> result_type;
 	typedef typename KindLit<Kind> argument_type;
@@ -112,7 +113,7 @@ struct ET <std::set<Kind> >
 template <class Kind>
 struct ET <std::vector<Kind> >
 {
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
+	BOOST_CLASS_REQUIRE(Kind, LEESA, UdmKindConcept);
 	typedef typename KindLit<Kind> expression_type;
 	typedef typename KindLit<Kind> result_type;
 	typedef typename KindLit<Kind> argument_type;
@@ -175,8 +176,8 @@ struct LEESAUnaryFunction
 	typedef typename ET<L>::argument_kind argument_kind;
 	typedef typename ET<R>::result_kind result_kind;
 
-	//BOOST_CLASS_REQUIRE(result_kind, Udm, UdmKindConcept);
-	BOOST_CLASS_REQUIRE(argument_kind, Udm, UdmKindConcept);
+	//BOOST_CLASS_REQUIRE(result_kind, LEESA, UdmKindConcept);
+	BOOST_CLASS_REQUIRE(argument_kind, LEESA, UdmKindConcept);
 };
 
 class OpBase {}; // Base of all the operators
@@ -186,7 +187,7 @@ template <class Kind>
 class VisitorAsIndex : public VisitorAsIndexBase
 {
     PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
-    BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
+    BOOST_CLASS_REQUIRE(Kind, LEESA, UdmKindConcept);
 
   public:
     VisitorAsIndex (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) : visitor_(v) {}
@@ -223,7 +224,7 @@ class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 	typedef typename ContainerGen<Kind>::type2 Container2;
 	Kind temp_kind_;
 	Container c_;
-	BOOST_CLASS_REQUIRE(Kind, Udm, UdmKindConcept);
+	BOOST_CLASS_REQUIRE(Kind, LEESA, UdmKindConcept);
 	// This is an important concept. Don't remove.
 
 public:
@@ -331,7 +332,7 @@ struct ChainExpr : public std::unary_function <typename ET<L>::argument_type,
 	typedef typename ET<R>::result_kind result_kind;
 	typedef ChainExpr<L, R> expression_type;
 
-    BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept
+    BOOST_CONCEPT_ASSERT((LEESA::ConvertibleUdmKindsConcept
 							<typename ET<L>::result_kind, 
 	  						 typename ET<R>::argument_kind>));
 
@@ -353,7 +354,7 @@ struct SequenceExpr : public std::unary_function <typename ET<L>::argument_type,
 	typedef void result_kind;
 	typedef typename SequenceExpr<L, R> expression_type;
 	typedef typename ET<R>::argument_kind child_kind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<argument_kind, child_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, child_kind>));
 
 	L l_;
 	R r_;
@@ -400,7 +401,7 @@ struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, void
 		typedef typename ET<RExpr>::argument_kind child_kind;
 		typedef typename ET<LExpr>::result_kind parent_kind;
 
-    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<parent_kind, child_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<parent_kind, child_kind>));
 
     typename ContainerGen<parent_kind>::type v = arg;
 		BOOST_FOREACH(parent_kind kind, v)
@@ -432,7 +433,7 @@ struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 		typedef typename ET<RExpr>::argument_kind parent_kind;
 		typedef typename ET<LExpr>::result_kind child_kind;
 
-    BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept<child_kind, parent_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept<child_kind, parent_kind>));
 
 		typename ContainerGen<child_kind>::type v = arg;
 		BOOST_FOREACH(child_kind kind, v)
@@ -456,7 +457,7 @@ struct DFSOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 	typedef typename ET<LExpr>::result_kind LKind;
 	typedef typename ET<RExpr>::argument_kind RKind;
 
-    BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+    BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<LKind, RKind>));
 
 	RExpr expr_;
 	explicit DFSOp () {}
@@ -505,8 +506,7 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
 };
 
 template <class L, class H>
-struct GetChildrenOp : LEESAUnaryFunction <L,H>,
-	                     OpBase
+struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
 {
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
@@ -518,7 +518,7 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>,
 	GetChildrenOp (GetChildrenOp const &) {}
 	result_type operator () (argument_type const & arg)
 	{
-    BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept<argument_kind, result_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
 
 		result_type retval;
 		typename ContainerGen<argument_kind>::type v = arg;
@@ -540,7 +540,7 @@ struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
 	GetParentOp (GetParentOp const &) {}
 	result_type operator () (argument_type const & arg)
 	{
-    BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <argument_kind, result_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <argument_kind, result_kind>));
 
 		result_type retval;
 		typename ContainerGen<argument_kind>::type v = arg;
@@ -847,7 +847,7 @@ SelectNonNull (T)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_MPL_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_MPL_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	NonNullOp<result_type> n;
 	return n;
 }
@@ -859,7 +859,7 @@ SelectByName (T, const char * str)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	RegexOp<result_type> regex(str);
 	return regex;
 }
@@ -871,7 +871,7 @@ SelectSubSet (T const &t)
 	typedef typename ET<T>::result_type result_type;
 	typedef typename ET<T>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	return SelectorOp<result_type> (t);
 }
 
@@ -881,7 +881,7 @@ Select (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename Func::result_type, bool>));
 	
@@ -894,7 +894,7 @@ Select (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
 	
@@ -909,7 +909,7 @@ ForEach (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
 	
   return ForEachOp<typename ET<E>::result_type, Func> (f);
@@ -922,7 +922,7 @@ ForEach (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	
 	ForEachOp<typename ET<E>::result_type, 
@@ -936,8 +936,8 @@ CastOp<typename ET<L>::result_type,
        typename ET<H>::result_type> 
 CastFromTo (L, H)
 {
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<L>));
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<H>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));
 
 	typedef typename ET<L>::argument_type argument_type;
 	typedef typename ET<H>::result_type result_type;
@@ -951,7 +951,7 @@ Sort (E, Comp c)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename Comp::result_type, bool>));
@@ -965,7 +965,7 @@ Sort (E, Result (*f) (Arg1, Arg2))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg1, result_kind>));	
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg2, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Result, bool>));
@@ -981,7 +981,7 @@ Unique (E, BinPred c)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::result_type, bool>));
@@ -996,7 +996,7 @@ Unique (E)
 	typedef typename ET<E>::result_kind result_kind;
 	typedef std::equal_to<result_kind> EQ;	
 
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::first_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::second_argument_type, result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::result_type, bool>));
@@ -1012,9 +1012,9 @@ Choice (K, C1 c1, C2 c2)
   typedef typename ET<C1>::argument_kind arg1_kind;
   typedef typename ET<C2>::argument_kind arg2_kind;
 
-	BOOST_CONCEPT_ASSERT((Udm::UdmKindConcept<result_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<result_kind, arg1_kind>));
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<result_kind, arg2_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<result_kind, arg1_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<result_kind, arg2_kind>));
 	
   return ChoiceOp<typename ET<K>::result_type, C1, C2>(c1, c2);
 }
@@ -1039,7 +1039,7 @@ operator >> (L const &l, H)
 	typedef GetChildrenOp<typename ET<L>::result_type, 
                         typename ET<H>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP());
 }
@@ -1053,7 +1053,7 @@ operator >> (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1067,7 +1067,7 @@ operator >>= (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 {
 	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1081,7 +1081,7 @@ operator >> (L const &l, VisitorAsIndex<H> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<H>::result_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind, ChildKind>));
 
   return l >> H() >> vi.getVisitor();
 }
@@ -1100,7 +1100,7 @@ operator >> (VisitorAsIndex<L> vi, H const &h)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<H>::argument_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind, ChildKind>));
 
   return L() >> vi.getVisitor() >> h;
 }
@@ -1118,7 +1118,7 @@ operator >> (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<H>::result_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind, ChildKind>));
 
   return L() >> vl.getVisitor() >> H() >> vh.getVisitor();
 }
@@ -1132,7 +1132,7 @@ typename disable_if_c<
 operator >> (L const &l, OP op) 
 {                            
   LOCAL_TYPEDEFS(L, OP);                               
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
@@ -1147,7 +1147,7 @@ operator >> (L const &l,
 {
 	typedef AssociationOp<RESULT, TARGETCLASS> OP;
 	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(func));
 }
@@ -1163,7 +1163,7 @@ operator >> (L const &l,
 {
 	typedef AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> OP;
 	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(func));
 }
@@ -1178,7 +1178,7 @@ operator >> (L const &l,
 {
 	typedef AssociationEndOp<RESULT, TARGETCLASS> OP;
 	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((Udm::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(func));
 }
@@ -1187,7 +1187,7 @@ template <class L, class H>
 SequenceExpr<typename ET<L>::expression_type, 
 		         typename ET<H>::expression_type
 		    >
-operator && (L const &l, H const &h)
+operator , (L const &l, H const &h)
 {
 	typedef typename SequenceExpr<typename ET<L>::expression_type, 
 		                            typename ET<H>::expression_type
@@ -1201,9 +1201,9 @@ SequenceExpr<typename ET<L>::expression_type,
                        VisitorOp<typename ET<H>::result_type> 
                       >
 		        >
-operator && (L const &l, VisitorAsIndex<H> vh)
+operator , (L const &l, VisitorAsIndex<H> vh)
 {
-	return l && H() >> vh.getVisitor();
+	return l , H() >> vh.getVisitor();
 }
 
 
@@ -1220,7 +1220,7 @@ operator >> (L const &l, SequenceExpr<H,X> const & s)
 	typedef typename ET<OP>::argument_kind RKind;
 	typedef typename ChainExpr<LExpr, OP> ChainExpr;
 
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<LKind, RKind>));
 	return ChainExpr(LExpr(l), OP(s));
 }
 
@@ -1232,7 +1232,7 @@ operator >> (VisitorAsIndex<L> vl, SequenceExpr<H,X> const & s)
 {	
   typedef typename ET<L>::result_kind LKind;
   typedef typename ET<H>::argument_kind RKind;
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept <LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept <LKind, RKind>));
   
   return L() >> vl.getVisitor() >> s;
 }
@@ -1257,7 +1257,7 @@ operator << (L const &l, H)
 	typedef typename ET<L>::result_kind ChildKind;
 	typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
 
-  BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <ChildKind, ParentKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
 	return ChainExpr(ChildKindExpr(l), OP());
 }
@@ -1281,7 +1281,7 @@ operator <<= (L const &l, H const & h)
 	typedef typename ET<H>::argument_kind ParentKind;
 	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
 
-  BOOST_CONCEPT_ASSERT((Udm::ChildToParentConcept <ChildKind, ParentKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
   Operator op(h);
 	return ChainExpr(ParentExpr(l), op);
@@ -1296,7 +1296,7 @@ typename disable_if_c<
 operator << (L const &l, OP op) 
 {                            
   LOCAL_TYPEDEFS(L, OP);
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
@@ -1312,7 +1312,7 @@ operator << (L const &l, PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v)
 
 	typedef VisitorOp<typename ET<L>::result_type> OP;
 	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
@@ -1336,7 +1336,7 @@ operator >>= (L const &l, R const &r)
 	typedef typename ET<L>::result_kind ParentKind;
 	typedef typename ET<R>::argument_kind ChildKind;
 
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind, ChildKind>));
 
 	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
 
@@ -1356,7 +1356,7 @@ operator >>= (L const &l, VisitorAsIndex<R> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<R>::result_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind,ChildKind>));
 
   return l >>= R() >> vi.getVisitor();
 }
@@ -1376,7 +1376,7 @@ operator >>= (VisitorAsIndex<L> vi, R const &r)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<R>::argument_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind,ChildKind>));
 
   return L() >> vi.getVisitor() >>= r;
 }
@@ -1392,7 +1392,7 @@ operator >>= (VisitorAsIndex<L> vi, R const &r)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<R>::argument_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind,ChildKind>));
 
   return L() >> vi.getVisitor() >> r;
 }
@@ -1413,7 +1413,7 @@ operator >>= (VisitorAsIndex<L> vl, VisitorAsIndex<R> vr)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<R>::argument_kind ChildKind;
-  BOOST_CONCEPT_ASSERT((Udm::ParentChildConcept <ParentKind,ChildKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind,ChildKind>));
 
   return L() >> vl.getVisitor() >>= R() >> vr.getVisitor();
 }
@@ -1433,7 +1433,7 @@ operator >>= (L const &l, SequenceExpr<R,X> const &r)
 	typedef typename ET<L>::result_kind LKind;
 	typedef typename ET<Operator>::argument_kind RKind;
 
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<LKind, RKind>));
 
 	typedef ChainExpr<LExpr, Operator> ChainExpr;
 
@@ -1453,7 +1453,7 @@ operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
 {
   typedef typename ET<L>::result_kind LKind;
   typedef typename ET<R>::argument_kind RKind;
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept <LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept <LKind, RKind>));
 
   return L() >> vl.getVisitor() >>= r;
 }
@@ -1464,8 +1464,8 @@ evaluate (Para const & p, Expr &e)
 {
   typedef typename ET<Expr>::argument_kind argument_kind;
   typedef typename ET<Para>::result_kind result_kind;
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
-  BOOST_MPL_ASSERT((Udm::SameUdmKindsConcept<argument_kind, result_kind> ));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<argument_kind, result_kind> ));
+  BOOST_MPL_ASSERT((LEESA::SameUdmKindsConcept<argument_kind, result_kind> ));
 
   return e(p);
 }
@@ -1488,7 +1488,7 @@ typename disable_if_c<                                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>)); \
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>)); \
 	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 
@@ -1501,7 +1501,7 @@ typename disable_if_c<                                             \
   ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
 operator >> (L const &l, OPERATOR op) {                            \
 	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>)); \
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>)); \
 	return ChainExpr(ParentKindExpr(l), op);                         \
 }
 */
@@ -1519,7 +1519,7 @@ struct DFSVisitorOp : std::unary_function<typename ET<LExpr>::result_type, void>
 	typedef typename ET<LExpr>::result_kind LKind;
 	typedef typename ET<RExpr>::argument_kind RKind;
 
-  BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<LKind, RKind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<LKind, RKind>));
 
   PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
 	RExpr expr_;
@@ -1583,7 +1583,7 @@ operator >> (L const &l, ChoiceOp<K, C1, C2> op)
 {
 	typedef ChoiceOp<K, C1, C2> OP;
 	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((Udm::SameUdmKindsConcept<ParentKind, ChildKind>));
+	BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<ParentKind, ChildKind>));
 
 	return ChainExpr(ParentKindExpr(l), OP(op));
 }

@@ -1,10 +1,30 @@
+Mon Apr  6 15:50:48 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/SP.cpp:
+		
+		  Adaptive Programming (AP) predicates (FROM, TO, THROUGH, BYPASS) are now supported 
+		  by LEESA for descendant axis traversal. DescendantKinds meta-information is necessary 
+		  for successful compilation of AP traversals. Impossible AP traversals are identified 
+		  at compile-time. 
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+		
+		  HFSM.h contains manually created DescendantKinds meta-information.
+		  Also, RootFolder::ChildrenKinds does not contain RootFolder, which is
+		  otherwise present by default.
+
 Wed Apr  1 04:23:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PSM/CQML/examples/GPS.xme:
 
-			Added a simple example model to show C-SAW transformations
-			based on FOU. Transformations in $(COSMIC_ROOT)/Transformations/FailOverUnit
-			should work on this model.
+                        Added a simple example model to show C-SAW transformations
+                        based on FOU. Transformations in $(COSMIC_ROOT)/Transformations/FailOverUnit
+                        should work on this model.
 
         * Utils/LEESA/AP.cpp:
         * Utils/LEESA/DSL09primitives.cpp:
@@ -15,17 +35,17 @@ Wed Apr  1 04:23:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/SP.cpp:
         * Utils/LEESA/UdmMPL.h:
 
-			Added a library of strategic traversal schemes. Refactored (using macros)
-			the code significantly to reduce repetitive stuff. Added some more metaprograms 
-			in UdmMpl.h for concept checking of child axis.
+                        Added a library of strategic traversal schemes. Refactored (using macros)
+                        the code significantly to reduce repetitive stuff. Added some more metaprograms
+                        in UdmMpl.h for concept checking of child axis.
 
         * Utils/UDM_DSL/HFSM.h:
         * Utils/UDM_DSL/HFSM.cpp:
         * Utils/UDM_DSL/HFSM.xml:
         * Utils/UDM_DSL/HFSM.xsd:
         * Utils/UDM_DSL/UDM_DSL.cpp:
-		
-		  Regenerated the examples.
+
+                  Regenerated the examples.
 
 Sun Mar 15 23:11:53 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 

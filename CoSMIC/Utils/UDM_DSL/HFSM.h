@@ -177,7 +177,11 @@ public:
 		typedef boost::mpl::vector< _CR_StateMachine_children__StateMachine, _CR_InputSequence_children__InputSequence, _CR_RootFolder_children__RootFolder> ChildrenMulti;
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::HFSM::InputSequence, ::HFSM::StateMachine, ::HFSM::RootFolder> ChildrenKinds;
+		typedef boost::mpl::vector< ::HFSM::InputSequence, ::HFSM::StateMachine> ChildrenKinds;
+    typedef boost::mpl::vector< 
+      ::HFSM::InputSequence, ::HFSM::Sequence, ::HFSM::Events, ::HFSM::StateMachine, 
+      ::HFSM::Transition, ::HFSM::State, ::HFSM::StartState, HFSM::FinalState, 
+      ::HFSM::BaseState, ::HFSM::RootFolder> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -265,6 +269,7 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
+    typedef boost::mpl::vector< > DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -369,6 +374,7 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Sequence, ::HFSM::Events> ChildrenKinds;
+    typedef boost::mpl::vector< ::HFSM::Sequence, ::HFSM::Events> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -461,6 +467,7 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
+    typedef boost::mpl::vector< > DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -561,6 +568,7 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
+    typedef boost::mpl::vector< > DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -663,6 +671,7 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
+    typedef boost::mpl::vector< > DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -785,6 +794,9 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::BaseState> ChildrenKinds;
+    typedef boost::mpl::vector< 
+      ::HFSM::Transition, ::HFSM::StartState, ::HFSM::State, 
+      ::HFSM::FinalState, ::HFSM::BaseState> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -873,6 +885,8 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::BaseState> ChildrenKinds;
+    typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::State,
+      ::HFSM::StartState, ::HFSM::FinalState, ::HFSM::BaseState> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -957,6 +971,8 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::BaseState> ChildrenKinds;
+    typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::State,
+      ::HFSM::StartState, ::HFSM::FinalState, ::HFSM::BaseState> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -1073,6 +1089,8 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::BaseState> ChildrenKinds;
+    typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::State,
+      ::HFSM::StartState, ::HFSM::FinalState, ::HFSM::BaseState> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
@@ -1157,6 +1175,8 @@ public:
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::BaseState> ChildrenKinds;
+    typedef boost::mpl::vector< ::HFSM::Transition, ::HFSM::State,
+      ::HFSM::StartState, ::HFSM::FinalState, ::HFSM::BaseState> DescendantKinds;
 
 		// types and typelist for associations by returned type and role relations;
 		typedef boost::mpl::vector< > AssociationsSingle;
