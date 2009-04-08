@@ -59,7 +59,7 @@ private:
   bool remove_and_do_closure (DOMElement *node);
   
 private:
-  XStr id_;
+  Utils::XStr id_;
 };
 
  #endif /* IDL_TO_PICML_REMOVING_CLOSURE_VISITOR_H */

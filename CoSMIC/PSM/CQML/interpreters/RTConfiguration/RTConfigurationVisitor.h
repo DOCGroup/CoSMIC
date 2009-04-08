@@ -102,7 +102,7 @@ namespace CQML
     DOMElement*             root_;
     DOMElement*             curr_;
     DOMElement*             resources_;
-    DOMWriter*              serializer_;
+    DOMLSSerializer*              serializer_;
     XMLFormatTarget*        target_;
     std::string             outputPath_;
 	std::set<std::string>             csr_files_;

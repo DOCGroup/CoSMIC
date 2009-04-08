@@ -27,24 +27,24 @@ QED_Deployment_Visitor (const std::string & output)
 
   this->path_.push (this->output_);
 
-  this->impl_ = 
+  this->impl_ =
     DOMImplementationRegistry::getDOMImplementation (Utils::XStr ("LS"));
 
-  this->serializer_ = 
-    ((DOMImplementationLS *)impl_)->createDOMWriter ();
+  this->serializer_ =
+    ((DOMImplementationLS *)impl_)->createLSSerializer ();
 
   // Initialize all the features for the writer.
-  if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTDiscardDefaultContent, true))
-    this->serializer_->setFeature (XMLUni::fgDOMWRTDiscardDefaultContent, true);
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
 
-  if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTFormatPrettyPrint, true))
-    this->serializer_->setFeature (XMLUni::fgDOMWRTFormatPrettyPrint, true);
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
-  if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTBOM, false))
-    this->serializer_->setFeature (XMLUni::fgDOMWRTBOM, false);
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
 
-  if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTWhitespaceInElementContent, false))
-    this->serializer_->setFeature (XMLUni::fgDOMWRTWhitespaceInElementContent, false);
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTWhitespaceInElementContent, false))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTWhitespaceInElementContent, false);
 }
 
 //
@@ -66,11 +66,11 @@ void QED_Deployment_Visitor::
 Visit_RootFolder (const PICML::RootFolder & root)
 {
   // Generate the component instance configuration.
-  typedef 
+  typedef
     std::vector <PICML::ComponentImplementations>
     ComponentImplementations_Set;
 
-  ComponentImplementations_Set folders = 
+  ComponentImplementations_Set folders =
     root.ComponentImplementations_children ();
 
   std::for_each (folders.begin (),
@@ -80,7 +80,7 @@ Visit_RootFolder (const PICML::RootFolder & root)
                               boost::ref (*this)));
 
   // Generate the deployment plans in this project.
-  typedef 
+  typedef
     std::vector <PICML::DeploymentPlans>
     DeploymentPlans_Set;
 
@@ -99,7 +99,7 @@ Visit_RootFolder (const PICML::RootFolder & root)
 void QED_Deployment_Visitor::
 Visit_ComponentImplementations (const PICML::ComponentImplementations & cis)
 {
-  typedef 
+  typedef
     std::vector <PICML::ComponentImplementationContainer>
     ComponentImplementationContainer_Set;
 
@@ -117,7 +117,7 @@ Visit_ComponentImplementations (const PICML::ComponentImplementations & cis)
 // Visit_ComponentImplementationContainer
 //
 void QED_Deployment_Visitor::
-Visit_ComponentImplementationContainer (                                        
+Visit_ComponentImplementationContainer (
   const PICML::ComponentImplementationContainer & container)
 {
   typedef
@@ -207,8 +207,8 @@ Visit_Component (const PICML::Component & component)
       Utils::XStr ("beans"),
       0);
 
-  this->doc_->setEncoding (Utils::XStr("UTF-8"));
-  this->doc_->setVersion (Utils::XStr("1.0"));
+  //this->doc_->setEncoding (Utils::XStr("UTF-8"));
+  this->doc_->setXmlVersion (Utils::XStr("1.0"));
 
   xercesc::DOMElement * root = this->doc_->getDocumentElement ();
 
@@ -216,7 +216,7 @@ Visit_Component (const PICML::Component & component)
     Utils::XStr ("http://www.w3.org/2000/xmlns/"),
     Utils::XStr ("xmlns:xsi"),
     Utils::XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-  
+
   root->setAttribute (
     Utils::XStr ("xsi:schemaLocation"),
     Utils::XStr ("http://www.springframework.org/schema/beans "
@@ -229,7 +229,7 @@ Visit_Component (const PICML::Component & component)
   std::ostringstream unique_id;
   unique_id << this->scope_.top () << "." << name;
 
-  xercesc::DOMElement * element = 
+  xercesc::DOMElement * element =
     this->doc_->createElement (Utils::XStr ("bean"));
 
   element->setAttribute (Utils::XStr ("id"),
@@ -283,7 +283,7 @@ Visit_Component (const PICML::Component & component)
   std::for_each (attributes.begin (),
                  attributes.end (),
                  boost::bind (&Attribute_Set::value_type::Accept,
-                              _1, 
+                              _1,
                               boost::ref (*this)));
 
   this->root_.pop ();
@@ -307,9 +307,9 @@ Visit_Attribute (const PICML::Attribute & attr)
   if (attrval != Udm::null)
   {
     // Create an XML element for the attribute.
-    xercesc::DOMElement * element = 
+    xercesc::DOMElement * element =
       this->doc_->createElement (Utils::XStr ("property"));
-  
+
     element->setAttribute (Utils::XStr ("name"),
                            Utils::XStr (std::string (attr.name ())));
 
@@ -366,15 +366,15 @@ void QED_Deployment_Visitor::
 write_property (const std::map <std::string, std::string>::value_type & property)
 {
   // Create an XML element for the attribute.
-  xercesc::DOMElement * element = 
+  xercesc::DOMElement * element =
     this->doc_->createElement (Utils::XStr ("property"));
 
   element->setAttribute (
-    Utils::XStr ("name"), 
+    Utils::XStr ("name"),
     Utils::XStr (property.first.c_str ()));
 
   element->setAttribute (
-    Utils::XStr ("value"), 
+    Utils::XStr ("value"),
     Utils::XStr (property.second.c_str ()));
 
   this->root_.top ()->appendChild (element);
@@ -403,7 +403,7 @@ void QED_Deployment_Visitor::
 Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty & config)
 {
   PICML::Property property = config.dstAssemblyConfigProperty_end ();
-  
+
   // Overwrite the default configuration value, or store a new
   // configuration value.
   this->default_props_[property.name ()] = property.DataValue ();
@@ -440,8 +440,8 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
     Utils::XStr ("jbi:deployment"),
     0);
 
-  this->doc_->setEncoding (Utils::XStr("UTF-8"));
-  this->doc_->setVersion (Utils::XStr("1.0"));
+  //this->doc_->setEncoding (Utils::XStr("UTF-8"));
+  this->doc_->setXmlVersion (Utils::XStr("1.0"));
 
   xercesc::DOMElement * root = this->doc_->getDocumentElement ();
 
@@ -449,13 +449,13 @@ Visit_DeploymentPlan (const PICML::DeploymentPlan & plan)
     Utils::XStr ("http://www.w3.org/2000/xmlns/"),
     Utils::XStr ("xmlns:xsi"),
     Utils::XStr ("http://www.w3.org/2001/XMLSchema-instance"));
-  
+
   root->setAttribute (
     Utils::XStr ("xsi:schemaLocation"),
     Utils::XStr ("http://www.dre.vanderbilt.edu/CUTS deployment.xsd"));
 
   // Create the UUID element for the deployment plan.
-  xercesc::DOMElement * element = 
+  xercesc::DOMElement * element =
     this->doc_->createElement (Utils::XStr ("UUID"));
 
   element->setTextContent (Utils::XStr (std::string (plan.UUID ())));
@@ -543,7 +543,7 @@ Visit_InstanceMapping (const PICML::InstanceMapping & mapping)
 void QED_Deployment_Visitor::
 Visit_CollocationGroup (const PICML::CollocationGroup & group)
 {
-  typedef 
+  typedef
     std::set <PICML::CollocationGroupMember>
     CollocationGroupMember_Set;
 
@@ -588,15 +588,15 @@ Visit_ComponentRef (const PICML::ComponentRef & ref)
   PICML::Component component = ref.ref ();
 
   // Create an XML element for the instance.
-  xercesc::DOMElement * element_instance = 
+  xercesc::DOMElement * element_instance =
     this->doc_->createElement (Utils::XStr ("instance"));
 
   element_instance->setAttribute (
-    Utils::XStr ("id"), 
+    Utils::XStr ("id"),
     Utils::XStr (this->instance_names_[component]));
 
   // Create an element for the location and add it to the document.
-  xercesc::DOMElement * element = 
+  xercesc::DOMElement * element =
     this->doc_->createElement (Utils::XStr ("location"));
 
   element->setTextContent (Utils::XStr (this->location_));
@@ -617,21 +617,12 @@ Visit_ComponentRef (const PICML::ComponentRef & ref)
 void QED_Deployment_Visitor::
 serialize_xml_to_file (const std::string & filename)
 {
-  if (this->target_)
-    delete this->target_;
+  xercesc::LocalFileFormatTarget target (filename.c_str ());
+  xercesc::DOMLSOutput * output = ((xercesc::DOMImplementationLS*)this->impl_)->createLSOutput ();
+  output->setByteStream (&target);
 
-  this->target_ = 
-    new xercesc::LocalFileFormatTarget (filename.c_str ());
-
-  if (this->target_ != 0)
-  {
-    // Dump the XML document to the target file.
-    this->serializer_->writeNode (this->target_, *this->doc_);
-
-    // Close the target file.
-    delete this->target_;
-    this->target_ = 0;
-  }
+  this->serializer_->write (this->doc_, output);
+  output->release ();
 
   // Release the XML document.
   if (this->doc_ != 0)

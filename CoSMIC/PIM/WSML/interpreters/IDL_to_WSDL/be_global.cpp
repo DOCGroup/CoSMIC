@@ -33,6 +33,7 @@
 #include "ace/OS_NS_stdio.h"
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
+#include "xercesc/parsers/XercesDOMParser.hpp"
 
 // Some magic strings.
 const char *VERSION = "1.0";
@@ -422,34 +423,34 @@ BE_GlobalData::xerces_init (void)
   try
     {
       XMLPlatformUtils::Initialize ();
-      DOMImplementation *impl =
+      this->impl_ =
         DOMImplementationRegistry::getDOMImplementation (X ("LS"));
 
-      if (0 == impl)
+      if (0 == this->impl_)
         {
           ACE_ERROR ((LM_ERROR,
                       ACE_TEXT ("Null DOMImplementation returned\n")));
           BE_abort ();
         }
-        
-      this->create_dom_writer (impl);
+
+      this->create_dom_writer (this->impl_);
 
       // If we are inputting an existing WSDL file, use that to create
       // the DOM tree, else create an empty one.
       if (0 == this->input_wsdl_)
         {
-          this->create_document (impl);
+          this->create_document (this->impl_);
         }
       else
         {
-          this->parse_document (impl);
+          this->parse_document (this->impl_);
         }
-      
+
       this->create_target ();
-      
+
       this->root_element_ = this->doc_->getDocumentElement ();
       this->set_root_attrs ();
-      
+
       DOMElement *import_elem = this->doc_->createElement (X ("import"));
       import_elem->setAttribute (X ("namespace"), X (CORBA_NS));
       import_elem->setAttribute (X ("location"), X ("CORBA.wsdl"));
@@ -501,17 +502,16 @@ BE_GlobalData::destroy (void)
   if (0 != this->writer_ && 0 != this->target_ && 0 != this->doc_)
     {
       // Write out the file last, just before cleanup.
-      this->writer_->writeNode (this->target_, *this->doc_);
+      xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+      output->setByteStream (this->target_);
+
+      this->writer_->write (this->doc_, output);
+      output->release ();
     }
 
   if (0 != this->writer_)
     {
       this->writer_->release ();
-    }
-    
-  if (0 != this->doc_)
-    {  
-      this->doc_->release ();
     }
 
   delete this->target_;
@@ -562,7 +562,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
   // may have to look in all File elements to find an XML import.
   bool importing = idl_global->import ();
   bool in_main = idl_global->in_main_file ();
-  
+
   return 0;
 }
 
@@ -575,7 +575,7 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     {
       return 0;
     }
-      
+
   return 0;
 }
 
@@ -1000,10 +1000,10 @@ BE_GlobalData::included_file_diagnostic (DOMElement *fileref,
     }
 
   char *file_name = this->get_name (file);
-  
+
   cout << "Added FileRef " << fileref_name << " in File "
        << file_name << endl;
-       
+
   XMLString::release (&file_name);
 }
 */
@@ -1018,15 +1018,15 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Decl *node)
   char *node_child_name = node_child->local_name ()->get_string ();
   int match = ACE_OS::strcmp (node_child_name, elem_child_name);
   XMLString::release (&elem_child_name);
-  
+
   if (0 != match)
     {
       return false;
     }
-    
+
   AST_Decl::NodeType nt = node_child->node_type ();
   const XMLCh *kind = elem_child->getAttribute (X ("kind"));
-  
+
   if (X ("Package") == kind && AST_Decl::NT_module == nt)
     {
       return this->match_module_opening (elem_child, node_child);
@@ -1046,43 +1046,52 @@ BE_GlobalData::create_document (DOMImplementation *impl)
                                      X ("definitions"),
                                      0);
 
-  this->doc_->setEncoding (X (ENCODING));
-  this->doc_->setVersion (X (VERSION));
+  // this->doc_->setEncoding (X (ENCODING));
+  this->doc_->setXmlVersion (X (VERSION));
 }
 
 void
 BE_GlobalData::parse_document (DOMImplementation *impl)
 {
-  DOMBuilder *parser =
-    ((DOMImplementationLS*)impl)->createDOMBuilder (
-        DOMImplementationLS::MODE_SYNCHRONOUS,
-        0
-      );
+  XercesDOMParser parser;
+  //DOMBuilder *parser =
+  //  ((DOMImplementationLS*)impl)->createDOMBuilder (
+  //      DOMImplementationLS::MODE_SYNCHRONOUS,
+  //      0
+  //    );
 
-  if (parser->canSetFeature(XMLUni::fgDOMValidation, true))
-    {
-      parser->setFeature(XMLUni::fgDOMValidation, true);
-    }
+  parser.setValidationScheme(XercesDOMParser::Val_Always);
+  parser.setDoNamespaces (true);
 
-  if (parser->canSetFeature(XMLUni::fgDOMNamespaces, true))
-    {
-      parser->setFeature(XMLUni::fgDOMNamespaces, true);
-    }
+  //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMValidation, true))
+  //  {
+  //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMValidation, true);
+  //  }
 
-  if (parser->canSetFeature(XMLUni::fgDOMDatatypeNormalization, true))
-    {
-      parser->setFeature(XMLUni::fgDOMDatatypeNormalization, true);
-    }
+  //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMNamespaces, true))
+  //  {
+  //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMNamespaces, true);
+  //  }
 
-  parser->setFeature (XMLUni::fgDOMComments, false);
-  parser->setFeature (XMLUni::fgDOMEntities, false);
-  parser->setFeature (XMLUni::fgDOMNamespaces, true);
-  parser->setFeature (XMLUni::fgDOMValidation, true);
-  parser->setFeature (XMLUni::fgDOMWhitespaceInElementContent, false);
-  parser->setFeature (XMLUni::fgXercesSchema, true);
+  //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMDatatypeNormalization, true))
+  //  {
+  //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMDatatypeNormalization, true);
+  //  }
 
-  XML_Error_Handler handler;
-  parser->setErrorHandler (&handler);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgDOMComments, false);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgDOMEntities, false);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgDOMNamespaces, true);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgDOMValidation, true);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgDOMWhitespaceInElementContent, false);
+  //parser->getDomConfig ()->setParameter (XMLUni::fgXercesSchema, true);
+
+  parser.setCreateCommentNodes (false);
+  parser.setCreateEntityReferenceNodes (false);
+  parser.setIncludeIgnorableWhitespace (false);
+  parser.setDoSchema (true);
+
+  Utils::XML_Error_Handler handler;
+  parser.setErrorHandler (&handler);
 
   if (this->schema_path_ == "" && this->input_wsdl_ != 0)
     {
@@ -1091,59 +1100,61 @@ BE_GlobalData::parse_document (DOMImplementation *impl)
                   "DTD file must be in directory of execution\n"));
     }
 
-  EntityResolver resolver (this->schema_path_.c_str ());
-  parser->setEntityResolver (&resolver);
+  Utils::EntityResolver resolver (this->schema_path_.c_str ());
+  parser.setEntityResolver (&resolver);
 
-  this->doc_ = parser->parseURI (this->input_wsdl_);
+  parser.parse (this->input_wsdl_);
 
   if (handler.getErrors ())
     {
       // The error handler will output a message.
       BE_abort ();
     }
+
+  this->doc_ = parser.adoptDocument ();
 }
 
 void
 BE_GlobalData::create_dom_writer (DOMImplementation *impl)
 {
   this->writer_ =
-    ((DOMImplementationLS *)impl)->createDOMWriter ();
+    ((DOMImplementationLS *)impl)->createLSSerializer ();
   this->writer_->setNewLine (X ("\n"));
-  
+
   // Set features if the writer supports the feature/mode.
-  
+
   bool test_bool =
-    this->writer_->canSetFeature (
+    this->writer_->getDomConfig ()->canSetParameter (
       XMLUni::fgDOMWRTDiscardDefaultContent,
       true);
-      
+
   if (test_bool)
     {
-      this->writer_->setFeature (
+      this->writer_->getDomConfig ()->setParameter (
         XMLUni::fgDOMWRTDiscardDefaultContent,
         true);
     }
 
   test_bool =
-    this->writer_->canSetFeature (
+    this->writer_->getDomConfig ()->canSetParameter (
       XMLUni::fgDOMWRTFormatPrettyPrint,
       true);
-      
+
   if (test_bool)
     {
-      this->writer_->setFeature (
+      this->writer_->getDomConfig ()->setParameter (
         XMLUni::fgDOMWRTFormatPrettyPrint,
         true);
     }
 
   test_bool =
-    this->writer_->canSetFeature (
+    this->writer_->getDomConfig ()->canSetParameter (
       XMLUni::fgDOMWRTBOM,
       false);
-      
+
   if (test_bool)
     {
-      this->writer_->setFeature (
+      this->writer_->getDomConfig ()->setParameter (
         XMLUni::fgDOMWRTBOM,
         false);
     }
@@ -1164,7 +1175,7 @@ BE_GlobalData::create_target (void)
   target_name += be_global->output_file ();
   target_name += FILE_EXT;
 
-  XStr target_xstr (target_name.c_str ());
+  Utils::XStr target_xstr (target_name.c_str ());
   const XMLCh * target_arg = target_xstr.begin ();
 
   this->target_ = new LocalFileFormatTarget (target_name.c_str ());
@@ -1173,19 +1184,19 @@ BE_GlobalData::create_target (void)
 void
 BE_GlobalData::set_root_attrs (void)
 {
-  DOMElement *r = this->root_element_; 
+  DOMElement *r = this->root_element_;
   this->set_common_attrs (r);
-  
+
   // Specific to the 'definitions' element.
   r->setAttributeNS (X (XMLNS), X ("xmlns:soap"), X (SOAP));
   r->setAttributeNS (X (XMLNS), X ("xmlns:mime"), X (MIME));
   r->setAttributeNS (X (XMLNS), X ("xmlns:dime"), X (DIME));
   r->setAttributeNS (X (XMLNS), X ("xmlns:wsdl"), X (WSDL));
   r->setAttributeNS (X (XMLNS), X ("xmlns:corba"), X (CORBA_NS));
-  
+
   ACE_CString target_name_space ("urn:");
   target_name_space += this->output_file_;
-  
+
   r->setAttribute (X ("targetNamespace"),
                    X (target_name_space.c_str ()));
   r->setAttribute (X ("name"), X (this->output_file_.c_str ()));
@@ -1209,21 +1220,21 @@ BE_GlobalData::create_types_schema (void)
   this->root_element_->appendChild (types);
   this->types_schema_ = this->doc_->createElement (X ("xsd:schema"));
   types->appendChild (this->types_schema_);
-  
+
   this->set_common_attrs (this->types_schema_);
-  
+
   ACE_CString target_name_space ("urn:");
   target_name_space += this->output_file_;
-  
+
   this->types_schema_->setAttribute (X ("targetNamespace"),
                                      X (target_name_space.c_str ()));
   this->types_schema_->setAttribute (X ("xmlns"), X (SCHEMA_NS));
-  
+
   DOMElement *import1 = this->doc_->createElement (X ("import"));
   import1->setAttribute (X ("namespace"), X (SOAP_ENC));
   import1->setAttribute (X ("schemaLocation"), X (SOAP_ENC));
   this->types_schema_->appendChild (import1);
-  
+
   DOMElement *import2 = this->doc_->createElement (X ("import"));
   import2->setAttribute (X ("namespace"), X (CORBA_NS));
   import2->setAttribute (X ("schemaLocation"), X ("CORBA.xsd"));
@@ -1234,9 +1245,9 @@ void
 BE_GlobalData::to_wsdl_name (ACE_CString &name)
 {
   int pos = 0;
-  
+
   while ((pos = name.find ("::", pos)) != ACE_CString::npos)
-    {    
+    {
       name =
         name.substr (0, pos) + ACE_CString ('.') + name.substr (pos + 2);
       ++pos;
@@ -1247,9 +1258,9 @@ void
 BE_GlobalData::to_idl_name (ACE_CString &name)
 {
   int pos = 0;
-  
+
   while ((pos = name.find (".", pos)) != ACE_CString::npos)
-    {    
+    {
       name = name.substr (0, pos) + ACE_CString ("::") + name.substr (pos + 1);
       pos += 2;
     }

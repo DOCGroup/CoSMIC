@@ -39,7 +39,7 @@
 
 using namespace xercesc;
 
-#define X(str) XStr (ACE_TEXT (str))
+#define X(str) Utils::XStr (ACE_TEXT (str))
 
 class AST_Generator;
 class AST_Module;
@@ -292,7 +292,7 @@ public:
                                       const char *tag_name,
                                       const char *kind_name);
   // Utility operation.
-  
+
   DOMElement *lookup_by_tag_and_id (DOMElement *scope,
                                     const char *tag_name,
                                     const char *gme_id);
@@ -348,7 +348,7 @@ private:
 
   DOMElement *get_first_picml_element (DOMElement *scope);
   // Skip name, regnodes, GME attributes.
-  
+
   bool match_module_opening (DOMElement *elem, AST_Module *m);
   bool match_module_opening_upscope (DOMElement *elem, AST_Decl *d);
   bool match_module_opening_downscope (DOMElement *elem, AST_Decl *d);
@@ -392,8 +392,9 @@ private:
   bool do_removal_;
   // Do we spawn the removing visitor?
 
+  DOMImplementation *impl_;
   DOMDocument *doc_;
-  DOMWriter *writer_;
+  DOMLSSerializer *writer_;
   XMLFormatTarget *target_;
   DOMElement *root_folder_;
   DOMElement *component_types_folder_;

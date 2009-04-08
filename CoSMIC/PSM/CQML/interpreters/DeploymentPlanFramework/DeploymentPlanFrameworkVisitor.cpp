@@ -19,12 +19,12 @@ using Utils::CreateUuid;
 
 namespace CQML
 {
-  DeploymentPlanFrameworkVisitor * 
-	  DeploymentPlanFrameworkVisitor::instance_ = 0;
+  DeploymentPlanFrameworkVisitor *
+    DeploymentPlanFrameworkVisitor::instance_ = 0;
 
   DeploymentPlanFrameworkVisitor::DeploymentPlanFrameworkVisitor (const std::string& outputPath)
     : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), target_ (0),
-	  outputPath_ (outputPath)
+    outputPath_ (outputPath)
   {
     this->init();
     this->injectors_.clear ();
@@ -32,22 +32,22 @@ namespace CQML
 
   DeploymentPlanFrameworkVisitor * DeploymentPlanFrameworkVisitor::instance ()
   {
-	  if (DeploymentPlanFrameworkVisitor::instance_ == 0)
-		  DeploymentPlanFrameworkVisitor::instance_ 
-		  = new DeploymentPlanFrameworkVisitor ();
-	  
-	  return DeploymentPlanFrameworkVisitor::instance_;
+    if (DeploymentPlanFrameworkVisitor::instance_ == 0)
+      DeploymentPlanFrameworkVisitor::instance_
+      = new DeploymentPlanFrameworkVisitor ();
+
+    return DeploymentPlanFrameworkVisitor::instance_;
   }
 
   void DeploymentPlanFrameworkVisitor::operator delete (void *arg)
   {
-	  ::delete arg;
-	  DeploymentPlanFrameworkVisitor::instance_ = 0;
+    ::delete arg;
+    DeploymentPlanFrameworkVisitor::instance_ = 0;
   }
 
   void DeploymentPlanFrameworkVisitor::set_path (std::string const &path)
   {
-	  this->outputPath_ = path;
+    this->outputPath_ = path;
   }
 
   DeploymentPlanFrameworkVisitor::~DeploymentPlanFrameworkVisitor ()
@@ -63,20 +63,17 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::init()
   {
     this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
-    this->serializer_ = ((DOMImplementationLS*)impl_)->createDOMWriter();
+    this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
-    if (this->serializer_->canSetFeature
-        (XMLUni::fgDOMWRTDiscardDefaultContent, true))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTDiscardDefaultContent,
-                                     true);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
 
-    if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTFormatPrettyPrint,
-                                          true))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTFormatPrettyPrint, true);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
-    if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTBOM, false))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTBOM, false);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
   }
 
   void DeploymentPlanFrameworkVisitor::initTarget (const std::string& fileName)
@@ -124,28 +121,32 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::initRootAttributes()
   {
-    this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setVersion (XStr("1.0"));
+    //this->doc_->setEncoding (XStr("UTF-8"));
+    this->doc_->setXmlVersion (XStr("1.0"));
     this->root_ = this->doc_->getDocumentElement();
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                  XStr ("xmlns:Deployment"),
                                  XStr ("http://www.omg.org/Deployment"));
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                  XStr ("xmlns:xsi"),
-                                 XStr 
+                                 XStr
                                  ("http://www.w3.org/2001/XMLSchema-instance"));
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                  XStr ("xmlns:xmi"),
                                  XStr ("http://www.omg.org/XMI"));
     this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-                               XStr 
+                               XStr
                               ("http://www.omg.org/Deployment Deployment.xsd"));
     this->curr_ = this->root_;
   }
 
   void DeploymentPlanFrameworkVisitor::dumpDocument()
   {
-    this->serializer_->writeNode (this->target_, *this->doc_);
+    xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+    output->setByteStream (this->target_);
+
+    this->serializer_->write (this->doc_, output);
+    output->release ();
   }
 
   void DeploymentPlanFrameworkVisitor::push()
@@ -275,7 +276,7 @@ namespace CQML
         {
           Property property = *iter;
           property.Accept (*this);
-        }	  
+        }
       this->pop ();
     }
 
@@ -360,7 +361,7 @@ namespace CQML
     this->CreatePropertyElement (property.name(), property);
   }
 
-  void DeploymentPlanFrameworkVisitor::CreatePropertyElement (std::string name, 
+  void DeploymentPlanFrameworkVisitor::CreatePropertyElement (std::string name,
                                                const Property& property)
   {
     this->push();
@@ -546,7 +547,7 @@ namespace CQML
     cp.Accept (*this);
     }*/
 
-	  const std::set<MonolithExecParameter>
+    const std::set<MonolithExecParameter>
       mexecs = mimpl.dstMonolithExecParameter();
     for (std::set<MonolithExecParameter>::const_iterator it2 = mexecs.begin();
          it2 != mexecs.end();++it2)
@@ -560,7 +561,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::Visit_MonolithExecParameter(const MonolithExecParameter& mexec)
   {
-	  this->push();
+    this->push();
     DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
     this->curr_->appendChild (ele);
     this->curr_ = ele;
@@ -586,7 +587,7 @@ namespace CQML
         (const MonolithprimaryArtifact& mpa)
   {
     this->push();
-    const ImplementationArtifactReference iaref = 
+    const ImplementationArtifactReference iaref =
       mpa.dstMonolithprimaryArtifact_end();
     const ImplementationArtifact ref = iaref.ref();
 
@@ -598,7 +599,7 @@ namespace CQML
       }
     uniqueName = std::string ("_") + uniqueName;
 
-    this->curr_->appendChild 
+    this->curr_->appendChild
         (this->createSimpleContent ("artifact", uniqueName));
     this->pop();
   }
@@ -683,7 +684,7 @@ namespace CQML
     return;
   }
 
-  void DeploymentPlanFrameworkVisitor::GetReceptacleComponents 
+  void DeploymentPlanFrameworkVisitor::GetReceptacleComponents
       (const RequiredRequestPort& receptacle,
        std::map<Component,std::string>& output)
   {
@@ -725,7 +726,7 @@ namespace CQML
                          visited);
   }
 
-    void DeploymentPlanFrameworkVisitor::GetEventSourceComponents 
+    void DeploymentPlanFrameworkVisitor::GetEventSourceComponents
        (const OutEventPort& publisher,
         std::map<Component,std::string>& output)
   {
@@ -739,7 +740,7 @@ namespace CQML
                          visited);
   }
 
-  void DeploymentPlanFrameworkVisitor::CreateConnections (const std::map<Component, 
+  void DeploymentPlanFrameworkVisitor::CreateConnections (const std::map<Component,
     std::string>& src, const std::map<Component, std::string>& dst,
     const std::string& source_kind, const std::string& dest_kind)
   {
@@ -749,14 +750,14 @@ namespace CQML
       {
         Component srcComp = iter->first;
         std::string srcPortName = iter->second;
-        for (std::map<Component, 
+        for (std::map<Component,
              std::string>::const_iterator iter = dst.begin();
              iter != dst.end();
              ++iter)
           {
             Component dstComp = iter->first;
             std::string dstPortName = iter->second;
-            this->CreateConnection (srcComp, srcPortName, dstComp, 
+            this->CreateConnection (srcComp, srcPortName, dstComp,
                     dstPortName, source_kind, dest_kind);
           }
       }
@@ -766,33 +767,33 @@ namespace CQML
                                                 const std::string& srcPortName,
                                                 const Component& dstComp,
                                                 const std::string& dstPortName,
-		                                            const std::string& source_kind,
-				                                        const std::string& dest_kind)
+                                                const std::string& source_kind,
+                                                const std::string& dest_kind)
   {
     std::string source_comp_instance = this->unique_id (srcComp);
     std::string dest_comp_instance = this->unique_id (dstComp);
 
     if (this->selected_instances_.find (source_comp_instance)
-		    != this->selected_instances_.end ())
+        != this->selected_instances_.end ())
       {
         if (this->selected_instances_.find (dest_comp_instance)
-			!= this->selected_instances_.end ())
+      != this->selected_instances_.end ())
           {
-			CQML::InstanceConnection source_connection;
+      CQML::InstanceConnection source_connection;
             source_connection.instance_name = source_comp_instance;
             source_connection.port_name = srcPortName;
             source_connection.port_kind = dest_kind;
 
-			CQML::InstanceConnection dest_connection;
-			dest_connection.instance_name = dest_comp_instance;
+      CQML::InstanceConnection dest_connection;
+      dest_connection.instance_name = dest_comp_instance;
             dest_connection.port_name = dstPortName;
             dest_connection.port_kind = source_kind;
 
-			this->generate_connection_descriptors (source_connection, dest_connection);
+      this->generate_connection_descriptors (source_connection, dest_connection);
 
-			/// Code below is for the DeploymentPlanFramework.
+      /// Code below is for the DeploymentPlanFramework.
 
-            std::pair <CQML::InstanceConnection, CQML::InstanceConnection> 
+            std::pair <CQML::InstanceConnection, CQML::InstanceConnection>
               connection_pair (make_pair (source_connection, dest_connection));
 
             std::string connection_instance = source_comp_instance + "_" + dest_comp_instance;
@@ -806,9 +807,9 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::CreateConnection (const Component& srcComp,
      const std::string& srcPortName, const Component& dstComp,
      const std::string& dstPortName, const std::string& source_kind,
-		 const std::string& dest_kind)
+     const std::string& dest_kind)
   {
-    std::string source_comp_instance_path = 
+    std::string source_comp_instance_path =
         srcComp.getPath (".",false,true,"name",true);
     std::string source_comp_instance = srcComp.UUID();
 
@@ -818,7 +819,7 @@ namespace CQML
       }
     source_comp_instance = std::string ("_") + source_comp_instance;
 
-    std::string dest_comp_instance_path = 
+    std::string dest_comp_instance_path =
          dstComp.getPath (".",false,true,"name",true);
     std::string dest_comp_instance = dstComp.UUID();
 
@@ -829,10 +830,10 @@ namespace CQML
     dest_comp_instance = std::string ("_") + dest_comp_instance;
 
     if (this->selected_instances_.find (source_comp_instance_path)
-		    != this->selected_instances_.end ())
+        != this->selected_instances_.end ())
       {
         if (this->selected_instances_.find (dest_comp_instance_path)
-			      != this->selected_instances_.end ())
+            != this->selected_instances_.end ())
           {
             // Create a connection
             DOMElement* ele = this->doc_->createElement (XStr ("connection"));
@@ -849,15 +850,15 @@ namespace CQML
                                    srcPortName));
             endPoint->appendChild (this->createSimpleContent ("kind",
                                    dest_kind));
-		    
-            // std::string source_comp_instance = 
+
+            // std::string source_comp_instance =
             //     srcComp.getPath ("_",false,true,"name",true);
             std::string source_instance_id = source_comp_instance_path;
-            endPoint->appendChild (this->createSimpleContent ("instance", 
+            endPoint->appendChild (this->createSimpleContent ("instance",
                                    source_instance_id));
             ele->appendChild (endPoint);
 
-			CQML::InstanceConnection source_connection;
+      CQML::InstanceConnection source_connection;
             source_connection.instance_name = source_comp_instance_path;
             source_connection.port_name = srcPortName;
             source_connection.port_kind = dest_kind;
@@ -868,20 +869,20 @@ namespace CQML
                                    dstPortName));
             endPoint->appendChild (this->createSimpleContent ("kind",
                                    source_kind));
-		    
-            // std::string dest_comp_instance = 
+
+            // std::string dest_comp_instance =
             //      dstComp.getPath ("_",false,true,"name",true);
             std::string dest_instance_id = dest_comp_instance_path;
-            endPoint->appendChild (this->createSimpleContent ("instance", 
+            endPoint->appendChild (this->createSimpleContent ("instance",
                                    dest_instance_id));
             ele->appendChild (endPoint);
 
             CQML::InstanceConnection dest_connection;
-			dest_connection.instance_name = dest_comp_instance_path;
+      dest_connection.instance_name = dest_comp_instance_path;
             dest_connection.port_name = dstPortName;
             dest_connection.port_kind = source_kind;
 
-            std::pair <CQML::InstanceConnection, CQML::InstanceConnection > 
+            std::pair <CQML::InstanceConnection, CQML::InstanceConnection >
               connection_pair (make_pair (source_connection, dest_connection));
 
             std::string connection_instance = source_comp_instance_path + "_";
@@ -1104,54 +1105,54 @@ namespace CQML
 
         DeploymentPlan plan = *iter;
         std::string plan_name = plan.name ();
-	    plan.Accept (*this);
+      plan.Accept (*this);
 
-	    Injector* injector;
-	    std::map<std::string, CQML::Component> monolith_instances;
-		std::map<std::string, CQML::Component> assembly_instances;
-		std::map<std::string, std::string> node_mappings;
-		std::map<std::string, std::string> node_initial_mappings;
-		std::set<std::string> selected_failover_units;
-		std::map<std::string, std::string> deployed_instances;
+      Injector* injector;
+      std::map<std::string, CQML::Component> monolith_instances;
+    std::map<std::string, CQML::Component> assembly_instances;
+    std::map<std::string, std::string> node_mappings;
+    std::map<std::string, std::string> node_initial_mappings;
+    std::set<std::string> selected_failover_units;
+    std::map<std::string, std::string> deployed_instances;
 
-	    this->instantiate_deployment_plan_descriptor (plan);
-	    this->create_label_and_uuid (plan);
-	    this->generate_implementation_descriptions ();
+      this->instantiate_deployment_plan_descriptor (plan);
+      this->create_label_and_uuid (plan);
+      this->generate_implementation_descriptions ();
         deployed_instances = this->deployed_instances_;
-		
-	    if (this->injectors_.find (plan_name) != this->injectors_.end ())
-	      {
-	        injector = this->injectors_[plan_name];
 
- 	        monolith_instances = injector->add_monolith_instances (plan_name);
-			merge_component_instances (this->instance_monolith_components_, monolith_instances);
-            //this->instance_monolith_components_.insert 
+      if (this->injectors_.find (plan_name) != this->injectors_.end ())
+        {
+          injector = this->injectors_[plan_name];
+
+           monolith_instances = injector->add_monolith_instances (plan_name);
+      merge_component_instances (this->instance_monolith_components_, monolith_instances);
+            //this->instance_monolith_components_.insert
             //   (monolith_instances.begin (), monolith_instances.end ());
-        
-			assembly_instances = injector->add_assembly_instances (plan_name);
-			merge_component_instances (this->instance_assembly_components_, assembly_instances);
-            //this->instance_assembly_components_.insert 
+
+      assembly_instances = injector->add_assembly_instances (plan_name);
+      merge_component_instances (this->instance_assembly_components_, assembly_instances);
+            //this->instance_assembly_components_.insert
             //   (assembly_instances.begin (), assembly_instances.end ());
-        
-			node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
+
+      node_mappings = injector->assign_node_mappings (plan_name, deployed_instances);
             for (std::map<std::string, std::string>::const_iterator node_mapping_iter =
                  node_mappings.begin (); node_mapping_iter != node_mappings.end ();
                  ++node_mapping_iter)
               {
-					std::string comp_instance_name = node_mapping_iter->first;
-					std::string node_name = node_mapping_iter->second;
-					this->update_component_instance (comp_instance_name, node_name);
-			  }
-	      }
+          std::string comp_instance_name = node_mapping_iter->first;
+          std::string node_name = node_mapping_iter->second;
+          this->update_component_instance (comp_instance_name, node_name);
+        }
+        }
 
-	    this->generate_instance_deployment_descriptions (plan_name);
-	    this->generate_assembly_instance_deployment_descriptions ();
-	    this->generate_parent_connections ();
-	    this->generate_child_connections ();
+      this->generate_instance_deployment_descriptions (plan_name);
+      this->generate_assembly_instance_deployment_descriptions ();
+      this->generate_parent_connections ();
+      this->generate_child_connections ();
 
         Injector::ConnectionMap replica_connections;
 
-		
+
         if (this->injectors_.find (plan_name) != this->injectors_.end ())
           {
             injector = this->injectors_[plan_name];
@@ -1165,36 +1166,36 @@ namespace CQML
             this->generate_connection_descriptors (itr->second.first, itr->second.second);
           }
 
-		  this->generate_artifact_descriptions ();
+      this->generate_artifact_descriptions ();
           this->generate_infoproperties(plan);
-		  this->finalize_deployment_plan_descriptor ();
+      this->finalize_deployment_plan_descriptor ();
 
           this->clear_private_variables ();
       }
   }
 
   void DeploymentPlanFrameworkVisitor::merge_component_instances (
-	                                 std::map<std::string, CQML::Component> &dest, 
-		                             const std::map<std::string, CQML::Component> &src)
+                                   std::map<std::string, CQML::Component> &dest,
+                                 const std::map<std::string, CQML::Component> &src)
   {
-	  for (std::map<std::string, CQML::Component>::const_iterator iter = src.begin ();
-		   iter != src.end ();
-		   ++iter)
-	  {
-		  if (dest.find (iter->first) == dest.end ())
-			  dest.insert (*iter);
-	  }
+    for (std::map<std::string, CQML::Component>::const_iterator iter = src.begin ();
+       iter != src.end ();
+       ++iter)
+    {
+      if (dest.find (iter->first) == dest.end ())
+        dest.insert (*iter);
+    }
   }
 
-  void DeploymentPlanFrameworkVisitor::generate_connection_descriptors 
-	  (InstanceConnection const &source_comp,
-	   InstanceConnection const &dest_comp)
+  void DeploymentPlanFrameworkVisitor::generate_connection_descriptors
+    (InstanceConnection const &source_comp,
+     InstanceConnection const &dest_comp)
   {
             DOMElement* ele = this->doc_->createElement (XStr ("connection"));
             this->curr_->appendChild (ele);
 
             std::string connection = source_comp.port_name + "_" + dest_comp.port_name +
-				                     source_comp.instance_name + dest_comp.instance_name;
+                             source_comp.instance_name + dest_comp.instance_name;
             ele->appendChild (this->createSimpleContent ("name", connection));
 
             // Source endPoint
@@ -1204,7 +1205,7 @@ namespace CQML
                                    source_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
                                    source_comp.port_kind));
-            endPoint->appendChild (this->createSimpleContent ("instance", 
+            endPoint->appendChild (this->createSimpleContent ("instance",
                                    source_comp.instance_name));
             ele->appendChild (endPoint);
 
@@ -1213,8 +1214,8 @@ namespace CQML
             endPoint->appendChild (this->createSimpleContent ("portName",
                                    dest_comp.port_name));
             endPoint->appendChild (this->createSimpleContent ("kind",
-                                   dest_comp.port_kind));   
-            endPoint->appendChild (this->createSimpleContent ("instance", 
+                                   dest_comp.port_kind));
+            endPoint->appendChild (this->createSimpleContent ("instance",
                                    dest_comp.instance_name));
             ele->appendChild (endPoint);
   }
@@ -1222,17 +1223,17 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::clear_private_variables (void)
   {
     this->selected_instances_.clear ();
-	  this->path_parents_.clear ();
-	  this->containing_assemblies_.clear ();
-	  this->assembly_components_.clear ();
+    this->path_parents_.clear ();
+    this->containing_assemblies_.clear ();
+    this->assembly_components_.clear ();
     this->monoimpls_.clear ();
-	  this->deployed_instances_.clear ();
-	  this->monolith_components_.clear ();
-	  this->final_assembly_components_.clear ();
-	  this->publishers_.clear ();
-	  this->consumers_.clear ();
-	  this->interfaces_.clear ();
-	  this->attrValues_.clear ();
+    this->deployed_instances_.clear ();
+    this->monolith_components_.clear ();
+    this->final_assembly_components_.clear ();
+    this->publishers_.clear ();
+    this->consumers_.clear ();
+    this->interfaces_.clear ();
+    this->attrValues_.clear ();
     this->instance_monolith_components_.clear ();
     this->instance_assembly_components_.clear ();
     this->connections_.clear ();
@@ -1275,67 +1276,67 @@ namespace CQML
             if (Udm::IsDerivedFrom (comp_type.type(), ComponentRef::meta))
               {
                 ComponentRef component_ref = ComponentRef::Cast (comp_type);
-				        std::string comp_ref_name = component_ref.name ();
+                std::string comp_ref_name = component_ref.name ();
                 Component comp = component_ref.ref();
-				        this->monolith_components_.insert (comp);
-				        std::string comp_name = comp.name ();
-				        //std::string component_name = comp.getPath (".",false,true,"name",true);
+                this->monolith_components_.insert (comp);
+                std::string comp_name = comp.name ();
+                //std::string component_name = comp.getPath (".",false,true,"name",true);
                 std::string component_name = this->unique_id (comp);
-				        this->instance_monolith_components_.insert (make_pair (component_name, comp));
-				        update_component_parents (comp);
-				        update_component_instance (component_name, nodeRefName);
+                this->instance_monolith_components_.insert (make_pair (component_name, comp));
+                update_component_parents (comp);
+                update_component_instance (component_name, nodeRefName);
               }
             else if (Udm::IsDerivedFrom
                      (comp_type.type(), ComponentAssemblyReference::meta))
               {
                 ComponentAssemblyReference comp_assembly_ref =
                     ComponentAssemblyReference::Cast (comp_type);
-				        std::string comp_assembly_ref_name = comp_assembly_ref.name ();
+                std::string comp_assembly_ref_name = comp_assembly_ref.name ();
                 ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
-		            comp_assembly.Accept (*this);
+                comp_assembly.Accept (*this);
 
-				        for (std::set<Component>::iterator iter = 
+                for (std::set<Component>::iterator iter =
                      this->assembly_components_.begin();
-					           iter != this->assembly_components_.end();
-					           ++iter)
-				          {
-					          Component comp = *iter;
-					          Component typeParent;
-					          std::string comp_in_assembly_name = comp.name ();
-					          std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
-					          //std::string assembly_component_name = comp.getPath (".",false,true,"name",true);
+                     iter != this->assembly_components_.end();
+                     ++iter)
+                  {
+                    Component comp = *iter;
+                    Component typeParent;
+                    std::string comp_in_assembly_name = comp.name ();
+                    std::string component_ref_name = comp_assembly_ref_name + comp_in_assembly_name;
+                    //std::string assembly_component_name = comp.getPath (".",false,true,"name",true);
                     std::string assembly_component_name = this->unique_id (comp);
-					          this->instance_assembly_components_.insert (make_pair (assembly_component_name, comp));
-					          update_component_instance (assembly_component_name, nodeRefName);
-					          this->final_assembly_components_.insert (comp);
-				          }
-		            this->containing_assemblies_.insert(comp_assembly);
-				        update_component_assembly_parents (comp_assembly);
+                    this->instance_assembly_components_.insert (make_pair (assembly_component_name, comp));
+                    update_component_instance (assembly_component_name, nodeRefName);
+                    this->final_assembly_components_.insert (comp);
+                  }
+                this->containing_assemblies_.insert(comp_assembly);
+                update_component_assembly_parents (comp_assembly);
               }
-			      else if (Udm::IsDerivedFrom (comp_type.type(), SharedComponentReference::meta))
-			        {
-			          SharedComponentReference shared_component_ref = 
+            else if (Udm::IsDerivedFrom (comp_type.type(), SharedComponentReference::meta))
+              {
+                SharedComponentReference shared_component_ref =
                   SharedComponentReference::Cast (comp_type);
-				        std::string shared_comp_ref_name = 
+                std::string shared_comp_ref_name =
                   shared_component_ref.name ();
                 ComponentRef shared_comp = shared_component_ref.ref();
-				        Component referred_comp = shared_comp.ref();
-				        this->monolith_components_.insert (referred_comp);
+                Component referred_comp = shared_comp.ref();
+                this->monolith_components_.insert (referred_comp);
                 std::string referred_component_name = referred_comp.name ();
-				        //std::string shared_component_name = referred_comp.getPath (".",false,true,"name",true);
+                //std::string shared_component_name = referred_comp.getPath (".",false,true,"name",true);
                 std::string shared_component_name = this->unique_id (referred_comp);
-				        this->instance_monolith_components_.insert 
+                this->instance_monolith_components_.insert
                   (make_pair (shared_component_name, referred_comp));
-				        update_shared_component_parents (shared_comp);
-				        update_component_instance (shared_component_name, nodeRefName);
-			        }
+                update_shared_component_parents (shared_comp);
+                update_component_instance (shared_component_name, nodeRefName);
+              }
           }
       }
   }
 
   void DeploymentPlanFrameworkVisitor::instantiate_deployment_plan_descriptor (DeploymentPlan& dp)
   {
-	  this->push();
+    this->push();
     std::string name = this->outputPath_ + "\\";
     name += dp.name();
     name += ".cdp";
@@ -1379,13 +1380,13 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::finalize_deployment_plan_descriptor (void)
   {
-	  this->dumpDocument();
+    this->dumpDocument();
     this->pop();
   }
 
   void DeploymentPlanFrameworkVisitor::generate_parent_connections (void)
   {
-	  for (std::set<CQML::ComponentAssembly>::const_iterator assembly_iter =
+    for (std::set<CQML::ComponentAssembly>::const_iterator assembly_iter =
         this->path_parents_.begin();
         assembly_iter != this->path_parents_.end (); ++assembly_iter)
       {
@@ -1396,7 +1397,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::generate_child_connections (void)
   {
-	  for (std::set<CQML::ComponentAssembly>::const_iterator assembly_iter =
+    for (std::set<CQML::ComponentAssembly>::const_iterator assembly_iter =
         this->containing_assemblies_.begin();
         assembly_iter != this->containing_assemblies_.end (); ++assembly_iter)
       {
@@ -1407,7 +1408,7 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::generate_implementation_descriptions (void)
   {
-	  std::set<ComponentImplementations>
+    std::set<ComponentImplementations>
     folders = this->root_folder_.ComponentImplementations_kind_children();
     for (std::set<ComponentImplementations>::iterator iter = folders.begin();
         iter != folders.end();
@@ -1415,12 +1416,12 @@ namespace CQML
       {
         ComponentImplementations folder = *iter;
         folder.Accept (*this);
-	    }
+      }
   }
 
   void DeploymentPlanFrameworkVisitor::generate_artifact_descriptions (void)
   {
-	  std::set<ImplementationArtifacts>
+    std::set<ImplementationArtifacts>
     folders = this->root_folder_.ImplementationArtifacts_kind_children();
     for (std::set<ImplementationArtifacts>::iterator iter = folders.begin();
         iter != folders.end();
@@ -1433,85 +1434,85 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::generate_instance_deployment_descriptions (const std::string& plan_name)
   {
-	  for (std::map<std::string, CQML::Component>::const_iterator instance_iterator =
-	       this->instance_monolith_components_.begin ();
-		     instance_iterator != this->instance_monolith_components_.end ();
-	       ++instance_iterator)
-	    {
-	        Component instance_component = instance_iterator->second;
-		    std::string instance_component_name = instance_iterator->first;
-		    this->push ();
-		    update_monolith_impl (instance_component);
-		    create_component_instance (instance_component, instance_component_name);
-		    create_component_config_properties (this->mimpl_);
-		    create_component_readonly_attributes (instance_component);
-			create_component_deployed_resources (plan_name, instance_component);
-		    this->pop ();
-	    }
+    for (std::map<std::string, CQML::Component>::const_iterator instance_iterator =
+         this->instance_monolith_components_.begin ();
+         instance_iterator != this->instance_monolith_components_.end ();
+         ++instance_iterator)
+      {
+          Component instance_component = instance_iterator->second;
+        std::string instance_component_name = instance_iterator->first;
+        this->push ();
+        update_monolith_impl (instance_component);
+        create_component_instance (instance_component, instance_component_name);
+        create_component_config_properties (this->mimpl_);
+        create_component_readonly_attributes (instance_component);
+      create_component_deployed_resources (plan_name, instance_component);
+        this->pop ();
+      }
   }
 
   void DeploymentPlanFrameworkVisitor::generate_assembly_instance_deployment_descriptions (void)
   {
-	  for (std::map<std::string,CQML::Component>::const_iterator assembly_comp_iter =
-		     this->instance_assembly_components_.begin ();
-		     assembly_comp_iter != this->instance_assembly_components_.end ();
-		     ++assembly_comp_iter)
-	    {
-		    Component assembly_component = assembly_comp_iter->second;
-		    std::string assembly_component_name = assembly_comp_iter->first;
-		    this->push ();
-		    update_monolith_impl (assembly_component);
-		    create_component_instance (assembly_component, assembly_component_name);
-		    create_component_readonly_attributes (assembly_component);
-		    create_assembly_config_properties (assembly_component);
-		    create_assembly_attribute_properties (assembly_component);
-		    this->pop ();
-	    }
+    for (std::map<std::string,CQML::Component>::const_iterator assembly_comp_iter =
+         this->instance_assembly_components_.begin ();
+         assembly_comp_iter != this->instance_assembly_components_.end ();
+         ++assembly_comp_iter)
+      {
+        Component assembly_component = assembly_comp_iter->second;
+        std::string assembly_component_name = assembly_comp_iter->first;
+        this->push ();
+        update_monolith_impl (assembly_component);
+        create_component_instance (assembly_component, assembly_component_name);
+        create_component_readonly_attributes (assembly_component);
+        create_assembly_config_properties (assembly_component);
+        create_assembly_attribute_properties (assembly_component);
+        this->pop ();
+      }
   }
 
   void DeploymentPlanFrameworkVisitor::update_monolith_impl (Component& comp)
   {
-	  Component typeParent;
-	  std::string component_name = comp.name ();
+    Component typeParent;
+    std::string component_name = comp.name ();
 
     if (this->monoimpls_.find (component_name)
         != this->monoimpls_.end ())
       {
-	      this->mimpl_ = this->monoimpls_[component_name];
-	    }
+        this->mimpl_ = this->monoimpls_[component_name];
+      }
     else
       {
-		    if (comp.isInstance())
-	        {
-			      typeParent = comp.Archetype();
-			      while (typeParent.isInstance())
-				      typeParent = typeParent.Archetype();
-		      }
-		    std::string refName = typeParent.name();
-		    if (this->monoimpls_.find (refName)
-			      != this->monoimpls_.end ())
-		      {
-			      this->mimpl_ = this->monoimpls_[refName];
-		      }
+        if (comp.isInstance())
+          {
+            typeParent = comp.Archetype();
+            while (typeParent.isInstance())
+              typeParent = typeParent.Archetype();
+          }
+        std::string refName = typeParent.name();
+        if (this->monoimpls_.find (refName)
+            != this->monoimpls_.end ())
+          {
+            this->mimpl_ = this->monoimpls_[refName];
+          }
       }
   }
 
   void DeploymentPlanFrameworkVisitor::update_component_assembly_parents (ComponentAssembly& comp_assembly)
   {
-	  ComponentAssembly comp_assembly_parent;
+    ComponentAssembly comp_assembly_parent;
     // containing_assemblies.insert(comp_assembly);
     if (comp_assembly.isInstance())
       {
         //comp_assembly_parent = comp_assembly.Archetype();
         comp_assembly_parent =
             comp_assembly.ComponentAssembly_parent();
-		    this->path_parents_.insert (comp_assembly_parent);
+        this->path_parents_.insert (comp_assembly_parent);
         while (comp_assembly_parent.isInstance())
-		      {
+          {
             comp_assembly_parent =
             comp_assembly_parent.ComponentAssembly_parent();
-		        this->path_parents_.insert (comp_assembly_parent);
-		      }
+            this->path_parents_.insert (comp_assembly_parent);
+          }
        }
 
     // containing_assemblies.insert
@@ -1519,37 +1520,37 @@ namespace CQML
     // containing_assemblies.insert(comp_assembly_parent);
     // comp_assembly.Accept (*this);
   }
-  
+
   void DeploymentPlanFrameworkVisitor::update_component_parents (Component& comp)
   {
-	  ComponentAssembly component_assembly_parent;
-	  component_assembly_parent = comp.ComponentAssembly_parent();
-    
+    ComponentAssembly component_assembly_parent;
+    component_assembly_parent = comp.ComponentAssembly_parent();
+
     if (component_assembly_parent.isInstance())
       {
-		    this->path_parents_.insert (component_assembly_parent);
-		    component_assembly_parent =
-			    component_assembly_parent.ComponentAssembly_parent();
-		    while (component_assembly_parent.isInstance())
-		      {
-			      this->path_parents_.insert (component_assembly_parent);
-			      component_assembly_parent =
-			        component_assembly_parent.ComponentAssembly_parent();
-		      }
+        this->path_parents_.insert (component_assembly_parent);
+        component_assembly_parent =
+          component_assembly_parent.ComponentAssembly_parent();
+        while (component_assembly_parent.isInstance())
+          {
+            this->path_parents_.insert (component_assembly_parent);
+            component_assembly_parent =
+              component_assembly_parent.ComponentAssembly_parent();
+          }
       }
     this->path_parents_.insert(component_assembly_parent);
   }
 
   void DeploymentPlanFrameworkVisitor::create_assembly_config_properties (Component& comp)
   {
-	  std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
-	  for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
-			   it2 != cps.end();
-			   ++it2)
-	    {
-		    AssemblyConfigProperty cp = *it2;
-		    cp.Accept (*this);
-	    }
+    std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
+    for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin();
+         it2 != cps.end();
+         ++it2)
+      {
+        AssemblyConfigProperty cp = *it2;
+        cp.Accept (*this);
+      }
   }
 
   void DeploymentPlanFrameworkVisitor::create_assembly_attribute_properties (Component& comp)
@@ -1559,36 +1560,36 @@ namespace CQML
       {
         comp.UUID() = uniqueName = ::Utils::CreateUuid();
       }
-	  uniqueName = std::string ("_") + uniqueName;
+    uniqueName = std::string ("_") + uniqueName;
 
-	  for (std::map<std::pair<std::string, std::string>, Property>::
-		     const_iterator iter = this->attrValues_.begin();
-		     iter != this->attrValues_.end();
-		     ++iter)
-	    {
+    for (std::map<std::pair<std::string, std::string>, Property>::
+         const_iterator iter = this->attrValues_.begin();
+         iter != this->attrValues_.end();
+         ++iter)
+      {
         std::pair<std::pair<std::string, std::string>, Property>
-			     attrVal = *iter;
-	      std::pair<std::string, std::string> compAttr 
+           attrVal = *iter;
+        std::pair<std::string, std::string> compAttr
           = attrVal.first;
-	      if (compAttr.first == uniqueName)
-		      {
-		        this->push();
-		        DOMElement*
-			        ele = this->doc_->createElement (XStr ("configProperty"));
-			      this->curr_->appendChild (ele);
-			      this->curr_ = ele;
-			      Property val = attrVal.second;
-			      this->CreatePropertyElement (compAttr.second, val);
-			      this->pop();
-		      }
+        if (compAttr.first == uniqueName)
+          {
+            this->push();
+            DOMElement*
+              ele = this->doc_->createElement (XStr ("configProperty"));
+            this->curr_->appendChild (ele);
+            this->curr_ = ele;
+            Property val = attrVal.second;
+            this->CreatePropertyElement (compAttr.second, val);
+            this->pop();
+          }
       }
   }
 
   void DeploymentPlanFrameworkVisitor::create_component_config_properties (MonolithicImplementation& mimpl)
   {
-	  const std::set<ConfigProperty> imcps = 
+    const std::set<ConfigProperty> imcps =
       mimpl.dstConfigProperty();
-    for (std::set<ConfigProperty>::const_iterator it2 = 
+    for (std::set<ConfigProperty>::const_iterator it2 =
          imcps.begin();
          it2 != imcps.end();
          ++it2)
@@ -1600,9 +1601,9 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::create_component_readonly_attributes (Component& comp)
   {
-	  std::set<ReadonlyAttribute> attrs = 
+    std::set<ReadonlyAttribute> attrs =
       comp.ReadonlyAttribute_children();
-    for (std::set<ReadonlyAttribute>::const_iterator 
+    for (std::set<ReadonlyAttribute>::const_iterator
          iter = attrs.begin();
          iter != attrs.end();
          ++iter)
@@ -1614,20 +1615,20 @@ namespace CQML
 
   void DeploymentPlanFrameworkVisitor::update_shared_component_parents (ComponentRef& comp_ref)
   {
-	  ComponentAssembly component_assembly_parent;
-	  component_assembly_parent = comp_ref.ComponentAssembly_parent();
-    
+    ComponentAssembly component_assembly_parent;
+    component_assembly_parent = comp_ref.ComponentAssembly_parent();
+
     if (component_assembly_parent.isInstance())
       {
-		    this->path_parents_.insert (component_assembly_parent);
-		    component_assembly_parent =
-			    component_assembly_parent.ComponentAssembly_parent();
-		    while (component_assembly_parent.isInstance())
-		      {
-			      this->path_parents_.insert (component_assembly_parent);
-			      component_assembly_parent =
-			        component_assembly_parent.ComponentAssembly_parent();
-		      }
+        this->path_parents_.insert (component_assembly_parent);
+        component_assembly_parent =
+          component_assembly_parent.ComponentAssembly_parent();
+        while (component_assembly_parent.isInstance())
+          {
+            this->path_parents_.insert (component_assembly_parent);
+            component_assembly_parent =
+              component_assembly_parent.ComponentAssembly_parent();
+          }
       }
     this->path_parents_.insert(component_assembly_parent);
   }
@@ -1644,103 +1645,103 @@ namespace CQML
       }
   }
 
- 
+
 
  void DeploymentPlanFrameworkVisitor::create_component_deployed_resources (const std::string& plan_name, const Component& comp)
- {	 	 
-	 Injector* injector;
-	 std::string comp_name = comp.name ();
-	 if (this->injectors_.find (plan_name) != this->injectors_.end ())
-	 {
-		 injector = this->injectors_[plan_name];
-		 std::string dep_resource= injector->get_deployed_resource (comp);		 
-		 if (dep_resource.empty () == true)
-			 return;
-		 std::string resource_name = injector->get_resource_name ();
-		 std::string name ("InstanceUsesResource");
-		 std::string requirement_name ("CIAO:PolicySet");
-		 std::string set_name ("CIAO:InstancePolicy");
+ {
+   Injector* injector;
+   std::string comp_name = comp.name ();
+   if (this->injectors_.find (plan_name) != this->injectors_.end ())
+   {
+     injector = this->injectors_[plan_name];
+     std::string dep_resource= injector->get_deployed_resource (comp);
+     if (dep_resource.empty () == true)
+       return;
+     std::string resource_name = injector->get_resource_name ();
+     std::string name ("InstanceUsesResource");
+     std::string requirement_name ("CIAO:PolicySet");
+     std::string set_name ("CIAO:InstancePolicy");
 
-		 this->push();
-		 DOMElement* ele = this->doc_->createElement (XStr ("deployedResource"));
-		 this->curr_->appendChild (ele);
-		 this->curr_ = ele;
+     this->push();
+     DOMElement* ele = this->doc_->createElement (XStr ("deployedResource"));
+     this->curr_->appendChild (ele);
+     this->curr_ = ele;
 
-		 this->push();
+     this->push();
 
-		 this->curr_->appendChild (this->createSimpleContent ("resourceUsage", name));
-		 this->curr_->appendChild (this->createSimpleContent ("requirementName", 
-			 requirement_name));
+     this->curr_->appendChild (this->createSimpleContent ("resourceUsage", name));
+     this->curr_->appendChild (this->createSimpleContent ("requirementName",
+       requirement_name));
 
-		 this->curr_->appendChild (this->createSimpleContent ("resourceName", 
-			 resource_name));
+     this->curr_->appendChild (this->createSimpleContent ("resourceName",
+       resource_name));
 
 
-		 DOMElement* property = this->doc_->createElement (XStr ("property"));
-		 this->curr_->appendChild (property);
-		 this->curr_ = property;
+     DOMElement* property = this->doc_->createElement (XStr ("property"));
+     this->curr_->appendChild (property);
+     this->curr_ = property;
 
-		 this->push ();
-		 this->curr_->appendChild (this->createSimpleContent ("name", set_name));
+     this->push ();
+     this->curr_->appendChild (this->createSimpleContent ("name", set_name));
 
-		 this->push ();
-		 DOMElement* value = this->doc_->createElement (XStr ("value"));
-		 this->curr_->appendChild (value);
-		 this->curr_ = value;
+     this->push ();
+     DOMElement* value = this->doc_->createElement (XStr ("value"));
+     this->curr_->appendChild (value);
+     this->curr_ = value;
 
-		 this->push ();
-		 DOMElement* type = this->doc_->createElement (XStr ("type"));
-		 this->curr_->appendChild (type);
-		 this->curr_ = type;
-		 this->curr_->appendChild (this->createSimpleContent ("kind",
-			 "tk_string"));
-		 this->pop();
+     this->push ();
+     DOMElement* type = this->doc_->createElement (XStr ("type"));
+     this->curr_->appendChild (type);
+     this->curr_ = type;
+     this->curr_->appendChild (this->createSimpleContent ("kind",
+       "tk_string"));
+     this->pop();
 
-		 // Property's type's value
-		 DOMElement* val = this->doc_->createElement (XStr ("value"));
-		 this->curr_->appendChild (val);
-		 this->curr_ = val;
-		 this->curr_->appendChild (this->createSimpleContent ("string",
-			 dep_resource));
-		 this->pop();
-		 this->pop();
-		 this->pop();
-		 this->pop();
+     // Property's type's value
+     DOMElement* val = this->doc_->createElement (XStr ("value"));
+     this->curr_->appendChild (val);
+     this->curr_ = val;
+     this->curr_->appendChild (this->createSimpleContent ("string",
+       dep_resource));
+     this->pop();
+     this->pop();
+     this->pop();
+     this->pop();
 
-	 }
-	 // Get the RT Config deployed resource name from the corresponding injector.
+   }
+   // Get the RT Config deployed resource name from the corresponding injector.
 
-	 // insert the reference to deployed resource here.
+   // insert the reference to deployed resource here.
  }
 
   void DeploymentPlanFrameworkVisitor::create_component_instance (Component& comp, std::string& instance_name)
   {
-	  DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+    DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 
-    /*std::string instanceName = 
+    /*std::string instanceName =
         comp.getPath (".",false,true,"name",true);
-	  std::string nodeRefName = this->deployed_instances_[instance_name];
-	  std::string uniqueName = comp.UUID();
+    std::string nodeRefName = this->deployed_instances_[instance_name];
+    std::string uniqueName = comp.UUID();
     if (uniqueName.empty())
       {
         comp.UUID() = uniqueName = ::Utils::CreateUuid();
       }
-	  uniqueName = std::string ("_") + uniqueName;*/
+    uniqueName = std::string ("_") + uniqueName;*/
 
-	  // this->selected_instances_.insert (uniqueName);
-	  this->selected_instances_.insert (instance_name);
+    // this->selected_instances_.insert (uniqueName);
+    this->selected_instances_.insert (instance_name);
     std::string nodeRefName = this->deployed_instances_[instance_name];
 
     //std::string id_name = std::string ("_") + instance_name;
     std::string id_name = instance_name;
 
     // ele->setAttribute (XStr ("id"), XStr (uniqueName));
-	  ele->setAttribute (XStr ("id"), XStr (id_name));
+    ele->setAttribute (XStr ("id"), XStr (id_name));
 
     /*ele->appendChild
         (this->createSimpleContent ("name", instanceName));*/
 
-	  ele->appendChild
+    ele->appendChild
         (this->createSimpleContent ("name", instance_name));
 
     ele->appendChild
@@ -1751,12 +1752,12 @@ namespace CQML
     this->curr_->appendChild (ele);
     this->curr_ = ele;
 
-	  std::string mimpl_name = this->mimpl_.UUID();
+    std::string mimpl_name = this->mimpl_.UUID();
     if (mimpl_name.empty())
       {
         this->mimpl_.UUID() = mimpl_name = ::Utils::CreateUuid();
       }
-	  mimpl_name = std::string ("_") + mimpl_name;
+    mimpl_name = std::string ("_") + mimpl_name;
     this->curr_->appendChild
         (this->createSimpleContent ("implementation", mimpl_name));
   }
@@ -1876,7 +1877,7 @@ namespace CQML
         // the component list
         std::set<Component> rcomps = rassembly.Component_kind_children();
 
-	      // Get the shared components of the current assembly
+        // Get the shared components of the current assembly
         scomps = rassembly.ComponentRef_kind_children();
         for (std::set<ComponentRef>::const_iterator
                iter = scomps.begin();
@@ -1893,7 +1894,7 @@ namespace CQML
         std::set<ComponentAssembly>
           rasms = rassembly.ComponentAssembly_kind_children();
 
-	      // Add all the shared ComponentAssemblies of the current assembly.
+        // Add all the shared ComponentAssemblies of the current assembly.
         // Like shared components, shared assemblies are also implemented
         // as references.  So just traverse the references, and add them to
         // the set.
@@ -1910,7 +1911,7 @@ namespace CQML
 
         // Insert them to the current list.
         // std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
-	      subasms.insert (rasms.begin(), rasms.end());
+        subasms.insert (rasms.begin(), rasms.end());
       }
 
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
@@ -2036,7 +2037,7 @@ namespace CQML
         // the component list
         std::set<Component> rcomps = rassembly.Component_kind_children();
 
-	      // Get the shared components of the current assembly
+        // Get the shared components of the current assembly
         scomps = rassembly.ComponentRef_kind_children();
         for (std::set<ComponentRef>::const_iterator
                iter = scomps.begin();
@@ -2053,7 +2054,7 @@ namespace CQML
         std::set<ComponentAssembly>
           rasms = rassembly.ComponentAssembly_kind_children();
 
-	      // Add all the shared ComponentAssemblies of the current assembly.
+        // Add all the shared ComponentAssemblies of the current assembly.
         // Like shared components, shared assemblies are also implemented
         // as references.  So just traverse the references, and add them to
         // the set.
@@ -2070,12 +2071,12 @@ namespace CQML
 
         // Insert them to the current list.
         // std::copy (rasms.begin(), rasms.end(), std::back_inserter (subasms));
-	      subasms.insert (rasms.begin(), rasms.end());
+        subasms.insert (rasms.begin(), rasms.end());
       }
 
     // Create the appropriate component attribute value mappings
     this->CreateAttributeMappings (assemblies);
-	  this->assembly_components_ = comps;
+    this->assembly_components_ = comps;
   }
 
   void DeploymentPlanFrameworkVisitor::CreateAttributeMappings (
@@ -2137,7 +2138,7 @@ namespace CQML
           mapDelegates = mapping.dstAttributeMappingDelegate();
         if (mapDelegates.empty())
           {
-            std::string mapPath = 
+            std::string mapPath =
                 mapping.getPath ("_", false, true,"name",true);
 
             throw udm_exception (std::string ("AttributeMapping " +
@@ -2172,14 +2173,14 @@ namespace CQML
             Component parent = attr.Component_parent();
             std::string parentName = this->ExtractName (parent);
 
-            // std::string compName = 
+            // std::string compName =
             //      parent.getPath ("_", false, true,"name",true);
-	          std::string compName = parent.UUID();
+            std::string compName = parent.UUID();
             if (compName.empty())
               {
                 parent.UUID() = compName = ::Utils::CreateUuid();
               }
-	          compName = std::string ("_") + compName;
+            compName = std::string ("_") + compName;
             output.insert (make_pair (compName, attr.name()));
           }
       }
@@ -2198,12 +2199,12 @@ namespace CQML
         this->curr_ = instance;
 
         // std::string uniqueName = this->unique_id (comp);
-	      std::string uniqueName = comp.UUID();
+        std::string uniqueName = comp.UUID();
         if (uniqueName.empty())
           {
             comp.UUID() = uniqueName = ::Utils::CreateUuid();
           }
-	      uniqueName = std::string ("_") + uniqueName;
+        uniqueName = std::string ("_") + uniqueName;
 
         instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         instance->appendChild (this->createSimpleContent ("name",
@@ -2237,7 +2238,7 @@ namespace CQML
             ReadonlyAttribute attr = *iter;
             attr.Accept (*this);
           }
-        for (std::map<std::pair<std::string, std::string>, 
+        for (std::map<std::pair<std::string, std::string>,
              Property>::const_iterator iter = this->attrValues_.begin();
              iter != this->attrValues_.end();
              ++iter)
@@ -2251,11 +2252,11 @@ namespace CQML
                 DOMElement*
                   ele = this->doc_->createElement (XStr ("configProperty"));
                 this->curr_->appendChild (ele);
-				        this->curr_ = ele;
+                this->curr_ = ele;
                 Property val = attrVal.second;
                 //val.Accept (*this);
-	              this->CreatePropertyElement (compAttr.second, val);
-		            this->pop();
+                this->CreatePropertyElement (compAttr.second, val);
+                this->pop();
               }
           }
         this->pop();
@@ -2290,7 +2291,7 @@ namespace CQML
   void DeploymentPlanFrameworkVisitor::Visit_AttributeMappingDelegate
            (const AttributeMappingDelegate&){}
 
-  void DeploymentPlanFrameworkVisitor::CreateAssemblyConnections 
+  void DeploymentPlanFrameworkVisitor::CreateAssemblyConnections
           (std::vector<ComponentAssembly>& assemblies)
   {
     for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin();
@@ -2332,7 +2333,7 @@ namespace CQML
           }
         const std::set<PublishConnector>
           connectors = subasm.PublishConnector_kind_children();
-        for (std::set<PublishConnector>::const_iterator iter = 
+        for (std::set<PublishConnector>::const_iterator iter =
              connectors.begin();
              iter != connectors.end();
              ++iter)

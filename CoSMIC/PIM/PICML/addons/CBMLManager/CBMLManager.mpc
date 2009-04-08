@@ -18,6 +18,7 @@ project (CBMLManager): boost_base, game, cosmic_common, mfc, cosmic_utils, regis
   }
 
   Source_Files {
+    Output_Event_Builder.cpp
     RawComponent.cpp
     String_Selection_Dialog.cpp
 

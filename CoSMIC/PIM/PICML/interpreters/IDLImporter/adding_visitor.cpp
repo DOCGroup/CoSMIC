@@ -2148,7 +2148,7 @@ adding_visitor::set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind)
 {
   ACE_CString val = be_global->make_gme_id (kind);
   elem->setAttribute (X ("id"), X (val.c_str ()));
-  elem->setIdAttribute (X ("id"));
+  elem->setIdAttribute (X ("id"), false);
   return val;
 }
 
@@ -2452,13 +2452,13 @@ adding_visitor::add_file_element (DOMElement *parent,
   // name and path name. The local name is for the GME model
   // element identifier for the IDL file. The path is for the
   // GME attribute 'path' associated with File elements.
-  
+
   ACE_CString::size_type fpos = tmp.rfind ('/');
   ACE_CString::size_type pos =
     (fpos == ACE_CString::npos ? tmp.rfind ('\\') : fpos);
   ACE_CString lname (
     pos == ACE_CString::npos ? tmp : tmp.substr (pos + 1));
-    
+
   // Skip './' if it is still there (a file name with no path will
   // have it already stripped above).
   ACE_CString path (
@@ -2718,7 +2718,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       if (result != 0)
         {
           char **item = 0;
-        
+
           for (ACE_Unbounded_Queue_Const_Iterator<char *> i (
                    idl_global->rel_include_paths ()
                  );
@@ -2731,34 +2731,34 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
               candidate += fname_noext;
               result =
                 be_global->decl_id_table ().find (candidate.c_str (), id);
-                
+
               if (result == 0)
                 {
                   break;
                 }
             }
         }
-        
+
       // Try stripping any "../" or "..\" prefixes, add a "./" prefix
       // (used in storing all filenames in the table) and try again.
       // This will catch a relative include path that starts from the
       // directory of execution. We don't have a mechanism to catch
       // an include path that is neither local nor starting from
-      // execution root. 
+      // execution root.
       if (result != 0)
         {
           candidate = fname_noext;
-          
+
           while (candidate.substr (0, 2) == "..")
             {
               candidate = candidate.substr (3);
             }
-            
+
           candidate = ACE_CString ("./") + candidate;
           result =
             be_global->decl_id_table ().find (candidate.c_str (), id);
         }
-           
+
       // If it's still not found in the table, give up and bail.
       if (result != 0)
         {

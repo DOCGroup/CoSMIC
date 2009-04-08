@@ -55,20 +55,17 @@ namespace PICML
   void DeploymentPlanVisitor::init (void)
   {
     this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
-    this->serializer_ = ((DOMImplementationLS*)impl_)->createDOMWriter();
+    this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
     // Set features if the serializer supports the feature/mode
-    if (this->serializer_->canSetFeature
-      (XMLUni::fgDOMWRTDiscardDefaultContent, true))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTDiscardDefaultContent,
-      true);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
 
-    if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTFormatPrettyPrint,
-      true))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTFormatPrettyPrint, true);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
-    if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTBOM, false))
-      this->serializer_->setFeature (XMLUni::fgDOMWRTBOM, false);
+    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
+      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
   }
 
   //
@@ -131,8 +128,8 @@ namespace PICML
 
   void DeploymentPlanVisitor::initRootAttributes()
   {
-    this->doc_->setEncoding (XStr("UTF-8"));
-    this->doc_->setVersion (XStr("1.0"));
+    //this->doc_->setXmlEncoding (XStr("UTF-8"));
+    this->doc_->setXmlVersion (XStr("1.0"));
     this->root_ = this->doc_->getDocumentElement();
     this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
       XStr ("xmlns:Deployment"),
@@ -152,7 +149,11 @@ namespace PICML
 
   void DeploymentPlanVisitor::dumpDocument()
   {
-    this->serializer_->writeNode (this->target_, *this->doc_);
+    xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+    output->setByteStream (this->target_);
+
+    this->serializer_->write (this->doc_, output);
+    output->release ();
   }
 
   void DeploymentPlanVisitor::push()

@@ -10,10 +10,9 @@
 // String_Selection_Dialog
 //
 String_Selection_Dialog::
-String_Selection_Dialog (const std::set <std::string> & strs,
-                         CWnd * parent)
+String_Selection_Dialog (const items_type & items, CWnd * parent)
 : CDialog (IDD_STRING_SELECTION_DLG, parent),
-  strs_ (strs)
+  items_ (items)
 {
 
 }
@@ -29,9 +28,10 @@ String_Selection_Dialog::~String_Selection_Dialog (void)
 //
 // selection
 //
-const char * String_Selection_Dialog::selection (void) const
+String_Selection_Dialog::items_type::const_iterator
+String_Selection_Dialog::selection (void) const
 {
-  return this->selection_;
+  return this->items_.find (this->selection_.GetString ());
 }
 
 //
@@ -43,9 +43,9 @@ BOOL String_Selection_Dialog::OnInitDialog (void)
   CDialog::OnInitDialog ();
 
   // Insert each of the strings into the listbox
-  std::for_each (this->strs_.begin (),
-                 this->strs_.end (),
-                 boost::bind (&String_Selection_Dialog::insert_string,
+  std::for_each (this->items_.begin (),
+                 this->items_.end (),
+                 boost::bind (&String_Selection_Dialog::insert_item,
                               this,
                               _1));
 
@@ -67,9 +67,10 @@ void String_Selection_Dialog::title (const char * str)
 //
 // insert_string
 //
-void String_Selection_Dialog::insert_string (const std::string & str)
+void String_Selection_Dialog::
+insert_item (const items_type::value_type & item)
 {
-  this->list_.InsertString (-1, str.c_str ());
+  this->list_.InsertString (-1, item.first.c_str ());
 }
 
 //

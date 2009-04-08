@@ -6,6 +6,7 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "String_Selection_Dialog.h"
+#include "Output_Event_Builder.h"
 #include "game/Connection.h"
 #include "game/MetaBase.h"
 #include "game/MetaFCO.h"
@@ -20,6 +21,24 @@
 
 #define PREF_AUTOROUTER           "autorouterPref"
 #define PREF_AUTOROUTER_ALL       "NEWSnews"
+
+struct insert_item
+{
+public:
+  insert_item (String_Selection_Dialog::items_type & items)
+    : items_ (items)
+  {
+
+  }
+
+  void operator () (const GME::Reference & ref) const
+  {
+    this->items_.insert (std::make_pair (ref.name (), ref));
+  }
+
+private:
+  String_Selection_Dialog::items_type & items_;
+};
 
 //
 // action_types_
@@ -485,46 +504,47 @@ void RawComponent::cache_worker_type (const GME::Reference & worker)
 //
 void RawComponent::resolve_output_action (GME::FCO & action)
 {
-  std::string name;
-
-  GME::Model model = action.parent_model ();
+  GME::Reference output;
   GME::Collection_T <GME::Reference> refs;
+  GME::Model model = action.parent_model ();
 
   if (model.references ("OutEventPort", refs))
   {
     if (refs.size () == 1)
     {
-      name = refs.begin ()->name ();
+      output = *refs.begin ();
     }
     else
     {
       // Get the names of the output event ports.
-      string_set names;
+      String_Selection_Dialog::items_type items;
 
       std::for_each (refs.begin (),
                      refs.end (),
-                     boost::bind (&string_set::insert,
-                                  boost::ref (names),
-                                  boost::bind (&GME::Reference::name, _1)));
+                     insert_item (items));
 
       // Need to display a dialog for selecting a name.
-      String_Selection_Dialog dialog (names, ::AfxGetMainWnd ());
+      String_Selection_Dialog dialog (items, ::AfxGetMainWnd ());
 
       // Set the title of the dialog box.
       dialog.title ("Select target OutEventPort");
 
       // Display the dialog for the end-user.
       if (dialog.DoModal () == IDOK)
-        name = dialog.selection ();
+        output = GME::Reference::_narrow (dialog.selection ()->second);
     }
   }
 
-  if (!name.empty ())
+  if (output)
   {
     // Set the name of the output action.
-    action.name (name);
+    action.name (output.name ());
 
-    // TODO insert empty properties for the action
+    // Create the elements for the output event.
+    GME::Model event = GME::Model::_narrow (output.refers_to ());
+
+    GME::Model output_action = GME::Model::_narrow (action);
+    CBML_Output_Event_Builder builder (output_action);
   }
 }
 
@@ -555,18 +575,18 @@ void RawComponent::resolve_worker_action (GME::FCO & action)
     }
     else
     {
-      // Need to display a dialog for selecting a name.
-      String_Selection_Dialog dialog (iter->second, ::AfxGetMainWnd ());
+      //// Need to display a dialog for selecting a name.
+      //String_Selection_Dialog dialog (iter->second, ::AfxGetMainWnd ());
 
-      // Set the title of the dialog box.
-      std::ostringstream ostr;
-      ostr << "Select target " << worker.name () << " worker";
+      //// Set the title of the dialog box.
+      //std::ostringstream ostr;
+      //ostr << "Select target " << worker.name () << " worker";
 
-      dialog.title (ostr.str ().c_str ());
+      //dialog.title (ostr.str ().c_str ());
 
-      // Display the dialog for the end-user.
-      if (dialog.DoModal () == IDOK)
-        name = dialog.selection ();
+      //// Display the dialog for the end-user.
+      //if (dialog.DoModal () == IDOK)
+      //  name = dialog.selection ();
     }
 
     if (!name.empty ())

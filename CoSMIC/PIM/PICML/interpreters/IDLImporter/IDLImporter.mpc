@@ -1,13 +1,13 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
+project(IDL_TO_PICML_BE) : cosmic_utils, acelib, core, crosscompile, xerces {
   requires += xerces2
   after       += TAO_IDL_FE
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
   dllout       = $(COSMIC_ROOT)/bin
-  libpaths    += $(ACE_ROOT)/lib 
+  libpaths    += $(ACE_ROOT)/lib
   libs        += ACE TAO_IDL_FE
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
   includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
@@ -17,25 +17,19 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
     be_global.cpp
     be_init.cpp
     be_produce.cpp
-    EntityResolver.cpp
     removing_visitor.cpp
     removing_closure_visitor.cpp
-    XercesString.cpp
     xme_dom_visitor.cpp
-    XML_Error_Handler.cpp
   }
 
   Header_Files {
     adding_visitor.h
     be_extern.h
     be_global.h
-    EntityResolver.h
     IDL_TO_PICML_BE_Export.h
     removing_visitor.h
     removing_closure_visitor.h
-    XercesString.h
     xme_dom_visitor.h
-    XML_Error_Handler.h
   }
 }
 

@@ -13,8 +13,10 @@
 #ifndef _STRING_SELECTION_DIALOG_H_
 #define _STRING_SELECTION_DIALOG_H_
 
+#include <map>
 #include <string>
-#include <set>
+#include "game/FCO.h"
+
 
 /**
  * @class String_Selection_Dialog
@@ -25,13 +27,15 @@
 class String_Selection_Dialog : public CDialog
 {
 public:
+  typedef std::map <std::string, GME::FCO> items_type;
+
   /**
    * Initializing constructor.
    *
+   * @param[in]     items       Initial items for the dialog
    * @param[in]     parent      Parent of the dialog
    */
-  String_Selection_Dialog (const std::set <std::string> & strs,
-                           CWnd * parent = 0);
+  String_Selection_Dialog (const items_type & items, CWnd * parent = 0);
 
   /// Destructor.
   virtual ~String_Selection_Dialog (void);
@@ -41,7 +45,7 @@ public:
    *
    * @return        The selected string value.
    */
-  const char * selection (void) const;
+  items_type::const_iterator selection (void) const;
 
   void title (const char * str);
 
@@ -60,7 +64,7 @@ private:
   /**
    * @overload
    */
-  void insert_string (const std::string & str);
+  void insert_item (const items_type::value_type & item);
 
   /// The selected string from the dialog.
   CString selection_;
@@ -69,7 +73,7 @@ private:
   CListBox list_;
 
   /// Collection of strings to display.
-  const std::set <std::string> & strs_;
+  const items_type & items_;
 
   /// Title of the dialog box.
   std::string title_;

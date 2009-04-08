@@ -59,7 +59,7 @@ namespace CQML
 
 	xercesc::DOMImplementation*  impl_;
     xercesc::DOMDocument*        doc_;
-    xercesc::DOMWriter*          serializer_;
+    xercesc::DOMLSSerializer*          serializer_;
     std::string					 outputPath_;
 	unsigned long				 serv_count_;
   };

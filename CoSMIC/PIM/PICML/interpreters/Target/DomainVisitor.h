@@ -23,7 +23,7 @@ namespace PICML
   using xercesc::DOMImplementation;
   using xercesc::DOMDocument;
   using xercesc::DOMElement;
-  using xercesc::DOMWriter;
+  using xercesc::DOMLSSerializer;
   using xercesc::XMLFormatTarget;
   using xercesc::LocalFileFormatTarget;
 
@@ -69,7 +69,7 @@ namespace PICML
     DOMDocument*        doc_;
     DOMElement*         root_;
     DOMElement*         curr_;
-    DOMWriter*          serializer_;
+    DOMLSSerializer*          serializer_;
     XMLFormatTarget*    target_;
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;

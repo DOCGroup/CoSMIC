@@ -34,6 +34,7 @@
 #include "ace/OS_NS_stdio.h"
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
+#include "xercesc/parsers/XercesDOMParser.hpp"
 
 // Some magic strings.
 const char *VERSION = "1.0";
@@ -84,7 +85,7 @@ BE_GlobalData::BE_GlobalData (void)
       // GME versions from 5.9.21 no longer install mga.dtd
       // in $GME_ROOT/bin, but in $GME_ROOT.
       this->schema_path_ = path_str;
-      
+
       // In case it isn't at the end of the environment variable,
       // otherwise idempotent.
       this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
@@ -570,10 +571,10 @@ BE_GlobalData::xerces_init (void)
       XMLPlatformUtils::Initialize ();
       XMLCh tempStr[100];
       XMLString::transcode ("LS", tempStr, 99);
-      DOMImplementation *impl =
+      this->impl_ =
         DOMImplementationRegistry::getDOMImplementation (tempStr);
 
-      if (0 == impl)
+      if (0 == this->impl_)
         {
           ACE_ERROR ((LM_ERROR,
                       ACE_TEXT ("Null DOMImplementation returned\n")));
@@ -581,17 +582,17 @@ BE_GlobalData::xerces_init (void)
         }
 
       this->writer_ =
-        ((DOMImplementationLS *)impl)->createDOMWriter ();
-      this->writer_->setNewLine (XStr ("\n"));
+        ((DOMImplementationLS *)this->impl_)->createLSSerializer ();
+      this->writer_->setNewLine (Utils::XStr ("\n"));
       bool can_pretty_print =
-        this->writer_->canSetFeature (
+        this->writer_->getDomConfig ()->canSetParameter (
             XMLUni::fgDOMWRTFormatPrettyPrint,
             true
           );
 
       if (can_pretty_print)
         {
-          this->writer_->setFeature (
+          this->writer_->getDomConfig ()->setParameter (
               XMLUni::fgDOMWRTFormatPrettyPrint,
               true
             );
@@ -604,48 +605,56 @@ BE_GlobalData::xerces_init (void)
       if (0 == xme)
         {
           DOMDocumentType *doc_type =
-            impl->createDocumentType (X (DOCTYPE),
-                                      0,
-                                      X (SYS_ID));
-          this->doc_ = impl->createDocument (0,
-                                             X (DOCTYPE),
-                                             doc_type);
+            this->impl_->createDocumentType (X (DOCTYPE),
+                                             0,
+                                             X (SYS_ID));
+          this->doc_ = this->impl_->createDocument (0,
+                                                    X (DOCTYPE),
+                                                    doc_type);
 
-          this->doc_->setEncoding (X (ENCODING));
-          this->doc_->setVersion (X (VERSION));
+          // this->doc_->setEncoding (X (ENCODING));
+          this->doc_->setXmlVersion (X (VERSION));
         }
       else
         {
-          DOMBuilder *parser =
-            ((DOMImplementationLS*)impl)->createDOMBuilder (
-                DOMImplementationLS::MODE_SYNCHRONOUS,
-                0
-              );
+          XercesDOMParser parser;
+          //DOMLSParser *parser =
+          //  ((DOMImplementationLS*)this->impl_)->createLSParser (
+          //      DOMImplementationLS::MODE_SYNCHRONOUS,
+          //      0
+          //    );
 
-          if (parser->canSetFeature(XMLUni::fgDOMValidation, true))
-            {
-              parser->setFeature(XMLUni::fgDOMValidation, true);
-            }
+          parser.setValidationScheme(XercesDOMParser::Val_Always);
+          parser.setDoNamespaces (true);
+          //if (parser->getDomConfig ()->canSetParameter (XMLUni::fgDOMValidate, true))
+          //  {
+          //    parser->getDomConfig ()->setParameter(xercesc::XMLUni::fgDOMValidate, true);
+          //  }
 
-          if (parser->canSetFeature(XMLUni::fgDOMNamespaces, true))
-            {
-              parser->setFeature(XMLUni::fgDOMNamespaces, true);
-            }
+          //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMNamespaces, true))
+          //  {
+          //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMNamespaces, true);
+          //  }
 
-          if (parser->canSetFeature(XMLUni::fgDOMDatatypeNormalization, true))
-            {
-              parser->setFeature(XMLUni::fgDOMDatatypeNormalization, true);
-            }
+          //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMDatatypeNormalization, true))
+          //  {
+          //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMDatatypeNormalization, true);
+          //  }
 
-          parser->setFeature (XMLUni::fgDOMComments, false);
-          parser->setFeature (XMLUni::fgDOMEntities, false);
-          parser->setFeature (XMLUni::fgDOMNamespaces, true);
-          parser->setFeature (XMLUni::fgDOMValidation, true);
-          parser->setFeature (XMLUni::fgDOMWhitespaceInElementContent, false);
-          parser->setFeature (XMLUni::fgXercesSchema, true);
+          parser.setCreateCommentNodes (false);
+          parser.setCreateEntityReferenceNodes (false);
+          parser.setIncludeIgnorableWhitespace (false);
+          parser.setDoSchema (true);
 
-          XML_Error_Handler handler;
-          parser->setErrorHandler (&handler);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMComments, false);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMEntities, false);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMNamespaces, true);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMValidate, true);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMElementContentWhitespace, false);
+          //parser->getDomConfig ()->setParameter (XMLUni::fgXercesSchema, true);
+
+          Utils::XML_Error_Handler handler;
+          parser.setErrorHandler (&handler);
 
           if (this->schema_path_ == "" && this->input_xme_ != 0)
             {
@@ -654,10 +663,11 @@ BE_GlobalData::xerces_init (void)
                           "DTD file must be in directory of execution\n"));
             }
 
-          EntityResolver resolver (this->schema_path_.c_str ());
-          parser->setEntityResolver (&resolver);
+          Utils::EntityResolver resolver (this->schema_path_.c_str ());
+          parser.setEntityResolver (&resolver);
 
-          this->doc_ = parser->parseURI (xme);
+          parser.parse (xme);
+          this->doc_ = parser.adoptDocument ();
 
           if (handler.getErrors ())
             {
@@ -683,7 +693,7 @@ BE_GlobalData::xerces_init (void)
       // (@@@ JP) All of a sudden (2/7/05) there was an exception when
       // XMLCh* was passed, but not when char* was passed (the constructor
       // for LocalFileFormatTarget has two variants).
-      XStr target_xstr (target_name.c_str ());
+      Utils::XStr target_xstr (target_name.c_str ());
       const XMLCh * target_arg = target_xstr.begin ();
 
       this->target_ = new LocalFileFormatTarget (target_name.c_str ());
@@ -781,7 +791,11 @@ BE_GlobalData::destroy (void)
   if (ok_to_write)
     {
       // Write out the file last, just before cleanup.
-      this->writer_->writeNode (this->target_, *this->doc_);
+      xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+      output->setByteStream (this->target_);
+
+      this->writer_->write (this->doc_, output);
+      output->release ();
     }
 
   if (0 != this->writer_)
@@ -940,7 +954,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
     }
 
   DOMNodeList *children = sub_tree->getChildNodes ();
-  XStr tag;
+  Utils::XStr tag;
 
   switch (elem_kind)
     {
@@ -981,7 +995,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
           // Compare the 'referred' but return the 'reference'.
           compared_elem = this->doc_->getElementById (referred);
         }
-        
+
       if (compared_elem == 0)
         {
           continue;
@@ -990,8 +1004,8 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
       // There should be only one "name" node.
       DOMNodeList *namelist =
         compared_elem->getElementsByTagName (X ("name"));
-        
-      // But if there aren't any, skip this iteration.  
+
+      // But if there aren't any, skip this iteration.
       if (namelist->getLength () == 0)
         {
           continue;
@@ -1089,27 +1103,27 @@ BE_GlobalData::imported_file_dom_elem (const char *local_name,
         {
           continue;
         }
-        
+
       DOMNodeList *attrlist = file->getElementsByTagName (X ("attribute"));
       DOMElement *attr = 0;
-      
+
       // Now try to match the GME attribute 'path'.
       for (XMLSize_t j = 0; j < attrlist->getLength (); ++j)
         {
-          attr = dynamic_cast<DOMElement *> (attrlist->item (j));       
+          attr = dynamic_cast<DOMElement *> (attrlist->item (j));
           kind = attr->getAttribute (X ("kind"));
-          
+
           if (X ("path") != X (kind))
             {
               continue;
             }
-            
+
           // A GME attribute contains only the value, and the
-          // value contains only the text node.  
+          // value contains only the text node.
           DOMNode *value_tag = attr->getFirstChild ();
           DOMNode *value_item = value_tag->getFirstChild ();
           DOMText *value = (DOMText *) value_item;
-          
+
           if (value == 0)
             {
               // No way to represent an empty string in XML, so a 0
@@ -1123,7 +1137,7 @@ BE_GlobalData::imported_file_dom_elem (const char *local_name,
           else
             {
               text = value->getData ();
-              
+
               if (X (path) == X (text))
                 {
                   return file;
@@ -1207,11 +1221,11 @@ BE_GlobalData::lookup_by_tag_and_id (DOMElement *scope,
 void
 BE_GlobalData::init_ids (DOMElement *sub_tree)
 {
-  static const XStr model ("model");
-  static const XStr reference ("reference");
-  static const XStr atom ("atom");
-  static const XStr connection ("connection");
-  static const XStr folder ("folder");
+  static const Utils::XStr model ("model");
+  static const Utils::XStr reference ("reference");
+  static const Utils::XStr atom ("atom");
+  static const Utils::XStr connection ("connection");
+  static const Utils::XStr folder ("folder");
 
   // Element must have an id attribute to convert to an integer.
   if (sub_tree == 0 || !sub_tree->hasAttribute (X ("id")))
@@ -1312,11 +1326,11 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       char *r_kind = 0;
       DOMElement *parent =
         dynamic_cast<DOMElement *> (referred->getParentNode ());
-        
-      // What's referred to may have already been removed.  
+
+      // What's referred to may have already been removed.
       const XMLCh *parent_kind =
         (parent != 0 ? parent->getAttribute (X ("kind")) : 0);
-        
+
       ACE_CString r_kind_str;
 
       if (parent_kind != 0 && X ("PredefinedTypes") == parent_kind)
@@ -1767,9 +1781,9 @@ BE_GlobalData::match_module_opening (DOMElement *elem, AST_Module *m)
     {
       return false;
     }
-    
+
   // This call matches the names of the first child in the scope
-  // recursively.  
+  // recursively.
   return this->match_module_opening_downscope (elem, m);
 }
 
@@ -1781,27 +1795,27 @@ BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
   char *node_name = d->local_name ()->get_string ();
   int match = ACE_OS::strcmp (node_name, elem_name);
   XMLString::release (&elem_name);
-  
+
   if (0 != match)
     {
       return false;
     }
-    
+
   // This can't be 0, if the previous recursion gave AST_Root here,
-  // this recursion wouldn't happen (see below).  
+  // this recursion wouldn't happen (see below).
   AST_Decl *p = ScopeAsDecl (d->defined_in ());
-  
+
   AST_Decl::NodeType nt = p->node_type ();
   DOMElement *parent =
     dynamic_cast<DOMElement *> (elem->getParentNode ());
-  
+
   if (0 == parent)
     {
       return false;
     }
-    
+
   const XMLCh *parent_kind = parent->getAttribute (X ("kind"));
-  
+
   // If we're at IDL global scope, the file names must match.
   // Either way, recursion stops if we enter tihs block.
   if (AST_Decl::NT_root == nt)
@@ -1811,21 +1825,21 @@ BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
           char *parent_name = this->get_name (parent);
           size_t len = ACE_OS::strlen (parent_name);
           ACE_CString file_name (d->file_name ());
-          
+
           // Strip off the trailing .idl or .pidl
           file_name = file_name.substr (0, file_name.rfind ('.'));
-          
+
           // Strip off the path and leave the local name.
           file_name = file_name.substr (file_name.length () - len);
-          
+
           match = ACE_OS::strcmp (file_name.c_str (), parent_name);
           XMLString::release (&parent_name);
           return (match == 0);
         }
-      
+
       return false;
     }
-    
+
   if (AST_Decl::NT_module == nt)
     {
       if (X ("Package") == parent_kind)
@@ -1834,7 +1848,7 @@ BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
           return this->match_module_opening_upscope (parent, p);
         }
     }
-    
+
   return false;
 }
 
@@ -1854,14 +1868,14 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
   char *elem_child_name = this->get_name (elem_child);
   AST_Decl *node_child = 0;
   bool match = false;
-  
+
   for (UTL_ScopeActiveIterator iter (DeclAsScope (d), UTL_Scope::IK_decls);
        !iter.is_done ();
        iter.next ())
     {
       node_child = iter.item ();
       AST_Decl::NodeType nt = node_child->node_type ();
-      
+
       if (nt == AST_Decl::NT_component_fwd
           || nt == AST_Decl::NT_eventtype_fwd
           || nt == AST_Decl::NT_interface_fwd
@@ -1871,16 +1885,16 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
         {
           continue;
         }
-        
+
       char *node_child_name = node_child->local_name ()->get_string ();
       match = (ACE_OS::strcmp (node_child_name, elem_child_name) == 0);
-      
+
       if (match)
         {
           break;
         }
     }
-    
+
   XMLString::release (&elem_child_name);
 
   if (! match)

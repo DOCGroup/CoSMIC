@@ -11,7 +11,7 @@ namespace CQML
     using xercesc::XMLException;
     using xercesc::DOMText;
 
-    std::ofstream outfile ("C:\\Documents and Settings\\Aky\\Desktop\\security_debug.txt");   
+    std::ofstream outfile ("C:\\Documents and Settings\\Aky\\Desktop\\security_debug.txt");
 
 
     void DOMBuilder::push()
@@ -20,10 +20,10 @@ namespace CQML
     }
 
     DOMBuilder::DOMBuilder (const std::string& outputPath)
-      : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0), 
+      : impl_ (0), doc_ (0), root_ (0), curr_ (0), serializer_ (0),
         target_ (0), outputPath_ (outputPath)
-      {        
-        this->init(); 
+      {
+        this->init();
       }
 
     void DOMBuilder::pop()
@@ -43,7 +43,7 @@ namespace CQML
       {
         return this->doc_;
       }
-    
+
     DOMElement *DOMBuilder::curr ()
       {
         return this->curr_;
@@ -53,8 +53,8 @@ namespace CQML
       {
         this->curr_ = elem;
       }
-   
-    DOMBuilder::~DOMBuilder ()  
+
+    DOMBuilder::~DOMBuilder ()
       {
         if (this->doc_)
           this->doc_->release();
@@ -64,20 +64,17 @@ namespace CQML
     void DOMBuilder::init()
     {
       this->impl_ = DOMImplementationRegistry::getDOMImplementation(XStr("LS"));
-      this->serializer_ = ((DOMImplementationLS*)impl_)->createDOMWriter();
+      this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer();
 
       // Set features if the serializer supports the feature/mode
-      if (this->serializer_->canSetFeature
-          (XMLUni::fgDOMWRTDiscardDefaultContent, true))
-        this->serializer_->setFeature (XMLUni::fgDOMWRTDiscardDefaultContent,
-                                       true);
+      if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
+        this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
 
-      if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTFormatPrettyPrint,
-                                            true))
-        this->serializer_->setFeature (XMLUni::fgDOMWRTFormatPrettyPrint, true);
+      if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
+        this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
-      if (this->serializer_->canSetFeature (XMLUni::fgDOMWRTBOM, false))
-        this->serializer_->setFeature (XMLUni::fgDOMWRTBOM, false);
+      if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
+        this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
     }
 
     void DOMBuilder::initTarget (const std::string& fileName)
@@ -100,9 +97,9 @@ namespace CQML
 
     void DOMBuilder::initRootAttributes()
     {
-      this->doc_->setEncoding (XStr("UTF-8"));
-      this->doc_->setVersion (XStr("1.0"));
-      this->doc_->setStandalone (false);
+      // this->doc_->setEncoding (XStr("UTF-8"));
+      this->doc_->setXmlVersion (XStr("1.0"));
+      this->doc_->setXmlStandalone (false);
       this->root_ = this->doc_->getDocumentElement();
       this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
                                    XStr ("xmlns:xsi"),
@@ -116,7 +113,11 @@ namespace CQML
 
     void DOMBuilder::dumpDocument()
     {
-      this->serializer_->writeNode (this->target_, *this->doc_);
+      xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+      output->setByteStream (this->target_);
+
+      this->serializer_->write (this->doc_, output);
+      output->release ();
     }
 
     Auto_DOM::Auto_DOM (DOMBuilder& b, std::string tag)
@@ -135,7 +136,7 @@ namespace CQML
         dom_builder_->push();
         dom_builder_->curr(e);
       }
-    
+
     Auto_DOM::~Auto_DOM ()
       {
         dom_builder_->pop ();

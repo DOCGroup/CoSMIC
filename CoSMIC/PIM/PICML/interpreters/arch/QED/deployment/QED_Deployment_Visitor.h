@@ -117,7 +117,7 @@ private:
 
   xercesc::DOMDocument * doc_;
 
-  xercesc::DOMWriter * serializer_;
+  xercesc::DOMLSSerializer * serializer_;
 
   xercesc::XMLFormatTarget * target_;
 

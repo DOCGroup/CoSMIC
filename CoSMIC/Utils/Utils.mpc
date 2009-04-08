@@ -1,20 +1,19 @@
 // $Id$
 
-project (CoSMIC_Utils) : xerces, cosmic_common {
+project (CoSMIC_Utils) : acelib, xerces, cosmic_common {
   requires += xerces2
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
 
   includes  += $(COSMIC_ROOT)
-  lit_libs  += rpcrt4 
-  //lit_libs  += xerces-c_2
-  //includes  += $(XERCESCROOT)/include
-  //libpaths  += $(XERCESCROOT)/lib
+  lit_libs  += rpcrt4
 
   Source_Files {
     Utils.cpp
+    EntityResolver.cpp
     XercesString.cpp
+    XML_Error_Handler.cpp
   }
 
   Header_Files {

@@ -8,6 +8,8 @@
 #include "XercesString.h"
 
 using xercesc::XMLString;
+namespace Utils
+{
 
 XML_Error_Handler::XML_Error_Handler (void)
   : errors_ (false)
@@ -62,4 +64,6 @@ bool
 XML_Error_Handler::getErrors (void) const
 {
   return this->errors_;
+}
+
 }

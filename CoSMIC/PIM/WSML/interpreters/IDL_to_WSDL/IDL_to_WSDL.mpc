@@ -1,7 +1,7 @@
 // -*- MPC -*-
 // $Id: IDL_to_WSDL.mpc,v 1.4 2005/02/02 15:41:01 elliott_c Exp $
 
-project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
+project(IDL_TO_WSDL_BE) : cosmic_utils, acelib, core, crosscompile, xerces {
   requires += xerces2
   after       += TAO_IDL_FE
   sharedname   = IDL_TO_WSDL_BE
@@ -15,14 +15,11 @@ project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
     be_init.cpp
     be_produce.cpp
     binding_visitor.cpp
-    EntityResolver.cpp
     idl_to_wsdl_visitor.cpp
     message_visitor.cpp
     port_type_visitor.cpp
     service_visitor.cpp
     type_visitor.cpp
-    XercesString.cpp
-    XML_Error_Handler.cpp
   }
 
   Header_Files {
@@ -30,15 +27,12 @@ project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
     be_global.h
     be_helper.h
     binding_visitor.h
-    EntityResolver.h
     idl_to_wsdl_visitor.h
     IDL_TO_WSDL_BE_Export.h
     message_visitor.h
     port_type_visitor.h
     service_visitor.h
     type_visitor.h
-    XercesString.h
-    XML_Error_Handler.h
   }
 }
 

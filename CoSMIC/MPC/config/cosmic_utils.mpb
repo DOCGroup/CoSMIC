@@ -1,6 +1,6 @@
 // $Id$
 
-project {
+project : cosmic_common {
    after  += CoSMIC_Utils
    macros += UTILS_HAS_DLL
 
