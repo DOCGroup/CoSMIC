@@ -1,4 +1,4 @@
-project (UDM_DSL): acedefaults, cosmic_common, udm, boost_base, boost_regex {
+project (UDM_DSL): aceexe, cosmic_common, udm, boost_base, boost_regex {
 
   exename = UDM_DSL
   install = $(COSMIC_ROOT)/Utils/UDM_DSL

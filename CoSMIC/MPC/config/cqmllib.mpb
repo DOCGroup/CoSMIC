@@ -1,7 +1,6 @@
 // MPC file to generate base library
 project : cosmic_common, udm, xerces, cosmic_utils {
 
-   requires += xerces2
    after += CQML
    includes += $(COSMIC_ROOT)/PSM/CQML/interpreters
    macros += CQML_HAS_DLL

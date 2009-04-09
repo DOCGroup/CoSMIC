@@ -2,7 +2,7 @@
 // $Id$
 
 project(IDL_TO_PICML_BE) : cosmic_utils, acelib, core, crosscompile, xerces {
-  requires += xerces2
+
   after       += TAO_IDL_FE
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib

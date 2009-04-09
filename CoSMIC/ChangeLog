@@ -1,3 +1,30 @@
+Thu Apr  9 19:10:32 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * MPC/config/udm.mpb:
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+        * Utils/Utils.mpc:
+
+        * default.features:
+		
+		  Fixed the build files while moving from xerces2 to xerces3.
+
 Thu Apr  9 16:45:55 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/PICML/PICML.mpc:

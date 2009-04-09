@@ -1,7 +1,6 @@
 // MPC file to generate base library
 project : cosmic_common, udm, xerces, cosmic_utils {
    
-   requires += xerces2
    after += PICML
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
    dynamicflags += PICML_HAS_DLL

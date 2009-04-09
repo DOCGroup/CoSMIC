@@ -1,12 +1,6 @@
 #include "stdafx.h"
 #include <cstring>
 #include <iostream>
-//#include <Uml.h>
-//#include <UdmStatic.h>
-//#include <UmlExt.h>
-//#include <UdmBase.h>
-//#include <cint_string.h>
-//#include <UdmDom.h>
 
 #include "HFSM.h"
 #define PARADIGM_NAMESPACE_FOR_LEESA HFSM
@@ -14,6 +8,8 @@
 
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/pop_front.hpp>
+//#include <ace/High_Res_Timer.h>
+
 using namespace HFSM;
 using namespace boost;
 
@@ -114,15 +110,23 @@ int _tmain(int argc, _TCHAR* argv[])
       >> MembersOf(RootFolder(), 
                    StateMachine() >>= MembersOf(StateMachine(), FinalState() >> FullTD(FinalState(), vs)),
                    InputSequence() >> cv));
-
-    evaluate(rf, RootFolder() 
-              >> FullTD(RootFolder(), vs));
-*/    
+   
     evaluate (rf, AP(vs,
                      FROM(RootFolder), 
                      TO(HFSM::Sequence, Events),
                      THROUGH(InputSequence)));
-
+*/
+    typedef BaseState DesiredType;
+    std::set<StateMachine> sm_set = 
+      evaluate(rf, RootFolder() >> StateMachine());
+    StateMachine sm = *sm_set.begin();
+    std::set<Udm::Object> o_set = sm.GetChildObjects();
+    std::cout << "size = " << o_set.size() << std::endl;
+    BOOST_FOREACH(Udm::Object o, o_set)
+    {
+      std::cout << (o.type() == Transition::meta) << std::endl;
+    }
+    //evaluate(rf, RootFolder() >> FullTD(RootFolder(), vs));
   }
   catch(const udm_exception &e)
 	{
@@ -144,10 +148,6 @@ RootFolder create(Udm::SmartDataNetwork & nw, const char * const filename)
     sm.name() = "SM1";
     State s = State::Create(sm);
     s.name() = "State1";
-
-    RootFolder r = RootFolder("ROOTFOLDER", 
-                     make_tuple(InputSequence(), StateMachine()));
-
     return rf;
 }
 

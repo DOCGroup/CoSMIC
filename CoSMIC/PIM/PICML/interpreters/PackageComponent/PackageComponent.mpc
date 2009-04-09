@@ -6,6 +6,7 @@ project (PackageComponent): game, mfc, picmllib, register {
   // prevent build if Package project does not build.
   requires += zlib
   after    += Package
+  libs     += Package
 
   macros   +=  _USRDLL _WINDLL
 

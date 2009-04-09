@@ -1,7 +1,7 @@
 // $Id$
 
 project (CoSMIC_Utils) : acelib, xerces, cosmic_common {
-  requires += xerces2
+  requires += xerces3
   sharedname = Utils
 
   macros    += UTILS_HAS_DLL UTILS_BUILD_DLL
