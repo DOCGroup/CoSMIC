@@ -1,17 +1,9 @@
 // $Id$
 
-project (PICML): game, udm, xerces, boost_base, cosmic_common, cosmic_utils {
-
-  requires += xerces2
-  UDM_Files {
-    gendir = .
-    $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xml
-    commandflags      = -l PICML_Export -v
-  }
+project (PICML): game, udm, boost_base, cosmic_common, cosmic_utils {
 
   sharedname = PICML
-
-  macros += PICML_HAS_DLL PICML_EXPORT
+  macros    += PICML_HAS_DLL PICML_EXPORT UDM_DYNAMIC_LINKING
 
   Source_Files {
     Data_Value.cpp
@@ -28,5 +20,11 @@ project (PICML): game, udm, xerces, boost_base, cosmic_common, cosmic_utils {
 
   Template_Files {
     Data_Value_Parser_T.cpp
+  }
+
+  UDM_Files {
+    gendir = .
+    $(COSMIC_ROOT)/PIM/PICML/paradigms/PICML.xml
+    commandflags      = -l PICML_Export -v
   }
 }

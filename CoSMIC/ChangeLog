@@ -1,3 +1,13 @@
+Thu Apr  9 16:45:55 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+          . Simplified the project file.
+
+        * MPC/config/udm.mpb:
+
+          Removed this file.
+
 Wed Apr  8 16:07:26 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
