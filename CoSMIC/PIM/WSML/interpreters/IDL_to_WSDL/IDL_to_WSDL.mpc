@@ -1,13 +1,14 @@
 // -*- MPC -*-
 // $Id: IDL_to_WSDL.mpc,v 1.4 2005/02/02 15:41:01 elliott_c Exp $
 
-project(IDL_TO_WSDL_BE) : cosmic_utils, acelib, core, crosscompile, xerces {
+project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
 
-  after       += TAO_IDL_FE
+  after       += TAO_IDL_FE CosMIC_Utils
   sharedname   = IDL_TO_WSDL_BE
-  libs        += TAO_IDL_FE
+  libs        += TAO_IDL_FE Utils
+  libpaths    += $(COSMIC_ROOT)/lib
   dynamicflags = IDL_TO_WSDL_BE_BUILD_DLL
-  includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe
+  includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(COSMIC_ROOT)/Utils
 
   Source_Files {
     be_global.cpp
@@ -38,11 +39,11 @@ project(IDL_TO_WSDL_BE) : cosmic_utils, acelib, core, crosscompile, xerces {
 
 
 project(IDL_TO_WSDL_EXE) : aceexe, core, crosscompile, xerces {
-  after          += IDL_TO_WSDL_BE TAO_IDL_FE
+  after          += IDL_TO_WSDL_BE TAO_IDL_FE CoSMIC_Utils
   exename         = idl_to_wsdl
-  libs           += IDL_TO_WSDL_BE TAO_IDL_FE
-  includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(TAO_ROOT)
-  libpaths       += $(TAO_ROOT)/TAO_IDL
+  libs           += IDL_TO_WSDL_BE TAO_IDL_FE Utils
+  includes       += . $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(TAO_ROOT) $(COSMIC_ROOT)/Utils
+  libpaths       += $(TAO_ROOT)/TAO_IDL $(COSMIC_ROOT)/lib
   install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {

@@ -1,3 +1,15 @@
+Fri Apr 10 01:25:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+
+        * Release_idl_to_picml.mwc:
+
+        * Utils/Utils.mpc:
+		
+		  Fixed some static linking errors.
+
 Thu Apr  9 19:10:32 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/cqmllib.mpb:
@@ -22,8 +34,8 @@ Thu Apr  9 19:10:32 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/Utils.mpc:
 
         * default.features:
-		
-		  Fixed the build files while moving from xerces2 to xerces3.
+
+                  Fixed the build files while moving from xerces2 to xerces3.
 
 Thu Apr  9 16:45:55 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 

@@ -9,5 +9,6 @@ workspace : cosmic_common {
     $(TAO_ROOT)/TAO_IDL/tao_idl.mpc
     PIM/PICML/interpreters/IDLImporter
     PIM/WSML/interpreters/Interpreters.mwc
+    $(COSMIC_ROOT)/Utils/Utils.mpc
   }
 }
