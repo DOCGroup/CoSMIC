@@ -7,7 +7,7 @@ project (CQML) : cosmic_common, udm, xerces, cosmic_utils {
    }
 
    sharedname = CQML
-   macros += CQML_HAS_DLL CQML_EXPORT
+   macros += CQML_HAS_DLL CQML_EXPORT  UDM_DYNAMIC_LINKING
 
    Source_Files {
      CQML.cpp

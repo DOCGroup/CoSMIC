@@ -3,6 +3,8 @@ project : cosmic_common, udm, xerces, cosmic_utils {
 
    after += CQML
    includes += $(COSMIC_ROOT)/PSM/CQML/interpreters
-   macros += CQML_HAS_DLL
+   macros += UDM_DYNAMIC_LINKING
+   dynamicflags += CQML_HAS_DLL
    libs += CQML
 }
+

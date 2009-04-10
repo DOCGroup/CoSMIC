@@ -3,6 +3,7 @@ project : cosmic_common, udm, xerces, cosmic_utils {
    
    after += PICML
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
+   macros += UDM_DYNAMIC_LINKING
    dynamicflags += PICML_HAS_DLL
    libs += PICML
 }
