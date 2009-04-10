@@ -1,3 +1,9 @@
+Fri Apr 10 16:47:52 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+		
+		  Added $(COSMIC_ROOT)/Utils path.
+
 Fri Apr 10 14:04:06 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/Output_Event_Builder.h:

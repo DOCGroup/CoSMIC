@@ -7,7 +7,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
   dllout       = $(COSMIC_ROOT)/bin
-  libpaths    += $(ACE_ROOT)/lib
+  libpaths    += $(ACE_ROOT)/lib $(COSMIC_ROOT)/lib
   libs        += ACE TAO_IDL_FE Utils
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
   includes    += $(TAO_ROOT)/TAO_IDL/include $(TAO_ROOT)/TAO_IDL/fe $(COSMIC_ROOT)/Utils
