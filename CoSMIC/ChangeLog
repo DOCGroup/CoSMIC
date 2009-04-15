@@ -1,8 +1,16 @@
+Wed Apr 15 02:00:59 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Added constraints to make sure PeriodicEvent and
+            ApplicationTask have unique names.
+
 Fri Apr 10 16:47:52 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
-		
-		  Added $(COSMIC_ROOT)/Utils path.
+
+           Added $(COSMIC_ROOT)/Utils path.
 
 Fri Apr 10 14:04:06 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
