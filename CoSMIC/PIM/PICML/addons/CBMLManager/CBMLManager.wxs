@@ -16,39 +16,39 @@
            registry keys are per-user whereas the files are per-machine.
       -->
       <Component Id='CBMLManagerRegistry' Guid='7CBE0FBA-E3A4-46A0-9422-E2833C86D78A'>
-        <RegistryKey Root="HKCU" Key="Software\Classes" Action="create"/>
-        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID" Action="create" />
-        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}"
+        <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create" />
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\ProgID"
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\ProgID"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\InProcServer32"
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Value="[CoSMICBinDir]CBMLManager.dll" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\Classes\MGA.AddOn.CBMLManager"
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.CBMLManager"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Value="MGA.AddOn.CBMLManager" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\Classes\MGA.AddOn.CBMLManager\CLSID"
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.AddOn.CBMLManager\CLSID"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Value="{FC3DDE48-DD56-4F65-87DD-7DE9A262CEDC}" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\GME\Components\MGA.AddOn.CBMLManager"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.CBMLManager"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Name="Tooltip" Value="Manages complexity of CBML models" Type="string" />
@@ -57,7 +57,7 @@
           <RegistryValue Name="Description" Value="CBMLManager" Type="string" />
         </RegistryKey>
 
-        <RegistryKey Root="HKCU" Key="Software\GME\Components\MGA.AddOn.CBMLManager\Associated"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.AddOn.CBMLManager\Associated"
                      Action="createAndRemoveOnUninstall">
 
           <RegistryValue Name="PICML" Value="" Type="string" />

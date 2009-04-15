@@ -1,3 +1,16 @@
+Wed Apr 15 21:31:22 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.wxs:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+
+          . Change the install location from HKCU to HKLM.
+
+        * PIM/PICML/etc:
+        * PIM/PICML/etc/CleanupDevelopment.reg:
+
+          . Script that removes keys from the registry related to the
+            development version of CoSMIC.
+
 Wed Apr 15 05:54:20 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/ModelUpgrade/Model_Upgrade.h:
