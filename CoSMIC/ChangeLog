@@ -1,3 +1,11 @@
+Wed Apr 15 05:54:20 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+
+          . The output of the application is the .xme file upgraded
+            to the lastest version, and a .mga file for the project.
+
 Wed Apr 15 05:26:35 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/ModelUpgrade/Model_Upgrade.h:

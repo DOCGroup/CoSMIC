@@ -52,9 +52,6 @@ private:
 
   /// The GME project.
   GME::Project project_;
-
-  /// Name of the temporary file.
-  char tempfile_[MAX_PATH];
 };
 
 #endif  // !defined _GME_MODEL_UPGRADE_H_

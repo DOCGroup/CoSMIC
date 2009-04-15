@@ -27,7 +27,7 @@ GME_Model_Upgrade::GME_Model_Upgrade (void)
 //
 GME_Model_Upgrade::~GME_Model_Upgrade (void)
 {
-  ACE_OS::unlink (this->tempfile_);
+
 }
 
 //
@@ -35,65 +35,65 @@ GME_Model_Upgrade::~GME_Model_Upgrade (void)
 //
 int GME_Model_Upgrade::run_main (int argc, char * argv [])
 {
-  // Parse the command-line options.
-  if (this->parse_args (argc, argv) == -1)
-    return 1;
-
-  // Import the XME file.
-  filelist_t::CONST_ITERATOR iter (this->xme_files_);
-
-  for ( ; !iter.done (); iter.advance ())
+  try
   {
-    if (this->import_xme_file (*iter) == -1)
-      ACE_ERROR_RETURN ((LM_ERROR,
-                        "%T (%t) - %M - failed to import %s\n",
-                        (*iter).c_str ()),
-                        1);
+    // Parse the command-line options.
+    if (this->parse_args (argc, argv) == -1)
+      return 1;
 
-    // Export the project to a XME file.
-    this->export_project_file (*iter);
+    // Import the XME file.
+    filelist_t::CONST_ITERATOR iter (this->xme_files_);
+
+    for ( ; !iter.done (); iter.advance ())
+    {
+      if (this->import_xme_file (*iter) == -1)
+        ACE_ERROR_RETURN ((LM_ERROR,
+                          "%T (%t) - %M - failed to import %s\n",
+                          (*iter).c_str ()),
+                          1);
+
+      // Export the project to a XME file.
+      this->export_project_file (*iter);
+
+      // Close the project.
+      this->project_.close ();
+    }
+
+    return 0;
+  }
+  catch (const GME::Exception & )
+  {
+    ACE_ERROR ((LM_ERROR,
+                "%T - %M - caught unknown GME exception\n"));
   }
 
-  return 0;
+  return -1;
 }
 
 //
 // import_xme_file
 //
-int GME_Model_Upgrade::import_xme_file (const ACE_CString & file)
+int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
 {
+  // First, lets go ahead and construct the MGA filename.
+  ACE_CString mgafile ("MGA=");
+  size_t pos = xmefile.find (".xme");
+
+  if (pos != ACE_CString::npos)
+    mgafile += xmefile.substr (0, pos);
+  else
+    mgafile += xmefile;
+
+  mgafile += ".mga";
+
   // Get information about the XML file.
   GME::XML_Parser parser;
   GME::XML_Info info;
-
-  parser.get_info (file.c_str (), info);
-
-  if (ACE::get_temp_dir (this->tempfile_, MAX_PATH - 20) == -1)
-    ACE_ERROR_RETURN ((LM_ERROR,
-                        "%T (%t) - %M - failed to get temp directory\n"),
-                        -1);
-
-  // Create a temporary filename for the project.
-  ACE_OS::strcat (this->tempfile_, "gme-XXXXXX.mga");
-  ACE_HANDLE fd = ACE_OS::mkstemp (this->tempfile_);
-
-  if (fd == 0)
-    ACE_ERROR_RETURN ((LM_ERROR,
-                        "%T (%t) - %M - failed to create temp file %s\n",
-                        this->tempfile_),
-                        -1);
-
-  // Delete the temporary file, which we aren't using.
-  ACE_OS::close (fd);
-  ACE_OS::unlink (this->tempfile_);
-
-  // Create the full pathname.
-  ACE_CString connstr ("MGA=");
-  connstr += this->tempfile_;
+  parser.get_info (xmefile.c_str (), info);
 
   // Create a empty PICML project and import the XML file.
-  this->project_.create (connstr.c_str (), info.paradigm_);
-  parser.parse (file.c_str (), this->project_);
+  this->project_.create (mgafile.c_str (), info.paradigm_);
+  parser.parse (xmefile.c_str (), this->project_);
 
   return 0;
 }
