@@ -1,9 +1,11 @@
-// MPC file to generate base library
+// $Id$
+
 project : cosmic_common, udm, xerces, cosmic_utils {
-   
-   after += PICML
+   after    += PICML
    includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
-   macros += UDM_DYNAMIC_LINKING
+
+   macros       += UDM_DYNAMIC_LINKING
    dynamicflags += PICML_HAS_DLL
+
    libs += PICML
 }

@@ -1,0 +1,14 @@
+// $Id$
+
+project (GME_Model_Upgrade) : game, aceexe, cosmic_bin {
+  exename = gme-upgrade
+
+  specific {
+    subsystem = 1
+  }
+
+  Source_Files {
+    Model_Upgrade.cpp
+    upgrade.cpp
+  }
+}

@@ -1,3 +1,27 @@
+Wed Apr 15 05:03:46 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/cosmic_bin.mpb:
+        * MPC/config/cosmic_lib.mpb:
+
+          . Base projects for libraries and binaries.
+
+        * MPC/config/cosmic_common.mpb:
+        * MPC/config/picmllib.mpb:
+        * MPC/config/vc8warnings.mpb:
+
+          . Added missing SVN tags.
+
+        * Utils/ModelUpgrade:
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+        * Utils/ModelUpgrade/upgrade.cpp:
+        * Utils/ModelUpgrade/upgrader.mpc:
+        * picml.mwc:
+
+        * MPC/config/udm.mpb:
+
+          Removed this file since it has been added to MPC.
+
 Wed Apr 15 02:00:59 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML.xme:

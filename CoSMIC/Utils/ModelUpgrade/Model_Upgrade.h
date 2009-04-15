@@ -1,0 +1,56 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file      Model_Upgrade.h
+ *
+ * $Id$
+ *
+ * @author    James H. Hill
+ */
+//=============================================================================
+
+#ifndef _GME_MODEL_UPGRADE_H_
+#define _GME_MODEL_UPGRADE_H_
+
+#include "game/Project.h"
+#include "ace/SString.h"
+
+/**
+ * @class GME_Model_Upgrade
+ */
+class GME_Model_Upgrade
+{
+public:
+  /// Default constructor.
+  GME_Model_Upgrade (void);
+
+  /// Destructor.
+  ~GME_Model_Upgrade (void);
+
+  int run_main (int argc, char * argv []);
+
+private:
+  /// Import current XML file.
+  int import_xme_file (void);
+
+  /// Export project file to current XML file.
+  int export_project_file (void);
+
+  /// Print the help
+  void print_help (void);
+
+  /// Parse the command-line arguments.
+  int parse_args (int argc, char * argv []);
+
+  /// Target XME file to import/upgrade.
+  ACE_CString xme_file_;
+
+  /// The GME project.
+  GME::Project project_;
+
+  /// Name of the temporary file.
+  char tempfile_[MAX_PATH];
+};
+
+#endif  // !defined _GME_MODEL_UPGRADE_H_

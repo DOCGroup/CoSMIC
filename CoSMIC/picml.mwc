@@ -4,6 +4,7 @@ workspace : cosmic_common {
 
   Utils/Utils.mpc
   Utils/GAME
+  Utils/ModelUpgrade
 
   // -- build the interpreters, addons, and decorators
   PIM/PICML/interpreters/Interpreters.mwc
