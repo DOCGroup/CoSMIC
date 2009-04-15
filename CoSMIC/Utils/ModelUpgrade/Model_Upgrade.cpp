@@ -9,10 +9,7 @@
 static const char * __HELP__ =
 "A utility for upgrading GME models to their latest paradigm\n"
 "\n"
-"Usage: gme-upgrade [OPTIONS]\n"
-"\n"
-"General Options:\n"
-"  -f, --file=XMEFILE           XMLFILE to upgrade\n"
+"Usage: gme-upgrade [OPTIONS] XMEFILE\n"
 "\n"
 "Output Options:\n"
 "  -h, --help                   print this help screen\n";
@@ -43,27 +40,33 @@ int GME_Model_Upgrade::run_main (int argc, char * argv [])
     return 1;
 
   // Import the XME file.
-  if (this->import_xme_file () == -1)
-    ACE_ERROR_RETURN ((LM_ERROR,
-                       "%T (%t) - %M - failed to import %s\n",
-                       this->xme_file_.c_str ()),
-                       1);
+  filelist_t::CONST_ITERATOR iter (this->xme_files_);
 
-  // Export the project to a XME file.
-  this->export_project_file ();
+  for ( ; !iter.done (); iter.advance ())
+  {
+    if (this->import_xme_file (*iter) == -1)
+      ACE_ERROR_RETURN ((LM_ERROR,
+                        "%T (%t) - %M - failed to import %s\n",
+                        (*iter).c_str ()),
+                        1);
+
+    // Export the project to a XME file.
+    this->export_project_file (*iter);
+  }
+
   return 0;
 }
 
 //
 // import_xme_file
 //
-int GME_Model_Upgrade::import_xme_file (void)
+int GME_Model_Upgrade::import_xme_file (const ACE_CString & file)
 {
   // Get information about the XML file.
   GME::XML_Parser parser;
   GME::XML_Info info;
 
-  parser.get_info (this->xme_file_.c_str (), info);
+  parser.get_info (file.c_str (), info);
 
   if (ACE::get_temp_dir (this->tempfile_, MAX_PATH - 20) == -1)
     ACE_ERROR_RETURN ((LM_ERROR,
@@ -90,7 +93,7 @@ int GME_Model_Upgrade::import_xme_file (void)
 
   // Create a empty PICML project and import the XML file.
   this->project_.create (connstr.c_str (), info.paradigm_);
-  parser.parse (this->xme_file_.c_str (), this->project_);
+  parser.parse (file.c_str (), this->project_);
 
   return 0;
 }
@@ -98,11 +101,11 @@ int GME_Model_Upgrade::import_xme_file (void)
 //
 // export_project_file
 //
-int GME_Model_Upgrade::export_project_file (void)
+int GME_Model_Upgrade::export_project_file (const ACE_CString & file)
 {
   // Export the project to the source XML file.
   GME::XML_Dumper dumper;
-  dumper.write (this->xme_file_.c_str (), this->project_);
+  dumper.write (file.c_str (), this->project_);
 
   return 0;
 }
@@ -112,11 +115,10 @@ int GME_Model_Upgrade::export_project_file (void)
 //
 int GME_Model_Upgrade::parse_args (int argc, char * argv [])
 {
-  static const char * optargs = "f:h";
+  static const char * optargs = "h";
 
   // Initialize the argument options for the application.
   ACE_Get_Opt get_opt (argc, argv, optargs);
-  get_opt.long_option ("file", 'f', ACE_Get_Opt::ARG_REQUIRED);
   get_opt.long_option ("help", 'h');
 
   char opt;
@@ -126,14 +128,8 @@ int GME_Model_Upgrade::parse_args (int argc, char * argv [])
     switch (opt)
     {
     case 0:
-      if (ACE_OS::strcmp (get_opt.long_option (), "file") == 0)
-        this->xme_file_ = get_opt.opt_arg ();
-      else if (ACE_OS::strcmp (get_opt.long_option (), "help") == 0)
+      if (ACE_OS::strcmp (get_opt.long_option (), "help") == 0)
         this->print_help ();
-      break;
-
-    case 'f':
-      this->xme_file_ = get_opt.opt_arg ();
       break;
 
     case 'h':
@@ -141,6 +137,10 @@ int GME_Model_Upgrade::parse_args (int argc, char * argv [])
       break;
     }
   }
+
+  // The remaining arguments are the filenames.
+  for (int i = get_opt.opt_ind (); i < get_opt.argc (); ++ i)
+    this->xme_files_.insert (get_opt.argv ()[i]);
 
   return 0;
 }

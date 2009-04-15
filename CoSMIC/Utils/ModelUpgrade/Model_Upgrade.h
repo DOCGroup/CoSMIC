@@ -15,6 +15,7 @@
 
 #include "game/Project.h"
 #include "ace/SString.h"
+#include "ace/Unbounded_Set.h"
 
 /**
  * @class GME_Model_Upgrade
@@ -32,10 +33,10 @@ public:
 
 private:
   /// Import current XML file.
-  int import_xme_file (void);
+  int import_xme_file (const ACE_CString & file);
 
   /// Export project file to current XML file.
-  int export_project_file (void);
+  int export_project_file (const ACE_CString & file);
 
   /// Print the help
   void print_help (void);
@@ -44,7 +45,10 @@ private:
   int parse_args (int argc, char * argv []);
 
   /// Target XME file to import/upgrade.
-  ACE_CString xme_file_;
+  typedef ACE_Unbounded_Set <ACE_CString> filelist_t;
+
+  /// List of the XML files to upgrade.
+  filelist_t xme_files_;
 
   /// The GME project.
   GME::Project project_;

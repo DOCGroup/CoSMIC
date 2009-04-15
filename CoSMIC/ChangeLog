@@ -1,3 +1,11 @@
+Wed Apr 15 05:26:35 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+
+          . Removed the -f option for specifying the input
+            XME file(s).
+
 Wed Apr 15 05:03:46 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/cosmic_bin.mpb:
