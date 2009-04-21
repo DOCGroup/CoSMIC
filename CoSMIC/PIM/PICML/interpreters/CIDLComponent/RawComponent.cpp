@@ -133,24 +133,6 @@ void CIDL_Interpreter_Impl::postprocess (GME::Project & project)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// class RawComponent
-
 //
-// RawComponent
-//
-RawComponent::RawComponent (void)
-{
 
-}
-
-//
-// RawComponent
-//
-RawComponent::~RawComponent (void)
-{
-
-}
-
-GME_COMPONENT_DECLARE (CIDL_ComponentDLL,
-                       INTERPRETER_NAME,
-                       LIBID_MgaComponentLib);
+GME_RAWCOMPONENT_IMPL (CIDL, INTERPRETER_NAME);

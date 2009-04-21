@@ -22,12 +22,11 @@
 template <typename T>
 class ACE_Hash;
 
-//=============================================================================
 /**
+ * @class ACE_Hash <std::string>
  *
+ * Specialization of the ACE_Hash for std::string objects
  */
-//=============================================================================
-
 template < >
 class GME_Export ACE_Hash <std::string>
 {
@@ -35,12 +34,11 @@ public:
   unsigned long operator () (const std::string & lhs) const;
 };
 
-//=============================================================================
 /**
+ * @class ACE_Hash <std::wstring>
  *
+ * Specialization of the ACE_Hash for std::string objects
  */
-//=============================================================================
-
 template < >
 class GME_Export ACE_Hash <std::wstring>
 {

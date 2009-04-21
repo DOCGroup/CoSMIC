@@ -11,7 +11,8 @@ namespace GME
    * @class Interpreter_T
    */
   template <typename T, typename IMPL>
-  class Interpreter_T : public GME::ComponentEx_T <T, &CLSID_MgaComponent>
+  class ATL_NO_VTABLE Interpreter_T :
+    public GME::ComponentEx_T <T, &CLSID_MgaComponent>
   {
   public:
     /// Default constructor
@@ -35,7 +36,7 @@ namespace GME
     STDMETHOD (put_ComponentParameter) (BSTR name, VARIANT newVal);
     STDMETHOD (get_ComponentParameter) (BSTR name, VARIANT *pVal);
 
-  private:
+  protected:
     /// The actual implementation of the interpreter
     IMPL impl_;
   };

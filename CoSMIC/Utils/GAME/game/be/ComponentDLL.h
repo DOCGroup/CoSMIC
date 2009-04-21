@@ -50,12 +50,12 @@ namespace GME
  * initialize itself.
  */
 #define GME_COMPONENT_DECLARE(T, NAME, LIBID) \
-  class T : public GME::ComponentDLL \
+  class T##ComponentDLL : public GME::ComponentDLL \
   { \
   public: \
-    CIDL_ComponentDLL (void) \
+    T##ComponentDLL (void) \
     : GME::ComponentDLL (NAME) { } \
-    virtual ~CIDL_ComponentDLL (void) { } \
+    virtual ~T##ComponentDLL (void) { } \
   }; \
   class T##Module : public ATL::CAtlDllModuleT < T##Module > \
   { \
@@ -83,6 +83,6 @@ namespace GME
     AFX_MANAGE_STATE (::AfxGetModuleState ()); \
     return _AtlModule.DllUnregisterServer (); \
   } \
-  T theApp
+  static T##ComponentDLL theApp
 
 #endif  // !defined _GME_COMPONENT_DLL_H_

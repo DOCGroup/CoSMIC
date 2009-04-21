@@ -44,22 +44,6 @@ private:
   std::string output_;
 };
 
-/**
- * @class RawComponent
- *
- * Implementation of the CIDL interpreter component.
- */
-class ATL_NO_VTABLE RawComponent :
-  public GME::Interpreter_T <RawComponent, CIDL_Interpreter_Impl>
-{
-public:
-  /// Default constructor
-  RawComponent (void);
-
-  /// Destructor.
-  virtual ~RawComponent (void);
-};
-
-OBJECT_ENTRY_AUTO (__uuidof (MgaComponent), RawComponent)
+GME_RAWCOMPONENT_DECL (GME::Interpreter_T, CIDL_Interpreter_Impl);
 
 #endif  // !defined _PICML_CIDL_COMPONENT_H_

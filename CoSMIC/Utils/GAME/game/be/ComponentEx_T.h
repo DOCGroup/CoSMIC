@@ -71,6 +71,20 @@ namespace GME
   };
 }
 
+#define GME_RAWCOMPONENT_DECL(TYPE, IMPL) \
+  class ATL_NO_VTABLE RawComponent : \
+    public TYPE <RawComponent, IMPL> { \
+  public: \
+    RawComponent (void); \
+    virtual ~RawComponent (void); \
+  }; \
+  OBJECT_ENTRY_AUTO (__uuidof (MgaComponent), RawComponent)
+
+#define GME_RAWCOMPONENT_IMPL(DLL, NAME) \
+  RawComponent::RawComponent (void) { } \
+  RawComponent::~RawComponent (void) { } \
+  GME_COMPONENT_DECLARE (DLL, NAME, LIBID_MgaComponentLib)
+
 #if defined (__GME_INLINE__)
 #include "ComponentEx_T.inl"
 #endif

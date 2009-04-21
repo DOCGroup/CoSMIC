@@ -10,6 +10,7 @@ project (GAME_BE) : game, cosmic_common {
 
   Source_Files {
     Interpreter_Impl_Base.cpp
+    Plugin_Impl.cpp
   }
 
   Inline_Files {
@@ -19,5 +20,6 @@ project (GAME_BE) : game, cosmic_common {
   Template_Files {
     ComponentEx_T.cpp
     Interpreter_T.cpp
+    Plugin_T.cpp
   }
 }

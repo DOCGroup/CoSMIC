@@ -1,3 +1,36 @@
+Tue Apr 21 13:58:28 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game_component.mpb:
+
+          . Added missing project settings to the base project.
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+        * Utils/GAME/etc:
+        * Utils/GAME/etc/Component.def:
+
+          . Common export definitions for GME components.
+
+        * Utils/GAME/game/be/ComponentDLL.h:
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_T.h:
+        * Utils/GAME/game/be/Plugin_Impl.h:
+        * Utils/GAME/game/be/Plugin_Impl.inl:
+        * Utils/GAME/game/be/Plugin_Impl.cpp:
+        * Utils/GAME/game/be/Plugin_T.h:
+        * Utils/GAME/game/be/Plugin_T.inl:
+        * Utils/GAME/game/be/Plugin_T.cpp:
+        * Utils/GAME/game/stlace.h:
+
+          . Added support for implementing GME plug-in components
+            with GAME
+
+          . Simplified the process for specifying a GME component using
+            GAME.
+
 Wed Apr 15 21:31:22 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.wxs:
