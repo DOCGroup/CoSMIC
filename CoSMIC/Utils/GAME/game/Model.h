@@ -98,6 +98,8 @@ namespace GME
      * @return      The meta information for the model.
      */
     Meta::Model meta (void) const;
+
+    virtual void accept (GME::Visitor & visitor);
   };
 }
 

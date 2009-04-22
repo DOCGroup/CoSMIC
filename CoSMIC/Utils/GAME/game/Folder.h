@@ -142,6 +142,8 @@ namespace GME
      */
     size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
+
+    virtual void accept (GME::Visitor & visitor);
   };
 }
 

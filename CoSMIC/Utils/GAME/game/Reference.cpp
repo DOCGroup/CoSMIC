@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
+#include "Visitor.h"
 
 namespace GME
 {
@@ -83,5 +84,13 @@ namespace GME
       parent.impl ()->CreateChildObject (metarole, &child));
 
     return Reference::_narrow (FCO (child));
+  }
+
+  //
+  // accept
+  //
+  void Reference::accept (GME::Visitor & visitor)
+  {
+    visitor.visit_Reference (*this);
   }
 }

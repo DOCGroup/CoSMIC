@@ -2,46 +2,18 @@
 
 #include "stdafx.h"
 #include "Atom.h"
+
+#if !defined (__GME_INLINE__)
+#include "Atom.inl"
+#endif
+
 #include "Model.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
+#include "Visitor.h"
 
 namespace GME
 {
-  //
-  // Atom
-  //
-  Atom::Atom (void)
-  {
-
-  }
-
-  //
-  // Atom
-  //
-  Atom::Atom (IMgaAtom * atom)
-    : FCO (atom)
-  {
-
-  }
-
-  //
-  // Atom
-  //
-  Atom::Atom (const Atom & atom)
-    : FCO (atom)
-  {
-
-  }
-
-  //
-  // ~Atom
-  //
-  Atom::~Atom (void)
-  {
-
-  }
-
   //
   // operator =
   //
@@ -100,5 +72,13 @@ namespace GME
       parent.impl ()->CreateChildObject (metarole, &child));
 
     return Atom::_narrow (FCO (child));
+  }
+
+  //
+  // accept
+  //
+  void Atom::accept (GME::Visitor & visitor)
+  {
+    visitor.visit_Atom (*this);
   }
 }

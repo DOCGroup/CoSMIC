@@ -17,14 +17,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Atom
    *
    * Wrapper class for the IMgaAtom interface.
    */
-  //===========================================================================
-
   class GME_Export Atom : public FCO
   {
   public:
@@ -84,6 +81,8 @@ namespace GME
      */
     void attach (IMgaAtom * atom);
 
+    virtual void accept (GME::Visitor & visitor);
+
   protected:
     /// Helper method to get the correct implementation.
     IMgaAtom * impl (void) const;
@@ -92,5 +91,9 @@ namespace GME
     mutable ATL::CComPtr <IMgaAtom> atom_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "Atom.inl"
+#endif
 
 #endif

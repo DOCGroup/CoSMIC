@@ -43,6 +43,11 @@ namespace GME
     void attach (T * type);
 
     /**
+     * Get all the FCOs contained by this element.
+     */
+    size_t fcos (GME::Collection_T <FCO> & fcos);
+
+    /**
      * Get all the FCOs of a particular \a type.
      *
      * @param[in]   type      The target type.

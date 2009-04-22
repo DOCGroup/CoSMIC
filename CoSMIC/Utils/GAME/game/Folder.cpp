@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include "Folder.h"
 #include "MetaFolder.h"
+#include "Visitor.h"
 
 namespace GME
 {
@@ -195,5 +196,13 @@ namespace GME
 
     nodes.attach (rawnodes.Detach ());
     return nodes.size ();
+  }
+
+  //
+  // accept
+  //
+  void Folder::accept (GME::Visitor & visitor)
+  {
+    visitor.visit_Folder (*this);
   }
 }

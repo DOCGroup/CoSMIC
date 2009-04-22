@@ -20,14 +20,11 @@
 
 namespace GME
 {
-  //=============================================================================
   /**
    * @class FCO
    *
    * Wrapper class for the IMgaFCO interface.
    */
-  //=============================================================================
-
   class GME_Export FCO : public Object
   {
   public:
@@ -287,10 +284,17 @@ namespace GME
     void position (const std::string & aspect,
                    const GME::Point & pt);
 
+    /// Accept the GME::Visitor object.
+    virtual void accept (GME::Visitor & visitor);
+
   private:
     /// The COM pointer for the FCO type.
     mutable ATL::CComPtr <IMgaFCO> fco_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "FCO.inl"
+#endif
 
 #endif  // !define _GME_FCO_H_

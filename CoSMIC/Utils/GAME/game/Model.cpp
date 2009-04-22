@@ -6,6 +6,7 @@
 #include "MetaModel.h"
 #include "MetaRole.h"
 #include "MetaFolder.h"
+#include "Visitor.h"
 
 namespace GME
 {
@@ -69,7 +70,7 @@ namespace GME
   {
     CComPtr <IMgaModel> model;
 
-    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&model), 
+    VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&model),
                              GME::Invalid_Cast ());
 
     return model.p;
@@ -104,5 +105,13 @@ namespace GME
       parent.impl ()->CreateRootObject (metafco.impl (), &child));
 
     return Model::_narrow (FCO (child));
+  }
+
+  //
+  // accept
+  //
+  void Model::accept (Visitor & visitor)
+  {
+    visitor.visit_Model (*this);
   }
 }

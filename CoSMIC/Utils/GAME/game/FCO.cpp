@@ -2,6 +2,11 @@
 
 #include "stdafx.h"
 #include "FCO.h"
+
+#if !defined (__GME_INLINE__)
+#include "FCO.inl"
+#endif
+
 #include "Model.h"
 #include "Folder.h"
 #include "Connection.h"
@@ -9,44 +14,11 @@
 #include "MetaRole.h"
 #include "MetaModel.h"
 #include "MetaAttribute.h"
+#include "Visitor.h"
 #include <sstream>
 
 namespace GME
 {
-  //
-  // FCO
-  //
-  FCO::FCO (void)
-  {
-
-  }
-
-  //
-  // FCO
-  //
-  FCO::FCO (IMgaFCO * fco)
-    : Object (fco)
-  {
-
-  }
-
-  //
-  // FCO
-  //
-  FCO::FCO (const FCO & fco)
-    : Object (fco)
-  {
-
-  }
-
-  //
-  // ~FCO
-  //
-  FCO::~FCO (void)
-  {
-
-  }
-
   //
   // is_instance
   //
@@ -78,14 +50,6 @@ namespace GME
       this->object_ = fco.object_;
 
     return *this;
-  }
-
-  //
-  // attach
-  //
-  void FCO::attach (IMgaFCO * fco)
-  {
-    Object::attach (fco);
   }
 
   //
@@ -134,14 +98,6 @@ namespace GME
     VERIFY_HRESULT (this->impl ()->get_ArcheType (&fco));
 
     return fco.p;
-  }
-
-  //
-  // is_subtype
-  //
-  bool FCO::is_subtype (void) const
-  {
-    return this->basetype ();
   }
 
   //
@@ -403,5 +359,10 @@ namespace GME
     istr >> pt.y_;
 
     return pt;
+  }
+
+  void FCO::accept (GME::Visitor & visitor)
+  {
+    visitor.visit_FCO (*this);
   }
 }

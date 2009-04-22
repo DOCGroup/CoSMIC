@@ -781,7 +781,7 @@ handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
       // in any collocation group.
       for ( ; iter != iter_end; ++ iter)
       {
-        if (!iter->equals (group))
+        if (!iter->is_equal_to (group))
           iter->remove (this->cg_member_);
       }
     }

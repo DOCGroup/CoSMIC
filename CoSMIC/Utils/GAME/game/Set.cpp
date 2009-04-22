@@ -5,6 +5,7 @@
 #include "Model.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
+#include "Visitor.h"
 
 namespace GME
 {
@@ -102,7 +103,7 @@ namespace GME
 
     if (this->set_.p != 0)
       this->set_.Release ();
-    
+
     VERIFY_HRESULT (this->object_.QueryInterface (&this->set_));
     return this->set_;
   }
@@ -152,5 +153,13 @@ namespace GME
   void Set::attach (IMgaSet * set)
   {
     FCO::attach (set);
+  }
+
+  //
+  // accept
+  //
+  void Set::accept (GME::Visitor & visitor)
+  {
+    visitor.visit_Set (*this);
   }
 }

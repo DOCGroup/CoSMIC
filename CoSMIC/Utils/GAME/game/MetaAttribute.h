@@ -21,14 +21,11 @@ namespace GME
 {
 namespace Meta
 {
-  //===========================================================================
   /**
    * @class Attribute
    *
    * Wrapper class for the IMgaMetaAttribute inteface.
    */
-  //===========================================================================
-
   class GME_Export Attribute : public Base
   {
   public:
@@ -102,21 +99,21 @@ namespace Meta
      *
      * @return          The attribute's type.
      */
-    attval_enum value_type (void) const;
+    attval_enum type (void) const;
 
     /**
      * Set the attribute's type.
      *
      * @param[in]       val       The attributes type.
      */
-    void value_type (attval_enum val);
+    void type (attval_enum val);
 
     /// Helper method to the correct implementation.
     IMgaMetaAttribute * impl (void) const;
 
   private:
     /// Cached pointer to the implementation.
-    mutable CComPtr <IMgaMetaAttribute> meta_attr_;
+    mutable ATL::CComPtr <IMgaMetaAttribute> meta_attr_;
   };
 }
 }

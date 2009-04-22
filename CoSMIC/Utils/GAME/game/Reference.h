@@ -17,14 +17,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Reference
    *
    * Wrapper class for the IMgaReference interface.
    */
-  //===========================================================================
-
   class GME_Export Reference : public FCO
   {
   public:
@@ -104,6 +101,8 @@ namespace GME
      * @return          The COM interface pointer for this object.
      */
     operator IMgaReference * (void) const;
+
+    virtual void accept (GME::Visitor & visitor);
 
   private:
     /// Helper method to get the correct implementation.

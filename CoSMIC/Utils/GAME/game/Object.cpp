@@ -5,44 +5,16 @@
 #include "Exception.h"
 #include "MetaBase.h"
 #include "Project.h"
+#include "Visitor.h"
 #include <stack>
 #include <sstream>
 
+#if !defined (__GME_INLINE__)
+#include "Object.inl"
+#endif
+
 namespace GME
 {
-//
-// Object
-//
-Object::Object (void)
-{
-
-}
-
-//
-// Object
-//
-Object::Object (IMgaObject * object)
-: object_ (object)
-{
-
-}
-//
-// Object
-//
-Object::Object (const Object & obj)
-: object_ (obj.object_)
-{
-
-}
-
-//
-// ~Object
-//
-Object::~Object (void)
-{
-
-}
-
 //
 // status
 //
@@ -229,14 +201,6 @@ objtype_enum Object::type (void) const
 }
 
 //
-// operator bool
-//
-Object::operator bool (void)
-{
-  return this->object_.p != 0;
-}
-
-//
 // parent
 //
 Object Object::parent (void) const
@@ -245,14 +209,6 @@ Object Object::parent (void) const
   VERIFY_HRESULT (this->object_->GetParent (&object.object_, 0));
 
   return object;
-}
-
-//
-// attach
-//
-void Object::attach (IMgaObject * object)
-{
-  this->object_.Attach (object);
 }
 
 //
@@ -332,38 +288,6 @@ void Object::destroy (void)
 }
 
 //
-// impl
-//
-IMgaObject * Object::impl (void) const
-{
-  return this->object_.p;
-}
-
-//
-// operator ==
-//
-bool Object::operator == (const Object & obj)
-{
-  return this->equals (obj);
-}
-
-//
-// operator !=
-//
-bool Object::operator != (const Object & obj)
-{
-  return !this->equals (obj);
-}
-
-//
-// is_nil
-//
-bool Object::is_nil (void) const
-{
-  return this->object_.p == 0;
-}
-
-//
 // find_object_by_path
 //
 GME::Object Object::
@@ -403,14 +327,6 @@ children (GME::Collection_T <GME::Object> & children) const
 }
 
 //
-// release
-//
-void Object::release (void)
-{
-  this->object_.Release ();
-}
-
-//
 // project
 //
 GME::Project Object::project (void) const
@@ -424,7 +340,7 @@ GME::Project Object::project (void) const
 //
 // project
 //
-bool Object::equals (const GME::Object & obj) const
+bool Object::is_equal_to (const GME::Object & obj) const
 {
   VARIANT_BOOL equal;
   VERIFY_HRESULT (this->impl ()->get_IsEqual (obj.object_, &equal));
@@ -444,20 +360,11 @@ GME::Object Object::child_by_relative_id (long relid)
 }
 
 //
-// operator <
+// accept
 //
-bool Object::operator < (const GME::Object & obj) const
+void Object::accept (GME::Visitor & visitor)
 {
-  return this->object_.p < obj.object_.p;
+  visitor.visit_Object (*this);
 }
-
-//
-// operator >
-//
-bool Object::operator > (const GME::Object & obj) const
-{
-  return this->object_.p > obj.object_.p;
-}
-
 
 }

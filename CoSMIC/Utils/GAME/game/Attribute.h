@@ -19,14 +19,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Attribute
    *
    * Wrapper class for the IMgaAttribute interface.
    */
-  //===========================================================================
-
   class GME_Export Attribute
   {
   public:
@@ -127,7 +124,7 @@ namespace GME
 
   private:
     /// The underlying COM pointer to the attribute.
-    CComPtr <IMgaAttribute> attr_;
+    mutable ATL::CComPtr <IMgaAttribute> attr_;
   };
 };
 

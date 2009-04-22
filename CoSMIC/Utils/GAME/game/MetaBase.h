@@ -183,7 +183,7 @@ namespace Meta
 
   protected:
     /// The underlying interface pointer.
-    CComPtr <IMgaMetaBase> metabase_;
+    mutable ATL::CComPtr <IMgaMetaBase> metabase_;
   };
 }
 }

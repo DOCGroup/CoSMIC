@@ -28,6 +28,20 @@ namespace GME
   }
 
   //
+  // fcos
+  //
+  template <typename T, typename BASE>
+  size_t Folder_Model_T <T, BASE>::fcos (GME::Collection_T <FCO> & children)
+  {
+    CComPtr <IMgaFCOs> fcos;
+    VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+    // Determine how many folders there are.
+    children.attach (fcos.Detach ());
+    return children.size ();
+  }
+
+  //
   // get_children
   //
   template <typename T, typename BASE>

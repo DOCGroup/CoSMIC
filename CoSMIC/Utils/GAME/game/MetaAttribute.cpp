@@ -18,7 +18,7 @@ namespace Meta
   {
     CComPtr <IMgaMetaAttribute> attr;
 
-    VERIFY_HRESULT_THROW_EX (base.impl ()->QueryInterface (&attr), 
+    VERIFY_HRESULT_THROW_EX (base.impl ()->QueryInterface (&attr),
                              GME::Invalid_Cast ());
 
     return attr.p;
@@ -75,7 +75,7 @@ namespace Meta
   //
   // value_type
   //
-  attval_enum Attribute::value_type (void) const
+  attval_enum Attribute::type (void) const
   {
     attval_enum val;
     VERIFY_HRESULT (this->impl ()->get_ValueType (&val));
@@ -86,7 +86,7 @@ namespace Meta
   //
   // value_type
   //
-  void Attribute::value_type (attval_enum val)
+  void Attribute::type (attval_enum val)
   {
     VERIFY_HRESULT (this->impl ()->put_ValueType (val));
   }

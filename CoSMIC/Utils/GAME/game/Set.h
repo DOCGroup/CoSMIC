@@ -18,14 +18,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Set
    *
    * Wrapper class for the IMgaSet interface.
    */
-  //===========================================================================
-
   class GME_Export Set : public FCO
   {
   public:
@@ -117,6 +114,8 @@ namespace GME
      * @return        Number of elements in \a members.
      */
     size_t members (GME::Collection_T <FCO> & members) const;
+
+    virtual void accept (GME::Visitor & visitor);
 
   protected:
     /// Helper method for getting the correct implemenation.

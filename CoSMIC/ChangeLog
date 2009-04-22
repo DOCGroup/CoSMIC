@@ -1,3 +1,39 @@
+Wed Apr 22 01:12:18 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Updated the source code to reflect changes in GAME's framework.
+
+        * Utils/GAME/game/Atom.h:
+        * Utils/GAME/game/Atom.inl:
+        * Utils/GAME/game/Atom.cpp:
+        * Utils/GAME/game/Attribute.h:
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.inl:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/MetaAttribute.h:
+        * Utils/GAME/game/MetaAttribute.cpp:
+        * Utils/GAME/game/MetaBase.h:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.inl:
+        * Utils/GAME/game/Object.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+        * Utils/GAME/game/Set.h:
+        * Utils/GAME/game/Set.cpp:
+        * Utils/GAME/game/Visitor.h:
+        * Utils/GAME/game/Visitor.inl:
+        * Utils/GAME/game/Visitor.cpp:
+
+          . Added support for a Visitor object.
+
 Tue Apr 21 13:58:28 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * MPC/config/game_component.mpb:

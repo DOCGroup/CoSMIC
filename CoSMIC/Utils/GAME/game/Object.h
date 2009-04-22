@@ -19,14 +19,16 @@
 
 namespace GME
 {
-  //===========================================================================
+  // Forward decl.
+  class Visitor;
+
   /**
    * @class Object
    *
-   * Wrapper class for the IMgaObject interface.
+   * Wrapper class for the IMgaObject interface. This is also the base
+   * class for all the GME modeling elements, such as Model, FCO, and
+   * Folder.
    */
-  //===========================================================================
-
   class GME_Export Object
   {
   public:
@@ -231,7 +233,7 @@ namespace GME
      * @retval          true          The objects are equal.
      * @retval          false         The objects are not equal.
      */
-    bool operator == (const Object & object);
+    bool operator == (const Object & object) const;
 
     /**
      * Test the inequality of an object with this object.
@@ -240,7 +242,7 @@ namespace GME
      * @retval          true          The objects are not equal.
      * @retval          false         The objects are equal.
      */
-    bool operator != (const Object & object);
+    bool operator != (const Object & object) const;
 
     /**
      * Determine if the object is NIL.
@@ -255,7 +257,7 @@ namespace GME
      *
      * @param[in]       obj           Object for comparison.
      */
-    bool equals (const GME::Object & obj) const;
+    bool is_equal_to (const GME::Object & obj) const;
 
     /**
      * Find a GME object relative to this location.
@@ -295,10 +297,17 @@ namespace GME
     bool operator < (const GME::Object & obj) const;
     bool operator > (const GME::Object & obj) const;
 
+    /// Accept the GME::Visitor object.
+    virtual void accept (GME::Visitor & visitor);
+
   protected:
     /// The underlying COM pointer.
     ATL::CComPtr <IMgaObject> object_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "Object.inl"
+#endif
 
 #endif  // !defined _GME_OBJECT_H_
