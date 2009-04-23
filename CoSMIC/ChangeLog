@@ -1,3 +1,11 @@
+Thu Apr 23 23:15:03 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
+
+          . Bug fix in the generated XML documents. The child elements were
+            generated with an empty namespace attribute. This was resolved
+            by using createElementNS ().
+
 Thu Apr 23 04:58:31 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/GAME/game/be/ComponentDLL.h:

@@ -207,7 +207,6 @@ Visit_Component (const PICML::Component & component)
       Utils::XStr ("beans"),
       0);
 
-  //this->doc_->setEncoding (Utils::XStr("UTF-8"));
   this->doc_->setXmlVersion (Utils::XStr("1.0"));
 
   xercesc::DOMElement * root = this->doc_->getDocumentElement ();
@@ -230,7 +229,8 @@ Visit_Component (const PICML::Component & component)
   unique_id << this->scope_.top () << "." << name;
 
   xercesc::DOMElement * element =
-    this->doc_->createElement (Utils::XStr ("bean"));
+    this->doc_->createElementNS (Utils::XStr ("http://www.springframework.org/schema/beans"),
+                                 Utils::XStr ("bean"));
 
   element->setAttribute (Utils::XStr ("id"),
                          Utils::XStr (unique_id.str ().c_str ()));
@@ -308,7 +308,8 @@ Visit_Attribute (const PICML::Attribute & attr)
   {
     // Create an XML element for the attribute.
     xercesc::DOMElement * element =
-      this->doc_->createElement (Utils::XStr ("property"));
+      this->doc_->createElementNS (Utils::XStr ("http://www.springframework.org/schema/beans"),
+                                   Utils::XStr ("property"));
 
     element->setAttribute (Utils::XStr ("name"),
                            Utils::XStr (std::string (attr.name ())));
@@ -367,7 +368,8 @@ write_property (const std::map <std::string, std::string>::value_type & property
 {
   // Create an XML element for the attribute.
   xercesc::DOMElement * element =
-    this->doc_->createElement (Utils::XStr ("property"));
+    this->doc_->createElementNS (Utils::XStr ("http://www.springframework.org/schema/beans"),
+                                 Utils::XStr ("property"));
 
   element->setAttribute (
     Utils::XStr ("name"),
