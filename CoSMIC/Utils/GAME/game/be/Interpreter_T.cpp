@@ -7,12 +7,26 @@
 #include "../Collection_T.h"
 
 //
+// Initialize
+//
+template <typename T, typename IMPL>
+STDMETHODIMP GME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
+{
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  GME::Project project (proj);
+  return this->impl_.initialize (project) == 0 ? S_OK : S_FALSE;
+}
+
+//
 // get_InteractiveMode
 //
 template <typename T, typename IMPL>
 STDMETHODIMP GME::Interpreter_T <T, IMPL>::
 get_InteractiveMode (VARIANT_BOOL * mode)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   if (mode != 0)
   {
     *mode = this->impl_.interactive () ? VARIANT_TRUE : VARIANT_FALSE;
@@ -30,7 +44,6 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
 {
   // Get the name of the component.
   std::string temp = this->impl_.name ();
-
   ATL::CComBSTR bstr (temp.length (), temp.c_str ());
   return bstr.CopyTo (name);
 }
@@ -43,7 +56,6 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
 {
   // Get the name of the component.
   std::string temp = this->impl_.paradigm ();
-
   ATL::CComBSTR bstr (temp.length (), temp.c_str ());
   return bstr.CopyTo (paradigm);
 }
@@ -55,6 +67,8 @@ template <typename T, typename IMPL>
 STDMETHODIMP GME::Interpreter_T <T, IMPL>::
 Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     GME::Project project (proj);
@@ -97,6 +111,8 @@ template <typename T, typename IMPL>
 STDMETHODIMP GME::Interpreter_T <T, IMPL>::
 InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     GME::Project project (proj);
@@ -141,6 +157,8 @@ template <typename T, typename IMPL>
 STDMETHODIMP GME::Interpreter_T <T, IMPL>::
 ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long flags)
 {
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
   try
   {
     GME::Project project (proj);
@@ -183,7 +201,31 @@ template <typename T, typename IMPL>
 STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
 {
   std::string temp = this->impl_.progid ();
-
   CComBSTR progid (temp.length (), temp.c_str ());
   return progid.CopyTo (val);
+}
+
+//
+// Enable
+//
+template <typename T, typename IMPL>
+STDMETHODIMP GME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
+{
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  this->impl_.enable ((enable == VARIANT_TRUE) ? true : false);
+  return S_OK;
+}
+
+//
+// put_InteractiveMode
+//
+template <typename T, typename IMPL>
+STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+put_InteractiveMode (VARIANT_BOOL  mode)
+{
+  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+
+  this->impl_.interactive ((mode == VARIANT_TRUE) ? true : false);
+  return S_OK;
 }

@@ -65,22 +65,22 @@ namespace GME
   T##Module _AtlModule; \
   STDAPI DllCanUnloadNow (void) \
   { \
-    AFX_MANAGE_STATE (::AfxGetModuleState ()); \
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ()); \
     return (::AfxDllCanUnloadNow () == S_OK && _AtlModule.GetLockCount () == 0) ? S_OK : S_FALSE; \
   } \
   STDAPI DllRegisterServer (void) \
   { \
-    AFX_MANAGE_STATE (::AfxGetModuleState ()); \
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ()); \
     return _AtlModule.DllRegisterServer (); \
   } \
   STDAPI DllGetClassObject (REFCLSID rclsid, REFIID riid, void ** ppv) \
   { \
-    AFX_MANAGE_STATE (::AfxGetModuleState ()); \
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ()); \
     return _AtlModule.DllGetClassObject (rclsid, riid, ppv); \
   } \
   STDAPI DllUnregisterServer (void) \
   { \
-    AFX_MANAGE_STATE (::AfxGetModuleState ()); \
+    AFX_MANAGE_STATE (::AfxGetStaticModuleState ()); \
     return _AtlModule.DllUnregisterServer (); \
   } \
   static T##ComponentDLL theApp

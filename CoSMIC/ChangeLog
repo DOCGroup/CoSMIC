@@ -1,3 +1,13 @@
+Thu Apr 23 04:58:31 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/be/ComponentDLL.h:
+        * Utils/GAME/game/be/Interpreter_T.inl:
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Bug fix where the COM implemenation of the component failed
+            to manage its state so that resources could be loaded from
+            a DLL.
+
 Thu Apr 23 00:55:53 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * Utils/GAME/GAME.mwc:
