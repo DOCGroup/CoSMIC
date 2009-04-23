@@ -1,3 +1,9 @@
+Thu Apr 23 00:55:53 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/GAME.mwc:
+
+          . Workspace for building only GAME.
+
 Wed Apr 22 01:12:18 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:

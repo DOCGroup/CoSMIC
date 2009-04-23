@@ -1,0 +1,7 @@
+// $Id$
+
+workspace (GAME) {
+  cmdline += -include $COSMIC_ROOT/MPC/config
+
+  game
+}
