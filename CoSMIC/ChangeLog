@@ -1,3 +1,9 @@
+Fri Apr 24 21:34:00 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/gme_upgrade.mpb:
+
+          . Added missing base project.
+
 Thu Apr 23 23:15:03 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 
         * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
