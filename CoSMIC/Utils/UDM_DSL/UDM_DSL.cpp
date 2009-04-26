@@ -12,8 +12,8 @@
 
 using namespace HFSM;
 using namespace boost;
-
 using namespace HFSM;
+
 class CountVisitor : public HFSM::Visitor 
 {
   int count_;
@@ -21,61 +21,60 @@ public:
   CountVisitor () : count_(0) {}
   void Visit_RootFolder(const RootFolder &rf) {
     std::string name = std::string("RootFolder: ") + std::string(rf.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
   }
   void Visit_Transition(const Transition &t) {
     std::string name = std::string("Transition: ") + std::string(t.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
   }
   void Visit_State(const State &s) {
     std::string name = std::string("State: ") + std::string(s.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
     count_++;
   }
-  void Visit_StartState(const StartState &s) {
-    std::string name = std::string("StartState: ") + std::string(s.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
-    std::cout << name << std::endl;
-    count_++;
-  }
-  void Visit_FinalState(const FinalState &s) {
-    std::string name = std::string("FinalState: ") + std::string(s.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
-    std::cout << name << std::endl;
-    count_++;
-  }
-  void Visit_BaseState(const BaseState &s) {
-    std::string name = std::string("BaseState: ") + std::string(s.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+  void Visit_Reference(const Reference &r) {
+    std::string name = std::string("Reference: ") + std::string(r.name());
     std::cout << name << std::endl;
     count_++;
   }
   void Visit_InputSequence(const InputSequence &i) {
     std::string name = std::string("InputSequence: ") + std::string(i.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
   }
   void Visit_Sequence(const HFSM::Sequence &s) {
     std::string name = std::string("Sequence: ") + std::string(s.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
   }
   void Visit_Events(const Events &e) {
     std::string name = std::string("Events: ") + std::string(e.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
   }
   void Visit_StateMachine(const StateMachine &e) {
     std::string name = std::string("StateMachine: ") + std::string(e.name());
-    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
     std::cout << name << std::endl;
     //throw LEESA::LEESAException("Exception in StateMachine.");
   }
   //void Visit_Object(const Udm::Object &) const {}
   int get_count() { return count_; }
+};
+
+struct ReferenceCustom : public LEESA::AllChildrenKinds
+{
+  template <class T>
+  struct ChildrenKinds  {
+    typedef typename T::ChildrenKinds type;
+  };
+  template <>
+  struct ChildrenKinds<Reference> {
+    typedef State::ChildrenKinds type;
+  };
+  using LEESA::AllChildrenKinds::GetChildObjects;
+  static std::set<Udm::Object> GetChildObjects(HFSM::Reference r)
+  {
+    HFSM::State s = r.ref();
+    LEESA::VISITED.insert(s);
+    return s.GetChildObjects();
+  };
 };
 
 RootFolder create(Udm::SmartDataNetwork & nw, const char * const);
@@ -115,9 +114,9 @@ int _tmain(int argc, _TCHAR* argv[])
                      FROM(RootFolder), 
                      TO(HFSM::Sequence, Events),
                      THROUGH(InputSequence)));
-*/
+
     typedef BaseState DesiredType;
-    std::set<StateMachine> sm_set = 
+    std::vector<StateMachine> sm_set = 
       evaluate(rf, RootFolder() >> StateMachine());
     StateMachine sm = *sm_set.begin();
     std::set<Udm::Object> o_set = sm.GetChildObjects();
@@ -126,7 +125,10 @@ int _tmain(int argc, _TCHAR* argv[])
     {
       std::cout << (o.type() == Transition::meta) << std::endl;
     }
-    //evaluate(rf, RootFolder() >> FullTD(RootFolder(), vs));
+*/
+    evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
+    LEESA::VISITED.clear();
+    evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
   }
   catch(const udm_exception &e)
 	{
@@ -353,6 +355,73 @@ int leesa_example(RootFolder rf)
   return 0;
 }
 */
+
+/*
+class CountVisitor : public HFSM::Visitor 
+{
+  int count_;
+public:
+  CountVisitor () : count_(0) {}
+  void Visit_RootFolder(const RootFolder &rf) {
+    std::string name = std::string("RootFolder: ") + std::string(rf.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+  }
+  void Visit_Transition(const Transition &t) {
+    std::string name = std::string("Transition: ") + std::string(t.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+  }
+  void Visit_State(const State &s) {
+    std::string name = std::string("State: ") + std::string(s.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+    count_++;
+  }
+  void Visit_StartState(const StartState &s) {
+    std::string name = std::string("StartState: ") + std::string(s.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+    count_++;
+  }
+  void Visit_FinalState(const FinalState &s) {
+    std::string name = std::string("FinalState: ") + std::string(s.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+    count_++;
+  }
+  void Visit_BaseState(const BaseState &s) {
+    std::string name = std::string("BaseState: ") + std::string(s.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+    count_++;
+  }
+  void Visit_InputSequence(const InputSequence &i) {
+    std::string name = std::string("InputSequence: ") + std::string(i.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+  }
+  void Visit_Sequence(const HFSM::Sequence &s) {
+    std::string name = std::string("Sequence: ") + std::string(s.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+  }
+  void Visit_Events(const Events &e) {
+    std::string name = std::string("Events: ") + std::string(e.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+  }
+  void Visit_StateMachine(const StateMachine &e) {
+    std::string name = std::string("StateMachine: ") + std::string(e.name());
+    //AfxMessageBox (name.c_str(), MB_OK| MB_ICONINFORMATION);
+    std::cout << name << std::endl;
+    //throw LEESA::LEESAException("Exception in StateMachine.");
+  }
+  //void Visit_Object(const Udm::Object &) const {}
+  int get_count() { return count_; }
+};
+*/
+
 
 /*
 std::set<Udm::Object> GetChildrenTyped (Udm::Object o)

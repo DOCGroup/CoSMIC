@@ -9,6 +9,7 @@
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/equal.hpp>
+#include <set>
 
 #define CUSTOM_COMMON                            \
   template <class T>                             \
@@ -80,7 +81,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                                  
 {                                                                                  \
     typedef typename ChainExpr<K, OP##Op> expression_type;                         \
     typedef typename ET<K>::result_kind argument_kind;                             \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                    \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  \
                                                                                    \
     template <class U>                                                             \
     struct rebind                                                                  \
@@ -96,7 +97,16 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                                  
     {}                                                                             \
                                                                                    \
     explicit OP##Op (Strategy const & s)                                           \
-      : strategy_(s) {}
+      : strategy_(s) {}                                                            \
+                                                                                   \
+    result_type operator () (argument_type const & arg)                            \
+    {                                                                              \
+      BOOST_FOREACH(argument_kind kind, arg)                                       \
+      {                                                                            \
+        (*this)(kind);                                                             \
+      }                                                                            \
+      return arg;                                                                  \
+    }
 
 /**********************************************************************************/
 
@@ -127,8 +137,16 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                               \
   {}                                                                         \
                                                                              \
   explicit OP##Op (Strategy1 const &s1, Strategy2 const &s2)                 \
-    : s1_(s1), s2_ (s2)                                                      \
-  {}
+    : s1_(s1), s2_ (s2) {}                                                   \
+                                                                             \
+  result_type operator () (argument_type const & arg)                        \
+  {                                                                          \
+    BOOST_FOREACH(argument_kind kind, arg)                                   \
+    {                                                                        \
+      (*this)(kind);                                                         \
+    }                                                                        \
+    return arg;                                                              \
+  }
 
 /**********************************************************************************/
 
@@ -154,7 +172,16 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                              \
     {}                                                                      \
                                                                             \
     explicit OP##Op (Strategy const & s)                                    \
-      : strategy_(s) {}
+      : strategy_(s) {}                                                     \
+                                                                            \
+    result_type operator () (argument_type const & arg)                     \
+    {                                                                       \
+      BOOST_FOREACH(argument_kind kind, arg)                                \
+      {                                                                     \
+        (*this)(kind);                                                      \
+      }                                                                     \
+      return arg;                                                           \
+    }
 
 /**********************************************************************************/
 
@@ -208,8 +235,13 @@ struct AllChildrenKinds
   {
     typedef typename T::ChildrenKinds type;
   };
+  static std::set<Udm::Object> GetChildObjects(Udm::Object o)
+  {
+    return o.GetChildObjects();
+  };
 };
 
+std::set<Udm::Object> VISITED;
 
 template <class T, class Func> struct CallerOp;
 template <class K> struct FailOp;
@@ -217,7 +249,9 @@ template <class X, class Y, class Z> struct ChoiceOp;
 template <class X, class Y, class Z> struct SeqOp;
 template <class X, class Y, class Z> struct OneOp;
 template <class X, class Y, class Z> struct AllOp;
+template <class X, class Y, class Z> struct AllGraphOp;
 template <class X, class Y, class Z> struct FullTDOp;
+template <class X, class Y, class Z> struct FullTDGraphOp;
 template <class X, class Y, class Z> struct FullBUOp;
 
 template <class X, class Y> struct TryOp;
@@ -240,7 +274,9 @@ ExpressionTraits3Para(SeqOp);
 ExpressionTraits3Para(ChoiceOp);
 ExpressionTraits3Para(OneOp);
 ExpressionTraits3Para(AllOp);
+ExpressionTraits3Para(AllGraphOp);
 ExpressionTraits3Para(FullTDOp);
+ExpressionTraits3Para(FullTDGraphOp);
 ExpressionTraits3Para(FullBUOp);
 ExpressionTraits3Para(OnceTDOp);
 ExpressionTraits3Para(OnceBUOp);
@@ -302,7 +338,7 @@ struct FailOp : public LEESAUnaryFunction<Kind>, OpBase
 */
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
-	  result_type operator () (argument_type const & arg)                        
+	  result_kind operator () (argument_kind const & arg)                        
 	  {
       try {
         s1_(arg);
@@ -315,7 +351,7 @@ CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
 };
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Seq)
-result_type operator () (argument_type const & arg)
+result_kind operator () (argument_kind const & arg)
     {
       s1_(arg);
       s2_(arg);
@@ -324,103 +360,193 @@ result_type operator () (argument_type const & arg)
 };
 
 
-CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(One);
-result_type operator () (argument_type const & arg)
+template <class K,                                                                 
+          class Strategy = KindLit<K>,                                             
+          class Custom = AllChildrenKinds>                                         
+struct OneOp : LEESAUnaryFunction <K>, OpBase                                     
+{                                                                                  
+  typedef typename ChainExpr<K, OneOp> expression_type;                         
+  typedef typename ET<K>::result_kind argument_kind;                             
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
+                                                                                 
+  template <class U>                                                             
+  struct rebind                                                                  
+  {                                                                              
+    typedef OneOp<U, typename Strategy::template rebind<U>::type, Custom> type; 
+  };                                                                             
+                                                                                 
+  Strategy strategy_;
+  bool success_;
+                                                                                 
+  template <class X, class Y, class Z>                                           
+  explicit OneOp (OneOp<X, Y, Z> & f)                                          
+    : strategy_(f.strategy_), success_(false)                                                     
+  {}                                                                             
+                                                                                 
+  explicit OneOp (Strategy const & s)                                           
+    : strategy_(s), success_(false) {}                                                            
+                                                                                 
+  result_type operator () (argument_type const & arg)                            
+  {                                                                              
+    if (arg.isEmpty())
+        throw LEESAException<argument_type>();
+    else
     {
-      if (arg.isEmpty())
-          throw LEESAException<argument_type>();
-      else
-      {
-        typedef typename Custom::template 
-          ChildrenKinds<argument_kind>::type CustomChildren;
-        typedef typename Intersection <CustomChildren, K::ChildrenKinds>::type 
-          CommonChildrenTypes;
-        
-        bool success = false;
-        children(arg, CommonChildrenTypes(), success);
-        if(!success) 
-            throw LEESAException<argument_type>();
+      success_ = false;
+      BOOST_FOREACH(argument_kind kind, arg)                                       
+      {                 
+        try {
+          (*this)(kind); 
+          success_ = true;
+          break;
+        }
+        catch (...) {
+        }
       }
+      if(!success_) 
+        throw LEESAException<argument_type>();
+    }
+    return arg;                                                                  
+  }
+
+result_kind operator () (argument_kind const & arg)
+    {
+      typedef typename Custom::template 
+        ChildrenKinds<argument_kind>::type CustomChildren;
+      std::set<Udm::Object> objects = arg.GetChildObjects();
+      success_ = false;
+      BOOST_FOREACH(Udm::Object o, objects)
+      {
+        dispatch(o, CustomChildren());
+      }
+      if(!success_) 
+        throw LEESAException<argument_type>();
       return arg;
     }
 
   private:
     // Called when ChildrenVector is non-empty. 
     template <class ChildrenVector>
-    void children(argument_type arg, ChildrenVector, bool &success)
+    void dispatch(Udm::Object o, ChildrenVector)
     {
-      typedef typename ET<argument_type>::argument_kind K;
-      typedef typename front<ChildrenVector>::type head;
-      typedef typename pop_front<ChildrenVector>::type tail;
-      typename Strategy::template rebind<head>::type s(strategy_);
-      typedef typename ContainerGen<head>::type HeadVector;
-      HeadVector head_vector = evaluate (arg, K() >> head());
-      for (HeadVector::iterator iter = head_vector.begin();
-           iter != head_vector.end();)
+      typedef typename front<ChildrenVector>::type Head;
+      typedef typename pop_front<ChildrenVector>::type Tail;
+      if (o.type() == Head::meta)
       {
         try {
-          s(*iter);
-          success = true;
-          return;
+          typedef typename Strategy::template rebind<Head>::type HeadStrategy;
+          HeadStrategy hs(strategy_);
+          Head arg = Head::Cast(o);
+          hs(arg);
+          success_ = true;
         }
         catch (...) {
-          ++iter;
         }
       }
-      if (!success)
-        children(arg, tail(), success);
+      else
+        dispatch(o, Tail());
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector.
-    void children(argument_type, EmptyMPLVector, bool)
+    void dispatch(Udm::Object, EmptyMPLVector)
     {
     }
 	  // Called when ChildrenVector is empty as in EmptyMPLVectorB.
-    void children(argument_type, EmptyMPLVectorB, bool)
+    void dispatch(Udm::Object, EmptyMPLVectorB)
     {
     }
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
-result_type operator () (argument_type const & arg)
+result_kind operator () (argument_kind const & arg)
     {
       typedef typename Custom::template 
         ChildrenKinds<argument_kind>::type CustomChildren;
-      children(arg, CustomChildren());
+      std::set<Udm::Object> objects = arg.GetChildObjects();
+      BOOST_FOREACH(Udm::Object o, objects)
+      {
+        dispatch(o, CustomChildren());
+      }
       return arg;
     }
 
-  private:
+  protected:
     // Called when ChildrenVector is non-empty. 
     template <class ChildrenVector>
-    void children(argument_type arg, ChildrenVector)
+    void dispatch(Udm::Object o, ChildrenVector)
     {
-      typedef typename ET<argument_type>::argument_kind K;
       typedef typename front<ChildrenVector>::type Head;
       typedef typename pop_front<ChildrenVector>::type Tail;
-      typedef typename Strategy::template rebind<Head>::type HeadStrategy;
-      HeadStrategy hs(strategy_);
-      typename ContainerGen<Head>::type c = evaluate(arg, K() >> Head());
-      BOOST_FOREACH(Head h, c)
+      if(o.type() == Head::meta)
       {
-        hs(h); 
+        typedef typename Strategy::template rebind<Head>::type HeadStrategy;
+        HeadStrategy hs(strategy_);
+        Head arg = Head::Cast(o);
+        hs(arg);
       }
-      /*typedef GetChildrenOp<KindLit, typename ET<head>::argument_type > GC;
-      GC gc;
-      ChainExpr<KindLit, GC> c(KindLit(), gc);
-      hs(evaluate(arg, c));*/
-      children(arg, Tail());
+      else
+        dispatch(o, Tail());
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector.
-    void children(argument_type, EmptyMPLVector)
+    void dispatch(Udm::Object, EmptyMPLVector)
     { }
     // Called when ChildrenVector is empty as in EmptyMPLVectorB.
-    void children(argument_type, EmptyMPLVectorB)
+    void dispatch(Udm::Object, EmptyMPLVectorB)
     { }
 };
 
+template <class K,                                                                 
+          class Strategy = KindLit<K>,                                             
+          class Custom = AllChildrenKinds>                                         
+struct AllGraphOp : public AllOp<K, Strategy, Custom>
+{
+  typedef typename ChainExpr<K, AllGraphOp> expression_type;                         
+  typedef typename ET<K>::result_kind argument_kind; 
+  typedef AllOp<K, Strategy, Custom> Super;
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
+                                                                                 
+  template <class U>                                                             
+  struct rebind                                                                  
+  {                                                                              
+    typedef AllGraphOp<U, typename Strategy::template rebind<U>::type, Custom> type; 
+  };                                                                             
+                                                                                                                                                                   
+  template <class X, class Y, class Z>                                           
+  explicit AllGraphOp (AllGraphOp<X, Y, Z> & f)                                          
+    : Super(f.strategy_)                                                     
+  {}                                                                             
+                                                                                 
+  explicit AllGraphOp (Strategy const & s)                                           
+    : Super(s) {}                                                            
+
+  result_type operator () (argument_type const & arg)                            
+  {                                                                              
+    BOOST_FOREACH(argument_kind kind, arg)                                       
+    {
+      (*this)(kind);
+    }                                                                            
+    return arg;                                                                  
+  }
+  
+  result_kind operator () (argument_kind const & kind)
+  {
+    LEESA::VISITED.insert(kind);
+    typedef typename Custom::template 
+        ChildrenKinds<argument_kind>::type CustomChildren;
+    std::set<Udm::Object> objects = Custom::GetChildObjects(kind);
+    BOOST_FOREACH(Udm::Object o, objects)
+    {
+      std::set<Udm::Object>::iterator iter = LEESA::VISITED.find(o);
+      if (iter == LEESA::VISITED.end()) // visit if not visited already.
+      {
+        Super::dispatch(o, CustomChildren());
+      }
+    }
+    return kind;
+  }
+};
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef AllOp<K, FullTDOp, Custom> All;
       SeqOp<K, Strategy, All> s(strategy_, All(*this));
@@ -429,8 +555,23 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
     }
 };
 
+CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
+    result_kind operator () (argument_kind const & arg)
+    {
+      typedef AllGraphOp<K, FullTDGraphOp, Custom> AllGraph;
+      SeqOp<K, Strategy, AllGraph> s(strategy_, AllGraph(*this));
+      std::set<Udm::Object>::iterator iter = LEESA::VISITED.find(arg);
+      if (iter == LEESA::VISITED.end()) // visit if not visited already.
+      {
+        LEESA::VISITED.insert(arg);
+        s(arg);
+      }
+      return arg;
+    }
+};
+
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullBU);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef AllOp<K, FullBUOp, Custom> All;
       SeqOp<K, All, Strategy> s(All(*this), strategy_);
@@ -440,7 +581,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullBU);
 };
 
 CLASS_FOR_SP_OP_WITH_1STRATEGY(Try)
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef KindLit<argument_kind> KIND_LIT;
       ChoiceOp<K, Strategy, KIND_LIT> c (strategy_, KIND_LIT());
@@ -450,7 +591,7 @@ CLASS_FOR_SP_OP_WITH_1STRATEGY(Try)
 };
 
 CLASS_FOR_SP_OP_WITH_1STRATEGY(Repeat)
-result_type operator () (argument_type const & arg)
+result_kind operator () (argument_kind const & arg)
     {
       typedef SeqOp<K, Strategy, RepeatOp> S;
       S s(strategy_, *this);
@@ -461,7 +602,7 @@ result_type operator () (argument_type const & arg)
 };
 
 CLASS_FOR_SP_OP_WITH_1STRATEGY(RepeatLoop)
-result_type operator () (argument_type const & arg)
+result_kind operator () (argument_kind const & arg)
     {
       try {
         while(true)
@@ -474,7 +615,7 @@ result_type operator () (argument_type const & arg)
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceTD);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef OneOp<K, OnceTDOp, Custom> ONE;
       ChoiceOp<K, Strategy, ONE> c(strategy_, ONE(*this));
@@ -484,7 +625,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceTD);
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceBU);    
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef OneOp<K, OnceBUOp, Custom> ONE;
       ChoiceOp<K, ONE, Strategy> c(ONE(*this), strategy_);
@@ -494,7 +635,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceBU);
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(StopTD);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef AllOp<K, StopTDOp, Custom> ALL;
       ChoiceOp<K, Strategy, ALL> c(strategy_, ALL(*this));
@@ -504,7 +645,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(StopTD);
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(NaiveInnermost);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef OnceBUOp<K, Strategy, Custom> ONCE_BU;
       ONCE_BU once_bu(strategy_);
@@ -515,7 +656,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(NaiveInnermost);
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
-    result_type operator () (argument_type const & arg)
+    result_kind operator () (argument_kind const & arg)
     {
       typedef AllOp<K, InnermostOp, Custom>   ALL;
       typedef SeqOp<K, Strategy, InnermostOp> SEQ;
@@ -616,7 +757,9 @@ FUNCTION_FOR_SP_OP_WITH_2STRATEGIES(Seq);
 
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(One);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
+FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(AllGraph);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
+FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullBU);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceTD);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceBU);

@@ -205,8 +205,8 @@ template <class T>
 struct ContainerGen
 {
   // These types are interchangeable.
-  typedef typename std::set<T> type;
-  typedef typename std::vector<T> type2;
+  typedef typename std::vector<T> type;
+  typedef typename std::set<T> type2;
 };
 
 using boost::disable_if_c;
@@ -222,7 +222,6 @@ class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
   typedef typename ContainerGen<Kind>::type Container;
 	typedef typename ContainerGen<Kind>::type2 Container2;
-	Kind temp_kind_;
 	Container c_;
 	BOOST_CLASS_REQUIRE(Kind, LEESA, UdmKindConcept);
 	// This is an important concept. Don't remove.
@@ -245,26 +244,11 @@ public:
   KindLit (KindLit<U> const & ukindlit)
   {
 	  BOOST_MPL_ASSERT((is_base_of<Kind,U>));
-	  typename ContainerGen<U>::type in = ukindlit;
-	  typedef typename ContainerGen<U>::type::value_type UKind;
-	  BOOST_FOREACH(UKind u, in)
-	  {
-	    Kind k = u;
-		  c_.insert(c_.end(), k);
-	  }
+    c_.insert(c_.end(), ukindlit.c_.begin(), ukindlit.c_.end());
   }
   KindLit (KindLit const & k) : c_ (k.c_) {}
 	KindLit (Kind const & k) { c_.insert(c_.end(), k); }	
-	KindLit & operator = (KindLit const & rhs) 
-	{ 
-		if (this != &rhs)
-		{
-			temp_kind_ = rhs.temp_kind_;
-			c_ = rhs.c_; 
-		}
-		return *this;
-	}	
-	KindLit (Container const & c) : c_(c.begin(), c.end()) { }
+	KindLit (Container const & c) : c_(c) { }
 	KindLit (Container2 const & c2) : c_(c2.begin(), c2.end()) { }
 	void Union(Kind const & k)
 	{
@@ -277,7 +261,7 @@ public:
 	}
 	void Union(Udm::ChildrenAttr<Kind> const & ca) 
 	{
-        Container c = ca;
+    Container c = ca;
 		append(c.begin(), c.end(), c_);
 	}
 	void Union(Container const & in)
@@ -303,7 +287,16 @@ public:
 
 	iterator end() { return c_.end(); }
 	const_iterator end() const { return c_.end(); }
+	bool isEmpty() const 
+	{
+		return c_.empty();
+	}
+	operator Container () const { return c_; } 
+  operator Container2 () const { return Container2(c_.begin(), c_.end()); } 
+	result_type operator () (argument_type p) const { return p; }
 
+/* 
+  Kind temp_kind_;
 	result_kind * operator -> ()
 	{ 
 		if (this->isEmpty())
@@ -316,12 +309,16 @@ public:
 		temp_kind_ = *(this->begin()); 
 		return &temp_kind_;
 	} 
-	bool isEmpty() const 
-	{
-		return c_.empty();
-	}
-	operator Container () const { return c_; } 
-	result_type operator () (argument_type p) const { return p; }
+  KindLit & operator = (KindLit const & rhs) 
+	{ 
+		if (this != &rhs)
+		{
+			temp_kind_ = rhs.temp_kind_;
+			c_ = rhs.c_; 
+		}
+		return *this;
+	}	
+*/
 };
 
 template <class L, class R>

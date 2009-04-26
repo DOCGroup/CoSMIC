@@ -3,14 +3,31 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
  elementFormDefault="qualified" 
 >
-<!-- generated on Tue Apr 07 14:55:15 2009 -->
+<!-- generated on Sat Apr 25 19:10:47 2009 -->
 
 
-	<xsd:complexType name="FinalStateRefType">
+	<xsd:complexType name="StateType">
+		<xsd:sequence>
+			<xsd:element name="Reference" type="ReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="State" type="StateType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
 		<xsd:attribute name="position" type="xsd:string"/>
 		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="dstTransition" type="xsd:IDREFS"/>
 		<xsd:attribute name="srcTransition" type="xsd:IDREFS"/>
+		<xsd:attribute name="dstTransition" type="xsd:IDREFS"/>
+		<xsd:attribute name="referedbyReference" type="xsd:IDREFS"/>
+		<xsd:attribute name="_id" type="xsd:ID"/>
+		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
+		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
+		<xsd:attribute name="_instances" type="xsd:IDREFS"/>
+		<xsd:attribute name="_desynched_atts" type="xsd:string"/>
+		<xsd:attribute name="_real_archetype" type="xsd:boolean"/>
+		<xsd:attribute name="_subtype" type="xsd:boolean"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="ReferenceType">
+		<xsd:attribute name="position" type="xsd:string"/>
+		<xsd:attribute name="name" type="xsd:string"/>
 		<xsd:attribute name="ref" type="xsd:IDREF"/>
 		<xsd:attribute name="_id" type="xsd:ID"/>
 		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
@@ -25,49 +42,8 @@
 		<xsd:attribute name="position" type="xsd:string"/>
 		<xsd:attribute name="name" type="xsd:string"/>
 		<xsd:attribute name="Event" type="xsd:string" use="required"/>
-		<xsd:attribute name="dstTransition_end_" type="xsd:IDREF"/>
 		<xsd:attribute name="srcTransition_end_" type="xsd:IDREF"/>
-		<xsd:attribute name="_id" type="xsd:ID"/>
-		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
-		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
-		<xsd:attribute name="_instances" type="xsd:IDREFS"/>
-		<xsd:attribute name="_desynched_atts" type="xsd:string"/>
-		<xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-		<xsd:attribute name="_subtype" type="xsd:boolean"/>
-	</xsd:complexType>
-
-	<xsd:complexType name="StartStateType">
-		<xsd:sequence>
-			<xsd:element name="FinalState" type="FinalStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="FinalStateRef" type="FinalStateRefType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="StartState" type="StartStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="State" type="StateType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-		<xsd:attribute name="position" type="xsd:string"/>
-		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="dstTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="srcTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="_id" type="xsd:ID"/>
-		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
-		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
-		<xsd:attribute name="_instances" type="xsd:IDREFS"/>
-		<xsd:attribute name="_desynched_atts" type="xsd:string"/>
-		<xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-		<xsd:attribute name="_subtype" type="xsd:boolean"/>
-	</xsd:complexType>
-
-	<xsd:complexType name="FinalStateType">
-		<xsd:sequence>
-			<xsd:element name="FinalState" type="FinalStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="FinalStateRef" type="FinalStateRefType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="StartState" type="StartStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="State" type="StateType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-		<xsd:attribute name="position" type="xsd:string"/>
-		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="dstTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="srcTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="referedbyFinalStateRef" type="xsd:IDREFS"/>
+		<xsd:attribute name="dstTransition_end_" type="xsd:IDREF"/>
 		<xsd:attribute name="_id" type="xsd:ID"/>
 		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
 		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -79,9 +55,7 @@
 
 	<xsd:complexType name="StateMachineType">
 		<xsd:sequence>
-			<xsd:element name="FinalState" type="FinalStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="FinalStateRef" type="FinalStateRefType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="StartState" type="StartStateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="Reference" type="ReferenceType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="State" type="StateType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="Transition" type="TransitionType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
@@ -96,30 +70,9 @@
 		<xsd:attribute name="_subtype" type="xsd:boolean"/>
 	</xsd:complexType>
 
-	<xsd:complexType name="StateType">
-		<xsd:sequence>
-			<xsd:element name="FinalState" type="FinalStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="FinalStateRef" type="FinalStateRefType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="StartState" type="StartStateType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="State" type="StateType" minOccurs="0" maxOccurs="unbounded"/>
-		</xsd:sequence>
-		<xsd:attribute name="position" type="xsd:string"/>
-		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="dstTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="srcTransition" type="xsd:IDREFS"/>
-		<xsd:attribute name="_id" type="xsd:ID"/>
-		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
-		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
-		<xsd:attribute name="_instances" type="xsd:IDREFS"/>
-		<xsd:attribute name="_desynched_atts" type="xsd:string"/>
-		<xsd:attribute name="_real_archetype" type="xsd:boolean"/>
-		<xsd:attribute name="_subtype" type="xsd:boolean"/>
-	</xsd:complexType>
-
 	<xsd:complexType name="RootFolderType">
 		<xsd:sequence>
 			<xsd:element name="InputSequence" type="InputSequenceType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="RootFolder" type="RootFolderType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="StateMachine" type="StateMachineType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="RootFolder" type="RootFolderType" minOccurs="0" maxOccurs="unbounded"/>
 		</xsd:sequence>
@@ -134,11 +87,12 @@
 		<xsd:attribute name="_libname" type="xsd:string"/>
 	</xsd:complexType>
 
-	<xsd:complexType name="SequenceType">
+	<xsd:complexType name="EventsType">
 		<xsd:attribute name="position" type="xsd:string"/>
 		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="dstSequence_end_" type="xsd:IDREF"/>
-		<xsd:attribute name="srcSequence_end_" type="xsd:IDREF"/>
+		<xsd:attribute name="Delay" type="xsd:long" default="2"/>
+		<xsd:attribute name="dstSequence" type="xsd:IDREF"/>
+		<xsd:attribute name="srcSequence" type="xsd:IDREF"/>
 		<xsd:attribute name="_id" type="xsd:ID"/>
 		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
 		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
@@ -164,12 +118,11 @@
 		<xsd:attribute name="_subtype" type="xsd:boolean"/>
 	</xsd:complexType>
 
-	<xsd:complexType name="EventsType">
+	<xsd:complexType name="SequenceType">
 		<xsd:attribute name="position" type="xsd:string"/>
 		<xsd:attribute name="name" type="xsd:string"/>
-		<xsd:attribute name="Delay" type="xsd:long" default="2"/>
-		<xsd:attribute name="dstSequence" type="xsd:IDREF"/>
-		<xsd:attribute name="srcSequence" type="xsd:IDREF"/>
+		<xsd:attribute name="dstSequence_end_" type="xsd:IDREF"/>
+		<xsd:attribute name="srcSequence_end_" type="xsd:IDREF"/>
 		<xsd:attribute name="_id" type="xsd:ID"/>
 		<xsd:attribute name="_archetype" type="xsd:IDREF"/>
 		<xsd:attribute name="_derived" type="xsd:IDREFS"/>
