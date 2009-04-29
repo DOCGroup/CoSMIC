@@ -97,7 +97,7 @@ namespace GME
 
   protected:
     /// The underlying component interface.
-    CComPtr <IMgaComponent> component_;
+    ATL::CComPtr <IMgaComponent> component_;
   };
 }
 

@@ -1,8 +1,15 @@
+Wed Apr 29 01:24:29 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/ComponentEx.h:
+
+          . Fixed compilation errors.
+
 Sun Apr 26 01:05:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/UDM_DSL/HFSM.xme:
-		
-		  Updated paradigm with references to States. 
+
+          Updated paradigm with references to States.
 
 Sun Apr 26 01:01:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
@@ -15,8 +22,8 @@ Sun Apr 26 01:01:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/UDM_DSL/HFSM.xsd:
         * Utils/UDM_DSL/UDM_DSL.cpp:
 
-                  LEESA's SP support now handles generic graph traversals without being trapped
-                  into infinite loop.
+          LEESA's SP support now handles generic graph traversals
+          without being trapped into infinite loop.
 
 Fri Apr 24 21:34:00 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
 

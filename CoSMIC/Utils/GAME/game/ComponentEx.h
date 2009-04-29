@@ -69,7 +69,7 @@ namespace GME
 
   private:
     /// The underlying component interface.
-    mutable CComPtr <IMgaComponentEx> component_ex_;
+    mutable ATL::CComPtr <IMgaComponentEx> component_ex_;
   };
 }
 
