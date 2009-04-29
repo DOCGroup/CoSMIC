@@ -60,22 +60,45 @@ public:
 
 struct ReferenceCustom : public LEESA::AllChildrenKinds
 {
+  // See gcc bug #39906 related to explicit specialization
+  // of class member templates.
+  // http://gcc.gnu.org/bugzilla/show_bug.cgi?id=39906
+
   template <class T>
-  struct ChildrenKinds  {
+  struct ChildrenKinds 
+  {
     typedef typename T::ChildrenKinds type;
+  };  
+  template <class T>
+  struct DescendantKinds 
+  {
+    typedef typename T::DescendantKinds type;
   };
-  template <>
-  struct ChildrenKinds<Reference> {
-    typedef State::ChildrenKinds type;
-  };
+
   using LEESA::AllChildrenKinds::GetChildObjects;
   static std::set<Udm::Object> GetChildObjects(HFSM::Reference r)
   {
     HFSM::State s = r.ref();
-    LEESA::VISITED.insert(s);
-    return s.GetChildObjects();
+    if (s != Udm::null)
+    {
+      LEESA::VISITED.insert(s);
+      return s.GetChildObjects();
+    }
+    return LEESA::ObjectSet();
   };
 };
+
+/* According to the C++ language standard, explicit specialization
+   of the member template must be defined in the namespace scope. */
+template <>
+struct ReferenceCustom::ChildrenKinds<HFSM::Reference> {
+  typedef HFSM::State::ChildrenKinds type;
+};
+template <>
+struct ReferenceCustom::DescendantKinds<HFSM::Reference> {
+  typedef HFSM::State::DescendantKinds type;
+};
+
 
 RootFolder create(Udm::SmartDataNetwork & nw, const char * const);
 RootFolder open(Udm::SmartDataNetwork & nw, const char * const);
@@ -126,9 +149,18 @@ int _tmain(int argc, _TCHAR* argv[])
       std::cout << (o.type() == Transition::meta) << std::endl;
     }
 */
-    evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
-    LEESA::VISITED.clear();
-    evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
+    //evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
+    //LEESA::VISITED.clear();
+
+    /*evaluate(rf, RootFolder() 
+      >> StateMachine()
+      >> SelectByName(StateMachine(), "SM1")
+      >> GraphDescendantsOf(StateMachine(), State(), ReferenceCustom()) >> cv);*/
+    evaluate (rf, AP(vs,
+                     FROM(RootFolder), 
+                     TO(HFSM::Reference),
+                     THROUGH(HFSM::State)
+                     ));
   }
   catch(const udm_exception &e)
 	{

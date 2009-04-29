@@ -26,9 +26,9 @@
   typedef typename Super::result_type result_type;             
 
 #define LOCAL_TYPEDEFS(L, OP)                                               \
-	typedef typename ET< L >::expression_type ParentKindExpr;               \
-	typedef typename ET< OP >::argument_kind ChildKind;                     \
-	typedef typename ParentKindExpr::result_kind ParentKind;                \
+	typedef typename ET< L >::expression_type ParentKindExpr;                 \
+	typedef typename ET< OP >::argument_kind ChildKind;                       \
+	typedef typename ParentKindExpr::result_kind ParentKind;                  \
     typedef ChainExpr<ParentKindExpr, OP > ChainExpr;
 
 
@@ -292,7 +292,7 @@ public:
 		return c_.empty();
 	}
 	operator Container () const { return c_; } 
-  operator Container2 () const { return Container2(c_.begin(), c_.end()); } 
+  //operator Container2 () const { return Container2(c_.begin(), c_.end()); } 
 	result_type operator () (argument_type p) const { return p; }
 
 /* 

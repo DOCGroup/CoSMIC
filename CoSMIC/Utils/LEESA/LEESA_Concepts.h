@@ -124,7 +124,7 @@ namespace LEESA
                    boost::mpl::contains<ParentKinds, ParentKind>::value }; 
 	};
 
-  template <class ParentKind, class DescendantKind>
+  template <class ParentKind, class DescendantKind, class Customizer>
 	struct DescendantKindConcept
 	{
 		BOOST_CLASS_REQUIRE(ParentKind, LEESA, UdmKindConcept);
@@ -135,7 +135,8 @@ namespace LEESA
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
 		}
 
-    typedef typename ParentKind::DescendantKinds DescendantKinds;
+    typedef typename 
+      Customizer::template DescendantKinds<ParentKind>::type DescendantKinds;
     typedef DescendantKindConcept type;
     enum { value = UdmKindConcept<ParentKind>::value &&
                    UdmKindConcept<DescendantKind>::value && 

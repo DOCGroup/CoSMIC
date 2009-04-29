@@ -11,41 +11,20 @@
 #include <boost/mpl/equal.hpp>
 #include <set>
 
-#define CUSTOM_COMMON                            \
-  template <class T>                             \
-  struct ChildrenKinds {                         \
-     typedef typename T::ChildrenKinds type;     \
-  };                                             \
-
-#define CUSTOM_PARENT(T, ...)                          \
-  template <>                                          \
-  struct ChildrenKinds <T> {                           \
-    typedef boost::mpl::vector< __VA_ARGS__ > type;    \
-  };                                                   \
-
-#define CUSTOM_PARENT_EMPTY(T)                         \
-  template <>                                          \
-  struct ChildrenKinds <T> {                           \
-    typedef EmptyMPLVector type;                       \
-  };                                                   \
-
-#define CHILDREN(...) __VA_ARGS__
-
-/**********************************************************************************/
 
 #define FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)          \
   template <class X, class Y, class Z>                              \
   OP##Op<X, Y, Z>                                                   \
   OP (X, Y const & y, Z) {                                          \
 	typedef typename ET<X>::argument_kind argument_kind;              \
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));       \
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
     return OP##Op<X, Y, Z> (y);                                     \
   }                                                                 \
   template <class X, class Y>                                       \
   OP##Op<X, Y, AllChildrenKinds>                                    \
   OP (X, Y const & y)  {                                            \
 	typedef typename ET<X>::argument_kind argument_kind;              \
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));       \
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
     return OP##Op<X, Y, AllChildrenKinds> (y);                      \
   }
 
@@ -77,7 +56,7 @@
 template <class K,                                                                 \
           class Strategy = KindLit<K>,                                             \
           class Custom = AllChildrenKinds>                                         \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase                                     \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                      \
 {                                                                                  \
     typedef typename ChainExpr<K, OP##Op> expression_type;                         \
     typedef typename ET<K>::result_kind argument_kind;                             \
@@ -114,11 +93,11 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                                  
 template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
           class Strategy2 = KindLit<K> >                                     \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase                               \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
 {                                                                            \
   typedef typename ChainExpr<K, OP##Op> expression_type;                     \
   typedef typename ET<K>::result_kind argument_kind;                         \
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                \
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));              \
                                                                              \
   template <class U>                                                         \
   struct rebind                                                              \
@@ -152,11 +131,11 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase                               \
 
 #define CLASS_FOR_SP_OP_WITH_1STRATEGY(OP)                                  \
 template <class K, class Strategy = KindLit<K> >                            \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase                              \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
 {                                                                           \
     typedef typename ChainExpr<K, OP##Op> expression_type;                  \
 	  typedef typename ET<K>::result_kind argument_kind;                      \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));             \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));           \
                                                                             \
     template <class U>                                                      \
     struct rebind                                                           \
@@ -228,6 +207,10 @@ struct LEESAException : public std::runtime_error
   {}
 };
 
+
+typedef std::set<Udm::Object> ObjectSet;
+ObjectSet VISITED;
+
 struct AllChildrenKinds
 {
   template <class T>
@@ -235,13 +218,19 @@ struct AllChildrenKinds
   {
     typedef typename T::ChildrenKinds type;
   };
-  static std::set<Udm::Object> GetChildObjects(Udm::Object o)
+  template <class T>
+  struct DescendantKinds 
+  {
+    typedef typename T::DescendantKinds type;
+  };
+  static ObjectSet GetChildObjects(Udm::Object o)
   {
     return o.GetChildObjects();
   };
 };
 
-std::set<Udm::Object> VISITED;
+class _StrategyBase {}; // Baseclass of all the strategies. Just for documentation.
+
 
 template <class T, class Func> struct CallerOp;
 template <class K> struct FailOp;
@@ -301,7 +290,7 @@ struct CallerOp : LEESAUnaryFunction <E>, OpBase
 };
 
 template <class Kind>
-struct FailOp : public LEESAUnaryFunction<Kind>, OpBase
+struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
 {
   public:
     typedef ChainExpr<Kind, FailOp> expression_type;
@@ -363,7 +352,7 @@ result_kind operator () (argument_kind const & arg)
 template <class K,                                                                 
           class Strategy = KindLit<K>,                                             
           class Custom = AllChildrenKinds>                                         
-struct OneOp : LEESAUnaryFunction <K>, OpBase                                     
+struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 {                                                                                  
   typedef typename ChainExpr<K, OneOp> expression_type;                         
   typedef typename ET<K>::result_kind argument_kind;                             
@@ -409,20 +398,20 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase
     return arg;                                                                  
   }
 
-result_kind operator () (argument_kind const & arg)
+  result_kind operator () (argument_kind const & arg)
+  {
+    typedef typename Custom::template 
+      ChildrenKinds<argument_kind>::type CustomChildren;
+    std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
+    success_ = false;
+    BOOST_FOREACH(Udm::Object o, objects)
     {
-      typedef typename Custom::template 
-        ChildrenKinds<argument_kind>::type CustomChildren;
-      std::set<Udm::Object> objects = arg.GetChildObjects();
-      success_ = false;
-      BOOST_FOREACH(Udm::Object o, objects)
-      {
-        dispatch(o, CustomChildren());
-      }
-      if(!success_) 
-        throw LEESAException<argument_type>();
-      return arg;
+      dispatch(o, CustomChildren());
     }
+    if(!success_) 
+      throw LEESAException<argument_type>();
+    return arg;
+  }
 
   private:
     // Called when ChildrenVector is non-empty. 
@@ -461,7 +450,7 @@ result_kind operator () (argument_kind const & arg)
     {
       typedef typename Custom::template 
         ChildrenKinds<argument_kind>::type CustomChildren;
-      std::set<Udm::Object> objects = arg.GetChildObjects();
+      std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
       BOOST_FOREACH(Udm::Object o, objects)
       {
         dispatch(o, CustomChildren());
@@ -671,7 +660,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
     }
 };
 
-class VisitStrategy
+class VisitStrategy : public _StrategyBase
 {
     PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
   public:

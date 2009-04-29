@@ -14,10 +14,12 @@
 #include <boost/mpl/remove_if.hpp>
 #include <boost/mpl/placeholders.hpp>
 
-#define FROM(X)      X()
-#define TO(...)      boost::mpl::vector<__VA_ARGS__>()
-#define THROUGH(...) Through_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
-#define BYPASS(...)  Bypass_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
+#define FROM(X)        X()
+#define TO(...)        boost::mpl::vector<__VA_ARGS__>()
+#define THROUGH(...)   Through_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
+#define BYPASS(...)    Bypass_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
+#define CUSTOMIZER(X)  Customizer_is<X>()
+
 
 namespace LEESA {
 
@@ -36,27 +38,39 @@ using boost::is_base_of;
 
 
 template <class L, class H, class Custom> struct DescendantOp;
+template <class L, class H, class Custom> struct DescendantGraphOp;
 template <class Strategy, class From, class ToVector, 
-          class ThroughVector, class BypassVector> class APOp;
+          class ThroughVector, class BypassVector, class Customizer> class APOp;
 
 ExpressionTraits3Para(DescendantOp);
+ExpressionTraits3Para(DescendantGraphOp);
 
-template <class Strategy, class From, class ToVector, class ThroughVector, class BypassVector>
-struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector> >
-  : public ETBase <APOp<Strategy, From, ToVector, ThroughVector, BypassVector> > {};
 
-template <class L, class H, class Custom = AllChildrenKinds>
+template <class Strategy, 
+          class From, 
+          class ToVector, 
+          class ThroughVector, 
+          class BypassVector,
+          class Customizer>
+struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> >
+  : public ETBase <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> > {};
+
+template <class L, 
+          class H, 
+          class Customizer = LEESA::AllChildrenKinds >
 struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
 {
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
 	typedef typename ChainExpr<L, DescendantOp> expression_type;
 
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<argument_kind, result_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::
+    DescendantKindConcept<argument_kind, result_kind, Customizer>));
 
+protected:
   result_type retval_;
 
-  struct Accumulate
+  struct Accumulate : public _StrategyBase
   {
     template <class K>
     struct rebind 
@@ -72,23 +86,16 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
     void operator () (K arg)
     {
       typedef typename ET<K>::argument_kind Kind;
-      //AfxMessageBox (typeid(K).name(), MB_OK| MB_ICONINFORMATION);
       //std::cout << typeid(K).name() << arg.isEmpty() << std::endl;
       retval_.Union(evaluate(arg, Kind() >> CastFromTo(Kind(), result_kind())));
     }
     void operator () (result_type k)
     {
 		  retval_.Union(k);
-      //AfxMessageBox (typeid(result_type).name(), MB_OK| MB_ICONINFORMATION);
     }
   };
-  result_type operator () (argument_type const & arg)
-  {
-    Accumulate acc(retval_);
-    evaluate(arg, argument_kind() >> FullTD(argument_kind(), acc, FastDescendants()));
-    return retval_;
-  }
-  struct FastDescendants 
+
+  class FastDescendants : public Customizer
   {
     template <class Vector>
     struct FilterChildrenIfNotDescendant
@@ -97,9 +104,10 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
       typedef typename pop_front<Vector>::type Tail;
       typedef typename 
         if_c<is_same<Head, result_kind>::value |
-             contains <typename Head::DescendantKinds, result_kind>::value ,
+             contains <typename Customizer::template DescendantKinds<Head>::type, 
+                       result_kind>::value,
              typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
-                                Head>::type,
+                      Head>::type,
              typename FilterChildrenIfNotDescendant<Tail>::type 
         >::type type;
     };
@@ -112,22 +120,53 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
       typedef EmptyMPLVector type;
     };
 
+  public:
     template <class K>
     struct ChildrenKinds   
     {
       BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<K>));
       typedef typename 
-        Custom::template ChildrenKinds<K, result_kind>::type Children;
+        Customizer::template ChildrenKinds<K>::type Children;
       typedef typename 
         FilterChildrenIfNotDescendant<Children>::type type;
     };
-    
   };
+
+public:
+  
+  result_type operator () (argument_type const & arg)
+  {
+    Accumulate acc(retval_);
+    evaluate(arg, argument_kind() 
+      >> FullTD(argument_kind(), acc, FastDescendants()));
+    return retval_;
+  }
+};
+
+template <class L, 
+          class H, 
+          class Customizer = LEESA::AllChildrenKinds >
+struct DescendantGraphOp : DescendantOp<L, H, Customizer>
+{
+  typedef DescendantOp<L, H, Customizer> Super;
+	typedef typename ChainExpr<L, DescendantGraphOp> expression_type;
+
+  BOOST_CONCEPT_ASSERT((LEESA::
+    DescendantKindConcept<argument_kind, result_kind, Customizer>));
+
+  result_type operator () (argument_type const & arg)
+  {
+    Super::Accumulate acc(Super::retval_);
+    evaluate(arg, argument_kind() 
+      >> FullTDGraph(argument_kind(), acc, Super::FastDescendants()));
+    return Super::retval_;
+  }
 };
 
 struct __ANY {};
 struct Through_tag {};
 struct Bypass_tag {};
+struct Customizer_tag {};
 
 template <class ThroughVector>
 struct Through_Vector_is
@@ -143,11 +182,19 @@ struct Bypass_Vector_is
   typedef BypassVector type; 
 };
 
+template <class Customizer>
+struct Customizer_is
+{
+  typedef Customizer_tag tag;
+  typedef Customizer type; 
+};
+
 template <class Strategy, 
           class From, 
           class ToVector, 
           class ThroughVector, 
-          class BypassVector>
+          class BypassVector,
+          class Customizer>
 class APOp : LEESAUnaryFunction <From>, OpBase
 {
 public:
@@ -157,22 +204,22 @@ public:
 
 private:
 
-  struct RemoveBypassingTypes
+  struct RemoveBypassingTypes : public Customizer
   {
-    template <class K, class ToKind>
+    template <class K>//, class ToKind>
     struct ChildrenKinds
     {
+      typedef typename Customizer::template ChildrenKinds<K>::type Children;
       typedef typename 
-        remove_if <typename K::ChildrenKinds, 
+        remove_if <Children, 
           contains<BypassVector, ::boost::mpl::placeholders::_1> >::type type;
 
       // Check the ReachableConcept only when they are not equal.
       // i.e. something was bypassed from the children list.
-      enum { check = !equal<typename K::ChildrenKinds, type>::value };
-      BOOST_CONCEPT_ASSERT((LEESA::ReachableConcept <check, type, ToKind>));
+      enum { check = !equal<Children, type>::value };
+      //BOOST_CONCEPT_ASSERT((LEESA::ReachableConcept <check, type, ToKind>));
     };
   };
-
 
   template <class F, class ThroughVector>
   void from_through(F from, ThroughVector)
@@ -180,12 +227,16 @@ private:
     typedef typename mpl::front<ThroughVector>::type Head;
     typedef typename mpl::pop_front<ThroughVector>::type Tail;
     typedef typename ET<From>::argument_kind FromKind;
-    typename ContainerGen<Head>::type through_set
-      = evaluate(from, FromKind() >> 
-          DescendantsOf(FromKind(), Head(), RemoveBypassingTypes()));
+    typedef typename ET<From>::argument_type FromType;
+	  typedef typename ET<Head>::result_type HeadType;
+
+    DescendantGraphOp<FromType, HeadType, RemoveBypassingTypes > d;
+    typename ContainerGen<Head>::type through_set 
+      = evaluate(from, FromKind() >> d);
     BOOST_FOREACH(Head h, through_set)
     {
       strategy_(h);
+      LEESA::VISITED.erase(h);
       through_to(h, ToVector());
     }
   }
@@ -203,8 +254,12 @@ private:
     typedef typename mpl::front<ToVector>::type Head;
     typedef typename mpl::pop_front<ToVector>::type Tail;
     typedef typename ET<Through>::argument_kind ThroughKind;
-    strategy_(evaluate(through, ThroughKind() 
-          >> DescendantsOf(ThroughKind(), Head(), RemoveBypassingTypes())));
+    typedef typename ET<Through>::argument_type ThroughType;
+	  typedef typename ET<Head>::result_type HeadType;
+    
+    DescendantGraphOp<ThroughType, HeadType, RemoveBypassingTypes > d;
+    strategy_(evaluate(through, ThroughKind() >> d));
+
     through_to(through, Tail());
   }
   template <class F> void through_to(F, EmptyMPLVector) { }
@@ -217,51 +272,86 @@ public:
   APOp (Strategy s) : strategy_(s) { }
   result_type operator () (argument_type from)
   {
+    ObjectSet old_visited;
+    old_visited.swap(LEESA::VISITED);
     from_through(from, ThroughVector());
+    old_visited.swap(LEESA::VISITED);
     return from;
   }
 };
 
 
-template <class L, class H>
-DescendantOp<typename ET<L>::result_type, 
-             typename ET<H>::result_type> 
-DescendantsOf (L, H)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));
-
-	typedef typename ET<L>::argument_type argument_type;
-	typedef typename ET<H>::result_type result_type;
-
-	return DescendantOp<argument_type, result_type>();
+template <class L, class H>                                          
+DescendantOp<typename ET<L>::result_type,                                  
+             typename ET<H>::result_type>                                  
+DescendantsOf (L, H)                                                        
+{                                                                    
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));         
+                                                                     
+	typedef typename ET<L>::argument_type argument_type;               
+	typedef typename ET<H>::result_type result_type;                   
+                                                                     
+  return DescendantOp<argument_type, result_type>();                       
+}                                                                    
+                                                                     
+template <class L, class H, class Custom>                            
+DescendantOp<typename ET<L>::result_type,                                  
+             typename ET<H>::result_type,                                  
+             Custom>                                                       
+DescendantsOf (L, H, Custom)                                                
+{                                                                    
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));                                                                              \
+	typedef typename ET<L>::argument_type argument_type;               
+	typedef typename ET<H>::result_type result_type;                   
+                                                                     
+  return DescendantOp<argument_type, result_type, Custom>();               
 }
 
-template <class L, class H, class Custom>
-DescendantOp<typename ET<L>::result_type, 
-             typename ET<H>::result_type,
-             Custom> 
-DescendantsOf (L, H, Custom)
-{
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));
-
-	typedef typename ET<L>::argument_type argument_type;
-	typedef typename ET<H>::result_type result_type;
-
-	return DescendantOp<argument_type, result_type, Custom>();
+template <class L, class H>                                          
+DescendantGraphOp<typename ET<L>::result_type,                                  
+                  typename ET<H>::result_type>                                  
+GraphDescendantsOf (L, H)                                                        
+{                                                                    
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));         
+                                                                     
+	typedef typename ET<L>::argument_type argument_type;               
+	typedef typename ET<H>::result_type result_type;                   
+                                                                     
+  return DescendantGraphOp<argument_type, result_type>();                       
+}                                                                    
+                                                                     
+template <class L, class H, class Custom>                            
+DescendantGraphOp<typename ET<L>::result_type,                                  
+                  typename ET<H>::result_type,                                  
+                  Custom>                                                       
+GraphDescendantsOf (L, H, Custom)                                                
+{                                                                    
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));                                                                              \
+	typedef typename ET<L>::argument_type argument_type;               
+	typedef typename ET<H>::result_type result_type;                   
+                                                                     
+  return DescendantGraphOp<argument_type, result_type, Custom>();               
 }
+
 
 // APGen type generator implements the "Named Template Parameter" idiom.
 template <class Strategy,
           class From, 
           class ToVector, 
           class Through = Through_Vector_is<boost::mpl::vector<__ANY> >,
-          class Bypass = Bypass_Vector_is<EmptyMPLVector> >
+          class Bypass = Bypass_Vector_is<EmptyMPLVector>,
+          class Custom = Customizer_is<LEESA::AllChildrenKinds> >
 struct APGen
 {
+private:
   template <class Vector, class Key>
   struct find_param 
   {
@@ -292,11 +382,23 @@ struct APGen
   {
     typedef EmptyMPLVector type;
   };
-  typedef boost::mpl::vector<Through, Bypass> Configuration;
+  template < >
+  struct find_param <EmptyMPLVector, Customizer_tag>
+  {
+    typedef LEESA::AllChildrenKinds type;
+  };
+  template < >
+  struct find_param <EmptyMPLVectorB, Customizer_tag>
+  {
+    typedef LEESA::AllChildrenKinds type;
+  };
+  typedef boost::mpl::vector<Through, Bypass, Custom> Configuration;
   typedef typename 
     find_param<Configuration, Through_tag>::type ThroughVector;
   typedef typename 
     find_param<Configuration, Bypass_tag>::type BypassVector;
+  typedef typename 
+    find_param<Configuration, Customizer_tag>::type Customizer;
 
   template <class V1, class V2>
   struct Intersection
@@ -330,8 +432,21 @@ struct APGen
 
   BOOST_MPL_ASSERT_RELATION( VALID_PARAMETERIZATION, ==, 1 );
 
-  typedef typename APOp<Strategy, From, ToVector, ThroughVector, BypassVector> type;
+public:
+  typedef typename 
+    APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> type;
 };
+
+template <class Strategy, class From, class To, class Through, class Bypass, class Custom>
+typename 
+  APGen<Strategy, typename ET<From>::result_type, To, Through, Bypass, Custom>::type
+AP(Strategy const & s, From, To, Through, Bypass, Custom)
+{
+  typedef typename ET<From>::argument_kind from_kind;
+	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<from_kind>));
+  return typename 
+    APGen<Strategy, typename ET<From>::result_type, To, Through, Bypass, Custom>::type(s);
+}
 
 template <class Strategy, class From, class To, class Through, class Bypass>
 typename APGen<Strategy, typename ET<From>::result_type, To, Through, Bypass>::type
@@ -358,7 +473,7 @@ AP(Strategy const & s, From, To)
 {
   typedef typename ET<From>::argument_kind from_kind;
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<from_kind>));
-  return typename APGen<typename ET<From>::result_type, To>::type(s);
+  return typename APGen<Strategy, typename ET<From>::result_type, To>::type(s);
 }
 
 
