@@ -183,7 +183,7 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
 
   if (CUdmApp::interactive_)
   {
-    ::AfxMessageBox ("Descriptor files were successfully generated!",
+    ::AfxMessageBox ("Successfully generated descriptor files.",
                      MB_OK | MB_ICONINFORMATION);
   }
 
