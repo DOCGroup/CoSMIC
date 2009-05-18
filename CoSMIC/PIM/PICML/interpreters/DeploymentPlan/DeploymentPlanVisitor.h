@@ -85,6 +85,10 @@ namespace PICML
     virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
     virtual void Visit_Property(const Property&);
     virtual void Visit_DataType(const DataType&);
+    virtual void Visit_ServantArtifact (const ServantArtifact &);
+    virtual void Visit_ExecutorArtifact (const ExecutorArtifact &);
+    virtual void Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact &);
+    virtual void Visit_ComponentServantArtifact (const ComponentServantArtifact &);
 
     virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&);
     virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);
@@ -292,8 +296,7 @@ namespace PICML
   private:
     void Visit_DeploymentPlan_i (const PICML::DeploymentPlan & );
 
-    void write_artifact_execParameter (DOMElement * impl,
-                                       const std::string & name,
+    void write_artifact_execParameter (const std::string & name,
                                        const std::string & value);
 
     DOMImplementation*  impl_;
@@ -340,12 +343,6 @@ namespace PICML
 
     /// Disable the deployment plan optmizations.
     int disable_opt_;
-
-    /// Servant artifact for the implementation.
-    std::string svnt_artifact_;
-
-    /// Executor artifact for the implementation.
-    std::string exec_artifact_;
   };
 }
 

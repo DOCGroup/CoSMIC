@@ -1,3 +1,22 @@
+Mon May 18 04:38:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/ComponentImplementationArtifact.bmp:
+        * PIM/PICML/paradigms/icons/ComponentServantArtifact.bmp:
+
+          . Updated PICML so the executor/servant artifacts are primary
+            modeling elements for monolithic implementations.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+
+          . Updated the deployment plan generator per the chanages
+            above.
+
 Thu May 14 20:20:12 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:

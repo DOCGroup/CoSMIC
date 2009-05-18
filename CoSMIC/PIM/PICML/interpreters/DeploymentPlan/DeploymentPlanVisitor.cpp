@@ -313,8 +313,8 @@ namespace PICML
     }
   }
 
-  void DeploymentPlanVisitor::Visit_ImplementationArtifact (
-    const ImplementationArtifact& ia)
+  void DeploymentPlanVisitor::
+  Visit_ImplementationArtifact (const ImplementationArtifact& ia)
   {
     // We only need to continue if we need this artifact.
     if (this->disable_opt_ == 0)
@@ -420,11 +420,6 @@ namespace PICML
   CreatePropertyElement (std::string name, const Property & property)
   {
     this->push ();
-
-    if (name == "ServantEntrypoint")
-      name = "edu.vanderbilt.dre.CIAO.ServantEntrypoint";
-    else if (name == "ExecutorEntrypoint")
-      name = "component factory";
 
     this->curr_->appendChild (this->createSimpleContent ("name", name));
 
@@ -613,31 +608,77 @@ namespace PICML
                                 _1,
                                 boost::ref (*this)));
 
-    // Write the svnt/exec artifact executor parameters.
-    this->write_artifact_execParameter (ele,
-                                        "edu.vanderbilt.dre.CIAO.ServantArtifact",
-                                        this->svnt_artifact_);
+    ExecutorArtifact ea = mimpl.dstExecutorArtifact ();
 
-    this->write_artifact_execParameter (ele,
-                                        "edu.vanderbilt.dre.CIAO.ExecutorArtifact",
-                                        this->exec_artifact_);
+    if (Udm::null != ea)
+      ea.Accept (*this);
+
+    ServantArtifact sa = mimpl.dstServantArtifact ();
+
+    if (Udm::null != sa)
+      sa.Accept (*this);
+
     this->pop ();
+  }
 
-    // Erase the svnt and exec artifact variables.
-    this->svnt_artifact_.clear ();
-    this->exec_artifact_.clear ();
+  //
+  // Visit_ServantArtifact
+  //
+  void DeploymentPlanVisitor::
+  Visit_ServantArtifact (const ServantArtifact & servant)
+  {
+    ComponentServantArtifact csa = servant.dstServantArtifact_end ();
+    csa.Accept (*this);
+  }
+
+  //
+  // Visit_ExecutorArtifact
+  //
+  void DeploymentPlanVisitor::
+  Visit_ExecutorArtifact (const ExecutorArtifact & exector)
+  {
+    ComponentImplementationArtifact cia = exector.dstExecutorArtifact_end ();
+    cia.Accept (*this);
+  }
+
+  //
+  // Visit_ComponentImplementationArtifact
+  //
+  void DeploymentPlanVisitor::
+  Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact & cia)
+  {
+    this->write_artifact_execParameter ("component factory", cia.EntryPoint ());
+
+    ImplementationArtifact ia = cia.ref ();
+
+    if (Udm::null != ia)
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", ia.location ());
+  }
+
+  //
+  // Visit_ComponentServantArtifact
+  //
+  void DeploymentPlanVisitor::
+  Visit_ComponentServantArtifact (const ComponentServantArtifact & csa)
+  {
+    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantEntrypoint",
+                                        csa.EntryPoint ());
+
+    ImplementationArtifact ia = csa.ref ();
+
+    if (Udm::null != ia)
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", ia.location ());
   }
 
   //
   // write_artifact_execParameter
   //
   void DeploymentPlanVisitor::
-  write_artifact_execParameter (DOMElement * impl,
-                                const std::string & name,
+  write_artifact_execParameter (const std::string & name,
                                 const std::string & value)
   {
     DOMElement * element = this->doc_->createElement (XStr ("execParameter"));
-    impl->appendChild (element);
+    this->curr_->appendChild (element);
 
     element->appendChild (this->createSimpleContent ("name", name));
 
@@ -702,13 +743,6 @@ namespace PICML
     const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end ();
     const ImplementationArtifact ref = iaref.ref ();
     std::string name = iaref.name ();
-
-    // Determine if this is the svnt/exec artifact. We need to generate
-    // execParameter elements for these artifacts.
-    if ("ServantArtifact" == name)
-      this->svnt_artifact_ = ref.location ();
-    else if ("ExecutorArtifact" == name)
-      this->exec_artifact_ = ref.location ();
 
     // Cache the artifact.
     this->artifacts_.insert (ref);
