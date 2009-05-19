@@ -608,37 +608,17 @@ namespace PICML
                                 _1,
                                 boost::ref (*this)));
 
-    ExecutorArtifact ea = mimpl.dstExecutorArtifact ();
+    // Write the executor parameters for the required artifacts.
+    if (Udm::null != this->impl_artifact_)
+      this->impl_artifact_.Accept (*this);
 
-    if (Udm::null != ea)
-      ea.Accept (*this);
+    if (Udm::null != this->svnt_artifact_)
+      this->svnt_artifact_.Accept (*this);
 
-    ServantArtifact sa = mimpl.dstServantArtifact ();
-
-    if (Udm::null != sa)
-      sa.Accept (*this);
+    this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (Udm::null);
+    this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (Udm::null);
 
     this->pop ();
-  }
-
-  //
-  // Visit_ServantArtifact
-  //
-  void DeploymentPlanVisitor::
-  Visit_ServantArtifact (const ServantArtifact & servant)
-  {
-    ComponentServantArtifact csa = servant.dstServantArtifact_end ();
-    csa.Accept (*this);
-  }
-
-  //
-  // Visit_ExecutorArtifact
-  //
-  void DeploymentPlanVisitor::
-  Visit_ExecutorArtifact (const ExecutorArtifact & exector)
-  {
-    ComponentImplementationArtifact cia = exector.dstExecutorArtifact_end ();
-    cia.Accept (*this);
   }
 
   //
@@ -652,7 +632,10 @@ namespace PICML
     ImplementationArtifact ia = cia.ref ();
 
     if (Udm::null != ia)
-      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", ia.location ());
+    {
+      std::string id = this->unique_id (ia);
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", id);
+    }
   }
 
   //
@@ -667,7 +650,10 @@ namespace PICML
     ImplementationArtifact ia = csa.ref ();
 
     if (Udm::null != ia)
-      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", ia.location ());
+    {
+      std::string id = this->unique_id (ia);
+      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", id);
+    }
   }
 
   //
@@ -760,6 +746,16 @@ namespace PICML
 
     // Set the idref of the artifact
     artifact->setAttribute (XStr ("xmi:idref"), XStr (uniqueName));
+
+    if (PICML::ComponentImplementationArtifact::meta == iaref.type ())
+    {
+      this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (iaref);
+    }
+    else if (PICML::ComponentServantArtifact::meta == iaref.type ())
+    {
+      this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (iaref);
+    }
+
     this->pop ();
   }
 

@@ -85,8 +85,6 @@ namespace PICML
     virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
     virtual void Visit_Property(const Property&);
     virtual void Visit_DataType(const DataType&);
-    virtual void Visit_ServantArtifact (const ServantArtifact &);
-    virtual void Visit_ExecutorArtifact (const ExecutorArtifact &);
     virtual void Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact &);
     virtual void Visit_ComponentServantArtifact (const ComponentServantArtifact &);
 
@@ -343,6 +341,10 @@ namespace PICML
 
     /// Disable the deployment plan optmizations.
     int disable_opt_;
+
+    PICML::ComponentImplementationArtifact impl_artifact_;
+
+    PICML::ComponentServantArtifact svnt_artifact_;
   };
 }
 

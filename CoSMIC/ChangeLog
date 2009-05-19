@@ -1,3 +1,20 @@
+Tue May 19 03:59:47 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          . Bug fix where the <value> of the execParameter elements for
+            the servant and executor artifacts was incorrect.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . ComponentImplementationArtifact and ComponentServantArtifact
+            have the same modeling semantics as MonolithicImplementationReference
+            elements.
+
 Mon May 18 04:38:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
