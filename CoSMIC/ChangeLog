@@ -1,3 +1,12 @@
+Thu Jun 11 02:55:18 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+		
+		  Updated the installer and release notes in the preparation of 
+		  the upcoming CoSMIC release 0.6.9
+          
 Tue May 19 03:59:47 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:

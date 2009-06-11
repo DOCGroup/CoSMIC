@@ -4,7 +4,7 @@
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
            Language='1033' Codepage='1252'
-           Version='0.6.6'
+           Version='0.6.9'
            Manufacturer='Institute for Software Integrated Systems (ISIS)'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
@@ -65,7 +65,7 @@
     <FeatureRef Id='QUICKERFeature' />
     <FeatureRef Id="CoSMICCommonFeature" />
     <FeatureRef Id="vc_merge_modules" />
-    <!--FeatureRef Id='LEESAFeature' /-->
+    <FeatureRef Id='LEESAFeature' />
 
     <InstallExecuteSequence>
      <Custom Action='GMEVersion' After='InstallInitialize' >
