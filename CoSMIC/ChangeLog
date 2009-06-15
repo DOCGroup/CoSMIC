@@ -1,12 +1,27 @@
+Mon Jun 15 01:03:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/CBMLManagerd.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManagerd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          . Enabled support for the following components in CHAOS.
+
 Thu Jun 11 02:55:18 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
         * Readme.rtf:
         * ReleaseNotes.rtf:
-		
-		  Updated the installer and release notes in the preparation of 
-		  the upcoming CoSMIC release 0.6.9
-          
+
+                  Updated the installer and release notes in the preparation of
+                  the upcoming CoSMIC release 0.6.9
+
 Tue May 19 03:59:47 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
