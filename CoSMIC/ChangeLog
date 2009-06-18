@@ -1,3 +1,57 @@
+Thu Jun 18 05:01:31 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML:
+        * PSM/DQML/DDSQoS.ppt:
+        * PSM/DQML/DQML-writeup.doc:
+        * PSM/DQML/examples:
+        * PSM/DQML/examples/cs388demo.xme:
+        * PSM/DQML/interpreters:
+        * PSM/DQML/interpreters/BON2Component.h:
+        * PSM/DQML/interpreters/BON2Component.cpp:
+        * PSM/DQML/interpreters/CompIcon.ico:
+        * PSM/DQML/paradigms:
+        * PSM/DQML/paradigms/DDSQoS.xme:
+        * PSM/DQML/paradigms/icons:
+        * PSM/DQML/paradigms/icons/bookshelves-70x70.bmp:
+        * PSM/DQML/paradigms/icons/chrome-faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/deadline-50x50.bmp:
+        * PSM/DQML/paradigms/icons/deadline-70x70.bmp:
+        * PSM/DQML/paradigms/icons/dest-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/destination-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/drain-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/durability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-svc-50x50.bmp:
+        * PSM/DQML/paradigms/icons/entity-factory-50x50.bmp:
+        * PSM/DQML/paradigms/icons/faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/group-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/history-50x50.bmp:
+        * PSM/DQML/paradigms/icons/latency-50x50.bmp:
+        * PSM/DQML/paradigms/icons/lifespan-50x50.bmp:
+        * PSM/DQML/paradigms/icons/liveliness-50x50.bmp:
+        * PSM/DQML/paradigms/icons/owner-strength-50x50.bmp:
+        * PSM/DQML/paradigms/icons/ownership-50x50.bmp:
+        * PSM/DQML/paradigms/icons/paper-stack-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-factory-70x70.bmp:
+        * PSM/DQML/paradigms/icons/partition-50x50.bmp:
+        * PSM/DQML/paradigms/icons/presentation-50x50.bmp:
+        * PSM/DQML/paradigms/icons/printing-press-70x70.bmp:
+        * PSM/DQML/paradigms/icons/reader-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/resource-limits-50x50.bmp:
+        * PSM/DQML/paradigms/icons/sink-70x70.bmp:
+        * PSM/DQML/paradigms/icons/sinus-heartbeat-70x70.bmp:
+        * PSM/DQML/paradigms/icons/timebased-50x50.bmp:
+        * PSM/DQML/paradigms/icons/timebased-70x70.bmp:
+        * PSM/DQML/paradigms/icons/topic-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/transport-pri-50x50.bmp:
+        * PSM/DQML/paradigms/icons/user-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/writer-data-50x50.bmp:
+
+          Removed these files.
+
 Mon Jun 15 01:03:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
