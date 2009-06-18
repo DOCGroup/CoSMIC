@@ -1,3 +1,9 @@
+Thu Jun 18 05:43:42 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent/Component.rc:
+
+          . Fixed compiler errors on vc8.
+
 Thu Jun 18 05:06:46 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PSM/DQML:
