@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{66722E31-DE5B-4118-9B39-13FE50AFCDEC}" cdate="Fri Nov 03 11:21:13 2006" mdate="Fri Nov 03 11:21:13 2006" version="" metaguid="{6B2B493C-3756-4D76-ADCD-850E5335DEE4}" metaversion="" metaname="DDSQoS">
+	<name>Root Folder</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder">
+		<name>Root Folder</name>
+		<model id="id-0065-00000001" kind="DDSQoS" relid="0x1" childrelidcntr="0x7d">
+			<name>NewDDSQoS</name>
+			<model id="id-0065-00000003" kind="DataReader" role="DataReader" relid="0x2" childrelidcntr="0x0">
+				<name>DataReader1</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>22,8</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000004" kind="Topic" role="Topic" relid="0x3" childrelidcntr="0x0">
+				<name>Topic</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>343,343</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000005" kind="DataWriter" role="DataWriter" relid="0x4" childrelidcntr="0x0">
+				<name>DataWriter1</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>532,14</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000006" kind="DataWriter" role="DataWriter" relid="0x5" childrelidcntr="0x0">
+				<name>DataWriter2</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>539,112</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000008" kind="DataReader" role="DataReader" relid="0x7" childrelidcntr="0x0">
+				<name>DataReader2</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>49,112</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000009" kind="Subscriber" role="Subscriber" relid="0x8" childrelidcntr="0x0">
+				<name>Subscriber</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>42,329</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000000c" kind="Publisher" role="Publisher" relid="0xb" childrelidcntr="0x0">
+				<name>Publisher</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>646,331</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000000d" kind="DomainParticipant" role="DomainParticipant" relid="0x4d" childrelidcntr="0x0">
+				<name>DomainParticipant</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>777,210</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-0000000e" kind="DomainParticipantFactory" role="DomainParticipantFactory" relid="0x4e" childrelidcntr="0x0">
+				<name>DomainParticipantFactory</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>784,42</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<atom id="id-0066-00000001" kind="UserDataQosPolicy" role="UserDataQosPolicy" relid="0x53">
+				<name>UserData-default</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>289,30</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="user_value">
+					<value>Default</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="TopicDataQosPolicy" role="TopicDataQosPolicy" relid="0x56">
+				<name>TopicData-default</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>296,135</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="topic_value">
+					<value>topic</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000003" kind="GroupDataQosPolicy" role="GroupDataQosPolicy" relid="0x58">
+				<name>GroupDataQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>198,149</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="datavalue" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000004" kind="DurabilityServiceQosPolicy" role="DurabilityServiceQosPolicy" relid="0x5b">
+				<name>DurabilityService-def</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>429,30</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="history_depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="history_kind" status="meta">
+					<value>KEEP_LAST</value>
+				</attribute>
+				<attribute kind="max_instances" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="max_samples" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="max_samples_per_instance" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="service_cleanup_delay" status="meta">
+					<value>0</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000005" kind="OwnershipStrengthQosPolicy" role="OwnershipStrengthQosPolicy" relid="0x5e">
+				<name>OwnershipStrength-def</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>191,226</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ownership_value" status="meta">
+					<value>0</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000006" kind="OwnershipQosPolicy" role="OwnershipQosPolicy" relid="0x60">
+				<name>Ownership-exclusive</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>688,51</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ownership_kind">
+					<value>EXCLUSIVE</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000007" kind="TimeBasedFilterQosPolicy" role="TimeBasedFilterQosPolicy" relid="0x62">
+				<name>TimeBasedFilter-default</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>450,184</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="minimum_separation">
+					<value>0</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000008" kind="DeadlineQosPolicy" role="DeadlineQosPolicy" relid="0x64">
+				<name>DeadlineQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>324,247</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="period">
+					<value>-1</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000009" kind="PartitionQosPolicy" role="PartitionQosPolicy" relid="0x66">
+				<name>PartitionQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>590,240</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="partition_name">
+					<value>partition_name</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000a" kind="LifespanQosPolicy" role="LifespanQosPolicy" relid="0x69">
+				<name>LifespanQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>954,212</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="lifespan_duration" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000b" kind="TransportPriorityQosPolicy" role="TransportPriorityQosPolicy" relid="0x6a">
+				<name>TransportPriorityQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>905,352</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="transport_value" status="meta">
+					<value>0</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000c" kind="HistoryQosPolicy" role="HistoryQosPolicy" relid="0x6d">
+				<name>HistoryQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>268,324</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="history_depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="history_kind" status="meta">
+					<value>KEEP_LAST</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000d" kind="ResourceLimitsQosPolicy" role="ResourceLimitsQosPolicy" relid="0x71">
+				<name>ResourceLimits-def</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>513,359</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="max_instances" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="max_samples" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="max_samples_per_instance" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000e" kind="EntityFactoryQosPolicy" role="EntityFactoryQosPolicy" relid="0x75">
+				<name>EntityFactoryQosPolicy</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>968,58</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="autoenable_created_entities" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000f" kind="WriterDataLifecycleQosPolicy" role="WriterDataLifecycleQosPolicy" relid="0x7a">
+				<name>WriterDataLifecycle-def</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>576,345</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="autodispose_unregistered_instances" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000010" kind="ReaderDataLifecycleQosPolicy" role="ReaderDataLifecycleQosPolicy" relid="0x7c">
+				<name>ReaderDataLifecycle-def</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Configuration" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>198,359</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="autopurge_disposed_samples_delay" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="autopurge_nowriter_samples_delay" status="meta">
+					<value>-1</value>
+				</attribute>
+				<attribute kind="name" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<connection id="id-0068-00000001" kind="dr_topic_Connection" role="dr_topic_Connection" relid="0x10">
+				<name>dr_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000008"/>
+			</connection>
+			<connection id="id-0068-00000002" kind="dr_topic_Connection" role="dr_topic_Connection" relid="0x11">
+				<name>dr_topic_Connection</name>
+				<connpoint role="src" target="id-0065-00000003"/>
+				<connpoint role="dst" target="id-0065-00000004"/>
+			</connection>
+			<connection id="id-0068-00000004" kind="dr_sub_Connection" role="dr_sub_Connection" relid="0x13">
+				<name>dr_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000008"/>
+				<connpoint role="src" target="id-0065-00000009"/>
+			</connection>
+			<connection id="id-0068-00000005" kind="dr_sub_Connection" role="dr_sub_Connection" relid="0x14">
+				<name>dr_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000003"/>
+				<connpoint role="src" target="id-0065-00000009"/>
+			</connection>
+			<connection id="id-0068-00000008" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x17">
+				<name>dw_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000006"/>
+			</connection>
+			<connection id="id-0068-00000009" kind="dw_topic_Connection" role="dw_topic_Connection" relid="0x18">
+				<name>dw_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-00000005"/>
+			</connection>
+			<connection id="id-0068-0000000b" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x1a">
+				<name>dw_pub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000006"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
+			</connection>
+			<connection id="id-0068-0000000c" kind="dw_pub_Connection" role="dw_pub_Connection" relid="0x1b">
+				<name>dw_pub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000005"/>
+				<connpoint role="src" target="id-0065-0000000c"/>
+			</connection>
+			<connection id="id-0068-0000000d" kind="dpf_dp_Connection" role="dpf_dp_Connection" relid="0x4f">
+				<name>dpf_dp_Connection</name>
+				<connpoint role="dst" target="id-0065-0000000d"/>
+				<connpoint role="src" target="id-0065-0000000e"/>
+			</connection>
+			<connection id="id-0068-0000000e" kind="dp_pub_Connection" role="dp_pub_Connection" relid="0x50">
+				<name>dp_pub_Connection</name>
+				<connpoint role="dst" target="id-0065-0000000c"/>
+				<connpoint role="src" target="id-0065-0000000d"/>
+			</connection>
+			<connection id="id-0068-0000000f" kind="dp_topic_Connection" role="dp_topic_Connection" relid="0x51">
+				<name>dp_topic_Connection</name>
+				<connpoint role="dst" target="id-0065-00000004"/>
+				<connpoint role="src" target="id-0065-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000010" kind="dp_sub_Connection" role="dp_sub_Connection" relid="0x52">
+				<name>dp_sub_Connection</name>
+				<connpoint role="dst" target="id-0065-00000009"/>
+				<connpoint role="src" target="id-0065-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000011" kind="dr_userdata_Connection" role="dr_userdata_Connection" relid="0x54">
+				<name>dr_userdata_Connection</name>
+				<connpoint role="src" target="id-0065-00000003"/>
+				<connpoint role="dst" target="id-0066-00000001"/>
+			</connection>
+			<connection id="id-0068-00000012" kind="dw_userdata_Connection" role="dw_userdata_Connection" relid="0x55">
+				<name>dw_userdata_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-00000001"/>
+			</connection>
+			<connection id="id-0068-00000013" kind="topic_topicdata_Connection" role="topic_topicdata_Connection" relid="0x57">
+				<name>topic_topicdata_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-00000002"/>
+			</connection>
+			<connection id="id-0068-00000014" kind="sub_groupdata_Connection" role="sub_groupdata_Connection" relid="0x59">
+				<name>sub_groupdata_Connection</name>
+				<connpoint role="src" target="id-0065-00000009"/>
+				<connpoint role="dst" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-00000015" kind="pub_groupdata_Connection" role="pub_groupdata_Connection" relid="0x5a">
+				<name>pub_groupdata_Connection</name>
+				<connpoint role="src" target="id-0065-0000000c"/>
+				<connpoint role="dst" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-00000016" kind="dw_dursvc_Connection" role="dw_dursvc_Connection" relid="0x5c">
+				<name>dw_dursvc_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-00000004"/>
+			</connection>
+			<connection id="id-0068-00000017" kind="topic_dursvc_Connection" role="topic_dursvc_Connection" relid="0x5d">
+				<name>topic_dursvc_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-00000004"/>
+			</connection>
+			<connection id="id-0068-00000018" kind="dw_ownerstrength_Connection" role="dw_ownerstrength_Connection" relid="0x5f">
+				<name>dw_ownerstrength_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-00000005"/>
+			</connection>
+			<connection id="id-0068-00000019" kind="dw_ownership_Connection" role="dw_ownership_Connection" relid="0x61">
+				<name>dw_ownership_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-00000006"/>
+			</connection>
+			<connection id="id-0068-0000001a" kind="dr_timebased_Connection" role="dr_timebased_Connection" relid="0x63">
+				<name>dr_timebased_Connection</name>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-00000007"/>
+			</connection>
+			<connection id="id-0068-0000001b" kind="dr_deadline_Connection" role="dr_deadline_Connection" relid="0x65">
+				<name>dr_deadline_Connection</name>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-00000008"/>
+			</connection>
+			<connection id="id-0068-0000001c" kind="pub_part_Connection" role="pub_part_Connection" relid="0x67">
+				<name>pub_part_Connection</name>
+				<connpoint role="src" target="id-0065-0000000c"/>
+				<connpoint role="dst" target="id-0066-00000009"/>
+			</connection>
+			<connection id="id-0068-0000001d" kind="sub_part_Connection" role="sub_part_Connection" relid="0x68">
+				<name>sub_part_Connection</name>
+				<connpoint role="src" target="id-0065-00000009"/>
+				<connpoint role="dst" target="id-0066-00000009"/>
+			</connection>
+			<connection id="id-0068-0000001e" kind="topic_lifespan_Connection" role="topic_lifespan_Connection" relid="0x6b">
+				<name>topic_lifespan_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+			</connection>
+			<connection id="id-0068-0000001f" kind="topic_transpri_Connection" role="topic_transpri_Connection" relid="0x6c">
+				<name>topic_transpri_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-0000000b"/>
+			</connection>
+			<connection id="id-0068-00000020" kind="topic_history_Connection" role="topic_history_Connection" relid="0x6e">
+				<name>topic_history_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+			</connection>
+			<connection id="id-0068-00000021" kind="dr_history_Connection" role="dr_history_Connection" relid="0x6f">
+				<name>dr_history_Connection</name>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+			</connection>
+			<connection id="id-0068-00000022" kind="dw_history_Connection" role="dw_history_Connection" relid="0x70">
+				<name>dw_history_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-0000000c"/>
+			</connection>
+			<connection id="id-0068-00000023" kind="topic_res_Connection" role="topic_res_Connection" relid="0x72">
+				<name>topic_res_Connection</name>
+				<connpoint role="src" target="id-0065-00000004"/>
+				<connpoint role="dst" target="id-0066-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000024" kind="dw_res_Connection" role="dw_res_Connection" relid="0x73">
+				<name>dw_res_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000025" kind="dr_res_Connection" role="dr_res_Connection" relid="0x74">
+				<name>dr_res_Connection</name>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-0000000d"/>
+			</connection>
+			<connection id="id-0068-00000026" kind="sub_entityfactory_Connection" role="sub_entityfactory_Connection" relid="0x76">
+				<name>sub_entityfactory_Connection</name>
+				<connpoint role="src" target="id-0065-00000009"/>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+			</connection>
+			<connection id="id-0068-00000027" kind="pub_entityfactory_Connection" role="pub_entityfactory_Connection" relid="0x77">
+				<name>pub_entityfactory_Connection</name>
+				<connpoint role="src" target="id-0065-0000000c"/>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+			</connection>
+			<connection id="id-0068-00000028" kind="dp_entityfactory_Connection" role="dp_entityfactory_Connection" relid="0x78">
+				<name>dp_entityfactory_Connection</name>
+				<connpoint role="src" target="id-0065-0000000d"/>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+			</connection>
+			<connection id="id-0068-00000029" kind="dpfactory_entityfactory_Connection" role="dpfactory_entityfactory_Connection" relid="0x79">
+				<name>dpfactory_entityfactory_Connection</name>
+				<connpoint role="src" target="id-0065-0000000e"/>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+			</connection>
+			<connection id="id-0068-0000002a" kind="dw_writerdatalifecycle_Connection" role="dw_writerdatalifecycle_Connection" relid="0x7b">
+				<name>dw_writerdatalifecycle_Connection</name>
+				<connpoint role="src" target="id-0065-00000006"/>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+			</connection>
+			<connection id="id-0068-0000002b" kind="dr_readerdatalifecycle_Connection" role="dr_readerdatalifecycle_Connection" relid="0x7d">
+				<name>dr_readerdatalifecycle_Connection</name>
+				<connpoint role="src" target="id-0065-00000008"/>
+				<connpoint role="dst" target="id-0066-00000010"/>
+			</connection>
+		</model>
+	</folder>
+</project>
