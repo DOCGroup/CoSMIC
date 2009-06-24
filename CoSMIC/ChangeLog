@@ -1,3 +1,11 @@
+Wed Jun 24 21:21:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/wix.mpb:
+        * MPC/config/wix_ui.mpb:
+        * MPC/config/wix_xml.mpb:
+
+          Moved these files to MPC.
+
 Thu Jun 18 05:43:42 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/CIDLComponent/Component.rc:
