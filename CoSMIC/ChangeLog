@@ -1,3 +1,47 @@
+Sat Jun 27 22:42:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/Component.def:
+        * PSM/DQML/interpreters/DQML.mpc:
+        * PSM/DQML/interpreters/StdAfx.h:
+        * PSM/DQML/interpreters/StdAfx.cpp:
+        * cosmic.mwc:
+
+           . Added DQML to the default CoSMIC build.
+
+        * PSM/DQML/interpreters/BON.h:
+        * PSM/DQML/interpreters/BON.cpp:
+        * PSM/DQML/interpreters/BON2Component.vcproj.old:
+        * PSM/DQML/interpreters/BONImpl.h:
+        * PSM/DQML/interpreters/BONImpl.cpp:
+        * PSM/DQML/interpreters/Builder.h:
+        * PSM/DQML/interpreters/Builder.cpp:
+        * PSM/DQML/interpreters/ComHelp.h:
+        * PSM/DQML/interpreters/ComHelp.cpp:
+        * PSM/DQML/interpreters/Common.h:
+        * PSM/DQML/interpreters/Common.cpp:
+        * PSM/DQML/interpreters/ComponentConfig.old:
+        * PSM/DQML/interpreters/ComponentDll.h:
+        * PSM/DQML/interpreters/ComponentDll.cpp:
+        * PSM/DQML/interpreters/ComponentObj.h:
+        * PSM/DQML/interpreters/ComponentObj.cpp:
+        * PSM/DQML/interpreters/Events.h:
+        * PSM/DQML/interpreters/Events.cpp:
+        * PSM/DQML/interpreters/Exceptions.h:
+        * PSM/DQML/interpreters/Exceptions.cpp:
+        * PSM/DQML/interpreters/Extensions.h:
+        * PSM/DQML/interpreters/Extensions.cpp:
+        * PSM/DQML/interpreters/GMECOM.H:
+        * PSM/DQML/interpreters/GMESources.txt:
+        * PSM/DQML/interpreters/MON.h:
+        * PSM/DQML/interpreters/MON.cpp:
+        * PSM/DQML/interpreters/MONImpl.h:
+        * PSM/DQML/interpreters/MONImpl.cpp:
+        * PSM/DQML/interpreters/UpgradeLog.XML:
+        * PSM/DQML/interpreters/Utils.h:
+        * PSM/DQML/interpreters/Utils.cpp:
+
+          Removed these files.
+
 Wed Jun 24 21:21:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/wix.mpb:

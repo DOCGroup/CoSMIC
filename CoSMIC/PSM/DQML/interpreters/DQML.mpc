@@ -1,0 +1,50 @@
+// $Id$
+
+project (DQML_Model_Interpreter) : cosmic_lib {
+  sharedname = DQML_Model_Interpreter
+
+  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
+  macros   += _AFXDLL BUILDER_OBJECT_NETWORK_V2
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  specific (prop:windows) {
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    compile_flags += /wd4355
+  }
+
+  specific (prop:windows) {
+    link_options += /DEF:Component.def
+  }
+
+  Source_Files {
+    BON2Component.cpp
+
+    $(GME_ROOT)\SDK\BON\ComHelp.cpp
+    $(GME_ROOT)\SDK\BON\ComponentDll.cpp
+    $(GME_ROOT)\SDK\BON\ComponentObj.cpp
+    $(GME_ROOT)\SDK\BON\ComponentLib.idl
+
+    $(GME_ROOT)\SDK\BON\BON.cpp
+    $(GME_ROOT)\SDK\BON\BONImpl.cpp
+    $(GME_ROOT)\SDK\BON\Common.cpp
+    $(GME_ROOT)\SDK\BON\Events.cpp
+    $(GME_ROOT)\SDK\BON\Exceptions.cpp
+    $(GME_ROOT)\SDK\BON\Extensions.cpp
+    $(GME_ROOT)\SDK\BON\MON.cpp
+    $(GME_ROOT)\SDK\BON\MONImpl.cpp
+    $(GME_ROOT)\SDK\BON\Utils.cpp
+  }
+
+  Header_Files {
+    ComponentConfig.h
+    Resource.h
+
+    $(GME_ROOT)\SDK\BON\GMECOM.h
+  }
+
+  Resource_Files {
+    Component.rc
+  }
+}
