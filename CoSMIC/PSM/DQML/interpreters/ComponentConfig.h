@@ -7,29 +7,29 @@
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "7FB31A56-DB6A-43EF-8C50-64269A786DA0"
-#define TYPELIB_NAME "MGA Interpreter TypeLibrary (Configuration-Formatter)"
+#define TYPELIB_NAME "MGA Interpreter TypeLibrary (DQML)"
 #define COCLASS_UUID "34DA5EC5-548D-4614-B338-A2E96CF6B1E0"
-#define COCLASS_NAME "MGA Interpreter CoClass (Configuration-Formatter)"
-#define COCLASS_PROGID "MGA.Interpreter.Configuration-Formatter"
+#define COCLASS_NAME "MGA Interpreter CoClass (DQML)"
+#define COCLASS_PROGID "MGA.Interpreter.DQML"
 
 
 // This name will appear in the popup window for interpreter selection.
-#define COMPONENT_NAME "Configuration-Formatter"
+#define COMPONENT_NAME "DQML"
 
 
 // This text will appear in the toolbar icon tooltip and in the menu.
-#define TOOLTIP_TEXT "Configuration-Formatter Interpreter"
+#define TOOLTIP_TEXT "DQML"
 
 
 // This #define determines the interpreter type:
 #define GME_INTERPRETER
 // The name of the paradigm(s). The GME will use this component
 // for this paradigm. Separate the names of paradigms by commas.
-#define PARADIGMS "DDSQoS"
+#define PARADIGMS "DQML"
 
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_BASE C:/Program Files/GME
+#define GME_BASE .
 
 
 #define BON_ICON_SUPPORT

@@ -1,3 +1,19 @@
+Sun Jun 28 00:54:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/ComponentConfig.h:
+
+          . Fixed a bug in the configuration file.
+
+        * PSM/DQML/interpreters/DQML.mpc:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          . Updated the name of DQML's paradigm.
+
+        * PSM/DQML/paradigms/DDSQoS.xme:
+        * PSM/DQML/paradigms/DDSQoS.xmp:
+
+          Removed these files.
+
 Sat Jun 27 22:42:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/Component.def:

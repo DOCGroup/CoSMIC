@@ -1,6 +1,6 @@
 // $Id$
 
-project (DQML_Model_Interpreter) : cosmic_lib {
+project (DQML_Model_Interpreter) : register, cosmic_lib {
   sharedname = DQML_Model_Interpreter
 
   includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)

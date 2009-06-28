@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="DDSQoS" guid="{95773C85-7B9F-4906-BC0C-6F7F3EE128DA}" cdate="Mon Oct 09 18:20:04 2006" mdate="Mon Oct 09 18:20:04 2006" >
+<paradigm name="DQML" guid="{0A1DD473-4A44-499C-A747-8A1F2156021C}" cdate="Sat Jun 27 19:48:31 2009" mdate="Sat Jun 27 19:48:31 2009" >
 
 	<comment></comment>
 
