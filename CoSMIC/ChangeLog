@@ -1,3 +1,10 @@
+Sun Jun 28 00:55:55 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/DQML_Model_Interpreter.reg:
+        * PSM/DQML/interpreters/DQML_Model_Interpreterd.reg:
+
+          . Missing files for registering DQML interpreter.
+
 Sun Jun 28 00:54:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/ComponentConfig.h:
