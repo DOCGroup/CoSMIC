@@ -1,13 +1,13 @@
-project {
-  lit_libs += msi
-  macros += _MBCS _USRDLL
-  sharedname = RegisterParadigm
-  libout = $(COSMIC_ROOT)/lib
-  dllout = $(COSMIC_ROOT)/bin
+// $Id$
 
-  specific (vc6,vc7,vc71,vc8) {
-     link_options += /DEF:RegisterParadigm.def
-  }
+project : acedefaults, cosmic_lib {
+  sharedname = RegisterParadigm
+
+  dynamicflags += COSMIC_MSI_BUILD_DLL _MBCS _USRDLL
+  lit_libs     += msi
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
 
   specific {
      midl_includes += $(GME_ROOT)/Interfaces
@@ -22,11 +22,5 @@ project {
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/Meta.idl
     RegisterParadigm.cpp
-  }
-
-  Header_Files {
-    Mga.h
-    Meta.h
-    MgaUtil.h
   }
 }

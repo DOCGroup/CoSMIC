@@ -1,3 +1,16 @@
+Thu Jul  2 05:06:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/RegisterParadigm/CoSMIC_Msi_export.h:
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+
+          . First pass at improving the implementation of the custom
+            actions in CoSMIC.
+
 Sun Jun 28 00:55:55 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/DQML_Model_Interpreter.reg:

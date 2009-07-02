@@ -1,30 +1,15 @@
 // $Id$
-// RegisterParadigm.cpp : Defines the entry point for the DLL application.
-//
 
-#include <windows.h>
-#include <msiquery.h>
-#include <objbase.h>
-#include <stdlib.h>
-#include <malloc.h>
-#include <string.h>
-#include <string>
-#include <vector>
-#include <sstream>
-#include <fstream>
-
+#include "StdAfx.h"
+#include "RegisterParadigm.h"
 #include "mgautil.h"
 
 #define PARADIGMCOST 30000
 
-BOOL APIENTRY DllMain(HANDLE hModule, DWORD  ul_reason_for_call,
-                      LPVOID lpReserved)
-{
-  return TRUE;
-}
-
-
-const TCHAR* LastError()
+//
+// LastError
+//
+static const TCHAR * LastError (void)
 {
   static TCHAR lpMsgBuf[65536];
   FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, ::GetLastError(),
@@ -33,23 +18,27 @@ const TCHAR* LastError()
   return lpMsgBuf;
 }
 
-
-void InitProgressBar(MSIHANDLE hInstall, int nSteps, int nStepSize,
-                     const char* szActionName,
-                     const char* szDescription,
-                     const char* szTemplate)
+//
+// InitProgressBar
+//
+static void InitProgressBar (MSIHANDLE hInstall,
+                             int nSteps,
+                             int nStepSize,
+                             const char* szActionName,
+                             const char* szDescription,
+                             const char* szTemplate)
 {
   MSIHANDLE nTotalCost = nSteps * nStepSize;
   PMSIHANDLE hRec = MsiCreateRecord(3);
 
-  MsiRecordSetString(hRec, 1, szActionName);	// action name
-  MsiRecordSetString(hRec, 2, szDescription);	// description
-  MsiRecordSetString(hRec, 3, szTemplate);	// template for ACTIONDATA
+  MsiRecordSetString(hRec, 1, szActionName);  // action name
+  MsiRecordSetString(hRec, 2, szDescription);  // description
+  MsiRecordSetString(hRec, 3, szTemplate);  // template for ACTIONDATA
   int nResult = MsiProcessMessage(hInstall,
                                   INSTALLMESSAGE_ACTIONSTART,
                                   hRec);
 
-  MsiRecordSetInteger(hRec, 1, 0);	    // reset PB, set the total ticks
+  MsiRecordSetInteger(hRec, 1, 0);      // reset PB, set the total ticks
   MsiRecordSetInteger(hRec, 2, nTotalCost); // est. total ticks
   MsiRecordSetInteger(hRec, 3, 0);          // forward direction
   nResult = MsiProcessMessage(hInstall,
@@ -64,16 +53,18 @@ void InitProgressBar(MSIHANDLE hInstall, int nSteps, int nStepSize,
                               hRec);
 }
 
-
-void SendMsgToProgressBar(MSIHANDLE hInstall,
-                          const char* szMessage)
+//
+// SendMsgToProgressBar
+//
+static void SendMsgToProgressBar (MSIHANDLE hInstall,
+                                  const char* szMessage)
 {
   MSIHANDLE hProgressRec = MsiCreateRecord(3);
   MSIHANDLE hRec = MsiCreateRecord(1);
 
-  MsiRecordSetInteger(hProgressRec, 1, 2);	// increment the PB
-  MsiRecordSetInteger(hProgressRec, 2, 1);	// ignored
-  MsiRecordSetInteger(hProgressRec, 3, 0);	// unused
+  MsiRecordSetInteger(hProgressRec, 1, 2);  // increment the PB
+  MsiRecordSetInteger(hProgressRec, 2, 1);  // ignored
+  MsiRecordSetInteger(hProgressRec, 3, 0);  // unused
 
   MsiRecordSetString(hRec, 1, szMessage); // set the progress bar message
 
@@ -85,8 +76,12 @@ void SendMsgToProgressBar(MSIHANDLE hInstall,
                               hProgressRec);
 }
 
-
-void SendErrorMsg(MSIHANDLE hInstall, const char* svErrorMessage, int nFatal)
+//
+// SendErrorMsg
+//
+static void SendErrorMsg (MSIHANDLE hInstall,
+                          const char* svErrorMessage,
+                          int nFatal)
 {
   int hRec = MsiCreateRecord(1);
   MsiRecordSetString(hRec, 0, "Error occured: [1]");
@@ -96,7 +91,12 @@ void SendErrorMsg(MSIHANDLE hInstall, const char* svErrorMessage, int nFatal)
                     hRec);
 }
 
-char* GetRegistryValue (HKEY key, const char* keyName, const char* name)
+//
+// GetRegistryValue
+//
+static char* GetRegistryValue (HKEY key,
+                               const char* keyName,
+                               const char* name)
 {
   HKEY hKeyLocal;
 
@@ -122,11 +122,14 @@ char* GetRegistryValue (HKEY key, const char* keyName, const char* name)
   return (char*)buf;
 }
 
-std::vector <std::string> create_paradigms_vector ()
+//
+// create_paradigms_vector
+//
+static std::vector <std::string> create_paradigms_vector (void)
 {
-  /* Add any new DSML paradigm names here. 
+  /* Add any new DSML paradigm names here.
      You should not need to modify any other
-	 parts of this source file.
+   parts of this source file.
   */
 
   std::vector <std::string> paradigms;
@@ -137,34 +140,40 @@ std::vector <std::string> create_paradigms_vector ()
   return paradigms;
 }
 
-std::vector <std::string>
+//
+// filter_unregistered_paradigms
+//
+static std::vector <std::string>
 filter_unregistered_paradigms (const std::vector <std::string> &paradigms)
 {
   // Only leave those paradigms in the vector that are installed.
-  // E.g., If PICML is installed then 
+  // E.g., If PICML is installed then
   // "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm"
   // will be set.
   std::vector <std::string> temp;
   for (std::vector <std::string>::const_iterator iter (paradigms.begin());
-	   iter != paradigms.end ();
-	   ++iter)
+     iter != paradigms.end ();
+     ++iter)
   {
-	  std::ostringstream ostr;
-	  ostr << *iter << "Paradigm";
-	  char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
-		                              "SOFTWARE\\ISIS\\CoSMIC",
-									  ostr.str().c_str());
+    std::ostringstream ostr;
+    ostr << *iter << "Paradigm";
+    char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
+                                  "SOFTWARE\\ISIS\\CoSMIC",
+                    ostr.str().c_str());
       if (value != 0)
-	  {   
-		  // It the registry entry is found then select the 
-		  // paradigm for registration.
-		  temp.push_back (*iter);
-	  }
+    {
+      // It the registry entry is found then select the
+      // paradigm for registration.
+      temp.push_back (*iter);
+    }
   }
   return temp;
 }
 
-bool RegisterParadigm (const std::string& paradigm)
+//
+// RegisterParadigm
+//
+static bool RegisterParadigm (const std::string& paradigm)
 {
   //Initialize the OLE libraries
   HRESULT hr = ::CoInitialize(NULL);
@@ -204,9 +213,10 @@ bool RegisterParadigm (const std::string& paradigm)
   return true;
 }
 
-
-
-UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
+//
+// RegisterParadigms
+//
+UINT RegisterParadigms (MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -223,14 +233,14 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
     {
       SendErrorMsg (hInstall, "Unable to access Registry Key "
                     "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
-	  MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "0");
+    MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "0");
       return ERROR_INSTALL_FAILURE;
     }
 
   MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "1");
 
-  std::vector<std::string> paradigms 
-	  = filter_unregistered_paradigms (create_paradigms_vector());
+  std::vector<std::string> paradigms
+    = filter_unregistered_paradigms (create_paradigms_vector());
 
   std::string paradigm_ext (".xmp");
 
@@ -242,8 +252,8 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
       std::string svParadigmName = *iter;
       SendMsgToProgressBar(hInstall, svParadigmName.c_str());
       std::string targetParadigm ("XML=");
-      targetParadigm += std::string(value) + "paradigms\\" 
-		             + svParadigmName + "\\" + svParadigmName + paradigm_ext;
+      targetParadigm += std::string(value) + "paradigms\\"
+                 + svParadigmName + "\\" + svParadigmName + paradigm_ext;
       if (!RegisterParadigm (targetParadigm))
       {
         std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
@@ -257,7 +267,10 @@ UINT __stdcall RegisterParadigms(MSIHANDLE hInstall)
   return ERROR_SUCCESS;
 }
 
-bool UnRegisterParadigm (const std::string& paradigmName)
+//
+// UnregisterParadigm
+//
+static bool UnregisterParadigm (const std::string & paradigmName)
 {
   //Initialize the OLE libraries
   HRESULT hr = ::CoInitialize(NULL);
@@ -296,7 +309,10 @@ bool UnRegisterParadigm (const std::string& paradigmName)
   return true;
 }
 
-UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
+//
+// UnregisterParadigms
+//
+UINT UnregisterParadigms (MSIHANDLE hInstall)
 {
   // installable paradigm number
   int nParadigmNum = 1;
@@ -306,8 +322,8 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
                   "Paradigm Uninstall",
                   "UnRegistering Paradigms from GME.", "UnRegistering [1]");
 
-  std::vector<std::string> paradigms 
-	  = filter_unregistered_paradigms (create_paradigms_vector());
+  std::vector<std::string> paradigms
+    = filter_unregistered_paradigms (create_paradigms_vector());
 
   for (std::vector<std::string>::const_iterator iter = paradigms.begin();
        iter != paradigms.end();
@@ -316,7 +332,8 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
       // UnRegister the PICML paradigm
       std::string svParadigmName = *iter;
       SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-      if (!UnRegisterParadigm (svParadigmName))
+
+      if (!UnregisterParadigm (svParadigmName))
         {
           std::string errorMsg ("Unable to unregister Paradigm " +
                                 svParadigmName);
@@ -329,70 +346,78 @@ UINT __stdcall UnRegisterParadigms (MSIHANDLE hInstall)
   return ERROR_SUCCESS;
 }
 
-UINT check_GME_version (std::string const & version)
+//
+// check_GME_version
+//
+static UINT check_GME_version (std::string const & version)
 {
-	const char * const GME_ROOT = getenv("GME_ROOT");
-	std::string path = GME_ROOT;
-	path += "\\Interfaces\\GMEVersion.h";
+  const char * const GME_ROOT = getenv("GME_ROOT");
+  std::string path = GME_ROOT;
+  path += "\\Interfaces\\GMEVersion.h";
 
-	std::ifstream infile(path.c_str());
-	if (infile)
-	{
-		std::string token;
-		int major = 0, minor = 0, plevel = 0;
-		while (infile >> token)
-		{
-			if (token == "GME_VERSION_MAJOR")
-				infile >> major;
-			else if (token == "GME_VERSION_MINOR")
-				infile >> minor;
-			else if (token == "GME_VERSION_PLEVEL")
-			{
-				infile >> plevel;
-				break;
-			}
-		}
-		std::ostringstream ostr;
-		ostr << major << "." << minor << "." << plevel;
-		if (ostr.str() == version)
-			return ERROR_SUCCESS;
-		else
-			return ERROR_INSTALL_FAILURE;
-	}
-	else
-	{
-		return ERROR_INSTALL_FAILURE;
-	}
+  std::ifstream infile(path.c_str());
+  if (infile)
+  {
+    std::string token;
+    int major = 0, minor = 0, plevel = 0;
+    while (infile >> token)
+    {
+      if (token == "GME_VERSION_MAJOR")
+        infile >> major;
+      else if (token == "GME_VERSION_MINOR")
+        infile >> minor;
+      else if (token == "GME_VERSION_PLEVEL")
+      {
+        infile >> plevel;
+        break;
+      }
+    }
+    std::ostringstream ostr;
+    ostr << major << "." << minor << "." << plevel;
+    if (ostr.str() == version)
+      return ERROR_SUCCESS;
+    else
+      return ERROR_INSTALL_FAILURE;
+  }
+  else
+  {
+    return ERROR_INSTALL_FAILURE;
+  }
 }
 
-
-UINT __stdcall CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
+//
+// CheckGMEVersion_6_11_9
+//
+UINT CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
 {
-	if (check_GME_version ("6.11.9") == ERROR_INSTALL_FAILURE)
-	{
-		MessageBox(NULL, 
-			       TEXT("GME version 6.11.9 is not installed or could not determine "
-			       "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
-				   TEXT("CoSMIC Installer Error"), 
-				   MB_OK);
-		return ERROR_INSTALL_FAILURE;
-	}
-	else
-		return ERROR_SUCCESS;
+  if (check_GME_version ("6.11.9") == ERROR_INSTALL_FAILURE)
+  {
+    MessageBox(NULL,
+             TEXT("GME version 6.11.9 is not installed or could not determine "
+             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
+           TEXT("CoSMIC Installer Error"),
+           MB_OK);
+    return ERROR_INSTALL_FAILURE;
+  }
+  else
+    return ERROR_SUCCESS;
 }
 
-UINT __stdcall CheckGMEVersion_7_6_29 (MSIHANDLE hInstall)
+//
+// CheckGMEVersion_7_6_29
+//
+UINT CheckGMEVersion_7_6_29 (MSIHANDLE hInstall)
 {
-	if (check_GME_version ("7.6.29") == ERROR_INSTALL_FAILURE)
-	{
-		MessageBox(NULL, 
-			       TEXT("GME version 7.6.29 is not installed or could not determine "
-			       "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
-				   TEXT("CoSMIC Installer Error"), 
-				   MB_OK);
-		return ERROR_INSTALL_FAILURE;
-	}
-	else
-		return ERROR_SUCCESS;
+  if (check_GME_version ("7.6.29") == ERROR_INSTALL_FAILURE)
+  {
+    MessageBox(NULL,
+             TEXT("GME version 7.6.29 is not installed or could not determine "
+             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
+           TEXT("CoSMIC Installer Error"),
+           MB_OK);
+    return ERROR_INSTALL_FAILURE;
+  }
+  else
+    return ERROR_SUCCESS;
 }
 
