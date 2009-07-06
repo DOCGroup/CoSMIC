@@ -10,11 +10,6 @@
 #include "xercesc/util/PlatformUtils.hpp"
 
 //
-// outdir_
-//
-std::string CUdmApp::outdir_;
-
-//
 // Initialize
 //
 int CUdmApp::Initialize()
@@ -49,32 +44,58 @@ int CUdmApp::Initialize()
   message.
 */
 
-/***********************************************/
-/* Main entry point for Udm-based Interpreter  */
-/***********************************************/
-
+//
+// UdmMain
+//
 void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,
                        Udm::Object focusObject,
                        std::set <Udm::Object> selectedObjects,
                        long param)
 {
-  std::string message = "Please specify the output directory";
+  if (this->outdir_.empty ())
+  {
+    std::string message = "Please specify the output directory";
 
-  // If there is no output path specified
-  if (!Utils::getPath (message, CUdmApp::outdir_, CUdmApp::outdir_))
-    return;
+    // If there is no output path specified
+    if (!Utils::getPath (message, this->outdir_, this->outdir_))
+      return;
+  }
 
   // Get the root object and visit it.
   Udm::Object root_obj = p_backend->GetRootObject();
   PICML::RootFolder root = PICML::RootFolder::Cast (root_obj);
 
-  xercesc::XMLPlatformUtils::Initialize();
+  xercesc::XMLPlatformUtils::Initialize ();
 
-  QED_Deployment_Visitor visitor (CUdmApp::outdir_);
+  QED_Deployment_Visitor visitor (this->outdir_);
   root.Accept (visitor);
 
-  xercesc::XMLPlatformUtils::Terminate();
+  xercesc::XMLPlatformUtils::Terminate ();
 
-  ::AfxMessageBox ("Successfully generated QED deployment files.",
-                   MB_OK | MB_ICONINFORMATION);
+  if (this->interactive_)
+    ::AfxMessageBox ("Successfully generated QED deployment files.", MB_OK | MB_ICONINFORMATION);
+}
+
+//
+// SetParameter
+//
+void CUdmApp::
+SetParameter (const std::string & name, const std::string & value)
+{
+  if (name == "-non-interactive")
+  {
+    this->interactive_ = false;
+  }
+  else if (name == "-o")
+  {
+    this->outdir_ = value;
+  }
+}
+
+//
+// output_directory
+//
+const std::string & CUdmApp::output_directory (void) const
+{
+  return this->outdir_;
 }

@@ -24,9 +24,6 @@
 #include "UdmGme.h"
 #include "UdmStatic.h"
 #include "UdmUtil.h"
-
-#include "UdmApp.h"
-
 #include "game/utils/Project_Settings.h"
 
 // Global config object
@@ -66,7 +63,7 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
                                      long param)
 {
   // Calling the user's initialization function
-  if (CUdmApp::Initialize ())
+  if (this->app_.Initialize ())
     return S_FALSE;
 
   CComPtr <IMgaProject> ccpProject (project);
@@ -248,10 +245,10 @@ STDMETHODIMP RawComponent::InvokeEx (IMgaProject *project,
               //=====================================================================
 #else
               // Calling the main entry point
-              CUdmApp::UdmMain (&dngBackend,
-                                currentObject,
-                                selectedObjects,
-                                param);
+              this->app_.UdmMain (&dngBackend,
+                                  currentObject,
+                                  selectedObjects,
+                                  param);
 
               //=====================================================================
               //@@ postprocessing methods
@@ -310,31 +307,27 @@ STDMETHODIMP RawComponent::get_ComponentParameter(BSTR name, VARIANT *pVal) {
   return S_OK;
 }
 
-STDMETHODIMP RawComponent::put_ComponentParameter(BSTR name, VARIANT newVal) {
-  return S_OK;
-}
+//
+// put_ComponentParameter
+//
+STDMETHODIMP RawComponent::
+put_ComponentParameter (BSTR name, VARIANT newVal)
+{
+  CComVariant value (newVal);
 
+  // Right now, we only care about string types, but I really nasty do
+  // not like this. Until I come up with a better way, this will have
+  // to suffice.
+  if (value.vt == VT_BSTR)
+  {
+    CW2A name_str (name);
+    CW2A value_str (value.bstrVal);
 
-#ifdef GME_ADDON
-
-// these two functions are the main
-STDMETHODIMP RawComponent::GlobalEvent(globalevent_enum event) {
-  if(event == GLOBALEVENT_UNDO) {
-    AfxMessageBox("UNDO!!");
+    this->app_.SetParameter (name_str.m_psz, value_str.m_psz);
   }
+
   return S_OK;
 }
-
-STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v) {
-  if(eventmask & OBJEVENT_CREATED) {
-    CComBSTR objID;
-    COMTHROW(obj->get_ID(&objID));
-    AfxMessageBox( "Object created! ObjID: " + CString(objID));
-  }
-  return S_OK;
-}
-
-#endif
 
 //
 // preprocess
@@ -342,7 +335,8 @@ STDMETHODIMP RawComponent::ObjectEvent(IMgaObject * obj, unsigned long eventmask
 void RawComponent::preprocess (IMgaProject * project)
 {
   GME::Utils::Project_Settings settings (project);
-  CUdmApp::outdir_ = settings.default_output_directory ("QEDDeployment");
+  std::string outdir = settings.default_output_directory ("QEDDeployment");
+  this->app_.SetParameter ("-o", outdir);
 }
 
 //
@@ -350,6 +344,6 @@ void RawComponent::preprocess (IMgaProject * project)
 //
 void RawComponent::postprocess (IMgaProject * project)
 {
-  GME::Utils::Project_Settings settings (project);
-  settings.default_output_directory ("QEDDeployment", CUdmApp::outdir_);
+  //GME::Utils::Project_Settings settings (project);
+  //settings.default_output_directory ("QEDDeployment", CUdmApp::outdir_);
 }

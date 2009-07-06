@@ -1,3 +1,15 @@
+Mon Jul  6 20:39:02 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.cpp:
+
+          . Added template parameters to support automation via CUTS
+            Template Engine (CUTE).
+
 Thu Jul  2 05:06:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CustomActions.wxs:

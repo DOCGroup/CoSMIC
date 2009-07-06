@@ -23,34 +23,33 @@
 #include "UmlExt.h"
 
 #ifdef _USE_DOM
-	#include "UdmDOM.h"
+  #include "UdmDOM.h"
 #endif
 
 #include "UdmGme.h"
 #include "UdmStatic.h"
 
-//=============================================================================
 /**
  * @class CUdmApp
  */
-//=============================================================================
-
 class CUdmApp
 {
 public:
-	static int Initialize (void);
+  int Initialize (void);
 
-	static void UdmMain (Udm::DataNetwork * p_backend,
-                       Udm::Object currentObject,
-                       set <Udm::Object> selectedObjects,
-                       long param);
+  void UdmMain (Udm::DataNetwork * p_backend,
+                Udm::Object currentObject,
+                set <Udm::Object> selectedObjects,
+                long param);
 
-#ifdef _DEBUG
-	static string ExtractName(Udm::Object ob);
-#endif
+  void SetParameter (const std::string & name, const std::string & value);
 
-  /// The output directory for the files.
-  static std::string outdir_;
+  const std::string & output_directory (void) const;
+
+private:
+  std::string outdir_;
+
+  bool interactive_;
 };
 
 #endif // !defined(AFX_UDMAPP_H__296A93EB_6DB6_4179_AA0B_A3D799FB3A1C__INCLUDED_)

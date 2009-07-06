@@ -196,11 +196,11 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
 void CUdmApp::
 SetParameter (const std::string & name, const std::string & value)
 {
-  if (name == "output")
+  if (name == "output" || name == "-output" || name == "-o")
   {
     CUdmApp::output_path_ = value;
   }
-  else if (name == "non-interactive")
+  else if (name == "non-interactive" || name == "-non-interactive")
   {
     CUdmApp::interactive_ = false;
   }
@@ -210,8 +210,7 @@ SetParameter (const std::string & name, const std::string & value)
 // generate_deployment_plan
 //
 void CUdmApp::
-generate_deployment_plan (const Udm::Object & obj,
-                          PICML::Visitor & visitor)
+generate_deployment_plan (const Udm::Object & obj, PICML::Visitor & visitor)
 {
   if (obj.type () == PICML::DeploymentPlan::meta)
   {
