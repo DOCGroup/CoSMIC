@@ -31,7 +31,7 @@ namespace BON
 	DDSQoSVisitor::DDSQoSVisitor()
 	{
 		out_file_.open ("DDS-debug.txt");
-		model_file_.open ("Model-QoS.txt");
+		model_file_.open ("Model-QoS.xml");
 	}
 
 	DDSQoSVisitor::~DDSQoSVisitor()
@@ -91,6 +91,10 @@ namespace BON
 											bool &file_opened,
 											std::ofstream &out_file)
 	{
+		static std::string current_type;
+		static std::string current_name;
+		static std::string current_policy;
+		static bool first_time = true;
 		std::multiset<ConnectionEnd> conns = dds_entity->getConnEnds(qos_connection_name);
 
 		// See if there are any connections to the QoS policy specified by qos_connection_name
@@ -139,8 +143,47 @@ namespace BON
 						std::map<std::string, std::string>::const_iterator map_iter = attribute_map.find (attr_name);
 						if (map_iter != attribute_map.end ())
 						{
-							out_file << map_iter->second << attr->getStringValue () << std::endl;
-							this->model_file_ << dds_entity->getName () << ":" << map_iter->second << attr->getStringValue () << std::endl;
+							// Check on closing previous brackets
+							size_t split_index = map_iter->second.find ('.');
+							std::string policy_name = map_iter->second.substr (0, split_index);
+							std::string param_name = map_iter->second.substr (split_index + 1);
+							if (!current_policy.empty () && current_policy != policy_name)
+							{
+								//this->model_file_ << "</" << entity_name << ">" << std::endl;
+								this->model_file_ << "\t</" << current_policy << ">" << std::endl;
+							}
+							if (!current_name.empty () && current_name != dds_entity->getName ())
+							{
+								//this->model_file_ << "\t</" << dds_entity->getName () << ">" << std::endl;
+								//this->model_file_ << "\t</" << current_name << ">" << std::endl;
+								this->model_file_ << "</" << current_type << ">" << std::endl;
+							}
+							//if (!current_type.empty () && current_type != entity_name)
+							//{
+							//	//this->model_file_ << "</" << entity_name << ">" << std::endl;
+							//	this->model_file_ << "</" << current_type << ">" << std::endl;
+							//}
+
+							// Now start the new brackets.
+							//if (current_type != entity_name)
+							//{
+							//	this->model_file_ << "<" << entity_name << ">" << std::endl;
+							//}
+							if (current_name != dds_entity->getName ())
+							{
+								this->model_file_ << "<" << entity_name << " name=\"" << dds_entity->getName ()
+									<< "\"" << std::endl;
+							}
+							if (current_policy != policy_name)
+							{
+								this->model_file_ << "\t<" << policy_name << ">" << std::endl;
+							}
+							//this->model_file_ << "\t\t\t" << map_iter->second << attr->getStringValue () << std::endl;
+							this->model_file_ << "\t\t" << param_name << "=\"" << attr->getStringValue ()
+								<< "\"" << std::endl;
+							current_name = dds_entity->getName ();
+							current_type = entity_name;
+							current_policy = policy_name;
 						}
 					}
 				}
@@ -170,7 +213,7 @@ namespace BON
 
 		// Handle Deadline QoS Policy
 		attrib_map.clear ();
-		attrib_map["period"] = "datareader.deadline.period=";
+		attrib_map["period"] = "deadline.period";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -183,7 +226,7 @@ namespace BON
 
 		// Handle Destination Order QoS Policy
 		attrib_map.clear ();
-		attrib_map["dest_order_kind"] = "datareader.destination_order.kind=";
+		attrib_map["dest_order_kind"] = "destination_order.kind";
 		outputDDSEntityQos (dataReader,
 						    dr_name,
 						    dr_prefix,
@@ -196,7 +239,7 @@ namespace BON
 
 		// Handle Durability QoS Policy
 		attrib_map.clear ();
-		attrib_map["kind"] = "datareader.durability.kind=";
+		attrib_map["kind"] = "durability.kind";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -209,8 +252,8 @@ namespace BON
 
 		// Handle History QoS Policy
 		attrib_map.clear ();
-		attrib_map["history_kind"] = "datareader.history.kind=";
-		attrib_map["history_depth"] = "datareader.history.depth=";
+		attrib_map["history_kind"] = "history.kind";
+		attrib_map["history_depth"] = "history.depth";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -223,7 +266,7 @@ namespace BON
 
 		// Handle Latency Budget QoS Policy
 		attrib_map.clear ();
-		attrib_map["duration"] = "datareader.latency.duration=";
+		attrib_map["duration"] = "latency.duration";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -236,8 +279,8 @@ namespace BON
 
 		// Handle Liveliness QoS Policy
 		attrib_map.clear ();
-		attrib_map["lease_duration"] = "datareader.liveliness.lease_duration=";
-		attrib_map["liveliness_kind"] = "datareader.liveliness.kind=";
+		attrib_map["lease_duration"] = "liveliness.lease_duration";
+		attrib_map["liveliness_kind"] = "liveliness.kind";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -250,7 +293,7 @@ namespace BON
 
 		// Handle Ownership QoS Policy
 		attrib_map.clear ();
-		attrib_map["ownership_kind"] = "datareader.ownership.kind=";
+		attrib_map["ownership_kind"] = "ownership.kind";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -263,8 +306,8 @@ namespace BON
 
 		// Handle Reader Data Lifecycle QoS Policy
 		attrib_map.clear ();
-		attrib_map["autopurge_nowriter_samples_delay"] = "datareader.reader_data_lifecycle.autopurge_nowriter_samples_delay=";
-		attrib_map["autopurge_disposed_samples_delay"] = "datareader.reader_data_lifecycle.autopurge_disposed_samples_delay=";
+		attrib_map["autopurge_nowriter_samples_delay"] = "reader_data_lifecycle.autopurge_nowriter_samples_delay";
+		attrib_map["autopurge_disposed_samples_delay"] = "reader_data_lifecycle.autopurge_disposed_samples_delay";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -277,8 +320,8 @@ namespace BON
 
 		// Handle Reliability QoS Policy
 		attrib_map.clear ();
-		attrib_map["reliability_kind"] = "datareader.reliability.kind=";
-		attrib_map["max_blocking_time"] = "datareader.reliability.max_blocking_time=";
+		attrib_map["reliability_kind"] = "reliability.kind";
+		attrib_map["max_blocking_time"] = "reliability.max_blocking_time";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -317,9 +360,9 @@ namespace BON
 
     // Handle Resource Limits QoS Policy
 		attrib_map.clear ();
-		attrib_map["max_samples"] = "datareader.resource_limits.max_samples=";
-		attrib_map["max_instances"] = "datareader.resource_limits.max_instances=";
-		attrib_map["max_samples_per_instance"] = "datareader.resource_limits.max_samples_per_instance=";
+		attrib_map["max_samples"] = "resource_limits.max_samples";
+		attrib_map["max_instances"] = "resource_limits.max_instances";
+		attrib_map["max_samples_per_instance"] = "resource_limits.max_samples_per_instance";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -332,7 +375,7 @@ namespace BON
 
 		// Handle Time Based Filter QoS Policy
 		attrib_map.clear ();
-		attrib_map["minimum_separation"] = "datareader.timebased_filter.min_separation=";
+		attrib_map["minimum_separation"] = "timebased_filter.min_separation";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -345,7 +388,7 @@ namespace BON
 
 		// Handle User Data QoS Policy
 		attrib_map.clear ();
-		attrib_map["user_value"] = "datareader.user_data.value=";
+		attrib_map["user_value"] = "user_data.value";
 		outputDDSEntityQos (dataReader,
 							dr_name,
 							dr_prefix,
@@ -381,7 +424,7 @@ namespace BON
 
 		// Handle Deadline QoS Policy
 		attrib_map.clear ();
-		attrib_map["period"] = "datawriter.deadline.period=";
+		attrib_map["period"] = "deadline.period";
 		outputDDSEntityQos (dataWriter,
 						    dw_name,
 						    dw_prefix,
@@ -394,7 +437,7 @@ namespace BON
 
 		// Handle Destination Order QoS Policy
 		attrib_map.clear ();
-		attrib_map["dest_order_kind"] = "datawriter.destination_order.kind=";
+		attrib_map["dest_order_kind"] = "destination_order.kind";
 		outputDDSEntityQos (dataWriter,
 						    dw_name,
 						    dw_prefix,
@@ -407,7 +450,7 @@ namespace BON
 
 		// Handle Durability QoS Policy
 		attrib_map.clear ();
-		attrib_map["kind"] = "datawriter.durability.kind=";
+		attrib_map["kind"] = "durability.kind";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -420,12 +463,12 @@ namespace BON
 
 		// Handle Durability Service QoS Policy
 		attrib_map.clear ();
-		attrib_map["max_samples"] = "datawriter.durability_svc.max_samples=";
-		attrib_map["service_cleanup_delay"] = "datawriter.durability_svc.service_cleanup_delay=";
-		attrib_map["max_samples_per_instance"] = "datawriter.durability_svc.max_samples_per_instance=";
-		attrib_map["max_instances"] = "datawriter.durability_svc.max_instances=";
-		attrib_map["history_depth"] = "datawriter.durability_svc.history_depth=";
-		attrib_map["history_kind"] = "datawriter.durability_svc.history_kind=";
+		attrib_map["max_samples"] = "durability_svc.max_samples";
+		attrib_map["service_cleanup_delay"] = "durability_svc.service_cleanup_delay";
+		attrib_map["max_samples_per_instance"] = "durability_svc.max_samples_per_instance";
+		attrib_map["max_instances"] = "durability_svc.max_instances";
+		attrib_map["history_depth"] = "durability_svc.history_depth";
+		attrib_map["history_kind"] = "durability_svc.history_kind";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -438,8 +481,8 @@ namespace BON
 
 		// Handle History QoS Policy
 		attrib_map.clear ();
-		attrib_map["history_kind"] = "datawriter.history.kind=";
-		attrib_map["history_depth"] = "datawriter.history.depth=";
+		attrib_map["history_kind"] = "history.kind";
+		attrib_map["history_depth"] = "history.depth";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -452,7 +495,7 @@ namespace BON
 
 		// Handle Latency Budget QoS Policy
 		attrib_map.clear ();
-		attrib_map["duration"] = "datawriter.latency.duration=";
+		attrib_map["duration"] = "latency.duration";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -465,7 +508,7 @@ namespace BON
 
 		// Handle Lifespan QoS Policy
 		attrib_map.clear ();
-		attrib_map["lifespan_duration"] = "datawriter.lifespan.duration=";
+		attrib_map["lifespan_duration"] = "lifespan.duration";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -478,8 +521,8 @@ namespace BON
 
 		// Handle Liveliness QoS Policy
 		attrib_map.clear ();
-		attrib_map["lease_duration"] = "datawriter.liveliness.lease_duration=";
-		attrib_map["liveliness_kind"] = "datawriter.liveliness.kind=";
+		attrib_map["lease_duration"] = "liveliness.lease_duration";
+		attrib_map["liveliness_kind"] = "liveliness.kind";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -492,7 +535,7 @@ namespace BON
 
 		// Handle Ownership QoS Policy
 		attrib_map.clear ();
-		attrib_map["ownership_kind"] = "datawriter.ownership.kind=";
+		attrib_map["ownership_kind"] = "ownership.kind";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -505,7 +548,7 @@ namespace BON
 
 		// Handle Ownership Strength QoS Policy
 		attrib_map.clear ();
-		attrib_map["ownership_value"] = "datawriter.ownership.value=";
+		attrib_map["ownership_value"] = "ownership.value";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -518,8 +561,8 @@ namespace BON
 
 		// Handle Reliability QoS Policy
 		attrib_map.clear ();
-		attrib_map["reliability_kind"] = "datawriter.reliability.kind=";
-		attrib_map["max_blocking_time"] = "datawriter.reliability.max_blocking_time=";
+		attrib_map["reliability_kind"] = "reliability.kind";
+		attrib_map["max_blocking_time"] = "reliability.max_blocking_time";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -532,9 +575,9 @@ namespace BON
 
 		// Handle Resource Limits QoS Policy
 		attrib_map.clear ();
-		attrib_map["max_samples"] = "datawriter.resource_limits.max_samples=";
-		attrib_map["max_instances"] = "datawriter.resource_limits.max_instances=";
-		attrib_map["max_samples_per_instance"] = "datawriter.resource_limits.max_samples_per_instance=";
+		attrib_map["max_samples"] = "resource_limits.max_samples";
+		attrib_map["max_instances"] = "resource_limits.max_instances";
+		attrib_map["max_samples_per_instance"] = "resource_limits.max_samples_per_instance";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -547,7 +590,7 @@ namespace BON
 
 		// Handle Transport Priority QoS Policy
 		attrib_map.clear ();
-		attrib_map["transport_value"] = "datawriter.transport_priority.value=";
+		attrib_map["transport_value"] = "transport_priority.value";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -560,7 +603,7 @@ namespace BON
 
 		// Handle User Data QoS Policy
 		attrib_map.clear ();
-		attrib_map["user_value"] = "datawriter.user_data.value=";
+		attrib_map["user_value"] = "user_data.value";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -573,7 +616,7 @@ namespace BON
 
 		// Handle Writer Data Lifecycle QoS Policy
 		attrib_map.clear ();
-		attrib_map["autodispose_unregistered_instances"] = "datawriter.writer_data_lifecycle.autodispose_unregistered_instances=";
+		attrib_map["autodispose_unregistered_instances"] = "writer_data_lifecycle.autodispose_unregistered_instances";
 		outputDDSEntityQos (dataWriter,
 							dw_name,
 							dw_prefix,
@@ -706,7 +749,7 @@ void Component::finalize( Project& project )
 {
 	// ======================
 	// Insert application specific code here
-	AfxMessageBox("DBE Interpreter Finished!");
+	AfxMessageBox("XML Interpreter Finished!");
 }
 
 // ====================================================
@@ -792,3 +835,4 @@ void Component::objectEventPerformed( Object& object, unsigned long event, VARIA
 #endif // GME_ADDON
 
 }; // namespace BON
+
