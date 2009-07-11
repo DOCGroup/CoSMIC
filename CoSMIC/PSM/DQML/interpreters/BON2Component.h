@@ -60,6 +60,10 @@ namespace BON
 	private:
 		std::ofstream out_file_;
 		std::ofstream model_file_;
+
+		std::string current_type_;
+		std::string current_name_;
+		std::string current_policy_;
 	};
 
 /*

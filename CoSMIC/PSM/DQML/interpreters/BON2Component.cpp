@@ -36,6 +36,17 @@ namespace BON
 
 	DDSQoSVisitor::~DDSQoSVisitor()
 	{
+
+		// Finish closing out the XML data
+		// Make these extra calls only the very last time.
+		// If more DDS entity are added for support we need to make these calls
+		// the very last.
+		//this->model_file_ << "</" << entity_name << ">" << std::endl;
+		this->model_file_ << "\t</" << this->current_policy_ << ">" << std::endl;
+		//this->model_file_ << "\t</" << dds_entity->getName () << ">" << std::endl;
+		//this->model_file_ << "\t</" << this->current_name_ << ">" << std::endl;
+		this->model_file_ << "</" << this->current_type_ << ">" << std::endl;
+
 		out_file_.close ();
 		model_file_.close ();
 	}
@@ -91,10 +102,6 @@ namespace BON
 											bool &file_opened,
 											std::ofstream &out_file)
 	{
-		static std::string current_type;
-		static std::string current_name;
-		static std::string current_policy;
-		static bool first_time = true;
 		std::multiset<ConnectionEnd> conns = dds_entity->getConnEnds(qos_connection_name);
 
 		// See if there are any connections to the QoS policy specified by qos_connection_name
@@ -122,6 +129,7 @@ namespace BON
 					std::set<Attribute> attrs = fco->getAttributes ();
 					std::set<Attribute>::const_iterator attr_iter(attrs.begin());
 
+					/*
 					// Open the QoS settings file if needed.
 					if (!file_opened)
 					{
@@ -134,6 +142,7 @@ namespace BON
 						filename = entity_abbrev + cnt_str + "_" + dds_entity->getName () + ".txt";
 						out_file.open (filename.c_str ());
 					}
+					*/
 
 					// Loop through the QoS attributes and write them to the file
 					for (; attr_iter != attrs.end (); ++attr_iter)
@@ -147,43 +156,43 @@ namespace BON
 							size_t split_index = map_iter->second.find ('.');
 							std::string policy_name = map_iter->second.substr (0, split_index);
 							std::string param_name = map_iter->second.substr (split_index + 1);
-							if (!current_policy.empty () && current_policy != policy_name)
+							if (!this->current_policy_.empty () && this->current_policy_ != policy_name)
 							{
 								//this->model_file_ << "</" << entity_name << ">" << std::endl;
-								this->model_file_ << "\t</" << current_policy << ">" << std::endl;
+								this->model_file_ << "\t</" << this->current_policy_ << ">" << std::endl;
 							}
-							if (!current_name.empty () && current_name != dds_entity->getName ())
+							if (!this->current_name_.empty () && this->current_name_ != dds_entity->getName ())
 							{
 								//this->model_file_ << "\t</" << dds_entity->getName () << ">" << std::endl;
-								//this->model_file_ << "\t</" << current_name << ">" << std::endl;
-								this->model_file_ << "</" << current_type << ">" << std::endl;
+								//this->model_file_ << "\t</" << this->current_name_ << ">" << std::endl;
+								this->model_file_ << "</" << this->current_type_ << ">" << std::endl;
 							}
-							//if (!current_type.empty () && current_type != entity_name)
+							//if (!this->current_type_.empty () && this->current_type_ != entity_name)
 							//{
 							//	//this->model_file_ << "</" << entity_name << ">" << std::endl;
-							//	this->model_file_ << "</" << current_type << ">" << std::endl;
+							//	this->model_file_ << "</" << this->current_type_ << ">" << std::endl;
 							//}
 
 							// Now start the new brackets.
-							//if (current_type != entity_name)
+							//if (this->current_type_ != entity_name)
 							//{
 							//	this->model_file_ << "<" << entity_name << ">" << std::endl;
 							//}
-							if (current_name != dds_entity->getName ())
+							if (this->current_name_ != dds_entity->getName ())
 							{
 								this->model_file_ << "<" << entity_name << " name=\"" << dds_entity->getName ()
 									<< "\"" << std::endl;
 							}
-							if (current_policy != policy_name)
+							if (this->current_policy_ != policy_name)
 							{
 								this->model_file_ << "\t<" << policy_name << ">" << std::endl;
 							}
 							//this->model_file_ << "\t\t\t" << map_iter->second << attr->getStringValue () << std::endl;
 							this->model_file_ << "\t\t" << param_name << "=\"" << attr->getStringValue ()
 								<< "\"" << std::endl;
-							current_name = dds_entity->getName ();
-							current_type = entity_name;
-							current_policy = policy_name;
+							this->current_name_ = dds_entity->getName ();
+							this->current_type_ = entity_name;
+							this->current_policy_ = policy_name;
 						}
 					}
 				}
