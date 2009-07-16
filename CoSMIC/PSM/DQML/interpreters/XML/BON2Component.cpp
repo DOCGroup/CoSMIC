@@ -32,6 +32,9 @@ namespace BON
 	{
 		out_file_.open ("DDS-debug.txt");
 		model_file_.open ("Model-QoS.xml");
+
+		// Only have one main entity
+		this->model_file_ << "<DQML>" << std::endl;
 	}
 
 	DDSQoSVisitor::~DDSQoSVisitor()
@@ -46,6 +49,9 @@ namespace BON
 		//this->model_file_ << "\t</" << dds_entity->getName () << ">" << std::endl;
 		//this->model_file_ << "\t</" << this->current_name_ << ">" << std::endl;
 		this->model_file_ << "</" << this->current_type_ << ">" << std::endl;
+
+		// Close out the one main entity.
+		this->model_file_ << "</DQML>" << std::endl;
 
 		out_file_.close ();
 		model_file_.close ();
@@ -156,7 +162,8 @@ namespace BON
 							size_t split_index = map_iter->second.find ('.');
 							std::string policy_name = map_iter->second.substr (0, split_index);
 							std::string param_name = map_iter->second.substr (split_index + 1);
-							if (!this->current_policy_.empty () && this->current_policy_ != policy_name)
+							if (!this->current_policy_.empty () && this->current_policy_ != policy_name ||
+								!this->current_name_.empty () && this->current_name_ != dds_entity->getName ())
 							{
 								//this->model_file_ << "</" << entity_name << ">" << std::endl;
 								this->model_file_ << "\t</" << this->current_policy_ << ">" << std::endl;
@@ -181,9 +188,9 @@ namespace BON
 							if (this->current_name_ != dds_entity->getName ())
 							{
 								this->model_file_ << "<" << entity_name << " name=\"" << dds_entity->getName ()
-									<< "\"" << std::endl;
+									<< "\""  << ">" << std::endl;
 							}
-							if (this->current_policy_ != policy_name)
+							if (this->current_policy_ != policy_name || this->current_name_ != dds_entity->getName ())
 							{
 								this->model_file_ << "\t<" << policy_name << ">" << std::endl;
 							}
