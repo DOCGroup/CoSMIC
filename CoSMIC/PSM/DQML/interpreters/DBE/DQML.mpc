@@ -1,7 +1,7 @@
 // $Id$
 
-project (DQML_Model_Interpreter) : register, cosmic_lib {
-  sharedname = DQML_Model_Interpreter
+project (DQML_DBE_Interpreter) : register, cosmic_lib {
+  sharedname = DQML_DBE_Interpreter
 
   includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
   macros   += _AFXDLL BUILDER_OBJECT_NETWORK_V2

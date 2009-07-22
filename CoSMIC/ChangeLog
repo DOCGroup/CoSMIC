@@ -1,3 +1,9 @@
+Wed Jul 22 23:46:20 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Added SML interpreter for DQML.
+
 Mon Jul  6 20:39:02 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
