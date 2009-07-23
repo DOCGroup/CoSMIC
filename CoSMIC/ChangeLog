@@ -1,3 +1,10 @@
+Thu Jul 23 23:48:24 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Changed the .reg files to match the updated GUID.
+            Changed the ComponentConfig.h files to match the updated GUID.
+
 Thu Jul 23 13:48:03 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/*
