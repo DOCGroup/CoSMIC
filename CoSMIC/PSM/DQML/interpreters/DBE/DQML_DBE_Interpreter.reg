@@ -11,7 +11,7 @@ REGEDIT4
 @="MGA.Interpreter.DQML"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{34DA5EC5-548D-4614-B338-A2E96CF6B1E0}\InProcServer32]
-@="DQML_Model_Interpreterd.dll"
+@="DQML_DBE_Interpreter.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.DQML]
 @="MGA.Interpreter.DQML"

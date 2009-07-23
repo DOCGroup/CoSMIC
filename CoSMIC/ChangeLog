@@ -1,3 +1,11 @@
+Thu Jul 23 13:48:03 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Changed the .reg files to match the updated interpreter
+            names (e.g., changed DQML_Model_Interpreter.reg to
+            DQML_XML_Interpreter.reg).
+
 Wed Jul 22 23:46:20 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/*
