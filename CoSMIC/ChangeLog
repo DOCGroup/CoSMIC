@@ -1,3 +1,10 @@
+Sun Jul 26 20:58:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+	  Fixed the #include error because CCF was moved to old-contrib
+	  repository. New Environmental variable OLD_CONTRIB_ROOT is
+	  needed to compile CoSMIC.
+
 Thu Jul 23 23:48:24 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
         * PSM/DQML/interpreters/*

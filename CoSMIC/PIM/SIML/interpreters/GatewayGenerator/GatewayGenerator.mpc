@@ -3,7 +3,7 @@ project (GatewayGenerator): bon, register, boost_base {
    sharedname = GatewayGenerator
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters/GatewayGenerator
-   includes += $(CIAO_ROOT)/CCF $(ACE_ROOT)/contrib/utility
+   includes += $(OLD_CONTRIB_ROOT)/CCF $(OLD_CONTRIB_ROOT)/utility
 
    specific(nmake, vc71, vc8) {
     compile_flags += /wd4290 /wd4800 /wd4250 /wd4355 /bigobj
