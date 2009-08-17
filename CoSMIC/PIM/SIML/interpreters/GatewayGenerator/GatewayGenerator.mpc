@@ -5,8 +5,9 @@ project (GatewayGenerator): bon, register, boost_base {
    includes += $(COSMIC_ROOT)/PIM/SIML/interpreters/GatewayGenerator
    includes += $(OLD_CONTRIB_ROOT)/CCF $(OLD_CONTRIB_ROOT)/utility
 
-   specific(nmake, vc71, vc8) {
-    compile_flags += /wd4290 /wd4800 /wd4250 /wd4355 /bigobj
+   specific(prop:microsoft) {
+    DisableSpecificWarnings += 4290 4800 4250 4355
+    compile_flags += /bigobj
    }
 
    specific (vc6,vc7,vc71,vc8) {

@@ -7,8 +7,8 @@ project (ECLGenerator): mfc, register, bon, register {
    includes += $(COSMIC_ROOT)/PIM/CQML/interpreters/ECLGenerator
    includes += $(XERCESCROOT)/include
 
-   specific(nmake, vc71, vc8) {
-    compile_flags += /wd4290 /wd4800 /wd4250 /wd4355
+   specific(prop:microsoft) {
+    DisableSpecificWarnings += 4290 4800 4250 4355
    }
 
    specific (vc6,vc7,vc71,vc8) {

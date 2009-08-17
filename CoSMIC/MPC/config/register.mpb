@@ -1,7 +1,7 @@
 // $Id$
 
 feature (register) {
-  specific (vc6, vc7, vc71, vc8, nmake) {
+  specific (prop:microsoft) {
     postbuild += \
       echo Registering \
         <%dllout%>/<%libname_prefix%><%sharedname%><%if(use_lib_modifier)%><%lib_modifier%><%endif%><%dll_ext%>...\

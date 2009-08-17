@@ -9,7 +9,7 @@ project : vc8warnings, boost_base  {
 
   macros   += _CRT_SECURE_NO_WARNINGS
 
-  specific (vc7, vc71, vc8, vc9, vc10, nmake) {
-    compile_flags += /wd4251
+  specific (prop:microsoft) {
+    DisableSpecificWarnings += 4251
   }
 }

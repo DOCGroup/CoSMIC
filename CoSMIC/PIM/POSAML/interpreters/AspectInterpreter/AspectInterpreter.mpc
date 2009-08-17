@@ -1,4 +1,4 @@
-project (AspectInterpreter): register, bon{
+project (AspectInterpreter): register, bon {
 
    sharedname = AspectInterpreter
    includes += $(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter
@@ -7,8 +7,8 @@ project (AspectInterpreter): register, bon{
    libpaths += $(XERCESCROOT)/lib
    libs += xerces-c_2
 
-   specific(nmake, vc71, vc8) {
-    compile_flags += /wd4290 /wd4800 /wd4250 /wd4355
+   specific(prop:microsoft) {
+    DisableSpecificWarnings += 4290 4800 4250 4355
    }
 
    specific (vc6,vc7,vc71,vc8) {

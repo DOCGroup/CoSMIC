@@ -5,7 +5,7 @@ project (RTConfig): bon, register {
    includes += $(COSMIC_ROOT)/PSM/CQML/interpreters/RTConfig
    includes += $(COSMIC_ROOT)/PSM/CQML/interpreters/RTConfig
 
-    specific(nmake, vc71, vc8) {
+   specific(prop:microsoft) {
     compile_flags += /bigobj
    }
 
@@ -31,7 +31,7 @@ project (RTConfig): bon, register {
      $(GME_ROOT)/SDK/BON/Utils.cpp
      BON2Component.cpp
      CQMLBonX.cpp
-     CQMLVisitor.cpp 
+     CQMLVisitor.cpp
      RTConfigVisitor.cpp
    }
 

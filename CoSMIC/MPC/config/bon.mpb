@@ -8,7 +8,7 @@ project : mfc, cosmic_common, cosmic_utils {
      midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
    }
 
-  specific(nmake, vc71, vc8) {
+  specific(prop:microsoft) {
     compile_flags += /wd4251
   }
 }

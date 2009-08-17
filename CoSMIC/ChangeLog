@@ -1,3 +1,25 @@
+Mon Aug 17 06:01:55 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * MPC/config/bon.mpb
+        * MPC/config/cosmic_bin.mpb
+        * MPC/config/cosmic_common.mpb
+        * MPC/config/game_component.mpb
+        * MPC/config/register.mpb
+        * MPC/config/vc8warnings.mpb
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc
+        * PSM/CQML/interpreters/RTConfig/RTConfig.mpc
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc
+          Use prop:microsoft
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+          Unicode fix
+
 Sun Jul 26 20:58:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:

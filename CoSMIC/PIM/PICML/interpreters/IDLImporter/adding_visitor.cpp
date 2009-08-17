@@ -2477,7 +2477,7 @@ adding_visitor::add_file_element (DOMElement *parent,
       if (result != 0)
         {
           ACE_ERROR ((LM_ERROR,
-                      "file %s not found in decl table\n",
+                      "file %C not found in decl table\n",
                       tmp_cstr));
 
           throw Bailout ();
@@ -2763,7 +2763,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       if (result != 0)
         {
           ACE_ERROR ((LM_ERROR,
-                      "Error: Filename %s, included in %s, not found "
+                      "Error: Filename %C, included in %s, not found "
                       "in id table.\n",
                       fname.c_str (),
                       idl_global->filename ()->get_string ()));
@@ -5181,7 +5181,7 @@ adding_visitor::redef_error (DOMElement *elem, AST_Decl *d)
   char *name = XMLString::transcode (nameX);
 
   ACE_ERROR ((LM_ERROR,
-              "Redefinition error: %s already defined in %s.idl\n",
+              "Redefinition error: %s already defined in %C.idl\n",
               d->full_name (),
               name));
   XMLString::release (&name);
