@@ -1,3 +1,22 @@
+Mon Aug 24 12:39:49 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.wxs:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/Component.def:
+        * PIM/PICML/interpreters/CIDLComponent/Component.rc:
+        * PIM/PICML/interpreters/CIDLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/compicon.ico:
+        * PIM/PICML/interpreters/CIDLComponent/resource.h:
+
+          Removed these files.
+
 Mon Aug 24 12:27:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
