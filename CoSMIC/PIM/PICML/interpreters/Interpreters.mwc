@@ -17,8 +17,6 @@ workspace {
   IDLImporter
   MPC
   MPCComponent
-  CIDL
-  CIDLComponent
   Path
   PathComponent
   PropertyManager

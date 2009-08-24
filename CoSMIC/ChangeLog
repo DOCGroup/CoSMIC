@@ -1,3 +1,18 @@
+Mon Aug 24 12:27:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Removed the CIDL component from the build since it is
+            no longer part of CIAO.
+
+        * PIM/PICML/interpreters/CIDL:
+        * PIM/PICML/interpreters/CIDL/CIDL_Export.h:
+        * PIM/PICML/interpreters/CIDL/CIDL_Interpreter.mpc:
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.cpp:
+
+          Removed these files.
+
 Mon Aug 17 06:01:55 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * MPC/config/bon.mpb
@@ -23,9 +38,9 @@ Mon Aug 17 06:01:55 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 Sun Jul 26 20:58:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
-	  Fixed the #include error because CCF was moved to old-contrib
-	  repository. New Environmental variable OLD_CONTRIB_ROOT is
-	  needed to compile CoSMIC.
+          Fixed the #include error because CCF was moved to old-contrib
+          repository. New Environmental variable OLD_CONTRIB_ROOT is
+          needed to compile CoSMIC.
 
 Thu Jul 23 23:48:24 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
 
