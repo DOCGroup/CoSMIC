@@ -97,11 +97,6 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\BGMLComponent\BGMLComponent.reg' />
 
-        <File Id='CIDLComponent_Reg'
-              Name='CIDLComponent.reg'
-              DiskId='1'
-              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\CIDLComponent\CIDLComponent.reg' />
-
         <File Id='DeploymentPlanComponent_Reg'
               Name='DeploymentPlanComponent.reg'
               DiskId='1'

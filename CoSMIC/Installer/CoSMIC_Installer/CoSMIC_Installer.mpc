@@ -26,7 +26,7 @@ project (CoSMIC_Installer) : wix {
     }
 
     $(COSMIC_ROOT)/Utils/Utils.wxs
-	$(COSMIC_ROOT)/Utils/LEESA/LEESA.wxs
+    $(COSMIC_ROOT)/Utils/LEESA/LEESA.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/CBMLManager/CBMLManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
@@ -48,7 +48,6 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/pim/PICML/interpreters/IDLImporter
     $(COSMIC_ROOT)/pim/PICML/interpreters/BGMLComponent/BGMLComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/MPCComponent/MPCComponent.wxs
-    $(COSMIC_ROOT)/pim/PICML/interpreters/CIDLComponent/CIDLComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/PathComponent/PathComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/PropertyManager/PropertyManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.wxs
