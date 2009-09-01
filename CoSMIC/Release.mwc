@@ -21,8 +21,6 @@ workspace : cosmic_common {
   PIM/PICML/interpreters/IDLGenerator
   PIM/PICML/interpreters/MPC
   PIM/PICML/interpreters/MPCComponent
-  PIM/PICML/interpreters/CIDL
-  PIM/PICML/interpreters/CIDLComponent
   PIM/PICML/interpreters/Path
   PIM/PICML/interpreters/PathComponent
   PIM/PICML/interpreters/PropertyManager

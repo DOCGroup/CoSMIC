@@ -1,9 +1,14 @@
+Tue Sep  1 01:35:31 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+	  Updated the Release build because CIDLComponent was removed.
+
 Mon Aug 31 16:28:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
-	  
-	  Updated the CoSMIC Release build because CIDLComponent was removed.
+
+          Updated the CoSMIC Release build because CIDLComponent was removed.
 
 Mon Aug 24 12:39:49 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
