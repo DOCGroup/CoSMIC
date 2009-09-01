@@ -24,7 +24,6 @@
       <ComponentRef Id='DomainComponentLibrary' />
       <ComponentRef Id='DeploymentPlanComponentLibrary' />
       <ComponentRef Id='MPCComponentLibrary' />
-      <ComponentRef Id='CIDLComponentLibrary' />
       <ComponentRef Id='PathComponentLibrary' />
       <ComponentRef Id='IDLGeneratorLibrary' />
       <ComponentRef Id='IDLImporterExecutable' />

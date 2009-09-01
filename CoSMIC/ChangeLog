@@ -1,7 +1,12 @@
+Tue Sep  1 17:34:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+          Update the CoSMIC installer because CIDLComponent was removed.
+
 Tue Sep  1 01:35:31 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Release.mwc:
-	  Updated the Release build because CIDLComponent was removed.
+          Updated the Release build because CIDLComponent was removed.
 
 Mon Aug 31 16:28:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
