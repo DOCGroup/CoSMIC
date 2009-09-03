@@ -41,13 +41,14 @@ project (DomainComponent): mfc, picmllib, register {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.Domain
+    gme_uuid        = 7A933614-ECC0-4F43-9EAE-4516F99076BD
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = Domain descriptor generator
+    gme_tooltip     = Generate domain descriptors
+  }
 }
-
-// project (RegisterDomainComponent): register {
-//   after += DomainComponent
-//   custom_only           = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\DomainComponent.dll
-//   }
-// }

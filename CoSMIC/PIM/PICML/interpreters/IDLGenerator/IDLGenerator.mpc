@@ -57,13 +57,14 @@ project (IDLGenerator): cosmic_utils, bon, register {
    Resource_Files {
      CompIcon.ico
    }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.IDLGenerator
+    gme_uuid        = E9D28F15-DE39-4BD6-9DDE-05D31A597E39
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = IDL file generator
+    gme_tooltip     = Generate IDL files
+  }
 }
-
-// project (RegisterIDLGenerator) : register {
-//   after += IDLGenerator
-//   custom_only = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\IDLGenerator.dll
-//   }
-// }

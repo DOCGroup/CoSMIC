@@ -38,10 +38,10 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/PIM/PICML/docs/PICMLDocs.wxs
     $(COSMIC_ROOT)/PIM/PICML/examples/PICMLExamples.wxs
 
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs
     $(COSMIC_ROOT)/PIM/PICML/paradigms/PICMLParadigm.wxs
-    $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
 
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs
+    $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator

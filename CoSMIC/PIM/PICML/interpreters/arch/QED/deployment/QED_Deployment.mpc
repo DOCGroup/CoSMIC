@@ -58,4 +58,14 @@ project (QEDDeploymentComponent) : game, mfc, picmllib, register {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.QEDDeployment
+    gme_uuid        = 8CD865CE-C4D6-402C-B5EE-C3B677EB3586
+    gme_paradigms   = PICML
+    gme_has_icon    = 0
+    gme_description = QED deployment plan generator
+    gme_tooltip     = Generate QED deployment plan
+  }
 }

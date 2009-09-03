@@ -3,4 +3,8 @@
 project : cosmic_common  {
   libout = $(COSMIC_ROOT)/lib
   dllout = $(COSMIC_ROOT)/bin
+
+  specific (wix) {
+    install_location = bin
+  }
 }

@@ -48,13 +48,14 @@ project (PackageComponent): game, mfc, picmllib, register {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PackageComponent
+    gme_uuid        = 61C41FFD-3A5E-468D-9B1E-BD2A89FED148
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = Package descriptor generator
+    gme_tooltip     = Generate package descriptors
+  }
 }
-
-// project (RegisterPackageComponent): register {
-//   after += PackageComponent
-//   custom_only           = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\PackageComponent.dll
-//   }
-// }

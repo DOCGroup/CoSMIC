@@ -48,4 +48,14 @@ project (PropertyManager): game, register, mfc, boost_base, picmllib {
   Template_Files {
     DT_Controls_T.cpp
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PropertyManager
+    gme_uuid        = A6C5F848-5439-4549-831F-62ABAD36FCD3
+    gme_paradigms   = PICML
+    gme_has_icon    = 0
+    gme_description = Complex property type manager
+    gme_tooltip     = Update complex property type
+  }
 }

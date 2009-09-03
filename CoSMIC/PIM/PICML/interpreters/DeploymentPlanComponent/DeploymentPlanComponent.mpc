@@ -43,4 +43,14 @@ project (DeploymentPlanComponent): boost_base, mfc, picmllib, register {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.DeploymentPlan
+    gme_uuid        = 44E85E1D-2D5F-4FC2-963F-2DF070BBC577
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = Deployment plan generator
+    gme_tooltip     = Deployment plan generator
+  }
 }

@@ -39,13 +39,14 @@ project (PathComponent): mfc, picmllib, register, boost_base {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.PathComponent
+    gme_uuid        = 190B51F0-06ED-4EF2-B425-71B36FA2C219
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = Path diagram generator
+    gme_tooltip     = Generate path diagrams
+  }
 }
-
-// project (RegisterPathComponent): register {
-//   after += PathComponent
-//   custom_only           = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\PathComponent.dll
-//   }
-// }

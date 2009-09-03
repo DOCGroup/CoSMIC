@@ -40,13 +40,14 @@ project (MPCComponent): mfc, picmllib, register {
   Resource_Files {
     CompIcon.ico
   }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.MPC
+    gme_uuid        = FECCFB52-4281-4C58-8673-11D9593EF453
+    gme_paradigms   = PICML
+    gme_has_icon    = 1
+    gme_description = MPC file generator
+    gme_tooltip     = Generate MPC files
+  }
 }
-
-// project (RegisterMPCComponent): register {
-//   after += MPCComponent
-//   custom_only           = 1
-
-//   Register_Files {
-//     $(COSMIC_ROOT)\bin\MPCComponent.dll
-//   }
-// }

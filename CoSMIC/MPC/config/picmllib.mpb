@@ -8,4 +8,8 @@ project : cosmic_common, udm, xerces, cosmic_utils {
    dynamicflags += PICML_HAS_DLL
 
    libs += PICML
+
+  specific (wix) {
+    install_location = bin
+  }
 }
