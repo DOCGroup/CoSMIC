@@ -1,3 +1,14 @@
+Thu Sep  3 11:33:10 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.cpp:
+
+          . Added support for generating locality constraints in the deployment
+            plan. Right now, we map each collocation group to its own locality
+            constraint of type SameProcess.
+
 Tue Sep  1 17:34:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:

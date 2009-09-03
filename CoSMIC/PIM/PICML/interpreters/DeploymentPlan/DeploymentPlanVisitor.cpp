@@ -1,11 +1,12 @@
 // $Id$
 
-#include <algorithm>
-#include <functional>
 #include "DeploymentPlanVisitor.h"
-#include "boost/bind.hpp"
+#include "PlanLocalityVisitor.h"
 #include "UmlExt.h"
 #include "Utils/Utils.h"
+#include "boost/bind.hpp"
+#include <algorithm>
+#include <functional>
 
 using Utils::XStr;
 using Utils::CreateUuid;
@@ -952,8 +953,8 @@ namespace PICML
                     const std::string& source_kind,
                     const std::string& dest_kind)
   {
-    std::string source_comp_instance = this->unique_id (srcComp);
-    std::string dest_comp_instance = this->unique_id (dstComp);
+    std::string source_comp_instance = "_" + std::string (srcComp.UUID ());
+    std::string dest_comp_instance = "_" + std::string (dstComp.UUID ());
 
     if (this->selected_instances_.find (source_comp_instance) != this->selected_instances_.end () &&
         this->selected_instances_.find (dest_comp_instance) != this->selected_instances_.end ())
@@ -963,8 +964,8 @@ namespace PICML
       this->curr_->appendChild (ele);
 
       std::string connection =
-        source_comp_instance + ":" + srcPortName + "-" +
-        dest_comp_instance + ":" + dstPortName;
+        this->unique_id (srcComp) + ":" + srcPortName + "::" +
+        this->unique_id (dstComp) + ":" + dstPortName;
 
       ele->appendChild (this->createSimpleContent ("name", connection));
 
@@ -1235,6 +1236,11 @@ namespace PICML
     this->generate_child_connections ();
     this->generate_artifact_descriptions (plan);
     this->generate_infoproperties (plan);
+
+    // Write plan locality information to the document.
+    PlanLocalityVisitor plv (this->root_);
+    PICML::DeploymentPlan (plan).Accept (plv);
+
     this->finalize_deployment_plan_descriptor ();
 
     this->selected_instances_.clear ();
@@ -1710,11 +1716,12 @@ namespace PICML
     DOMElement* ele = this->doc_->createElement (XStr ("instance"));
 
     std::string instanceName = this->unique_id (comp);
+    std::string instanceUUID = "_" + std::string (comp.UUID ());
     std::string nodeRefName = this->deployed_instances_[instanceName];
 
-    this->selected_instances_.insert (instanceName);
+    this->selected_instances_.insert (instanceUUID);
 
-    ele->setAttribute (XStr ("xmi:id"), XStr (instanceName));
+    ele->setAttribute (XStr ("xmi:id"), XStr (instanceUUID));
     ele->appendChild (this->createSimpleContent ("name", instanceName));
     ele->appendChild (this->createSimpleContent ("node", nodeRefName));
     ele->appendChild (this->doc_->createElement (XStr ("source")));
@@ -1727,7 +1734,7 @@ namespace PICML
     if (mimpl_name.empty ())
       this->mimpl_.UUID () = mimpl_name = CreateUuid ();
 
-    mimpl_name = std::string ("_") + mimpl_name;
+    mimpl_name = "_" + mimpl_name;
 
     DOMElement * impl = this->doc_->createElement (XStr ("implementation"));
     impl->setAttribute (XStr ("xmi:idref"), XStr (mimpl_name));

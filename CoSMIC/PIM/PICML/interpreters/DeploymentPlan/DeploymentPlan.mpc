@@ -9,10 +9,10 @@ project(DeploymentPlan): boost_base, picmllib {
 
    Source_Files {
      DeploymentPlanVisitor.cpp
+     PlanLocalityVisitor.cpp
    }
 
    Header_Files {
-     DeploymentPlanVisitor.h
      DeploymentPlan_Export.h
    }
 }
