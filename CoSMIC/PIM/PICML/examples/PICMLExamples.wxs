@@ -6,6 +6,10 @@
     <DirectoryRef Id="PICMLExamplesDir">
       <Component Id='PICMLExamples' Guid='573A07EB-CBA8-47B1-94F0-FDCB2FD2F66D'>
 
+        <File Id='Hello.xme'
+              Name='Hello.xme'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\pim\PICML\examples\Hello.xme' />
         <File Id='BasicSP.xme'
               Name='BasicSP.xme'
               DiskId='1'

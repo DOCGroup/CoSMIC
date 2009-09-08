@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "DependencyVisitor.h"
+#include "GMECOM.h"
 
 #define DEPENDS_DEBUG 0
 

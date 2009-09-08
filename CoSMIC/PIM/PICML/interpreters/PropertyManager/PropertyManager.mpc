@@ -4,7 +4,7 @@ project (PropertyManager): game, register, mfc, boost_base, picmllib {
   sharedname = PropertyManager
 
   includes +=  . \
-               $(GME_ROOT)/SDK/BON
+               $(GME_ROOT)/SDK/BON/Common
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -14,7 +14,7 @@ project (PropertyManager): game, register, mfc, boost_base, picmllib {
      midl_includes += $(GME_ROOT) $(GME_ROOT)/Interfaces .
    }
 
-  specific (vc6, vc7, vc71, vc8) {
+  specific (vc6, vc7, vc71, vc8, vc9) {
     use_lib_modifier = 0
     link_options += /DEF:Component.def
   }
@@ -24,21 +24,27 @@ project (PropertyManager): game, register, mfc, boost_base, picmllib {
     PropertyManager_Dialog.cpp
     RawComponent.cpp
 
-    $(GME_ROOT)/SDK/BON/ComHelp.cpp
-    $(GME_ROOT)/SDK/BON/ComponentLib.idl
-    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
-    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
+    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
+	$(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+	$(GME_ROOT)/SDK/BON/Common/Console.cpp
   }
 
   Header_Files {
     RawComponent.h
     Resource.h
     ComponentLib.h
+	ComponentLib_h.h
     ComponentConfig.h
 
-    $(GME_ROOT)/SDK/BON/ComHelp.h
-    $(GME_ROOT)/SDK/BON/ComponentDll.h
-    $(GME_ROOT)/SDK/BON/ComponentObj.h
+    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
+    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
+    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
+	$(GME_ROOT)/SDK/BON/Common/Exceptions.h
+	$(GME_ROOT)/SDK/BON/Common/Console.h
+	$(GME_ROOT)/SDK/BON/Common/GMECOM.h
   }
 
   Resource_Files {

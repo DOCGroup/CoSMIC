@@ -9,10 +9,12 @@
      <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
      <?define XERCESC_VERSION = "$(env.XERCESC_VERSION)" ?>
      <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
+     <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
      <?if $(var.type) = vc71 ?>
         <?define VS71COMNTOOLS = "$(env.VS71COMNTOOLS)" ?>
      <?elseif $(var.type) = vc8 ?>
         <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
+     <?elseif $(var.type) = vc9 ?>
+        <?define VS90COMNTOOLS = "$(env.VS90COMNTOOLS)" ?>
      <?endif ?>
-     <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
 </Include>

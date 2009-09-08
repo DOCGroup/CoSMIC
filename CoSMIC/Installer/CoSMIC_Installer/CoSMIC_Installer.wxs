@@ -4,7 +4,7 @@
 
   <Product Name='CoSMIC' Id='A91C0917-9925-4B7E-AA7E-4FCD294CC5EC'
            Language='1033' Codepage='1252'
-           Version='0.6.9'
+           Version='0.7.3'
            Manufacturer='Institute for Software Integrated Systems (ISIS)'
            UpgradeCode='42C014ED-7C97-4107-94CD-2028CDBA3FD1'>
 
@@ -12,7 +12,7 @@
              Description="Component Synthesis with Model Integrated Computing (CoSMIC) Installer"
              Comments='CoSMIC is open-source.'
              Manufacturer='Institute for Software Integrated Systems (ISIS)'
-             InstallerVersion='150' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
+             InstallerVersion='300' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
     <!-- Wix variables -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.COSMIC_ROOT)/License.rtf" />
@@ -24,14 +24,8 @@
       Privileged
     </Condition>
 
-<?if $(var.GME_VERSION) = 6_11_9 ?>
-    <Condition Message="This CoSMIC installer requires GME 6.11.9 preinstalled on your machine. Please install GME 6.11.9 first.">
-      GMEINSTALLED
-    </Condition>
-<?endif ?>
-
-<?if $(var.GME_VERSION) = 7_6_29 ?>
-    <Condition Message="This CoSMIC installer requires GME 7.6.29 preinstalled on your machine. Please install GME 7.6.29 first.">
+<?if $(var.GME_VERSION) = 9_8_28 ?>
+    <Condition Message="This CoSMIC installer requires GME 9.8.28 preinstalled on your machine. Please install GME 9.8.28 first.">
       GMEINSTALLED
     </Condition>
 <?endif ?>

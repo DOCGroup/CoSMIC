@@ -385,9 +385,7 @@ static UINT check_GME_version (std::string const & version)
   }
 }
 
-//
-// CheckGMEVersion_6_11_9
-//
+
 UINT CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
 {
   if (check_GME_version ("6.11.9") == ERROR_INSTALL_FAILURE)
@@ -403,15 +401,29 @@ UINT CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
     return ERROR_SUCCESS;
 }
 
-//
-// CheckGMEVersion_7_6_29
-//
+
 UINT CheckGMEVersion_7_6_29 (MSIHANDLE hInstall)
 {
   if (check_GME_version ("7.6.29") == ERROR_INSTALL_FAILURE)
   {
     MessageBox(NULL,
              TEXT("GME version 7.6.29 is not installed or could not determine "
+             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
+           TEXT("CoSMIC Installer Error"),
+           MB_OK);
+    return ERROR_INSTALL_FAILURE;
+  }
+  else
+    return ERROR_SUCCESS;
+}
+
+
+UINT CheckGMEVersion_9_8_28 (MSIHANDLE hInstall)
+{
+  if (check_GME_version ("9.8.28") == ERROR_INSTALL_FAILURE)
+  {
+    MessageBox(NULL,
+             TEXT("GME version 9.8.28 is not installed or could not determine "
              "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
            TEXT("CoSMIC Installer Error"),
            MB_OK);

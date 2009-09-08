@@ -1,7 +1,6 @@
 // $Id$
 
 workspace : picml {
-  PIM/CQML/interpreters/Interpreters.mwc
   PIM/WSML/interpreters/Interpreters.mwc
   PIM/SIML/interpreters/Interpreters.mwc
 

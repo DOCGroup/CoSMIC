@@ -1,3 +1,171 @@
+Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+		* cosmic.mwc:
+        * Release.mwc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+
+		  Supports GME 9.8.28 and UDM 3.2.1 on VC9.
+		  
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+		  Added VC9 merge modules.
+		  
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+		
+		  RegisterParadigm checks existence of GME 9.8.28.
+
+		* PIM/PICML/examples/PICMLExamples.wxs:
+		
+		  Added Hello.xme example.
+		  
+        * PSM/CQML/interpreters/PAM/PAMVisitor.h:
+		
+		  Fixed a casting related compilation error.
+
+        * License.rtf:
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+		
+		  Update CoSMIC release version to 0.7.3 and updated the minimum requirements.
+
+		* PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+  		  Fixed a minor constraint violation. ComponentServantArtifact and ComponentImplementationArtifact
+		  were references pointing to nothing. Appearantly, references do not inherit the pointees of their
+		  base reference.
+
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+		
+		  Refreshed CQML with updated PICML.
+
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:		
+        * PIM/PICML/decorators/StdAfx.h:
+        * PIM/PICML/interpreters/BGMLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/EQAL/StdAfx.h:
+        * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/MPCComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:		
+        * PIM/PICML/interpreters/PathComponent/StdAfx.h:		
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h:
+        * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h:
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.h:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.h:
+        * PSM/CCM/CADML/Component/StdAfx.h:
+        * PSM/CCM/COMPASS/interpreters/StdAfx.h:
+        * PSM/CCM/EQAL/interpreters/StdAfx.h:
+        * PSM/CCM/FESML/interpreters/StdAfx.h:
+        * PSM/CCM/MIDCESS/interpreters/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/StdAfx.h:
+		* PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:		
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.h:
+        * PSM/DQML/interpreters/DBE/StdAfx.h:
+        * PSM/DQML/interpreters/XML/StdAfx.h:
+		  
+		  _WIN32_WINNT macros in all StdAfx.h were modified from 0x0400 to 0x0500.
+		  This is required for new VC9 build.
+		
+        * PSM/CCM/CADML/Component/ComponentLib_h.h:
+        * PIM/PICML/addons/CBMLManager/ComponentLib_h.h:
+        * PIM/PICML/addons/PICMLManager/ComponentLib_h.h:
+        * PIM/PICML/interpreters/BGMLComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+        * PIM/PICML/interpreters/MPCComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PAMComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PathComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PropertyManager/ComponentLib_h.h:
+        * PIM/PICML/interpreters/RTConfigComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/TargetComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentLib_h.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/EventBusComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/NetQoSComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/PAMComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/ComponentLib_h.h:
+        * PSM/DQML/interpreters/DBE/ComponentLib_h.h:
+        * PSM/DQML/interpreters/XML/ComponentLib_h.h:
+		
+		  GME 9.8.28 requires ComponentLib_h.h instead of ComponentLib.h. 
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+		
+		  Added vc9 and GME 9.8.28 support.
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xml:
+        * PIM/CQML/paradigms/CQML.xmp:
+        * PIM/CQML/paradigms/CQML_uml.xme:
+		
+		  Removed this old mostly unused paradigm. 
+
 Thu Sep  3 15:10:45 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:

@@ -28,7 +28,6 @@ workspace : cosmic_common {
 
 
   PIM/SIML/interpreters/Interpreters.mwc
-  PIM/CQML/interpreters/Interpreters.mwc
   PSM/CQML/interpreters/Interpreters.mwc
   PIM/PICML/addons
   PIM/PICML/decorators/Decorators.mwc

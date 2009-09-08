@@ -76,6 +76,35 @@
       <Merge Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' DiskId='1' Language='0'
              SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
 
+<?elseif $(var.type) = vc9 ?>
+      <!-- C runtime for VC9 -->
+      <Merge Id='Microsoft_VC90_CRT_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC90_CRT_x86.msm' />
+
+      <Merge Id='policy_9_0_Microsoft_VC90_CRT_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_9_0_Microsoft_VC90_CRT_x86.msm' />
+
+      <!-- ATL for VC9 -->
+      <Merge Id='Microsoft_VC90_ATL_x86.msm' DiskId='1' Language='0'
+         SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC90_ATL_x86.msm' />
+
+      <Merge Id='policy_9_0_Microsoft_VC90_ATL_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_9_0_Microsoft_VC90_ATL_x86.msm' />
+
+      <!-- MFC for VC9 -->
+      <Merge Id='Microsoft_VC90_MFC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC90_MFC_x86.msm' />
+
+      <Merge Id='policy_9_0_Microsoft_VC90_MFC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_9_0_Microsoft_VC90_MFC_x86.msm' />
+
+      <!-- MFC for Localization -->
+      <Merge Id='Microsoft_VC90_MFCLOC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\Microsoft_VC90_MFCLOC_x86.msm' />
+
+      <Merge Id='policy_9_0_Microsoft_VC90_MFCLOC_x86.msm' DiskId='1' Language='0'
+             SourceFile='$(var.COMMON_PROGRAMFILES)\Merge Modules\policy_9_0_Microsoft_VC90_MFCLOC_x86.msm' />
+
 <?endif ?>
     </DirectoryRef>
 
@@ -86,8 +115,8 @@
               Source="$(var.UDM_PATH)\bin\$(var.UDM_VERSION).DLL"
               DiskId="1" />
 
-        <File Id="XERCES_C_2_5_0.DLL" Name="XERCES-C_2_5_0.DLL"
-              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"
+        <File Id="XERCES_C_2_8.DLL" Name="XERCES-C_2_8.DLL"
+              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_8_0\bin\XERCES-C_2_8.DLL"
               DiskId="1" />
       </Component>
       <Component Id="CoSMICCommon" Guid="5B59328D-54CE-4A0D-AABF-0FF22CD5781C">
@@ -128,8 +157,8 @@
       <MergeRef Id="VC_User_ATL71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_RTL_X86_---.msm" />
       <MergeRef Id="VC_User_MFC71_Loc_RTL_X86_---.msm" />
-<?elseif $(var.type) = vc8 ?>
-<!--
+      <?elseif $(var.type) = vc8 ?>
+      <!--
       <ComponentRef Id='VC8ATLAssemblies' />
       <ComponentRef Id='VC8CRTAssemblies' />
       <ComponentRef Id='VC8MFCAssemblies' />
@@ -143,7 +172,17 @@
       <MergeRef Id="Microsoft_VC80_MFCLOC_x86.msm" />
       <MergeRef Id='policy_8_0_Microsoft_VC80_MFCLOC_x86.msm' />
 
-<?endif ?>
+<?elseif $(var.type) = vc9 ?>
+      <MergeRef Id="Microsoft_VC90_CRT_x86.msm" />
+      <MergeRef Id='policy_9_0_Microsoft_VC90_CRT_x86.msm' />
+      <MergeRef Id="Microsoft_VC90_ATL_x86.msm" />
+      <MergeRef Id='policy_9_0_Microsoft_VC90_ATL_x86.msm' />
+      <MergeRef Id="Microsoft_VC90_MFC_x86.msm" />
+      <MergeRef Id='policy_9_0_Microsoft_VC90_MFC_x86.msm' />
+      <MergeRef Id="Microsoft_VC90_MFCLOC_x86.msm" />
+      <MergeRef Id='policy_9_0_Microsoft_VC90_MFCLOC_x86.msm' />
+
+      <?endif ?>
     </Feature>
 
   </Fragment>

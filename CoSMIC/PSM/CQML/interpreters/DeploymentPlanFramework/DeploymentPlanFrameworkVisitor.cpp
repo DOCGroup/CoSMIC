@@ -931,7 +931,8 @@ namespace CQML
     RequiredRequestPort receptacle = iv.srcinvoke_end();
 
     // Get the facet end
-    ProvidedRequestPort facet = iv.dstinvoke_end();
+    ProvidedRequestPort facet = 
+		CQML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
 
     std::map<Component,std::string> receptacles;
     std::map<Component,std::string> facets;

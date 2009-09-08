@@ -27,6 +27,8 @@ COSMIC_MSI_Export UINT CheckGMEVersion_6_11_9 (MSIHANDLE);
 
 COSMIC_MSI_Export UINT CheckGMEVersion_7_6_29 (MSIHANDLE);
 
+COSMIC_MSI_Export UINT CheckGMEVersion_9_8_28 (MSIHANDLE);
+
 #if defined (__cplusplus)
 }
 #endif

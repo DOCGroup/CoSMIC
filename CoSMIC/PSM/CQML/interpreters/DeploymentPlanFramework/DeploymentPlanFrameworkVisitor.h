@@ -162,11 +162,7 @@ namespace CQML
     DeploymentPlanFramework_Export virtual void Visit_Interconnect(const Interconnect&){};
     DeploymentPlanFramework_Export virtual void Visit_Domain(const Domain&){};
     DeploymentPlanFramework_Export virtual void Visit_Targets(const Targets&){};
-    DeploymentPlanFramework_Export virtual void Visit_Node2Interconnect(const Node2Interconnect&){};
-    DeploymentPlanFramework_Export virtual void Visit_Bridge2Interconnect(const Bridge2Interconnect&){};
     DeploymentPlanFramework_Export virtual void Visit_Shares(const Shares&){};
-    DeploymentPlanFramework_Export virtual void Visit_Interconnect2Node(const Interconnect2Node&){};
-    DeploymentPlanFramework_Export virtual void Visit_Interconnect2Bridge(const Interconnect2Bridge&){};
     DeploymentPlanFramework_Export virtual void Visit_InstanceMapping(const InstanceMapping&);
     DeploymentPlanFramework_Export virtual void Visit_CollocationGroup(const CollocationGroup&){};
     DeploymentPlanFramework_Export virtual void Visit_InParameter(const InParameter&){};
