@@ -17,11 +17,11 @@ Thu Sep 10 01:17:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/decorators/PICMLDecorator.mpc:
 
-                  Added VC9.
+          . Added VC9.
 
-                * PIM/PICML/examples/Hello.xme:
+        * PIM/PICML/examples/Hello.xme:
 
-                  Updated the example with GME 9.8.28.
+          . Updated the example with GME 9.8.28.
 
 Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
@@ -33,7 +33,7 @@ Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/interpreters/Interpreters.mwc:
 
-                  Updated these projects to use GME 9.8.28 and VC9.
+          . Updated these projects to use GME 9.8.28 and VC9.
 
 Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
@@ -41,48 +41,48 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Release.mwc:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
 
-                  Supports GME 9.8.28 and UDM 3.2.1 on VC9.
+          . Supports GME 9.8.28 and UDM 3.2.1 on VC9.
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
         * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
 
-                  Added VC9 merge modules.
+          . Added VC9 merge modules.
 
         * Installer/RegisterParadigm/RegisterParadigm.h:
         * Installer/RegisterParadigm/RegisterParadigm.cpp:
         * Installer/RegisterParadigm/RegisterParadigm.def:
 
-                  RegisterParadigm checks existence of GME 9.8.28.
+          . RegisterParadigm checks existence of GME 9.8.28.
 
-                * PIM/PICML/examples/PICMLExamples.wxs:
+        * PIM/PICML/examples/PICMLExamples.wxs:
 
-                  Added Hello.xme example.
+          . Added Hello.xme example.
 
         * PSM/CQML/interpreters/PAM/PAMVisitor.h:
 
-                  Fixed a casting related compilation error.
+          . Fixed a casting related compilation error.
 
         * License.rtf:
         * Readme.rtf:
         * ReleaseNotes.rtf:
 
-                  Update CoSMIC release version to 0.7.3 and updated the minimum requirements.
+          . Update CoSMIC release version to 0.7.3 and updated the minimum requirements.
 
-                * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
 
-                  Fixed a minor constraint violation. ComponentServantArtifact and ComponentImplementationArtifact
-                  were references pointing to nothing. Appearantly, references do not inherit the pointees of their
-                  base reference.
+          . Fixed a minor constraint violation. ComponentServantArtifact and ComponentImplementationArtifact
+            were references pointing to nothing. Appearantly, references do not inherit the pointees of their
+            base reference.
 
         * PSM/CQML/paradigms/CQML.xme:
         * PSM/CQML/paradigms/CQML.xml:
         * PSM/CQML/paradigms/CQML.xmp:
 
-                  Refreshed CQML with updated PICML.
+          . Refreshed CQML with updated PICML.
 
         * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
         * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
@@ -122,7 +122,7 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h:
         * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
         * PSM/CQML/interpreters/CIAOEventsComponent/StdAfx.h:
-                * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
         * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
         * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
         * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
@@ -133,8 +133,8 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/DQML/interpreters/DBE/StdAfx.h:
         * PSM/DQML/interpreters/XML/StdAfx.h:
 
-                  _WIN32_WINNT macros in all StdAfx.h were modified from 0x0400 to 0x0500.
-                  This is required for new VC9 build.
+          . _WIN32_WINNT macros in all StdAfx.h were modified from 0x0400 to 0x0500.
+            This is required for new VC9 build.
 
         * PSM/CCM/CADML/Component/ComponentLib_h.h:
         * PIM/PICML/addons/CBMLManager/ComponentLib_h.h:
@@ -163,7 +163,7 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/DQML/interpreters/DBE/ComponentLib_h.h:
         * PSM/DQML/interpreters/XML/ComponentLib_h.h:
 
-                  GME 9.8.28 requires ComponentLib_h.h instead of ComponentLib.h.
+          . GME 9.8.28 requires ComponentLib_h.h instead of ComponentLib.h.
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
@@ -194,14 +194,14 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/DQML/interpreters/DBE/DQML.mpc:
         * PSM/DQML/interpreters/XML/DQML.mpc:
 
-                  Added vc9 and GME 9.8.28 support.
+          . Added vc9 and GME 9.8.28 support.
 
         * PIM/CQML/paradigms/CQML.xme:
         * PIM/CQML/paradigms/CQML.xml:
         * PIM/CQML/paradigms/CQML.xmp:
         * PIM/CQML/paradigms/CQML_uml.xme:
 
-                  Removed this old mostly unused paradigm.
+          Removed this old unused paradigm.
 
 Thu Sep  3 15:10:45 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
@@ -236,19 +236,21 @@ Thu Sep  3 11:33:10 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 Tue Sep  1 17:34:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
-          Update the CoSMIC installer because CIDLComponent was removed.
+
+          . Update the CoSMIC installer because CIDLComponent was removed.
 
 Tue Sep  1 01:35:31 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Release.mwc:
-          Updated the Release build because CIDLComponent was removed.
+
+          . Updated the Release build because CIDLComponent was removed.
 
 Mon Aug 31 16:28:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
 
-          Updated the CoSMIC Release build because CIDLComponent was removed.
+          . Updated the CoSMIC Release build because CIDLComponent was removed.
 
 Mon Aug 24 12:39:49 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
