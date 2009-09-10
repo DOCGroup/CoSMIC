@@ -1,3 +1,82 @@
+Thu Sep 10 19:42:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:
+        * PIM/PICML/decorators/StdAfx.h:
+        * PIM/PICML/interpreters/BGMLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/EQAL/StdAfx.h:
+        * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/MPCComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PathComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h:
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.h:
+        * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.h:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.h:
+        * PSM/CCM/CADML/Component/StdAfx.h:
+        * PSM/CCM/COMPASS/interpreters/StdAfx.h:
+        * PSM/CCM/EQAL/interpreters/StdAfx.h:
+        * PSM/CCM/FESML/interpreters/StdAfx.h:
+        * PSM/CCM/MIDCESS/interpreters/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/DQML/interpreters/DBE/StdAfx.h:
+        * PSM/DQML/interpreters/XML/StdAfx.h:
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+
 Thu Sep 10 04:22:13 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
@@ -37,7 +116,7 @@ Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
 Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
-                * cosmic.mwc:
+        * cosmic.mwc:
         * Release.mwc:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
 
@@ -182,8 +261,6 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
         * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
         * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
-        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
-        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
         * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
         * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
         * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
@@ -196,6 +273,11 @@ Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . Added vc9 and GME 9.8.28 support.
 
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+		  . Fixed compilation errors on VC9.
+		  
         * PIM/CQML/paradigms/CQML.xme:
         * PIM/CQML/paradigms/CQML.xml:
         * PIM/CQML/paradigms/CQML.xmp:

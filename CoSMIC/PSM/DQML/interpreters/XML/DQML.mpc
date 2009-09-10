@@ -3,7 +3,7 @@
 project (DQML_XML_Interpreter) : register, cosmic_lib {
   sharedname = DQML_XML_Interpreter
 
-  includes += . $(GME_ROOT)/SDK/BON/Common $(GME_ROOT)
+  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)/SDK/BON/Common $(GME_ROOT)
   macros   += _AFXDLL BUILDER_OBJECT_NETWORK_V2
 
   pch_header = StdAfx.h
@@ -21,29 +21,53 @@ project (DQML_XML_Interpreter) : register, cosmic_lib {
   Source_Files {
     BON2Component.cpp
 
-    $(GME_ROOT)\SDK\BON\Common\ComHelp.cpp
-    $(GME_ROOT)\SDK\BON\Common\ComponentDll.cpp
-    $(GME_ROOT)\SDK\BON\Common\ComponentObj.cpp
-    $(GME_ROOT)\SDK\BON\Common\ComponentLib.idl
-	$(GME_ROOT)\SDK\BON\Common\Console.cpp
-	
-    $(GME_ROOT)\SDK\BON\Common\BON.cpp
-    $(GME_ROOT)\SDK\BON\Common\BONImpl.cpp
-    $(GME_ROOT)\SDK\BON\Common\Common.cpp
-    $(GME_ROOT)\SDK\BON\Common\Events.cpp
-    $(GME_ROOT)\SDK\BON\Common\Exceptions.cpp
-    $(GME_ROOT)\SDK\BON\Common\Extensions.cpp
-    $(GME_ROOT)\SDK\BON\Common\MON.cpp
-    $(GME_ROOT)\SDK\BON\Common\MONImpl.cpp
-    $(GME_ROOT)\SDK\BON\Common\Utils.cpp
+	conditional(vc9) {
+	    $(GME_ROOT)\SDK\BON\Common\ComHelp.cpp
+	    $(GME_ROOT)\SDK\BON\Common\ComponentDll.cpp
+	    $(GME_ROOT)\SDK\BON\Common\ComponentObj.cpp
+	    $(GME_ROOT)\SDK\BON\Common\ComponentLib.idl
+		$(GME_ROOT)\SDK\BON\Common\Console.cpp
+		
+	    $(GME_ROOT)\SDK\BON\Common\BON.cpp
+	    $(GME_ROOT)\SDK\BON\Common\BONImpl.cpp
+	    $(GME_ROOT)\SDK\BON\Common\Common.cpp
+	    $(GME_ROOT)\SDK\BON\Common\Events.cpp
+	    $(GME_ROOT)\SDK\BON\Common\Exceptions.cpp
+	    $(GME_ROOT)\SDK\BON\Common\Extensions.cpp
+	    $(GME_ROOT)\SDK\BON\Common\MON.cpp
+	    $(GME_ROOT)\SDK\BON\Common\MONImpl.cpp
+	    $(GME_ROOT)\SDK\BON\Common\Utils.cpp
+	}
+	conditional(vc8) {
+	    $(GME_ROOT)\SDK\BON\ComHelp.cpp
+	    $(GME_ROOT)\SDK\BON\ComponentDll.cpp
+	    $(GME_ROOT)\SDK\BON\ComponentObj.cpp
+	    $(GME_ROOT)\SDK\BON\ComponentLib.idl
+		$(GME_ROOT)\SDK\BON\Console.cpp
+		
+	    $(GME_ROOT)\SDK\BON\BON.cpp
+	    $(GME_ROOT)\SDK\BON\BONImpl.cpp
+	    $(GME_ROOT)\SDK\BON\Common.cpp
+	    $(GME_ROOT)\SDK\BON\Events.cpp
+	    $(GME_ROOT)\SDK\BON\Exceptions.cpp
+	    $(GME_ROOT)\SDK\BON\Extensions.cpp
+	    $(GME_ROOT)\SDK\BON\MON.cpp
+	    $(GME_ROOT)\SDK\BON\MONImpl.cpp
+	    $(GME_ROOT)\SDK\BON\Utils.cpp
+	}
   }
 
   Header_Files {
     ComponentConfig.h
+	ComponentLib_h.h
     Resource.h
 
-    $(GME_ROOT)\SDK\BON\Common\GMECOM.h
-	ComponentLib_h.h
+	conditional(vc9) {
+		$(GME_ROOT)\SDK\BON\Common\GMECOM.h
+	}
+	conditional(vc8) {
+		$(GME_ROOT)\SDK\BON\GMECOM.h
+	}
   }
 
   Resource_Files {

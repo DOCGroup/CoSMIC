@@ -11,9 +11,12 @@
 
 #define STRICT
 #ifndef _WIN32_WINNT
-#define _WIN32_WINNT 0x0500
-#endif
-#define _ATL_APARTMENT_THREADED
+	#if _MSC_VER > 1400
+		#define _WIN32_WINNT 0x0500
+	#else
+		#define _WIN32_WINNT 0x0400
+	#endif 
+#endif#define _ATL_APARTMENT_THREADED
 
 #include <afxwin.h>
 #include <afxdisp.h>

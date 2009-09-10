@@ -4,7 +4,7 @@ project (PICMLManager): game, mfc, boost_base, \
   cosmic_utils, register, cosmic_common {
   sharedname = PICMLManager
 
-  includes += . $(GME_ROOT)/SDK/BON/Common
+  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)/SDK/BON/Common
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -20,12 +20,21 @@ project (PICMLManager): game, mfc, boost_base, \
 
   Source_Files {
     RawComponent.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-	$(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
-	$(GME_ROOT)/SDK/BON/Common/Console.cpp
+	conditional (vc9) {
+	    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+	    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
+	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
+		$(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+		$(GME_ROOT)/SDK/BON/Common/Console.cpp
+	}
+	conditional (vc8) {
+	    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+	    $(GME_ROOT)/SDK/BON/ComponentLib.idl
+	    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+	    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+		$(GME_ROOT)/SDK/BON/Exceptions.cpp
+	}
   }
 
   Header_Files {
@@ -33,12 +42,21 @@ project (PICMLManager): game, mfc, boost_base, \
     ComponentLib.h
 	ComponentLib_h.h
     ComponentConfig.h
-    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
-    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
-    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
-	$(GME_ROOT)/SDK/BON/Common/Exceptions.h
-	$(GME_ROOT)/SDK/BON/Common/Console.h
-	$(GME_ROOT)/SDK/BON/Common/GMECOM.h
+	conditional (vc9) {
+	    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
+	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
+	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
+		$(GME_ROOT)/SDK/BON/Common/Exceptions.h
+		$(GME_ROOT)/SDK/BON/Common/Console.h
+		$(GME_ROOT)/SDK/BON/Common/GMECOM.h
+	}
+	conditional (vc8) {
+	    $(GME_ROOT)/SDK/BON/ComHelp.h
+	    $(GME_ROOT)/SDK/BON/ComponentDll.h
+	    $(GME_ROOT)/SDK/BON/ComponentObj.h
+		$(GME_ROOT)/SDK/BON/Exceptions.h
+		$(GME_ROOT)/SDK/BON/GMECOM.h
+	}	
   }
 
   Resource_Files {

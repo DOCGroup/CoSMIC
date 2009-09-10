@@ -18,13 +18,22 @@ project (PackageComponent): game, mfc, picmllib, register {
   }
 
   Source_Files {
-    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-    StdAfx.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
-    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-	$(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
-	$(GME_ROOT)/SDK/BON/Common/Console.cpp
+	conditional (vc9) {
+	    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+	    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
+	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
+		$(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+		$(GME_ROOT)/SDK/BON/Common/Console.cpp
+	}
+	conditional (vc8) {
+	    $(GME_ROOT)/SDK/BON/ComponentLib.idl
+	    $(GME_ROOT)/SDK/BON/ComHelp.cpp
+	    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+	    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+		$(GME_ROOT)/SDK/BON/Exceptions.cpp
+	}
+	StdAfx.cpp
     Component.rc
     Component.def
     PackageMainDialog.cpp
@@ -34,15 +43,24 @@ project (PackageComponent): game, mfc, picmllib, register {
   }
 
   Header_Files {
+    conditional (vc9) {
+	    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
+	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
+	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
+	    $(GME_ROOT)/SDK/BON/Common/GMECOM.h
+		$(GME_ROOT)/SDK/BON/Common/Exceptions.h
+		$(GME_ROOT)/SDK/BON/Common/Console.h
+	}
+    conditional (vc8) {
+	    $(GME_ROOT)/SDK/BON/ComHelp.h
+	    $(GME_ROOT)/SDK/BON/ComponentDll.h
+	    $(GME_ROOT)/SDK/BON/ComponentObj.h
+	    $(GME_ROOT)/SDK/BON/GMECOM.h
+		$(GME_ROOT)/SDK/BON/Exceptions.h
+	}	
     ComponentConfig.h
     ComponentLib.h
 	ComponentLib_h.h
-    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
-    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
-    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
-    $(GME_ROOT)/SDK/BON/Common/GMECOM.h
-	$(GME_ROOT)/SDK/BON/Common/Exceptions.h
-	$(GME_ROOT)/SDK/BON/Common/Console.h
     RawComponent.h
     Resource.h
     StdAfx.h

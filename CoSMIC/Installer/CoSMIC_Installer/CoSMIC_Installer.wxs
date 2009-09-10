@@ -30,6 +30,12 @@
     </Condition>
 <?endif ?>
 
+<?if $(var.GME_VERSION) = 7_6_29 ?>
+    <Condition Message="This CoSMIC installer requires GME 7.6.29 preinstalled on your machine. Please install GME 7.6.29 first.">
+      GMEINSTALLED
+    </Condition>
+<?endif ?>
+
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
     <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
 

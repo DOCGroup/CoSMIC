@@ -114,10 +114,19 @@
         <File Id="$(var.UDM_VERSION).DLL" Name="$(var.UDM_VERSION).DLL"
               Source="$(var.UDM_PATH)\bin\$(var.UDM_VERSION).DLL"
               DiskId="1" />
-
+			  
+<?if $(var.GME_VERSION) = 9_8_28 ?>
         <File Id="XERCES_C_2_8.DLL" Name="XERCES-C_2_8.DLL"
               Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_8_0\bin\XERCES-C_2_8.DLL"
               DiskId="1" />
+<?endif ?>
+
+<?if $(var.GME_VERSION) = 7_6_29 ?>
+        <File Id="XERCES_C_2_5.DLL" Name="XERCES-C_2_5.DLL"
+              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5.DLL"
+              DiskId="1" />
+<?endif ?>
+
       </Component>
       <Component Id="CoSMICCommon" Guid="5B59328D-54CE-4A0D-AABF-0FF22CD5781C">
         <File Id='ACEDLL'
