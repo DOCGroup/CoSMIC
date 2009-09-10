@@ -218,11 +218,15 @@ private:
                        const char *value);
    void add_artifact_refs (DOMElement *impl_container,
                            DOMElement *impl,
+                           AST_Component * component,
                            DOMElement *artifact_container);
+
    void add_one_artifact_ref (DOMElement *impl_container,
                               DOMElement *impl,
                               DOMElement *artifact,
+                              AST_Component * component,
                               XMLSize_t index);
+
    void add_component_ref (DOMElement *container,
                            DOMElement *impl,
                            const char *gme_id,

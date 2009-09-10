@@ -32,6 +32,7 @@
 #include "nr_extern.h"
 #include "idl_defines.h"
 #include "ace/OS_NS_stdio.h"
+#include "ace/OS_NS_unistd.h"
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
@@ -1221,13 +1222,15 @@ BE_GlobalData::lookup_by_tag_and_id (DOMElement *scope,
 void
 BE_GlobalData::init_ids (DOMElement *sub_tree)
 {
-  static const Utils::XStr model ("model");
-  static const Utils::XStr reference ("reference");
-  static const Utils::XStr atom ("atom");
-  static const Utils::XStr connection ("connection");
-  static const Utils::XStr folder ("folder");
+  // These used to be declared as const, however, it results in an
+  // exception at shutdown time.
+  const Utils::XStr model ("model");
+  const Utils::XStr reference ("reference");
+  const Utils::XStr atom ("atom");
+  const Utils::XStr connection ("connection");
+  const Utils::XStr folder ("folder");
 
-  // Element must have an id attribute to convert to an integer.
+  // Element must have n id attribute to convert to an integer.
   if (sub_tree == 0 || !sub_tree->hasAttribute (X ("id")))
     {
       return;
