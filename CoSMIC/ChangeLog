@@ -1,3 +1,10 @@
+Thu Sep 10 04:22:13 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Removed unnecessary debugging code.
+
 Thu Sep 10 03:54:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:

@@ -32,7 +32,6 @@
 #include "nr_extern.h"
 #include "idl_defines.h"
 #include "ace/OS_NS_stdio.h"
-#include "ace/OS_NS_unistd.h"
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
