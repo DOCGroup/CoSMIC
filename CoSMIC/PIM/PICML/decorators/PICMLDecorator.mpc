@@ -5,7 +5,7 @@ project (PICMLDecorator): bon, register {
    sharedname = PICMLDecorator
    includes += $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator
 
-   specific (vc6,vc7,vc71,vc8) {
+   specific (vc6,vc7,vc71,vc8,vc9) {
      link_options += /DEF:DecoratorApp.def
    }
 

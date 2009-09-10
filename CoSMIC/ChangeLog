@@ -1,3 +1,13 @@
+Thu Sep 10 01:17:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        
+		  Added VC9.
+		  
+		* PIM/PICML/examples/Hello.xme:
+          
+		  Updated the example with GME 9.8.28.
+
 Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/examples/Hello/HelloService.NET/HelloService.sln:
@@ -8,7 +18,7 @@ Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/interpreters/Interpreters.mwc:
 
-		  Updated these projects to use GME 9.8.28 and VC9.
+                  Updated these projects to use GME 9.8.28 and VC9.
 
 Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
