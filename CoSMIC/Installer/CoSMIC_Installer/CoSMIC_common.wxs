@@ -122,8 +122,8 @@
 <?endif ?>
 
 <?if $(var.GME_VERSION) = 7_6_29 ?>
-        <File Id="XERCES_C_2_5.DLL" Name="XERCES-C_2_5.DLL"
-              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5.DLL"
+        <File Id="XERCES_C_2_5_0.DLL" Name="XERCES-C_2_5_0.DLL"
+              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_5_0\bin\XERCES-C_2_5_0.DLL"
               DiskId="1" />
 <?endif ?>
 

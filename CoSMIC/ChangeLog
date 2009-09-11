@@ -1,13 +1,19 @@
+Fri Sep 11 02:25:14 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+	 
+          . Fixed xerces-c version number.	
+
 Thu Sep 10 20:01:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/SIML/examples/Hello/HelloService.NET/HelloService.sln:
         * PIM/SIML/examples/Hello/HelloService.NET/HelloService.vcproj:
-		
-		  . Reverted to VC8 solution files.
+
+                  . Reverted to VC8 solution files.
 
         * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
-		
-		  . Added ComponentLib_h.h file.
+
+                  . Added ComponentLib_h.h file.
 
 Thu Sep 10 19:42:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
