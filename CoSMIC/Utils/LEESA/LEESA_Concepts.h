@@ -15,6 +15,12 @@ namespace LEESA
   typedef boost::mpl::vector<>  EmptyMPLVectorB;
   typedef boost::mpl::vector0<> EmptyMPLVector;
 
+  template <class Where, class T>
+  struct ChildrenKinds;
+
+  template <class Where, class T>
+  struct DescendantKinds;
+
   template <class T>
 	struct UdmKindConcept 
 	{
@@ -135,8 +141,7 @@ namespace LEESA
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
 		}
 
-    typedef typename 
-      Customizer::template DescendantKinds<ParentKind>::type DescendantKinds;
+    typedef typename LEESA::DescendantKinds<Customizer, ParentKind>::type DescendantKinds;
     typedef DescendantKindConcept type;
     enum { value = UdmKindConcept<ParentKind>::value &&
                    UdmKindConcept<DescendantKind>::value && 

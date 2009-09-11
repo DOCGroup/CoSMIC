@@ -37,15 +37,25 @@
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\SP.cpp' />
 
-          <File Id='UDMMPL'
-                Name='UDMMPL.h'
+          <File Id='LEESA_UDMMPL'
+                Name='UdmMPL.h'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\UDMMPL.h' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\UdmMPL.h' />
 
-          <File Id='LEESAconcept'
+          <File Id='LEESA_Concepts'
+                Name='LEESA_Concepts.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA_Concepts.h' />
+
+          <File Id='LEESA_ConceptGCC'
                 Name='concept-mpl.cpp'
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\concept-mpl.cpp' />
+
+          <File Id='LEESA_DSL09_Primitives'
+                Name='DSL09primitives.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\DSL09primitives.cpp' />
 
           <File Id='LEESADOC'
                 Name='LEESA.pdf'

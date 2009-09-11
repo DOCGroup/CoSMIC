@@ -21,11 +21,11 @@
     return OP##Op<X, Y, Z> (y);                                     \
   }                                                                 \
   template <class X, class Y>                                       \
-  OP##Op<X, Y, AllChildrenKinds>                                    \
+  OP##Op<X, Y, Default>                                    \
   OP (X, Y const & y)  {                                            \
 	typedef typename ET<X>::argument_kind argument_kind;              \
 	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
-    return OP##Op<X, Y, AllChildrenKinds> (y);                      \
+    return OP##Op<X, Y, Default> (y);                      \
   }
 
 /**********************************************************************************/
@@ -55,7 +55,7 @@
 #define CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)                             \
 template <class K,                                                                 \
           class Strategy = KindLit<K>,                                             \
-          class Custom = AllChildrenKinds>                                         \
+          class Custom = Default>                                         \
 struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                      \
 {                                                                                  \
     typedef typename ChainExpr<K, OP##Op> expression_type;                         \
@@ -211,22 +211,24 @@ struct LEESAException : public std::runtime_error
 typedef std::set<Udm::Object> ObjectSet;
 ObjectSet VISITED;
 
-struct AllChildrenKinds
+struct Default
 {
-  template <class T>
-  struct ChildrenKinds
-  {
-    typedef typename T::ChildrenKinds type;
-  };
-  template <class T>
-  struct DescendantKinds 
-  {
-    typedef typename T::DescendantKinds type;
-  };
   static ObjectSet GetChildObjects(Udm::Object o)
   {
     return o.GetChildObjects();
   };
+};
+
+template <class T>
+struct ChildrenKinds <Default, T>
+{
+  typedef typename T::ChildrenKinds type;
+};
+
+template <class T>
+struct DescendantKinds <Default, T>
+{
+  typedef typename T::DescendantKinds type;
 };
 
 class _StrategyBase {}; // Baseclass of all the strategies. Just for documentation.
@@ -351,7 +353,7 @@ result_kind operator () (argument_kind const & arg)
 
 template <class K,                                                                 
           class Strategy = KindLit<K>,                                             
-          class Custom = AllChildrenKinds>                                         
+          class Custom = Default>                                         
 struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 {                                                                                  
   typedef typename ChainExpr<K, OneOp> expression_type;                         
@@ -400,8 +402,7 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 
   result_kind operator () (argument_kind const & arg)
   {
-    typedef typename Custom::template 
-      ChildrenKinds<argument_kind>::type CustomChildren;
+    typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
     std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
     success_ = false;
     BOOST_FOREACH(Udm::Object o, objects)
@@ -448,8 +449,7 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
 result_kind operator () (argument_kind const & arg)
     {
-      typedef typename Custom::template 
-        ChildrenKinds<argument_kind>::type CustomChildren;
+      typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
       std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
       BOOST_FOREACH(Udm::Object o, objects)
       {
@@ -485,7 +485,7 @@ result_kind operator () (argument_kind const & arg)
 
 template <class K,                                                                 
           class Strategy = KindLit<K>,                                             
-          class Custom = AllChildrenKinds>                                         
+          class Custom = Default>                                         
 struct AllGraphOp : public AllOp<K, Strategy, Custom>
 {
   typedef typename ChainExpr<K, AllGraphOp> expression_type;                         
@@ -519,8 +519,7 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   result_kind operator () (argument_kind const & kind)
   {
     LEESA::VISITED.insert(kind);
-    typedef typename Custom::template 
-        ChildrenKinds<argument_kind>::type CustomChildren;
+    typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
     std::set<Udm::Object> objects = Custom::GetChildObjects(kind);
     BOOST_FOREACH(Udm::Object o, objects)
     {

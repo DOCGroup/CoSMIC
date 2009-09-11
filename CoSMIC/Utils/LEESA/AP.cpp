@@ -45,7 +45,6 @@ template <class Strategy, class From, class ToVector,
 ExpressionTraits3Para(DescendantOp);
 ExpressionTraits3Para(DescendantGraphOp);
 
-
 template <class Strategy, 
           class From, 
           class ToVector, 
@@ -57,7 +56,7 @@ struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customize
 
 template <class L, 
           class H, 
-          class Customizer = LEESA::AllChildrenKinds >
+          class Customizer = LEESA::Default >
 struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
 {
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
@@ -95,45 +94,45 @@ protected:
     }
   };
 
-  class FastDescendants : public Customizer
-  {
-    template <class Vector>
-    struct FilterChildrenIfNotDescendant
-    {
-      typedef typename front<Vector>::type Head;
-      typedef typename pop_front<Vector>::type Tail;
-      typedef typename 
-        if_c<is_same<Head, result_kind>::value |
-             contains <typename Customizer::template DescendantKinds<Head>::type, 
-                       result_kind>::value,
-             typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
-                      Head>::type,
-             typename FilterChildrenIfNotDescendant<Tail>::type 
-        >::type type;
-    };
-    template <>
-    struct FilterChildrenIfNotDescendant <EmptyMPLVector> {
-      typedef EmptyMPLVector type;
-    };
-    template <>
-    struct FilterChildrenIfNotDescendant <EmptyMPLVectorB> {
-      typedef EmptyMPLVector type;
-    };
+private:
 
-  public:
-    template <class K>
-    struct ChildrenKinds   
-    {
-      BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<K>));
-      typedef typename 
-        Customizer::template ChildrenKinds<K>::type Children;
-      typedef typename 
-        FilterChildrenIfNotDescendant<Children>::type type;
-    };
+  template <class Vector>
+  struct FilterChildrenIfNotDescendant
+  {
+    typedef typename front<Vector>::type Head;
+    typedef typename pop_front<Vector>::type Tail;
+    typedef typename 
+      if_c<is_same<Head, result_kind>::value |
+           contains <typename DescendantKinds<Customizer,Head>::type, 
+                     result_kind>::value,
+           typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
+                    Head>::type,
+           typename FilterChildrenIfNotDescendant<Tail>::type 
+      >::type type;
+  };
+  template <>
+  struct FilterChildrenIfNotDescendant <EmptyMPLVector> {
+    typedef EmptyMPLVector type;
+  };
+  template <>
+  struct FilterChildrenIfNotDescendant <EmptyMPLVectorB> {
+    typedef EmptyMPLVector type;
   };
 
 public:
+
+  class FastDescendants : public Customizer { };
+/*
+  template <class K>
+  struct ChildrenKinds<FastDescendants, K> : LEESA::ChildrenKinds<Customizer, K>
+  {
+      BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<K>));
+      typedef typename ChildrenKinds<Customizer, K>::type Children;
+      typedef typename 
+        FilterChildrenIfNotDescendant<Children>::type type;
+  };
   
+  */
   result_type operator () (argument_type const & arg)
   {
     Accumulate acc(retval_);
@@ -145,7 +144,7 @@ public:
 
 template <class L, 
           class H, 
-          class Customizer = LEESA::AllChildrenKinds >
+          class Customizer = LEESA::Default >
 struct DescendantGraphOp : DescendantOp<L, H, Customizer>
 {
   typedef DescendantOp<L, H, Customizer> Super;
@@ -334,7 +333,7 @@ GraphDescendantsOf (L, H, Custom)
 {                                                                    
 	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
 	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));                                                                              \
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L, H, Custom>));                                                                              \
 	typedef typename ET<L>::argument_type argument_type;               
 	typedef typename ET<H>::result_type result_type;                   
                                                                      
@@ -348,7 +347,7 @@ template <class Strategy,
           class ToVector, 
           class Through = Through_Vector_is<boost::mpl::vector<__ANY> >,
           class Bypass = Bypass_Vector_is<EmptyMPLVector>,
-          class Custom = Customizer_is<LEESA::AllChildrenKinds> >
+          class Custom = Customizer_is<LEESA::Default> >
 struct APGen
 {
 private:
@@ -385,12 +384,12 @@ private:
   template < >
   struct find_param <EmptyMPLVector, Customizer_tag>
   {
-    typedef LEESA::AllChildrenKinds type;
+    typedef LEESA::Default type;
   };
   template < >
   struct find_param <EmptyMPLVectorB, Customizer_tag>
   {
-    typedef LEESA::AllChildrenKinds type;
+    typedef LEESA::Default type;
   };
   typedef boost::mpl::vector<Through, Bypass, Custom> Configuration;
   typedef typename 

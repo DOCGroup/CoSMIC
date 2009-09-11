@@ -58,24 +58,13 @@ public:
   int get_count() { return count_; }
 };
 
-struct ReferenceCustom : public LEESA::AllChildrenKinds
+struct ReferenceCustom : public LEESA::Default
 {
   // See gcc bug #39906 related to explicit specialization
   // of class member templates.
   // http://gcc.gnu.org/bugzilla/show_bug.cgi?id=39906
 
-  template <class T>
-  struct ChildrenKinds 
-  {
-    typedef typename T::ChildrenKinds type;
-  };  
-  template <class T>
-  struct DescendantKinds 
-  {
-    typedef typename T::DescendantKinds type;
-  };
-
-  using LEESA::AllChildrenKinds::GetChildObjects;
+  using LEESA::Default::GetChildObjects;
   static std::set<Udm::Object> GetChildObjects(HFSM::Reference r)
   {
     HFSM::State s = r.ref();
@@ -88,9 +77,30 @@ struct ReferenceCustom : public LEESA::AllChildrenKinds
   };
 };
 
+template <class T>
+struct LEESA::ChildrenKinds <ReferenceCustom, T> : ChildrenKinds<LEESA::Default, T>
+{
+};  
+
+template <class T>
+struct LEESA::DescendantKinds <ReferenceCustom, T> : ChildrenKinds<LEESA::Default, T>
+{
+};
+
+/*
+struct Foo : ReferenceCustom
+{
+  using ReferenceCustom::ChildrenKinds;
+  template <>
+  struct ChildrenKinds <int>
+  {
+    typedef int type;
+  };  
+};*/
+
 /* According to the C++ language standard, explicit specialization
    of the member template must be defined in the namespace scope. */
-template <>
+/*template <>
 struct ReferenceCustom::ChildrenKinds<HFSM::Reference> {
   typedef HFSM::State::ChildrenKinds type;
 };
@@ -98,7 +108,7 @@ template <>
 struct ReferenceCustom::DescendantKinds<HFSM::Reference> {
   typedef HFSM::State::DescendantKinds type;
 };
-
+*/
 
 RootFolder create(Udm::SmartDataNetwork & nw, const char * const);
 RootFolder open(Udm::SmartDataNetwork & nw, const char * const);
@@ -152,15 +162,16 @@ int _tmain(int argc, _TCHAR* argv[])
     //evaluate(rf, RootFolder() >> FullTDGraph(RootFolder(), vs, ReferenceCustom()));
     //LEESA::VISITED.clear();
 
-    /*evaluate(rf, RootFolder() 
+    evaluate(rf, RootFolder() 
       >> StateMachine()
       >> SelectByName(StateMachine(), "SM1")
-      >> GraphDescendantsOf(StateMachine(), State(), ReferenceCustom()) >> cv);*/
-    evaluate (rf, AP(vs,
+      >> GraphDescendantsOf(StateMachine(), State(), ReferenceCustom()) >> cv);
+    /*evaluate (rf, AP(vs,
                      FROM(RootFolder), 
                      TO(HFSM::Reference),
-                     THROUGH(HFSM::State)
-                     ));
+                     THROUGH(HFSM::State),
+                     CUSTOMIZER(ReferenceCustom)
+                     ));*/
   }
   catch(const udm_exception &e)
 	{

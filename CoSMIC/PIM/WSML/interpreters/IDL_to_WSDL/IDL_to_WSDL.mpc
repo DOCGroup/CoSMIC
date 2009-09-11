@@ -3,7 +3,7 @@
 
 project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
 
-  after       += TAO_IDL_FE CosMIC_Utils
+  after       += TAO_IDL_FE CoSMIC_Utils
   sharedname   = IDL_TO_WSDL_BE
   libs        += TAO_IDL_FE Utils
   libpaths    += $(COSMIC_ROOT)/lib

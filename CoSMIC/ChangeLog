@@ -1,8 +1,14 @@
+Fri Sep 11 03:03:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+		
+          . Fixed a library dependency typo. 
+
 Fri Sep 11 02:25:14 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
-	 
-          . Fixed xerces-c version number.	
+
+          . Fixed xerces-c version number.
 
 Thu Sep 10 20:01:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
