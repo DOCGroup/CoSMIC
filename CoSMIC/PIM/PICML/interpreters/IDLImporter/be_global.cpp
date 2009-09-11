@@ -569,7 +569,6 @@ BE_GlobalData::xerces_init (void)
   try
     {
       XMLPlatformUtils::Initialize ();
-	  std::cout << "XMLPlatformUtils::Initialize complete" << std::endl;
       XMLCh tempStr[100];
       XMLString::transcode ("LS", tempStr, 99);
       this->impl_ =
@@ -590,7 +589,7 @@ BE_GlobalData::xerces_init (void)
             XMLUni::fgDOMWRTFormatPrettyPrint,
             true
           );
- 
+
       if (can_pretty_print)
         {
           this->writer_->getDomConfig ()->setParameter (
@@ -668,8 +667,8 @@ BE_GlobalData::xerces_init (void)
           parser.setEntityResolver (&resolver);
 
           parser.parse (xme);
-
           this->doc_ = parser.adoptDocument ();
+
           if (handler.getErrors ())
             {
               // The error handler will output a message.
