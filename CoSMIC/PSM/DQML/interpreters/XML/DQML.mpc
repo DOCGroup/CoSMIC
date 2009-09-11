@@ -43,8 +43,7 @@ project (DQML_XML_Interpreter) : register, cosmic_lib {
 	    $(GME_ROOT)\SDK\BON\ComponentDll.cpp
 	    $(GME_ROOT)\SDK\BON\ComponentObj.cpp
 	    $(GME_ROOT)\SDK\BON\ComponentLib.idl
-		$(GME_ROOT)\SDK\BON\Console.cpp
-		
+	
 	    $(GME_ROOT)\SDK\BON\BON.cpp
 	    $(GME_ROOT)\SDK\BON\BONImpl.cpp
 	    $(GME_ROOT)\SDK\BON\Common.cpp

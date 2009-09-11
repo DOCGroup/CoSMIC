@@ -1,7 +1,14 @@
+Fri Sep 11 15:49:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+		
+          . Removed console.cpp from GME 7 build files.
+
 Fri Sep 11 03:09:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-		
+
           . Reverted back an erronious checkin.
 
 Fri Sep 11 03:03:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
