@@ -288,21 +288,15 @@ create_uuid (const GME::FCO & fco)
   {
     long status = uuid_attr.status ();
 
-    if (status == ATTSTATUS_METADEFAULT ||
-        status == ATTSTATUS_UNDEFINED ||
-        status > 0)
+    // This will force the generation of an UUID for any element
+    // that requires an UUID, including instances and subtypes.
+    try
     {
-      // This will force the generation of an <UUID> for any new
-      // component/assembly inserted, as well as instances and
-      // subtypes.
-      try
-      {
-        uuid_attr.string_value (Utils::CreateUuid ());
-      }
-      catch (...)
-      {
-        this->pending_.push_back (fco);
-      }
+      uuid_attr.string_value (Utils::CreateUuid ());
+    }
+    catch (...)
+    {
+      this->pending_.push_back (fco);
     }
   }
 }

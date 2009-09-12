@@ -1,8 +1,15 @@
+Sat Sep 12 20:43:16 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Bug fix where doing a Copy | Paste of any element with a
+            UUID failed to generate a new UUID for the pasted element.
+
 Fri Sep 11 15:49:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PSM/DQML/interpreters/DBE/DQML.mpc:
         * PSM/DQML/interpreters/XML/DQML.mpc:
-		
+
           . Removed console.cpp from GME 7 build files.
 
 Fri Sep 11 03:09:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
