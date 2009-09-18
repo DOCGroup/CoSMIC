@@ -1,3 +1,10 @@
+Fri Sep 18 18:32:49 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Utils/EntityResolver.cpp(resolveEntity):
+        
+          Changed the body to avoid using XStr::append(), which
+          seems to leave us with an XStr that crashes on destruction.
+
 Thu Sep 17 15:05:25 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
