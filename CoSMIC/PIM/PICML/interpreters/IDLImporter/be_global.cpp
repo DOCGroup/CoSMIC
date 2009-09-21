@@ -542,7 +542,7 @@ BE_GlobalData::usage (void) const
   ACE_DEBUG ((
       LM_DEBUG,
       ACE_TEXT (" -m <filepath>\t\tPath to GME's mga.dtd file.")
-      ACE_TEXT (" Default is c:\\Program Files\\GME\\bin\n")
+      ACE_TEXT (" Default is c:\\Program Files\\GME\n")
     ));
   ACE_DEBUG ((
       LM_DEBUG,
@@ -828,13 +828,13 @@ BE_GlobalData::destroy (void)
     {
       delete [] const_cast<char *> (fwd_entry->ext_id_);
     }
-
+    
   REF_DECL_TABLE_ENTRY *ref_entry = 0;
   for (REF_DECL_TABLE_ITERATOR ref_iter (this->ref_decl_table_);
        ref_iter.next (ref_entry) != 0;
        ref_iter.advance ())
     {
-      delete [] const_cast<char *> (ref_entry->ext_id_);
+      ACE::strdelete (const_cast<char *> (ref_entry->ext_id_));
     }
 
   this->gme_id_set_.reset ();
@@ -1578,7 +1578,6 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
   DOMElement *parent =
     dynamic_cast<DOMElement *> (node->getParentNode ());
 
-  char *new_type_name = this->get_name (new_type);
   char *child_name = this->get_name (node);
   char *parent_name = this->get_name (parent);
   char *changed_kind =
@@ -1590,7 +1589,7 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
   // catch a possible type change. If there is no such attribute
   // yet, it means we are adding the model element, so we output
   // the appropriate diagnostic.
-  if (!node->hasAttribute (X ("referred")))
+  if (!node->hasAttribute (X ("referred")) || new_type == 0)
     {
       cout << "Added " << changed_kind << " "
            << (ACE_OS::strcmp (child_name, changed_kind) == 0
@@ -1602,7 +1601,6 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
                  : parent_name)
            << endl;
 
-      XMLString::release (&new_type_name);
       XMLString::release (&parent_name);
       XMLString::release (&child_name);
       XMLString::release (&changed_kind);
@@ -1620,6 +1618,7 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
 
   DOMElement *old_type = this->doc_->getElementById (old_ref);
   char *old_type_name = this->get_name (old_type);
+  char *new_type_name = this->get_name (new_type);
 
   cout << "type of " << changed_kind << " "
        << (0 == ACE_OS::strcmp (child_name, changed_kind)

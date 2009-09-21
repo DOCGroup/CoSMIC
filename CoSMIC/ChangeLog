@@ -1,9 +1,20 @@
+Mon Sep 21 17:33:29 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          More changes related to the change in XMLString::transcode()
+          behavior.
+
 Fri Sep 18 18:32:49 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Utils/EntityResolver.cpp(resolveEntity):
         
           Changed the body to avoid using XStr::append(), which
           seems to leave us with an XStr that crashes on destruction.
+          Also changes related to the apparent change in the behavior
+          of XMLString::transcode(), which no longer seems to allocate
+          memory for the char* return value.
 
 Thu Sep 17 15:05:25 UTC 2009  Sumant Tambe  <sutambe@nospam>
 

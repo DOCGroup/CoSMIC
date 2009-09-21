@@ -3098,16 +3098,24 @@ adding_visitor::add_exception_elements (DOMElement *parent,
         }
 
       char *id = XMLString::transcode (gme_id);
+      AST_Type *ex_t = AST_Type::narrow_from_decl (ex);
+      
       int result =
-        be_global->ref_decl_table ().bind (id, ex);
-
-      // Has a reference to this exception already been added?
-      if (0 != result)
+        be_global->ref_decl_table ().find (id, ex_t);
+        
+      // @@@ (JP) 09-21-2009 - XMLString::transcode no longer seems
+      // to allocate memory when returning char* (maybe because of
+      // recent switch to xerces 3.0?) so we allocate the memory
+      // for the external id if we're actually binding, call 
+      // XMLString::release(), which will supposedly do the right
+      // thing regardless, and finally release the ext id memory
+      // in BE_GlobalData::destroy().  
+      if (result == -1)
         {
-          // If so, the table takes doesn't over the memory allocated by
-          // transcode(), so we must cleaned it up.
-          XMLString::release (&id);
+          be_global->ref_decl_table ().bind (ACE::strnew (id), ex_t);
         }
+
+      XMLString::release (&id);
     }
 }
 
