@@ -1,15 +1,24 @@
+Wed Sep 23 16:06:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+		
+          . Fixed an uncaught exception problem in xerces-init function. The uncaught
+		    exception was SAXParseException. idl_to_picml.exe built on GME9/VC9 setup 
+			does not abort prematurely if mga.dtd is copied from $GME_ROOT\bin to $GME_ROOT. 
+			A fix to the paths is on its way!
+
 Mon Sep 21 17:33:29 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-        
+
           More changes related to the change in XMLString::transcode()
           behavior.
 
 Fri Sep 18 18:32:49 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * Utils/EntityResolver.cpp(resolveEntity):
-        
+
           Changed the body to avoid using XStr::append(), which
           seems to leave us with an XStr that crashes on destruction.
           Also changes related to the apparent change in the behavior

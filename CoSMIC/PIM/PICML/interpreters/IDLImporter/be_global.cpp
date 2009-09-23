@@ -706,6 +706,16 @@ BE_GlobalData::xerces_init (void)
                   e.code));
       BE_abort ();
     }
+  catch (const SAXParseException &e)
+    {
+      char *message = XMLString::transcode (e.getMessage ());
+      ACE_ERROR ((LM_DEBUG,
+                  ACE_TEXT ("xerces_init - ")
+                  ACE_TEXT ("SAXParseException message is: %s\n"),
+                  message));
+      XMLString::release (&message);
+      BE_abort ();
+    }
   catch (const XMLException &e)
     {
       char *message = XMLString::transcode (e.getMessage ());
