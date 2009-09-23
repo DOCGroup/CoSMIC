@@ -36,6 +36,10 @@
 #include "ace/streams.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
 
+#include <fstream>
+#include <sstream>
+#include <string>
+
 // Some magic strings.
 const char *VERSION = "1.0";
 const char *ENCODING = "UTF-8";
@@ -82,9 +86,14 @@ BE_GlobalData::BE_GlobalData (void)
 
   if (path_str != 0)
     {
-      // GME versions from 5.9.21 no longer install mga.dtd
-      // in $GME_ROOT/bin, but in $GME_ROOT.
+      // mga.dtd in GME version 7.6.29 is in $GME_ROOT
+      // mga.dtd in GME version 9.8.28 is in $GME_ROOT/bin
       this->schema_path_ = path_str;
+
+      if (get_GME_version(path_str) == "9.8.28")
+	  {
+		this->schema_path_ += "\\bin";
+	  }
 
       // In case it isn't at the end of the environment variable,
       // otherwise idempotent.
@@ -1925,4 +1934,32 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
     {
       return true;
     }
+}
+
+std::string BE_GlobalData::get_GME_version (std::string path)
+{
+  path += "\\Interfaces\\GMEVersion.h";
+
+  std::ifstream infile(path.c_str());
+  if (infile)
+  {
+    std::string token;
+    int major = 0, minor = 0, plevel = 0;
+    while (infile >> token)
+    {
+      if (token == "GME_VERSION_MAJOR")
+        infile >> major;
+      else if (token == "GME_VERSION_MINOR")
+        infile >> minor;
+      else if (token == "GME_VERSION_PLEVEL")
+      {
+        infile >> plevel;
+        break;
+      }
+    }
+    std::ostringstream ostr;
+    ostr << major << "." << minor << "." << plevel;
+    return ostr.str();
+  }
+  return ""; // Empty string
 }

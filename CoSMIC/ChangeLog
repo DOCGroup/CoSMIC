@@ -1,11 +1,12 @@
-Wed Sep 23 16:06:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+Wed Sep 23 16:53:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
-		
+
           . Fixed an uncaught exception problem in xerces-init function. The uncaught
-		    exception was SAXParseException. idl_to_picml.exe built on GME9/VC9 setup 
-			does not abort prematurely if mga.dtd is copied from $GME_ROOT\bin to $GME_ROOT. 
-			A fix to the paths is on its way!
+            exception was SAXParseException. Fixed the path issue of mga.dtd. In
+            GME 7.6.29 installation it is under $GME_ROOT whereas in GME 9.8.28
+            it is under $GME_ROOT/bin.
 
 Mon Sep 21 17:33:29 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 

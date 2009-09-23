@@ -27,6 +27,8 @@
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
 
+#include <string>
+
 #if !defined (ACE_LACKS_PRAGMA_ONCE)
 # pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
@@ -44,6 +46,7 @@ using namespace xercesc;
 class AST_Generator;
 class AST_Module;
 class AST_Component;
+
 
 // Defines a class containing all back end global data.
 
@@ -354,6 +357,10 @@ private:
   bool match_module_opening_downscope (DOMElement *elem, AST_Decl *d);
   // Check if a module opening in the AST and one in the DOM tree
   // refer to the same thing.
+
+  // Get the version of GME by looking into 
+  // $GME_ROOT\Interfaces\Interfaces\GMEVersion.h
+  std::string get_GME_version (std::string path);
 
 private:
   char *filename_;
