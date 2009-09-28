@@ -1,3 +1,10 @@
+Mon Sep 28 12:35:34 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
+          
+           fixed mcpp problem.
+        
+
 Fri Sep 25 21:02:14 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * Release_idl_to_picml.mwc

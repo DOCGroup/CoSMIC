@@ -38,7 +38,7 @@ project(IDL_TO_WSDL_BE) : acelib, core, crosscompile, xerces {
 }
 
 
-project(IDL_TO_WSDL_EXE) : aceexe, core, crosscompile, xerces {
+project(IDL_TO_WSDL_EXE) : aceexe, core, crosscompile, xerces, mcpp, tao_idl_mcpp {
   after          += IDL_TO_WSDL_BE TAO_IDL_FE CoSMIC_Utils
   exename         = idl_to_wsdl
   libs           += IDL_TO_WSDL_BE TAO_IDL_FE Utils
@@ -58,7 +58,7 @@ project(IDL_TO_WSDL_EXE) : aceexe, core, crosscompile, xerces {
 
   Source_Files {
     $(TAO_ROOT)/TAO_IDL/driver/drv_args.cpp
-    $(TAO_ROOT)/TAO_IDL/driver/drv_preproc.cpp
+    // $(TAO_ROOT)/TAO_IDL/driver/drv_preproc.cpp
     $(TAO_ROOT)/TAO_IDL/tao_idl.cpp
   }
 
