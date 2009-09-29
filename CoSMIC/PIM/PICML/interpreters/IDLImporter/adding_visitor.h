@@ -61,10 +61,24 @@ public:
   virtual int visit_module (AST_Module *node);
   virtual int visit_interface (AST_Interface *node);
   virtual int visit_interface_fwd (AST_InterfaceFwd *node);
+  virtual int visit_template_interface (AST_Template_Interface *node);
   virtual int visit_valuetype (AST_ValueType *node);
   virtual int visit_valuetype_fwd (AST_ValueTypeFwd *node);
   virtual int visit_component (AST_Component *node);
   virtual int visit_component_fwd (AST_ComponentFwd *node);
+  virtual int visit_porttype (AST_PortType *node);
+  virtual int visit_provides (AST_Provides *node);
+  virtual int visit_uses (AST_Uses *node);
+  virtual int visit_publishes (AST_Publishes *node);
+  virtual int visit_emits (AST_Emits *node);
+  virtual int visit_consumes (AST_Consumes *node);
+  virtual int visit_extended_port (AST_Extended_Port *node);
+  virtual int visit_mirror_port (AST_Mirror_Port *node);
+  virtual int visit_connector (AST_Connector *node);
+  virtual int visit_instantiated_connector (
+    AST_Instantiated_Connector *node);
+  virtual int visit_tmpl_port (AST_Tmpl_Port *node);
+  virtual int visit_tmpl_mirror_port (AST_Tmpl_Mirror_Port *node);
   virtual int visit_eventtype (AST_EventType *node);
   virtual int visit_eventtype_fwd (AST_EventTypeFwd *node);
   virtual int visit_home (AST_Home *node);
@@ -93,9 +107,6 @@ public:
   virtual int visit_valuebox (AST_ValueBox *node);
 
 private:
-  typedef ACE_Unbounded_Queue_Iterator<AST_Component::port_description>
-    PORT_ITER;
-
   typedef void (BE_GlobalData::*folder_setter) (DOMElement *);
 
 private:
@@ -168,7 +179,6 @@ private:
                                const char *role);
   void add_base_component (DOMElement *parent, AST_Component *node);
   void add_base_home (DOMElement *parent, AST_Home *node);
-  void add_ports (DOMElement *parent, AST_Component *node);
   void add_manages (AST_Home *node);
   void add_lookup_key (DOMElement *parent, AST_Home *node);
   void add_home_factories (DOMElement *parent, AST_Home *node);

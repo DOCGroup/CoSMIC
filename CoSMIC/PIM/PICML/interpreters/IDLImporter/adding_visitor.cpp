@@ -7,6 +7,11 @@
 #include "ast_array.h"
 #include "ast_attribute.h"
 #include "ast_component_fwd.h"
+#include "ast_provides.h"
+#include "ast_uses.h"
+#include "ast_publishes.h"
+#include "ast_emits.h"
+#include "ast_consumes.h"
 #include "ast_enum.h"
 #include "ast_enum_val.h"
 #include "ast_eventtype.h"
@@ -361,6 +366,11 @@ adding_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
   return 0;
 }
 
+int adding_visitor::visit_template_interface (AST_Template_Interface *)
+{
+  return 0;
+}
+
 int
 adding_visitor::visit_valuetype (AST_ValueType *node)
 {
@@ -558,7 +568,6 @@ adding_visitor::visit_component (AST_Component *node)
       this->add_base_component (elem, node);
       this->add_replace_id_element (elem, node);
       this->add_version_element (elem, node);
-      this->add_ports (elem, node);
       this->add_supported_elements (elem,
                                     node,
                                     node->supports (),
@@ -575,17 +584,13 @@ adding_visitor::visit_component (AST_Component *node)
         }
     }
 
-  unsigned long start_id =
+  unsigned long slot =
     (0 == node->base_component () ? 0UL : 1UL)
     + static_cast<unsigned long> (node->n_supports ())
-    + node->provides ().size ()
-    + node->uses ().size ()
-    + node->publishes ().size ()
-    + node->emits ().size ()
-    + node->consumes ().size ()
     + 1;
-
-  adding_visitor scope_visitor (elem, start_id);
+    
+  adding_visitor scope_visitor (elem, slot);
+    
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -601,6 +606,315 @@ int
 adding_visitor::visit_component_fwd (AST_ComponentFwd *node)
 {
   return this->visit_interface_fwd (node);
+}
+
+int adding_visitor::visit_porttype (AST_PortType *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_provides (AST_Provides *node)
+{
+  const char *lname =
+    node->local_name ()->get_string ();
+    
+  AST_Type *ptype = node->provides_type ();
+
+  DOMElement *provides_port =
+    be_global->imported_dom_element (this->sub_tree_,
+                                     lname,
+                                     ptype->imported (),
+                                     BE_GlobalData::REF);
+
+  if (0 == provides_port)
+    {
+      provides_port =
+        this->doc_->createElement (X ("reference"));
+      this->set_id_attr (provides_port, BE_GlobalData::REF);
+      provides_port->setAttribute (X ("kind"),
+                                   X ("ProvidedRequestPort"));
+      provides_port->setAttribute (X ("role"),
+                                   X ("ProvidedRequestPort"));
+      provides_port->setAttribute (
+        X ("relid"),
+        X (be_global->hex_string (this->rel_id_)));
+        
+      this->add_name_element (provides_port, lname);
+      this->add_regnodes (node->defined_in (),
+                          provides_port,
+                          this->rel_id_++);
+
+      this->insert_element (provides_port, node);
+      be_global->emit_diagnostic (provides_port);
+    }
+
+  // These emit diagnostics if changed, idempotent otherwise.
+  const XMLCh *referred = be_global->lookup_id (ptype);
+  be_global->type_change_diagnostic (provides_port, referred);
+  provides_port->setAttribute (X ("referred"), referred);
+  this->add_replace_id_element (provides_port, 0);
+  this->add_version_element (provides_port, 0);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          provides_port->getAttribute (X ("id"))
+        );
+    }
+
+  return 0;
+}
+
+int
+adding_visitor::visit_uses (AST_Uses *node)
+{
+  const char *lname =
+    node->local_name ()->get_string ();
+    
+  AST_Type *ptype = node->uses_type ();
+
+  DOMElement *uses_port =
+    be_global->imported_dom_element (this->sub_tree_,
+                                     lname,
+                                     ptype->imported (),
+                                     BE_GlobalData::REF);
+
+  if (0 == uses_port)
+    {
+      uses_port =
+        this->doc_->createElement (X ("reference"));
+      this->set_id_attr (uses_port, BE_GlobalData::REF);
+      uses_port->setAttribute (X ("kind"), X ("RequiredRequestPort"));
+      uses_port->setAttribute (X ("role"), X ("RequiredRequestPort"));
+      uses_port->setAttribute (
+        X ("relid"),
+        X (be_global->hex_string (this->rel_id_)));
+      this->add_name_element (uses_port, lname);
+      this->add_regnodes (node->defined_in (),
+                          uses_port,
+                          this->rel_id_++);
+
+      this->insert_element (uses_port, node);
+      be_global->emit_diagnostic (uses_port);
+    }
+
+  // These emit diagnostics if changed, idempotent otherwise.
+  const XMLCh *referred = be_global->lookup_id (ptype);
+  be_global->type_change_diagnostic (uses_port, referred);
+  uses_port->setAttribute (X ("referred"), referred);
+  this->add_replace_id_element (uses_port, 0);
+  this->add_version_element (uses_port, 0);
+  this->add_tag_common (node->is_multiple () ? "true" : "false",
+                        "multiple_connections",
+                        uses_port,
+                        false);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          uses_port->getAttribute (X ("id"))
+        );
+    }
+
+  return 0;
+}
+
+int
+adding_visitor::visit_publishes (AST_Publishes *node)
+{
+  const char *lname =
+    node->local_name ()->get_string ();
+    
+  AST_Type *ptype = node->publishes_type ();
+
+  DOMElement *publishes_port =
+    be_global->imported_dom_element (this->sub_tree_,
+                                     lname,
+                                     ptype->imported (),
+                                     BE_GlobalData::REF);
+
+  if (0 == publishes_port)
+    {
+      publishes_port =
+        this->doc_->createElement (X ("reference"));
+      this->set_id_attr (publishes_port, BE_GlobalData::REF);
+      publishes_port->setAttribute (X ("kind"), X ("OutEventPort"));
+      publishes_port->setAttribute (X ("role"), X ("OutEventPort"));
+      publishes_port->setAttribute (X ("relid"),
+                                    X (be_global->hex_string (this->rel_id_)));
+      this->add_name_element (publishes_port, lname);
+      this->add_regnodes (node->defined_in (),
+                          publishes_port,
+                          this->rel_id_++);
+
+      this->insert_element (publishes_port, node);
+      be_global->emit_diagnostic (publishes_port);
+    }
+
+  // These emit diagnostics if changed, idempotent otherwise.
+  const XMLCh *referred = be_global->lookup_id (ptype);
+  be_global->type_change_diagnostic (publishes_port, referred);
+  publishes_port->setAttribute (X ("referred"), referred);
+  this->add_replace_id_element (publishes_port, 0);
+  this->add_version_element (publishes_port, 0);
+  this->add_tag_common ("false",
+                        "single_destination",
+                        publishes_port,
+                        false);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          publishes_port->getAttribute (X ("id"))
+        );
+    }
+
+  return 0;
+}
+
+int
+adding_visitor::visit_emits (AST_Emits *node)
+{
+  const char *lname =
+    node->local_name ()->get_string ();
+    
+  AST_Type *ptype = node->emits_type ();
+
+  DOMElement *emits_port =
+    be_global->imported_dom_element (this->sub_tree_,
+                                     lname,
+                                     ptype->imported (),
+                                     BE_GlobalData::REF);
+
+  if (0 == emits_port)
+    {
+      emits_port =
+        this->doc_->createElement (X ("reference"));
+      this->set_id_attr (emits_port, BE_GlobalData::REF);
+      emits_port->setAttribute (X ("kind"), X ("OutEventPort"));
+      emits_port->setAttribute (X ("role"), X ("OutEventPort"));
+      emits_port->setAttribute (X ("relid"),
+                                X (be_global->hex_string (this->rel_id_)));
+      this->add_name_element (emits_port, lname);
+      this->add_regnodes (node->defined_in (),
+                          emits_port,
+                          this->rel_id_++);
+
+      this->insert_element (emits_port, node);
+      be_global->emit_diagnostic (emits_port);
+    }
+
+  // These emit diagnostics if changed, idempotent otherwise.
+  const XMLCh *referred = be_global->lookup_id (ptype);
+  be_global->type_change_diagnostic (emits_port, referred);
+  emits_port->setAttribute (X ("referred"), referred);
+  this->add_replace_id_element (emits_port, 0);
+  this->add_version_element (emits_port, 0);
+  this->add_tag_common ("true",
+                        "single_destination",
+                        emits_port,
+                        false);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          emits_port->getAttribute (X ("id"))
+        );
+    }
+
+  return 0;
+}
+
+int
+adding_visitor::visit_consumes (AST_Consumes *node)
+{
+  const char *lname =
+    node->local_name ()->get_string ();
+    
+  AST_Type *ptype = node->consumes_type ();
+
+  DOMElement *consumes_port =
+    be_global->imported_dom_element (this->sub_tree_,
+                                     lname,
+                                     ptype->imported (),
+                                     BE_GlobalData::REF);
+
+  if (0 == consumes_port)
+    {
+      consumes_port =
+        this->doc_->createElement (X ("reference"));
+      this->set_id_attr (consumes_port, BE_GlobalData::REF);
+      consumes_port->setAttribute (X ("kind"), X ("InEventPort"));
+      consumes_port->setAttribute (X ("role"), X ("InEventPort"));
+      consumes_port->setAttribute (X ("relid"),
+                                   X (be_global->hex_string (this->rel_id_)));
+      this->add_name_element (consumes_port, lname);
+      this->add_regnodes (node->defined_in (),
+                          consumes_port,
+                          this->rel_id_++);
+
+      this->insert_element (consumes_port, node);
+      be_global->emit_diagnostic (consumes_port);
+    }
+
+  // These emit diagnostics if changed, idempotent otherwise.
+  const XMLCh *referred = be_global->lookup_id (ptype);
+  be_global->type_change_diagnostic (consumes_port, referred);
+  consumes_port->setAttribute (X ("referred"), referred);
+  this->add_replace_id_element (consumes_port, 0);
+  this->add_version_element (consumes_port, 0);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+          consumes_port->getAttribute (X ("id"))
+        );
+    }
+
+  return 0;
+}
+
+int
+adding_visitor::visit_extended_port (AST_Extended_Port *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_mirror_port (AST_Mirror_Port *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_connector (AST_Connector *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_instantiated_connector (
+  AST_Instantiated_Connector *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_tmpl_port (AST_Tmpl_Port *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_tmpl_mirror_port (AST_Tmpl_Mirror_Port *)
+{
+  return 0;
 }
 
 int
@@ -1411,7 +1725,9 @@ adding_visitor::visit_attribute (AST_Attribute *node)
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, 0, node);
       this->add_name_element (elem, node->local_name ()->get_string ());
-      this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
+      this->add_regnodes (node->defined_in (),
+                          elem,
+                          this->rel_id_ - 1);
 
       member = this->doc_->createElement (X ("reference"));
       this->set_id_attr (member, BE_GlobalData::REF);
@@ -3502,261 +3818,6 @@ adding_visitor::add_base_home (DOMElement *parent, AST_Home *node)
 }
 
 void
-adding_visitor::add_ports (DOMElement *parent, AST_Component *node)
-{
-  AST_Component::port_description *pd = 0;
-  unsigned long slot = (0 == node->base_component () ? 0 : 1)
-                       + node->n_supports ()
-                       + 1;
-
-  // Provides ports.
-  for (PORT_ITER provides_iter (node->provides ());
-       ! provides_iter.done ();
-       provides_iter.advance ())
-    {
-      provides_iter.next (pd);
-      DOMElement *provides_port =
-        be_global->imported_dom_element (parent,
-                                         pd->id->get_string (),
-                                         pd->impl->imported (),
-                                         BE_GlobalData::REF);
-
-      if (0 == provides_port)
-        {
-          provides_port =
-            this->doc_->createElement (X ("reference"));
-          this->set_id_attr (provides_port, BE_GlobalData::REF);
-          provides_port->setAttribute (X ("kind"),
-                                       X ("ProvidedRequestPort"));
-          provides_port->setAttribute (X ("role"),
-                                       X ("ProvidedRequestPort"));
-          provides_port->setAttribute (X ("relid"),
-                                       X (be_global->hex_string (slot)));
-          this->add_name_element (provides_port, pd->id->get_string ());
-          this->add_regnodes (node, provides_port, slot++);
-
-          // Since we aren't adding port elements by visiting the scope of
-          // the AST_Component, using insert_element won't work here. The
-          // order of port declarations in IDL shouldn't matter anyway.
-          parent->appendChild (provides_port);
-          be_global->emit_diagnostic (provides_port);
-        }
-
-      // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = be_global->lookup_id (pd->impl);
-      be_global->type_change_diagnostic (provides_port, referred);
-      provides_port->setAttribute (X ("referred"), referred);
-      this->add_replace_id_element (provides_port, 0);
-      this->add_version_element (provides_port, 0);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              provides_port->getAttribute (X ("id"))
-            );
-        }
-    }
-
-  // Uses ports.
-  for (PORT_ITER uses_iter (node->uses ());
-       ! uses_iter.done ();
-       uses_iter.advance ())
-    {
-      DOMElement *mult_attr = 0;
-      uses_iter.next (pd);
-      DOMElement *uses_port =
-        be_global->imported_dom_element (parent,
-                                         pd->id->get_string (),
-                                         pd->impl->imported (),
-                                         BE_GlobalData::REF);
-
-      if (0 == uses_port)
-        {
-          uses_port =
-            this->doc_->createElement (X ("reference"));
-          this->set_id_attr (uses_port, BE_GlobalData::REF);
-          uses_port->setAttribute (X ("kind"), X ("RequiredRequestPort"));
-          uses_port->setAttribute (X ("role"), X ("RequiredRequestPort"));
-          uses_port->setAttribute (X ("relid"),
-                                  X (be_global->hex_string (slot)));
-          this->add_name_element (uses_port, pd->id->get_string ());
-          this->add_regnodes (node, uses_port, slot++);
-
-          // Since we aren't adding port elements by visiting the scope of
-          // the AST_Component, using insert_element won't work here. The
-          // order of port declarations in IDL shouldn't matter anyway.
-          parent->appendChild (uses_port);
-        }
-
-      // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = be_global->lookup_id (pd->impl);
-      be_global->type_change_diagnostic (uses_port, referred);
-      uses_port->setAttribute (X ("referred"), referred);
-      this->add_replace_id_element (uses_port, 0);
-      this->add_version_element (uses_port, 0);
-      this->add_tag_common (pd->is_multiple ? "true" : "false",
-                            "multiple_connections",
-                            uses_port,
-                            false);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              uses_port->getAttribute (X ("id"))
-            );
-        }
-    }
-
-  // Emits ports.
-  for (PORT_ITER emits_iter (node->emits ());
-       ! emits_iter.done ();
-       emits_iter.advance ())
-    {
-      emits_iter.next (pd);
-      DOMElement *emits_port =
-        be_global->imported_dom_element (parent,
-                                         pd->id->get_string (),
-                                         pd->impl->imported (),
-                                         BE_GlobalData::REF);
-
-      if (0 == emits_port)
-        {
-          emits_port =
-            this->doc_->createElement (X ("reference"));
-          this->set_id_attr (emits_port, BE_GlobalData::REF);
-          emits_port->setAttribute (X ("kind"), X ("OutEventPort"));
-          emits_port->setAttribute (X ("role"), X ("OutEventPort"));
-          emits_port->setAttribute (X ("relid"),
-                                    X (be_global->hex_string (slot)));
-          this->add_name_element (emits_port, pd->id->get_string ());
-          this->add_regnodes (node, emits_port, slot++);
-
-          // Since we aren't adding port elements by visiting the scope of
-          // the AST_Component, using insert_element won't work here. The
-          // order of port declarations in IDL shouldn't matter anyway.
-          parent->appendChild (emits_port);
-        }
-
-      // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = be_global->lookup_id (pd->impl);
-      be_global->type_change_diagnostic (emits_port, referred);
-      emits_port->setAttribute (X ("referred"), referred);
-      this->add_replace_id_element (emits_port, 0);
-      this->add_version_element (emits_port, 0);
-      this->add_tag_common ("true",
-                            "single_destination",
-                            emits_port,
-                            false);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              emits_port->getAttribute (X ("id"))
-            );
-        }
-    }
-
-  // Publishes ports.
-  for (PORT_ITER publishes_iter (node->publishes ());
-       ! publishes_iter.done ();
-       publishes_iter.advance ())
-    {
-      publishes_iter.next (pd);
-      DOMElement *publishes_port =
-        be_global->imported_dom_element (parent,
-                                         pd->id->get_string (),
-                                         pd->impl->imported (),
-                                         BE_GlobalData::REF);
-
-      if (0 == publishes_port)
-        {
-          publishes_port =
-            this->doc_->createElement (X ("reference"));
-          this->set_id_attr (publishes_port, BE_GlobalData::REF);
-          publishes_port->setAttribute (X ("kind"), X ("OutEventPort"));
-          publishes_port->setAttribute (X ("role"), X ("OutEventPort"));
-          publishes_port->setAttribute (X ("relid"),
-                                        X (be_global->hex_string (slot)));
-          this->add_name_element (publishes_port, pd->id->get_string ());
-          this->add_regnodes (node, publishes_port, slot++);
-
-          // Since we aren't adding port elements by visiting the scope of
-          // the AST_Component, using insert_element won't work here. The
-          // order of port declarations in IDL shouldn't matter anyway.
-          parent->appendChild (publishes_port);
-        }
-
-      // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = be_global->lookup_id (pd->impl);
-      be_global->type_change_diagnostic (publishes_port, referred);
-      publishes_port->setAttribute (X ("referred"), referred);
-      this->add_replace_id_element (publishes_port, 0);
-      this->add_version_element (publishes_port, 0);
-      this->add_tag_common ("false",
-                            "single_destination",
-                            publishes_port,
-                            false);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              publishes_port->getAttribute (X ("id"))
-            );
-        }
-    }
-
-  // Consumes ports.
-  for (PORT_ITER consumes_iter (node->consumes ());
-       ! consumes_iter.done ();
-       consumes_iter.advance ())
-    {
-      consumes_iter.next (pd);
-      DOMElement *consumes_port =
-        be_global->imported_dom_element (parent,
-                                         pd->id->get_string (),
-                                         pd->impl->imported (),
-                                         BE_GlobalData::REF);
-
-      if (0 == consumes_port)
-        {
-          consumes_port =
-            this->doc_->createElement (X ("reference"));
-          this->set_id_attr (consumes_port, BE_GlobalData::REF);
-          consumes_port->setAttribute (X ("kind"), X ("InEventPort"));
-          consumes_port->setAttribute (X ("role"), X ("InEventPort"));
-          consumes_port->setAttribute (X ("relid"),
-                                      X (be_global->hex_string (slot)));
-          this->add_name_element (consumes_port, pd->id->get_string ());
-          this->add_regnodes (node, consumes_port, slot++);
-
-          // Since we aren't adding port elements by visiting the scope of
-          // the AST_Component, using insert_element won't work here. The
-          // order of port declarations in IDL shouldn't matter anyway.
-          parent->appendChild (consumes_port);
-        }
-
-      // These emit diagnostics if changed, idempotent otherwise.
-      const XMLCh *referred = be_global->lookup_id (pd->impl);
-      be_global->type_change_diagnostic (consumes_port, referred);
-      consumes_port->setAttribute (X ("referred"), referred);
-      this->add_replace_id_element (consumes_port, 0);
-      this->add_version_element (consumes_port, 0);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              consumes_port->getAttribute (X ("id"))
-            );
-        }
-    }
-}
-
-void
 adding_visitor::add_manages (AST_Home *node)
 {
   DOMElement *connection = 0;
@@ -4249,21 +4310,19 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_Component *c = AST_Component::narrow_from_scope (s);
+  
   if (c != 0)
     {
       // Supported interfaces are in AST_Interface inheritance list.
       retval += (c->base_component () != 0 ? 1 : 0);
+      
+      retval += DeclAsScope (c)->nmembers ();
 
-      // Add in the ports.
-      retval += c->provides ().size ()
-                 + c->uses ().size ()
-                 + c->emits ().size ()
-                 + c->publishes ().size ()
-                 + c->consumes ().size ();
       return retval;
     }
 
   AST_Home *h = AST_Home::narrow_from_scope (s);
+  
   if (h != 0)
     {
       // Supported interfaces are in AST_Interface inheritance list.

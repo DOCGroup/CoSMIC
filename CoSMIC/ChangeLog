@@ -1,3 +1,10 @@
+Tue Sep 29 18:11:41 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        
+          Updated backend to synch with IDL compiler frontend changes.
+
 Mon Sep 28 12:35:34 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
