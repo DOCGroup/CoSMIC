@@ -4,21 +4,22 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  PICML
-  Package\package.mwc
-  PackageComponent
-  PAM
-  PAMComponent
-  Target
-  TargetComponent
+  arch
+  ComponentImplementationGenerator
   DeploymentPlan
   DeploymentPlanComponent
   IDLGenerator
   IDLImporter
   MPC
   MPCComponent
+  Package\package.mwc
+  PackageComponent
   Path
   PathComponent
+  PAM
+  PAMComponent
+  PICML
   PropertyManager
-  arch
+  Target
+  TargetComponent
 }

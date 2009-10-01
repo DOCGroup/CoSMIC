@@ -1,0 +1,14 @@
+// $Id$
+
+project : gme_component {
+  macros += RAWCOMPONENT
+
+  Source_Files {
+    RawComponent.cpp
+  }
+
+  Header_Files {
+    RawComponent.h
+    ComponentConfig.h
+  }
+}

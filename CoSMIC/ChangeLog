@@ -1,21 +1,70 @@
+Thu Oct  1 04:26:56 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_component.mpb:
+        * MPC/config/gme_raw_component.mpb:
+        * MPC/config/gme_udm_component.mpb:
+
+          . Base projects that capture the standard settings for
+            a GME/UDM component.
+
+        * includes:
+        * includes/GME:
+        * includes/GME/Component.def:
+
+          . Location that stores reusable GME files that are not
+            part of the standard GME install.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator_export.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.inl:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGeneratord.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/RawComponent.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/RawComponent.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/StdAfx.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmApp.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmApp.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmConfig.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/resource.h:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . First implementation of the interpreter that auto-generates
+            default implementation elements for selected components.
+
+        * Utils/UDM:
+        * Utils/UDM/modelgen.h:
+        * Utils/UDM/modelgen.inl:
+        * Utils/UDM/modelgen.cpp:
+
+          . Helper classes from CUTS for generating models.
+
 Tue Sep 29 18:11:41 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
-        
+
           Updated backend to synch with IDL compiler frontend changes.
 
 Mon Sep 28 12:35:34 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
-          
+
            fixed mcpp problem.
-        
+
 
 Fri Sep 25 21:02:14 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * Release_idl_to_picml.mwc
-          
+
           added mcpp.
 
 Wed Sep 23 16:53:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
@@ -52,6 +101,7 @@ Thu Sep 17 15:05:25 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . IDL_TO_PICML now uses mcpp. This fixes the 128 file problem.
 
+>>>>>>> .r1981
 Sat Sep 12 20:43:16 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:

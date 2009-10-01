@@ -1,0 +1,16 @@
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ * @file        ComponentImplementationGenerator.h
+ *
+ * $Id$
+ *
+ * @author      James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_COMPONENTIMPLEMENTATIONGENERATOR_H_
+#define _PICML_COMPONENTIMPLEMENTATIONGENERATOR_H_
+
+#endif  // !defined _PICML_COMPONENTIMPLEMENTATIONGENERATOR_H_

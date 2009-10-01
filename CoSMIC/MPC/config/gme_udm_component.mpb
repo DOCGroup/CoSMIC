@@ -1,0 +1,11 @@
+// $Id$
+
+project : udm, gme_raw_component {
+  Source_Files {
+    UdmApp.cpp
+  }
+
+  Header_Files {
+    UdmConfig.h
+  }
+}

@@ -1,0 +1,40 @@
+// $Id$
+
+project : register, mfc {
+  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+
+  specific (prop:windows) {
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/Component.def
+
+    DisableSpecificWarnings += 4355 4180 4290
+  }
+
+  Source_Files {
+    conditional (vc9) {
+      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+      $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+      $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
+      $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
+      $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+      $(GME_ROOT)/SDK/BON/Common/Console.cpp
+    }
+
+    conditional (vc71, vc8) {
+      $(GME_ROOT)/SDK/BON/ComHelp.cpp
+      $(GME_ROOT)/SDK/BON/ComponentLib.idl
+      $(GME_ROOT)/SDK/BON/ComponentDll.cpp
+      $(GME_ROOT)/SDK/BON/ComponentObj.cpp
+      $(GME_ROOT)/SDK/BON/Exceptions.cpp
+    }
+
+    $(COSMIC_ROOT)/etc/Component.def
+  }
+
+  Header_Files {
+    resource.h
+  }
+}
