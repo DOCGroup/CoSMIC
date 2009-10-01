@@ -38,6 +38,10 @@ public:
   virtual void Visit_Component (const PICML::Component & component);
 
 private:
+  /// Helper method for getting the scope of a named type.
+  static std::string fq_type (const PICML::NamedType & type,
+                              const std::string & separator);
+
   /// Target folder for generating implementations.
   PICML::ComponentImplementations & impl_folder_;
 
