@@ -1,3 +1,23 @@
+Fri Oct  2 19:06:46 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_decorator.mpb:
+
+          . Base class for GME decorators.
+
+        * PIM/PICML/decorators/DecoratorConfig.h:
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          . Fixed compilation errors related to refactoring the
+            MPC specification(s).
+
+        * MPC/config/bon.mpb:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+
+          Removed these files.
+
 Fri Oct  2 14:12:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/bon.mpb:

@@ -1,0 +1,29 @@
+// $Id$
+
+project : mfc, register {
+  macros += _WINDLL _USRDLL _ATL_DLL
+
+  specific (prop:microsoft) {
+    includes      += $(GME_ROOT)/Interfaces
+    midl_includes += $(GME_ROOT)/Interfaces
+
+    link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/DecoratorApp.def
+    compile_flags += /wd4996
+  }
+
+  Source_Files {
+     DecoratorLib.idl
+     CommonError.cpp
+     Decorator.cpp
+     Decorator.rc
+     DecoratorApp.cpp
+     DecoratorApp.def
+     DecoratorLib.idl
+     DecoratorUtil.cpp
+     MaskedBitmap.cpp
+  }
+
+  Header_Files {
+
+  }
+}

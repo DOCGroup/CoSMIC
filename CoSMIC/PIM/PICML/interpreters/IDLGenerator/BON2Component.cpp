@@ -19,6 +19,7 @@
   this software.
 */
 
+#include "StdAfx.h"
 #include "BON2Component.h"
 #include "IDMLBonExtension.h"
 #include "DependencyVisitor.h"
@@ -119,7 +120,7 @@ void Component::invokeEx( Project& project,
           AfxMessageBox ("Interpretation must start from a File model!");
           continue;
         }
-        
+
       if (root->isInLibrary ())
         {
           continue;
@@ -130,16 +131,16 @@ void Component::invokeEx( Project& project,
 
       // Preserves any directory structure that may have existed
       // with IDL files imported into the model.
-      
+
       std::string filepath = root->getpath ();
       std::string dirpath = outputPath
                             + (filepath == "" ? "" : "\\" + filepath);
-                            
+
       // We don't care about the return value. Since we are passing
       // an absolute path, it will always get created unless it
       // already exists. Either way the stream gets a valid file path.
       (void) ::_mkdir (dirpath.c_str ());
-      
+
       std::string raw_filename = root->getName ();
       std::string fullpath = dirpath
                              + "\\"

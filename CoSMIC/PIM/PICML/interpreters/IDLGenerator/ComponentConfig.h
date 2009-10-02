@@ -2,8 +2,6 @@
 // by ConfigureComponent on Sun May 23 08:28:01 2004
 
 
-#define BON2COMPONENT
-
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "413CEAC4-508F-4C18-A224-88CE87731C3C"

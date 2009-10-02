@@ -1,99 +1,25 @@
 // $Id$
 
-project (IDLGenerator): cosmic_utils, bon, register {
-   sharedname = IDLGenerator
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters/IDLGenerator $(GME_ROOT)/SDK/BON/Common $(GME_ROOT)/SDK/BON
+project (IDLGenerator): gme_bon2_component, cosmic_utils {
+  sharedname = IDLGenerator
 
-   specific (vc6,vc7,vc71,vc8,vc9) {
-     link_options += /DEF:Component.def
-   }
-
-   Source_Files {
-    conditional (vc9) {
-	    $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
-	    $(GME_ROOT)/SDK/BON/Common/BON.cpp
-	    $(GME_ROOT)/SDK/BON/Common/BONImpl.cpp
-	    $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Common.cpp
-		$(GME_ROOT)/SDK/BON/Common/Console.cpp
-	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
-	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Events.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
-	    $(GME_ROOT)/SDK/BON/Common/MON.cpp
-	    $(GME_ROOT)/SDK/BON/Common/MONImpl.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Utils.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Extensions.cpp
-	}
-    conditional (vc8) {
-	    $(GME_ROOT)/SDK/BON/ComponentLib.idl
-	    $(GME_ROOT)/SDK/BON/BON.cpp
-	    $(GME_ROOT)/SDK/BON/BONImpl.cpp
-	    $(GME_ROOT)/SDK/BON/ComHelp.cpp
-	    $(GME_ROOT)/SDK/BON/Common.cpp
-	    $(GME_ROOT)/SDK/BON/ComponentDll.cpp
-	    $(GME_ROOT)/SDK/BON/ComponentObj.cpp
-	    $(GME_ROOT)/SDK/BON/Events.cpp
-	    $(GME_ROOT)/SDK/BON/Exceptions.cpp
-	    $(GME_ROOT)/SDK/BON/MON.cpp
-	    $(GME_ROOT)/SDK/BON/MONImpl.cpp
-	    $(GME_ROOT)/SDK/BON/Utils.cpp
-	    $(GME_ROOT)/SDK/BON/Extensions.cpp
-	}
+  Source_Files {
+    Component.rc
+    DependencyVisitor.cpp
     IDLEmitVisitor.cpp
     IDLStream.cpp
     IDMLBonExtension.cpp
-    BON2Component.cpp
-    Component.rc
-    StdAfx.cpp
-    DependencyVisitor.cpp
-   }
+  }
 
-   Header_Files {
-    conditional (vc9) {
-	    $(GME_ROOT)/SDK/BON/Common/BON.h
-	    $(GME_ROOT)/SDK/BON/Common/BONImpl.h
-	    $(GME_ROOT)/SDK/BON/Common/ComHelp.h
-	    $(GME_ROOT)/SDK/BON/Common/Console.h
-	    $(GME_ROOT)/SDK/BON/Common/GMECOM.h
-	    $(GME_ROOT)/SDK/BON/Common/ComponentDll.h
-	    $(GME_ROOT)/SDK/BON/Common/ComponentObj.h
-	    $(GME_ROOT)/SDK/BON/Common/Events.h
-	    $(GME_ROOT)/SDK/BON/Common/Exceptions.h
-	    $(GME_ROOT)/SDK/BON/Common/Extensions.h
-	    $(GME_ROOT)/SDK/BON/Common/MON.h
-	    $(GME_ROOT)/SDK/BON/Common/Utils.h
-	    $(GME_ROOT)/SDK/BON/Common/MONImpl.h
-	}
-    conditional (vc8) {
-	    $(GME_ROOT)/SDK/BON/BON.h
-	    $(GME_ROOT)/SDK/BON/BONImpl.h
-	    $(GME_ROOT)/SDK/BON/ComHelp.h
-	    $(GME_ROOT)/SDK/BON/GMECOM.h
-	    $(GME_ROOT)/SDK/BON/ComponentDll.h
-	    $(GME_ROOT)/SDK/BON/ComponentObj.h
-	    $(GME_ROOT)/SDK/BON/Events.h
-	    $(GME_ROOT)/SDK/BON/Exceptions.h
-	    $(GME_ROOT)/SDK/BON/Extensions.h
-	    $(GME_ROOT)/SDK/BON/MON.h
-	    $(GME_ROOT)/SDK/BON/Utils.h
-	    $(GME_ROOT)/SDK/BON/MONImpl.h
-	}
-    Resource.h
-    ComponentConfig.h
-    ComponentLib.h
-    BON2Component.h
-    ComponentLib_h.h
+  Header_Files {
     DependencyVisitor.h
     IDLEmitVisitor.h
-    IDLStream.h
     IDMLBonExtension.h
-    StdAfx.h
-   }
+  }
 
-   Resource_Files {
-     CompIcon.ico
-   }
+  Resource_Files {
+    CompIcon.ico
+  }
 
   specific (wix) {
     gme_install     = 1

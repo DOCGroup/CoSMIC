@@ -14,7 +14,7 @@
 #define COCLASS_NAME "MGA Decorator CoClass (IDMLDecorator)"
 #define COCLASS_PROGID "MGA.Decorator.IDMLDecorator"
 
-#define CONSTOLESTR(X)		OLESTR(X)
+#define CONSTOLESTR(X)    OLESTR(X)
 
 
 // This name will appear in the popup window for interpreter selection.
@@ -22,10 +22,4 @@
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
 
-// #define GME_INTERFACES_BASE /GME/Interfaces
-// #define GME_INTERFACES_BASE ../../GME/Interfaces
-// #define GME_INTERFACES_BASE ../GME/Interfaces
-
-#define GME_INTERFACES_BASE interfaces
-// #define GME_INTERFACES_BASE D:/volgy/GME/interfaces
-// #define GME_INTERFACES_BASE D:/backup/GMEReleases/11-06-00/GME/interfaces
+#define GME_INTERFACES_BASE .
