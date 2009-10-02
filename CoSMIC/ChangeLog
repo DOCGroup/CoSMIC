@@ -1,3 +1,24 @@
+Fri Oct  2 11:35:44 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * tests:
+        * tests/UDM_DSL:
+
+          . Moved this project to the /tests directory since it's really a
+            test and not a utility!!
+
+        * Utils/UDM_DSL:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xme:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+          Removed these files.
+
 Thu Oct  1 05:05:50 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.h:
