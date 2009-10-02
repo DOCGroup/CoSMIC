@@ -1,3 +1,27 @@
+Fri Oct  2 14:12:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/bon.mpb:
+        * MPC/config/codegenerationkit.mpb:
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+
+          . Based projects for building GME components.
+
+        * PIM/SIML/interpreters/GatewayGenerator/ComponentConfig.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorUtils.cpp:
+
+          . Fixed compilation errors.
+
+        * contrib:
+
+           . The CCF framework and Utility are now pulled in as
+             external projects.
+
+        * cosmic.mwc:
+
+          . Update the workspace to include the CCF framework.
+
 Fri Oct  2 11:35:44 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * tests:

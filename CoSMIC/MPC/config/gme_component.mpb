@@ -15,12 +15,10 @@ project : register, mfc {
 
   Source_Files {
     conditional (vc9) {
-      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-      $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
-      $(GME_ROOT)/SDK/BON/Common/Console.cpp
     }
 
     conditional (vc71, vc8) {
@@ -28,7 +26,6 @@ project : register, mfc {
       $(GME_ROOT)/SDK/BON/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/ComponentObj.cpp
-      $(GME_ROOT)/SDK/BON/Exceptions.cpp
     }
 
     $(COSMIC_ROOT)/etc/Component.def
@@ -36,5 +33,6 @@ project : register, mfc {
 
   Header_Files {
     resource.h
+    ComponentConfig.h
   }
 }

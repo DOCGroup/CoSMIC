@@ -1,4 +1,7 @@
-#include <GatewayGenerator/GatewayGeneratorUtils.h>
+// $Id$
+
+#include "StdAfx.h"
+#include "GatewayGenerator/GatewayGeneratorUtils.h"
 
 namespace SIML
 {

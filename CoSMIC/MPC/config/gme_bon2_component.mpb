@@ -1,0 +1,73 @@
+// $Id$
+
+project : gme_component {
+  macros += BON2COMPONENT BUILDER_OBJECT_NETWORK_V2
+
+  specific (vc9) {
+    includes += $(GME_ROOT)/SDK/BON/Common
+  }
+
+  Source_Files {
+    BON2Component.cpp
+
+    conditional (vc9) {
+      $(GME_ROOT)/SDK/BON/Common/BON.cpp
+      $(GME_ROOT)/SDK/BON/Common/BONImpl.cpp
+      $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
+      $(GME_ROOT)/SDK/BON/Common/Common.cpp
+      $(GME_ROOT)/SDK/BON/Common/Console.cpp
+      $(GME_ROOT)/SDK/BON/Common/Events.cpp
+      $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+      $(GME_ROOT)/SDK/BON/Common/Extensions.cpp
+      $(GME_ROOT)/SDK/BON/Common/MON.cpp
+      $(GME_ROOT)/SDK/BON/Common/MONImpl.cpp
+      $(GME_ROOT)/SDK/BON/Common/Utils.cpp
+    }
+
+    conditional (vc71, vc8) {
+      $(GME_ROOT)/SDK/BON/BON.cpp
+      $(GME_ROOT)/SDK/BON/BONImpl.cpp
+      $(GME_ROOT)/SDK/BON/ComHelp.cpp
+      $(GME_ROOT)/SDK/BON/Common.cpp
+      $(GME_ROOT)/SDK/BON/Events.cpp
+      $(GME_ROOT)/SDK/BON/Exceptions.cpp
+      $(GME_ROOT)/SDK/BON/Extensions.cpp
+      $(GME_ROOT)/SDK/BON/MON.cpp
+      $(GME_ROOT)/SDK/BON/MONImpl.cpp
+      $(GME_ROOT)/SDK/BON/Utils.cpp
+    }
+  }
+
+  Header_Files {
+    BON2Component.h
+
+    conditional (vc9) {
+      $(GME_ROOT)/SDK/BON/Common/BON.h
+      $(GME_ROOT)/SDK/BON/Common/BONImpl.h
+      $(GME_ROOT)/SDK/BON/Common/ComHelp.h
+      $(GME_ROOT)/SDK/BON/Common/Common.h
+      $(GME_ROOT)/SDK/BON/Common/Events.h
+      $(GME_ROOT)/SDK/BON/Common/Exceptions.h
+      $(GME_ROOT)/SDK/BON/Common/Console.h
+      $(GME_ROOT)/SDK/BON/Common/GMECOM.h
+      $(GME_ROOT)/SDK/BON/Common/Extensions.h
+      $(GME_ROOT)/SDK/BON/Common/MON.h
+      $(GME_ROOT)/SDK/BON/Common/MONImpl.h
+      $(GME_ROOT)/SDK/BON/Common/Utils.h
+    }
+
+    conditional (vc71, vc8) {
+      $(GME_ROOT)/SDK/BON/BON.h
+      $(GME_ROOT)/SDK/BON/BONImpl.h
+      $(GME_ROOT)/SDK/BON/ComHelp.h
+      $(GME_ROOT)/SDK/BON/Common.h
+      $(GME_ROOT)/SDK/BON/Events.h
+      $(GME_ROOT)/SDK/BON/Exceptions.h
+      $(GME_ROOT)/SDK/BON/GMECOM.h
+      $(GME_ROOT)/SDK/BON/Extensions.h
+      $(GME_ROOT)/SDK/BON/MON.h
+      $(GME_ROOT)/SDK/BON/MONImpl.h
+      $(GME_ROOT)/SDK/BON/Utils.h
+    }
+  }
+}

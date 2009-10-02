@@ -1,9 +1,6 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by ConfigureComponent on Sat Aug 05 17:17:18 2006
 
-
-#define BON2COMPONENT
-
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "5A5A9748-9537-42E2-87D0-74A0538113DC"

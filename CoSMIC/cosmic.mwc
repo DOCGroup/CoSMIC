@@ -6,4 +6,11 @@ workspace : picml {
 
   PSM/CQML/interpreters/Interpreters.mwc
   PSM/DQML
+
+  static {
+    cmdline += -static \
+               -include $COSMIC_ROOT/contrib/CCF/MPC/config
+
+    $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+  }
 }
