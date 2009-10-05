@@ -5,12 +5,14 @@ workspace {
              -include $COSMIC_ROOT/MPC/config
 
   ComponentImplementationGenerator
+
   DeploymentPlanComponent
+  PackageComponent
   IDLGenerator
   IDLImporter
+
   MPC
   MPCComponent
-  PackageComponent
   Path
   PathComponent
   PAM

@@ -1,3 +1,14 @@
+Mon Oct  5 11:54:07 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          . Used flat_name () to get the scope of the component instead
+            of using full_name () and changing the scopes to underscores.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Re-arranged the projects.
+
 Mon Oct  5 05:30:59 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
