@@ -40,6 +40,10 @@ public:
   const PICML::ImplementationArtifact & impl_artifact (void) const;
 
 private:
+  /// Helper method for getting the scope of a named type.
+  static std::string fq_type (const PICML::NamedType & type,
+                              const std::string & separator);
+
   /// Target folder for generating artifacts.
   PICML::ImplementationArtifacts & artifact_folder_;
 

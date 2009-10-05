@@ -10,6 +10,6 @@ project : vc8warnings, boost_base  {
   macros   += _CRT_SECURE_NO_WARNINGS
 
   specific (prop:microsoft) {
-    DisableSpecificWarnings += 4251
+    DisableSpecificWarnings += 4251 4180
   }
 }

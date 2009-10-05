@@ -35,6 +35,7 @@
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
 #include "xercesc/parsers/XercesDOMParser.hpp"
+#include "Interfaces/GMEVersion.h"
 
 #include <fstream>
 #include <sstream>
@@ -77,28 +78,27 @@ BE_GlobalData::BE_GlobalData (void)
     implementations_rel_id_ (1UL),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
-  ACE_Env_Value<const char *> path ("GME_ROOT", 0);
+  ACE_Env_Value <const char *> path ("GME_ROOT", 0);
 
   // Need an extra step here because some C++ compilers can't
   // match ACE_CString's assignment from char* operator with
   // ACE_Env_Value's cast operator.
-  const char *path_str = path;
+  const char * path_str = path;
 
   if (path_str != 0)
-    {
-      // mga.dtd in GME version 7.6.29 is in $GME_ROOT
-      // mga.dtd in GME version 9.8.28 is in $GME_ROOT/bin
-      this->schema_path_ = path_str;
+  {
+    this->schema_path_ = path_str;
 
-      if (get_GME_version(path_str) == "9.8.28")
-	  {
-		this->schema_path_ += "\\bin";
-	  }
-
-      // In case it isn't at the end of the environment variable,
-      // otherwise idempotent.
-      this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
-    }
+#if (GME_VERSION_MAJOR == 7 && GME_VERSION_MINOR == 6 && GME_VERSION_PLEVEL == 29)
+    // mga.dtd in GME version 7.6.29 is in $GME_ROOT
+#elif (GME_VERSION_MAJOR == 9 && GME_VERSION_MINOR == 8 && GME_VERSION_PLEVEL == 28)
+    // mga.dtd in GME version 9.8.28 is in $GME_ROOT/bin
+    this->schema_path_ += "/bin";
+#endif
+    // In case it isn't at the end of the environment variable,
+    // otherwise idempotent.
+    this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
+  }
 }
 
 BE_GlobalData::~BE_GlobalData (void)
@@ -847,7 +847,7 @@ BE_GlobalData::destroy (void)
     {
       delete [] const_cast<char *> (fwd_entry->ext_id_);
     }
-    
+
   REF_DECL_TABLE_ENTRY *ref_entry = 0;
   for (REF_DECL_TABLE_ITERATOR ref_iter (this->ref_decl_table_);
        ref_iter.next (ref_entry) != 0;

@@ -1,6 +1,8 @@
 // $Id$
 
 #include "BE_ComponentImplementationGenerator.h"
+#include "Utils/UDM/modelgen.h"
+#include "boost/bind.hpp"
 #include "Uml.h"
 #include <stack>
 
@@ -32,17 +34,29 @@ ComponentImplementationGenerator::~ComponentImplementationGenerator (void)
 void ComponentImplementationGenerator::
 Visit_Component (const PICML::Component & component)
 {
-  std::string name = std::string (component.name ()) + "Impl";
+  std::string name = component.name ();
+  std::string impl_name = this->fq_type (component, "_") + "Impl";
 
   // Create a new container for the component implementation.
-  PICML::ComponentImplementationContainer container =
-    PICML::ComponentImplementationContainer::Create (this->impl_folder_);
-  container.name () = name;
+  PICML::ComponentImplementationContainer container;
+
+  if (Udm::create_if_not (this->impl_folder_, container,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     impl_name,
+                     boost::bind (&PICML::ComponentImplementationContainer::name, _1)))))
+  {
+    container.name () = impl_name;
+  }
 
   // Create the monolithic implementation for the component.
-  this->impl_ = PICML::MonolithicImplementation::Create (container);
-  this->impl_.name () = name;
-  this->impl_.position () = "(250,250)";
+  if (Udm::create_if_not (container, this->impl_,
+      Udm::contains (boost::bind (std::equal_to <std::string> (),
+                     impl_name,
+                     boost::bind (&PICML::ComponentImplementationContainer::name, _1)))))
+  {
+    this->impl_.name () = impl_name;
+    this->impl_.position () = "(250,250)";
+  }
 
   // Create the reference to the target component.
   PICML::ComponentRef ref = PICML::ComponentRef::Create (container);

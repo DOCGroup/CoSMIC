@@ -1,3 +1,24 @@
+Mon Oct  5 04:00:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/cosmic_common.mpb:
+
+          . Disabled more warnings in the base project.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          . Bug fix where the generated PICML models did not support
+            implementations of the same component that appeared in
+            different modules (or namespaces).
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Reverted to using #define instead of get_GME_version () to
+            get GME's version information.
+
 Fri Oct  2 19:06:46 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/gme_decorator.mpb:
