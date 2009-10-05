@@ -1,11 +1,6 @@
-///////////////////////////////////////////////////////////////////////////
-// RawComponent.cpp, the main RAW COM component implementation file
-// This is the file (along with its header RawComponent.h)
-// that the component implementor is expected to modify in the first place
-//
-///////////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
+// $Id$
 
+#include "StdAfx.h"
 #include "ComHelp.h"
 #include "GMECOM.h"
 #include "ComponentConfig.h"

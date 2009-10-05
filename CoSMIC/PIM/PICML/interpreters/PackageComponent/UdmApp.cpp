@@ -36,8 +36,8 @@
 
 #include "Utils/Utils.h"
 #include "PICML/PICML.h"
-#include "Package/PackageVisitor.h"
-#include "Package/PackagerVisitor.h"
+#include "PackageVisitor.h"
+#include "PackagerVisitor.h"
 #include "PackageMainDialog.h"
 
 using xercesc::XMLPlatformUtils;

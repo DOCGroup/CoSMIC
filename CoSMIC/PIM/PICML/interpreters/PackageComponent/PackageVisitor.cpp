@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <functional>
-#include "Package/PackageVisitor.h"
+#include "PackageVisitor.h"
 #include "UmlExt.h"
 #include <boost/bind.hpp>
 #include <boost/ref.hpp>

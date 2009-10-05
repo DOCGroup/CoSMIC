@@ -1,3 +1,36 @@
+Mon Oct  5 05:10:08 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Package_Export.h:
+        * PIM/PICML/interpreters/PackageComponent/PackagerVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackagerVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Packager_Export.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/ZIP_create.h:
+        * PIM/PICML/interpreters/PackageComponent/ZIP_create.cpp:
+        * picml.mwc:
+
+          . Moved the Package project into the PackageComponent directory
+            as a means to consolidate the workspace and project layout.
+
+        * PIM/PICML/interpreters/Package:
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/Package.mwc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Package_Export.h:
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h:
+        * PIM/PICML/interpreters/Package/PackagerVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Packager_Export.h:
+        * PIM/PICML/interpreters/Package/ZIP_create.h:
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp:
+
+          Removed these files.
+
 Mon Oct  5 04:17:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:

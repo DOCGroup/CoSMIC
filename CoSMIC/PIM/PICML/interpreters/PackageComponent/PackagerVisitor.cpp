@@ -1,8 +1,9 @@
+// $Id$
+
+#include "PackagerVisitor.h"
+#include "ZIP_create.h"
 #include "ace/SString.h"           //for ACE_CString
 #include "ace/Dirent.h"
-
-#include "Package/PackagerVisitor.h"
-#include "Package/ZIP_create.h"
 
 namespace PICML
 {
@@ -17,7 +18,7 @@ namespace PICML
       default_version_ ("")
   {
   }
-  
+
   void PackagerVisitor::Visit_RootFolder(const RootFolder& rf)
   {
     ACE_TCHAR full_path[MAXPATHLEN];
@@ -88,7 +89,7 @@ namespace PICML
 
     package pkg = tp.dstpackage();
     pkg.Accept (*this);
-    
+
     // compress
     if (ACE_OS::chdir (packageDir_.c_str ()) == -1)
       throw udm_exception (string ("chdir failed: " + package_dir));
@@ -262,7 +263,7 @@ namespace PICML
     string version = iare.artifactVersion ();
     string os = iare.operatingSystem ();
     string arch = iare.architecture ();
-    string configuration = iare.configuration (); 
+    string configuration = iare.configuration ();
 
     string impl_dir = curr_implementationDir_ + "\\";
     impl_dir += version;
@@ -277,7 +278,7 @@ namespace PICML
     string prefix;
     string suffix;
     if (!os.compare ("Win32") || !os.compare ("Win64"))
-      {        
+      {
         suffix = ".dll";
         prefix = "";
       }
@@ -336,7 +337,7 @@ namespace PICML
       ImplementationArtifact ia = iaf.ref();
       ia.Accept (*this);
     }
-  }  
+  }
 
   void PackagerVisitor::copy_from_disk_to_disk(const std::string& from_path, const std::string& to_path)
   {
@@ -422,7 +423,7 @@ namespace PICML
       temp += directory->d_name;
       switch (stat_buf.st_mode & S_IFMT)
         {
-        case S_IFREG: // Either a regular file or an executable.   
+        case S_IFREG: // Either a regular file or an executable.
           if (remove (temp.c_str ()))
             throw udm_exception (string ("delete file failed: ") + string (directory->d_name));
           break;
@@ -435,10 +436,10 @@ namespace PICML
           break;
         }
     }
-    
+
     if (ACE_OS::chdir (full_path) == -1)
       throw udm_exception (string ("chdir failed: ") + full_path);
-    
+
     if (ACE_OS::rmdir (path.c_str ()) == -1)
       throw udm_exception (string ("remove dir failed: ") + path);
   }

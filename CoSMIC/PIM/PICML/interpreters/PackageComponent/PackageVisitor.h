@@ -17,7 +17,7 @@
 // Utility includes
 #include "Utils/XercesString.h"
 #include "Utils/Utils.h"
-#include "Package/Package_Export.h"
+#include "Package_Export.h"
 
 namespace PICML
 {

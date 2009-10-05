@@ -12,7 +12,6 @@ workspace {
   IDLImporter
   MPC
   MPCComponent
-  Package\package.mwc
   PackageComponent
   Path
   PathComponent
