@@ -42,8 +42,7 @@ this software.
 #include "UdmConfig.h"
 
 #include "DeploymentPlan_MainDialog.h"
-#include "PICML/PICML.h"
-#include "DeploymentPlan/DeploymentPlanVisitor.h"
+#include "DeploymentPlanVisitor.h"
 #include "boost/bind.hpp"
 
 using xercesc::XMLPlatformUtils;

@@ -1,3 +1,28 @@
+Mon Oct  5 05:30:59 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_Export.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Moved the DeploymentPlan project into the DeploymentPlanComponent
+            directory as a means to consolidate the workspace and project
+            layout.
+
+        * PIM/PICML/interpreters/DeploymentPlan:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan_Export.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.cpp:
+
+          Removed these files.
+
 Mon Oct  5 05:20:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

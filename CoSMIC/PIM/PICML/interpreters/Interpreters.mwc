@@ -5,7 +5,6 @@ workspace {
              -include $COSMIC_ROOT/MPC/config
 
   ComponentImplementationGenerator
-  DeploymentPlan
   DeploymentPlanComponent
   IDLGenerator
   IDLImporter
