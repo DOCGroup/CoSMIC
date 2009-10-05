@@ -1,3 +1,13 @@
+Mon Oct  5 04:17:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+
+          . Simplified the project specification.
+
+        * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
+
+          Removed this file.
+
 Mon Oct  5 04:00:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/cosmic_common.mpb:
