@@ -1,3 +1,39 @@
+Mon Oct  5 05:20:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/QED:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment.mpc:
+
+          . Changed the location of the QED interpreters.
+
+        * PIM/PICML/interpreters/arch:
+        * PIM/PICML/interpreters/arch/QED:
+        * PIM/PICML/interpreters/arch/QED/deployment:
+        * PIM/PICML/interpreters/arch/QED/deployment/Component.def:
+        * PIM/PICML/interpreters/arch/QED/deployment/Component.rc:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentLib_h.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmConfig.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/compicon.ico:
+        * PIM/PICML/interpreters/arch/QED/deployment/resource.h:
+
+          Removed these files.
+
 Mon Oct  5 05:10:08 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:

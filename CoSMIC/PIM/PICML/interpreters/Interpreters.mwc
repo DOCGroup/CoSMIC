@@ -4,7 +4,6 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  arch
   ComponentImplementationGenerator
   DeploymentPlan
   DeploymentPlanComponent
@@ -19,6 +18,7 @@ workspace {
   PAMComponent
   PICML
   PropertyManager
+  QED
   Target
   TargetComponent
 }
