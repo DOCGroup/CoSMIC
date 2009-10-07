@@ -118,12 +118,15 @@ adding_visitor::visit_scope (UTL_Scope *node)
           continue;
         }
 
-      // Want to skip the uses_xxxConnection structs added by uses
-      // multiple ports.
-      if (ScopeAsDecl (node)->node_type () == AST_Decl::NT_component
-          && nt != AST_Decl::NT_attr)
+      // Want to skip the 'uses multiple' related artifacts.
+      if (ScopeAsDecl (node)->node_type () == AST_Decl::NT_component)
         {
-          continue;
+          if (nt == AST_Decl::NT_struct
+              || nt == AST_Decl::NT_sequence
+              || nt == AST_Decl::NT_typedef)
+            {
+              continue;
+            }
         }
 
       if (d->ast_accept (this) != 0)
@@ -1017,6 +1020,7 @@ adding_visitor::visit_home (AST_Home *node)
                            + node->finders ().size ()
                            + 1;
   adding_visitor scope_visitor (elem, start_id);
+  
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1069,6 +1073,7 @@ adding_visitor::visit_factory (AST_Factory *node)
     }
 
   adding_visitor scope_visitor (elem);
+  
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1178,6 +1183,7 @@ adding_visitor::visit_structure (AST_Structure *node)
     }
 
   adding_visitor scope_visitor (elem);
+  
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1314,6 +1320,7 @@ adding_visitor::visit_exception (AST_Exception *node)
     }
 
   adding_visitor scope_visitor (elem);
+  
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1406,6 +1413,7 @@ adding_visitor::visit_enum (AST_Enum *node)
     }
 
   adding_visitor scope_visitor (elem);
+  
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1876,6 +1884,7 @@ adding_visitor::visit_union (AST_Union *node)
 
   // Bump the rel_id by 1 since we've already added the discriminator.
   adding_visitor scope_visitor (elem, 2UL);
+  
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -4043,6 +4052,7 @@ adding_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
         }
 
       adding_visitor scope_visitor (factory);
+      
       if (scope_visitor.visit_scope (*op) != 0)
         {
           ACE_ERROR ((LM_ERROR,
@@ -4108,6 +4118,7 @@ adding_visitor::add_finders (DOMElement *parent, AST_Home *node)
       this->add_version_element (finder, *op);
 
       adding_visitor scope_visitor (finder);
+      
       if (scope_visitor.visit_scope (*op) != 0)
         {
           ACE_ERROR ((LM_ERROR,
