@@ -19,6 +19,10 @@ project : register, mfc {
       $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
+	  
+	  // Following files are necessary for VC9 builds
+	  $(GME_ROOT)/SDK/BON/Common/Console.cpp
+	  $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
     }
 
     conditional (vc71, vc8) {
@@ -34,5 +38,8 @@ project : register, mfc {
   Header_Files {
     resource.h
     ComponentConfig.h
+	
+	// Following files are necessary for VC9 builds
+	ComponentLib_h.h
   }
 }
