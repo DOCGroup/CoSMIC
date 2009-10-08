@@ -1,7 +1,6 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by UDM Interpreter Wizard on Thursday, July 05, 2007 16:34:41
 
-#define RAWCOMPONENT
 
 // COM UUID-s, names and ProgID
 

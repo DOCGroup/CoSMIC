@@ -1,10 +1,8 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by UDM Interpreter Wizard on Sunday, July 16, 2006 22:45:42
 
-#define RAWCOMPONENT
-
 // COM UUID-s, names and ProgID
-                      
+
 #define TYPELIB_UUID "CD8E819E-2FD7-4674-A436-55E7CF6F9B13"
 #define TYPELIB_NAME "MGA Interpreter TypeLibrary (SecurityQoSComponent)"
 #define COCLASS_UUID "EC87E661-D2FA-4EE2-ABA4-1F6C01EC810A"

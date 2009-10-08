@@ -1,15 +1,53 @@
+Thu Oct  8 15:17:53 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          The location of the QED intepreters was incorrect.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+
+          Fixed build errors on vc8 related to the project specifications. This
+          was fixed by using the refactored base projects to simplify the project
+          specifications for all the interpreters.
+
+        * Release.mwc:
+
+          Added CodeGenerationKit project to the workspace.
+
+        * Release_idl_to_picml.mwc:
+
+          Removed IDL_to_WSDL from the workspace.
+
 Thu Oct  8 15:18:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * contrib/mcpp:
-
         * contrib/mcpp/mcpp-2.6.4:
-
         * contrib/mcpp/mcpp-2.6.4/config:
         * contrib/mcpp/mcpp-2.6.4/cpp-test:
-
         * contrib/mcpp/mcpp-2.6.4/cpp-test/test-l:
         * contrib/mcpp/mcpp-2.6.4/cpp-test/test-t:
-
         * contrib/mcpp/mcpp-2.6.4/doc:
         * contrib/mcpp/mcpp-2.6.4/doc-jp:
         * contrib/mcpp/mcpp-2.6.4/noconfig:
@@ -21,7 +59,7 @@ Thu Oct  8 15:18:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * contrib/mcpp/mcpp-2.6.4/tool:
 
           . Changed svn:externals from https:// to svn://
-		
+
 Thu Oct  8 15:10:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * contrib:

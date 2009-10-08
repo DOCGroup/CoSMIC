@@ -1,9 +1,6 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by ConfigureComponent on Thu Apr 05 10:43:02 2007
 
-
-#define RAWCOMPONENT
-
 // COM UUID-s, names and progID
 
 #define TYPELIB_UUID "87E7CBD8-5734-4F8C-84BA-DBBB00C4101F"
@@ -29,7 +26,7 @@
 
 
 // This is the location of the GME interfaces file (Mga.idl, Meta.idl, etc)
-#define GME_BASE . 
+#define GME_BASE .
 
 
 #define BON_ICON_SUPPORT

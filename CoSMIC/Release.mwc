@@ -8,15 +8,20 @@ workspace : cosmic_common {
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
 
+  static {
+    cmdline += -static \
+               -include $COSMIC_ROOT/contrib/CCF/MPC/config
+
+    $(COSMIC_ROOT)/contrib/CCF/CCF/CodeGenerationKit
+  }
+
   // All PICML interpreters expanded inline.
   PIM/PICML/interpreters/PICML
-  PIM/PICML/interpreters/Package
   PIM/PICML/interpreters/PackageComponent
   PIM/PICML/interpreters/PAM
   PIM/PICML/interpreters/PAMComponent
   PIM/PICML/interpreters/Target
   PIM/PICML/interpreters/TargetComponent
-  PIM/PICML/interpreters/DeploymentPlan
   PIM/PICML/interpreters/DeploymentPlanComponent
   PIM/PICML/interpreters/IDLGenerator
   PIM/PICML/interpreters/MPC
@@ -24,7 +29,7 @@ workspace : cosmic_common {
   PIM/PICML/interpreters/Path
   PIM/PICML/interpreters/PathComponent
   PIM/PICML/interpreters/PropertyManager
-  PIM/PICML/interpreters/arch
+  PIM/PICML/interpreters/QED
 
 
   PIM/SIML/interpreters/Interpreters.mwc

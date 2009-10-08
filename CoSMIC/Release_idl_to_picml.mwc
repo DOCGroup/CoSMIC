@@ -8,8 +8,10 @@ workspace : cosmic_common {
     $(ACE_ROOT)/ace/ace.mpc
     $(TAO_ROOT)/TAO_IDL/tao_idl.mpc
     $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
+
     PIM/PICML/interpreters/IDLImporter
-    PIM/WSML/interpreters/Interpreters.mwc
     $(COSMIC_ROOT)/Utils/Utils.mpc
+
+    //PIM/WSML/interpreters/Interpreters.mwc
   }
 }
