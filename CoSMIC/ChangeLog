@@ -1,17 +1,23 @@
+Thu Oct  8 05:10:32 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * includes/GME/DecoratorApp.def:
+
+          . Missing file.
+
 Thu Oct  8 04:50:40 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/gme_component.mpb:
-		
+
           . Added Files specific to GME9/VC9.
 
         * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentLib_h.h:
         * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
         * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
-		
+
           . Added these files back into the repo for successful compilation on GME9/VC9.
-		
-		* PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
-		
+
+                * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+
           . Fixed RAWCOMPONENT preprocessor macro.
 
 Wed Oct  7 14:51:33 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
