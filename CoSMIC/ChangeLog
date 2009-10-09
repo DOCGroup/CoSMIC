@@ -1,3 +1,16 @@
+Fri Oct  9 03:42:59 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PathComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/TargetComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+		
+          . Fixed warning related to redefinition of RAWCOMPONENT macro.
+
+        * cosmic.mwc:
+		
+          . Temporarily commented out WSML interpreters because mcpp changes are still pending.
+
 Thu Oct  8 20:43:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * contrib/mcpp:
@@ -19,9 +32,9 @@ Thu Oct  8 20:43:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * contrib/mcpp/mcpp-2.6.4/test-t:
         * contrib/mcpp/mcpp-2.6.4/tests:
         * contrib/mcpp/mcpp-2.6.4/tool:
-		
-          . Recursive svn:externals was undone. Only $COSMIC/contrib directory 
-		  should have svn:externals for CCF and utility.
+
+          . Recursive svn:externals was undone. Only $COSMIC/contrib directory
+                  should have svn:externals for CCF and utility.
 
 Thu Oct  8 17:03:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 

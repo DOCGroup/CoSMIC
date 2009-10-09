@@ -1,7 +1,9 @@
 // $Id$
 
 workspace : picml {
-  PIM/WSML/interpreters/Interpreters.mwc
+  //WSML interpreters are commented temporarily because many mcpp related 
+  //changes need to go in to fix them.
+  //PIM/WSML/interpreters/Interpreters.mwc
   PIM/SIML/interpreters/Interpreters.mwc
 
   PSM/CQML/interpreters/Interpreters.mwc

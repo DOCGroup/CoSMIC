@@ -1,8 +1,9 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by UDM Interpreter Wizard on Monday, May 13, 2002 13:45:42
 
+#ifndef RAWCOMPONENT
 #define RAWCOMPONENT
-
+#endif  // RAWCOMPONENT
 
 // COM UUID-s, names and ProgID
 #define TYPELIB_UUID "8b6675d8-ac51-465e-b56e-520d13f210fc"

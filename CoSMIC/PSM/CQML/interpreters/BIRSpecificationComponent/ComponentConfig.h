@@ -1,8 +1,9 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by ConfigureComponent on Thu Feb 22 13:06:08 2007
 
-
+#ifndef RAWCOMPONENT
 #define RAWCOMPONENT
+#endif // RAWCOMPONENT
 
 // COM UUID-s, names and progID
 
