@@ -2,7 +2,6 @@
 
 project (PAMComponent): picmllib, boost_base, gme_udm_component {
   sharedname = PAMComponent
-  macros += _USRDLL
 
   after += PAM
   libs  += PAM

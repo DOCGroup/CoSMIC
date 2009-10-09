@@ -1,6 +1,9 @@
 // $Id$
 
 project : udm, gme_raw_component {
+
+  macros += _USRDLL
+
   Source_Files {
     UdmApp.cpp
   }

@@ -2,14 +2,13 @@
 // This file was automatically generated as UdmApp.cpp
 // by UDM Interpreter Wizard on Friday, November 23, 2007 09:55:04
 
-#include <xercesc/util/PlatformUtils.hpp>
-#include "Utils/XercesString.h"
-
 #include "stdafx.h"
 #include "UdmApp.h"
 #include "UdmConfig.h"
 #include "Uml.h"
 
+#include "xercesc/util/PlatformUtils.hpp"
+#include "Utils/XercesString.h"
 #include "Utils/Utils.h"
 #include "CQML/CQML.h"
 #include "CIAOEvents/CIAOEventsVisitor.h"

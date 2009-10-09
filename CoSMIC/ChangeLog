@@ -1,14 +1,33 @@
+Fri Oct  9 05:14:54 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_udm_component.mpb:
+		
+          . Added _USRDLL macro.
+		  
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+		
+          . Removed _USRDLL macro.
+		  
+        * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
+
+          . Fixed the order of #include files so that stdafx.h is at the top because
+		    it is a precompiled header.
+			
+        * default.features:
+
+          . Added mcpp.
+
 Fri Oct  9 03:42:59 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
         * PIM/PICML/interpreters/PathComponent/ComponentConfig.h:
         * PIM/PICML/interpreters/TargetComponent/ComponentConfig.h:
         * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
-		
+
           . Fixed warning related to redefinition of RAWCOMPONENT macro.
 
         * cosmic.mwc:
-		
+
           . Temporarily commented out WSML interpreters because mcpp changes are still pending.
 
 Thu Oct  8 20:43:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
