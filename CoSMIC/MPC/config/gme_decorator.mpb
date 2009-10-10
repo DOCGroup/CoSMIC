@@ -2,6 +2,8 @@
 
 project : mfc, register {
   macros += _WINDLL _USRDLL _ATL_DLL
+  libout = $(COSMIC_ROOT)/lib
+  dllout = $(COSMIC_ROOT)/bin
 
   specific (prop:microsoft) {
     includes      += $(GME_ROOT)/Interfaces

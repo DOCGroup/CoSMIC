@@ -19,6 +19,10 @@ project(Package): acelib, picmllib, boost_base, zlib {
    Header_Files {
      Packager_Export.h
    }
+   
+   Resource_Files {
+   
+   }
 }
 
 project (PackageComponent): game, picmllib, gme_udm_component {
@@ -30,7 +34,6 @@ project (PackageComponent): game, picmllib, gme_udm_component {
   libs     += Package
 
   Source_Files {
-    Component.rc
     PackageMainDialog.cpp
     PackageOptions.cpp
   }
@@ -40,6 +43,7 @@ project (PackageComponent): game, picmllib, gme_udm_component {
   }
 
   Resource_Files {
+    Component.rc
     CompIcon.ico
   }
 

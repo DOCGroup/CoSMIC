@@ -12,6 +12,10 @@ project (DeploymentPlan): boost_base, picmllib {
   Header_Files {
     DeploymentPlan_Export.h
   }
+  
+  Resource_Files {
+  
+  }
 }
 
 project (DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
@@ -21,7 +25,6 @@ project (DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
   libs  += DeploymentPlan
 
   Source_Files {
-    Component.rc
     DeploymentPlan_MainDialog.cpp
   }
 
@@ -30,6 +33,7 @@ project (DeploymentPlanComponent): boost_base, picmllib, gme_udm_component {
   }
 
   Resource_Files {
+    Component.rc
     CompIcon.ico
   }
 
