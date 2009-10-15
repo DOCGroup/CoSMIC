@@ -44,9 +44,6 @@ using xercesc::DOMException;
 using xercesc::XMLString;
 using Utils::XStr;
 
-extern PICML_Export bool Utils::getPath (const std::string& description,
-                                         std::string& path);
-
 extern void dummy(void); // Dummy function for UDM meta initialization
 
 // Initialization function. The framework calls it before preparing the

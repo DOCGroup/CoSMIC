@@ -1,9 +1,15 @@
+Thu Oct 15 21:08:07 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+
+          . Fixed Utils::getPath redefinition error.
+		  
 Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.docx:
         * Utils/LEESA/LEESA.pdf:
         * Utils/LEESA/SP.cpp:
-		
+
           . Collision of TRY macro with TRY typedef fixed.
 
         * tests/SM_LEESA:
@@ -38,10 +44,10 @@ Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/SM_LEESA/string_utils.h:
 
           . Added a new independent example showing how to use LEESA.
-		  
+
         * tests/UDM_DSL/UDM_DSL.mpc:
-		* tests/UDM_DSL/UDM_DSL.mwc:
-	
+                * tests/UDM_DSL/UDM_DSL.mwc:
+
           . UDM_DSL.mwc moved to tests/UDM_DSL
 
         * UDM_DSL.mwc:
