@@ -1,9 +1,7 @@
 // $Id$
 
 project : cosmic_common {
-   after  += CoSMIC_Utils
-   macros += UTILS_HAS_DLL
-
+   after    += CoSMIC_Utils
    includes += $(COSMIC_ROOT)/Utils
    libs     += Utils
 }

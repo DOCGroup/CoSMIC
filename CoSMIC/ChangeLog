@@ -1,3 +1,8 @@
+Thu Oct 15 15:06:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * MPC/config/cosmic_utils.mpb:
+          Macros should be set here
+
 Thu Oct 15 12:42:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
