@@ -4,13 +4,8 @@ Thu Oct 15 21:19:04 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/SM_LEESA/SM_LEESA.sln:
         * tests/SM_LEESA/SM_LEESA.vcproj:
 
-        * tests/UDM_DSL/HFSM.h:
-        * tests/UDM_DSL/HFSM.xme:
-        * tests/UDM_DSL/HFSM.xsd:
-        * tests/UDM_DSL/HFSM.cpp:
-        * tests/UDM_DSL/HFSM.xml:
-        * tests/UDM_DSL/UDM_DSL.cpp:
-
+          . Added missing files.
+		  
 Thu Oct 15 21:08:07 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
