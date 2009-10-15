@@ -1,3 +1,8 @@
+Thu Oct 15 12:42:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+          Fixed issue caused by the cleanup of this morning
+
 Thu Oct 15 07:26:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:

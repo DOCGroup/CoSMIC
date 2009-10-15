@@ -37,7 +37,7 @@ project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces, mcpp, tao_idl_mc
   after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE
-  includes       += $(TAO_ROOT)
+  includes       += . $(TAO_ROOT)
   libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin
   install         = $(COSMIC_ROOT)/bin
 
