@@ -1,9 +1,22 @@
+Thu Oct 15 21:19:04 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM_LEESA.sln:
+        * tests/SM_LEESA/SM_LEESA.vcproj:
+
+        * tests/UDM_DSL/HFSM.h:
+        * tests/UDM_DSL/HFSM.xme:
+        * tests/UDM_DSL/HFSM.xsd:
+        * tests/UDM_DSL/HFSM.cpp:
+        * tests/UDM_DSL/HFSM.xml:
+        * tests/UDM_DSL/UDM_DSL.cpp:
+
 Thu Oct 15 21:08:07 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
 
           . Fixed Utils::getPath redefinition error.
-		  
+
 Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.docx:
