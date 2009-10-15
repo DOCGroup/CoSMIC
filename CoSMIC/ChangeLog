@@ -1,3 +1,14 @@
+Thu Oct 15 20:02:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/SecurityQoSComponent/UdmApp.cpp:
+
+          . Fixed Utils::getPath redefinition error.
+
 Thu Oct 15 15:06:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * MPC/config/cosmic_utils.mpb:
