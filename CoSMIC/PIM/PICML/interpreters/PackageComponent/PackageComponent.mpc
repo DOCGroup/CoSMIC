@@ -1,14 +1,11 @@
 // $Id$
 
-project(Package): acelib, picmllib, boost_base, zlib {
+project(Package): acelib, picmllib, boost_base, zlib, minizip {
    sharedname    = Package
    dynamicflags += PACKAGE_BUILD_DLL PACKAGER_BUILD_DLL
 
    includes += $(ACE_ROOT)/contrib/minizip
    requires += zlib
-
-   after += minizip
-   libs  += minizip
 
    Source_Files {
      PackageVisitor.cpp
@@ -19,9 +16,9 @@ project(Package): acelib, picmllib, boost_base, zlib {
    Header_Files {
      Packager_Export.h
    }
-   
+
    Resource_Files {
-   
+
    }
 }
 

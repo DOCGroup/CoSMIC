@@ -1,3 +1,11 @@
+Thu Oct 15 07:26:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+          Use minizip
+
+        * Release_idl_to_picml.mwc:
+          Refer to the new tao_idl_fe.mpc
+
 Thu Oct 15 07:08:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc
