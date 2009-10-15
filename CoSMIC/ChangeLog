@@ -1,12 +1,18 @@
+Thu Oct 15 07:08:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
+          Simplified these mpc files
+
 Sat Oct 10 04:51:05 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/gme_decorator.mpb:
-		
+
           . Added $COSMIC_ROOT/bin as the dllout and libout paths.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
         * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
-		
+
           . Resource_Files should be empty. Otherwise *.rc files in the current directory
             will be picked up automatically.
 

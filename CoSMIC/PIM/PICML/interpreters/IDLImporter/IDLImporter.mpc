@@ -1,20 +1,16 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
+project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces, tao_idl_fe, cosmic_utils {
 
-  after       += TAO_IDL_FE CoSMIC_Utils
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
   dllout       = $(COSMIC_ROOT)/bin
-  libpaths    += $(ACE_ROOT)/lib $(COSMIC_ROOT)/lib
-  libs        += ACE TAO_IDL_FE Utils
+  libpaths    += $(COSMIC_ROOT)/lib
+  libs        += ACE
   dynamicflags = IDL_TO_PICML_BE_BUILD_DLL
 
-  includes    += $(TAO_ROOT)/TAO_IDL/include \
-                 $(TAO_ROOT)/TAO_IDL/fe \
-                 $(COSMIC_ROOT)/Utils \
-                 $(GME_ROOT)
+  includes    += $(GME_ROOT)
 
   Source_Files {
     adding_visitor.cpp
@@ -37,14 +33,12 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces {
   }
 }
 
-project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces, mcpp, tao_idl_mcpp {
-  after          += IDL_TO_PICML_BE TAO_IDL_FE CoSMIC_Utils
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces, mcpp, tao_idl_mcpp, tao_idl_fe, cosmic_utils {
+  after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
-  libs           += IDL_TO_PICML_BE TAO_IDL_FE Utils
-  includes       += . $(TAO_ROOT)/TAO_IDL/include \
-                    $(TAO_ROOT)/TAO_IDL/fe \
-                    $(TAO_ROOT) $(COSMIC_ROOT)/Utils
-  libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin $(TAO_ROOT)/TAO_IDL
+  libs           += IDL_TO_PICML_BE
+  includes       += $(TAO_ROOT)
+  libpaths       += $(COSMIC_ROOT)/lib $(COSMIC_ROOT)/bin
   install         = $(COSMIC_ROOT)/bin
 
   verbatim(gnuace, local) {
