@@ -1,7 +1,7 @@
 project (UDM_DSL): aceexe, cosmic_common, udm, boost_base, boost_regex {
 
   exename = UDM_DSL
-  install = $(COSMIC_ROOT)/Utils/UDM_DSL
+  install = $(COSMIC_ROOT)/tests/UDM_DSL
   includes += $(COSMIC_ROOT)/Utils/LEESA
 
   Source_Files {

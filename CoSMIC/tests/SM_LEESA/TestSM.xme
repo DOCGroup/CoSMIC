@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{02160C49-70F7-481B-B21E-6A05A3F79AB7}" cdate="Wed Oct 14 21:11:34 2009" mdate="Wed Oct 14 21:11:34 2009" version="" metaguid="{F205EDC1-8E1E-45CE-8BA8-43527E2ADF45}" metaversion="" metaname="SM">
+	<name>Test</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x1" kind="RootFolder" guid="{40d1b8ac-3e3a-4547-a8b7-a03f14c9719e}">
+		<name>Test</name>
+		<model id="id-0065-00000001" kind="StateMachine" guid="{d0d8a115-837b-44db-acbb-3f4dfe7de995}" relid="0x1" childrelidcntr="0x4">
+			<name>NewStateMachine</name>
+			<model id="id-0065-00000002" kind="StartState" role="StartState" guid="{84925705-b8a1-4474-b9b9-877889a03d01}" relid="0x1" childrelidcntr="0x0">
+				<name>StartState</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="SM" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>287,98</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000003" kind="State" role="State" guid="{e34a2dca-59d8-4570-9ba7-e5197766871d}" relid="0x2" childrelidcntr="0x0">
+				<name>S1</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="SM" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>154,266</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000004" kind="StartState" role="StartState" guid="{c2b194fe-0962-413d-94fe-7c8391b2b192}" relid="0x3" childrelidcntr="0x0">
+				<name>SS1</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="SM" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>49,133</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+			<model id="id-0065-00000005" kind="BaseState" role="BaseState" guid="{e6cce3c9-49c9-439f-a826-e86ec911c271}" relid="0x4" childrelidcntr="0x0">
+				<name>BaseState</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="SM" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>392,203</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</model>
+		</model>
+	</folder>
+</project>

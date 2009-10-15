@@ -646,14 +646,14 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(NaiveInnermost);
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
     result_kind operator () (argument_kind const & arg)
     {
-      typedef AllOp<K, InnermostOp, Custom>   ALL;
-      typedef SeqOp<K, Strategy, InnermostOp> SEQ;
-      typedef TryOp<K, SEQ>                   TRY;
-      typedef SeqOp<K, ALL, TRY>              IM;
-      ALL all(*this);
-      Seq seq(strategy_, *this);
-      TRY t(seq);
-      IM innermost(all, t);
+      typedef AllOp<K, InnermostOp, Custom>   ALL_IM;
+      typedef SeqOp<K, Strategy, InnermostOp> SEQ_IM;
+      typedef TryOp<K, SEQ_IM>                TRY_IM;
+	  typedef SeqOp<K, ALL_IM, TRY_IM>        INNER_MOST;
+      ALL_IM all(*this);
+      SEQ_IM seq(strategy_, *this);
+      TRY_IM t(seq);
+      INNER_MOST innermost(all, t);
       innermost(arg);
       return arg;
     }

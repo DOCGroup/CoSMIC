@@ -1,3 +1,54 @@
+Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/SP.cpp:
+		
+          . Collision of TRY macro with TRY typedef fixed.
+
+        * tests/SM_LEESA:
+
+        * tests/SM_LEESA/CompIcon.ico:
+        * tests/SM_LEESA/Component.def:
+        * tests/SM_LEESA/Component.rc:
+        * tests/SM_LEESA/ComponentConfig.h:
+        * tests/SM_LEESA/ComponentObj.h:
+        * tests/SM_LEESA/ComponentObj.cpp:
+        * tests/SM_LEESA/RawComponent.h:
+        * tests/SM_LEESA/RawComponent.cpp:
+        * tests/SM_LEESA/Resource.h:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.xme:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xml:
+        * tests/SM_LEESA/SM.xmp:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM_export.h:
+        * tests/SM_LEESA/SM_uml.xme:
+        * tests/SM_LEESA/StdAfx.h:
+        * tests/SM_LEESA/StdAfx.cpp:
+        * tests/SM_LEESA/TestSM.xme:
+        * tests/SM_LEESA/UdmApp.h:
+        * tests/SM_LEESA/UdmApp.cpp:
+        * tests/SM_LEESA/UdmConfig.h:
+        * tests/SM_LEESA/UdmConsole.h:
+        * tests/SM_LEESA/UdmConsole.cpp:
+        * tests/SM_LEESA/UdmFormatter.h:
+        * tests/SM_LEESA/UdmFormatter.cpp:
+        * tests/SM_LEESA/string_utils.h:
+
+          . Added a new independent example showing how to use LEESA.
+		  
+        * tests/UDM_DSL/UDM_DSL.mpc:
+		* tests/UDM_DSL/UDM_DSL.mwc:
+	
+          . UDM_DSL.mwc moved to tests/UDM_DSL
+
+        * UDM_DSL.mwc:
+        * Utils/LEESA/LEESA.doc:
+
+          Removed these files.
+
 Thu Oct 15 20:02:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
