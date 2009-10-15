@@ -1020,7 +1020,7 @@ adding_visitor::visit_home (AST_Home *node)
                            + node->finders ().size ()
                            + 1;
   adding_visitor scope_visitor (elem, start_id);
-  
+
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1073,7 +1073,7 @@ adding_visitor::visit_factory (AST_Factory *node)
     }
 
   adding_visitor scope_visitor (elem);
-  
+
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1183,7 +1183,7 @@ adding_visitor::visit_structure (AST_Structure *node)
     }
 
   adding_visitor scope_visitor (elem);
-  
+
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1320,7 +1320,7 @@ adding_visitor::visit_exception (AST_Exception *node)
     }
 
   adding_visitor scope_visitor (elem);
-  
+
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1413,7 +1413,7 @@ adding_visitor::visit_enum (AST_Enum *node)
     }
 
   adding_visitor scope_visitor (elem);
-  
+
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -1884,7 +1884,7 @@ adding_visitor::visit_union (AST_Union *node)
 
   // Bump the rel_id by 1 since we've already added the discriminator.
   adding_visitor scope_visitor (elem, 2UL);
-  
+
   if (scope_visitor.visit_scope (node) != 0)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -4052,7 +4052,7 @@ adding_visitor::add_home_factories (DOMElement *parent, AST_Home *node)
         }
 
       adding_visitor scope_visitor (factory);
-      
+
       if (scope_visitor.visit_scope (*op) != 0)
         {
           ACE_ERROR ((LM_ERROR,
@@ -4118,7 +4118,7 @@ adding_visitor::add_finders (DOMElement *parent, AST_Home *node)
       this->add_version_element (finder, *op);
 
       adding_visitor scope_visitor (finder);
-      
+
       if (scope_visitor.visit_scope (*op) != 0)
         {
           ACE_ERROR ((LM_ERROR,
@@ -4837,7 +4837,7 @@ adding_visitor::add_one_impl_artifact (DOMElement *container,
   static const char *artifact_suffixes[] =
   {
     "_svnt",
-    "_impl"
+    "_exec"
   };
 
   DOMElement *artifact = doc_->createElement (X ("atom"));

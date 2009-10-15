@@ -1,3 +1,10 @@
+Thu Oct 15 22:02:37 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Change the implementation artifact's suffix to _exec instead of
+          _impl for the time being.
+
 Thu Oct 15 21:19:04 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/SM_LEESA/ComponentLib_i.c:
@@ -5,7 +12,7 @@ Thu Oct 15 21:19:04 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/SM_LEESA/SM_LEESA.vcproj:
 
           . Added missing files.
-		  
+
 Thu Oct 15 21:08:07 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
@@ -74,6 +81,7 @@ Thu Oct 15 20:02:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . Fixed Utils::getPath redefinition error.
 
+>>>>>>> .r2013
 Thu Oct 15 15:06:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * MPC/config/cosmic_utils.mpb:
