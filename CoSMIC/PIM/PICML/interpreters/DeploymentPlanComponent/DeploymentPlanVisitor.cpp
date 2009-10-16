@@ -422,6 +422,11 @@ namespace PICML
   {
     this->push ();
 
+    if (name == "ComponentIOR")
+      name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
+    else if (name == "RegisterNaming")
+      name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
+
     this->curr_->appendChild (this->createSimpleContent ("name", name));
 
     // Property's value
