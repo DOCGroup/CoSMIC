@@ -196,41 +196,6 @@ class VisitorAsIndex : public VisitorAsIndexBase
 
 template <class Kind>
 VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator [] 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 (PARADIGM_NAMESPACE_FOR_LEESA::Visitor &v) const 
 { 
   return VisitorAsIndex<Kind> (v);

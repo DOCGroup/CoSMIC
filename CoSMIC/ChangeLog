@@ -1,3 +1,11 @@
+Fri Oct 16 05:29:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+
+          . Updated documentation.
+
 Thu Oct 15 22:02:37 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
