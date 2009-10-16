@@ -755,11 +755,20 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       // won't have to be concerned that a lookup failure later
       // might be due to a mistake or that the filename just
       // appears further down the command line.
+      
+      char abspath[MAXPATHLEN] = "";
+      char *fullpath = ACE_OS::realpath (files[i], abspath);
+      
+      for (unsigned long j = 0; fullpath[j] != '\0'; ++j)
+        {
+          if (fullpath[j] == '\\')
+            {
+              fullpath[j] = '/';
+            }
+        }
 
-      ACE_CString fname (files[i]);
-      ACE_CString::size_type fpos = fname.rfind ('/');
-      ACE_CString::size_type pos =
-        (fpos == ACE_CString::npos ? fname.rfind ('\\') : fpos);
+      ACE_CString fname (fullpath);
+      ACE_CString::size_type pos = fname.rfind ('/');
       ACE_CString lname =
         (pos == ACE_CString::npos ? fname : fname.substr (pos + 1));
       lname = lname.substr (0, lname.rfind ('.'));

@@ -1,3 +1,11 @@
+Fri Oct 16 16:52:22 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          Updated filename handling in internal tables to synch
+          with mcpp's behavior of generating full pathnames.
+
 Fri Oct 16 05:29:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/LEESA.cpp:
