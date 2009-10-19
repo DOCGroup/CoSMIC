@@ -89,7 +89,7 @@ Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
           . Added a new independent example showing how to use LEESA.
 
         * tests/UDM_DSL/UDM_DSL.mpc:
-                * tests/UDM_DSL/UDM_DSL.mwc:
+        * tests/UDM_DSL/UDM_DSL.mwc:
 
           . UDM_DSL.mwc moved to tests/UDM_DSL
 
@@ -109,7 +109,6 @@ Thu Oct 15 20:02:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . Fixed Utils::getPath redefinition error.
 
->>>>>>> .r2013
 Thu Oct 15 15:06:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
 
         * MPC/config/cosmic_utils.mpb:
@@ -159,7 +158,7 @@ Fri Oct  9 05:14:54 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
 
           . Fixed the order of #include files so that stdafx.h is at the top because
-                    it is a precompiled header.
+            it is a precompiled header.
 
         * default.features:
 
@@ -201,7 +200,7 @@ Thu Oct  8 20:43:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * contrib/mcpp/mcpp-2.6.4/tool:
 
           . Recursive svn:externals was undone. Only $COSMIC/contrib directory
-                  should have svn:externals for CCF and utility.
+            should have svn:externals for CCF and utility.
 
 Thu Oct  8 17:03:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
@@ -296,7 +295,7 @@ Thu Oct  8 04:50:40 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . Added these files back into the repo for successful compilation on GME9/VC9.
 
-                * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
 
           . Fixed RAWCOMPONENT preprocessor macro.
 
@@ -580,7 +579,6 @@ Mon Sep 28 12:35:34 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
            fixed mcpp problem.
 
-
 Fri Sep 25 21:02:14 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * Release_idl_to_picml.mwc
@@ -621,7 +619,6 @@ Thu Sep 17 15:05:25 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . IDL_TO_PICML now uses mcpp. This fixes the 128 file problem.
 
->>>>>>> .r1981
 Sat Sep 12 20:43:16 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
@@ -743,6 +740,8 @@ Thu Sep 10 19:42:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
         * PSM/DQML/interpreters/DBE/DQML.mpc:
         * PSM/DQML/interpreters/XML/DQML.mpc:
+		
+          . Added support for GME7 and VC8.
 
 Thu Sep 10 04:22:13 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
