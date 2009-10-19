@@ -1,25 +1,31 @@
+Mon Oct 19 23:03:55 UTC 2009  Sumant Tambe <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+		
+          . Added PROBLEM-REPORT-FORM.
+
 Mon Oct 19 22:40:09 UTC 2009  Sumant Tambe <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
         * Installer/CoSMIC_Installer/Directories.wxs:
-		
-          . Updated the installer to include NEWS and VERSION files. 
+
+          . Updated the installer to include NEWS and VERSION files.
             Updated LEESA destination directory.
 
         * NEWS:
         * Readme.rtf:
         * ReleaseNotes.rtf:
         * VERSION:
-		
+
           . Added/updated these files for the upcoming 0.7.4 release.
 
         * Utils/LEESA/LEESA.docx:
         * Utils/LEESA/LEESA.pdf:
         * Utils/LEESA/LEESA.wxs:
         * Utils/LEESA/LEESA.cpp:
-		
+
           . Updated LEESA documentation and the destination directory.
 
 Fri Oct 16 18:05:19 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
