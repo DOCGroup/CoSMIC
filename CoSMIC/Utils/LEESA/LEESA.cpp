@@ -395,16 +395,16 @@ struct DFSChildrenOp : std::unary_function<typename ET<LExpr>::result_type, void
 	DFSChildrenOp (DFSChildrenOp const &d) : expr_(d.expr_) {}
 	result_type operator () (argument_type const & arg)
 	{
-		typedef typename ET<RExpr>::argument_kind child_kind;
 		typedef typename ET<LExpr>::result_kind parent_kind;
+		typedef typename ET<RExpr>::argument_kind child_kind;
 
-    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<parent_kind, child_kind>));
+		BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<parent_kind, child_kind>));
 
-    typename ContainerGen<parent_kind>::type v = arg;
+		typename ContainerGen<parent_kind>::type v = arg;
 		BOOST_FOREACH(parent_kind kind, v)
 		{
 			typename ContainerGen<child_kind>::type children = 
-        kind.children_kind<child_kind>();
+			kind.children_kind<child_kind>();
 			std::for_each(children.begin(), children.end(), expr_);
 		}
 	}

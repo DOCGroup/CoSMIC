@@ -153,6 +153,7 @@
       <ComponentRef Id="CoSMICNotes" />
       <ComponentRef Id="CoSMICReadme" />
       <ComponentRef Id="CoSMICLicense" />
+      <ComponentRef Id="CoSMIC_VERSION_NEWS" />
       <ComponentRef Id="Uninstaller" />
     </Feature>
 

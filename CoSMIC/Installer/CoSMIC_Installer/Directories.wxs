@@ -7,8 +7,8 @@
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='ISISDir' Name='ISIS'>
           <Directory Id='INSTALLDIR' Name='CoSMIC'>
-            <Directory Id='CoSMICIncludeDir' Name='include' FileSource='[INSTALLDIR]include'>
-              <Directory Id='LEESADir' Name='LEESA' FileSource='[CoSMICIncludeDir]LEESA' />
+            <Directory Id='CoSMICTraversalDir' Name='Traversal' FileSource='[INSTALLDIR]Traversal'>
+              <Directory Id='LEESAIncludeDir' Name='include' FileSource='[CoSMICTraversalDir]include' />
             </Directory>
             <Directory Id='CoSMICDocsDir' Name='docs' FileSource='[INSTALLDIR]docs' />
             <Directory Id='CoSMICBinDir' Name='bin' FileSource='[INSTALLDIR]bin'>

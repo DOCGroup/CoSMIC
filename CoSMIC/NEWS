@@ -1,0 +1,28 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.3 and CoSMIC-0.7.4
+==========================================================
+
+. CoSMIC supports ACE/TAO/CIAO 0.7.4
+. Improved PICML to better support CIAO/DAnCE 0.7.3. 
+. Entry points for a component implementation are no longer defined on an ImplementationArtifact 
+  element. Now, entry points are defined on the ComponentExecutorArtifact or ComponentServantArtifact 
+  that is attached to MonolithicImplementation element. 
+. Implemented a new interpreter named ComponentImplementationGenerator that will 
+  generate the default implementation and artifacts for an existing component in 
+  the interface definitions. This interpreter can be accessed via the interpreter 
+  dialog box (i.e., File | Run Interpreter...)
+. The deployment plan interpreter now inserts plan locality information in the generated 
+  deployment plan. 
+. LEESA comes with a new StateMachine (SM) paradigm and its corresponding interpreter have been 
+  added to show how to use LEESA in a UDM-based project. Documentation of LEESA has also been enhanced.
+. IDL_TO_PICML is more robust and faster than before. 
+   . Support for the MCPP preprocessor has been added to IDL_TO_PICML. 
+   . It now uses fully scoped names when generating a component implementation and its default 
+     artifacts to avoid name clashes. 
+   . Bug fix: idl_to_picml now uses fully scoped names when generating a component implementation 
+     and its default artifacts to avoid name clashes.
+   . Bug fix: Under certain unknown circumstances, idl_to_picml failed to generate UUIDs on the 
+     necessary modeling elements.
+   . Bug fix: A memory deletion problem associated with XMLString::transcode has been fixed.
+   . Bug fix (3740): A problem of raising an unknown exception when -i command-line option is 
+     specified has been fixed.
+   . Bug fix (3742): Front end of idl_to_picml now handles upto 1024 .idl files at the command-line.

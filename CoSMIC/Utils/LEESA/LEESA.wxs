@@ -5,12 +5,13 @@
   <Fragment Id="LEESAFrag">
     <Feature Id='LEESAFeature'
                  Level='1'
-                 Title='LEESA traversal DSL'
+                 Title='LEESA Traversal DSL'
                  TypicalDefault="install" >
       <ComponentRef Id='LEESALibrary' />
+      <ComponentRef Id='LEESADoc' />
     </Feature>
     
-      <DirectoryRef Id="LEESADir">
+      <DirectoryRef Id="LEESAIncludeDir">
         <Component Id='LEESALibrary' Guid='3C340C4B-9FB8-425B-B152-DE034C78E184'>
           <File Id='LEESAH'
                 Name='LEESA.h'
@@ -56,8 +57,12 @@
                 Name='DSL09primitives.cpp'
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\DSL09primitives.cpp' />
-
-          <File Id='LEESADOC'
+        </Component>
+      </DirectoryRef>
+      
+      <DirectoryRef Id="CoSMICTraversalDir">
+        <Component Id='LEESADoc' Guid='FC04D588-FB79-486b-AE82-4EAB5EED3805'>
+          <File Id='LEESAPDF'
                 Name='LEESA.pdf'
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.pdf' />
