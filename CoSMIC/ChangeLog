@@ -209,6 +209,26 @@ Thu Oct  8 17:03:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . Fixed some macro related warnings.
 
+Thu Oct  8 15:18:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * contrib/mcpp:
+        * contrib/mcpp/mcpp-2.6.4:
+        * contrib/mcpp/mcpp-2.6.4/config:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-l:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-t:
+        * contrib/mcpp/mcpp-2.6.4/doc:
+        * contrib/mcpp/mcpp-2.6.4/doc-jp:
+        * contrib/mcpp/mcpp-2.6.4/noconfig:
+        * contrib/mcpp/mcpp-2.6.4/src:
+        * contrib/mcpp/mcpp-2.6.4/test-c:
+        * contrib/mcpp/mcpp-2.6.4/test-l:
+        * contrib/mcpp/mcpp-2.6.4/test-t:
+        * contrib/mcpp/mcpp-2.6.4/tests:
+        * contrib/mcpp/mcpp-2.6.4/tool:
+
+          . Changed svn:externals from https:// to svn://
+
 Thu Oct  8 15:17:53 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
@@ -250,26 +270,6 @@ Thu Oct  8 15:17:53 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
         * Release_idl_to_picml.mwc:
 
           Removed IDL_to_WSDL from the workspace.
-
-Thu Oct  8 15:18:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
-
-        * contrib/mcpp:
-        * contrib/mcpp/mcpp-2.6.4:
-        * contrib/mcpp/mcpp-2.6.4/config:
-        * contrib/mcpp/mcpp-2.6.4/cpp-test:
-        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-l:
-        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-t:
-        * contrib/mcpp/mcpp-2.6.4/doc:
-        * contrib/mcpp/mcpp-2.6.4/doc-jp:
-        * contrib/mcpp/mcpp-2.6.4/noconfig:
-        * contrib/mcpp/mcpp-2.6.4/src:
-        * contrib/mcpp/mcpp-2.6.4/test-c:
-        * contrib/mcpp/mcpp-2.6.4/test-l:
-        * contrib/mcpp/mcpp-2.6.4/test-t:
-        * contrib/mcpp/mcpp-2.6.4/tests:
-        * contrib/mcpp/mcpp-2.6.4/tool:
-
-          . Changed svn:externals from https:// to svn://
 
 Thu Oct  8 15:10:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
