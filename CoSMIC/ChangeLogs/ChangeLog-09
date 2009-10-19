@@ -1,0 +1,3484 @@
+Mon Oct 19 23:03:55 UTC 2009  Sumant Tambe <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+		
+          . Added PROBLEM-REPORT-FORM.
+
+Mon Oct 19 22:40:09 UTC 2009  Sumant Tambe <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+          . Updated the installer to include NEWS and VERSION files.
+            Updated LEESA destination directory.
+
+        * NEWS:
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+        * VERSION:
+
+          . Added/updated these files for the upcoming 0.7.4 release.
+
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/LEESA.wxs:
+        * Utils/LEESA/LEESA.cpp:
+
+          . Updated LEESA documentation and the destination directory.
+
+Fri Oct 16 18:05:19 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+
+          Bug fix where special configProperty elements where not
+          handled correctly by the deployment plan generator. The
+          following configProperty elements are decorated correctly
+          in the deployment plan:
+
+            . ComponentIOR -> edu.vanderbilt.dre.DAnCE.InstanceIOR
+            . RegisterNaming -> edu.vanderbilt.edu.DAnCE.RegisterNaming
+
+Fri Oct 16 16:52:22 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Updated filename handling in internal tables to synch
+          with mcpp's behavior of generating full pathnames.
+
+Fri Oct 16 05:29:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+
+          . Updated documentation.
+
+Thu Oct 15 22:02:37 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Change the implementation artifact's suffix to _exec instead of
+          _impl for the time being.
+
+Thu Oct 15 21:19:04 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM_LEESA.sln:
+        * tests/SM_LEESA/SM_LEESA.vcproj:
+
+          . Added missing files.
+
+Thu Oct 15 21:08:07 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+
+          . Fixed Utils::getPath redefinition error.
+
+Thu Oct 15 21:02:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/SP.cpp:
+
+          . Collision of TRY macro with TRY typedef fixed.
+
+        * tests/SM_LEESA:
+
+        * tests/SM_LEESA/CompIcon.ico:
+        * tests/SM_LEESA/Component.def:
+        * tests/SM_LEESA/Component.rc:
+        * tests/SM_LEESA/ComponentConfig.h:
+        * tests/SM_LEESA/ComponentObj.h:
+        * tests/SM_LEESA/ComponentObj.cpp:
+        * tests/SM_LEESA/RawComponent.h:
+        * tests/SM_LEESA/RawComponent.cpp:
+        * tests/SM_LEESA/Resource.h:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.xme:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xml:
+        * tests/SM_LEESA/SM.xmp:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM_export.h:
+        * tests/SM_LEESA/SM_uml.xme:
+        * tests/SM_LEESA/StdAfx.h:
+        * tests/SM_LEESA/StdAfx.cpp:
+        * tests/SM_LEESA/TestSM.xme:
+        * tests/SM_LEESA/UdmApp.h:
+        * tests/SM_LEESA/UdmApp.cpp:
+        * tests/SM_LEESA/UdmConfig.h:
+        * tests/SM_LEESA/UdmConsole.h:
+        * tests/SM_LEESA/UdmConsole.cpp:
+        * tests/SM_LEESA/UdmFormatter.h:
+        * tests/SM_LEESA/UdmFormatter.cpp:
+        * tests/SM_LEESA/string_utils.h:
+
+          . Added a new independent example showing how to use LEESA.
+
+        * tests/UDM_DSL/UDM_DSL.mpc:
+        * tests/UDM_DSL/UDM_DSL.mwc:
+
+          . UDM_DSL.mwc moved to tests/UDM_DSL
+
+        * UDM_DSL.mwc:
+        * Utils/LEESA/LEESA.doc:
+
+          Removed these files.
+
+Thu Oct 15 20:02:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/NetQoSComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTConfigurationComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/SecurityQoSComponent/UdmApp.cpp:
+
+          . Fixed Utils::getPath redefinition error.
+
+Thu Oct 15 15:06:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * MPC/config/cosmic_utils.mpb:
+          Macros should be set here
+
+Thu Oct 15 12:42:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+          Fixed issue caused by the cleanup of this morning
+
+Thu Oct 15 07:26:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+          Use minizip
+
+        * Release_idl_to_picml.mwc:
+          Refer to the new tao_idl_fe.mpc
+
+Thu Oct 15 07:08:05 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
+          Simplified these mpc files
+
+Sat Oct 10 04:51:05 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_decorator.mpb:
+
+          . Added $COSMIC_ROOT/bin as the dllout and libout paths.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+
+          . Resource_Files should be empty. Otherwise *.rc files in the current directory
+            will be picked up automatically.
+
+Fri Oct  9 05:14:54 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_udm_component.mpb:
+
+          . Added _USRDLL macro.
+
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+
+          . Removed _USRDLL macro.
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
+
+          . Fixed the order of #include files so that stdafx.h is at the top because
+            it is a precompiled header.
+
+        * default.features:
+
+          . Added mcpp.
+
+Fri Oct  9 03:42:59 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PathComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/TargetComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentConfig.h:
+
+          . Fixed warning related to redefinition of RAWCOMPONENT macro.
+
+        * cosmic.mwc:
+
+          . Temporarily commented out WSML interpreters because mcpp changes are still pending.
+
+Thu Oct  8 20:43:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * contrib/mcpp:
+
+        * contrib/mcpp/mcpp-2.6.4:
+
+        * contrib/mcpp/mcpp-2.6.4/config:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test:
+
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-l:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-t:
+
+        * contrib/mcpp/mcpp-2.6.4/doc:
+        * contrib/mcpp/mcpp-2.6.4/doc-jp:
+        * contrib/mcpp/mcpp-2.6.4/noconfig:
+        * contrib/mcpp/mcpp-2.6.4/src:
+        * contrib/mcpp/mcpp-2.6.4/test-c:
+        * contrib/mcpp/mcpp-2.6.4/test-l:
+        * contrib/mcpp/mcpp-2.6.4/test-t:
+        * contrib/mcpp/mcpp-2.6.4/tests:
+        * contrib/mcpp/mcpp-2.6.4/tool:
+
+          . Recursive svn:externals was undone. Only $COSMIC/contrib directory
+            should have svn:externals for CCF and utility.
+
+Thu Oct  8 17:03:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/PAMComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+
+          . Fixed some macro related warnings.
+
+Thu Oct  8 15:18:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * contrib/mcpp:
+        * contrib/mcpp/mcpp-2.6.4:
+        * contrib/mcpp/mcpp-2.6.4/config:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-l:
+        * contrib/mcpp/mcpp-2.6.4/cpp-test/test-t:
+        * contrib/mcpp/mcpp-2.6.4/doc:
+        * contrib/mcpp/mcpp-2.6.4/doc-jp:
+        * contrib/mcpp/mcpp-2.6.4/noconfig:
+        * contrib/mcpp/mcpp-2.6.4/src:
+        * contrib/mcpp/mcpp-2.6.4/test-c:
+        * contrib/mcpp/mcpp-2.6.4/test-l:
+        * contrib/mcpp/mcpp-2.6.4/test-t:
+        * contrib/mcpp/mcpp-2.6.4/tests:
+        * contrib/mcpp/mcpp-2.6.4/tool:
+
+          . Changed svn:externals from https:// to svn://
+
+Thu Oct  8 15:17:53 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          The location of the QED intepreters was incorrect.
+
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/MPCComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RawComponent.cpp:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/ComponentConfig.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+
+          Fixed build errors on vc8 related to the project specifications. This
+          was fixed by using the refactored base projects to simplify the project
+          specifications for all the interpreters.
+
+        * Release.mwc:
+
+          Added CodeGenerationKit project to the workspace.
+
+        * Release_idl_to_picml.mwc:
+
+          Removed IDL_to_WSDL from the workspace.
+
+Thu Oct  8 15:10:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * contrib:
+
+          . Changed svn:externals from https:// to svn://
+
+Thu Oct  8 05:10:32 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * includes/GME/DecoratorApp.def:
+
+          . Missing file.
+
+Thu Oct  8 04:50:40 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_component.mpb:
+
+          . Added Files specific to GME9/VC9.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentLib_h.h:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
+
+          . Added these files back into the repo for successful compilation on GME9/VC9.
+
+        * PIM/PICML/interpreters/PackageComponent/ComponentConfig.h:
+
+          . Fixed RAWCOMPONENT preprocessor macro.
+
+Wed Oct  7 14:51:33 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Fixed bug in scope visitation for components. Thanks to
+          James Hill <hillj@dre.vanderbilt.edu> for reporting the
+          problem.
+
+Mon Oct  5 11:54:07 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          . Used flat_name () to get the scope of the component instead
+            of using full_name () and changing the scopes to underscores.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Re-arranged the projects.
+
+Mon Oct  5 05:30:59 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlan_Export.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Moved the DeploymentPlan project into the DeploymentPlanComponent
+            directory as a means to consolidate the workspace and project
+            layout.
+
+        * PIM/PICML/interpreters/DeploymentPlan:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan_Export.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.cpp:
+
+          Removed these files.
+
+Mon Oct  5 05:20:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/QED:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment.mpc:
+
+          . Changed the location of the QED interpreters.
+
+        * PIM/PICML/interpreters/arch:
+        * PIM/PICML/interpreters/arch/QED:
+        * PIM/PICML/interpreters/arch/QED/deployment:
+        * PIM/PICML/interpreters/arch/QED/deployment/Component.def:
+        * PIM/PICML/interpreters/arch/QED/deployment/Component.rc:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentLib_h.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmConfig.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/compicon.ico:
+        * PIM/PICML/interpreters/arch/QED/deployment/resource.h:
+
+          Removed these files.
+
+Mon Oct  5 05:10:08 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Package_Export.h:
+        * PIM/PICML/interpreters/PackageComponent/PackagerVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackagerVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/Packager_Export.h:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/PackageComponent/ZIP_create.h:
+        * PIM/PICML/interpreters/PackageComponent/ZIP_create.cpp:
+        * picml.mwc:
+
+          . Moved the Package project into the PackageComponent directory
+            as a means to consolidate the workspace and project layout.
+
+        * PIM/PICML/interpreters/Package:
+        * PIM/PICML/interpreters/Package/Package.mpc:
+        * PIM/PICML/interpreters/Package/Package.mwc:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Package_Export.h:
+        * PIM/PICML/interpreters/Package/PackagerVisitor.h:
+        * PIM/PICML/interpreters/Package/PackagerVisitor.cpp:
+        * PIM/PICML/interpreters/Package/Packager_Export.h:
+        * PIM/PICML/interpreters/Package/ZIP_create.h:
+        * PIM/PICML/interpreters/Package/ZIP_create.cpp:
+
+          Removed these files.
+
+Mon Oct  5 04:17:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+
+          . Simplified the project specification.
+
+        * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
+
+          Removed this file.
+
+Mon Oct  5 04:00:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/cosmic_common.mpb:
+
+          . Disabled more warnings in the base project.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          . Bug fix where the generated PICML models did not support
+            implementations of the same component that appeared in
+            different modules (or namespaces).
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Reverted to using #define instead of get_GME_version () to
+            get GME's version information.
+
+Fri Oct  2 19:06:46 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_decorator.mpb:
+
+          . Base class for GME decorators.
+
+        * PIM/PICML/decorators/DecoratorConfig.h:
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          . Fixed compilation errors related to refactoring the
+            MPC specification(s).
+
+        * MPC/config/bon.mpb:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+
+          Removed these files.
+
+Fri Oct  2 14:12:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/bon.mpb:
+        * MPC/config/codegenerationkit.mpb:
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+
+          . Based projects for building GME components.
+
+        * PIM/SIML/interpreters/GatewayGenerator/ComponentConfig.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGeneratorUtils.cpp:
+
+          . Fixed compilation errors.
+
+        * contrib:
+
+           . The CCF framework and Utility are now pulled in as
+             external projects.
+
+        * cosmic.mwc:
+
+          . Update the workspace to include the CCF framework.
+
+Fri Oct  2 11:35:44 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * tests:
+        * tests/UDM_DSL:
+
+          . Moved this project to the /tests directory since it's really a
+            test and not a utility!!
+
+        * Utils/UDM_DSL:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xme:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+          Removed these files.
+
+Thu Oct  1 05:05:50 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+
+          . Fixed layout of auto-generated monolithic implementations.
+
+          . Auto-generated entrypoint for implementation and servant.
+
+Thu Oct  1 04:26:56 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_component.mpb:
+        * MPC/config/gme_raw_component.mpb:
+        * MPC/config/gme_udm_component.mpb:
+
+          . Base projects that capture the standard settings for
+            a GME/UDM component.
+
+        * includes:
+        * includes/GME:
+        * includes/GME/Component.def:
+
+          . Location that stores reusable GME files that are not
+            part of the standard GME install.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator_export.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.inl:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentConfig.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.mpc:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGenerator.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/ComponentImplementationGeneratord.reg:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/RawComponent.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/RawComponent.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/StdAfx.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmApp.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmApp.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/UdmConfig.h:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/resource.h:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . First implementation of the interpreter that auto-generates
+            default implementation elements for selected components.
+
+        * Utils/UDM:
+        * Utils/UDM/modelgen.h:
+        * Utils/UDM/modelgen.inl:
+        * Utils/UDM/modelgen.cpp:
+
+          . Helper classes from CUTS for generating models.
+
+Tue Sep 29 18:11:41 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+
+          Updated backend to synch with IDL compiler frontend changes.
+
+Mon Sep 28 12:35:34 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc
+
+           fixed mcpp problem.
+
+Fri Sep 25 21:02:14 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * Release_idl_to_picml.mwc
+
+          added mcpp.
+
+Wed Sep 23 16:53:29 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Fixed an uncaught exception problem in xerces-init function. The uncaught
+            exception was SAXParseException. Fixed the path issue of mga.dtd. In
+            GME 7.6.29 installation it is under $GME_ROOT whereas in GME 9.8.28
+            it is under $GME_ROOT/bin.
+
+Mon Sep 21 17:33:29 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          More changes related to the change in XMLString::transcode()
+          behavior.
+
+Fri Sep 18 18:32:49 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * Utils/EntityResolver.cpp(resolveEntity):
+
+          Changed the body to avoid using XStr::append(), which
+          seems to leave us with an XStr that crashes on destruction.
+          Also changes related to the apparent change in the behavior
+          of XMLString::transcode(), which no longer seems to allocate
+          memory for the char* return value.
+
+Thu Sep 17 15:05:25 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          . IDL_TO_PICML now uses mcpp. This fixes the 128 file problem.
+
+Sat Sep 12 20:43:16 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Bug fix where doing a Copy | Paste of any element with a
+            UUID failed to generate a new UUID for the pasted element.
+
+Fri Sep 11 15:49:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+
+          . Removed console.cpp from GME 7 build files.
+
+Fri Sep 11 03:09:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Reverted back an erronious checkin.
+
+Fri Sep 11 03:03:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+
+          . Fixed a library dependency typo.
+
+Fri Sep 11 02:25:14 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          . Fixed xerces-c version number.
+
+Thu Sep 10 20:01:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.sln:
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.vcproj:
+
+          . Reverted to VC8 solution files.
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+
+          . Added ComponentLib_h.h file.
+
+Thu Sep 10 19:42:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:
+        * PIM/PICML/decorators/StdAfx.h:
+        * PIM/PICML/interpreters/BGMLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/EQAL/StdAfx.h:
+        * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/MPCComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PathComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h:
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.h:
+        * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.h:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.h:
+        * PSM/CCM/CADML/Component/StdAfx.h:
+        * PSM/CCM/COMPASS/interpreters/StdAfx.h:
+        * PSM/CCM/EQAL/interpreters/StdAfx.h:
+        * PSM/CCM/FESML/interpreters/StdAfx.h:
+        * PSM/CCM/MIDCESS/interpreters/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/DQML/interpreters/DBE/StdAfx.h:
+        * PSM/DQML/interpreters/XML/StdAfx.h:
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+
+          . Added support for GME7 and VC8.
+
+Thu Sep 10 04:22:13 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Removed unnecessary debugging code.
+
+Thu Sep 10 03:54:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          . Updated the idl_to_picml to support the latest version of PICML.
+
+Thu Sep 10 01:17:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+
+          . Added VC9.
+
+        * PIM/PICML/examples/Hello.xme:
+
+          . Updated the example with GME 9.8.28.
+
+Wed Sep  9 03:23:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.sln:
+        * PIM/SIML/examples/Hello/HelloService.NET/HelloService.vcproj:
+
+        * PIM/SIML/interpreters/GatewayGenerator/ComponentLib_h.h:
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+
+        * PIM/SIML/interpreters/Interpreters.mwc:
+
+          . Updated these projects to use GME 9.8.28 and VC9.
+
+Tue Sep  8 20:02:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * cosmic.mwc:
+        * Release.mwc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mwc:
+
+          . Supports GME 9.8.28 and UDM 3.2.1 on VC9.
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+          . Added VC9 merge modules.
+
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+
+          . RegisterParadigm checks existence of GME 9.8.28.
+
+        * PIM/PICML/examples/PICMLExamples.wxs:
+
+          . Added Hello.xme example.
+
+        * PSM/CQML/interpreters/PAM/PAMVisitor.h:
+
+          . Fixed a casting related compilation error.
+
+        * License.rtf:
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          . Update CoSMIC release version to 0.7.3 and updated the minimum requirements.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Fixed a minor constraint violation. ComponentServantArtifact and ComponentImplementationArtifact
+            were references pointing to nothing. Appearantly, references do not inherit the pointees of their
+            base reference.
+
+        * PSM/CQML/paradigms/CQML.xme:
+        * PSM/CQML/paradigms/CQML.xml:
+        * PSM/CQML/paradigms/CQML.xmp:
+
+          . Refreshed CQML with updated PICML.
+
+        * PIM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PIM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PIM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PIM/PICML/addons/CBMLManager/StdAfx.h:
+        * PIM/PICML/addons/PICMLManager/StdAfx.h:
+        * PIM/PICML/decorators/StdAfx.h:
+        * PIM/PICML/interpreters/BGMLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/ConfigExport/StdAfx.h:
+        * PIM/PICML/interpreters/Configurator/StdAfx.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/StdAfx.h:
+        * PIM/PICML/interpreters/EQAL/StdAfx.h:
+        * PIM/PICML/interpreters/IDLGenerator/StdAfx.h:
+        * PIM/PICML/interpreters/MPCComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PAMComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PackageComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PathComponent/StdAfx.h:
+        * PIM/PICML/interpreters/PropertyManager/StdAfx.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/StdAfx.h:
+        * PIM/PICML/interpreters/RTConfigComponent/StdAfx.h:
+        * PIM/PICML/interpreters/TargetComponent/StdAfx.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/StdAfx.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/StdAfx.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/StdAfx.h:
+        * PIM/SIML/interpreters/GatewayGenerator/StdAfx.h:
+        * PSM/CCM/CADML/Component/StdAfx.h:
+        * PSM/CCM/COMPASS/interpreters/StdAfx.h:
+        * PSM/CCM/EQAL/interpreters/StdAfx.h:
+        * PSM/CCM/FESML/interpreters/StdAfx.h:
+        * PSM/CCM/MIDCESS/interpreters/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCMLConfiguratorInterpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/OCML_Interpreter/StdAfx.h:
+        * PSM/CCM/OCML/interpreters/TAOServiceConfExportInterpreter/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Publisher/StdAfx.h:
+        * PSM/CCM/PICML2Cadena/OTIF_related/GME_ToolAdaptors/OTIF_Receiver/StdAfx.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/StdAfx.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/StdAfx.h:
+        * PSM/CQML/interpreters/EventBusComponent/StdAfx.h:
+        * PSM/CQML/interpreters/NetQoSComponent/StdAfx.h:
+        * PSM/CQML/interpreters/PAMComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfig/StdAfx.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/StdAfx.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/StdAfx.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/StdAfx.h:
+        * PSM/DQML/interpreters/DBE/StdAfx.h:
+        * PSM/DQML/interpreters/XML/StdAfx.h:
+
+          . _WIN32_WINNT macros in all StdAfx.h were modified from 0x0400 to 0x0500.
+            This is required for new VC9 build.
+
+        * PSM/CCM/CADML/Component/ComponentLib_h.h:
+        * PIM/PICML/addons/CBMLManager/ComponentLib_h.h:
+        * PIM/PICML/addons/PICMLManager/ComponentLib_h.h:
+        * PIM/PICML/interpreters/BGMLComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/IDLGenerator/ComponentLib_h.h:
+        * PIM/PICML/interpreters/MPCComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PAMComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PackageComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PathComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/PropertyManager/ComponentLib_h.h:
+        * PIM/PICML/interpreters/RTConfigComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/QoSMappingComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/TargetComponent/ComponentLib_h.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/ComponentLib_h.h:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/EventBusComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/FaultToleranceComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/NetQoSComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/PAMComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/RTConfigurationComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/ComponentLib_h.h:
+        * PSM/CQML/interpreters/SecurityQoSComponent/ComponentLib_h.h:
+        * PSM/DQML/interpreters/DBE/ComponentLib_h.h:
+        * PSM/DQML/interpreters/XML/ComponentLib_h.h:
+
+          . GME 9.8.28 requires ComponentLib_h.h instead of ComponentLib.h.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/QoSMappingComponent/QoSMappingComponent.mpc:
+        * PIM/PICML/interpreters/RTConfigComponent/RTConfigComponent.mpc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PSM/CQML/interpreters/BIRSpecificationComponent/BIRSpecificationComponent.mpc:
+        * PSM/CQML/interpreters/CIAOEventsComponent/CIAOEventsComponent.mpc:
+        * PSM/CQML/interpreters/EventBusComponent/EventBusComponent.mpc:
+        * PSM/CQML/interpreters/FaultToleranceComponent/FaultToleranceComponent.mpc:
+        * PSM/CQML/interpreters/NetQoSComponent/NetQoSComponent.mpc:
+        * PSM/CQML/interpreters/PAMComponent/PAMComponent.mpc:
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc:
+        * PSM/CQML/interpreters/RTSchedulabilityComponent/RTSchedulabilityComponent.mpc:
+        * PSM/CQML/interpreters/SecurityQoSComponent/SecurityQoSComponent.mpc:
+        * PSM/DQML/interpreters/DBE/DQML.mpc:
+        * PSM/DQML/interpreters/XML/DQML.mpc:
+
+          . Added vc9 and GME 9.8.28 support.
+
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+
+                  . Fixed compilation errors on VC9.
+
+        * PIM/CQML/paradigms/CQML.xme:
+        * PIM/CQML/paradigms/CQML.xml:
+        * PIM/CQML/paradigms/CQML.xmp:
+        * PIM/CQML/paradigms/CQML_uml.xme:
+
+          Removed this old unused paradigm.
+
+Thu Sep  3 15:10:45 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * MPC/config/cosmic_lib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/PICML/interpreters/BGMLComponent/BGMLComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/MPCComponent/MPCComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PathComponent/PathComponent.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/TargetComponent/DomainComponent.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+
+          . Incremental update for supporting auto-generation of Wix
+            project files that support GME components from MPC using the
+            'wix' project type.
+
+Thu Sep  3 11:33:10 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/PlanLocalityVisitor.cpp:
+
+          . Added support for generating locality constraints in the deployment
+            plan. Right now, we map each collocation group to its own locality
+            constraint of type SameProcess.
+
+Tue Sep  1 17:34:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Update the CoSMIC installer because CIDLComponent was removed.
+
+Tue Sep  1 01:35:31 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+          . Updated the Release build because CIDLComponent was removed.
+
+Mon Aug 31 16:28:21 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          . Updated the CoSMIC Release build because CIDLComponent was removed.
+
+Mon Aug 24 12:39:49 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.wxs:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/Component.def:
+        * PIM/PICML/interpreters/CIDLComponent/Component.rc:
+        * PIM/PICML/interpreters/CIDLComponent/ComponentConfig.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/compicon.ico:
+        * PIM/PICML/interpreters/CIDLComponent/resource.h:
+
+          Removed these files.
+
+Mon Aug 24 12:27:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . Removed the CIDL component from the build since it is
+            no longer part of CIAO.
+
+        * PIM/PICML/interpreters/CIDL:
+        * PIM/PICML/interpreters/CIDL/CIDL_Export.h:
+        * PIM/PICML/interpreters/CIDL/CIDL_Interpreter.mpc:
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.h:
+        * PIM/PICML/interpreters/CIDL/Cidlc_Visitor.cpp:
+
+          Removed these files.
+
+Mon Aug 17 06:01:55 UTC 2009  Johnny Willemsen  <jwillemsen@remedy.nl>
+
+        * MPC/config/bon.mpb
+        * MPC/config/cosmic_bin.mpb
+        * MPC/config/cosmic_common.mpb
+        * MPC/config/game_component.mpb
+        * MPC/config/register.mpb
+        * MPC/config/vc8warnings.mpb
+        * PIM/CQML/interpreters/ECLGenerator/ECLGenerator.mpc
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc
+        * PSM/CQML/interpreters/RTConfig/RTConfig.mpc
+        * PSM/CQML/interpreters/RTConfigurationComponent/RTConfigurationComponent.mpc
+          Use prop:microsoft
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+          Unicode fix
+
+Sun Jul 26 20:58:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/SIML/interpreters/GatewayGenerator/GatewayGenerator.mpc:
+          Fixed the #include error because CCF was moved to old-contrib
+          repository. New Environmental variable OLD_CONTRIB_ROOT is
+          needed to compile CoSMIC.
+
+Thu Jul 23 23:48:24 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Changed the .reg files to match the updated GUID.
+            Changed the ComponentConfig.h files to match the updated GUID.
+
+Thu Jul 23 13:48:03 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Changed the .reg files to match the updated interpreter
+            names (e.g., changed DQML_Model_Interpreter.reg to
+            DQML_XML_Interpreter.reg).
+
+Wed Jul 22 23:46:20 UTC 2009  Joe Hoffert  <jhoffert@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/*
+
+          . Added SML interpreter for DQML.
+
+Mon Jul  6 20:39:02 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/UdmApp.cpp:
+
+          . Added template parameters to support automation via CUTS
+            Template Engine (CUTE).
+
+Thu Jul  2 05:06:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/RegisterParadigm/CoSMIC_Msi_export.h:
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/StdAfx.h:
+        * Installer/RegisterParadigm/StdAfx.cpp:
+
+          . First pass at improving the implementation of the custom
+            actions in CoSMIC.
+
+Sun Jun 28 00:55:55 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/DQML_Model_Interpreter.reg:
+        * PSM/DQML/interpreters/DQML_Model_Interpreterd.reg:
+
+          . Missing files for registering DQML interpreter.
+
+Sun Jun 28 00:54:43 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/ComponentConfig.h:
+
+          . Fixed a bug in the configuration file.
+
+        * PSM/DQML/interpreters/DQML.mpc:
+        * PSM/DQML/paradigms/DQML.xmp:
+
+          . Updated the name of DQML's paradigm.
+
+        * PSM/DQML/paradigms/DDSQoS.xme:
+        * PSM/DQML/paradigms/DDSQoS.xmp:
+
+          Removed these files.
+
+Sat Jun 27 22:42:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML/interpreters/Component.def:
+        * PSM/DQML/interpreters/DQML.mpc:
+        * PSM/DQML/interpreters/StdAfx.h:
+        * PSM/DQML/interpreters/StdAfx.cpp:
+        * cosmic.mwc:
+
+           . Added DQML to the default CoSMIC build.
+
+        * PSM/DQML/interpreters/BON.h:
+        * PSM/DQML/interpreters/BON.cpp:
+        * PSM/DQML/interpreters/BON2Component.vcproj.old:
+        * PSM/DQML/interpreters/BONImpl.h:
+        * PSM/DQML/interpreters/BONImpl.cpp:
+        * PSM/DQML/interpreters/Builder.h:
+        * PSM/DQML/interpreters/Builder.cpp:
+        * PSM/DQML/interpreters/ComHelp.h:
+        * PSM/DQML/interpreters/ComHelp.cpp:
+        * PSM/DQML/interpreters/Common.h:
+        * PSM/DQML/interpreters/Common.cpp:
+        * PSM/DQML/interpreters/ComponentConfig.old:
+        * PSM/DQML/interpreters/ComponentDll.h:
+        * PSM/DQML/interpreters/ComponentDll.cpp:
+        * PSM/DQML/interpreters/ComponentObj.h:
+        * PSM/DQML/interpreters/ComponentObj.cpp:
+        * PSM/DQML/interpreters/Events.h:
+        * PSM/DQML/interpreters/Events.cpp:
+        * PSM/DQML/interpreters/Exceptions.h:
+        * PSM/DQML/interpreters/Exceptions.cpp:
+        * PSM/DQML/interpreters/Extensions.h:
+        * PSM/DQML/interpreters/Extensions.cpp:
+        * PSM/DQML/interpreters/GMECOM.H:
+        * PSM/DQML/interpreters/GMESources.txt:
+        * PSM/DQML/interpreters/MON.h:
+        * PSM/DQML/interpreters/MON.cpp:
+        * PSM/DQML/interpreters/MONImpl.h:
+        * PSM/DQML/interpreters/MONImpl.cpp:
+        * PSM/DQML/interpreters/UpgradeLog.XML:
+        * PSM/DQML/interpreters/Utils.h:
+        * PSM/DQML/interpreters/Utils.cpp:
+
+          Removed these files.
+
+Wed Jun 24 21:21:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/wix.mpb:
+        * MPC/config/wix_ui.mpb:
+        * MPC/config/wix_xml.mpb:
+
+          Moved these files to MPC.
+
+Thu Jun 18 05:43:42 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/CIDLComponent/Component.rc:
+
+          . Fixed compiler errors on vc8.
+
+Thu Jun 18 05:06:46 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML:
+        * PSM/DQML/docs:
+        * PSM/DQML/docs/DDS_brief.ppt:
+        * PSM/DQML/docs/DQML-writeup.doc:
+        * PSM/DQML/examples:
+        * PSM/DQML/examples/DDSQoS-dur-good.xme:
+        * PSM/DQML/examples/DDSQoS-dur-good.xmp:
+        * PSM/DQML/examples/DDSQoS-dur-pres.xme:
+        * PSM/DQML/examples/DDSQoS-dur-pres.xmp:
+        * PSM/DQML/examples/DDSQoS-good.xme:
+        * PSM/DQML/examples/DDSQoS-good.xmp:
+        * PSM/DQML/examples/DDSQoSTestCases.xls:
+        * PSM/DQML/examples/cs388demo.xme:
+        * PSM/DQML/examples/latency.png:
+        * PSM/DQML/examples/my-DDSWoS.xme:
+        * PSM/DQML/interpreters:
+        * PSM/DQML/interpreters/BON.h:
+        * PSM/DQML/interpreters/BON.cpp:
+        * PSM/DQML/interpreters/BON2Component.h:
+        * PSM/DQML/interpreters/BON2Component.vcproj.old:
+        * PSM/DQML/interpreters/BON2Component.cpp:
+        * PSM/DQML/interpreters/BONImpl.h:
+        * PSM/DQML/interpreters/BONImpl.cpp:
+        * PSM/DQML/interpreters/Builder.h:
+        * PSM/DQML/interpreters/Builder.cpp:
+        * PSM/DQML/interpreters/ComHelp.h:
+        * PSM/DQML/interpreters/ComHelp.cpp:
+        * PSM/DQML/interpreters/Common.h:
+        * PSM/DQML/interpreters/Common.cpp:
+        * PSM/DQML/interpreters/CompIcon-DBE.ico:
+        * PSM/DQML/interpreters/CompIcon-def.ico:
+        * PSM/DQML/interpreters/CompIcon.bmp:
+        * PSM/DQML/interpreters/CompIcon.ico:
+        * PSM/DQML/interpreters/Component.def:
+        * PSM/DQML/interpreters/Component.rc:
+        * PSM/DQML/interpreters/ComponentConfig.h:
+        * PSM/DQML/interpreters/ComponentConfig.old:
+        * PSM/DQML/interpreters/ComponentDll.h:
+        * PSM/DQML/interpreters/ComponentDll.cpp:
+        * PSM/DQML/interpreters/ComponentLib.idl:
+        * PSM/DQML/interpreters/ComponentObj.h:
+        * PSM/DQML/interpreters/ComponentObj.cpp:
+        * PSM/DQML/interpreters/DBE-icon.bmp:
+        * PSM/DQML/interpreters/DBE-icon.doc:
+        * PSM/DQML/interpreters/DBE-icon.ico:
+        * PSM/DQML/interpreters/DBE-icon.vsd:
+        * PSM/DQML/interpreters/Events.h:
+        * PSM/DQML/interpreters/Events.cpp:
+        * PSM/DQML/interpreters/Exceptions.h:
+        * PSM/DQML/interpreters/Exceptions.cpp:
+        * PSM/DQML/interpreters/Extensions.h:
+        * PSM/DQML/interpreters/Extensions.cpp:
+        * PSM/DQML/interpreters/GMECOM.H:
+        * PSM/DQML/interpreters/GMESources.txt:
+        * PSM/DQML/interpreters/MON.h:
+        * PSM/DQML/interpreters/MON.cpp:
+        * PSM/DQML/interpreters/MONImpl.h:
+        * PSM/DQML/interpreters/MONImpl.cpp:
+        * PSM/DQML/interpreters/Resource.h:
+        * PSM/DQML/interpreters/StdAfx.h:
+        * PSM/DQML/interpreters/StdAfx.cpp:
+        * PSM/DQML/interpreters/UpgradeLog.XML:
+        * PSM/DQML/interpreters/Utils.h:
+        * PSM/DQML/interpreters/Utils.cpp:
+        * PSM/DQML/paradigms:
+        * PSM/DQML/paradigms/DDSQoS.ppt:
+        * PSM/DQML/paradigms/DDSQoS.xme:
+        * PSM/DQML/paradigms/DDSQoS.xmp:
+        * PSM/DQML/paradigms/DQML.xme:
+        * PSM/DQML/paradigms/icons:
+        * PSM/DQML/paradigms/icons/Factory-icon.gif:
+        * PSM/DQML/paradigms/icons/Faucet.jpg:
+        * PSM/DQML/paradigms/icons/LifeSpan.jpg:
+        * PSM/DQML/paradigms/icons/NewsStand.gif:
+        * PSM/DQML/paradigms/icons/Printing-press.jpg:
+        * PSM/DQML/paradigms/icons/Pyramids.bmp:
+        * PSM/DQML/paradigms/icons/Sink_Drain-110x70.jpg:
+        * PSM/DQML/paradigms/icons/Sink_Drain.jpg:
+        * PSM/DQML/paradigms/icons/Stop-Watch.bmp:
+        * PSM/DQML/paradigms/icons/Tutanchamun_Maske.jpg:
+        * PSM/DQML/paradigms/icons/anvil-70x70.bmp:
+        * PSM/DQML/paradigms/icons/anvil.bmp:
+        * PSM/DQML/paradigms/icons/anvil.vsd:
+        * PSM/DQML/paradigms/icons/bookshelves-70x70.bmp:
+        * PSM/DQML/paradigms/icons/bookshelves.jpg:
+        * PSM/DQML/paradigms/icons/bookshelves.vsd:
+        * PSM/DQML/paradigms/icons/chrome-faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/chrome-faucet.bmp:
+        * PSM/DQML/paradigms/icons/chrome-faucet.jpg:
+        * PSM/DQML/paradigms/icons/copper-faucet.bmp:
+        * PSM/DQML/paradigms/icons/deadline-50x50.bmp:
+        * PSM/DQML/paradigms/icons/deadline-70x70.bmp:
+        * PSM/DQML/paradigms/icons/dest-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/dest_order.bmp:
+        * PSM/DQML/paradigms/icons/destination-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/destination.bmp:
+        * PSM/DQML/paradigms/icons/drain-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/durability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-svc-50x50.bmp:
+        * PSM/DQML/paradigms/icons/durability.bmp:
+        * PSM/DQML/paradigms/icons/durability.vsd:
+        * PSM/DQML/paradigms/icons/entity-factory-50x50.bmp:
+        * PSM/DQML/paradigms/icons/faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/faucet.vsd:
+        * PSM/DQML/paradigms/icons/group-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/history-50x50.bmp:
+        * PSM/DQML/paradigms/icons/hourglass-70x70.bmp:
+        * PSM/DQML/paradigms/icons/hourglass.gif:
+        * PSM/DQML/paradigms/icons/icons.bmp:
+        * PSM/DQML/paradigms/icons/latency-50x50.bmp:
+        * PSM/DQML/paradigms/icons/latency.bmp:
+        * PSM/DQML/paradigms/icons/lifespan-50x50.bmp:
+        * PSM/DQML/paradigms/icons/lifespan.bmp:
+        * PSM/DQML/paradigms/icons/liveliness-50x50.bmp:
+        * PSM/DQML/paradigms/icons/liveliness.gif:
+        * PSM/DQML/paradigms/icons/newspaper-stack.jpg:
+        * PSM/DQML/paradigms/icons/newspaper-stack2.jpg:
+        * PSM/DQML/paradigms/icons/newstand.jpg:
+        * PSM/DQML/paradigms/icons/newstand_image.jpg:
+        * PSM/DQML/paradigms/icons/old_faithful-70x70.bmp:
+        * PSM/DQML/paradigms/icons/old_faithful.bmp:
+        * PSM/DQML/paradigms/icons/owner-strength-50x50.bmp:
+        * PSM/DQML/paradigms/icons/ownership-50x50.bmp:
+        * PSM/DQML/paradigms/icons/paper-and-pen.gif:
+        * PSM/DQML/paradigms/icons/paper-stack-70x70.bmp:
+        * PSM/DQML/paradigms/icons/paper-stack.vsd:
+        * PSM/DQML/paradigms/icons/participant-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-factory-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-factory.vsd:
+        * PSM/DQML/paradigms/icons/partition-50x50.bmp:
+        * PSM/DQML/paradigms/icons/pen-and-paper.gif:
+        * PSM/DQML/paradigms/icons/pen-and-paper.pdf:
+        * PSM/DQML/paradigms/icons/people-70x70.bmp:
+        * PSM/DQML/paradigms/icons/people-factory-70x70.bmp:
+        * PSM/DQML/paradigms/icons/people-icon.bmp:
+        * PSM/DQML/paradigms/icons/presentation-50x50.bmp:
+        * PSM/DQML/paradigms/icons/printing-press-70x70.bmp:
+        * PSM/DQML/paradigms/icons/printing-press.bmp:
+        * PSM/DQML/paradigms/icons/printing-press.gif:
+        * PSM/DQML/paradigms/icons/printing-press.vsd:
+        * PSM/DQML/paradigms/icons/reader-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/reliability.bmp:
+        * PSM/DQML/paradigms/icons/resource-limits-50x50.bmp:
+        * PSM/DQML/paradigms/icons/sink-70x70.bmp:
+        * PSM/DQML/paradigms/icons/sink.vsd:
+        * PSM/DQML/paradigms/icons/sinus-heartbeat-70x70.bmp:
+        * PSM/DQML/paradigms/icons/sinus-heartbeat.bmp:
+        * PSM/DQML/paradigms/icons/source-eps.jpg:
+        * PSM/DQML/paradigms/icons/stopwatch-70x70.bmp:
+        * PSM/DQML/paradigms/icons/subscribe.jpg:
+        * PSM/DQML/paradigms/icons/textbox.vsd:
+        * PSM/DQML/paradigms/icons/timebased-50x50.bmp:
+        * PSM/DQML/paradigms/icons/timebased-70x70.bmp:
+        * PSM/DQML/paradigms/icons/topic-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/transport-pri-50x50.bmp:
+        * PSM/DQML/paradigms/icons/user-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/writer-data-50x50.bmp:
+        * PSM/DQML/tests:
+        * PSM/DQML/tests/TestDBEQoS.xme:
+        * PSM/DQML/tests/TestOtherQoS.xme:
+
+          . Latest version of DQML from committed courtesy of
+            Joe Hoffert.
+
+Thu Jun 18 05:01:31 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PSM/DQML:
+        * PSM/DQML/DDSQoS.ppt:
+        * PSM/DQML/DQML-writeup.doc:
+        * PSM/DQML/examples:
+        * PSM/DQML/examples/cs388demo.xme:
+        * PSM/DQML/interpreters:
+        * PSM/DQML/interpreters/BON2Component.h:
+        * PSM/DQML/interpreters/BON2Component.cpp:
+        * PSM/DQML/interpreters/CompIcon.ico:
+        * PSM/DQML/paradigms:
+        * PSM/DQML/paradigms/DDSQoS.xme:
+        * PSM/DQML/paradigms/icons:
+        * PSM/DQML/paradigms/icons/bookshelves-70x70.bmp:
+        * PSM/DQML/paradigms/icons/chrome-faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/deadline-50x50.bmp:
+        * PSM/DQML/paradigms/icons/deadline-70x70.bmp:
+        * PSM/DQML/paradigms/icons/dest-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/destination-order-50x50.bmp:
+        * PSM/DQML/paradigms/icons/drain-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/durability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/durability-svc-50x50.bmp:
+        * PSM/DQML/paradigms/icons/entity-factory-50x50.bmp:
+        * PSM/DQML/paradigms/icons/faucet-70x70.bmp:
+        * PSM/DQML/paradigms/icons/group-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/history-50x50.bmp:
+        * PSM/DQML/paradigms/icons/latency-50x50.bmp:
+        * PSM/DQML/paradigms/icons/lifespan-50x50.bmp:
+        * PSM/DQML/paradigms/icons/liveliness-50x50.bmp:
+        * PSM/DQML/paradigms/icons/owner-strength-50x50.bmp:
+        * PSM/DQML/paradigms/icons/ownership-50x50.bmp:
+        * PSM/DQML/paradigms/icons/paper-stack-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-70x70.bmp:
+        * PSM/DQML/paradigms/icons/participant-factory-70x70.bmp:
+        * PSM/DQML/paradigms/icons/partition-50x50.bmp:
+        * PSM/DQML/paradigms/icons/presentation-50x50.bmp:
+        * PSM/DQML/paradigms/icons/printing-press-70x70.bmp:
+        * PSM/DQML/paradigms/icons/reader-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-50x50.bmp:
+        * PSM/DQML/paradigms/icons/reliability-70x70.bmp:
+        * PSM/DQML/paradigms/icons/resource-limits-50x50.bmp:
+        * PSM/DQML/paradigms/icons/sink-70x70.bmp:
+        * PSM/DQML/paradigms/icons/sinus-heartbeat-70x70.bmp:
+        * PSM/DQML/paradigms/icons/timebased-50x50.bmp:
+        * PSM/DQML/paradigms/icons/timebased-70x70.bmp:
+        * PSM/DQML/paradigms/icons/topic-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/transport-pri-50x50.bmp:
+        * PSM/DQML/paradigms/icons/user-data-50x50.bmp:
+        * PSM/DQML/paradigms/icons/writer-data-50x50.bmp:
+
+          Removed these files.
+
+Mon Jun 15 01:03:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/CBMLManagerd.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.reg:
+        * PIM/PICML/addons/PICMLManager/PICMLManagerd.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.reg:
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponentd.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.reg:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          . Enabled support for the following components in CHAOS.
+
+Thu Jun 11 02:55:18 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+                  Updated the installer and release notes in the preparation of
+                  the upcoming CoSMIC release 0.6.9
+
+Tue May 19 03:59:47 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+          . Bug fix where the <value> of the execParameter elements for
+            the servant and executor artifacts was incorrect.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . ComponentImplementationArtifact and ComponentServantArtifact
+            have the same modeling semantics as MonolithicImplementationReference
+            elements.
+
+Mon May 18 04:38:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/ComponentImplementationArtifact.bmp:
+        * PIM/PICML/paradigms/icons/ComponentServantArtifact.bmp:
+
+          . Updated PICML so the executor/servant artifacts are primary
+            modeling elements for monolithic implementations.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+
+
+          . Updated the deployment plan generator per the chanages
+            above.
+
+Thu May 14 20:20:12 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          . Updated the deployment plan generator to the latest version
+            of CoSMIC. Right now, unhomed components are not supported
+            by PICML's deployment plan generator.
+
+Wed Apr 29 02:02:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Support for metaprogrammable SP and AP traversal primitives is complete.
+          Customizer should specialize ChildrenKinds, DescendantKinds, and
+          LEESA::AllChildrenKinds if needed.
+
+Wed Apr 29 01:24:29 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Component.h:
+        * Utils/GAME/game/ComponentEx.h:
+
+          . Fixed compilation errors.
+
+Sun Apr 26 01:05:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.xme:
+
+          Updated paradigm with references to States.
+
+Sun Apr 26 01:01:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          LEESA's SP support now handles generic graph traversals
+          without being trapped into infinite loop.
+
+Fri Apr 24 21:34:00 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/gme_upgrade.mpb:
+
+          . Added missing base project.
+
+Thu Apr 23 23:15:03 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
+
+          . Bug fix in the generated XML documents. The child elements were
+            generated with an empty namespace attribute. This was resolved
+            by using createElementNS ().
+
+Thu Apr 23 04:58:31 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/be/ComponentDLL.h:
+        * Utils/GAME/game/be/Interpreter_T.inl:
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Bug fix where the COM implemenation of the component failed
+            to manage its state so that resources could be loaded from
+            a DLL.
+
+Thu Apr 23 00:55:53 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/GAME.mwc:
+
+          . Workspace for building only GAME.
+
+Wed Apr 22 01:12:18 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Updated the source code to reflect changes in GAME's framework.
+
+        * Utils/GAME/game/Atom.h:
+        * Utils/GAME/game/Atom.inl:
+        * Utils/GAME/game/Atom.cpp:
+        * Utils/GAME/game/Attribute.h:
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.inl:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/MetaAttribute.h:
+        * Utils/GAME/game/MetaAttribute.cpp:
+        * Utils/GAME/game/MetaBase.h:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.inl:
+        * Utils/GAME/game/Object.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+        * Utils/GAME/game/Set.h:
+        * Utils/GAME/game/Set.cpp:
+        * Utils/GAME/game/Visitor.h:
+        * Utils/GAME/game/Visitor.inl:
+        * Utils/GAME/game/Visitor.cpp:
+
+          . Added support for a Visitor object.
+
+Tue Apr 21 13:58:28 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game_component.mpb:
+
+          . Added missing project settings to the base project.
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+        * Utils/GAME/etc:
+        * Utils/GAME/etc/Component.def:
+
+          . Common export definitions for GME components.
+
+        * Utils/GAME/game/be/ComponentDLL.h:
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_T.h:
+        * Utils/GAME/game/be/Plugin_Impl.h:
+        * Utils/GAME/game/be/Plugin_Impl.inl:
+        * Utils/GAME/game/be/Plugin_Impl.cpp:
+        * Utils/GAME/game/be/Plugin_T.h:
+        * Utils/GAME/game/be/Plugin_T.inl:
+        * Utils/GAME/game/be/Plugin_T.cpp:
+        * Utils/GAME/game/stlace.h:
+
+          . Added support for implementing GME plug-in components
+            with GAME
+
+          . Simplified the process for specifying a GME component using
+            GAME.
+
+Wed Apr 15 21:31:22 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.wxs:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+
+          . Change the install location from HKCU to HKLM.
+
+        * PIM/PICML/etc:
+        * PIM/PICML/etc/CleanupDevelopment.reg:
+
+          . Script that removes keys from the registry related to the
+            development version of CoSMIC.
+
+Wed Apr 15 05:54:20 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+
+          . The output of the application is the .xme file upgraded
+            to the lastest version, and a .mga file for the project.
+
+Wed Apr 15 05:26:35 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+
+          . Removed the -f option for specifying the input
+            XME file(s).
+
+Wed Apr 15 05:03:46 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/cosmic_bin.mpb:
+        * MPC/config/cosmic_lib.mpb:
+
+          . Base projects for libraries and binaries.
+
+        * MPC/config/cosmic_common.mpb:
+        * MPC/config/picmllib.mpb:
+        * MPC/config/vc8warnings.mpb:
+
+          . Added missing SVN tags.
+
+        * Utils/ModelUpgrade:
+        * Utils/ModelUpgrade/Model_Upgrade.h:
+        * Utils/ModelUpgrade/Model_Upgrade.cpp:
+        * Utils/ModelUpgrade/upgrade.cpp:
+        * Utils/ModelUpgrade/upgrader.mpc:
+        * picml.mwc:
+
+        * MPC/config/udm.mpb:
+
+          Removed this file since it has been added to MPC.
+
+Wed Apr 15 02:00:59 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Added constraints to make sure PeriodicEvent and
+            ApplicationTask have unique names.
+
+Fri Apr 10 16:47:52 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+           Added $(COSMIC_ROOT)/Utils path.
+
+Fri Apr 10 14:04:06 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.h:
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.cpp:
+
+          . Missing source files.
+
+Fri Apr 10 03:09:18 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+
+      Fixed some UDM linking errors.
+
+Fri Apr 10 01:25:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * Release_idl_to_picml.mwc:
+        * Utils/Utils.mpc:
+
+          Fixed some static linking errors.
+
+Thu Apr  9 19:10:32 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * MPC/config/udm.mpb:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/Utils.mpc:
+        * default.features:
+
+          Fixed the build files while moving from xerces2 to xerces3.
+
+Thu Apr  9 16:45:55 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+
+          . Simplified the project file.
+
+        * MPC/config/udm.mpb:
+
+          Removed this file.
+
+Wed Apr  8 16:07:26 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.cpp:
+
+          . Updated the selection dialog so that GME elements can
+            be associated with each item in the dialog.
+
+        * MPC/config/cosmic_utils.mpb:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment_Visitor.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/be_global.cpp:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.h:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.cpp:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+        * Utils/EntityResolver.h:
+        * Utils/EntityResolver.cpp:
+        * Utils/Utils.mpc:
+        * Utils/XML_Error_Handler.h:
+        * Utils/XML_Error_Handler.cpp:
+
+          . Upgraded CoSMIC to xerces3. Pre-built version of xerces3 are
+            available for download from the CoSMIC website.
+
+        * PIM/PICML/interpreters/IDLImporter/EntityResolver.h:
+        * PIM/PICML/interpreters/IDLImporter/EntityResolver.cpp:
+        * PIM/PICML/interpreters/IDLImporter/XML_Error_Handler.h:
+        * PIM/PICML/interpreters/IDLImporter/XML_Error_Handler.cpp:
+        * PIM/PICML/interpreters/IDLImporter/XercesString.h:
+        * PIM/PICML/interpreters/IDLImporter/XercesString.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/EntityResolver.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/EntityResolver.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XML_Error_Handler.cpp:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.h:
+        * PIM/WSML/interpreters/IDL_to_WSDL/XercesString.cpp:
+
+          Removed these files.
+
+Mon Apr  6 15:50:48 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/SP.cpp:
+
+          Adaptive Programming (AP) predicates (FROM, TO, THROUGH, BYPASS) are now supported
+          by LEESA for descendant axis traversal. DescendantKinds meta-information is necessary
+          for successful compilation of AP traversals. Impossible AP traversals are identified
+          at compile-time.
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          HFSM.h contains manually created DescendantKinds meta-information.
+          Also, RootFolder::ChildrenKinds does not contain RootFolder, which is
+          otherwise present by default.
+
+Wed Apr  1 04:23:03 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/GPS.xme:
+
+          Added a simple example model to show C-SAW transformations
+          based on FOU. Transformations in $(COSMIC_ROOT)/Transformations/FailOverUnit
+          should work on this model.
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/DSL09primitives.cpp:
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/UdmMPL.h:
+
+          Added a library of strategic traversal schemes. Refactored (using macros)
+          the code significantly to reduce repetitive stuff. Added some more metaprograms
+          in UdmMpl.h for concept checking of child axis.
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Regenerated the examples.
+
+Sun Mar 15 23:11:53 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Converted the Distribution attribute on a PeriodicEvent
+            to an emumeration.
+
+          . Disabled the 'name' for InputAction elements
+
+          . Enabled the 'name' of PeriodicEvent elements.
+
+          . It is now possible to view attributes in the Behavior aspect.
+
+Thu Mar 12 13:46:34 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Updated the add-on to auto-generate connections to an newly
+            inserted action for the following states kinds: BranchState,
+            ForState, DoWhileState, WhichState.
+
+ Thu Mar 12 05:23:41 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Bug fix where resolving the name of the output action failed
+            when switching between models. This was resolved by not caching
+            any information about the model, and parsing the model each
+            time to get the name(s) of the possible plausible output
+            actions.
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Bug fix where the constaint checker did ensure UUIDs were
+            globally unique for ImplementationArtificat elements.
+
+        * default.features:
+
+          . Disabled xerces3 feature by default since xerces2 is
+            enabled.
+
+Thu Mar 12 05:03:15 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PSM/CQML/examples/GPS.xme:
+        * Transformations/FailOverUnit/FOUAspect-CompCloning.txt:
+        * Transformations/FailOverUnit/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/FailOverUnit/FOUAspect-Everything.txt:
+        * Transformations/FailOverUnit/FOUAspect.txt:
+        * Transformations/FailOverUnit/FOUMonitors.txt:
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates:
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.h:
+        * Transformations/FailOverUnit/GME-BON-SDK-Updates/Builder.cpp:
+
+          Added updates to the C-SAW transformations with a GPS example test.
+
+        * UDM_DSL.mwc:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xme:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+        * Utils/UDM_DSL/CompIcon.ico:
+        * Utils/UDM_DSL/Component.def:
+        * Utils/UDM_DSL/Component.rc:
+        * Utils/UDM_DSL/ComponentConfig.h:
+        * Utils/UDM_DSL/HFSM_old.h:
+        * Utils/UDM_DSL/HFSM_old.cpp:
+        * Utils/UDM_DSL/RawComponent.h:
+        * Utils/UDM_DSL/RawComponent.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.wxs:
+        * Utils/UDM_DSL/UDM_DSL_parameter.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmApp.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmConfig.h:
+        * Utils/UDM_DSL/resource.h:
+
+          Removed these files. UDM_DSL builds as an executable rather
+          than a GME component.
+
+Wed Mar 11 23:31:30 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Icon for SharedComponentRef was not included in the installer.
+
+Wed Feb 18 23:10:30 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+
+          Removed an unnecessary dependency on picmllib.
+
+Wed Feb 18 15:50:08 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/text/ocml_console_application.mpc:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * Utils/Utils.mpc:
+        * default.features:
+
+          . Added xerces2 feature. requires += xerces2 from xerces.mpb.
+
+Tue Feb 17 22:23:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/OCML/common/ocml_common.mpc:
+        * PIM/OCML/engine/ocml_engine.mpc:
+        * PIM/OCML/test/ocml_test.mpc:
+        * PIM/OCML/text/ocml_console_application.mpc:
+        * PIM/OCML/ui/ocml_configurator_ui.mpc:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/WSML/interpreters/IDL_to_WSDL/IDL_to_WSDL.mpc:
+        * PSM/CQML/interpreters/CQML/CQML.mpc:
+        * Utils/Utils.mpc:
+
+          In all the above mpc files, xerces was changed to xerces2 to inherit
+          from xerces2.mpb.
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+          Updated implementation of LEESA.
+
+Tue Feb  3 15:18:28 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Exception.h:
+
+          . Bug fix where exception classes did not inherit from
+            GME::Exception. This prevented catching all exceptions
+            by handling the GME::Exception case.
+
+Tue Feb  3 01:00:41 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          . Modified the PeriodicEvent such that is specifies its rate
+            as Hertz.
+
+          . Removed the Probability attribute from the PeriodicEvent
+
+          . Added a Distribution attribute to the PeriodicEvent, which is
+            a string that determines the distribution of the interarrivals
+            for the events. Valid values for this event are determined by
+            the backend generator, which means you can have custom (or
+            domain-specific) distributions.
+
+Sat Jan 17 08:24:52 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/FCO.cpp:
+
+          . Bug fix where create_instance () and create_subtype () threw
+            an invalid role exception. This is because the role used to
+            generate the instance/subtype was not resolved using the
+            parent object.
+
+Fri Jan 16 20:23:51 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * Utils/GAME/game/GME.h:
+        * Utils/GAME/game/GME.cpp:
+
+          . Added auto-initialization to GAME and GME. You no longer
+            need to manaully invoke GME::init () and GME::fini ().
+
+Mon Jan 12 05:27:02 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.cpp:
+
+          . Implemented the operator [], which can be used to get a
+            connection point by its role.
+
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+
+          . Bug fix with the name of the instance_type () method.
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+
+          . It's now possible to specify the type of transaction to
+            begin.
+
+          . Bug fix where commiting an existing transaction using the
+            begin_transaction () method caused a GME exception.
+
+Sun Jan 11 23:14:07 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+
+          . Added support for enabling/disabling auto add-ons for
+            GME projects.
+
+Sat Jan 10 20:02:03 UTC 2009  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Fixed compiler errors on vc71 related to boost.
+
+        * Utils/GAME/game/Connection.h:
+
+          . Moved all type definitions to the public section.
+
+Sat Dec 27 23:40:38 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Updated the SLICE model to the latest version of CUTS.
+
+Wed Dec 24 19:37:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Release_idl_to_picml.mwc:
+
+          . Added -name_modifier *_Static the command-line options to
+            prevent modification of pre-existing non-static projects.
+
+Tue Dec 16 00:01:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+        * Utils/LEESA/DeploymentPlanVisitor.h:
+        * Utils/LEESA/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/LEESA.wxs:
+        * Utils/LEESA/LEESA.cpp:
+
+                  Added LEESA in the CoSMIC msi installer.
+
+Fri Dec 12 06:02:51 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/UdmMPL.h:
+        * Utils/LEESA/concept-mpl.cpp:
+
+          Tested LEESA with PICML's DeploymentPlanVisitor and fixed/added
+          several things. AssociationManyOp, STL container independence.
+
+Wed Dec  3 13:47:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          . Bug fix where one of the 'ComponentRef' was incorrectly defined
+            as a 'MergeRef'.
+
+Wed Dec  3 01:57:31 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+
+          . Added vc71 debug libraries to the installer since the IDLGenerator
+            uses BON and BON doesn't work in release mode under vc71. :-/
+
+Wed Dec  3 01:52:39 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/utils/Project_Settings.cpp:
+
+          . Bug fix where the normalization process was implemented
+            incorrectly and resulted in accessing invalid memory.
+
+Wed Dec  3 01:00:35 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . The RTRequirement.bmp was missing from the installer.
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Utils/Utils.wxs:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          . Installed the debug version of the binaries if vc71 was used
+            as the build type.
+
+Tue Dec  2 21:04:12 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * Release.mwc:
+
+          Updated Release build. Added QEDDeployment, CBMLManager, PropertyManager
+          in the build.
+
+Tue Dec  2 04:42:12 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game.mpb:
+
+          . Added the 'libpaths' keyword to the project.
+
+Mon Dec  1 08:14:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/GAME/game/Collection_T.h:
+
+          . Fixed compilation errors related to missing include files.
+
+        * MPC/config/game_component.mpb:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/BE_export.h:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.h:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.cpp:
+
+          . Created a GAME backend project to help reduce footprint.
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/arch/QED/deployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/arch/QED/deployment/RawComponent.cpp:
+        * Utils/GAME/game/utils:
+        * Utils/GAME/game/utils/Project_Settings.h:
+        * Utils/GAME/game/utils/Project_Settings.inl:
+        * Utils/GAME/game/utils/Project_Settings.cpp:
+        * Utils/Utils.mpc:
+        * Utils/Utils.wxs:
+
+          . Move the code for caching the output directories in the model
+            into GAME's utilities.
+
+          . Fixed compilation errors related to above change.
+
+        * Utils/Project.h:
+        * Utils/Project.cpp:
+
+          Removed these files.
+
+Mon Dec  1 07:16:32 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_component.mpb:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.wxs:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.h:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * Utils/GAME:
+        * Utils/GAME/game:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/be/Interpreter_T.inl:
+        * picml.mwc:
+        * Utils/GAME/game/GME.mpc:
+
+          . Moved GAME to its own folder and defined the standard directory
+            structure for its header/source files.
+
+          . Changed the shared library name from 'GME' to 'GAME'.
+
+          . Updated all the source files that were affected by relocating
+            GAME.
+
+        * Utils/Utils.wxs:
+
+          . Added GAME to the installation file.
+
+        * Utils/gme:
+
+          . Removed these files.
+
+Sat Nov 29 08:57:37 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game_component.mpb:
+
+          . Removed unncessary lines of code.
+
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+
+          . Bug fix where the completion dialog was not displayed.
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.wxs:
+        * PIM/PICML/interpreters/arch/QED/deployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Bug fix where the QED deployment generator's install
+            configuration was inconsistent with the .reg file.
+
+          . Include the CBMLManager addon as part of the installation.
+
+Sat Nov 29 07:42:54 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Move the position () method to the GME::FCO object. This will
+            allow it the used across multiple applications.
+
+        * Utils/gme:
+        * Utils/gme/Atom.h:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.cpp:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder_Model_T.h:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/Object.h:
+        * Utils/gme/Point.h:
+        * Utils/gme/Point.inl:
+        * Utils/gme/Point.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Reference.h:
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/Set.h:
+        * Utils/gme/Territory.h:
+        * Utils/gme/be:
+
+          . Added the missing ATL:: scope where needed.
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_component.mpb:
+        * Utils/gme/be/ComponentDLL.h:
+        * Utils/gme/be/ComponentDLL.cpp:
+        * Utils/gme/be/ComponentEx_T.h:
+        * Utils/gme/be/ComponentEx_T.inl:
+        * Utils/gme/be/ComponentEx_T.cpp:
+        * Utils/gme/be/Interpreter_Impl_Base.h:
+        * Utils/gme/be/Interpreter_Impl_Base.inl:
+        * Utils/gme/be/Interpreter_Impl_Base.cpp:
+        * Utils/gme/be/Interpreter_T.h:
+        * Utils/gme/be/Interpreter_T.inl:
+        * Utils/gme/be/Interpreter_T.cpp:
+        * Utils/gme/stdafx.h:
+
+          . First version of backend objects for GAME. It is now possible
+            to write interpreters using GAME, which is a little cleaner
+            that the default backend framework provided with GME.
+
+            The next steps are to get rid of the ComponentConfig.h header
+            file and add support for AddOns.
+
+        * PIM/PICML/interpreters/CIDLComponent/CIDLComponent.mpc:
+        * PIM/PICML/interpreters/CIDLComponent/Component.def:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.h:
+        * PIM/PICML/interpreters/CIDLComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.h:
+        * PIM/PICML/interpreters/CIDLComponent/StdAfx.cpp:
+
+          . Re-implemented the CIDL interpreter using GAME.
+
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.h:
+        * PIM/PICML/interpreters/CIDLComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/CIDLComponent/UdmConfig.h:
+
+          Removed these files.
+
+Tue Nov 25 06:28:50 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+                  NEw optimized support for AP.
+
+Mon Nov 24 06:46:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/UdmMPL.h:
+
+                  New concepts for Adaptive Programming.
+
+Mon Nov 24 06:41:22 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+                  This vesion adds Adpative Programming (AP.cpp) support in LEESA.
+                  Descendant axis now works as expected but can be made more efficient.
+                  HFSM.h has manually added DescendantKinds meta information.
+                  UDM should be extended to generate that automatically.
+
+Fri Nov 21 05:16:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/cosmic_common.mpb:
+                  Added boost_base. Now all Udm projects need boost because UdmMPL.h
+                  depends on it.
+
+Thu Nov 20 05:56:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+                  Complete support for children and parent axis.
+
+Thu Nov 20 05:20:56 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Bug fix where deleting an object without selecting an active
+            state caused the add-on to fail, and GME to crash.
+
+Thu Nov 20 05:03:23 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+
+          . Missing source file.
+
+Thu Nov 20 04:57:35 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/Component.rc:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/Resource.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.h:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.cpp:
+
+          . Improved the intellisense for setting the name of a newly
+            created worker action. If a component model has more then
+            one worker of the same type, a dialog is displayed to allow
+            end-users to select the target worker of the action.
+
+Thu Nov 20 00:48:06 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+      Improved FullTD. Now FullTD uses All.
+
+Wed Nov 19 17:18:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/game.mpb:
+
+          . Base project that includes the GAME library.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.reg:
+        * PIM/PICML/addons/CBMLManager/CBMLManagerd.reg:
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          . Re-implemented the addon using the GAME architecture.
+
+          . Re-implemented the addon to handle the new paradigm specification.
+
+          . Implemented the first version of intellisense that is able to
+            resolve the name. This only works if there is only instance of
+            a worker type in the model. The next version will enable end-users
+            to select which instance the action belongs.
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          . Implemented the child_by_relative_id () method.
+
+        * picml.mwc:
+
+          . Includes both the PICML addons as part of the standard build
+            process.
+
+Tue Nov 18 21:51:35 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+      Improved support for strategic programming.
+
+Tue Nov 18 02:51:17 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          . First attempt to add the QED interpreter to the installer.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Added missing icons to the installer.
+
+Fri Nov 14 06:13:07 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+                  Strong support for typed strategic programming using UDM.
+
+Thu Nov 13 20:31:46 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/SP.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+                  Improved support for strategic programming. Added: All, FullTD.
+                  Strategies customizable by user code.
+
+Tue Nov 11 06:35:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+                  Strategic programming combinator Full_TD is now supported.
+
+Wed Nov  5 00:46:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.pdf:
+          New features Id, SelectNonNull in LEESA and its documentation.
+
+Tue Nov  4 05:26:36 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/UdmObjectConcept.h:
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+          UDM 3.1.3 added support for Udm object concepts.
+          Changing LEESA accordingly. Tested with HFSM.
+
+Thu Oct 30 04:52:08 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/UdmObjectConcept.h:
+
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UdmApp.cpp:
+                  Some improvements from LEESA for XML.
+
+Thu Oct 30 04:42:45 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/xsd/LEESA.cpp:
+        * Utils/LEESA/xsd/example:
+
+        * Utils/LEESA/xsd/example/driver.cxx:
+        * Utils/LEESA/xsd/example/library.hpp:
+        * Utils/LEESA/xsd/example/library.cpp:
+        * Utils/LEESA/xsd/example/library.xml:
+        * Utils/LEESA/xsd/example/library.xsd:
+        * Utils/LEESA/xsd/example/makefile.txt:
+        * Utils/LEESA/xsd/example/xsd.sh:
+
+        * Utils/LEESA/xsd/patch/Readme.txt:
+        * Utils/LEESA/xsd/patch/makefile.txt:
+          Improved LEESA for XML.
+
+Thu Oct 30 00:20:42 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/xsd:
+
+        * Utils/LEESA/xsd/LEESA.h:
+        * Utils/LEESA/xsd/LEESA.cpp:
+        * Utils/LEESA/xsd/LEESAConcepts.h:
+        * Utils/LEESA/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/xsd/patch:
+
+        * Utils/LEESA/xsd/patch/cli.hxx:
+        * Utils/LEESA/xsd/patch/generator.cxx:
+        * Utils/LEESA/xsd/patch/template-header.cxx:
+        * Utils/LEESA/xsd/patch/template-header.hxx:
+          Added a version of LEESA for CodeSynthesis's xsd XML data binding
+          compiler. Also, extension to xsd itself.
+
+Thu Oct 16 17:04:43 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.pdf:
+
+        * Utils/UDM_DSL/UdmApp.cpp:
+                  Added a pdf version of the documentation.
+
+Thu Oct 16 04:15:20 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.cpp:
+
+        * Utils/UDM_DSL/UdmApp.cpp:
+                  Added LEESA documentation and improved features.
+
+Tue Oct 14 19:56:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA:
+
+        * Utils/LEESA/LEESA.doc:
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/UdmObjectConcept.h:
+
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+
+         Removed these files.
+
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/LEESA_VisitorAsIndex.h:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+
+                  Moved LEESA files in their own directory. Added documentation.
+
+Sun Oct 12 20:16:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+
+                  Enhanced features in LEESA. Support for visitors inside square brackets
+                  is added. This feature can be used only if UDM #includes LEESA_VisitorAsIndex.h
+                  and uses VisitorAsIndex_CRTP in the header file of the paradigm.
+
+Sun Oct 12 07:54:55 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/LEESA_VisitorAsIndex.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+
+                  Updates in LEESA
+
+Sat Oct 11 05:52:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/LEESA.h:
+        * Utils/UDM_DSL/LEESA.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+
+                  Added LEESA.h, LEESA.cpp to use LEESA as a header only library.
+
+Wed Oct  8 04:21:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+
+                  Updated LEESA to work with latest UDM trunk (Revision: 2745)
+
+Wed Sep 24 05:10:04 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/dlldata.c:
+
+          . Removed this file.
+
+Tue Sep 16 20:06:03 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+          Changed version from 0.6.4 to 0.6.6
+
+Fri Sep 12 19:11:57 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/CQML/interpreters/ECLGenerator/ComponentConfig.h:
+
+        * PSM/CQML/interpreters/CIAOEventsComponent/ComponentConfig.h:
+
+          Removed the hardcoded (C:\...) path
+
+Tue Sep  9 21:54:28 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Bug fix where importing an XML document caused the add-on to
+            generate an unwanted collocation group. This was fixed by
+            disabling this part of the handler/add-on during imports.
+
+          . Whenever the user is selecting components for a collocation
+            group, the add-on will ensure that the active component is not
+            deployed on any other node. This is handled by removing the
+            component from all the other collocation groups.
+
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+
+          . Implementned in_sets () method, which returns are the sets
+            elements that contain the specified FCO.
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          . Implemented the equals () method, which can be used to test for
+            equality with any object type.
+
+Tue Sep  9 03:01:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          A default collocation group is generated for a node whenever a
+          new node reference is added to the deployment plan. This should
+          help reduce the effort in creating a deployment plan.
+
+Mon Jul 21 21:41:04 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+          Updated version to 0.6.4 and GME installation message.
+
+Sun Jul 20 20:24:35 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          New improvements with traversal of multiple members.
+
+Mon Jul 14 19:42:51 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/XercesString.h:
+
+          Fixed the #include preprocessor definition for Utils_export.h
+
+Thu Jul 10 19:59:11 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Pretty much final version of the UDM embedded DSL.
+          Very expressive and composable.
+
+Thu Jul 10 16:21:33 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Refactoring.
+
+Thu Jul 10 05:04:15 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Refactoring.
+
+Wed Jul  9 23:54:28 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Bug fix.
+
+Wed Jul  9 00:00:38 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          New features.
+
+Tue Jul  8 22:12:56 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/arch:
+        * PIM/PICML/interpreters/arch/QED:
+        * PIM/PICML/interpreters/arch/QED/deployment:
+
+          Moved all the QED interepters to the arch/QED directory. Since we
+          are starting to use PICML to generate metadata for different
+          architectures/technologies, we need a directories to hold interpreters
+          specific to a particular architecture. Eventually, we will be creating
+          a CCM directory for all the CCM-speficic interpreters.
+
+        * PIM/PICML/interpreters/QEDDeployment:
+        * PIM/PICML/interpreters/QEDDeployment/Component.def:
+        * PIM/PICML/interpreters/QEDDeployment/Component.rc:
+        * PIM/PICML/interpreters/QEDDeployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.h:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.h:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.h:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/compicon.ico:
+        * PIM/PICML/interpreters/QEDDeployment/resource.h:
+
+          Removed these files.
+
+Tue Jul  8 21:55:59 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
+
+          Update the deployment plan generator to include the UUID of
+          the deployment plan, the target process for the client,
+          and use alias in the <location> tag.
+
+Tue Jul  8 06:59:27 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Added new features.
+
+Wed Jul  2 07:02:31 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+          Added new features.
+
+Wed Jul  2 04:40:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/vc8_assemblies.wxs:
+
+          Remove the 'vc8' preprocessor check since we are now using the
+          conditional { } clause in the .mpc file to only include the
+          vc8_assemblies.wxs file for vc8 project types.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Added new icons to the installer.
+
+Fri Jun 27 23:16:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+        * picml.mwc:
+
+          Fixed a build issue with Utils.
+
+Fri Jun 27 20:50:23 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PICML/Data_Value.h:
+        * PIM/PICML/interpreters/PICML/Data_Value.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Parser_T.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Visitor.cpp:
+
+          Begin to add support for using the property manager to input
+          the values for a event data type.
+
+        * PIM/PICML/interpreters/PropertyManager/PropertyManager.mpc:
+
+          The property manager did not register itself as part of the
+          build process.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/ApplicationTask.gif:
+
+          . Disabled the name for the following elements: DoWhileState,
+            WhileState, PeriodicEvent, and ApplicationTask.
+
+          . Added a new modeling element named ApplicationTask, which
+            is used to create a separate thread of control at the
+            application level. It has the same modeling semantics as
+            all SingleInput elements, such as PeriodicEvent and
+            InEventPort.
+
+          . Variables now have an attribute named InitialValue, which
+            is used to initial the variable at construction time.
+
+          . Condition attributes in a BranchTransition are now a single
+            line, instead of two lines. This helps with ensuring the
+            condition doesn't have any uncessary line breaks.
+
+Fri Jun 27 18:56:41 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Release.mwc:
+
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+
+        * picml.mwc:
+
+          Fixed a build issue with Utils
+
+Fri Jun 27 07:11:30 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * UDM_DSL.mwc:
+
+        * Utils/UDM_DSL:
+
+        * Utils/UDM_DSL/CompIcon.ico:
+        * Utils/UDM_DSL/Component.def:
+        * Utils/UDM_DSL/Component.rc:
+        * Utils/UDM_DSL/ComponentConfig.h:
+        * Utils/UDM_DSL/HFSM.h:
+        * Utils/UDM_DSL/HFSM.xml:
+        * Utils/UDM_DSL/HFSM.xsd:
+        * Utils/UDM_DSL/HFSM.cpp:
+        * Utils/UDM_DSL/HFSM_old.h:
+        * Utils/UDM_DSL/HFSM_old.cpp:
+        * Utils/UDM_DSL/RawComponent.h:
+        * Utils/UDM_DSL/RawComponent.cpp:
+        * Utils/UDM_DSL/StdAfx.h:
+        * Utils/UDM_DSL/StdAfx.cpp:
+        * Utils/UDM_DSL/UDM_DSL.h:
+        * Utils/UDM_DSL/UDM_DSL.cpp:
+        * Utils/UDM_DSL/UDM_DSL.mpc:
+        * Utils/UDM_DSL/UDM_DSL.reg:
+        * Utils/UDM_DSL/UDM_DSL.wxs:
+        * Utils/UDM_DSL/UDM_DSL_parameter.cpp:
+        * Utils/UDM_DSL/UDM_DSLd.reg:
+        * Utils/UDM_DSL/UdmApp.h:
+        * Utils/UDM_DSL/UdmApp.cpp:
+        * Utils/UDM_DSL/UdmConfig.h:
+        * Utils/UDM_DSL/UdmObjectConcept.h:
+        * Utils/UDM_DSL/resource.h:
+
+          Adding UDM_DSL project.
+
+Wed Jun 25 21:29:10 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          . Updated the example to the latest version of GME.
+
+        * PIM/PICML/interpreters/QEDDeployment/Component.rc:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
+
+          . Removed the generation and inclusion of a type library for
+            the component since it was breaking the builds.
+
+Fri Jun 20 22:07:54 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/FailOverUnit/FOUMonitors.txt:
+          Generalized the tranformation to search assemblies.
+
+Thu Jun 19 23:18:01 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/FailOverUnit:
+
+        * Transformations/CAML:
+
+        * Transformations/CAML/FOUAspect-CompCloning.txt:
+        * Transformations/CAML/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/CAML/FOUAspect-Everything.txt:
+        * Transformations/CAML/FOUAspect.txt:
+        * Transformations/CAML/FOUMonitors.txt:
+
+          Renamed CAML to FailOverUnit. Added FOUMonitors.txt trasformation
+          specification for generating monitoring infrastructure.
+
+Tue Jun 17 22:02:40 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Component.h:
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.h:
+        * Utils/gme/ComponentEx.cpp:
+
+          It is now possible to instantiate (or load) a GME component,
+          such as an interpreter, at construction time.
+
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+
+          Defined the method register_node () that can return a node
+          in the registry given its path based on its parent.
+
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          Overloadded the begin_transaction () method so that you can
+          commit/abort the current transaction, if applicable.
+
+Tue Jun 17 21:56:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlan.mpc:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+
+          It is now possible to generate the deployment plan for a select
+          number of deployments by right-clicking the target deployment
+          plan and clicking the interpreter. The default interpretation
+          is the generate all the deployment plans in the model.
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/interpreters/QEDDeployment:
+        * PIM/PICML/interpreters/QEDDeployment/Component.def:
+        * PIM/PICML/interpreters/QEDDeployment/Component.rc:
+        * PIM/PICML/interpreters/QEDDeployment/ComponentConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponent.wxs:
+        * PIM/PICML/interpreters/QEDDeployment/QEDDeploymentComponentd.reg:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment.mpc:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Export.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.h:
+        * PIM/PICML/interpreters/QEDDeployment/QED_Implementation_Finder.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.h:
+        * PIM/PICML/interpreters/QEDDeployment/RawComponent.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.h:
+        * PIM/PICML/interpreters/QEDDeployment/StdAfx.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.h:
+        * PIM/PICML/interpreters/QEDDeployment/UdmApp.cpp:
+        * PIM/PICML/interpreters/QEDDeployment/UdmConfig.h:
+        * PIM/PICML/interpreters/QEDDeployment/compicon.ico:
+        * PIM/PICML/interpreters/QEDDeployment/resource.h:
+
+          Initial implementation of the QED deployment plan generator. This
+          should NOT be included in the standard CoSMIC release.
+
+Wed Jun 11 15:18:24 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/Utils.h:
+
+          Fixed the include specification for the export header file.
+
+Mon Jun  9 02:49:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Transformations/CAML:
+
+        * Transformations/CAML/FOUAspect-CompCloning.txt:
+        * Transformations/CAML/FOUAspect-CompCloningWithConnections.txt:
+        * Transformations/CAML/FOUAspect-Everything.txt:
+        * Transformations/CAML/FOUAspect.txt:
+          Embedded Contraint Language (ECL) specification for FailOverUnit.
+          Latest version of C-SAW is required to interpret these specifications.
+
+Sat Jun  7 03:06:13 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+          Updated install condition message with GME version.
+
+Sat Jun  7 00:17:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/Utils.wxs:
+          Debug version of Utils is added to the CoSMIC installer
+          only for GME 6.11.9.
+
+Wed Jun  4 23:54:14 UTC 2008  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/examples:
+        * Transformations/MTTVar/examples/Configuration.xme:
+        * Transformations/MTTVar/examples/Dialog.xme:
+        * Transformations/MTTVar/examples/RefineDialog.xme:
+        * Transformations/MTTVar/examples/Reqmt2Config.xme:
+
+          Examples to test MTTVar and Specialize paradigms. These
+          examples are communication dialog specialization, and
+          genertion of configuration from requirements specification
+          of a component-based application. The second example has
+          been simplified from the QUICKER examples, though a PICML
+          to CQML transformation will also work.
+
+Wed Jun  4 23:45:54 UTC 2008  Amogh Kavimandan  <amoghk@nospam>
+
+        * Transformations/MTTVar/paradigms/Specialize.xme:
+
+          The second higher-order transformation that generates
+          specialized instances of templatized transformation from
+          VarML initially created using MTTVar paradigm.
+
+Thu May 15 17:28:16 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        Fixed XERCESC path from lib to bin.
+
+Wed May 14 05:15:06 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          The installer will install the debug version of the IDL generator
+          for GME 6.11.9 and the release version of GME 7.x.x.
+
+Sat May 10 05:12:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          Removed the constraint for ensuring that a composite action
+          had only 1 InputAction element since component actions are
+          no longer supported at this time.
+
+Fri May  9 18:08:59 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/MultiInputAction.bmp:
+        * PIM/PICML/paradigms/icons/OutputAction.bmp:
+        * PIM/PICML/migration/InputAction_to_MultiInputAction.xsl:
+
+          Although the previous update to PICML was valid, UDM did not
+          like it. :-( It had problems resolving the association between
+          MultiInput, QueryInput, Input. To resolve this problem, MultiInput
+          connections connect to MultiInputAction element. This does break
+          existing models, however, we have created an .xslt script to
+          migrate old models.
+
+          To apply the transformation script, use Model Migrate, which
+          is provide with GME. Or, import the old model using GME and
+          locate InputAction_to_MultiInputAction.xsl as the tranformation
+          script to apply on the model.
+
+Thu May  8 21:28:14 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/QueryAction.bmp:
+        * PIM/PICML/paradigms/icons/QueryInputAction.bmp:
+
+          . Completed support for modelig query-based actions. Query-based
+            actions are modeled by connecting a query input action to the
+            desired input port and using query actions in the workload.
+
+Fri May  2 04:35:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/paradigms/icons/QueryAction.bmp:
+
+          . Implemented support for query-based actions. A query action
+            is one that tests a specified input port for an event. This
+            is similar to how event-based systems and architectures,
+            such as DDS and Apollo, operate. Query actions have the same
+            modeling semantics as regular actions.
+
+Wed Apr 30 05:45:21 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+          . The installer now requires definition of the
+            XERCESC_VERSION environment variable. This is used to select
+            the correct version of Xerces-C for the installer.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          . The 6.11.9 version of the IDL generator only works in debug
+            mode. Added preprocessor statements to select the correct
+            version of the binary for the installer.
+
+Wed Apr 23 22:53:01 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+
+          Implemented the project () method, which retrieves the project
+          that owns the parent object.
+
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          . Implemented paradigm_name (), which returns the paradigm name
+            for the project.
+
+          . Implemented paradigm_version (), which returns the paradigm
+            version of the project.
+
+Fri Apr 11 21:11:15 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/examples/SLICE.xme:
+
+          Resolved all the constraint errors.
+
+Fri Apr 11 00:49:46 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC Installer Documentation.doc:
+
+          GME_VERSION environmental variable documented.
+
+Wed Apr  9 22:51:31 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          Replaced the code that prompts the user for a output
+          directory with the getPath () method in the CoSMIC
+          utilities project.
+
+        * Utils/gme/Object.cpp:
+        * Utils/gme/XML.cpp:
+
+          Bug fix where if any of the output parameters of the XML
+          info were not defined, then it would cause a segementation
+          fault.
+
+Wed Apr  9 02:48:53 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          The XML parser and dumper are no longer part of the project
+          object. Instead they are standalone objects that operate
+          on project objects.
+
+        * Utils/gme/XML.h:
+        * Utils/gme/XML.cpp:
+
+          . Re-implemented the XML parser and dumper so they are
+            standalone objects that operate on project elements.
+
+          . It is now possible to retrieve the XML information from
+            an GME XML project file.
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Connection.cpp:
+        * Utils/gme/Exception.h:
+        * Utils/gme/Exception.inl:
+        * Utils/gme/FCO.h:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.h:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/GME_fwd.h:
+        * Utils/gme/MetaAttribute.cpp:
+        * Utils/gme/MetaModel.cpp:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/Set.cpp:
+
+          Implemented a new exception named 'Invalid_Cast ()', which
+          is thrown when a _narrow () operation fails.
+
+        * Utils/gme/RegistryNode.h:
+        * Utils/gme/RegistryNode.cpp:
+
+          Re-implemented the RegistryNodes collection as a
+          GME::Collection_T object.
+
+Tue Apr  8 22:32:19 UTC 2008  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+
+          Added support for building GME 7.6.29 version of
+          the CoSMIC installer. A new environmental variable
+          GME_VERSION is now required to build CoSMIC msi
+          installer successfully.
+
+Mon Mar 24 22:34:41 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
+          - Bug fix where the modeling of connections between Node,
+            Interconnect, and Bridge elements prevented anyone from being
+            able to model a network topology.
+
+          - Change operatingSystem, configuration, and architecture
+            macros from enum types to field types. This will allow users
+            to entire any arbitrary value for the respective element.
+
+Fri Mar 21 20:34:34 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-08a:
+
+          Refreshed the current ChangeLog and save the ChangeLog for the
+          previous version to the ChangeLogs directory.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/resource.h:
+
+          Update the decorator to display supported interfaces as ports
+          on the parent component.
+
+        * PIM/PICML/interpreters/DeploymentPlan/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/PAM/PAMVisitor.h:
+        * PIM/PICML/interpreters/Package/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+
+          Update the implemenation to handle the new addition for the
+          creating connections to supported interfaces at the assembly
+          level. I just casted the object instead of creating implementation
+          to handle such cases.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Added the missing CBML images to the installer.
+
+        * PIM/PICML/paradigms/icons/object.bmp:
+
+          Change the color of the cloud from white to gray since it was
+          causing the decorator to treat the white in the cloud as
+          the transparent color.
+
+Wed Mar 19 15:35:29 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Atom.cpp:
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/Reference.cpp:
+        * Utils/gme/Set.cpp:
+
+          Bug fix where using a previously released object would cause
+          an assertion failure because the target reference was not
+          nil. The middleware, therefore, assumed the object was not
+          properly released (or ref counted).
+
+Tue Mar 18 22:15:16 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/Collection_T.h:
+        * Utils/gme/Collection_T.inl:
+
+          Aggregated the methods to the actual container object. This
+          makes it a LOT easier to use the collection object becuase
+          you do not have to use the items () method to access the
+          container's properties.
+
+        * Utils/gme/FCO.cpp:
+        * Utils/gme/Folder.cpp:
+        * Utils/gme/Folder_Model_T.cpp:
+        * Utils/gme/Object.h:
+        * Utils/gme/Object.cpp:
+        * Utils/gme/Set.cpp:
+
+          Updated the usage of the collection object based on the
+          change above.
+
+Thu Mar 13 20:28:50 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+
+          Fixed build errors related to disabling zlib at the workspace
+          level. The PackageComponent project would still exist even though
+          the Package project was not present becuase zlib=0. If Package[d].lib
+          was not previously built, then the solution build would fail.
+
+Tue Mar 11 00:01:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/wix.mpb:
+
+          Changed the 'source_outputext' to 'generic_outputext'.
+
+Mon Mar 10 23:08:45 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * MPC/config/wix_ui.mpb:
+        * MPC/config/wix_xml.mpb:
+
+          Base projects for using various extension in Wix.
+
+        * cosmic_ace.mwc:
+
+          Bug fix where generate workspace had duplicate project
+          names.
+
+Sun Mar  9 15:04:43 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/XML.h:
+        * Utils/gme/XML.inl:
+        * Utils/gme/XML.cpp:
+
+          Mising source files that enable the importing/exporting
+          of GME projects.
+
+Fri Mar  7 06:55:46 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * Utils/gme/GME_export.h:
+        * Utils/gme/stdafx.h:
+
+          Fixed build errors in the release version.
+
+Fri Mar  7 04:58:49 UTC 2008  James H. Hill  <hillj@isis.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Removed stale source code.
+
+        * Utils/gme/Component.cpp:
+        * Utils/gme/ComponentEx.cpp:
+        * Utils/gme/GME.mpc:
+        * Utils/gme/MetaFolder.h:
+        * Utils/gme/MetaFolder.cpp:
+        * Utils/gme/Model.cpp:
+        * Utils/gme/Project.h:
+        * Utils/gme/Project.cpp:
+
+          - Enabled support for creating models in folders.
+          - Enabled support for exporting/importing XML documents into
+            a project.
+
+        * PIM/PICML/addons/PICMLManager/BON2Component.h:
+        * PIM/PICML/addons/PICMLManager/BON2Component.cpp:
+
+          Removed these files.
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:
