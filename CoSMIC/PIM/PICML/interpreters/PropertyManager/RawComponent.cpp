@@ -179,7 +179,7 @@ get_datatype (const GME::FCO & property, GME::FCO & datatype)
     // any datatypes in the models, then we need to just leave.
     GME::Collection_T <GME::Reference> datatypes;
 
-    if (model.references ("DataType", datatypes) == 0)
+    if (model.children ("DataType", datatypes) == 0)
       return false;
 
     // Now, get the referenced object. This is the actual

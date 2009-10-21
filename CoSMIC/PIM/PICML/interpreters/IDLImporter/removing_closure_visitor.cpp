@@ -1,9 +1,8 @@
-/* -*- c++ -*- */
 // $Id$
 
 #include "removing_closure_visitor.h"
 #include "be_extern.h"
-#include "XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 removing_closure_visitor::removing_closure_visitor (const XMLCh *id)
   : id_ (id)
@@ -13,13 +12,13 @@ bool
 removing_closure_visitor::visit_gme_folder (DOMElement *node)
 {
   const XMLCh *kind = node->getAttribute (X ("kind"));
-  
+
   // The InterfaceDefinitions folder is handled by the removing_visitor
   // instance that spawned us, and the PredefinedTypes folder should
   // never be touched.
   bool skip =
     (X ("InterfaceDefinitions") == kind || X ("PredefinedTypes") == kind);
-        
+
   return (skip ? true : this->visit_children (node));
 }
 
@@ -37,7 +36,7 @@ bool
 removing_closure_visitor::visit_gme_reference (DOMElement *node)
 {
   const XMLCh *referred = node->getAttribute (X ("referred"));
-  
+
   // Ports of component instanaces have a "derivedfrom" attribute
   // containing the id of the original port reference.
   return (this->id_ == X (referred) || this->derived_from (node)
@@ -52,7 +51,7 @@ removing_closure_visitor::visit_gme_connection (DOMElement *node)
   // mapping of a GME Connection staying the same - a safe bet.
   // If the id of either endpoint matches our member id, 'node'
   // is removed.
-  
+
   DOMElement *dst =
     dynamic_cast<DOMElement *> (node->getLastChild ());
   this->check_endpoint (dst, node);
@@ -76,9 +75,9 @@ removing_closure_visitor::check_endpoint (DOMElement *endpoint,
     {
       return;
     }
-    
+
   const XMLCh *target = endpoint->getAttribute (X ("target"));
-  
+
   if (this->id_ == target)
     {
       // If an endpoint id matches the id of the removed element,
@@ -96,7 +95,7 @@ removing_closure_visitor::derived_from (DOMElement *node)
     {
       return false;
     }
-    
+
   const XMLCh *derived = node->getAttribute (X ("derivedfrom"));
   return (this->id_ == derived);
 }
@@ -109,13 +108,13 @@ removing_closure_visitor::remove_and_do_closure (DOMElement *node)
 
   be_global->release_node (node);
   node = 0;
-  
+
   // No need to traverse the whole tree for this kind.
   if (X ("Supports") == kind)
     {
       return true;
     }
-    
+
   removing_closure_visitor rc_visitor (id);
   return rc_visitor.visit_root (be_global->root_folder ());
 }
@@ -127,18 +126,18 @@ removing_closure_visitor::visit_gme_set (DOMElement *node)
   char *members_str = XMLString::transcode (members_X);
   ACE_CString members (members_str);
   char *id_str = XMLString::transcode (this->id_);
-  
+
   int pos = members.find (id_str);
   bool found = (pos != ACE_CString::npos);
   const size_t ONE_ID_LEN = 16;
   const size_t TWO_ID_LEN = 2 * ONE_ID_LEN + 1;
-      
+
   // The "members" attribute can have one or more id strings, each
   // 16 chars, separated by whitespace. If there is an id match:
   // - if there's only one id, remove the node
   // - otherwise, remove the matched string from the attribute
   bool remove = (found && (members.length () < TWO_ID_LEN));
-  
+
   if (found && !remove)
     {
       if (0 == pos)
@@ -156,10 +155,10 @@ removing_closure_visitor::visit_gme_set (DOMElement *node)
           members = members.substr (0, pos - 1)
                     + members.substr (pos + ONE_ID_LEN);
         }
-        
+
       node->setAttribute (X ("members"), X (members.c_str ()));
     }
-  
+
   XMLString::release (&members_str);
   XMLString::release (&id_str);
   return (remove ? this->remove_and_do_closure (node) : true);

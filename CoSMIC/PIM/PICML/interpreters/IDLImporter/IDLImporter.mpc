@@ -1,7 +1,7 @@
 // -*- MPC -*-
 // $Id$
 
-project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces, tao_idl_fe, cosmic_utils {
+project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, tao_idl_fe {
 
   sharedname   = IDL_TO_PICML_BE
   libout       = $(COSMIC_ROOT)/lib
@@ -33,7 +33,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, xerces, tao_idl_fe, cosmi
   }
 }
 
-project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, xerces, mcpp, tao_idl_mcpp, tao_idl_fe, cosmic_utils {
+project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, mcpp, tao_idl_mcpp, tao_idl_fe {
   after          += IDL_TO_PICML_BE
   exename         = idl_to_picml
   libs           += IDL_TO_PICML_BE

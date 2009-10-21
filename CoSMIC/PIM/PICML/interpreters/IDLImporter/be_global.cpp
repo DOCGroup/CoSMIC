@@ -1,27 +1,7 @@
 // $Id$
 
-// ============================================================================
-//
-//
-// = LIBRARY
-//    IDL_TO_PICML_BE_DLL
-//
-// = FILENAME
-//    be_global.cpp
-//
-// = DESCRIPTION
-//    Stores global data specific to the compiler back end.
-//
-// = AUTHOR
-//    Jeff Parsons <j.parsons@vanderbilt.edu>
-//
-// ============================================================================
-
-#include "XercesString.h"
-#include "XML_Error_Handler.h"
-#include "EntityResolver.h"
-#include "be_extern.h"
 #include "be_global.h"
+#include "be_extern.h"
 #include "ast_generator.h"
 #include "ast_module.h"
 #include "ast_sequence.h"
@@ -31,11 +11,15 @@
 #include "global_extern.h"
 #include "nr_extern.h"
 #include "idl_defines.h"
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/xercesc/XML_Error_Handler.h"
+#include "Utils/xercesc/EntityResolver.h"
+#include "xercesc/parsers/XercesDOMParser.hpp"
+
 #include "ace/OS_NS_stdio.h"
 #include "ace/Env_Value_T.h"
 #include "ace/streams.h"
-#include "xercesc/parsers/XercesDOMParser.hpp"
-#include "Interfaces/GMEVersion.h"
 
 #include <fstream>
 #include <sstream>
@@ -78,27 +62,27 @@ BE_GlobalData::BE_GlobalData (void)
     implementations_rel_id_ (1UL),
     basic_seq_suffix_ ("Seq_from_IDL_include")
 {
-  ACE_Env_Value <const char *> path ("GME_ROOT", 0);
-
-  // Need an extra step here because some C++ compilers can't
-  // match ACE_CString's assignment from char* operator with
-  // ACE_Env_Value's cast operator.
-  const char * path_str = path;
-
-  if (path_str != 0)
-  {
-    this->schema_path_ = path_str;
-
-#if (GME_VERSION_MAJOR == 7 && GME_VERSION_MINOR == 6 && GME_VERSION_PLEVEL == 29)
-    // mga.dtd in GME version 7.6.29 is in $GME_ROOT
-#elif (GME_VERSION_MAJOR == 9 && GME_VERSION_MINOR == 8 && GME_VERSION_PLEVEL == 28)
-    // mga.dtd in GME version 9.8.28 is in $GME_ROOT/bin
-    this->schema_path_ += "/bin";
-#endif
-    // In case it isn't at the end of the environment variable,
-    // otherwise idempotent.
-    this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
-  }
+//  ACE_Env_Value <const char *> path ("GME_ROOT", 0);
+//
+//  // Need an extra step here because some C++ compilers can't
+//  // match ACE_CString's assignment from char* operator with
+//  // ACE_Env_Value's cast operator.
+//  const char * path_str = path;
+//
+//  if (path_str != 0)
+//  {
+//    this->schema_path_ = path_str;
+//
+//#if (GME_VERSION_MAJOR == 7 && GME_VERSION_MINOR == 6 && GME_VERSION_PLEVEL == 29)
+//    // mga.dtd in GME version 7.6.29 is in $GME_ROOT
+//#elif (GME_VERSION_MAJOR == 9 && GME_VERSION_MINOR == 8 && GME_VERSION_PLEVEL == 28)
+//    // mga.dtd in GME version 9.8.28 is in $GME_ROOT/bin
+//    this->schema_path_ += "/bin";
+//#endif
+//    // In case it isn't at the end of the environment variable,
+//    // otherwise idempotent.
+//    this->schema_path_ += ACE_DIRECTORY_SEPARATOR_CHAR_A;
+//  }
 }
 
 BE_GlobalData::~BE_GlobalData (void)
@@ -755,10 +739,10 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       // won't have to be concerned that a lookup failure later
       // might be due to a mistake or that the filename just
       // appears further down the command line.
-      
+
       char abspath[MAXPATHLEN] = "";
       char *fullpath = ACE_OS::realpath (files[i], abspath);
-      
+
       for (unsigned long j = 0; fullpath[j] != '\0'; ++j)
         {
           if (fullpath[j] == '\\')

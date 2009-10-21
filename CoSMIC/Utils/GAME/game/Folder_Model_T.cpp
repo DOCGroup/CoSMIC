@@ -45,10 +45,10 @@ namespace GME
   // get_children
   //
   template <typename T, typename BASE>
-  template <typename T2>
+  template <typename CHILD>
   size_t Folder_Model_T <T, BASE>::
-  get_children (const std::string & type,
-                GME::Collection_T <T2> & children) const
+  children (const std::string & type,
+            GME::Collection_T <CHILD> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());

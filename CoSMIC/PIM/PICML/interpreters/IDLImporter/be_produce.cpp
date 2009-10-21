@@ -72,8 +72,7 @@ trademarks or registered trademarks of Sun Microsystems, Inc.
 #include "utl_string.h"
 #include "adding_visitor.h"
 #include "removing_visitor.h"
-#include "XercesString.h"
-
+#include "Utils/xercesc/XercesString.h"
 #include "xercesc/util/XMLUniDefs.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
 

@@ -22,16 +22,15 @@
 
 #include "xercesc/sax/EntityResolver.hpp"
 #include "ace/SString.h"
-#include "Utils_export.h"
+#include "Xerces_Utils_export.h"
 
-/**
- * @class EntityResolver
- * @brief Resolves location of GME's mga.dtd file.
- */
 namespace Utils
 {
-
-class Utils_Export EntityResolver : public virtual xercesc::EntityResolver
+/**
+ * @class EntityResolver
+ */
+class COSMIC_XERCES_UTILS_Export EntityResolver :
+  public virtual xercesc::EntityResolver
 {
 public:
   /// Guaranteed to be a non-empty path - check is made before
@@ -44,6 +43,7 @@ public:
                                                 const XMLCh *const systemId);
 
 private:
+  /// Base path for resolving entities.
   ACE_CString base_path_;
 };
 

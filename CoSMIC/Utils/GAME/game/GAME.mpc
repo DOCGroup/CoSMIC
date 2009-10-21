@@ -59,6 +59,8 @@ project (GAME) : acelib, cosmic_common {
   Template_Files {
     Collection_T.cpp
     Folder_Model_T.cpp
+
+    utils/modelgen.cpp
   }
 
   Header_Files {

@@ -26,7 +26,7 @@
 # pragma once
 #endif /* ACE_LACKS_PRAGMA_ONCE */
 
-#include "XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 using namespace xercesc;
 
@@ -45,19 +45,19 @@ class removing_closure_visitor : public xme_dom_visitor
   //
 public:
   removing_closure_visitor (const XMLCh *id);
-  
+
 protected:
   virtual bool visit_gme_folder (DOMElement *node);
   virtual bool visit_gme_model (DOMElement *node);
   virtual bool visit_gme_reference (DOMElement *node);
   virtual bool visit_gme_connection (DOMElement *node);
   virtual bool visit_gme_set (DOMElement *node);
-  
+
 private:
   void check_endpoint (DOMElement *endpoint, DOMElement *node);
   bool derived_from (DOMElement *node);
   bool remove_and_do_closure (DOMElement *node);
-  
+
 private:
   Utils::XStr id_;
 };

@@ -1,8 +1,67 @@
+Wed Oct 21 21:20:04 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.inl:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+        * Utils/GAME/game/GAME.mpc:
+
+          Each typed version of the method that returns chilren, e.g.,
+          atoms (), models (), and references (), with a template
+          version method named children ().
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+
+          Refactored code based on the change above.
+
+        * MPC/config/cosmic_common.mpb:
+
+          Moved the *macros* keyword in the prop:microsoft scope.
+
+        * MPC/config/cosmic_xerces_utils.mpb:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/removing_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/xme_dom_visitor.cpp:
+        * Release_idl_to_picml.mwc:
+        * Utils/Utils.h:
+        * Utils/Utils.mpc:
+        * Utils/Utils.cpp:
+        * Utils/xercesc:
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+        * Utils/xercesc/XML_Error_Handler.h:
+        * Utils/xercesc/XML_Error_Handler.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.cpp:
+        * Utils/xercesc/Xerces_Utils.mpc:
+        * Utils/xercesc/Xerces_Utils_export.h:
+        * picml.mwc:
+
+          First attempt at removing the Windows dependency in
+          idl_to_picml. This resulted in refactoring the Xerces
+          portion of the utilities into their own shared library.
+
+        * Utils/EntityResolver.h:
+        * Utils/EntityResolver.cpp:
+        * Utils/XML_Error_Handler.h:
+        * Utils/XML_Error_Handler.cpp:
+        * Utils/XercesString.h:
+        * Utils/XercesString.cpp:
+
+          Removed these files.
+
 Wed Oct 21 18:05:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/AP.cpp:
           Disabled DescendantKinds concept checking in LEESA.
-        
+
         * README:
         * RELEASE:
         * RELEASE-NOTES:

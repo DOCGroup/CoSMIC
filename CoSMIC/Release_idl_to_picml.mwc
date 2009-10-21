@@ -11,6 +11,7 @@ workspace : cosmic_common {
 
     PIM/PICML/interpreters/IDLImporter
     $(COSMIC_ROOT)/Utils/Utils.mpc
+    $(COSMIC_ROOT)/Utils/xercesc
 
     //PIM/WSML/interpreters/Interpreters.mwc
   }

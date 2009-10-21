@@ -3,7 +3,7 @@
 
 #include "xme_dom_visitor.h"
 #include "be_extern.h"
-#include "XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 bool
 xme_dom_visitor::visit_root (DOMElement *node)
@@ -21,7 +21,7 @@ xme_dom_visitor::visit_children (DOMElement *node)
   for (XMLSize_t index = 0; index < children->getLength (); ++index)
     {
       DOMNode *child = children->item (index);
-      
+
       if (0 == child)
         {
           continue;
@@ -47,24 +47,24 @@ xme_dom_visitor::visit_children (DOMElement *node)
                                "unhandled DOM node type\n"),
                               false);
         }
-      
-      // No need for an error message - it is generated at a lower level.  
+
+      // No need for an error message - it is generated at a lower level.
       if (!is_good)
         {
           return false;
         }
-       
+
       // If we have removed an element, it will be reflected immediately
-      // in the list of children, so we must adjust the iteration.  
+      // in the list of children, so we must adjust the iteration.
       XMLSize_t newlength = children->getLength ();
-      
+
       if (oldlength != newlength)
         {
           oldlength = newlength;
           --index;
         }
     }
-    
+
   return is_good;
 }
 
@@ -72,7 +72,7 @@ bool
 xme_dom_visitor::visit_dom_element (DOMElement *node)
 {
   const XMLCh *tag = node->getTagName ();
-  
+
   if (X ("model") == tag)
     {
       return this->visit_gme_model (node);

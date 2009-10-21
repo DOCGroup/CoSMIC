@@ -414,16 +414,16 @@ void RawComponent::handle_pending (void)
 // set_property_datatype
 //
 void RawComponent::
-set_property_datatype (GME::Model & property, const GME::FCO & type)
+set_property_datatype (GME::Model & prop, const GME::FCO & type)
 {
   // We need to make sure there isn't a data type already
-  // present in the target property.
+  // present in the target prop.
   Reference_Set datatypes;
   GME::Reference datatype;
 
-  if (property.references ("DataType", datatypes) == 0)
+  if (0 == prop.children ("DataType", datatypes))
   {
-    datatype = GME::Reference::_create ("DataType", property);
+    datatype = GME::Reference::_create ("DataType", prop);
   }
   else
   {
@@ -460,23 +460,23 @@ verify_property_datatype (GME::ConnectionPoint & attr,
 {
   // Get the own of this connection. If this is an AttributeValue
   // connection, then we should continue walking the connection
-  // until we get to the property.
+  // until we get to the prop.
   GME::Connection attr_value = GME::Connection::_narrow (attr.owner ());
 
   if (attr_value.meta ().name () == "AttributeValue")
   {
     // We need to find the 'dst' connection point in this collection.
-    // It will point to the target property model.
+    // It will point to the target prop model.
     GME::ConnectionPoints connpoints;
     attr_value.connection_points (connpoints);
 
-    // Get the property element from the connection. It will be
+    // Get the prop element from the connection. It will be
     // the 'dst' connection point.
-    GME::Model property =
+    GME::Model prop =
       GME::Model::_narrow (connpoints["dst"].target ());
 
-    // Set the data type for the property.
-    set_property_datatype (property, attr_type);
+    // Set the data type for the prop.
+    set_property_datatype (prop, attr_type);
   }
 }
 
@@ -580,7 +580,7 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
       GME::FCO attr_type;
       Reference_Set attr_members;
 
-      if (attr.references ("AttributeMember", attr_members) == 1)
+      if (1 == attr.children ("AttributeMember", attr_members))
       {
         // Let's get the data type of the attribute. Since there
         // is only 1 attribute member, we can just get the front
@@ -589,17 +589,17 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
       }
 
       // We have the destination connection point. This should
-      // be a property in an assembly.
-      GME::Model property =
+      // be a prop in an assembly.
+      GME::Model prop =
         GME::Model::_narrow (connpoints["dst"].target ());
 
       // Set the name of the Property. We want to ensure the name
-      // to the property matches the name of the attribute.
-      if (property.name () != attr.name ())
-        property.name (attr.name ());
+      // to the prop matches the name of the attribute.
+      if (prop.name () != attr.name ())
+        prop.name (attr.name ());
 
       if (attr_type)
-        this->set_property_datatype (property, attr_type);
+        this->set_property_datatype (prop, attr_type);
     }
   }
 }

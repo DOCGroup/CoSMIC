@@ -7,9 +7,9 @@ project : vc8warnings, boost_base  {
   includes += $(COSMIC_ROOT)
   libpaths += $(COSMIC_ROOT)/lib
 
-  macros   += _CRT_SECURE_NO_WARNINGS
-
   specific (prop:microsoft) {
+    macros   += _CRT_SECURE_NO_WARNINGS
+
     DisableSpecificWarnings += 4251 4180
   }
 }

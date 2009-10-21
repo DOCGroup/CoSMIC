@@ -1,10 +1,9 @@
-/* -*- c++ -*- */
 // $Id$
 
 #include "removing_visitor.h"
 #include "removing_closure_visitor.h"
 #include "be_extern.h"
-#include "XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 removing_visitor::removing_visitor (void)
   : id_holder_ (0)

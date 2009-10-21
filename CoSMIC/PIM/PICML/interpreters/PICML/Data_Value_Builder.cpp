@@ -81,7 +81,7 @@ build_aggregate (const std::string & name,
   typedef GME::Collection_T <GME::Reference> Member_Set;
   Member_Set members;
 
-  if (aggregate.references ("Member", members) > 0)
+  if (aggregate.children ("Member", members) > 0)
   {
     Member_Set::iterator
       iter = members.items ().begin (),
@@ -107,7 +107,7 @@ build_aggregate (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_event (const std::string & name,
-             const GME::Model & event,
+             const GME::Model & evt,
              PICML_Data_Value * & value,
              PICML_Data_Value * parent)
 {
@@ -117,7 +117,7 @@ build_event (const std::string & name,
   typedef GME::Collection_T <GME::Reference> Member_Set;
   Member_Set members;
 
-  if (event.references ("Member", members) > 0)
+  if (evt.children ("Member", members) > 0)
   {
     Member_Set::iterator
       iter = members.items ().begin (),
@@ -195,7 +195,7 @@ build_enum (const std::string & name,
   typedef GME::Collection_T <GME::Atom> EnumValue_Set;
   EnumValue_Set opts;
 
-  if (e.atoms ("EnumValue", opts) > 0)
+  if (e.children ("EnumValue", opts) > 0)
   {
     EnumValue_Set::iterator
       iter = opts.items ().begin (),

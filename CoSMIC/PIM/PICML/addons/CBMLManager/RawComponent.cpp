@@ -453,7 +453,7 @@ handle_objevent_modelopen (GME::Object & obj)
       reference_set_type refs;
 
       // Cache information about the workers in this component.
-      model.references ("WorkerType", refs);
+      model.children ("WorkerType", refs);
       std::for_each (refs.begin (),
                      refs.end (),
                      boost::bind (&RawComponent::cache_worker_type,
@@ -508,7 +508,7 @@ void RawComponent::resolve_output_action (GME::FCO & action)
   GME::Collection_T <GME::Reference> refs;
   GME::Model model = action.parent_model ();
 
-  if (model.references ("OutEventPort", refs))
+  if (model.children ("OutEventPort", refs))
   {
     if (refs.size () == 1)
     {

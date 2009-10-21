@@ -47,54 +47,9 @@ namespace GME
      */
     size_t fcos (GME::Collection_T <FCO> & fcos);
 
-    /**
-     * Get all the FCOs of a particular \a type.
-     *
-     * @param[in]   type      The target type.
-     * @param[out]  fcos      Collection of FCOs of the specified \a type.
-     * @return      Number of FCOs returned \a fcos.
-     */
-    size_t fcos (const std::string & type,
-                 GME::Collection_T <FCO> & fcos) const;
-
-    /**
-     * Get all the atoms of a particular \a type.
-     *
-     * @param[in]   type      The target type.
-     * @return      Collection of atoms of the specified \a type.
-     */
-    size_t atoms (const std::string & type,
-                  GME::Collection_T <Atom> & atoms) const;
-
-    /**
-     * Get all the models of a particular \a type.
-     *
-     * @param[in]   type      The target type.
-     * @param[out]  models    Collection of models of the specified \a type.
-     * @return      Number of elements in \a models.
-     */
-    size_t models (const std::string & type,
-                   GME::Collection_T <Model> & models) const;
-
-    /**
-     * Get all the sets of a particular \a type.
-     *
-     * @param[in]   type      The target type.
-     * @param[out]  sets      Collection of sets of the specified \a type.
-     * @return      Number of elements in \a sets.
-     */
-    size_t sets (const std::string & type,
-                 GME::Collection_T <Set> & sets) const;
-
-    /**
-     * Get all the references of a particular \a type.
-     *
-     * @param[in]   type      The target type.
-     * @param[out]  refs      Collection of references of the specified \a type.
-     * @return      Number of elements in \a refs.
-     */
-    size_t references (const std::string & type,
-                       GME::Collection_T <Reference> & refs) const;
+    template <typename CHILD>
+    size_t children (const std::string & type,
+                     GME::Collection_T <CHILD> & children) const;
 
     /**
      * Helper method to get the correct implementation.
@@ -120,15 +75,6 @@ namespace GME
      * @param[in]       type    The source object.
      */
     Folder_Model_T (const Folder_Model_T & type);
-
-    /// Helper method that gets the children of a specified \a type
-    /// and returns them as the specified GME type (i.e., Model, FCO,
-    /// Atom, and etc). This function can only be used by folders and
-    /// models. All other will not compile since they do not define
-    /// the appropriate methods.
-    template <typename T2>
-    size_t get_children (const std::string & type,
-                         GME::Collection_T <T2> & children) const;
 
     /// Cached pointer to the implementation.
     mutable ATL::CComPtr <T> type_;

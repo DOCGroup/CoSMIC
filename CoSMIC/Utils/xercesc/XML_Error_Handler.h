@@ -16,7 +16,7 @@
 #define _COSMIC_UTILS_ERROR_ERROR_HANDLER_H_
 
 #include "xercesc/sax/HandlerBase.hpp"
-#include "Utils_export.h"
+#include "Xerces_Utils_export.h"
 
 using xercesc::DOMError;
 
@@ -26,29 +26,31 @@ namespace Utils
   * @class XML_Error_Hander
   *
   * @brief Error handler for XERCES
-  *
   */
-class Utils_Export  XML_Error_Handler
+class COSMIC_XERCES_UTILS_Export  XML_Error_Handler
   : public xercesc::HandlerBase
 {
 public:
-
+  /// Default constructor.
   XML_Error_Handler (void);
 
+  /// Destructor.
   ~XML_Error_Handler (void);
 
   bool handleError (const DOMError& domError);
 
+  /// Reset the error flag.
   void resetErrors (void);
 
   bool getErrors(void) const;
 
 private :
+  /// Flag that determines if there are errors.
+  bool errors_;
+
   // Disallow copying
   XML_Error_Handler (const XML_Error_Handler&);
   XML_Error_Handler& operator= (const XML_Error_Handler&);
-
-  bool errors_;
 };
 
 }

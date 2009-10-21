@@ -38,7 +38,7 @@
 #include "nr_extern.h"
 #include "fe_extern.h"
 
-#include "XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 #include "ace/OS_NS_stdio.h"
 #include "ace/OS_NS_unistd.h"
@@ -3023,11 +3023,11 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
       ACE_CString filename (idl_global->filename ()->get_string ());
       ACE_CString cwd (filename.substr (0, filename.rfind ('/')));
       ACE_OS::chdir (cwd.c_str ());
-      
-      char *relpath = idl_global->included_idl_files ()[i]; 
+
+      char *relpath = idl_global->included_idl_files ()[i];
       char abspath[MAXPATHLEN] = "";
       char *fullpath = ACE_OS::realpath (relpath, abspath);
-      
+
       for (unsigned long j = 0; fullpath[j] != '\0'; ++j)
         {
           if (fullpath[j] == '\\')
@@ -3035,7 +3035,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
               fullpath[j] = '/';
             }
         }
-      
+
       ACE_CString fname (fullpath);
       int pos = fname.rfind ('/');
       ACE_CString lname =
@@ -3154,7 +3154,7 @@ adding_visitor::add_include_elements (UTL_Scope *container, DOMElement *parent)
             );
         }
     }
-    
+
   ACE_OS::chdir (cwd_path);
 }
 
