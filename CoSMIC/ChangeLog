@@ -1,9 +1,23 @@
+Wed Oct 21 18:05:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+          Disabled DescendantKinds concept checking in LEESA.
+        
+        * README:
+        * RELEASE:
+        * RELEASE-NOTES:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Removed the .rtf files and converted them into plain-text.
+
 Mon Oct 19 23:07:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * ChangeLog:
         * ChangeLogs/ChangeLog-09:
 
-          . CoSMIC version 0.7.4 was released. Moved the ChangeLog 
+          . CoSMIC version 0.7.4 was released. Moved the ChangeLog
             to ChangeLogs/ChangeLog-09.
 
 Local Variables:

@@ -63,8 +63,8 @@ struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
   SUPER_TYPEDEFS(Super);
 	typedef typename ChainExpr<L, DescendantOp> expression_type;
 
-  BOOST_CONCEPT_ASSERT((LEESA::
-    DescendantKindConcept<argument_kind, result_kind, Customizer>));
+  //BOOST_CONCEPT_ASSERT((LEESA::
+  //  DescendantKindConcept<argument_kind, result_kind, Customizer>));
 
 protected:
   result_type retval_;
@@ -136,8 +136,8 @@ public:
   result_type operator () (argument_type const & arg)
   {
     Accumulate acc(retval_);
-    evaluate(arg, argument_kind() 
-      >> FullTD(argument_kind(), acc, FastDescendants()));
+    //evaluate(arg, argument_kind() >> FullTD(argument_kind(), acc, FastDescendants()));
+	evaluate(arg, argument_kind() >> FullTD(argument_kind(), acc));
     return retval_;
   }
 };
@@ -287,7 +287,7 @@ DescendantsOf (L, H)
 {                                                                    
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));         
+  //BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));         
                                                                      
 	typedef typename ET<L>::argument_type argument_type;               
 	typedef typename ET<H>::result_type result_type;                   

@@ -1,0 +1,101 @@
+
+This file documents the CoSMIC release procedure
+
+1. Obtain a summary of the enhancements and respective contact information.
+   Update the RELEASE-NOTES, README files.
+
+2. Obtain a summary of user-visible changes and update the NEWS file.
+
+3. Update the CoSMIC release version in the following files in the CoSMIC 
+   repo.
+   
+   $(COSMIC_ROOT)/VERSION
+   $(COSMIC_ROOT)/NEWS
+   $(COSMIC_ROOT)/RELEASE-NOTES
+   $(COSMIC_ROOT)/README
+   $(COSMIC_ROOT)/Installer/CoSMIC_Installer/CoSMIC_Installer.wxs
+
+4. This is a TEMPORARY step. It must reverted as soon as a tag is 
+   created. Update the svn:externals properties of $(COSMIC_ROOT)/contrib 
+   directory with the latest revision that is being used. This is done 
+   using -r ##### at the beginning of each svn URL set in the svn:externals 
+   property. For example, update the property that looks like below
+   
+   svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+   svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+
+   TO
+   
+   -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+   -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+   
+   where ##### is the revision number of CCF and utility at the time of making 
+   CoSMIC release.
+   
+   After tagging, remeber to bring the svn:externals property back to how it 
+   was earlier. This will ensure that the latest and greatest changes from 
+   the external repositories are obtained everytime you update. The purpose
+   of this temporary update is to peg the revision number in the release tag.
+
+5. Update the ChangeLog. For example, in $(COSMIC_ROOT) run the following 
+   command.
+
+   cle.pl ChangeLog "PQR XYZ" XYZ@nospam
+
+   In the ChangeLog mention the revision of the external repositories being 
+   used. For example,
+   
+   CCF -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+   utility -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+   
+6. Create a tag. For example,
+
+   svn cp https://svn.dre.vanderbilt.edu/CoSMIC/trunk 
+          https://svn.dre.vanderbilt.edu/CoSMIC/tags/CoSMIC-0.7.4 
+          -m "Tagging for CoSMIC release 0.7.4" 
+
+7. Bring the svn:externals property back to the HEAD revision. Remove 
+   any -r ##### from the property.
+         
+8. Prepare a fresh ChangeLog file to be used after the release. Move the 
+   existing ChangeLog file to ChangeLogs/ChangeLog-##. Fresh ChangeLog file 
+   looks like the one below.
+   
+   Mon Oct 19 23:07:02 UTC 2009  PQR XYZ  <XYZ@nospam>
+   
+      * ChangeLog:
+      * ChangeLogs/ChangeLog-09:
+
+      . CoSMIC version 0.7.4 was released. Moved the ChangeLog 
+        to ChangeLogs/ChangeLog-09.
+
+   Local Variables:
+   mode: change-log
+   add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+   indent-tabs-mode: nil
+   End:
+
+9. Check the changes to the ChangeLog and svn:externals back in the repo.
+   
+10. Update the WWW repository. The subversion URL for WWW repo is:
+    https://svn.dre.vanderbilt.edu/DOC/WWW/trunk
+
+   o  Obtain the latest CoSMIC installers from the nightly build machines.
+   
+   o  Check in the latest CoSMIC installers in the subvesion repository
+      under WWW/COSMIC/downloads/beta/GME_#_#_#
+      
+   o  Update the md5sum of every installer using the md5sum command.
+   
+   o  Copy the old installers under WWW/COSMIC/downloads/old and check 
+      them in the subversion repository.
+   
+   o  Remove the unwanted installers from the GME_#_#_# direcotry.
+
+11. Update the CoSMIC release version in the following files in the WWW
+    repo.
+    WWW/COSMIC/html/download.html
+    Make sure that the hyperlinks in download.html are valid.
+
+  
+Last modified: Wed, Oct 21, 2009
