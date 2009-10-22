@@ -1,3 +1,9 @@
+Thu Oct 22 18:44:21 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * includes/includes.wxs:
+
+          Missing file.
+
 Thu Oct 22 05:34:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
