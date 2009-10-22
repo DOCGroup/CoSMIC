@@ -1,3 +1,21 @@
+Thu Oct 22 05:34:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+
+          The names of README, RELEASE-NOTES, and RELEASE files
+          had not been changed from their old names.
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Added /includes/GME to the installer.
+
+        * Release.mwc:
+        * Release_idl_to_picml.mwc:
+        * Utils/Utils.wxs:
+
+          Added the CoSMIC utilities for Xerces
+
 Thu Oct 22 03:08:50 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/cosmic_xerces_utils.mpb:

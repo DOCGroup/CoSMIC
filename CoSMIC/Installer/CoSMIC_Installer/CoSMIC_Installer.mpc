@@ -25,6 +25,7 @@ project (CoSMIC_Installer) : wix {
       ./vc8_assemblies.wxs
     }
 
+    $(COSMIC_ROOT)/includes/includes.wxs
     $(COSMIC_ROOT)/Utils/Utils.wxs
     $(COSMIC_ROOT)/Utils/LEESA/LEESA.wxs
     $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs

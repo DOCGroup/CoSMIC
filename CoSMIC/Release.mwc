@@ -5,6 +5,8 @@ workspace : cosmic_common {
 
   Utils/Utils.mpc
   Utils/GAME
+  Utils/xercesc
+
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
 

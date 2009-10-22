@@ -10,7 +10,6 @@ workspace : cosmic_common {
     $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
 
     PIM/PICML/interpreters/IDLImporter
-    $(COSMIC_ROOT)/Utils/Utils.mpc
     $(COSMIC_ROOT)/Utils/xercesc
 
     //PIM/WSML/interpreters/Interpreters.mwc

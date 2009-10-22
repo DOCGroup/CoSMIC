@@ -10,6 +10,11 @@
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\Utils.dll' />
 
+        <File Id='CoSMIC_Xerces_Utils.dll'
+              Name='CoSMIC_Xerces_Utils.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\CoSMIC_Xerces_Utils.dll' />
+
 <?if $(var.type) = vc71 ?>
         <File Id='UtilsdDLL'
               Name='Utilsd.dll'

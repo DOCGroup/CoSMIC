@@ -13,6 +13,7 @@
       <ComponentRef Id='PICMLParadigmIcons' />
       <ComponentRef Id='PICMLLibrary'/>
       <ComponentRef Id='UtilsLibrary'/>
+      <ComponentRef Id='GMEIncludes'/>
       <ComponentRef Id='PICMLDecoratorLibrary' />
       <ComponentRef Id='PICMLManagerLibrary' />
       <ComponentRef Id='PICMLManagerRegistry' />
