@@ -10,7 +10,6 @@ workspace : cosmic_common {
   // -- build the interpreters, addons, and decorators
   PIM/PICML/addons
   PIM/PICML/decorators/Decorators.mwc
-  PIM/PICML/utils
   PIM/PICML/interpreters/Interpreters.mwc
 
   // -- build the contributions
