@@ -34,7 +34,6 @@ project (GAME) : acelib, cosmic_common {
     Interpreter.cpp
     Model.cpp
     Object.cpp
-    Point.cpp
     Project.cpp
     Reference.cpp
     RegistryNode.cpp
@@ -54,6 +53,7 @@ project (GAME) : acelib, cosmic_common {
     Visitor.cpp
 
     utils/Project_Settings.cpp
+    utils/Point.cpp
   }
 
   Template_Files {

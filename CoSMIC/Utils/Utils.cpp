@@ -157,4 +157,15 @@ std::string CreateUuid (void)
   return std::string (uuid.to_string ()->c_str ());
 }
 
+//
+// ValidUuid
+//
+bool ValidUuid (const std::string & uuid_str)
+{
+  ACE_Utils::UUID uuid;
+  uuid.from_string (uuid_str.c_str ());
+
+  return uuid != ACE_Utils::UUID::NIL_UUID;
+}
+
 } // namespace PICML

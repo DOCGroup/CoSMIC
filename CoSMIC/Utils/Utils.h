@@ -54,6 +54,14 @@ Utils_Export
 bool CreatePath (const std::string & path, char separator = '\\');
 
 /**
+ * Determine if a UUID is valid.
+ *
+ * @param[in]       uuid        UUID in question
+ */
+Utils_Export
+bool ValidUuid (const std::string & uuid);
+
+/**
  * Helper method to create a new UUID. The genereate UUID is
  * spec-compliant.
  *

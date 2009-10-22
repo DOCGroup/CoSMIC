@@ -12,6 +12,7 @@
 #include "game/MetaFCO.h"
 #include "game/Model.h"
 #include "game/Object.h"
+#include "game/utils/Point.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <sstream>
@@ -381,14 +382,15 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
   else if (metaname == "OutputAction")
     this->resolve_output_action (action);
 
-  GME::Point position;
+  Utils::Point position;
 
   if (this->active_state_)
   {
     // Align newly created action with previous state.
-    position = this->active_state_.position ("Behavior");
+    GME::position ("Behavior", this->active_state_, position);
     position.shift (OFFSET_X, OFFSET_Y);
-    action.position ("Behavior", position);
+
+    GME::position ("Behavior", position, action);
 
     // Create a connection between the <active_state_> and the <action>.
     std::string transition_type;
@@ -419,11 +421,11 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
 
   // Get the position of the action, if not already set.
   if (!this->active_state_)
-    position = action.position ("Behavior");
+    GME::position ("Behavior", action, position);
 
   // Align the <state> to the right of the <action>.
   position.shift (OFFSET_X, -OFFSET_Y);
-  state.position ("Behavior", position);
+  GME::position ("Behavior", position, state);
 }
 
 //

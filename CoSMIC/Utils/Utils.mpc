@@ -10,6 +10,7 @@ project (CoSMIC_Utils) : acelib, cosmic_common {
 
   Source_Files {
     Utils.cpp
+    Point.cpp
   }
 
   Header_Files {

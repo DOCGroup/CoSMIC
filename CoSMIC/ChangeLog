@@ -1,3 +1,39 @@
+Thu Oct 22 18:53:05 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/utils/Point.h:
+        * Utils/GAME/game/utils/Point.cpp:
+
+          The FCO no longer has a position () method. It is now
+          defined as a stand-alone function.
+
+        * Utils/Point.h:
+        * Utils/Point.inl:
+        * Utils/Point.cpp:
+        * Utils/Utils.h:
+        * Utils/Utils.mpc:
+        * Utils/Utils.cpp:
+
+          Refactored the code so that the Point class is now part of
+          the utility library.
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          Updated the interpreter to use the new Point class.
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Bug fix where changing the value of a UUID resulted
+          in the add-on entering an infinite loop.
+
+        * Utils/GAME/game/Point.h:
+        * Utils/GAME/game/Point.inl:
+        * Utils/GAME/game/Point.cpp:
+
+          Removed these files.
+
 Thu Oct 22 18:46:11 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * picml.mwc:
