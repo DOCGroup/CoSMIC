@@ -1,12 +1,14 @@
-//$Id$
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+#include "RTConfigurationVisitor.h"
+
 #include <algorithm>
 #include <functional>
 #include <sstream>
-#include "RTConfiguration/RTConfigurationVisitor.h"
-
 
 #include "UmlExt.h"
-#include "Utils/Utils.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;

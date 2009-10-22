@@ -1,5 +1,8 @@
-// -*- C++ -*-
-// $Id:$
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+
 #include "SecurityQoSDumper.h"
 
 #include <algorithm>
@@ -7,7 +10,6 @@
 #include <sstream>
 
 #include "UmlExt.h"
-#include "Utils/Utils.h"
 #include "common.h"
 
 using xercesc::LocalFileFormatTarget;
@@ -21,7 +23,7 @@ using xercesc::DOMText;
 using Utils::XStr;
 using Utils::CreateUuid;
 
-namespace CQML 
+namespace CQML
   {
     SecurityQoSDumper::SecurityQoSDumper (const std::string& output_path)
       : DOMBuilder (output_path)
@@ -34,9 +36,9 @@ namespace CQML
         this->initTarget (name);
         this->initDocument ("CIAO:SecurityQoSRequirements");
         this->initRootAttributes(); // this->curr_ is ROOT now.
- 
+
         for (Interface2Operations2RightsMap::iterator itr = iface2op2rts_map.begin();
-              itr != iface2op2rts_map.end();          
+              itr != iface2op2rts_map.end();
               itr++)
           {
             Object object = itr->first;
@@ -47,7 +49,7 @@ namespace CQML
             Operation2RightsSet op2rts_set = itr->second;
 
             for (Operation2RightsSet::iterator itr1=op2rts_set.begin();
-                  itr1 != op2rts_set.end();          
+                  itr1 != op2rts_set.end();
                   itr1++)
               {
                 OperationBase opn = itr1->first;
@@ -69,19 +71,19 @@ namespace CQML
         this->initTarget (name);
         this->initDocument ("CIAO:SecurityQoSRequirements");
         this->initRootAttributes(); // this->curr_ is ROOT now.
- 
+
         for (Role2RightsMap::iterator itr = role2rights_map.begin();
-              itr != role2rights_map.end();          
+              itr != role2rights_map.end();
               itr++)
           {
             Role role = itr->first;
             GrantedRights gr = itr->second;
-            
+
             Auto_DOM dom (*this, "security-role-mapping");
             dom.curr()->setAttribute (XStr("role-name"), XStr (std::string (role.name ())));
             dom.curr()->setAttribute (XStr("granted-rights"), XStr (this->getRightsString(gr)));
           }
-        this->dumpDocument();      
+        this->dumpDocument();
       }
 
 
@@ -92,9 +94,9 @@ namespace CQML
         this->initTarget (name);
         this->initDocument ("CIAO:SecurityQoSRequirements");
         this->initRootAttributes(); // this->curr_ is ROOT now.
-    
+
         for (PoliciesMap::iterator policy_itr = policies_map.begin();
-              policy_itr != policies_map.end();          
+              policy_itr != policies_map.end();
               ++policy_itr)
           {
             Policy policy = policy_itr->first;
@@ -103,13 +105,13 @@ namespace CQML
             Auto_DOM dom (*this, "security-policy");
             dom.curr()->setAttribute (XStr("policy-name"), XStr (std::string (policy.name ())));
             for (RuleSet::iterator rule_itr=rules_set.begin();
-                  rule_itr != rules_set.end();          
+                  rule_itr != rules_set.end();
                   ++rule_itr)
               {
                 generateRule (*rule_itr);
               }
           }
-        this->dumpDocument();      
+        this->dumpDocument();
       }
 
     void SecurityQoSDumper::generateRule (Rule &rule)
@@ -119,15 +121,15 @@ namespace CQML
 
         Auto_DOM dom (*this, "security-rule");
         dom.curr()->setAttribute (XStr("rule-name"), XStr (std::string (rule_base.name())));
-        
+
         DOMElement *role_elm = this->doc_->createElement(XStr ("security-role"));
         role_elm->setAttribute (XStr("role-name"), XStr (std::string (role.name ())));
         dom.curr()->appendChild (role_elm);
-        
+
         Udm::Object target = rule.target_;
         DOMElement *target_elm = this->doc_->createElement(XStr ("resource"));
         // Generate rule specific info
-        
+
         if (rule_base.type() == PortRule::meta)
           {
             generatePortRule (rule);
@@ -137,7 +139,7 @@ namespace CQML
                 target_elm->setAttribute (XStr("Port"), XStr (std::string (obj.name ())));
               }
           }
-        else if (rule_base.type() == ComponentRule::meta) 
+        else if (rule_base.type() == ComponentRule::meta)
           {
             generateComponentRule (rule);
             if (Udm::null != target && Udm::IsDerivedFrom (target.type(), Component::meta))
@@ -147,7 +149,7 @@ namespace CQML
                 dom.curr()->setAttribute (XStr("id"), XStr (std::string (comp.UUID ())));
               }
           }
-        else if (rule_base.type() == AssemblyRule::meta) 
+        else if (rule_base.type() == AssemblyRule::meta)
           {
             generateAssemblyRule (rule);
             if (Udm::null != target && Udm::IsDerivedFrom (target.type(), ComponentAssembly::meta))
@@ -181,7 +183,7 @@ namespace CQML
                 OperationSet op_set = OperationSet::Cast (action);
                 std::set<OperationRef> opref_set = op_set.OperationRef_kind_children ();
                 for (std::set<OperationRef>::iterator itr=opref_set.begin();
-                      itr != opref_set.end();          
+                      itr != opref_set.end();
                       itr++)
                   {
                     OperationRef op_ref = (*itr);
@@ -196,7 +198,7 @@ namespace CQML
             else if (Udm::IsDerivedFrom (action.type(), RequiredRights::meta))
               {
                 RequiredRights rr = RequiredRights::Cast (action);
-                // Get the interface        
+                // Get the interface
                 if (Udm::null != rule.target_ && Udm::IsDerivedFrom (rule.target_.type(), Object::meta))
                   {
                     Object object = Object::Cast (rule.target_);
@@ -217,7 +219,7 @@ namespace CQML
                                 DOMElement *op_elm = this->doc_->createElement(XStr ("Operation"));
                                 op_elm ->setAttribute (XStr("name"), XStr (std::string (op_base.name ())));
                                 this->curr_->appendChild (op_elm);
-                              }              
+                              }
                           }
                       }
                   }
@@ -250,12 +252,12 @@ namespace CQML
     std::string SecurityQoSDumper::getRightsString (const CQML::Rights& rights)
       {
         std::string rights_str="";
-        rights_str = std::string (rights.get()?"g":"_") 
-                + std::string (rights.set()?"s":"_") 
-                + std::string (rights.use()?"u":"_") 
+        rights_str = std::string (rights.get()?"g":"_")
+                + std::string (rights.set()?"s":"_")
+                + std::string (rights.use()?"u":"_")
                 + std::string (rights.manage()?"m":"_");
         return rights_str;
-      }  
+      }
 
     void SecurityQoSDumper::dumpPermissions (const SecurityQoSRequirements& secqos_req)
       {
@@ -322,7 +324,7 @@ namespace CQML
                         outfile << "Assembly Target "<<assm.name()<<"\n";
                       }
                   }
-                
+
                 for (RuleSet::iterator rule_itr = rule_set.begin();
                       rule_itr != rule_set.end();
                       rule_itr++)
@@ -332,7 +334,7 @@ namespace CQML
                     if (rule.target_ == target)
                       {
                         outfile << "Rule "<<rule.rule_base_.name()<<"\n";
-                        Auto_DOM dom1 (*this, "role-permission");  
+                        Auto_DOM dom1 (*this, "role-permission");
                         dom1.curr()->setAttribute (XStr("role-name"), XStr (std::string (rule.role_.name())));
 
                         if (rule.rule_base_.allow())
@@ -349,11 +351,11 @@ namespace CQML
                           {
                             generatePortRule (rule);
                           }
-                        else if (rule.rule_base_.type() == ComponentRule::meta) 
+                        else if (rule.rule_base_.type() == ComponentRule::meta)
                           {
                             generateComponentRule (rule);
                            }
-                        else if (rule.rule_base_.type() == AssemblyRule::meta) 
+                        else if (rule.rule_base_.type() == AssemblyRule::meta)
                           {
                             generateAssemblyRule (rule);
                           }
@@ -361,6 +363,6 @@ namespace CQML
                   }
               }
           }
-         this->dumpDocument(); 
+         this->dumpDocument();
       }
   }

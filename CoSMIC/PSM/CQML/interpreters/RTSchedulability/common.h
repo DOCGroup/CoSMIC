@@ -1,5 +1,6 @@
 // -*- C++ -*-
-// $Id:$
+// $Id$
+
 #ifndef __COMMON_H_
 #define __COMMON_H_
 
@@ -15,10 +16,6 @@
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
-#include "UmlExt.h"
-#include "Utils/Utils.h"
-#include "Utils/XercesString.h"
-
 namespace CQML
   {
     using xercesc::DOMImplementation;
@@ -28,10 +25,7 @@ namespace CQML
     using xercesc::XMLFormatTarget;
     using xercesc::LocalFileFormatTarget;
 
-    using Utils::XStr;
-    using Utils::CreateUuid;
-  
-    extern std::ofstream outfile;         
+    extern std::ofstream outfile;
 
     template<class T, class Comp>
     bool member(T x, std::set<T,Comp>& s)
@@ -46,7 +40,7 @@ namespace CQML
           virtual ~DOMBuilder ();
           inline virtual void push();
           inline virtual void pop();
-          inline virtual DOMDocument *doc ();    
+          inline virtual DOMDocument *doc ();
           inline virtual DOMElement *curr ();
           inline virtual void curr (DOMElement *elem);
           virtual void init();
@@ -72,7 +66,7 @@ namespace CQML
         Auto_DOM (DOMBuilder& b, std::string tag);
         Auto_DOM (DOMBuilder& b, DOMElement *e);
         ~Auto_DOM ();
-  
+
         DOMElement* curr ();
 
     private:
@@ -96,9 +90,9 @@ namespace CQML
       std::string src;
       std::string dest;
     };
-  
+
   //typedef std::multimap <RTSchedulability, ConnectionInfo> RTSchedulabilityRequirements;
-  
+
   }
 
 #endif  // __COMMON_H_

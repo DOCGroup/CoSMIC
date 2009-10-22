@@ -15,8 +15,6 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "Utils/XercesString.h"
-#include "Utils/Utils.h"
 #include "DeploymentPlanFramework/DeploymentPlanFramework_Export.h"
 #include "DeploymentPlanFramework/Injector.h"
 
@@ -38,10 +36,10 @@ namespace CQML
 
     DeploymentPlanFramework_Export void init();
     DeploymentPlanFramework_Export void initTarget (const std::string& fileName);
-	  DeploymentPlanFramework_Export void initNodeRefName (const std::string& nodeRefName);
-	  DeploymentPlanFramework_Export std::string retNodeRefName ();
-	  DeploymentPlanFramework_Export void initcgName (const std::string& cgName);
-	  DeploymentPlanFramework_Export std::string retcgName ();
+    DeploymentPlanFramework_Export void initNodeRefName (const std::string& nodeRefName);
+    DeploymentPlanFramework_Export std::string retNodeRefName ();
+    DeploymentPlanFramework_Export void initcgName (const std::string& cgName);
+    DeploymentPlanFramework_Export std::string retcgName ();
     DeploymentPlanFramework_Export void initDocument (const std::string& rootName);
     DeploymentPlanFramework_Export void initRootAttributes();
     DeploymentPlanFramework_Export void dumpDocument();
@@ -57,9 +55,9 @@ namespace CQML
 
     // Predefined Types
     DeploymentPlanFramework_Export virtual void Visit_LongInteger(const LongInteger&);
-  	DeploymentPlanFramework_Export virtual void Visit_Byte(const Byte&);
+    DeploymentPlanFramework_Export virtual void Visit_Byte(const Byte&);
     DeploymentPlanFramework_Export virtual void Visit_String(const String&);
-	  DeploymentPlanFramework_Export virtual void Visit_RealNumber(const RealNumber&);
+    DeploymentPlanFramework_Export virtual void Visit_RealNumber(const RealNumber&);
     DeploymentPlanFramework_Export virtual void Visit_Boolean(const Boolean&);
     DeploymentPlanFramework_Export virtual void Visit_ShortInteger(const ShortInteger&);
 
@@ -106,26 +104,26 @@ namespace CQML
     DeploymentPlanFramework_Export virtual void Visit_ComponentPackageReference(const ComponentPackageReference&);
 
     DeploymentPlanFramework_Export virtual void Visit_ComponentImplementations(const ComponentImplementations&);
-	  DeploymentPlanFramework_Export virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
+    DeploymentPlanFramework_Export virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
     DeploymentPlanFramework_Export virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
     DeploymentPlanFramework_Export virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
     DeploymentPlanFramework_Export virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-	  DeploymentPlanFramework_Export virtual void update_connections(const ComponentAssembly&);
-	  DeploymentPlanFramework_Export virtual void update_parent_connections(const ComponentAssembly&);
-	  DeploymentPlanFramework_Export virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-	  DeploymentPlanFramework_Export virtual void Visit_DeploymentPlan(const DeploymentPlan&);
+    DeploymentPlanFramework_Export virtual void update_connections(const ComponentAssembly&);
+    DeploymentPlanFramework_Export virtual void update_parent_connections(const ComponentAssembly&);
+    DeploymentPlanFramework_Export virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
+    DeploymentPlanFramework_Export virtual void Visit_DeploymentPlan(const DeploymentPlan&);
     DeploymentPlanFramework_Export virtual void Visit_DeploymentPlans(const DeploymentPlans&);
-	  DeploymentPlanFramework_Export virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
-	  DeploymentPlanFramework_Export virtual void Visit_Implements(const Implements&);
-	  DeploymentPlanFramework_Export virtual void Visit_ConfigProperty(const ConfigProperty&);
-	  DeploymentPlanFramework_Export virtual void Visit_publish(const publish&);
-	  DeploymentPlanFramework_Export virtual void Visit_PublishConnector(const PublishConnector&);
+    DeploymentPlanFramework_Export virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
+    DeploymentPlanFramework_Export virtual void Visit_Implements(const Implements&);
+    DeploymentPlanFramework_Export virtual void Visit_ConfigProperty(const ConfigProperty&);
+    DeploymentPlanFramework_Export virtual void Visit_publish(const publish&);
+    DeploymentPlanFramework_Export virtual void Visit_PublishConnector(const PublishConnector&);
     DeploymentPlanFramework_Export virtual void Visit_deliverTo(const deliverTo&);
     DeploymentPlanFramework_Export virtual void Visit_emit(const emit&);
     DeploymentPlanFramework_Export virtual void Visit_invoke(const invoke&);
 
 
-	//
+  //
     DeploymentPlanFramework_Export virtual void Visit_ComponentPackage(const ComponentPackage&){};
     DeploymentPlanFramework_Export virtual void Visit_ComponentPackages(const ComponentPackages&){};
     DeploymentPlanFramework_Export virtual void Visit_Implementation(const Implementation&){};
@@ -135,14 +133,14 @@ namespace CQML
     DeploymentPlanFramework_Export virtual void Visit_PackageInterface(const PackageInterface&){};
     DeploymentPlanFramework_Export virtual void Visit_InfoProperty(const InfoProperty&){};
 
-	//
-	  DeploymentPlanFramework_Export virtual void Visit_Requirement(const Requirement&){};
+  //
+    DeploymentPlanFramework_Export virtual void Visit_Requirement(const Requirement&){};
     DeploymentPlanFramework_Export virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
     DeploymentPlanFramework_Export virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
     DeploymentPlanFramework_Export virtual void Visit_Capability(const Capability&){};
     DeploymentPlanFramework_Export virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
     DeploymentPlanFramework_Export virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
-	  DeploymentPlanFramework_Export virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
+    DeploymentPlanFramework_Export virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
     DeploymentPlanFramework_Export virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&){};
     DeploymentPlanFramework_Export virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
     DeploymentPlanFramework_Export virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
@@ -153,8 +151,8 @@ namespace CQML
     DeploymentPlanFramework_Export virtual void Visit_ComponentTypes(const ComponentTypes&){};
     DeploymentPlanFramework_Export virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
 
-	//
-	  DeploymentPlanFramework_Export virtual void Visit_Resource(const Resource&){};
+  //
+    DeploymentPlanFramework_Export virtual void Visit_Resource(const Resource&){};
     DeploymentPlanFramework_Export virtual void Visit_SharedResource(const SharedResource&){};
     DeploymentPlanFramework_Export virtual void Visit_NodeReference(const NodeReference&);
     DeploymentPlanFramework_Export virtual void Visit_Bridge(const Bridge&){};
@@ -212,7 +210,7 @@ namespace CQML
     DeploymentPlanFramework_Export virtual void Visit_ComponentRef(const ComponentRef&){};
     DeploymentPlanFramework_Export virtual void Visit_ComponentFactory(const ComponentFactory&){};
     DeploymentPlanFramework_Export virtual void Visit_Object(const Udm::Object&){};
-	  DeploymentPlanFramework_Export void GetReceptacleComponents (const RequiredRequestPort& receptacle,
+    DeploymentPlanFramework_Export void GetReceptacleComponents (const RequiredRequestPort& receptacle,
                                     std::map<Component,std::string>& output);
 
     DeploymentPlanFramework_Export void GetFacetComponents (const ProvidedRequestPort& facet,
@@ -238,64 +236,64 @@ namespace CQML
 
     DeploymentPlanFramework_Export void CreateConnections (const std::map<Component, std::string>& src,
                             const std::map<Component, std::string>& dst,
-							const std::string& source_kind,
-							const std::string& dest_kind);
+              const std::string& source_kind,
+              const std::string& dest_kind);
 
     DeploymentPlanFramework_Export void CreateConnection (const Component& srcComp,
                            const std::string& srcPortName,
                            const Component& dstComp,
                            const std::string& dstPortName,
-						   const std::string& source_kind,
-						   const std::string& dest_kind);
+               const std::string& source_kind,
+               const std::string& dest_kind);
     DeploymentPlanFramework_Export void CreateAssemblyInstances (std::set<Component>& comps);
     DeploymentPlanFramework_Export void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     DeploymentPlanFramework_Export void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-	DeploymentPlanFramework_Export void CreatePropertyElement (std::string name, const Property& property);
-	DeploymentPlanFramework_Export virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
+  DeploymentPlanFramework_Export void CreatePropertyElement (std::string name, const Property& property);
+  DeploymentPlanFramework_Export virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
     DeploymentPlanFramework_Export virtual void Visit_AttributeValue(const AttributeValue&);
     DeploymentPlanFramework_Export virtual void Visit_AttributeDelegate(const AttributeDelegate&);
     DeploymentPlanFramework_Export virtual void Visit_AttributeMapping(const AttributeMapping&);
     DeploymentPlanFramework_Export virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
     DeploymentPlanFramework_Export virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
-	DeploymentPlanFramework_Export std::string ExtractName (Udm::Object obj);
-	DeploymentPlanFramework_Export virtual void create_component_instance (Component& comp, std::string& comp_name);
+  DeploymentPlanFramework_Export std::string ExtractName (Udm::Object obj);
+  DeploymentPlanFramework_Export virtual void create_component_instance (Component& comp, std::string& comp_name);
   DeploymentPlanFramework_Export virtual void update_component_instance (std::string& comp_instance_name, std::string& nodeRefName);
-	DeploymentPlanFramework_Export virtual void update_component_parents (Component& comp);
-	DeploymentPlanFramework_Export virtual void update_shared_component_parents (ComponentRef& comp_ref);
-	DeploymentPlanFramework_Export virtual void update_component_assembly_parents (ComponentAssembly& comp_assembly);
-	DeploymentPlanFramework_Export virtual void create_assembly_config_properties (Component& comp);
-	DeploymentPlanFramework_Export virtual void create_assembly_attribute_properties (Component& comp);
-	DeploymentPlanFramework_Export virtual void create_component_readonly_attributes (Component& comp);
-	DeploymentPlanFramework_Export virtual void update_monolith_impl (Component& comp);
-	DeploymentPlanFramework_Export virtual void create_component_config_properties (MonolithicImplementation& mimpl);
-	DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (const std::string& plan_name);
-	DeploymentPlanFramework_Export virtual void generate_assembly_instance_deployment_descriptions (void);
-	DeploymentPlanFramework_Export virtual void generate_artifact_descriptions (void);
+  DeploymentPlanFramework_Export virtual void update_component_parents (Component& comp);
+  DeploymentPlanFramework_Export virtual void update_shared_component_parents (ComponentRef& comp_ref);
+  DeploymentPlanFramework_Export virtual void update_component_assembly_parents (ComponentAssembly& comp_assembly);
+  DeploymentPlanFramework_Export virtual void create_assembly_config_properties (Component& comp);
+  DeploymentPlanFramework_Export virtual void create_assembly_attribute_properties (Component& comp);
+  DeploymentPlanFramework_Export virtual void create_component_readonly_attributes (Component& comp);
+  DeploymentPlanFramework_Export virtual void update_monolith_impl (Component& comp);
+  DeploymentPlanFramework_Export virtual void create_component_config_properties (MonolithicImplementation& mimpl);
+  DeploymentPlanFramework_Export virtual void generate_instance_deployment_descriptions (const std::string& plan_name);
+  DeploymentPlanFramework_Export virtual void generate_assembly_instance_deployment_descriptions (void);
+  DeploymentPlanFramework_Export virtual void generate_artifact_descriptions (void);
     DeploymentPlanFramework_Export virtual void generate_infoproperties (const DeploymentPlan &);
-	DeploymentPlanFramework_Export virtual void generate_implementation_descriptions (void);
-	DeploymentPlanFramework_Export virtual void generate_child_connections (void);
-	DeploymentPlanFramework_Export virtual void generate_parent_connections (void);
-	DeploymentPlanFramework_Export virtual void instantiate_deployment_plan_descriptor (DeploymentPlan& dp);
-	DeploymentPlanFramework_Export virtual void finalize_deployment_plan_descriptor (void);
-	DeploymentPlanFramework_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
-	DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
+  DeploymentPlanFramework_Export virtual void generate_implementation_descriptions (void);
+  DeploymentPlanFramework_Export virtual void generate_child_connections (void);
+  DeploymentPlanFramework_Export virtual void generate_parent_connections (void);
+  DeploymentPlanFramework_Export virtual void instantiate_deployment_plan_descriptor (DeploymentPlan& dp);
+  DeploymentPlanFramework_Export virtual void finalize_deployment_plan_descriptor (void);
+  DeploymentPlanFramework_Export virtual void create_label_and_uuid (DeploymentPlan& dp);
+  DeploymentPlanFramework_Export virtual void add_injector (const std::string& plan_name, Injector* injector);
     DeploymentPlanFramework_Export virtual void clear_private_variables (void);
-	DeploymentPlanFramework_Export virtual void create_component_deployed_resources (const std::string& plan_name, const Component& comp);
-	
-	
+  DeploymentPlanFramework_Export virtual void create_component_deployed_resources (const std::string& plan_name, const Component& comp);
+
+
 
   public:
     template <typename T>
     std::string unique_id (const T &comp);
-	DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor * instance ();
-	static void operator delete (void *);
-	DeploymentPlanFramework_Export void set_path (std::string const &path);
+  DeploymentPlanFramework_Export static DeploymentPlanFrameworkVisitor * instance ();
+  static void operator delete (void *);
+  DeploymentPlanFramework_Export void set_path (std::string const &path);
  private:
-	void generate_connection_descriptors (InstanceConnection const &source_comp,
-	                                      InstanceConnection const &dest_comp);
-     void merge_component_instances (std::map<std::string, CQML::Component> &, 
-		                             const std::map<std::string, CQML::Component> &);
-	 static DeploymentPlanFrameworkVisitor *instance_;
+  void generate_connection_descriptors (InstanceConnection const &source_comp,
+                                        InstanceConnection const &dest_comp);
+     void merge_component_instances (std::map<std::string, CQML::Component> &,
+                                 const std::map<std::string, CQML::Component> &);
+   static DeploymentPlanFrameworkVisitor *instance_;
 
   private:
 
@@ -308,32 +306,32 @@ namespace CQML
     std::string         outputPath_;
     std::stack<DOMElement*> curr_stack_;
     std::string         node_ref_name_;
-	  std::string         cg_name_;
-	  RootFolder          root_folder_;
+    std::string         cg_name_;
+    RootFolder          root_folder_;
 
-	// Maintain associations between PublishConnector and event publishers
+  // Maintain associations between PublishConnector and event publishers
     std::map<std::string, OutEventPort> publishers_;
-	  std::map<std::string, MonolithicImplementation> monoimpls_;
-	  std::set<std::string> selected_instances_;
-	  std::set<CQML::ComponentAssembly> path_parents_;
-	  std::set<CQML::ComponentAssembly> containing_assemblies_;
-	  std::set<CQML::Component> assembly_components_;
-	  CQML::MonolithicImplementation mimpl_;
-	  std::map<std::string, std::string> deployed_instances_;
-	  std::set<CQML::Component> monolith_components_;
-	  std::set<CQML::Component> final_assembly_components_;
+    std::map<std::string, MonolithicImplementation> monoimpls_;
+    std::set<std::string> selected_instances_;
+    std::set<CQML::ComponentAssembly> path_parents_;
+    std::set<CQML::ComponentAssembly> containing_assemblies_;
+    std::set<CQML::Component> assembly_components_;
+    CQML::MonolithicImplementation mimpl_;
+    std::map<std::string, std::string> deployed_instances_;
+    std::set<CQML::Component> monolith_components_;
+    std::set<CQML::Component> final_assembly_components_;
 
     // Maintain associations between PublishConnector and event consumers
     std::multimap<std::string, InEventPort> consumers_;
 
-	  std::map<std::string, std::string> interfaces_;
-	  std::map<std::pair<std::string, std::string>, Property> attrValues_;
-	  std::map<std::string, CQML::Component> instance_monolith_components_;
-	  std::map<std::string, CQML::Component> instance_assembly_components_;
-	  std::map<std::string, Injector*> injectors_;
+    std::map<std::string, std::string> interfaces_;
+    std::map<std::pair<std::string, std::string>, Property> attrValues_;
+    std::map<std::string, CQML::Component> instance_monolith_components_;
+    std::map<std::string, CQML::Component> instance_assembly_components_;
+    std::map<std::string, Injector*> injectors_;
     std::map < std::string, std::pair <CQML::InstanceConnection, CQML::InstanceConnection> > connections_;
   };
-  
+
   template <typename T>
   std::string DeploymentPlanFrameworkVisitor::unique_id (const T &comp)
     {
@@ -346,7 +344,7 @@ namespace CQML
         {
           comp.UUID() = uuid = Utils::CreateUuid();
         }
-      return std::string ("_") + uuid;    
+      return std::string ("_") + uuid;
       */
     }
 

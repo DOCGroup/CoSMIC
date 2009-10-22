@@ -1,7 +1,7 @@
 // $Id$
 
+#include "Utils/xercesc/XercesString.h"
 #include "PlanLocalityVisitor.h"
-#include "Utils/XercesString.h"
 #include "boost/bind.hpp"
 #include "Uml.h"
 #include <algorithm>

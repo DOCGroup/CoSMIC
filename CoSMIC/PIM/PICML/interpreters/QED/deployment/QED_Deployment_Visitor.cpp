@@ -2,7 +2,7 @@
 
 #include "QED_Deployment_Visitor.h"
 #include "QED_Implementation_Finder.h"
-#include "Utils/XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 #include "boost/bind.hpp"
 

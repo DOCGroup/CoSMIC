@@ -1,25 +1,5 @@
-/*
-Copyright (c) Vanderbilt University, 2000-2001
-ALL RIGHTS RESERVED
-Vanderbilt University disclaims all warranties with regard to this
-software, including all implied warranties of merchantability
-and fitness.  In no event shall Vanderbilt University be liable for
-any special, indirect or consequential damages or any damages
-whatsoever resulting from loss of use, data or profits, whether
-in an action of contract, negligence or other tortious action,
-arising out of or in connection with the use or performance of
-this software.
-*/
-
-
-// UdmApp.cpp: implementation of the CUdmApp class.
-// This file was automatically generated as UdmApp.cpp
-// by UDM Interpreter Wizard on Monday, May 13, 2002 13:45:42
-
-// Tihamér Levendovszky 05-13-02
-
+// $Id$
 #include "stdafx.h"
-#pragma warning( disable : 4290 )
 #include <afxdlgs.h> // For CFileDialog
 #include "resource.h"
 #include <stdlib.h>
@@ -32,7 +12,8 @@ this software.
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "Utils/XercesString.h"
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"

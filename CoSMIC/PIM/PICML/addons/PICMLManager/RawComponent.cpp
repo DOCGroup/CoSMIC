@@ -310,8 +310,8 @@ void RawComponent::verify_uuid (const GME::FCO & fco)
 
   if (this->get_uuid_i (fco, uuid_attr))
   {
-    if (Utils::ValidUuid (uuid_attr.string_value ()))
-      return;
+    //if (Utils::ValidUuid (uuid_attr.string_value ()))
+    //  return;
 
     try
     {

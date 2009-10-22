@@ -1,8 +1,17 @@
-#include <windows.h>
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "PathVisitor.h"
+
+#include "UmlExt.h"
+
+#include <boost/graph/topological_sort.hpp>
+#include <boost/graph/depth_first_search.hpp>
+#include <boost/pending/integer_range.hpp>
+#include <boost/pending/indirect_cmp.hpp>
 #include <algorithm>
 #include <functional>
-#include "PathVisitor.h"
-#include "UmlExt.h"
+#include <fstream>
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -11,13 +20,6 @@ using xercesc::DOMException;
 using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
-
-#include <fstream>
-
-#include <boost/graph/topological_sort.hpp>
-#include <boost/graph/depth_first_search.hpp>
-#include <boost/pending/integer_range.hpp>
-#include <boost/pending/indirect_cmp.hpp>
 
 std::ofstream outf;
 using Utils::XStr;
@@ -2391,8 +2393,8 @@ namespace PICML
     std::vector < size_type > ordered_vertices (dtime.size ());
     // use std::sort to order the vertices by their discover time
     //std::vector < size_type > discover_order(10);
-    boost::integer_range < size_type > r(0, dtime.size ());
-    std::copy(r.begin(), r.end(), ordered_vertices.begin());
+    boost::integer_range < size_type > r (0, dtime.size ());
+    std::copy (r.begin(), r.end(), ordered_vertices.begin());
     std::sort(ordered_vertices.begin(), ordered_vertices.end(),
       boost::indirect_cmp < Iiter, std::less < size_type > >(&dtime[0]));
     std::cout << "order of discovery: ";

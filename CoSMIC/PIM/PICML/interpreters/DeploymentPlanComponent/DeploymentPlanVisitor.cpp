@@ -1,9 +1,10 @@
 // $Id$
 
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
 #include "DeploymentPlanVisitor.h"
 #include "PlanLocalityVisitor.h"
 #include "UmlExt.h"
-#include "Utils/Utils.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <functional>

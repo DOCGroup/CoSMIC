@@ -1,4 +1,10 @@
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+
 #include "CIAOEvents/CIAOEventsVisitor.h"
+
 #include "UmlExt.h"
 #include "UdmUtil.h"
 
@@ -10,7 +16,6 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
-#include "Utils/Utils.h"
 using Utils::XStr;
 using Utils::CreateUuid;
 

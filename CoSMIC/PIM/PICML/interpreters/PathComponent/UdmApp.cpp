@@ -1,22 +1,4 @@
-/*
-  Copyright (c) Vanderbilt University, 2000-2001
-  ALL RIGHTS RESERVED
-  Vanderbilt University disclaims all warranties with regard to this
-  software, including all implied warranties of merchantability
-  and fitness.  In no event shall Vanderbilt University be liable for
-  any special, indirect or consequential damages or any damages
-  whatsoever resulting from loss of use, data or profits, whether
-  in an action of contract, negligence or other tortious action,
-  arising out of or in connection with the use or performance of
-  this software.
-*/
-
-
-// UdmApp.cpp: implementation of the CUdmApp class.
-// This file was automatically generated as UdmApp.cpp
-// by UDM Interpreter Wizard on Monday, May 13, 2002 13:45:42
-
-// Tihamér Levendovszky 05-13-02
+// $Id$
 
 #include "stdafx.h"
 #pragma warning( disable : 4290 )
@@ -34,7 +16,7 @@
 #include "UdmApp.h"
 #include "UdmConfig.h"
 
-#include "Utils/Utils.h"
+#include "Utils/xercesc/XercesString.h"
 #include "PICML/PICML.h"
 #include "Path/PathVisitor.h"
 
@@ -65,14 +47,14 @@ int CUdmApp::Initialize()
 
   2. The possible values for param (from GME DecoratorLib.h
   component_startmode_enum):
-  GME_MAIN_START		=   0,
-  GME_BROWSER_START		=   1,
-  GME_CONTEXT_START		=   2,
-  GME_EMBEDDED_START		=   3,
-  GME_MENU_START		=  16,
-  GME_BGCONTEXT_START	=  18,
-  GME_ICON_START		=  32,
-  METAMODEL_CHECK_SYNTAX	= 101
+  GME_MAIN_START    =   0,
+  GME_BROWSER_START    =   1,
+  GME_CONTEXT_START    =   2,
+  GME_EMBEDDED_START    =   3,
+  GME_MENU_START    =  16,
+  GME_BGCONTEXT_START  =  18,
+  GME_ICON_START    =  32,
+  METAMODEL_CHECK_SYNTAX  = 101
 
   3. The framework catches all the exceptions and reports the error in a
   message box, clean up and close the transactions aborting the changes.
@@ -87,8 +69,8 @@ int CUdmApp::Initialize()
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                                                         // (already open!)
                       Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,	// Selected objects
-                      long param)			// Parameters
+                      set<Udm::Object> selectedObjects,  // Selected objects
+                      long param)      // Parameters
 {
 
   try
@@ -110,7 +92,7 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
     //PICML::PathVisitor visitor (*selectedObjects.begin ());
     PICML::PathVisitor visitor (selectedObjects);
     PICML::RootFolder start
-		= PICML::RootFolder::Cast (p_backend->GetRootObject());
+    = PICML::RootFolder::Cast (p_backend->GetRootObject());
     start.Accept (visitor);
   }
   catch(udm_exception &e)

@@ -1,11 +1,16 @@
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+
+#include "NetQoSVisitor.h"
+
 #include <algorithm>
 #include <functional>
 #include <sstream>
 
-#include "NetQoS/NetQoSVisitor.h"
 #include "CQML/Acceptor.h"
 #include "UmlExt.h"
-#include "Utils/Utils.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;

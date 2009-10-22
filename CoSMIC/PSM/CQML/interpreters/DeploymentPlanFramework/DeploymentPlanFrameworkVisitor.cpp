@@ -1,8 +1,14 @@
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+
+#include "DeploymentPlanFrameworkVisitor.h"
+
 #include <algorithm>
 #include <functional>
 #include <sstream>
 #include <fstream>
-#include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
 #include "UmlExt.h"
 
 using xercesc::LocalFileFormatTarget;
@@ -931,8 +937,8 @@ namespace CQML
     RequiredRequestPort receptacle = iv.srcinvoke_end();
 
     // Get the facet end
-    ProvidedRequestPort facet = 
-		CQML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
+    ProvidedRequestPort facet =
+    CQML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
 
     std::map<Component,std::string> receptacles;
     std::map<Component,std::string> facets;

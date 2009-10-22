@@ -16,7 +16,6 @@
 #include "CQML/CQML.h"
 
 // Utility includes
-#include "Utils/XercesString.h"
 #include "SecurityQoS/SecurityQoS_Export.h"
 
 #include "SecurityQoSAdder.h"

@@ -30,7 +30,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "Utils/XercesString.h"
+#include "Utils/xercesc/XercesString.h"
 
 #include "UdmStatic.h"
 #include "UmlExt.h"
@@ -74,14 +74,14 @@ int CUdmApp::Initialize()
 
   2. The possible values for param (from GME DecoratorLib.h
   component_startmode_enum):
-  GME_MAIN_START		=   0,
-  GME_BROWSER_START		=   1,
-  GME_CONTEXT_START		=   2,
-  GME_EMBEDDED_START		=   3,
-  GME_MENU_START		=  16,
-  GME_BGCONTEXT_START	=  18,
-  GME_ICON_START		=  32,
-  METAMODEL_CHECK_SYNTAX	= 101
+  GME_MAIN_START    =   0,
+  GME_BROWSER_START    =   1,
+  GME_CONTEXT_START    =   2,
+  GME_EMBEDDED_START    =   3,
+  GME_MENU_START    =  16,
+  GME_BGCONTEXT_START  =  18,
+  GME_ICON_START    =  32,
+  METAMODEL_CHECK_SYNTAX  = 101
 
   3. The framework catches all the exceptions and reports the error in a
   message box, clean up and close the transactions aborting the changes.
@@ -96,8 +96,8 @@ int CUdmApp::Initialize()
 void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
                                                         // (already open!)
                       Udm::Object focusObject,          // Focus object
-                      set<Udm::Object> selectedObjects,	// Selected objects
-                      long param)			// Parameters
+                      set<Udm::Object> selectedObjects,  // Selected objects
+                      long param)      // Parameters
 {
   try
     {
@@ -151,8 +151,8 @@ void CUdmApp::UdmMain(Udm::DataNetwork* p_backend,      // Backend pointer
 /* Debug time helper function. If the object has an  */
 /* attribute called "name", this function retreives  */
 /* it to help you to find it in the model during the */
-/* application development.	Usualy every GME Object	 */
-/* has a "name" attribute. If an object hapens not	 */
+/* application development.  Usualy every GME Object   */
+/* has a "name" attribute. If an object hapens not   */
 /* to have it,function retreives <no name specified>.*/
 /*****************************************************/
 string CUdmApp::ExtractName(Udm::Object ob)

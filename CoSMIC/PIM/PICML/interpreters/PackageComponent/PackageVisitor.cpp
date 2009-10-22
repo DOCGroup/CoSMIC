@@ -1,10 +1,14 @@
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+#include "PackageVisitor.h"
+
 #include <algorithm>
 #include <functional>
-#include "PackageVisitor.h"
+#include "boost/bind.hpp"
+#include "boost/ref.hpp"
 #include "UmlExt.h"
-#include <boost/bind.hpp>
-#include <boost/ref.hpp>
-
 
 namespace PICML
 {

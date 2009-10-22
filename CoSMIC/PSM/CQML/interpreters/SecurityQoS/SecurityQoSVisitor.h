@@ -12,7 +12,6 @@
 #include "CQML/Acceptor.h"
 
 // Utility includes
-#include "Utils/XercesString.h"
 #include "SecurityQoS/SecurityQoS_Export.h"
 
 // Helper includes

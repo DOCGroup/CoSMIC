@@ -14,18 +14,11 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 #include "CQML/CQML.h"
-
-// Utility includes
-#include "Utils/XercesString.h"
-#include "RTSchedulability/RTSchedulability_Export.h"
-
+#include "RTSchedulability_Export.h"
 #include "RTSchedulabilityAdder.h"
-
-#include "UmlExt.h"
-#include "Utils/Utils.h"
 #include "common.h"
 
-namespace CQML 
+namespace CQML
   {
     using xercesc::DOMImplementation;
     using xercesc::DOMDocument;
@@ -33,13 +26,13 @@ namespace CQML
     using xercesc::DOMLSSerializer;
     using xercesc::XMLFormatTarget;
     using xercesc::LocalFileFormatTarget;
-    
+
 
     class RTSchedulabilityDumper : public DOMBuilder
       {
-      
+
       public:
-        RTSchedulabilityDumper(const std::string& outputPath);     
+        RTSchedulabilityDumper(const std::string& outputPath);
 
       private:
 

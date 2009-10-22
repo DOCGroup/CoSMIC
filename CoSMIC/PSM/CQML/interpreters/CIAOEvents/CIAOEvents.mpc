@@ -1,4 +1,6 @@
-project(CIAOEvents): cqmllib {
+// $Id$
+
+project (CIAOEvents): cqmllib {
 
    after += CQML
    sharedname = CIAOEvents

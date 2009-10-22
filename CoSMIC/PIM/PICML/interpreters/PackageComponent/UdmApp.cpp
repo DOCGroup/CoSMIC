@@ -35,6 +35,8 @@
 #include "UdmConfig.h"
 
 #include "Utils/Utils.h"
+#include "Utils/xercesc/XercesString.h"
+
 #include "PICML/PICML.h"
 #include "PackageVisitor.h"
 #include "PackagerVisitor.h"

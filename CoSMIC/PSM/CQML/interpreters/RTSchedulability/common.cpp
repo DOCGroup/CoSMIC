@@ -1,6 +1,9 @@
-// -*- C++ -*-
-// $Id:$
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
 #include "common.h"
+#include "UmlExt.h"
 
 namespace CQML
   {
@@ -10,6 +13,7 @@ namespace CQML
     using xercesc::XMLUni;
     using xercesc::XMLException;
     using xercesc::DOMText;
+    using namespace Utils;
 
     std::ofstream outfile ("C:\\Documents and Settings\\Aky\\Desktop\\security_debug.txt");
 

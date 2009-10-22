@@ -15,8 +15,7 @@
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 
 // Utility includes
-#include "Utils/XercesString.h"
-#include "NetQoS/NetQoS_Export.h"
+#include "NetQoS_Export.h"
 
 #include "DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h"
 #include "common.h"
@@ -48,7 +47,7 @@ namespace CQML
     virtual void Visit_QoSConnector (const QoSConnector &);
     virtual void Visit_QoSCharRef(const QoSCharRef &);
     virtual void Visit_PortQoS (const PortQoS &);
-	//virtual void Visit_QoSReq (const QoSReq &qos_req);
+  //virtual void Visit_QoSReq (const QoSReq &qos_req);
 
   private:
     template <typename T, typename Del, typename DelRet, typename DelEndRet>
@@ -86,7 +85,7 @@ namespace CQML
     template <class ConnQoS>
     void conn_qoschar_visit (const ConnQoS &cq);
 
-	QoSCharacteristicBase recursive_dereference (const QoSCharacteristicBase &qos_char, int depth = 0);
+  QoSCharacteristicBase recursive_dereference (const QoSCharacteristicBase &qos_char, int depth = 0);
 
   private:
 
@@ -94,19 +93,19 @@ namespace CQML
       NetQoSRequirements qos_conn_mmap_;
       std::map <std::string, std::string> plan_nqfile_map_;
       std::set <std::string> filenames_;
-/***************************************************************************/	  
-	  // The const auto_ptr idiom by Hurb Sutter.
-	  // The const auto_ptr is the only owner of the singleton framework pointer
-	  // See Tom Cargill's ownership patterns in PLoPD2.
-	  // that will be deleted at the end. As a side effect of making this member
-	  // a const member, compiler can not generate a copy-constructor for 
-	  // the NetQoSVisitor class because std::auto_ptr uses move semantics. Therefore,
-	  // a protected copy-constructor is declared to supress automatic generation
-	  // of the copy-constructor.
-	  const std::auto_ptr <DeploymentPlanFrameworkVisitor> dp_framework_owner;
+/***************************************************************************/
+    // The const auto_ptr idiom by Hurb Sutter.
+    // The const auto_ptr is the only owner of the singleton framework pointer
+    // See Tom Cargill's ownership patterns in PLoPD2.
+    // that will be deleted at the end. As a side effect of making this member
+    // a const member, compiler can not generate a copy-constructor for
+    // the NetQoSVisitor class because std::auto_ptr uses move semantics. Therefore,
+    // a protected copy-constructor is declared to supress automatic generation
+    // of the copy-constructor.
+    const std::auto_ptr <DeploymentPlanFrameworkVisitor> dp_framework_owner;
 
   protected:
-	  NetQoSVisitor (const NetQoSVisitor &);
+    NetQoSVisitor (const NetQoSVisitor &);
 /***************************************************************************/
 
   private:

@@ -1,4 +1,8 @@
-#include "Target/DomainVisitor.h"
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+#include "DomainVisitor.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;

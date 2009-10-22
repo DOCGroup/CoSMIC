@@ -1,3 +1,61 @@
+Thu Oct 22 03:08:50 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/cosmic_xerces_utils.mpb:
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_XML_Visitor.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEvents.mpc:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.h:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.cpp:
+        * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+
+          Fixed build errors related to refactoring CoSMIC and
+          PICML so that idl_to_picml is not dependent on Windows.
+
+        * includes/GME/mga.dtd:
+
+          Schema definition for GME.
+
 Wed Oct 21 21:20:04 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Utils/GAME/game/Folder_Model_T.h:

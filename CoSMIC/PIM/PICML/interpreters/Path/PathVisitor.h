@@ -7,16 +7,11 @@
 #include <stack>
 #include <map>
 #include "PICML/PICML.h"
-
-// Xerces includes
 #include <xercesc/util/PlatformUtils.hpp>
 #include <xercesc/util/XMLString.hpp>
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/framework/LocalFileFormatTarget.hpp>
 #include <boost/graph/adjacency_list.hpp>
-
-// Utility includes
-#include "Utils/XercesString.h"
 #include "Path_Export.h"
 
 namespace PICML
@@ -36,7 +31,7 @@ namespace PICML
     bool is_drawn;
     DisplayNode node_;
     std::string display_label_;
-  
+
     Component_Port_Vertex (Port a_port , string par_name = "");
 
     Component_Port_Vertex () {};
@@ -276,8 +271,8 @@ namespace PICML
 
     /// Representing a Component Port tuple
     typedef std::map<Component, Port> Component_Port;
-    
-    
+
+
     void GetReceptacleComponents (const RequiredRequestPort& receptacle,
                                   Component_Port& output);
 
@@ -312,43 +307,43 @@ namespace PICML
     void CreateAssemblyInstances (std::set<Component>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-	void CreatePropertyElement (std::string name, const Property& property);
+  void CreatePropertyElement (std::string name, const Property& property);
 
   // Add the edges to the graph
   //void add_the_edges (std::string start_vertex,
     //                  std::string end_vertex);
-  
+
   void add_the_edges (Component_Port_Vertex start_vertex,
                       Component_Port_Vertex end_vertex);
 
-  
 
-	//typedef the Graph Object
-	// create a typedef for the Graph type
-	typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS> Graph;
-	// The Vertex typedef 
-	typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
+
+  //typedef the Graph Object
+  // create a typedef for the Graph type
+  typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS> Graph;
+  // The Vertex typedef
+  typedef boost::graph_traits<Graph>::vertex_descriptor Vertex;
   //typedef boost::graph_traits<Graph>::edge_descriptor edge;
   typedef boost::graph_traits < Graph >::vertices_size_type size_type;
 
   void CalculatePath (std::vector < size_type >& discover);
   std::set<Component> comps;
-	//
-    // The Graph object 
-	  Graph the_graph_;
-    	
+  //
+    // The Graph object
+    Graph the_graph_;
+
     // Maintain associations Component-Port to a id
-	  // which represents its graph-vertex 
-  	//std::map<int, std::string> graph_vertex_indices_;
+    // which represents its graph-vertex
+    //std::map<int, std::string> graph_vertex_indices_;
 
     /// Contains the mapping with
     /// key node index , value Component_Vertex
     std::map<int, Component_Port_Vertex> graph_vertex_indices_;
-	  
+
     /// Contains a mapping with
     /// key Component_port , value node index
     std::map<std::string, int> graph_vertex_;
-    
+
   public:
     // port mappings ....
       std::vector<Edge_Numbers> dfs_edges;
@@ -358,7 +353,7 @@ namespace PICML
       std::vector <Edge_Numbers> forward_edges_;
 
 //  protected:
-      ///The list of Paths , stored here 
+      ///The list of Paths , stored here
       typedef std::list <int> A_Path;
 
       A_Path current_path_;
@@ -387,22 +382,22 @@ namespace PICML
 
       /// Extracs the UUID
       std::string extract_uuid (Udm::Object obj);
-    
+
   protected:
 
     // mapping of port and number , not used now ...
       std::map <int , Port> port_map_;
 
       // total number of vertex count ..
-	    int vertex_count_;
+      int vertex_count_;
 
       /// The function which draws the path
       void draw_path (A_Path* a_path);
 
-      /// current path diagram 
+      /// current path diagram
       Path the_current_path_flow_;
 
- 
+
   // The container which contains the sorted vertices
     typedef std::vector< Vertex > container;
 

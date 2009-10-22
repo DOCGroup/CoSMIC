@@ -1,13 +1,14 @@
 // $Id$
 
-project : cosmic_common, udm, xerces, cosmic_utils {
-   after    += PICML
-   includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
+project : udm, cosmic_xerces_utils, cosmic_utils {
+  after    += PICML
+  libs     += PICML
 
-   macros       += UDM_DYNAMIC_LINKING
-   dynamicflags += PICML_HAS_DLL
+  includes += $(COSMIC_ROOT)/PIM/PICML/interpreters
 
-   libs += PICML
+  macros       += UDM_DYNAMIC_LINKING
+  dynamicflags += PICML_HAS_DLL
+
 
   specific (wix) {
     install_location = bin

@@ -11,9 +11,7 @@
 #include "CQML/CQML.h"
 #include "CQML/Acceptor.h"
 
-// Utility includes
-#include "Utils/XercesString.h"
-#include "RTSchedulability/RTSchedulability_Export.h"
+#include "RTSchedulability_Export.h"
 
 // Helper includes
 #include "RTSchedulabilityDumper.h"
@@ -27,7 +25,7 @@ namespace CQML
   {
   public:
     RTSchedulabilityVisitor (const std::string& outputPath);
-   
+
     // Lord Of the Rings..
     virtual void Visit_RootFolder(const RootFolder&);
 
@@ -42,7 +40,7 @@ namespace CQML
 
   private:
     RTSchedulabilityDumper rtsched_dumper_;
-    std::string outputPath_;  
+    std::string outputPath_;
   };
 }
 

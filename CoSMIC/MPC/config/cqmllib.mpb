@@ -1,10 +1,12 @@
-// MPC file to generate base library
-project : cosmic_common, udm, xerces, cosmic_utils {
+// $Id4
 
+project : udm, cosmic_xerces_utils, cosmic_utils {
    after += CQML
+   libs  += CQML
+
    includes += $(COSMIC_ROOT)/PSM/CQML/interpreters
-   macros += UDM_DYNAMIC_LINKING
+
+   macros       += UDM_DYNAMIC_LINKING
    dynamicflags += CQML_HAS_DLL
-   libs += CQML
 }
 

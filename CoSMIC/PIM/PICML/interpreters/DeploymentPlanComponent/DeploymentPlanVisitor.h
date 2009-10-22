@@ -13,10 +13,6 @@
 #include "xercesc/util/XMLString.hpp"
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
-
-// Utility includes
-#include "Utils/XercesString.h"
-#include "Utils/Utils.h"
 #include "DeploymentPlan_Export.h"
 
 namespace PICML

@@ -1,5 +1,8 @@
-// -*- C++ -*-
-// $Id:$
+// $Id$
+
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
+
 #include "RTSchedulabilityDumper.h"
 
 #include <algorithm>
@@ -7,7 +10,6 @@
 #include <sstream>
 
 #include "UmlExt.h"
-#include "Utils/Utils.h"
 #include "common.h"
 
 using xercesc::LocalFileFormatTarget;
@@ -21,7 +23,7 @@ using xercesc::DOMText;
 using Utils::XStr;
 using Utils::CreateUuid;
 
-namespace CQML 
+namespace CQML
   {
     RTSchedulabilityDumper::RTSchedulabilityDumper (const std::string& output_path)
       : DOMBuilder (output_path)

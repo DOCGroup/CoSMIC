@@ -1,17 +1,17 @@
-project(DeploymentPlanFramework): cqmllib {
+// $Id$
 
-   sharedname = DeploymentPlanFramework
-   macros += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL
+project (DeploymentPlanFramework): cosmic_xerces_utils, cqmllib {
+  sharedname    = DeploymentPlanFramework
+  dynamicflags += DEPLOYMENTPLANFRAMEWORK_BUILD_DLL
 
+  Source_Files {
+    DeploymentPlanFrameworkVisitor.cpp
+    Injector.cpp
+  }
 
-   Source_Files {
-     DeploymentPlanFrameworkVisitor.cpp
-     Injector.cpp
-   }
-
-   Header_Files {
-     DeploymentPlanFrameworkVisitor.h
-     DeploymentPlanFramework_Export.h
-     Injector.h
-   }
+  Header_Files {
+    DeploymentPlanFrameworkVisitor.h
+    DeploymentPlanFramework_Export.h
+    Injector.h
+  }
 }
