@@ -1,3 +1,10 @@
+Fri Oct 23 00:50:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Removed the custom point_t structure and started using the
+          Utils::Point class.
+
 Thu Oct 22 18:53:05 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Utils/GAME/game/FCO.h:

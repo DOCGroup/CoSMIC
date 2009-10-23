@@ -7,62 +7,13 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "Utils/Utils.h"
+#include "game/utils/Point.h"
 #include "boost/bind.hpp"
 #include <algorithm>
 #include <sstream>
 
 // Type definition
 typedef GME::Collection_T <GME::Reference> Reference_Set;
-
-/**
- * @struct point_t
- *
- * Structure that contains an x-coordinate and y-coordinate.
- */
-struct point_t
-{
-  /// Default constructor.
-  point_t (void)
-    : x_ (0), y_ (0) { }
-
-  /**
-   * Shift the point.
-   *
-   * @param[in]     x       X-coordinate shift value.
-   * @param[in]     y       Y-coordinate shift value.
-   */
-  void shift (long x, long y)
-  {
-    this->x_ += x;
-    this->y_ += y;
-  }
-
-  bool operator <<= (const std::string & str)
-  {
-    std::istringstream istr (str);
-
-    istr >> this->x_;
-    istr.ignore (1);
-    istr >> this->y_;
-
-    return istr.good ();
-  }
-
-  bool operator >>= (std::string & str)
-  {
-    std::ostringstream ostr;
-    ostr << this->x_ << "," << this->y_;
-    str = ostr.str ();
-
-    return ostr.good ();
-  }
-
-  /// X-coordinate
-  long x_;
-
-  /// Y-coordinate
-  long y_;
-};
 
 //
 // RawComponent
@@ -738,14 +689,11 @@ handle_NodeReference (unsigned long eventmask, GME::Object & obj)
       GME::Connection::_create ("InstanceMapping", parent, group, node);
 
     // Align the collocation group with its corresponding node.
-    std::string pos = node.registry_value (_REGPATH_);
-
-    point_t pt;
-    pt <<= pos;
+    Utils::Point pt;
+    GME::position ("NodeMapping", node, pt);
     pt.shift (4, 128);
-    pt >>= pos;
 
-    group.registry_value (_REGPATH_, pos);
+    GME::position ("NodeMapping", pt, group);
   }
 }
 
