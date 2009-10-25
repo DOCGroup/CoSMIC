@@ -1,3 +1,11 @@
+Sun Oct 25 23:13:30 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.inl:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          Missing files.
+
 Sun Oct 25 23:04:01 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/gme_bon2_component.mpb:
