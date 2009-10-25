@@ -52,7 +52,7 @@ Visit_Component (const PICML::Component & component)
   if (Udm::create_if_not (container, this->impl_,
       Udm::contains (boost::bind (std::equal_to <std::string> (),
                      impl_name,
-                     boost::bind (&PICML::ComponentImplementationContainer::name, _1)))))
+                     boost::bind (&PICML::MonolithicImplementation::name, _1)))))
   {
     this->impl_.name () = impl_name;
     this->impl_.position () = "(250,250)";

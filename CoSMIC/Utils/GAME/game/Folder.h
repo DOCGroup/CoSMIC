@@ -13,27 +13,19 @@
 #ifndef _GME_FOLDER_H_
 #define _GME_FOLDER_H_
 
-#include "Folder_Model_T.h"
 #include "RegistryNode.h"
 #include "Object.h"
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Folder
    *
    * Wrapper class for the IMgaFolder interface.
    */
-  //===========================================================================
-
-  class GME_Export Folder :
-    public Folder_Model_T <IMgaFolder, Object>
+  class GME_Export Folder : public GME::Object
   {
   public:
-    /// Type definition of the base type.
-    typedef Folder_Model_T <IMgaFolder, Object> _base_type;
-
     /// Type definition of the interface type.
     typedef IMgaFolder interface_type;
 
@@ -86,15 +78,29 @@ namespace GME
      *
      * @return      Collection of folder objects.
      */
-    size_t folders (GME::Collection_T <GME::Folder> & folders) const;
+    size_t children (GME::Collection_T <GME::Folder> & folders) const;
 
     /**
      * Get all the first-level child folders of this folder.
      *
      * @return      Collection of folder objects.
      */
-    size_t folders (const std::string & type,
-                    GME::Collection_T <GME::Folder> & folders) const;
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Folder> & folders) const;
+
+    size_t children (GME::Collection_T <GME::FCO> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Atom> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Model> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Set> & children) const;
 
     /**
      * Get the parent of this folder.
@@ -144,7 +150,25 @@ namespace GME
                      bool vtypes = false) const;
 
     virtual void accept (GME::Visitor & visitor);
+
+    /**
+     * Attach to an existing folder.
+     *
+     * @param[in]       folder        The source interface.
+     */
+    void attach (IMgaFolder * folder);
+
+    /// Helper method to get the correct implementation.
+    IMgaFolder * impl (void) const;
+
+  private:
+    /// Pointer to the underlying COM interface.
+    mutable ATL::CComPtr <IMgaFolder> folder_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "Folder.inl"
+#endif
 
 #endif  // !defined _GME_FOLDER_H_

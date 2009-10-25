@@ -12,47 +12,55 @@ namespace GME
 namespace Meta
 {
   //
-  // subfolder
+  // children
   //
-  Folder Folder::folder (const std::string & type) const
-  {
-    CComPtr <IMgaMetaFolder> folder;
-    CComBSTR name (type.length (), type.c_str ());
-
-    VERIFY_HRESULT (
-      this->impl ()->get_LegalChildFolderByName (name, &folder));
-
-    return folder.p;
-  }
-
-  //
-  // subfolders
-  //
-  size_t Folder::folders (std::vector <Folder> & folders) const
+  size_t Folder::
+  children (GME::Collection_T <GME::Meta::Folder> & folders) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFolders> metas;
     VERIFY_HRESULT (this->impl ()->get_LegalChildFolders (&metas));
 
-    // Update the size of <folders>.
-    long count;
-    VERIFY_HRESULT (metas->get_Count (&count));
-    folders.resize (count);
+    folders.attach (metas.Detach ());
+    return folders.size ();
+  }
 
-    if (count > 0)
-    {
-      // Store all the folders in a vector.
-      CComPtr <IMgaMetaFolder> * array = new CComPtr <IMgaMetaFolder> [count];
-      VERIFY_HRESULT (metas->GetAll (count, &(*array)));
+  //
+  // children
+  //
+  size_t Folder::
+  children (GME::Collection_T <GME::Meta::FCO> & fcos) const
+  {
+    // Get a pointer to all the legal folders.
+    CComPtr <IMgaMetaFCOs> metas;
+    VERIFY_HRESULT (this->impl ()->get_LegalRootObjects (&metas));
 
-      for (long i = 0; i < count; i ++)
-        folders[i].attach (array[i]);
+    fcos.attach (metas.Detach ());
+    return fcos.size ();
+  }
 
-      // Delete the temp array.
-      delete [] array;
-    }
+  //
+  // folder
+  //
+  Folder Folder::folder (const std::string & name) const
+  {
+    CComPtr <IMgaMetaFolder> meta;
+    CComBSTR bstr (name.length (), name.c_str ());
 
-    return count;
+    VERIFY_HRESULT (this->impl ()->get_LegalChildFolderByName (bstr, &meta));
+    return meta.p;
+  }
+
+  //
+  // child
+  //
+  FCO Folder::child (const std::string & name) const
+  {
+    CComPtr <IMgaMetaFCO> meta;
+    CComBSTR bstr (name.length (), name.c_str ());
+
+    VERIFY_HRESULT (this->impl ()->get_LegalRootObjectByName (bstr, &meta));
+    return meta.p;
   }
 
   //

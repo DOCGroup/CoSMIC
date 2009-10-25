@@ -11,9 +11,7 @@ project : gme_component {
       $(GME_ROOT)/SDK/BON/Common/BONImpl.cpp
       $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
       $(GME_ROOT)/SDK/BON/Common/Common.cpp
-      $(GME_ROOT)/SDK/BON/Common/Console.cpp
       $(GME_ROOT)/SDK/BON/Common/Events.cpp
-      $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
       $(GME_ROOT)/SDK/BON/Common/Extensions.cpp
       $(GME_ROOT)/SDK/BON/Common/MON.cpp
       $(GME_ROOT)/SDK/BON/Common/MONImpl.cpp

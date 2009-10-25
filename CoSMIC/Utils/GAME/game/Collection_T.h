@@ -26,14 +26,11 @@
 
 namespace GME
 {
-//=============================================================================
 /**
  * @struct collection_traits
  *
  * Trait class that determines the GME item type of a collection.
  */
-//=============================================================================
-
 template <typename T>
 struct collection_traits
 {
@@ -76,14 +73,23 @@ struct collection_traits <IMgaRegNodes>
   typedef IMgaRegNode interface_type;
 };
 
-//=============================================================================
+template < >
+struct collection_traits <IMgaMetaFolders>
+{
+  typedef IMgaMetaFolder interface_type;
+};
+
+template < >
+struct collection_traits <IMgaMetaFCOs>
+{
+  typedef IMgaMetaFCO interface_type;
+};
+
 /**
  * @struct item_traits
  *
  * Trait class that determines the GME collection type of an object.
  */
-//=============================================================================
-
 template <typename T>
 struct item_traits
 {
@@ -156,14 +162,23 @@ struct item_traits <RegistryNode>
   typedef IMgaRegNodes collection_type;
 };
 
-//=============================================================================
+template < >
+struct item_traits <Meta::Folder>
+{
+  typedef IMgaMetaFolders collection_type;
+};
+
+template < >
+struct item_traits <Meta::FCO>
+{
+  typedef IMgaMetaFCOs collection_type;
+};
+
 /**
  * @class Collection_T
  *
  * Default container class for managing GME collections.
  */
-//=============================================================================
-
 template <typename T>
 class Collection_T
 {

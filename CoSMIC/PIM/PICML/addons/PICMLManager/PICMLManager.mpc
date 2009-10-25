@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICMLManager): game, boost_base, cosmic_utils, cosmic_common, gme_raw_component {
+project (PICMLManager): gme_raw_component, game, boost_base, cosmic_utils, cosmic_common {
   sharedname = PICMLManager
 
   specific {
@@ -8,12 +8,16 @@ project (PICMLManager): game, boost_base, cosmic_utils, cosmic_common, gme_raw_c
    }
 
   Source_Files {
+    DefaultImplementationGenerator.cpp
+    DefaultArtifactGenerator.cpp
+    Dialogs.cpp
   }
 
   Header_Files {
+
   }
 
   Resource_Files {
-    Component.rc
+    PICMLManager.rc
   }
 }

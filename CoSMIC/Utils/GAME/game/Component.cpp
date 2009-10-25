@@ -2,6 +2,8 @@
 
 #include "stdafx.h"
 #include "Component.h"
+#include "FCO.h"
+#include "Set.h"
 
 namespace GME
 {

@@ -14,25 +14,18 @@
 #define _GME_MODEL_H_
 
 #include "GME_fwd.h"
-#include "Folder_Model_T.h"
 #include "FCO.h"
+#include "Collection_T.h"
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Model
    *
    * Wrapper class for the IMgaModel interface.
    */
-  //===========================================================================
-
-  class GME_Export Model :
-    public Folder_Model_T <IMgaModel, FCO>
+  class GME_Export Model : public GME::FCO
   {
-    /// Type definition of the base type.
-    typedef Folder_Model_T <IMgaModel, FCO> _base_type;
-
   public:
     /// Type definition of the COM interface.
     typedef IMgaModel interface_type;
@@ -100,7 +93,42 @@ namespace GME
     Meta::Model meta (void) const;
 
     virtual void accept (GME::Visitor & visitor);
+
+    /**
+     * Get all the first-level child folders of this folder.
+     *
+     * @return      Collection of folder objects.
+     */
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Folder> & folders) const;
+
+    size_t children (GME::Collection_T <GME::FCO> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Atom> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Model> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::Set> & children) const;
+
+    void Model::attach (IMgaModel * model);
+
+    /// Helper method to get the correct implementation.
+    IMgaModel * impl (void) const;
+
+  private:
+    /// Pointer to the underlying COM interface.
+    mutable ATL::CComPtr <IMgaModel> model_;
   };
 }
+
+#if defined (__GME_INLINE__)
+#include "Model.inl"
+#endif
 
 #endif // !defined _GME_MODEL_H_

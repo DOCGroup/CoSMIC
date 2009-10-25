@@ -33,7 +33,7 @@ void ImplementationArtifactGenerator::
 Visit_Component (const PICML::Component & component)
 {
   std::string name = this->fq_type (component, "_");
-  std::string impl_name = name + "_impl";
+  std::string impl_name = name + "_exec";
   std::string svnt_name = name + "_svnt";
 
   // Create a new container for the component's artifacts.

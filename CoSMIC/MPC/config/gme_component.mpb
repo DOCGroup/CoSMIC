@@ -2,7 +2,11 @@
 
 project : register, mfc {
   includes += . $(GME_ROOT) $(GME_ROOT)/SDK/BON
-  
+
+  specific (vc9) {
+    includes += $(GME_ROOT)/SDK/BON/Common
+  }
+
   specific (vc9) {
     includes += $(GME_ROOT)/SDK/BON/Common
   }
@@ -11,6 +15,7 @@ project : register, mfc {
   pch_source = StdAfx.cpp
 
   specific (prop:windows) {
+    midl_flags    += /server none /client none
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
     link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/Component.def
 
@@ -23,7 +28,7 @@ project : register, mfc {
       $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-	    $(GME_ROOT)/SDK/BON/Common/Console.cpp
+      $(GME_ROOT)/SDK/BON/Common/Console.cpp
       $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
     }
 
@@ -37,6 +42,7 @@ project : register, mfc {
 
   Header_Files {
     ComponentLib.h
+    ComponentConfig.h
     Resource.h
 
     conditional (vc9) {

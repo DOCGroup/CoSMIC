@@ -11,6 +11,7 @@
 #include "Folder.h"
 #include "Connection.h"
 #include "Attribute.h"
+#include "Set.h"
 #include "MetaRole.h"
 #include "MetaModel.h"
 #include "MetaAttribute.h"

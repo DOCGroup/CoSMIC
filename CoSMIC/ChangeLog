@@ -1,15 +1,75 @@
+Sun Oct 25 23:04:01 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+
+          Resolved conflicts and updated project specification.
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          Fixed compiler errors related to the interface update to
+          classes in GAME.
+
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/Dialogs.h:
+        * PIM/PICML/addons/PICMLManager/Dialogs.inl:
+        * PIM/PICML/addons/PICMLManager/Dialogs.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.rc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/Resource.h:
+
+          Update the PICML manager such that when a new component is
+          added to a model, the user is presented a dialog for entering
+          the new name. This name is then used to auto-generate the
+          default elements for the new component.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+
+          Fixed inconsistencies in the code.
+
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/Component.cpp:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.inl:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/MetaFolder.h:
+        * Utils/GAME/game/MetaFolder.cpp:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.inl:
+        * Utils/GAME/game/Model.cpp:
+
+          Implemented the children () method directly on the Folder and
+          Model class and removed the Folder_Model_T template class. This
+          resulted in a much cleaner interface for using the Folder and
+          Model class.
+
+        * PIM/PICML/addons/PICMLManager/Component.rc:
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.inl:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+
+          Removed these files.
+
 Sun Oct 25 21:36:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/gme_bon2_component.mpb:
         * MPC/config/gme_component.mpb:
-        
+
           Cleanup and reformatting.
 
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
         * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
         * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
-        
+
           Cleanup and reformatting.
 
         * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
@@ -34,7 +94,7 @@ Sun Oct 25 21:36:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.cpp:
 
         * PIM/POSAML/interpreters/interpreters.mwc:
-        
+
           Fixed mpc related issues in POSAML interpreters.
 
 Fri Oct 23 00:50:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>

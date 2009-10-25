@@ -22,14 +22,11 @@
 #include "ace/Null_Mutex.h"
 #include <set>
 
-//=============================================================================
 /**
  * @class RawComponent
  *
  * Raw COM implementation of the PICML manager add-on.
  */
-//=============================================================================
-
 class RawComponent
 {
 public:
