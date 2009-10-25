@@ -1,7 +1,10 @@
 workspace {
 
-	BenchmarkInterpreter/BenchmarkInterpreter.mpc
-	ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
-	AspectInterpreter/AspectInterpreter.mpc
-	OmnetInterpreter/OmnetInterpreter.mpc
+  cmdline += -feature_file default.features \
+             -include $COSMIC_ROOT/MPC/config
+
+	$(COSMIC_ROOT)/PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc
+	$(COSMIC_ROOT)/PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
+	$(COSMIC_ROOT)/PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc
+	$(COSMIC_ROOT)/PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc
 }

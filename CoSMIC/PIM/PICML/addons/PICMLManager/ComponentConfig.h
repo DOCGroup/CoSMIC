@@ -1,8 +1,9 @@
 // Component configuration file automatically generated as ComponentConfig.h
 // by ConfigureComponent on Mon Jan 09 23:58:56 2006
 
-
+#ifndef BON2COMPONENT
 #define BON2COMPONENT
+#endif // BON2COMPONENT
 
 // COM UUID-s, names and progID
 

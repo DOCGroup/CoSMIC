@@ -19,8 +19,8 @@
 	this software.
 */
 
+#include <stdafx.h>
 #include "BON2Component.h"
-
 
 namespace BON
 {

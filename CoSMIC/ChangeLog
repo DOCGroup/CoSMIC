@@ -1,3 +1,42 @@
+Sun Oct 25 21:36:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+        
+          Cleanup and reformatting.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        
+          Cleanup and reformatting.
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentLib_h.h:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_h.h:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_h.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/ComponentLib_h.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.cpp:
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+        
+          Fixed mpc related issues in POSAML interpreters.
+
 Fri Oct 23 00:50:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
@@ -209,6 +248,8 @@ Mon Oct 19 23:07:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
           . CoSMIC version 0.7.4 was released. Moved the ChangeLog
             to ChangeLogs/ChangeLog-09.
+            CCF revision 87178
+            utility revision 87178
 
 Local Variables:
 mode: change-log

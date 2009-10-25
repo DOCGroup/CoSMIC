@@ -1,3 +1,4 @@
+#include <stdafx.h>
 #include "Patterns.h"
 #include "BON2Component.h"
 

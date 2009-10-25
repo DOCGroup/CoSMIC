@@ -1,6 +1,3 @@
-#ifndef _INTERPRETER_CPP_
-#define _INTERPRETER_CPP_
-
 #include "stdafx.h"
 #include "Interpreter.h"
 #include "Patterns.h"
@@ -24,5 +21,3 @@ Pattern *Pattern_Factory::get_pattern (const BON::Model &model)
   else 
 	return NULL;
 }
-
-#endif;

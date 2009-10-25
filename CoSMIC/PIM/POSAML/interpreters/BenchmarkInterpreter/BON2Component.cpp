@@ -19,10 +19,8 @@
 	this software.
 */
 
+#include <stdafx.h>
 #include "BON2Component.h"
-
-
-
 
 void XML_Writer::add_child(XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc,DOMElement *root,const String &child,int data)
 {
@@ -52,7 +50,7 @@ bool XML_Writer::write_file(const String &xml_file)
   XERCES_CPP_NAMESPACE_QUALIFIER DOMDocument *doc=impl->createDocument();
 
   temp=XMLString::transcode("1.0");
-  doc->setVersion(temp);
+  doc->setXmlVersion(temp);
   temp=XMLString::transcode("benchmark_inputs");
   DOMElement *root=doc->createElement(temp);
   doc->appendChild(root);
@@ -70,14 +68,16 @@ bool XML_Writer::write_file(const String &xml_file)
  
   root->appendChild(reactor_child);
   
-  DOMWriter *writer=impl->createDOMWriter();
   XMLFormatTarget *myFormTarget = new LocalFileFormatTarget(xml_file.c_str());
   DOMElement *serialize_doc=doc->getDocumentElement(); 
-
   temp=XMLString::transcode("utf-8");
-  writer->setEncoding(temp);
-  
-  writer->writeNode(myFormTarget,*serialize_doc);
+
+  // The following lines are commented out because of compilation errors
+  // Xerces 3.0 API should be used.
+  //DOMWriter *writer=impl->createDOMWriter();
+  //writer->setEncoding(temp);
+  //writer->writeNode(myFormTarget,*serialize_doc);
+
   myFormTarget->flush();
   delete myFormTarget;
   XMLString::release(&temp);

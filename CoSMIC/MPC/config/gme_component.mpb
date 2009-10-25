@@ -1,7 +1,11 @@
 // $Id$
 
 project : register, mfc {
-  includes += . $(GME_ROOT)/SDK/BON $(GME_ROOT)
+  includes += . $(GME_ROOT) $(GME_ROOT)/SDK/BON
+  
+  specific (vc9) {
+    includes += $(GME_ROOT)/SDK/BON/Common
+  }
 
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
@@ -19,27 +23,24 @@ project : register, mfc {
       $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/Common/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/Common/ComponentObj.cpp
-	  
-	  // Following files are necessary for VC9 builds
-	  $(GME_ROOT)/SDK/BON/Common/Console.cpp
-	  $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
+	    $(GME_ROOT)/SDK/BON/Common/Console.cpp
+      $(GME_ROOT)/SDK/BON/Common/Exceptions.cpp
     }
 
-    conditional (vc71, vc8) {
+    conditional (vc8) {
       $(GME_ROOT)/SDK/BON/ComHelp.cpp
       $(GME_ROOT)/SDK/BON/ComponentLib.idl
       $(GME_ROOT)/SDK/BON/ComponentDll.cpp
       $(GME_ROOT)/SDK/BON/ComponentObj.cpp
     }
-
-    $(COSMIC_ROOT)/etc/Component.def
   }
 
   Header_Files {
-    resource.h
-    ComponentConfig.h
-	
-	// Following files are necessary for VC9 builds
-	ComponentLib_h.h
+    ComponentLib.h
+    Resource.h
+
+    conditional (vc9) {
+      ComponentLib_h.h
+    }
   }
 }
