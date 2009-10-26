@@ -3,10 +3,6 @@
 project (CBMLManager): boost_base, game, cosmic_common, cosmic_utils, gme_raw_component {
   sharedname = CBMLManager
 
-  specific {
-     midl_flags += /server none /client none
-   }
-
   Source_Files {
     Output_Event_Builder.cpp
     String_Selection_Dialog.cpp

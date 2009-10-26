@@ -7,10 +7,6 @@ project : register, mfc {
     includes += $(GME_ROOT)/SDK/BON/Common
   }
 
-  specific (vc9) {
-    includes += $(GME_ROOT)/SDK/BON/Common
-  }
-
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 

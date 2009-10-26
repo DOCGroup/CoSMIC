@@ -3,10 +3,6 @@
 project (PICMLManager): gme_raw_component, picml_game_utils, boost_base, cosmic_utils {
   sharedname = PICMLManager
 
-  specific {
-     midl_flags += /server none /client none
-   }
-
   Source_Files {
     DefaultImplementationGenerator.cpp
     DefaultArtifactGenerator.cpp
