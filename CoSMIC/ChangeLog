@@ -1,3 +1,9 @@
+Mon Oct 26 16:18:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          Removed absolute paths.
+
 Mon Oct 26 13:23:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Release.mwc:
