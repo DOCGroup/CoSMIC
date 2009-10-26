@@ -1,13 +1,20 @@
+Mon Oct 26 13:23:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Release.mwc:
+
+          A project was missing that was preventing the release from
+          building completely.
+
 Mon Oct 26 02:45:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * MPC/config/gme_component.mpb:
         * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
         * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
-        
+
           Removed duplicate midl_flags.
 
         * cosmic.mwc:
-        
+
           Added POSAML interpreters.
 
 Mon Oct 26 00:13:03 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
