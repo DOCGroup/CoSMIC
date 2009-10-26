@@ -1,3 +1,32 @@
+Mon Oct 26 00:13:03 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+        * MPC/config/picml_game_utils.mpb:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/utils:
+        * PIM/PICML/utils/game:
+        * PIM/PICML/utils/game/PICML_GAME_Utils.mpc:
+        * PIM/PICML/utils/game/PICML_GAME_Utils.wxs:
+        * PIM/PICML/utils/game/PICML_GAME_Utils_export.h:
+        * PIM/PICML/utils/game/Utility.h:
+        * PIM/PICML/utils/game/Utility.cpp:
+        * picml.mwc:
+
+          Refactored the fq_type () method into a standalone function in
+          the PICML_GAME_Utils project. This new project also resulted in
+          adding a new binary to the installer.
+
+          Eventually, we need to use the Wix MPC project type to generate
+          the Wix files for the installer. As we refactor things and make
+          new projects, its going to become very error-prone to manually
+          update the installer to reflect any architecture changes.
+
 Sun Oct 25 23:13:30 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Utils/GAME/game/utils/modelgen.h:

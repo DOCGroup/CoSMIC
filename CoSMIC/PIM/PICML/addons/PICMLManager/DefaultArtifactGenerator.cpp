@@ -7,6 +7,7 @@
 #include "game/MetaBase.h"
 #include "game/utils/modelgen.h"
 #include "game/utils/Point.h"
+#include "PIM/PICML/utils/game/Utility.h"
 #include "boost/bind.hpp"
 #include <functional>
 #include <stack>
@@ -38,7 +39,7 @@ DefaultArtifactGenerator::~DefaultArtifactGenerator (void)
 //
 bool DefaultArtifactGenerator::generate (const GME::Model & component)
 {
-  std::string name = this->fq_type (component, "_");
+  std::string name = PICML::GAME::fq_type (component, "_");
   std::string impl_name = name + "_exec";
   std::string svnt_name = name + "_svnt";
 
@@ -67,36 +68,6 @@ bool DefaultArtifactGenerator::generate (const GME::Model & component)
   GME::position ("Packaging", Utils::Point (450, 150), this->impl_artifact_);
 
   return true;
-}
-
-//
-// scope
-//
-std::string DefaultArtifactGenerator::
-fq_type (const GME::Model & component, const std::string & separator)
-{
-  std::string scope;
-  std::stack <GME::Object> temp_stack;
-
-  // Continue walking up the tree until we reach a File object.
-  GME::Object parent = component.parent ();
-
-  while (parent.meta ().name () != "File")
-  {
-    temp_stack.push (parent);
-    parent = parent.parent ();
-  }
-
-  // Empty the remainder of the stack.
-  while (!temp_stack.empty ())
-  {
-    parent = temp_stack.top ();
-    temp_stack.pop ();
-
-    scope += parent.name () + separator;
-  }
-
-  return scope + component.name ();
 }
 
 //

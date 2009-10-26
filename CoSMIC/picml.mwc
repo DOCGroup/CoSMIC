@@ -11,6 +11,7 @@ workspace : cosmic_common {
   PIM/PICML/addons
   PIM/PICML/decorators/Decorators.mwc
   PIM/PICML/interpreters/Interpreters.mwc
+  PIM/PICML/utils
 
   // -- build the contributions
   $(ACE_ROOT)/contrib/minizip/minizip.mpc

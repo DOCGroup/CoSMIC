@@ -47,9 +47,6 @@ public:
   const GME::Atom & exec_artifact (void) const;
 
 private:
-  /// Helper method to generate the fully qualified typename.
-  std::string fq_type (const GME::Model & component, const std::string & separator);
-
   /// Folder that contains the artifacts.
   GME::Folder artifacts_;
 

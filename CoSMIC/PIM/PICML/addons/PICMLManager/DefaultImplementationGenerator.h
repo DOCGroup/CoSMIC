@@ -43,9 +43,6 @@ public:
   bool generate (const GME::Model & component);
 
 private:
-  std::string fq_type (const GME::Model & component,
-                       const std::string & separator);
-
   /// Folder that contains the implementations.
   GME::Folder impls_;
 

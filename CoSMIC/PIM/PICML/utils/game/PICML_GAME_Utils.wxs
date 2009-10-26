@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='Windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
+
+  <Fragment Id="PICMLGameUtilsFrag">
+    <DirectoryRef Id="CoSMICBinDir">
+      <Component Id='PICMLGameUtils' Guid='7E23E0D9-2F3E-4B84-BAC7-9FECADEB3C77'>
+        <File Id='PICML_GAME_Utils.dll'
+              Name='PICML_GAME_Utils.dll.dll'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\bin\PICML_GAME_Utils.dll' />
+      </Component>
+    </DirectoryRef>
+
+  </Fragment>
+</Wix>

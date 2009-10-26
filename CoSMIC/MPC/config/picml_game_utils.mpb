@@ -1,0 +1,6 @@
+// $Id$
+
+project : game {
+  after += PICML_GAME_Utils
+  libs  += PICML_GAME_Utils
+}

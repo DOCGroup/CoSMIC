@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICMLManager): gme_raw_component, game, boost_base, cosmic_utils, cosmic_common {
+project (PICMLManager): gme_raw_component, picml_game_utils, boost_base, cosmic_utils {
   sharedname = PICMLManager
 
   specific {

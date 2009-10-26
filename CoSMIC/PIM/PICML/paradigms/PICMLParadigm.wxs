@@ -33,6 +33,8 @@
       <ComponentRef Id='PICMLDocs' />
       <ComponentRef Id='PICMLExamples' />
       <ComponentRef Id="PICMLRegistryComponent" />
+
+      <ComponentRef Id="PICMLGameUtils" />
     </Feature>
 
     <DirectoryRef Id="PICMLParadigmDir">

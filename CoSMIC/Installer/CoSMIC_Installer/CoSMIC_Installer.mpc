@@ -28,19 +28,17 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/includes/includes.wxs
     $(COSMIC_ROOT)/Utils/Utils.wxs
     $(COSMIC_ROOT)/Utils/LEESA/LEESA.wxs
-    $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
-    $(COSMIC_ROOT)/PIM/PICML/addons/CBMLManager/CBMLManager.wxs
-    $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
 
 /////////////////////////////////////////////////////////////////////////
 /////////////// PICML
 /////////////////////////////////////////////////////////////////////////
 
+    $(COSMIC_ROOT)/PIM/PICML/addons/PICMLManager/PICMLManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/addons/CBMLManager/CBMLManager.wxs
+    $(COSMIC_ROOT)/PIM/PICML/decorators/PICMLDecorator.wxs
     $(COSMIC_ROOT)/PIM/PICML/docs/PICMLDocs.wxs
     $(COSMIC_ROOT)/PIM/PICML/examples/PICMLExamples.wxs
-
     $(COSMIC_ROOT)/PIM/PICML/paradigms/PICMLParadigm.wxs
-
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PICML/PICML.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/PackageComponent/PackageComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
@@ -52,6 +50,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/pim/PICML/interpreters/PathComponent/PathComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/PropertyManager/PropertyManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponent.wxs
+    $(COSMIC_ROOT)/PIM/PICML/utils/game/PICML_GAME_Utils.wxs
 
 /////////////////////////////////////////////////////////////////////////
 /////////////// CQML
