@@ -11,9 +11,14 @@ if not exist %COSMIC_ROOT%\bin\sed.exe          goto no_sed
 cd %COSMIC_ROOT%\tests\MyQuoter
 copy Stock_Base\Stock_Base.idl .   > nul
 
-REM Comment out #include from the idl files using sed's search and replace
-%COSMIC_ROOT%\bin\sed.exe -e s,#include,//#include,g Broker\Broker.idl >  Broker.idl
-%COSMIC_ROOT%\bin\sed.exe -e s,#include,//#include,g Distributor\Distributor.idl > Distributor.idl
+REM Comment out Components.idl include file using sed's search and replace
+%COSMIC_ROOT%\bin\sed.exe -e   s,#include,//#include,   Stock_Base\Stock_Base.idl >  Stock_Base.idl
+
+REM Remove unwanted directory paths using sed's search and replace
+%COSMIC_ROOT%\bin\sed.exe -e   s,../Stock_Base/,,       Broker\Broker.idl >  Broker.idl
+%COSMIC_ROOT%\bin\sed.exe -e   s,../Stock_Base/,,       Distributor\Distributor.idl > Distributor.idl
+
+REM Run idl_to_picml.exe on the preprocessed idl files.
 %COSMIC_ROOT%\bin\idl_to_picml.exe -x MyQuoter Stock_Base.idl Broker.idl Distributor.idl
 goto exit
 

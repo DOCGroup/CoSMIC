@@ -1,9 +1,15 @@
+Sun Nov  1 23:09:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Updated the script and added some comments.
+        
 Sun Nov  1 22:37:00 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * bin/sed.exe:
-		
+
           Added a sed executable that runs on all windows platforms. Needed for
-          idl_to_picml test in $COSMIC_ROOT/tests/MyQuoter and for UDM 3.2.1 to 
+          idl_to_picml test in $COSMIC_ROOT/tests/MyQuoter and for UDM 3.2.1 to
           strip off unwanted meta-information.
 
         * tests/MyQuoter:
@@ -14,7 +20,7 @@ Sun Nov  1 22:37:00 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/MyQuoter/Stock_Base:
         * tests/MyQuoter/Stock_Base/Stock_Base.idl:
         * tests/MyQuoter/run_test.bat:
-		
+
           A test for idl_to_picml that does exactly the same as the CoSMIC tutorial
           at http://www.dre.vanderbilt.edu/cosmic/tutorials/index.html
 
