@@ -1,9 +1,15 @@
+Sun Nov  1 23:51:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Updated the test-cases to include -r option also.  
+       
 Sun Nov  1 23:09:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/MyQuoter/run_test.bat:
 
           Updated the script and added some comments.
-        
+
 Sun Nov  1 22:37:00 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * bin/sed.exe:
