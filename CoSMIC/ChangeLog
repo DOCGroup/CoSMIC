@@ -1,9 +1,15 @@
+Mon Nov  2 00:05:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Fixed end-of-line characters.
+
 Sun Nov  1 23:51:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/MyQuoter/run_test.bat:
 
-          Updated the test-cases to include -r option also.  
-       
+          Updated the test-cases to include -r option also.
+
 Sun Nov  1 23:09:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/MyQuoter/run_test.bat:
