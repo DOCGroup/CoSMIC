@@ -44,7 +44,7 @@ echo Can't find %COSMIC_ROOT%\bin\idl_to_picml.exe
 goto exit
 
 :no_cosmic_root
-echo "Please set COSMIC_ROOT"
+echo Please set COSMIC_ROOT
 goto exit
 
 :exit
