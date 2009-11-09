@@ -5,6 +5,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 
+#include <atlbase.h>
 #include <windows.h>
 #include <msiquery.h>
 #include <objbase.h>

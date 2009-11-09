@@ -1,5 +1,10 @@
-#include "stdafx.h"
+// $Id$
+
+#include "StdAfx.h"
 #include "IDLEmitVisitor.h"
+#include "Utils/BON/Sort_T.h"
+#include "Utils/Sort.h"
+#include "boost/bind.hpp"
 #include <algorithm>
 
 #define EMITS_DEBUG 0
@@ -1489,8 +1494,7 @@ namespace IDML
     Component comp (object);
     bool not_first = false;
 
-    for (std::vector<Orderable>::iterator it =
-           object->ordered_children.begin ();
+    for (std::vector<Orderable>::iterator it = object->ordered_children.begin ();
          it != object->ordered_children.end ();
          it++)
       {
@@ -1499,10 +1503,15 @@ namespace IDML
         // - easy way to check.
         long rel_id;
         (*it)->getFCOI ()->get_RelID (&rel_id);
-        if (rel_id & 0x18000000) continue;
+
+        if (rel_id & 0x18000000)
+          continue;
 
         if (not_first) ofs << nl;
-        if ((*it)->getParent () != object) continue;
+
+        if ((*it)->getParent () != object)
+          continue;
+
         this->visitOrderableImpl (*it);
         not_first = true;
       }
@@ -1551,20 +1560,38 @@ namespace IDML
   void
   IDLEmitVisitor::emitStructMembers (const Orderable& object)
   {
-    std::set<Member> members;
+    std::set <Member> members;
     Exception excep (object);
     Aggregate aggr (object);
 
-    if (excep) members = excep->getMember ();
-    else members = aggr->getMember ();
+    if (excep)
+      members = excep->getMember ();
+    else
+      members = aggr->getMember ();
+
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <Member,
+                BON::Utils::Position_Sorter_T <IDML::Member, Utils::Sort_T2B> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (members.begin (),
+                   members.end (),
+                   boost::bind (&sorted_set::insert, boost::ref (sorted), _1));
 
     MemberType mt;
     BON::Model o_ma = object->getParentModel ();
     BON::Model m_ma;
 
-    for (std::set<Member>::const_iterator i = members.begin ();
-         i != members.end ();
-         i++)
+    for (sorted_set::const_iterator i = sorted.begin ();
+         i != sorted.end ();
+         i ++)
       {
         mt = (*i)->getMemberType ();
 
@@ -1587,10 +1614,27 @@ namespace IDML
     Byte is_char_disc = (*di)->getReferred ();
 
     std::set<Member> members = s->getMember ();
+
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <Member,
+                BON::Utils::Position_Sorter_T <IDML::Member, Utils::Sort_T2B> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (members.begin (),
+                   members.end (),
+                   boost::bind (&sorted_set::insert, boost::ref (sorted), _1));
+
     MemberType mt;
 
-    for (std::set<Member>::const_iterator i = members.begin ();
-         i != members.end ();
+    for (sorted_set::const_iterator i = sorted.begin ();
+         i != sorted.end ();
          i++)
       {
         std::multiset<Label> labels = (*i)->getLabelConnectionDsts ();
@@ -2048,16 +2092,31 @@ namespace IDML
         << (k_parent == cf_parent ? vd->getName () : this->scoped_name (vd));
   }
 
-  void IDLEmitVisitor::emitOBVMembers( const ObjectByValue& obv )
+  void IDLEmitVisitor::emitOBVMembers( const ObjectByValue & obv )
   {
-    std::set<Member> members = obv->getMember ();
+    std::set <Member> members = obv->getMember ();
 
-    for (std::set<Member>::const_iterator i = members.begin ();
-         i != members.end ();
-         i++)
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <IDML::Member,
+                BON::Utils::Position_Sorter_T <IDML::Member, Utils::Sort_T2B> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (members.begin (),
+                   members.end (),
+                   boost::bind (&sorted_set::insert, boost::ref (sorted), _1));
+
+    for (sorted_set::const_iterator i = sorted.begin (); i != sorted.end (); i ++)
       {
         ofs << nl;
-        std::set<BON::Connection> conns = (*i)->getOutConnLinks ();
+        std::set <BON::Connection> conns = (*i)->getOutConnLinks ();
+
         ofs << (conns.size () > 0 ? "private " : "public ")
             << this->scoped_name ((*i)->getReferred ())
             << " " << (*i)->getName () << ";";
@@ -2066,12 +2125,31 @@ namespace IDML
 
   void IDLEmitVisitor::emitEnumValues( const Enum& e )
   {
-    std::set<EnumValue> values = e->getEnumValue ();
-    for (std::set<EnumValue>::const_iterator it = values.begin ();
-         it != values.end ();
+    std::set <EnumValue> values = e->getEnumValue ();
+
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <IDML::EnumValue,
+                BON::Utils::Position_Sorter_T <IDML::EnumValue, Utils::Sort_T2B> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (values.begin (),
+                   values.end (),
+                   boost::bind (&sorted_set::insert, boost::ref (sorted), _1));
+
+    for (sorted_set::const_iterator it = sorted.begin ();
+         it != sorted.end ();
          it++)
       {
-        if (it != values.begin ()) ofs << ",";
+        if (it != sorted.begin ())
+          ofs << ",";
+
         ofs << nl
             << (*it)->getName ();
       }

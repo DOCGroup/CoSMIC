@@ -17,7 +17,7 @@
     <!-- Wix variables -->
     <WixVariable Id="WixUILicenseRtf" Value="$(var.COSMIC_ROOT)/License.rtf" />
 
-    <Condition Message='CoSMIC Installer is not suported on Windows 95/98/ME.'>
+    <Condition Message='CoSMIC is not suported on Windows 95/98/ME.'>
       NOT Version9X
     </Condition>
     <Condition Message="You need to be an administrator to install this product.">
@@ -25,25 +25,26 @@
     </Condition>
 
 <?if $(var.GME_VERSION) = 9_8_28 ?>
-    <Condition Message="This CoSMIC installer requires GME 9.8.28 preinstalled on your machine. Please install GME 9.8.28 first.">
+    <Condition Message="This version of CoSMIC requires GME 9.8.28. Please install GME 9.8.28 first.">
       GMEINSTALLED
     </Condition>
 <?endif ?>
 
 <?if $(var.GME_VERSION) = 7_6_29 ?>
-    <Condition Message="This CoSMIC installer requires GME 7.6.29 preinstalled on your machine. Please install GME 7.6.29 first.">
+    <Condition Message="This version of CoSMIC requires GME 7.6.29. Please install GME 7.6.29 first.">
       GMEINSTALLED
     </Condition>
 <?endif ?>
 
-    <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
-    <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
+    <Media Id='1' Cabinet='CoSMIC.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
 
     <Property Id="GMEINSTALLED">
       <RegistrySearch Id="GMEInstalledRegSearch"
                       Root="HKLM" Key="SOFTWARE\GME\Paradigms\MetaGME"
                       Name="CurrentVersion" Type="raw" />
     </Property>
+
+    <Property Id='DiskPrompt' Value="ISIS's CoSMIC Installation [1]" />
 
     <!-- UI -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
@@ -68,21 +69,14 @@
     <FeatureRef Id='LEESAFeature' />
 
     <InstallExecuteSequence>
-     <Custom Action='GMEVersion' After='InstallInitialize' >
-        NOT Installed
-      </Custom>
-      <Custom Action='ParadigmRegister' After='PublishProduct' >
-        NOT Installed
-      </Custom>
-      <Custom Action='TargetDirRegFailed' After='ParadigmRegister'>
-        TARGETDIRACCEPTED = "0" AND NOT Installed
-      </Custom>
+      <Custom Action='SetGMEVersion' After='InstallInitialize'>NOT Installed</Custom>
+      <Custom Action='GMEVersion' After='SetGMEVersion'>NOT Installed</Custom>
+
+      <Custom Action='ParadigmRegister' After='PublishProduct'>NOT Installed</Custom>
+      <Custom Action='TargetDirRegFailed' After='ParadigmRegister'>TARGETDIRACCEPTED = "0" AND NOT Installed</Custom>
       <Custom Action='ParadigmUnRegisterIfFailure' Before='ParadigmRegister' />
-      <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveRegistryValues' >
-        Installed
-      </Custom>
+      <Custom Action='ParadigmUnRegisterWhenUninstall' Before='RemoveRegistryValues' >Installed</Custom>
       <Custom Action="SetUninstallCmd" Before="FindRelatedProducts" />
     </InstallExecuteSequence>
-
   </Product>
 </Wix>

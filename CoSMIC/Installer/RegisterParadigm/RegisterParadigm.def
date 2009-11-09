@@ -4,8 +4,7 @@
 ;
 LIBRARY    "RegisterParadigm"
 EXPORTS
-        RegisterParadigms @1
-        UnRegisterParadigms @2
-        CheckGMEVersion_6_11_9 @3
-        CheckGMEVersion_7_6_29 @4
-		CheckGMEVersion_9_8_28 @5
+        DllMain
+        RegisterParadigms
+        UnRegisterParadigms
+        CheckGMEVersion

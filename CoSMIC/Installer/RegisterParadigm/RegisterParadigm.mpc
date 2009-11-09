@@ -9,15 +9,18 @@ project : acedefaults, cosmic_lib {
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
 
-  specific {
-     midl_includes += $(GME_ROOT)/Interfaces
-     midl_flags    += /client stub /server none
-     midl_notlb     = 1
-     use_lib_modifier =
-     runtime_library = 1
+  macros += '_WIN32_WINNT=0x500'
+
+  specific (prop:microsoft) {
+    midl_includes += $(GME_ROOT)/Interfaces
+    midl_flags    += /client stub /server none
+    midl_notlb     = 1
+    use_lib_modifier =
+    runtime_library = 1
   }
 
   Source_Files {
+    $(GME_ROOT)/Interfaces/Gme.idl
     $(GME_ROOT)/Interfaces/MgaUtil.idl
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/Meta.idl

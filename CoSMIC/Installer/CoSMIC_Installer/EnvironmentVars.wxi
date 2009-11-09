@@ -1,20 +1,20 @@
 <?xml version='1.0' encoding='Windows-1252'?>
 <Include xmlns='http://schemas.microsoft.com/wix/2003/01/wix'>
-     <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
-     <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
-     <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
-     <?define UDM_PATH = "$(env.UDM_PATH)" ?>
-     <?define UDM_VERSION = "$(env.UDM_VERSION)" ?>
-     <?define GME_VERSION = "$(env.GME_VERSION)" ?>
-     <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
-     <?define XERCESC_VERSION = "$(env.XERCESC_VERSION)" ?>
-     <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
-     <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
-     <?if $(var.type) = vc71 ?>
-        <?define VS71COMNTOOLS = "$(env.VS71COMNTOOLS)" ?>
-     <?elseif $(var.type) = vc8 ?>
-        <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
-     <?elseif $(var.type) = vc9 ?>
-        <?define VS90COMNTOOLS = "$(env.VS90COMNTOOLS)" ?>
-     <?endif ?>
+  <?define COSMIC_ROOT = "$(env.COSMIC_ROOT)" ?>
+  <?define ACE_ROOT = "$(env.ACE_ROOT)" ?>
+  <?define TAO_ROOT = "$(env.TAO_ROOT)" ?>
+  <?define UDM_PATH = "$(env.UDM_PATH)" ?>
+  <?define UDM_VERSION = "$(env.UDM_VERSION)" ?>
+  <?define GME_VERSION = "$(env.GME_VERSION)" ?>
+  <?define XERCESCROOT = "$(env.XERCESCROOT)" ?>
+  <?define XERCESC_VERSION = "$(env.XERCESC_VERSION)" ?>
+  <?define COMMON_PROGRAMFILES = "$(env.CommonProgramFiles)" ?>
+  <?define ZLIB_ROOT = "$(env.ZLIB_ROOT)" ?>
+  <?if $(var.type) = vc71 ?>
+    <?define VS71COMNTOOLS = "$(env.VS71COMNTOOLS)" ?>
+  <?elseif $(var.type) = vc8 ?>
+    <?define VS80COMNTOOLS = "$(env.VS80COMNTOOLS)" ?>
+  <?elseif $(var.type) = vc9 ?>
+    <?define VS90COMNTOOLS = "$(env.VS90COMNTOOLS)" ?>
+  <?endif ?>
 </Include>

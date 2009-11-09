@@ -2,20 +2,38 @@
 
 #include "StdAfx.h"
 #include "RegisterParadigm.h"
-#include "mgautil.h"
+#include "MgaUtil.h"
+#include "Gme.h"
+#include "boost/bind.hpp"
+#include <algorithm>
+#include <sstream>
 
 #define PARADIGMCOST 30000
 
 //
-// LastError
+// DllMain
 //
-static const TCHAR * LastError (void)
+BOOL WINAPI DllMain (HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved)
 {
-  static TCHAR lpMsgBuf[65536];
-  FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, ::GetLastError(),
-                MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-                lpMsgBuf, sizeof(lpMsgBuf), NULL);
-  return lpMsgBuf;
+  HRESULT hr;
+
+  switch (fdwReason)
+  {
+  case DLL_PROCESS_ATTACH:
+    // Initialize OLE
+    hr = ::CoInitialize (0);
+
+    if (FAILED (hr))
+      return FALSE;
+    break;
+
+  case DLL_PROCESS_DETACH:
+    // Uninitialize OLE
+    ::CoUninitialize ();
+    break;
+  }
+
+  return TRUE;
 }
 
 //
@@ -29,28 +47,31 @@ static void InitProgressBar (MSIHANDLE hInstall,
                              const char* szTemplate)
 {
   MSIHANDLE nTotalCost = nSteps * nStepSize;
-  PMSIHANDLE hRec = MsiCreateRecord(3);
+  PMSIHANDLE hRec = MsiCreateRecord (3);
 
-  MsiRecordSetString(hRec, 1, szActionName);  // action name
-  MsiRecordSetString(hRec, 2, szDescription);  // description
-  MsiRecordSetString(hRec, 3, szTemplate);  // template for ACTIONDATA
-  int nResult = MsiProcessMessage(hInstall,
-                                  INSTALLMESSAGE_ACTIONSTART,
-                                  hRec);
+  MsiRecordSetString (hRec, 1, szActionName);  // action name
+  MsiRecordSetString (hRec, 2, szDescription);  // description
+  MsiRecordSetString (hRec, 3, szTemplate);  // template for ACTIONDATA
 
-  MsiRecordSetInteger(hRec, 1, 0);      // reset PB, set the total ticks
-  MsiRecordSetInteger(hRec, 2, nTotalCost); // est. total ticks
-  MsiRecordSetInteger(hRec, 3, 0);          // forward direction
-  nResult = MsiProcessMessage(hInstall,
-                              INSTALLMESSAGE_PROGRESS,
-                              hRec);
+  int nResult = ::MsiProcessMessage (hInstall,
+                                     INSTALLMESSAGE_ACTIONSTART,
+                                     hRec);
 
-  MsiRecordSetInteger(hRec, 1, 1);         // progress setup info
-  MsiRecordSetInteger(hRec, 2, nStepSize); // step size
-  MsiRecordSetInteger(hRec, 3, 1);         // increment by the prev parameter
-  nResult = MsiProcessMessage(hInstall,
-                              INSTALLMESSAGE_PROGRESS,
-                              hRec);
+  MsiRecordSetInteger (hRec, 1, 0);      // reset PB, set the total ticks
+  MsiRecordSetInteger (hRec, 2, nTotalCost); // est. total ticks
+  MsiRecordSetInteger (hRec, 3, 0);          // forward direction
+
+  nResult = ::MsiProcessMessage (hInstall,
+                                 INSTALLMESSAGE_PROGRESS,
+                                 hRec);
+
+  MsiRecordSetInteger (hRec, 1, 1);         // progress setup info
+  MsiRecordSetInteger (hRec, 2, nStepSize); // step size
+  MsiRecordSetInteger (hRec, 3, 1);         // increment by the prev parameter
+
+  nResult = ::MsiProcessMessage (hInstall,
+                                 INSTALLMESSAGE_PROGRESS,
+                                 hRec);
 }
 
 //
@@ -59,21 +80,22 @@ static void InitProgressBar (MSIHANDLE hInstall,
 static void SendMsgToProgressBar (MSIHANDLE hInstall,
                                   const char* szMessage)
 {
-  MSIHANDLE hProgressRec = MsiCreateRecord(3);
-  MSIHANDLE hRec = MsiCreateRecord(1);
+  MSIHANDLE hProgressRec = MsiCreateRecord (3);
+  MSIHANDLE hRec = MsiCreateRecord (1);
 
-  MsiRecordSetInteger(hProgressRec, 1, 2);  // increment the PB
-  MsiRecordSetInteger(hProgressRec, 2, 1);  // ignored
-  MsiRecordSetInteger(hProgressRec, 3, 0);  // unused
+  MsiRecordSetInteger (hProgressRec, 1, 2);  // increment the PB
+  MsiRecordSetInteger (hProgressRec, 2, 1);  // ignored
+  MsiRecordSetInteger (hProgressRec, 3, 0);  // unused
 
-  MsiRecordSetString(hRec, 1, szMessage); // set the progress bar message
+  MsiRecordSetString (hRec, 1, szMessage); // set the progress bar message
 
-  int nResult = MsiProcessMessage(hInstall,
-                                  INSTALLMESSAGE_ACTIONDATA,
-                                  hRec);
-  nResult = MsiProcessMessage(hInstall,
-                              INSTALLMESSAGE_PROGRESS,
-                              hProgressRec);
+  int nResult = MsiProcessMessage (hInstall,
+                                   INSTALLMESSAGE_ACTIONDATA,
+                                   hRec);
+
+  nResult = MsiProcessMessage (hInstall,
+                               INSTALLMESSAGE_PROGRESS,
+                               hProgressRec);
 }
 
 //
@@ -83,37 +105,135 @@ static void SendErrorMsg (MSIHANDLE hInstall,
                           const char* svErrorMessage,
                           int nFatal)
 {
-  int hRec = MsiCreateRecord(1);
-  MsiRecordSetString(hRec, 0, "Error occured: [1]");
-  MsiRecordSetString(hRec, 1, svErrorMessage);
-  MsiProcessMessage(hInstall,
-                    INSTALLMESSAGE_ERROR,
-                    hRec);
+  int hRec = MsiCreateRecord (1);
+
+  MsiRecordSetString (hRec, 0, "Error occured: [1]");
+  MsiRecordSetString (hRec, 1, svErrorMessage);
+
+  MsiProcessMessage (hInstall,
+                     INSTALLMESSAGE_ERROR,
+                     hRec);
 }
 
 //
-// GetRegistryValue
+// get_msi_property
 //
-static char* GetRegistryValue (HKEY key,
-                               const char* keyName,
-                               const char* name)
+int get_msi_property (MSIHANDLE install, const char * name, std::string & value)
+{
+  TCHAR * buffer = 0;
+  DWORD bufsize = 0;
+
+  UINT result = ::MsiGetProperty (install, name, TEXT (""), &bufsize);
+
+  if (ERROR_MORE_DATA == result)
+  {
+    // Allocate a buffer for the property.
+    ++ bufsize;
+    buffer = new TCHAR[bufsize];
+
+    result = ::MsiGetProperty (install, name, buffer, &bufsize);
+
+    // Save the value of the property.
+    if (result == ERROR_SUCCESS)
+      value = buffer;
+
+    // Delete the buffer.
+    delete [] buffer;
+  }
+
+  return result;
+}
+
+//
+// get_msi_target_path
+//
+int get_msi_target_path (MSIHANDLE install, const char * name, std::string & value)
+{
+  TCHAR * buffer = 0;
+  DWORD bufsize = 0;
+
+  UINT result = ::MsiGetTargetPath (install, name, TEXT (""), &bufsize);
+
+  if (ERROR_MORE_DATA == result)
+  {
+    // Allocate a buffer for the property.
+    ++ bufsize;
+    buffer = new TCHAR[bufsize];
+
+    result = ::MsiGetTargetPath (install, name, buffer, &bufsize);
+
+    // Save the value of the property.
+    if (result == ERROR_SUCCESS)
+      value = buffer;
+
+    // Delete the buffer.
+    delete [] buffer;
+  }
+  else
+  {
+    if (result != ERROR_SUCCESS)
+    {
+      switch (result)
+      {
+      case ERROR_INVALID_HANDLE:
+        SendErrorMsg (install, "Invalid handle.", 1);
+        break;
+
+      case ERROR_MORE_DATA:
+        SendErrorMsg (install, "Buffer too small.", 1);
+        break;
+
+      case ERROR_INVALID_PARAMETER:
+        SendErrorMsg (install, "Invalid parameter.", 1);
+        break;
+      }
+
+      return ERROR_INSTALL_FAILURE;
+    }
+  }
+
+  return result;
+}
+
+//
+// last_error
+//
+static const TCHAR * last_error (void)
+{
+  static TCHAR lpMsgBuf[65536];
+
+  ::FormatMessage (FORMAT_MESSAGE_FROM_SYSTEM,
+                   0,
+                   ::GetLastError (),
+                   MAKELANGID (LANG_NEUTRAL, SUBLANG_DEFAULT),
+                   lpMsgBuf,
+                   sizeof (lpMsgBuf),
+                   0);
+
+  return lpMsgBuf;
+}
+
+//
+// get_registry_value
+//
+static char* get_registry_value (HKEY key, const char * key_name, const char * name)
 {
   HKEY hKeyLocal;
 
   // Open the registry key key
-  if (RegOpenKeyEx (key, keyName, 0, KEY_READ, &hKeyLocal) != ERROR_SUCCESS)
+  if (RegOpenKeyEx (key, key_name, 0, KEY_READ, &hKeyLocal) != ERROR_SUCCESS)
     return 0;
 
   // Get the maximum length of a value inside this key
   unsigned long len;
-  if (RegQueryInfoKey (hKeyLocal, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-                       NULL, &len, NULL, NULL) != ERROR_SUCCESS)
+  if (RegQueryInfoKey (hKeyLocal, 0, 0, 0, 0, 0, 0, 0,
+                       0, &len, 0, 0) != ERROR_SUCCESS)
     return 0;
   len++;
   unsigned char* buf = new unsigned char[len];
 
   // Query the registry value of name
-  if (RegQueryValueEx(hKeyLocal, name, NULL, NULL, buf, &len) != ERROR_SUCCESS)
+  if (RegQueryValueEx (hKeyLocal, name, 0, 0, buf, &len) != ERROR_SUCCESS)
     return 0;
 
   if (RegCloseKey (hKeyLocal) != ERROR_SUCCESS)
@@ -123,21 +243,12 @@ static char* GetRegistryValue (HKEY key,
 }
 
 //
-// create_paradigms_vector
+// get_paradigm_list
 //
-static std::vector <std::string> create_paradigms_vector (void)
+static void get_paradigm_list (std::vector <std::string> & list)
 {
-  /* Add any new DSML paradigm names here.
-     You should not need to modify any other
-   parts of this source file.
-  */
-
-  std::vector <std::string> paradigms;
-  paradigms.push_back ("PICML");
-  paradigms.push_back ("CQML");
-  paradigms.push_back ("POSAML");
-
-  return paradigms;
+  list.push_back ("PICML");
+  list.push_back ("CQML");
 }
 
 //
@@ -151,15 +262,15 @@ filter_unregistered_paradigms (const std::vector <std::string> &paradigms)
   // "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\PICMLParadigm"
   // will be set.
   std::vector <std::string> temp;
-  for (std::vector <std::string>::const_iterator iter (paradigms.begin());
+  for (std::vector <std::string>::const_iterator iter (paradigms.begin ());
      iter != paradigms.end ();
      ++iter)
   {
     std::ostringstream ostr;
     ostr << *iter << "Paradigm";
-    char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
+    char* value = get_registry_value (HKEY_LOCAL_MACHINE,
                                   "SOFTWARE\\ISIS\\CoSMIC",
-                    ostr.str().c_str());
+                    ostr.str ().c_str());
       if (value != 0)
     {
       // It the registry entry is found then select the
@@ -170,48 +281,88 @@ filter_unregistered_paradigms (const std::vector <std::string> &paradigms)
   return temp;
 }
 
-//
-// RegisterParadigm
-//
-static bool RegisterParadigm (const std::string& paradigm)
+/**
+ * @struct register_paradigm_t
+ *
+ * Functor for registering a paradigm with GME.
+ */
+struct register_paradigm_t
 {
-  //Initialize the OLE libraries
-  HRESULT hr = ::CoInitialize(NULL);
-  if (FAILED(hr))
-    return false;
+  register_paradigm_t (MSIHANDLE install, std::string & cosmic_dir)
+    : install_ (install),
+      cosmic_dir_ (cosmic_dir),
+      errors_ (0)
+  {
 
-  CLSID clsid;
+  }
 
-  hr = ::CLSIDFromProgID(OLESTR("Mga.MgaRegistrar"), &clsid);
-  if (FAILED(hr))
-    return false;
+  register_paradigm_t (const register_paradigm_t & copy)
+    : install_ (copy.install_),
+      cosmic_dir_ (copy.cosmic_dir_),
+      errors_ (copy.errors_)
+  {
 
-  IMgaRegistrar *reg;
-  hr = ::CoCreateInstance(clsid, NULL, CLSCTX_ALL, __uuidof(IMgaRegistrar),
-                          reinterpret_cast<void**>(&reg));
-  if (FAILED(hr))
-    return false;
+  }
 
-  UINT cp = GetACP ();
-  int len = ::MultiByteToWideChar (cp, 0, paradigm.c_str(), -1, 0, 0);
-  wchar_t *wstr = new wchar_t[len];
-  ::MultiByteToWideChar (cp, 0, paradigm.c_str(), -1, wstr, len);
-  BSTR connstr = ::SysAllocString(wstr);
-  BSTR parname = NULL;
+  void operator () (const std::string & paradigm)
+  {
+    SendMsgToProgressBar (this->install_, paradigm.c_str ());
 
-  hr = reg->RegisterParadigmFromData(connstr, &parname,
-                                     REGACCESS_SYSTEM);
-  if (FAILED(hr))
-    return false;
+    // Load the registration interface.
+    CComBSTR progid ("Mga.MgaRegistrar");
 
-  ::SysFreeString(connstr);
-  ::SysFreeString(parname);
+    CComPtr <IMgaRegistrar> reg;
+    HRESULT hr = reg.CoCreateInstance (progid);
 
-  reg->Release();
+    if (SUCCEEDED (hr))
+    {
+      std::string target_paradigm =
+        "XML=" + std::string (this->cosmic_dir_) + "paradigms\\" +
+        paradigm + "\\" + paradigm + ".xmp";
 
-  ::CoUninitialize();
-  return true;
-}
+      // Convert the paradigm to a BSTR
+      CComBSTR connstr (target_paradigm.length (), target_paradigm.c_str ());
+
+      // Register the paradigm with GME.
+      CComBSTR parname;
+      hr = reg->RegisterParadigmFromData (connstr, &parname, REGACCESS_SYSTEM);
+    }
+
+    if (FAILED (hr))
+    {
+      // Show an error message to the end-user.
+      std::string message =
+        "Unable to register " + paradigm + " paradigm. Please " +
+        "verify that you have a valid GME installation. " + last_error ();
+
+      SendErrorMsg (this->install_, message.c_str (), 1);
+      MessageBox (0, message.c_str (), "", MB_OK);
+
+      ++ this->errors_;
+    }
+  }
+
+  const register_paradigm_t & operator = (const register_paradigm_t & rhs)
+  {
+    this->install_ = rhs.install_;
+    this->cosmic_dir_ = rhs.cosmic_dir_;
+    this->errors_ = rhs.errors_;
+
+    return *this;
+  }
+
+  int errors (void) const
+  {
+    return this->errors_;
+  }
+
+private:
+  MSIHANDLE & install_;
+
+  std::string & cosmic_dir_;
+
+  int errors_;
+};
 
 //
 // RegisterParadigms
@@ -222,91 +373,52 @@ UINT RegisterParadigms (MSIHANDLE hInstall)
   int nParadigmNum = 1;
 
   // Initialize progress bar
-  InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
-                  "Paradigm Install",
-                  "Registering Paradigms into GME.", "Registering [1]");
-  char* value = GetRegistryValue (HKEY_LOCAL_MACHINE,
-                                  "SOFTWARE\\ISIS\\CoSMIC",
-                                  "TargetDir");
+  InitProgressBar (hInstall,
+                   nParadigmNum,
+                   PARADIGMCOST,
+                  "Paradigm Registration",
+                  "Registering paradigms with GME...",
+                  "Registering [1]");
 
-  if (value == 0)
-    {
-      SendErrorMsg (hInstall, "Unable to access Registry Key "
-                    "HKEY_LOCAL_MACHINE\\SOFTWARE\\ISIS\\CoSMIC\\TargetDir", 1);
+  std::string install_dir = get_registry_value (HKEY_LOCAL_MACHINE,
+                                                "SOFTWARE\\ISIS\\CoSMIC",
+                                                "TargetDir");
+
+  if (!install_dir.empty ())
+  {
+    MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "1");
+
+    std::vector <std::string> paradigms;
+    get_paradigm_list (paradigms);
+
+    register_paradigm_t func (hInstall, install_dir);
+    func = std::for_each (paradigms.begin (), paradigms.end (), func);
+
+    return func.errors () == 0 ? ERROR_SUCCESS : ERROR_INSTALL_FAILURE;
+  }
+  else
+  {
     MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "0");
-      return ERROR_INSTALL_FAILURE;
-    }
-
-  MsiSetProperty (hInstall, "TARGETDIRACCEPTED", "1");
-
-  std::vector<std::string> paradigms
-    = filter_unregistered_paradigms (create_paradigms_vector());
-
-  std::string paradigm_ext (".xmp");
-
-  for (std::vector<std::string>::const_iterator iter = paradigms.begin();
-       iter != paradigms.end();
-       ++iter)
-    {
-      // Register the PICML paradigm
-      std::string svParadigmName = *iter;
-      SendMsgToProgressBar(hInstall, svParadigmName.c_str());
-      std::string targetParadigm ("XML=");
-      targetParadigm += std::string(value) + "paradigms\\"
-                 + svParadigmName + "\\" + svParadigmName + paradigm_ext;
-      if (!RegisterParadigm (targetParadigm))
-      {
-        std::string errorMsg ("Unable to register Paradigm " + targetParadigm);
-        errorMsg += ". Please check if you have a valid GME installation. \n";
-        errorMsg += LastError();
-        SendErrorMsg (hInstall, errorMsg.c_str(), 1);
-        return ERROR_INSTALL_FAILURE;
-      }
-    }
-  // Don't change this return value or BAD THINGS[TM] will happen.
-  return ERROR_SUCCESS;
+    return ERROR_INSTALL_FAILURE;
+  }
 }
 
 //
 // UnregisterParadigm
 //
-static bool UnregisterParadigm (const std::string & paradigmName)
+static bool UnregisterParadigm (const std::string & paradigm)
 {
-  //Initialize the OLE libraries
-  HRESULT hr = ::CoInitialize(NULL);
-  if (FAILED(hr))
-    return false;
+  // Load the registration interface.
+  CComBSTR progid ("Mga.MgaRegistrar");
 
-  CLSID clsid;
+  CComPtr <IMgaRegistrar> reg;
+  HRESULT hr = reg.CoCreateInstance (progid);
 
-  hr = ::CLSIDFromProgID(OLESTR("Mga.MgaRegistrar"), &clsid);
-  if (FAILED(hr))
-    return false;
+  // Register the paradigm with GME.
+  CComBSTR temp (paradigm.length (), paradigm.c_str ());
+  hr = reg->UnregisterParadigm (temp, REGACCESS_BOTH);
 
-  IMgaRegistrar *reg;
-  hr = ::CoCreateInstance(clsid, NULL, CLSCTX_ALL, __uuidof(IMgaRegistrar),
-                          reinterpret_cast<void**>(&reg));
-  if (FAILED(hr))
-    return false;
-
-  UINT cp = GetACP ();
-  int len = ::MultiByteToWideChar (cp, 0, paradigmName.c_str(), -1, 0, 0);
-  wchar_t *wstr = new wchar_t[len];
-  ::MultiByteToWideChar (cp, 0, paradigmName.c_str(), -1, wstr, len);
-  BSTR name = ::SysAllocString(wstr);
-
-  hr = reg->UnregisterParadigm(name, REGACCESS_BOTH);
-
-  if (FAILED(hr))
-    return false;
-
-  ::SysFreeString(name);
-
-  reg->Release();
-
-  ::CoUninitialize();
-
-  return true;
+  return SUCCEEDED (hr);
 }
 
 //
@@ -318,26 +430,28 @@ UINT UnregisterParadigms (MSIHANDLE hInstall)
   int nParadigmNum = 1;
 
   // Initialize progress bar
-  InitProgressBar(hInstall, nParadigmNum, PARADIGMCOST,
+  InitProgressBar (hInstall, nParadigmNum, PARADIGMCOST,
                   "Paradigm Uninstall",
-                  "UnRegistering Paradigms from GME.", "UnRegistering [1]");
+                  "Unregistering paradigms from GME", "Unregistering [1]");
 
-  std::vector<std::string> paradigms
-    = filter_unregistered_paradigms (create_paradigms_vector());
+  std::vector <std::string> paradigms;
+  get_paradigm_list (paradigms);
 
-  for (std::vector<std::string>::const_iterator iter = paradigms.begin();
-       iter != paradigms.end();
+  filter_unregistered_paradigms (paradigms);
+
+  for (std::vector<std::string>::const_iterator iter = paradigms.begin ();
+       iter != paradigms.end ();
        ++iter)
     {
       // UnRegister the PICML paradigm
       std::string svParadigmName = *iter;
-      SendMsgToProgressBar(hInstall, svParadigmName.c_str());
+      SendMsgToProgressBar (hInstall, svParadigmName.c_str());
 
       if (!UnregisterParadigm (svParadigmName))
         {
           std::string errorMsg ("Unable to unregister Paradigm " +
                                 svParadigmName);
-          errorMsg += LastError();
+          errorMsg += last_error ();
           SendErrorMsg (hInstall, errorMsg.c_str(), 1);
           return ERROR_INSTALL_FAILURE;
         }
@@ -349,87 +463,99 @@ UINT UnregisterParadigms (MSIHANDLE hInstall)
 //
 // check_GME_version
 //
-static UINT check_GME_version (std::string const & version)
+HRESULT check_GME_version (const std::string & version)
 {
-  const char * const GME_ROOT = getenv("GME_ROOT");
-  std::string path = GME_ROOT;
-  path += "\\Interfaces\\GMEVersion.h";
+  // Open the GMEVersion.h header file for reading.
+  const std::string GME_ROOT = ::getenv ("GME_ROOT");
+  const std::string path = GME_ROOT + "/Interfaces/GMEVersion.h";
 
-  std::ifstream infile(path.c_str());
-  if (infile)
+  std::ifstream infile (path.c_str());
+
+  if (!infile.is_open ())
+    return ERROR_INSTALL_FAILURE;
+
+  // Locate each token for the version number in the header file.
+  std::string token;
+  int major = 0, minor = 0, plevel = 0;
+
+  while (infile >> token)
   {
-    std::string token;
-    int major = 0, minor = 0, plevel = 0;
-    while (infile >> token)
+    if (token == "GME_VERSION_MAJOR")
+      infile >> major;
+    else if (token == "GME_VERSION_MINOR")
+      infile >> minor;
+    else if (token == "GME_VERSION_PLEVEL")
     {
-      if (token == "GME_VERSION_MAJOR")
-        infile >> major;
-      else if (token == "GME_VERSION_MINOR")
-        infile >> minor;
-      else if (token == "GME_VERSION_PLEVEL")
-      {
-        infile >> plevel;
-        break;
-      }
+      infile >> plevel;
+      break;
     }
-    std::ostringstream ostr;
-    ostr << major << "." << minor << "." << plevel;
-    if (ostr.str() == version)
-      return ERROR_SUCCESS;
-    else
-      return ERROR_INSTALL_FAILURE;
   }
-  else
-  {
-    return ERROR_INSTALL_FAILURE;
-  }
-}
 
+  // Construct the version number from the tokens, then compare the
+  // expected version number with the installed version number.
+  std::ostringstream ostr;
+  ostr << major << "." << minor << "." << plevel;
 
-UINT CheckGMEVersion_6_11_9 (MSIHANDLE hInstall)
-{
-  if (check_GME_version ("6.11.9") == ERROR_INSTALL_FAILURE)
-  {
-    MessageBox(NULL,
-             TEXT("GME version 6.11.9 is not installed or could not determine "
-             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
-           TEXT("CoSMIC Installer Error"),
-           MB_OK);
-    return ERROR_INSTALL_FAILURE;
-  }
-  else
+  if (ostr.str() == version)
     return ERROR_SUCCESS;
+  else
+    return ERROR_INSTALL_FAILURE;
 }
 
-
-UINT CheckGMEVersion_7_6_29 (MSIHANDLE hInstall)
+//
+// CheckGMEVersion
+//
+UINT CheckGMEVersion (MSIHANDLE hInstall)
 {
-  if (check_GME_version ("7.6.29") == ERROR_INSTALL_FAILURE)
+  // Get the property that contains the GME version.
+  std::string expected_version;
+
+  if (get_msi_property (hInstall,
+                        "CustomActionData",
+                        expected_version) != ERROR_SUCCESS)
   {
-    MessageBox(NULL,
-             TEXT("GME version 7.6.29 is not installed or could not determine "
-             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
-           TEXT("CoSMIC Installer Error"),
-           MB_OK);
+    SendErrorMsg (hInstall, "Failed to get expected version number of GME installation.", 1);
     return ERROR_INSTALL_FAILURE;
   }
-  else
+
+  // Prepare the expect version string for GME.
+  std::replace (expected_version.begin (),
+                expected_version.end (),
+                '_',
+                '.');
+
+  // Right now, we check the GME version using the GMEVersion.h header
+  // file. Below is the *right* way to check the version by using the
+  // GME binary since the header file can be corrupted. Unfortunately,
+  // the way below does not work since we can't get the GME.Application
+  // to load in automation mode. :-(
+
+  if (check_GME_version (expected_version) == ERROR_SUCCESS)
     return ERROR_SUCCESS;
+
+  //CComBSTR progid ("GME.Application");
+  //CComPtr <IUnknown> gme_app;
+  //HRESULT hr = gme_app.CoCreateInstance (progid);
+
+  //if (SUCCEEDED (hr))
+  //{
+  //  // Get the version number of the current GME installation.
+  //  CComBSTR installed_version;
+  //  gme_app->get_Version (&installed_version);
+
+  //  // Compare the expected version with the installed version.
+  //  CComBSTR temp_str (expected_version.length (), expected_version.c_str ());
+
+  //  if (installed_version == temp_str)
+  //    return ERROR_SUCCESS;
+  //}
+
+  // Format the error message.
+  std::ostringstream message;
+  message << "GME " << expected_version << " is not installed. Please "
+          << "verify that the correct version of GME is installed.";
+
+  // Display error message to user.
+  SendErrorMsg (hInstall, message.str ().c_str (), 1);
+  return ERROR_INSTALL_FAILURE;
 }
-
-
-UINT CheckGMEVersion_9_8_28 (MSIHANDLE hInstall)
-{
-  if (check_GME_version ("9.8.28") == ERROR_INSTALL_FAILURE)
-  {
-    MessageBox(NULL,
-             TEXT("GME version 9.8.28 is not installed or could not determine "
-             "its version. Please check %GME_ROOT%\\Interfaces\\GMEVersion.h"),
-           TEXT("CoSMIC Installer Error"),
-           MB_OK);
-    return ERROR_INSTALL_FAILURE;
-  }
-  else
-    return ERROR_SUCCESS;
-}
-

@@ -23,11 +23,7 @@ COSMIC_MSI_Export UINT RegisterParadigms (MSIHANDLE);
 
 COSMIC_MSI_Export UINT UnregisterParadigms (MSIHANDLE);
 
-COSMIC_MSI_Export UINT CheckGMEVersion_6_11_9 (MSIHANDLE);
-
-COSMIC_MSI_Export UINT CheckGMEVersion_7_6_29 (MSIHANDLE);
-
-COSMIC_MSI_Export UINT CheckGMEVersion_9_8_28 (MSIHANDLE);
+COSMIC_MSI_Export UINT CheckGMEVersion (MSIHANDLE);
 
 #if defined (__cplusplus)
 }

@@ -11,6 +11,7 @@ project (CoSMIC_Utils) : acelib, cosmic_common {
   Source_Files {
     Utils.cpp
     Point.cpp
+    Sort.cpp
   }
 
   Header_Files {

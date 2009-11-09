@@ -167,6 +167,16 @@
         DiskId='1'
         Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ComponentProperty.bmp' />
 
+        <File Id='ComponentImplementationArtifact.bmp'
+              Name='ComponentImplementationArtifact.bmp'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ComponentImplementationArtifact.bmp' />
+
+        <File Id='ComponentServantArtifact.bmp'
+              Name='ComponentServantArtifact.bmp'
+              DiskId='1'
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\paradigms\icons\ComponentServantArtifact.bmp' />
+
         <File Id='PICML_icon_11'
         Name='ComponentSet.bmp'
         DiskId='1'

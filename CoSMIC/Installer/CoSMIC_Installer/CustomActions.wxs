@@ -3,12 +3,17 @@
   <?include EnvironmentVars.wxi ?>
 
   <Fragment Id="CustomActionsFrag">
+    <CustomAction Id='SetGMEVersion'
+                  Return='check'
+                  Property='GMEVersion'
+                  Value='$(var.GME_VERSION)' />
+
     <CustomAction Id='GMEVersion'
-              BinaryKey='RegistrationBinary'
-              DllEntry='CheckGMEVersion_$(var.GME_VERSION)'
-              Execute='deferred'
-              Impersonate='no'
-              Return='check' />
+                  BinaryKey='RegistrationBinary'
+                  DllEntry='CheckGMEVersion'
+                  Execute='deferred'
+                  Impersonate='no'
+                  Return='check' />
 
     <CustomAction Id='ParadigmRegister'
                   BinaryKey='RegistrationBinary'
@@ -16,12 +21,15 @@
                   Execute='deferred'
                   Impersonate='no'
                   Return='check' />
+
     <CustomAction Id='TargetDirRegFailed'
                   Error='TargetDir registry key could not be accessed. Installation aborted.' />
+
     <CustomAction Id='ParadigmUnRegisterIfFailure'
                   BinaryKey='RegistrationBinary'
                   DllEntry='UnregisterParadigms'
                   Execute='rollback' />
+
     <CustomAction Id='ParadigmUnRegisterWhenUninstall'
                   BinaryKey='RegistrationBinary'
                   DllEntry='UnregisterParadigms'

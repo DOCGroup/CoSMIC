@@ -1,10 +1,7 @@
-workspace {
+// $Id$
 
-  cmdline += -feature_file default.features \
+workspace {
+  cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-	BenchmarkInterpreter/BenchmarkInterpreter.mpc
-	ConfiguratorInterpreter/ConfiguratorInterpreter.mpc
-	AspectInterpreter/AspectInterpreter.mpc
-	OmnetInterpreter/OmnetInterpreter.mpc
 }

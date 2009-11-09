@@ -1,3 +1,66 @@
+Mon Nov  9 05:21:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/RegisterParadigm:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/StdAfx.h:
+
+          . Now there is only one function for checking the version of
+            GME instead of multiple functions for each version. This is
+            accomplihsed by passing the version number to the custom action
+            responsible for validating GME's version number.
+
+        * MPC/config/cosmic_common.mpb:
+
+          . Added the acedefaults.mpb base project.
+
+        * MPC/config/game_component.mpb:
+
+          . Added midl_flags, midl_includes, and midl_notlb to the
+            project specification to fix build errors.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * Utils/BON:
+        * Utils/BON/Sort_T.h:
+        * Utils/BON/Sort_T.cpp:
+        * Utils/Sort.h:
+        * Utils/Sort.inl:
+        * Utils/Sort.cpp:
+        * Utils/Utils.mpc:
+
+          . Added support for preserving the order of members in Aggregate,
+            SwitchAggregate, Exception, and Enumeration. We still need to
+            add similar support to Event and ObjectValue elements in PICML.
+
+            The order for members is specified in top-to-bottom fashion on
+            the screen (irrespective of the x-coordinate) similar to the
+            look-and-feel of writing IDL files by hand.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Several icons were not being installed.
+
+        * PIM/PICML/utils/game/PICML_GAME_Utils.wxs:
+
+          . The binary was misspelled.
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          . Removed each individual project specification from the workspace
+            since by default MPC parses are the subdirectories. Based on the
+            current workspace specification, all projects are included so it
+            is safe to remove each individual project include. Otherwise, this
+            workspace will become hard to maintain as it grows.
+
+        * cosmic.mwc:
+
+          . Fixed the spelling of files in the workspace.
+
 Mon Nov  2 00:05:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/MyQuoter/run_test.bat:

@@ -6,7 +6,7 @@
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='PICMLGameUtils' Guid='7E23E0D9-2F3E-4B84-BAC7-9FECADEB3C77'>
         <File Id='PICML_GAME_Utils.dll'
-              Name='PICML_GAME_Utils.dll.dll'
+              Name='PICML_GAME_Utils.dll'
               DiskId='1'
               Source='$(var.COSMIC_ROOT)\bin\PICML_GAME_Utils.dll' />
       </Component>
