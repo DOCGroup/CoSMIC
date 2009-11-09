@@ -35,8 +35,7 @@ const char *FILE_EXT = ".xme";
 IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 
 BE_GlobalData::BE_GlobalData (void)
-  : filename_ (0),
-    output_dir_ (0),
+  : output_dir_ (0),
     input_xme_ (0),
     models_seen_ (0UL),
     atoms_seen_ (0UL),
@@ -60,7 +59,7 @@ BE_GlobalData::BE_GlobalData (void)
     component_types_rel_id_ (1UL),
     implementation_artifacts_rel_id_ (1UL),
     implementations_rel_id_ (1UL),
-    basic_seq_suffix_ ("Seq_from_IDL_include")
+    basic_seq_suffix_ ("Seq")
 {
   ACE_Env_Value <const char *> path ("COSMIC_ROOT", 0);
 
@@ -83,11 +82,11 @@ BE_GlobalData::~BE_GlobalData (void)
 const char *
 BE_GlobalData::filename (void) const
 {
-  return this->filename_;
+  return this->filename_.c_str ();
 }
 
 void
-BE_GlobalData::filename (char *fname)
+BE_GlobalData::filename (const char *fname)
 {
   this->filename_ = fname;
 }
@@ -470,7 +469,8 @@ BE_GlobalData::parse_args (long &i, char **av)
           {
             ACE_ERROR ((
                 LM_ERROR,
-                ACE_TEXT ("IDL: I don't understand the '%s' option\n"),
+                ACE_TEXT ("IDL: I don't understand ")
+                ACE_TEXT ("the '%s' option\n"),
                 av[i]
               ));
           }
@@ -478,7 +478,8 @@ BE_GlobalData::parse_args (long &i, char **av)
       default:
         ACE_ERROR ((
             LM_ERROR,
-            ACE_TEXT ("IDL: I don't understand the '%s' option\n"),
+            ACE_TEXT ("IDL: I don't understand ")
+            ACE_TEXT ("the '%s' option\n"),
             av[i]
           ));
 
@@ -602,40 +603,12 @@ BE_GlobalData::xerces_init (void)
       else
         {
           XercesDOMParser parser;
-          //DOMLSParser *parser =
-          //  ((DOMImplementationLS*)this->impl_)->createLSParser (
-          //      DOMImplementationLS::MODE_SYNCHRONOUS,
-          //      0
-          //    );
-
           parser.setValidationScheme(XercesDOMParser::Val_Always);
           parser.setDoNamespaces (true);
-          //if (parser->getDomConfig ()->canSetParameter (XMLUni::fgDOMValidate, true))
-          //  {
-          //    parser->getDomConfig ()->setParameter(xercesc::XMLUni::fgDOMValidate, true);
-          //  }
-
-          //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMNamespaces, true))
-          //  {
-          //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMNamespaces, true);
-          //  }
-
-          //if (parser->getDomConfig ()->canSetParameter(XMLUni::fgDOMDatatypeNormalization, true))
-          //  {
-          //    parser->getDomConfig ()->setParameter(XMLUni::fgDOMDatatypeNormalization, true);
-          //  }
-
           parser.setCreateCommentNodes (false);
           parser.setCreateEntityReferenceNodes (false);
           parser.setIncludeIgnorableWhitespace (false);
           parser.setDoSchema (true);
-
-          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMComments, false);
-          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMEntities, false);
-          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMNamespaces, true);
-          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMValidate, true);
-          //parser->getDomConfig ()->setParameter (XMLUni::fgDOMElementContentWhitespace, false);
-          //parser->getDomConfig ()->setParameter (XMLUni::fgXercesSchema, true);
 
           Utils::XML_Error_Handler handler;
           parser.setErrorHandler (&handler);
@@ -643,11 +616,14 @@ BE_GlobalData::xerces_init (void)
           if (this->schema_path_ == "" && this->input_xme_ != 0)
             {
               ACE_DEBUG ((LM_WARNING,
-                          "No schema path found or supplied - schema or "
-                          "DTD file must be in directory of execution\n"));
+                          ACE_TEXT ("No schema path found ")
+                          ACE_TEXT ("or supplied - schema or ")
+                          ACE_TEXT ("DTD file must be in ")
+                          ACE_TEXT ("directory of execution\n")));
             }
 
-          Utils::EntityResolver resolver (this->schema_path_.c_str ());
+          Utils::EntityResolver resolver (
+            this->schema_path_.c_str ());
           parser.setEntityResolver (&resolver);
 
           parser.parse (xme);
@@ -680,7 +656,8 @@ BE_GlobalData::xerces_init (void)
       Utils::XStr target_xstr (target_name.c_str ());
       const XMLCh * target_arg = target_xstr.begin ();
 
-      this->target_ = new LocalFileFormatTarget (target_name.c_str ());
+      this->target_ =
+        new LocalFileFormatTarget (target_name.c_str ());
     }
   catch (const DOMException &e)
     {
@@ -731,18 +708,7 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       // might be due to a mistake or that the filename just
       // appears further down the command line.
 
-      char abspath[MAXPATHLEN] = "";
-      char *fullpath = ACE_OS::realpath (files[i], abspath);
-
-      for (unsigned long j = 0; fullpath[j] != '\0'; ++j)
-        {
-          if (fullpath[j] == '\\')
-            {
-              fullpath[j] = '/';
-            }
-        }
-
-      ACE_CString fname (fullpath);
+      ACE_CString fname (files[i]);
       ACE_CString::size_type pos = fname.rfind ('/');
       ACE_CString lname =
         (pos == ACE_CString::npos ? fname : fname.substr (pos + 1));
@@ -755,9 +721,9 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       if (0 != be_global->input_xme ())
         {
           file =
-            this->imported_dom_element (this->interface_definitions_folder_,
-                                        lname_cstr,
-                                        false);
+            this->imported_dom_element (
+              this->interface_definitions_folder_,
+              lname_cstr);
         }
 
       if (0 == file)
@@ -774,6 +740,20 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
         }
 
       this->decl_elem_table_.bind (ACE::strnew (fname.c_str ()),
+                                   file);
+
+      char abspath[MAXPATHLEN] = "";
+      char *fullpath = ACE_OS::realpath (files[i], abspath);
+
+      for (unsigned long j = 0; fullpath[j] != '\0'; ++j)
+        {
+          if (fullpath[j] == '\\')
+            {
+              fullpath[j] = '/';
+            }
+        }
+
+      this->decl_elem_table_.bind (ACE::strnew (fullpath),
                                    file);
 
       this->decl_id_table_.bind (ACE::strnew (fname.c_str ()),
@@ -794,7 +774,8 @@ BE_GlobalData::destroy (void)
   if (ok_to_write)
     {
       // Write out the file last, just before cleanup.
-      xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+      xercesc::DOMLSOutput * output =
+        ((DOMImplementationLS*) this->impl_)->createLSOutput ();
       output->setByteStream (this->target_);
 
       this->writer_->write (this->doc_, output);
@@ -825,6 +806,7 @@ BE_GlobalData::destroy (void)
     }
 
   DECL_ELEM_TABLE_ENTRY *fwd_entry = 0;
+  
   for (DECL_ELEM_TABLE_ITERATOR fwd_iter (this->decl_elem_table_);
        fwd_iter.next (fwd_entry) != 0;
        fwd_iter.advance ())
@@ -833,6 +815,7 @@ BE_GlobalData::destroy (void)
     }
 
   REF_DECL_TABLE_ENTRY *ref_entry = 0;
+  
   for (REF_DECL_TABLE_ITERATOR ref_iter (this->ref_decl_table_);
        ref_iter.next (ref_entry) != 0;
        ref_iter.advance ())
@@ -904,7 +887,6 @@ BE_GlobalData::make_gme_id (kind_id kind)
 DOMElement *
 BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
                                      const char *local_name,
-                                     bool node_imported,
                                      kind_id elem_kind,
                                      bool by_referred,
                                      bool in_file_iteration)
@@ -917,7 +899,7 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
 
   // At global scope, we may be visiting an included file, so we
   // may have to look in all File elements to find an XML import.
-  if (!in_file_iteration && node_imported)
+  if (!in_file_iteration)
     {
       if (X ("File") == sub_tree->getAttribute (X ("kind")))
         {
@@ -937,12 +919,12 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
               // Skip any other children, like <name>.
               if (X ("model") == file->getTagName ())
                 {
-                  retval = this->imported_dom_element (file,
-                                                       local_name,
-                                                       node_imported,
-                                                       elem_kind,
-                                                       by_referred,
-                                                       true);
+                  retval =
+                    this->imported_dom_element (file,
+                                                local_name,
+                                                elem_kind,
+                                                by_referred,
+                                                true);
 
                   if (retval != 0)
                     {
@@ -975,7 +957,9 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
         break;
     }
 
-  for (XMLSize_t index = 0; index < children->getLength (); ++index)
+  for (XMLSize_t index = 0;
+       index < children->getLength ();
+       ++index)
     {
       DOMElement *child =
         dynamic_cast<DOMElement *> (children->item (index));
@@ -993,7 +977,8 @@ BE_GlobalData::imported_dom_element (DOMElement *sub_tree,
       // new member of the exception list.
       if (by_referred)
         {
-          const XMLCh *referred = child->getAttribute (X ("referred"));
+          const XMLCh *referred =
+            child->getAttribute (X ("referred"));
 
           // Compare the 'referred' but return the 'reference'.
           compared_elem = this->doc_->getElementById (referred);
@@ -1039,11 +1024,13 @@ BE_GlobalData::imported_module_dom_elem (DOMElement *sub_tree,
     }
 
   DOMNodeList *models =
-    this->interface_definitions_folder_->getElementsByTagName (X ("model"));
+    this->interface_definitions_folder_->getElementsByTagName (
+      X ("model"));
 
   for (XMLSize_t i = 0; i < models->getLength (); ++i)
     {
-      DOMElement *model = dynamic_cast<DOMElement *> (models->item (i));
+      DOMElement *model =
+        dynamic_cast<DOMElement *> (models->item (i));
       const XMLCh *kind = model->getAttribute (X ("kind"));
 
       if (X ("Package") != X (kind))
@@ -1095,7 +1082,8 @@ BE_GlobalData::imported_file_dom_elem (const char *local_name,
         }
 
       // There should be only one "name" node.
-      DOMNodeList *namelist = file->getElementsByTagName (X ("name"));
+      DOMNodeList *namelist =
+        file->getElementsByTagName (X ("name"));
       DOMNode *name_elem = namelist->item (0);
       DOMNode *name_item = name_elem->getFirstChild ();
       DOMText *name = (DOMText *) name_item;
@@ -1107,7 +1095,8 @@ BE_GlobalData::imported_file_dom_elem (const char *local_name,
           continue;
         }
 
-      DOMNodeList *attrlist = file->getElementsByTagName (X ("attribute"));
+      DOMNodeList *attrlist =
+        file->getElementsByTagName (X ("attribute"));
       DOMElement *attr = 0;
 
       // Now try to match the GME attribute 'path'.
@@ -1182,7 +1171,8 @@ BE_GlobalData::lookup_by_tag_and_kind (DOMElement *scope,
                                        const char *tag_name,
                                        const char *kind_name)
 {
-  DOMNodeList *children = scope->getElementsByTagName (X (tag_name));
+  DOMNodeList *children =
+    scope->getElementsByTagName (X (tag_name));
 
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
@@ -1204,7 +1194,8 @@ BE_GlobalData::lookup_by_tag_and_id (DOMElement *scope,
                                      const char *tag_name,
                                      const char *gme_id)
 {
-  DOMNodeList *children = scope->getElementsByTagName (X (tag_name));
+  DOMNodeList *children =
+    scope->getElementsByTagName (X (tag_name));
 
   for (XMLSize_t i = 0; i < children->getLength (); ++i)
     {
@@ -1284,14 +1275,25 @@ BE_GlobalData::release_node (DOMElement *node)
 {
   this->emit_diagnostic (node, REMOVING);
   DOMNode *parent = node->getParentNode ();
-  if (parent == 0) ACE_ERROR ((LM_ERROR, "parent, release_node\n"));
+  
+  if (parent == 0)
+    {
+      ACE_ERROR ((LM_ERROR, "parent, release_node\n"));
+    }
+  
   DOMNode *releasable = parent->removeChild (node);
-  if (releasable == 0) ACE_ERROR ((LM_ERROR, "releasable, release_node\n"));
+  
+  if (releasable == 0)
+    {
+      ACE_ERROR ((LM_ERROR, "releasable, release_node\n"));
+    }
+  
   releasable->release ();
 }
 
 void
-BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
+BE_GlobalData::emit_diagnostic (DOMElement *node,
+                                diagnostic_type dt)
 {
   // This is redundant for remove calls, but it will save a check
   // for each adding call.
@@ -1314,7 +1316,8 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
   if (no_name && ACE_OS::strcmp (tag, "reference") == 0)
     {
       DOMElement *referred =
-        this->doc_->getElementById (node->getAttribute (X ("referred")));
+        this->doc_->getElementById (node->getAttribute (
+          X ("referred")));
 
       // It's possible that for some good reason, this attribute hasn't
       // been set yet. In that case, better to overlook a diagnostic
@@ -1338,7 +1341,8 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
 
       ACE_CString r_kind_str;
 
-      if (parent_kind != 0 && X ("PredefinedTypes") == parent_kind)
+      if (parent_kind != 0
+          && X ("PredefinedTypes") == parent_kind)
         {
           // Here, the name and kind are the same, so we use the
           // parent kind, minus the final letter, see below.
@@ -1351,7 +1355,8 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
       else
         {
           r_kind =
-            XMLString::transcode (referred->getAttribute (X ("kind")));
+            XMLString::transcode (
+              referred->getAttribute (X ("kind")));
           r_kind_str = r_kind;
         }
 
@@ -1375,7 +1380,9 @@ BE_GlobalData::emit_diagnostic (DOMElement *node, diagnostic_type dt)
   cout << (ADDING == dt ? "Added " : "Removed ") << kind << " "
        << (no_name ? ref_name.c_str () : name)
        << " in " << p_kind << " "
-       << (ACE_OS::strcmp (p_name, p_kind) == 0 ? "<no name>" : p_name)
+       << (ACE_OS::strcmp (p_name, p_kind) == 0
+            ? "<no name>"
+            : p_name)
        << endl;
 
   XMLString::release (&name);
@@ -1415,15 +1422,23 @@ BE_GlobalData::emit_attribute_diagnostic (DOMElement *node,
       char *tag = XMLString::transcode (tagX);
       char *node_name = this->get_name (node);
 
-      cout << "Changed value of GME attribute \"" << name << "\" of "
+      cout << "Changed value of GME attribute \""
+           << name << "\" of "
            << kind << " " << node_name << " from \""
-           << old_val.c_str () << "\" to \"" << new_val.c_str () << "\""
+           << old_val.c_str () << "\" to \""
+           << new_val.c_str () << "\""
            << endl;
 
       XMLString::release (&kind);
       XMLString::release (&tag);
       XMLString::release (&node_name);
     }
+}
+
+const char * const *
+BE_GlobalData::allfiles (void) const
+{
+  return this->allfiles_;
 }
 
 char *
@@ -1453,7 +1468,8 @@ BE_GlobalData::lookup_id (AST_Decl *d)
   this->check_for_basic_seq (d, ext_id);
 
   const XMLCh *retval = 0;
-  int result = this->decl_id_table_.find (ext_id.c_str (), retval);
+  int result =
+    this->decl_id_table_.find (ext_id.c_str (), retval);
 
   if (result != 0)
     {
@@ -1468,7 +1484,8 @@ BE_GlobalData::lookup_id (AST_Decl *d)
 }
 
 void
-BE_GlobalData::check_for_basic_seq (AST_Decl *d, ACE_CString &str)
+BE_GlobalData::check_for_basic_seq (AST_Decl *d,
+                                    ACE_CString &str)
 {
   if (d->node_type () != AST_Decl::NT_typedef)
     {
@@ -1476,12 +1493,14 @@ BE_GlobalData::check_for_basic_seq (AST_Decl *d, ACE_CString &str)
     }
 
   AST_Decl *p = ScopeAsDecl (d->defined_in ());
+  
   if (ACE_OS::strcmp (p->local_name ()->get_string (), "CORBA") != 0)
     {
       return;
     }
 
   AST_Type *bt = AST_Typedef::narrow_from_decl (d)->base_type ();
+  
   if (bt->node_type () != AST_Decl::NT_sequence)
     {
       return;
@@ -1501,7 +1520,8 @@ BE_GlobalData::check_for_basic_seq (AST_Decl *d, ACE_CString &str)
 }
 
 void
-BE_GlobalData::check_for_basic_type (AST_Decl *d, ACE_CString &str)
+BE_GlobalData::check_for_basic_type (AST_Decl *d,
+                                     ACE_CString &str)
 {
   const char **namelist = be_global->pdt_names ();
   AST_Decl::NodeType nt = d->node_type ();
@@ -1512,7 +1532,8 @@ BE_GlobalData::check_for_basic_type (AST_Decl *d, ACE_CString &str)
     }
   else if (d->node_type () == AST_Decl::NT_pre_defined)
     {
-      AST_PredefinedType *pdt = AST_PredefinedType::narrow_from_decl (d);
+      AST_PredefinedType *pdt =
+        AST_PredefinedType::narrow_from_decl (d);
 
       switch (pdt->pt ())
         {
@@ -1550,7 +1571,8 @@ BE_GlobalData::check_for_basic_type (AST_Decl *d, ACE_CString &str)
             break;
           case AST_PredefinedType::PT_pseudo:
             {
-              const char *pseudo_name = d->local_name ()->get_string ();
+              const char *pseudo_name =
+                d->local_name ()->get_string ();
 
               if (0 == ACE_OS::strcmp (pseudo_name, "TypeCode"))
                 {
@@ -1640,11 +1662,12 @@ BE_GlobalData::type_change_diagnostic (DOMElement *node,
 }
 
 void
-BE_GlobalData::base_component_diagnostic (DOMElement *elem,
-                                          AST_Component *node,
-                                          AST_Component *base,
-                                          bool was_derived,
-                                          const XMLCh *base_id_from_idl)
+BE_GlobalData::base_component_diagnostic (
+  DOMElement *elem,
+  AST_Component *node,
+  AST_Component *base,
+  bool was_derived,
+  const XMLCh *base_id_from_idl)
 {
   if (0 == this->input_xme_)
     {
@@ -1699,7 +1722,8 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
     dynamic_cast<DOMElement *> (new_base->getParentNode ());
   const XMLCh *new_base_parent_kindX =
     new_base_parent->getAttribute (X ("kind"));
-  char *new_base_parent_kind = XMLString::transcode (new_base_parent_kindX);
+  char *new_base_parent_kind =
+    XMLString::transcode (new_base_parent_kindX);
   char *new_base_parent_name = this->get_name (new_base_parent);
   char *new_base_name = this->get_name (new_base);
 
@@ -1712,13 +1736,14 @@ BE_GlobalData::base_component_diagnostic (DOMElement *elem,
                << " has changed from " << base_name  << " in "
                << base_parent_kind << " " << base_parent_name
                << " to " << new_base_name << " in "
-               << new_base_parent_kind << " " << new_base_parent_name
-               << endl;
+               << new_base_parent_kind << " "
+               << new_base_parent_name << endl;
         }
     }
   else
     {
-      cout << "Component " << node_name << " in " << parent_kind
+      cout << "Component " << node_name
+           << " in " << parent_kind
            << " " << parent_name << " is now a subtype of "
            << new_base_name << " in " << new_base_parent_kind
            << " " << new_base_parent_name << endl;
@@ -1777,7 +1802,8 @@ BE_GlobalData::get_first_picml_element (DOMElement *scope)
 }
 
 bool
-BE_GlobalData::match_module_opening (DOMElement *elem, AST_Module *m)
+BE_GlobalData::match_module_opening (DOMElement *elem,
+                                     AST_Module *m)
 {
   // This call first matches names at the current scope,
   // then moves up recursively to global scope.
@@ -1831,12 +1857,15 @@ BE_GlobalData::match_module_opening_upscope (DOMElement *elem,
           ACE_CString file_name (d->file_name ());
 
           // Strip off the trailing .idl or .pidl
-          file_name = file_name.substr (0, file_name.rfind ('.'));
+          file_name =
+            file_name.substr (0, file_name.rfind ('.'));
 
           // Strip off the path and leave the local name.
-          file_name = file_name.substr (file_name.length () - len);
+          file_name =
+            file_name.substr (file_name.length () - len);
 
-          match = ACE_OS::strcmp (file_name.c_str (), parent_name);
+          match =
+            ACE_OS::strcmp (file_name.c_str (), parent_name);
           XMLString::release (&parent_name);
           return (match == 0);
         }
@@ -1890,8 +1919,11 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
           continue;
         }
 
-      char *node_child_name = node_child->local_name ()->get_string ();
-      match = (ACE_OS::strcmp (node_child_name, elem_child_name) == 0);
+      char *node_child_name =
+        node_child->local_name ()->get_string ();
+        
+      match =
+        (ACE_OS::strcmp (node_child_name, elem_child_name) == 0);
 
       if (match)
         {
@@ -1920,30 +1952,40 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
     }
 }
 
-std::string BE_GlobalData::get_GME_version (std::string path)
+std::string
+BE_GlobalData::get_GME_version (std::string path)
 {
   path += "\\Interfaces\\GMEVersion.h";
-
-  std::ifstream infile(path.c_str());
+  std::ifstream infile (path.c_str ());
+  
   if (infile)
-  {
-    std::string token;
-    int major = 0, minor = 0, plevel = 0;
-    while (infile >> token)
     {
-      if (token == "GME_VERSION_MAJOR")
-        infile >> major;
-      else if (token == "GME_VERSION_MINOR")
-        infile >> minor;
-      else if (token == "GME_VERSION_PLEVEL")
-      {
-        infile >> plevel;
-        break;
-      }
+      std::string token;
+      int major = 0, minor = 0, plevel = 0;
+      
+      while (infile >> token)
+        {
+          if (token == "GME_VERSION_MAJOR")
+            {
+              infile >> major;
+            }
+          else if (token == "GME_VERSION_MINOR")
+            {
+              infile >> minor;
+            }
+          else if (token == "GME_VERSION_PLEVEL")
+            {
+              infile >> plevel;
+              break;
+            }
+        }
+      
+      std::ostringstream ostr;
+      ostr << major << "." << minor << "." << plevel;
+      
+      return ostr.str ();
     }
-    std::ostringstream ostr;
-    ostr << major << "." << minor << "." << plevel;
-    return ostr.str();
-  }
+  
   return ""; // Empty string
 }
+

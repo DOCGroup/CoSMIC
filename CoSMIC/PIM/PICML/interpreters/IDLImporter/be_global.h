@@ -146,7 +146,7 @@ public:
   // Data accessors.
 
   const char *filename (void) const;
-  void filename (char *fname);
+  void filename (const char *fname);
 
   const char* output_dir (void) const;
   void output_dir (const char* s);
@@ -273,7 +273,6 @@ public:
 
   DOMElement *imported_dom_element (DOMElement *sub_tree,
                                     const char *local_name,
-                                    bool node_imported,
                                     kind_id elem_kind = MODEL,
                                     bool by_referred = false,
                                     bool in_file_iteration = false);
@@ -342,7 +341,10 @@ public:
                                  DOMElement *file,
                                  const char *fileref_name);
   // Specialized method for reporting added file includes.
-
+  
+  const char * const * allfiles (void) const;
+  // Accessor.
+  
 private:
   char *get_name (DOMElement *node);
   // Utility function that gets the value of the child with
@@ -361,9 +363,9 @@ private:
   // Get the version of GME by looking into 
   // $GME_ROOT\Interfaces\Interfaces\GMEVersion.h
   std::string get_GME_version (std::string path);
-
+  
 private:
-  char *filename_;
+  ACE_CString filename_;
   // Name of the IDL file we are processing.
 
   char *output_dir_;

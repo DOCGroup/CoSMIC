@@ -118,14 +118,13 @@ private:
 
   void add_name_element (DOMElement *elem, const char *name);
   void add_predefined_types (void);
-  void add_predefined_sequences (DOMElement *parent, AST_Root *node);
-  void add_one_predefined_sequence (DOMElement *parent,
-                                    AST_Root *node,
-                                    const char *type,
+  void add_predefined_sequences (void);
+  void add_one_predefined_sequence (const char *type,
                                     unsigned long &model_slot,
                                     unsigned long pdt_slot);
   DOMElement *add_file_element (DOMElement *parent,
                                 AST_Root *node,
+                                const char *filename,
                                 unsigned long rel_id);
   void add_prefix_element (DOMElement *parent, AST_Decl *node);
   void add_replace_id_element (DOMElement *parent, AST_Decl *node);
@@ -136,8 +135,12 @@ private:
                        DOMElement *parent,
                        bool is_meta = true);
   void add_local_element (DOMElement *parent, AST_Decl *node);
+
   void add_abstract_element (DOMElement *parent, AST_Decl *node);
-  void add_include_elements (UTL_Scope *container, DOMElement *parent);
+//  void add_include_elements (UTL_Scope *container, DOMElement *parent);
+  void add_include_elements (const char *filename,
+                             DOMElement *file);
+                             
   void add_regnodes (UTL_Scope *container,
                      DOMElement *parent,
                      size_t slot,
@@ -210,40 +213,44 @@ private:
                              DOMElement *src,
                              DOMElement *dst,
                              unsigned long index);
-   void add_implementation (const char *gme_id,
-                            AST_Component *node,
-                            DOMElement *artifact_contaienr);
-   DOMElement *add_property (const char *name,
-                             unsigned long rel_id,
-                             unsigned long slot,
-                             unsigned long nslices,
-                             const char *value);
-   DOMElement *add_connection (DOMElement *source,
-                               DOMElement *destination,
-                               const char *name,
-                               unsigned long rel_id);
-   void add_attribute (DOMElement *container,
-                       const char *kind,
+  void add_implementation (const char *gme_id,
+                           AST_Component *node,
+                           DOMElement *artifact_contaienr);
+  DOMElement *add_property (const char *name,
+                            unsigned long rel_id,
+                            unsigned long slot,
+                            unsigned long nslices,
+                            const char *value);
+  DOMElement *add_connection (DOMElement *source,
+                              DOMElement *destination,
+                              const char *name,
+                              unsigned long rel_id);
+  void add_attribute (DOMElement *container,
+                      const char *kind,
                        bool meta,
-                       const char *value);
-   void add_artifact_refs (DOMElement *impl_container,
-                           DOMElement *impl,
-                           AST_Component * component,
-                           DOMElement *artifact_container);
+                     const char *value);
+  void add_artifact_refs (DOMElement *impl_container,
+                          DOMElement *impl,
+                          AST_Component * component,
+                          DOMElement *artifact_container);
 
-   void add_one_artifact_ref (DOMElement *impl_container,
-                              DOMElement *impl,
+  void add_one_artifact_ref (DOMElement *impl_container,
+                             DOMElement *impl,
                               DOMElement *artifact,
-                              AST_Component * component,
-                              XMLSize_t index);
+                            AST_Component * component,
+                             XMLSize_t index);
 
-   void add_component_ref (DOMElement *container,
-                           DOMElement *impl,
-                           const char *gme_id,
-                           AST_Component *node);
-   void insert_element (DOMElement *elem, AST_Decl *d);
-   void check_for_dup (DOMElement *elem, AST_Decl *d);
-   void redef_error (DOMElement *elem, AST_Decl *d);
+  void add_component_ref (DOMElement *container,
+                          DOMElement *impl,
+                          const char *gme_id,
+                          AST_Component *node);
+  void insert_element (DOMElement *elem, AST_Decl *d);
+  void check_for_dup (DOMElement *elem, AST_Decl *d);
+  void redef_error (DOMElement *elem, AST_Decl *d);
+
+  bool be_get_line (FILE *f);
+  void be_check_for_include (ACE_CString &result, const char *buf);
+  // Utilities to help read files to fetch includes.
 
 private:
   DOMElement *sub_tree_;
@@ -257,6 +264,9 @@ private:
   unsigned long manages_relid_offset_;
   unsigned long import_relid_offset_;
   unsigned long n_basic_seqs_;
+  
+  char *line_buf_;
+  size_t line_buf_size_;
 };
 
 #endif /* IDL_TO_PICML_ADDING_VISITOR_H */
