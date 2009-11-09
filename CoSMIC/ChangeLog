@@ -1,3 +1,9 @@
+Mon Nov  9 19:36:54 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Added additional debug info. 
+        
 Mon Nov  9 15:39:07 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
@@ -5,21 +11,21 @@ Mon Nov  9 15:39:07 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
         * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
+
           Multiple IDL files are now processed as includes in a
           container IDL file created on the fly. The resulting
           elimination of repeated middleware IDL processing
           gives a significant gain in performance.
-        
+
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICML.xme:
-        
+
           Minor change to allow sequences of predefined types to
           loaded into the PredefinedTypes folder by the IDL
           importer.
-        
+
 Mon Nov  9 06:05:12 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/AP.cpp:
@@ -37,9 +43,9 @@ Mon Nov  9 06:05:12 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/SM_LEESA/SM_export.h:
         * tests/SM_LEESA/UdmApp.cpp:
 
-          Updated StateMachine example. Mainly the SM.h file with new 
+          Updated StateMachine example. Mainly the SM.h file with new
           IsDescendant<T,U> meta-information.
-        
+
 Mon Nov  9 05:21:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:

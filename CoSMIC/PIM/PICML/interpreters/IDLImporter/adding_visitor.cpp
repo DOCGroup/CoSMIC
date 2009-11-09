@@ -3066,8 +3066,9 @@ adding_visitor::add_include_elements (const char *filename,
                   ACE_ERROR ((LM_ERROR,
                               ACE_TEXT ("adding_visitor::")
                               ACE_TEXT ("add_include_elements - ")
-                              ACE_TEXT ("included file not ")
-                              ACE_TEXT ("found in decl table\n")));
+                              ACE_TEXT ("included file <%s> not ")
+                              ACE_TEXT ("found in decl table\n"),
+			      fname_noext.c_str ()));
                               
                   return;
                 }
