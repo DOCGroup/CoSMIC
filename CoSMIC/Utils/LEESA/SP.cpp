@@ -9,44 +9,46 @@
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/equal.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/mpl/logical.hpp>
 #include <set>
 
 
-#define FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)          \
-  template <class X, class Y, class Z>                              \
-  OP##Op<X, Y, Z>                                                   \
-  OP (X, Y const & y, Z) {                                          \
-	typedef typename ET<X>::argument_kind argument_kind;              \
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
-    return OP##Op<X, Y, Z> (y);                                     \
-  }                                                                 \
-  template <class X, class Y>                                       \
-  OP##Op<X, Y, Default>                                    \
-  OP (X, Y const & y)  {                                            \
-	typedef typename ET<X>::argument_kind argument_kind;              \
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
-    return OP##Op<X, Y, Default> (y);                      \
+#define FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)            \
+  template <class X, class Y, class Z>                                \
+  OP##Op<X, Y, Z>                                                     \
+  OP (X, Y const & y, Z) {                                            \
+    typedef typename ET<X>::argument_kind argument_kind;              \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
+    return OP##Op<X, Y, Z> (y);                                       \
+  }                                                                   \
+  template <class X, class Y>                                         \
+  OP##Op<X, Y, Default>                                               \
+  OP (X, Y const & y)  {                                              \
+    typedef typename ET<X>::argument_kind argument_kind;              \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
+    return OP##Op<X, Y, LEESA::Default> (y);                          \
   }
 
 /**********************************************************************************/
 
-#define FUNCTION_FOR_SP_OP_WITH_2STRATEGIES(OP)                                  \
+#define FUNCTION_FOR_SP_OP_WITH_2STRATEGIES(OP)                                   \
   template <class K, class Strategy1, class Strategy2>                            \
   OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2>                     \
   OP (K, Strategy1 const & s1, Strategy2 const & s2) {                            \
-	  typedef typename ET<K>::argument_kind argument_kind;                          \
-	  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                   \
+    typedef typename ET<K>::argument_kind argument_kind;                          \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                 \
     return OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2> (s1, s2);  \
 }  
 
 /**********************************************************************************/
 
-#define FUNCTION_FOR_SP_OP_WITH_1STRATEGY(OP)                                    \
+#define FUNCTION_FOR_SP_OP_WITH_1STRATEGY(OP)                                     \
   template <class K, class Strategy>                                              \
   OP##Op<typename ET<K>::argument_type, Strategy>                                 \
   OP (K, Strategy const & s) {                                                    \
-	  typedef typename ET<K>::argument_kind argument_kind;                          \
-	  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                   \
+    typedef typename ET<K>::argument_kind argument_kind;                          \
+    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                 \
     return OP##Op<typename ET<K>::argument_type, Strategy> (s);                   \
 }  
 
@@ -55,7 +57,7 @@
 #define CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)                             \
 template <class K,                                                                 \
           class Strategy = KindLit<K>,                                             \
-          class Custom = Default>                                         \
+          class Custom = LEESA::Default>                                           \
 struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                      \
 {                                                                                  \
     typedef typename ChainExpr<K, OP##Op> expression_type;                         \
@@ -169,6 +171,7 @@ namespace LEESA {
 using boost::mpl::front;
 using boost::mpl::pop_front;
 using boost::mpl::if_;
+using boost::mpl::or_;
 using boost::mpl::contains;
 using boost::mpl::push_back;
 
@@ -219,17 +222,74 @@ struct Default
   };
 };
 
+template <class Custom, class T>
+struct ChildrenKinds;
+
 template <class T>
 struct ChildrenKinds <Default, T>
 {
+  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<T>));
   typedef typename T::ChildrenKinds type;
 };
 
-template <class T>
-struct DescendantKinds <Default, T>
+
+#ifdef PARADIGM_DESCENDANT_PAIRS
+
+template <class Parent, class Descendant, class Customizer>
+struct IsDescendantKind;
+
+template <class Parent, class Descendant>
+struct IsDescendantKind <Parent, Descendant, Default>
 {
-  typedef typename T::DescendantKinds type;
+  typedef IsDescendantKind type;
+  enum { value = PARADIGM_NAMESPACE_FOR_LEESA::IsDescendant<Parent, Descendant>::value };
 };
+
+#else // PARADIGM_DESCENDANT_PAIRS
+
+// The following meta-program isn't suitable for metamodels 
+// with recursive or mutually recursive types.
+
+template <class StartVector, class Target, class Customizer>
+struct IsDescendantVector;
+
+template <class Parent, class Descendant, class Customizer>
+struct IsDescendantKind
+{
+  typedef IsDescendantKind type;
+  typedef typename ChildrenKinds<Customizer, Parent>::type ChildrenKinds;
+  
+  enum { value = 
+          or_<contains <ChildrenKinds, Descendant>,
+              IsDescendantVector<ChildrenKinds, Descendant, Customizer> >::value };
+};
+
+template <class Target, class Customizer>
+struct IsDescendantVector<EmptyMPLVector, Target, Customizer> 
+{
+  typedef IsDescendantVector type;
+  enum { value = 0 };
+};
+
+template <class Target, class Customizer>
+struct IsDescendantVector<EmptyMPLVectorB, Target, Customizer> 
+{
+  typedef IsDescendantVector type;
+  enum { value = 0 };
+};
+
+template <class StartVector, class Target, class Customizer>
+struct IsDescendantVector
+{
+  typedef IsDescendantVector type;
+  typedef typename front<StartVector>::type Head;
+  typedef typename pop_front<StartVector>::type Tail;
+  enum { value = or_<IsDescendantKind<Head, Target, Customizer>,
+                     IsDescendantVector<Tail, Target, Customizer> >::value };
+};
+
+#endif //PARADIGM_DESCENDANT_PAIRS
+
 
 class _StrategyBase {}; // Baseclass of all the strategies. Just for documentation.
 

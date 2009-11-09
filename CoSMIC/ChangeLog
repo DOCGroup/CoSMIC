@@ -1,3 +1,23 @@
+Mon Nov  9 06:05:12 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+
+          Updated LEESA's support for descendant types. gen-pairs.pl runs on
+          UDM generated files to add IsDescendant<T,U> pairs.
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM_export.h:
+        * tests/SM_LEESA/UdmApp.cpp:
+
+          Updated StateMachine example. Mainly the SM.h file with new 
+          IsDescendant<T,U> meta-information.
+        
 Mon Nov  9 05:21:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:

@@ -1,14 +1,14 @@
 #ifndef MOBIES_SM_export_H
 #	define MOBIES_SM_export_H
-#	ifndef eesa 
+#	ifndef SM_Export 
 #		if defined (SM_HAS_DLL) && (SM_HAS_DLL == 1)
 #			if defined (SM_EXPORT)
-#				define eesa __declspec(dllexport)
+#				define SM_Export __declspec(dllexport)
 #			else
-#				define eesa __declspec(dllimport)
+#				define SM_Export __declspec(dllimport)
 #			endif /* SM_EXPORT */
 #		else
-#			define eesa 
+#			define SM_Export 
 #		endif /* SM_HAS_DLL */
-#	endif /* ifndef eesa  */
+#	endif /* ifndef SM_Export  */
 #endif /* MOBIES_SM_export_H */

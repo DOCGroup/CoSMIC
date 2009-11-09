@@ -1,8 +1,12 @@
+// This header file is modified by gen-pairs.pl program of LEESA, which generates IsDescendant<T,U>
+// pairs at the end of the header file. Command: perl gen-pairs.pl <PARADIGM-NAME>
+// More information about LEESA can be found at http://www.dre.vanderbilt.edu/~sutambe/files/LEESA/LEESA.pdf 
+
 #ifndef MOBIES_SM_H
 #define MOBIES_SM_H
 
 // header file SM.h generated from diagram SM
-// generated with Udm version 3.13 on Thu Oct 15 15:36:04 2009
+// generated with Udm version 3.13 on Sun Nov 08 11:21:07 2009
 
 #include <UdmBase.h>
 
@@ -26,22 +30,24 @@
 #undef max
 #endif
 
+#include "SM_export.h"
+
 namespace SM {
 
 	extern ::Uml::Diagram meta;
-	class InputSequence;
-	class Sequence;
-	class Events;
-	class Transition;
-	class StateMachine;
-	class State;
-	class Reference;
-	class StartState;
-	class BaseState;
-	class RootFolder;
-	class MgaObject;
+	class SM_Export InputSequence;
+	class SM_Export Sequence;
+	class SM_Export Events;
+	class SM_Export Transition;
+	class SM_Export StateMachine;
+	class SM_Export State;
+	class SM_Export Reference;
+	class SM_Export StartState;
+	class SM_Export BaseState;
+	class SM_Export RootFolder;
+	class SM_Export MgaObject;
 
-	class Visitor : public Udm::BaseVisitor {
+	class SM_Export Visitor : public Udm::BaseVisitor {
 	public:
 		virtual ~Visitor() {}
 
@@ -59,12 +65,12 @@ namespace SM {
 
 	};
 
-	void Initialize();
-	void Initialize(const ::Uml::Diagram &dgr);
+	SM_Export void Initialize();
+	SM_Export void Initialize(const ::Uml::Diagram &dgr);
 
-	extern Udm::UdmDiagram diagram;
+	extern SM_Export Udm::UdmDiagram diagram;
 
-	class RootFolder : public Udm::Object {
+	class SM_Export RootFolder : public Udm::Object {
 	public:
 		typedef ::Udm::FolderMetaTag MetaKind;
 
@@ -132,52 +138,23 @@ namespace SM {
 		static ::Uml::CompositionChildRole meta_RootFolder_children;
 		static ::Uml::CompositionParentRole meta_RootFolder_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_RootFolder_parent {};
-		typedef boost::mpl::pair< ::SM::RootFolder, PR_RootFolder_parent > _PR_RootFolder_parent__RootFolder;
-		typedef boost::mpl::vector< _PR_RootFolder_parent__RootFolder> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::RootFolder> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		class CR_StateMachine_children {};
-		class CR_InputSequence_children {};
-		class CR_RootFolder_children {};
-		typedef boost::mpl::pair< ::SM::StateMachine, CR_StateMachine_children > _CR_StateMachine_children__StateMachine;
-		typedef boost::mpl::pair< ::SM::InputSequence, CR_InputSequence_children > _CR_InputSequence_children__InputSequence;
-		typedef boost::mpl::pair< ::SM::RootFolder, CR_RootFolder_children > _CR_RootFolder_children__RootFolder;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< _CR_StateMachine_children__StateMachine, _CR_InputSequence_children__InputSequence, _CR_RootFolder_children__RootFolder> ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::InputSequence, ::SM::StateMachine, ::SM::RootFolder> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class MgaObject : public Udm::Object {
+	class SM_Export MgaObject : public Udm::Object {
 	public:
 		typedef ::Udm::UnknownMetaTag MetaKind;
 
@@ -227,44 +204,23 @@ namespace SM {
 		static ::Uml::Attribute meta_position;
 		static ::Uml::Attribute meta_name;
 
-		// types and typelist for parent by returned type and role relations;
-		typedef boost::mpl::vector< > Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< > ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class InputSequence :  public MgaObject {
+	class SM_Export InputSequence :  public MgaObject {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -325,50 +281,23 @@ namespace SM {
 		static ::Uml::CompositionChildRole meta_Events_children;
 		static ::Uml::CompositionParentRole meta_RootFolder_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_RootFolder_parent {};
-		typedef boost::mpl::pair< ::SM::RootFolder, PR_RootFolder_parent > _PR_RootFolder_parent__RootFolder;
-		typedef boost::mpl::vector< _PR_RootFolder_parent__RootFolder> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::RootFolder> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		class CR_Sequence_children {};
-		class CR_Events_children {};
-		typedef boost::mpl::pair< ::SM::Sequence, CR_Sequence_children > _CR_Sequence_children__Sequence;
-		typedef boost::mpl::pair< ::SM::Events, CR_Events_children > _CR_Events_children__Events;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< _CR_Sequence_children__Sequence, _CR_Events_children__Events> ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::Sequence, ::SM::Events> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class Sequence :  public MgaObject {
+	class SM_Export Sequence :  public MgaObject {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -421,50 +350,23 @@ namespace SM {
 		static ::Uml::AssociationRole meta_dstSequence_end_;
 		static ::Uml::AssociationRole meta_srcSequence_end_;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_InputSequence_parent {};
-		typedef boost::mpl::pair< ::SM::InputSequence, PR_InputSequence_parent > _PR_InputSequence_parent__InputSequence;
-		typedef boost::mpl::vector< _PR_InputSequence_parent__InputSequence> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		class ACE_dstSequence {};
-		class ACE_srcSequence {};
-		typedef boost::mpl::pair< ::SM::Events, ACE_dstSequence > _ACE_dstSequence__Events;
-		typedef boost::mpl::pair< ::SM::Events, ACE_srcSequence > _ACE_srcSequence__Events;
-		typedef boost::mpl::vector< _ACE_dstSequence__Events, _ACE_srcSequence__Events> AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class Events :  public MgaObject {
+	class SM_Export Events :  public MgaObject {
 	public:
 		typedef ::Udm::AtomMetaTag MetaKind;
 
@@ -521,50 +423,23 @@ namespace SM {
 		static ::Uml::AssociationRole meta_dstSequence_rev;
 		static ::Uml::CompositionParentRole meta_InputSequence_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_InputSequence_parent {};
-		typedef boost::mpl::pair< ::SM::InputSequence, PR_InputSequence_parent > _PR_InputSequence_parent__InputSequence;
-		typedef boost::mpl::vector< _PR_InputSequence_parent__InputSequence> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		class AR_srcSequence {};
-		class AR_dstSequence {};
-		typedef boost::mpl::pair< ::SM::Events, boost::mpl::pair< ::SM::Sequence, AR_srcSequence > > _AR_srcSequence__Sequence__Events;
-		typedef boost::mpl::pair< ::SM::Events, boost::mpl::pair< ::SM::Sequence, AR_dstSequence > > _AR_dstSequence__Sequence__Events;
-		typedef boost::mpl::vector< _AR_srcSequence__Sequence__Events, _AR_dstSequence__Sequence__Events> AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class Transition :  public MgaObject {
+	class SM_Export Transition :  public MgaObject {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -619,50 +494,23 @@ namespace SM {
 		static ::Uml::AssociationRole meta_srcTransition_end_;
 		static ::Uml::AssociationRole meta_dstTransition_end_;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_StateMachine_parent {};
-		typedef boost::mpl::pair< ::SM::StateMachine, PR_StateMachine_parent > _PR_StateMachine_parent__StateMachine;
-		typedef boost::mpl::vector< _PR_StateMachine_parent__StateMachine> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::StateMachine> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		class ACE_srcTransition {};
-		class ACE_dstTransition {};
-		typedef boost::mpl::pair< ::SM::BaseState, ACE_srcTransition > _ACE_srcTransition__BaseState;
-		typedef boost::mpl::pair< ::SM::BaseState, ACE_dstTransition > _ACE_dstTransition__BaseState;
-		typedef boost::mpl::vector< _ACE_srcTransition__BaseState, _ACE_dstTransition__BaseState> AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class StateMachine :  public MgaObject {
+	class SM_Export StateMachine :  public MgaObject {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -732,52 +580,23 @@ namespace SM {
 		static ::Uml::CompositionChildRole meta_BaseState_children;
 		static ::Uml::CompositionParentRole meta_RootFolder_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_RootFolder_parent {};
-		typedef boost::mpl::pair< ::SM::RootFolder, PR_RootFolder_parent > _PR_RootFolder_parent__RootFolder;
-		typedef boost::mpl::vector< _PR_RootFolder_parent__RootFolder> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::RootFolder> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		class CR_Reference_children {};
-		class CR_Transition_children {};
-		class CR_BaseState_children {};
-		typedef boost::mpl::pair< ::SM::Reference, CR_Reference_children > _CR_Reference_children__Reference;
-		typedef boost::mpl::pair< ::SM::Transition, CR_Transition_children > _CR_Transition_children__Transition;
-		typedef boost::mpl::pair< ::SM::BaseState, CR_BaseState_children > _CR_BaseState_children__BaseState;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< _CR_Reference_children__Reference, _CR_Transition_children__Transition, _CR_BaseState_children__BaseState> ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::Transition, ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class Reference :  public MgaObject {
+	class SM_Export Reference :  public MgaObject {
 	public:
 		typedef ::Udm::ReferenceMetaTag MetaKind;
 
@@ -830,50 +649,23 @@ namespace SM {
 		static ::Uml::CompositionParentRole meta_StateMachine_parent;
 		static ::Uml::CompositionParentRole meta_BaseState_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_StateMachine_parent {};
-		class PR_BaseState_parent {};
-		typedef boost::mpl::pair< ::SM::StateMachine, PR_StateMachine_parent > _PR_StateMachine_parent__StateMachine;
-		typedef boost::mpl::pair< ::SM::BaseState, PR_BaseState_parent > _PR_BaseState_parent__BaseState;
-		typedef boost::mpl::vector< _PR_StateMachine_parent__StateMachine, _PR_BaseState_parent__BaseState> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::BaseState> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< > ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		class AR_ref {};
-		typedef boost::mpl::pair< ::SM::BaseState, AR_ref > _AR_ref__BaseState;
-		typedef boost::mpl::vector< _AR_ref__BaseState> AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class BaseState :  public MgaObject {
+	class SM_Export BaseState :  public MgaObject {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -951,58 +743,23 @@ namespace SM {
 		static ::Uml::CompositionParentRole meta_StateMachine_parent;
 		static ::Uml::CompositionParentRole meta_BaseState_parent;
 
-		// types and typelist for parent by returned type and role relations;
-		class PR_StateMachine_parent {};
-		class PR_BaseState_parent {};
-		typedef boost::mpl::pair< ::SM::StateMachine, PR_StateMachine_parent > _PR_StateMachine_parent__StateMachine;
-		typedef boost::mpl::pair< ::SM::BaseState, PR_BaseState_parent > _PR_BaseState_parent__BaseState;
-		typedef boost::mpl::vector< _PR_StateMachine_parent__StateMachine, _PR_BaseState_parent__BaseState> Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::BaseState> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		class CR_BaseState_children {};
-		class CR_Reference_children {};
-		typedef boost::mpl::pair< ::SM::BaseState, CR_BaseState_children > _CR_BaseState_children__BaseState;
-		typedef boost::mpl::pair< ::SM::Reference, CR_Reference_children > _CR_Reference_children__Reference;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< _CR_BaseState_children__BaseState, _CR_Reference_children__Reference> ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		class AR_referedbyReference {};
-		typedef boost::mpl::pair< ::SM::Reference, AR_referedbyReference > _AR_referedbyReference__Reference;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< _AR_referedbyReference__Reference> AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		class AR_dstTransition {};
-		class AR_srcTransition {};
-		typedef boost::mpl::pair< ::SM::BaseState, boost::mpl::pair< ::SM::Transition, AR_dstTransition > > _AR_dstTransition__Transition__BaseState;
-		typedef boost::mpl::pair< ::SM::BaseState, boost::mpl::pair< ::SM::Transition, AR_srcTransition > > _AR_srcTransition__Transition__BaseState;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< _AR_dstTransition__Transition__BaseState, _AR_srcTransition__Transition__BaseState> AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class State :  public BaseState {
+	class SM_Export State :  public BaseState {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -1049,44 +806,23 @@ namespace SM {
 
 		static ::Uml::Class meta;
 
-		// types and typelist for parent by returned type and role relations;
-		typedef boost::mpl::vector< > Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::BaseState> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
-	class StartState :  public BaseState {
+	class SM_Export StartState :  public BaseState {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -1133,43 +869,73 @@ namespace SM {
 
 		static ::Uml::Class meta;
 
-		// types and typelist for parent by returned type and role relations;
-		typedef boost::mpl::vector< > Parents;
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::BaseState> ParentKinds;
 
-		// types and typelist for children by returned type and role relations;
-		typedef boost::mpl::vector< > ChildrenSingle;
-		typedef boost::mpl::vector< > ChildrenMulti;
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
-		// types and typelist for associations by returned type and role relations;
-		typedef boost::mpl::vector< > AssociationsSingle;
-		typedef boost::mpl::vector< > AssociationsMulti;
 
-		// types and typelist for associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > AssociationsWAClassSingle;
-		typedef boost::mpl::vector< > AssociationsWAClassMulti;
 
-		// types and typelist for cross associations by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsSingle;
-		typedef boost::mpl::vector< > CrossAssociationsMulti;
 
-		// types and typelist for cross associations by returned type, association class and role relations;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassSingle;
-		typedef boost::mpl::vector< > CrossAssociationsWAClassMulti;
 
-		// types and typelist for association class ends by returned type and role relations;
-		typedef boost::mpl::vector< > AClassEnds;
 
-		// types and typelist for cross association class by returned type and role relations;
-		typedef boost::mpl::vector< > CrossAClassEnds;
 
 	};
 
 }
+
+// The following is generated by gen-pairs.pl program of LEESA. For more information 
+// please visit: http://www.dre.vanderbilt.edu/~sutambe/files/LEESA/LEESA.pdf 
+
+#define PARADIGM_DESCENDANT_PAIRS
+
+namespace SM {
+
+  struct _False_ { enum { value = 0 }; };
+  struct _True_  { enum { value = 1 }; };
+
+  template <class T, class U>
+  struct IsDescendant : _False_ {};
+
+  template <> struct IsDescendant <::SM::InputSequence, ::SM::Events> : _True_ {};
+  template <> struct IsDescendant <::SM::InputSequence, ::SM::Sequence> : _True_ {};
+
+  template <> struct IsDescendant <::SM::StartState, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::State> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::BaseState> : _True_ {};
+
+  template <> struct IsDescendant <::SM::State, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::State> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::BaseState> : _True_ {};
+
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::InputSequence> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::State> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::Events> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::RootFolder> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::Transition> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::StateMachine> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::Sequence> : _True_ {};
+  template <> struct IsDescendant <::SM::RootFolder, ::SM::BaseState> : _True_ {};
+
+  template <> struct IsDescendant <::SM::StateMachine, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::StateMachine, ::SM::State> : _True_ {};
+  template <> struct IsDescendant <::SM::StateMachine, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::StateMachine, ::SM::Transition> : _True_ {};
+  template <> struct IsDescendant <::SM::StateMachine, ::SM::BaseState> : _True_ {};
+
+  template <> struct IsDescendant <::SM::BaseState, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::State> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::BaseState> : _True_ {};
+
+
+} // namespace SM
 
 #endif // MOBIES_SM_H

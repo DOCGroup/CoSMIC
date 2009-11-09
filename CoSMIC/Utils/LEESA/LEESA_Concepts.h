@@ -18,8 +18,8 @@ namespace LEESA
   template <class Where, class T>
   struct ChildrenKinds;
 
-  template <class Where, class T>
-  struct DescendantKinds;
+  template <class Parent, class Descendant, class Customizer>
+  struct IsDescendantKind;
 
   template <class T>
 	struct UdmKindConcept 
@@ -131,55 +131,36 @@ namespace LEESA
 	};
 
   template <class ParentKind, class DescendantKind, class Customizer>
-	struct DescendantKindConcept
+  struct DescendantKindConcept
 	{
-		BOOST_CLASS_REQUIRE(ParentKind, LEESA, UdmKindConcept);
-		BOOST_CLASS_REQUIRE(DescendantKind, LEESA, UdmKindConcept);
+    BOOST_CLASS_REQUIRE(ParentKind, LEESA, UdmKindConcept);
+    BOOST_CLASS_REQUIRE(DescendantKind, LEESA, UdmKindConcept);
 		
     void constraints()
-		{
-      BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
-		}
-
-    typedef typename LEESA::DescendantKinds<Customizer, ParentKind>::type DescendantKinds;
-    typedef DescendantKindConcept type;
-    enum { value = UdmKindConcept<ParentKind>::value &&
-                   UdmKindConcept<DescendantKind>::value && 
-                   boost::mpl::contains<DescendantKinds, DescendantKind>::value }; 
-	};
-
-  template <bool Check, class StartVector, class Target>
-	struct ReachableConcept
-	{
-    template <class StartVector, class Target>
-    struct IsDescendant
     {
-      typedef IsDescendant type;
-      typedef typename boost::mpl::front<StartVector>::type Head;
-      typedef typename boost::mpl::pop_front<StartVector>::type Tail;
-      enum { value = DescendantKindConcept<Head, Target>::value ||
-                     IsDescendant<Tail, Target>::value };
-    };
-    template <class Target>
-    struct IsDescendant<EmptyMPLVector, Target> 
-    { 
-      enum { value = 0 };
-    };
-    template <class Target>
-    struct IsDescendant<EmptyMPLVectorB, Target> 
-    { 
-      enum { value = 0 };
-    };
+      BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
+    }
+
+    typedef DescendantKindConcept type;
+    enum { value = 
+            UdmKindConcept<ParentKind>::value &&
+            UdmKindConcept<DescendantKind>::value && 
+            IsDescendantKind<ParentKind, DescendantKind, Customizer>::value }; 
+	};
+/*
+  template <bool Check, class StartVector, class Target>
+  struct ReachableConcept
+  {
 
     void constraints()
-		{
+    {
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
-		}
+	  }
 
     typedef ReachableConcept type;
     enum { value = Check? IsDescendant<StartVector, Target>::value : 1 }; 
-	};
-
+  };
+*/
 } // namespace LEESA
 
 #endif // __LEESA_CONCEPTS_H

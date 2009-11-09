@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file SM.cpp
 // generated from diagram SM
-// generated on Thu Oct 15 15:36:04 2009
+// generated on Sun Nov 08 11:21:07 2009
 
 #include "SM.h"
 #include <UmlExt.h>
@@ -14,18 +14,18 @@ namespace SM {
 	::Uml::CompositionChildRole InputSequence::meta_Events_children;
 	::Uml::CompositionParentRole InputSequence::meta_RootFolder_parent;
 
-	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Sequence_children >() const { return meta_Sequence_children; }
-	template <> const ::Uml::CompositionChildRole& InputSequence::_type2CCRole< InputSequence::CR_Events_children >() const { return meta_Events_children; }
-	template <> const ::Uml::CompositionParentRole& InputSequence::_type2CPRole< InputSequence::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+
+
+
 
 	::Uml::Class Sequence::meta;
 	::Uml::CompositionParentRole Sequence::meta_InputSequence_parent;
 	::Uml::AssociationRole Sequence::meta_dstSequence_end_;
 	::Uml::AssociationRole Sequence::meta_srcSequence_end_;
 
-	template <> const ::Uml::CompositionParentRole& Sequence::_type2CPRole< Sequence::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
-	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_dstSequence >() const { return meta_dstSequence_end_; }
-	template <> const ::Uml::AssociationRole& Sequence::_type2ARole< Sequence::ACE_srcSequence >() const { return meta_srcSequence_end_; }
+
+
+
 
 	::Uml::Class Events::meta;
 	::Uml::Attribute Events::meta_Delay;
@@ -35,9 +35,9 @@ namespace SM {
 	::Uml::AssociationRole Events::meta_dstSequence_rev;
 	::Uml::CompositionParentRole Events::meta_InputSequence_parent;
 
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_srcSequence >() const { return make_pair(&meta_srcSequence, &meta_srcSequence_rev); }
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> Events::_type2ACARole< Events::AR_dstSequence >() const { return make_pair(&meta_dstSequence, &meta_dstSequence_rev); }
-	template <> const ::Uml::CompositionParentRole& Events::_type2CPRole< Events::PR_InputSequence_parent >() const { return meta_InputSequence_parent; }
+
+
+
 
 	::Uml::Class Transition::meta;
 	::Uml::Attribute Transition::meta_Event;
@@ -45,9 +45,9 @@ namespace SM {
 	::Uml::AssociationRole Transition::meta_srcTransition_end_;
 	::Uml::AssociationRole Transition::meta_dstTransition_end_;
 
-	template <> const ::Uml::CompositionParentRole& Transition::_type2CPRole< Transition::PR_StateMachine_parent >() const { return meta_StateMachine_parent; }
-	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_srcTransition >() const { return meta_srcTransition_end_; }
-	template <> const ::Uml::AssociationRole& Transition::_type2ARole< Transition::ACE_dstTransition >() const { return meta_dstTransition_end_; }
+
+
+
 
 	::Uml::Class StateMachine::meta;
 	::Uml::CompositionChildRole StateMachine::meta_Reference_children;
@@ -55,10 +55,10 @@ namespace SM {
 	::Uml::CompositionChildRole StateMachine::meta_BaseState_children;
 	::Uml::CompositionParentRole StateMachine::meta_RootFolder_parent;
 
-	template <> const ::Uml::CompositionChildRole& StateMachine::_type2CCRole< StateMachine::CR_Reference_children >() const { return meta_Reference_children; }
-	template <> const ::Uml::CompositionChildRole& StateMachine::_type2CCRole< StateMachine::CR_Transition_children >() const { return meta_Transition_children; }
-	template <> const ::Uml::CompositionChildRole& StateMachine::_type2CCRole< StateMachine::CR_BaseState_children >() const { return meta_BaseState_children; }
-	template <> const ::Uml::CompositionParentRole& StateMachine::_type2CPRole< StateMachine::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+
+
+
+
 
 	::Uml::Class State::meta;
 
@@ -67,9 +67,9 @@ namespace SM {
 	::Uml::CompositionParentRole Reference::meta_StateMachine_parent;
 	::Uml::CompositionParentRole Reference::meta_BaseState_parent;
 
-	template <> const ::Uml::AssociationRole& Reference::_type2ARole< Reference::AR_ref >() const { return meta_ref; }
-	template <> const ::Uml::CompositionParentRole& Reference::_type2CPRole< Reference::PR_StateMachine_parent >() const { return meta_StateMachine_parent; }
-	template <> const ::Uml::CompositionParentRole& Reference::_type2CPRole< Reference::PR_BaseState_parent >() const { return meta_BaseState_parent; }
+
+
+
 
 	::Uml::Class StartState::meta;
 
@@ -84,13 +84,13 @@ namespace SM {
 	::Uml::CompositionParentRole BaseState::meta_StateMachine_parent;
 	::Uml::CompositionParentRole BaseState::meta_BaseState_parent;
 
-	template <> const ::Uml::AssociationRole& BaseState::_type2ARole< BaseState::AR_referedbyReference >() const { return meta_referedbyReference; }
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> BaseState::_type2ACARole< BaseState::AR_dstTransition >() const { return make_pair(&meta_dstTransition, &meta_dstTransition_rev); }
-	template <> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> BaseState::_type2ACARole< BaseState::AR_srcTransition >() const { return make_pair(&meta_srcTransition, &meta_srcTransition_rev); }
-	template <> const ::Uml::CompositionChildRole& BaseState::_type2CCRole< BaseState::CR_BaseState_children >() const { return meta_BaseState_children; }
-	template <> const ::Uml::CompositionChildRole& BaseState::_type2CCRole< BaseState::CR_Reference_children >() const { return meta_Reference_children; }
-	template <> const ::Uml::CompositionParentRole& BaseState::_type2CPRole< BaseState::PR_StateMachine_parent >() const { return meta_StateMachine_parent; }
-	template <> const ::Uml::CompositionParentRole& BaseState::_type2CPRole< BaseState::PR_BaseState_parent >() const { return meta_BaseState_parent; }
+
+
+
+
+
+
+
 
 	::Uml::Class RootFolder::meta;
 	::Uml::Attribute RootFolder::meta_name;
@@ -99,10 +99,10 @@ namespace SM {
 	::Uml::CompositionChildRole RootFolder::meta_RootFolder_children;
 	::Uml::CompositionParentRole RootFolder::meta_RootFolder_parent;
 
-	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_StateMachine_children >() const { return meta_StateMachine_children; }
-	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_InputSequence_children >() const { return meta_InputSequence_children; }
-	template <> const ::Uml::CompositionChildRole& RootFolder::_type2CCRole< RootFolder::CR_RootFolder_children >() const { return meta_RootFolder_children; }
-	template <> const ::Uml::CompositionParentRole& RootFolder::_type2CPRole< RootFolder::PR_RootFolder_parent >() const { return meta_RootFolder_parent; }
+
+
+
+
 
 	::Uml::Class MgaObject::meta;
 	::Uml::Attribute MgaObject::meta_position;
@@ -425,7 +425,7 @@ namespace SM {
 
 	}
 
-	void Initialize()
+	SM_Export void Initialize()
 	{
 		static bool first = true;
 		if (!first) return;
@@ -448,7 +448,7 @@ namespace SM {
 
 	}
 
-	void Initialize(const ::Uml::Diagram &dgr)
+	SM_Export void Initialize(const ::Uml::Diagram &dgr)
 	{
 		
 		meta = dgr;
@@ -461,7 +461,7 @@ namespace SM {
 	}
 
 
-	Udm::UdmDiagram diagram = { &meta, Initialize };
+	SM_Export Udm::UdmDiagram diagram = { &meta, Initialize };
 	static struct _regClass
 	{
 		_regClass()
