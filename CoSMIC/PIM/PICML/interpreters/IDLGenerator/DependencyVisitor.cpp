@@ -11,13 +11,15 @@
 
 namespace IDML
 {
-  void DependencyVisitor::visitOrderableImpl( const Orderable& object )
+  void DependencyVisitor::visitOrderableImpl (const Orderable & object)
   {
     this->update_depends_lists (object);
 
     // If we're not a model, we're done.
     BON::Model model (object);
-    if (!model) return;
+
+    if (!model)
+      return;
 
     Component comp (object);
 
@@ -35,7 +37,10 @@ namespace IDML
          it++)
       {
         Orderable child (*it);
-        if (!child) continue;
+
+        if (!child)
+          continue;
+
         object->ordered_children.push_back (child);
         this->visitOrderableImpl (child);
       }
@@ -48,7 +53,10 @@ namespace IDML
         if (spFCO)
           {
             Component base (BON::FCOImpl::attach (spFCO));
-            if (!base) return;
+
+            if (!base)
+              return;
+
             comp->base_component (base);
 
             // Just insert the derived component into the
@@ -64,29 +72,32 @@ namespace IDML
 
   void DependencyVisitor::set_include_components_idl( const BON::Model& mod )
   {
-    File container =
-      this->get_containing_file (mod->getParentModel ());
+    File container = this->get_containing_file (mod->getParentModel ());
     container->include_components_idl (true);
   }
 
   void DependencyVisitor::set_include_orb_idl( const BON::Reference& ref )
   {
-    File container =
-      this->get_containing_file (ref->getParentModel ());
+    File container = this->get_containing_file (ref->getParentModel ());
     container->include_orb_idl (true);
   }
 
-  void DependencyVisitor::update_depends_lists( const Orderable& object )
+  void DependencyVisitor::update_depends_lists (const Orderable & object)
   {
     BON::Model scope (object);
-    if (!scope) return;
-    std::set<BON::Reference> refs = scope->getChildReferences ();
+
+    if (!scope)
+      return;
+
+    std::set <BON::Reference> refs = scope->getChildReferences ();
 
     ComponentFactory cf (object);
+
     if (cf)
       {
-        std::multiset<Manageable> manages = cf->getManagesComponentDsts ();
-        std::multiset<Manageable>::iterator i = manages.begin ();
+        std::multiset <Manageable> manages = cf->getManagesComponentDsts ();
+        std::multiset <Manageable>::iterator i = manages.begin ();
+
         Component comp (*i);
 
         if (comp)

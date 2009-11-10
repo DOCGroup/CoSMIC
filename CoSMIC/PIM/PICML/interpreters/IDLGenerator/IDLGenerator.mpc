@@ -6,12 +6,14 @@ project (IDLGenerator) : gme_bon2, cosmic_utils {
   dynamicflags += PICML_IDLGENERATOR_BUILD_DLL
 
   Source_Files {
+    DependencyVisitor.cpp
     IDLEmitVisitor.cpp
     IDLStream.cpp
     IDMLBonExtension.cpp
   }
 
   Header_Files {
+    DependencyVisitor.h
     IDLEmitVisitor.h
     IDMLBonExtension.h
   }
@@ -24,17 +26,20 @@ project (IDLGenerator) : gme_bon2, cosmic_utils {
 project (IDLGeneratorComponent) : gme_bon2_component, cosmic_utils {
   sharedname = IDLGeneratorComponent
 
-  libs  += IDLGenerator
-  after += IDLGenerator
+  // libs  += IDLGenerator
+  // after += IDLGenerator
 
   Source_Files {
     Component.rc
     DependencyVisitor.cpp
     IDMLBonExtension.cpp
+    IDLEmitVisitor.cpp
+    IDLStream.cpp
   }
 
   Header_Files {
     DependencyVisitor.h
+    IDLEmitVisitor.h
     IDMLBonExtension.h
   }
 

@@ -3,8 +3,17 @@
 project : gme_common {
   macros += BON2COMPONENT BUILDER_OBJECT_NETWORK_V2
 
+  specific (prop:microsoft) {
+    midl_flags    += /server none /client none
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+
+    DisableSpecificWarnings += 4355 4180 4290
+  }
+
   Source_Files {
     conditional (vc9) {
+      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+
       $(GME_ROOT)/SDK/BON/Common/BON.cpp
       $(GME_ROOT)/SDK/BON/Common/BONImpl.cpp
       $(GME_ROOT)/SDK/BON/Common/ComHelp.cpp
@@ -17,6 +26,8 @@ project : gme_common {
     }
 
     conditional (vc8) {
+      $(GME_ROOT)/SDK/BON/ComponentLib.idl
+
       $(GME_ROOT)/SDK/BON/BON.cpp
       $(GME_ROOT)/SDK/BON/BONImpl.cpp
       $(GME_ROOT)/SDK/BON/ComHelp.cpp

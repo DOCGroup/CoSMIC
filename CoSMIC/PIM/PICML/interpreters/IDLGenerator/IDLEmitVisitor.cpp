@@ -18,12 +18,12 @@ size_t IDL_INCLUDE_SUFFIX_LEN = strlen (IDL_INCLUDE_SUFFIX);
 
 namespace IDML
 {
-  IDLEmitVisitor::IDLEmitVisitor( std::ostream& strm )
+  IDLEmitVisitor::IDLEmitVisitor (std::ostream& strm)
     : ofs (strm)
   {
   }
 
-  bool IDLEmitVisitor::visitBoolean( const Boolean& object )
+  bool IDLEmitVisitor::visitBoolean (const Boolean& object)
   {
     if ( !object)
       return false;
@@ -32,7 +32,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitByte( const Byte& object )
+  bool IDLEmitVisitor::visitByte (const Byte& object)
   {
     if ( !object)
       return false;
@@ -41,7 +41,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitEnumValue( const EnumValue& object )
+  bool IDLEmitVisitor::visitEnumValue (const EnumValue& object)
   {
     if ( !object)
       return false;
@@ -50,7 +50,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitGenericObject( const GenericObject& object )
+  bool IDLEmitVisitor::visitGenericObject (const GenericObject& object)
   {
     if ( !object)
       return false;
@@ -59,7 +59,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitGenericValue( const GenericValue& object )
+  bool IDLEmitVisitor::visitGenericValue (const GenericValue& object)
   {
     if ( !object)
       return false;
@@ -79,7 +79,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitLabel( const Label& object )
+  bool IDLEmitVisitor::visitLabel (const Label& object)
   {
     if ( !object)
       return false;
@@ -88,7 +88,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitLongInteger( const LongInteger& object )
+  bool IDLEmitVisitor::visitLongInteger (const LongInteger& object)
   {
     if ( !object)
       return false;
@@ -97,7 +97,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitPrivateFlag( const PrivateFlag& object )
+  bool IDLEmitVisitor::visitPrivateFlag (const PrivateFlag& object)
   {
     if ( !object)
       return false;
@@ -106,7 +106,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitRealNumber( const RealNumber& object )
+  bool IDLEmitVisitor::visitRealNumber (const RealNumber& object)
   {
     if ( !object)
       return false;
@@ -115,7 +115,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitShortInteger( const ShortInteger& object )
+  bool IDLEmitVisitor::visitShortInteger (const ShortInteger& object)
   {
     if ( !object)
       return false;
@@ -124,7 +124,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitString( const String& object )
+  bool IDLEmitVisitor::visitString (const String& object)
   {
     if ( !object)
       return false;
@@ -133,7 +133,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitTypeEncoding( const TypeEncoding& object )
+  bool IDLEmitVisitor::visitTypeEncoding (const TypeEncoding& object)
   {
     if ( !object)
       return false;
@@ -142,7 +142,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitTypeKind( const TypeKind& object )
+  bool IDLEmitVisitor::visitTypeKind (const TypeKind& object)
   {
     if ( !object)
       return false;
@@ -151,7 +151,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitAggregate( const Aggregate& object )
+  bool IDLEmitVisitor::visitAggregate (const Aggregate& object)
   {
     if (!object) return false;
 
@@ -169,7 +169,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitAttribute( const Attribute& object )
+  bool IDLEmitVisitor::visitAttribute (const Attribute& object)
   {
     if (!object) return false;
 
@@ -186,7 +186,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitComponent( const Component& object )
+  bool IDLEmitVisitor::visitComponent (const Component& object)
   {
     if (!object) return false;
 
@@ -244,7 +244,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitEnum( const Enum& object )
+  bool IDLEmitVisitor::visitEnum (const Enum& object)
   {
     if (!object) return false;
 
@@ -263,7 +263,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitEvent( const Event& object )
+  bool IDLEmitVisitor::visitEvent (const Event& object)
   {
     if (!object) return false;
 
@@ -276,7 +276,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitException( const Exception& object )
+  bool IDLEmitVisitor::visitException (const Exception& object)
   {
     if (!object) return false;
 
@@ -307,7 +307,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitFile( const File& object )
+  bool IDLEmitVisitor::visitFile (const File& object)
   {
     if (!object) return false;
 
@@ -324,7 +324,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitHasExceptions( const HasExceptions& object )
+  bool IDLEmitVisitor::visitHasExceptions (const HasExceptions& object)
   {
     ofs << object->getName ();
     this->emitParameters (object);
@@ -336,7 +336,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitHasOperations( const HasOperations& object )
+  bool IDLEmitVisitor::visitHasOperations (const HasOperations& object)
   {
     if ( !object)
       return false;
@@ -345,7 +345,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitInheritable( const Inheritable& object )
+  bool IDLEmitVisitor::visitInheritable (const Inheritable& object)
   {
     if ( !object)
       return false;
@@ -367,7 +367,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitObject( const Object& object )
+  bool IDLEmitVisitor::visitObject (const Object& object)
   {
     if (!object) return false;
 
@@ -392,7 +392,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitObjectByValue( const ObjectByValue& object )
+  bool IDLEmitVisitor::visitObjectByValue (const ObjectByValue& object)
   {
     // Common to ValueObject and Event.
 
@@ -435,7 +435,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitOperationBase( const OperationBase& object )
+  bool IDLEmitVisitor::visitOperationBase (const OperationBase& object)
   {
     if ( !object)
       return false;
@@ -444,7 +444,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitPackage( const Package& object )
+  bool IDLEmitVisitor::visitPackage (const Package& object)
   {
     if (!object) return false;
 
@@ -463,7 +463,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitPrefixable( const Prefixable& object )
+  bool IDLEmitVisitor::visitPrefixable (const Prefixable& object)
   {
     if ( !object)
       return false;
@@ -540,7 +540,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitValueObject( const ValueObject& object )
+  bool IDLEmitVisitor::visitValueObject (const ValueObject& object)
   {
     if (!object) return false;
 
@@ -586,7 +586,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitAlias( const Alias& object )
+  bool IDLEmitVisitor::visitAlias (const Alias& object)
   {
     if (!object) return false;
 
@@ -614,7 +614,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitBoxed( const Boxed& object )
+  bool IDLEmitVisitor::visitBoxed (const Boxed& object)
   {
     if (!object) return false;
 
@@ -631,7 +631,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitCollection( const Collection& object )
+  bool IDLEmitVisitor::visitCollection (const Collection& object)
   {
     if (!object) return false;
 
@@ -651,7 +651,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitComponentRef( const ComponentRef& object )
+  bool IDLEmitVisitor::visitComponentRef (const ComponentRef& object)
   {
     if ( !object)
       return false;
@@ -660,7 +660,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitConstant( const Constant& object )
+  bool IDLEmitVisitor::visitConstant (const Constant& object)
   {
     if (!object) return false;
 
@@ -676,7 +676,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitDiscriminator( const Discriminator& object )
+  bool IDLEmitVisitor::visitDiscriminator (const Discriminator& object)
   {
     if ( !object)
       return false;
@@ -685,7 +685,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitExceptionRef( const ExceptionRef& object )
+  bool IDLEmitVisitor::visitExceptionRef (const ExceptionRef& object)
   {
     if ( !object)
       return false;
@@ -694,7 +694,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitFileRef( const FileRef& object )
+  bool IDLEmitVisitor::visitFileRef (const FileRef& object)
   {
     if ( !object)
       return false;
@@ -703,7 +703,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitGetException( const GetException& object )
+  bool IDLEmitVisitor::visitGetException (const GetException& object)
   {
     if ( !object)
       return false;
@@ -712,7 +712,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitInEventPort( const InEventPort& object )
+  bool IDLEmitVisitor::visitInEventPort (const InEventPort& object)
   {
     if (!object) return false;
 
@@ -732,7 +732,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitInParameter( const InParameter& object )
+  bool IDLEmitVisitor::visitInParameter (const InParameter& object)
   {
     if (!object) return false;
 
@@ -742,7 +742,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitInherits( const Inherits& object )
+  bool IDLEmitVisitor::visitInherits (const Inherits& object)
   {
     if ( !object)
       return false;
@@ -751,7 +751,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitInoutParameter( const InoutParameter& object )
+  bool IDLEmitVisitor::visitInoutParameter (const InoutParameter& object)
   {
     if (!object) return false;
 
@@ -761,7 +761,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitLookupKey( const LookupKey& object )
+  bool IDLEmitVisitor::visitLookupKey (const LookupKey& object)
   {
     if ( !object)
       return false;
@@ -770,7 +770,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitMember( const Member& object )
+  bool IDLEmitVisitor::visitMember (const Member& object)
   {
     if ( !object)
       return false;
@@ -779,7 +779,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitOutEventPort( const OutEventPort& object )
+  bool IDLEmitVisitor::visitOutEventPort (const OutEventPort& object)
   {
     if (!object) return false;
 
@@ -799,7 +799,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitOutParameter( const OutParameter& object )
+  bool IDLEmitVisitor::visitOutParameter (const OutParameter& object)
   {
     if (!object) return false;
 
@@ -850,7 +850,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitReturnType( const ReturnType& object )
+  bool IDLEmitVisitor::visitReturnType (const ReturnType& object)
   {
     if ( !object)
       return false;
@@ -859,7 +859,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitSetException( const SetException& object )
+  bool IDLEmitVisitor::visitSetException (const SetException& object)
   {
     if ( !object)
       return false;
@@ -868,7 +868,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitSupports( const Supports& object )
+  bool IDLEmitVisitor::visitSupports (const Supports& object)
   {
     if ( !object)
       return false;
@@ -877,7 +877,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitConstantType( const ConstantType& object )
+  bool IDLEmitVisitor::visitConstantType (const ConstantType& object)
   {
     if ( !object)
       return false;
@@ -886,7 +886,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitManageable( const Manageable& object )
+  bool IDLEmitVisitor::visitManageable (const Manageable& object)
   {
     if ( !object)
       return false;
@@ -895,7 +895,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitMemberType( const MemberType& object )
+  bool IDLEmitVisitor::visitMemberType (const MemberType& object)
   {
     if ( !object)
       return false;
@@ -904,7 +904,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitNamedType( const NamedType& object )
+  bool IDLEmitVisitor::visitNamedType (const NamedType& object)
   {
     if ( !object)
       return false;
@@ -913,7 +913,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitNoInheritable( const NoInheritable& object )
+  bool IDLEmitVisitor::visitNoInheritable (const NoInheritable& object)
   {
     if ( !object)
       return false;
@@ -922,7 +922,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitPort( const Port& object )
+  bool IDLEmitVisitor::visitPort (const Port& object)
   {
     if ( !object)
       return false;
@@ -931,7 +931,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitPredefinedType( const PredefinedType& object )
+  bool IDLEmitVisitor::visitPredefinedType (const PredefinedType& object)
   {
     if ( !object)
       return false;
@@ -940,7 +940,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitTaggable( const Taggable& object )
+  bool IDLEmitVisitor::visitTaggable (const Taggable& object)
   {
     if ( !object)
       return false;
@@ -971,11 +971,11 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitObjectImpl( const BON::Object& obj )
+  void IDLEmitVisitor::visitObjectImpl (const BON::Object& obj)
   {}
 
 
-  void IDLEmitVisitor::visitFCOImpl( const BON::FCO& fco )
+  void IDLEmitVisitor::visitFCOImpl (const BON::FCO& fco)
   {
     if ( !visitConstantType( fco))
     if ( !visitManageable( fco))
@@ -991,7 +991,7 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitAtomImpl( const BON::Atom& atom )
+  void IDLEmitVisitor::visitAtomImpl (const BON::Atom& atom)
   {
     if ( !visitBoolean( atom))
     if ( !visitByte( atom))
@@ -1013,7 +1013,7 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitReferenceImpl( const BON::Reference& ref )
+  void IDLEmitVisitor::visitReferenceImpl (const BON::Reference& ref)
   {
     if ( !visitAlias( ref))
     if ( !visitAttributeMember( ref))
@@ -1044,7 +1044,7 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitConnectionImpl( const BON::Connection& conn )
+  void IDLEmitVisitor::visitConnectionImpl (const BON::Connection& conn)
   {
     if ( !visitLabelConnection( conn))
     if ( !visitMakeMemberPrivate( conn))
@@ -1055,7 +1055,7 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitModelImpl( const BON::Model& model )
+  void IDLEmitVisitor::visitModelImpl (const BON::Model& model)
   {
     if ( !visitAggregate( model))
     if ( !visitAttribute( model))
@@ -1087,7 +1087,7 @@ namespace IDML
   }
 
 
-  void IDLEmitVisitor::visitFolderImpl( const BON::Folder& fold )
+  void IDLEmitVisitor::visitFolderImpl (const BON::Folder& fold)
   {
     if ( !visitInterfaceDefinitions( fold))
     if ( !visitPredefinedTypes( fold))
@@ -1096,8 +1096,9 @@ namespace IDML
     }
   }
 
-  void IDLEmitVisitor::visitOrderableImpl( const Orderable& object )
+  void IDLEmitVisitor::visitOrderableImpl (const Orderable& object)
   {
+    // First,
     if ( !visitAggregate( object))
     if ( !visitAttribute( object))
     if ( !visitComponent( object))
@@ -1327,7 +1328,7 @@ namespace IDML
     return true;
   }
 
-  void IDLEmitVisitor::emitIncludedFiles( const File& f )
+  void IDLEmitVisitor::emitIncludedFiles (const File& f)
   {
     bool first = true;
 
@@ -1389,7 +1390,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitPrefix( const File& f )
+  void IDLEmitVisitor::emitPrefix (const File& f)
   {
     std::string global_prefix = f->getPrefixTag ();
     if (global_prefix != "")
@@ -1399,7 +1400,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitFwdDecls( const Orderable& object )
+  void IDLEmitVisitor::emitFwdDecls (const Orderable& object)
   {
     std::set<std::pair<Orderable, int> > fwd_decls = object->fwd_decl_children;
     if (fwd_decls.size () == 0) return;
@@ -1517,7 +1518,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitPreprocDirectives( const Taggable& t )
+  void IDLEmitVisitor::emitPreprocDirectives (const Taggable& t)
   {
     if (!t) return;
     std::string holder = t->getSpecifyIdTag ();
@@ -1665,7 +1666,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitAttributeMember( const ReadonlyAttribute& ra )
+  void IDLEmitVisitor::emitAttributeMember (const ReadonlyAttribute& ra)
   {
     std::set<AttributeMember> member = ra->getAttributeMember ();
     std::set<AttributeMember>::const_iterator i = member.begin ();
@@ -1683,7 +1684,7 @@ namespace IDML
     ofs << " " << ra->getName ();
   }
 
-  void IDLEmitVisitor::emitMemberType( const NamedType& nt )
+  void IDLEmitVisitor::emitMemberType (const NamedType& nt)
   {
     Boxed b (nt);
     Collection c (nt);
@@ -1697,7 +1698,7 @@ namespace IDML
     else ofs << this->scoped_name (mt);
   }
 
-  void IDLEmitVisitor::emitAliasMemberType( const NamedType& nt )
+  void IDLEmitVisitor::emitAliasMemberType (const NamedType& nt)
   {
     Alias a (nt);
     MemberType mt = a->getMemberType ();
@@ -1708,7 +1709,7 @@ namespace IDML
     else ofs << this->scoped_name (mt);
   }
 
-  void IDLEmitVisitor::emitConstantType( const Constant& c )
+  void IDLEmitVisitor::emitConstantType (const Constant& c)
   {
     ConstantType ct = c->getConstantType ();
     BON::Model c_parent = c->getParentModel ();
@@ -1717,7 +1718,7 @@ namespace IDML
     else ofs << this->scoped_name (ct);
   }
 
-  void IDLEmitVisitor::emitInherits( const Inheritable& object )
+  void IDLEmitVisitor::emitInherits (const Inheritable& object)
   {
     std::set<Inherits> parents = object->getInherits ();
     if (parents.size () == 0) return;
@@ -1791,7 +1792,7 @@ namespace IDML
     return false;
   }
 
-  void IDLEmitVisitor::emitReturnType( const TwowayOperation& op )
+  void IDLEmitVisitor::emitReturnType (const TwowayOperation& op)
   {
     std::set<ReturnType> rettype = op->getReturnType ();
     if (rettype.size () == 0)
@@ -1804,7 +1805,7 @@ namespace IDML
     ofs << this->scoped_name ((*i)->getReferred ()) << " ";
   }
 
-  void IDLEmitVisitor::emitParameters( const HasExceptions& he )
+  void IDLEmitVisitor::emitParameters (const HasExceptions& he)
   {
     ofs << " (";
 
@@ -1852,7 +1853,7 @@ namespace IDML
         << ")" << uidt;
   }
 
-  void IDLEmitVisitor::emitInParameters( const OperationBase& op )
+  void IDLEmitVisitor::emitInParameters (const OperationBase& op)
   {
     ofs << " (";
     std::set<ExceptionRef> exceps;
@@ -1895,7 +1896,7 @@ namespace IDML
         << ")" << uidt;
   }
 
-  void IDLEmitVisitor::emitExceptions( const HasExceptions& he )
+  void IDLEmitVisitor::emitExceptions (const HasExceptions& he)
   {
     std::set<ExceptionRef> exceptions = he->getExceptionRef ();
     if (exceptions.size () == 0) return;
@@ -1952,7 +1953,7 @@ namespace IDML
     ofs << ")" << uidt;
   }
 
-  void IDLEmitVisitor::emitSetExceptions( const Attribute& a )
+  void IDLEmitVisitor::emitSetExceptions (const Attribute& a)
   {
     std::set<SetException> set_exceptions = a->getSetException ();
     if (set_exceptions.size () == 0) return;
@@ -1979,7 +1980,7 @@ namespace IDML
     ofs << ")" << uidt;
   }
 
-  void IDLEmitVisitor::emitSupports( const SupportsInterfaces& s )
+  void IDLEmitVisitor::emitSupports (const SupportsInterfaces& s)
   {
     std::set<Supports> supported = s->getSupports ();
     if (supported.size () == 0) return;
@@ -2005,7 +2006,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitPorts( const Component& c )
+  void IDLEmitVisitor::emitPorts (const Component& c)
   {
     std::set<Port> ports = c->getPort ();
     bool not_first = false;
@@ -2048,7 +2049,7 @@ namespace IDML
   }
 
   void
-  IDLEmitVisitor::emitDefaultHome( const Component& c )
+  IDLEmitVisitor::emitDefaultHome (const Component& c)
   {
     // No default home if there's one in the model.
     if (c->getManagesComponentSrcs ().size () != 0) return;
@@ -2065,7 +2066,7 @@ namespace IDML
         << "};";
   }
 
-  void IDLEmitVisitor::emitManages( const ComponentFactory& cf )
+  void IDLEmitVisitor::emitManages (const ComponentFactory& cf)
   {
     // Metamodel constraint forces the size to be exactly 1.
     std::multiset<Manageable> manages = cf->getManagesComponentDsts ();
@@ -2079,7 +2080,7 @@ namespace IDML
     else ofs << this->scoped_name (ComponentRef (*i)->getReferred ());
   }
 
-  void IDLEmitVisitor::emitLookupKey( const ComponentFactory& cf )
+  void IDLEmitVisitor::emitLookupKey (const ComponentFactory& cf)
   {
     std::set<LookupKey> key = cf->getLookupKey ();
     if (key.size () == 0) return;
@@ -2092,7 +2093,7 @@ namespace IDML
         << (k_parent == cf_parent ? vd->getName () : this->scoped_name (vd));
   }
 
-  void IDLEmitVisitor::emitOBVMembers( const ObjectByValue & obv )
+  void IDLEmitVisitor::emitOBVMembers (const ObjectByValue & obv)
   {
     std::set <Member> members = obv->getMember ();
 
@@ -2123,7 +2124,7 @@ namespace IDML
       }
   }
 
-  void IDLEmitVisitor::emitEnumValues( const Enum& e )
+  void IDLEmitVisitor::emitEnumValues (const Enum& e)
   {
     std::set <EnumValue> values = e->getEnumValue ();
 
@@ -2176,7 +2177,7 @@ namespace IDML
       }
   }
 
-  bool IDLEmitVisitor::emitPredefinedSequence( const MemberType& m )
+  bool IDLEmitVisitor::emitPredefinedSequence (const MemberType& m)
   {
     Collection c (m);
     if (!c) return false;

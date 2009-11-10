@@ -1,23 +1,4 @@
-//###############################################################################################################################################
-//
-//  Meta and Builder Object Network V2.0 for GME
-//  BON2Component.cpp
-//
-//###############################################################################################################################################
-
-/*
-  Copyright (c) Vanderbilt University, 2000-2004
-  ALL RIGHTS RESERVED
-
-  Vanderbilt University disclaims all warranties with regard to this
-  software, including all implied warranties of merchantability
-  and fitness.  In no event shall Vanderbilt University be liable for
-  any special, indirect or consequential damages or any damages
-  whatsoever resulting from loss of use, data or profits, whether
-  in an action of contract, negligence or other tortious action,
-  arising out of or in connection with the use or performance of
-  this software.
-*/
+// $Id$
 
 #include "StdAfx.h"
 #include "BON2Component.h"
@@ -25,6 +6,7 @@
 #include "DependencyVisitor.h"
 #include "IDLEmitVisitor.h"
 #include "Utils/Utils.h"
+#include "boost/bind.hpp"
 
 #include <fstream>
 #include <direct.h>
@@ -34,175 +16,196 @@ namespace BON
 
 using namespace IDML;
 
-//###############################################################################################################################################
 //
-//   C L A S S : BON::Component
+// Component
 //
-//###############################################################################################################################################
-
-Component::Component()
-  : m_bIsInteractive( false )
+Component::Component (void)
+: m_bIsInteractive (false)
 {
 }
 
-Component::~Component()
+//
+// Component
+//
+Component::~Component (void)
 {
-  if ( m_project ) {
-    m_project->finalizeObjects();
-    finalize( m_project );
+  if (m_project)
+  {
+    m_project->finalizeObjects ();
+    finalize (m_project);
     m_project = NULL;
   }
 }
 
-// ====================================================
-// This method is called after all the generic initialization is done
-// This should be empty unless application-specific initialization is needed
-
-void Component::initialize( Project& project )
+//
+// initialize
+//
+void Component::initialize (Project & project)
 {
-  // ======================
-  // Insert application specific code here
 }
 
-// ====================================================
-// This method is called before the whole BON2 project released and disposed
-// This should be empty unless application-specific finalization is needed
-
-void Component::finalize( Project& project )
+//
+// finalize
+//
+void Component::finalize (Project & project)
 {
-  // ======================
-  // Insert application specific code here
+
 }
 
-// ====================================================
-// This is the obsolete component interface
-// This present implementation either tries to call InvokeEx, or does nothing except of a notification
-
-void Component::invoke( Project& project, const std::set<FCO>& setModels, long lParam )
+//
+// invoke
+//
+void Component::invoke (Project& project, const std::set<FCO>& setModels, long lParam)
 {
   #ifdef SUPPORT_OLD_INVOKE
     Object focus;
-    invokeEx( project, focus, setModels, lParam );
+    this->invokeEx (project, focus, setModels, lParam);
   #else
-    if ( m_bIsInteractive )
-      AfxMessageBox("This BON2 Component does not support the obsolete invoke mechanism!");
+    if (m_bIsInteractive)
+      ::AfxMessageBox ("This BON2 Component does not support the obsolete invoke mechanism!");
   #endif
 }
 
-// ====================================================
-// This is the main component method for Interpereters and Plugins.
-// May also be used in case of invokeable Add-Ons
-
-void Component::invokeEx( Project& project,
+//
+// invokeEx
+//
+void Component::invokeEx (Project& project,
                           FCO& currentFCO,
-                          const std::set<FCO>& setSelectedFCOs,
-                          long lParam )
+                          const std::set <FCO>& setSelectedFCOs,
+                          long lParam)
 {
-  project->setNmsp("PICML");
+  // Get the output directory for the generated files.
+  const std::string message ("Please specify the output directory");
 
-  std::string outputPath;
-  std::string message = "Please specify the output directory";
-
-  // If there is no output path specified
-  if (!Utils::getPath (message, outputPath))
+  if (!Utils::getPath (message, this->outputPath_))
     return;
 
-  std::set<Object> selected = project->findByKind ("File");
+  // Set the namespace for the project.
+  project->setNmsp ("PICML");
 
-  for (std::set<Object>::const_iterator it = selected.begin ();
-       it != selected.end ();
-       ++it)
-    {
-      File root (*it);
-
-      if (!root)
-        {
-          AfxMessageBox ("Interpretation must start from a File model!");
-          continue;
-        }
-
-      if (root->isInLibrary ())
-        {
-          continue;
-        }
-
-      DependencyVisitor root_visitor;
-      root_visitor.visitOrderableImpl (root);
-
-      // Preserves any directory structure that may have existed
-      // with IDL files imported into the model.
-
-      std::string filepath = root->getpath ();
-      std::string dirpath = outputPath + (filepath == "" ? "" : "\\" + filepath);
-
-      // We don't care about the return value. Since we are passing
-      // an absolute path, it will always get created unless it
-      // already exists. Either way the stream gets a valid file path.
-      (void) ::_mkdir (dirpath.c_str ());
-
-      std::string raw_filename = root->getName ();
-      std::string fullpath = dirpath
-                             + "\\"
-                             + raw_filename
-                             + ".idl";
-
-      std::ofstream strm (fullpath.c_str ());
-
-      IDLEmitVisitor emit_visitor (strm);
-      emit_visitor.visitOrderableImpl (root);
-    }
-
-  AfxMessageBox ("IDL generation completed.",
-                 MB_OK | MB_ICONINFORMATION);
-}
-
-// ====================================================
-// GME currently does not use this function
-// You only need to implement it if other invokation mechanisms are used
-
-void Component::objectInvokeEx( Project& project, Object& currentObject, const std::set<Object>& setSelectedObjects, long lParam )
+  if (setSelectedFCOs.empty ())
   {
-    if ( m_bIsInteractive )
-      AfxMessageBox("This BON2 Component does not support objectInvokeEx method!");
+    // Select all the objects of type IDML::File.
+    std::set <Object> selected = project->findByKind ("File");
+
+    // Process each of the object in the group.
+    std::for_each (selected.begin (),
+                   selected.end (),
+                   boost::bind (&Component::processObjectAsFile, this, _1));
+
+  }
+  else
+  {
+    // The user selected a set of objects that would like to generate
+    // IDL files for. We should honor that request. Right now, we only
+    // support selecting a set of InterfaceDefinitions folders or a
+    // set of File elements.
+    std::for_each (setSelectedFCOs.begin (),
+                   setSelectedFCOs.end (),
+                   boost::bind (&Component::processFCOAsFile, this, _1));
   }
 
-// ====================================================
-// Implement application specific parameter-mechanism in these functions
-
-Util::Variant Component::getParameter( const std::string& strName )
-{
-  // ======================
-  // Insert application specific code here
-
-  return Util::Variant();
+  if (this->m_bIsInteractive)
+  {
+    ::AfxMessageBox ("Successfully generated interface definitions files.",
+                     MB_OK | MB_ICONINFORMATION);
+  }
 }
 
-void Component::setParameter( const std::string& strName, const Util::Variant& varValue )
+//
+// processObjectAsFile
+//
+void Component::processObjectAsFile (const BON::Object & obj)
 {
-  // ======================
-  // Insert application specific code here
+  IDML::File file (obj);
+
+  if (file)
+    this->processFile (file);
 }
 
-#ifdef GME_ADDON
-
-// ====================================================
-// If the component is an Add-On, then this method is called for every Global Event
-
-void Component::globalEventPerformed( globalevent_enum event )
+//
+// processFCOAsFile
+//
+void Component::processFCOAsFile (const BON::FCO & fco)
 {
-  // ======================
-  // Insert application specific code here
+  IDML::File file (fco);
+
+  if (file)
+    this->processFile (file);
 }
 
-// ====================================================
-// If the component is an Add-On, then this method is called for every Object Event
-
-void Component::objectEventPerformed( Object& object, unsigned long event, VARIANT v )
+//
+// processFile
+//
+void Component::processFile (const IDML::File & file)
 {
-  // ======================
-  // Insert application specific code here
+  if (file->isInLibrary ())
+    return;
+
+  // Make sure the dependencies exist for the file.
+  DependencyVisitor depend_visitor;
+  depend_visitor.visitOrderableImpl (file);
+
+  // Preserves any directory structure that may have existed
+  // with IDL files imported into the model.
+  std::string filepath = file->getpath ();
+  std::string dirpath = this->outputPath_ + (filepath == "" ? "" : "/" + filepath);
+
+  // We don't care about the return value. Since we are passing
+  // an absolute path, it will always get created unless it
+  // already exists. Either way the stream gets a valid file path.
+  (void) ::_mkdir (dirpath.c_str ());
+
+  std::string raw_filename = file->getName ();
+  std::string fullpath = dirpath
+                         + "/"
+                         + raw_filename
+                         + ".idl";
+
+  std::ofstream strm (fullpath.c_str ());
+
+  if (strm.is_open ())
+  {
+    // Finally, generate the interface definition file.
+    IDLEmitVisitor emit_visitor (strm);
+    emit_visitor.visitOrderableImpl (file);
+
+    // Close the file.
+    strm.close ();
+  }
+  else if (this->m_bIsInteractive)
+  {
+    std::string msg = "Failed to open " + fullpath;
+    ::AfxMessageBox (msg.c_str (), MB_OK | MB_ICONERROR);
+  }
 }
 
-#endif // GME_ADDON
+//
+// objectInvokeEx
+//
+void Component::objectInvokeEx (Project& project,
+                                Object& currentObject,
+                                const std::set <Object>& setSelectedObjects,
+                                long lParam)
+{
+  if (m_bIsInteractive)
+    ::AfxMessageBox ("This BON2 Component does not support objectInvokeEx method!");
+}
+
+//
+// getParameter
+//
+Util::Variant Component::getParameter (const std::string& strName)
+{
+  return Util::Variant ();
+}
+
+//
+// setParameter
+//
+void Component::setParameter (const std::string& strName, const Util::Variant& varValue)
+{
+
+}
 
 }; // namespace BON

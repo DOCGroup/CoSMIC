@@ -1,15 +1,43 @@
+Tue Nov 10 18:53:06 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2.mpb:
+
+          Base project was missing the Component.idl file to complete the
+          build of BON related objects outside of a component.
+
+        * MPC/config/gme_component.mpb:
+
+          The prop: tag in the specific construct was incorrect for
+          ensuring the scope was bounded to Microsoft products.
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.h:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          So apparently refactoring the interpreter logic into a separate
+          module and linking it to the component generator actually made the
+          code a LOT slower. I think this is attributed to the fact that the
+          same code is compiled to both the interpreter's module and the
+          module containing the interpreter's business logic. The solution is
+          to just leave everything as is and maybe export the interpreter logic
+          from the interpreter.
+
 Tue Nov 10 17:19:34 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/gen-pairs.pl:
 
           Generates sorted IsDescendant<T,U> pairs.
-        
+
         * tests/SM_LEESA/SM.h:
         * tests/SM_LEESA/SM.cpp:
         * tests/SM_LEESA/SM.xsd:
 
           Updated the files, which contain sorted IsDescendant<T,U> pairs.
- 
+
 Tue Nov 10 17:02:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/SP.cpp:

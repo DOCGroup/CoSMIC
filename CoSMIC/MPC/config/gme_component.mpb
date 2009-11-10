@@ -1,7 +1,7 @@
 // $Id$
 
 project : register, gme_common {
-  specific (prop:windows) {
+  specific (prop:microsoft) {
     midl_flags    += /server none /client none
     midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
     link_options  += /DEF:$(COSMIC_ROOT)/includes/GME/Component.def
