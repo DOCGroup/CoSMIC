@@ -7,6 +7,7 @@
 
 #include "SM.h"
 
+#define PARADIGM_HAS_MUTUAL_RECURSION
 #define PARADIGM_NAMESPACE_FOR_LEESA SM
 #include "LEESA.h"
 
@@ -105,7 +106,7 @@ void CUdmApp::UdmMain(
 	try {
 		RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		SMVisitor visitor;
-	    /*
+	    
 		std::vector<StartState> vector = 
 		evaluate(rf, RootFolder() 
 					>> StateMachine() 
@@ -126,9 +127,10 @@ void CUdmApp::UdmMain(
 		evaluate(rf, sm >>= Transition() 
 			>> Association(Transition::dstTransition_end)
 			>> visitor);
-		*/
 		
-		evaluate(rf, RootFolder() >> DescendantsOf(RootFolder(), Transition()));
+
+    evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), State()));
+    evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), Transition()));
     /*evaluate(rf, RootFolder() 
                   >> StateMachine()
                   >> State() 

@@ -1,3 +1,21 @@
+Tue Nov 10 17:02:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+
+          Very good support for paradigms with self- as well as mutual recursion among
+          the elements. Supports two macros: PARADIGM_HAS_DESCENDANT_PAIRS and
+          PARADIGM_HAS_MUTUAL_RECURSION.
+        
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM_LEESA.vcproj:
+        * tests/SM_LEESA/UdmApp.cpp:
+        
+          Test programs for the new capabilities of LEESA.
+
 Tue Nov 10 05:35:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/gme_bon2.mpb:
