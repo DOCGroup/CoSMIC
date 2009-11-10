@@ -3058,7 +3058,7 @@ adding_visitor::add_include_elements (const char *filename,
 
               int result =
                 be_global->decl_id_table ().find (
-                  fname_noext.c_str (),
+                  fullpath,
                   id);
                   
               if (result != 0)

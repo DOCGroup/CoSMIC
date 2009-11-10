@@ -739,9 +739,6 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
           file->setAttribute (X ("id"), X (new_id.c_str ()));
         }
 
-      this->decl_elem_table_.bind (ACE::strnew (fname.c_str ()),
-                                   file);
-
       char abspath[MAXPATHLEN] = "";
       char *fullpath = ACE_OS::realpath (files[i], abspath);
 
@@ -752,11 +749,23 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
               fullpath[j] = '/';
             }
         }
+        
+      // We bind the files in these table under both their relative
+      // pathnames (for main file lookup, so the relative path can
+      // be split off and added as a GME attribute) and their
+      // full pathnames (for include file lookup, so we don't have
+      // to try prefixing every -I option.
+
+      this->decl_elem_table_.bind (ACE::strnew (fname.c_str ()),
+                                   file);
 
       this->decl_elem_table_.bind (ACE::strnew (fullpath),
                                    file);
 
       this->decl_id_table_.bind (ACE::strnew (fname.c_str ()),
+                                 file->getAttribute (X ("id")));
+
+      this->decl_id_table_.bind (ACE::strnew (fullpath),
                                  file->getAttribute (X ("id")));
    }
 
