@@ -1,6 +1,6 @@
 // cpp (meta datanetwork format) source file SM.cpp
 // generated from diagram SM
-// generated on Tue Nov 10 10:52:51 2009
+// generated on Tue Nov 10 11:17:00 2009
 
 #include "SM.h"
 #include <UmlExt.h>

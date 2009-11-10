@@ -6,7 +6,7 @@
 #define MOBIES_SM_H
 
 // header file SM.h generated from diagram SM
-// generated with Udm version 3.13 on Tue Nov 10 10:52:51 2009
+// generated with Udm version 3.13 on Tue Nov 10 11:17:00 2009
 
 #include <UdmBase.h>
 
@@ -902,18 +902,13 @@ namespace SM {
   template <class T, class U>
   struct IsDescendant : _False_ {};
 
+  template <> struct IsDescendant <::SM::BaseState, ::SM::BaseState> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::BaseState, ::SM::State> : _True_ {};
+
   template <> struct IsDescendant <::SM::InputSequence, ::SM::Events> : _True_ {};
   template <> struct IsDescendant <::SM::InputSequence, ::SM::Sequence> : _True_ {};
-
-  template <> struct IsDescendant <::SM::StartState, ::SM::BaseState> : _True_ {};
-  template <> struct IsDescendant <::SM::StartState, ::SM::Reference> : _True_ {};
-  template <> struct IsDescendant <::SM::StartState, ::SM::StartState> : _True_ {};
-  template <> struct IsDescendant <::SM::StartState, ::SM::State> : _True_ {};
-
-  template <> struct IsDescendant <::SM::State, ::SM::BaseState> : _True_ {};
-  template <> struct IsDescendant <::SM::State, ::SM::Reference> : _True_ {};
-  template <> struct IsDescendant <::SM::State, ::SM::StartState> : _True_ {};
-  template <> struct IsDescendant <::SM::State, ::SM::State> : _True_ {};
 
   template <> struct IsDescendant <::SM::RootFolder, ::SM::BaseState> : _True_ {};
   template <> struct IsDescendant <::SM::RootFolder, ::SM::Events> : _True_ {};
@@ -926,16 +921,21 @@ namespace SM {
   template <> struct IsDescendant <::SM::RootFolder, ::SM::StateMachine> : _True_ {};
   template <> struct IsDescendant <::SM::RootFolder, ::SM::Transition> : _True_ {};
 
+  template <> struct IsDescendant <::SM::StartState, ::SM::BaseState> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::StartState, ::SM::State> : _True_ {};
+
+  template <> struct IsDescendant <::SM::State, ::SM::BaseState> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::Reference> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::StartState> : _True_ {};
+  template <> struct IsDescendant <::SM::State, ::SM::State> : _True_ {};
+
   template <> struct IsDescendant <::SM::StateMachine, ::SM::BaseState> : _True_ {};
   template <> struct IsDescendant <::SM::StateMachine, ::SM::Reference> : _True_ {};
   template <> struct IsDescendant <::SM::StateMachine, ::SM::StartState> : _True_ {};
   template <> struct IsDescendant <::SM::StateMachine, ::SM::State> : _True_ {};
   template <> struct IsDescendant <::SM::StateMachine, ::SM::Transition> : _True_ {};
-
-  template <> struct IsDescendant <::SM::BaseState, ::SM::BaseState> : _True_ {};
-  template <> struct IsDescendant <::SM::BaseState, ::SM::Reference> : _True_ {};
-  template <> struct IsDescendant <::SM::BaseState, ::SM::StartState> : _True_ {};
-  template <> struct IsDescendant <::SM::BaseState, ::SM::State> : _True_ {};
 
 
 } // namespace SM

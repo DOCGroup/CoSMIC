@@ -158,7 +158,7 @@ print HEADER_FILE "  struct _True_  { enum { value = 1 }; };\n\n";
 print HEADER_FILE "  template <class T, class U>\n";
 print HEADER_FILE "  struct IsDescendant : _False_ {};\n\n";
  
-foreach $class (keys %children) {
+foreach $class (sort keys %children) {
   my @descendants = ();
   my @visited = ();
   push_descendants ($class, \@descendants, \@visited);
