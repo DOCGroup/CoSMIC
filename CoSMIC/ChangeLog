@@ -1,9 +1,15 @@
+Tue Nov 10 02:32:00 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          Exclued the benchmark_test from the compilation.
+
 Mon Nov  9 19:36:54 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
 
-          Added additional debug info. 
-        
+          Added additional debug info.
+
 Mon Nov  9 15:39:07 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
