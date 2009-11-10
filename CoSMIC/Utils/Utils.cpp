@@ -154,7 +154,14 @@ std::string CreateUuid (void)
   ACE_Utils::UUID uuid;
   ACE_Utils::UUID_GENERATOR::instance ()->generate_UUID (uuid);
 
-  return std::string (uuid.to_string ()->c_str ());
+  std::string temp (uuid.to_string ()->c_str ());
+
+  std::transform (temp.begin (),
+                  temp.end (),
+                  temp.begin (),
+                  &::toupper);
+
+  return temp;
 }
 
 //

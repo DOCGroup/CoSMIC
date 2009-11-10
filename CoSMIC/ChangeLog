@@ -1,3 +1,23 @@
+Tue Nov 10 20:16:22 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Temporarily disabled the auto-generation of the default
+          artifacts for a component.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          Removed a project that is no longer part of the build/installer.
+
+        * Utils/Utils.cpp:
+
+          The UUID is now capitalized.
+
+        * PIM/PICML/interpreters/IDLGenerator/component.def:
+
+          Removed this file.
+
 Tue Nov 10 18:53:06 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * MPC/config/gme_bon2.mpb:

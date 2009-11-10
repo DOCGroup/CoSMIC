@@ -5,16 +5,10 @@
   <Fragment Id="IDLGeneratorFrag">
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='IDLGeneratorLibrary' Guid='E9D28F15-DE39-4BD6-9DDE-05D31A597E39'>
-         <File Id='IDLGenerator.dll'
-               Name='IDLGenerator.dll'
-               Source='$(var.COSMIC_ROOT)\bin\IDLGenerator.dll'
-               DiskId='1' />
-
         <File Id='IDLGeneratorComponent.dll'
               Name='IDLGeneratorComponent.dll'
               Source='$(var.COSMIC_ROOT)\bin\IDLGeneratorComponent.dll'
               DiskId='1' />
-
 
         <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>

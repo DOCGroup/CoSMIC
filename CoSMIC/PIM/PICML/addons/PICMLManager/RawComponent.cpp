@@ -564,27 +564,27 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
 {
   this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
 
-  // If this is a newly created component, we need to generate
-  // the default implementation elements for this component.
-  if (!this->importing_ && (eventmask & OBJEVENT_CREATED))
-  {
-    // First, we need to get the name of the component.
-    Component_Name_Dialog component_name_dialog (::AfxGetMainWnd ());
-    component_name_dialog.component_name (obj.name ().c_str ());
+  //// If this is a newly created component, we need to generate
+  //// the default implementation elements for this component.
+  //if (!this->importing_ && (eventmask & OBJEVENT_CREATED))
+  //{
+  //  // First, we need to get the name of the component.
+  //  Component_Name_Dialog component_name_dialog (::AfxGetMainWnd ());
+  //  component_name_dialog.component_name (obj.name ().c_str ());
 
-    if (component_name_dialog.DoModal () == IDOK)
-    {
-      // Set the name of the component.
-      obj.name (component_name_dialog.component_name ().c_str ());
+  //  if (component_name_dialog.DoModal () == IDOK)
+  //  {
+  //    // Set the name of the component.
+  //    obj.name (component_name_dialog.component_name ().c_str ());
 
-      // Generate the component's default implementation.
-      GME::Folder root_folder = obj.project ().root_folder ();
-      DefaultImplementationGenerator impl_gen (root_folder);
+  //    // Generate the component's default implementation.
+  //    GME::Folder root_folder = obj.project ().root_folder ();
+  //    DefaultImplementationGenerator impl_gen (root_folder);
 
-      GME::Model component = GME::Model::_narrow (obj);
-      impl_gen.generate (component);
-    }
-  }
+  //    GME::Model component = GME::Model::_narrow (obj);
+  //    impl_gen.generate (component);
+  //  }
+  //}
 }
 
 //
