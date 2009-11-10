@@ -1,3 +1,30 @@
+Tue Nov 10 05:35:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2.mpb:
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_common.mpb:
+        * MPC/config/gme_component.mpb:
+
+          Refactored and improved the base projects.
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator_export.h:
+
+          Separated the IDL generation logic from the actual component. This
+          will allow the generation logic to be (re-)used in other projects,
+          such as the project that allows end-users to modify IDL in either
+          text format or using the model.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          Removed these files.
+
 Tue Nov 10 02:32:00 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/interpreters.mwc:

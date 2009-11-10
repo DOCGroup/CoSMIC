@@ -5,17 +5,16 @@
   <Fragment Id="IDLGeneratorFrag">
     <DirectoryRef Id="CoSMICBinDir">
       <Component Id='IDLGeneratorLibrary' Guid='E9D28F15-DE39-4BD6-9DDE-05D31A597E39'>
-<?if $(var.type) = vc71 ?>
-         <File Id='IDLGeneratorDLL'
-               Name='IDLGeneratord.dll'
-               Source='$(var.COSMIC_ROOT)\bin\IDLGeneratord.dll'
-               DiskId='1' />
-<?else ?>
-         <File Id='IDLGeneratorDLL'
+         <File Id='IDLGenerator.dll'
                Name='IDLGenerator.dll'
                Source='$(var.COSMIC_ROOT)\bin\IDLGenerator.dll'
                DiskId='1' />
-<?endif ?>
+
+        <File Id='IDLGeneratorComponent.dll'
+              Name='IDLGeneratorComponent.dll'
+              Source='$(var.COSMIC_ROOT)\bin\IDLGeneratorComponent.dll'
+              DiskId='1' />
+
 
         <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
@@ -29,11 +28,7 @@
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-<?if $(var.type) = vc71 ?>
-          <RegistryValue Value="[CoSMICBinDir]IDLGeneratord.dll" Type="string" />
-<?else ?>
-          <RegistryValue Value="[CoSMICBinDir]IDLGenerator.dll" Type="string" />
-<?endif ?>
+          <RegistryValue Value="[CoSMICBinDir]IDLGeneratorComponent.dll" Type="string" />
         </RegistryKey>
         <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLGenerator"
                      Action="createAndRemoveOnUninstall">

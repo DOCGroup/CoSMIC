@@ -133,8 +133,7 @@ void Component::invokeEx( Project& project,
       // with IDL files imported into the model.
 
       std::string filepath = root->getpath ();
-      std::string dirpath = outputPath
-                            + (filepath == "" ? "" : "\\" + filepath);
+      std::string dirpath = outputPath + (filepath == "" ? "" : "\\" + filepath);
 
       // We don't care about the return value. Since we are passing
       // an absolute path, it will always get created unless it

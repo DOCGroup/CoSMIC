@@ -11,7 +11,7 @@ REGEDIT4
 @="MGA.Interpreter.IDLGenerator"
 
 [HKEY_CURRENT_USER\Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32]
-@="IDLGenerator.dll"
+@="IDLGeneratorComponent.dll"
 
 [HKEY_CURRENT_USER\Software\Classes\MGA.Interpreter.IDLGenerator]
 @="MGA.Interpreter.IDLGenerator"
