@@ -41,12 +41,12 @@
 
     <DirectoryRef Id="CoSMICProgramMenuDir">
       <Component Id="NotesShortcutComponent" Guid="4A277173-A911-4F1F-B506-993573708189">
-        
+
         <RemoveFolder Id="CleanupShortcutNotesFolder" On="uninstall" />
 
-        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="INSTALLDIR" Value="[INSTALLDIR]" 
+          <RegistryValue Name="INSTALLDIR" Value="[INSTALLDIR]"
                          Type="string" KeyPath="yes"/>
         </RegistryKey>
       </Component>
@@ -56,20 +56,20 @@
       <Component Id="DocsShortcutComponent" Guid="D9B0D77F-C3EF-4AAA-97F4-D248A8068551">
         <RemoveFolder Id="CleanupShortcutDocsFolder" On="uninstall" />
 
-        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="DOCSDIR" Value="[CoSMICDocsDir]" 
+          <RegistryValue Name="DOCSDIR" Value="[CoSMICDocsDir]"
                          Type="string" KeyPath="yes"/>
         </RegistryKey>
       </Component>
     </DirectoryRef>
-    
+
     <DirectoryRef Id="CoSMICProgramMenuDir">
       <Component Id="Uninstaller"
                  Guid="C981D60E-18DF-4F53-B6D3-2160B5B1A68B" >
-        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC" 
+        <RegistryKey Root="HKCU" Key="Software\ISIS\CoSMIC"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="Uninstaller" Value="msiexec.exe /x {product GUID}" 
+          <RegistryValue Name="Uninstaller" Value="msiexec.exe /x {product GUID}"
                          Type="string" KeyPath="yes" />
         </RegistryKey>
         <Shortcut Id="CoSMICUninstallShortCut" Directory="CoSMICProgramMenuDir"
@@ -105,7 +105,7 @@
         <File Id='IDLGenerator_Reg'
               Name='IDLGenerator.reg'
               DiskId='1'
-              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\IDLGenerator\IDLGenerator.reg' />
+              Source='$(var.COSMIC_ROOT)\PIM\PICML\interpreters\IDLGenerator\IDLGeneratorComponent.reg' />
 
         <File Id='MPCComponent_Reg'
               Name='MPCComponent.reg'
