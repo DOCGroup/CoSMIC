@@ -1,4 +1,14 @@
-Tue Nov 10 20:16:22 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+Wed Nov 11 02:40:04 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        
+          Added duplicate storage of filenames as local names, in
+          which form they are looked up after reading an #include
+          directive, which may contain the full path or any of its
+          tail, when adding included file elements to the DOM tree.
+
+  Tue Nov 10 20:16:22 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
 
@@ -103,6 +113,7 @@ Tue Nov 10 05:35:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
           Removed these files.
 
+>>>>>>> .r2054
 Tue Nov 10 02:32:00 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/POSAML/interpreters/interpreters.mwc:

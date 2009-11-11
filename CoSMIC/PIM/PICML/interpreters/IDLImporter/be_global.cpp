@@ -712,8 +712,7 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
       ACE_CString::size_type pos = fname.rfind ('/');
       ACE_CString lname =
         (pos == ACE_CString::npos ? fname : fname.substr (pos + 1));
-      lname = lname.substr (0, lname.rfind ('.'));
-      const char *lname_cstr = lname.c_str ();
+      ACE_CString lname_noext = lname.substr (0, lname.rfind ('.'));
 
       DOMElement *file = 0;
       fname = fname.substr (0, fname.rfind ('.'));
@@ -723,7 +722,7 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
           file =
             this->imported_dom_element (
               this->interface_definitions_folder_,
-              lname_cstr);
+              lname_noext.c_str ());
         }
 
       if (0 == file)
@@ -750,22 +749,24 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
             }
         }
         
-      // We bind the files in these table under both their relative
+      // We bind the files in this table under both their relative
       // pathnames (for main file lookup, so the relative path can
       // be split off and added as a GME attribute) and their
-      // full pathnames (for include file lookup, so we don't have
-      // to try prefixing every -I option.
-
+      // full pathnames, since the filename stored with each node
+      // is a full pathname from the mcpp preprocessor.
       this->decl_elem_table_.bind (ACE::strnew (fname.c_str ()),
                                    file);
-
       this->decl_elem_table_.bind (ACE::strnew (fullpath),
                                    file);
 
+      // We bind the files in this table under both their relative
+      // pathnames (for main file lookup, so the relative path can
+      // be split off and added as a GME attribute) and their
+      // local names, for lookup of #include directives which may
+      // display any part of the path.
       this->decl_id_table_.bind (ACE::strnew (fname.c_str ()),
                                  file->getAttribute (X ("id")));
-
-      this->decl_id_table_.bind (ACE::strnew (fullpath),
+      this->decl_id_table_.bind (ACE::strnew (lname.c_str ()),
                                  file->getAttribute (X ("id")));
    }
 

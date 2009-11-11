@@ -3055,10 +3055,13 @@ adding_visitor::add_include_elements (const char *filename,
           if (0 == fileref)
             {
               const XMLCh *id = 0;
-
+              
+              ACE_CString lname =
+                holder.substr (0, holder.rfind ('/'));
+                
               int result =
                 be_global->decl_id_table ().find (
-                  fullpath,
+                  lname.c_str (),
                   id);
                   
               if (result != 0)
@@ -3068,7 +3071,7 @@ adding_visitor::add_include_elements (const char *filename,
                               ACE_TEXT ("add_include_elements - ")
                               ACE_TEXT ("included file <%s> not ")
                               ACE_TEXT ("found in decl table\n"),
-			      fname_noext.c_str ()));
+			                        fname_noext.c_str ()));
                               
                   return;
                 }
