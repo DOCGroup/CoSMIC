@@ -3033,32 +3033,39 @@ adding_visitor::add_include_elements (const char *filename,
       
       if (!holder.empty ())
         {
-          ACE_CString fname_noext =
-            holder.substr (0, holder.rfind ('.'));
-           
-          if (fname_noext.substr (0, 2) != "./")
-            {  
-              while (fname_noext.substr (0, 3) == "../")
-                {
-                  fname_noext = fname_noext.substr (3);
-                }
-                
-              fname_noext = ACE_CString ("./") + fname_noext;
+          ACE_CString lname;
+          
+          ACE_CString::size_type pos =
+            holder.rfind ('/');
+            
+          if (pos == ACE_CString::npos)
+            {
+              lname = holder;
             }
+          else
+            {
+              lname =
+                holder.substr (holder.rfind ('/') + 1);
+            }
+                
+          ACE_CString lname_noext =
+            lname.substr (0, lname.rfind ('.'));
 
+          // Last arg is set to 'true', telling the method
+          // that we are iterating over the processed files
+          // and adding include elements for each one, which
+          // changes the logic.
           DOMElement *fileref =
             be_global->imported_dom_element (file,
-                                             fname_noext.c_str (),
+                                             lname_noext.c_str (),
                                              BE_GlobalData::REF,
+                                             true,
                                              true);
 
           if (0 == fileref)
             {
               const XMLCh *id = 0;
               
-              ACE_CString lname =
-                holder.substr (0, holder.rfind ('/'));
-                
               int result =
                 be_global->decl_id_table ().find (
                   lname.c_str (),
@@ -3071,7 +3078,7 @@ adding_visitor::add_include_elements (const char *filename,
                               ACE_TEXT ("add_include_elements - ")
                               ACE_TEXT ("included file <%s> not ")
                               ACE_TEXT ("found in decl table\n"),
-			                        fname_noext.c_str ()));
+			                        lname_noext.c_str ()));
                               
                   return;
                 }
@@ -3092,7 +3099,7 @@ adding_visitor::add_include_elements (const char *filename,
               be_global->included_file_diagnostic (
                 fileref,
                 file,
-                fname_noext.c_str ());
+                lname_noext.c_str ());
             }
 
           // Add to list used in check for removed IDL decls.

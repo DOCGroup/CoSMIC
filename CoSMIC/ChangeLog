@@ -1,3 +1,18 @@
+Tue Nov 17 17:53:14 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
+        
+          Two changes to the call to imported_dom_element() in
+          the above method;
+          
+          - pass the name of the FileRef we are looking up as a local
+            name, since the way these are named in PICML has changed.
+            
+          - set the boolean arg that indicates we are iterating over
+            the processed file list and adding include elements for
+            each, since this fact changes the logic of 
+            imported_dom_element().
+
 Wed Nov 11 12:31:54 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
