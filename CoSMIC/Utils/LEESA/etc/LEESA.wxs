@@ -16,47 +16,33 @@
           <File Id='LEESAH'
                 Name='LEESA.h'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.h' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA.h' />
 
           <File Id='LEESACPP'
                 Name='LEESA.cpp'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.cpp' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA.cpp' />
 
           <File Id='LEESA_VisitorAsIndex'
                 Name='LEESA_VisitorAsIndex.h'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA_VisitorAsIndex.h' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_VisitorAsIndex.h' />
 
           <File Id='LEESAAP'
                 Name='AP.cpp'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\AP.cpp' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\AP.cpp' />
 
           <File Id='LEESASP'
                 Name='SP.cpp'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\SP.cpp' />
-
-          <File Id='LEESA_UDMMPL'
-                Name='UdmMPL.h'
-                DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\UdmMPL.h' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\SP.cpp' />
 
           <File Id='LEESA_Concepts'
                 Name='LEESA_Concepts.h'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA_Concepts.h' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_Concepts.h' />
 
-          <File Id='LEESA_ConceptGCC'
-                Name='concept-mpl.cpp'
-                DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\concept-mpl.cpp' />
-
-          <File Id='LEESA_DSL09_Primitives'
-                Name='DSL09primitives.cpp'
-                DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\DSL09primitives.cpp' />
         </Component>
       </DirectoryRef>
       
@@ -65,7 +51,12 @@
           <File Id='LEESAPDF'
                 Name='LEESA.pdf'
                 DiskId='1'
-                Source='$(var.COSMIC_ROOT)\Utils\LEESA\LEESA.pdf' />
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\doc\LEESA.pdf' />
+
+          <File Id='GEN_PAIRS_PL'
+                Name='gen-pairs.pl'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\bin\gen-pairs.pl' />
 
         </Component>
       </DirectoryRef>

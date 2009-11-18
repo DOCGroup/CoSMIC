@@ -1,3 +1,113 @@
+Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        
+          Added new path for LEESA.wxs
+
+        * Utils/LEESA/bin:
+        * Utils/LEESA/bin/gen-pairs.pl:
+        
+          Reorganization
+
+        * Utils/LEESA/doc:
+        * Utils/LEESA/doc/LEESA.docx:
+        * Utils/LEESA/doc/LEESA.pdf:
+
+          Reorganization
+
+        * Utils/LEESA/etc:
+        * Utils/LEESA/etc/DSL09primitives.cpp:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.h:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/etc/LEESA.wxs:
+        * Utils/LEESA/etc/UdmMPL.h:
+        * Utils/LEESA/etc/UdmObjectConcept.h:
+        * Utils/LEESA/etc/concept-mpl.cpp:
+        * Utils/LEESA/etc/xsd:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/LEESA.h:
+        * Utils/LEESA/etc/xsd/LEESA.cpp:
+        * Utils/LEESA/etc/xsd/LEESAConcepts.h:
+        * Utils/LEESA/etc/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/etc/xsd/example:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/example/driver.cxx:
+        * Utils/LEESA/etc/xsd/example/library.hpp:
+        * Utils/LEESA/etc/xsd/example/library.cpp:
+        * Utils/LEESA/etc/xsd/example/library.xml:
+        * Utils/LEESA/etc/xsd/example/library.xsd:
+        * Utils/LEESA/etc/xsd/example/makefile.txt:
+        * Utils/LEESA/etc/xsd/example/xsd.sh:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/patch:
+        * Utils/LEESA/etc/xsd/patch/Readme.txt:
+        * Utils/LEESA/etc/xsd/patch/cli.hxx:
+        * Utils/LEESA/etc/xsd/patch/generator.cxx:
+        * Utils/LEESA/etc/xsd/patch/makefile.txt:
+        * Utils/LEESA/etc/xsd/patch/template-header.cxx:
+        * Utils/LEESA/etc/xsd/patch/template-header.hxx:
+
+          Reorganization
+
+        * Utils/LEESA/include:
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Reorganized the above files. Removed the following files.
+        
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/DSL09primitives.cpp:
+        * Utils/LEESA/DeploymentPlanVisitor.h:
+        * Utils/LEESA/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/LEESA.wxs:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/UdmMPL.h:
+        * Utils/LEESA/UdmObjectConcept.h:
+        * Utils/LEESA/concept-mpl.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+        * Utils/LEESA/xsd:
+
+        * Utils/LEESA/xsd/LEESA.h:
+        * Utils/LEESA/xsd/LEESA.cpp:
+        * Utils/LEESA/xsd/LEESAConcepts.h:
+        * Utils/LEESA/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/xsd/example:
+
+        * Utils/LEESA/xsd/example/driver.cxx:
+        * Utils/LEESA/xsd/example/library.hpp:
+        * Utils/LEESA/xsd/example/library.cpp:
+        * Utils/LEESA/xsd/example/library.xml:
+        * Utils/LEESA/xsd/example/library.xsd:
+        * Utils/LEESA/xsd/example/makefile.txt:
+        * Utils/LEESA/xsd/example/xsd.sh:
+
+        * Utils/LEESA/xsd/patch:
+
+        * Utils/LEESA/xsd/patch/Readme.txt:
+        * Utils/LEESA/xsd/patch/cli.hxx:
+        * Utils/LEESA/xsd/patch/generator.cxx:
+        * Utils/LEESA/xsd/patch/makefile.txt:
+        * Utils/LEESA/xsd/patch/template-header.cxx:
+        * Utils/LEESA/xsd/patch/template-header.hxx:
+
+          Removed these files.
+
 Tue Nov 17 17:53:14 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
