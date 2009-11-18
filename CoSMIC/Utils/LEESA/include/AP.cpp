@@ -45,13 +45,39 @@ template <class Strategy, class From, class ToVector,
 ExpressionTraits3Para(DescendantOp);
 ExpressionTraits3Para(DescendantGraphOp);
 
+
+template <class Vector, class ResultKind, class Customizer>
+struct FilterChildrenIfNotDescendant
+{
+  typedef typename front<Vector>::type Head;
+  typedef typename pop_front<Vector>::type Tail;
+  typedef typename 
+    if_c<is_same<Head, ResultKind>::value |
+         IsDescendantKind<Head, ResultKind, Customizer>::value,
+         typename push_back<typename FilterChildrenIfNotDescendant<Tail, ResultKind, Customizer>::type,
+                  Head>::type,
+         typename FilterChildrenIfNotDescendant<Tail, ResultKind, Customizer>::type 
+    >::type type;
+};
+template <class ResultKind, class Customizer>
+struct FilterChildrenIfNotDescendant <EmptyMPLVector, ResultKind, Customizer> {
+  typedef EmptyMPLVector type;
+};
+template <class ResultKind, class Customizer>
+struct FilterChildrenIfNotDescendant <EmptyMPLVectorB, ResultKind, Customizer> {
+  typedef EmptyMPLVector type;
+}; 
+
+
 template <class L, class H, class Custom, class T>
 struct ChildrenKinds <DescendantOp<L, H, Custom>, T>
 {
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<T>));
     typedef typename ChildrenKinds<Custom, T>::type Children;
-    typedef typename DescendantOp<L, H, Custom>::template
-            FilterChildrenIfNotDescendant<Children>::type type;
+    typedef typename 
+      FilterChildrenIfNotDescendant<Children, 
+                                    typename ET<H>::result_kind, 
+                                    Custom>::type type;
 };
 
 template <class Strategy, 
@@ -73,10 +99,10 @@ struct DescendantOp : LEESAUnaryFunction<L, H>,
   typedef DescendantOp Self;
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
-	typedef typename ChainExpr<L, DescendantOp> expression_type;
+	typedef ChainExpr<L, DescendantOp> expression_type;
 
   BOOST_CONCEPT_ASSERT((LEESA::
-    DescendantKindConcept<argument_kind, result_kind, Customizer>));
+  DescendantKindConcept<argument_kind, result_kind, Customizer>));
 
 protected:
   result_type retval_;
@@ -108,28 +134,6 @@ protected:
 
 public:
 
-  template <class Vector>
-  struct FilterChildrenIfNotDescendant
-  {
-    typedef typename front<Vector>::type Head;
-    typedef typename pop_front<Vector>::type Tail;
-    typedef typename 
-      if_c<is_same<Head, result_kind>::value |
-           IsDescendantKind<Head, result_kind, Customizer>::value,
-           typename push_back<typename FilterChildrenIfNotDescendant<Tail>::type,
-                    Head>::type,
-           typename FilterChildrenIfNotDescendant<Tail>::type 
-      >::type type;
-  };
-  template <>
-  struct FilterChildrenIfNotDescendant <EmptyMPLVector> {
-    typedef EmptyMPLVector type;
-  };
-  template <>
-  struct FilterChildrenIfNotDescendant <EmptyMPLVectorB> {
-    typedef EmptyMPLVector type;
-  }; 
-
   result_type operator () (argument_type const & arg)
   {
     Accumulate acc(retval_);
@@ -144,14 +148,15 @@ template <class L,
 struct DescendantGraphOp : DescendantOp<L, H, Customizer>
 {
   typedef DescendantOp<L, H, Customizer> Super;
-	typedef typename ChainExpr<L, DescendantGraphOp> expression_type;
+  SUPER_TYPEDEFS(Super);
+	typedef ChainExpr<L, DescendantGraphOp> expression_type;
 
   BOOST_CONCEPT_ASSERT((LEESA::
     DescendantKindConcept<argument_kind, result_kind, Customizer>));
 
   result_type operator () (argument_type const & arg)
   {
-    Super::Accumulate acc(Super::retval_);
+    typename Super::Accumulate acc(Super::retval_);
     evaluate(arg, argument_kind() 
       >> FullTDGraph(argument_kind(), acc, Super()));
     return Super::retval_;
@@ -183,7 +188,7 @@ DescendantsOf (L, H, Custom)
 {                                                                    
 	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
 	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));                                                                              \
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H,Custom>));
 	typedef typename ET<L>::argument_type argument_type;               
 	typedef typename ET<H>::result_type result_type;                   
                                                                      
@@ -197,7 +202,7 @@ GraphDescendantsOf (L, H)
 {                                                                    
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<L>));                  
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<H>));                  
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H>));         
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<L,H,LEESA::Default>));         
                                                                      
 	typedef typename ET<L>::argument_type argument_type;               
 	typedef typename ET<H>::result_type result_type;                   
@@ -293,7 +298,7 @@ public:
   
   typedef LEESA::LEESAUnaryFunction<From> Super;
   SUPER_TYPEDEFS(Super);
-	typedef typename ChainExpr<From, APOp> expression_type;
+  typedef ChainExpr<From, APOp> expression_type;
 
   template <class ChildrenVector>
   struct RemoveBypassingTypes
@@ -310,11 +315,11 @@ public:
 
 private:
 
-  template <class F, class ThroughVector>
-  void from_through(F from, ThroughVector)
+  template <class F, class ThroughV>
+  void from_through(F from, ThroughV)
   {
-    typedef typename boost::mpl::front<ThroughVector>::type Head;
-    typedef typename boost::mpl::pop_front<ThroughVector>::type Tail;
+    typedef typename boost::mpl::front<ThroughV>::type Head;
+    typedef typename boost::mpl::pop_front<ThroughV>::type Tail;
     typedef typename ET<From>::argument_kind FromKind;
     typedef typename ET<From>::argument_type FromType;
 	  typedef typename ET<Head>::result_type HeadType;
@@ -337,11 +342,11 @@ private:
     through_to(from, ToVector());
   }
 
-  template <class Through, class ToVector>
-  void through_to(Through through, ToVector)
+  template <class Through, class ToV>
+  void through_to(Through through, ToV)
   {
-    typedef typename boost::mpl::front<ToVector>::type Head;
-    typedef typename boost::mpl::pop_front<ToVector>::type Tail;
+    typedef typename boost::mpl::front<ToV>::type Head;
+    typedef typename boost::mpl::pop_front<ToV>::type Tail;
     typedef typename ET<Through>::argument_kind ThroughKind;
     typedef typename ET<Through>::argument_type ThroughType;
 	  typedef typename ET<Head>::result_type HeadType;
@@ -370,6 +375,74 @@ public:
 };
 
 
+template <class Vector, class Key>
+struct find_param 
+{
+  typedef typename front<Vector>::type Head;
+  typedef typename pop_front<Vector>::type Tail;
+  typedef typename 
+    if_c<is_same<typename Head::tag, Key>::value,
+         typename Head::type,
+         typename find_param<Tail, Key>::type>::type type;
+};
+template < >
+struct find_param <EmptyMPLVector, Through_tag>
+{
+  typedef boost::mpl::vector<__ANY> type;
+};
+template < >
+struct find_param <EmptyMPLVectorB, Through_tag>
+{
+  typedef boost::mpl::vector<__ANY> type;
+};
+template < >
+struct find_param <EmptyMPLVector, Bypass_tag>
+{
+  typedef EmptyMPLVector type;
+};
+template < >
+struct find_param <EmptyMPLVectorB, Bypass_tag>
+{
+  typedef EmptyMPLVector type;
+};
+template < >
+struct find_param <EmptyMPLVector, Customizer_tag>
+{
+  typedef LEESA::Default type;
+};
+template < >
+struct find_param <EmptyMPLVectorB, Customizer_tag>
+{
+  typedef LEESA::Default type;
+};
+
+
+
+template <class V1, class V2>
+struct Intersection
+{
+  typedef typename front<V2>::type Head;
+  typedef typename pop_front<V2>::type Tail;
+  typedef typename 
+    if_<contains<V1, Head>,
+        typename push_back<typename Intersection<V1, Tail>::type, Head>::type,
+        typename Intersection<V1, Tail>::type
+    >::type type;
+};
+
+template <class V1>
+struct Intersection <V1, EmptyMPLVector >
+{
+  typedef EmptyMPLVector type;
+};
+
+template <class V1>
+struct Intersection <V1, EmptyMPLVectorB >
+{
+  typedef EmptyMPLVector type;
+};
+
+
 // APGen type generator implements the "Named Template Parameter" idiom.
 template <class Strategy,
           class From, 
@@ -380,46 +453,7 @@ template <class Strategy,
 struct APGen
 {
 private:
-  template <class Vector, class Key>
-  struct find_param 
-  {
-    typedef typename front<Vector>::type Head;
-    typedef typename pop_front<Vector>::type Tail;
-    typedef typename 
-      if_c<is_same<typename Head::tag, Key>::value,
-           typename Head::type,
-           typename find_param<Tail, Key>::type>::type type;
-  };
-  template < >
-  struct find_param <EmptyMPLVector, Through_tag>
-  {
-    typedef boost::mpl::vector<__ANY> type;
-  };
-  template < >
-  struct find_param <EmptyMPLVectorB, Through_tag>
-  {
-    typedef boost::mpl::vector<__ANY> type;
-  };
-  template < >
-  struct find_param <EmptyMPLVector, Bypass_tag>
-  {
-    typedef EmptyMPLVector type;
-  };
-  template < >
-  struct find_param <EmptyMPLVectorB, Bypass_tag>
-  {
-    typedef EmptyMPLVector type;
-  };
-  template < >
-  struct find_param <EmptyMPLVector, Customizer_tag>
-  {
-    typedef LEESA::Default type;
-  };
-  template < >
-  struct find_param <EmptyMPLVectorB, Customizer_tag>
-  {
-    typedef LEESA::Default type;
-  };
+
   typedef boost::mpl::vector<Through, Bypass, Custom> Configuration;
   typedef typename 
     find_param<Configuration, Through_tag>::type ThroughVector;
@@ -428,40 +462,16 @@ private:
   typedef typename 
     find_param<Configuration, Customizer_tag>::type Customizer;
 
-  template <class V1, class V2>
-  struct Intersection
-  {
-    typedef typename front<V2>::type Head;
-    typedef typename pop_front<V2>::type Tail;
-    typedef typename 
-      if_<typename contains<V1, Head>,
-          typename push_back<typename Intersection<V1, Tail>::type, Head>::type,
-          typename Intersection<V1, Tail>::type
-      >::type type;
-  };
-
-  template <class V1>
-  struct Intersection <V1, EmptyMPLVector >
-  {
-    typedef EmptyMPLVector type;
-  };
-
-  template <class V1>
-  struct Intersection <V1, EmptyMPLVectorB >
-  {
-    typedef EmptyMPLVector type;
-  };
-
   enum { VALID_PARAMETERIZATION 
-    = !empty<ToVector>::value &&
-       empty<typename Intersection<ThroughVector, BypassVector>::type>::value &&
-       empty<typename Intersection<ToVector, BypassVector>::type>::value &&
-      !contains<BypassVector, typename ET<From>::argument_kind>::value };
+          = !empty<ToVector>::value &&
+             empty<typename Intersection<ThroughVector, BypassVector>::type>::value &&
+             empty<typename Intersection<ToVector, BypassVector>::type>::value &&
+            !contains<BypassVector, typename ET<From>::argument_kind>::value };
 
   BOOST_MPL_ASSERT_RELATION( VALID_PARAMETERIZATION, ==, 1 );
 
 public:
-  typedef typename 
+  typedef  
     APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> type;
 };
 

@@ -1,12 +1,20 @@
+Wed Nov 18 06:38:43 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Improved the implementation to work with g++ 4.4.1  
+        
 Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
-        
+
           Added new path for LEESA.wxs
 
         * Utils/LEESA/bin:
         * Utils/LEESA/bin/gen-pairs.pl:
-        
+
           Reorganization
 
         * Utils/LEESA/doc:
@@ -64,7 +72,7 @@ Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/SP.cpp:
 
           Reorganized the above files. Removed the following files.
-        
+
         * Utils/LEESA/AP.cpp:
         * Utils/LEESA/DSL09primitives.cpp:
         * Utils/LEESA/DeploymentPlanVisitor.h:
@@ -111,16 +119,16 @@ Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
 Tue Nov 17 17:53:14 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
-        
+
           Two changes to the call to imported_dom_element() in
           the above method;
-          
+
           - pass the name of the FileRef we are looking up as a local
             name, since the way these are named in PICML has changed.
-            
+
           - set the boolean arg that indicates we are iterating over
             the processed file list and adding include elements for
-            each, since this fact changes the logic of 
+            each, since this fact changes the logic of
             imported_dom_element().
 
 Wed Nov 11 12:31:54 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>

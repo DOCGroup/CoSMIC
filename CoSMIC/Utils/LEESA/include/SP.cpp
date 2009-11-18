@@ -64,8 +64,9 @@ template <class K,                                                              
           class Custom = LEESA::Default>                                           \
 struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                      \
 {                                                                                  \
-    typedef typename ChainExpr<K, OP##Op> expression_type;                         \
-    typedef typename ET<K>::result_kind argument_kind;                             \
+    typedef ChainExpr<K, OP##Op> expression_type;                                  \
+    typedef LEESAUnaryFunction <K> Super;                                          \
+    SUPER_TYPEDEFS(Super);                                                         \
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  \
                                                                                    \
     template <class U>                                                             \
@@ -101,8 +102,9 @@ template <class K,                                                           \
           class Strategy2 = KindLit<K> >                                     \
 struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
 {                                                                            \
-  typedef typename ChainExpr<K, OP##Op> expression_type;                     \
-  typedef typename ET<K>::result_kind argument_kind;                         \
+  typedef ChainExpr<K, OP##Op> expression_type;                              \
+  typedef LEESAUnaryFunction <K> Super;                                      \
+  SUPER_TYPEDEFS(Super);                                                     \
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));              \
                                                                              \
   template <class U>                                                         \
@@ -139,8 +141,9 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
 template <class K, class Strategy = KindLit<K> >                            \
 struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
 {                                                                           \
-    typedef typename ChainExpr<K, OP##Op> expression_type;                  \
-	  typedef typename ET<K>::result_kind argument_kind;                      \
+    typedef ChainExpr<K, OP##Op> expression_type;                           \
+    typedef LEESAUnaryFunction <K> Super;                                   \
+	  SUPER_TYPEDEFS(Super);                                                  \
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));           \
                                                                             \
     template <class U>                                                      \
@@ -371,7 +374,9 @@ ExpressionTraits3Para(InnermostOp);
 template <class E, class Func>
 struct CallerOp : LEESAUnaryFunction <E>, OpBase
 {
-	typedef typename ChainExpr<E, CallerOp > expression_type;
+  typedef LEESAUnaryFunction <E> Super;
+  SUPER_TYPEDEFS(Super);
+	typedef ChainExpr<E, CallerOp > expression_type;
 
 	Func func_;
 	explicit CallerOp (Func f) : func_(f) { }
@@ -388,6 +393,8 @@ struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
 {
   public:
     typedef ChainExpr<Kind, FailOp> expression_type;
+    typedef LEESAUnaryFunction <Kind> Super;
+    SUPER_TYPEDEFS(Super);
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));
 
     template <class U>
@@ -448,8 +455,9 @@ template <class K,
           class Custom = Default>                                         
 struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 {                                                                                  
-  typedef typename ChainExpr<K, OneOp> expression_type;                         
-  typedef typename ET<K>::result_kind argument_kind;                             
+  typedef ChainExpr<K, OneOp> expression_type;                         
+  typedef LEESAUnaryFunction <K> Super;
+  SUPER_TYPEDEFS(Super);
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
                                                                                  
   template <class U>                                                             
@@ -580,9 +588,9 @@ template <class K,
           class Custom = Default>                                         
 struct AllGraphOp : public AllOp<K, Strategy, Custom>
 {
-  typedef typename ChainExpr<K, AllGraphOp> expression_type;                         
-  typedef typename ET<K>::result_kind argument_kind; 
+  typedef ChainExpr<K, AllGraphOp> expression_type;                         
   typedef AllOp<K, Strategy, Custom> Super;
+  SUPER_TYPEDEFS(Super);
   BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
                                                                                  
   template <class U>                                                             
