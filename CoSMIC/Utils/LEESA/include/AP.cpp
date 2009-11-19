@@ -5,6 +5,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/contains.hpp>
+#include <boost/mpl/size.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/push_back.hpp>
 #include <boost/mpl/front.hpp>
@@ -24,8 +25,8 @@
 namespace LEESA {
 
 using boost::mpl::if_c;
-using boost::disable_if_c;
 using boost::mpl::contains;
+using boost::mpl::size;
 using boost::mpl::push_back;
 using boost::mpl::front;
 using boost::mpl::pop_front;
@@ -35,7 +36,7 @@ using boost::mpl::equal;
 using boost::mpl::remove_if;
 using boost::is_same;
 using boost::is_base_of;
-
+using boost::disable_if_c;
 
 template <class L, class H, class Custom> struct DescendantOp;
 template <class L, class H, class Custom> struct DescendantGraphOp;
@@ -46,7 +47,7 @@ ExpressionTraits3Para(DescendantOp);
 ExpressionTraits3Para(DescendantGraphOp);
 
 
-template <class Vector, class ResultKind, class Customizer>
+template <class Vector, unsigned int SIZE, class ResultKind, class Customizer>
 struct FilterChildrenIfNotDescendant
 {
   typedef typename front<Vector>::type Head;
@@ -54,20 +55,19 @@ struct FilterChildrenIfNotDescendant
   typedef typename 
     if_c<is_same<Head, ResultKind>::value |
          IsDescendantKind<Head, ResultKind, Customizer>::value,
-         typename push_back<typename FilterChildrenIfNotDescendant<Tail, ResultKind, Customizer>::type,
-                  Head>::type,
-         typename FilterChildrenIfNotDescendant<Tail, ResultKind, Customizer>::type 
+         typename push_back<typename FilterChildrenIfNotDescendant<Tail, SIZE-1, 
+                                                                   ResultKind, Customizer>::type,
+                            Head>::type,
+         typename FilterChildrenIfNotDescendant<Tail, SIZE-1,
+                                                ResultKind, Customizer>::type 
     >::type type;
 };
-template <class ResultKind, class Customizer>
-struct FilterChildrenIfNotDescendant <EmptyMPLVector, ResultKind, Customizer> {
-  typedef EmptyMPLVector type;
-};
-template <class ResultKind, class Customizer>
-struct FilterChildrenIfNotDescendant <EmptyMPLVectorB, ResultKind, Customizer> {
-  typedef EmptyMPLVector type;
-}; 
 
+template <class Vector, class ResultKind, class Customizer>
+struct FilterChildrenIfNotDescendant <Vector, 0, ResultKind, Customizer> 
+{
+  typedef EmptyMPLVector0 type;
+};
 
 template <class L, class H, class Custom, class T>
 struct ChildrenKinds <DescendantOp<L, H, Custom>, T>
@@ -75,7 +75,7 @@ struct ChildrenKinds <DescendantOp<L, H, Custom>, T>
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<T>));
     typedef typename ChildrenKinds<Custom, T>::type Children;
     typedef typename 
-      FilterChildrenIfNotDescendant<Children, 
+      FilterChildrenIfNotDescendant<Children, size<Children>::value,
                                     typename ET<H>::result_kind, 
                                     Custom>::type type;
 };
@@ -316,7 +316,8 @@ public:
 private:
 
   template <class F, class ThroughV>
-  void from_through(F from, ThroughV)
+  typename disable_if_c<empty<ThroughV>::value, void>::type  
+  from_through(F from, ThroughV)
   {
     typedef typename boost::mpl::front<ThroughV>::type Head;
     typedef typename boost::mpl::pop_front<ThroughV>::type Tail;
@@ -334,8 +335,9 @@ private:
       through_to(h, ToVector());
     }
   }
+  template <class F> void from_through(F, EmptyMPLVector0) { }
   template <class F> void from_through(F, EmptyMPLVector) { }
-  template <class F> void from_through(F, EmptyMPLVectorB) { }
+  
   template <class F> 
   void from_through(F from, boost::mpl::vector<__ANY>) 
   { 
@@ -343,7 +345,8 @@ private:
   }
 
   template <class Through, class ToV>
-  void through_to(Through through, ToV)
+  typename disable_if_c<empty<ToV>::value, void>::type   
+  through_to(Through through, ToV)
   {
     typedef typename boost::mpl::front<ToV>::type Head;
     typedef typename boost::mpl::pop_front<ToV>::type Tail;
@@ -356,8 +359,8 @@ private:
 
     through_to(through, Tail());
   }
+  template <class F> void through_to(F, EmptyMPLVector0) { }
   template <class F> void through_to(F, EmptyMPLVector) { }
-  template <class F> void through_to(F, EmptyMPLVectorB) { }
 
   Strategy strategy_;
 
@@ -375,7 +378,7 @@ public:
 };
 
 
-template <class Vector, class Key>
+template <class Vector, unsigned int SIZE, class Key>
 struct find_param 
 {
   typedef typename front<Vector>::type Head;
@@ -383,35 +386,23 @@ struct find_param
   typedef typename 
     if_c<is_same<typename Head::tag, Key>::value,
          typename Head::type,
-         typename find_param<Tail, Key>::type>::type type;
+         typename find_param<Tail, SIZE-1, Key>::type>::type type;
 };
-template < >
-struct find_param <EmptyMPLVector, Through_tag>
+
+template <class Vector>
+struct find_param <Vector, 0, Through_tag>
 {
   typedef boost::mpl::vector<__ANY> type;
 };
-template < >
-struct find_param <EmptyMPLVectorB, Through_tag>
+
+template <class Vector>
+struct find_param <Vector, 0, Bypass_tag>
 {
-  typedef boost::mpl::vector<__ANY> type;
+  typedef EmptyMPLVector0 type;
 };
-template < >
-struct find_param <EmptyMPLVector, Bypass_tag>
-{
-  typedef EmptyMPLVector type;
-};
-template < >
-struct find_param <EmptyMPLVectorB, Bypass_tag>
-{
-  typedef EmptyMPLVector type;
-};
-template < >
-struct find_param <EmptyMPLVector, Customizer_tag>
-{
-  typedef LEESA::Default type;
-};
-template < >
-struct find_param <EmptyMPLVectorB, Customizer_tag>
+
+template <class Vector>
+struct find_param <Vector, 0, Customizer_tag>
 {
   typedef LEESA::Default type;
 };
@@ -419,27 +410,31 @@ struct find_param <EmptyMPLVectorB, Customizer_tag>
 
 
 template <class V1, class V2>
-struct Intersection
+struct Intersection;
+
+template <class V1, class V2, unsigned int N>
+struct Intersection_impl
 {
   typedef typename front<V2>::type Head;
   typedef typename pop_front<V2>::type Tail;
-  typedef typename 
+  typedef typename Intersection<V1, Tail>::type I;
+  typedef typename
     if_<contains<V1, Head>,
-        typename push_back<typename Intersection<V1, Tail>::type, Head>::type,
-        typename Intersection<V1, Tail>::type
+        typename push_back<I, Head>::type,
+        I
     >::type type;
 };
 
-template <class V1>
-struct Intersection <V1, EmptyMPLVector >
+template <class V1, class V2>
+struct Intersection_impl <V1, V2, 0>
 {
-  typedef EmptyMPLVector type;
+  typedef EmptyMPLVector0 type;
 };
 
-template <class V1>
-struct Intersection <V1, EmptyMPLVectorB >
+template <class V1, class V2>
+struct Intersection
 {
-  typedef EmptyMPLVector type;
+  typedef typename Intersection_impl<V1, V2, size<V1>::value * size<V2>::value>::type type;
 };
 
 
@@ -448,7 +443,7 @@ template <class Strategy,
           class From, 
           class ToVector, 
           class Through = Through_Vector_is<boost::mpl::vector<__ANY> >,
-          class Bypass = Bypass_Vector_is<EmptyMPLVector>,
+          class Bypass = Bypass_Vector_is<EmptyMPLVector0>,
           class Custom = Customizer_is<LEESA::Default> >
 struct APGen
 {
@@ -456,11 +451,11 @@ private:
 
   typedef boost::mpl::vector<Through, Bypass, Custom> Configuration;
   typedef typename 
-    find_param<Configuration, Through_tag>::type ThroughVector;
+    find_param<Configuration, size<Configuration>::value, Through_tag>::type ThroughVector;
   typedef typename 
-    find_param<Configuration, Bypass_tag>::type BypassVector;
+    find_param<Configuration, size<Configuration>::value, Bypass_tag>::type BypassVector;
   typedef typename 
-    find_param<Configuration, Customizer_tag>::type Customizer;
+    find_param<Configuration, size<Configuration>::value, Customizer_tag>::type Customizer;
 
   enum { VALID_PARAMETERIZATION 
           = !empty<ToVector>::value &&

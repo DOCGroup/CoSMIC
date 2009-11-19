@@ -4,6 +4,8 @@
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/pop_front.hpp>
 #include <boost/mpl/push_back.hpp>
+#include <boost/mpl/empty.hpp>
+#include <boost/mpl/size.hpp>
 #include <boost/mpl/remove_if.hpp>
 #include <boost/mpl/placeholders.hpp>
 #include <boost/mpl/remove.hpp>
@@ -15,6 +17,8 @@
 #include <boost/mpl/equal.hpp>
 #include <boost/mpl/or.hpp>
 #include <boost/mpl/logical.hpp>
+#include <boost/utility/enable_if.hpp>
+
 #include <set>
 
 
@@ -176,11 +180,15 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
 namespace LEESA {
 
 using boost::mpl::front;
+using boost::mpl::size;
 using boost::mpl::pop_front;
 using boost::mpl::if_;
 using boost::mpl::or_;
 using boost::mpl::contains;
 using boost::mpl::push_back;
+using boost::mpl::empty;
+
+using boost::disable_if_c;
 
 /********* 5.6. Sequence Equality (C++ Template Metaprogramming) *********
    It's important, particularly when handling computed results, not to 
@@ -198,12 +206,12 @@ using boost::mpl::push_back;
    result of using mpl::pop_back on a specialization of mpl::vector will 
    not be another specialization of mpl::vector!
 
-template <class T = EmptyMPLVector >
+template <class T = EmptyMPLVector0 >
 struct EmptyVector
 {
   typedef typename 
-    if_<boost::mpl::equal<T, EmptyMPLVector >,
-        EmptyMPLVector, 
+    if_<boost::mpl::equal<T, EmptyMPLVector0 >,
+        EmptyMPLVector0, 
         T>::type type;
 };
 */
@@ -217,6 +225,8 @@ struct LEESAException : public std::runtime_error
   {}
 };
 
+typedef boost::mpl::vector<>  EmptyMPLVector;
+typedef boost::mpl::vector0<> EmptyMPLVector0;
 
 typedef std::set<Udm::Object> ObjectSet;
 ObjectSet VISITED;
@@ -275,7 +285,7 @@ struct IsDescendantKind
   enum { value = IsDescendantKindRecursive <Parent, Descendant, Customizer, Visited>::value };
 };
 
-template <class StartVector, class Target, class Customizer, class VisitedVector>
+template <class StartVector, unsigned int SIZE, class Target, class Customizer, class VisitedVector>
 struct IsDescendantVector;
 
 template <class Parent, class Descendant, class Customizer, class VisitedVector>
@@ -289,24 +299,18 @@ struct IsDescendantKindRecursive
 
   enum { value = 
           or_<contains <ChildrenKinds, Descendant>,
-              IsDescendantVector<SkippedVisitedVector, Descendant, Customizer, VisitedVector> >::value };
-};
-
-template </*class StartVector,*/ class Target, class Customizer, class VisitedVector>
-struct IsDescendantVector<EmptyMPLVector, Target, Customizer, VisitedVector> 
-{
-  typedef IsDescendantVector type;
-  enum { value = 0 };
-};
-
-template </*class StartVector,*/ class Target, class Customizer, class VisitedVector>
-struct IsDescendantVector <EmptyMPLVectorB, Target, Customizer, VisitedVector> 
-{
-  typedef IsDescendantVector type;
-  enum { value = 0 };
+              IsDescendantVector<SkippedVisitedVector, size<SkippedVisitedVector>::value, 
+                                 Descendant, Customizer, VisitedVector> >::value };
 };
 
 template <class StartVector, class Target, class Customizer, class VisitedVector>
+struct IsDescendantVector<StartVector, 0, Target, Customizer, VisitedVector> 
+{
+  typedef IsDescendantVector type;
+  enum { value = 0 };
+};
+
+template <class StartVector, unsigned int SIZE, class Target, class Customizer, class VisitedVector>
 struct IsDescendantVector
 {
   typedef IsDescendantVector type;
@@ -320,7 +324,7 @@ struct IsDescendantVector
 #endif // PARADIGM_HAS_MUTUAL_RECURSION
 
   enum { value = or_<IsDescendantKindRecursive<Head, Target, Customizer, Visited>,
-                     IsDescendantVector<Tail, Target, Customizer, Visited> >::value };
+                     IsDescendantVector<Tail, SIZE-1, Target, Customizer, Visited> >::value };
 };
 
 #endif //PARADIGM_HAS_DESCENDANT_PAIRS
@@ -517,7 +521,8 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
   private:
     // Called when ChildrenVector is non-empty. 
     template <class ChildrenVector>
-    void dispatch(Udm::Object o, ChildrenVector)
+    typename disable_if_c<empty<ChildrenVector>::value, void>::type 
+    dispatch(Udm::Object o, ChildrenVector)
     {
       typedef typename front<ChildrenVector>::type Head;
       typedef typename pop_front<ChildrenVector>::type Tail;
@@ -536,14 +541,14 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
       else
         dispatch(o, Tail());
     }
+    // Called when ChildrenVector is empty as in EmptyMPLVector0.
+    void dispatch(Udm::Object, EmptyMPLVector0) { }
+	  
     // Called when ChildrenVector is empty as in EmptyMPLVector.
-    void dispatch(Udm::Object, EmptyMPLVector)
-    {
-    }
-	  // Called when ChildrenVector is empty as in EmptyMPLVectorB.
-    void dispatch(Udm::Object, EmptyMPLVectorB)
-    {
-    }
+    // I think the following function is unnecessary because 
+    // empty vector is either (1) exactly same as EmptyMPLVector0
+    // or (2) convertible to EmptyMPLVector0. 
+    void dispatch(Udm::Object, EmptyMPLVector) { }
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
@@ -561,7 +566,8 @@ result_kind operator () (argument_kind const & arg)
   protected:
     // Called when ChildrenVector is non-empty. 
     template <class ChildrenVector>
-    void dispatch(Udm::Object o, ChildrenVector)
+    typename disable_if_c<empty<ChildrenVector>::value, void>::type 
+    dispatch(Udm::Object o, ChildrenVector)
     {
       typedef typename front<ChildrenVector>::type Head;
       typedef typename pop_front<ChildrenVector>::type Tail;
@@ -575,12 +581,14 @@ result_kind operator () (argument_kind const & arg)
       else
         dispatch(o, Tail());
     }
+    // Called when ChildrenVector is empty as in EmptyMPLVector0.
+    void dispatch(Udm::Object, EmptyMPLVector0) { }
+
     // Called when ChildrenVector is empty as in EmptyMPLVector.
-    void dispatch(Udm::Object, EmptyMPLVector)
-    { }
-    // Called when ChildrenVector is empty as in EmptyMPLVectorB.
-    void dispatch(Udm::Object, EmptyMPLVectorB)
-    { }
+    // I think the following function is unnecessary because 
+    // empty vector is either (1) exactly same as EmptyMPLVector0
+    // or (2) convertible to EmptyMPLVector0. 
+    void dispatch(Udm::Object, EmptyMPLVector) { }
 };
 
 template <class K,                                                                 

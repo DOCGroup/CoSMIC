@@ -43,7 +43,7 @@ sub prune {
   }  
   
   # Discard most of the other meta-information in the class.
-  elsif ($line =~ m/^\s*class.+{};$/) {
+  elsif ($line =~ m/^\s*class\s.+\s{};$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*boost::mpl::pair.*$/) {
@@ -55,40 +55,79 @@ sub prune {
   elsif ($line =~ m/^\s*typedef.*Parents;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*Parents.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*ChildrenSingle;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*ChildrenSingle.*$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*ChildrenMulti;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*ChildrenMulti.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*AssociationsSingle;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*AssociationsSingle.*$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*AssociationsMulti;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*AssociationsMulti.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*AssociationsWAClassSingle;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*AssociationsWAClassSingle.*$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*AssociationsWAClassMulti;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*AssociationsWAClassMulti.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*CrossAssociationsSingle;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*CrossAssciationsSingle.*$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*CrossAssociationsMulti;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*CrossAssociationsMulti.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*CrossAssociationsWAClassSingle;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*CrossAssociationsWAClassSingle.*$/) {
     return "";
   }
   elsif ($line =~ m/^\s*typedef.*CrossAssociationsWAClassMulti;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*CrossAssociationsWAClassMulti.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*AClassEnds;$/) {
     return "";
   }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*AClassEnds.*$/) {
+    return "";
+  }
   elsif ($line =~ m/^\s*typedef.*CrossAClassEnds;$/) {
+    return "";
+  }
+  elsif ($line =~ m/^\s*.*boost::function_requires.*CrossAClassEnds.*$/) {
     return "";
   }
 
@@ -182,14 +221,14 @@ foreach $class (sort keys %children) {
   my @unique = sort keys %hash;
   
   foreach my $desc (@unique) {
-    print HEADER_FILE "  template <> struct IsDescendant <$class, $desc> : _True_ {};\n";
+    print HEADER_FILE "  template <> struct IsDescendant < $class, $desc > : _True_ {};\n";
   }
   if (@unique != 0) {
     print HEADER_FILE "\n";
   }
 }
 
-print HEADER_FILE "\n} // namespace " . $namespace . "\n\n#endif // MOBIES_".$namespace."_H\n";
+print HEADER_FILE "\n} // namespace " . $namespace . "\n\n#endif // MOBIES_".$namespace."_H\n\n";
 
 close HEADER_BAK_FILE;
 close HEADER_FILE;

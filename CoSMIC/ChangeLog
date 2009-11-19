@@ -1,11 +1,20 @@
+Thu Nov 19 23:19:06 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Updated LEESA and the perl script to work with g++ 4.4.1.
+
 Wed Nov 18 06:38:43 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
         * Utils/LEESA/include/LEESA.cpp:
         * Utils/LEESA/include/SP.cpp:
 
-          Improved the implementation to work with g++ 4.4.1  
-        
+          Improved the implementation to work with g++ 4.4.1
+
 Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
