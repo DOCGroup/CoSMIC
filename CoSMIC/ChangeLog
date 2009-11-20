@@ -1,3 +1,21 @@
+Fri Nov 20 02:15:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA-Linux:
+
+        * tests/LEESA-Linux/Makefile:
+        * tests/LEESA-Linux/PICML.h:
+        * tests/LEESA-Linux/PICML_export.h:
+        * tests/LEESA-Linux/SM.h:
+        * tests/LEESA-Linux/SM_export.h:
+        * tests/LEESA-Linux/UdmApp-PICML.h:
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA-Linux/UdmApp-SM.h:
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+        * tests/LEESA-Linux/UdmConfig-PICML.h:
+        * tests/LEESA-Linux/UdmConfig-SM.h:
+
+          Added g++ tests for LEESA using SM and PICML paradigms. 
+
 Thu Nov 19 23:19:06 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-pairs.pl:
