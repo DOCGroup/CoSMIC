@@ -11,7 +11,6 @@
 #include <boost/mpl/remove.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/contains.hpp>
-#include <boost/mpl/push_back.hpp>
 #include <boost/mpl/assert.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/equal.hpp>
@@ -275,23 +274,23 @@ struct IsDescendantKind <Parent, Descendant, Default>
 // is not defined ...
 
 template <class Parent, class Target, class Customizer, class VisitedVector>
-struct IsDescendantKindRecursive;
+struct RecursiveIsDescendantKind;
 
 template <class Parent, class Descendant, class Customizer>
 struct IsDescendantKind
 {
   typedef IsDescendantKind type;
   typedef boost::mpl::vector1<Parent> Visited;
-  enum { value = IsDescendantKindRecursive <Parent, Descendant, Customizer, Visited>::value };
+  enum { value = RecursiveIsDescendantKind <Parent, Descendant, Customizer, Visited>::value };
 };
 
 template <class StartVector, unsigned int SIZE, class Target, class Customizer, class VisitedVector>
 struct IsDescendantVector;
 
 template <class Parent, class Descendant, class Customizer, class VisitedVector>
-struct IsDescendantKindRecursive
+struct RecursiveIsDescendantKind
 {
-  typedef IsDescendantKindRecursive type;
+  typedef RecursiveIsDescendantKind type;
   typedef typename ChildrenKinds<Customizer, Parent>::type ChildrenKinds;
   typedef typename 
     boost::mpl::remove_if <ChildrenKinds, 
@@ -323,7 +322,7 @@ struct IsDescendantVector
   typedef typename boost::mpl::vector1<Head> Visited;
 #endif // PARADIGM_HAS_MUTUAL_RECURSION
 
-  enum { value = or_<IsDescendantKindRecursive<Head, Target, Customizer, Visited>,
+  enum { value = or_<RecursiveIsDescendantKind<Head, Target, Customizer, Visited>,
                      IsDescendantVector<Tail, SIZE-1, Target, Customizer, Visited> >::value };
 };
 

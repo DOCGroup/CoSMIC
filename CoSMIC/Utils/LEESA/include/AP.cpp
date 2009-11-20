@@ -1,8 +1,6 @@
 #ifndef __AP_CPP
 #define __AP_CPP
 
-#include <boost/type_traits.hpp>
-#include <boost/static_assert.hpp>
 #include <boost/mpl/if.hpp>
 #include <boost/mpl/contains.hpp>
 #include <boost/mpl/size.hpp>
@@ -12,8 +10,13 @@
 #include <boost/mpl/pop_front.hpp>
 #include <boost/mpl/empty.hpp>
 #include <boost/mpl/equal.hpp>
+#include <boost/mpl/copy_if.hpp>
 #include <boost/mpl/remove_if.hpp>
 #include <boost/mpl/placeholders.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/type_traits.hpp>
+#include <boost/static_assert.hpp>
+
 
 #define FROM(X)        X()
 #define TO(...)        boost::mpl::vector<__VA_ARGS__>()
@@ -34,6 +37,7 @@ using boost::mpl::vector;
 using boost::mpl::empty;
 using boost::mpl::equal;
 using boost::mpl::remove_if;
+using boost::mpl::copy_if;
 using boost::is_same;
 using boost::is_base_of;
 using boost::disable_if_c;
@@ -47,26 +51,15 @@ ExpressionTraits3Para(DescendantOp);
 ExpressionTraits3Para(DescendantGraphOp);
 
 
-template <class Vector, unsigned int SIZE, class ResultKind, class Customizer>
+template <class Vector, class ResultKind, class Customizer>
 struct FilterChildrenIfNotDescendant
 {
-  typedef typename front<Vector>::type Head;
-  typedef typename pop_front<Vector>::type Tail;
   typedef typename 
-    if_c<is_same<Head, ResultKind>::value |
-         IsDescendantKind<Head, ResultKind, Customizer>::value,
-         typename push_back<typename FilterChildrenIfNotDescendant<Tail, SIZE-1, 
-                                                                   ResultKind, Customizer>::type,
-                            Head>::type,
-         typename FilterChildrenIfNotDescendant<Tail, SIZE-1,
-                                                ResultKind, Customizer>::type 
-    >::type type;
-};
-
-template <class Vector, class ResultKind, class Customizer>
-struct FilterChildrenIfNotDescendant <Vector, 0, ResultKind, Customizer> 
-{
-  typedef EmptyMPLVector0 type;
+    copy_if<Vector, 
+            or_<is_same<boost::mpl::placeholders::_1, ResultKind>,
+                IsDescendantKind<boost::mpl::placeholders::_1, 
+                                 ResultKind, 
+                                 Customizer> > >::type type;
 };
 
 template <class L, class H, class Custom, class T>
@@ -75,7 +68,7 @@ struct ChildrenKinds <DescendantOp<L, H, Custom>, T>
     BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<T>));
     typedef typename ChildrenKinds<Custom, T>::type Children;
     typedef typename 
-      FilterChildrenIfNotDescendant<Children, size<Children>::value,
+      FilterChildrenIfNotDescendant<Children, 
                                     typename ET<H>::result_kind, 
                                     Custom>::type type;
 };
@@ -305,7 +298,7 @@ public:
   {
     typedef typename 
       remove_if <ChildrenVector, 
-        contains<BypassVector, ::boost::mpl::placeholders::_1> >::type type;
+                 contains<BypassVector, ::boost::mpl::placeholders::_1> >::type type;
 
       // Check the ReachableConcept only when they are not equal.
       // i.e. something was bypassed from the children list.
@@ -319,8 +312,8 @@ private:
   typename disable_if_c<empty<ThroughV>::value, void>::type  
   from_through(F from, ThroughV)
   {
-    typedef typename boost::mpl::front<ThroughV>::type Head;
-    typedef typename boost::mpl::pop_front<ThroughV>::type Tail;
+    typedef typename front<ThroughV>::type Head;
+    typedef typename pop_front<ThroughV>::type Tail;
     typedef typename ET<From>::argument_kind FromKind;
     typedef typename ET<From>::argument_type FromType;
 	  typedef typename ET<Head>::result_type HeadType;
@@ -348,8 +341,8 @@ private:
   typename disable_if_c<empty<ToV>::value, void>::type   
   through_to(Through through, ToV)
   {
-    typedef typename boost::mpl::front<ToV>::type Head;
-    typedef typename boost::mpl::pop_front<ToV>::type Tail;
+    typedef typename front<ToV>::type Head;
+    typedef typename pop_front<ToV>::type Tail;
     typedef typename ET<Through>::argument_kind ThroughKind;
     typedef typename ET<Through>::argument_type ThroughType;
 	  typedef typename ET<Head>::result_type HeadType;
@@ -407,34 +400,11 @@ struct find_param <Vector, 0, Customizer_tag>
   typedef LEESA::Default type;
 };
 
-
-
-template <class V1, class V2>
-struct Intersection;
-
-template <class V1, class V2, unsigned int N>
-struct Intersection_impl
-{
-  typedef typename front<V2>::type Head;
-  typedef typename pop_front<V2>::type Tail;
-  typedef typename Intersection<V1, Tail>::type I;
-  typedef typename
-    if_<contains<V1, Head>,
-        typename push_back<I, Head>::type,
-        I
-    >::type type;
-};
-
-template <class V1, class V2>
-struct Intersection_impl <V1, V2, 0>
-{
-  typedef EmptyMPLVector0 type;
-};
-
 template <class V1, class V2>
 struct Intersection
 {
-  typedef typename Intersection_impl<V1, V2, size<V1>::value * size<V2>::value>::type type;
+  typedef typename
+    copy_if<V1, contains<V2, boost::mpl::placeholders::_1> >::type type;
 };
 
 

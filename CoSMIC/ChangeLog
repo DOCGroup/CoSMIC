@@ -1,3 +1,10 @@
+Fri Nov 20 05:27:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Replaced custom metaprograms with Boost.MPL utilities. 
+        
 Fri Nov 20 02:15:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA-Linux:
@@ -14,7 +21,7 @@ Fri Nov 20 02:15:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * tests/LEESA-Linux/UdmConfig-PICML.h:
         * tests/LEESA-Linux/UdmConfig-SM.h:
 
-          Added g++ tests for LEESA using SM and PICML paradigms. 
+          Added g++ tests for LEESA using SM and PICML paradigms.
 
 Thu Nov 19 23:19:06 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
