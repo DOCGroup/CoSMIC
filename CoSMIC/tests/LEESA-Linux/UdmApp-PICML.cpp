@@ -8,7 +8,7 @@
 
 #define AfxMessageBox(...) 
 
-#define PARADIGM_NAMESPACE_FOR_LEESA PICML
+#define DOMAIN_NAMESPACE PICML
 #include "LEESA.h"
 
 void show(unsigned int t)

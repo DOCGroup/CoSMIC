@@ -8,8 +8,8 @@
 
 #define AfxMessageBox(...) 
 
-#define PARADIGM_HAS_MUTUAL_RECURSION
-#define PARADIGM_NAMESPACE_FOR_LEESA SM
+#define DOMAIN_HAS_MUTUAL_RECURSION
+#define DOMAIN_NAMESPACE SM
 #include "LEESA.h"
 
 void show(unsigned int t)
