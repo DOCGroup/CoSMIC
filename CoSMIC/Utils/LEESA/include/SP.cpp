@@ -26,14 +26,14 @@
   OP##Op<X, Y, Z>                                                     \
   OP (X, Y const & y, Z) {                                            \
     typedef typename ET<X>::argument_kind argument_kind;              \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));     \
     return OP##Op<X, Y, Z> (y);                                       \
   }                                                                   \
   template <class X, class Y>                                         \
   OP##Op<X, Y, Default>                                               \
   OP (X, Y const & y)  {                                              \
     typedef typename ET<X>::argument_kind argument_kind;              \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));     \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));     \
     return OP##Op<X, Y, LEESA::Default> (y);                          \
   }
 
@@ -44,7 +44,7 @@
   OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2>                     \
   OP (K, Strategy1 const & s1, Strategy2 const & s2) {                            \
     typedef typename ET<K>::argument_kind argument_kind;                          \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                 \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                 \
     return OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2> (s1, s2);  \
 }  
 
@@ -55,7 +55,7 @@
   OP##Op<typename ET<K>::argument_type, Strategy>                                 \
   OP (K, Strategy const & s) {                                                    \
     typedef typename ET<K>::argument_kind argument_kind;                          \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                 \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                 \
     return OP##Op<typename ET<K>::argument_type, Strategy> (s);                   \
 }  
 
@@ -70,7 +70,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                   
     typedef ChainExpr<K, OP##Op> expression_type;                                  \
     typedef LEESAUnaryFunction <K> Super;                                          \
     SUPER_TYPEDEFS(Super);                                                         \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  \
                                                                                    \
     template <class U>                                                             \
     struct rebind                                                                  \
@@ -108,7 +108,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
   SUPER_TYPEDEFS(Super);                                                     \
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));              \
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));              \
                                                                              \
   template <class U>                                                         \
   struct rebind                                                              \
@@ -147,7 +147,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
     typedef ChainExpr<K, OP##Op> expression_type;                           \
     typedef LEESAUnaryFunction <K> Super;                                   \
 	  SUPER_TYPEDEFS(Super);                                                  \
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));           \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));           \
                                                                             \
     template <class U>                                                      \
     struct rebind                                                           \
@@ -227,107 +227,7 @@ struct LEESAException : public std::runtime_error
 typedef boost::mpl::vector<>  EmptyMPLVector;
 typedef boost::mpl::vector0<> EmptyMPLVector0;
 
-typedef std::set<Udm::Object> ObjectSet;
 ObjectSet VISITED;
-
-struct Default
-{
-  static ObjectSet GetChildObjects(Udm::Object o)
-  {
-    return o.GetChildObjects();
-  };
-};
-
-template <class Custom, class T>
-struct ChildrenKinds;
-
-template <class T>
-struct ChildrenKinds <Default, T>
-{
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<T>));
-  typedef typename T::ChildrenKinds type;
-};
-
-
-#ifdef PARADIGM_HAS_DESCENDANT_PAIRS
-
-template <class Parent, class Descendant, class Customizer>
-struct IsDescendantKind;
-
-template <class Parent, class Descendant>
-struct IsDescendantKind <Parent, Descendant, Default>
-{
-  typedef IsDescendantKind type;
-  enum { value = PARADIGM_NAMESPACE_FOR_LEESA::IsDescendant<Parent, Descendant>::value };
-};
-
-#else // PARADIGM_HAS_DESCENDANT_PAIRS
-
-// The following metaprogram is suitable for elements with SELF as well as 
-// MUTUAL-RECURSION. This meta-program could be used as a substitute for the 
-// gen-pairs.pl program. However, because of heavy metaprogramming it is slow
-// and for paradigms with mutual recursion, the "visited" vector may grow too 
-// big to handle for boost and/or the compiler. It is therefore advisible to
-// #define a boolean macro called PARADIGM_HAS_MUTUAL_RECURSION before including
-// LEESA.h if you know that the paradigm has mutual recursion. By default it is 
-// disabled and my result into very long compilation errors saying that 'value'
-// is not defined ...
-
-template <class Parent, class Target, class Customizer, class VisitedVector>
-struct RecursiveIsDescendantKind;
-
-template <class Parent, class Descendant, class Customizer>
-struct IsDescendantKind
-{
-  typedef IsDescendantKind type;
-  typedef boost::mpl::vector1<Parent> Visited;
-  enum { value = RecursiveIsDescendantKind <Parent, Descendant, Customizer, Visited>::value };
-};
-
-template <class StartVector, unsigned int SIZE, class Target, class Customizer, class VisitedVector>
-struct IsDescendantVector;
-
-template <class Parent, class Descendant, class Customizer, class VisitedVector>
-struct RecursiveIsDescendantKind
-{
-  typedef RecursiveIsDescendantKind type;
-  typedef typename ChildrenKinds<Customizer, Parent>::type ChildrenKinds;
-  typedef typename 
-    boost::mpl::remove_if <ChildrenKinds, 
-        contains<VisitedVector, boost::mpl::placeholders::_1> >::type SkippedVisitedVector;
-
-  enum { value = 
-          or_<contains <ChildrenKinds, Descendant>,
-              IsDescendantVector<SkippedVisitedVector, size<SkippedVisitedVector>::value, 
-                                 Descendant, Customizer, VisitedVector> >::value };
-};
-
-template <class StartVector, class Target, class Customizer, class VisitedVector>
-struct IsDescendantVector<StartVector, 0, Target, Customizer, VisitedVector> 
-{
-  typedef IsDescendantVector type;
-  enum { value = 0 };
-};
-
-template <class StartVector, unsigned int SIZE, class Target, class Customizer, class VisitedVector>
-struct IsDescendantVector
-{
-  typedef IsDescendantVector type;
-  typedef typename front<StartVector>::type Head;
-  typedef typename pop_front<StartVector>::type Tail;
-
-#ifdef PARADIGM_HAS_MUTUAL_RECURSION
-  typedef typename push_back<VisitedVector, Head>::type Visited;
-#else // Otherwise paradigm may have just self recursion.
-  typedef typename boost::mpl::vector1<Head> Visited;
-#endif // PARADIGM_HAS_MUTUAL_RECURSION
-
-  enum { value = or_<RecursiveIsDescendantKind<Head, Target, Customizer, Visited>,
-                     IsDescendantVector<Tail, SIZE-1, Target, Customizer, Visited> >::value };
-};
-
-#endif //PARADIGM_HAS_DESCENDANT_PAIRS
-
 
 class _StrategyBase {}; // Base class of all the strategies. Just for documentation.
 
@@ -398,7 +298,7 @@ struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
     typedef ChainExpr<Kind, FailOp> expression_type;
     typedef LEESAUnaryFunction <Kind> Super;
     SUPER_TYPEDEFS(Super);
-    BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));
 
     template <class U>
     struct rebind
@@ -426,8 +326,8 @@ struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
   typedef typename ET<Strategy1>::argument_kind s1_kind;
   typedef typename ET<Strategy2>::argument_kind s2_kind;
 
-  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<argument_kind, s1_kind>));
-  BOOST_CONCEPT_ASSERT((LEESA::SameUdmKindsConcept<argument_kind, s2_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s1_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s2_kind>));
 */
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
@@ -461,7 +361,7 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
   typedef ChainExpr<K, OneOp> expression_type;                         
   typedef LEESAUnaryFunction <K> Super;
   SUPER_TYPEDEFS(Super);
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  
                                                                                  
   template <class U>                                                             
   struct rebind                                                                  
@@ -505,8 +405,8 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 
   result_kind operator () (argument_kind const & arg)
   {
-    typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
-    std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
+    typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+    ObjectSet objects = Custom::GetChildObjects(arg);
     success_ = false;
     BOOST_FOREACH(Udm::Object o, objects)
     {
@@ -553,8 +453,8 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
 result_kind operator () (argument_kind const & arg)
     {
-      typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
-      std::set<Udm::Object> objects = Custom::GetChildObjects(arg);
+      typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+      ObjectSet objects = Custom::GetChildObjects(arg);
       BOOST_FOREACH(Udm::Object o, objects)
       {
         dispatch(o, CustomChildren());
@@ -598,7 +498,7 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   typedef ChainExpr<K, AllGraphOp> expression_type;                         
   typedef AllOp<K, Strategy, Custom> Super;
   SUPER_TYPEDEFS(Super);
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  
                                                                                  
   template <class U>                                                             
   struct rebind                                                                  
@@ -626,11 +526,11 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   result_kind operator () (argument_kind const & kind)
   {
     LEESA::VISITED.insert(kind);
-    typedef typename ChildrenKinds<Custom, argument_kind>::type CustomChildren;
-    std::set<Udm::Object> objects = Custom::GetChildObjects(kind);
+    typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+    ObjectSet objects = Custom::GetChildObjects(kind);
     BOOST_FOREACH(Udm::Object o, objects)
     {
-      std::set<Udm::Object>::iterator iter = LEESA::VISITED.find(o);
+      ObjectSet::iterator iter = LEESA::VISITED.find(o);
       if (iter == LEESA::VISITED.end()) // visit if not visited already.
       {
         Super::dispatch(o, CustomChildren());
@@ -655,7 +555,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
     {
       typedef AllGraphOp<K, FullTDGraphOp, Custom> AllGraph;
       SeqOp<K, Strategy, AllGraph> s(strategy_, AllGraph(*this));
-      std::set<Udm::Object>::iterator iter = LEESA::VISITED.find(arg);
+      ObjectSet::iterator iter = LEESA::VISITED.find(arg);
       if (iter == LEESA::VISITED.end()) // visit if not visited already.
       {
         LEESA::VISITED.insert(arg);
@@ -768,7 +668,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
 
 class VisitStrategy : public _StrategyBase
 {
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & visitor_;
+    DOMAIN_NAMESPACE::Visitor & visitor_;
   public:
 
     template <class U>
@@ -777,7 +677,7 @@ class VisitStrategy : public _StrategyBase
       typedef VisitStrategy type;
     };
 
-    explicit VisitStrategy (PARADIGM_NAMESPACE_FOR_LEESA::Visitor & v) 
+    explicit VisitStrategy (DOMAIN_NAMESPACE::Visitor & v) 
       : visitor_(v) {} 
 
     template <class U>
@@ -785,11 +685,11 @@ class VisitStrategy : public _StrategyBase
     {
       using namespace LEESA;
       typedef typename ET<U>::argument_kind Kind;
-      BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<Kind>));
+      BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
       evaluate(k, Kind() >> visitor_);
       return k;
     }
-    PARADIGM_NAMESPACE_FOR_LEESA::Visitor & getVisitor() const
+    DOMAIN_NAMESPACE::Visitor & getVisitor() const
     {
       return visitor_;
     }
@@ -801,7 +701,7 @@ Call (E, Func f)
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-	BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
+	BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
 	
   return CallerOp<typename ET<E>::result_type, Func> (f);
@@ -814,7 +714,7 @@ Call (E, Result (*f) (Arg))
 {
 	typedef typename ET<E>::result_kind result_kind;
 	
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<result_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
 	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
 	
 	CallerOp<typename ET<E>::result_type, 
@@ -828,7 +728,7 @@ FailOp<typename ET<K>::argument_type>
 Fail (K) 
 {
   typedef typename ET<K>::argument_kind argument_kind;
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));
   FailOp<typename ET<K>::argument_type> f;
   return f;
 }  
@@ -838,7 +738,7 @@ KindLit<typename ET<K>::argument_kind>
 Identity (K) 
 {
   typedef typename ET<K>::argument_kind argument_kind;
-  BOOST_CONCEPT_ASSERT((LEESA::UdmKindConcept<argument_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));
   KindLit<argument_kind> k;
   return k;
 }  

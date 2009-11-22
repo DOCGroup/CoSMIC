@@ -1,10 +1,26 @@
+Sun Nov 22 06:41:28 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+
+        * Utils/LEESA/etc/LEESA.wxs:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Updated LEESA to reduce UDM dependencies.
+        
 Fri Nov 20 05:27:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
         * Utils/LEESA/include/SP.cpp:
 
-          Replaced custom metaprograms with Boost.MPL utilities. 
-        
+          Replaced custom metaprograms with Boost.MPL utilities.
+
 Fri Nov 20 02:15:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA-Linux:

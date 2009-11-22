@@ -1,9 +1,11 @@
 #ifndef __LEESA_H
 #define __LEESA_H
 
-#ifndef PARADIGM_NAMESPACE_FOR_LEESA
-#error "Please define PARADIGM_NAMESPACE_FOR_LEESA, which contains the base Visitor class."
-#endif // PARADIGM_NAMESPACE_FOR_LEESA
+#ifndef DOMAIN_NAMESPACE
+#error "Please define DOMAIN_NAMESPACE."
+#endif // DOMAIN_NAMESPACE
+
+#include "LEESA.cpp"
 
 #define MembersOf(A,...) ((A, __VA_ARGS__))
 #define DEPTH_FIRST    >>=
@@ -13,36 +15,9 @@
 #define AND            ,
 #define Association(X) &X
 
-/* LEESA Operators 
-
-SelectByName   (Kind, String)
-SelectSubSet   (Kind, Set)
-SelectNonNull  (Kind)
-Select         (Kind, Predicate)
-CastFromTo     (From, To)
-Sort           (Kind, Comparator c)
-Unique         (Kind, BinPred c)
-Unique         (Kind)
-ForEach        (Kind, Unary function)
-Id             (Kind)
-CallStrategy   (Kind, Strategy)
-
-Strategies for Strategic Programming:
-
-KindLit<Kind> is Id.
-Fail<Kind> 
-Choice<Kind, Strategy1, Strategy2>
-Sequence<Kind, Strategy1, Strategy2>
-All<Kind, Strategy1>
-One<Kind, Strategy1>
-FullTD<Kind, Strategy1>
-VisitStrategy<Kind>
-
-*/
-
-#include "LEESA.cpp"
-
 #endif // __LEESA_H
+
+
 
 //*****************************************************************************
 // LEESA EXAMPLES                                                             
@@ -51,7 +26,7 @@ VisitStrategy<Kind>
 //*****************************************************************************
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<Transition> leesa_example1(RootFolder rf)
@@ -62,7 +37,7 @@ std::vector<Transition> leesa_example1(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<Transition> leesa_example2(RootFolder rf)
@@ -75,7 +50,7 @@ std::vector<Transition> leesa_example2(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<State> leesa_example3(RootFolder rf)
@@ -89,7 +64,7 @@ std::vector<State> leesa_example3(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<State> leesa_example4(RootFolder rf)
@@ -105,7 +80,7 @@ std::vector<State> leesa_example4(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 bool always_true (State)
@@ -126,7 +101,7 @@ std::vector<State> leesa_example5(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<State> leesa_example6(RootFolder rf)
@@ -141,7 +116,7 @@ std::vector<State> leesa_example6(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 class CountVisitor : public HFSM::Visitor 
@@ -165,7 +140,7 @@ int leesa_example7(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 class CountVisitor : public HFSM::Visitor 
@@ -198,7 +173,7 @@ int leesa_example8(RootFolder rf)
 */
 
 /*
-#define PARADIGM_NAMESPACE_FOR_LEESA HFSM
+#define DOMAIN_NAMESPACE HFSM
 #include "LEESA.h"
 using namespace HFSM;
 std::vector<Transition> leesa_example9(RootFolder rf)

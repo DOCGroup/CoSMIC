@@ -43,6 +43,11 @@
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_Concepts.h' />
 
+          <File Id='Kind_Traits'
+                Name='Kind_Traits.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Kind_Traits.h' />
+
         </Component>
       </DirectoryRef>
       
