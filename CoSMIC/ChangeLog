@@ -1,3 +1,23 @@
+Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe sutambe@nospam
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * NEWS:
+        * README:
+        * RELEASE-NOTES:
+        * VERSION:
+
+          Updated the files to reflect the new CoSMIC release version 0.7.4.5
+          
+        * contrib:
+        
+          svn:externals
+          -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+          -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+          
+        * RELEASE:
+        
+          Updated the release documentation.
+        
 Sun Nov 22 06:45:01 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA-Linux/Makefile:

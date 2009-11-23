@@ -47,17 +47,20 @@ This file documents the CoSMIC release procedure
    
    CCF -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
    utility -r ##### svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
+6. Commit the modified files:  CoSMIC_Installer.wxs, NEWS, README, 
+   RELEASE-NOTES, VERSION, and ChangeLog.
    
-6. Create a tag. For example,
+7. Create a tag. For example,
 
    svn cp https://svn.dre.vanderbilt.edu/CoSMIC/trunk 
           https://svn.dre.vanderbilt.edu/CoSMIC/tags/CoSMIC-0.7.4 
           -m "Tagging for CoSMIC release 0.7.4" 
 
-7. Bring the svn:externals property back to the HEAD revision. Remove 
+8. Bring the svn:externals property back to the HEAD revision. Remove 
    any -r ##### from the property.
          
-8. Prepare a fresh ChangeLog file to be used after the release. Move the 
+9. Prepare a fresh ChangeLog file to be used after the release. Move the 
    existing ChangeLog file to ChangeLogs/ChangeLog-##. Fresh ChangeLog file 
    looks like the one below.
    
@@ -75,9 +78,9 @@ This file documents the CoSMIC release procedure
    indent-tabs-mode: nil
    End:
 
-9. Check the changes to the ChangeLog and svn:externals back in the repo.
+10. Check the changes to the ChangeLog and svn:externals back in the repo.
    
-10. Update the WWW repository. The subversion URL for WWW repo is:
+11. Update the WWW repository. The subversion URL for WWW repo is:
     https://svn.dre.vanderbilt.edu/DOC/WWW/trunk
 
    o  Obtain the latest CoSMIC installers from the nightly build machines.
@@ -92,10 +95,10 @@ This file documents the CoSMIC release procedure
    
    o  Remove the unwanted installers from the GME_#_#_# direcotry.
 
-11. Update the CoSMIC release version in the following files in the WWW
+12. Update the CoSMIC release version in the following files in the WWW
     repo.
     WWW/COSMIC/html/download.html
     Make sure that the hyperlinks in download.html are valid.
 
   
-Last modified: Wed, Oct 21, 2009
+Last modified: Sun, Nov 22, 2009

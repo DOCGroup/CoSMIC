@@ -1,6 +1,6 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.7.4 of Component Synthesis using Model-Integrated 
+This is a release version 0.7.4.5 of Component Synthesis using Model-Integrated 
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of 
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
@@ -19,6 +19,14 @@ notation for writing object structure (model) traversal.
 This document lists the new features that are introduced in the latest 
 version.
 
+Release CoSMIC-0.7.4.5
+======================
+
+. Temporarily disabled the model intelligence feature that auto-generates the default artifacts
+  when a new component is added to the model. This feature will be released in the next version
+  of PICML/CoSMIC. Contact: James Hill <hillj@cs.iupui.edu>
+
+  
 Release CoSMIC-0.7.4
 ====================
 
