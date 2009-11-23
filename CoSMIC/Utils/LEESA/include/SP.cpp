@@ -20,21 +20,21 @@
 
 #include <set>
 
-
-#define FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)            \
-  template <class X, class Y, class Z>                                \
-  OP##Op<X, Y, Z>                                                     \
-  OP (X, Y const & y, Z) {                                            \
-    typedef typename ET<X>::argument_kind argument_kind;              \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));     \
-    return OP##Op<X, Y, Z> (y);                                       \
-  }                                                                   \
-  template <class X, class Y>                                         \
-  OP##Op<X, Y, Default>                                               \
-  OP (X, Y const & y)  {                                              \
-    typedef typename ET<X>::argument_kind argument_kind;              \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));     \
-    return OP##Op<X, Y, LEESA::Default> (y);                          \
+ 
+#define FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OP)                  \
+  template <class X, class Y, class Z>                                      \
+  OP##Op<X, Y, Z>                                                           \
+  OP (X, Y const & y, Z) {                                                  \
+    typedef typename ET<X>::argument_kind argument_kind;                    \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Z>));     \
+    return OP##Op<X, Y, Z> (y);                                             \
+  }                                                                         \
+  template <class X, class Y>                                               \
+  OP##Op<X, Y, Default>                                                     \
+  OP (X, Y const & y)  {                                                    \
+    typedef typename ET<X>::argument_kind argument_kind;                    \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));        \
+    return OP##Op<X, Y, LEESA::Default> (y);                                \
   }
 
 /**********************************************************************************/
@@ -44,7 +44,7 @@
   OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2>                     \
   OP (K, Strategy1 const & s1, Strategy2 const & s2) {                            \
     typedef typename ET<K>::argument_kind argument_kind;                          \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                 \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));              \
     return OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2> (s1, s2);  \
 }  
 
@@ -55,7 +55,7 @@
   OP##Op<typename ET<K>::argument_type, Strategy>                                 \
   OP (K, Strategy const & s) {                                                    \
     typedef typename ET<K>::argument_kind argument_kind;                          \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                 \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));              \
     return OP##Op<typename ET<K>::argument_type, Strategy> (s);                   \
 }  
 
@@ -70,7 +70,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                   
     typedef ChainExpr<K, OP##Op> expression_type;                                  \
     typedef LEESAUnaryFunction <K> Super;                                          \
     SUPER_TYPEDEFS(Super);                                                         \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));       \
                                                                                    \
     template <class U>                                                             \
     struct rebind                                                                  \
@@ -108,7 +108,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
   SUPER_TYPEDEFS(Super);                                                     \
-  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));              \
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));           \
                                                                              \
   template <class U>                                                         \
   struct rebind                                                              \
@@ -147,7 +147,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
     typedef ChainExpr<K, OP##Op> expression_type;                           \
     typedef LEESAUnaryFunction <K> Super;                                   \
 	  SUPER_TYPEDEFS(Super);                                                  \
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));           \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));        \
                                                                             \
     template <class U>                                                      \
     struct rebind                                                           \
@@ -361,7 +361,7 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
   typedef ChainExpr<K, OneOp> expression_type;                         
   typedef LEESAUnaryFunction <K> Super;
   SUPER_TYPEDEFS(Super);
-  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));                  
                                                                                  
   template <class U>                                                             
   struct rebind                                                                  
@@ -405,12 +405,12 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 
   result_kind operator () (argument_kind const & arg)
   {
-    typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+    typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
     ObjectSet objects = Custom::GetChildObjects(arg);
     success_ = false;
     BOOST_FOREACH(Udm::Object o, objects)
     {
-      dispatch(o, CustomChildren());
+      dispatch(o, Children());
     }
     if(!success_) 
       throw LEESAException<argument_type>();
@@ -453,11 +453,11 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
 result_kind operator () (argument_kind const & arg)
     {
-      typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+      typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
       ObjectSet objects = Custom::GetChildObjects(arg);
       BOOST_FOREACH(Udm::Object o, objects)
       {
-        dispatch(o, CustomChildren());
+        dispatch(o, Children());
       }
       return arg;
     }
@@ -498,7 +498,7 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   typedef ChainExpr<K, AllGraphOp> expression_type;                         
   typedef AllOp<K, Strategy, Custom> Super;
   SUPER_TYPEDEFS(Super);
-  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));                  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));                  
                                                                                  
   template <class U>                                                             
   struct rebind                                                                  
@@ -526,14 +526,14 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   result_kind operator () (argument_kind const & kind)
   {
     LEESA::VISITED.insert(kind);
-    typedef typename ChildrenKinds<argument_kind, Custom>::type CustomChildren;
+    typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
     ObjectSet objects = Custom::GetChildObjects(kind);
     BOOST_FOREACH(Udm::Object o, objects)
     {
       ObjectSet::iterator iter = LEESA::VISITED.find(o);
       if (iter == LEESA::VISITED.end()) // visit if not visited already.
       {
-        Super::dispatch(o, CustomChildren());
+        Super::dispatch(o, Children());
       }
     }
     return kind;

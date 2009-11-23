@@ -63,14 +63,15 @@ struct FilterChildrenIfNotDescendant
 };
 
 template <class L, class H, class Custom, class T>
-struct ChildrenKinds <T, DescendantOp<L, H, Custom> >
+struct KindTraits <T, DescendantOp<L, H, Custom> >
+  : public KindTraits<T, Custom>
 {
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
-    typedef typename ChildrenKinds<T, Custom>::type Children;
+    typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
     typedef typename 
       FilterChildrenIfNotDescendant<Children, 
                                     typename ET<H>::result_kind, 
-                                    Custom>::type type;
+                                    Custom>::type ChildrenKinds;
 };
 
 template <class Strategy, 
@@ -253,13 +254,14 @@ template <class Strategy,
           class BypassVector,
           class Custom,
           class T>
-struct ChildrenKinds <T, APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
+struct KindTraits <T, APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
+  : public KindTraits <T, Custom>
 {
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
-    typedef typename ChildrenKinds<T, Custom>::type Children;
+    typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
     typedef typename 
       APOp<Strategy, From, ToVector, ThroughVector,BypassVector, Custom>::template
-        RemoveBypassingTypes<Children>::type type;
+           RemoveBypassingTypes<Children>::type ChildrenKinds;
 };
 
 template <class Parent, 

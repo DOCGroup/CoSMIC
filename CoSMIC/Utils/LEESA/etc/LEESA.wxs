@@ -48,6 +48,26 @@
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Kind_Traits.h' />
 
+          <File Id='Expression_Traits'
+                Name='Expression_Traits.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Expression_Traits.h' />
+
+          <File Id='LEESA_LShift'
+                Name='LEESA_LShift.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_LShift.cpp' />
+
+          <File Id='LEESA_RShift'
+                Name='LEESA_RShift.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_RShift.cpp' />
+
+          <File Id='LEESA_Operators'
+                Name='LEESA_Operators.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_Operators.cpp' />
+
         </Component>
       </DirectoryRef>
       

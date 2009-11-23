@@ -17,17 +17,14 @@ namespace LEESA
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
 		}
 
-    typedef typename MetaKind<T, Custom>::type MK;
+    typedef typename KindTraits<T, Custom>::MetaKind MK;
     typedef DomainKindConcept type;
     enum { value = boost::mpl::contains<LEESA::MetaTagList, MK>::value }; 
 	};
 
 	template <class L, class H, class Custom = Default>
 	struct SameKindsConcept
-	{
-		BOOST_CLASS_REQUIRE(L, LEESA, DomainKindConcept);
-		BOOST_CLASS_REQUIRE(H, LEESA, DomainKindConcept);
-    
+	{    
 		void constraints()
 		{
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
@@ -37,16 +34,13 @@ namespace LEESA
     enum { value = DomainKindConcept<L, Custom>::value &&
                    DomainKindConcept<H, Custom>::value && 
                    boost::is_same<L, H>::value &&  
-                   boost::is_same<typename MetaKind<L, Custom>::type, 
-                                  typename MetaKind<H, Custom>::type>::value }; 
+                   boost::is_same<typename KindTraits<L, Custom>::MetaKind, 
+                                  typename KindTraits<H, Custom>::MetaKind>::value }; 
 	};
 
 	template <class L, class H, class Custom = Default>
 	struct ConvertibleDomainKindsConcept
 	{
-		BOOST_CLASS_REQUIRE(L, LEESA, DomainKindConcept);
-		BOOST_CLASS_REQUIRE(H, LEESA, DomainKindConcept);
-    
 		void constraints()
 		{
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
@@ -61,21 +55,18 @@ namespace LEESA
 	template <class ParentKind, class ChildKind, class Custom = Default>
 	struct ParentChildConcept 
 	{
-		BOOST_CLASS_REQUIRE(ParentKind, LEESA, DomainKindConcept);
-		BOOST_CLASS_REQUIRE(ChildKind, LEESA, DomainKindConcept);
-		
     void constraints()
 		{
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
 		}
 
-    typedef typename ChildrenKinds<ParentKind, Custom>::type ChildrenKinds;
+    typedef typename KindTraits<ParentKind, Custom>::ChildrenKinds Children;
     typedef ParentChildConcept type;
     enum { value = DomainKindConcept<ParentKind, Custom>::value &&
                    DomainKindConcept<ChildKind, Custom>::value && 
-                   (boost::mpl::contains<ChildrenKinds, ChildKind>::value ||
+                   (boost::mpl::contains<Children, ChildKind>::value ||
                     // If the ChildrenKindss contains a base of ChildKind
-                    boost::mpl::count_if <ChildrenKinds, 
+                    boost::mpl::count_if <Children, 
                                           boost::is_base_of <boost::mpl::placeholders::_1, 
                                                              ChildKind> 
                                          >::value)    }; 
@@ -84,27 +75,21 @@ namespace LEESA
 	template <class ChildKind, class ParentKind, class Custom = Default>
 	struct ChildToParentConcept 
 	{
-		BOOST_CLASS_REQUIRE(ParentKind, LEESA, DomainKindConcept);
-		BOOST_CLASS_REQUIRE(ChildKind, LEESA, DomainKindConcept);
-		
     void constraints()
 		{
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
 		}
 
-    typedef typename ParentKinds<ChildKind, Custom>::type ParentKinds;
+    typedef typename KindTraits<ChildKind, Custom>::ParentKinds ParentKinds;
     typedef ChildToParentConcept type;
     enum { value = DomainKindConcept<ParentKind, Custom>::value &&
                    DomainKindConcept<ChildKind, Custom>::value && 
                    boost::mpl::contains<ParentKinds, ParentKind>::value }; 
 	};
 
-  template <class ParentKind, class DescendantKind, class Customizer>
+  template <class ParentKind, class DescendantKind, class Custom = Default>
   struct DescendantKindConcept
 	{
-    BOOST_CLASS_REQUIRE(ParentKind, LEESA, DomainKindConcept);
-    BOOST_CLASS_REQUIRE(DescendantKind, LEESA, DomainKindConcept);
-		
     void constraints()
     {
       BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
@@ -112,9 +97,9 @@ namespace LEESA
 
     typedef DescendantKindConcept type;
     enum { value = 
-            DomainKindConcept<ParentKind>::value &&
-            DomainKindConcept<DescendantKind>::value && 
-            IsDescendantKind<ParentKind, DescendantKind, Customizer>::value }; 
+            DomainKindConcept<ParentKind, Custom>::value &&
+            DomainKindConcept<DescendantKind, Custom>::value && 
+            IsDescendantKind<ParentKind, DescendantKind, Custom>::value }; 
 	};
 /*
   template <bool Check, class StartVector, class Target>

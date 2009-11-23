@@ -1,8 +1,24 @@
+Mon Nov 23 15:40:10 UTC 2009  Sumant Tambe  <sutabe@nospam>
+
+        * Utils/LEESA/etc/LEESA.wxs:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Refactored LEESA source code into multiple manageable files.
+        
 Mon Nov 23 04:25:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * NEWS:
         * RELEASE-NOTES:
-        
+
           Updated with new capabilities of LEESA.
 
         * Utils/LEESA/bin/gen-pairs.pl:
@@ -12,7 +28,7 @@ Mon Nov 23 04:25:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
           Updated LEESA with VisitorAsIndex capability. gen-pairs.pl now
           generates the necessary overloaded operators in the Udm generated
           header file.
-        
+
 Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:

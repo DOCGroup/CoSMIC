@@ -14,13 +14,7 @@
 namespace LEESA {
 
   template <class Kind, class Custom>
-  struct ChildrenKinds;
-
-  template <class Kind, class Custom>
-  struct ParentKinds;
-
-  template <class Kind, class Custom>
-  struct MetaKind;
+  struct KindTraits;
 
   template <class Parent, class Descendant, class Custom>
   struct IsDescendantKind;
@@ -39,21 +33,11 @@ namespace LEESA {
   };
 
   template <class Kind>
-  struct ChildrenKinds <Kind, Default> 
+  struct KindTraits <Kind, Default> 
   {
-    typedef typename Kind::ChildrenKinds type;
-  };
-
-  template <class Kind>
-  struct ParentKinds <Kind, Default> 
-  {
-    typedef typename Kind::ParentKinds type;
-  };
-
-  template <class Kind>
-  struct MetaKind <Kind, Default>
-  {
-    typedef typename Kind::MetaKind type;
+    typedef typename Kind::ChildrenKinds ChildrenKinds;
+    typedef typename Kind::ParentKinds ParentKinds;
+    typedef typename Kind::MetaKind MetaKind;
   };
 
 #else // LEESA_FOR_UDM
@@ -69,21 +53,11 @@ namespace LEESA {
   struct Default {};
 
   template <class Kind>
-  struct ChildrenKinds <Kind, Default> 
+  struct KindTraits <Kind, Default> 
   {
-    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds type;
-  };
-
-  template <class Kind>
-  struct ParentKinds <Kind, Default> 
-  {
-    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds type;
-  };
-
-  template <class Kind>
-  struct MetaKind <Kind, Default>
-  {
-    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind type;
+    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
+    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
+    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;
   };
 
 #endif // LEESA_FOR_UDM
@@ -129,7 +103,7 @@ template <class Parent, class Descendant, class Custom, class VisitedVector>
 struct RecursiveIsDescendantKind
 {
   typedef RecursiveIsDescendantKind type;
-  typedef typename ChildrenKinds<Parent, Custom>::type Children;
+  typedef typename KindTraits<Parent, Custom>::ChildrenKinds Children;
   typedef typename 
     boost::mpl::remove_if <Children, 
                            boost::mpl::contains<VisitedVector, 
