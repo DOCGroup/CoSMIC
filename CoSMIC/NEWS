@@ -4,7 +4,11 @@ USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.4 and CoSMIC-0.7.4.5
 . Disabled the model intelligence feature that auto-generates the default 
   artifacts when a new component is added to the model.
 
+. LEESA ships with a new Perl script called gen-pairs.pl that extends 
+  Udm generated header file with additional meta-information (IsDescendant 
+  and VisitorAsIndex) to speed up compilation.
 
+  
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.3 and CoSMIC-0.7.4
 ==========================================================
 

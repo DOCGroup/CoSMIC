@@ -1,4 +1,19 @@
-Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe sutambe@nospam
+Mon Nov 23 04:25:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * NEWS:
+        * RELEASE-NOTES:
+        
+          Updated with new capabilities of LEESA.
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+
+          Updated LEESA with VisitorAsIndex capability. gen-pairs.pl now
+          generates the necessary overloaded operators in the Udm generated
+          header file.
+        
+Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
         * NEWS:
@@ -7,17 +22,17 @@ Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe sutambe@nospam
         * VERSION:
 
           Updated the files to reflect the new CoSMIC release version 0.7.4.5
-          
+
         * contrib:
-        
+
           svn:externals
           -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
           -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
-          
+
         * RELEASE:
-        
+
           Updated the release documentation.
-        
+
 Sun Nov 22 06:45:01 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA-Linux/Makefile:

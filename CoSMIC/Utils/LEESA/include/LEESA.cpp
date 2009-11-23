@@ -204,6 +204,7 @@ struct LEESAUnaryFunction <L, void>
 };
 
 class OpBase {}; // Base of all the operators
+
 class VisitorAsIndexBase{};
 
 template <class Kind>
@@ -217,11 +218,11 @@ class VisitorAsIndex : public VisitorAsIndexBase
     DOMAIN_NAMESPACE::Visitor & getVisitor() { return visitor_; }
 };
 
-template <class Kind>
-VisitorAsIndex<Kind> VisitorAsIndex_CRTP<Kind>::operator [] 
-(DOMAIN_NAMESPACE::Visitor &v) const 
-{ 
-  return VisitorAsIndex<Kind> (v);
+template <class Kind, class Visitor>
+LEESA::VisitorAsIndex<Kind> 
+VisitorAsIndex_CRTP<Kind, Visitor>::operator [] (Visitor &v)
+{
+  return LEESA::VisitorAsIndex<Kind> (v);
 }
 
 template <class T>
@@ -238,6 +239,7 @@ using boost::disable_if;
 using boost::enable_if;
 using boost::is_base_of;
 using boost::mpl::if_;
+using boost::is_pointer;
 
 
 template <class Kind>
@@ -247,6 +249,7 @@ class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
   typedef typename ContainerGen<Kind>::type2 Container2;
   Container c_;
   BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
+  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<Kind>));
 	// This is an important concept. Don't remove.
 
 public:
@@ -769,11 +772,6 @@ struct AssociationManyOp : LEESAUnaryFunction <SOURCECLASS,ASSOC>, OpBase
   result_type operator () (argument_type const & arg)
 	{
 		typename ContainerGen<argument_kind>::type v = arg;
-		if(v.empty()) 
-		{
-			//int *i = 0;
-			//*i = 100;
-		}
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -1176,10 +1174,12 @@ operator >> (L const &l, H)
 }
 
 template <class L>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ET<L>::expression_type, 
-            VisitorOp<typename ET<L>::result_type> > 
-  >::type
+typename 
+  disable_if_c<is_base_of<std::ios_base, L>::value |
+               is_base_of<VisitorAsIndexBase, L>::value, 
+               ChainExpr<typename ET<L>::expression_type, 
+                         VisitorOp<typename ET<L>::result_type> > 
+              >::type
 operator >> (L const &l, DOMAIN_NAMESPACE::Visitor & v)
 {
 	typedef VisitorOp<typename ET<L>::result_type> OP;
@@ -1188,27 +1188,14 @@ operator >> (L const &l, DOMAIN_NAMESPACE::Visitor & v)
 
 	return ChainExpr(ParentKindExpr(l), OP(v));
 }
-/*
-template <class L>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ET<L>::expression_type, 
-            typename DFSVisitorOp<typename ET<L>::result_type> > 
-  >::type
-operator >>= (L const &l, DOMAIN_NAMESPACE::Visitor & v)
-{
-	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
-	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
 
-	return ChainExpr(ParentKindExpr(l), OP(v));
-}
-*/
 template <class L, class H>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
-            VisitorOp<typename ET<H>::result_type>
-           > >::type
-operator >> (L const &l, VisitorAsIndex<H> vi)
+typename 
+  disable_if<is_base_of<std::ios_base, L>, 
+             ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
+             VisitorOp<typename ET<H>::result_type>
+            > >::type
+operator >> (L const &l, /*DOMAIN_NAMESPACE::*/VisitorAsIndex<H> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
   typedef typename ET<H>::result_kind ChildKind;
@@ -1218,15 +1205,18 @@ operator >> (L const &l, VisitorAsIndex<H> vi)
 }
 
 template <class L, class H>
-  ChainExpr<ChainExpr<typename ET<L>::expression_type, 
-                      VisitorOp<typename ET<L>::result_type> 
-                     >,
-            typename if_<is_base_of<OpBase, H>,
-                     H,
-                     GetChildrenOp<typename ET<L>::result_type,  
-                                   typename ET<H>::result_type>
-                     >::type
-            > 
+typename 
+disable_if <is_base_of<DOMAIN_NAMESPACE::Visitor, H>,
+            ChainExpr<ChainExpr<typename ET<L>::expression_type, 
+                                VisitorOp<typename ET<L>::result_type> 
+                               >,
+                      typename if_<is_base_of<OpBase, H>,
+                               H,
+                               GetChildrenOp<typename ET<L>::result_type,  
+                                             typename ET<H>::result_type>
+                               >::type
+                      > 
+           >::type
 operator >> (VisitorAsIndex<L> vi, H const &h)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -1234,6 +1224,19 @@ operator >> (VisitorAsIndex<L> vi, H const &h)
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind, ChildKind>));
 
   return L() >> vi.getVisitor() >> h;
+}
+
+template <class L>
+  ChainExpr<ChainExpr<typename ET<L>::expression_type, 
+                      VisitorOp<typename ET<L>::result_type> 
+                     >,
+            VisitorOp<typename ET<L>::result_type> > 
+operator >> (VisitorAsIndex<L> vi, DOMAIN_NAMESPACE::Visitor & v)
+{
+  typedef typename ET<L>::result_kind result_kind;
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept <result_kind>));
+
+  return L() >> vi.getVisitor() >> v;
 }
 
 template <class L, class H>
@@ -1256,7 +1259,7 @@ operator >> (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
 
 template <class L, class OP>                              
 typename disable_if_c<                                             
-  is_base_of <VisitorAsIndexBase, L>::value |                     
+  is_base_of </*DOMAIN_NAMESPACE::*/VisitorAsIndexBase, L>::value |                     
   is_base_of <std::ios_base, L>::value |
   !is_base_of <OpBase, OP>::value,                             
   ChainExpr<typename ET< L >::expression_type, OP> >::type  
@@ -1268,9 +1271,15 @@ operator >> (L const &l, OP op)
 }
 
 template <class L, class H>
-SequenceExpr<typename ET<L>::expression_type, 
-		         typename ET<H>::expression_type
-		    >
+/* The following overloaded comma operator is picked up from within 
+   STL algorithms and causes compilation havoc. I'm totally hacking 
+   the problem away by disabling the overloaded operator if H is a 
+   pointer. This problem occurs only VisitorAsIndex extensions are used.
+*/
+typename disable_if_c<is_pointer<typename ET<H>::argument_kind>::value,
+                      SequenceExpr<typename ET<L>::expression_type, 
+		                               typename ET<H>::expression_type> 
+                     >::type 
 operator , (L const &l, H const &h)
 {
 	typedef SequenceExpr<typename ET<L>::expression_type, 
@@ -1372,7 +1381,7 @@ operator <<= (L const &l, H const & h)
 
 template <class L, class OP>                              
 typename disable_if_c<                                             
-  is_base_of <VisitorAsIndexBase, L>::value |                     
+  is_base_of </*DOMAIN_NAMESPACE::*/VisitorAsIndexBase, L>::value |                     
   is_base_of <std::ios_base, L>::value |
   !is_base_of <OpBase, OP>::value,                             
   ChainExpr<typename ET< L >::expression_type, OP> >::type  
@@ -1561,113 +1570,19 @@ evaluate (Para const & p, Expr e)
 #endif // __LEESA_CPP
 
 
-
 /*
-#define GT_PARA_OPERATOR_DEFINITION_2T(L,H,OPERATOR)               \
-template < class L, class H >                                      \
-typename disable_if_c<                                             \
-  is_base_of< VisitorAsIndexBase, L >::value |                     \
-  is_base_of<std::ios_base, L>::value,                             \
-  ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
-operator >> (L const &l, OPERATOR op) {                            \
-	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
-	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>)); \
-	return ChainExpr(ParentKindExpr(l), op);                         \
-}
-
-
-#define GT_PARA_OPERATOR_DEFINITION_3T(L,H,X,OPERATOR)             \
-template <class L, class H, class X >                              \
-typename disable_if_c<                                             \
-  is_base_of< VisitorAsIndexBase, L >::value |                     \
-  is_base_of<std::ios_base, L>::value,                             \
-  ChainExpr<typename ET< L >::expression_type, OPERATOR > >::type  \
-operator >> (L const &l, OPERATOR op) {                            \
-	LOCAL_TYPEDEFS(L, OPERATOR);                                     \
-	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>)); \
-	return ChainExpr(ParentKindExpr(l), op);                         \
-}
-*/
-
-/*
-template <class LExpr, class RExpr>
-struct DFSVisitorOp : std::unary_function<typename ET<LExpr>::result_type, void>,
-			                OpBase
-{
-	typedef typename 
-		ChainExpr<LExpr, DFSVisitorOp<LExpr, RExpr> > expression_type;
-	typedef void result_kind;
-	typedef typename ET<LExpr>::result_kind argument_kind;
-	typedef typename ET<LExpr>::result_kind LKind;
-	typedef typename ET<RExpr>::argument_kind RKind;
-
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, RKind>));
-
-  DOMAIN_NAMESPACE::Visitor & visitor_;
-	RExpr expr_;
-  explicit DFSVisitorOp (DOMAIN_NAMESPACE::Visitor const &v,
-                         RExpr const & e) 
-    : visitor_ (const_cast<DOMAIN_NAMESPACE::Visitor &> (v)),
-      expr_(e)
-  {}
-	DFSVisitorOp (DFSVisitorOp const & dvop) 
-    : visitor_ (dvop.visitor_),
-      expr_ (dvop.expr_) {}
-
-	result_type operator () (argument_type const & arg)
-	{
-		typename ContainerGen<argument_kind>::type v = arg;
-		std::for_each(v.begin(), v.end(), helper);
-	}
-  static void helper (argument_kind kind)
-  {
-     kind.Accept(visitor_);
-     expr_(kind);
-     kind.Leave(visitor_);
-  }
-};
-*/
-
-/*
-#define REGEX_OP RegexOp<H>
-GT_PARA_OPERATOR_DEFINITION_2T(L,H,REGEX_OP);
-
-#define NONNULL_OP NonNullOp<H>
-GT_PARA_OPERATOR_DEFINITION_2T(L,H,NONNULL_OP);
-
-#define FAIL_OP FailOp<H>
-GT_PARA_OPERATOR_DEFINITION_2T(L,H,FAIL_OP);
-
-#define SELECTOR_OP SelectorOp<H>
-GT_PARA_OPERATOR_DEFINITION_2T(L,H,SELECTOR_OP);
-
-#define FILTER_OP FilterOp<H, Func>
-GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FILTER_OP);
-
-#define FOREACH_OP ForEachOp<H, Func>
-GT_PARA_OPERATOR_DEFINITION_3T(L,H,Func,FOREACH_OP);
-
-#define SORT_OP SortOp<H, Comp>
-GT_PARA_OPERATOR_DEFINITION_3T(L,H,Comp,SORT_OP);
-
-#define CAST_OP CastOp<TARGET, RESULT>
-GT_PARA_OPERATOR_DEFINITION_3T(L,TARGET,RESULT,CAST_OP);
-
-#define UNIQUE_OP UniqueOp<H, BinPred>
-GT_PARA_OPERATOR_DEFINITION_3T(L,H,BinPred,UNIQUE_OP);
-
-template <class L, class K, class C1, class C2>
+template <class L>
 typename disable_if<is_base_of<std::ios_base, L>, 
-          ChainExpr<typename ET<L>::expression_type, 
-		      typename ChoiceOp<K, C1, C2>
-          > >::type
-operator >> (L const &l, ChoiceOp<K, C1, C2> op)
+  ChainExpr<typename ET<L>::expression_type, 
+            typename DFSVisitorOp<typename ET<L>::result_type> > 
+  >::type
+operator >>= (L const &l, DOMAIN_NAMESPACE::Visitor & v)
 {
-	typedef ChoiceOp<K, C1, C2> OP;
-	LOCAL_TYPEDEFS(L, OP); 
+	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
+	LOCAL_TYPEDEFS(L, OP);
 	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
 
-	return ChainExpr(ParentKindExpr(l), OP(op));
+	return ChainExpr(ParentKindExpr(l), OP(v));
 }
 */
 

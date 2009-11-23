@@ -6,11 +6,10 @@ namespace LEESA {
   template <class Kind>
   class VisitorAsIndex;
 
-  template <class Kind>
+  template <class Kind, class Visitor>
   struct VisitorAsIndex_CRTP 
   {
-    LEESA::VisitorAsIndex<Kind> operator [] 
-      (DOMAIN_NAMESPACE::Visitor &v) const;
+    LEESA::VisitorAsIndex<Kind> operator [] (Visitor &v);
   };
 
 }

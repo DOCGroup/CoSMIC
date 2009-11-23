@@ -25,6 +25,12 @@ sub prune {
   if ($line =~ m/^\s*class\s*(.*)\s*:\s*(virtual\s*public|public).*{$/) {
     my @decl = split(/ /, $1); # *_Export link-time visibility specification could be there before class name.
     $class = $decl[-1]; # The last element in the array must be the class name.
+    if (($class ne "MgaObject") && ($class ne "Visitor"))
+    {
+      $line =~ s/{//;
+      $line =~ s/\n//;
+      $line = $line.", public LEESA::VisitorAsIndex_CRTP< $class, Visitor > {\n";
+    }
     return $line;
   }
   
@@ -40,7 +46,15 @@ sub prune {
   # Extract namespace.
   elsif ($line =~ m/^namespace\s+(.*)\s+{$/) {
     $namespace = $1;
+    $line = "#include \"LEESA_VisitorAsIndex.h\"\n\n".$line;
+    return $line;
   }  
+  
+  # Bring the overloaded [] operator for VisitorAsIndex in the scope. This using declaration
+  # hides the same operator in the base class, if any.
+  elsif ($line =~ m/^\s*.*Accept.+Visitor.*this.*}$/) {
+    return $line."\t\tusing LEESA::VisitorAsIndex_CRTP< $class, Visitor >::operator [];\n\n";
+  }
   
   # Discard most of the other meta-information in the class.
   elsif ($line =~ m/^\s*class\s.+\s{};$/) {

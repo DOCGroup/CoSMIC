@@ -26,7 +26,11 @@ Release CoSMIC-0.7.4.5
   when a new component is added to the model. This feature will be released in the next version
   of PICML/CoSMIC. Contact: James Hill <hillj@cs.iupui.edu>
 
+. LEESA ships with a new Perl script called gen-pairs.pl that extends 
+  Udm generated header file with additional meta-information (IsDescendant 
+  and VisitorAsIndex) to speed up compilation.
   
+
 Release CoSMIC-0.7.4
 ====================
 
