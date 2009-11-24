@@ -1,0 +1,912 @@
+Tue Nov 24 16:25:52 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * RELEASE:
+       
+          Updated the CoSMIC release procedure.
+          Cutting CoSMIC release 0.7.4.5
+          contrib/CCF and contrib/utility revision is 87698
+          
+          CCF     -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+          utility -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+
+Mon Nov 23 15:40:10 UTC 2009  Sumant Tambe  <sutabe@nospam>
+
+        * Utils/LEESA/etc/LEESA.wxs:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Refactored LEESA source code into multiple manageable files.
+
+Mon Nov 23 04:25:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * NEWS:
+        * RELEASE-NOTES:
+
+          Updated with new capabilities of LEESA.
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+
+          Updated LEESA with VisitorAsIndex capability. gen-pairs.pl now
+          generates the necessary overloaded operators in the Udm generated
+          header file.
+
+Mon Nov 23 01:47:40 UTC 2009  Sumant Tambe <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * NEWS:
+        * README:
+        * RELEASE-NOTES:
+        * VERSION:
+
+          Updated the files to reflect the new CoSMIC release version 0.7.4.5
+
+        * contrib:
+
+          svn:externals
+          -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+          -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+
+        * RELEASE:
+
+          Updated the release documentation.
+
+Sun Nov 22 06:45:01 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA-Linux/Makefile:
+        * tests/LEESA-Linux/PICML.h:
+        * tests/LEESA-Linux/SM.h:
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+
+          Updated the tests.
+
+Sun Nov 22 06:41:28 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+
+        * Utils/LEESA/etc/LEESA.wxs:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Updated LEESA to reduce UDM dependencies.
+
+Fri Nov 20 05:27:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Replaced custom metaprograms with Boost.MPL utilities.
+
+Fri Nov 20 02:15:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA-Linux:
+
+        * tests/LEESA-Linux/Makefile:
+        * tests/LEESA-Linux/PICML.h:
+        * tests/LEESA-Linux/PICML_export.h:
+        * tests/LEESA-Linux/SM.h:
+        * tests/LEESA-Linux/SM_export.h:
+        * tests/LEESA-Linux/UdmApp-PICML.h:
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA-Linux/UdmApp-SM.h:
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+        * tests/LEESA-Linux/UdmConfig-PICML.h:
+        * tests/LEESA-Linux/UdmConfig-SM.h:
+
+          Added g++ tests for LEESA using SM and PICML paradigms.
+
+Thu Nov 19 23:19:06 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-pairs.pl:
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Updated LEESA and the perl script to work with g++ 4.4.1.
+
+Wed Nov 18 06:38:43 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Improved the implementation to work with g++ 4.4.1
+
+Wed Nov 18 01:53:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+          Added new path for LEESA.wxs
+
+        * Utils/LEESA/bin:
+        * Utils/LEESA/bin/gen-pairs.pl:
+
+          Reorganization
+
+        * Utils/LEESA/doc:
+        * Utils/LEESA/doc/LEESA.docx:
+        * Utils/LEESA/doc/LEESA.pdf:
+
+          Reorganization
+
+        * Utils/LEESA/etc:
+        * Utils/LEESA/etc/DSL09primitives.cpp:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.h:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/etc/LEESA.wxs:
+        * Utils/LEESA/etc/UdmMPL.h:
+        * Utils/LEESA/etc/UdmObjectConcept.h:
+        * Utils/LEESA/etc/concept-mpl.cpp:
+        * Utils/LEESA/etc/xsd:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/LEESA.h:
+        * Utils/LEESA/etc/xsd/LEESA.cpp:
+        * Utils/LEESA/etc/xsd/LEESAConcepts.h:
+        * Utils/LEESA/etc/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/etc/xsd/example:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/example/driver.cxx:
+        * Utils/LEESA/etc/xsd/example/library.hpp:
+        * Utils/LEESA/etc/xsd/example/library.cpp:
+        * Utils/LEESA/etc/xsd/example/library.xml:
+        * Utils/LEESA/etc/xsd/example/library.xsd:
+        * Utils/LEESA/etc/xsd/example/makefile.txt:
+        * Utils/LEESA/etc/xsd/example/xsd.sh:
+
+          Reorganization
+
+        * Utils/LEESA/etc/xsd/patch:
+        * Utils/LEESA/etc/xsd/patch/Readme.txt:
+        * Utils/LEESA/etc/xsd/patch/cli.hxx:
+        * Utils/LEESA/etc/xsd/patch/generator.cxx:
+        * Utils/LEESA/etc/xsd/patch/makefile.txt:
+        * Utils/LEESA/etc/xsd/patch/template-header.cxx:
+        * Utils/LEESA/etc/xsd/patch/template-header.hxx:
+
+          Reorganization
+
+        * Utils/LEESA/include:
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Reorganized the above files. Removed the following files.
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/DSL09primitives.cpp:
+        * Utils/LEESA/DeploymentPlanVisitor.h:
+        * Utils/LEESA/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/LEESA.docx:
+        * Utils/LEESA/LEESA.h:
+        * Utils/LEESA/LEESA.cpp:
+        * Utils/LEESA/LEESA.pdf:
+        * Utils/LEESA/LEESA.wxs:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/UdmMPL.h:
+        * Utils/LEESA/UdmObjectConcept.h:
+        * Utils/LEESA/concept-mpl.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+        * Utils/LEESA/xsd:
+
+        * Utils/LEESA/xsd/LEESA.h:
+        * Utils/LEESA/xsd/LEESA.cpp:
+        * Utils/LEESA/xsd/LEESAConcepts.h:
+        * Utils/LEESA/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/xsd/example:
+
+        * Utils/LEESA/xsd/example/driver.cxx:
+        * Utils/LEESA/xsd/example/library.hpp:
+        * Utils/LEESA/xsd/example/library.cpp:
+        * Utils/LEESA/xsd/example/library.xml:
+        * Utils/LEESA/xsd/example/library.xsd:
+        * Utils/LEESA/xsd/example/makefile.txt:
+        * Utils/LEESA/xsd/example/xsd.sh:
+
+        * Utils/LEESA/xsd/patch:
+
+        * Utils/LEESA/xsd/patch/Readme.txt:
+        * Utils/LEESA/xsd/patch/cli.hxx:
+        * Utils/LEESA/xsd/patch/generator.cxx:
+        * Utils/LEESA/xsd/patch/makefile.txt:
+        * Utils/LEESA/xsd/patch/template-header.cxx:
+        * Utils/LEESA/xsd/patch/template-header.hxx:
+
+          Removed these files.
+
+Tue Nov 17 17:53:14 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(add_include_elements):
+
+          Two changes to the call to imported_dom_element() in
+          the above method;
+
+          - pass the name of the FileRef we are looking up as a local
+            name, since the way these are named in PICML has changed.
+
+          - set the boolean arg that indicates we are iterating over
+            the processed file list and adding include elements for
+            each, since this fact changes the logic of
+            imported_dom_element().
+
+Wed Nov 11 12:31:54 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMICRegistry.wxs:
+
+          The filename of the IDLGenerator.reg file had been changed to
+          IDLGeneratorComponent.reg, but was not reflected in this file.
+
+Wed Nov 11 02:40:04 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+
+          Added duplicate storage of filenames as local names, in
+          which form they are looked up after reading an #include
+          directive, which may contain the full path or any of its
+          tail, when adding included file elements to the DOM tree.
+
+  Tue Nov 10 20:16:22 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Temporarily disabled the auto-generation of the default
+          artifacts for a component.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+
+          Removed a project that is no longer part of the build/installer.
+
+        * Utils/Utils.cpp:
+
+          The UUID is now capitalized.
+
+        * PIM/PICML/interpreters/IDLGenerator/component.def:
+
+          Removed this file.
+
+Tue Nov 10 18:53:06 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2.mpb:
+
+          Base project was missing the Component.idl file to complete the
+          build of BON related objects outside of a component.
+
+        * MPC/config/gme_component.mpb:
+
+          The prop: tag in the specific construct was incorrect for
+          ensuring the scope was bounded to Microsoft products.
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.h:
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/DependencyVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+
+          So apparently refactoring the interpreter logic into a separate
+          module and linking it to the component generator actually made the
+          code a LOT slower. I think this is attributed to the fact that the
+          same code is compiled to both the interpreter's module and the
+          module containing the interpreter's business logic. The solution is
+          to just leave everything as is and maybe export the interpreter logic
+          from the interpreter.
+
+Tue Nov 10 17:19:34 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/gen-pairs.pl:
+
+          Generates sorted IsDescendant<T,U> pairs.
+
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xsd:
+
+          Updated the files, which contain sorted IsDescendant<T,U> pairs.
+
+Tue Nov 10 17:02:09 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+
+          Very good support for paradigms with self- as well as mutual recursion among
+          the elements. Supports two macros: PARADIGM_HAS_DESCENDANT_PAIRS and
+          PARADIGM_HAS_MUTUAL_RECURSION.
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM_LEESA.vcproj:
+        * tests/SM_LEESA/UdmApp.cpp:
+
+          Test programs for the new capabilities of LEESA.
+
+Tue Nov 10 05:35:27 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2.mpb:
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_common.mpb:
+        * MPC/config/gme_component.mpb:
+
+          Refactored and improved the base projects.
+
+        * PIM/PICML/interpreters/IDLGenerator/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.mpc:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.wxs:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponent.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratorComponentd.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator_export.h:
+
+          Separated the IDL generation logic from the actual component. This
+          will allow the generation logic to be (re-)used in other projects,
+          such as the project that allows end-users to modify IDL in either
+          text format or using the model.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLGenerator.reg:
+        * PIM/PICML/interpreters/IDLGenerator/IDLGeneratord.reg:
+
+          Removed these files.
+
+Tue Nov 10 02:32:00 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          Exclued the benchmark_test from the compilation.
+
+Mon Nov  9 19:36:54 UTC 2009  William R. Otte  <wotte@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+
+          Added additional debug info.
+
+Mon Nov  9 15:39:07 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_init.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+
+          Multiple IDL files are now processed as includes in a
+          container IDL file created on the fly. The resulting
+          elimination of repeated middleware IDL processing
+          gives a significant gain in performance.
+
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICML.xme:
+
+          Minor change to allow sequences of predefined types to
+          loaded into the PredefinedTypes folder by the IDL
+          importer.
+
+Mon Nov  9 06:05:12 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+        * Utils/LEESA/LEESA_Concepts.h:
+        * Utils/LEESA/SP.cpp:
+        * Utils/LEESA/gen-pairs.pl:
+
+          Updated LEESA's support for descendant types. gen-pairs.pl runs on
+          UDM generated files to add IsDescendant<T,U> pairs.
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM_export.h:
+        * tests/SM_LEESA/UdmApp.cpp:
+
+          Updated StateMachine example. Mainly the SM.h file with new
+          IsDescendant<T,U> meta-information.
+
+Mon Nov  9 05:21:23 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/CustomActions.wxs:
+        * Installer/CoSMIC_Installer/EnvironmentVars.wxi:
+        * Installer/RegisterParadigm:
+        * Installer/RegisterParadigm/RegisterParadigm.def:
+        * Installer/RegisterParadigm/RegisterParadigm.h:
+        * Installer/RegisterParadigm/RegisterParadigm.cpp:
+        * Installer/RegisterParadigm/RegisterParadigm.mpc:
+        * Installer/RegisterParadigm/StdAfx.h:
+
+          . Now there is only one function for checking the version of
+            GME instead of multiple functions for each version. This is
+            accomplihsed by passing the version number to the custom action
+            responsible for validating GME's version number.
+
+        * MPC/config/cosmic_common.mpb:
+
+          . Added the acedefaults.mpb base project.
+
+        * MPC/config/game_component.mpb:
+
+          . Added midl_flags, midl_includes, and midl_notlb to the
+            project specification to fix build errors.
+
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * Utils/BON:
+        * Utils/BON/Sort_T.h:
+        * Utils/BON/Sort_T.cpp:
+        * Utils/Sort.h:
+        * Utils/Sort.inl:
+        * Utils/Sort.cpp:
+        * Utils/Utils.mpc:
+
+          . Added support for preserving the order of members in Aggregate,
+            SwitchAggregate, Exception, and Enumeration. We still need to
+            add similar support to Event and ObjectValue elements in PICML.
+
+            The order for members is specified in top-to-bottom fashion on
+            the screen (irrespective of the x-coordinate) similar to the
+            look-and-feel of writing IDL files by hand.
+
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          . Several icons were not being installed.
+
+        * PIM/PICML/utils/game/PICML_GAME_Utils.wxs:
+
+          . The binary was misspelled.
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          . Removed each individual project specification from the workspace
+            since by default MPC parses are the subdirectories. Based on the
+            current workspace specification, all projects are included so it
+            is safe to remove each individual project include. Otherwise, this
+            workspace will become hard to maintain as it grows.
+
+        * cosmic.mwc:
+
+          . Fixed the spelling of files in the workspace.
+
+Mon Nov  2 00:05:45 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Fixed end-of-line characters.
+
+Sun Nov  1 23:51:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Updated the test-cases to include -r option also.
+
+Sun Nov  1 23:09:38 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/MyQuoter/run_test.bat:
+
+          Updated the script and added some comments.
+
+Sun Nov  1 22:37:00 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * bin/sed.exe:
+
+          Added a sed executable that runs on all windows platforms. Needed for
+          idl_to_picml test in $COSMIC_ROOT/tests/MyQuoter and for UDM 3.2.1 to
+          strip off unwanted meta-information.
+
+        * tests/MyQuoter:
+        * tests/MyQuoter/Broker:
+        * tests/MyQuoter/Broker/Broker.idl:
+        * tests/MyQuoter/Distributor:
+        * tests/MyQuoter/Distributor/Distributor.idl:
+        * tests/MyQuoter/Stock_Base:
+        * tests/MyQuoter/Stock_Base/Stock_Base.idl:
+        * tests/MyQuoter/run_test.bat:
+
+          A test for idl_to_picml that does exactly the same as the CoSMIC tutorial
+          at http://www.dre.vanderbilt.edu/cosmic/tutorials/index.html
+
+Mon Oct 26 16:18:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          Removed absolute paths.
+
+Mon Oct 26 13:23:41 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Release.mwc:
+
+          A project was missing that was preventing the release from
+          building completely.
+
+Mon Oct 26 02:45:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_component.mpb:
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+
+          Removed duplicate midl_flags.
+
+        * cosmic.mwc:
+
+          Added POSAML interpreters.
+
+Mon Oct 26 00:13:03 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+
+        * MPC/config/picml_game_utils.mpb:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/utils:
+        * PIM/PICML/utils/game:
+        * PIM/PICML/utils/game/PICML_GAME_Utils.mpc:
+        * PIM/PICML/utils/game/PICML_GAME_Utils.wxs:
+        * PIM/PICML/utils/game/PICML_GAME_Utils_export.h:
+        * PIM/PICML/utils/game/Utility.h:
+        * PIM/PICML/utils/game/Utility.cpp:
+        * picml.mwc:
+
+          Refactored the fq_type () method into a standalone function in
+          the PICML_GAME_Utils project. This new project also resulted in
+          adding a new binary to the installer.
+
+          Eventually, we need to use the Wix MPC project type to generate
+          the Wix files for the installer. As we refactor things and make
+          new projects, its going to become very error-prone to manually
+          update the installer to reflect any architecture changes.
+
+Sun Oct 25 23:13:30 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.inl:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          Missing files.
+
+Sun Oct 25 23:04:01 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+
+          Resolved conflicts and updated project specification.
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          Fixed compiler errors related to the interface update to
+          classes in GAME.
+
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/Dialogs.h:
+        * PIM/PICML/addons/PICMLManager/Dialogs.inl:
+        * PIM/PICML/addons/PICMLManager/Dialogs.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.rc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/Resource.h:
+
+          Update the PICML manager such that when a new component is
+          added to a model, the user is presented a dialog for entering
+          the new name. This name is then used to auto-generate the
+          default elements for the new component.
+
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ComponentImplementationGenerator.cpp:
+        * PIM/PICML/interpreters/ComponentImplementationGenerator/BE_ImplementationArtifactGenerator.cpp:
+
+          Fixed inconsistencies in the code.
+
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/Component.cpp:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.inl:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/MetaFolder.h:
+        * Utils/GAME/game/MetaFolder.cpp:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.inl:
+        * Utils/GAME/game/Model.cpp:
+
+          Implemented the children () method directly on the Folder and
+          Model class and removed the Folder_Model_T template class. This
+          resulted in a much cleaner interface for using the Folder and
+          Model class.
+
+        * PIM/PICML/addons/PICMLManager/Component.rc:
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.inl:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+
+          Removed these files.
+
+Sun Oct 25 21:36:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * MPC/config/gme_bon2_component.mpb:
+        * MPC/config/gme_component.mpb:
+
+          Cleanup and reformatting.
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/ComponentConfig.h:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+
+          Cleanup and reformatting.
+
+        * PIM/POSAML/interpreters/AspectInterpreter/AspectInterpreter.mpc:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/AspectInterpreter/ComponentLib_h.h:
+
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/BenchmarkInterpreter.mpc:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/BenchmarkInterpreter/ComponentLib_h.h:
+
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/BON2Component.cpp:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ComponentLib_h.h:
+        * PIM/POSAML/interpreters/ConfiguratorInterpreter/ConfiguratorInterpreter.mpc:
+
+        * PIM/POSAML/interpreters/OmnetInterpreter/ComponentConfig.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/ComponentLib_h.h:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Interpreter.cpp:
+        * PIM/POSAML/interpreters/OmnetInterpreter/OmnetInterpreter.mpc:
+        * PIM/POSAML/interpreters/OmnetInterpreter/Patterns.cpp:
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+
+          Fixed mpc related issues in POSAML interpreters.
+
+Fri Oct 23 00:50:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Removed the custom point_t structure and started using the
+          Utils::Point class.
+
+Thu Oct 22 18:53:05 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/utils/Point.h:
+        * Utils/GAME/game/utils/Point.cpp:
+
+          The FCO no longer has a position () method. It is now
+          defined as a stand-alone function.
+
+        * Utils/Point.h:
+        * Utils/Point.inl:
+        * Utils/Point.cpp:
+        * Utils/Utils.h:
+        * Utils/Utils.mpc:
+        * Utils/Utils.cpp:
+
+          Refactored the code so that the Point class is now part of
+          the utility library.
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+
+          Updated the interpreter to use the new Point class.
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          Bug fix where changing the value of a UUID resulted
+          in the add-on entering an infinite loop.
+
+        * Utils/GAME/game/Point.h:
+        * Utils/GAME/game/Point.inl:
+        * Utils/GAME/game/Point.cpp:
+
+          Removed these files.
+
+Thu Oct 22 18:46:11 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * picml.mwc:
+
+          Committed a file prematurely. :-(
+
+Thu Oct 22 18:44:21 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * includes/includes.wxs:
+
+          Missing file.
+
+Thu Oct 22 05:34:26 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Installer/CoSMIC_Installer/CoSMICNotes.wxs:
+
+          The names of README, RELEASE-NOTES, and RELEASE files
+          had not been changed from their old names.
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Added /includes/GME to the installer.
+
+        * Release.mwc:
+        * Release_idl_to_picml.mwc:
+        * Utils/Utils.wxs:
+
+          Added the CoSMIC utilities for Xerces
+
+Thu Oct 22 03:08:50 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * MPC/config/cosmic_xerces_utils.mpb:
+        * MPC/config/cqmllib.mpb:
+        * MPC/config/picmllib.mpb:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_XML_Visitor.cpp:
+        * PIM/PICML/interpreters/PICML/PICML.mpc:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/PackageComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/PathComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/QED/deployment/QED_Deployment_Visitor.cpp:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+        * PIM/PICML/interpreters/TargetComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.h:
+        * PSM/CQML/interpreters/BIRSpecification/BIRSpecificationVisitor.cpp:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEvents.mpc:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.h:
+        * PSM/CQML/interpreters/CIAOEvents/CIAOEventsVisitor.cpp:
+        * PSM/CQML/interpreters/CIAOEventsComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/CQML/acceptor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFramework.mpc:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.h:
+        * PSM/CQML/interpreters/DeploymentPlanFramework/DeploymentPlanFrameworkVisitor.cpp:
+        * PSM/CQML/interpreters/FaultToleranceComponent/UdmApp.cpp:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.h:
+        * PSM/CQML/interpreters/NetQoS/NetQoSVisitor.cpp:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.h:
+        * PSM/CQML/interpreters/RTConfiguration/RTConfigurationVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityDumper.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.h:
+        * PSM/CQML/interpreters/RTSchedulability/RTSchedulabilityVisitor.cpp:
+        * PSM/CQML/interpreters/RTSchedulability/common.h:
+        * PSM/CQML/interpreters/RTSchedulability/common.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSDumper.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.h:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        * PSM/CQML/interpreters/SecurityQoS/common.h:
+        * PSM/CQML/interpreters/SecurityQoS/common.cpp:
+
+          Fixed build errors related to refactoring CoSMIC and
+          PICML so that idl_to_picml is not dependent on Windows.
+
+        * includes/GME/mga.dtd:
+
+          Schema definition for GME.
+
+Wed Oct 21 21:20:04 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * Utils/GAME/game/Folder_Model_T.h:
+        * Utils/GAME/game/Folder_Model_T.inl:
+        * Utils/GAME/game/Folder_Model_T.cpp:
+        * Utils/GAME/game/GAME.mpc:
+
+          Each typed version of the method that returns chilren, e.g.,
+          atoms (), models (), and references (), with a template
+          version method named children ().
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+
+          Refactored code based on the change above.
+
+        * MPC/config/cosmic_common.mpb:
+
+          Moved the *macros* keyword in the prop:microsoft scope.
+
+        * MPC/config/cosmic_xerces_utils.mpb:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/removing_closure_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/removing_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/xme_dom_visitor.cpp:
+        * Release_idl_to_picml.mwc:
+        * Utils/Utils.h:
+        * Utils/Utils.mpc:
+        * Utils/Utils.cpp:
+        * Utils/xercesc:
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+        * Utils/xercesc/XML_Error_Handler.h:
+        * Utils/xercesc/XML_Error_Handler.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.cpp:
+        * Utils/xercesc/Xerces_Utils.mpc:
+        * Utils/xercesc/Xerces_Utils_export.h:
+        * picml.mwc:
+
+          First attempt at removing the Windows dependency in
+          idl_to_picml. This resulted in refactoring the Xerces
+          portion of the utilities into their own shared library.
+
+        * Utils/EntityResolver.h:
+        * Utils/EntityResolver.cpp:
+        * Utils/XML_Error_Handler.h:
+        * Utils/XML_Error_Handler.cpp:
+        * Utils/XercesString.h:
+        * Utils/XercesString.cpp:
+
+          Removed these files.
+
+Wed Oct 21 18:05:13 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/AP.cpp:
+          Disabled DescendantKinds concept checking in LEESA.
+
+        * README:
+        * RELEASE:
+        * RELEASE-NOTES:
+
+        * Readme.rtf:
+        * ReleaseNotes.rtf:
+
+          Removed the .rtf files and converted them into plain-text.
+
+Mon Oct 19 23:07:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-09:
+
+          . CoSMIC version 0.7.4 was released. Moved the ChangeLog
+            to ChangeLogs/ChangeLog-09.
+            CCF revision 87178
+            utility revision 87178
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:
