@@ -68,9 +68,11 @@ This file documents the CoSMIC release procedure
    
       * ChangeLog:
       * ChangeLogs/ChangeLog-09:
+      * contrib
 
       . CoSMIC version 0.7.4 was released. Moved the ChangeLog 
-        to ChangeLogs/ChangeLog-09.
+        to ChangeLogs/ChangeLog-09. Reverted contrib svn:externals property 
+        back to the HEAD revision.
 
    Local Variables:
    mode: change-log
@@ -101,4 +103,4 @@ This file documents the CoSMIC release procedure
     Make sure that the hyperlinks in download.html are valid.
 
   
-Last modified: Sun, Nov 22, 2009
+Last modified: Tue Nov 24, 2009

@@ -1,3 +1,14 @@
+Tue Nov 24 16:25:52 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * RELEASE:
+       
+          Updated the CoSMIC release procedure.
+          Cutting CoSMIC release 0.7.4.5
+          contrib/CCF and contrib/utility revision is 87698
+          
+          CCF     -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF CCF
+          utility -r 87698 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility utility
+
 Mon Nov 23 15:40:10 UTC 2009  Sumant Tambe  <sutabe@nospam>
 
         * Utils/LEESA/etc/LEESA.wxs:
@@ -13,7 +24,7 @@ Mon Nov 23 15:40:10 UTC 2009  Sumant Tambe  <sutabe@nospam>
         * Utils/LEESA/include/SP.cpp:
 
           Refactored LEESA source code into multiple manageable files.
-        
+
 Mon Nov 23 04:25:58 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * NEWS:
