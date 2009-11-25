@@ -1,3 +1,18 @@
+Wed Nov 25 14:10:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+
+          . Bug fix where using the default implementation generator
+            to generate an existing component's implementation did
+            not set the component reference for the monolithic
+            implementation.
+
+          . Bug fix where adding a component instance to a component
+            assembly resulted in generating the default implementation
+            for the newly created instance. This should happen only
+            when adding a component to a interface definition.
+
 Tue Nov 24 17:58:23 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * ChangeLog:

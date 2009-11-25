@@ -77,6 +77,7 @@ bool DefaultImplementationGenerator::generate (const GME::Model & component)
   // Create the reference to the target component.
   GME::Reference ref = GME::Reference::_create ("ComponentRef", container);
   ref.name (name);
+  ref.refers_to (component);
   GME::position ("Packaging", Utils::Point (187, 75), ref);
 
   // Associate the monolithic implementation with the reference.
