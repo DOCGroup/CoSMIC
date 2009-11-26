@@ -1,3 +1,25 @@
+Thu Nov 26 01:18:51 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Decoupled LEESA from UDM as much as possible.
+
+        * tests/LEESA-Linux/Makefile:
+        * tests/LEESA-Linux/PICML.h:
+        * tests/LEESA-Linux/SM.h:
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+        * tests/LEESA-Linux/library-meta.cxx:
+        * tests/LEESA-Linux/library-meta.hxx:
+
+          Corresponding changes in the tests.
+
 Wed Nov 25 14:10:57 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:

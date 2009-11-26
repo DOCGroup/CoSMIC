@@ -1,3 +1,5 @@
+#include <set>
+#include <vector>
 
 #define ExpressionTraits1Para(OP)     \
 template <class T>                    \
@@ -77,7 +79,9 @@ struct ETBase
 ExpressionTraits1Para(KindLit);
 ExpressionTraits1Para(SelectorOp);
 ExpressionTraits1Para(RegexOp);
+#ifndef LEESA_NO_VISITOR
 ExpressionTraits1Para(VisitorOp);
+#endif // LEESA_NO_VISITOR
 
 ExpressionTraits2Para(ChainExpr);
 ExpressionTraits2Para(SequenceExpr);

@@ -227,7 +227,9 @@ struct LEESAException : public std::runtime_error
 typedef boost::mpl::vector<>  EmptyMPLVector;
 typedef boost::mpl::vector0<> EmptyMPLVector0;
 
+#ifdef LEESA_FOR_UDM
 ObjectSet VISITED;
+#endif // LEESA_FOR_UDM
 
 class _StrategyBase {}; // Base class of all the strategies. Just for documentation.
 
@@ -656,7 +658,7 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
       typedef AllOp<K, InnermostOp, Custom>   ALL_IM;
       typedef SeqOp<K, Strategy, InnermostOp> SEQ_IM;
       typedef TryOp<K, SEQ_IM>                TRY_IM;
-	  typedef SeqOp<K, ALL_IM, TRY_IM>        INNER_MOST;
+	    typedef SeqOp<K, ALL_IM, TRY_IM>        INNER_MOST;
       ALL_IM all(*this);
       SEQ_IM seq(strategy_, *this);
       TRY_IM t(seq);
@@ -665,6 +667,8 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
       return arg;
     }
 };
+
+#ifndef LEESA_NO_VISITOR
 
 class VisitStrategy : public _StrategyBase
 {
@@ -694,6 +698,8 @@ class VisitStrategy : public _StrategyBase
       return visitor_;
     }
 };
+
+#endif // LEESA_NO_VISITOR
 
 template <class E, class Func>
 CallerOp<typename ET<E>::result_type, Func> 

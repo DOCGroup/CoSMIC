@@ -59,19 +59,30 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
 {	
 	using namespace LEESA;
 	try {
-          
-		RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
+      	        RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		SMVisitor visitor;
-	    
-		std::vector<StartState> vector = 
-		evaluate(rf, RootFolder() >> StateMachine()
-					>> visitor
-					>> BaseState() 
-					>> CastFromTo(BaseState(), StartState())
-					>> visitor);
 
-		show(vector.size());
+                evaluate (rf, RootFolder() >>= StateMachine()[visitor] >>= State()[visitor]);
+  
+		std::vector<StartState> SSvector = 
+		evaluate(rf, RootFolder()
+                            >> StateMachine()
+                            >> visitor
+                            >> BaseState() 
+                            >> CastFromTo(BaseState(), StartState())
+                            >> visitor);
 
+		show(SSvector.size());
+
+    evaluate(SSvector, StartState()[visitor] << StateMachine()[visitor] );
+
+    evaluate(rf, RootFolder()
+          >> StateMachine() 
+          >> State()
+          << StateMachine()[visitor]
+          << RootFolder()[visitor]);
+
+          
 		evaluate(rf, RootFolder() >> FullTD(RootFolder(), VisitStrategy(visitor)));
 
 		BOOST_AUTO(v_state, State() >> visitor);

@@ -13,8 +13,6 @@
 #include <boost/utility/enable_if.hpp>
 
 #include <functional>
-#include <vector>
-#include <set>
 #include <ios>
 
 #define SUPER_TYPEDEFS(Super)                                               \
@@ -43,7 +41,9 @@ template <class L, class R> struct GetParentOp;
 template <class L, class R> struct DFSParentOp;
 
 template <class E> struct SelectorOp;
+#ifndef LEESA_NO_VISITOR
 template <class E> struct VisitorOp;
+#endif // LEESA_NO_VISITOR
 template <class E> struct RegexOp;
 
 template <class E, class Func> struct FilterOp;
@@ -69,14 +69,6 @@ template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationM
 
 namespace LEESA {
 
-template <class T>
-struct ContainerGen
-{
-  // These types are interchangeable.
-  typedef typename std::vector<T> type;
-  typedef typename std::set<T> type2;
-};
-
 using boost::disable_if_c;
 using boost::disable_if;
 using boost::is_base_of;
@@ -86,21 +78,20 @@ using boost::is_pointer;
 template <class Kind>
 class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
 {
-  typedef typename ContainerGen<Kind>::type Container;
-  typedef typename ContainerGen<Kind>::type2 Container2;
+  typedef typename KindTraits<Kind>::Container Container;
   Container c_;
   BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
   BOOST_MPL_ASSERT((LEESA::DomainKindConcept<Kind>));
-	// This is an important concept. Don't remove.
+  // This is an important concept. Don't remove.
 
 public:
   typedef KindLit<Kind> expression_type;
-	typedef Kind result_kind;
-	typedef Kind argument_kind;
+  typedef Kind result_kind;
+  typedef Kind argument_kind;
   typedef KindLit<Kind> result_type;
   typedef KindLit<Kind> argument_type;
-	typedef typename Container::iterator iterator;
-	typedef typename Container::const_iterator const_iterator;
+  typedef typename Container::iterator iterator;
+  typedef typename Container::const_iterator const_iterator;
 
   template <class U>
   struct rebind
@@ -109,66 +100,65 @@ public:
   };
 
   explicit KindLit () {}
-  
+ 
   template <class U>
   KindLit (KindLit<U> const & ukindlit)
   {
-	  BOOST_MPL_ASSERT((is_base_of<Kind,U>));
-    c_.insert(c_.end(), ukindlit.c_.begin(), ukindlit.c_.end());
+    BOOST_MPL_ASSERT((is_base_of<Kind,U>));
+    //c_.insert(c_.end(), ukindlit.c_.begin(), ukindlit.c_.end());
+    std::copy(ukindlit.c_.begin(), ukindlit.c_.end(), std::back_inserter(c_));
   }
   KindLit (KindLit const & k) : c_ (k.c_) {}
-	KindLit (Kind const & k) { c_.insert(c_.end(), k); }	
-	KindLit (Container const & c) : c_(c) { }
-	KindLit (Container2 const & c2) : c_(c2.begin(), c2.end()) { }
-	void Union(Kind const & k)
-	{
-		c_.insert(c_.end(), k);
-	}
+  KindLit (Kind const & k) { c_.push_back(k); }	
+  KindLit (Container const & c) : c_(c) { }
 
 #ifdef LEESA_FOR_UDM
-	
+
   void Union(Udm::ParentAttr<Kind> const & c) 
-	{
-		Kind k = c;
-		c_.insert(c_.end(), k);
-	}
-	void Union(Udm::ChildrenAttr<Kind> const & ca) 
-	{
+  {
+    Kind k = c;
+    c_.push_back(k);
+  }
+  void Union(Udm::ChildrenAttr<Kind> const & ca) 
+  {
     Container c = ca;
-		append(c.begin(), c.end(), c_);
-	}
+    std::copy(c.begin(), c.end(), std::back_inserter(c_));
+  }
+
+#else 
+
+  void Union (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
+  {
+    if (o.present()) 
+    {
+      c_.push_back(o.get());
+    }
+  }
 
 #endif // LEESA_FOR_UDM
 
-	void Union(Container const & in)
-	{
-		append(in.begin(), in.end(), c_);
-	}
-	void Union(Container2 const & in)
-	{
-		append(in.begin(), in.end(), c_);
-	}
-	template <class InputIterator>
-	void append(InputIterator begin, InputIterator end, std::vector<Kind> & v)
-	{
-		std::copy(begin, end, std::back_inserter(v));
-	}
-	template <class InputIterator>
-	void append(InputIterator begin, InputIterator end, std::set<Kind> & s)
-	{
-		s.insert(begin, end);
-	}
-	iterator begin() { return c_.begin(); }
-	const_iterator begin() const { return c_.begin(); }
+  void Union(Kind const & k)
+  {
+    c_.push_back(k);
+  }
+	
+  void Union(Container const & in)
+  {
+    std::copy(in.begin(), in.end(), std::back_inserter(c_));
+  }
+  
+  iterator begin() { return c_.begin(); }
+  const_iterator begin() const { return c_.begin(); }
 
-	iterator end() { return c_.end(); }
-	const_iterator end() const { return c_.end(); }
-	bool isEmpty() const 
-	{
-		return c_.empty();
-	}
-	operator Container () const { return c_; } 
-  //operator Container2 () const { return Container2(c_.begin(), c_.end()); } 
+  iterator end() { return c_.end(); }
+  const_iterator end() const { return c_.end(); }
+  
+  bool isEmpty() const 
+  {
+    return c_.empty();
+  }
+  
+  operator Container () const { return c_; } 
   result_type operator () (argument_type p) const { return p; }
 
 /* 
@@ -202,20 +192,20 @@ struct ChainExpr : LEESAUnaryFunction <L, R>
 {
   typedef LEESAUnaryFunction <L, R> Super;
   SUPER_TYPEDEFS(Super);
-	typedef ChainExpr<L, R> expression_type;
+  typedef ChainExpr<L, R> expression_type;
 
   BOOST_CONCEPT_ASSERT((LEESA::ConvertibleDomainKindsConcept
                         <typename ET<L>::result_kind, 
                          typename ET<R>::argument_kind>));
 
-	L l_;
-	R r_;
-	ChainExpr (ChainExpr const & c) 
-		: l_(c.l_), r_(c.r_) 
-	{}
+  L l_;
+  R r_;
+  ChainExpr (ChainExpr const & c) 
+    : l_(c.l_), r_(c.r_) 
+  {}
   
   explicit ChainExpr (L const &l, R const & r) 
-		: l_(l), r_(r) {}
+    : l_(l), r_(r) {}
   
   result_type operator () (argument_type p) { return r_(l_(p)); }
 };
@@ -244,10 +234,10 @@ struct SequenceExpr : public LEESAUnaryFunction <L, void>
   result_type operator () (argument_type arg) 
 	{ 
 		l_(arg); 
-    typename ContainerGen<argument_kind>::type v = arg;
+    typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			typename ContainerGen<child_kind>::type c = 
+			typename KindTraits<child_kind>::Container c = 
         kind.template children_kind<child_kind>();
 			BOOST_FOREACH(child_kind ckind, c)
 			{ 
@@ -257,6 +247,8 @@ struct SequenceExpr : public LEESAUnaryFunction <L, void>
 
 	}
 };
+
+#ifndef LEESA_NO_VISITOR
 
 class VisitorAsIndexBase{};
 
@@ -278,6 +270,8 @@ VisitorAsIndex_CRTP<Kind, Visitor>::operator [] (Visitor &v)
   return LEESA::VisitorAsIndex<Kind> (v);
 }
 
+#endif // LEESA_NO_VISITOR
+
 template <class L, class H>
 /* The following overloaded comma operator is picked up from within 
    STL algorithms and causes compilation havoc. I'm totally hacking 
@@ -295,6 +289,8 @@ operator , (L const &l, H const &h)
 	return OP(l, h);
 }
 
+#ifndef LEESA_NO_VISITOR
+
 template <class L, class H>
 SequenceExpr<typename ET<L>::expression_type, 
              ChainExpr<typename ET<H>::result_type,
@@ -306,6 +302,8 @@ operator , (L const &l, VisitorAsIndex<H> vh)
 	return l , H() >> vh.getVisitor();
 }
 
+
+#endif // LEESA_NO_VISITOR
 
 template <class Para, class Expr>
 typename Expr::result_type
@@ -325,8 +323,8 @@ evaluate (Para const & p, Expr e)
 #include "LEESA_Operators.cpp"
 #include "LEESA_RShift.cpp"
 #include "LEESA_LShift.cpp"
-#include "SP.cpp"
-#include "AP.cpp"
+//#include "SP.cpp"
+//#include "AP.cpp"
 
 #endif // __LEESA_CPP
 

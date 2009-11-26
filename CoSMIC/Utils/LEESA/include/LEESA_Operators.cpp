@@ -27,12 +27,16 @@ struct DFSChildrenOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void
 
 		BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<parent_kind, child_kind>));
 
-		typename ContainerGen<parent_kind>::type v = arg;
+		typename KindTraits<parent_kind>::Container v = arg;
 		BOOST_FOREACH(parent_kind kind, v)
 		{
-			typename ContainerGen<child_kind>::type children = 
+			typename KindTraits<child_kind>::Container children = 
+#ifdef LEESA_FOR_UDM
 			kind.template children_kind<child_kind>();
-			std::for_each(children.begin(), children.end(), expr_);
+#else // LEESA_FOR_UDM
+			children_kind (kind, child_kind());
+#endif // LEESA_FOR_UDM			
+      std::for_each(children.begin(), children.end(), expr_);
 		}
 	}
 };
@@ -60,7 +64,7 @@ struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
 
     BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept<child_kind, parent_kind>));
 
-		typename ContainerGen<child_kind>::type v = arg;
+		typename KindTraits<child_kind>::Container v = arg;
 		BOOST_FOREACH(child_kind kind, v)
 		{
 			parent_kind parent = kind.template parent_kind<parent_kind>();
@@ -92,7 +96,7 @@ struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>,
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		std::for_each(v.begin(), v.end(), expr_);
 	}
 };
@@ -104,7 +108,7 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
   SUPER_TYPEDEFS(Super);
 	typedef ChainExpr<E, SelectorOp> expression_type;
 	
-	typename ContainerGen<argument_kind>::type c_;
+	typename KindTraits<argument_kind>::Container c_;
 	bool logical_not_; 
 	
   explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
@@ -116,10 +120,10 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
   result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-			typename ContainerGen<argument_kind>::type::iterator i = 
+			typename KindTraits<argument_kind>::Container::iterator i = 
 				std::find(c_.begin(), c_.end(), kind);
 			if ((i != c_.end()) ^ logical_not_) // Logical not of match, if required
 				retval.Union(kind);
@@ -149,10 +153,14 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
 
 		result_type retval;
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
+#ifdef LEESA_FOR_UDM
 			retval.Union(kind.template children_kind<result_kind>());
+#else // LEESA_FOR_UDM
+      retval.Union(children_kind(kind, result_kind()));
+#endif // LEESA_FOR_UDM
 		}
 		return retval;
 	}
@@ -174,16 +182,23 @@ struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
     BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <argument_kind, result_kind>));
 
 		result_type retval;
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
-      result_kind parent = kind.template parent_kind<result_kind>();
+#ifdef LEESA_FOR_UDM
+			result_kind parent = kind.template parent_kind<result_kind>();
+#else // LEESA_FOR_UDM
+      result_kind parent = parent_kind(kind, result_kind());
+#endif // LEESA_FOR_UDM
+
       if (std::count (retval.begin(), retval.end(), parent) == 0)
 			  retval.Union(parent);
 		}
 		return retval;
 	}
 };
+
+#ifndef LEESA_NO_VISITOR
 
 template <class E>
 struct VisitorOp : LEESAUnaryFunction <E>,
@@ -202,7 +217,7 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			kind.Accept(visitor_);
@@ -210,6 +225,8 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 		return arg;
 	}
 };
+
+#endif // LEESA_NO_VISITOR
 
 template <class E>
 struct RegexOp : LEESAUnaryFunction <E>,
@@ -232,7 +249,7 @@ struct RegexOp : LEESAUnaryFunction <E>,
   result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			bool match = boost::regex_match(std::string(kind.name()), regex_);
@@ -270,7 +287,7 @@ struct NonNullOp : LEESAUnaryFunction <E>, OpBase
   result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		typename ContainerGen<argument_kind>::type c = arg;
+		typename KindTraits<argument_kind>::Container c = arg;
 		BOOST_FOREACH(argument_kind kind, c)
 		{
       bool match = (Udm::null != kind);
@@ -303,7 +320,7 @@ struct CastOp : LEESAUnaryFunction <L, H>, OpBase
   result_type operator () (argument_type const & arg)
   {
     result_type retval;
-    typename ContainerGen<argument_kind>::type v = arg;
+    typename KindTraits<argument_kind>::Container v = arg;
     BOOST_FOREACH(argument_kind kind, v)
     {
       if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
@@ -332,7 +349,7 @@ struct AssociationOp : LEESAUnaryFunction <TARGETCLASS, RESULT>,
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -358,7 +375,7 @@ struct AssociationManyOp : LEESAUnaryFunction <SOURCECLASS,ASSOC>, OpBase
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -384,7 +401,7 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		result_type retval;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
@@ -417,7 +434,7 @@ struct FilterOp : LEESAUnaryFunction <E>, OpBase
   result_type operator () (argument_type const & arg)
 	{
 		result_type retval;
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
 		BOOST_FOREACH(argument_kind kind, v)
 		{
 			if (func_(kind) ^ logical_not_) // Logical not of match, if required
@@ -450,7 +467,7 @@ struct ForEachOp : LEESAUnaryFunction <E>, OpBase
 	
   result_type operator () (argument_type const & arg)
 	{
-		typename ContainerGen<argument_kind>::type v = arg;
+		typename KindTraits<argument_kind>::Container v = arg;
     std::for_each (v.begin(), v.end(), func_);
 		return arg;
 	}
@@ -473,7 +490,7 @@ struct SortOp : LEESAUnaryFunction <E>,
 	
   result_type operator () (argument_type const & k)
 	{
-		typename ContainerGen<argument_kind>::type s = k;
+		typename KindTraits<argument_kind>::Container s = k;
 		std::sort(s.begin(), s.end(), comp_);
 		return s;
 	}
@@ -495,8 +512,8 @@ struct UniqueOp : LEESAUnaryFunction <E>,
 	
   result_type operator () (argument_type const & k)
 	{
-		typename ContainerGen<argument_kind>::type s = k;
-    typename ContainerGen<result_kind>::type retval;
+		typename KindTraits<argument_kind>::Container s = k;
+    typename KindTraits<result_kind>::Container retval;
 		BOOST_FOREACH(argument_kind kind, s)
     {  
       if (std::count (retval.begin(), retval.end(), kind) == 0)
@@ -611,52 +628,6 @@ CastFromTo (L, H)
 	typedef typename ET<H>::result_type result_type;
 
 	return CastOp<argument_type, result_type>();
-}
-
-template <class L, class RESULT, class TARGETCLASS>
-typename disable_if<is_base_of<std::ios_base, L>, 
-          ChainExpr<typename ET<L>::expression_type, 
-		      AssociationOp<RESULT, TARGETCLASS>
-          > >::type
-operator >> (L const &l, 
-			Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*func)() const)
-{
-	typedef AssociationOp<RESULT, TARGETCLASS> OP;
-	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleDomainKindsConcept<ParentKind, ChildKind>));
-
-	return ChainExpr(ParentKindExpr(l), OP(func));
-}
-
-
-template <class L, class ASSOC, class SOURCECLASS, class TARGETCLASS>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ET<L>::expression_type, 
-		        AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS>
-  > >::type
-operator >> (L const &l, 
-			 Udm::AClassAssocAttr<ASSOC, TARGETCLASS> (SOURCECLASS::*func)() const)
-{
-	typedef AssociationManyOp<ASSOC, SOURCECLASS, TARGETCLASS> OP;
-	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleDomainKindsConcept<ParentKind, ChildKind>));
-
-	return ChainExpr(ParentKindExpr(l), OP(func));
-}
-
-template <class L, class RESULT, class TARGETCLASS>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ET<L>::expression_type, 
-		        AssociationEndOp<RESULT, TARGETCLASS>
-  > >::type
-operator >> (L const &l, 
-			Udm::AssocEndAttr<RESULT> (TARGETCLASS::*func)() const)
-{
-	typedef AssociationEndOp<RESULT, TARGETCLASS> OP;
-	LOCAL_TYPEDEFS(L, OP); 
-	BOOST_CONCEPT_ASSERT((LEESA::ConvertibleDomainKindsConcept<ParentKind, ChildKind>));
-
-	return ChainExpr(ParentKindExpr(l), OP(func));
 }
 
 #endif // LEESA_FOR_UDM

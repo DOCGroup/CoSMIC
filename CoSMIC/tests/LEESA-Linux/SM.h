@@ -6,7 +6,7 @@
 #define MOBIES_SM_H
 
 // header file SM.h generated from diagram SM
-// generated with Udm version 3.13 on Thu Nov 19 19:59:30 2009
+// generated with Udm version 3.13 on Sun Nov 22 22:35:21 2009
 
 #include <UdmBase.h>
 
@@ -31,6 +31,8 @@
 #endif
 
 #include "SM_export.h"
+
+#include "LEESA_VisitorAsIndex.h"
 
 namespace SM {
 
@@ -70,7 +72,7 @@ namespace SM {
 
 	extern SM_Export Udm::UdmDiagram diagram;
 
-	class SM_Export RootFolder : public Udm::Object {
+	class SM_Export RootFolder : public Udm::Object , public LEESA::VisitorAsIndex_CRTP< RootFolder, Visitor > {
 	public:
 		typedef ::Udm::FolderMetaTag MetaKind;
 
@@ -91,15 +93,7 @@ namespace SM {
 		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
 		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
 		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
-		
-		template <class ChildrenType> 
-		Udm::ChildrenAttr<ChildrenType> children_kind() const 
-		{ 
-		  boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); 
-		  return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); 
-		}
-		
-		
+		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
 		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
@@ -120,6 +114,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RootFolder(*this); }
+		using LEESA::VisitorAsIndex_CRTP< RootFolder, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_name;
@@ -192,7 +188,7 @@ namespace SM {
 
 	};
 
-	class SM_Export InputSequence :  public MgaObject {
+	class SM_Export InputSequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor > {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -229,6 +225,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InputSequence(*this); }
+		using LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_Sequence_children;
@@ -251,7 +249,7 @@ namespace SM {
 
 	};
 
-	class SM_Export Sequence :  public MgaObject {
+	class SM_Export Sequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Sequence, Visitor > {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -280,6 +278,8 @@ namespace SM {
 		Udm::AssocEndAttr< ::SM::Events> dstSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_dstSequence_end_); }
 		Udm::AssocEndAttr< ::SM::Events> srcSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_srcSequence_end_); }
 		void Accept(Visitor &v) { v.Visit_Sequence(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Sequence, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionParentRole meta_InputSequence_parent;
@@ -302,7 +302,7 @@ namespace SM {
 
 	};
 
-	class SM_Export Events :  public MgaObject {
+	class SM_Export Events :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Events, Visitor > {
 	public:
 		typedef ::Udm::AtomMetaTag MetaKind;
 
@@ -332,6 +332,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::InputSequence> InputSequence_parent() const { return Udm::ParentAttr< ::SM::InputSequence>(impl, meta_InputSequence_parent); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Events(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Events, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_Delay;
@@ -357,7 +359,7 @@ namespace SM {
 
 	};
 
-	class SM_Export Transition :  public MgaObject {
+	class SM_Export Transition :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Transition, Visitor > {
 	public:
 		typedef ::Udm::ConnectionMetaTag MetaKind;
 
@@ -387,6 +389,8 @@ namespace SM {
 		Udm::AssocEndAttr< ::SM::BaseState> srcTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_srcTransition_end_); }
 		Udm::AssocEndAttr< ::SM::BaseState> dstTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_dstTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_Transition(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Transition, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_Event;
@@ -410,7 +414,7 @@ namespace SM {
 
 	};
 
-	class SM_Export StateMachine :  public MgaObject {
+	class SM_Export StateMachine :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< StateMachine, Visitor > {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -455,6 +459,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_StateMachine(*this); }
+		using LEESA::VisitorAsIndex_CRTP< StateMachine, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_Reference_children;
@@ -478,7 +484,7 @@ namespace SM {
 
 	};
 
-	class SM_Export Reference :  public MgaObject {
+	class SM_Export Reference :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Reference, Visitor > {
 	public:
 		typedef ::Udm::ReferenceMetaTag MetaKind;
 
@@ -507,6 +513,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::BaseState> BaseState_parent() const { return Udm::ParentAttr< ::SM::BaseState>(impl, meta_BaseState_parent); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Reference(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Reference, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_ref;
@@ -529,7 +537,7 @@ namespace SM {
 
 	};
 
-	class SM_Export BaseState :  public MgaObject {
+	class SM_Export BaseState :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< BaseState, Visitor > {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -577,6 +585,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::BaseState> BaseState_parent() const { return Udm::ParentAttr< ::SM::BaseState>(impl, meta_BaseState_parent); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_BaseState(*this); }
+		using LEESA::VisitorAsIndex_CRTP< BaseState, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyReference;
@@ -605,7 +615,7 @@ namespace SM {
 
 	};
 
-	class SM_Export State :  public BaseState {
+	class SM_Export State :  public BaseState , public LEESA::VisitorAsIndex_CRTP< State, Visitor > {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -631,6 +641,8 @@ namespace SM {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_State(*this); }
+		using LEESA::VisitorAsIndex_CRTP< State, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 
@@ -650,7 +662,7 @@ namespace SM {
 
 	};
 
-	class SM_Export StartState :  public BaseState {
+	class SM_Export StartState :  public BaseState , public LEESA::VisitorAsIndex_CRTP< StartState, Visitor > {
 	public:
 		typedef ::Udm::ModelMetaTag MetaKind;
 
@@ -676,6 +688,8 @@ namespace SM {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_StartState(*this); }
+		using LEESA::VisitorAsIndex_CRTP< StartState, Visitor >::operator [];
+
 
 		static ::Uml::Class meta;
 

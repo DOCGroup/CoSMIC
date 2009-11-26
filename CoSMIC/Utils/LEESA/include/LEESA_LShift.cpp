@@ -1,18 +1,15 @@
 
 namespace LEESA {
 
+
 template <class L, class H>
 typename disable_if_c
-  <is_base_of<DOMAIN_NAMESPACE::Visitor, H>::value |
+  <IsDomainVisitorBaseOf<H>::value |
    is_base_of<std::ios_base, L>::value |
    is_base_of <OpBase, H>::value,
    typename ChainedOperator<L,H,GetParentOp>::Op>::type
 operator << (L const &l, H)
 {
-	//BOOST_CONCEPT_ASSERT((Convertible<H, OpBase>));
-	BOOST_MPL_ASSERT_NOT((boost::is_base_of<OpBase, H>));
-  BOOST_MPL_ASSERT_NOT((boost::is_base_of<DOMAIN_NAMESPACE::Visitor, H>));
-	
 	// Don't replace the following with LOCAL_TYPEDEFS.
 	typedef GetParentOp<typename ET<L>::result_type, 
                       typename ET<H>::argument_type>  OP;
@@ -28,7 +25,7 @@ operator << (L const &l, H)
 
 template <class L, class H>
 typename disable_if
-  <is_base_of<DOMAIN_NAMESPACE::Visitor, H>,
+  <IsDomainVisitorBaseOf<H>,
    ChainExpr<typename ET<L>::expression_type, 
  		         DFSParentOp<typename ET<L>::expression_type,
 		 			               typename ET<H>::expression_type>
@@ -51,6 +48,21 @@ operator <<= (L const &l, H const & h)
 	return ChainExpr(ParentExpr(l), op);
 }
 
+template <class L, class OP>                              
+typename disable_if_c<                                             
+  IsDomainVisitorBaseOf<L>::value |                     
+  is_base_of <std::ios_base, L>::value |
+  !is_base_of <OpBase, OP>::value,                             
+  ChainExpr<typename ET< L >::expression_type, OP> >::type  
+operator << (L const &l, OP op) 
+{                            
+  LOCAL_TYPEDEFS(L, OP);
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
+  return ChainExpr(ParentKindExpr(l), op);                   
+}
+
+#ifndef LEESA_NO_VISITOR
+
 template <class L, class R>
 ChainExpr<ChainExpr<typename ET<L>::expression_type,
                     VisitorOp<typename ET<L>::result_type>
@@ -70,20 +82,6 @@ operator <<= (VisitorAsIndex<L> vl, VisitorAsIndex<R> vr)
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept <ParentKind,ChildKind>));
 
   return L() >> vl.getVisitor() <<= R() >> vr.getVisitor();
-}
-
-
-template <class L, class OP>                              
-typename disable_if_c<                                             
-  is_base_of <VisitorAsIndexBase, L>::value |                     
-  is_base_of <std::ios_base, L>::value |
-  !is_base_of <OpBase, OP>::value,                             
-  ChainExpr<typename ET< L >::expression_type, OP> >::type  
-operator << (L const &l, OP op) 
-{                            
-  LOCAL_TYPEDEFS(L, OP);
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
-  return ChainExpr(ParentKindExpr(l), op);                   
 }
 
 template <class L>
@@ -136,6 +134,6 @@ operator << (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
   return L() >> vl.getVisitor() << H() >> vh.getVisitor();
 }
 
-
+#endif // LEESA_NO_VISITOR
 
 } // namespace LEESA

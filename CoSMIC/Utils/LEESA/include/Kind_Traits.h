@@ -1,6 +1,10 @@
 #ifndef __KIND_TRAITS_H
 #define __KIND_TRAITS_H
 
+#ifndef DOMAIN_NAMESPACE
+#error "Please #define DOMAIN_NAMESPACE"
+#endif
+
 #include <boost/mpl/front.hpp>
 #include <boost/mpl/pop_front.hpp>
 #include <boost/mpl/push_back.hpp>
@@ -10,6 +14,13 @@
 #include <boost/mpl/remove_if.hpp>
 #include <boost/mpl/placeholders.hpp>
 #include <boost/mpl/vector.hpp>
+
+
+namespace DOMAIN_NAMESPACE 
+{
+  template <class T>
+  struct SchemaTraits;
+}
 
 namespace LEESA {
 
@@ -32,9 +43,10 @@ namespace LEESA {
     };
   };
 
-  template <class Kind>
-  struct KindTraits <Kind, Default> 
+  template <class Kind, class Custom = Default>
+  struct KindTraits 
   {
+    typedef typename std::vector<Kind> Container;
     typedef typename Kind::ChildrenKinds ChildrenKinds;
     typedef typename Kind::ParentKinds ParentKinds;
     typedef typename Kind::MetaKind MetaKind;
@@ -42,19 +54,18 @@ namespace LEESA {
 
 #else // LEESA_FOR_UDM
 
-  /*
   struct AtomMetaTag {};
 	struct ModelMetaTag {};
 	struct ReferenceMetaTag {};
 
 	typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
-  */
-
+	
   struct Default {};
 
-  template <class Kind>
-  struct KindTraits <Kind, Default> 
+  template <class Kind, class Custom = Default>
+  struct KindTraits 
   {
+    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Container Container;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;
@@ -148,3 +159,4 @@ struct IsDescendantVector
 } // namespace LEESA
 
 #endif // __KIND_TRAITS_H
+
