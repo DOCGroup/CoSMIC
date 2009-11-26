@@ -321,7 +321,7 @@ private:
 	  typedef typename ET<Head>::result_type HeadType;
 
     DescendantGraphOp <FromType, HeadType, Self> d;
-    typename ContainerGen<Head>::type through_set 
+    typename KindTraits<Head>::Container through_set 
       = evaluate(from, FromKind() >> d);
     BOOST_FOREACH(Head h, through_set)
     {
