@@ -4,6 +4,7 @@
 	Version="9.00"
 	Name="SM_LEESA"
 	ProjectGUID="{1870E543-A48C-47C7-86A2-BD58DFCC352F}"
+	RootNamespace="SM_LEESA"
 	TargetFrameworkVersion="196613"
 	>
 	<Platforms>
@@ -136,8 +137,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
-				AdditionalIncludeDirectories=".;$(GME_ROOT)/SDK/BON/Common;$(UDM_PATH)/include;C:\mySVN\COSMIC\Utils\LEESA"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UDM_DYNAMIC_LINKING"
+				AdditionalIncludeDirectories=".;$(GME_ROOT)/SDK/BON/Common;$(UDM_PATH)/include;C:\mySVN\COSMIC\Utils\LEESA\include"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;UDM_DYNAMIC_LINKING;LEESA_FOR_UDM"
 				RuntimeLibrary="2"
 				TreatWChar_tAsBuiltInType="true"
 				UsePrecompiledHeader="0"

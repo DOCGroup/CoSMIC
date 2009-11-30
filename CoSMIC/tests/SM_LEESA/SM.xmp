@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE paradigm SYSTEM "edf.dtd">
 
-<paradigm name="SM" guid="{F205EDC1-8E1E-45CE-8BA8-43527E2ADF45}" cdate="Wed Oct 14 11:00:49 2009" mdate="Wed Oct 14 11:00:49 2009" >
+<paradigm name="SM" guid="{5294A34B-C73E-403D-B932-17B07E267A0E}" cdate="Sun Nov 29 11:07:47 2009" mdate="Sun Nov 29 11:07:47 2009" >
 
 	<comment></comment>
 
@@ -65,12 +65,10 @@ states->select( s : State | s.StartState )->size = 1]]>
 				<regnode name = "lineType" value ="solid"></regnode>
 			<connjoint>
 				<pointerspec name = "src">
-					<pointeritem desc = "BaseState"></pointeritem>
 					<pointeritem desc = "StartState"></pointeritem>
 					<pointeritem desc = "State"></pointeritem>
 				</pointerspec>
 				<pointerspec name = "dst">
-					<pointeritem desc = "BaseState"></pointeritem>
 					<pointeritem desc = "StartState"></pointeritem>
 					<pointeritem desc = "State"></pointeritem>
 				</pointerspec>
@@ -81,24 +79,10 @@ states->select( s : State | s.StartState )->size = 1]]>
 				<regnode name = "rName" value ="ref"></regnode>
 				<regnode name = "rrName" value ="referedbyReference"></regnode>
 			<pointerspec name = "ref">
-				<pointeritem desc = "BaseState"></pointeritem>
 				<pointeritem desc = "StartState"></pointeritem>
 				<pointeritem desc = "State"></pointeritem>
 			</pointerspec>
 		</reference>
-		<model name = "BaseState" metaref = "1071" >
-				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "BaseState" metaref = "1072" kind = "BaseState"></role>
-			<role name = "Reference" metaref = "1073" kind = "Reference"></role>
-			<role name = "StartState" metaref = "1074" kind = "StartState"></role>
-			<role name = "State" metaref = "1075" kind = "State"></role>
-			<aspect name = "SM" metaref = "1067" >
-				<part metaref = "1076" role = "BaseState" primary = "yes" linked = "no"></part>
-				<part metaref = "1077" role = "Reference" primary = "yes" kindaspect = "SM" linked = "no"></part>
-				<part metaref = "1078" role = "StartState" primary = "yes" linked = "no"></part>
-				<part metaref = "1079" role = "State" primary = "yes" linked = "no"></part>
-			</aspect>
-		</model>
 		<model name = "InputSequence" metaref = "1007" >
 				<regnode name = "namePosition" value ="4"></regnode>
 			<role name = "Events" metaref = "1008" kind = "Events"></role>
@@ -110,41 +94,39 @@ states->select( s : State | s.StartState )->size = 1]]>
 		</model>
 		<model name = "StartState" metaref = "1080" >
 				<regnode name = "namePosition" value ="4"></regnode>
-				<regnode name = "color" value ="0x0000FF"></regnode>
-			<role name = "BaseState" metaref = "1081" kind = "BaseState"></role>
+				<regnode name = "color" value ="0x00FF00"></regnode>
 			<role name = "Reference" metaref = "1082" kind = "Reference"></role>
 			<role name = "StartState" metaref = "1083" kind = "StartState"></role>
 			<role name = "State" metaref = "1084" kind = "State"></role>
+			<role name = "Transition" metaref = "1109" kind = "Transition"></role>
 			<aspect name = "SM" metaref = "1037" >
-				<part metaref = "1085" role = "BaseState" primary = "yes" linked = "no"></part>
 				<part metaref = "1086" role = "Reference" primary = "yes" kindaspect = "SM" linked = "no"></part>
 				<part metaref = "1087" role = "StartState" primary = "yes" linked = "no"></part>
 				<part metaref = "1088" role = "State" primary = "yes" linked = "no"></part>
+				<part metaref = "1110" role = "Transition" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "State" metaref = "1089" >
 				<regnode name = "namePosition" value ="4"></regnode>
 				<regnode name = "color" value ="0x0000FF"></regnode>
-			<role name = "BaseState" metaref = "1090" kind = "BaseState"></role>
 			<role name = "Reference" metaref = "1091" kind = "Reference"></role>
 			<role name = "StartState" metaref = "1092" kind = "StartState"></role>
 			<role name = "State" metaref = "1093" kind = "State"></role>
+			<role name = "Transition" metaref = "1111" kind = "Transition"></role>
 			<aspect name = "SM" metaref = "1046" >
-				<part metaref = "1094" role = "BaseState" primary = "yes" linked = "no"></part>
 				<part metaref = "1095" role = "Reference" primary = "yes" kindaspect = "SM" linked = "no"></part>
 				<part metaref = "1096" role = "StartState" primary = "yes" linked = "no"></part>
 				<part metaref = "1097" role = "State" primary = "yes" linked = "no"></part>
+				<part metaref = "1112" role = "Transition" primary = "yes" linked = "no"></part>
 			</aspect>
 		</model>
 		<model name = "StateMachine" metaref = "1098" >
 				<regnode name = "namePosition" value ="4"></regnode>
-			<role name = "BaseState" metaref = "1099" kind = "BaseState"></role>
 			<role name = "Reference" metaref = "1100" kind = "Reference"></role>
 			<role name = "StartState" metaref = "1101" kind = "StartState"></role>
 			<role name = "State" metaref = "1102" kind = "State"></role>
 			<role name = "Transition" metaref = "1103" kind = "Transition"></role>
 			<aspect name = "SM" metaref = "1055" >
-				<part metaref = "1104" role = "BaseState" primary = "yes" linked = "no"></part>
 				<part metaref = "1105" role = "Reference" primary = "yes" kindaspect = "SM" linked = "no"></part>
 				<part metaref = "1106" role = "StartState" primary = "yes" linked = "no"></part>
 				<part metaref = "1107" role = "State" primary = "yes" linked = "no"></part>

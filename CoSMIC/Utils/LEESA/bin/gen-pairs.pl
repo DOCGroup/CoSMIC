@@ -6,6 +6,8 @@ use warnings;
 my %children;
 my $class;
 my $namespace;
+my $visitor_mode = 0;
+my $accept_found = 0;
 
 # Add the class and its list of children in the hash table.
 sub add_children {
@@ -16,16 +18,43 @@ sub add_children {
   $children{$full_class} = \@child_array;   # Create a reference to the array and put it in the hash.
 }
 
+sub add_leave_functions {
+  my $line = shift(@_);
+  
+  if ($line =~ m/^\s*virtual.*const\s*(.*)\s+&.*$/) {
+    if ($1 ne "Udm::Object") {
+      return $line . "\t\tvirtual void Leave_" . $1 . "(const " . $1 . " &) {}\n";
+    }
+  }
+  # End of the visitor class.
+  elsif ($line =~ m/^\s*};$/) {
+    $visitor_mode = 0;
+    return $line;
+  }
+
+  return $line;
+}
+
 sub prune {
   my $line = shift(@_);
 
-  # Match a class declaration and inheritance line. This match, except for 
-  # class="Visitor", must pair with a list of childre, which is next one regex.  
+  if ($visitor_mode == 1) {
+    return add_leave_functions($line);
+  }
   
+  # Match a class declaration and inheritance line. This match, except for 
+  # class=Visitor and class=MgaObject, must pair with a list of children, 
+  # which is the next regex.  
   if ($line =~ m/^\s*class\s*(.*)\s*:\s*(virtual\s*public|public).*{$/) {
     my @decl = split(/ /, $1); # *_Export link-time visibility specification could be there before class name.
     $class = $decl[-1]; # The last element in the array must be the class name.
-    if (($class ne "MgaObject") && ($class ne "Visitor"))
+    $accept_found = 0;
+    # If Visitor class is found then add Leave_* functions in it.
+    if ($class eq "Visitor") {
+      $visitor_mode = 1;
+      return $line;
+    }
+    elsif (($class ne "MgaObject") && ($class ne "Visitor"))
     {
       $line =~ s/{//;
       $line =~ s/\n//;
@@ -53,7 +82,22 @@ sub prune {
   # Bring the overloaded [] operator for VisitorAsIndex in the scope. This using declaration
   # hides the same operator in the base class, if any.
   elsif ($line =~ m/^\s*.*Accept.+Visitor.*this.*}$/) {
-    return $line."\t\tusing LEESA::VisitorAsIndex_CRTP< $class, Visitor >::operator [];\n\n";
+    my $l = $line;
+    $l = $l . "\t\tvoid Leave(Visitor &v) { v.Leave_" . $class . "(*this); }\n";
+    $l = $l . "\t\tusing LEESA::VisitorAsIndex_CRTP< $class, Visitor >::operator [];\n\n";
+    $accept_found = 1;
+    return $l;
+  }
+  
+  # Add a Leave function in classes representing abstract kinds.
+  # This function is needed because Udm::Object has empty Visit
+  # function but does not have any Leave function. 
+  elsif ($line =~ m/^\s*static ::Uml::Class meta;$/) {
+    if ($accept_found == 0) {
+      my $l = "\t\tvoid Leave(Visitor &v) { }\n\n" . $line;
+      $accept_found = 0;
+      return $l;
+    }
   }
   
   # Discard most of the other meta-information in the class.

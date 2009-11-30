@@ -6,7 +6,7 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Sun Nov 22 00:37:48 2009
+/* at Sun Nov 29 17:53:13 2009
  */
 /* Compiler settings for ..\..\..\..\Program Files (x86)\GME\SDK\BON\Common\ComponentLib.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)

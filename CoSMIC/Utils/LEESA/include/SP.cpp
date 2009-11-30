@@ -39,6 +39,24 @@
 
 /**********************************************************************************/
 
+#define FUNCTIONS_FOR_SP_OP_WITH_2CUSTOMIZABLE_STRATEGIES(OP)               \
+  template <class W, class X, class Y, class Z>                             \
+  OP##Op<W, X, Y, Z>                                                        \
+  OP (W, X const &x, Y const & y, Z) {                                      \
+    typedef typename ET<W>::argument_kind argument_kind;                    \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Z>));     \
+    return OP##Op<W, X, Y, Z> (x, y);                                       \
+  }                                                                         \
+  template <class W, class X, class Y>                                      \
+  OP##Op<W, X, Y, Default>                                                  \
+  OP (W, X const &x, Y const & y)  {                                        \
+    typedef typename ET<W>::argument_kind argument_kind;                    \
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));        \
+    return OP##Op<W, X, Y, LEESA::Default> (x, y);                          \
+  }
+
+/**********************************************************************************/
+
 #define FUNCTION_FOR_SP_OP_WITH_2STRATEGIES(OP)                                   \
   template <class K, class Strategy1, class Strategy2>                            \
   OP##Op<typename ET<K>::argument_type, Strategy1, Strategy2>                     \
@@ -99,6 +117,49 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                   
 
 /**********************************************************************************/
 
+#define CLASS_FOR_SP_OP_WITH_2CUSTOMIZABLE_STRATEGIES(OP)                    \
+template <class K,                                                           \
+          class Strategy1 = KindLit<K>,                                      \
+          class Strategy2 = KindLit<K>,                                      \
+          class Custom = LEESA::Default>                                     \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
+{                                                                            \
+  typedef ChainExpr<K, OP##Op> expression_type;                              \
+  typedef LEESAUnaryFunction <K> Super;                                      \
+  SUPER_TYPEDEFS(Super);                                                     \
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));   \
+                                                                             \
+  template <class U>                                                         \
+  struct rebind                                                              \
+  {                                                                          \
+    typedef OP##Op<U,                                                        \
+                   typename Strategy1::template rebind<U>::type,             \
+                   typename Strategy2::template rebind<U>::type,             \
+                   Custom> type;                                             \
+  };                                                                         \
+                                                                             \
+  Strategy1 s1_;                                                             \
+  Strategy2 s2_;                                                             \
+                                                                             \
+  template <class W, class X, class Y, class Z>                              \
+  explicit OP##Op (OP##Op<W, X, Y, Z> const & op)                            \
+    : s1_(op.s1_), s2_(op.s2_)                                               \
+  {}                                                                         \
+                                                                             \
+  explicit OP##Op (Strategy1 const &s1, Strategy2 const &s2)                 \
+    : s1_(s1), s2_ (s2) {}                                                   \
+                                                                             \
+  result_type operator () (argument_type const & arg)                        \
+  {                                                                          \
+    BOOST_FOREACH(argument_kind kind, arg)                                   \
+    {                                                                        \
+      (*this)(kind);                                                         \
+    }                                                                        \
+    return arg;                                                              \
+  }
+
+/**********************************************************************************/
+
 #define CLASS_FOR_SP_OP_WITH_2STRATEGIES(OP)                                 \
 template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
@@ -123,7 +184,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
                                                                              \
   template <class X, class Y, class Z>                                       \
   explicit OP##Op (OP##Op<X, Y, Z> const & op)                               \
-    : s1_(op.s1), s2_(op.s2)                                                 \
+    : s1_(op.s1_), s2_(op.s2_)                                               \
   {}                                                                         \
                                                                              \
   explicit OP##Op (Strategy1 const &s1, Strategy2 const &s2)                 \
@@ -233,9 +294,13 @@ ObjectSet VISITED;
 
 class _StrategyBase {}; // Base class of all the strategies. Just for documentation.
 
+template <class K> struct FailOp;
 
 template <class T, class Func> struct CallerOp;
-template <class K> struct FailOp;
+template <class X, class Y> struct TryOp;
+template <class X, class Y> struct RepeatOp;
+template <class X, class Y> struct RepeatLoopOp;
+
 template <class X, class Y, class Z> struct ChoiceOp;
 template <class X, class Y, class Z> struct SeqOp;
 template <class X, class Y, class Z> struct OneOp;
@@ -244,36 +309,36 @@ template <class X, class Y, class Z> struct AllGraphOp;
 template <class X, class Y, class Z> struct FullTDOp;
 template <class X, class Y, class Z> struct FullTDGraphOp;
 template <class X, class Y, class Z> struct FullBUOp;
-
-template <class X, class Y> struct TryOp;
-template <class X, class Y> struct RepeatOp;
-template <class X, class Y> struct RepeatLoopOp;
 template <class X, class Y, class Z> struct OnceTDOp;
 template <class X, class Y, class Z> struct OnceBUOp;
 template <class X, class Y, class Z> struct StopTDOp;
 template <class X, class Y, class Z> struct NaiveInnermostOp;
 template <class X, class Y, class Z> struct InnermostOp;
 
-ExpressionTraits1Para(FailOp);
+template <class W, class X, class Y, class Z> struct AroundFullTDOp;
 
-ExpressionTraits2Para(CallerOp);
-ExpressionTraits2Para(TryOp);
-ExpressionTraits2Para(RepeatOp);
-ExpressionTraits2Para(RepeatLoopOp);
+EXPRESSION_TRAITS_1PARA(FailOp);
 
-ExpressionTraits3Para(SeqOp);
-ExpressionTraits3Para(ChoiceOp);
-ExpressionTraits3Para(OneOp);
-ExpressionTraits3Para(AllOp);
-ExpressionTraits3Para(AllGraphOp);
-ExpressionTraits3Para(FullTDOp);
-ExpressionTraits3Para(FullTDGraphOp);
-ExpressionTraits3Para(FullBUOp);
-ExpressionTraits3Para(OnceTDOp);
-ExpressionTraits3Para(OnceBUOp);
-ExpressionTraits3Para(StopTDOp);
-ExpressionTraits3Para(NaiveInnermostOp);
-ExpressionTraits3Para(InnermostOp);
+EXPRESSION_TRAITS_2PARA(CallerOp);
+EXPRESSION_TRAITS_2PARA(TryOp);
+EXPRESSION_TRAITS_2PARA(RepeatOp);
+EXPRESSION_TRAITS_2PARA(RepeatLoopOp);
+
+EXPRESSION_TRAITS_3PARA(SeqOp);
+EXPRESSION_TRAITS_3PARA(ChoiceOp);
+EXPRESSION_TRAITS_3PARA(OneOp);
+EXPRESSION_TRAITS_3PARA(AllOp);
+EXPRESSION_TRAITS_3PARA(AllGraphOp);
+EXPRESSION_TRAITS_3PARA(FullTDOp);
+EXPRESSION_TRAITS_3PARA(FullTDGraphOp);
+EXPRESSION_TRAITS_3PARA(FullBUOp);
+EXPRESSION_TRAITS_3PARA(OnceTDOp);
+EXPRESSION_TRAITS_3PARA(OnceBUOp);
+EXPRESSION_TRAITS_3PARA(StopTDOp);
+EXPRESSION_TRAITS_3PARA(NaiveInnermostOp);
+EXPRESSION_TRAITS_3PARA(InnermostOp);
+
+EXPRESSION_TRAITS_4PARA(AroundFullTDOp);
 
 
 template <class E, class Func>
@@ -350,6 +415,21 @@ result_kind operator () (argument_kind const & arg)
     {
       s1_(arg);
       s2_(arg);
+      return arg;
+    }
+};
+
+// This traversal scheme is designed for hierarchical visitor, which
+// calls Visit_* on ingress and Leave_* on egress.
+CLASS_FOR_SP_OP_WITH_2CUSTOMIZABLE_STRATEGIES(AroundFullTD)
+result_kind operator () (argument_kind const & arg)
+    {
+      typedef AllOp<K, AroundFullTDOp, Custom> All;
+      typedef SeqOp<K, Strategy1, All> HalfStrategy;
+      typedef SeqOp<K, HalfStrategy, Strategy2> AroundFullTD;
+      HalfStrategy hs(s1_, All(*this));
+      AroundFullTD around (hs, s2_);
+      around(arg);
       return arg;
     }
 };
@@ -687,10 +767,38 @@ class VisitStrategy : public _StrategyBase
     template <class U>
     U operator ()(U const & k)
     {
-      using namespace LEESA;
       typedef typename ET<U>::argument_kind Kind;
       BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
-      evaluate(k, Kind() >> visitor_);
+      LEESA::evaluate(k, Kind() >> visitor_);
+      return k;
+    }
+    DOMAIN_NAMESPACE::Visitor & getVisitor() const
+    {
+      return visitor_;
+    }
+};
+
+class LeaveStrategy : public _StrategyBase
+{
+    DOMAIN_NAMESPACE::Visitor & visitor_;
+  public:
+
+    template <class U>
+    struct rebind
+    {
+      typedef LeaveStrategy type;
+    };
+
+    explicit LeaveStrategy (DOMAIN_NAMESPACE::Visitor & v) 
+      : visitor_(v) {} 
+
+    template <class U>
+    U operator ()(U const & u)
+    {
+      typedef typename ET<U>::argument_kind Kind;
+      BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
+      Kind k = u;
+      k.Leave(visitor_);
       return k;
     }
     DOMAIN_NAMESPACE::Visitor & getVisitor() const
@@ -768,8 +876,7 @@ FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(StopTD);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(NaiveInnermost);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
 
-
-
+FUNCTIONS_FOR_SP_OP_WITH_2CUSTOMIZABLE_STRATEGIES(AroundFullTD);
 
 } // namespace LEESA
 

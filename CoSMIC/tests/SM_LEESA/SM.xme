@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{356D4CFC-7289-4B46-87B5-705DFC29E7BB}" cdate="Wed Oct 14 11:00:49 2009" mdate="Wed Oct 14 11:00:49 2009" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{19E98327-EE9E-40D2-9421-99CDE5853565}" cdate="Sun Nov 29 11:07:47 2009" mdate="Sun Nov 29 11:07:47 2009" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>SM</name>
 	<comment></comment>
 	<author></author>
@@ -1462,6 +1462,24 @@
 				<value></value>
 				<regnode name="MetaRef" isopaque="yes">
 					<value>1069</value>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1109</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1110</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1111</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1112</value>
+							</regnode>
+						</regnode>
+					</regnode>
 					<regnode name="StateMachine" status="undefined">
 						<value></value>
 						<regnode name="Transition" isopaque="yes">
@@ -1474,6 +1492,18 @@
 				</regnode>
 				<regnode name="PrimaryAspects" status="undefined">
 					<value></value>
+					<regnode name="StartState:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
 					<regnode name="StateMachine:Transition" status="undefined">
 						<value></value>
 						<regnode name="SM" isopaque="yes">
@@ -1483,7 +1513,7 @@
 				</regnode>
 			</regnode>
 		</regnode>
-		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{a1d7062b-6fd2-4b76-8572-781cc8f825b1}" relid="0x1" childrelidcntr="0x70">
+		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{a1d7062b-6fd2-4b76-8572-781cc8f825b1}" relid="0x1" childrelidcntr="0x71">
 			<name>SM</name>
 			<atom id="id-0066-00000001" kind="Constraint" role="Constraint" guid="{b3d52076-036a-4b39-a92c-454f5d1ed932}" relid="0x40">
 				<name>SingleStartState</name>
@@ -2146,7 +2176,8 @@ rrName = referedbyReference</value>
 					<value></value>
 				</attribute>
 				<attribute kind="GeneralPreferences">
-					<value>color=0x0000FF</value>
+					<value>color=0x00FF00
+</value>
 				</attribute>
 				<attribute kind="GradientFillColor" status="meta">
 					<value></value>
@@ -2280,8 +2311,8 @@ rrName = referedbyReference</value>
 				<attribute kind="InstanceIcon" status="meta">
 					<value></value>
 				</attribute>
-				<attribute kind="IsAbstract" status="meta">
-					<value>false</value>
+				<attribute kind="IsAbstract">
+					<value>true</value>
 				</attribute>
 				<attribute kind="IsGradientFillEnabled" status="meta">
 					<value>false</value>
@@ -2503,8 +2534,8 @@ rrName = referedbyReference</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="dst" target="id-0066-0000000a"/>
 				<connpoint role="src" target="id-0066-0000000a"/>
+				<connpoint role="dst" target="id-0066-0000000a"/>
 			</connection>
 			<connection id="id-0068-00000010" kind="HasAspect" role="HasAspect" guid="{905025a3-7eaa-49d6-bf06-7a41b0db4d38}" relid="0x6f">
 				<name>HasAspect</name>
@@ -2521,6 +2552,23 @@ rrName = referedbyReference</value>
 				</regnode>
 				<connpoint role="dst" target="id-0066-00000009"/>
 				<connpoint role="src" target="id-0069-00000001"/>
+			</connection>
+			<connection id="id-0068-0000001a" kind="Containment" role="Containment" guid="{ed3de556-9ae2-4f97-b78c-90f0b941fc39}" relid="0x71">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000003"/>
+				<connpoint role="dst" target="id-0066-0000000a"/>
 			</connection>
 			<set id="id-0069-00000001" kind="Aspect" role="Aspect" guid="{69d755f3-ce85-40e4-8888-72125341efc4}" relid="0x0" members="id-0066-00000003 id-0066-00000005 id-0066-00000006 id-0066-00000007 id-0066-00000009 id-0066-0000000a">
 				<name>SM</name>

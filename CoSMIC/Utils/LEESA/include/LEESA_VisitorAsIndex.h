@@ -1,6 +1,8 @@
 #ifndef __LEESA_VISITOR_AS_INDEX_H
 #define __LEESA_VISITOR_AS_INDEX_H
 
+#include <boost/mpl/size.hpp>
+
 #ifndef LEESA_NO_VISITOR
 
 namespace LEESA {
@@ -11,7 +13,7 @@ namespace LEESA {
   template <class Kind, class Visitor>
   struct VisitorAsIndex_CRTP 
   {
-    LEESA::VisitorAsIndex<Kind> operator [] (Visitor &v);
+      LEESA::VisitorAsIndex<Kind> operator [] (Visitor &v);
   };
 
 }

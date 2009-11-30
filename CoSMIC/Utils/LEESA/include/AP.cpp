@@ -47,8 +47,8 @@ template <class L, class H, class Custom> struct DescendantGraphOp;
 template <class Strategy, class From, class ToVector, 
           class ThroughVector, class BypassVector, class Customizer> class APOp;
 
-ExpressionTraits3Para(DescendantOp);
-ExpressionTraits3Para(DescendantGraphOp);
+EXPRESSION_TRAITS_3PARA(DescendantOp);
+EXPRESSION_TRAITS_3PARA(DescendantGraphOp);
 
 
 template <class Vector, class ResultKind, class Customizer>

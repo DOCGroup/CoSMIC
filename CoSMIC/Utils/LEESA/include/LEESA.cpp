@@ -264,7 +264,7 @@ class VisitorAsIndex : public VisitorAsIndexBase
 };
 
 template <class Kind, class Visitor>
-LEESA::VisitorAsIndex<Kind> 
+LEESA::VisitorAsIndex<Kind>
 VisitorAsIndex_CRTP<Kind, Visitor>::operator [] (Visitor &v)
 {
   return LEESA::VisitorAsIndex<Kind> (v);
@@ -323,8 +323,8 @@ evaluate (Para const & p, Expr e)
 #include "LEESA_Operators.cpp"
 #include "LEESA_RShift.cpp"
 #include "LEESA_LShift.cpp"
-//#include "SP.cpp"
-//#include "AP.cpp"
+#include "SP.cpp"
+#include "AP.cpp"
 
 #endif // __LEESA_CPP
 

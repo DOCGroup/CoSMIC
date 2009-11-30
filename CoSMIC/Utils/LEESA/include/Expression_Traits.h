@@ -1,20 +1,25 @@
 #include <set>
 #include <vector>
 
-#define ExpressionTraits1Para(OP)     \
-template <class T>                    \
-struct ET <OP<T> >                    \
-  : public ETBase <OP<T> > {};
+#define EXPRESSION_TRAITS_1PARA(OP)            \
+template <class T>                             \
+struct ET <OP<T> >                             \
+  : public ETBase <OP<T> > {}; 
 
-#define ExpressionTraits2Para(OP)     \
-template <class T, class U>           \
-struct ET <OP<T, U> >                 \
+#define EXPRESSION_TRAITS_2PARA(OP)            \
+template <class T, class U>                    \
+struct ET <OP<T, U> >                          \
   : public ETBase <OP<T, U> > {};
 
-#define ExpressionTraits3Para(OP)     \
-template <class X, class Y, class Z>  \
-struct ET <OP<X, Y, Z> >              \
+#define EXPRESSION_TRAITS_3PARA(OP)            \
+template <class X, class Y, class Z>           \
+struct ET <OP<X, Y, Z> >                       \
   : public ETBase <OP<X, Y, Z> > {};
+
+#define EXPRESSION_TRAITS_4PARA(OP)            \
+template <class W, class X, class Y, class Z>  \
+struct ET <OP<W, X, Y, Z> >                    \
+  : public ETBase <OP<W, X, Y, Z> > {};
 
 
 namespace LEESA {
@@ -76,32 +81,32 @@ struct ETBase
 	typedef typename T::argument_kind argument_kind;
 };
 
-ExpressionTraits1Para(KindLit);
-ExpressionTraits1Para(SelectorOp);
-ExpressionTraits1Para(RegexOp);
+EXPRESSION_TRAITS_1PARA(KindLit);
+EXPRESSION_TRAITS_1PARA(SelectorOp);
+EXPRESSION_TRAITS_1PARA(RegexOp);
 #ifndef LEESA_NO_VISITOR
-ExpressionTraits1Para(VisitorOp);
+EXPRESSION_TRAITS_1PARA(VisitorOp);
 #endif // LEESA_NO_VISITOR
 
-ExpressionTraits2Para(ChainExpr);
-ExpressionTraits2Para(SequenceExpr);
-ExpressionTraits2Para(GetChildrenOp);
-ExpressionTraits2Para(DFSChildrenOp);
-ExpressionTraits2Para(DFSParentOp);
-ExpressionTraits2Para(GetParentOp);
-ExpressionTraits2Para(DFSOp);
-ExpressionTraits2Para(FilterOp);
-ExpressionTraits2Para(ForEachOp);
-ExpressionTraits2Para(SortOp);
-ExpressionTraits2Para(UniqueOp);
+EXPRESSION_TRAITS_2PARA(ChainExpr);
+EXPRESSION_TRAITS_2PARA(SequenceExpr);
+EXPRESSION_TRAITS_2PARA(GetChildrenOp);
+EXPRESSION_TRAITS_2PARA(DFSChildrenOp);
+EXPRESSION_TRAITS_2PARA(DFSParentOp);
+EXPRESSION_TRAITS_2PARA(GetParentOp);
+EXPRESSION_TRAITS_2PARA(DFSOp);
+EXPRESSION_TRAITS_2PARA(FilterOp);
+EXPRESSION_TRAITS_2PARA(ForEachOp);
+EXPRESSION_TRAITS_2PARA(SortOp);
+EXPRESSION_TRAITS_2PARA(UniqueOp);
 
 #ifdef LEESA_FOR_UDM
 
-ExpressionTraits1Para(NonNullOp);
-ExpressionTraits2Para(CastOp);
-ExpressionTraits2Para(AssociationOp);
-ExpressionTraits2Para(AssociationEndOp);
-ExpressionTraits3Para(AssociationManyOp);
+EXPRESSION_TRAITS_1PARA(NonNullOp);
+EXPRESSION_TRAITS_2PARA(CastOp);
+EXPRESSION_TRAITS_2PARA(AssociationOp);
+EXPRESSION_TRAITS_2PARA(AssociationEndOp);
+EXPRESSION_TRAITS_3PARA(AssociationManyOp);
 
 template <class RESULT, class TARGETCLASS>
 struct ET <Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*)() const>
