@@ -12,17 +12,17 @@
 #define DOMAIN_NAMESPACE SM
 #include "LEESA.h"
 
-void show(unsigned int t)
+void show(unsigned int t, std::string message)
 {
 	std::ostringstream ostr;
-	ostr << "Showing " << typeid(t).name() << " = " << t;
+	ostr << message << typeid(t).name() << " = " << t;
 	AfxMessageBox(ostr.str().c_str());
 }
 
 template <class T>
-void show(T t)
+void show(T t, std::string message)
 {
-	std::string s = std::string("Showing ") + typeid(t).name()
+	std::string s = message + " " + typeid(t).name()
 						+ " = " + std::string(t.name());
 	AfxMessageBox(s.c_str());
 }
@@ -33,22 +33,41 @@ class SMVisitor : public SM::Visitor
 {
 public:
 	virtual void Visit_State(const State & s) {
-		show(s);
+		show(s, "Showing");
 	}
 	virtual void Visit_BaseState(const BaseState & b) {
-		show(b);
+		show(b, "Showing");
 	}
 	virtual void Visit_StartState(const StartState & ss) {
-		show(ss);
+		show(ss, "Showing");
 	}
 	virtual void Visit_StateMachine(const StateMachine & sm) {
-		show(sm);
+		show(sm, "Showing");
 	}
 	virtual void Visit_RootFolder(const RootFolder & rf) {
-		show(rf);
+		show(rf, "Showing");
 	}
 	virtual void Visit_Transition(const Transition & tr) {
-		show(tr);
+		show(tr, "Showing");
+	}
+
+        virtual void Leave_State(const State & s) {
+		show(s, "Leaving");
+	}
+	virtual void Leave_BaseState(const BaseState & b) {
+		show(b, "Leaving");
+	}
+	virtual void Leave_StartState(const StartState & ss) {
+		show(ss, "Leaving");
+	}
+	virtual void Leave_StateMachine(const StateMachine & sm) {
+		show(sm, "Leaving");
+	}
+	virtual void Leave_RootFolder(const RootFolder & rf) {
+		show(rf, "Leaving");
+	}
+	virtual void Leave_Transition(const Transition & tr) {
+		show(tr, "Leaving");
 	}
 };
 
@@ -61,7 +80,7 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
 	try {
       	        RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		SMVisitor visitor;
-
+/*
                 evaluate (rf, RootFolder() >>= StateMachine()[visitor] >>= State()[visitor]);
   
 		std::vector<StartState> SSvector = 
@@ -72,7 +91,7 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
                             >> CastFromTo(BaseState(), StartState())
                             >> visitor);
 
-		show(SSvector.size());
+		show(SSvector.size(), "Size of the vector = ");
 
     evaluate(SSvector, StartState()[visitor] << StateMachine()[visitor] );
 
@@ -82,9 +101,9 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
           << StateMachine()[visitor]
           << RootFolder()[visitor]);
 
-          
-		evaluate(rf, RootFolder() >> FullTD(RootFolder(), VisitStrategy(visitor)));
-
+  */        
+		evaluate(rf, RootFolder() >> AroundFullTD(RootFolder(), VisitStrategy(visitor), LeaveStrategy(visitor)));
+/*
 		BOOST_AUTO(v_state, State() >> visitor);
 		BOOST_AUTO(v_transition, Transition() >> visitor);
 		BOOST_AUTO(sm, RootFolder() >> StateMachine());
@@ -103,7 +122,7 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
                         FROM(RootFolder),
                         TO(Transition),
                         THROUGH(StateMachine)));
-    
+  */  
 	}
 	catch (boost::regex_error & e)
 	{

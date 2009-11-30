@@ -1,0 +1,14 @@
+To compile:
+
+1. Checkout CoSMIC 
+   svn co svn://svn.dre.vanderbilt.edu/CoSMIC/trunk/CoSMIC CoSMIC
+
+2. Checkout UDM
+   svn co svn://svn.isis.vanderbilt.edu/MoBIES/UDM/trunk UDM
+
+3. Set UDM_PATH and COSMIC_ROOT enviromental variables 
+   pointing to the root directory of the local copies of
+   UDM and CoSMIC respectively.
+
+4. make
+

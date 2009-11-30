@@ -6,7 +6,7 @@
 #define MOBIES_PICML_H
 
 // header file PICML.h generated from diagram PICML
-// generated with Udm version 3.13 on Sun Nov 22 22:10:34 2009
+// generated with Udm version 3.13 on Sun Nov 29 19:58:40 2009
 
 #include <UdmBase.h>
 
@@ -337,251 +337,497 @@ namespace PICML {
 		virtual ~Visitor() {}
 
 		virtual void Visit_InfoProperty(const InfoProperty &) {}
+		virtual void Leave_InfoProperty(const InfoProperty &) {}
 		virtual void Visit_ConfigProperty(const ConfigProperty &) {}
+		virtual void Leave_ConfigProperty(const ConfigProperty &) {}
 		virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact &) {}
+		virtual void Leave_MonolithprimaryArtifact(const MonolithprimaryArtifact &) {}
 		virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement &) {}
+		virtual void Leave_MonolithDeployRequirement(const MonolithDeployRequirement &) {}
 		virtual void Visit_MonolithExecParameter(const MonolithExecParameter &) {}
+		virtual void Leave_MonolithExecParameter(const MonolithExecParameter &) {}
 		virtual void Visit_ComponentServantArtifact(const ComponentServantArtifact &) {}
+		virtual void Leave_ComponentServantArtifact(const ComponentServantArtifact &) {}
 		virtual void Visit_ComponentImplementationArtifact(const ComponentImplementationArtifact &) {}
+		virtual void Leave_ComponentImplementationArtifact(const ComponentImplementationArtifact &) {}
 		virtual void Visit_ComponentFactoryImplementations(const ComponentFactoryImplementations &) {}
+		virtual void Leave_ComponentFactoryImplementations(const ComponentFactoryImplementations &) {}
 		virtual void Visit_ComponentFactoryImplementationContainer(const ComponentFactoryImplementationContainer &) {}
+		virtual void Leave_ComponentFactoryImplementationContainer(const ComponentFactoryImplementationContainer &) {}
 		virtual void Visit_ComponentFactoryInstance(const ComponentFactoryInstance &) {}
+		virtual void Leave_ComponentFactoryInstance(const ComponentFactoryInstance &) {}
 		virtual void Visit_RTRequirements(const RTRequirements &) {}
+		virtual void Leave_RTRequirements(const RTRequirements &) {}
 		virtual void Visit_ServiceProvider(const ServiceProvider &) {}
+		virtual void Leave_ServiceProvider(const ServiceProvider &) {}
 		virtual void Visit_MultipleServiceRequests(const MultipleServiceRequests &) {}
+		virtual void Leave_MultipleServiceRequests(const MultipleServiceRequests &) {}
 		virtual void Visit_ServiceLevels(const ServiceLevels &) {}
+		virtual void Leave_ServiceLevels(const ServiceLevels &) {}
 		virtual void Visit_ServiceConsumer(const ServiceConsumer &) {}
+		virtual void Leave_ServiceConsumer(const ServiceConsumer &) {}
 		virtual void Visit_ECBehavior(const ECBehavior &) {}
+		virtual void Leave_ECBehavior(const ECBehavior &) {}
 		virtual void Visit_ECRequirements(const ECRequirements &) {}
+		virtual void Leave_ECRequirements(const ECRequirements &) {}
 		virtual void Visit_ECRole(const ECRole &) {}
+		virtual void Leave_ECRole(const ECRole &) {}
 		virtual void Visit_ComponentAssemblyReference(const ComponentAssemblyReference &) {}
+		virtual void Leave_ComponentAssemblyReference(const ComponentAssemblyReference &) {}
 		virtual void Visit_ComponentAssembly(const ComponentAssembly &) {}
+		virtual void Leave_ComponentAssembly(const ComponentAssembly &) {}
 		virtual void Visit_ExternalPortReference(const ExternalPortReference &) {}
+		virtual void Leave_ExternalPortReference(const ExternalPortReference &) {}
 		virtual void Visit_ConnectedComponent(const ConnectedComponent &) {}
+		virtual void Leave_ConnectedComponent(const ConnectedComponent &) {}
 		virtual void Visit_Path(const Path &) {}
+		virtual void Leave_Path(const Path &) {}
 		virtual void Visit_PathDiagrams(const PathDiagrams &) {}
+		virtual void Leave_PathDiagrams(const PathDiagrams &) {}
 		virtual void Visit_DstEdge(const DstEdge &) {}
+		virtual void Leave_DstEdge(const DstEdge &) {}
 		virtual void Visit_SrcEdge(const SrcEdge &) {}
+		virtual void Leave_SrcEdge(const SrcEdge &) {}
 		virtual void Visit_EdgeProperty(const EdgeProperty &) {}
+		virtual void Leave_EdgeProperty(const EdgeProperty &) {}
 		virtual void Visit_Edge(const Edge &) {}
+		virtual void Leave_Edge(const Edge &) {}
 		virtual void Visit_DisplayNode(const DisplayNode &) {}
+		virtual void Leave_DisplayNode(const DisplayNode &) {}
 		virtual void Visit_Paths(const Paths &) {}
+		virtual void Leave_Paths(const Paths &) {}
 		virtual void Visit_PathProperty(const PathProperty &) {}
+		virtual void Leave_PathProperty(const PathProperty &) {}
 		virtual void Visit_PathReference(const PathReference &) {}
+		virtual void Leave_PathReference(const PathReference &) {}
 		virtual void Visit_MetricConnection(const MetricConnection &) {}
+		virtual void Leave_MetricConnection(const MetricConnection &) {}
 		virtual void Visit_Average(const Average &) {}
+		virtual void Leave_Average(const Average &) {}
 		virtual void Visit_Minimum(const Minimum &) {}
+		virtual void Leave_Minimum(const Minimum &) {}
 		virtual void Visit_Maximum(const Maximum &) {}
+		virtual void Leave_Maximum(const Maximum &) {}
 		virtual void Visit_Jitter(const Jitter &) {}
+		virtual void Leave_Jitter(const Jitter &) {}
 		virtual void Visit_TimeProbe(const TimeProbe &) {}
+		virtual void Leave_TimeProbe(const TimeProbe &) {}
 		virtual void Visit_TimerConnection(const TimerConnection &) {}
+		virtual void Leave_TimerConnection(const TimerConnection &) {}
 		virtual void Visit_Latency(const Latency &) {}
+		virtual void Leave_Latency(const Latency &) {}
 		virtual void Visit_Throughput(const Throughput &) {}
+		virtual void Leave_Throughput(const Throughput &) {}
 		virtual void Visit_ComponentAnalyses(const ComponentAnalyses &) {}
+		virtual void Leave_ComponentAnalyses(const ComponentAnalyses &) {}
 		virtual void Visit_BenchmarkAnalysis(const BenchmarkAnalysis &) {}
+		virtual void Leave_BenchmarkAnalysis(const BenchmarkAnalysis &) {}
 		virtual void Visit_OperationRef(const OperationRef &) {}
+		virtual void Leave_OperationRef(const OperationRef &) {}
 		virtual void Visit_EventRef(const EventRef &) {}
+		virtual void Leave_EventRef(const EventRef &) {}
 		virtual void Visit_TimerEventSinkConn(const TimerEventSinkConn &) {}
+		virtual void Leave_TimerEventSinkConn(const TimerEventSinkConn &) {}
 		virtual void Visit_TaskSet(const TaskSet &) {}
+		virtual void Leave_TaskSet(const TaskSet &) {}
 		virtual void Visit_Task(const Task &) {}
+		virtual void Leave_Task(const Task &) {}
 		virtual void Visit_WorkloadCharacteristics(const WorkloadCharacteristics &) {}
+		virtual void Leave_WorkloadCharacteristics(const WorkloadCharacteristics &) {}
 		virtual void Visit_ComponentOperation(const ComponentOperation &) {}
+		virtual void Leave_ComponentOperation(const ComponentOperation &) {}
 		virtual void Visit_CompRef(const CompRef &) {}
+		virtual void Leave_CompRef(const CompRef &) {}
 		virtual void Visit_WorkLoadOperationConnection(const WorkLoadOperationConnection &) {}
+		virtual void Leave_WorkLoadOperationConnection(const WorkLoadOperationConnection &) {}
 		virtual void Visit_TriggerBenchmarks(const TriggerBenchmarks &) {}
+		virtual void Leave_TriggerBenchmarks(const TriggerBenchmarks &) {}
 		virtual void Visit_FixedIterationBenchmarks(const FixedIterationBenchmarks &) {}
+		virtual void Leave_FixedIterationBenchmarks(const FixedIterationBenchmarks &) {}
 		virtual void Visit_PeriodicBenchmarks(const PeriodicBenchmarks &) {}
+		virtual void Leave_PeriodicBenchmarks(const PeriodicBenchmarks &) {}
 		virtual void Visit_BenchmarkCharacteristics(const BenchmarkCharacteristics &) {}
+		virtual void Leave_BenchmarkCharacteristics(const BenchmarkCharacteristics &) {}
 		virtual void Visit_NodeReference(const NodeReference &) {}
+		virtual void Leave_NodeReference(const NodeReference &) {}
 		virtual void Visit_Interconnect(const Interconnect &) {}
+		virtual void Leave_Interconnect(const Interconnect &) {}
 		virtual void Visit_Node(const Node &) {}
+		virtual void Leave_Node(const Node &) {}
 		virtual void Visit_Resource(const Resource &) {}
+		virtual void Leave_Resource(const Resource &) {}
 		virtual void Visit_Bridge(const Bridge &) {}
+		virtual void Leave_Bridge(const Bridge &) {}
 		virtual void Visit_SharedResource(const SharedResource &) {}
+		virtual void Leave_SharedResource(const SharedResource &) {}
 		virtual void Visit_InstanceMapping(const InstanceMapping &) {}
+		virtual void Leave_InstanceMapping(const InstanceMapping &) {}
 		virtual void Visit_DeploymentPlans(const DeploymentPlans &) {}
+		virtual void Leave_DeploymentPlans(const DeploymentPlans &) {}
 		virtual void Visit_CollocationGroup(const CollocationGroup &) {}
+		virtual void Leave_CollocationGroup(const CollocationGroup &) {}
 		virtual void Visit_SharedComponentReference(const SharedComponentReference &) {}
+		virtual void Leave_SharedComponentReference(const SharedComponentReference &) {}
 		virtual void Visit_ComponentFactoryRef(const ComponentFactoryRef &) {}
+		virtual void Leave_ComponentFactoryRef(const ComponentFactoryRef &) {}
 		virtual void Visit_Deploys(const Deploys &) {}
+		virtual void Leave_Deploys(const Deploys &) {}
 		virtual void Visit_DeploymentPlan(const DeploymentPlan &) {}
+		virtual void Leave_DeploymentPlan(const DeploymentPlan &) {}
 		virtual void Visit_invoke(const invoke &) {}
+		virtual void Leave_invoke(const invoke &) {}
 		virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement &) {}
+		virtual void Leave_AssemblyselectRequirement(const AssemblyselectRequirement &) {}
 		virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty &) {}
+		virtual void Leave_AssemblyConfigProperty(const AssemblyConfigProperty &) {}
 		virtual void Visit_PublishConnector(const PublishConnector &) {}
+		virtual void Leave_PublishConnector(const PublishConnector &) {}
 		virtual void Visit_publish(const publish &) {}
+		virtual void Leave_publish(const publish &) {}
 		virtual void Visit_deliverTo(const deliverTo &) {}
+		virtual void Leave_deliverTo(const deliverTo &) {}
 		virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement &) {}
+		virtual void Leave_AssemblyDeployRequirement(const AssemblyDeployRequirement &) {}
 		virtual void Visit_emit(const emit &) {}
+		virtual void Leave_emit(const emit &) {}
 		virtual void Visit_ReceptacleDelegate(const ReceptacleDelegate &) {}
+		virtual void Leave_ReceptacleDelegate(const ReceptacleDelegate &) {}
 		virtual void Visit_FacetDelegate(const FacetDelegate &) {}
+		virtual void Leave_FacetDelegate(const FacetDelegate &) {}
 		virtual void Visit_EventSourceDelegate(const EventSourceDelegate &) {}
+		virtual void Leave_EventSourceDelegate(const EventSourceDelegate &) {}
 		virtual void Visit_EventSinkDelegate(const EventSinkDelegate &) {}
+		virtual void Leave_EventSinkDelegate(const EventSinkDelegate &) {}
 		virtual void Visit_ExternalDelegate(const ExternalDelegate &) {}
+		virtual void Leave_ExternalDelegate(const ExternalDelegate &) {}
 		virtual void Visit_AttributeValue(const AttributeValue &) {}
+		virtual void Leave_AttributeValue(const AttributeValue &) {}
 		virtual void Visit_AttributeDelegate(const AttributeDelegate &) {}
+		virtual void Leave_AttributeDelegate(const AttributeDelegate &) {}
 		virtual void Visit_AttributeMapping(const AttributeMapping &) {}
+		virtual void Leave_AttributeMapping(const AttributeMapping &) {}
 		virtual void Visit_AttributeMappingValue(const AttributeMappingValue &) {}
+		virtual void Leave_AttributeMappingValue(const AttributeMappingValue &) {}
 		virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate &) {}
+		virtual void Leave_AttributeMappingDelegate(const AttributeMappingDelegate &) {}
 		virtual void Visit_SupportsDelegate(const SupportsDelegate &) {}
+		virtual void Leave_SupportsDelegate(const SupportsDelegate &) {}
 		virtual void Visit_ImplementationCapability(const ImplementationCapability &) {}
+		virtual void Leave_ImplementationCapability(const ImplementationCapability &) {}
 		virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn &) {}
+		virtual void Leave_ImplementationDependsOn(const ImplementationDependsOn &) {}
 		virtual void Visit_Implements(const Implements &) {}
+		virtual void Leave_Implements(const Implements &) {}
 		virtual void Visit_ComponentImplementations(const ComponentImplementations &) {}
+		virtual void Leave_ComponentImplementations(const ComponentImplementations &) {}
 		virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer &) {}
+		virtual void Leave_ComponentImplementationContainer(const ComponentImplementationContainer &) {}
 		virtual void Visit_CriticalPath(const CriticalPath &) {}
+		virtual void Leave_CriticalPath(const CriticalPath &) {}
 		virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference &) {}
+		virtual void Leave_ComponentImplementationReference(const ComponentImplementationReference &) {}
 		virtual void Visit_MonolithicImplementation(const MonolithicImplementation &) {}
+		virtual void Leave_MonolithicImplementation(const MonolithicImplementation &) {}
 		virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage &) {}
+		virtual void Leave_PackageConfBasePackage(const PackageConfBasePackage &) {}
 		virtual void Visit_PackageConfReference(const PackageConfReference &) {}
+		virtual void Leave_PackageConfReference(const PackageConfReference &) {}
 		virtual void Visit_PackageConfigurations(const PackageConfigurations &) {}
+		virtual void Leave_PackageConfigurations(const PackageConfigurations &) {}
 		virtual void Visit_PackageConfigurationContainer(const PackageConfigurationContainer &) {}
+		virtual void Leave_PackageConfigurationContainer(const PackageConfigurationContainer &) {}
 		virtual void Visit_PackageConfConfigProperty(const PackageConfConfigProperty &) {}
+		virtual void Leave_PackageConfConfigProperty(const PackageConfConfigProperty &) {}
 		virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement &) {}
+		virtual void Leave_PackageConfSelectRequirement(const PackageConfSelectRequirement &) {}
 		virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig &) {}
+		virtual void Leave_PackageConfSpecializedConfig(const PackageConfSpecializedConfig &) {}
 		virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference &) {}
+		virtual void Leave_PackageConfigurationReference(const PackageConfigurationReference &) {}
 		virtual void Visit_PackageConfiguration(const PackageConfiguration &) {}
+		virtual void Leave_PackageConfiguration(const PackageConfiguration &) {}
 		virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts &) {}
+		virtual void Leave_ImplementationArtifacts(const ImplementationArtifacts &) {}
 		virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn &) {}
+		virtual void Leave_ArtifactDependsOn(const ArtifactDependsOn &) {}
 		virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement &) {}
+		virtual void Leave_ArtifactDeployRequirement(const ArtifactDeployRequirement &) {}
 		virtual void Visit_ArtifactContainer(const ArtifactContainer &) {}
+		virtual void Leave_ArtifactContainer(const ArtifactContainer &) {}
 		virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter &) {}
+		virtual void Leave_ArtifactExecParameter(const ArtifactExecParameter &) {}
 		virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty &) {}
+		virtual void Leave_ArtifactInfoProperty(const ArtifactInfoProperty &) {}
 		virtual void Visit_ArtifactDependency(const ArtifactDependency &) {}
+		virtual void Leave_ArtifactDependency(const ArtifactDependency &) {}
 		virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference &) {}
+		virtual void Leave_ImplementationArtifactReference(const ImplementationArtifactReference &) {}
 		virtual void Visit_ImplementationArtifact(const ImplementationArtifact &) {}
+		virtual void Leave_ImplementationArtifact(const ImplementationArtifact &) {}
 		virtual void Visit_ComponentTypes(const ComponentTypes &) {}
+		virtual void Leave_ComponentTypes(const ComponentTypes &) {}
 		virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription &) {}
+		virtual void Leave_ComponentPropertyDescription(const ComponentPropertyDescription &) {}
 		virtual void Visit_ComponentProperty(const ComponentProperty &) {}
+		virtual void Leave_ComponentProperty(const ComponentProperty &) {}
 		virtual void Visit_ComponentContainer(const ComponentContainer &) {}
+		virtual void Leave_ComponentContainer(const ComponentContainer &) {}
 		virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty &) {}
+		virtual void Leave_ComponentConfigProperty(const ComponentConfigProperty &) {}
 		virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty &) {}
+		virtual void Leave_ComponentInfoProperty(const ComponentInfoProperty &) {}
 		virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer &) {}
+		virtual void Leave_TopLevelPackageContainer(const TopLevelPackageContainer &) {}
 		virtual void Visit_TopLevelPackages(const TopLevelPackages &) {}
+		virtual void Leave_TopLevelPackages(const TopLevelPackages &) {}
 		virtual void Visit_TopLevelPackage(const TopLevelPackage &) {}
+		virtual void Leave_TopLevelPackage(const TopLevelPackage &) {}
 		virtual void Visit_package(const package &) {}
+		virtual void Leave_package(const package &) {}
 		virtual void Visit_ComponentPackages(const ComponentPackages &) {}
+		virtual void Leave_ComponentPackages(const ComponentPackages &) {}
 		virtual void Visit_PackageInterface(const PackageInterface &) {}
+		virtual void Leave_PackageInterface(const PackageInterface &) {}
 		virtual void Visit_Implementation(const Implementation &) {}
+		virtual void Leave_Implementation(const Implementation &) {}
 		virtual void Visit_PackageContainer(const PackageContainer &) {}
+		virtual void Leave_PackageContainer(const PackageContainer &) {}
 		virtual void Visit_PackageConfigProperty(const PackageConfigProperty &) {}
+		virtual void Leave_PackageConfigProperty(const PackageConfigProperty &) {}
 		virtual void Visit_PackageInfoProperty(const PackageInfoProperty &) {}
+		virtual void Leave_PackageInfoProperty(const PackageInfoProperty &) {}
 		virtual void Visit_ComponentPackage(const ComponentPackage &) {}
+		virtual void Leave_ComponentPackage(const ComponentPackage &) {}
 		virtual void Visit_ComponentPackageReference(const ComponentPackageReference &) {}
+		virtual void Leave_ComponentPackageReference(const ComponentPackageReference &) {}
 		virtual void Visit_Requirement(const Requirement &) {}
+		virtual void Leave_Requirement(const Requirement &) {}
 		virtual void Visit_Capability(const Capability &) {}
+		virtual void Leave_Capability(const Capability &) {}
 		virtual void Visit_DataType(const DataType &) {}
+		virtual void Leave_DataType(const DataType &) {}
 		virtual void Visit_SatisfierProperty(const SatisfierProperty &) {}
+		virtual void Leave_SatisfierProperty(const SatisfierProperty &) {}
 		virtual void Visit_ImplementationDependency(const ImplementationDependency &) {}
+		virtual void Leave_ImplementationDependency(const ImplementationDependency &) {}
 		virtual void Visit_ImplementationRequirement(const ImplementationRequirement &) {}
+		virtual void Leave_ImplementationRequirement(const ImplementationRequirement &) {}
 		virtual void Visit_Property(const Property &) {}
+		virtual void Leave_Property(const Property &) {}
 		virtual void Visit_Targets(const Targets &) {}
+		virtual void Leave_Targets(const Targets &) {}
 		virtual void Visit_Shares(const Shares &) {}
+		virtual void Leave_Shares(const Shares &) {}
 		virtual void Visit_InterconnectConnection(const InterconnectConnection &) {}
+		virtual void Leave_InterconnectConnection(const InterconnectConnection &) {}
 		virtual void Visit_BridgeConnection(const BridgeConnection &) {}
+		virtual void Leave_BridgeConnection(const BridgeConnection &) {}
 		virtual void Visit_Domain(const Domain &) {}
+		virtual void Leave_Domain(const Domain &) {}
 		virtual void Visit_ComponentFactory(const ComponentFactory &) {}
+		virtual void Leave_ComponentFactory(const ComponentFactory &) {}
 		virtual void Visit_ComponentRef(const ComponentRef &) {}
+		virtual void Leave_ComponentRef(const ComponentRef &) {}
 		virtual void Visit_ManagesComponent(const ManagesComponent &) {}
+		virtual void Leave_ManagesComponent(const ManagesComponent &) {}
 		virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort &) {}
+		virtual void Leave_ProvidedRequestPort(const ProvidedRequestPort &) {}
 		virtual void Visit_InEventPort(const InEventPort &) {}
+		virtual void Leave_InEventPort(const InEventPort &) {}
 		virtual void Visit_OutEventPort(const OutEventPort &) {}
+		virtual void Leave_OutEventPort(const OutEventPort &) {}
 		virtual void Visit_RequiredRequestPort(const RequiredRequestPort &) {}
+		virtual void Leave_RequiredRequestPort(const RequiredRequestPort &) {}
 		virtual void Visit_Component(const Component &) {}
+		virtual void Leave_Component(const Component &) {}
 		virtual void Visit_InParameter(const InParameter &) {}
+		virtual void Leave_InParameter(const InParameter &) {}
 		virtual void Visit_InoutParameter(const InoutParameter &) {}
+		virtual void Leave_InoutParameter(const InoutParameter &) {}
 		virtual void Visit_OutParameter(const OutParameter &) {}
+		virtual void Leave_OutParameter(const OutParameter &) {}
 		virtual void Visit_ReturnType(const ReturnType &) {}
+		virtual void Leave_ReturnType(const ReturnType &) {}
 		virtual void Visit_OnewayOperation(const OnewayOperation &) {}
+		virtual void Leave_OnewayOperation(const OnewayOperation &) {}
 		virtual void Visit_LookupOperation(const LookupOperation &) {}
+		virtual void Leave_LookupOperation(const LookupOperation &) {}
 		virtual void Visit_FactoryOperation(const FactoryOperation &) {}
+		virtual void Leave_FactoryOperation(const FactoryOperation &) {}
 		virtual void Visit_TwowayOperation(const TwowayOperation &) {}
+		virtual void Leave_TwowayOperation(const TwowayOperation &) {}
 		virtual void Visit_Object(const Object &) {}
+		virtual void Leave_Object(const Object &) {}
 		virtual void Visit_Inherits(const Inherits &) {}
+		virtual void Leave_Inherits(const Inherits &) {}
 		virtual void Visit_Event(const Event &) {}
+		virtual void Leave_Event(const Event &) {}
 		virtual void Visit_ValueObject(const ValueObject &) {}
+		virtual void Leave_ValueObject(const ValueObject &) {}
 		virtual void Visit_Supports(const Supports &) {}
+		virtual void Leave_Supports(const Supports &) {}
 		virtual void Visit_Attribute(const Attribute &) {}
+		virtual void Leave_Attribute(const Attribute &) {}
 		virtual void Visit_LookupKey(const LookupKey &) {}
+		virtual void Leave_LookupKey(const LookupKey &) {}
 		virtual void Visit_SetException(const SetException &) {}
+		virtual void Leave_SetException(const SetException &) {}
 		virtual void Visit_GetException(const GetException &) {}
+		virtual void Leave_GetException(const GetException &) {}
 		virtual void Visit_PrivateFlag(const PrivateFlag &) {}
+		virtual void Leave_PrivateFlag(const PrivateFlag &) {}
 		virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate &) {}
+		virtual void Leave_MakeMemberPrivate(const MakeMemberPrivate &) {}
 		virtual void Visit_AttributeMember(const AttributeMember &) {}
+		virtual void Leave_AttributeMember(const AttributeMember &) {}
 		virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute &) {}
+		virtual void Leave_ReadonlyAttribute(const ReadonlyAttribute &) {}
 		virtual void Visit_EnumValue(const EnumValue &) {}
+		virtual void Leave_EnumValue(const EnumValue &) {}
 		virtual void Visit_Aggregate(const Aggregate &) {}
+		virtual void Leave_Aggregate(const Aggregate &) {}
 		virtual void Visit_SwitchedAggregate(const SwitchedAggregate &) {}
+		virtual void Leave_SwitchedAggregate(const SwitchedAggregate &) {}
 		virtual void Visit_Label(const Label &) {}
+		virtual void Leave_Label(const Label &) {}
 		virtual void Visit_LabelConnection(const LabelConnection &) {}
+		virtual void Leave_LabelConnection(const LabelConnection &) {}
 		virtual void Visit_Discriminator(const Discriminator &) {}
+		virtual void Leave_Discriminator(const Discriminator &) {}
 		virtual void Visit_Alias(const Alias &) {}
+		virtual void Leave_Alias(const Alias &) {}
 		virtual void Visit_Boxed(const Boxed &) {}
+		virtual void Leave_Boxed(const Boxed &) {}
 		virtual void Visit_Collection(const Collection &) {}
+		virtual void Leave_Collection(const Collection &) {}
 		virtual void Visit_Enum(const Enum &) {}
+		virtual void Leave_Enum(const Enum &) {}
 		virtual void Visit_Member(const Member &) {}
+		virtual void Leave_Member(const Member &) {}
 		virtual void Visit_PredefinedTypes(const PredefinedTypes &) {}
+		virtual void Leave_PredefinedTypes(const PredefinedTypes &) {}
 		virtual void Visit_Byte(const Byte &) {}
+		virtual void Leave_Byte(const Byte &) {}
 		virtual void Visit_Boolean(const Boolean &) {}
+		virtual void Leave_Boolean(const Boolean &) {}
 		virtual void Visit_ShortInteger(const ShortInteger &) {}
+		virtual void Leave_ShortInteger(const ShortInteger &) {}
 		virtual void Visit_LongInteger(const LongInteger &) {}
+		virtual void Leave_LongInteger(const LongInteger &) {}
 		virtual void Visit_RealNumber(const RealNumber &) {}
+		virtual void Leave_RealNumber(const RealNumber &) {}
 		virtual void Visit_String(const String &) {}
+		virtual void Leave_String(const String &) {}
 		virtual void Visit_GenericObject(const GenericObject &) {}
+		virtual void Leave_GenericObject(const GenericObject &) {}
 		virtual void Visit_GenericValueObject(const GenericValueObject &) {}
+		virtual void Leave_GenericValueObject(const GenericValueObject &) {}
 		virtual void Visit_GenericValue(const GenericValue &) {}
+		virtual void Leave_GenericValue(const GenericValue &) {}
 		virtual void Visit_TypeEncoding(const TypeEncoding &) {}
+		virtual void Leave_TypeEncoding(const TypeEncoding &) {}
 		virtual void Visit_TypeKind(const TypeKind &) {}
+		virtual void Leave_TypeKind(const TypeKind &) {}
 		virtual void Visit_Package(const Package &) {}
+		virtual void Leave_Package(const Package &) {}
 		virtual void Visit_File(const File &) {}
+		virtual void Leave_File(const File &) {}
 		virtual void Visit_Exception(const Exception &) {}
+		virtual void Leave_Exception(const Exception &) {}
 		virtual void Visit_ExceptionRef(const ExceptionRef &) {}
+		virtual void Leave_ExceptionRef(const ExceptionRef &) {}
 		virtual void Visit_InterfaceDefinitions(const InterfaceDefinitions &) {}
+		virtual void Leave_InterfaceDefinitions(const InterfaceDefinitions &) {}
 		virtual void Visit_Constant(const Constant &) {}
+		virtual void Leave_Constant(const Constant &) {}
 		virtual void Visit_FileRef(const FileRef &) {}
+		virtual void Leave_FileRef(const FileRef &) {}
 		virtual void Visit_ComponentBuild(const ComponentBuild &) {}
+		virtual void Leave_ComponentBuild(const ComponentBuild &) {}
 		virtual void Visit_Project(const Project &) {}
+		virtual void Leave_Project(const Project &) {}
 		virtual void Visit_ExternalResources(const ExternalResources &) {}
+		virtual void Leave_ExternalResources(const ExternalResources &) {}
 		virtual void Visit_ExtResourceConn(const ExtResourceConn &) {}
+		virtual void Leave_ExtResourceConn(const ExtResourceConn &) {}
 		virtual void Visit_MPC(const MPC &) {}
+		virtual void Leave_MPC(const MPC &) {}
 		virtual void Visit_StubProject(const StubProject &) {}
+		virtual void Leave_StubProject(const StubProject &) {}
 		virtual void Visit_ServantProject(const ServantProject &) {}
+		virtual void Leave_ServantProject(const ServantProject &) {}
 		virtual void Visit_ExecutorProject(const ExecutorProject &) {}
+		virtual void Leave_ExecutorProject(const ExecutorProject &) {}
 		virtual void Visit_Workspaces(const Workspaces &) {}
+		virtual void Leave_Workspaces(const Workspaces &) {}
 		virtual void Visit_WorkerLibraries(const WorkerLibraries &) {}
+		virtual void Leave_WorkerLibraries(const WorkerLibraries &) {}
 		virtual void Visit_WorkerLibrary(const WorkerLibrary &) {}
+		virtual void Leave_WorkerLibrary(const WorkerLibrary &) {}
 		virtual void Visit_Worker(const Worker &) {}
+		virtual void Leave_Worker(const Worker &) {}
 		virtual void Visit_WorkerFile(const WorkerFile &) {}
+		virtual void Leave_WorkerFile(const WorkerFile &) {}
 		virtual void Visit_WorkerPackage(const WorkerPackage &) {}
+		virtual void Leave_WorkerPackage(const WorkerPackage &) {}
 		virtual void Visit_WorkerType(const WorkerType &) {}
+		virtual void Leave_WorkerType(const WorkerType &) {}
 		virtual void Visit_Variable(const Variable &) {}
+		virtual void Leave_Variable(const Variable &) {}
 		virtual void Visit_Action(const Action &) {}
+		virtual void Leave_Action(const Action &) {}
 		virtual void Visit_OutputAction(const OutputAction &) {}
+		virtual void Leave_OutputAction(const OutputAction &) {}
 		virtual void Visit_Finish(const Finish &) {}
+		virtual void Leave_Finish(const Finish &) {}
 		virtual void Visit_QueryAction(const QueryAction &) {}
+		virtual void Leave_QueryAction(const QueryAction &) {}
 		virtual void Visit_InputAction(const InputAction &) {}
+		virtual void Leave_InputAction(const InputAction &) {}
 		virtual void Visit_QueryInputAction(const QueryInputAction &) {}
+		virtual void Leave_QueryInputAction(const QueryInputAction &) {}
 		virtual void Visit_MultiInputAction(const MultiInputAction &) {}
+		virtual void Leave_MultiInputAction(const MultiInputAction &) {}
 		virtual void Visit_Environment(const Environment &) {}
+		virtual void Leave_Environment(const Environment &) {}
 		virtual void Visit_PeriodicEvent(const PeriodicEvent &) {}
+		virtual void Leave_PeriodicEvent(const PeriodicEvent &) {}
 		virtual void Visit_ApplicationTask(const ApplicationTask &) {}
+		virtual void Leave_ApplicationTask(const ApplicationTask &) {}
 		virtual void Visit_Input(const Input &) {}
+		virtual void Leave_Input(const Input &) {}
 		virtual void Visit_MultiInput(const MultiInput &) {}
+		virtual void Leave_MultiInput(const MultiInput &) {}
 		virtual void Visit_QueryInput(const QueryInput &) {}
+		virtual void Leave_QueryInput(const QueryInput &) {}
 		virtual void Visit_Transition(const Transition &) {}
+		virtual void Leave_Transition(const Transition &) {}
 		virtual void Visit_BranchState(const BranchState &) {}
+		virtual void Leave_BranchState(const BranchState &) {}
 		virtual void Visit_BranchTransition(const BranchTransition &) {}
+		virtual void Leave_BranchTransition(const BranchTransition &) {}
 		virtual void Visit_ForState(const ForState &) {}
+		virtual void Leave_ForState(const ForState &) {}
 		virtual void Visit_DoWhileState(const DoWhileState &) {}
+		virtual void Leave_DoWhileState(const DoWhileState &) {}
 		virtual void Visit_WhileState(const WhileState &) {}
+		virtual void Leave_WhileState(const WhileState &) {}
 		virtual void Visit_LoopTransition(const LoopTransition &) {}
+		virtual void Leave_LoopTransition(const LoopTransition &) {}
 		virtual void Visit_State(const State &) {}
+		virtual void Leave_State(const State &) {}
 		virtual void Visit_Terminal(const Terminal &) {}
+		virtual void Leave_Terminal(const Terminal &) {}
 		virtual void Visit_TerminalTransition(const TerminalTransition &) {}
+		virtual void Leave_TerminalTransition(const TerminalTransition &) {}
 		virtual void Visit_Effect(const Effect &) {}
+		virtual void Leave_Effect(const Effect &) {}
 		virtual void Visit_InputEffect(const InputEffect &) {}
+		virtual void Leave_InputEffect(const InputEffect &) {}
 		virtual void Visit_TerminalEffect(const TerminalEffect &) {}
+		virtual void Leave_TerminalEffect(const TerminalEffect &) {}
 		virtual void Visit_RootFolder(const RootFolder &) {}
+		virtual void Leave_RootFolder(const RootFolder &) {}
 		virtual void Visit_Object(const Udm::Object &) {}
 
 	};
@@ -627,6 +873,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentFactoryImplementations(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentFactoryImplementations(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentFactoryImplementations, Visitor >::operator [];
 
 
@@ -685,6 +932,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PathDiagrams(*this); }
+		void Leave(Visitor &v) { v.Leave_PathDiagrams(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PathDiagrams, Visitor >::operator [];
 
 
@@ -743,6 +991,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentAnalyses(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentAnalyses(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentAnalyses, Visitor >::operator [];
 
 
@@ -801,6 +1050,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_DeploymentPlans(*this); }
+		void Leave(Visitor &v) { v.Leave_DeploymentPlans(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DeploymentPlans, Visitor >::operator [];
 
 
@@ -861,6 +1111,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentImplementations(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentImplementations(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentImplementations, Visitor >::operator [];
 
 
@@ -919,6 +1170,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PackageConfigurations(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfigurations(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfigurations, Visitor >::operator [];
 
 
@@ -977,6 +1229,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ImplementationArtifacts(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationArtifacts(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationArtifacts, Visitor >::operator [];
 
 
@@ -1035,6 +1288,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentTypes(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentTypes(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentTypes, Visitor >::operator [];
 
 
@@ -1093,6 +1347,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TopLevelPackages(*this); }
+		void Leave(Visitor &v) { v.Leave_TopLevelPackages(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TopLevelPackages, Visitor >::operator [];
 
 
@@ -1151,6 +1406,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentPackages(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentPackages(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentPackages, Visitor >::operator [];
 
 
@@ -1209,6 +1465,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Targets(*this); }
+		void Leave(Visitor &v) { v.Leave_Targets(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Targets, Visitor >::operator [];
 
 
@@ -1303,6 +1560,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PredefinedTypes(*this); }
+		void Leave(Visitor &v) { v.Leave_PredefinedTypes(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PredefinedTypes, Visitor >::operator [];
 
 
@@ -1364,6 +1622,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InterfaceDefinitions(*this); }
+		void Leave(Visitor &v) { v.Leave_InterfaceDefinitions(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InterfaceDefinitions, Visitor >::operator [];
 
 
@@ -1422,6 +1681,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentBuild(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentBuild(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentBuild, Visitor >::operator [];
 
 
@@ -1480,6 +1740,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WorkerLibraries(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkerLibraries(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkerLibraries, Visitor >::operator [];
 
 
@@ -1596,6 +1857,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::PICML::RootFolder> parent() const { return Udm::ParentAttr< ::PICML::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RootFolder(*this); }
+		void Leave(Visitor &v) { v.Leave_RootFolder(*this); }
 		using LEESA::VisitorAsIndex_CRTP< RootFolder, Visitor >::operator [];
 
 
@@ -1663,6 +1925,8 @@ namespace PICML {
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_position;
 		static ::Uml::Attribute meta_name;
@@ -1712,6 +1976,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Implemenation> srcInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::Implemenation>(impl, meta_srcInfoProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstInfoProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_InfoProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_InfoProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InfoProperty, Visitor >::operator [];
 
 
@@ -1765,6 +2030,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Implemenation> srcConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Implemenation>(impl, meta_srcConfigProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstConfigProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_ConfigProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_ConfigProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ConfigProperty, Visitor >::operator [];
 
 
@@ -1818,6 +2084,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase> srcMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase>(impl, meta_srcMonolithprimaryArtifact_end_); }
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifactReference> dstMonolithprimaryArtifact_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifactReference>(impl, meta_dstMonolithprimaryArtifact_end_); }
 		void Accept(Visitor &v) { v.Visit_MonolithprimaryArtifact(*this); }
+		void Leave(Visitor &v) { v.Leave_MonolithprimaryArtifact(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MonolithprimaryArtifact, Visitor >::operator [];
 
 
@@ -1871,6 +2138,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase> srcMonolithDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase>(impl, meta_srcMonolithDeployRequirement_end_); }
 		Udm::AssocEndAttr< ::PICML::ImplementationRequirement> dstMonolithDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationRequirement>(impl, meta_dstMonolithDeployRequirement_end_); }
 		void Accept(Visitor &v) { v.Visit_MonolithDeployRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_MonolithDeployRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MonolithDeployRequirement, Visitor >::operator [];
 
 
@@ -1924,6 +2192,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase> srcMonolithExecParameter_end() const { return Udm::AssocEndAttr< ::PICML::MonolithicImplementationBase>(impl, meta_srcMonolithExecParameter_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstMonolithExecParameter_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstMonolithExecParameter_end_); }
 		void Accept(Visitor &v) { v.Visit_MonolithExecParameter(*this); }
+		void Leave(Visitor &v) { v.Leave_MonolithExecParameter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MonolithExecParameter, Visitor >::operator [];
 
 
@@ -2014,6 +2283,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_ConfigProperty_children;
 		static ::Uml::CompositionChildRole meta_InfoProperty_children;
@@ -2072,6 +2343,8 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::ConfigProperty, ::PICML::Property, Pred> dstConfigProperty_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::ConfigProperty, ::PICML::Property, Pred>(impl, meta_dstConfigProperty, meta_dstConfigProperty_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_UUID;
 		static ::Uml::Attribute meta_label;
@@ -2127,6 +2400,8 @@ namespace PICML {
 		Udm::AClassAssocAttr< ::PICML::MonolithprimaryArtifact, ::PICML::ImplementationArtifactReference> dstMonolithprimaryArtifact() const { return Udm::AClassAssocAttr< ::PICML::MonolithprimaryArtifact, ::PICML::ImplementationArtifactReference>(impl, meta_dstMonolithprimaryArtifact, meta_dstMonolithprimaryArtifact_rev); }
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::MonolithprimaryArtifact, ::PICML::ImplementationArtifactReference, Pred> dstMonolithprimaryArtifact_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::MonolithprimaryArtifact, ::PICML::ImplementationArtifactReference, Pred>(impl, meta_dstMonolithprimaryArtifact, meta_dstMonolithprimaryArtifact_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstMonolithExecParameter;
@@ -2189,6 +2464,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentFactoryImplementations> ComponentFactoryImplementations_parent() const { return Udm::ParentAttr< ::PICML::ComponentFactoryImplementations>(impl, meta_ComponentFactoryImplementations_parent); }
 		Udm::ParentAttr< ::PICML::ComponentFactoryImplementations> parent() const { return Udm::ParentAttr< ::PICML::ComponentFactoryImplementations>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentFactoryImplementationContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentFactoryImplementationContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentFactoryImplementationContainer, Visitor >::operator [];
 
 
@@ -2242,6 +2518,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentFactoryImplementationContainer> ComponentFactoryImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentFactoryImplementationContainer>(impl, meta_ComponentFactoryImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentFactoryInstance(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentFactoryInstance(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentFactoryInstance, Visitor >::operator [];
 
 
@@ -2302,6 +2579,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RTRequirements> RTRequirements_parent() const { return Udm::ParentAttr< ::PICML::RTRequirements>(impl, meta_RTRequirements_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ServiceProvider(*this); }
+		void Leave(Visitor &v) { v.Leave_ServiceProvider(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ServiceProvider, Visitor >::operator [];
 
 
@@ -2358,6 +2636,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ServiceProvider> ServiceProvider_parent() const { return Udm::ParentAttr< ::PICML::ServiceProvider>(impl, meta_ServiceProvider_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_MultipleServiceRequests(*this); }
+		void Leave(Visitor &v) { v.Leave_MultipleServiceRequests(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MultipleServiceRequests, Visitor >::operator [];
 
 
@@ -2412,6 +2691,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ServiceProvider> ServiceProvider_parent() const { return Udm::ParentAttr< ::PICML::ServiceProvider>(impl, meta_ServiceProvider_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ServiceLevels(*this); }
+		void Leave(Visitor &v) { v.Leave_ServiceLevels(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ServiceLevels, Visitor >::operator [];
 
 
@@ -2463,6 +2743,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RTRequirements> RTRequirements_parent() const { return Udm::ParentAttr< ::PICML::RTRequirements>(impl, meta_RTRequirements_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ServiceConsumer(*this); }
+		void Leave(Visitor &v) { v.Leave_ServiceConsumer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ServiceConsumer, Visitor >::operator [];
 
 
@@ -2519,6 +2800,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ECRequirements> ECRequirements_parent() const { return Udm::ParentAttr< ::PICML::ECRequirements>(impl, meta_ECRequirements_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ECBehavior(*this); }
+		void Leave(Visitor &v) { v.Leave_ECBehavior(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ECBehavior, Visitor >::operator [];
 
 
@@ -2576,6 +2858,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ECRequirements> ECRequirements_parent() const { return Udm::ParentAttr< ::PICML::ECRequirements>(impl, meta_ECRequirements_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ECRole(*this); }
+		void Leave(Visitor &v) { v.Leave_ECRole(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ECRole, Visitor >::operator [];
 
 
@@ -2628,6 +2911,8 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::ExternalPortReference, Pred> referedbyExternalPortReference_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::ExternalPortReference, Pred>(impl, meta_referedbyExternalPortReference); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyExternalPortReference;
 
@@ -2679,6 +2964,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ExternalPortReference(*this); }
+		void Leave(Visitor &v) { v.Leave_ExternalPortReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExternalPortReference, Visitor >::operator [];
 
 
@@ -2785,6 +3071,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Paths> Paths_parent() const { return Udm::ParentAttr< ::PICML::Paths>(impl, meta_Paths_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Path(*this); }
+		void Leave(Visitor &v) { v.Leave_Path(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Path, Visitor >::operator [];
 
 
@@ -2847,6 +3134,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::GraphVertex> srcDstEdge_end() const { return Udm::AssocEndAttr< ::PICML::GraphVertex>(impl, meta_srcDstEdge_end_); }
 		Udm::AssocEndAttr< ::PICML::Edge> dstDstEdge_end() const { return Udm::AssocEndAttr< ::PICML::Edge>(impl, meta_dstDstEdge_end_); }
 		void Accept(Visitor &v) { v.Visit_DstEdge(*this); }
+		void Leave(Visitor &v) { v.Leave_DstEdge(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DstEdge, Visitor >::operator [];
 
 
@@ -2900,6 +3188,8 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::DstEdge, ::PICML::Edge> dstDstEdge() const { return Udm::AClassPointerAttr< ::PICML::DstEdge, ::PICML::Edge>(impl, meta_dstDstEdge, meta_dstDstEdge_rev); }
 		Udm::ParentAttr< ::PICML::Path> Path_parent() const { return Udm::ParentAttr< ::PICML::Path>(impl, meta_Path_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcSrcEdge;
@@ -2974,6 +3264,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ConnectedComponent(*this); }
+		void Leave(Visitor &v) { v.Leave_ConnectedComponent(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ConnectedComponent, Visitor >::operator [];
 
 
@@ -3026,6 +3317,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::GraphVertex> dstSrcEdge_end() const { return Udm::AssocEndAttr< ::PICML::GraphVertex>(impl, meta_dstSrcEdge_end_); }
 		Udm::AssocEndAttr< ::PICML::Edge> srcSrcEdge_end() const { return Udm::AssocEndAttr< ::PICML::Edge>(impl, meta_srcSrcEdge_end_); }
 		void Accept(Visitor &v) { v.Visit_SrcEdge(*this); }
+		void Leave(Visitor &v) { v.Leave_SrcEdge(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SrcEdge, Visitor >::operator [];
 
 
@@ -3079,6 +3371,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Edge> dstPropertyConnector_end() const { return Udm::AssocEndAttr< ::PICML::Edge>(impl, meta_dstPropertyConnector_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> srcPropertyConnector_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_srcPropertyConnector_end_); }
 		void Accept(Visitor &v) { v.Visit_EdgeProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_EdgeProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< EdgeProperty, Visitor >::operator [];
 
 
@@ -3134,6 +3427,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Path> Path_parent() const { return Udm::ParentAttr< ::PICML::Path>(impl, meta_Path_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Edge(*this); }
+		void Leave(Visitor &v) { v.Leave_Edge(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Edge, Visitor >::operator [];
 
 
@@ -3188,6 +3482,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_DisplayNode(*this); }
+		void Leave(Visitor &v) { v.Leave_DisplayNode(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DisplayNode, Visitor >::operator [];
 
 
@@ -3250,6 +3545,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PathDiagrams> PathDiagrams_parent() const { return Udm::ParentAttr< ::PICML::PathDiagrams>(impl, meta_PathDiagrams_parent); }
 		Udm::ParentAttr< ::PICML::PathDiagrams> parent() const { return Udm::ParentAttr< ::PICML::PathDiagrams>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Paths(*this); }
+		void Leave(Visitor &v) { v.Leave_Paths(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Paths, Visitor >::operator [];
 
 
@@ -3304,6 +3600,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Path> srcPathProperty_end() const { return Udm::AssocEndAttr< ::PICML::Path>(impl, meta_srcPathProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstPathProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPathProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_PathProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_PathProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PathProperty, Visitor >::operator [];
 
 
@@ -3357,6 +3654,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PathReference(*this); }
+		void Leave(Visitor &v) { v.Leave_PathReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PathReference, Visitor >::operator [];
 
 
@@ -3411,6 +3709,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MetricsBase> dstMetricConnection_end() const { return Udm::AssocEndAttr< ::PICML::MetricsBase>(impl, meta_dstMetricConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::OperationRef> srcMetricConnection_end() const { return Udm::AssocEndAttr< ::PICML::OperationRef>(impl, meta_srcMetricConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_MetricConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_MetricConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MetricConnection, Visitor >::operator [];
 
 
@@ -3463,6 +3762,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionParentRole meta_MetricsBase_parent;
 		static ::Uml::CompositionParentRole meta_BenchmarkAnalysis_parent;
@@ -3509,6 +3810,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Average(*this); }
+		void Leave(Visitor &v) { v.Leave_Average(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Average, Visitor >::operator [];
 
 
@@ -3556,6 +3858,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Minimum(*this); }
+		void Leave(Visitor &v) { v.Leave_Minimum(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Minimum, Visitor >::operator [];
 
 
@@ -3603,6 +3906,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Maximum(*this); }
+		void Leave(Visitor &v) { v.Leave_Maximum(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Maximum, Visitor >::operator [];
 
 
@@ -3650,6 +3954,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Jitter(*this); }
+		void Leave(Visitor &v) { v.Leave_Jitter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Jitter, Visitor >::operator [];
 
 
@@ -3700,6 +4005,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TimeProbe(*this); }
+		void Leave(Visitor &v) { v.Leave_TimeProbe(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TimeProbe, Visitor >::operator [];
 
 
@@ -3755,6 +4061,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::TimeProbe> dstTimerConnection_end() const { return Udm::AssocEndAttr< ::PICML::TimeProbe>(impl, meta_dstTimerConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::OperationRef> srcTimerConnection_end() const { return Udm::AssocEndAttr< ::PICML::OperationRef>(impl, meta_srcTimerConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_TimerConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_TimerConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TimerConnection, Visitor >::operator [];
 
 
@@ -3926,6 +4233,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAnalyses> ComponentAnalyses_parent() const { return Udm::ParentAttr< ::PICML::ComponentAnalyses>(impl, meta_ComponentAnalyses_parent); }
 		Udm::ParentAttr< ::PICML::ComponentAnalyses> parent() const { return Udm::ParentAttr< ::PICML::ComponentAnalyses>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_BenchmarkAnalysis(*this); }
+		void Leave(Visitor &v) { v.Leave_BenchmarkAnalysis(*this); }
 		using LEESA::VisitorAsIndex_CRTP< BenchmarkAnalysis, Visitor >::operator [];
 
 
@@ -4016,6 +4324,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_warmup;
 		static ::Uml::Attribute meta_fileName;
@@ -4074,6 +4384,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Latency(*this); }
+		void Leave(Visitor &v) { v.Leave_Latency(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Latency, Visitor >::operator [];
 
 
@@ -4121,6 +4432,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Throughput(*this); }
+		void Leave(Visitor &v) { v.Leave_Throughput(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Throughput, Visitor >::operator [];
 
 
@@ -4174,6 +4486,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_OperationRef(*this); }
+		void Leave(Visitor &v) { v.Leave_OperationRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< OperationRef, Visitor >::operator [];
 
 
@@ -4235,6 +4548,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_EventRef(*this); }
+		void Leave(Visitor &v) { v.Leave_EventRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< EventRef, Visitor >::operator [];
 
 
@@ -4289,6 +4603,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::TimeProbe> dstTimerEventSinkConn_end() const { return Udm::AssocEndAttr< ::PICML::TimeProbe>(impl, meta_dstTimerEventSinkConn_end_); }
 		Udm::AssocEndAttr< ::PICML::EventRef> srcTimerEventSinkConn_end() const { return Udm::AssocEndAttr< ::PICML::EventRef>(impl, meta_srcTimerEventSinkConn_end_); }
 		void Accept(Visitor &v) { v.Visit_TimerEventSinkConn(*this); }
+		void Leave(Visitor &v) { v.Leave_TimerEventSinkConn(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TimerEventSinkConn, Visitor >::operator [];
 
 
@@ -4345,6 +4660,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TaskSet(*this); }
+		void Leave(Visitor &v) { v.Leave_TaskSet(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TaskSet, Visitor >::operator [];
 
 
@@ -4402,6 +4718,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Task(*this); }
+		void Leave(Visitor &v) { v.Leave_Task(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Task, Visitor >::operator [];
 
 
@@ -4456,6 +4773,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MetricsBase> srcWorkloadCharacteristics_end() const { return Udm::AssocEndAttr< ::PICML::MetricsBase>(impl, meta_srcWorkloadCharacteristics_end_); }
 		Udm::AssocEndAttr< ::PICML::TaskSet> dstWorkloadCharacteristics_end() const { return Udm::AssocEndAttr< ::PICML::TaskSet>(impl, meta_dstWorkloadCharacteristics_end_); }
 		void Accept(Visitor &v) { v.Visit_WorkloadCharacteristics(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkloadCharacteristics(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkloadCharacteristics, Visitor >::operator [];
 
 
@@ -4509,6 +4827,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::OperationRef> srcComponentOperation_end() const { return Udm::AssocEndAttr< ::PICML::OperationRef>(impl, meta_srcComponentOperation_end_); }
 		Udm::AssocEndAttr< ::PICML::CompRef> dstComponentOperation_end() const { return Udm::AssocEndAttr< ::PICML::CompRef>(impl, meta_dstComponentOperation_end_); }
 		void Accept(Visitor &v) { v.Visit_ComponentOperation(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentOperation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentOperation, Visitor >::operator [];
 
 
@@ -4562,6 +4881,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_CompRef(*this); }
+		void Leave(Visitor &v) { v.Leave_CompRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< CompRef, Visitor >::operator [];
 
 
@@ -4616,6 +4936,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::OperationRef> srcWorkLoadOperationConnection_end() const { return Udm::AssocEndAttr< ::PICML::OperationRef>(impl, meta_srcWorkLoadOperationConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::Task> dstWorkLoadOperationConnection_end() const { return Udm::AssocEndAttr< ::PICML::Task>(impl, meta_dstWorkLoadOperationConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_WorkLoadOperationConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkLoadOperationConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkLoadOperationConnection, Visitor >::operator [];
 
 
@@ -4668,6 +4989,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstBenchmarkCharacteristics;
 		static ::Uml::AssociationRole meta_dstBenchmarkCharacteristics_rev;
@@ -4715,6 +5038,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TriggerBenchmarks(*this); }
+		void Leave(Visitor &v) { v.Leave_TriggerBenchmarks(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TriggerBenchmarks, Visitor >::operator [];
 
 
@@ -4763,6 +5087,7 @@ namespace PICML {
 		Udm::IntegerAttr benchmarkIterations() const { return Udm::IntegerAttr(impl, meta_benchmarkIterations); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_FixedIterationBenchmarks(*this); }
+		void Leave(Visitor &v) { v.Leave_FixedIterationBenchmarks(*this); }
 		using LEESA::VisitorAsIndex_CRTP< FixedIterationBenchmarks, Visitor >::operator [];
 
 
@@ -4812,6 +5137,7 @@ namespace PICML {
 		Udm::IntegerAttr timeperiod() const { return Udm::IntegerAttr(impl, meta_timeperiod); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PeriodicBenchmarks(*this); }
+		void Leave(Visitor &v) { v.Leave_PeriodicBenchmarks(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PeriodicBenchmarks, Visitor >::operator [];
 
 
@@ -4863,6 +5189,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MetricsBase> dstBenchmarkCharacteristics_end() const { return Udm::AssocEndAttr< ::PICML::MetricsBase>(impl, meta_dstBenchmarkCharacteristics_end_); }
 		Udm::AssocEndAttr< ::PICML::BenchmarkType> srcBenchmarkCharacteristics_end() const { return Udm::AssocEndAttr< ::PICML::BenchmarkType>(impl, meta_srcBenchmarkCharacteristics_end_); }
 		void Accept(Visitor &v) { v.Visit_BenchmarkCharacteristics(*this); }
+		void Leave(Visitor &v) { v.Leave_BenchmarkCharacteristics(*this); }
 		using LEESA::VisitorAsIndex_CRTP< BenchmarkCharacteristics, Visitor >::operator [];
 
 
@@ -4917,6 +5244,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::DeploymentPlan> DeploymentPlan_parent() const { return Udm::ParentAttr< ::PICML::DeploymentPlan>(impl, meta_DeploymentPlan_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_NodeReference(*this); }
+		void Leave(Visitor &v) { v.Leave_NodeReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< NodeReference, Visitor >::operator [];
 
 
@@ -4982,6 +5310,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Domain> Domain_parent() const { return Udm::ParentAttr< ::PICML::Domain>(impl, meta_Domain_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Interconnect(*this); }
+		void Leave(Visitor &v) { v.Leave_Interconnect(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Interconnect, Visitor >::operator [];
 
 
@@ -5054,6 +5383,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Domain> Domain_parent() const { return Udm::ParentAttr< ::PICML::Domain>(impl, meta_Domain_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Node(*this); }
+		void Leave(Visitor &v) { v.Leave_Node(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Node, Visitor >::operator [];
 
 
@@ -5123,6 +5453,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Domain> Domain_parent() const { return Udm::ParentAttr< ::PICML::Domain>(impl, meta_Domain_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Bridge(*this); }
+		void Leave(Visitor &v) { v.Leave_Bridge(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Bridge, Visitor >::operator [];
 
 
@@ -5178,6 +5509,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::NodeReference> dstInstanceMapping_end() const { return Udm::AssocEndAttr< ::PICML::NodeReference>(impl, meta_dstInstanceMapping_end_); }
 		Udm::AssocEndAttr< ::PICML::CollocationGroup> srcInstanceMapping_end() const { return Udm::AssocEndAttr< ::PICML::CollocationGroup>(impl, meta_srcInstanceMapping_end_); }
 		void Accept(Visitor &v) { v.Visit_InstanceMapping(*this); }
+		void Leave(Visitor &v) { v.Leave_InstanceMapping(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InstanceMapping, Visitor >::operator [];
 
 
@@ -5233,6 +5565,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::DeploymentPlan> DeploymentPlan_parent() const { return Udm::ParentAttr< ::PICML::DeploymentPlan>(impl, meta_DeploymentPlan_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_CollocationGroup(*this); }
+		void Leave(Visitor &v) { v.Leave_CollocationGroup(*this); }
 		using LEESA::VisitorAsIndex_CRTP< CollocationGroup, Visitor >::operator [];
 
 
@@ -5287,6 +5620,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentFactoryRef> srcDeploys_end() const { return Udm::AssocEndAttr< ::PICML::ComponentFactoryRef>(impl, meta_srcDeploys_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> dstDeploys_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_dstDeploys_end_); }
 		void Accept(Visitor &v) { v.Visit_Deploys(*this); }
+		void Leave(Visitor &v) { v.Leave_Deploys(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Deploys, Visitor >::operator [];
 
 
@@ -5340,6 +5674,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::DeploymentPlan> DeploymentPlan_parent() const { return Udm::ParentAttr< ::PICML::DeploymentPlan>(impl, meta_DeploymentPlan_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_setCollocationGroup;
 		static ::Uml::CompositionParentRole meta_DeploymentPlan_parent;
@@ -5388,6 +5724,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentAssemblyReference(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentAssemblyReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentAssemblyReference, Visitor >::operator [];
 
 
@@ -5438,6 +5775,7 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::ComponentRef> ref() const { return Udm::PointerAttr< ::PICML::ComponentRef>(impl, meta_ref); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_SharedComponentReference(*this); }
+		void Leave(Visitor &v) { v.Leave_SharedComponentReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SharedComponentReference, Visitor >::operator [];
 
 
@@ -5489,6 +5827,7 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::Deploys, ::PICML::ComponentRef, Pred> dstDeploys_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::Deploys, ::PICML::ComponentRef, Pred>(impl, meta_dstDeploys, meta_dstDeploys_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentFactoryRef(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentFactoryRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentFactoryRef, Visitor >::operator [];
 
 
@@ -5576,6 +5915,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::DeploymentPlans> DeploymentPlans_parent() const { return Udm::ParentAttr< ::PICML::DeploymentPlans>(impl, meta_DeploymentPlans_parent); }
 		Udm::ParentAttr< ::PICML::DeploymentPlans> parent() const { return Udm::ParentAttr< ::PICML::DeploymentPlans>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_DeploymentPlan(*this); }
+		void Leave(Visitor &v) { v.Leave_DeploymentPlan(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DeploymentPlan, Visitor >::operator [];
 
 
@@ -5635,6 +5975,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::InvokePortBase> dstinvoke_end() const { return Udm::AssocEndAttr< ::PICML::InvokePortBase>(impl, meta_dstinvoke_end_); }
 		Udm::AssocEndAttr< ::PICML::RequiredRequestPort> srcinvoke_end() const { return Udm::AssocEndAttr< ::PICML::RequiredRequestPort>(impl, meta_srcinvoke_end_); }
 		void Accept(Visitor &v) { v.Visit_invoke(*this); }
+		void Leave(Visitor &v) { v.Leave_invoke(*this); }
 		using LEESA::VisitorAsIndex_CRTP< invoke, Visitor >::operator [];
 
 
@@ -5688,6 +6029,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Requirement> dstAssemblyselectRequirement_end() const { return Udm::AssocEndAttr< ::PICML::Requirement>(impl, meta_dstAssemblyselectRequirement_end_); }
 		Udm::AssocEndAttr< ::PICML::Component> srcAssemblyselectRequirement_end() const { return Udm::AssocEndAttr< ::PICML::Component>(impl, meta_srcAssemblyselectRequirement_end_); }
 		void Accept(Visitor &v) { v.Visit_AssemblyselectRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_AssemblyselectRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AssemblyselectRequirement, Visitor >::operator [];
 
 
@@ -5741,6 +6083,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Property> dstAssemblyConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstAssemblyConfigProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Component> srcAssemblyConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Component>(impl, meta_srcAssemblyConfigProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_AssemblyConfigProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_AssemblyConfigProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AssemblyConfigProperty, Visitor >::operator [];
 
 
@@ -5797,6 +6140,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PublishConnector(*this); }
+		void Leave(Visitor &v) { v.Leave_PublishConnector(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PublishConnector, Visitor >::operator [];
 
 
@@ -5854,6 +6198,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PublishConnector> dstpublish_end() const { return Udm::AssocEndAttr< ::PICML::PublishConnector>(impl, meta_dstpublish_end_); }
 		Udm::AssocEndAttr< ::PICML::OutEventPort> srcpublish_end() const { return Udm::AssocEndAttr< ::PICML::OutEventPort>(impl, meta_srcpublish_end_); }
 		void Accept(Visitor &v) { v.Visit_publish(*this); }
+		void Leave(Visitor &v) { v.Leave_publish(*this); }
 		using LEESA::VisitorAsIndex_CRTP< publish, Visitor >::operator [];
 
 
@@ -5907,6 +6252,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PublishConnector> srcdeliverTo_end() const { return Udm::AssocEndAttr< ::PICML::PublishConnector>(impl, meta_srcdeliverTo_end_); }
 		Udm::AssocEndAttr< ::PICML::InEventPort> dstdeliverTo_end() const { return Udm::AssocEndAttr< ::PICML::InEventPort>(impl, meta_dstdeliverTo_end_); }
 		void Accept(Visitor &v) { v.Visit_deliverTo(*this); }
+		void Leave(Visitor &v) { v.Leave_deliverTo(*this); }
 		using LEESA::VisitorAsIndex_CRTP< deliverTo, Visitor >::operator [];
 
 
@@ -5960,6 +6306,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PublishConnector> srcAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::PublishConnector>(impl, meta_srcAssemblyDeployRequirement_end_); }
 		Udm::AssocEndAttr< ::PICML::Requirement> dstAssemblyDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::Requirement>(impl, meta_dstAssemblyDeployRequirement_end_); }
 		void Accept(Visitor &v) { v.Visit_AssemblyDeployRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_AssemblyDeployRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AssemblyDeployRequirement, Visitor >::operator [];
 
 
@@ -6013,6 +6360,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::InEventPort> dstemit_end() const { return Udm::AssocEndAttr< ::PICML::InEventPort>(impl, meta_dstemit_end_); }
 		Udm::AssocEndAttr< ::PICML::OutEventPort> srcemit_end() const { return Udm::AssocEndAttr< ::PICML::OutEventPort>(impl, meta_srcemit_end_); }
 		void Accept(Visitor &v) { v.Visit_emit(*this); }
+		void Leave(Visitor &v) { v.Leave_emit(*this); }
 		using LEESA::VisitorAsIndex_CRTP< emit, Visitor >::operator [];
 
 
@@ -6066,6 +6414,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::RequiredRequestPort> srcReceptacleDelegate_end() const { return Udm::AssocEndAttr< ::PICML::RequiredRequestPort>(impl, meta_srcReceptacleDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::RequiredRequestPort> dstReceptacleDelegate_end() const { return Udm::AssocEndAttr< ::PICML::RequiredRequestPort>(impl, meta_dstReceptacleDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_ReceptacleDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_ReceptacleDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ReceptacleDelegate, Visitor >::operator [];
 
 
@@ -6119,6 +6468,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ProvidedRequestPort> srcFacetDelegate_end() const { return Udm::AssocEndAttr< ::PICML::ProvidedRequestPort>(impl, meta_srcFacetDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::ProvidedRequestPort> dstFacetDelegate_end() const { return Udm::AssocEndAttr< ::PICML::ProvidedRequestPort>(impl, meta_dstFacetDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_FacetDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_FacetDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< FacetDelegate, Visitor >::operator [];
 
 
@@ -6172,6 +6522,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::OutEventPort> srcEventSourceDelegate_end() const { return Udm::AssocEndAttr< ::PICML::OutEventPort>(impl, meta_srcEventSourceDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::OutEventPort> dstEventSourceDelegate_end() const { return Udm::AssocEndAttr< ::PICML::OutEventPort>(impl, meta_dstEventSourceDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_EventSourceDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_EventSourceDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< EventSourceDelegate, Visitor >::operator [];
 
 
@@ -6225,6 +6576,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::InEventPort> srcEventSinkDelegate_end() const { return Udm::AssocEndAttr< ::PICML::InEventPort>(impl, meta_srcEventSinkDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::InEventPort> dstEventSinkDelegate_end() const { return Udm::AssocEndAttr< ::PICML::InEventPort>(impl, meta_dstEventSinkDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_EventSinkDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_EventSinkDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< EventSinkDelegate, Visitor >::operator [];
 
 
@@ -6278,6 +6630,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ExternalPortReference> srcExternalDelegate_end() const { return Udm::AssocEndAttr< ::PICML::ExternalPortReference>(impl, meta_srcExternalDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::Port> dstExternalDelegate_end() const { return Udm::AssocEndAttr< ::PICML::Port>(impl, meta_dstExternalDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_ExternalDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_ExternalDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExternalDelegate, Visitor >::operator [];
 
 
@@ -6331,6 +6684,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Property> dstAttributeValue_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstAttributeValue_end_); }
 		Udm::AssocEndAttr< ::PICML::ReadonlyAttribute> srcAttributeValue_end() const { return Udm::AssocEndAttr< ::PICML::ReadonlyAttribute>(impl, meta_srcAttributeValue_end_); }
 		void Accept(Visitor &v) { v.Visit_AttributeValue(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeValue(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeValue, Visitor >::operator [];
 
 
@@ -6384,6 +6738,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::AttributeMapping> srcAttributeDelegate_end() const { return Udm::AssocEndAttr< ::PICML::AttributeMapping>(impl, meta_srcAttributeDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::ReadonlyAttribute> dstAttributeDelegate_end() const { return Udm::AssocEndAttr< ::PICML::ReadonlyAttribute>(impl, meta_dstAttributeDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_AttributeDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeDelegate, Visitor >::operator [];
 
 
@@ -6442,6 +6797,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_AttributeMapping(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeMapping(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeMapping, Visitor >::operator [];
 
 
@@ -6502,6 +6858,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::AttributeMapping> srcAttributeMappingValue_end() const { return Udm::AssocEndAttr< ::PICML::AttributeMapping>(impl, meta_srcAttributeMappingValue_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstAttributeMappingValue_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstAttributeMappingValue_end_); }
 		void Accept(Visitor &v) { v.Visit_AttributeMappingValue(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeMappingValue(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeMappingValue, Visitor >::operator [];
 
 
@@ -6555,6 +6912,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::AttributeMapping> srcAttributeMappingDelegate_end() const { return Udm::AssocEndAttr< ::PICML::AttributeMapping>(impl, meta_srcAttributeMappingDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::AttributeMapping> dstAttributeMappingDelegate_end() const { return Udm::AssocEndAttr< ::PICML::AttributeMapping>(impl, meta_dstAttributeMappingDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_AttributeMappingDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeMappingDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeMappingDelegate, Visitor >::operator [];
 
 
@@ -6608,6 +6966,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ProvidedRequestPort> dstSupportsDelegate_end() const { return Udm::AssocEndAttr< ::PICML::ProvidedRequestPort>(impl, meta_dstSupportsDelegate_end_); }
 		Udm::AssocEndAttr< ::PICML::Supports> srcSupportsDelegate_end() const { return Udm::AssocEndAttr< ::PICML::Supports>(impl, meta_srcSupportsDelegate_end_); }
 		void Accept(Visitor &v) { v.Visit_SupportsDelegate(*this); }
+		void Leave(Visitor &v) { v.Leave_SupportsDelegate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SupportsDelegate, Visitor >::operator [];
 
 
@@ -6660,6 +7019,8 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::invoke, ::PICML::RequiredRequestPort, Pred> srcinvoke_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::invoke, ::PICML::RequiredRequestPort, Pred>(impl, meta_srcinvoke, meta_srcinvoke_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcinvoke;
 		static ::Uml::AssociationRole meta_srcinvoke_rev;
@@ -6709,6 +7070,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentImplementation> srcImplementationCapability_end() const { return Udm::AssocEndAttr< ::PICML::ComponentImplementation>(impl, meta_srcImplementationCapability_end_); }
 		Udm::AssocEndAttr< ::PICML::Capability> dstImplementationCapability_end() const { return Udm::AssocEndAttr< ::PICML::Capability>(impl, meta_dstImplementationCapability_end_); }
 		void Accept(Visitor &v) { v.Visit_ImplementationCapability(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationCapability(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationCapability, Visitor >::operator [];
 
 
@@ -6762,6 +7124,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentImplementation> srcImplementationDependsOn_end() const { return Udm::AssocEndAttr< ::PICML::ComponentImplementation>(impl, meta_srcImplementationDependsOn_end_); }
 		Udm::AssocEndAttr< ::PICML::ImplementationDependency> dstImplementationDependsOn_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationDependency>(impl, meta_dstImplementationDependsOn_end_); }
 		void Accept(Visitor &v) { v.Visit_ImplementationDependsOn(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationDependsOn(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationDependsOn, Visitor >::operator [];
 
 
@@ -6815,6 +7178,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentImplementation> srcImplements_end() const { return Udm::AssocEndAttr< ::PICML::ComponentImplementation>(impl, meta_srcImplements_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> dstImplements_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_dstImplements_end_); }
 		void Accept(Visitor &v) { v.Visit_Implements(*this); }
+		void Leave(Visitor &v) { v.Leave_Implements(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Implements, Visitor >::operator [];
 
 
@@ -6872,6 +7236,8 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::ComponentImplementationReference, Pred> referedbyComponentImplementationReference_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::ComponentImplementationReference, Pred>(impl, meta_referedbyComponentImplementationReference); }
 		Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstImplementationDependsOn;
@@ -7103,6 +7469,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentAssembly(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentAssembly(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentAssembly, Visitor >::operator [];
 
 
@@ -7234,6 +7601,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentImplementations> ComponentImplementations_parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementations>(impl, meta_ComponentImplementations_parent); }
 		Udm::ParentAttr< ::PICML::ComponentImplementations> parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementations>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentImplementationContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentImplementationContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentImplementationContainer, Visitor >::operator [];
 
 
@@ -7294,6 +7662,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentAssembly> srcCriticalPath_end() const { return Udm::AssocEndAttr< ::PICML::ComponentAssembly>(impl, meta_srcCriticalPath_end_); }
 		Udm::AssocEndAttr< ::PICML::PathReference> dstCriticalPath_end() const { return Udm::AssocEndAttr< ::PICML::PathReference>(impl, meta_dstCriticalPath_end_); }
 		void Accept(Visitor &v) { v.Visit_CriticalPath(*this); }
+		void Leave(Visitor &v) { v.Leave_CriticalPath(*this); }
 		using LEESA::VisitorAsIndex_CRTP< CriticalPath, Visitor >::operator [];
 
 
@@ -7348,6 +7717,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentImplementationReference(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentImplementationReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentImplementationReference, Visitor >::operator [];
 
 
@@ -7400,6 +7770,7 @@ namespace PICML {
 		Udm::StringAttr defaultVersion() const { return Udm::StringAttr(impl, meta_defaultVersion); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_MonolithicImplementation(*this); }
+		void Leave(Visitor &v) { v.Leave_MonolithicImplementation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MonolithicImplementation, Visitor >::operator [];
 
 
@@ -7451,6 +7822,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfiguration> srcPackageConfBasePackage_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfiguration>(impl, meta_srcPackageConfBasePackage_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentPackage> dstPackageConfBasePackage_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_dstPackageConfBasePackage_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfBasePackage(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfBasePackage(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfBasePackage, Visitor >::operator [];
 
 
@@ -7504,6 +7876,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfiguration> srcPackageConfReference_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfiguration>(impl, meta_srcPackageConfReference_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentPackageReference> dstPackageConfReference_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackageReference>(impl, meta_dstPackageConfReference_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfReference(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfReference, Visitor >::operator [];
 
 
@@ -7598,6 +7971,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PackageConfigurations> PackageConfigurations_parent() const { return Udm::ParentAttr< ::PICML::PackageConfigurations>(impl, meta_PackageConfigurations_parent); }
 		Udm::ParentAttr< ::PICML::PackageConfigurations> parent() const { return Udm::ParentAttr< ::PICML::PackageConfigurations>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PackageConfigurationContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfigurationContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfigurationContainer, Visitor >::operator [];
 
 
@@ -7659,6 +8033,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfiguration> srcPackageConfConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfiguration>(impl, meta_srcPackageConfConfigProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstPackageConfConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPackageConfConfigProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfConfigProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfConfigProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfConfigProperty, Visitor >::operator [];
 
 
@@ -7712,6 +8087,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfiguration> srcPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfiguration>(impl, meta_srcPackageConfSelectRequirement_end_); }
 		Udm::AssocEndAttr< ::PICML::Requirement> dstPackageConfSelectRequirement_end() const { return Udm::AssocEndAttr< ::PICML::Requirement>(impl, meta_dstPackageConfSelectRequirement_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfSelectRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfSelectRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfSelectRequirement, Visitor >::operator [];
 
 
@@ -7765,6 +8141,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfigurationReference> dstPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfigurationReference>(impl, meta_dstPackageConfSpecializedConfig_end_); }
 		Udm::AssocEndAttr< ::PICML::PackageConfiguration> srcPackageConfSpecializedConfig_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfiguration>(impl, meta_srcPackageConfSpecializedConfig_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfSpecializedConfig(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfSpecializedConfig(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfSpecializedConfig, Visitor >::operator [];
 
 
@@ -7820,6 +8197,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelPackageContainer> TopLevelPackageContainer_parent() const { return Udm::ParentAttr< ::PICML::TopLevelPackageContainer>(impl, meta_TopLevelPackageContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PackageConfigurationReference(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfigurationReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfigurationReference, Visitor >::operator [];
 
 
@@ -7885,6 +8263,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr< ::PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PackageConfiguration(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfiguration(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfiguration, Visitor >::operator [];
 
 
@@ -7949,6 +8328,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifactReference> dstArtifactDependsOn_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifactReference>(impl, meta_dstArtifactDependsOn_end_); }
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> srcArtifactDependsOn_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_srcArtifactDependsOn_end_); }
 		void Accept(Visitor &v) { v.Visit_ArtifactDependsOn(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactDependsOn(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactDependsOn, Visitor >::operator [];
 
 
@@ -8002,6 +8382,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> srcArtifactDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_srcArtifactDeployRequirement_end_); }
 		Udm::AssocEndAttr< ::PICML::Requirement> dstArtifactDeployRequirement_end() const { return Udm::AssocEndAttr< ::PICML::Requirement>(impl, meta_dstArtifactDeployRequirement_end_); }
 		void Accept(Visitor &v) { v.Visit_ArtifactDeployRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactDeployRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactDeployRequirement, Visitor >::operator [];
 
 
@@ -8101,6 +8482,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ImplementationArtifacts> ImplementationArtifacts_parent() const { return Udm::ParentAttr< ::PICML::ImplementationArtifacts>(impl, meta_ImplementationArtifacts_parent); }
 		Udm::ParentAttr< ::PICML::ImplementationArtifacts> parent() const { return Udm::ParentAttr< ::PICML::ImplementationArtifacts>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ArtifactContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactContainer, Visitor >::operator [];
 
 
@@ -8161,6 +8543,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> srcArtifactExecParameter_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_srcArtifactExecParameter_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstArtifactExecParameter_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstArtifactExecParameter_end_); }
 		void Accept(Visitor &v) { v.Visit_ArtifactExecParameter(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactExecParameter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactExecParameter, Visitor >::operator [];
 
 
@@ -8214,6 +8597,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> srcArtifactInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_srcArtifactInfoProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstArtifactInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstArtifactInfoProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_ArtifactInfoProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactInfoProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactInfoProperty, Visitor >::operator [];
 
 
@@ -8267,6 +8651,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> srcArtifactDependency_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_srcArtifactDependency_end_); }
 		Udm::AssocEndAttr< ::PICML::ImplementationArtifact> dstArtifactDependency_end() const { return Udm::AssocEndAttr< ::PICML::ImplementationArtifact>(impl, meta_dstArtifactDependency_end_); }
 		void Accept(Visitor &v) { v.Visit_ArtifactDependency(*this); }
+		void Leave(Visitor &v) { v.Leave_ArtifactDependency(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ArtifactDependency, Visitor >::operator [];
 
 
@@ -8327,6 +8712,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ExecutorProject> ExecutorProject_parent() const { return Udm::ParentAttr< ::PICML::ExecutorProject>(impl, meta_ExecutorProject_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ImplementationArtifactReference(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationArtifactReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationArtifactReference, Visitor >::operator [];
 
 
@@ -8386,6 +8772,7 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::ImplementationArtifact> ref() const { return Udm::PointerAttr< ::PICML::ImplementationArtifact>(impl, meta_ref); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentServantArtifact(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentServantArtifact(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentServantArtifact, Visitor >::operator [];
 
 
@@ -8437,6 +8824,7 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::ImplementationArtifact> ref() const { return Udm::PointerAttr< ::PICML::ImplementationArtifact>(impl, meta_ref); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentImplementationArtifact(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentImplementationArtifact(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentImplementationArtifact, Visitor >::operator [];
 
 
@@ -8515,6 +8903,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Project> Project_parent() const { return Udm::ParentAttr< ::PICML::Project>(impl, meta_Project_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ImplementationArtifact(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationArtifact(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationArtifact, Visitor >::operator [];
 
 
@@ -8595,6 +8984,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentContainer> ComponentContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentContainer>(impl, meta_ComponentContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentPropertyDescription(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentPropertyDescription(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentPropertyDescription, Visitor >::operator [];
 
 
@@ -8649,6 +9039,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentPropertyDescription> dstComponentProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPropertyDescription>(impl, meta_dstComponentProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> srcComponentProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_srcComponentProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_ComponentProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentProperty, Visitor >::operator [];
 
 
@@ -8729,6 +9120,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentTypes> ComponentTypes_parent() const { return Udm::ParentAttr< ::PICML::ComponentTypes>(impl, meta_ComponentTypes_parent); }
 		Udm::ParentAttr< ::PICML::ComponentTypes> parent() const { return Udm::ParentAttr< ::PICML::ComponentTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentContainer, Visitor >::operator [];
 
 
@@ -8786,6 +9178,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Property> dstComponentConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstComponentConfigProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> srcComponentConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_srcComponentConfigProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_ComponentConfigProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentConfigProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentConfigProperty, Visitor >::operator [];
 
 
@@ -8839,6 +9232,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Property> dstComponentInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstComponentInfoProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> srcComponentInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_srcComponentInfoProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_ComponentInfoProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentInfoProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentInfoProperty, Visitor >::operator [];
 
 
@@ -8891,6 +9285,8 @@ namespace PICML {
 		Udm::BooleanAttr optional() const { return Udm::BooleanAttr(impl, meta_optional); }
 		Udm::BooleanAttr exclusiveProvider() const { return Udm::BooleanAttr(impl, meta_exclusiveProvider); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_exclusiveUser;
@@ -8951,6 +9347,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelPackages> TopLevelPackages_parent() const { return Udm::ParentAttr< ::PICML::TopLevelPackages>(impl, meta_TopLevelPackages_parent); }
 		Udm::ParentAttr< ::PICML::TopLevelPackages> parent() const { return Udm::ParentAttr< ::PICML::TopLevelPackages>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TopLevelPackageContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_TopLevelPackageContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TopLevelPackageContainer, Visitor >::operator [];
 
 
@@ -9004,6 +9401,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelPackageContainer> TopLevelPackageContainer_parent() const { return Udm::ParentAttr< ::PICML::TopLevelPackageContainer>(impl, meta_TopLevelPackageContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TopLevelPackage(*this); }
+		void Leave(Visitor &v) { v.Leave_TopLevelPackage(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TopLevelPackage, Visitor >::operator [];
 
 
@@ -9057,6 +9455,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PackageConfigurationReference> dstpackage_end() const { return Udm::AssocEndAttr< ::PICML::PackageConfigurationReference>(impl, meta_dstpackage_end_); }
 		Udm::AssocEndAttr< ::PICML::TopLevelPackage> srcpackage_end() const { return Udm::AssocEndAttr< ::PICML::TopLevelPackage>(impl, meta_srcpackage_end_); }
 		void Accept(Visitor &v) { v.Visit_package(*this); }
+		void Leave(Visitor &v) { v.Leave_package(*this); }
 		using LEESA::VisitorAsIndex_CRTP< package, Visitor >::operator [];
 
 
@@ -9110,6 +9509,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentPackage> srcPackageInterface_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcPackageInterface_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentRef> dstPackageInterface_end() const { return Udm::AssocEndAttr< ::PICML::ComponentRef>(impl, meta_dstPackageInterface_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageInterface(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageInterface(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageInterface, Visitor >::operator [];
 
 
@@ -9163,6 +9563,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentImplementationReference> dstImplementation_end() const { return Udm::AssocEndAttr< ::PICML::ComponentImplementationReference>(impl, meta_dstImplementation_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentPackage> srcImplementation_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcImplementation_end_); }
 		void Accept(Visitor &v) { v.Visit_Implementation(*this); }
+		void Leave(Visitor &v) { v.Leave_Implementation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Implementation, Visitor >::operator [];
 
 
@@ -9249,6 +9650,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentPackages> ComponentPackages_parent() const { return Udm::ParentAttr< ::PICML::ComponentPackages>(impl, meta_ComponentPackages_parent); }
 		Udm::ParentAttr< ::PICML::ComponentPackages> parent() const { return Udm::ParentAttr< ::PICML::ComponentPackages>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PackageContainer(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageContainer(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageContainer, Visitor >::operator [];
 
 
@@ -9308,6 +9710,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentPackage> srcPackageConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcPackageConfigProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstPackageConfigProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPackageConfigProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageConfigProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageConfigProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageConfigProperty, Visitor >::operator [];
 
 
@@ -9361,6 +9764,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ComponentPackage> srcPackageInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::ComponentPackage>(impl, meta_srcPackageInfoProperty_end_); }
 		Udm::AssocEndAttr< ::PICML::Property> dstPackageInfoProperty_end() const { return Udm::AssocEndAttr< ::PICML::Property>(impl, meta_dstPackageInfoProperty_end_); }
 		void Accept(Visitor &v) { v.Visit_PackageInfoProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_PackageInfoProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PackageInfoProperty, Visitor >::operator [];
 
 
@@ -9427,6 +9831,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PackageContainer> PackageContainer_parent() const { return Udm::ParentAttr< ::PICML::PackageContainer>(impl, meta_PackageContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentPackage(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentPackage(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentPackage, Visitor >::operator [];
 
 
@@ -9498,6 +9903,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PackageConfigurationContainer> PackageConfigurationContainer_parent() const { return Udm::ParentAttr< ::PICML::PackageConfigurationContainer>(impl, meta_PackageConfigurationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentPackageReference(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentPackageReference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentPackageReference, Visitor >::operator [];
 
 
@@ -9557,6 +9963,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Property> Property_parent() const { return Udm::ParentAttr< ::PICML::Property>(impl, meta_Property_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_DataType(*this); }
+		void Leave(Visitor &v) { v.Leave_DataType(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DataType, Visitor >::operator [];
 
 
@@ -9617,6 +10024,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::RequirementSatisfier> RequirementSatisfier_parent() const { return Udm::ParentAttr< ::PICML::RequirementSatisfier>(impl, meta_RequirementSatisfier_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_SatisfierProperty(*this); }
+		void Leave(Visitor &v) { v.Leave_SatisfierProperty(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SatisfierProperty, Visitor >::operator [];
 
 
@@ -9673,6 +10081,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ImplementationDependency(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationDependency(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationDependency, Visitor >::operator [];
 
 
@@ -9731,6 +10140,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_resourceType;
 		static ::Uml::CompositionChildRole meta_SatisfierProperty_children;
@@ -9780,6 +10191,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Bridge> Bridge_parent() const { return Udm::ParentAttr< ::PICML::Bridge>(impl, meta_Bridge_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Resource(*this); }
+		void Leave(Visitor &v) { v.Leave_Resource(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Resource, Visitor >::operator [];
 
 
@@ -9833,6 +10245,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Domain> Domain_parent() const { return Udm::ParentAttr< ::PICML::Domain>(impl, meta_Domain_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_SharedResource(*this); }
+		void Leave(Visitor &v) { v.Leave_SharedResource(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SharedResource, Visitor >::operator [];
 
 
@@ -9886,6 +10299,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentImplementationContainer> ComponentImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ComponentImplementationContainer>(impl, meta_ComponentImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Capability(*this); }
+		void Leave(Visitor &v) { v.Leave_Capability(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Capability, Visitor >::operator [];
 
 
@@ -9942,6 +10356,8 @@ namespace PICML {
 		Udm::ChildrenAttr< ::PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_resourceType;
@@ -10000,6 +10416,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ArtifactContainer> ArtifactContainer_parent() const { return Udm::ParentAttr< ::PICML::ArtifactContainer>(impl, meta_ArtifactContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Requirement(*this); }
+		void Leave(Visitor &v) { v.Leave_Requirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Requirement, Visitor >::operator [];
 
 
@@ -10066,6 +10483,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RTRequirements(*this); }
+		void Leave(Visitor &v) { v.Leave_RTRequirements(*this); }
 		using LEESA::VisitorAsIndex_CRTP< RTRequirements, Visitor >::operator [];
 
 
@@ -10125,6 +10543,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ECRequirements(*this); }
+		void Leave(Visitor &v) { v.Leave_ECRequirements(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ECRequirements, Visitor >::operator [];
 
 
@@ -10181,6 +10600,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ImplementationContainer> ImplementationContainer_parent() const { return Udm::ParentAttr< ::PICML::ImplementationContainer>(impl, meta_ImplementationContainer_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ImplementationRequirement(*this); }
+		void Leave(Visitor &v) { v.Leave_ImplementationRequirement(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ImplementationRequirement, Visitor >::operator [];
 
 
@@ -10283,6 +10703,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ActionBase> ActionBase_parent() const { return Udm::ParentAttr< ::PICML::ActionBase>(impl, meta_ActionBase_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Property(*this); }
+		void Leave(Visitor &v) { v.Leave_Property(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Property, Visitor >::operator [];
 
 
@@ -10379,6 +10800,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Node> srcShares_end() const { return Udm::AssocEndAttr< ::PICML::Node>(impl, meta_srcShares_end_); }
 		Udm::AssocEndAttr< ::PICML::SharedResource> dstShares_end() const { return Udm::AssocEndAttr< ::PICML::SharedResource>(impl, meta_dstShares_end_); }
 		void Accept(Visitor &v) { v.Visit_Shares(*this); }
+		void Leave(Visitor &v) { v.Leave_Shares(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Shares, Visitor >::operator [];
 
 
@@ -10432,6 +10854,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Interconnect> dstInterconnectConnection_end() const { return Udm::AssocEndAttr< ::PICML::Interconnect>(impl, meta_dstInterconnectConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::Node> srcInterconnectConnection_end() const { return Udm::AssocEndAttr< ::PICML::Node>(impl, meta_srcInterconnectConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_InterconnectConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_InterconnectConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InterconnectConnection, Visitor >::operator [];
 
 
@@ -10485,6 +10908,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Interconnect> srcBridgeConnection_end() const { return Udm::AssocEndAttr< ::PICML::Interconnect>(impl, meta_srcBridgeConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::Bridge> dstBridgeConnection_end() const { return Udm::AssocEndAttr< ::PICML::Bridge>(impl, meta_dstBridgeConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_BridgeConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_BridgeConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< BridgeConnection, Visitor >::operator [];
 
 
@@ -10574,6 +10998,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Targets> Targets_parent() const { return Udm::ParentAttr< ::PICML::Targets>(impl, meta_Targets_parent); }
 		Udm::ParentAttr< ::PICML::Targets> parent() const { return Udm::ParentAttr< ::PICML::Targets>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Domain(*this); }
+		void Leave(Visitor &v) { v.Leave_Domain(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Domain, Visitor >::operator [];
 
 
@@ -10633,6 +11058,8 @@ namespace PICML {
 		Udm::StringAttr PrefixTag() const { return Udm::StringAttr(impl, meta_PrefixTag); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_PrefixTag;
 
@@ -10679,6 +11106,8 @@ namespace PICML {
 		Udm::StringAttr SpecifyIdTag() const { return Udm::StringAttr(impl, meta_SpecifyIdTag); }
 		Udm::StringAttr VersionTag() const { return Udm::StringAttr(impl, meta_VersionTag); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_SpecifyIdTag;
@@ -10730,6 +11159,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Component> Component_parent() const { return Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcExternalDelegate;
 		static ::Uml::AssociationRole meta_srcExternalDelegate_rev;
@@ -10780,6 +11211,8 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::ManagesComponent, ::PICML::ComponentFactory, Pred> srcManagesComponent_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::ManagesComponent, ::PICML::ComponentFactory, Pred>(impl, meta_srcManagesComponent, meta_srcManagesComponent_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcManagesComponent;
 		static ::Uml::AssociationRole meta_srcManagesComponent_rev;
@@ -10829,6 +11262,8 @@ namespace PICML {
 		Udm::AssocAttr< ::PICML::ProvidedRequestPort> referedbyProvidedRequestPort() const { return Udm::AssocAttr< ::PICML::ProvidedRequestPort>(impl, meta_referedbyProvidedRequestPort); }
 		template <class Pred> Udm::AssocAttr< ::PICML::ProvidedRequestPort, Pred> referedbyProvidedRequestPort_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::ProvidedRequestPort, Pred>(impl, meta_referedbyProvidedRequestPort); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyRequiredRequestPort;
@@ -10895,6 +11330,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::File> File_parent() const { return Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentRef(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentRef, Visitor >::operator [];
 
 
@@ -10967,6 +11403,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Manageable> dstManagesComponent_end() const { return Udm::AssocEndAttr< ::PICML::Manageable>(impl, meta_dstManagesComponent_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentFactory> srcManagesComponent_end() const { return Udm::AssocEndAttr< ::PICML::ComponentFactory>(impl, meta_srcManagesComponent_end_); }
 		void Accept(Visitor &v) { v.Visit_ManagesComponent(*this); }
+		void Leave(Visitor &v) { v.Leave_ManagesComponent(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ManagesComponent, Visitor >::operator [];
 
 
@@ -11029,6 +11466,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyOperationRef;
 		static ::Uml::CompositionChildRole meta_InParameter_children;
@@ -11082,6 +11521,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_ExceptionRef_children;
 
@@ -11129,6 +11570,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TwowayOperation> TwowayOperation_parent() const { return Udm::ParentAttr< ::PICML::TwowayOperation>(impl, meta_TwowayOperation_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ReturnType(*this); }
+		void Leave(Visitor &v) { v.Leave_ReturnType(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ReturnType, Visitor >::operator [];
 
 
@@ -11179,6 +11621,8 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::MemberType> ref() const { return Udm::PointerAttr< ::PICML::MemberType>(impl, meta_ref); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_ref;
 
@@ -11226,6 +11670,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::OperationBase> OperationBase_parent() const { return Udm::ParentAttr< ::PICML::OperationBase>(impl, meta_OperationBase_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InParameter(*this); }
+		void Leave(Visitor &v) { v.Leave_InParameter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InParameter, Visitor >::operator [];
 
 
@@ -11277,6 +11722,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TwowayOperation> TwowayOperation_parent() const { return Udm::ParentAttr< ::PICML::TwowayOperation>(impl, meta_TwowayOperation_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InoutParameter(*this); }
+		void Leave(Visitor &v) { v.Leave_InoutParameter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InoutParameter, Visitor >::operator [];
 
 
@@ -11328,6 +11774,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TwowayOperation> TwowayOperation_parent() const { return Udm::ParentAttr< ::PICML::TwowayOperation>(impl, meta_TwowayOperation_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_OutParameter(*this); }
+		void Leave(Visitor &v) { v.Leave_OutParameter(*this); }
 		using LEESA::VisitorAsIndex_CRTP< OutParameter, Visitor >::operator [];
 
 
@@ -11378,6 +11825,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr< ::PICML::HasOperations>(impl, meta_HasOperations_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_OnewayOperation(*this); }
+		void Leave(Visitor &v) { v.Leave_OnewayOperation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< OnewayOperation, Visitor >::operator [];
 
 
@@ -11427,6 +11875,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr< ::PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_LookupOperation(*this); }
+		void Leave(Visitor &v) { v.Leave_LookupOperation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< LookupOperation, Visitor >::operator [];
 
 
@@ -11477,6 +11926,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr< ::PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_FactoryOperation(*this); }
+		void Leave(Visitor &v) { v.Leave_FactoryOperation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< FactoryOperation, Visitor >::operator [];
 
 
@@ -11542,6 +11992,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr< ::PICML::HasOperations>(impl, meta_HasOperations_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TwowayOperation(*this); }
+		void Leave(Visitor &v) { v.Leave_TwowayOperation(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TwowayOperation, Visitor >::operator [];
 
 
@@ -11595,6 +12046,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Inheritable> Inheritable_parent() const { return Udm::ParentAttr< ::PICML::Inheritable>(impl, meta_Inheritable_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Inherits(*this); }
+		void Leave(Visitor &v) { v.Leave_Inherits(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Inherits, Visitor >::operator [];
 
 
@@ -11652,6 +12104,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_Supports_children;
 
@@ -11701,6 +12155,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::SupportsInterfaces> SupportsInterfaces_parent() const { return Udm::ParentAttr< ::PICML::SupportsInterfaces>(impl, meta_SupportsInterfaces_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Supports(*this); }
+		void Leave(Visitor &v) { v.Leave_Supports(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Supports, Visitor >::operator [];
 
 
@@ -11754,6 +12209,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentFactory> ComponentFactory_parent() const { return Udm::ParentAttr< ::PICML::ComponentFactory>(impl, meta_ComponentFactory_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_LookupKey(*this); }
+		void Leave(Visitor &v) { v.Leave_LookupKey(*this); }
 		using LEESA::VisitorAsIndex_CRTP< LookupKey, Visitor >::operator [];
 
 
@@ -11805,6 +12261,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Attribute> Attribute_parent() const { return Udm::ParentAttr< ::PICML::Attribute>(impl, meta_Attribute_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_SetException(*this); }
+		void Leave(Visitor &v) { v.Leave_SetException(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SetException, Visitor >::operator [];
 
 
@@ -11856,6 +12313,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ReadonlyAttribute> ReadonlyAttribute_parent() const { return Udm::ParentAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_GetException(*this); }
+		void Leave(Visitor &v) { v.Leave_GetException(*this); }
 		using LEESA::VisitorAsIndex_CRTP< GetException, Visitor >::operator [];
 
 
@@ -11907,6 +12365,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ObjectByValue> ObjectByValue_parent() const { return Udm::ParentAttr< ::PICML::ObjectByValue>(impl, meta_ObjectByValue_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PrivateFlag(*this); }
+		void Leave(Visitor &v) { v.Leave_PrivateFlag(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PrivateFlag, Visitor >::operator [];
 
 
@@ -11960,6 +12419,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::PrivateFlag> dstMakeMemberPrivate_end() const { return Udm::AssocEndAttr< ::PICML::PrivateFlag>(impl, meta_dstMakeMemberPrivate_end_); }
 		Udm::AssocEndAttr< ::PICML::Member> srcMakeMemberPrivate_end() const { return Udm::AssocEndAttr< ::PICML::Member>(impl, meta_srcMakeMemberPrivate_end_); }
 		void Accept(Visitor &v) { v.Visit_MakeMemberPrivate(*this); }
+		void Leave(Visitor &v) { v.Leave_MakeMemberPrivate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MakeMemberPrivate, Visitor >::operator [];
 
 
@@ -12012,6 +12472,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ReadonlyAttribute> ReadonlyAttribute_parent() const { return Udm::ParentAttr< ::PICML::ReadonlyAttribute>(impl, meta_ReadonlyAttribute_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_AttributeMember(*this); }
+		void Leave(Visitor &v) { v.Leave_AttributeMember(*this); }
 		using LEESA::VisitorAsIndex_CRTP< AttributeMember, Visitor >::operator [];
 
 
@@ -12076,6 +12537,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Inheritable> Inheritable_parent() const { return Udm::ParentAttr< ::PICML::Inheritable>(impl, meta_Inheritable_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ReadonlyAttribute(*this); }
+		void Leave(Visitor &v) { v.Leave_ReadonlyAttribute(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ReadonlyAttribute, Visitor >::operator [];
 
 
@@ -12138,6 +12600,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Attribute(*this); }
+		void Leave(Visitor &v) { v.Leave_Attribute(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Attribute, Visitor >::operator [];
 
 
@@ -12187,6 +12650,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Enum> Enum_parent() const { return Udm::ParentAttr< ::PICML::Enum>(impl, meta_Enum_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_EnumValue(*this); }
+		void Leave(Visitor &v) { v.Leave_EnumValue(*this); }
 		using LEESA::VisitorAsIndex_CRTP< EnumValue, Visitor >::operator [];
 
 
@@ -12237,6 +12701,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr< ::PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Label(*this); }
+		void Leave(Visitor &v) { v.Leave_Label(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Label, Visitor >::operator [];
 
 
@@ -12290,6 +12755,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::Label> dstLabelConnection_end() const { return Udm::AssocEndAttr< ::PICML::Label>(impl, meta_dstLabelConnection_end_); }
 		Udm::AssocEndAttr< ::PICML::Member> srcLabelConnection_end() const { return Udm::AssocEndAttr< ::PICML::Member>(impl, meta_srcLabelConnection_end_); }
 		void Accept(Visitor &v) { v.Visit_LabelConnection(*this); }
+		void Leave(Visitor &v) { v.Leave_LabelConnection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< LabelConnection, Visitor >::operator [];
 
 
@@ -12362,6 +12828,8 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::Member, Pred> referedbyMember_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::Member, Pred>(impl, meta_referedbyMember); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyDataType;
 		static ::Uml::AssociationRole meta_referedbyInParameter;
@@ -12419,6 +12887,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::SwitchedAggregate> SwitchedAggregate_parent() const { return Udm::ParentAttr< ::PICML::SwitchedAggregate>(impl, meta_SwitchedAggregate_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Discriminator(*this); }
+		void Leave(Visitor &v) { v.Leave_Discriminator(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Discriminator, Visitor >::operator [];
 
 
@@ -12476,6 +12945,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Exception> Exception_parent() const { return Udm::ParentAttr< ::PICML::Exception>(impl, meta_Exception_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Member(*this); }
+		void Leave(Visitor &v) { v.Leave_Member(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Member, Visitor >::operator [];
 
 
@@ -12533,6 +13003,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::File> File_parent() const { return Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
 		Udm::ParentAttr< ::PICML::Package> Package_parent() const { return Udm::ParentAttr< ::PICML::Package>(impl, meta_Package_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionParentRole meta_File_parent;
@@ -12595,6 +13067,8 @@ namespace PICML {
 		Udm::ChildrenAttr< ::PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyInherits;
@@ -12685,6 +13159,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_TwowayOperation_children;
 		static ::Uml::CompositionChildRole meta_OnewayOperation_children;
@@ -12756,6 +13232,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ComponentFactory(*this); }
+		void Leave(Visitor &v) { v.Leave_ComponentFactory(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ComponentFactory, Visitor >::operator [];
 
 
@@ -12813,6 +13290,7 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::Supports, Pred> referedbySupports_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::Supports, Pred>(impl, meta_referedbySupports); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Object(*this); }
+		void Leave(Visitor &v) { v.Leave_Object(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Object, Visitor >::operator [];
 
 
@@ -12888,6 +13366,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_abstract;
 		static ::Uml::CompositionChildRole meta_PrivateFlag_children;
@@ -12944,6 +13424,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BenchmarkAnalysis> BenchmarkAnalysis_parent() const { return Udm::ParentAttr< ::PICML::BenchmarkAnalysis>(impl, meta_BenchmarkAnalysis_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Event(*this); }
+		void Leave(Visitor &v) { v.Leave_Event(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Event, Visitor >::operator [];
 
 
@@ -12997,6 +13478,7 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::LookupKey, Pred> referedbyLookupKey_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::LookupKey, Pred>(impl, meta_referedbyLookupKey); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ValueObject(*this); }
+		void Leave(Visitor &v) { v.Leave_ValueObject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ValueObject, Visitor >::operator [];
 
 
@@ -13046,6 +13528,7 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::MemberType> ref() const { return Udm::PointerAttr< ::PICML::MemberType>(impl, meta_ref); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Boxed(*this); }
+		void Leave(Visitor &v) { v.Leave_Boxed(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Boxed, Visitor >::operator [];
 
 
@@ -13094,6 +13577,8 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::HasOperations> HasOperations_parent() const { return Udm::ParentAttr< ::PICML::HasOperations>(impl, meta_HasOperations_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionParentRole meta_HasOperations_parent;
@@ -13146,6 +13631,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Aggregate(*this); }
+		void Leave(Visitor &v) { v.Leave_Aggregate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Aggregate, Visitor >::operator [];
 
 
@@ -13211,6 +13697,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_SwitchedAggregate(*this); }
+		void Leave(Visitor &v) { v.Leave_SwitchedAggregate(*this); }
 		using LEESA::VisitorAsIndex_CRTP< SwitchedAggregate, Visitor >::operator [];
 
 
@@ -13263,6 +13750,7 @@ namespace PICML {
 		Udm::PointerAttr< ::PICML::MemberType> ref() const { return Udm::PointerAttr< ::PICML::MemberType>(impl, meta_ref); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Alias(*this); }
+		void Leave(Visitor &v) { v.Leave_Alias(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Alias, Visitor >::operator [];
 
 
@@ -13314,6 +13802,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PredefinedTypes> PredefinedTypes_parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, meta_PredefinedTypes_parent); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Collection(*this); }
+		void Leave(Visitor &v) { v.Leave_Collection(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Collection, Visitor >::operator [];
 
 
@@ -13432,6 +13921,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::File> File_parent() const { return Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Package(*this); }
+		void Leave(Visitor &v) { v.Leave_Package(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Package, Visitor >::operator [];
 
 
@@ -13561,6 +14051,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::InterfaceDefinitions> InterfaceDefinitions_parent() const { return Udm::ParentAttr< ::PICML::InterfaceDefinitions>(impl, meta_InterfaceDefinitions_parent); }
 		Udm::ParentAttr< ::PICML::InterfaceDefinitions> parent() const { return Udm::ParentAttr< ::PICML::InterfaceDefinitions>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_File(*this); }
+		void Leave(Visitor &v) { v.Leave_File(*this); }
 		using LEESA::VisitorAsIndex_CRTP< File, Visitor >::operator [];
 
 
@@ -13633,6 +14124,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::File> File_parent() const { return Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Exception(*this); }
+		void Leave(Visitor &v) { v.Leave_Exception(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Exception, Visitor >::operator [];
 
 
@@ -13689,6 +14181,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::HasExceptions> HasExceptions_parent() const { return Udm::ParentAttr< ::PICML::HasExceptions>(impl, meta_HasExceptions_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ExceptionRef(*this); }
+		void Leave(Visitor &v) { v.Leave_ExceptionRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExceptionRef, Visitor >::operator [];
 
 
@@ -13742,6 +14235,8 @@ namespace PICML {
 		template <class Pred> Udm::AssocAttr< ::PICML::Constant, Pred> referedbyConstant_sorted(const Pred &) const { return Udm::AssocAttr< ::PICML::Constant, Pred>(impl, meta_referedbyConstant); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyDiscriminator;
 		static ::Uml::AssociationRole meta_referedbyConstant;
@@ -13794,6 +14289,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Enum(*this); }
+		void Leave(Visitor &v) { v.Leave_Enum(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Enum, Visitor >::operator [];
 
 
@@ -13845,6 +14341,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::PredefinedTypes> PredefinedTypes_parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, meta_PredefinedTypes_parent); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyVariable;
 		static ::Uml::CompositionParentRole meta_PredefinedTypes_parent;
@@ -13891,6 +14389,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Byte(*this); }
+		void Leave(Visitor &v) { v.Leave_Byte(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Byte, Visitor >::operator [];
 
 
@@ -13938,6 +14437,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Boolean(*this); }
+		void Leave(Visitor &v) { v.Leave_Boolean(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Boolean, Visitor >::operator [];
 
 
@@ -13985,6 +14485,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ShortInteger(*this); }
+		void Leave(Visitor &v) { v.Leave_ShortInteger(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ShortInteger, Visitor >::operator [];
 
 
@@ -14032,6 +14533,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_LongInteger(*this); }
+		void Leave(Visitor &v) { v.Leave_LongInteger(*this); }
 		using LEESA::VisitorAsIndex_CRTP< LongInteger, Visitor >::operator [];
 
 
@@ -14079,6 +14581,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RealNumber(*this); }
+		void Leave(Visitor &v) { v.Leave_RealNumber(*this); }
 		using LEESA::VisitorAsIndex_CRTP< RealNumber, Visitor >::operator [];
 
 
@@ -14126,6 +14629,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_String(*this); }
+		void Leave(Visitor &v) { v.Leave_String(*this); }
 		using LEESA::VisitorAsIndex_CRTP< String, Visitor >::operator [];
 
 
@@ -14173,6 +14677,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_GenericObject(*this); }
+		void Leave(Visitor &v) { v.Leave_GenericObject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< GenericObject, Visitor >::operator [];
 
 
@@ -14220,6 +14725,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_GenericValueObject(*this); }
+		void Leave(Visitor &v) { v.Leave_GenericValueObject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< GenericValueObject, Visitor >::operator [];
 
 
@@ -14267,6 +14773,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_GenericValue(*this); }
+		void Leave(Visitor &v) { v.Leave_GenericValue(*this); }
 		using LEESA::VisitorAsIndex_CRTP< GenericValue, Visitor >::operator [];
 
 
@@ -14314,6 +14821,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TypeEncoding(*this); }
+		void Leave(Visitor &v) { v.Leave_TypeEncoding(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TypeEncoding, Visitor >::operator [];
 
 
@@ -14361,6 +14869,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::PredefinedTypes> parent() const { return Udm::ParentAttr< ::PICML::PredefinedTypes>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_TypeKind(*this); }
+		void Leave(Visitor &v) { v.Leave_TypeKind(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TypeKind, Visitor >::operator [];
 
 
@@ -14413,6 +14922,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::File> File_parent() const { return Udm::ParentAttr< ::PICML::File>(impl, meta_File_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Constant(*this); }
+		void Leave(Visitor &v) { v.Leave_Constant(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Constant, Visitor >::operator [];
 
 
@@ -14469,6 +14979,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ServantProject> ServantProject_parent() const { return Udm::ParentAttr< ::PICML::ServantProject>(impl, meta_ServantProject_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_FileRef(*this); }
+		void Leave(Visitor &v) { v.Leave_FileRef(*this); }
 		using LEESA::VisitorAsIndex_CRTP< FileRef, Visitor >::operator [];
 
 
@@ -14547,6 +15058,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::MPC> MPC_parent() const { return Udm::ParentAttr< ::PICML::MPC>(impl, meta_MPC_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Project(*this); }
+		void Leave(Visitor &v) { v.Leave_Project(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Project, Visitor >::operator [];
 
 
@@ -14604,6 +15116,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Project> Project_parent() const { return Udm::ParentAttr< ::PICML::Project>(impl, meta_Project_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ExternalResources(*this); }
+		void Leave(Visitor &v) { v.Leave_ExternalResources(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExternalResources, Visitor >::operator [];
 
 
@@ -14658,6 +15171,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ExternalResources> dstExtResourceConn_end() const { return Udm::AssocEndAttr< ::PICML::ExternalResources>(impl, meta_dstExtResourceConn_end_); }
 		Udm::AssocEndAttr< ::PICML::ComponentLib> srcExtResourceConn_end() const { return Udm::AssocEndAttr< ::PICML::ComponentLib>(impl, meta_srcExtResourceConn_end_); }
 		void Accept(Visitor &v) { v.Visit_ExtResourceConn(*this); }
+		void Leave(Visitor &v) { v.Leave_ExtResourceConn(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExtResourceConn, Visitor >::operator [];
 
 
@@ -14713,6 +15227,8 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::ExtResourceConn, ::PICML::ExternalResources, Pred> dstExtResourceConn_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::ExtResourceConn, ::PICML::ExternalResources, Pred>(impl, meta_dstExtResourceConn, meta_dstExtResourceConn_rev); }
 		Udm::ParentAttr< ::PICML::Project> Project_parent() const { return Udm::ParentAttr< ::PICML::Project>(impl, meta_Project_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_sharedname;
@@ -14775,6 +15291,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentBuild> ComponentBuild_parent() const { return Udm::ParentAttr< ::PICML::ComponentBuild>(impl, meta_ComponentBuild_parent); }
 		Udm::ParentAttr< ::PICML::ComponentBuild> parent() const { return Udm::ParentAttr< ::PICML::ComponentBuild>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_MPC(*this); }
+		void Leave(Visitor &v) { v.Leave_MPC(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MPC, Visitor >::operator [];
 
 
@@ -14837,6 +15354,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_StubProject(*this); }
+		void Leave(Visitor &v) { v.Leave_StubProject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< StubProject, Visitor >::operator [];
 
 
@@ -14898,6 +15416,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ServantProject(*this); }
+		void Leave(Visitor &v) { v.Leave_ServantProject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ServantProject, Visitor >::operator [];
 
 
@@ -14956,6 +15475,7 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ExecutorProject(*this); }
+		void Leave(Visitor &v) { v.Leave_ExecutorProject(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ExecutorProject, Visitor >::operator [];
 
 
@@ -15007,6 +15527,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::MPC> MPC_parent() const { return Udm::ParentAttr< ::PICML::MPC>(impl, meta_MPC_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Workspaces(*this); }
+		void Leave(Visitor &v) { v.Leave_Workspaces(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Workspaces, Visitor >::operator [];
 
 
@@ -15066,6 +15587,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::WorkerLibraries> WorkerLibraries_parent() const { return Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, meta_WorkerLibraries_parent); }
 		Udm::ParentAttr< ::PICML::WorkerLibraries> parent() const { return Udm::ParentAttr< ::PICML::WorkerLibraries>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WorkerLibrary(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkerLibrary(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkerLibrary, Visitor >::operator [];
 
 
@@ -15128,6 +15650,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::WorkerPackageBase> WorkerPackageBase_parent() const { return Udm::ParentAttr< ::PICML::WorkerPackageBase>(impl, meta_WorkerPackageBase_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Worker(*this); }
+		void Leave(Visitor &v) { v.Leave_Worker(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Worker, Visitor >::operator [];
 
 
@@ -15181,6 +15704,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Component> Component_parent() const { return Udm::ParentAttr< ::PICML::Component>(impl, meta_Component_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WorkerType(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkerType(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkerType, Visitor >::operator [];
 
 
@@ -15235,6 +15759,8 @@ namespace PICML {
 		Udm::ChildrenAttr< ::PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_Worker_children;
@@ -15291,6 +15817,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::WorkerLibrary> WorkerLibrary_parent() const { return Udm::ParentAttr< ::PICML::WorkerLibrary>(impl, meta_WorkerLibrary_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WorkerFile(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkerFile(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkerFile, Visitor >::operator [];
 
 
@@ -15351,6 +15878,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::WorkerPackage> WorkerPackage_parent() const { return Udm::ParentAttr< ::PICML::WorkerPackage>(impl, meta_WorkerPackage_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WorkerPackage(*this); }
+		void Leave(Visitor &v) { v.Leave_WorkerPackage(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WorkerPackage, Visitor >::operator [];
 
 
@@ -15404,6 +15932,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Variable(*this); }
+		void Leave(Visitor &v) { v.Leave_Variable(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Variable, Visitor >::operator [];
 
 
@@ -15536,6 +16065,8 @@ namespace PICML {
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_TerminalTransition_children;
 		static ::Uml::CompositionChildRole meta_Variable_children;
@@ -15603,6 +16134,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcFinish;
 		static ::Uml::AssociationRole meta_srcFinish_rev;
@@ -15656,6 +16189,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::BehaviorInputAction> dstFinish_end() const { return Udm::AssocEndAttr< ::PICML::BehaviorInputAction>(impl, meta_dstFinish_end_); }
 		Udm::AssocEndAttr< ::PICML::StateBase> srcFinish_end() const { return Udm::AssocEndAttr< ::PICML::StateBase>(impl, meta_srcFinish_end_); }
 		void Accept(Visitor &v) { v.Visit_Finish(*this); }
+		void Leave(Visitor &v) { v.Leave_Finish(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Finish, Visitor >::operator [];
 
 
@@ -15707,6 +16241,7 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::Input, ::PICML::SingleInputBase> srcInput() const { return Udm::AClassPointerAttr< ::PICML::Input, ::PICML::SingleInputBase>(impl, meta_srcInput, meta_srcInput_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InputAction(*this); }
+		void Leave(Visitor &v) { v.Leave_InputAction(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InputAction, Visitor >::operator [];
 
 
@@ -15764,6 +16299,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_QueryInputAction(*this); }
+		void Leave(Visitor &v) { v.Leave_QueryInputAction(*this); }
 		using LEESA::VisitorAsIndex_CRTP< QueryInputAction, Visitor >::operator [];
 
 
@@ -15816,6 +16352,7 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::MultiInput, ::PICML::MultiInputBase> srcMultiInput() const { return Udm::AClassPointerAttr< ::PICML::MultiInput, ::PICML::MultiInputBase>(impl, meta_srcMultiInput, meta_srcMultiInput_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_MultiInputAction(*this); }
+		void Leave(Visitor &v) { v.Leave_MultiInputAction(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MultiInputAction, Visitor >::operator [];
 
 
@@ -15876,6 +16413,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_srcBranchTransition;
 		static ::Uml::AssociationRole meta_srcBranchTransition_rev;
@@ -15933,6 +16472,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::Worker> Worker_parent() const { return Udm::ParentAttr< ::PICML::Worker>(impl, meta_Worker_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Action(*this); }
+		void Leave(Visitor &v) { v.Leave_Action(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Action, Visitor >::operator [];
 
 
@@ -15983,6 +16523,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_OutputAction(*this); }
+		void Leave(Visitor &v) { v.Leave_OutputAction(*this); }
 		using LEESA::VisitorAsIndex_CRTP< OutputAction, Visitor >::operator [];
 
 
@@ -16030,6 +16571,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_QueryAction(*this); }
+		void Leave(Visitor &v) { v.Leave_QueryAction(*this); }
 		using LEESA::VisitorAsIndex_CRTP< QueryAction, Visitor >::operator [];
 
 
@@ -16080,6 +16622,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::InputAction> dstInput_end() const { return Udm::AssocEndAttr< ::PICML::InputAction>(impl, meta_dstInput_end_); }
 		Udm::AssocEndAttr< ::PICML::SingleInputBase> srcInput_end() const { return Udm::AssocEndAttr< ::PICML::SingleInputBase>(impl, meta_srcInput_end_); }
 		void Accept(Visitor &v) { v.Visit_Input(*this); }
+		void Leave(Visitor &v) { v.Leave_Input(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Input, Visitor >::operator [];
 
 
@@ -16131,6 +16674,8 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::Input, ::PICML::InputAction> dstInput() const { return Udm::AClassPointerAttr< ::PICML::Input, ::PICML::InputAction>(impl, meta_dstInput, meta_dstInput_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstInput;
 		static ::Uml::AssociationRole meta_dstInput_rev;
@@ -16180,6 +16725,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelBehavior> TopLevelBehavior_parent() const { return Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_PeriodicEvent(*this); }
+		void Leave(Visitor &v) { v.Leave_PeriodicEvent(*this); }
 		using LEESA::VisitorAsIndex_CRTP< PeriodicEvent, Visitor >::operator [];
 
 
@@ -16231,6 +16777,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelBehavior> TopLevelBehavior_parent() const { return Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ApplicationTask(*this); }
+		void Leave(Visitor &v) { v.Leave_ApplicationTask(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ApplicationTask, Visitor >::operator [];
 
 
@@ -16280,6 +16827,8 @@ namespace PICML {
 		Udm::AClassAssocAttr< ::PICML::MultiInput, ::PICML::MultiInputAction> dstMultiInput() const { return Udm::AClassAssocAttr< ::PICML::MultiInput, ::PICML::MultiInputAction>(impl, meta_dstMultiInput, meta_dstMultiInput_rev); }
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::MultiInput, ::PICML::MultiInputAction, Pred> dstMultiInput_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::MultiInput, ::PICML::MultiInputAction, Pred>(impl, meta_dstMultiInput, meta_dstMultiInput_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstMultiInput;
@@ -16335,6 +16884,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ProvidedRequestPort(*this); }
+		void Leave(Visitor &v) { v.Leave_ProvidedRequestPort(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ProvidedRequestPort, Visitor >::operator [];
 
 
@@ -16391,6 +16941,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::TopLevelBehavior> TopLevelBehavior_parent() const { return Udm::ParentAttr< ::PICML::TopLevelBehavior>(impl, meta_TopLevelBehavior_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Environment(*this); }
+		void Leave(Visitor &v) { v.Leave_Environment(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Environment, Visitor >::operator [];
 
 
@@ -16438,6 +16989,8 @@ namespace PICML {
 		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 
@@ -16492,6 +17045,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RequiredRequestPort(*this); }
+		void Leave(Visitor &v) { v.Leave_RequiredRequestPort(*this); }
 		using LEESA::VisitorAsIndex_CRTP< RequiredRequestPort, Visitor >::operator [];
 
 
@@ -16548,6 +17102,8 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 
 
@@ -16603,6 +17159,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_OutEventPort(*this); }
+		void Leave(Visitor &v) { v.Leave_OutEventPort(*this); }
 		using LEESA::VisitorAsIndex_CRTP< OutEventPort, Visitor >::operator [];
 
 
@@ -16665,6 +17222,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::MultiInputAction> dstMultiInput_end() const { return Udm::AssocEndAttr< ::PICML::MultiInputAction>(impl, meta_dstMultiInput_end_); }
 		Udm::AssocEndAttr< ::PICML::MultiInputBase> srcMultiInput_end() const { return Udm::AssocEndAttr< ::PICML::MultiInputBase>(impl, meta_srcMultiInput_end_); }
 		void Accept(Visitor &v) { v.Visit_MultiInput(*this); }
+		void Leave(Visitor &v) { v.Leave_MultiInput(*this); }
 		using LEESA::VisitorAsIndex_CRTP< MultiInput, Visitor >::operator [];
 
 
@@ -16743,6 +17301,8 @@ namespace PICML {
 		Udm::ChildrenAttr< ::PICML::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::PICML::MgaObject>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::PICML::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::PICML::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::CompositionChildRole meta_Input_children;
@@ -16835,6 +17395,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Component(*this); }
+		void Leave(Visitor &v) { v.Leave_Component(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Component, Visitor >::operator [];
 
 
@@ -16897,6 +17458,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::QueryInputAction> dstQueryInput_end() const { return Udm::AssocEndAttr< ::PICML::QueryInputAction>(impl, meta_dstQueryInput_end_); }
 		Udm::AssocEndAttr< ::PICML::QueryInputBase> srcQueryInput_end() const { return Udm::AssocEndAttr< ::PICML::QueryInputBase>(impl, meta_srcQueryInput_end_); }
 		void Accept(Visitor &v) { v.Visit_QueryInput(*this); }
+		void Leave(Visitor &v) { v.Leave_QueryInput(*this); }
 		using LEESA::VisitorAsIndex_CRTP< QueryInput, Visitor >::operator [];
 
 
@@ -16947,6 +17509,8 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::AClassPointerAttr< ::PICML::QueryInput, ::PICML::QueryInputAction> dstQueryInput() const { return Udm::AClassPointerAttr< ::PICML::QueryInput, ::PICML::QueryInputAction>(impl, meta_dstQueryInput, meta_dstQueryInput_rev); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
+
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstQueryInput;
@@ -17004,6 +17568,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::ComponentAssembly> ComponentAssembly_parent() const { return Udm::ParentAttr< ::PICML::ComponentAssembly>(impl, meta_ComponentAssembly_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_InEventPort(*this); }
+		void Leave(Visitor &v) { v.Leave_InEventPort(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InEventPort, Visitor >::operator [];
 
 
@@ -17064,6 +17629,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ActionBase> dstTransition_end() const { return Udm::AssocEndAttr< ::PICML::ActionBase>(impl, meta_dstTransition_end_); }
 		Udm::AssocEndAttr< ::PICML::State> srcTransition_end() const { return Udm::AssocEndAttr< ::PICML::State>(impl, meta_srcTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_Transition(*this); }
+		void Leave(Visitor &v) { v.Leave_Transition(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Transition, Visitor >::operator [];
 
 
@@ -17118,6 +17684,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ActionBase> dstBranchTransition_end() const { return Udm::AssocEndAttr< ::PICML::ActionBase>(impl, meta_dstBranchTransition_end_); }
 		Udm::AssocEndAttr< ::PICML::BranchState> srcBranchTransition_end() const { return Udm::AssocEndAttr< ::PICML::BranchState>(impl, meta_srcBranchTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_BranchTransition(*this); }
+		void Leave(Visitor &v) { v.Leave_BranchTransition(*this); }
 		using LEESA::VisitorAsIndex_CRTP< BranchTransition, Visitor >::operator [];
 
 
@@ -17172,6 +17739,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ActionBase> dstLoopTransition_end() const { return Udm::AssocEndAttr< ::PICML::ActionBase>(impl, meta_dstLoopTransition_end_); }
 		Udm::AssocEndAttr< ::PICML::LoopState> srcLoopTransition_end() const { return Udm::AssocEndAttr< ::PICML::LoopState>(impl, meta_srcLoopTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_LoopTransition(*this); }
+		void Leave(Visitor &v) { v.Leave_LoopTransition(*this); }
 		using LEESA::VisitorAsIndex_CRTP< LoopTransition, Visitor >::operator [];
 
 
@@ -17230,6 +17798,8 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_dstFinish;
 		static ::Uml::AssociationRole meta_dstFinish_rev;
@@ -17285,6 +17855,7 @@ namespace PICML {
 		template <class Pred> Udm::AClassAssocAttr< ::PICML::BranchTransition, ::PICML::ActionBase, Pred> dstBranchTransition_sorted(const Pred &) const { return Udm::AClassAssocAttr< ::PICML::BranchTransition, ::PICML::ActionBase, Pred>(impl, meta_dstBranchTransition, meta_dstBranchTransition_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_BranchState(*this); }
+		void Leave(Visitor &v) { v.Leave_BranchState(*this); }
 		using LEESA::VisitorAsIndex_CRTP< BranchState, Visitor >::operator [];
 
 
@@ -17336,6 +17907,8 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::LoopTransition, ::PICML::ActionBase> dstLoopTransition() const { return Udm::AClassPointerAttr< ::PICML::LoopTransition, ::PICML::ActionBase>(impl, meta_dstLoopTransition, meta_dstLoopTransition_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_LoopingCondition;
 		static ::Uml::AssociationRole meta_dstLoopTransition;
@@ -17385,6 +17958,7 @@ namespace PICML {
 		Udm::StringAttr InitialCondition() const { return Udm::StringAttr(impl, meta_InitialCondition); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_ForState(*this); }
+		void Leave(Visitor &v) { v.Leave_ForState(*this); }
 		using LEESA::VisitorAsIndex_CRTP< ForState, Visitor >::operator [];
 
 
@@ -17434,6 +18008,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_DoWhileState(*this); }
+		void Leave(Visitor &v) { v.Leave_DoWhileState(*this); }
 		using LEESA::VisitorAsIndex_CRTP< DoWhileState, Visitor >::operator [];
 
 
@@ -17481,6 +18056,7 @@ namespace PICML {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_WhileState(*this); }
+		void Leave(Visitor &v) { v.Leave_WhileState(*this); }
 		using LEESA::VisitorAsIndex_CRTP< WhileState, Visitor >::operator [];
 
 
@@ -17530,6 +18106,7 @@ namespace PICML {
 		Udm::AClassPointerAttr< ::PICML::TerminalTransition, ::PICML::Terminal> dstTerminalTransition() const { return Udm::AClassPointerAttr< ::PICML::TerminalTransition, ::PICML::Terminal>(impl, meta_dstTerminalTransition, meta_dstTerminalTransition_rev); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_State(*this); }
+		void Leave(Visitor &v) { v.Leave_State(*this); }
 		using LEESA::VisitorAsIndex_CRTP< State, Visitor >::operator [];
 
 
@@ -17585,6 +18162,7 @@ namespace PICML {
 		Udm::ParentAttr< ::PICML::BehaviorModel> BehaviorModel_parent() const { return Udm::ParentAttr< ::PICML::BehaviorModel>(impl, meta_BehaviorModel_parent); }
 		Udm::ParentAttr< ::PICML::MgaObject> parent() const { return Udm::ParentAttr< ::PICML::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Terminal(*this); }
+		void Leave(Visitor &v) { v.Leave_Terminal(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Terminal, Visitor >::operator [];
 
 
@@ -17640,6 +18218,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::State> srcTerminalTransition_end() const { return Udm::AssocEndAttr< ::PICML::State>(impl, meta_srcTerminalTransition_end_); }
 		Udm::AssocEndAttr< ::PICML::Terminal> dstTerminalTransition_end() const { return Udm::AssocEndAttr< ::PICML::Terminal>(impl, meta_dstTerminalTransition_end_); }
 		void Accept(Visitor &v) { v.Visit_TerminalTransition(*this); }
+		void Leave(Visitor &v) { v.Leave_TerminalTransition(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TerminalTransition, Visitor >::operator [];
 
 
@@ -17691,6 +18270,8 @@ namespace PICML {
 		Udm::StringAttr Postcondition() const { return Udm::StringAttr(impl, meta_Postcondition); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_Postcondition;
 
@@ -17739,6 +18320,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::ActionBase> srcEffect_end() const { return Udm::AssocEndAttr< ::PICML::ActionBase>(impl, meta_srcEffect_end_); }
 		Udm::AssocEndAttr< ::PICML::StateBase> dstEffect_end() const { return Udm::AssocEndAttr< ::PICML::StateBase>(impl, meta_dstEffect_end_); }
 		void Accept(Visitor &v) { v.Visit_Effect(*this); }
+		void Leave(Visitor &v) { v.Leave_Effect(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Effect, Visitor >::operator [];
 
 
@@ -17792,6 +18374,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::BehaviorInputAction> srcInputEffect_end() const { return Udm::AssocEndAttr< ::PICML::BehaviorInputAction>(impl, meta_srcInputEffect_end_); }
 		Udm::AssocEndAttr< ::PICML::StateBase> dstInputEffect_end() const { return Udm::AssocEndAttr< ::PICML::StateBase>(impl, meta_dstInputEffect_end_); }
 		void Accept(Visitor &v) { v.Visit_InputEffect(*this); }
+		void Leave(Visitor &v) { v.Leave_InputEffect(*this); }
 		using LEESA::VisitorAsIndex_CRTP< InputEffect, Visitor >::operator [];
 
 
@@ -17845,6 +18428,7 @@ namespace PICML {
 		Udm::AssocEndAttr< ::PICML::StateBase> dstTerminalEffect_end() const { return Udm::AssocEndAttr< ::PICML::StateBase>(impl, meta_dstTerminalEffect_end_); }
 		Udm::AssocEndAttr< ::PICML::Terminal> srcTerminalEffect_end() const { return Udm::AssocEndAttr< ::PICML::Terminal>(impl, meta_srcTerminalEffect_end_); }
 		void Accept(Visitor &v) { v.Visit_TerminalEffect(*this); }
+		void Leave(Visitor &v) { v.Leave_TerminalEffect(*this); }
 		using LEESA::VisitorAsIndex_CRTP< TerminalEffect, Visitor >::operator [];
 
 

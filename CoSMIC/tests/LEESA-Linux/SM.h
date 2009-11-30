@@ -6,7 +6,7 @@
 #define MOBIES_SM_H
 
 // header file SM.h generated from diagram SM
-// generated with Udm version 3.13 on Sun Nov 22 22:35:21 2009
+// generated with Udm version 3.13 on Sun Nov 29 19:45:08 2009
 
 #include <UdmBase.h>
 
@@ -37,15 +37,15 @@
 namespace SM {
 
 	extern ::Uml::Diagram meta;
-	class SM_Export InputSequence;
-	class SM_Export Sequence;
-	class SM_Export Events;
-	class SM_Export Transition;
 	class SM_Export StateMachine;
+	class SM_Export Transition;
 	class SM_Export State;
 	class SM_Export Reference;
 	class SM_Export StartState;
 	class SM_Export BaseState;
+	class SM_Export Sequence;
+	class SM_Export InputSequence;
+	class SM_Export Events;
 	class SM_Export RootFolder;
 	class SM_Export MgaObject;
 
@@ -53,16 +53,24 @@ namespace SM {
 	public:
 		virtual ~Visitor() {}
 
-		virtual void Visit_InputSequence(const InputSequence &) {}
-		virtual void Visit_Sequence(const Sequence &) {}
-		virtual void Visit_Events(const Events &) {}
-		virtual void Visit_Transition(const Transition &) {}
 		virtual void Visit_StateMachine(const StateMachine &) {}
+		virtual void Leave_StateMachine(const StateMachine &) {}
+		virtual void Visit_Transition(const Transition &) {}
+		virtual void Leave_Transition(const Transition &) {}
 		virtual void Visit_State(const State &) {}
+		virtual void Leave_State(const State &) {}
 		virtual void Visit_Reference(const Reference &) {}
+		virtual void Leave_Reference(const Reference &) {}
 		virtual void Visit_StartState(const StartState &) {}
-		virtual void Visit_BaseState(const BaseState &) {}
+		virtual void Leave_StartState(const StartState &) {}
+		virtual void Visit_Sequence(const Sequence &) {}
+		virtual void Leave_Sequence(const Sequence &) {}
+		virtual void Visit_InputSequence(const InputSequence &) {}
+		virtual void Leave_InputSequence(const InputSequence &) {}
+		virtual void Visit_Events(const Events &) {}
+		virtual void Leave_Events(const Events &) {}
 		virtual void Visit_RootFolder(const RootFolder &) {}
+		virtual void Leave_RootFolder(const RootFolder &) {}
 		virtual void Visit_Object(const Udm::Object &) {}
 
 	};
@@ -97,16 +105,16 @@ namespace SM {
 		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
-		Udm::ChildrenAttr< ::SM::StateMachine> StateMachine_children() const { return Udm::ChildrenAttr< ::SM::StateMachine>(impl, meta_StateMachine_children); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::StateMachine, Pred> StateMachine_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::StateMachine, Pred>(impl, meta_StateMachine_children); }
 		Udm::ChildrenAttr< ::SM::InputSequence> InputSequence_children() const { return Udm::ChildrenAttr< ::SM::InputSequence>(impl, meta_InputSequence_children); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::InputSequence, Pred> InputSequence_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::InputSequence, Pred>(impl, meta_InputSequence_children); }
+		Udm::ChildrenAttr< ::SM::StateMachine> StateMachine_children() const { return Udm::ChildrenAttr< ::SM::StateMachine>(impl, meta_StateMachine_children); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::StateMachine, Pred> StateMachine_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::StateMachine, Pred>(impl, meta_StateMachine_children); }
 		Udm::ChildrenAttr< ::SM::RootFolder> RootFolder_children() const { return Udm::ChildrenAttr< ::SM::RootFolder>(impl, meta_RootFolder_children); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::RootFolder, Pred> RootFolder_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::RootFolder, Pred>(impl, meta_RootFolder_children); }
-		Udm::ChildrenAttr< ::SM::InputSequence> InputSequence_kind_children() const { return Udm::ChildrenAttr< ::SM::InputSequence>(impl, Udm::NULLCHILDROLE); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::InputSequence, Pred> InputSequence_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::InputSequence, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ChildrenAttr< ::SM::StateMachine> StateMachine_kind_children() const { return Udm::ChildrenAttr< ::SM::StateMachine>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::StateMachine, Pred> StateMachine_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::StateMachine, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr< ::SM::InputSequence> InputSequence_kind_children() const { return Udm::ChildrenAttr< ::SM::InputSequence>(impl, Udm::NULLCHILDROLE); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::InputSequence, Pred> InputSequence_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::InputSequence, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ChildrenAttr< ::SM::RootFolder> RootFolder_kind_children() const { return Udm::ChildrenAttr< ::SM::RootFolder>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::RootFolder, Pred> RootFolder_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::RootFolder, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ChildrenAttr< ::SM::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::SM::MgaObject>(impl, Udm::NULLCHILDROLE); }
@@ -114,13 +122,14 @@ namespace SM {
 		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_RootFolder(*this); }
+		void Leave(Visitor &v) { v.Leave_RootFolder(*this); }
 		using LEESA::VisitorAsIndex_CRTP< RootFolder, Visitor >::operator [];
 
 
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_name;
-		static ::Uml::CompositionChildRole meta_StateMachine_children;
 		static ::Uml::CompositionChildRole meta_InputSequence_children;
+		static ::Uml::CompositionChildRole meta_StateMachine_children;
 		static ::Uml::CompositionChildRole meta_RootFolder_children;
 		static ::Uml::CompositionParentRole meta_RootFolder_parent;
 
@@ -130,7 +139,7 @@ namespace SM {
 
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::SM::InputSequence, ::SM::StateMachine, ::SM::RootFolder> ChildrenKinds;
+		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::InputSequence, ::SM::RootFolder> ChildrenKinds;
 
 
 
@@ -168,6 +177,8 @@ namespace SM {
 		Udm::StringAttr name() const { return Udm::StringAttr(impl, meta_name); }
 		Udm::ParentAttr<Udm::Object> parent() const { return Udm::ParentAttr<Udm::Object>(impl, Udm::NULLPARENTROLE); }
 
+		void Leave(Visitor &v) { }
+
 		static ::Uml::Class meta;
 		static ::Uml::Attribute meta_position;
 		static ::Uml::Attribute meta_name;
@@ -175,232 +186,6 @@ namespace SM {
 
 		// typelist for parent by returned type relations;
 		typedef boost::mpl::vector< > ParentKinds;
-
-
-		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< > ChildrenKinds;
-
-
-
-
-
-
-
-	};
-
-	class SM_Export InputSequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor > {
-	public:
-		typedef ::Udm::ModelMetaTag MetaKind;
-
-		InputSequence() {}
-		InputSequence(Udm::ObjectImpl *impl) : MgaObject(impl) {}
-		InputSequence(const InputSequence &master) : MgaObject(master) {}
-
-		static InputSequence Cast(const Udm::Object &a) { return __Cast(a, meta); }
-		static InputSequence Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-		InputSequence CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::InstantiatedAttr<InputSequence> Instances() { return Udm::InstantiatedAttr<InputSequence>(impl); }
-		template <class Pred> Udm::InstantiatedAttr<InputSequence, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<InputSequence, Pred>(impl); }
-		InputSequence CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::DerivedAttr<InputSequence> Derived() { return Udm::DerivedAttr<InputSequence>(impl); }
-		template <class Pred> Udm::DerivedAttr<InputSequence, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<InputSequence, Pred>(impl); }
-		Udm::ArchetypeAttr<InputSequence> Archetype() const { return Udm::ArchetypeAttr<InputSequence>(impl); }
-		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
-		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
-		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
-		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
-		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
-		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
-		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
-		Udm::ChildrenAttr< ::SM::Sequence> Sequence_children() const { return Udm::ChildrenAttr< ::SM::Sequence>(impl, meta_Sequence_children); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::Sequence, Pred> Sequence_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Sequence, Pred>(impl, meta_Sequence_children); }
-		Udm::ChildrenAttr< ::SM::Events> Events_children() const { return Udm::ChildrenAttr< ::SM::Events>(impl, meta_Events_children); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::Events, Pred> Events_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Events, Pred>(impl, meta_Events_children); }
-		Udm::ChildrenAttr< ::SM::Sequence> Sequence_kind_children() const { return Udm::ChildrenAttr< ::SM::Sequence>(impl, Udm::NULLCHILDROLE); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::Sequence, Pred> Sequence_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Sequence, Pred>(impl, Udm::NULLCHILDROLE); }
-		Udm::ChildrenAttr< ::SM::Events> Events_kind_children() const { return Udm::ChildrenAttr< ::SM::Events>(impl, Udm::NULLCHILDROLE); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::Events, Pred> Events_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Events, Pred>(impl, Udm::NULLCHILDROLE); }
-		Udm::ChildrenAttr< ::SM::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::SM::MgaObject>(impl, Udm::NULLCHILDROLE); }
-		template <class Pred> Udm::ChildrenAttr< ::SM::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
-		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
-		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
-		void Accept(Visitor &v) { v.Visit_InputSequence(*this); }
-		using LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor >::operator [];
-
-
-		static ::Uml::Class meta;
-		static ::Uml::CompositionChildRole meta_Sequence_children;
-		static ::Uml::CompositionChildRole meta_Events_children;
-		static ::Uml::CompositionParentRole meta_RootFolder_parent;
-
-
-		// typelist for parent by returned type relations;
-		typedef boost::mpl::vector< ::SM::RootFolder> ParentKinds;
-
-
-		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::SM::Sequence, ::SM::Events> ChildrenKinds;
-
-
-
-
-
-
-
-	};
-
-	class SM_Export Sequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Sequence, Visitor > {
-	public:
-		typedef ::Udm::ConnectionMetaTag MetaKind;
-
-		Sequence() {}
-		Sequence(Udm::ObjectImpl *impl) : MgaObject(impl) {}
-		Sequence(const Sequence &master) : MgaObject(master) {}
-
-		static Sequence Cast(const Udm::Object &a) { return __Cast(a, meta); }
-		static Sequence Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-		Sequence CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::InstantiatedAttr<Sequence> Instances() { return Udm::InstantiatedAttr<Sequence>(impl); }
-		template <class Pred> Udm::InstantiatedAttr<Sequence, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Sequence, Pred>(impl); }
-		Sequence CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::DerivedAttr<Sequence> Derived() { return Udm::DerivedAttr<Sequence>(impl); }
-		template <class Pred> Udm::DerivedAttr<Sequence, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Sequence, Pred>(impl); }
-		Udm::ArchetypeAttr<Sequence> Archetype() const { return Udm::ArchetypeAttr<Sequence>(impl); }
-		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
-		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
-		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
-		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
-		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
-		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
-		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
-		Udm::ParentAttr< ::SM::InputSequence> InputSequence_parent() const { return Udm::ParentAttr< ::SM::InputSequence>(impl, meta_InputSequence_parent); }
-		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		Udm::AssocEndAttr< ::SM::Events> dstSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_dstSequence_end_); }
-		Udm::AssocEndAttr< ::SM::Events> srcSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_srcSequence_end_); }
-		void Accept(Visitor &v) { v.Visit_Sequence(*this); }
-		using LEESA::VisitorAsIndex_CRTP< Sequence, Visitor >::operator [];
-
-
-		static ::Uml::Class meta;
-		static ::Uml::CompositionParentRole meta_InputSequence_parent;
-		static ::Uml::AssociationRole meta_dstSequence_end_;
-		static ::Uml::AssociationRole meta_srcSequence_end_;
-
-
-		// typelist for parent by returned type relations;
-		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
-
-
-		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< > ChildrenKinds;
-
-
-
-
-
-
-
-	};
-
-	class SM_Export Events :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Events, Visitor > {
-	public:
-		typedef ::Udm::AtomMetaTag MetaKind;
-
-		Events() {}
-		Events(Udm::ObjectImpl *impl) : MgaObject(impl) {}
-		Events(const Events &master) : MgaObject(master) {}
-
-		static Events Cast(const Udm::Object &a) { return __Cast(a, meta); }
-		static Events Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-		Events CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::InstantiatedAttr<Events> Instances() { return Udm::InstantiatedAttr<Events>(impl); }
-		template <class Pred> Udm::InstantiatedAttr<Events, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Events, Pred>(impl); }
-		Events CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::DerivedAttr<Events> Derived() { return Udm::DerivedAttr<Events>(impl); }
-		template <class Pred> Udm::DerivedAttr<Events, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Events, Pred>(impl); }
-		Udm::ArchetypeAttr<Events> Archetype() const { return Udm::ArchetypeAttr<Events>(impl); }
-		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
-		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
-		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
-		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
-		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
-		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
-		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
-		Udm::IntegerAttr Delay() const { return Udm::IntegerAttr(impl, meta_Delay); }
-		Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events> srcSequence() const { return Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events>(impl, meta_srcSequence, meta_srcSequence_rev); }
-		Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events> dstSequence() const { return Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events>(impl, meta_dstSequence, meta_dstSequence_rev); }
-		Udm::ParentAttr< ::SM::InputSequence> InputSequence_parent() const { return Udm::ParentAttr< ::SM::InputSequence>(impl, meta_InputSequence_parent); }
-		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		void Accept(Visitor &v) { v.Visit_Events(*this); }
-		using LEESA::VisitorAsIndex_CRTP< Events, Visitor >::operator [];
-
-
-		static ::Uml::Class meta;
-		static ::Uml::Attribute meta_Delay;
-		static ::Uml::AssociationRole meta_srcSequence;
-		static ::Uml::AssociationRole meta_srcSequence_rev;
-		static ::Uml::AssociationRole meta_dstSequence;
-		static ::Uml::AssociationRole meta_dstSequence_rev;
-		static ::Uml::CompositionParentRole meta_InputSequence_parent;
-
-
-		// typelist for parent by returned type relations;
-		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
-
-
-		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< > ChildrenKinds;
-
-
-
-
-
-
-
-	};
-
-	class SM_Export Transition :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Transition, Visitor > {
-	public:
-		typedef ::Udm::ConnectionMetaTag MetaKind;
-
-		Transition() {}
-		Transition(Udm::ObjectImpl *impl) : MgaObject(impl) {}
-		Transition(const Transition &master) : MgaObject(master) {}
-
-		static Transition Cast(const Udm::Object &a) { return __Cast(a, meta); }
-		static Transition Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
-		Transition CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::InstantiatedAttr<Transition> Instances() { return Udm::InstantiatedAttr<Transition>(impl); }
-		template <class Pred> Udm::InstantiatedAttr<Transition, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Transition, Pred>(impl); }
-		Transition CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
-		Udm::DerivedAttr<Transition> Derived() { return Udm::DerivedAttr<Transition>(impl); }
-		template <class Pred> Udm::DerivedAttr<Transition, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Transition, Pred>(impl); }
-		Udm::ArchetypeAttr<Transition> Archetype() const { return Udm::ArchetypeAttr<Transition>(impl); }
-		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
-		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
-		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
-		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
-		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
-		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
-		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
-		Udm::StringAttr Event() const { return Udm::StringAttr(impl, meta_Event); }
-		Udm::ParentAttr< ::SM::StateMachine> StateMachine_parent() const { return Udm::ParentAttr< ::SM::StateMachine>(impl, meta_StateMachine_parent); }
-		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		Udm::AssocEndAttr< ::SM::BaseState> srcTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_srcTransition_end_); }
-		Udm::AssocEndAttr< ::SM::BaseState> dstTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_dstTransition_end_); }
-		void Accept(Visitor &v) { v.Visit_Transition(*this); }
-		using LEESA::VisitorAsIndex_CRTP< Transition, Visitor >::operator [];
-
-
-		static ::Uml::Class meta;
-		static ::Uml::Attribute meta_Event;
-		static ::Uml::CompositionParentRole meta_StateMachine_parent;
-		static ::Uml::AssociationRole meta_srcTransition_end_;
-		static ::Uml::AssociationRole meta_dstTransition_end_;
-
-
-		// typelist for parent by returned type relations;
-		typedef boost::mpl::vector< ::SM::StateMachine> ParentKinds;
 
 
 		// typelist for children by returned type relations;
@@ -459,6 +244,7 @@ namespace SM {
 		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
 		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_StateMachine(*this); }
+		void Leave(Visitor &v) { v.Leave_StateMachine(*this); }
 		using LEESA::VisitorAsIndex_CRTP< StateMachine, Visitor >::operator [];
 
 
@@ -475,6 +261,64 @@ namespace SM {
 
 		// typelist for children by returned type relations;
 		typedef boost::mpl::vector< ::SM::Transition, ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
+
+
+
+
+
+
+
+	};
+
+	class SM_Export Transition :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Transition, Visitor > {
+	public:
+		typedef ::Udm::ConnectionMetaTag MetaKind;
+
+		Transition() {}
+		Transition(Udm::ObjectImpl *impl) : MgaObject(impl) {}
+		Transition(const Transition &master) : MgaObject(master) {}
+
+		static Transition Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		static Transition Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		Transition CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::InstantiatedAttr<Transition> Instances() { return Udm::InstantiatedAttr<Transition>(impl); }
+		template <class Pred> Udm::InstantiatedAttr<Transition, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Transition, Pred>(impl); }
+		Transition CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::DerivedAttr<Transition> Derived() { return Udm::DerivedAttr<Transition>(impl); }
+		template <class Pred> Udm::DerivedAttr<Transition, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Transition, Pred>(impl); }
+		Udm::ArchetypeAttr<Transition> Archetype() const { return Udm::ArchetypeAttr<Transition>(impl); }
+		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
+		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
+		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
+		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
+		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
+		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
+		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
+		Udm::StringAttr Event() const { return Udm::StringAttr(impl, meta_Event); }
+		Udm::ParentAttr< ::SM::StateMachine> StateMachine_parent() const { return Udm::ParentAttr< ::SM::StateMachine>(impl, meta_StateMachine_parent); }
+		Udm::ParentAttr< ::SM::BaseState> BaseState_parent() const { return Udm::ParentAttr< ::SM::BaseState>(impl, meta_BaseState_parent); }
+		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		Udm::AssocEndAttr< ::SM::BaseState> srcTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_srcTransition_end_); }
+		Udm::AssocEndAttr< ::SM::BaseState> dstTransition_end() const { return Udm::AssocEndAttr< ::SM::BaseState>(impl, meta_dstTransition_end_); }
+		void Accept(Visitor &v) { v.Visit_Transition(*this); }
+		void Leave(Visitor &v) { v.Leave_Transition(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Transition, Visitor >::operator [];
+
+
+		static ::Uml::Class meta;
+		static ::Uml::Attribute meta_Event;
+		static ::Uml::CompositionParentRole meta_StateMachine_parent;
+		static ::Uml::CompositionParentRole meta_BaseState_parent;
+		static ::Uml::AssociationRole meta_srcTransition_end_;
+		static ::Uml::AssociationRole meta_dstTransition_end_;
+
+
+		// typelist for parent by returned type relations;
+		typedef boost::mpl::vector< ::SM::StateMachine, ::SM::BaseState> ParentKinds;
+
+
+		// typelist for children by returned type relations;
+		typedef boost::mpl::vector< > ChildrenKinds;
 
 
 
@@ -513,6 +357,7 @@ namespace SM {
 		Udm::ParentAttr< ::SM::BaseState> BaseState_parent() const { return Udm::ParentAttr< ::SM::BaseState>(impl, meta_BaseState_parent); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_Reference(*this); }
+		void Leave(Visitor &v) { v.Leave_Reference(*this); }
 		using LEESA::VisitorAsIndex_CRTP< Reference, Visitor >::operator [];
 
 
@@ -571,6 +416,10 @@ namespace SM {
 		template <class Pred> Udm::ChildrenAttr< ::SM::BaseState, Pred> BaseState_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::BaseState, Pred>(impl, meta_BaseState_children); }
 		Udm::ChildrenAttr< ::SM::Reference> Reference_children() const { return Udm::ChildrenAttr< ::SM::Reference>(impl, meta_Reference_children); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::Reference, Pred> Reference_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Reference, Pred>(impl, meta_Reference_children); }
+		Udm::ChildrenAttr< ::SM::Transition> Transition_children() const { return Udm::ChildrenAttr< ::SM::Transition>(impl, meta_Transition_children); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Transition, Pred> Transition_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Transition, Pred>(impl, meta_Transition_children); }
+		Udm::ChildrenAttr< ::SM::Transition> Transition_kind_children() const { return Udm::ChildrenAttr< ::SM::Transition>(impl, Udm::NULLCHILDROLE); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Transition, Pred> Transition_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Transition, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ChildrenAttr< ::SM::State> State_kind_children() const { return Udm::ChildrenAttr< ::SM::State>(impl, Udm::NULLCHILDROLE); }
 		template <class Pred> Udm::ChildrenAttr< ::SM::State, Pred> State_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::State, Pred>(impl, Udm::NULLCHILDROLE); }
 		Udm::ChildrenAttr< ::SM::Reference> Reference_kind_children() const { return Udm::ChildrenAttr< ::SM::Reference>(impl, Udm::NULLCHILDROLE); }
@@ -584,9 +433,8 @@ namespace SM {
 		Udm::ParentAttr< ::SM::StateMachine> StateMachine_parent() const { return Udm::ParentAttr< ::SM::StateMachine>(impl, meta_StateMachine_parent); }
 		Udm::ParentAttr< ::SM::BaseState> BaseState_parent() const { return Udm::ParentAttr< ::SM::BaseState>(impl, meta_BaseState_parent); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
-		void Accept(Visitor &v) { v.Visit_BaseState(*this); }
-		using LEESA::VisitorAsIndex_CRTP< BaseState, Visitor >::operator [];
 
+		void Leave(Visitor &v) { }
 
 		static ::Uml::Class meta;
 		static ::Uml::AssociationRole meta_referedbyReference;
@@ -596,6 +444,7 @@ namespace SM {
 		static ::Uml::AssociationRole meta_srcTransition_rev;
 		static ::Uml::CompositionChildRole meta_BaseState_children;
 		static ::Uml::CompositionChildRole meta_Reference_children;
+		static ::Uml::CompositionChildRole meta_Transition_children;
 		static ::Uml::CompositionParentRole meta_StateMachine_parent;
 		static ::Uml::CompositionParentRole meta_BaseState_parent;
 
@@ -605,7 +454,7 @@ namespace SM {
 
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
+		typedef boost::mpl::vector< ::SM::Transition, ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
 
 
@@ -641,6 +490,7 @@ namespace SM {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_State(*this); }
+		void Leave(Visitor &v) { v.Leave_State(*this); }
 		using LEESA::VisitorAsIndex_CRTP< State, Visitor >::operator [];
 
 
@@ -652,7 +502,7 @@ namespace SM {
 
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
+		typedef boost::mpl::vector< ::SM::Transition, ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
 
 
 
@@ -688,6 +538,7 @@ namespace SM {
 		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
 		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
 		void Accept(Visitor &v) { v.Visit_StartState(*this); }
+		void Leave(Visitor &v) { v.Leave_StartState(*this); }
 		using LEESA::VisitorAsIndex_CRTP< StartState, Visitor >::operator [];
 
 
@@ -699,7 +550,181 @@ namespace SM {
 
 
 		// typelist for children by returned type relations;
-		typedef boost::mpl::vector< ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
+		typedef boost::mpl::vector< ::SM::Transition, ::SM::State, ::SM::Reference, ::SM::StartState, ::SM::BaseState> ChildrenKinds;
+
+
+
+
+
+
+
+	};
+
+	class SM_Export Sequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Sequence, Visitor > {
+	public:
+		typedef ::Udm::ConnectionMetaTag MetaKind;
+
+		Sequence() {}
+		Sequence(Udm::ObjectImpl *impl) : MgaObject(impl) {}
+		Sequence(const Sequence &master) : MgaObject(master) {}
+
+		static Sequence Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		static Sequence Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		Sequence CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::InstantiatedAttr<Sequence> Instances() { return Udm::InstantiatedAttr<Sequence>(impl); }
+		template <class Pred> Udm::InstantiatedAttr<Sequence, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Sequence, Pred>(impl); }
+		Sequence CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::DerivedAttr<Sequence> Derived() { return Udm::DerivedAttr<Sequence>(impl); }
+		template <class Pred> Udm::DerivedAttr<Sequence, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Sequence, Pred>(impl); }
+		Udm::ArchetypeAttr<Sequence> Archetype() const { return Udm::ArchetypeAttr<Sequence>(impl); }
+		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
+		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
+		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
+		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
+		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
+		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
+		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
+		Udm::ParentAttr< ::SM::InputSequence> InputSequence_parent() const { return Udm::ParentAttr< ::SM::InputSequence>(impl, meta_InputSequence_parent); }
+		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		Udm::AssocEndAttr< ::SM::Events> dstSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_dstSequence_end_); }
+		Udm::AssocEndAttr< ::SM::Events> srcSequence_end() const { return Udm::AssocEndAttr< ::SM::Events>(impl, meta_srcSequence_end_); }
+		void Accept(Visitor &v) { v.Visit_Sequence(*this); }
+		void Leave(Visitor &v) { v.Leave_Sequence(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Sequence, Visitor >::operator [];
+
+
+		static ::Uml::Class meta;
+		static ::Uml::CompositionParentRole meta_InputSequence_parent;
+		static ::Uml::AssociationRole meta_dstSequence_end_;
+		static ::Uml::AssociationRole meta_srcSequence_end_;
+
+
+		// typelist for parent by returned type relations;
+		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
+
+
+		// typelist for children by returned type relations;
+		typedef boost::mpl::vector< > ChildrenKinds;
+
+
+
+
+
+
+
+	};
+
+	class SM_Export InputSequence :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor > {
+	public:
+		typedef ::Udm::ModelMetaTag MetaKind;
+
+		InputSequence() {}
+		InputSequence(Udm::ObjectImpl *impl) : MgaObject(impl) {}
+		InputSequence(const InputSequence &master) : MgaObject(master) {}
+
+		static InputSequence Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		static InputSequence Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		InputSequence CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::InstantiatedAttr<InputSequence> Instances() { return Udm::InstantiatedAttr<InputSequence>(impl); }
+		template <class Pred> Udm::InstantiatedAttr<InputSequence, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<InputSequence, Pred>(impl); }
+		InputSequence CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::DerivedAttr<InputSequence> Derived() { return Udm::DerivedAttr<InputSequence>(impl); }
+		template <class Pred> Udm::DerivedAttr<InputSequence, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<InputSequence, Pred>(impl); }
+		Udm::ArchetypeAttr<InputSequence> Archetype() const { return Udm::ArchetypeAttr<InputSequence>(impl); }
+		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
+		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
+		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
+		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
+		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
+		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
+		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
+		Udm::ChildrenAttr< ::SM::Sequence> Sequence_children() const { return Udm::ChildrenAttr< ::SM::Sequence>(impl, meta_Sequence_children); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Sequence, Pred> Sequence_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Sequence, Pred>(impl, meta_Sequence_children); }
+		Udm::ChildrenAttr< ::SM::Events> Events_children() const { return Udm::ChildrenAttr< ::SM::Events>(impl, meta_Events_children); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Events, Pred> Events_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Events, Pred>(impl, meta_Events_children); }
+		Udm::ChildrenAttr< ::SM::Sequence> Sequence_kind_children() const { return Udm::ChildrenAttr< ::SM::Sequence>(impl, Udm::NULLCHILDROLE); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Sequence, Pred> Sequence_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Sequence, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr< ::SM::Events> Events_kind_children() const { return Udm::ChildrenAttr< ::SM::Events>(impl, Udm::NULLCHILDROLE); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::Events, Pred> Events_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::Events, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ChildrenAttr< ::SM::MgaObject> MgaObject_kind_children() const { return Udm::ChildrenAttr< ::SM::MgaObject>(impl, Udm::NULLCHILDROLE); }
+		template <class Pred> Udm::ChildrenAttr< ::SM::MgaObject, Pred> MgaObject_kind_children_sorted(const Pred &) const { return Udm::ChildrenAttr< ::SM::MgaObject, Pred>(impl, Udm::NULLCHILDROLE); }
+		Udm::ParentAttr< ::SM::RootFolder> RootFolder_parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, meta_RootFolder_parent); }
+		Udm::ParentAttr< ::SM::RootFolder> parent() const { return Udm::ParentAttr< ::SM::RootFolder>(impl, Udm::NULLPARENTROLE); }
+		void Accept(Visitor &v) { v.Visit_InputSequence(*this); }
+		void Leave(Visitor &v) { v.Leave_InputSequence(*this); }
+		using LEESA::VisitorAsIndex_CRTP< InputSequence, Visitor >::operator [];
+
+
+		static ::Uml::Class meta;
+		static ::Uml::CompositionChildRole meta_Sequence_children;
+		static ::Uml::CompositionChildRole meta_Events_children;
+		static ::Uml::CompositionParentRole meta_RootFolder_parent;
+
+
+		// typelist for parent by returned type relations;
+		typedef boost::mpl::vector< ::SM::RootFolder> ParentKinds;
+
+
+		// typelist for children by returned type relations;
+		typedef boost::mpl::vector< ::SM::Sequence, ::SM::Events> ChildrenKinds;
+
+
+
+
+
+
+
+	};
+
+	class SM_Export Events :  public MgaObject , public LEESA::VisitorAsIndex_CRTP< Events, Visitor > {
+	public:
+		typedef ::Udm::AtomMetaTag MetaKind;
+
+		Events() {}
+		Events(Udm::ObjectImpl *impl) : MgaObject(impl) {}
+		Events(const Events &master) : MgaObject(master) {}
+
+		static Events Cast(const Udm::Object &a) { return __Cast(a, meta); }
+		static Events Create(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role); }
+		Events CreateInstance(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::InstantiatedAttr<Events> Instances() { return Udm::InstantiatedAttr<Events>(impl); }
+		template <class Pred> Udm::InstantiatedAttr<Events, Pred> Instances_sorted(const Pred &) { return Udm::InstantiatedAttr<Events, Pred>(impl); }
+		Events CreateDerived(const Udm::Object &parent, const ::Uml::CompositionChildRole &role = Udm::NULLCHILDROLE) { return __Create(meta, parent, role, impl); }
+		Udm::DerivedAttr<Events> Derived() { return Udm::DerivedAttr<Events>(impl); }
+		template <class Pred> Udm::DerivedAttr<Events, Pred> Derived_sorted(const Pred &) { return Udm::DerivedAttr<Events, Pred>(impl); }
+		Udm::ArchetypeAttr<Events> Archetype() const { return Udm::ArchetypeAttr<Events>(impl); }
+		template <typename T> const ::Uml::AssociationRole& _type2ARole() const;
+		template <typename T> const pair<const ::Uml::AssociationRole*, const ::Uml::AssociationRole*> _type2ACARole() const;
+		template <typename T> const ::Uml::CompositionParentRole& _type2CPRole() const;
+		template <typename T> const ::Uml::CompositionChildRole& _type2CCRole() const;
+		template <class ChildrenType> Udm::ChildrenAttr<ChildrenType> children_kind() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType>(impl, Udm::NULLCHILDROLE); }
+		template <class ChildrenType, class Pred> Udm::ChildrenAttr<ChildrenType, Pred> children_kind_sorted() const { boost::function_requires< Udm::InTListConcept<ChildrenType, ChildrenKinds> >(); return Udm::ChildrenAttr<ChildrenType, Pred>(impl, Udm::NULLCHILDROLE); }
+		template <class ParentType> Udm::ParentAttr<ParentType> parent_kind() const { boost::function_requires< Udm::InTListConcept<ParentType, ParentKinds> >(); return Udm::ParentAttr<ParentType>(impl, Udm::NULLPARENTROLE); }
+		Udm::IntegerAttr Delay() const { return Udm::IntegerAttr(impl, meta_Delay); }
+		Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events> srcSequence() const { return Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events>(impl, meta_srcSequence, meta_srcSequence_rev); }
+		Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events> dstSequence() const { return Udm::AClassPointerAttr< ::SM::Sequence, ::SM::Events>(impl, meta_dstSequence, meta_dstSequence_rev); }
+		Udm::ParentAttr< ::SM::InputSequence> InputSequence_parent() const { return Udm::ParentAttr< ::SM::InputSequence>(impl, meta_InputSequence_parent); }
+		Udm::ParentAttr< ::SM::MgaObject> parent() const { return Udm::ParentAttr< ::SM::MgaObject>(impl, Udm::NULLPARENTROLE); }
+		void Accept(Visitor &v) { v.Visit_Events(*this); }
+		void Leave(Visitor &v) { v.Leave_Events(*this); }
+		using LEESA::VisitorAsIndex_CRTP< Events, Visitor >::operator [];
+
+
+		static ::Uml::Class meta;
+		static ::Uml::Attribute meta_Delay;
+		static ::Uml::AssociationRole meta_srcSequence;
+		static ::Uml::AssociationRole meta_srcSequence_rev;
+		static ::Uml::AssociationRole meta_dstSequence;
+		static ::Uml::AssociationRole meta_dstSequence_rev;
+		static ::Uml::CompositionParentRole meta_InputSequence_parent;
+
+
+		// typelist for parent by returned type relations;
+		typedef boost::mpl::vector< ::SM::InputSequence> ParentKinds;
+
+
+		// typelist for children by returned type relations;
+		typedef boost::mpl::vector< > ChildrenKinds;
 
 
 
@@ -730,6 +755,7 @@ namespace SM {
   template <> struct IsDescendant < ::SM::BaseState, ::SM::Reference > : _True_ {};
   template <> struct IsDescendant < ::SM::BaseState, ::SM::StartState > : _True_ {};
   template <> struct IsDescendant < ::SM::BaseState, ::SM::State > : _True_ {};
+  template <> struct IsDescendant < ::SM::BaseState, ::SM::Transition > : _True_ {};
 
   template <> struct IsDescendant < ::SM::InputSequence, ::SM::Events > : _True_ {};
   template <> struct IsDescendant < ::SM::InputSequence, ::SM::Sequence > : _True_ {};
@@ -749,11 +775,13 @@ namespace SM {
   template <> struct IsDescendant < ::SM::StartState, ::SM::Reference > : _True_ {};
   template <> struct IsDescendant < ::SM::StartState, ::SM::StartState > : _True_ {};
   template <> struct IsDescendant < ::SM::StartState, ::SM::State > : _True_ {};
+  template <> struct IsDescendant < ::SM::StartState, ::SM::Transition > : _True_ {};
 
   template <> struct IsDescendant < ::SM::State, ::SM::BaseState > : _True_ {};
   template <> struct IsDescendant < ::SM::State, ::SM::Reference > : _True_ {};
   template <> struct IsDescendant < ::SM::State, ::SM::StartState > : _True_ {};
   template <> struct IsDescendant < ::SM::State, ::SM::State > : _True_ {};
+  template <> struct IsDescendant < ::SM::State, ::SM::Transition > : _True_ {};
 
   template <> struct IsDescendant < ::SM::StateMachine, ::SM::BaseState > : _True_ {};
   template <> struct IsDescendant < ::SM::StateMachine, ::SM::Reference > : _True_ {};
