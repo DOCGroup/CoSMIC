@@ -28,8 +28,9 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
 		RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		PICMLVisitor visitor;
 
-    /* ******************** Warning: Takes long time  ************************
+    /********************* Warning: Takes long time ***********************
     evaluate (rf, RootFolder() >> AroundFullTD(RootFolder(), VisitStrategy(visitor), LeaveStrategy(visitor)));
+    evaluate (rf, RootFolder() >> FullTD(RootFolder(), VisitStrategy(visitor)));
     */
     evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), Member()));
     evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), Transition()));
@@ -40,7 +41,6 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
                         TO(Member),
                         THROUGH(File)));
     
-    //evaluate(rf, RootFolder() >> FullTD(RootFolder(), VisitStrategy(visitor)));
 	}
 	catch (boost::regex_error & e)
 	{

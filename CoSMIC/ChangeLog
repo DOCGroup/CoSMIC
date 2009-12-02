@@ -1,3 +1,14 @@
+Wed Dec  2 00:26:14 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          An early version of a python script to generate meta-information 
+	  from xsd-generated header file.
+
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+
+          Fixed the PICML compilation test on linux.
+
 Mon Nov 30 02:33:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA-Linux/PICML.h:
