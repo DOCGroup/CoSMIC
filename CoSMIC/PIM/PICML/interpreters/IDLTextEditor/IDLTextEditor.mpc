@@ -1,0 +1,44 @@
+// $Id$
+
+project (IDLTextEditor) : gme_bon2_component, acelib, cosmic_utils {
+  sharedname = IDLTextEditor
+
+  includes += ../IDLGenerator
+
+  Source_Files {
+    Component.rc
+
+    DSL_Document.cpp
+    DSL_DocTemplate.cpp
+    DSL_Deserializer.cpp
+    DSL_Serializer.cpp
+    DSL_TextEditor.cpp
+    DSL_View.cpp
+
+    IDL_File_Serializer.cpp
+
+    ../IDLGenerator/DependencyVisitor.cpp
+    ../IDLGenerator/IDMLBonExtension.cpp
+    ../IDLGenerator/IDLEmitVisitor.cpp
+    ../IDLGenerator/IDLStream.cpp
+  }
+
+  Header_Files {
+    ../IDLGenerator/DependencyVisitor.h
+    ../IDLGenerator/IDLEmitVisitor.h
+    ../IDLGenerator/IDMLBonExtension.h
+  }
+
+  Resource_Files {
+    DSL.ico
+  }
+
+  specific (wix) {
+    gme_install     = 1
+    gme_progid      = MGA.Interpreter.IDLTextEditor
+    gme_uuid        = B8C39C89-F6AB-4C62-AB13-3D61D74804C3
+    gme_paradigms   = PICML
+    gme_description = IDL text editor for PICML
+    gme_tooltip     = IDL Text Editor
+  }
+}

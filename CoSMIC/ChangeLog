@@ -1,3 +1,40 @@
+Fri Dec  4 07:17:17 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor:
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.h:
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Component.rc:
+        * PIM/PICML/interpreters/IDLTextEditor/ComponentConfig.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL.ico:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_DocTemplate.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_DocTemplate.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_TextEditor.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_TextEditor.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_View.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_View.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLGenerator.wxs:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditord.reg:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Resource.h:
+        * PIM/PICML/interpreters/IDLTextEditor/StdAfx.h:
+        * PIM/PICML/interpreters/IDLTextEditor/StdAfx.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/component.def:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+
+          . First implementation of editing the interface definition model
+            using a text editor. Right now, the editor is able to view a
+            File element as a text file. The next version will be able to
+            convert the textual model back into a PICML model.
+
 Fri Dec  4 06:43:19 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:

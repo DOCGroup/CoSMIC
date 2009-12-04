@@ -10,6 +10,7 @@ workspace {
   PackageComponent
   IDLGenerator
   IDLImporter
+  IDLTextEditor
 
   MPC
   MPCComponent
