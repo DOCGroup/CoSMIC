@@ -23,6 +23,7 @@ class TypeInfo:
   orig_type = ""
   is_schema_type = False
   typedef = ""
+  return_type = "####"
 
 
 def extract_type_info (typedef_node):
@@ -89,14 +90,14 @@ def extract_type_info (typedef_node):
 
 
 
-def dump_non_inheritable_type (classname, basic_type, outfile):
+def dump_non_inheritable_type (classname, basic_type, header_file):
   
   outstr = """
   struct %(classname)s : public ::xml_schema::simple_type
   {
     public:
     
-      explicit %(classname)s(%(basic_type)s x = %(basic_type)s())
+      %(classname)s(%(basic_type)s x = %(basic_type)s())
         : val_(x) { }
                
       operator %(basic_type)s () {
@@ -114,10 +115,10 @@ def dump_non_inheritable_type (classname, basic_type, outfile):
       %(basic_type)s val_;
   };
   """ % locals()
-  outfile.write (outstr)
+  header_file.write (outstr)
   
 
-def dump_inheritable_type (classname, baseclass, outfile):
+def dump_inheritable_type (classname, baseclass, header_file):
   
   outstr = """
   struct %(classname)s : public %(baseclass)s
@@ -139,7 +140,7 @@ def dump_inheritable_type (classname, baseclass, outfile):
     }
   };
   """ % locals()
-  outfile.write(outstr)
+  header_file.write(outstr)
  
 non_inheritable = { "::xml_schema::boolean" : True, 
                     "::xml_schema::double_" : True,
@@ -147,7 +148,7 @@ non_inheritable = { "::xml_schema::boolean" : True,
                     "::xml_schema::date"    : False,
                     "::xml_schema::id"      : False }
 
-def write_types (root, function_dict, typedef_dict, outfile):
+def write_types (root, function_dict, typedef_dict, header_file):
   
   for classid, function_list in function_dict.iteritems():
     qualified_cname = root.xpath("compounddef[@id='" + classid + "']/compoundname/text()")[0]
@@ -157,23 +158,119 @@ def write_types (root, function_dict, typedef_dict, outfile):
       tinfo = typedef_dict[return_type]
       
       if(tinfo.is_schema_type):
-        print (tinfo.orig_type + " already exists.")      
+        tinfo.return_type = "const " + tinfo.typedef + " & "
         
       elif(len(tinfo.wrapper) > 0):
-        if(not typedef_dict[tinfo.orig_type].is_schema_type):
+        if(typedef_dict[tinfo.orig_type].is_schema_type):
+           tinfo.return_type = "const " + tinfo.typedef + " & "
+        else:
           base_type = typedef_dict[tinfo.orig_type].typedef
-          classname = qualified_cname.split("::")[-1]
-          dump_inheritable_type(classname + "_" + fname, base_type, outfile)
+          # The following classname is the new type being introduced.
+          classname = qualified_cname.split("::")[-1] + "_" + fname
+          dump_inheritable_type(classname, base_type, header_file)
+          tinfo.return_type = tinfo.wrapper + "< " + classname + " > "
         
-      else:    
-          classname = qualified_cname.split("::")[-1]
-          if(non_inheritable[tinfo.orig_type]):
-            dump_non_inheritable_type(classname + "_" + fname, tinfo.typedef, outfile)
-          else:
-            dump_inheritable_type(classname + "_" + fname, tinfo.typedef, outfile)
-        
+      elif(non_inheritable[tinfo.orig_type]):
+        # The following classname is the new type being introduced.
+        classname = qualified_cname.split("::")[-1]  + "_" + fname
+        dump_non_inheritable_type(classname, tinfo.typedef, header_file)
+        tinfo.return_type = namespace + "::" + classname
+      
+      else:
+        # The following classname is the new type being introduced.
+        classname = qualified_cname.split("::")[-1]  + "_" + fname
+        dump_inheritable_type(classname, tinfo.typedef, header_file)
+        tinfo.return_type = namespace + "::" + classname
 
-def write_prolog(namespace, outfile):
+
+def push_dictionary(qualified_cname, child_type):
+    length = 0
+    if(qualified_cname in children_dict):
+      length = len(children_dict[qualified_cname])
+    else:
+      children_dict[qualified_cname] = []
+    
+    children_dict[qualified_cname][length:] = [ child_type ]
+
+    length = 0
+    if(child_type in parent_dict):
+      length = len(parent_dict[child_type])
+    else:
+      parent_dict[child_type] = []
+
+    parent_dict[child_type][length:] = [ qualified_cname ]
+
+    # Duplicate entries are dropped automatically.
+    all_types_set.add(qualified_cname)
+    all_types_set.add(child_type)
+
+
+def write_one_function_list(qualified_cname, real_parent, function_list, typedef_dict):
+  for pair in function_list:
+    return_type = typedef_dict[pair[1]].return_type
+    child_type = ""
+
+    if(len(typedef_dict[pair[1]].wrapper) > 0):
+      #Deref orig_type and check is_schema_type
+      if(typedef_dict[typedef_dict[pair[1]].orig_type].is_schema_type):
+        child_type = typedef_dict[typedef_dict[pair[1]].orig_type].orig_type
+      else:
+        child_type = namespace + "::" + real_parent + "_" + pair[0]
+    elif(typedef_dict[pair[1]].is_schema_type):
+      child_type = namespace + "::" + pair[0]
+    else:        
+      child_type = namespace + "::" + real_parent + "_" + pair[0]
+    
+    outstr = """
+%(return_type)s
+children_kind(const %(qualified_cname)s & x, %(child_type)s)
+""" % locals()
+    header_file.write(outstr + ";")
+    cpp_file.write(outstr + "{")
+
+    fname = pair[0]
+    outstr = """
+  return x.%(fname)s();
+}
+""" % locals()
+    cpp_file.write(outstr)
+   
+    push_dictionary(qualified_cname, child_type)
+
+
+def write_recursive_function_list(classid, real_parent_id, function_dict, typedef_dict):
+  function_list = function_dict[real_parent_id]
+  qualified_cname = root.xpath("compounddef[@id='" + classid + "']/compoundname/text()")[0]
+  real_parent_cname = root.xpath("compounddef[@id='" + real_parent_id + "']/compoundname/text()")[0].split("::")[-1]
+  
+  write_one_function_list(qualified_cname, real_parent_cname, function_list, typedef_dict)
+  if(len(baseclass_dict[real_parent_id]) > 0):
+    for baseid in baseclass_dict[real_parent_id]:
+      write_recursive_function_list(classid, baseid, function_dict, typedef_dict)
+
+
+def write_functions(root, function_dict, baseclass_dict, typedef_dict):
+  for classid, function_list in function_dict.iteritems():
+    write_recursive_function_list(classid, classid, function_dict, typedef_dict)
+     
+
+def get_all_member_functions_of(classid, function_dict, baseclass_dict):
+  functions = function_dict[classid]
+  
+  if(len(baseclass_dict[classid]) > 0):
+    for baseid in baseclass_dict[classid]:
+      functions[len(functions):] = get_all_member_functions_of(baseid, function_dict, baseclass_dict)
+
+  return functions
+  
+    
+def inherit_baseclass_functions(function_dict, baseclass_dict):
+  for classid, function_list in function_dict.iteritems():
+    flist = get_all_member_functions_of(classid, function_dict, baseclass_dict)
+    function_dict[classid] = flist
+
+
+def write_header_prolog(namespace, header_file):
   guard_macro = "__" + namespace.upper() + "_META_HXX"
   outstr = """\
 #ifndef %(guard_macro)s
@@ -186,10 +283,10 @@ def write_prolog(namespace, outfile):
 
 namespace %(namespace)s {
 """ % locals()
-  outfile.write(outstr)
+  header_file.write(outstr)
 
 
-def write_epilog(namespace, outfile):
+def write_header_epilog(namespace, header_file):
   guard_macro = "__" + namespace.upper() + "_META_HXX"
   outstr = """\
 
@@ -197,7 +294,57 @@ def write_epilog(namespace, outfile):
 
 #endif // %(guard_macro)s
 """ % locals()
-  outfile.write(outstr)
+  header_file.write(outstr)
+
+def write_cpp_prolog (namespace, cpp_file):
+  outstr = """
+#include "%(namespace)s.hxx"
+
+namespace %(namespace)s {
+""" % locals()
+  cpp_file.write(outstr)
+
+
+def write_cpp_epilog (namespace, cpp_file):
+  outstr = """
+} // namespace %(namespace)s
+""" % locals()
+  cpp_file.write(outstr)
+
+
+def write_schema_traits (all_types_set, children_dict, parent_dict, header_file):
+  outstr = """
+template <class T>
+struct _Wrapper
+{
+  typedef typename ::xsd::cxx::tree::sequence <T> Container;
+  typedef typename ::xsd::cxx::tree::optional <T> Optional;
+};
+"""
+  header_file.write(outstr)
+
+  for type in all_types_set:
+    children_kinds = ""
+    parent_kinds = ""
+    metakind = "LEESA::AtomMetaTag"
+
+    if(type in children_dict):
+      children_kinds = ",".join(children_dict[type])
+      metakind = "LEESA::ModelMetaTag"
+
+    if(type in parent_dict):
+      parent_kinds = ",".join(parent_dict[type])
+
+    outstr = """
+template <>
+struct SchemaTraits< %(type)s > : public _Wrapper< %(type)s > {
+  typedef boost::mpl::vector < %(children_kinds)s > ChildrenKinds;
+  typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
+  typedef %(metakind)s MetaKind;
+};
+""" % locals()
+
+    header_file.write(outstr)
 
 
 try:
@@ -249,21 +396,17 @@ for node in compound_nodes:
   
   tuple_list = []
   for fnode in func_nodes:
-    funclassname = fnode.xpath("name/text()")[0]               # Find function name
+    funclassname = fnode.xpath("name/text()")[0]           # Find function name
     ret_type = get_return_type_from_function_node(fnode)   # Find function's return type
-    funclassname_ret_pair = (funclassname, ret_type)               # Make a pair
-    tuple_list.append(funclassname_ret_pair);                  # Append the pair in the list
+    funclassname_ret_pair = (funclassname, ret_type)       # Make a pair
+    tuple_list.append(funclassname_ret_pair);              # Append the pair in the list
 
   function_dict[class_id] = tuple_list                     # Associate the list with the class_id
 
-  bases = node.xpath("basecompoundref/text()")             # Obtain a list of bases
+  bases = node.xpath("basecompoundref/@refid")             # Obtain a list of bases
   baseclass_dict[class_id] = bases                         # Associate the list with the claas_id
 
 # Both the dictionaries are populated at this point.
-
-print ("Printing function dictionary: ")
-for key, value in function_dict.iteritems():
-  print (key, value)
 
 print ("Printing baseclass dictionary: ")
 for key, value in baseclass_dict.iteritems():
@@ -280,30 +423,54 @@ for key, value in function_dict.iteritems():
     typename = tnode.xpath("name/text()")[0]
     typedef_dict[typename] = tinfo
 
+namespace = root.xpath("compounddef[@kind='namespace']/compoundname/text()")[0]
+header_filename = namespace + "-meta.hxx"
+header_file = open(header_filename, 'w')
+cpp_filename = namespace + "-meta.cxx"
+cpp_file = open(cpp_filename, 'w')
+
+write_header_prolog(namespace, header_file)
+write_cpp_prolog(namespace, cpp_file)
+
+# This function updates the typedef dictionary.
+write_types(root, function_dict, typedef_dict, header_file)
 
 print ("Printing typedef dictionary: ")
 for key, value in typedef_dict.iteritems():
-  print (key)
-  print (value.wrapper, value.orig_type, value.is_schema_type, value.typedef)
+  if(key.count("_traits") == 0):
+    print (key)
+    print (value.wrapper, value.orig_type, value.is_schema_type, value.typedef, value.return_type)
+
+print ("Printing function dictionary: ")
+for key, value in function_dict.iteritems():
+  print (key, value)
+
+# Populate these two dictionaries while writing functions.
+children_dict = {}
+parent_dict = {}
+all_types_set = set()
+write_functions(root, function_dict, baseclass_dict, typedef_dict)
+
+print ("Printing children dictionary:")
+for key, value in children_dict.iteritems():
+  print (key, value)
+
+print ("Printing parent dictionary:")
+for key, value in parent_dict.iteritems():
+  print (key, value)
+
+print ("Printing all types:")
+print (all_types_set)
+
+write_schema_traits (all_types_set, children_dict, parent_dict, header_file)
 
 
-namespace = root.xpath("compounddef[@kind='namespace']/compoundname/text()")[0]
-outfilename = namespace + "-meta.hxx"
-outfile = open(outfilename, 'w')
-
-write_prolog(namespace, outfile)
-write_types(root, function_dict, typedef_dict, outfile)
-write_epilog(namespace, outfile)
+write_header_epilog(namespace, header_file)
+write_cpp_epilog(namespace, cpp_file)
 
 
-outfile.close()
-
-
-
-
-
-
-
+header_file.close()
+cpp_file.close()
 
 
 
