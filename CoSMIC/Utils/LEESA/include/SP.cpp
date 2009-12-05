@@ -83,7 +83,7 @@
 template <class K,                                                                 \
           class Strategy = KindLit<K>,                                             \
           class Custom = LEESA::Default>                                           \
-struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase              \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase              \
 {                                                                                  \
     typedef ChainExpr<K, OP##Op> expression_type;                                  \
     typedef LEESAUnaryFunction <K> Super;                                          \
@@ -122,7 +122,7 @@ template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
           class Strategy2 = KindLit<K>,                                      \
           class Custom = LEESA::Default>                                     \
-struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase        \
 {                                                                            \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
@@ -164,7 +164,7 @@ struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
 template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
           class Strategy2 = KindLit<K> >                                     \
-struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase        \
 {                                                                            \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
@@ -203,7 +203,7 @@ struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
 
 #define CLASS_FOR_SP_OP_WITH_1STRATEGY(OP)                                  \
 template <class K, class Strategy = KindLit<K> >                            \
-struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase       \
+struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase       \
 {                                                                           \
     typedef ChainExpr<K, OP##Op> expression_type;                           \
     typedef LEESAUnaryFunction <K> Super;                                   \
@@ -350,24 +350,24 @@ EXPRESSION_TRAITS_4PARA(AroundFullTDOp);
 
 
 template <class E, class Func>
-struct CallerOp : LEESAUnaryFunction <E>, virtual OpBase
+struct CallerOp : LEESAUnaryFunction <E>, OpBase
 {
   typedef LEESAUnaryFunction <E> Super;
   SUPER_TYPEDEFS(Super);
-	typedef ChainExpr<E, CallerOp > expression_type;
+  typedef ChainExpr<E, CallerOp > expression_type;
 
-	Func func_;
-	explicit CallerOp (Func f) : func_(f) { }
-	CallerOp (CallerOp const & fop) : func_(fop.func_) {}
-	result_type operator () (argument_type const & arg)
-	{
+  Func func_;
+  explicit CallerOp (Func f) : func_(f) { }
+  CallerOp (CallerOp const & fop) : func_(fop.func_) {}
+  result_type operator () (argument_type const & arg)
+  {
     func_(arg);
-		return arg;
-	}
+    return arg;
+  }
 };
 
 template <class Kind>
-struct FailOp : public LEESAUnaryFunction<Kind>, virtual OpBase, _StrategyBase
+struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
 {
   public:
     typedef ChainExpr<Kind, FailOp> expression_type;
@@ -406,8 +406,8 @@ struct FailOp : public LEESAUnaryFunction<Kind>, virtual OpBase, _StrategyBase
 */
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
-	  result_kind operator () (argument_kind const & arg)                        
-	  {
+    result_kind operator () (argument_kind const & arg)                        
+    {
       try {
         s1_(arg);
       }
@@ -415,7 +415,7 @@ CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
         s2_(arg);
       }
       return arg;
-	  }
+    }
 };
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Seq)
@@ -443,40 +443,39 @@ result_kind operator () (argument_kind const & arg)
 };
 
 
-template <class K,                                                                 
-          class Strategy = KindLit<K>,                                             
-          class Custom = Default>                                         
-struct OneOp : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase
-{                                                                                  
+template <class K,
+          class Strategy = KindLit<K>,
+          class Custom = Default>
+struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
+{
   typedef ChainExpr<K, OneOp> expression_type;                         
   typedef LEESAUnaryFunction <K> Super;
   SUPER_TYPEDEFS(Super);
-  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));                  
-                                                                                 
-  template <class U>                                                             
-  struct rebind                                                                  
-  {                                                                              
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind, Custom>));
+  
+  template <class U>
+  struct rebind
+  {
     typedef OneOp<U, typename Strategy::template rebind<U>::type, Custom> type; 
   };                                                                             
-                                                                                 
   Strategy strategy_;
   bool success_;
-                                                                                 
+  
   template <class X, class Y, class Z>                                           
-  explicit OneOp (OneOp<X, Y, Z> & f)                                          
-    : strategy_(f.strategy_), success_(false)                                                     
-  {}                                                                             
-                                                                                 
-  explicit OneOp (Strategy const & s)                                           
-    : strategy_(s), success_(false) {}                                                            
-                                                                                 
-  result_type operator () (argument_type const & arg)                            
-  {                                                                              
+  explicit OneOp (OneOp<X, Y, Z> & f)
+    : strategy_(f.strategy_), success_(false)
+  {}
+
+  explicit OneOp (Strategy const & s)
+    : strategy_(s), success_(false) {}
+  
+  result_type operator () (argument_type const & arg)
+  {
     if (arg.isEmpty())
         throw LEESAException<argument_type>();
     else
     {
-      BOOST_FOREACH(argument_kind kind, arg)                                       
+      BOOST_FOREACH(argument_kind kind, arg)
       {                 
         try {
           success_ = false;
@@ -490,7 +489,7 @@ struct OneOp : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase
       if(!success_) 
         throw LEESAException<argument_type>();
     }
-    return arg;                                                                  
+    return arg;
   }
 
 #ifdef LEESA_FOR_UDM
@@ -534,7 +533,7 @@ struct OneOp : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector0.
     void dispatch(Udm::Object, EmptyMPLVector0) { }
-	  
+    
     // Called when ChildrenVector is empty as in EmptyMPLVector.
     // I think the following function is unnecessary because 
     // empty vector is either (1) exactly same as EmptyMPLVector0
@@ -580,7 +579,7 @@ struct OneOp : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector0.
     void dispatch(argument_kind const &,  EmptyMPLVector0) { }
-	  
+    
     // Called when ChildrenVector is empty as in EmptyMPLVector.
     // I think the following function is unnecessary because 
     // empty vector is either (1) exactly same as EmptyMPLVector0
@@ -594,6 +593,16 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
 #ifdef LEESA_FOR_UDM
     result_kind operator () (argument_kind const & arg)
     {
+      /* Pipes-and-filter architecture of meta-programs is in action here.
+       * If Custom is anything different from LEESA::Default, ChildrenKinds
+       * are obtained from that specialization of KindTraits. For example,
+       * DescendantOp specializes KindTraits for Custom=FilterChildrenIfNotDescendantCarry.
+       * This allows it to remove types that have no way to reach to the
+       * destination type. This chain of meta-functions that prune away
+       * undesired types from default ChildrenKinds is the primary mechanism
+       * in LEESA that enables schema-aware efficent substructure traversal. 
+       * */
+
       typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
       ObjectSet objects = Custom::GetChildObjects(arg);
       BOOST_FOREACH(Udm::Object o, objects)
@@ -635,6 +644,16 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
 
     result_kind operator () (argument_kind const & arg)
     {
+      /* Pipes-and-filter architecture of meta-programs is in action here.
+       * If Custom is anything different from LEESA::Default, ChildrenKinds
+       * are obtained from that specialization of KindTraits. For example,
+       * DescendantOp specializes KindTraits for Custom=FilterChildrenIfNotDescendantCarry.
+       * This allows it to remove types that have no way to reach to the
+       * destination type. This chain of meta-functions that prune away
+       * undesired types from default ChildrenKinds is the primary mechanism
+       * in LEESA that enables schema-aware efficent substructure traversal. 
+       * */
+
       typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
       dispatch(arg, Children());
       return arg;
@@ -920,11 +939,11 @@ template <class E, class Func>
 CallerOp<typename ET<E>::result_type, Func> 
 Call (E, Func f)
 {
-	typedef typename ET<E>::result_kind result_kind;
-	
-	BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
-	
+  typedef typename ET<E>::result_kind result_kind;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Func::argument_type>));
+  
   return CallerOp<typename ET<E>::result_type, Func> (f);
 }
 
@@ -933,15 +952,15 @@ CallerOp<typename ET<E>::result_type,
          std::pointer_to_unary_function<Arg, Result> > 
 Call (E, Result (*f) (Arg))
 {
-	typedef typename ET<E>::result_kind result_kind;
-	
+  typedef typename ET<E>::result_kind result_kind;
+  
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
-	BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
-	
-	CallerOp<typename ET<E>::result_type, 
+  BOOST_MPL_ASSERT((boost::is_convertible<Arg, result_kind>));
+  
+  CallerOp<typename ET<E>::result_type, 
            std::pointer_to_unary_function<Arg, Result> > 
-		caller(std::ptr_fun(f));
-	return caller;
+    caller(std::ptr_fun(f));
+  return caller;
 }
 
 template <class K>

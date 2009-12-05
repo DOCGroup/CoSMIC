@@ -80,7 +80,6 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
 	try {
       	        RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		SMVisitor visitor;
-/*
                 evaluate (rf, RootFolder() >>= StateMachine()[visitor] >>= State()[visitor]);
   
 		std::vector<StartState> SSvector = 
@@ -101,9 +100,8 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
           << StateMachine()[visitor]
           << RootFolder()[visitor]);
 
-  */        
 		evaluate(rf, RootFolder() >> AroundFullTD(RootFolder(), VisitStrategy(visitor), LeaveStrategy(visitor)));
-/*
+
 		BOOST_AUTO(v_state, State() >> visitor);
 		BOOST_AUTO(v_transition, Transition() >> visitor);
 		BOOST_AUTO(sm, RootFolder() >> StateMachine());
@@ -122,7 +120,7 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,		// Backend pointer(already 
                         FROM(RootFolder),
                         TO(Transition),
                         THROUGH(StateMachine)));
-  */  
+    
 	}
 	catch (boost::regex_error & e)
 	{

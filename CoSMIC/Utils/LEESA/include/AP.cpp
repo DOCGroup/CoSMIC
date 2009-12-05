@@ -43,6 +43,7 @@ using boost::is_base_of;
 using boost::disable_if_c;
 
 template <class L, class H, class Custom> struct DescendantOp;
+EXPRESSION_TRAITS_3PARA(DescendantOp);
 
 #ifdef LEESA_FOR_UDM
 template <class L, class H, class Custom> struct DescendantGraphOp;
@@ -54,10 +55,7 @@ template <class Strategy,
           class Custom> struct APOp;
 
 EXPRESSION_TRAITS_3PARA(DescendantGraphOp);
-
 #endif // LEESA_FOR_UDM
-
-EXPRESSION_TRAITS_3PARA(DescendantOp);
 
 template <class H, class Custom> 
 /* By default Custom is LEESA::Default. Check in DescendantOp. */
@@ -82,6 +80,12 @@ struct KindTraits <T, FilterChildrenIfNotDescendantCarry <H, Custom> >
   : public KindTraits<T, Custom>
 {
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
+    /* Pipes-and-filter architecture of meta-programs is in action here.
+     * If Custom is anything different from LEESA::Default, ChildrenKinds
+     * are obtained from that specialization of KindTraits. For exmaple,
+     * APOp specializes KindTraits for Custom=RemoveBypassingTypesCarry.
+     * This allows AP to remove 'bypass' types before
+     * FilterChildrenIfNotDescendantImpl meta-function is applied. */
     typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
     typedef typename 
       FilterChildrenIfNotDescendantImpl<Children, 
@@ -105,7 +109,7 @@ struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
 template <class L, 
           class H, 
           class Custom = LEESA::Default >
-struct DescendantOp : LEESAUnaryFunction<L, H>, virtual OpBase
+struct DescendantOp : LEESAUnaryFunction<L, H>, OpBase
 {
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
@@ -125,16 +129,21 @@ protected:
     };
     
     result_type & retval_;
+    
     Accumulate (result_type & r)
       : retval_(r) {}
 
     template <class K>
     void operator () (K arg)
     {
-      typedef typename ET<K>::argument_kind Kind;
-      retval_.Union(evaluate(arg, Kind() >> CastFromTo(Kind(), result_kind())));
+      /* For any type other than result_type and result_kind, simply neglect
+       * the argument. Noop. For desired types, push them in the retval. */
     }
     void operator () (result_type k)
+    {
+      retval_.Union(k);
+    }
+    void operator () (result_kind k)
     {
       retval_.Union(k);
     }
@@ -280,24 +289,7 @@ struct RemoveBypassingTypesImpl
     // enum { check = !equal<Children, type>::value };
     // BOOST_CONCEPT_ASSERT((LEESA::ReachableConcept <check, type, ToKind>));
 };
-/*
-template <class Strategy, 
-          class From, 
-          class ToVector, 
-          class ThroughVector, 
-          class BypassVector,
-          class Custom,
-          class T>
-struct KindTraits <T, APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
-  : public KindTraits <T, Custom>
-{
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
-    typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
-    typedef typename 
-      APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom>::template
-           RemoveBypassingTypes<Children>::type ChildrenKinds;
-};
-*/
+
 template <class T, 
           class BypassVector,
           class Custom>
@@ -329,14 +321,12 @@ template <class Strategy,
           class ThroughVector, 
           class BypassVector,
           class Custom /* APGen provides the default value of the Custom = LEESA::Default */ >
-struct APOp : LEESAUnaryFunction <From>, 
-              virtual OpBase 
+struct APOp : LEESAUnaryFunction <From>, OpBase 
 {
   typedef LEESA::LEESAUnaryFunction<From> Super;
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<From, APOp> expression_type;
 
-  //APOp () { }
   APOp (Strategy s) : strategy_(s) { }
   
   result_type operator () (argument_type from)

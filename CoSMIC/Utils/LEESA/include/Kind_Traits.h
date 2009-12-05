@@ -59,7 +59,7 @@ namespace LEESA {
   struct ReferenceMetaTag {};
 
   typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
-	
+  
   struct Default {};
 
   template <class Kind, class Custom = Default>

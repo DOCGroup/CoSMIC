@@ -10,42 +10,42 @@ typename disable_if_c
    typename ChainedOperator<L,H,GetParentOp>::Op>::type
 operator << (L const &l, H)
 {
-	// Don't replace the following with LOCAL_TYPEDEFS.
-	typedef GetParentOp<typename ET<L>::result_type, 
+  // Don't replace the following with LOCAL_TYPEDEFS.
+  typedef GetParentOp<typename ET<L>::result_type, 
                       typename ET<H>::argument_type>  OP;
-	typedef typename ET<L>::expression_type ChildKindExpr;
-	typedef typename ET<H>::argument_kind ParentKind;
-	typedef typename ET<L>::result_kind ChildKind;
-	typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
+  typedef typename ET<L>::expression_type ChildKindExpr;
+  typedef typename ET<H>::argument_kind ParentKind;
+  typedef typename ET<L>::result_kind ChildKind;
+  typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
 
   BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
-	return ChainExpr(ChildKindExpr(l), OP());
+  return ChainExpr(ChildKindExpr(l), OP());
 }
 
 template <class L, class H>
 typename disable_if
   <IsDomainVisitorBaseOf<H>,
    ChainExpr<typename ET<L>::expression_type, 
- 		         DFSParentOp<typename ET<L>::expression_type,
-		 			               typename ET<H>::expression_type>
-		        >
+              DFSParentOp<typename ET<L>::expression_type,
+                          typename ET<H>::expression_type>
+            >
   >::type
 operator <<= (L const &l, H const & h)
 {
   BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, H>));
 
-	typedef typename ET<L>::expression_type ParentExpr;
-	typedef typename ET<H>::expression_type ChildExpr;
-	typedef DFSParentOp<ParentExpr, ChildExpr> Operator;
-	typedef typename ET<L>::result_kind ChildKind;
-	typedef typename ET<H>::argument_kind ParentKind;
-	typedef ChainExpr<ParentExpr, Operator> ChainExpr;
+  typedef typename ET<L>::expression_type ParentExpr;
+  typedef typename ET<H>::expression_type ChildExpr;
+  typedef DFSParentOp<ParentExpr, ChildExpr> Operator;
+  typedef typename ET<L>::result_kind ChildKind;
+  typedef typename ET<H>::argument_kind ParentKind;
+  typedef ChainExpr<ParentExpr, Operator> ChainExpr;
 
   BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
   Operator op(h);
-	return ChainExpr(ParentExpr(l), op);
+  return ChainExpr(ParentExpr(l), op);
 }
 
 template <class L, class OP>                              
@@ -94,11 +94,11 @@ operator << (L const &l, DOMAIN_NAMESPACE::Visitor & v)
 {
   BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, L>));
 
-	typedef VisitorOp<typename ET<L>::result_type> OP;
-	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
+  typedef VisitorOp<typename ET<L>::result_type> OP;
+  LOCAL_TYPEDEFS(L, OP);
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
 
-	return ChainExpr(ParentKindExpr(l), OP(v));
+  return ChainExpr(ParentKindExpr(l), OP(v));
 }
 
 template <class L, class H>
@@ -137,3 +137,4 @@ operator << (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
 #endif // LEESA_NO_VISITOR
 
 } // namespace LEESA
+

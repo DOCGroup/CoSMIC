@@ -1,3 +1,20 @@
+Sat Dec  5 23:42:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Bug fixes in DescendantOp and reformatting of files.
+
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+
+          Updated the test.
+
 Sat Dec  5 02:37:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:

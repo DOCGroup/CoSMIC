@@ -22,9 +22,9 @@
   typedef typename Super::result_type result_type;             
 
 #define LOCAL_TYPEDEFS(L, OP)                                               \
-	typedef typename ET< L >::expression_type ParentKindExpr;                 \
-	typedef typename ET< OP >::argument_kind ChildKind;                       \
-	typedef typename ParentKindExpr::result_kind ParentKind;                  \
+  typedef typename ET< L >::expression_type ParentKindExpr;                 \
+  typedef typename ET< OP >::argument_kind ChildKind;                       \
+  typedef typename ParentKindExpr::result_kind ParentKind;                  \
   typedef ChainExpr<ParentKindExpr, OP > ChainExpr;
 
 // Forward declarations of operators. Definitions in LEESA_Operators.cpp
@@ -109,7 +109,7 @@ public:
     std::copy(ukindlit.c_.begin(), ukindlit.c_.end(), std::back_inserter(c_));
   }
   KindLit (KindLit const & k) : c_ (k.c_) {}
-  KindLit (Kind const & k) { c_.push_back(k); }	
+  KindLit (Kind const & k) { c_.push_back(k); }  
   KindLit (Container const & c) : c_(c) { }
 
 #ifdef LEESA_FOR_UDM
@@ -141,7 +141,7 @@ public:
   {
     c_.push_back(k);
   }
-	
+  
   void Union(Container const & in)
   {
     std::copy(in.begin(), in.end(), std::back_inserter(c_));
@@ -160,31 +160,6 @@ public:
   
   operator Container () const { return c_; } 
   result_type operator () (argument_type p) const { return p; }
-
-/* 
-  Kind temp_kind_;
-	result_kind * operator -> ()
-	{ 
-		if (this->isEmpty())
-		{
-			std::ostringstream ostr;
-			ostr << "Dereferencing an empty set of \"" 
-				<< std::string(Kind::meta.name()) << "\"";
-			throw std::runtime_error(ostr.str().c_str());
-		}
-		temp_kind_ = *(this->begin()); 
-		return &temp_kind_;
-	} 
-  KindLit & operator = (KindLit const & rhs) 
-	{ 
-		if (this != &rhs)
-		{
-			temp_kind_ = rhs.temp_kind_;
-			c_ = rhs.c_; 
-		}
-		return *this;
-	}	
-*/
 };
 
 template <class L, class R>
@@ -215,37 +190,37 @@ struct SequenceExpr : public LEESAUnaryFunction <L, void>
 {
   typedef LEESAUnaryFunction <L, void> Super;
   SUPER_TYPEDEFS(Super);
-	typedef SequenceExpr<L, R> expression_type;
-	typedef typename ET<R>::argument_kind child_kind;
+  typedef SequenceExpr<L, R> expression_type;
+  typedef typename ET<R>::argument_kind child_kind;
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, child_kind>));
 
-	L l_;
-	R r_;
-	
+  L l_;
+  R r_;
+  
   explicit SequenceExpr () {} 
-	
+  
   SequenceExpr (SequenceExpr const & c) 
-		: l_(c.l_), r_(c.r_) 
-	{}
+    : l_(c.l_), r_(c.r_) 
+  {}
   
   explicit SequenceExpr (L const &l, R const & r) 
-		: l_(l), r_(r) {}
-	
+    : l_(l), r_(r) {}
+  
   result_type operator () (argument_type arg) 
-	{ 
-		l_(arg); 
+  { 
+    l_(arg); 
     typename KindTraits<argument_kind>::Container v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-		{
-			typename KindTraits<child_kind>::Container c = 
+    BOOST_FOREACH(argument_kind kind, v)
+    {
+      typename KindTraits<child_kind>::Container c = 
         kind.template children_kind<child_kind>();
-			BOOST_FOREACH(child_kind ckind, c)
-			{ 
-				r_(ckind); 
-			}
-		}
+      BOOST_FOREACH(child_kind ckind, c)
+      { 
+        r_(ckind); 
+      }
+    }
 
-	}
+  }
 };
 
 #ifndef LEESA_NO_VISITOR
@@ -280,13 +255,13 @@ template <class L, class H>
 */
 typename disable_if_c<is_pointer<typename ET<H>::argument_kind>::value,
                       SequenceExpr<typename ET<L>::expression_type, 
-		                               typename ET<H>::expression_type> 
+                                   typename ET<H>::expression_type> 
                      >::type 
 operator , (L const &l, H const &h)
 {
-	typedef SequenceExpr<typename ET<L>::expression_type, 
-		                   typename ET<H>::expression_type > OP;
-	return OP(l, h);
+  typedef SequenceExpr<typename ET<L>::expression_type, 
+                       typename ET<H>::expression_type > OP;
+  return OP(l, h);
 }
 
 #ifndef LEESA_NO_VISITOR
@@ -296,10 +271,10 @@ SequenceExpr<typename ET<L>::expression_type,
              ChainExpr<typename ET<H>::result_type,
                        VisitorOp<typename ET<H>::result_type> 
                       >
-		        >
+            >
 operator , (L const &l, VisitorAsIndex<H> vh)
 {
-	return l , H() >> vh.getVisitor();
+  return l , H() >> vh.getVisitor();
 }
 
 
@@ -337,11 +312,11 @@ typename disable_if<is_base_of<std::ios_base, L>,
   >::type
 operator >>= (L const &l, DOMAIN_NAMESPACE::Visitor & v)
 {
-	typedef DFSVisitorOp<typename ET<L>::result_type> OP;
-	LOCAL_TYPEDEFS(L, OP);
-	BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
+  typedef DFSVisitorOp<typename ET<L>::result_type> OP;
+  LOCAL_TYPEDEFS(L, OP);
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
 
-	return ChainExpr(ParentKindExpr(l), OP(v));
+  return ChainExpr(ParentKindExpr(l), OP(v));
 }
 */
 
