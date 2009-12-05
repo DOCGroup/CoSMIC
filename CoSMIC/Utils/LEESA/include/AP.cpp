@@ -22,7 +22,7 @@
 #define TO(...)        boost::mpl::vector<__VA_ARGS__>()
 #define THROUGH(...)   Through_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
 #define BYPASS(...)    Bypass_Vector_is<boost::mpl::vector<__VA_ARGS__> >()
-#define CUSTOMIZER(X)  Customizer_is<X>()
+#define CUSTOMIZER(X)  Custom_is<X>()
 
 
 namespace LEESA {
@@ -51,7 +51,7 @@ template <class Strategy,
           class ToVector, 
           class ThroughVector, 
           class BypassVector, 
-          class Customizer> struct APOp;
+          class Custom> struct APOp;
 
 EXPRESSION_TRAITS_3PARA(DescendantGraphOp);
 
@@ -59,27 +59,34 @@ EXPRESSION_TRAITS_3PARA(DescendantGraphOp);
 
 EXPRESSION_TRAITS_3PARA(DescendantOp);
 
-template <class Vector, class ResultKind, class Customizer>
-struct FilterChildrenIfNotDescendant
+template <class H, class Custom> 
+/* By default Custom is LEESA::Default. Check in DescendantOp. */
+struct FilterChildrenIfNotDescendantCarry : Custom
+{};
+
+template <class Vector, class ResultKind, class Custom>
+/* By default Custom is LEESA::Default. Check in DescendantOp. */
+struct FilterChildrenIfNotDescendantImpl
 {
   typedef typename 
     copy_if<Vector, 
             or_<is_same<boost::mpl::placeholders::_1, ResultKind>,
                 IsDescendantKind<boost::mpl::placeholders::_1, 
                                  ResultKind, 
-                                 Customizer> > >::type type;
+                                 Custom> > >::type type;
 };
 
-template <class T, class L, class H, class Custom>
-struct KindTraits <T, DescendantOp<L, H, Custom> >
+template <class T, class H, class Custom>
+/* By default Custom is LEESA::Default. Check in DescendantOp. */
+struct KindTraits <T, FilterChildrenIfNotDescendantCarry <H, Custom> >
   : public KindTraits<T, Custom>
 {
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
     typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
     typedef typename 
-      FilterChildrenIfNotDescendant<Children, 
-                                    typename ET<H>::result_kind, 
-                                    Custom>::type ChildrenKinds;
+      FilterChildrenIfNotDescendantImpl<Children, 
+                                        typename ET<H>::result_kind, 
+                                        Custom>::type ChildrenKinds;
 };
 
 #ifdef LEESA_FOR_UDM
@@ -89,25 +96,22 @@ template <class Strategy,
           class ToVector, 
           class ThroughVector, 
           class BypassVector,
-          class Customizer>
-struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> >
-  : public ETBase <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> > {};
+          class Custom>
+struct ET <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
+  : public ETBase <APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> > {};
 
 #endif // LEESA_FOR_UDM
 
 template <class L, 
           class H, 
-          class Customizer = LEESA::Default >
-struct DescendantOp : LEESAUnaryFunction<L, H>,
-                      virtual OpBase,
-                      Customizer  // inherit GetChildObjects()
+          class Custom = LEESA::Default >
+struct DescendantOp : LEESAUnaryFunction<L, H>, virtual OpBase
 {
-  typedef DescendantOp Self;
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<L, DescendantOp> expression_type;
 
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<argument_kind, result_kind, Customizer>));
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<argument_kind, result_kind, Custom>));
 
 protected:
   result_type retval_;
@@ -141,7 +145,8 @@ public:
   result_type operator () (argument_type const & arg)
   {
     Accumulate acc(retval_);
-    evaluate(arg, argument_kind() >> FullTD(argument_kind(), acc, Self()));
+    evaluate(arg, argument_kind() 
+        >> FullTD(argument_kind(), acc, FilterChildrenIfNotDescendantCarry<H, Custom>()));
     return retval_;
   }
 };
@@ -180,21 +185,20 @@ DescendantsOf (L, H, Custom)
 
 template <class L, 
           class H, 
-          class Customizer = LEESA::Default >
-struct DescendantGraphOp : DescendantOp<L, H, Customizer>
+          class Custom = LEESA::Default >
+struct DescendantGraphOp : DescendantOp<L, H, Custom>
 {
-  typedef DescendantOp<L, H, Customizer> Super;
+  typedef DescendantOp<L, H, Custom> Super;
   SUPER_TYPEDEFS(Super);
-	typedef ChainExpr<L, DescendantGraphOp> expression_type;
+  typedef ChainExpr<L, DescendantGraphOp> expression_type;
 
-  BOOST_CONCEPT_ASSERT((LEESA::
-    DescendantKindConcept<argument_kind, result_kind, Customizer>));
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<argument_kind, result_kind, Custom>));
 
   result_type operator () (argument_type const & arg)
   {
     typename Super::Accumulate acc(Super::retval_);
     evaluate(arg, argument_kind() 
-      >> FullTDGraph(argument_kind(), acc, Super()));
+      >> FullTDGraph(argument_kind(), acc, FilterChildrenIfNotDescendantCarry<H, Custom>()));
     return Super::retval_;
   }
 };
@@ -235,7 +239,7 @@ GraphDescendantsOf (L, H, Custom)
 struct __ANY {};
 struct Through_tag {};
 struct Bypass_tag {};
-struct Customizer_tag {};
+struct Custom_tag {};
 
 template <class ThroughVector>
 struct Through_Vector_is
@@ -251,13 +255,32 @@ struct Bypass_Vector_is
   typedef BypassVector type; 
 };
 
-template <class Customizer>
-struct Customizer_is
+template <class Custom>
+struct Custom_is
 {
-  typedef Customizer_tag tag;
-  typedef Customizer type; 
+  typedef Custom_tag tag;
+  typedef Custom type; 
 };
 
+template <class BypassVector, class Custom>
+/* By default Custom is LEESA::Default. Check in APOp. */
+struct RemoveBypassingTypesCarry : Custom
+{ };
+
+template <class ChildrenVector, class BypassVector>
+/* By default Custom is LEESA::Default. Check in APOp. */
+struct RemoveBypassingTypesImpl
+{
+  typedef typename 
+    remove_if <ChildrenVector, 
+               contains<BypassVector, ::boost::mpl::placeholders::_1> >::type type;
+
+    // Check the ReachableConcept only when they are not equal.
+    // i.e. something was bypassed from the children list.
+    // enum { check = !equal<Children, type>::value };
+    // BOOST_CONCEPT_ASSERT((LEESA::ReachableConcept <check, type, ToKind>));
+};
+/*
 template <class Strategy, 
           class From, 
           class ToVector, 
@@ -274,18 +297,26 @@ struct KindTraits <T, APOp<Strategy, From, ToVector, ThroughVector, BypassVector
       APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom>::template
            RemoveBypassingTypes<Children>::type ChildrenKinds;
 };
+*/
+template <class T, 
+          class BypassVector,
+          class Custom>
+/* By default Custom is LEESA::Default. Check in APOp. */
+struct KindTraits <T, RemoveBypassingTypesCarry<BypassVector, Custom> >
+  : public KindTraits <T, Custom>
+{
+    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
+    typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
+    typedef typename RemoveBypassingTypesImpl<Children, BypassVector>::type ChildrenKinds;
+};
 
 template <class Parent, 
           class Descendant, 
-          class Strategy, 
-          class From, 
-          class ToVector, 
-          class ThroughVector, 
           class BypassVector,
           class Custom>
 struct IsDescendantKind <Parent, 
                          Descendant,
-                         APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Custom> >
+                         RemoveBypassingTypesCarry<BypassVector, Custom> >
   : LEESA::IsDescendantKind <Parent, Descendant, Custom>
 { 
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Parent>));
@@ -297,30 +328,15 @@ template <class Strategy,
           class ToVector, 
           class ThroughVector, 
           class BypassVector,
-          class Customizer /* APGen provides the default value of the Customizer = LEESA::Default */ >
+          class Custom /* APGen provides the default value of the Custom = LEESA::Default */ >
 struct APOp : LEESAUnaryFunction <From>, 
-              virtual OpBase, 
-              Customizer
+              virtual OpBase 
 {
-  typedef APOp Self;
   typedef LEESA::LEESAUnaryFunction<From> Super;
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<From, APOp> expression_type;
 
-  template <class ChildrenVector>
-  struct RemoveBypassingTypes
-  {
-    typedef typename 
-      remove_if <ChildrenVector, 
-                 contains<BypassVector, ::boost::mpl::placeholders::_1> >::type type;
-
-      // Check the ReachableConcept only when they are not equal.
-      // i.e. something was bypassed from the children list.
-      // enum { check = !equal<Children, type>::value };
-      // BOOST_CONCEPT_ASSERT((LEESA::ReachableConcept <check, type, ToKind>));
-  };
-
-  APOp () { }
+  //APOp () { }
   APOp (Strategy s) : strategy_(s) { }
   
   result_type operator () (argument_type from)
@@ -344,7 +360,7 @@ private:
     typedef typename ET<From>::argument_type FromType;
     typedef typename ET<Head>::result_type HeadType;
 
-    DescendantGraphOp <FromType, HeadType, Self> d;
+    DescendantGraphOp <FromType, HeadType, RemoveBypassingTypesCarry<BypassVector, Custom> > d;
     typename KindTraits<Head>::Container through_set 
       = evaluate(from, FromKind() >> d);
     BOOST_FOREACH(Head h, through_set)
@@ -373,7 +389,7 @@ private:
     typedef typename ET<Through>::argument_type ThroughType;
     typedef typename ET<Head>::result_type HeadType;
     
-    DescendantGraphOp<ThroughType, HeadType, Self> d;
+    DescendantGraphOp<ThroughType, HeadType, RemoveBypassingTypesCarry<BypassVector, Custom> > d;
     strategy_(evaluate(through, ThroughKind() >> d));
 
     through_to(through, Tail());
@@ -409,7 +425,7 @@ struct find_param <Vector, 0, Bypass_tag>
 };
 
 template <class Vector>
-struct find_param <Vector, 0, Customizer_tag>
+struct find_param <Vector, 0, Custom_tag>
 {
   typedef LEESA::Default type;
 };
@@ -428,7 +444,7 @@ template <class Strategy,
           class ToVector, 
           class Through = Through_Vector_is<boost::mpl::vector1<__ANY> >,
           class Bypass = Bypass_Vector_is<EmptyMPLVector0>,
-          class Custom = Customizer_is<LEESA::Default> >
+          class Custom = Custom_is<LEESA::Default> >
 struct APGen
 {
 private:
@@ -439,7 +455,7 @@ private:
   typedef typename 
     find_param<Configuration, size<Configuration>::value, Bypass_tag>::type BypassVector;
   typedef typename 
-    find_param<Configuration, size<Configuration>::value, Customizer_tag>::type Customizer;
+    find_param<Configuration, size<Configuration>::value, Custom_tag>::type CustomInner;
 
   enum { VALID_PARAMETERIZATION 
           = !empty<ToVector>::value &&
@@ -451,7 +467,7 @@ private:
 
 public:
   typedef  
-    APOp<Strategy, From, ToVector, ThroughVector, BypassVector, Customizer> type;
+    APOp<Strategy, From, ToVector, ThroughVector, BypassVector, CustomInner> type;
 };
 
 template <class Strategy, class From, class To, class Through, class Bypass, class Custom>
