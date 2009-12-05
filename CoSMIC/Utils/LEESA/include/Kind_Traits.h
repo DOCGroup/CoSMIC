@@ -55,10 +55,10 @@ namespace LEESA {
 #else // LEESA_FOR_UDM
 
   struct AtomMetaTag {};
-	struct ModelMetaTag {};
-	struct ReferenceMetaTag {};
+  struct ModelMetaTag {};
+  struct ReferenceMetaTag {};
 
-	typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
+  typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
 	
   struct Default {};
 

@@ -1,3 +1,20 @@
+Sat Dec  5 00:11:49 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Updated the generator for xsd.
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Conditional compilation if not UDM
+
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+
+          Updated the test. AP does not work.
+
 Fri Dec  4 07:22:08 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/component.def:

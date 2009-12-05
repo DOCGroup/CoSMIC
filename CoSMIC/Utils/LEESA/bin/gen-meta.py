@@ -205,6 +205,25 @@ def push_dictionary(qualified_cname, child_type):
     all_types_set.add(child_type)
 
 
+def write_function_declaration(return_type, qualified_cname, child_type):
+  outstr = """
+%(return_type)s
+children_kind(const %(qualified_cname)s & x, %(child_type)s);
+""" % locals()
+  header_file.write(outstr)
+
+
+def write_function_definition(return_type, qualified_cname, child_type, body):
+  outstr = """
+%(return_type)s
+children_kind(const %(qualified_cname)s & x, %(child_type)s)
+{\
+  %(body)s\
+}
+""" % locals()
+  cpp_file.write(outstr)
+
+
 def write_one_function_list(qualified_cname, real_parent, function_list, typedef_dict):
   for pair in function_list:
     return_type = typedef_dict[pair[1]].return_type
@@ -220,22 +239,27 @@ def write_one_function_list(qualified_cname, real_parent, function_list, typedef
       child_type = namespace + "::" + pair[0]
     else:        
       child_type = namespace + "::" + real_parent + "_" + pair[0]
-    
-    outstr = """
-%(return_type)s
-children_kind(const %(qualified_cname)s & x, %(child_type)s)
-""" % locals()
-    header_file.write(outstr + ";")
-    cpp_file.write(outstr + "{")
 
+    push_dictionary(qualified_cname, child_type)    
+    write_function_declaration(return_type, qualified_cname, child_type)
+    
     fname = pair[0]
-    outstr = """
-  return x.%(fname)s();
-}
+    body = "\n  return x." + fname + "();\n"
+    if(typedef_dict[pair[1]].wrapper.count("::xsd::cxx::tree::optional") > 0):
+      body = """
+  if (x.%(fname)s()) 
+  {
+    return ::xsd::cxx::tree::optional<%(child_type)s>(x.%(fname)s().get());
+  }
+  else 
+  {
+    return ::xsd::cxx::tree::optional<%(child_type)s>();
+  }
 """ % locals()
-    cpp_file.write(outstr)
-   
-    push_dictionary(qualified_cname, child_type)
+    
+    
+    write_function_definition(return_type, qualified_cname, child_type, body)
+
 
 
 def write_recursive_function_list(classid, real_parent_id, function_dict, typedef_dict):
@@ -297,8 +321,8 @@ def write_header_epilog(namespace, header_file):
   header_file.write(outstr)
 
 def write_cpp_prolog (namespace, cpp_file):
-  outstr = """
-#include "%(namespace)s.hxx"
+  outstr = """\
+#include "%(namespace)s-meta.hxx"
 
 namespace %(namespace)s {
 """ % locals()
@@ -323,21 +347,21 @@ struct _Wrapper
 """
   header_file.write(outstr)
 
-  for type in all_types_set:
+  for t in all_types_set:
     children_kinds = ""
     parent_kinds = ""
     metakind = "LEESA::AtomMetaTag"
 
-    if(type in children_dict):
-      children_kinds = ",".join(children_dict[type])
+    if(t in children_dict):
+      children_kinds = ",".join(children_dict[t])
       metakind = "LEESA::ModelMetaTag"
 
-    if(type in parent_dict):
-      parent_kinds = ",".join(parent_dict[type])
+    if(t in parent_dict):
+      parent_kinds = ",".join(parent_dict[t])
 
     outstr = """
 template <>
-struct SchemaTraits< %(type)s > : public _Wrapper< %(type)s > {
+struct SchemaTraits< %(t)s > : public _Wrapper< %(t)s > {
   typedef boost::mpl::vector < %(children_kinds)s > ChildrenKinds;
   typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
   typedef %(metakind)s MetaKind;

@@ -143,27 +143,27 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
 {
   typedef LEESA::LEESAUnaryFunction<L, H> Super;
   SUPER_TYPEDEFS(Super);
-	typedef ChainExpr<L, GetChildrenOp<argument_type, result_type> > expression_type;
+  typedef ChainExpr<L, GetChildrenOp<argument_type, result_type> > expression_type;
 
-	explicit GetChildrenOp () {}
+  explicit GetChildrenOp () {}
 
-	GetChildrenOp (GetChildrenOp const &) {}
-	result_type operator () (argument_type const & arg)
-	{
+  GetChildrenOp (GetChildrenOp const &) {}
+  result_type operator () (argument_type const & arg)
+  {
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
 
-		result_type retval;
-		typename KindTraits<argument_kind>::Container v = arg;
-		BOOST_FOREACH(argument_kind kind, v)
-		{
+    result_type retval;
+    typename KindTraits<argument_kind>::Container v = arg;
+    BOOST_FOREACH(argument_kind kind, v)
+    {
 #ifdef LEESA_FOR_UDM
-			retval.Union(kind.template children_kind<result_kind>());
+      retval.Union(kind.template children_kind<result_kind>());
 #else // LEESA_FOR_UDM
       retval.Union(children_kind(kind, result_kind()));
 #endif // LEESA_FOR_UDM
-		}
-		return retval;
-	}
+    }
+    return retval;
+  }
 };
 
 template <class L, class H>

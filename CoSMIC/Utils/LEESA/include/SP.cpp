@@ -83,7 +83,7 @@
 template <class K,                                                                 \
           class Strategy = KindLit<K>,                                             \
           class Custom = LEESA::Default>                                           \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                      \
+struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase              \
 {                                                                                  \
     typedef ChainExpr<K, OP##Op> expression_type;                                  \
     typedef LEESAUnaryFunction <K> Super;                                          \
@@ -122,7 +122,7 @@ template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
           class Strategy2 = KindLit<K>,                                      \
           class Custom = LEESA::Default>                                     \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
+struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
 {                                                                            \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
@@ -164,7 +164,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
 template <class K,                                                           \
           class Strategy1 = KindLit<K>,                                      \
           class Strategy2 = KindLit<K> >                                     \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
+struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase        \
 {                                                                            \
   typedef ChainExpr<K, OP##Op> expression_type;                              \
   typedef LEESAUnaryFunction <K> Super;                                      \
@@ -203,11 +203,11 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
 
 #define CLASS_FOR_SP_OP_WITH_1STRATEGY(OP)                                  \
 template <class K, class Strategy = KindLit<K> >                            \
-struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
+struct OP##Op : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase       \
 {                                                                           \
     typedef ChainExpr<K, OP##Op> expression_type;                           \
     typedef LEESAUnaryFunction <K> Super;                                   \
-	  SUPER_TYPEDEFS(Super);                                                  \
+    SUPER_TYPEDEFS(Super);                                                  \
     BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));        \
                                                                             \
     template <class U>                                                      \
@@ -305,9 +305,13 @@ template <class X, class Y, class Z> struct ChoiceOp;
 template <class X, class Y, class Z> struct SeqOp;
 template <class X, class Y, class Z> struct OneOp;
 template <class X, class Y, class Z> struct AllOp;
+
+#ifdef LEESA_FOR_UDM
 template <class X, class Y, class Z> struct AllGraphOp;
-template <class X, class Y, class Z> struct FullTDOp;
 template <class X, class Y, class Z> struct FullTDGraphOp;
+#endif // LEESA_FOR_UDM
+
+template <class X, class Y, class Z> struct FullTDOp;
 template <class X, class Y, class Z> struct FullBUOp;
 template <class X, class Y, class Z> struct OnceTDOp;
 template <class X, class Y, class Z> struct OnceBUOp;
@@ -328,9 +332,13 @@ EXPRESSION_TRAITS_3PARA(SeqOp);
 EXPRESSION_TRAITS_3PARA(ChoiceOp);
 EXPRESSION_TRAITS_3PARA(OneOp);
 EXPRESSION_TRAITS_3PARA(AllOp);
+
+#ifdef LEESA_FOR_UDM
 EXPRESSION_TRAITS_3PARA(AllGraphOp);
-EXPRESSION_TRAITS_3PARA(FullTDOp);
 EXPRESSION_TRAITS_3PARA(FullTDGraphOp);
+#endif // LEESA_FOR_UDM
+
+EXPRESSION_TRAITS_3PARA(FullTDOp);
 EXPRESSION_TRAITS_3PARA(FullBUOp);
 EXPRESSION_TRAITS_3PARA(OnceTDOp);
 EXPRESSION_TRAITS_3PARA(OnceBUOp);
@@ -342,7 +350,7 @@ EXPRESSION_TRAITS_4PARA(AroundFullTDOp);
 
 
 template <class E, class Func>
-struct CallerOp : LEESAUnaryFunction <E>, OpBase
+struct CallerOp : LEESAUnaryFunction <E>, virtual OpBase
 {
   typedef LEESAUnaryFunction <E> Super;
   SUPER_TYPEDEFS(Super);
@@ -359,7 +367,7 @@ struct CallerOp : LEESAUnaryFunction <E>, OpBase
 };
 
 template <class Kind>
-struct FailOp : public LEESAUnaryFunction<Kind>, OpBase, _StrategyBase
+struct FailOp : public LEESAUnaryFunction<Kind>, virtual OpBase, _StrategyBase
 {
   public:
     typedef ChainExpr<Kind, FailOp> expression_type;
@@ -438,7 +446,7 @@ result_kind operator () (argument_kind const & arg)
 template <class K,                                                                 
           class Strategy = KindLit<K>,                                             
           class Custom = Default>                                         
-struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
+struct OneOp : LEESAUnaryFunction <K>, virtual OpBase, _StrategyBase
 {                                                                                  
   typedef ChainExpr<K, OneOp> expression_type;                         
   typedef LEESAUnaryFunction <K> Super;
@@ -468,10 +476,10 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
         throw LEESAException<argument_type>();
     else
     {
-      success_ = false;
       BOOST_FOREACH(argument_kind kind, arg)                                       
       {                 
         try {
+          success_ = false;
           (*this)(kind); 
           success_ = true;
           break;
@@ -484,6 +492,8 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
     }
     return arg;                                                                  
   }
+
+#ifdef LEESA_FOR_UDM
 
   result_kind operator () (argument_kind const & arg)
   {
@@ -530,10 +540,59 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
     // empty vector is either (1) exactly same as EmptyMPLVector0
     // or (2) convertible to EmptyMPLVector0. 
     void dispatch(Udm::Object, EmptyMPLVector) { }
+
+#else
+
+  result_kind operator () (argument_kind const & arg)
+  {
+    typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
+    success_ = false;
+    dispatch(arg, Children());
+    if(!success_) 
+      throw LEESAException<argument_type>();
+    return arg;
+  }
+
+  private:
+    // Called when ChildrenVector is non-empty. 
+    template <class ChildrenVector>
+    typename disable_if_c<empty<ChildrenVector>::value, void>::type 
+    dispatch(argument_kind const & arg, ChildrenVector)
+    {
+      typedef typename front<ChildrenVector>::type Head;
+      typedef typename pop_front<ChildrenVector>::type Tail;
+      typedef typename Strategy::template rebind<Head>::type HeadStrategy;
+      HeadStrategy hs(strategy_);
+      typename KindTraits<Head, Custom>::Container head_container =
+        LEESA::evaluate(arg, argument_kind() >> Head());
+      BOOST_FOREACH(Head h, head_container)
+      {
+        try {
+          hs(h);
+          success_ = true;
+          break;
+        }
+        catch (...) {
+        }
+      }
+      if(!success_)
+        dispatch(arg, Tail());
+    }
+    // Called when ChildrenVector is empty as in EmptyMPLVector0.
+    void dispatch(argument_kind const &,  EmptyMPLVector0) { }
+	  
+    // Called when ChildrenVector is empty as in EmptyMPLVector.
+    // I think the following function is unnecessary because 
+    // empty vector is either (1) exactly same as EmptyMPLVector0
+    // or (2) convertible to EmptyMPLVector0. 
+    void dispatch(argument_kind const &, EmptyMPLVector) { }
+
+#endif // LEESA_FOR_UDM
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
-result_kind operator () (argument_kind const & arg)
+#ifdef LEESA_FOR_UDM
+    result_kind operator () (argument_kind const & arg)
     {
       typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
       ObjectSet objects = Custom::GetChildObjects(arg);
@@ -572,6 +631,48 @@ result_kind operator () (argument_kind const & arg)
     void dispatch(Udm::Object, EmptyMPLVector) { }
 };
 
+#else
+
+    result_kind operator () (argument_kind const & arg)
+    {
+      typedef typename KindTraits<argument_kind, Custom>::ChildrenKinds Children;
+      dispatch(arg, Children());
+      return arg;
+    }
+
+  protected:
+    // Called when ChildrenVector is non-empty. 
+    template <class ChildrenVector>
+    typename disable_if_c<empty<ChildrenVector>::value, void>::type 
+    dispatch(argument_kind const & arg, ChildrenVector)
+    {
+      typedef typename front<ChildrenVector>::type Head;
+      typedef typename pop_front<ChildrenVector>::type Tail;
+      typedef typename Strategy::template rebind<Head>::type HeadStrategy;
+      HeadStrategy hs(strategy_);
+      typename KindTraits<Head, Custom>::Container head_container =
+        LEESA::evaluate(arg, argument_kind() >> Head());
+
+      BOOST_FOREACH(Head h, head_container)
+      {
+        hs(h);
+      }
+      dispatch(arg, Tail());
+    }
+    // Called when ChildrenVector is empty as in EmptyMPLVector0.
+    void dispatch(argument_kind const &, EmptyMPLVector0) { }
+
+    // Called when ChildrenVector is empty as in EmptyMPLVector.
+    // I think the following function is unnecessary because 
+    // empty vector is either (1) exactly same as EmptyMPLVector0
+    // or (2) convertible to EmptyMPLVector0. 
+    void dispatch(argument_kind const &, EmptyMPLVector) { }
+};
+
+#endif // LEESA_FOR_UDM
+
+#ifdef LEESA_FOR_UDM
+
 template <class K,                                                                 
           class Strategy = KindLit<K>,                                             
           class Custom = Default>                                         
@@ -587,7 +688,7 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   {                                                                              
     typedef AllGraphOp<U, typename Strategy::template rebind<U>::type, Custom> type; 
   };                                                                             
-                                                                                                                                                                   
+  
   template <class X, class Y, class Z>                                           
   explicit AllGraphOp (AllGraphOp<X, Y, Z> & f)                                          
     : Super(f.strategy_)                                                     
@@ -622,6 +723,8 @@ struct AllGraphOp : public AllOp<K, Strategy, Custom>
   }
 };
 
+#endif // LEESA_FOR_UDM
+
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
     result_kind operator () (argument_kind const & arg)
     {
@@ -631,6 +734,8 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
       return arg;
     }
 };
+
+#ifdef LEESA_FOR_UDM
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
     result_kind operator () (argument_kind const & arg)
@@ -646,6 +751,8 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
       return arg;
     }
 };
+
+#endif // LEESA_FOR_UDM
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullBU);
     result_kind operator () (argument_kind const & arg)
@@ -733,19 +840,19 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(NaiveInnermost);
 };
 
 CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
-    result_kind operator () (argument_kind const & arg)
-    {
-      typedef AllOp<K, InnermostOp, Custom>   ALL_IM;
-      typedef SeqOp<K, Strategy, InnermostOp> SEQ_IM;
-      typedef TryOp<K, SEQ_IM>                TRY_IM;
-	    typedef SeqOp<K, ALL_IM, TRY_IM>        INNER_MOST;
-      ALL_IM all(*this);
-      SEQ_IM seq(strategy_, *this);
-      TRY_IM t(seq);
-      INNER_MOST innermost(all, t);
-      innermost(arg);
-      return arg;
-    }
+  result_kind operator () (argument_kind const & arg)
+  {
+    typedef AllOp<K, InnermostOp, Custom>   ALL_IM;
+    typedef SeqOp<K, Strategy, InnermostOp> SEQ_IM;
+    typedef TryOp<K, SEQ_IM>                TRY_IM;
+    typedef SeqOp<K, ALL_IM, TRY_IM>        INNER_MOST;
+    ALL_IM all(*this);
+    SEQ_IM seq(strategy_, *this);
+    TRY_IM t(seq);
+    INNER_MOST innermost(all, t);
+    innermost(arg);
+    return arg;
+  }
 };
 
 #ifndef LEESA_NO_VISITOR
@@ -866,9 +973,13 @@ FUNCTION_FOR_SP_OP_WITH_2STRATEGIES(Seq);
 
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(One);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
+
+#ifdef LEESA_FOR_UDM
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(AllGraph);
-FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTDGraph);
+#endif // LEESA_FOR_UDM
+
+FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullTD);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(FullBU);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceTD);
 FUNCTIONS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(OnceBU);
