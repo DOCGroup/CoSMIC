@@ -89,3 +89,11 @@ configure (DSL_Serializer * serializer, DSL_Deserializer * deserializer)
   this->serializer_ = serializer;
   this->deserializer_ = deserializer;
 }
+
+//
+// is_readonly
+//
+bool DSL_Document::is_readonly (void) const
+{
+  return this->obj_->isReadOnly () || this->obj_->isInLibrary ();
+}

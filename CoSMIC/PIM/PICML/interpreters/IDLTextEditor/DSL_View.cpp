@@ -71,16 +71,17 @@ int DSL_View::OnCreate (LPCREATESTRUCT create)
 //
 void DSL_View::OnInitialUpdate (void)
 {
+  CDocument * document = this->GetDocument ();
+  DSL_Document * dsl_document = dynamic_cast <DSL_Document *> (document);
+  CRichEditCtrl & richedit = this->GetRichEditCtrl ();
+
   // Disable word wrapping for the document.
   this->m_nWordWrap = CRichEditView::WrapNone;
   this->WrapChanged ();
 
-  // Update the view with the contents of the document.
-  CDocument * document = this->GetDocument ();
-  DSL_Document * dsl_document = dynamic_cast <DSL_Document *> (document);
-
-  // Get the richedit control from the view.
-  CRichEditCtrl & richedit = this->GetRichEditCtrl ();
+  // Set readonly flag for richedit control, if necessary.
+  if (dsl_document->is_readonly ())
+    richedit.SetReadOnly ();
 
   // Set the default font to Courier New.
   CHARFORMAT2 char_format;

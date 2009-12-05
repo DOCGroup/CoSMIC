@@ -70,6 +70,11 @@ public:
   void configure (DSL_Serializer * serializer,
                   DSL_Deserializer * deserializer);
 
+  /// Test if the document is readonly. The document is realonly
+  /// if the contained object is marked as readonly, or it is
+  /// in a library.
+  bool is_readonly (void) const;
+
 protected:
   DECLARE_MESSAGE_MAP ()
 

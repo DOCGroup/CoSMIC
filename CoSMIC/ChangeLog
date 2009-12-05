@@ -1,9 +1,18 @@
+Sat Dec  5 02:37:24 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_View.cpp:
+
+          . The text editor now become readonly of the object
+            being viewed is in a library or marked as readonly.
+
 Sat Dec  5 02:01:17 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
 
-          AP works. An extensible  meta-programming framework using 
-	  customizable SP operators, *Carry, and *Impl meta-functions.
+          AP works. An extensible  meta-programming framework using
+          customizable SP operators, *Carry, and *Impl meta-functions.
 
         * tests/LEESA-Linux/UdmApp-PICML.cpp:
 
