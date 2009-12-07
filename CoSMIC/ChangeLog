@@ -1,3 +1,10 @@
+Mon Dec  7 18:57:36 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        
+          Fixed a bug in the generation of a GME attribute of kind
+          "path" associated with PICML File elements.
+
 Sat Dec  5 23:42:53 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:

@@ -2787,6 +2787,18 @@ adding_visitor::add_file_element (DOMElement *parent,
   // have it already stripped above).
   ACE_CString path (
     tmp.substr (0, 2) == "./" ? tmp.substr (2, pos - 2) : "");
+    
+  ACE_CString::size_type lpos = path.find (lname);
+    
+  if (lpos == 0)
+    {
+      path = "";
+    }  
+  else if (lpos != ACE_CString::npos)
+    {
+      // Slice off the lname + the '/' separator.
+      path = path.substr (0, lpos - 1);
+    }
   
   // See if we have already imported this file. If so, just return it.
   DOMElement *file =
