@@ -1,3 +1,12 @@
+Tue Dec  8 17:52:44 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        
+          Changed logic of the check to skip 'imported' nodes in
+          code generation, since the old logic was based on a
+          behavior of the mpcc preprocessor which apparently
+          changes from Debug to Release mode on Windows.
+
 Tue Dec  8 05:04:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:

@@ -138,50 +138,24 @@ adding_visitor::visit_scope (UTL_Scope *node)
               continue;
             }
         }
-        
+       
       if (in_root)
         {
           ACE_CString filename = d->file_name ();
           DOMElement *file = 0;
           
-          char* CIAO_ROOT = ACE_OS::getenv ("CIAO_ROOT");
-          char* TAO_ROOT = ACE_OS::getenv ("TAO_ROOT");
-          unsigned long j;
-          
-          for (j = 0; CIAO_ROOT[j] != '\0'; ++j)
-            {
-              if (CIAO_ROOT[j] == '\\')
-                {
-                  CIAO_ROOT[j] = '/';
-                }
-            }
-
-          for (j = 0; TAO_ROOT[j] != '\0'; ++j)
-            {
-              if (TAO_ROOT[j] == '\\')
-                {
-                  TAO_ROOT[j] = '/';
-                }
-            }
-
-          if (filename.find (CIAO_ROOT) == 0
-              || filename.find (TAO_ROOT) == 0)
-            {
-              continue;
-            }
-
           int result =
             be_global->decl_elem_table ().find (filename.c_str (),
                                                 file);
             
+          // Since we're concatenating all the files on the command
+          // line into one big file, we can't use 'imported' any
+          // more as a check. Instead, we see if the node's
+          // associated filename is in the table, and skip it if
+          // it's not.  
           if (result != 0)
             {
-              ACE_ERROR_RETURN ((LM_ERROR,
-                                 ACE_TEXT ("adding_visitor::")
-                                 ACE_TEXT ("visit_scope - ")
-                                 ACE_TEXT ("file element ")
-                                 ACE_TEXT ("not found\n")),
-                                -1);
+              continue;
             }
             
           this->sub_tree_ = file;
