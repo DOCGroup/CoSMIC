@@ -1,7 +1,13 @@
+Tue Dec  8 05:04:37 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Adds visitor declarations in the header.
+        
 Mon Dec  7 18:57:36 UTC 2009  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
-        
+
           Fixed a bug in the generation of a GME attribute of kind
           "path" associated with PICML File elements.
 
