@@ -1,6 +1,7 @@
 
 namespace LEESA {
 
+#ifdef LEESA_FOR_UDM
 
 template <class L, class H>
 typename disable_if_c
@@ -54,8 +55,8 @@ typename disable_if_c<
   is_base_of <std::ios_base, L>::value |
   !is_base_of <OpBase, OP>::value,                             
   ChainExpr<typename ET< L >::expression_type, OP> >::type  
-operator << (L const &l, OP op) 
-{                            
+operator << (L const &l, OP op)
+{
   LOCAL_TYPEDEFS(L, OP);
   BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
@@ -90,7 +91,7 @@ typename disable_if<
   ChainExpr<typename ET<L>::expression_type, 
             VisitorOp<typename ET<L>::result_type> > 
   >::type
-operator << (L const &l, DOMAIN_NAMESPACE::Visitor & v)
+operator << (L const &l, SchemaVisitor & v)
 {
   BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, L>));
 
@@ -135,6 +136,8 @@ operator << (VisitorAsIndex<L> vl, VisitorAsIndex<H> vh)
 }
 
 #endif // LEESA_NO_VISITOR
+
+#endif // LEESA_FOR_UDM
 
 } // namespace LEESA
 

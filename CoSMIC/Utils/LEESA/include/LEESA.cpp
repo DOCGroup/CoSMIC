@@ -28,6 +28,7 @@
   typedef ChainExpr<ParentKindExpr, OP > ChainExpr;
 
 // Forward declarations of operators. Definitions in LEESA_Operators.cpp
+// Forward declarations are necessary here for Expression_Traits (defined next)
 namespace LEESA {
 
 template <class Kind> class KindLit;
@@ -37,15 +38,15 @@ template <class L, class R> struct SequenceExpr;
 template <class L, class R> struct GetChildrenOp;
 template <class L, class R> struct DFSChildrenOp;
 template <class L, class R> struct DFSOp;
-template <class L, class R> struct GetParentOp;
-template <class L, class R> struct DFSParentOp;
 
-template <class E> struct SelectorOp;
 #ifndef LEESA_NO_VISITOR
-template <class E> struct VisitorOp;
-#endif // LEESA_NO_VISITOR
-template <class E> struct RegexOp;
 
+template <class E> struct VisitorOp;
+
+#endif // LEESA_NO_VISITOR
+
+template <class E> struct RegexOp;
+template <class E> struct SelectorOp;
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
@@ -55,6 +56,8 @@ template <class E, class BinPred> struct UniqueOp;
 
 template <class E> struct NonNullOp;
 template <class L, class R> struct CastOp;
+template <class L, class R> struct GetParentOp;
+template <class L, class R> struct DFSParentOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
 template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationManyOp;
@@ -230,12 +233,12 @@ class VisitorAsIndexBase{};
 template <class Kind>
 class VisitorAsIndex : public VisitorAsIndexBase
 {
-    DOMAIN_NAMESPACE::Visitor & visitor_;
+    SchemaVisitor & visitor_;
     BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
 
   public:
-    VisitorAsIndex (DOMAIN_NAMESPACE::Visitor & v) : visitor_(v) {}
-    DOMAIN_NAMESPACE::Visitor & getVisitor() { return visitor_; }
+    VisitorAsIndex (SchemaVisitor & v) : visitor_(v) {}
+    SchemaVisitor & getVisitor() { return visitor_; }
 };
 
 template <class Kind, class Visitor>
@@ -310,7 +313,7 @@ typename disable_if<is_base_of<std::ios_base, L>,
   ChainExpr<typename ET<L>::expression_type, 
             typename DFSVisitorOp<typename ET<L>::result_type> > 
   >::type
-operator >>= (L const &l, DOMAIN_NAMESPACE::Visitor & v)
+operator >>= (L const &l, SchemaVisitor & v)
 {
   typedef DFSVisitorOp<typename ET<L>::result_type> OP;
   LOCAL_TYPEDEFS(L, OP);

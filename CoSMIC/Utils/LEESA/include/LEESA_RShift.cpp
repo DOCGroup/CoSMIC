@@ -23,7 +23,7 @@ struct IsDomainVisitorBaseOf
 {
   typedef IsDomainVisitorBaseOf type;
 #ifndef LEESA_NO_VISITOR
-  enum { value = is_base_of<DOMAIN_NAMESPACE::Visitor, T>::value };
+  enum { value = is_base_of<SchemaVisitor, T>::value };
 #else
   enum { value = 0 };
 #endif // LEESA_NO_VISITOR
@@ -49,7 +49,7 @@ typename
                ChainExpr<typename ET<L>::expression_type, 
                          VisitorOp<typename ET<L>::result_type> > 
               >::type
-operator >> (L const &l, DOMAIN_NAMESPACE::Visitor & v)
+operator >> (L const &l, SchemaVisitor & v)
 {
   typedef VisitorOp<typename ET<L>::result_type> OP;
   LOCAL_TYPEDEFS(L, OP);
@@ -64,8 +64,9 @@ typename
                IsDomainVisitorBaseOf<L>::value |  
                IsVisitorAsIndexBaseOf<L>::value, 
                ChainExpr<typename ChainedOperator<L,H,GetChildrenOp>::Op,
-               VisitorOp<typename ET<H>::result_type>
-              > >::type
+                         VisitorOp<typename ET<H>::result_type>
+                        > 
+              >::type
 operator >> (L const &l, VisitorAsIndex<H> vi)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -82,13 +83,13 @@ disable_if_c <IsDomainVisitorBaseOf<H>::value |
               ChainExpr<ChainExpr<typename ET<L>::expression_type, 
                                 VisitorOp<typename ET<L>::result_type> 
                                >,
-                      typename if_<is_base_of<OpBase, H>,
-                               H,
-                               GetChildrenOp<typename ET<L>::result_type,  
-                                             typename ET<H>::result_type>
-                               >::type
-                      > 
-           >::type
+                        typename if_<is_base_of<OpBase, H>,
+                                     H,
+                                     GetChildrenOp<typename ET<L>::result_type,  
+                                                   typename ET<H>::result_type>
+                                    >::type
+                       > 
+             >::type
 operator >> (VisitorAsIndex<L> vi, H const &h)
 {
   typedef typename ET<L>::result_kind ParentKind;
@@ -103,7 +104,7 @@ template <class L>
                       VisitorOp<typename ET<L>::result_type> 
                      >,
             VisitorOp<typename ET<L>::result_type> > 
-operator >> (VisitorAsIndex<L> vi, DOMAIN_NAMESPACE::Visitor & v)
+operator >> (VisitorAsIndex<L> vi, SchemaVisitor & v)
 {
   typedef typename ET<L>::result_kind result_kind;
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept <result_kind>));
@@ -242,7 +243,7 @@ operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
 #endif // LEESA_NO_VISITOR
 
 template <class L, class OP>                              
-typename disable_if_c<                                             
+typename disable_if_c<
   IsVisitorAsIndexBaseOf<L>::value |                     
   IsDomainVisitorBaseOf<L>::value |                     
   is_base_of <std::ios_base, L>::value |
@@ -250,15 +251,15 @@ typename disable_if_c<
   ChainExpr<typename ET< L >::expression_type, OP> >::type  
 /* This function supports all the operators that inherit from OpBase. */
 operator >> (L const &l, OP const & op) 
-{                            
+{
   LOCAL_TYPEDEFS(L, OP);                               
   BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
 template <class L, class H>
-typename disable_if_c
-  <IsDomainVisitorBaseOf<H>::value |
+typename disable_if_c<
+   IsDomainVisitorBaseOf<H>::value |
    IsDomainVisitorBaseOf<L>::value |
    is_base_of<std::ios_base, L>::value |
    is_base_of <OpBase, H>::value |
@@ -268,8 +269,11 @@ operator >> (L const &l, H)
 {
   typedef GetChildrenOp<typename ET<L>::result_type, 
                         typename ET<H>::result_type> GCOp;
+                        
   LOCAL_TYPEDEFS(L, GCOp);
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
+  BOOST_CONCEPT_ASSERT((
+    LEESA::ParentChildConcept<typename ET<L>::result_kind, 
+                              typename ET<H>::result_kind>));
 
   return ChainExpr(ParentKindExpr(l), GCOp());
 }
@@ -280,7 +284,7 @@ typename disable_if<is_base_of<std::ios_base, L>,
             SequenceExpr<H,X> 
            > >::type
 operator >> (L const &l, SequenceExpr<H,X> const & s)
-{  
+{
   typedef SequenceExpr<H,X> OP;
   typedef typename ET<L>::expression_type LExpr;
   typedef typename ET<L>::result_kind LKind;

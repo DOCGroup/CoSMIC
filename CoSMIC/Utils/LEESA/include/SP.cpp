@@ -878,7 +878,8 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
 
 class VisitStrategy : public _StrategyBase
 {
-    DOMAIN_NAMESPACE::Visitor & visitor_;
+    SchemaVisitor & visitor_;
+  
   public:
 
     template <class U>
@@ -887,7 +888,7 @@ class VisitStrategy : public _StrategyBase
       typedef VisitStrategy type;
     };
 
-    explicit VisitStrategy (DOMAIN_NAMESPACE::Visitor & v) 
+    explicit VisitStrategy (SchemaVisitor & v) 
       : visitor_(v) {} 
 
     template <class U>
@@ -898,7 +899,8 @@ class VisitStrategy : public _StrategyBase
       LEESA::evaluate(k, Kind() >> visitor_);
       return k;
     }
-    DOMAIN_NAMESPACE::Visitor & getVisitor() const
+    
+    SchemaVisitor & getVisitor() const
     {
       return visitor_;
     }
@@ -906,7 +908,8 @@ class VisitStrategy : public _StrategyBase
 
 class LeaveStrategy : public _StrategyBase
 {
-    DOMAIN_NAMESPACE::Visitor & visitor_;
+    SchemaVisitor & visitor_;
+  
   public:
 
     template <class U>
@@ -915,7 +918,7 @@ class LeaveStrategy : public _StrategyBase
       typedef LeaveStrategy type;
     };
 
-    explicit LeaveStrategy (DOMAIN_NAMESPACE::Visitor & v) 
+    explicit LeaveStrategy (SchemaVisitor & v) 
       : visitor_(v) {} 
 
     template <class U>
@@ -924,10 +927,15 @@ class LeaveStrategy : public _StrategyBase
       typedef typename ET<U>::argument_kind Kind;
       BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
       Kind k = u;
+#ifdef LEESA_FOR_UDM
       k.Leave(visitor_);
+#else
+      k.leave(visitor_);
+#endif // LEESA_FOR_UDM
       return k;
     }
-    DOMAIN_NAMESPACE::Visitor & getVisitor() const
+    
+    SchemaVisitor & getVisitor() const
     {
       return visitor_;
     }

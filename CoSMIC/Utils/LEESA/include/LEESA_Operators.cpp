@@ -33,46 +33,13 @@ struct DFSChildrenOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void
       typename KindTraits<child_kind>::Container children = 
 #ifdef LEESA_FOR_UDM
       kind.template children_kind<child_kind>();
-#else // LEESA_FOR_UDM
+#else
       children_kind (kind, child_kind());
 #endif // LEESA_FOR_UDM      
       std::for_each(children.begin(), children.end(), expr_);
     }
   }
 };
-
-template <class LExpr, class RExpr>
-struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
-                     OpBase
-{
-  typedef std::unary_function<typename ET<LExpr>::result_type, void> Super;
-  SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<LExpr, DFSParentOp<LExpr, RExpr> > expression_type;
-
-  RExpr expr_;
-  
-  explicit DFSParentOp () {}
-  
-  explicit DFSParentOp (RExpr const & e) : expr_(e) {}
-
-  DFSParentOp (DFSParentOp const &d) : expr_(d.expr_) {}
-  
-  result_type operator () (argument_type const & arg)
-  {
-    typedef typename ET<RExpr>::argument_kind parent_kind;
-    typedef typename ET<LExpr>::result_kind child_kind;
-
-    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept<child_kind, parent_kind>));
-
-    typename KindTraits<child_kind>::Container v = arg;
-    BOOST_FOREACH(child_kind kind, v)
-    {
-      parent_kind parent = kind.template parent_kind<parent_kind>();
-      expr_(parent);
-    }
-  }
-};
-
 
 template <class LExpr, class RExpr>
 struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>,
@@ -158,41 +125,9 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
     {
 #ifdef LEESA_FOR_UDM
       retval.Union(kind.template children_kind<result_kind>());
-#else // LEESA_FOR_UDM
+#else
       retval.Union(children_kind(kind, result_kind()));
 #endif // LEESA_FOR_UDM
-    }
-    return retval;
-  }
-};
-
-template <class L, class H>
-struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
-{
-  typedef LEESAUnaryFunction <L, H> Super;
-  SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<L, GetParentOp<argument_type, result_type> > expression_type;
-
-  explicit GetParentOp () {}
-  
-  GetParentOp (GetParentOp const &) {}
-  
-  result_type operator () (argument_type const & arg)
-  {
-    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <argument_kind, result_kind>));
-
-    result_type retval;
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
-    {
-#ifdef LEESA_FOR_UDM
-      result_kind parent = kind.template parent_kind<result_kind>();
-#else // LEESA_FOR_UDM
-      result_kind parent = parent_kind(kind, result_kind());
-#endif // LEESA_FOR_UDM
-
-      if (std::count (retval.begin(), retval.end(), parent) == 0)
-        retval.Union(parent);
     }
     return retval;
   }
@@ -208,10 +143,10 @@ struct VisitorOp : LEESAUnaryFunction <E>,
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<E, VisitorOp<argument_type> > expression_type;
 
-  DOMAIN_NAMESPACE::Visitor & visitor_;
+  SchemaVisitor & visitor_;
 
-  VisitorOp (DOMAIN_NAMESPACE::Visitor const &v) 
-    : visitor_ (const_cast<DOMAIN_NAMESPACE::Visitor &> (v)) {}
+  VisitorOp (SchemaVisitor const &v) 
+    : visitor_ (const_cast<SchemaVisitor &> (v)) {}
   
   VisitorOp (const VisitorOp & vop) : visitor_ (vop.visitor_) {}
   
@@ -220,7 +155,11 @@ struct VisitorOp : LEESAUnaryFunction <E>,
     typename KindTraits<argument_kind>::Container v = arg;
     BOOST_FOREACH(argument_kind kind, v)
     {
+#ifdef LEESA_FOR_UDM
       kind.Accept(visitor_);
+#else 
+      kind.accept(visitor_);
+#endif // LEESA_FOR_UDM
     }
     return arg;
   }
@@ -330,6 +269,65 @@ struct CastOp : LEESAUnaryFunction <L, H>, OpBase
       }
     }
     return retval;
+  }
+};
+
+template <class L, class H>
+struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
+{
+  typedef LEESAUnaryFunction <L, H> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<L, GetParentOp<argument_type, result_type> > expression_type;
+
+  explicit GetParentOp () {}
+  
+  GetParentOp (GetParentOp const &) {}
+  
+  result_type operator () (argument_type const & arg)
+  {
+    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <argument_kind, result_kind>));
+
+    result_type retval;
+    typename KindTraits<argument_kind>::Container v = arg;
+    BOOST_FOREACH(argument_kind kind, v)
+    {
+      result_kind parent = kind.template parent_kind<result_kind>();
+      if (std::count (retval.begin(), retval.end(), parent) == 0)
+        retval.Union(parent);
+    }
+    return retval;
+  }
+};
+
+template <class LExpr, class RExpr>
+struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
+                     OpBase
+{
+  typedef std::unary_function<typename ET<LExpr>::result_type, void> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<LExpr, DFSParentOp<LExpr, RExpr> > expression_type;
+
+  RExpr expr_;
+  
+  explicit DFSParentOp () {}
+  
+  explicit DFSParentOp (RExpr const & e) : expr_(e) {}
+
+  DFSParentOp (DFSParentOp const &d) : expr_(d.expr_) {}
+  
+  result_type operator () (argument_type const & arg)
+  {
+    typedef typename ET<RExpr>::argument_kind parent_kind;
+    typedef typename ET<LExpr>::result_kind child_kind;
+
+    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept<child_kind, parent_kind>));
+
+    typename KindTraits<child_kind>::Container v = arg;
+    BOOST_FOREACH(child_kind kind, v)
+    {
+      parent_kind parent = kind.template parent_kind<parent_kind>();
+      expr_(parent);
+    }
   }
 };
 

@@ -32,6 +32,7 @@ namespace LEESA {
 
 #ifdef LEESA_FOR_UDM
 
+  typedef DOMAIN_NAMESPACE::Visitor SchemaVisitor;
   typedef Udm::MetaTagList MetaTagList; 
   typedef std::set<Udm::Object> ObjectSet;
 
@@ -52,13 +53,14 @@ namespace LEESA {
     typedef typename Kind::MetaKind MetaKind;
   };
 
-#else // LEESA_FOR_UDM
+#else
 
   struct AtomMetaTag {};
   struct ModelMetaTag {};
   struct ReferenceMetaTag {};
 
   typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
+  typedef DOMAIN_NAMESPACE::visitor SchemaVisitor;
   
   struct Default {};
 
@@ -84,7 +86,7 @@ struct IsDescendantKind <Parent, Descendant, Default>
   enum { value = DOMAIN_NAMESPACE::IsDescendant<Parent, Descendant>::value };
 };
 
-#else // DOMAIN_HAS_DESCENDANT_PAIRS
+#else
 
 // The following metaprogram is suitable for elements with SELF as well as 
 // MUTUAL-RECURSION. This meta-program could be used as a substitute for the 
