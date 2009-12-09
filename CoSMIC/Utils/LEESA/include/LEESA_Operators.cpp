@@ -206,6 +206,55 @@ struct RegexOp : LEESAUnaryFunction <E>,
   }
 };
 
+template <class L, class H>
+struct CastOp : LEESAUnaryFunction <L, H>, OpBase
+{
+  typedef LEESAUnaryFunction <L, H> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<L, CastOp<argument_type, result_type> > expression_type;
+
+  explicit CastOp () {}
+
+  explicit CastOp (H) {} // dummy
+
+  CastOp (CastOp const &) {}
+
+#ifdef LEESA_FOR_UDM
+
+  result_type operator () (argument_type const & arg)
+  {
+    result_type retval;
+    typename KindTraits<argument_kind>::Container v = arg;
+    BOOST_FOREACH(argument_kind kind, v)
+    {
+      if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
+      {
+        result_kind r = result_kind::Cast(kind);
+        retval.Union(r);
+      }
+    }
+    return retval;
+  }
+
+#else
+
+  result_type operator () (argument_type const & arg)
+  {
+    result_type retval;
+    for(typename argument_type::const_iterator iter(arg.begin());
+        iter != arg.end();
+        ++iter)
+    {
+      if (const result_kind * r = dynamic_cast<const result_kind *> (&*iter))
+      {
+        retval.Union(*r);
+      }
+    }
+    return retval;
+  }
+#endif  // LEESA_FOR_UDM
+};
+
 #ifdef LEESA_FOR_UDM
 
 template <class E>
@@ -240,35 +289,6 @@ struct NonNullOp : LEESAUnaryFunction <E>, OpBase
     NonNullOp n(*this);
     n.logical_not_ = !this->logical_not_;
     return n;
-  }
-};
-
-template <class L, class H>
-struct CastOp : LEESAUnaryFunction <L, H>, OpBase
-{
-  typedef LEESAUnaryFunction <L, H> Super;
-  SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<L, CastOp<argument_type, result_type> > expression_type;
-
-  explicit CastOp () {}
-
-  explicit CastOp (H) {} // dummy
-
-  CastOp (CastOp const &) {}
-
-  result_type operator () (argument_type const & arg)
-  {
-    result_type retval;
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
-    {
-      if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
-      {
-        result_kind r = result_kind::Cast(kind);
-        retval.Union(r);
-      }
-    }
-    return retval;
   }
 };
 
@@ -600,20 +620,6 @@ ForEach (E, Result (*f) (Arg))
   return foreach;
 }
 
-#ifdef LEESA_FOR_UDM
-
-template <class T>
-NonNullOp<typename ET<T>::result_type> 
-SelectNonNull (T)
-{
-  typedef typename ET<T>::result_type result_type;
-  typedef typename ET<T>::result_kind result_kind;
-  
-  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<result_kind>));
-  NonNullOp<result_type> n;
-  return n;
-}
-
 template <class L, class H>
 CastOp<typename ET<L>::result_type, 
        typename ET<H>::result_type> 
@@ -626,6 +632,20 @@ CastFromTo (L, H)
   typedef typename ET<H>::result_type result_type;
 
   return CastOp<argument_type, result_type>();
+}
+
+#ifdef LEESA_FOR_UDM
+
+template <class T>
+NonNullOp<typename ET<T>::result_type> 
+SelectNonNull (T)
+{
+  typedef typename ET<T>::result_type result_type;
+  typedef typename ET<T>::result_kind result_kind;
+  
+  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  NonNullOp<result_type> n;
+  return n;
 }
 
 #endif // LEESA_FOR_UDM

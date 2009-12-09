@@ -51,11 +51,11 @@ template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
+template <class L, class R> struct CastOp;
 
 #ifdef LEESA_FOR_UDM
 
 template <class E> struct NonNullOp;
-template <class L, class R> struct CastOp;
 template <class L, class R> struct GetParentOp;
 template <class L, class R> struct DFSParentOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;

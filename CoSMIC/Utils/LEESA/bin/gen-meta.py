@@ -302,46 +302,78 @@ def inherit_baseclass_functions(function_dict, baseclass_dict):
     function_dict[classid] = flist
 
 
-def write_header_prolog(namespace, meta_header_file):
-  guard_macro = "__" + namespace.upper() + "_META_HXX"
-  outstr = """\
+def write_header_prolog(namespace, orig_header_without_ext, meta_header_file):
+  guard_macro = "__" + orig_header_without_ext.upper() + "_META_HXX"
+  if(namespace != ""):
+    outstr = """\
 #ifndef %(guard_macro)s
 #define %(guard_macro)s
 
-#include "%(namespace)s.hxx"
+#include "%(orig_header_without_ext)s.hxx"
 
 #define DOMAIN_NAMESPACE %(namespace)s
 #include "Kind_Traits.h"
 
 namespace %(namespace)s {
 """ % locals()
-  meta_header_file.write(outstr)
+    meta_header_file.write(outstr)
+  else:
+    outstr = """\
+#ifndef %(guard_macro)s
+#define %(guard_macro)s
+
+#include "%(orig_header_without_ext)s.hxx"
+
+#define NO_NAMESPACE
+#define DOMAIN_NAMESPACE 
+#include "Kind_Traits.h"
+
+""" % locals()
+    meta_header_file.write(outstr)
+    
 
 
-def write_header_epilog(namespace, meta_header_file):
-  guard_macro = "__" + namespace.upper() + "_META_HXX"
-  outstr = """\
+def write_header_epilog(namespace, orig_header_without_ext, meta_header_file):
+  guard_macro = "__" + orig_header_without_ext.upper() + "_META_HXX"
+  if(namespace != ""):
+    outstr = """\
 
 } // namespace %(namespace)s 
 
 #endif // %(guard_macro)s
 """ % locals()
-  meta_header_file.write(outstr)
+    meta_header_file.write(outstr)
+  else:
+    outstr = """\
 
-def write_cpp_prolog (namespace, cpp_file):
-  outstr = """\
-#include "%(namespace)s-meta.hxx"
+#endif // %(guard_macro)s
+""" % locals()
+    meta_header_file.write(outstr)
+
+
+def write_cpp_prolog (namespace, orig_header_without_ext, cpp_file):
+  if(namespace != ""):
+    outstr = """\
+#include "%(orig_header_without_ext)s-meta.hxx"
 
 namespace %(namespace)s {
 """ % locals()
-  cpp_file.write(outstr)
+    cpp_file.write(outstr)
+  else:
+    outstr = """\
+#include "%(orig_header_without_ext)s-meta.hxx"
+
+""" % locals()
+    cpp_file.write(outstr)
+    
 
 
-def write_cpp_epilog (namespace, cpp_file):
-  outstr = """
+def write_cpp_epilog (namespace, orig_header_wihtout_ext, cpp_file):
+  if(namespace != ""):
+    outstr = """
 } // namespace %(namespace)s
 """ % locals()
-  cpp_file.write(outstr)
+    cpp_file.write(outstr)
 
 
 def write_schema_traits (all_types_set, children_dict, parent_dict, meta_header_file):
@@ -409,7 +441,7 @@ def populate_typedef_dictionary(typedef_dict, root):
       typedef_dict[typename] = tinfo
 
 
-def write_accept_functions(orig_header_file, enhanced_header_file, root):
+def write_accept_functions(namespace, orig_header_file, enhanced_header_file, root):
   compound_nodes = root.xpath("compounddef[@kind='class']")
   class_end_dict = {}
   class_start_dict = {}
@@ -449,15 +481,27 @@ def write_accept_functions(orig_header_file, enhanced_header_file, root):
 """
       mode = "forward"
     if(mode == "forward" and "Forward declarations." in line):
-      mode = "bracket"
-    if(mode == "bracket" and "}" in line):
-      line="""\
+      if(namespace != ""):
+        line="""\
+namespace %(namespace)s 
+{
   class visitor;
   typedef xml_schema::type type;
 }
-""" 
-      mode = "done"
+// Forward declarations.
+""" % locals()
+        mode = "done"
+        enhanced_header_file.write(line)
+      else:
+        line="""\
+class visitor;
+typedef xml_schema::type type;
+// Forward declarations.
+"""
+        mode = "done"
+    
     enhanced_header_file.write(line)
+        
   
   
 def write_accept_definitions(all_types_set, cpp_file):
@@ -597,13 +641,15 @@ if (tool == "udm"):
 if(not os.path.exists(orig_header_file_name)):
   print(orig_header_file_name + " does not exist.")
   quit()
+
+orig_header_without_ext = orig_header_file_name.split(".")[0]
   
 try: 
   name_parts = orig_header_file_name.split(".")
   if(name_parts[1] == "hxx"):
-    cpp_file_name = name_parts[0] + ".cxx"
+    cpp_file_name = orig_header_without_ext + ".cxx"
   elif(name_parts[1] == "h"):
-    cpp_file_name = name_parts[0] + ".cpp"
+    cpp_file_name = orig_header_without_ext + ".cpp"
   else:
     raise Exception()
 except Exception:
@@ -673,10 +719,33 @@ non_inheritable = { "::xml_schema::boolean"                 : True,
                     "::xml_schema::non_negative_integer"    : True,
                     "::xml_schema::positive_integer"        : True,
                     "::xml_schema::negative_integer"        : True,
-                    
+
                     "::xml_schema::string"                  : False,
+                    "::xml_schema::normalized_string"       : False,
+                    "::xml_schema::token"                   : False,
+                    "::xml_schema::name"                    : False,
+                    "::xml_schema::nmtoken"                 : False,
+                    "::xml_schema::nmtokens"                : False,
+                    "::xml_schema::ncname"                  : False,
+                    "::xml_schema::language"                : False,
+                    "::xml_schema::id"                      : False,
+                    "::xml_schema::idref"                   : False,
+                    "::xml_schema::idrefs"                  : False,
+                    "::xml_schema::uri"                     : False,
+                    "::xml_schema::qname"                   : False,
+                    "::xml_schema::buffer"                  : False,
+                    "::xml_schema::base64_binary"           : False,
+                    "::xml_schema::hex_binary"              : False,
                     "::xml_schema::date"                    : False,
-                    "::xml_schema::id"                      : False }
+                    "::xml_schema::time_zone"               : False,
+                    "::xml_schema::date_time"               : False,
+                    "::xml_schema::duration"                : False,
+                    "::xml_schema::gday"                    : False,
+                    "::xml_schema::gmonth"                  : False,
+                    "::xml_schema::gmonth_day"              : False,
+                    "::xml_schema::gyear"                   : False,
+                    "::xml_schema::gyear_month"             : False,
+                    "::xml_schema::time"                    : False }
 
 
 f = open("all.xml", 'r')
@@ -697,13 +766,19 @@ typedef_dict = {}
 populate_typedef_dictionary(typedef_dict, root)
 
 namespace = root.xpath("compounddef[@kind='namespace']/compoundname/text()")[0]
-meta_header_filename = namespace + "-meta.hxx"
+if(namespace == "xml_schema"):
+  print("Looks like schema does not have any namespace. Using global namespace.")
+  namespace = ""
+else:
+  print("Using namespace = ", namespace)
+
+meta_header_filename = orig_header_without_ext + "-meta.hxx"
 meta_header_file = open(meta_header_filename, 'w')
-cpp_filename = namespace + "-meta.cxx"
+cpp_filename = orig_header_without_ext + "-meta.cxx"
 cpp_file = open(cpp_filename, 'w')
 
-write_header_prolog(namespace, meta_header_file)
-write_cpp_prolog(namespace, cpp_file)
+write_header_prolog(namespace, orig_header_without_ext, meta_header_file)
+write_cpp_prolog(namespace, orig_header_without_ext, cpp_file)
 
 # This function updates the typedef dictionary.
 write_types(root, function_dict, typedef_dict, meta_header_file)
@@ -730,15 +805,15 @@ shutil.copy(orig_header_file_name, orig_header_file_name + ".bak")
 orig_header_file = open(orig_header_file_name + ".bak", 'r')
 enhanced_header_file = open(orig_header_file_name, 'w')
 
-write_accept_functions(orig_header_file, enhanced_header_file, root)
+write_accept_functions(namespace, orig_header_file, enhanced_header_file, root)
 write_schema_traits (all_types_set, children_dict, parent_dict, meta_header_file)
 write_descendant_pairs(children_dict, meta_header_file)
 write_visitor(all_types_set, meta_header_file)
 
 
 
-write_header_epilog(namespace, meta_header_file)
-write_cpp_epilog(namespace, cpp_file)
+write_header_epilog(namespace, orig_header_without_ext, meta_header_file)
+write_cpp_epilog(namespace, orig_header_without_ext, cpp_file)
 
 orig_header_file.close()
 enhanced_header_file.close()

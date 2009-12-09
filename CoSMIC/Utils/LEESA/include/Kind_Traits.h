@@ -17,11 +17,16 @@
 
 #include <boost/type_traits.hpp>
 
+#ifndef NO_NAMESPACE
 namespace DOMAIN_NAMESPACE 
 {
   template <class T>
   struct SchemaTraits;
 }
+#else
+  template <class T>
+  struct SchemaTraits;
+#endif // NO_NAMESPACE
 
 namespace LEESA {
 
