@@ -72,8 +72,8 @@ template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationM
 
 namespace LEESA {
 
-using boost::disable_if_c;
-using boost::disable_if;
+using boost::enable_if_c;
+using boost::enable_if;
 using boost::is_base_of;
 using boost::is_pointer;
 
@@ -250,17 +250,23 @@ VisitorAsIndex_CRTP<Kind, Visitor>::operator [] (Visitor &v)
 
 #endif // LEESA_NO_VISITOR
 
-template <class L, class H>
-/* The following overloaded comma operator is picked up from within 
-   STL algorithms and causes compilation havoc. I'm totally hacking 
-   the problem away by disabling the overloaded operator if H is a 
-   pointer. This problem occurs only VisitorAsIndex extensions are used.
+/* When FOLLOWED_BY is a comma, the following operator is picked up from within 
+   STL algorithms and causes compilation havoc. Specifically, it matches with
+   a comma seperated list of iterators incremented inside a for-loop in xutility.
+   This is quite embarassing and dangerous in general. IsSchemaType trait is 
+   designed to prevent this problem. Its value is true if its parameter inherits 
+   from a base type found in the DOMAIN_NAMESPACE only. See the definition in 
+   KindTraits.h. Its implementation is specific to the underlying OO API. Another 
+   somewhat less desirable solution is to change the #define FOLLOWED_BY in 
+   LEESA.h to &&. 
 */
-typename disable_if_c<is_pointer<typename ET<H>::argument_kind>::value,
-                      SequenceExpr<typename ET<L>::expression_type, 
-                                   typename ET<H>::expression_type> 
-                     >::type 
-operator , (L const &l, H const &h)
+template <class L, class H>
+typename enable_if<IsSchemaType<typename ET<L>::argument_kind>,
+                   SequenceExpr<typename ET<L>::expression_type, 
+                                typename ET<H>::expression_type> 
+                  >::type 
+// See #define FOLLOWED_BY in LEESA.h
+operator FOLLOWED_BY (L const &l, H const &h)
 {
   typedef SequenceExpr<typename ET<L>::expression_type, 
                        typename ET<H>::expression_type > OP;
@@ -275,9 +281,10 @@ SequenceExpr<typename ET<L>::expression_type,
                        VisitorOp<typename ET<H>::result_type> 
                       >
             >
-operator , (L const &l, VisitorAsIndex<H> vh)
+// See #define FOLLOWED_BY in LEESA.h
+operator FOLLOWED_BY (L const &l, VisitorAsIndex<H> vh)
 {
-  return l , H() >> vh.getVisitor();
+  return l FOLLOWED_BY H() >> vh.getVisitor();
 }
 
 

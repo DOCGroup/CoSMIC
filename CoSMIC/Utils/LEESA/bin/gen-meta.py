@@ -95,9 +95,7 @@ def extract_type_info (typedef_node):
 def dump_non_inheritable_type (classname, basic_type, meta_header_file):
   
   outstr = """
-  struct %(classname)s : 
-    public ::xml_schema::simple_type,
-    public LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >
+  struct %(classname)s : public ::xml_schema::simple_type
   {
     public:
     
@@ -114,10 +112,6 @@ def dump_non_inheritable_type (classname, basic_type, meta_header_file):
       {
         return new %(classname)s(this->val_);
       }
-      virtual void accept (visitor & v);
-      virtual void leave (visitor & v);
-      using LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >::operator [];
-
     private:
     
       %(basic_type)s val_;
@@ -129,9 +123,7 @@ def dump_non_inheritable_type (classname, basic_type, meta_header_file):
 def dump_inheritable_type (classname, baseclass, meta_header_file):
   
   outstr = """
-  struct %(classname)s : 
-    public %(baseclass)s, 
-    public LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >
+  struct %(classname)s : public %(baseclass)s
   {
     typedef %(baseclass)s super;
     %(classname)s () { }
@@ -148,9 +140,12 @@ def dump_inheritable_type (classname, baseclass, meta_header_file):
     {
       return new %(classname)s (*this, f, c);
     }
-    virtual void accept (visitor & v);
-    virtual void leave (visitor & v);
-    using LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >::operator [];
+    virtual void accept (visitor & v) {
+      v.visit_%(classname)s(*this);
+    }
+    virtual void leave (visitor & v) {
+      v.leave_%(classname)s(*this);
+    }
   };
   """ % locals()
   meta_header_file.write(outstr)
@@ -313,10 +308,10 @@ def write_header_prolog(namespace, meta_header_file):
 #ifndef %(guard_macro)s
 #define %(guard_macro)s
 
-#include "%(namespace)s.hxx"
-
 #define DOMAIN_NAMESPACE %(namespace)s
 #include "Kind_Traits.h"
+
+#include "%(namespace)s.hxx"
 
 namespace %(namespace)s {
 """ % locals()
@@ -458,85 +453,17 @@ def write_accept_functions(orig_header_file, enhanced_header_file, root):
     if(mode == "bracket" and "}" in line):
       line="""\
   class visitor;
+  typedef xml_schema::type type;
 }
 """ 
       mode = "done"
     enhanced_header_file.write(line)
-  
-  
-def write_accept_definitions(all_types_set, cpp_file):
-  for t in all_types_set:
-    cname = t.split("::")[-1]
-    outstr = """
-void %(cname)s::accept(visitor & v) {
-  v.visit_%(cname)s (*this);
-}
-
-void %(cname)s::leave(visitor & v) {
-  v.leave_%(cname)s (*this);
-}
-""" % locals()
-  
-    cpp_file.write(outstr)
-  
-def write_visitor(all_types_set, meta_header_file):
-  outstr = """
-class visitor {
-  public:
-"""
-  meta_header_file.write(outstr)
-  for t in all_types_set:
-    cname = t.split("::")[-1]
-    outstr = """
-    virtual void visit_%(cname)s(%(cname)s & x) {}
-    virtual void leave_%(cname)s(%(cname)s & x) {}
-""" % locals()
-
-    meta_header_file.write(outstr)
-  
-  meta_header_file.write("\n};\n")
-  
-  
-def push_descendants (parent, descendants, children_dict):
-  children = children_dict[parent]
-  descendants[len(descendants):] = children
-  for c in children:
-    if c in children_dict:
-      push_descendants(c, descendants, children_dict)
-
 
   
-def write_descendant_pairs(children_dict, meta_header_file):
-  outstr = """
-#ifndef DOMAIN_HAS_DESCENDANT_PAIRS
-#define DOMAIN_HAS_DESCENDANT_PAIRS
-#endif // DOMAIN_HAS_DESCENDANT_PAIRS
-
-  struct _False_ { enum { value = 0 }; };
-  struct _True_  { enum { value = 1 }; };
-
-  template <class T, class U>
-  struct IsDescendant : _False_ {};
- 
-""" % locals()
-  meta_header_file.write(outstr)
-
-  
-  for ancestor in sorted(children_dict.keys()):
-    descendants = []
-    push_descendants (ancestor, descendants, children_dict)
-    for descendant in sorted(descendants):
-      meta_header_file.write(
-      """  template <> struct IsDescendant < %(ancestor)s, %(descendant)s > : _True_ { };\n""" % locals())
-    
-    meta_header_file.write("\n")
-
-
 def print_dictionary(dict, message):
   print (message)
   for key, value in dict.items():
-    print (key)
-    print (value)
+    print (key, value)
 
 
 def usage():
@@ -705,21 +632,17 @@ print_dictionary(parent_dict, "Printing parent dictionary:")
 print ("Printing all types:")
 print (all_types_set)
 
-write_accept_definitions(all_types_set, cpp_file)
-
 shutil.copy(orig_header_file_name, orig_header_file_name + ".bak")
 orig_header_file = open(orig_header_file_name + ".bak", 'r')
 enhanced_header_file = open(orig_header_file_name, 'w')
 
 write_accept_functions(orig_header_file, enhanced_header_file, root)
+
 write_schema_traits (all_types_set, children_dict, parent_dict, meta_header_file)
-write_descendant_pairs(children_dict, meta_header_file)
-write_visitor(all_types_set, meta_header_file)
-
-
-
 write_header_epilog(namespace, meta_header_file)
 write_cpp_epilog(namespace, cpp_file)
+
+
 
 orig_header_file.close()
 enhanced_header_file.close()

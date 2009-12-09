@@ -1,9 +1,27 @@
+Wed Dec  9 03:57:01 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          A slight change in the generator for the following the bug fix.
+
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+
+          Bug fix of an accedental match of overloaded comma operator
+
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/UdmApp.cpp:
+
+          Updated the tests to use VisitorAsIndex.
+
 Tue Dec  8 22:59:55 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
 
           Improved generation capabilities including new types, schema_traits,
-	  children_kind functions, and visitor
+          children_kind functions, and visitor
 
         * Utils/LEESA/include/Expression_Traits.h:
         * Utils/LEESA/include/Kind_Traits.h:

@@ -15,6 +15,7 @@
 #include <boost/mpl/placeholders.hpp>
 #include <boost/mpl/vector.hpp>
 
+#include <boost/type_traits.hpp>
 
 namespace DOMAIN_NAMESPACE 
 {
@@ -53,6 +54,16 @@ namespace LEESA {
     typedef typename Kind::MetaKind MetaKind;
   };
 
+  /* This traits is to prevent an embarassing match of overloaded
+   * comma operator in LEESA.cpp. More documentation can be found 
+   * before the definition of the operator.
+   */
+  template <class Kind>
+  struct IsSchemaType
+  {
+    typedef IsSchemaType type;
+    enum { value = boost::is_base_of <Udm::Object, Kind>::value };
+  };
 #else
 
   struct AtomMetaTag {};
@@ -71,6 +82,17 @@ namespace LEESA {
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;
+  };
+
+  /* This traits is to prevent an embarassing match of overloaded
+   * comma operator in LEESA.cpp. More documentation can be found 
+   * before the definition of the operator.
+   */
+  template <class Kind>
+  struct IsSchemaType
+  {
+    typedef IsSchemaType type;
+    enum { value = boost::is_base_of <DOMAIN_NAMESPACE::type, Kind>::value };
   };
 
 #endif // LEESA_FOR_UDM

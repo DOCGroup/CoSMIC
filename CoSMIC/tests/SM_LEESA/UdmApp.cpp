@@ -126,7 +126,7 @@ void CUdmApp::UdmMain(
     
 		RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
 		SMVisitor visitor;
-/*
+
     evaluate (rf, RootFolder() >>= StateMachine()[visitor] >>= State()[visitor]);
   
 		std::vector<StartState> SSvector = 
@@ -137,7 +137,7 @@ void CUdmApp::UdmMain(
 					>> CastFromTo(BaseState(), StartState())
           >> visitor);
 
-		show(SSvector.size());
+		show(SSvector.size(), "SSvector.size() = ");
 
     evaluate(SSvector, StartState()[visitor] << StateMachine()[visitor] );
 
@@ -146,21 +146,22 @@ void CUdmApp::UdmMain(
           >> State()
           << StateMachine()[visitor]
           << RootFolder()[visitor]);
-*/
+
 		evaluate(rf, RootFolder() 
               >> AroundFullTD(RootFolder(), VisitStrategy(visitor), LeaveStrategy(visitor)));
-/*
+
 		BOOST_AUTO(v_state, State() >> visitor);
 		BOOST_AUTO(v_transition, Transition() >> visitor);
 		BOOST_AUTO(sm, RootFolder() >> StateMachine());
 		evaluate(rf, sm >>= MembersOf(StateMachine(), v_state, v_transition));
+    evaluate(rf, sm >>= MembersOf(StateMachine(), State()[visitor], Transition()[visitor]));
 
 		evaluate(rf, sm >>= Transition() 
 			>> Association(Transition::dstTransition_end)
-			>> visitor);
-		
+			>> visitor);		
 
-    evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), State()));
+    evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), BaseState()) >> visitor);
+
     evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), Transition()));
     evaluate(rf, RootFolder() 
                   >> StateMachine()
@@ -172,7 +173,7 @@ void CUdmApp::UdmMain(
                        FROM(RootFolder),
                        TO(State),
                        THROUGH(StateMachine)));
-*/
+
 	}
 	catch (boost::regex_error & e)
 	{
