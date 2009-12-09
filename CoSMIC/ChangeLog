@@ -1,3 +1,9 @@
+Wed Dec  9 20:47:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Added new non-inheritable types.
+
 Wed Dec  9 03:57:01 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
