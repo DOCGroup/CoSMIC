@@ -1,7 +1,0 @@
-// $Id$
-
-workspace (UDM_DSL) {
-  cmdline += -include $COSMIC_ROOT/MPC/config
-
-  UDM_DSL.mpc
-}

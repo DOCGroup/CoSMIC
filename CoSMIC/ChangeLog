@@ -1,3 +1,20 @@
+Thu Dec 10 04:37:16 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/UDM_DSL:
+
+        * tests/UDM_DSL/HFSM.h:
+        * tests/UDM_DSL/HFSM.xme:
+        * tests/UDM_DSL/HFSM.cpp:
+        * tests/UDM_DSL/HFSM.xml:
+        * tests/UDM_DSL/HFSM.xsd:
+        * tests/UDM_DSL/StdAfx.h:
+        * tests/UDM_DSL/StdAfx.cpp:
+        * tests/UDM_DSL/UDM_DSL.mwc:
+        * tests/UDM_DSL/UDM_DSL.cpp:
+        * tests/UDM_DSL/UDM_DSL.mpc:
+
+          Removed these files.
+
 Thu Dec 10 04:27:47 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/Expression_Traits.h:
