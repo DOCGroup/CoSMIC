@@ -1,7 +1,15 @@
+Thu Dec 10 05:37:57 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA/UdmApp-Linux/makefile:
+        * tests/LEESA/library-xsd/makefile:
+        * tests/LEESA/polymorphism-xsd/makefile:
+
+          Added missing makefiles.
+
 Thu Dec 10 05:09:24 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA/SM-Win/SM-Win.vcproj:
-        
+
           Updated the project setting to include LEESA and LEESA_FOR_UDM macro.
 
 Thu Dec 10 04:37:16 UTC 2009  Sumant Tambe  <sutambe@nospam>
