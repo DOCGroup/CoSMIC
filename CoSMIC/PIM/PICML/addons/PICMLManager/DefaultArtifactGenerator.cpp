@@ -2,6 +2,7 @@
 
 #include "StdAfx.h"
 #include "DefaultArtifactGenerator.h"
+#include "NewComponentConfig.h"
 #include "game/Attribute.h"
 #include "game/Model.h"
 #include "game/MetaBase.h"
@@ -13,9 +14,23 @@
 #include <stack>
 
 //
+// operator +
+//
+std::string operator + (const std::string & str, const ACE_CString & acestr)
+{
+  std::string temp (str);
+  temp.append (acestr.c_str (), acestr.length ());
+
+  return temp;
+}
+
+//
 // DefaultArtifactGenerator
 //
-DefaultArtifactGenerator::DefaultArtifactGenerator (const GME::Folder & root)
+DefaultArtifactGenerator::
+DefaultArtifactGenerator (const GME::Folder & root,
+                          const NewComponentConfig & config)
+: config_ (config)
 {
   if (GAME::create_if_not (root, "ImplementationArtifacts", this->artifacts_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
@@ -40,8 +55,8 @@ DefaultArtifactGenerator::~DefaultArtifactGenerator (void)
 bool DefaultArtifactGenerator::generate (const GME::Model & component)
 {
   std::string name = PICML::GAME::fq_type (component, "_");
-  std::string impl_name = name + "_exec";
-  std::string svnt_name = name + "_svnt";
+  std::string impl_name = name + this->config_.exec_artifact_suffix_;
+  std::string svnt_name = name + this->config_.svnt_artifact_suffix_;
 
   // Create a new container for the component's artifacts.
   std::string container_name = name + "Artifacts";

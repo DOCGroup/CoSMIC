@@ -8,6 +8,7 @@
 #include "ComponentConfig.h"
 #include "RawComponent.h"
 #include "DefaultImplementationGenerator.h"
+#include "NewComponentConfig.h"
 #include "Utils/Utils.h"
 #include "game/utils/Point.h"
 #include "boost/bind.hpp"
@@ -577,17 +578,17 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
     if (type == "File" || type == "Package")
     {
       // First, we need to get the name of the component.
-      Component_Name_Dialog component_name_dialog (::AfxGetMainWnd ());
-      component_name_dialog.component_name (obj.name ().c_str ());
+      NewComponentConfig config;
+      NewComponentDialog new_component (config, ::AfxGetMainWnd ());
 
-      if (component_name_dialog.DoModal () == IDOK)
+      if (new_component.DoModal () == IDOK)
       {
         // Set the name of the component.
-        obj.name (component_name_dialog.component_name ().c_str ());
+        obj.name (config.component_name_.c_str ());
 
         // Generate the component's default implementation.
         GME::Folder root_folder = obj.project ().root_folder ();
-        DefaultImplementationGenerator impl_gen (root_folder);
+        DefaultImplementationGenerator impl_gen (root_folder, config);
 
         GME::Model component = GME::Model::_narrow (obj);
         impl_gen.generate (component);

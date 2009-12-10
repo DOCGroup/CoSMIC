@@ -15,10 +15,13 @@
 
 #include "ace/SString.h"
 
+/// Forward decl.
+class NewComponentConfig;
+
 /**
- * @class Component_Name_Dialog
+ * @class NewComponentDialog
  */
-class Component_Name_Dialog : public CDialog
+class NewComponentDialog : public CDialog
 {
 public:
   /**
@@ -26,10 +29,10 @@ public:
    *
    * @param[in]     parent      Parent window
    */
-  Component_Name_Dialog (CWnd * parent = 0);
+  NewComponentDialog (NewComponentConfig & config, CWnd * parent = 0);
 
   /// Destructor.
-  virtual ~Component_Name_Dialog (void);
+  virtual ~NewComponentDialog (void);
 
   /**
    * Get the inputed name of the component dialog.
@@ -56,8 +59,8 @@ protected:
   virtual void DoDataExchange (CDataExchange * pDX);
 
 private:
-  /// The name of the component.
-  ACE_CString name_;
+  /// Configuration of the new component.
+  NewComponentConfig & config_;
 };
 
 #include "Dialogs.inl"

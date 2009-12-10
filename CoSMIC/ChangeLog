@@ -1,3 +1,21 @@
+Thu Dec 10 16:40:14 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/Dialogs.h:
+        * PIM/PICML/addons/PICMLManager/Dialogs.inl:
+        * PIM/PICML/addons/PICMLManager/Dialogs.cpp:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.mpc:
+        * PIM/PICML/addons/PICMLManager/PICMLManager.rc:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/Resource.h:
+
+          . Implemented support for configuring the suffix of the monolithic
+            implementation's servant and implementation artifact when a new
+            component is added to the model.
+
 Thu Dec 10 05:37:57 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA/UdmApp-Linux/makefile:

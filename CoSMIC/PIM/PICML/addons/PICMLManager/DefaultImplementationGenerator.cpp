@@ -18,8 +18,9 @@
 // DefaultImplementationGenerator
 //
 DefaultImplementationGenerator::
-DefaultImplementationGenerator (const GME::Folder & root)
-: artifact_gen_ (root)
+DefaultImplementationGenerator (const GME::Folder & root,
+                                const NewComponentConfig & config)
+: artifact_gen_ (root, config)
 {
   if (GAME::create_if_not (root, "ComponentImplementations", this->impls_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),

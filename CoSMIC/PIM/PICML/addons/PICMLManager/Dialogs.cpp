@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Dialogs.h"
 #include "resource.h"
+#include "NewComponentConfig.h"
 
 //
 // DDV_ValidChars
@@ -68,10 +69,12 @@ static void DDX_Text (CDataExchange * pDX, int id, ACE_CString & str)
 }
 
 //
-// Component_Name_Dialog
+// NewComponentDialog
 //
-Component_Name_Dialog::Component_Name_Dialog (CWnd * parent)
-: CDialog (IDD_NEWCOMPONENTNAME, parent)
+NewComponentDialog::
+NewComponentDialog (NewComponentConfig & config, CWnd * parent)
+: CDialog (IDD_NEWCOMPONENT, parent),
+  config_ (config)
 {
 
 }
@@ -79,14 +82,16 @@ Component_Name_Dialog::Component_Name_Dialog (CWnd * parent)
 //
 // DoDataExchange
 //
-void Component_Name_Dialog::DoDataExchange (CDataExchange * pDX)
+void NewComponentDialog::DoDataExchange (CDataExchange * pDX)
 {
   // First, let the base class handle its operations.
   CDialog::DoDataExchange (pDX);
 
   // Get the name from the dialog.
-  DDX_Text (pDX, IDC_NAME, this->name_);
+  DDX_Text (pDX, IDC_NAME, this->config_.component_name_);
+  DDX_Text (pDX, IDC_EXEC_ARTIFACT_SUFFIX, this->config_.exec_artifact_suffix_);
+  DDX_Text (pDX, IDC_SVNT_ARTIFACT_SUFFIX, this->config_.svnt_artifact_suffix_);
 
   // Validate the name (i.e., make sure it contains no spaces).
-  DDV_ValidChars (pDX, this->name_, " ");
+  DDV_ValidChars (pDX, this->config_.component_name_, " ");
 }

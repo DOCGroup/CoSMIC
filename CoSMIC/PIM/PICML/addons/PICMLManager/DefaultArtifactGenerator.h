@@ -16,6 +16,9 @@
 #include "game/Folder.h"
 #include "game/Atom.h"
 
+// Forward decl.
+class NewComponentConfig;
+
 /**
  * @class DefaultArtifactGenerator
  *
@@ -30,7 +33,8 @@ public:
    *
    * @param[in]       root        Root folder for the project
    */
-  DefaultArtifactGenerator (const GME::Folder & root);
+  DefaultArtifactGenerator (const GME::Folder & root,
+                            const NewComponentConfig & config);
 
   /// Destructor.
   ~DefaultArtifactGenerator (void);
@@ -55,6 +59,9 @@ private:
 
   /// The implementation's artifact.
   GME::Atom impl_artifact_;
+
+  /// Configuration for the new component.
+  const NewComponentConfig & config_;
 };
 
 #endif  // !defined _PICML_MANAGER_DEFAULT_ARTIFACT_GENERATOR_H_

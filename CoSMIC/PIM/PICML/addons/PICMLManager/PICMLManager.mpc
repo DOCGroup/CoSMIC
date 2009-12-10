@@ -10,7 +10,7 @@ project (PICMLManager): gme_raw_component, picml_game_utils, boost_base, cosmic_
   }
 
   Header_Files {
-
+    NewComponentConfig.h
   }
 
   Resource_Files {
