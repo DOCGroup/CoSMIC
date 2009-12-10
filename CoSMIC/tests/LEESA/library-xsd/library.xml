@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+
+<!--
+
+file      : examples/cxx/tree/library/library.xml
+author    : Boris Kolpackov <boris@codesynthesis.com>
+copyright : not copyrighted - public domain
+
+-->
+
+<lib:catalog xmlns:lib="http://www.codesynthesis.com/library"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://www.codesynthesis.com/library library.xsd">
+
+  <book id="MM" available="false">
+    <isbn>0679760806</isbn>
+    <title>The Master and Margarita</title>
+    <genre>fiction</genre>
+
+    <author xsi:type="lib:author" recommends="WP">
+      <name>Mikhail Bulgakov</name>
+      <born>1891-05-15</born>
+      <died>1940-03-10</died>
+    </author>
+    <price>99.99</price>
+  </book>
+
+
+  <book id="MCI" available="true">
+    <isbn>999999999</isbn>
+    <title>C++ Truths</title>
+    <genre>philosophy</genre>
+
+    <author xsi:type="lib:author">
+      <name>Sumant Tambe</name>
+      <born>2012-01-01</born>
+    </author>
+    <price>9.99</price>
+  </book>
+
+  <book id="WP">
+    <isbn>0679600841</isbn>
+    <title>War and Peace</title>
+    <genre>history</genre>
+
+    <author xsi:type="lib:author" recommends="CP">
+      <name>Leo Tolstoy</name>
+      <born>1828-09-09</born>
+      <died>1910-11-20</died>
+    </author>
+    <price>10</price>
+  </book>
+
+
+  <book id="CP" available="false">
+    <isbn>0679420290</isbn>
+    <title>Crime and Punishment</title>
+    <genre>philosophy</genre>
+
+    <author xsi:type="lib:author">
+      <name>Fyodor Dostoevsky</name>
+      <born>1821-11-11</born>
+      <died>1881-02-09</died>
+    </author>
+    <price>11.99</price>
+  </book>
+  
+</lib:catalog>

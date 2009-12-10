@@ -1,3 +1,140 @@
+Thu Dec 10 04:27:47 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Expression_Traits.h:
+
+          Fixed CastOp redefinition.
+
+        * tests/LEESA:
+
+        * tests/LEESA/SM-Win:
+
+        * tests/LEESA/SM-Win/CompIcon.ico:
+        * tests/LEESA/SM-Win/Component.def:
+        * tests/LEESA/SM-Win/Component.rc:
+        * tests/LEESA/SM-Win/ComponentConfig.h:
+        * tests/LEESA/SM-Win/ComponentObj.h:
+        * tests/LEESA/SM-Win/ComponentObj.cpp:
+        * tests/LEESA/SM-Win/RawComponent.h:
+        * tests/LEESA/SM-Win/RawComponent.cpp:
+        * tests/LEESA/SM-Win/Resource.h:
+        * tests/LEESA/SM-Win/SM.h:
+        * tests/LEESA/SM-Win/SM.cpp:
+        * tests/LEESA/SM-Win/SM.xme:
+        * tests/LEESA/SM-Win/SM.xml:
+        * tests/LEESA/SM-Win/SM.xmp:
+        * tests/LEESA/SM-Win/SM.xsd:
+        * tests/LEESA/SM-Win/SM_export.h:
+        * tests/LEESA/SM-Win/SM_uml.xme:
+        * tests/LEESA/SM-Win/StdAfx.h:
+        * tests/LEESA/SM-Win/StdAfx.cpp:
+        * tests/LEESA/SM-Win/TestSM.xme:
+        * tests/LEESA/SM-Win/UdmApp.h:
+        * tests/LEESA/SM-Win/UdmApp.cpp:
+        * tests/LEESA/SM-Win/UdmConfig.h:
+        * tests/LEESA/SM-Win/UdmConsole.h:
+        * tests/LEESA/SM-Win/UdmConsole.cpp:
+        * tests/LEESA/SM-Win/UdmFormatter.h:
+        * tests/LEESA/SM-Win/UdmFormatter.cpp:
+        * tests/LEESA/SM-Win/string_utils.h:
+
+        * tests/LEESA/UDM_DSL:
+
+        * tests/LEESA/UDM_DSL/HFSM.h:
+        * tests/LEESA/UDM_DSL/HFSM.xme:
+        * tests/LEESA/UDM_DSL/HFSM.cpp:
+        * tests/LEESA/UDM_DSL/HFSM.xml:
+        * tests/LEESA/UDM_DSL/HFSM.xsd:
+        * tests/LEESA/UDM_DSL/StdAfx.h:
+        * tests/LEESA/UDM_DSL/StdAfx.cpp:
+        * tests/LEESA/UDM_DSL/UDM_DSL.mpc:
+        * tests/LEESA/UDM_DSL/UDM_DSL.mwc:
+        * tests/LEESA/UDM_DSL/UDM_DSL.cpp:
+
+        * tests/LEESA/UdmApp-Linux:
+
+        * tests/LEESA/UdmApp-Linux/PICML-orig.h:
+        * tests/LEESA/UdmApp-Linux/PICML-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/PICML_export.h:
+        * tests/LEESA/UdmApp-Linux/README:
+        * tests/LEESA/UdmApp-Linux/SM-orig.h:
+        * tests/LEESA/UdmApp-Linux/SM-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/SM_export.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-SM.h:
+
+        * tests/LEESA/library-xsd:
+
+        * tests/LEESA/library-xsd/README:
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/library.xml:
+        * tests/LEESA/library-xsd/library.xsd:
+
+        * tests/LEESA/polymorphism-xsd:
+
+        * tests/LEESA/polymorphism-xsd/README:
+        * tests/LEESA/polymorphism-xsd/driver.cxx:
+        * tests/LEESA/polymorphism-xsd/supermen.xml:
+        * tests/LEESA/polymorphism-xsd/supermen.xsd:
+
+          Moved tests under tests/LEESA.
+
+        * tests/LEESA-Linux:
+
+        * tests/LEESA-Linux/Makefile:
+        * tests/LEESA-Linux/PICML.h:
+        * tests/LEESA-Linux/PICML_export.h:
+        * tests/LEESA-Linux/README:
+        * tests/LEESA-Linux/SM.h:
+        * tests/LEESA-Linux/SM_export.h:
+        * tests/LEESA-Linux/UdmApp-PICML.h:
+        * tests/LEESA-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA-Linux/UdmApp-SM.h:
+        * tests/LEESA-Linux/UdmApp-SM.cpp:
+        * tests/LEESA-Linux/UdmConfig-PICML.h:
+        * tests/LEESA-Linux/UdmConfig-SM.h:
+        * tests/LEESA-Linux/library-meta.cxx:
+        * tests/LEESA-Linux/library-meta.hxx:
+
+        * tests/SM_LEESA:
+
+        * tests/SM_LEESA/CompIcon.ico:
+        * tests/SM_LEESA/Component.def:
+        * tests/SM_LEESA/Component.rc:
+        * tests/SM_LEESA/ComponentConfig.h:
+        * tests/SM_LEESA/ComponentLib_i.c:
+        * tests/SM_LEESA/ComponentObj.h:
+        * tests/SM_LEESA/ComponentObj.cpp:
+        * tests/SM_LEESA/RawComponent.h:
+        * tests/SM_LEESA/RawComponent.cpp:
+        * tests/SM_LEESA/Resource.h:
+        * tests/SM_LEESA/SM.h:
+        * tests/SM_LEESA/SM.cpp:
+        * tests/SM_LEESA/SM.xme:
+        * tests/SM_LEESA/SM.xml:
+        * tests/SM_LEESA/SM.xmp:
+        * tests/SM_LEESA/SM.xsd:
+        * tests/SM_LEESA/SM_LEESA.sln:
+        * tests/SM_LEESA/SM_LEESA.vcproj:
+        * tests/SM_LEESA/SM_export.h:
+        * tests/SM_LEESA/SM_uml.xme:
+        * tests/SM_LEESA/StdAfx.h:
+        * tests/SM_LEESA/StdAfx.cpp:
+        * tests/SM_LEESA/TestSM.xme:
+        * tests/SM_LEESA/UdmApp.h:
+        * tests/SM_LEESA/UdmApp.cpp:
+        * tests/SM_LEESA/UdmConfig.h:
+        * tests/SM_LEESA/UdmConsole.h:
+        * tests/SM_LEESA/UdmConsole.cpp:
+        * tests/SM_LEESA/UdmFormatter.h:
+        * tests/SM_LEESA/UdmFormatter.cpp:
+        * tests/SM_LEESA/string_utils.h:
+
+          Removed these files.
+
 Wed Dec  9 23:58:23 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:

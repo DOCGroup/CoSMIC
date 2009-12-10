@@ -1,0 +1,1968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project SYSTEM "mga.dtd">
+
+<project guid="{3E6E85AB-BAAD-410E-B2F6-9014A01D065E}" cdate="Sat Apr 25 17:58:20 2009" mdate="Sat Apr 25 17:58:20 2009" version="" metaguid="{D300EA57-7F64-4B0E-AE50-878BE38527DC}" metaversion="" metaname="MetaGME">
+	<name>HFSM</name>
+	<comment></comment>
+	<author></author>
+	<folder id="id-006a-00000001" relid="0x1" childrelidcntr="0x3" kind="RootFolder" guid="{2F38E935-1609-480d-857F-5B6B1FD27DB2}">
+		<name>HFSM</name>
+		<regnode name="AspectRegistry" isopaque="yes">
+			<value></value>
+			<regnode name="AspectMetaRefs" isopaque="yes">
+				<value></value>
+				<regnode name="SM" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1067</value>
+						</regnode>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1024</value>
+						</regnode>
+						<regnode name="StartState" isopaque="yes">
+							<value>1037</value>
+						</regnode>
+						<regnode name="State" isopaque="yes">
+							<value>1046</value>
+						</regnode>
+						<regnode name="StateMachine" isopaque="yes">
+							<value>1055</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Seq" status="undefined">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="InputSequence" isopaque="yes">
+							<value>1029</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="Sequence" isopaque="yes">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="InputSequence" isopaque="yes">
+							<value>1010</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="StateMachine" isopaque="yes">
+					<value></value>
+					<regnode name="MetaRef" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1016</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="AspectOrder" isopaque="yes">
+				<value>valid</value>
+				<regnode name="SM" isopaque="yes">
+					<value>1</value>
+				</regnode>
+				<regnode name="Seq" isopaque="yes">
+					<value>2</value>
+				</regnode>
+				<regnode name="Sequence" isopaque="yes">
+					<value>2</value>
+				</regnode>
+				<regnode name="StateMachine" isopaque="yes">
+					<value>1</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="HFSM" isopaque="yes">
+			<value></value>
+			<regnode name="BaseState-1-Model" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1061</value>
+					<regnode name="BaseState" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1062</value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1072</value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1073</value>
+						</regnode>
+					</regnode>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1074</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="BaseState" isopaque="yes">
+							<value>1075</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Event-25-FieldAttribute" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1002</value>
+				</regnode>
+			</regnode>
+			<regnode name="FinalState-46-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="State:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1019</value>
+					<regnode name="BaseState" status="undefined">
+						<value></value>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1063</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1068</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState" status="undefined">
+						<value></value>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1020</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1025</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1033</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1038</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1043</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1047</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="FinalState" isopaque="yes">
+							<value>1052</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1056</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:FinalState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="Reference-53-Reference" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="State:Reference" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>SM</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:Reference" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>SM</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1072</value>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="Reference" isopaque="yes">
+							<value>1075</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1076</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="Reference" isopaque="yes">
+							<value>1073</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1074</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="State:Reference" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:Reference" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="StartState-36-BooleanAttribute" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1003</value>
+				</regnode>
+			</regnode>
+			<regnode name="StartState-45-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="State:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1032</value>
+					<regnode name="BaseState" status="undefined">
+						<value></value>
+						<regnode name="StartState" isopaque="yes">
+							<value>1064</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1069</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState" status="undefined">
+						<value></value>
+						<regnode name="StartState" isopaque="yes">
+							<value>1021</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1026</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="StartState" isopaque="yes">
+							<value>1034</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1039</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="StartState" isopaque="yes">
+							<value>1044</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1048</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="StartState" isopaque="yes">
+							<value>1053</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1057</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:StartState" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="State-1-Model" isopaque="yes">
+				<value></value>
+				<regnode name="KindAspects" isopaque="yes">
+					<value></value>
+					<regnode name="State:State" isopaque="yes">
+						<value></value>
+						<regnode name="StateMachine" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1013</value>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1014</value>
+							<regnode name="StateMachine" isopaque="yes">
+								<value>1017</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="State:State" isopaque="yes">
+						<value></value>
+						<regnode name="StateMachine" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="State-4c-Model" status="undefined">
+				<value></value>
+				<regnode name="KindAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="State:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value> </value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1042</value>
+					<regnode name="BaseState" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1065</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1070</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1022</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1027</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1035</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1040</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="State" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1045</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1049</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="State" isopaque="yes">
+							<value>1054</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1058</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" status="undefined">
+					<value></value>
+					<regnode name="BaseState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:State" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="StateMachine-4a-Model" status="undefined">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1051</value>
+				</regnode>
+			</regnode>
+			<regnode name="Transition-12-Connection" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1006</value>
+					<regnode name="BaseState" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1066</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1071</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1023</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1028</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StartState" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1036</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1041</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="State" isopaque="yes">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1015</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1050</value>
+							</regnode>
+							<regnode name="StateMachine" isopaque="yes">
+								<value>1018</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine" status="undefined">
+						<value></value>
+						<regnode name="Transition" isopaque="yes">
+							<value>1059</value>
+							<regnode name="SM" isopaque="yes">
+								<value>1060</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="BaseState:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="FinalState:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StartState:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:Transition" isopaque="yes">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="StateMachine" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="StateMachine:Transition" status="undefined">
+						<value></value>
+						<regnode name="SM" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="InputSequence" isopaque="yes">
+			<value></value>
+			<regnode name="Delay-1d-FieldAttribute" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1001</value>
+				</regnode>
+			</regnode>
+			<regnode name="Events-15-Atom" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1004</value>
+					<regnode name="InputSequence" status="undefined">
+						<value></value>
+						<regnode name="Events" isopaque="yes">
+							<value>1008</value>
+							<regnode name="Seq" isopaque="yes">
+								<value>1030</value>
+							</regnode>
+							<regnode name="Sequence" isopaque="yes">
+								<value>1011</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="InputSequence:Events" isopaque="yes">
+						<value></value>
+						<regnode name="Seq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+			<regnode name="InputSequence-1-Model" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1007</value>
+				</regnode>
+			</regnode>
+			<regnode name="Sequence-7-Connection" isopaque="yes">
+				<value></value>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1005</value>
+					<regnode name="InputSequence" status="undefined">
+						<value></value>
+						<regnode name="Sequence" isopaque="yes">
+							<value>1009</value>
+							<regnode name="Seq" isopaque="yes">
+								<value>1031</value>
+							</regnode>
+							<regnode name="Sequence" isopaque="yes">
+								<value>1012</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="InputSequence:Sequence" isopaque="yes">
+						<value></value>
+						<regnode name="Seq" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+			</regnode>
+		</regnode>
+		<regnode name="MetaGME_Options" status="undefined">
+			<value></value>
+			<regnode name="GeneratedConstraints" isopaque="yes">
+				<value>skip_dialog</value>
+				<regnode name="ConnectionEndEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+				<regnode name="FolderContainmentEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+				<regnode name="Priority" isopaque="yes">
+					<value>1</value>
+				</regnode>
+				<regnode name="RegularContainmentEventMask" isopaque="yes">
+					<value>0x00000000</value>
+				</regnode>
+			</regnode>
+		</regnode>
+		<model id="id-0065-00000001" kind="ParadigmSheet" guid="{A1D7062B-6FD2-4b76-8572-781CC8F825B1}" relid="0x1" childrelidcntr="0x59">
+			<name>HFSM</name>
+			<atom id="id-0066-00000001" kind="Constraint" role="Constraint" guid="{B3D52076-036A-4b39-A92C-454F5D1ED932}" relid="0x40">
+				<name>SingleStartState</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>482,251</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Exactly one start state</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>let states = self.parts( State ) in
+states-&gt;size &gt; 0
+implies
+states-&gt;select( s : State | s.StartState )-&gt;size = 1</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority" status="meta">
+					<value>2</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000002" kind="FieldAttribute" role="FieldAttribute" guid="{5D2FDBB3-C9D4-481b-97A9-2453047764AA}" relid="0x25">
+				<name>Event</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1017</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,286</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType" status="meta">
+					<value>string</value>
+				</attribute>
+				<attribute kind="FieldDefault" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>Event:</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000003" kind="Connection" role="Connection" guid="{333D585E-A870-4ab2-B518-C380E89676CF}" relid="0x12">
+				<name>Transition</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1009</value>
+					<regnode name="State" isopaque="yes">
+						<value></value>
+						<regnode name="StateToStateT" isopaque="yes">
+							<value>1012</value>
+							<regnode name="StateMachine" isopaque="yes">
+								<value>1015</value>
+							</regnode>
+						</regnode>
+						<regnode name="Transition" isopaque="yes">
+							<value>1042</value>
+							<regnode name="StateMachine" isopaque="yes">
+								<value>1043</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,145</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,145</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,145</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>106,145</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="State:StateToStateT" isopaque="yes">
+						<value></value>
+						<regnode name="StateMachine" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="State:Transition" isopaque="yes">
+						<value></value>
+						<regnode name="StateMachine" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="porticon" isopaque="yes">
+					<value></value>
+				</regnode>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>labelFormatStr=%Event%
+sName = srcTransition
+dName = dstTransition</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000004" kind="Connector" role="Connector" guid="{EDDB0F0A-F319-4ec1-9990-513EB100A91C}" relid="0x7">
+				<name>Connector</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>298,172</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>298,172</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>nESW</value>
+				</regnode>
+				<regnode name="decorator" isopaque="yes">
+					<value>Mga.Decorator.MetaDecorator</value>
+				</regnode>
+			</atom>
+			<atom id="id-0066-00000009" kind="Model" role="Model" guid="{D1E2A3C8-10B7-410d-846B-A68BDEE29864}" relid="0x4a">
+				<name>StateMachine</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>450,37</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>442,34</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>450,37</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>218,27</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000a" kind="Model" role="Model" guid="{5CE4089C-0DA2-4fbc-B42A-8A84676AC4CD}" relid="0x4c">
+				<name>State</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>639,303</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>449,153</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>639,303</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>624,321</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>color=0x0000FF</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000011" kind="Reference" role="Reference" guid="{651FF2BC-347C-4435-9C52-88CFFB2BF262}" relid="0x53">
+				<name>Reference</name>
+				<regnode name="PartRegs" status="undefined">
+					<value></value>
+					<regnode name="Attributes" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>604,156</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>604,156</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>604,156</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" status="undefined">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>604,156</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>
+rName = ref
+rrName = referedbyReference</value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<connection id="id-0068-00000004" kind="AssociationClass" role="AssociationClass" guid="{997BFE54-9591-49e8-8B11-83A0D1F0E2AE}" relid="0x18">
+				<name>AssociationClass</name>
+				<connpoint role="dst" target="id-0066-00000003"/>
+				<connpoint role="src" target="id-0066-00000004"/>
+			</connection>
+			<connection id="id-0068-00000005" kind="HasAttribute" role="HasAttribute" guid="{0796F665-0F7A-41c4-978B-C198A5672DD3}" relid="0x28">
+				<name>HasAttribute</name>
+				<connpoint role="src" target="id-0066-00000002"/>
+				<connpoint role="dst" target="id-0066-00000003"/>
+			</connection>
+			<connection id="id-0068-0000000e" kind="HasAspect" role="HasAspect" guid="{199C63FD-BD7B-40bf-982D-192AADFAE604}" relid="0x4f">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-00000009"/>
+				<connpoint role="src" target="id-0069-00000001"/>
+			</connection>
+			<connection id="id-0068-0000000f" kind="Containment" role="Containment" guid="{3619EA78-9173-4f75-A791-E668EE053971}" relid="0x50">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Nw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000003"/>
+				<connpoint role="dst" target="id-0066-00000009"/>
+			</connection>
+			<connection id="id-0068-00000018" kind="Containment" role="Containment" guid="{F8179873-4ED0-4132-AE47-41C7A30D4DAA}" relid="0x51">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000009"/>
+				<connpoint role="src" target="id-0066-0000000a"/>
+			</connection>
+			<connection id="id-0068-00000019" kind="Containment" role="Containment" guid="{08C516FA-FDA0-4661-81F5-7C36FE680A79}" relid="0x52">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Se</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+				<connpoint role="src" target="id-0066-0000000a"/>
+			</connection>
+			<connection id="id-0068-0000001a" kind="Containment" role="Containment" guid="{D4A6CBB9-9BC1-49ed-BB2A-3F41BC818A56}" relid="0x54">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ne</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000009"/>
+				<connpoint role="src" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-0000001b" kind="ReferTo" role="ReferTo" guid="{CCF03FB9-D735-49dd-82CF-0F8891DB869F}" relid="0x55">
+				<name>ReferTo</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+				<connpoint role="src" target="id-0066-00000011"/>
+			</connection>
+			<connection id="id-0068-0000001c" kind="SourceToConnector" role="SourceToConnector" guid="{F1EAA34B-BE2B-441f-B8FD-BBB19D07DC43}" relid="0x56">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Wn</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-00000004"/>
+				<connpoint role="src" target="id-0066-0000000a"/>
+			</connection>
+			<connection id="id-0068-0000001d" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{F9D7B699-F852-4a29-88A8-A9D9A7793CCA}" relid="0x57">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sw</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-00000004"/>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+			</connection>
+			<connection id="id-0068-0000001e" kind="HasAspect" role="HasAspect" guid="{20BD9D16-9695-48ed-8D67-374A6A7C56DA}" relid="0x58">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Sn</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+				<connpoint role="src" target="id-0069-00000001"/>
+			</connection>
+			<connection id="id-0068-0000001f" kind="Containment" role="Containment" guid="{D7547C77-1BFF-42f0-8E64-516929A071F5}" relid="0x59">
+				<name>Containment</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000a"/>
+				<connpoint role="src" target="id-0066-00000011"/>
+			</connection>
+			<set id="id-0069-00000001" kind="Aspect" role="Aspect" guid="{69D755F3-CE85-40e4-8888-72125341EFC4}" relid="0x0" members="id-0066-00000003 id-0066-00000009 id-0066-0000000a id-0066-00000011">
+				<name>SM</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value></value>
+					<regnode name="State" isopaque="yes">
+						<value>1003</value>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>449,27</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
+		</model>
+		<model id="id-0065-00000002" kind="ParadigmSheet" guid="{E25352D6-D8FB-4053-BEED-5324D0C20258}" relid="0x3" childrelidcntr="0x1e">
+			<name>InputSequence</name>
+			<atom id="id-0066-0000000b" kind="FieldAttribute" role="FieldAttribute" guid="{203BBE5C-E7FC-401a-8FB3-99ACC6C2CA6B}" relid="0x1d">
+				<name>Delay</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1040</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>477,265</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="ContentType" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DataType">
+					<value>integer</value>
+				</attribute>
+				<attribute kind="FieldDefault">
+					<value>2</value>
+				</attribute>
+				<attribute kind="GlobalScope" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Help" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsViewable" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="Multiline" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="Prompt">
+					<value>Secs after last event:</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000c" kind="Constraint" role="Constraint" guid="{E3E93C11-D382-41b5-A537-EF355109B5F0}" relid="0x9">
+				<name>SingleConnection</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>307,419</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="AddSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeAttributeEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangePropertyEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ChangeRelationEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="CloseEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ConnectEvent">
+					<value>true</value>
+				</attribute>
+				<attribute kind="ConstraintDescription">
+					<value>Only a single Event can follow any Event</value>
+				</attribute>
+				<attribute kind="ConstraintEqn">
+					<value>self.attachingConnections( &quot;dst&quot;, Sequence )-&gt;size &lt; 2</value>
+				</attribute>
+				<attribute kind="ConstraintParam" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="ConstraintPriority">
+					<value>1</value>
+				</attribute>
+				<attribute kind="CreateEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DeleteEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Depth" status="meta">
+					<value>1</value>
+				</attribute>
+				<attribute kind="DeriveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="DisconnectEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="LostChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="MoveEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NewChildEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="ReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="RemoveSetEvent" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="UnReferenceEvent" status="meta">
+					<value>false</value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000d" kind="Connection" role="Connection" guid="{0AD553E0-231C-4fb3-B185-4AD5D322DC3A}" relid="0x7">
+				<name>Sequence</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1021</value>
+					<regnode name="InputSequence" isopaque="yes">
+						<value></value>
+						<regnode name="Sequence" isopaque="yes">
+							<value>1032</value>
+							<regnode name="Sequence" isopaque="yes">
+								<value>1034</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>71,265</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>71,265</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>71,265</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>71,265</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="InputSequence:Sequence" isopaque="yes">
+						<value></value>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>neswNSW</value>
+				</regnode>
+				<attribute kind="Color" status="meta">
+					<value>0x000000</value>
+				</attribute>
+				<attribute kind="ConnLineEnd">
+					<value>arrow</value>
+				</attribute>
+				<attribute kind="ConnLineStart" status="meta">
+					<value>butt</value>
+				</attribute>
+				<attribute kind="ConnLineType" status="meta">
+					<value>solid</value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DstAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences">
+					<value>
+sName = srcSequence
+dName = dstSequence</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="SrcAttrLabel1" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SrcAttrLabel2" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-0000000e" kind="Connector" role="Connector" guid="{6462454E-69E7-4e21-BCEB-4E7E879ADA5E}" relid="0x4">
+				<name>Connector</name>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>235,403</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>235,403</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>nwES</value>
+				</regnode>
+			</atom>
+			<atom id="id-0066-0000000f" kind="Model" role="Model" guid="{8C57C8B5-76D5-482f-B2C1-FE3CE0655CB7}" relid="0x1">
+				<name>InputSequence</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1026</value>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>274,111</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>274,111</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>274,111</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>274,111</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="InRootFolder">
+					<value>true</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeInfoShown" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<atom id="id-0066-00000010" kind="Atom" role="Atom" guid="{3BBEDB21-B135-4229-855A-B4BCE73F2961}" relid="0x15">
+				<name>Events</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value>1020</value>
+					<regnode name="AllowedEvents" isopaque="yes">
+						<value></value>
+						<regnode name="AllowedEvents" isopaque="yes">
+							<value>1023</value>
+							<regnode name="AllEvents" isopaque="yes">
+								<value>1025</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="EventSpace" isopaque="yes">
+						<value></value>
+						<regnode name="AllowedEvents" isopaque="yes">
+							<value>1035</value>
+							<regnode name="AllEvents" isopaque="yes">
+								<value>1037</value>
+							</regnode>
+						</regnode>
+						<regnode name="EventSpace" isopaque="yes">
+							<value>1038</value>
+							<regnode name="AllEvents" isopaque="yes">
+								<value>1039</value>
+							</regnode>
+						</regnode>
+					</regnode>
+					<regnode name="InputSequence" isopaque="yes">
+						<value></value>
+						<regnode name="Events" isopaque="yes">
+							<value>1027</value>
+							<regnode name="Sequence" isopaque="yes">
+								<value>1029</value>
+							</regnode>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Attributes" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>281,264</value>
+						</regnode>
+					</regnode>
+					<regnode name="ClassDiagram" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>281,264</value>
+						</regnode>
+					</regnode>
+					<regnode name="Constraints" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>281,264</value>
+						</regnode>
+					</regnode>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>281,264</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<regnode name="PrimaryAspects" isopaque="yes">
+					<value></value>
+					<regnode name="AllowedEvents:AllowedEvents" isopaque="yes">
+						<value></value>
+						<regnode name="AllEvents" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="EventSpace:AllowedEvents" isopaque="yes">
+						<value></value>
+						<regnode name="AllEvents" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="EventSpace:EventSpace" isopaque="yes">
+						<value></value>
+						<regnode name="AllEvents" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+					<regnode name="InputSequence:Events" isopaque="yes">
+						<value></value>
+						<regnode name="AllEvents" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+						<regnode name="Sequence" isopaque="yes">
+							<value>yes</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="Decorator" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="GeneralPreferences" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="Icon">
+					<value>event.bmp</value>
+				</attribute>
+				<attribute kind="InRootFolder" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="InstanceIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="IsAbstract" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="IsHotspotEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsNameEnabled" status="meta">
+					<value>true</value>
+				</attribute>
+				<attribute kind="IsTypeShown" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="NamePosition" status="meta">
+					<value>4</value>
+				</attribute>
+				<attribute kind="NameWrapNum" status="meta">
+					<value>0</value>
+				</attribute>
+				<attribute kind="PortIcon" status="meta">
+					<value></value>
+				</attribute>
+				<attribute kind="SubTypeIcon" status="meta">
+					<value></value>
+				</attribute>
+			</atom>
+			<connection id="id-0068-00000010" kind="HasAttribute" role="HasAttribute" guid="{E56651C6-BF92-4cf9-9E0F-A6DB9CD9A3AD}" relid="0x1e">
+				<name>HasAttribute</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000000b"/>
+				<connpoint role="dst" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-00000011" kind="HasConstraint" role="HasConstraint" guid="{28BBBCA1-E60B-4068-89CB-7499D153A32B}" relid="0x1c">
+				<name>HasConstraint</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>Ns</value>
+				</regnode>
+				<connpoint role="src" target="id-0066-0000000c"/>
+				<connpoint role="dst" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-00000012" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{74F3AC6E-92B9-484f-9159-045A3AEF7944}" relid="0x1b">
+				<name>ConnectorToDestination</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>s</value>
+				</regnode>
+				<regnode name="dstStyle" isopaque="yes">
+					<value>arrow</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="dstRolename" status="meta">
+					<value>dst</value>
+				</attribute>
+				<connpoint role="src" target="id-0066-0000000e"/>
+				<connpoint role="dst" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-00000013" kind="SourceToConnector" role="SourceToConnector" guid="{C90A505F-3183-4285-BC7D-38A3D074DBEC}" relid="0x1a">
+				<name>SourceToConnector</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>W</value>
+				</regnode>
+				<attribute kind="Cardinality">
+					<value>0..1</value>
+				</attribute>
+				<attribute kind="srcRolename" status="meta">
+					<value>src</value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+				<connpoint role="src" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-00000014" kind="Containment" role="Containment" guid="{33ED9CA9-F235-42f7-9983-B6D3C7241154}" relid="0x18">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+				<connpoint role="src" target="id-0066-00000010"/>
+			</connection>
+			<connection id="id-0068-00000015" kind="Containment" role="Containment" guid="{F94F88E1-769D-49d7-8EBB-99E724C85F5F}" relid="0x11">
+				<name>Containment</name>
+				<attribute kind="Cardinality" status="meta">
+					<value>0..*</value>
+				</attribute>
+				<attribute kind="IsPort" status="meta">
+					<value>false</value>
+				</attribute>
+				<attribute kind="Rolename" status="meta">
+					<value></value>
+				</attribute>
+				<connpoint role="src" target="id-0066-0000000d"/>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+			</connection>
+			<connection id="id-0068-00000016" kind="HasAspect" role="HasAspect" guid="{138EBC24-441B-410a-9D8A-3F920B72CA91}" relid="0xb">
+				<name>HasAspect</name>
+				<regnode name="autorouterPref" isopaque="yes">
+					<value>We</value>
+				</regnode>
+				<connpoint role="dst" target="id-0066-0000000f"/>
+				<connpoint role="src" target="id-0069-00000002"/>
+			</connection>
+			<connection id="id-0068-00000017" kind="AssociationClass" role="AssociationClass" guid="{110D0807-3B7A-49f7-AD01-12D83AA3B401}" relid="0x8">
+				<name>AssociationClass</name>
+				<connpoint role="src" target="id-0066-0000000d"/>
+				<connpoint role="dst" target="id-0066-0000000e"/>
+			</connection>
+			<set id="id-0069-00000002" kind="Aspect" role="Aspect" guid="{9EBA4968-81CC-46e0-9AA7-590C5FB50489}" relid="0x0" members="id-0066-0000000d id-0066-00000010">
+				<name>Seq</name>
+				<regnode name="MetaRef" isopaque="yes">
+					<value></value>
+					<regnode name="InputSequence" isopaque="yes">
+						<value>1028</value>
+					</regnode>
+				</regnode>
+				<regnode name="PartRegs" isopaque="yes">
+					<value></value>
+					<regnode name="Visualization" isopaque="yes">
+						<value></value>
+						<regnode name="Position" isopaque="yes">
+							<value>673,111</value>
+						</regnode>
+					</regnode>
+				</regnode>
+				<attribute kind="DisplayedName" status="meta">
+					<value></value>
+				</attribute>
+			</set>
+		</model>
+	</folder>
+</project>
