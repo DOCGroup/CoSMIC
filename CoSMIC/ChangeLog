@@ -1,3 +1,9 @@
+Tue Dec 15 20:25:55 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/Type_Trait.cpp:
+
+          . Missing file.
+
 Tue Dec 15 20:18:02 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
