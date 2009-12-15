@@ -3,6 +3,7 @@
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 #include "DomainVisitor.h"
+#include "Uml.h"
 
 using xercesc::LocalFileFormatTarget;
 using xercesc::DOMImplementationRegistry;
@@ -403,35 +404,40 @@ namespace PICML
     /// @note If the domain interpreter is to support complex types,
     ///       then this section of the code will need changing.
 
-    PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+    PredefinedType ptype = PICML::PredefinedType::Cast (type.ref());
+    Uml::Class meta = ptype.type ();
 
-    std::string refName = ref.name();
-    if (refName == "Boolean")
+    if (meta == PICML::Boolean::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("boolean",
         property.DataValue()));
     }
-    else if (refName == "Byte")
+    else if (meta == PICML::Byte::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("octet",
         property.DataValue()));
     }
-    else if (refName == "String")
+    else if (meta == PICML::String::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("string",
         property.DataValue()));
     }
-    else if (refName == "RealNumber")
+    else if (meta == PICML::FloatNumber::meta)
+    {
+      this->curr_->appendChild (this->createSimpleContent ("float",
+        property.DataValue()));
+    }
+    else if (meta == PICML::DoubleNumber::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("double",
         property.DataValue()));
     }
-    else if (refName == "ShortInteger")
+    else if (meta == PICML::ShortInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("short",
         property.DataValue()));
     }
-    else if (refName == "LongInteger")
+    else if (meta == PICML::LongInteger::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("long",
         property.DataValue()));
@@ -443,34 +449,39 @@ namespace PICML
   void DomainVisitor::Visit_DataType(const DataType& type)
   {
     PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
+    Uml::Class meta = ref.type ();
 
-    std::string kindName = ref.name();
-    if (kindName == "Boolean")
+    if (meta == PICML::Boolean::meta)
     {
       Boolean boolv = PICML::Boolean::Cast (ref);
       boolv.Accept (*this);
     }
-    else if (kindName == "Byte")
+    else if (meta == PICML::Byte::meta)
     {
       Byte byte = PICML::Byte::Cast (ref);
       byte.Accept (*this);
     }
-    else if (kindName == "String")
+    else if (meta == PICML::String::meta)
     {
       String str = PICML::String::Cast (ref);
       str.Accept (*this);
     }
-    else if (kindName == "RealNumber")
+    else if (meta == PICML::FloatNumber::meta)
     {
-      RealNumber real = PICML::RealNumber::Cast (ref);
+      FloatNumber real = PICML::FloatNumber::Cast (ref);
       real.Accept (*this);
     }
-    else if (kindName == "ShortInteger")
+    else if (meta == PICML::DoubleNumber::meta)
+    {
+      DoubleNumber real = PICML::DoubleNumber::Cast (ref);
+      real.Accept (*this);
+    }
+    else if (meta == PICML::ShortInteger::meta)
     {
       ShortInteger shortv = PICML::ShortInteger::Cast (ref);
       shortv.Accept (*this);
     }
-    else if (kindName == "LongInteger")
+    else if (meta == PICML::LongInteger::meta)
     {
       LongInteger lint = PICML::LongInteger::Cast (ref);
       lint.Accept (*this);
@@ -512,7 +523,18 @@ namespace PICML
     this->pop();
   }
 
-  void DomainVisitor::Visit_RealNumber(const RealNumber& real)
+  void DomainVisitor::Visit_FloatNumber (const FloatNumber & real)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+      "tk_float"));
+    this->pop();
+  }
+
+  void DomainVisitor::Visit_DoubleNumber (const DoubleNumber & real)
   {
     this->push();
     DOMElement* type = this->doc_->createElement (XStr ("type"));

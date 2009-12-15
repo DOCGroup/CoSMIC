@@ -37,7 +37,8 @@ static const char* PICML_OBJECT_NAME =            "Object";
 static const char* PICML_OUTEVENTPORT_NAME =      "OutEventPort";
 static const char* PICML_PROVIDEDREQUESTPORT_NAME = "ProvidedRequestPort";
 static const char* PICML_READONLYATTRIBUTE_NAME = "ReadonlyAttribute";
-static const char* PICML_REALNUMBER_NAME =        "RealNumber";
+static const char* PICML_FLOATNUMBER_NAME =        "FloatNumber";
+static const char* PICML_DOUBLENUMBER_NAME =        "DoubleNumber";
 static const char* PICML_REQUIREDREQUESTPORT_NAME = "RequiredRequestPort";
 static const char* PICML_SHORTINTEGER_NAME =      "ShortInteger";
 static const char* PICML_STRING_NAME =            "String";
@@ -70,7 +71,7 @@ static bool NamespaceEquals (const CComBSTR& target, const char* name)
 
 //########################################################
 //
-//	CLASS : DecoratorBase
+//  CLASS : DecoratorBase
 //
 //########################################################
 
@@ -93,29 +94,29 @@ public:
   virtual void      LoadBitmap() = 0;
 
   virtual vector<PortDecorator*>  getPorts() const;
-  virtual PortDecorator*			    getPort( CComPtr<IMgaFCO> ) const;
+  virtual PortDecorator*          getPort( CComPtr<IMgaFCO> ) const;
 
 protected:
   DecoratorBase();
 
 protected:
   CRect                 m_rect;
-  CComPtr<IMgaFCO>	m_mgaFco;
-  CComPtr<IMgaMetaFCO>	m_metaFco;
-  CString		m_name;
+  CComPtr<IMgaFCO>  m_mgaFco;
+  CComPtr<IMgaMetaFCO>  m_metaFco;
+  CString    m_name;
   CString               m_metaName;
-  objtype_enum		m_eType;
+  objtype_enum    m_eType;
   CMaskedBitmap         m_bitmap;
-  long			m_lBorderWidth;
-  bool			m_bActive;
+  long      m_lBorderWidth;
+  bool      m_bActive;
 
-  COLORREF	        m_color;
-  COLORREF	        m_nameColor;
+  COLORREF          m_color;
+  COLORREF          m_nameColor;
 };
 
 //########################################################
 //
-//	CLASS : MemberDecorator
+//  CLASS : MemberDecorator
 //
 //########################################################
 
@@ -130,7 +131,7 @@ public:
 
 //########################################################
 //
-//	CLASS : InheritsDecorator
+//  CLASS : InheritsDecorator
 //
 //########################################################
 
@@ -145,11 +146,11 @@ public:
 
 //########################################################
 //
-//	CLASS : PortDecorator
+//  CLASS : PortDecorator
 //
 //########################################################
 
-class PortDecorator	: public DecoratorBase
+class PortDecorator  : public DecoratorBase
 {
 private :
   CPoint m_ptInner;
@@ -159,32 +160,32 @@ public :
   PortDecorator( CComPtr<IMgaFCO> mgaFco, const CPoint& ptInner );
 
   virtual void   initialize();
-  virtual CSize	 getPreferredSize() const;
+  virtual CSize   getPreferredSize() const;
   CPoint getInnerPosition() const;
-  virtual void 	 draw( CDC* pDC );
+  virtual void    draw( CDC* pDC );
   virtual void   LoadBitmap();
   void   setToRight();
 };
 
 //########################################################
 //
-//	CLASS : ComponentDecorator
+//  CLASS : ComponentDecorator
 //
 //########################################################
 
 class ComponentDecorator : public DecoratorBase
 {
 private:
-  CComPtr<IMgaMetaPart>	    m_metaPart;
+  CComPtr<IMgaMetaPart>      m_metaPart;
   vector<PortDecorator*>    m_vecLeftPorts;
   vector<PortDecorator*>    m_vecRightPorts;
   CComPtr<IMgaMetaAspect>   m_spAspect;
-  long			    m_iMaxPortTextLength;
-  CString		    m_strTypeName;
+  long          m_iMaxPortTextLength;
+  CString        m_strTypeName;
   bool                      m_bTypeNameEnabled;
   int                       m_iTypeInfo;
 public:
-  ComponentDecorator( CComPtr<IMgaMetaPart>	metaPart );
+  ComponentDecorator( CComPtr<IMgaMetaPart>  metaPart );
   virtual ~ComponentDecorator();
 
   virtual void  initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
@@ -195,7 +196,7 @@ public:
   virtual void  LoadBitmap();
 
   virtual vector<PortDecorator*>  getPorts() const;
-  virtual PortDecorator*		  getPort( CComPtr<IMgaFCO> ) const;
+  virtual PortDecorator*      getPort( CComPtr<IMgaFCO> ) const;
 
 private:
   void loadPorts();

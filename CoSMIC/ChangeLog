@@ -1,3 +1,65 @@
+Tue Dec 15 20:18:02 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/icons/DoubleNumber.bmp:
+        * PIM/PICML/paradigms/icons/FloatNumber.bmp:
+
+          . Removed RealNumber from metamodel and added support for
+            FloatNumber and DoubleNumber.
+
+        * PIM/PICML/migration/RealNumber_to_DoubleNumber.xsl:
+
+          . Transformation script for converting existing models that
+            use RealNumber to the latest version of PICML, which does
+            not use RealNumber.
+
+        * PIM/PICML/decorators/Decorator.rc:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/resource.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDLEmitVisitor.cpp:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.h:
+        * PIM/PICML/interpreters/IDLGenerator/IDMLBonExtension.cpp:
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+        * PIM/PICML/interpreters/IDLImporter/Predefined_Types.h:
+        * PIM/PICML/interpreters/IDLImporter/Type_Trait.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor_t.cpp:
+        * PIM/PICML/interpreters/IDLImporter/be_global.h:
+        * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.h:
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        * PIM/PICML/interpreters/Target/DomainVisitor.h:
+        * PIM/PICML/interpreters/Target/DomainVisitor.cpp:
+
+        * Transformations/to_GME7.xsl:
+
+          . Transformation for converting GME 9.x metamodels to
+            GME 7.x metamodels since GME 9.x add attributes that
+            are not supported by GME 7.x.
+
+        * tests/PIM:
+        * tests/PIM/PICML:
+        * tests/PIM/PICML/idl_to_picml:
+        * tests/PIM/PICML/idl_to_picml/Component.idl:
+        * tests/PIM/PICML/idl_to_picml/Constants.idl:
+        * tests/PIM/PICML/idl_to_picml/Struct.idl:
+
+          . First crack at defining *unit tests* for idl_to_picml.
+
+        * tests/PIM/PICML/regression:
+
+          Folder that will contain regression tests for PICML.
+
 Thu Dec 10 16:44:21 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/addons/PICMLManager/NewComponentConfig.h:

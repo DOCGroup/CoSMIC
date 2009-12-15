@@ -168,11 +168,11 @@ public:
   void incr_conns_seen (void);
   void incr_folders_seen (void);
 
-  unsigned long npredefined (void) const;
-  // Accessor for the readonly member.
+  //unsigned long npredefined (void) const;
+  //// Accessor for the readonly member.
 
-  const char** pdt_names (void) const;
-  // Access a singleton list of IDML predefined type names.
+  //const char** pdt_names (void) const;
+  //// Access a singleton list of IDML predefined type names.
 
   long nfiles (void) const;
   void nfiles (long val);
@@ -341,10 +341,10 @@ public:
                                  DOMElement *file,
                                  const char *fileref_name);
   // Specialized method for reporting added file includes.
-  
+
   const char * const * allfiles (void) const;
   // Accessor.
-  
+
 private:
   char *get_name (DOMElement *node);
   // Utility function that gets the value of the child with
@@ -360,10 +360,10 @@ private:
   // Check if a module opening in the AST and one in the DOM tree
   // refer to the same thing.
 
-  // Get the version of GME by looking into 
+  // Get the version of GME by looking into
   // $GME_ROOT\Interfaces\Interfaces\GMEVersion.h
   std::string get_GME_version (std::string path);
-  
+
 private:
   ACE_CString filename_;
   // Name of the IDL file we are processing.

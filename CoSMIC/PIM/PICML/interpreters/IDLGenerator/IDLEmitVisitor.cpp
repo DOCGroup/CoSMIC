@@ -106,7 +106,7 @@ namespace IDML
   }
 
 
-  bool IDLEmitVisitor::visitRealNumber (const RealNumber& object)
+  bool IDLEmitVisitor::visitDoubleNumber (const DoubleNumber& object)
   {
     if ( !object)
       return false;
@@ -114,6 +114,13 @@ namespace IDML
     return true;
   }
 
+  bool IDLEmitVisitor::visitFloatNumber (const FloatNumber& object)
+  {
+    if ( !object)
+      return false;
+
+    return true;
+  }
 
   bool IDLEmitVisitor::visitShortInteger (const ShortInteger& object)
   {
@@ -1002,7 +1009,8 @@ namespace IDML
     if ( !visitLabel( atom))
     if ( !visitLongInteger( atom))
     if ( !visitPrivateFlag( atom))
-    if ( !visitRealNumber( atom))
+    if ( !visitFloatNumber( atom))
+    if ( !visitDoubleNumber (atom))
     if ( !visitShortInteger( atom))
     if ( !visitString( atom))
     if ( !visitTypeEncoding( atom))
@@ -1283,7 +1291,8 @@ namespace IDML
   {
     if (String (pdt))             return "string";
     if (LongInteger (pdt))        return "long";
-    if (RealNumber (pdt))         return "double";
+    if (FloatNumber (pdt))        return "float";
+    if (DoubleNumber (pdt))       return "double";
     if (ShortInteger (pdt))       return "short";
     if (Boolean (pdt))            return "boolean";
     if (Byte (pdt))               return "octet";
@@ -1316,7 +1325,7 @@ namespace IDML
     MemberType mt = c->getMemberType ();
     if (String (mt))              ofs << "String";
     else if (LongInteger (mt))    ofs << "Long";
-    else if (RealNumber (mt))     ofs << "Double";
+    else if (FloatNumber (mt))     ofs << "Double";
     else if (ShortInteger (mt))   ofs << "Short";
     else if (Boolean (mt))        ofs << "Boolean";
     else if (Byte (mt))           ofs << "Octet";
@@ -2185,7 +2194,7 @@ namespace IDML
 
     if (String (mt))            ofs << "CORBA::StringSeq";
     else if (LongInteger (mt))  ofs << "CORBA::LongSeq";
-    else if (RealNumber (mt))   ofs << "CORBA::DoubleSeq";
+    else if (FloatNumber (mt))   ofs << "CORBA::DoubleSeq";
     else if (ShortInteger (mt)) ofs << "CORBA::ShortSeq";
     else if (Boolean (mt))      ofs << "CORBA::BooleanSeq";
     else if (Byte (mt))         ofs << "CORBA::OctetSeq";

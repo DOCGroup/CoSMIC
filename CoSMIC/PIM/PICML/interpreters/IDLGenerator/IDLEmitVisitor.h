@@ -31,7 +31,8 @@ namespace IDML
     bool visitLabel (const Label& object);
     bool visitLongInteger (const LongInteger& object);
     bool visitPrivateFlag (const PrivateFlag& object);
-    bool visitRealNumber (const RealNumber& object);
+    bool visitFloatNumber (const FloatNumber& object);
+    bool visitDoubleNumber (const DoubleNumber& object);
     bool visitShortInteger (const ShortInteger& object);
     bool visitString (const String& object);
     bool visitTypeEncoding (const TypeEncoding& object);

@@ -11,6 +11,7 @@
 #include "global_extern.h"
 #include "nr_extern.h"
 #include "idl_defines.h"
+#include "Type_Trait.h"
 
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/xercesc/XML_Error_Handler.h"
@@ -37,12 +38,12 @@ IDL_TO_PICML_BE_Export BE_GlobalData *be_global = 0;
 BE_GlobalData::BE_GlobalData (void)
   : output_dir_ (0),
     input_xme_ (0),
-    models_seen_ (0UL),
-    atoms_seen_ (0UL),
-    refs_seen_ (0UL),
-    conns_seen_ (0UL),
-    folders_seen_ (0UL),
-    npredefined_ (11UL),
+    models_seen_ (0),
+    atoms_seen_ (0),
+    refs_seen_ (0),
+    conns_seen_ (0),
+    folders_seen_ (0),
+//    npredefined_ (12),
     nfiles_ (0L),
     first_file_ (true),
     output_file_ ("PICML_default_xme_file"),
@@ -177,30 +178,31 @@ BE_GlobalData::incr_folders_seen (void)
   ++this->folders_seen_;
 }
 
-unsigned long
-BE_GlobalData::npredefined (void) const
-{
-  return this->npredefined_;
-}
-
-const char**
-BE_GlobalData::pdt_names (void) const
-{
-  static const char *list[] = {
-                                "TypeKind",
-                                "TypeEncoding",
-                                "String",
-                                "Boolean",
-                                "ShortInteger",
-                                "RealNumber",
-                                "LongInteger",
-                                "GenericValueObject",
-                                "GenericValue",
-                                "GenericObject",
-                                "Byte"
-                              };
-  return list;
-}
+//unsigned long
+//BE_GlobalData::npredefined (void) const
+//{
+//  return this->npredefined_;
+//}
+//
+//const char**
+//BE_GlobalData::pdt_names (void) const
+//{
+//  static const char *list[] = {
+//                                "TypeKind",
+//                                "TypeEncoding",
+//                                "String",
+//                                "Boolean",
+//                                "ShortInteger",
+//                                "FloatNumber",
+//                                "DoubleNumber",
+//                                "LongInteger",
+//                                "GenericValueObject",
+//                                "GenericValue",
+//                                "GenericObject",
+//                                "Byte"
+//                              };
+//  return list;
+//}
 
 long
 BE_GlobalData::nfiles (void) const
@@ -748,7 +750,7 @@ BE_GlobalData::cache_files (char *files[], long nfiles)
               fullpath[j] = '/';
             }
         }
-        
+
       // We bind the files in this table under both their relative
       // pathnames (for main file lookup, so the relative path can
       // be split off and added as a GME attribute) and their
@@ -816,7 +818,7 @@ BE_GlobalData::destroy (void)
     }
 
   DECL_ELEM_TABLE_ENTRY *fwd_entry = 0;
-  
+
   for (DECL_ELEM_TABLE_ITERATOR fwd_iter (this->decl_elem_table_);
        fwd_iter.next (fwd_entry) != 0;
        fwd_iter.advance ())
@@ -825,7 +827,7 @@ BE_GlobalData::destroy (void)
     }
 
   REF_DECL_TABLE_ENTRY *ref_entry = 0;
-  
+
   for (REF_DECL_TABLE_ITERATOR ref_iter (this->ref_decl_table_);
        ref_iter.next (ref_entry) != 0;
        ref_iter.advance ())
@@ -1285,19 +1287,19 @@ BE_GlobalData::release_node (DOMElement *node)
 {
   this->emit_diagnostic (node, REMOVING);
   DOMNode *parent = node->getParentNode ();
-  
+
   if (parent == 0)
     {
       ACE_ERROR ((LM_ERROR, "parent, release_node\n"));
     }
-  
+
   DOMNode *releasable = parent->removeChild (node);
-  
+
   if (releasable == 0)
     {
       ACE_ERROR ((LM_ERROR, "releasable, release_node\n"));
     }
-  
+
   releasable->release ();
 }
 
@@ -1503,14 +1505,14 @@ BE_GlobalData::check_for_basic_seq (AST_Decl *d,
     }
 
   AST_Decl *p = ScopeAsDecl (d->defined_in ());
-  
+
   if (ACE_OS::strcmp (p->local_name ()->get_string (), "CORBA") != 0)
     {
       return;
     }
 
   AST_Type *bt = AST_Typedef::narrow_from_decl (d)->base_type ();
-  
+
   if (bt->node_type () != AST_Decl::NT_sequence)
     {
       return;
@@ -1529,16 +1531,15 @@ BE_GlobalData::check_for_basic_seq (AST_Decl *d,
     }
 }
 
-void
-BE_GlobalData::check_for_basic_type (AST_Decl *d,
-                                     ACE_CString &str)
+void BE_GlobalData::
+check_for_basic_type (AST_Decl *d, ACE_CString &str)
 {
-  const char **namelist = be_global->pdt_names ();
+  //const char **namelist = be_global->pdt_names ();
   AST_Decl::NodeType nt = d->node_type ();
 
   if (nt == AST_Decl::NT_string || nt == AST_Decl::NT_wstring)
     {
-      str = namelist[2UL];
+      str = IDML::Type_Trait <IDML::String>::metaname;
     }
   else if (d->node_type () == AST_Decl::NT_pre_defined)
     {
@@ -1551,34 +1552,45 @@ BE_GlobalData::check_for_basic_type (AST_Decl *d,
           case AST_PredefinedType::PT_ulong:
           case AST_PredefinedType::PT_longlong:
           case AST_PredefinedType::PT_ulonglong:
-            str = namelist[6UL];
+            str = IDML::Type_Trait <IDML::LongInteger>::metaname;
             break;
+
           case AST_PredefinedType::PT_short:
           case AST_PredefinedType::PT_ushort:
-            str = namelist[4UL];
+            str = IDML::Type_Trait <IDML::ShortInteger>::metaname;
             break;
+
           case AST_PredefinedType::PT_float:
+            str = IDML::Type_Trait <IDML::FloatNumber>::metaname;
+            break;
+
           case AST_PredefinedType::PT_double:
           case AST_PredefinedType::PT_longdouble:
-            str = namelist[5UL];
+            str = IDML::Type_Trait <IDML::DoubleNumber>::metaname;
             break;
+
           case AST_PredefinedType::PT_char:
           case AST_PredefinedType::PT_octet:
           case AST_PredefinedType::PT_wchar:
-            str = namelist[10UL];
+            str = IDML::Type_Trait <IDML::Byte>::metaname;
             break;
+
           case AST_PredefinedType::PT_boolean:
-            str = namelist[3UL];
+            str = IDML::Type_Trait <IDML::Boolean>::metaname;
             break;
+
           case AST_PredefinedType::PT_any:
-            str = namelist[8UL];
+            str = IDML::Type_Trait <IDML::GenericValue>::metaname;
             break;
+
           case AST_PredefinedType::PT_object:
-            str = namelist[9UL];
+            str = IDML::Type_Trait <IDML::GenericObject>::metaname;
             break;
+
           case AST_PredefinedType::PT_value:
-            str = namelist[7UL];
+            str = IDML::Type_Trait <IDML::GenericValueObject>::metaname;
             break;
+
           case AST_PredefinedType::PT_pseudo:
             {
               const char *pseudo_name =
@@ -1586,11 +1598,11 @@ BE_GlobalData::check_for_basic_type (AST_Decl *d,
 
               if (0 == ACE_OS::strcmp (pseudo_name, "TypeCode"))
                 {
-                  str = namelist[1UL];
+                  str = IDML::Type_Trait <IDML::TypeEncoding>::metaname;
                 }
               else if (0 == ACE_OS::strcmp (pseudo_name, "TCKind"))
                 {
-                  str = namelist[0UL];
+                  str = IDML::Type_Trait <IDML::TypeKind>::metaname;
                 }
             }
             break;
@@ -1931,7 +1943,7 @@ BE_GlobalData::match_module_opening_downscope (DOMElement *elem,
 
       char *node_child_name =
         node_child->local_name ()->get_string ();
-        
+
       match =
         (ACE_OS::strcmp (node_child_name, elem_child_name) == 0);
 
@@ -1967,12 +1979,12 @@ BE_GlobalData::get_GME_version (std::string path)
 {
   path += "\\Interfaces\\GMEVersion.h";
   std::ifstream infile (path.c_str ());
-  
+
   if (infile)
     {
       std::string token;
       int major = 0, minor = 0, plevel = 0;
-      
+
       while (infile >> token)
         {
           if (token == "GME_VERSION_MAJOR")
@@ -1989,13 +2001,13 @@ BE_GlobalData::get_GME_version (std::string path)
               break;
             }
         }
-      
+
       std::ostringstream ostr;
       ostr << major << "." << minor << "." << plevel;
-      
+
       return ostr.str ();
     }
-  
+
   return ""; // Empty string
 }
 

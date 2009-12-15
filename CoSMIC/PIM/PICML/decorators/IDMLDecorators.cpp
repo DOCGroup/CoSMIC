@@ -193,8 +193,11 @@ MemberDecorator::LoadBitmap()
       else if ( NamespaceEquals (bstr, PICML_BOOLEAN_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_BOOLEAN );
       }
-      else if ( NamespaceEquals (bstr, PICML_REALNUMBER_NAME) ) {
-        m_bitmap.ReadFromResource( IDB_BITMAP_REALNUMBER );
+      else if ( NamespaceEquals (bstr, PICML_FLOATNUMBER_NAME) ) {
+        m_bitmap.ReadFromResource( IDB_BITMAP_FLOATNUMBER );
+      }
+      else if ( NamespaceEquals (bstr, PICML_DOUBLENUMBER_NAME) ) {
+        m_bitmap.ReadFromResource( IDB_BITMAP_DOUBLENUMBER );
       }
       else if ( NamespaceEquals (bstr, PICML_COLLECTION_NAME) ) {
         m_bitmap.ReadFromResource( IDB_BITMAP_COLLECTIONREF );

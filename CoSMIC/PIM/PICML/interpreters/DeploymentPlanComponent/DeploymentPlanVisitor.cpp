@@ -223,10 +223,29 @@ namespace PICML
   }
 
   //
-  // Visit_RealNumber
+  // Visit_FloatNumber
   //
   void DeploymentPlanVisitor::
-  Visit_RealNumber (const RealNumber &)
+  Visit_FloatNumber (const FloatNumber &)
+  {
+    this->push ();
+
+    DOMElement * type = this->doc_->createElement (XStr ("type"));
+
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+
+    this->curr_->appendChild (
+      this->createSimpleContent ("kind", "tk_float"));
+
+    this->pop ();
+  }
+
+  //
+  // Visit_DoubleNumber
+  //
+  void DeploymentPlanVisitor::
+  Visit_DoubleNumber (const DoubleNumber &)
   {
     this->push ();
 
@@ -445,21 +464,23 @@ namespace PICML
     this->curr_ = val;
 
     PredefinedType ref = PICML::PredefinedType::Cast (type.ref ());
-    std::string refName = ref.name ();
+    const Uml::Class & meta = ref.type ();
 
     std::string datatype;
 
-    if (ref.type () == PICML::Boolean::meta)
+    if (meta == PICML::Boolean::meta)
       datatype = "boolean";
-    else if (ref.type () == PICML::Byte::meta)
+    else if (meta == PICML::Byte::meta)
       datatype = "octet";
-    else if (ref.type () == PICML::String::meta)
+    else if (meta == PICML::String::meta)
       datatype = "string";
-    else if (ref.type () == PICML::RealNumber::meta)
+    else if (meta == PICML::FloatNumber::meta)
+      datatype = "float";
+    else if (meta == PICML::DoubleNumber::meta)
       datatype = "double";
-    else if (ref.type () == PICML::ShortInteger::meta)
+    else if (meta == PICML::ShortInteger::meta)
       datatype = "short";
-    else if (ref.type () == PICML::LongInteger::meta)
+    else if (meta == PICML::LongInteger::meta)
       datatype = "long";
 
     this->curr_->appendChild (this->createSimpleContent (datatype, property.DataValue ()));
@@ -470,34 +491,39 @@ namespace PICML
   void DeploymentPlanVisitor::Visit_DataType (const DataType& type)
   {
     PredefinedType ref = PICML::PredefinedType::Cast (type.ref ());
-    // std::string kindName = ref.name ();
+    const Uml::Class & meta = ref.type ();
 
-    if (ref.type () == PICML::Boolean::meta)
+    if (meta == PICML::Boolean::meta)
     {
       Boolean boolv = PICML::Boolean::Cast (ref);
       boolv.Accept (*this);
     }
-    else if (ref.type () == PICML::Byte::meta)
+    else if (meta == PICML::Byte::meta)
     {
       Byte byte = PICML::Byte::Cast (ref);
       byte.Accept (*this);
     }
-    else if (ref.type () == PICML::String::meta)
+    else if (meta == PICML::String::meta)
     {
       String str = PICML::String::Cast (ref);
       str.Accept (*this);
     }
-    else if (ref.type () == PICML::RealNumber::meta)
+    else if (meta == PICML::FloatNumber::meta)
     {
-      RealNumber real = PICML::RealNumber::Cast (ref);
+      FloatNumber real = PICML::FloatNumber::Cast (ref);
       real.Accept (*this);
     }
-    else if (ref.type () == PICML::ShortInteger::meta)
+    else if (meta == PICML::DoubleNumber::meta)
+    {
+      DoubleNumber real = PICML::DoubleNumber::Cast (ref);
+      real.Accept (*this);
+    }
+    else if (meta == PICML::ShortInteger::meta)
     {
       ShortInteger shortv = PICML::ShortInteger::Cast (ref);
       shortv.Accept (*this);
     }
-    else if (ref.type () == PICML::LongInteger::meta)
+    else if (meta == PICML::LongInteger::meta)
     {
       LongInteger lint = PICML::LongInteger::Cast (ref);
       lint.Accept (*this);

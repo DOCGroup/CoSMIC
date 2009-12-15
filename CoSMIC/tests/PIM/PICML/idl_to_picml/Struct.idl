@@ -1,0 +1,26 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file       Struct.idl
+ *
+ *  $Id$
+ *
+ *  @author     James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_STRUCT_IDL_H_
+#define _PICML_STRUCT_IDL_H_
+
+module Example
+{
+  struct StockInfo
+  {
+    string name;
+
+    long price;
+  };
+};
+
+#endif

@@ -1,0 +1,25 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file       Constants.idl
+ *
+ *  $Id$
+ *
+ *  @author     James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_PREDEFINEDTYPES_IDL_H_
+#define _PICML_PREDEFINEDTYPES_IDL_H_
+
+module Example
+{
+  const boolean TRUE_VALUE = TRUE;
+  const boolean FALSE_VALUE = FALSE;
+
+  const float floatConstant = 3.14;
+  const double doubleConstant = .14;
+};
+
+#endif

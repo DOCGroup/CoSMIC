@@ -39,7 +39,8 @@ IMPLEMENT_BONEXTENSION( IDML::GenericObject, "GenericObject" );
 IMPLEMENT_BONEXTENSION( IDML::GenericValue, "GenericValue" );
 IMPLEMENT_BONEXTENSION( IDML::GenericValueObject, "GenericValueObject" );
 IMPLEMENT_BONEXTENSION( IDML::LongInteger, "LongInteger" );
-IMPLEMENT_BONEXTENSION( IDML::RealNumber, "RealNumber" );
+IMPLEMENT_BONEXTENSION( IDML::FloatNumber, "FloatNumber" );
+IMPLEMENT_BONEXTENSION( IDML::DoubleNumber, "DoubleNumber" );
 IMPLEMENT_BONEXTENSION( IDML::ShortInteger, "ShortInteger" );
 IMPLEMENT_BONEXTENSION( IDML::String, "String" );
 IMPLEMENT_BONEXTENSION( IDML::TypeEncoding, "TypeEncoding" );
@@ -104,15 +105,15 @@ void OrderableImpl::initialize ()
 //*******************************************************************
 std::set<File> InterfaceDefinitionsImpl::getFile()
 {
-	std::set<File> res;
-	std::set<BON::Object> kinds = getChildObjects("File");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		File elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<File> res;
+  std::set<BON::Object> kinds = getChildObjects("File");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    File elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -121,15 +122,15 @@ std::set<File> InterfaceDefinitionsImpl::getFile()
 //*******************************************************************
 std::set<Boolean> PredefinedTypesImpl::getBoolean()
 {
-	std::set<Boolean> res;
-	std::set<BON::Object> kinds = getChildObjects("Boolean");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		Boolean elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Boolean> res;
+  std::set<BON::Object> kinds = getChildObjects("Boolean");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    Boolean elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -138,15 +139,15 @@ std::set<Boolean> PredefinedTypesImpl::getBoolean()
 //*******************************************************************
 std::set<Byte> PredefinedTypesImpl::getByte()
 {
-	std::set<Byte> res;
-	std::set<BON::Object> kinds = getChildObjects("Byte");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		Byte elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Byte> res;
+  std::set<BON::Object> kinds = getChildObjects("Byte");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    Byte elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -155,15 +156,15 @@ std::set<Byte> PredefinedTypesImpl::getByte()
 //*******************************************************************
 std::set<GenericObject> PredefinedTypesImpl::getGenericObject()
 {
-	std::set<GenericObject> res;
-	std::set<BON::Object> kinds = getChildObjects("GenericObject");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		GenericObject elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<GenericObject> res;
+  std::set<BON::Object> kinds = getChildObjects("GenericObject");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    GenericObject elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -172,15 +173,15 @@ std::set<GenericObject> PredefinedTypesImpl::getGenericObject()
 //*******************************************************************
 std::set<GenericValue> PredefinedTypesImpl::getGenericValue()
 {
-	std::set<GenericValue> res;
-	std::set<BON::Object> kinds = getChildObjects("GenericValue");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		GenericValue elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<GenericValue> res;
+  std::set<BON::Object> kinds = getChildObjects("GenericValue");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    GenericValue elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -189,15 +190,15 @@ std::set<GenericValue> PredefinedTypesImpl::getGenericValue()
 //*******************************************************************
 std::set<GenericValueObject> PredefinedTypesImpl::getGenericValueObject()
 {
-	std::set<GenericValueObject> res;
-	std::set<BON::Object> kinds = getChildObjects("GenericValueObject");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		GenericValueObject elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<GenericValueObject> res;
+  std::set<BON::Object> kinds = getChildObjects("GenericValueObject");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    GenericValueObject elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -206,15 +207,15 @@ std::set<GenericValueObject> PredefinedTypesImpl::getGenericValueObject()
 //*******************************************************************
 std::set<LongInteger> PredefinedTypesImpl::getLongInteger()
 {
-	std::set<LongInteger> res;
-	std::set<BON::Object> kinds = getChildObjects("LongInteger");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		LongInteger elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<LongInteger> res;
+  std::set<BON::Object> kinds = getChildObjects("LongInteger");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    LongInteger elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -223,45 +224,45 @@ std::set<LongInteger> PredefinedTypesImpl::getLongInteger()
 //*******************************************************************
 std::set<PredefinedType> PredefinedTypesImpl::getPredefinedType()
 {
-	std::set<PredefinedType> res;
-	const int len = 11;
-	std::set<BON::Object> kinds_vec[ len];
-	kinds_vec[0] = getChildObjects("Boolean");
-	kinds_vec[1] = getChildObjects("Byte");
-	kinds_vec[2] = getChildObjects("GenericObject");
-	kinds_vec[3] = getChildObjects("GenericValue");
-	kinds_vec[4] = getChildObjects("GenericValueObject");
-	kinds_vec[5] = getChildObjects("LongInteger");
-	kinds_vec[6] = getChildObjects("RealNumber");
-	kinds_vec[7] = getChildObjects("ShortInteger");
-	kinds_vec[8] = getChildObjects("String");
-	kinds_vec[9] = getChildObjects("TypeEncoding");
-	kinds_vec[10] = getChildObjects("TypeKind");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::Object>::iterator i = kinds_vec[k].begin(); i != kinds_vec[k].end(); ++i)
-		{
-			PredefinedType elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<PredefinedType> res;
+  const int len = 11;
+  std::set<BON::Object> kinds_vec[ len];
+  kinds_vec[0] = getChildObjects("Boolean");
+  kinds_vec[1] = getChildObjects("Byte");
+  kinds_vec[2] = getChildObjects("GenericObject");
+  kinds_vec[3] = getChildObjects("GenericValue");
+  kinds_vec[4] = getChildObjects("GenericValueObject");
+  kinds_vec[5] = getChildObjects("LongInteger");
+  kinds_vec[6] = getChildObjects("FloatNumber");
+  kinds_vec[7] = getChildObjects("ShortInteger");
+  kinds_vec[8] = getChildObjects("String");
+  kinds_vec[9] = getChildObjects("TypeEncoding");
+  kinds_vec[10] = getChildObjects("TypeKind");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::Object>::iterator i = kinds_vec[k].begin(); i != kinds_vec[k].end(); ++i)
+    {
+      PredefinedType elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
 //*******************************************************************
-// // getter for kind "RealNumber"
+// // getter for kind "FloatNumber"
 //*******************************************************************
-std::set<RealNumber> PredefinedTypesImpl::getRealNumber()
+std::set<FloatNumber> PredefinedTypesImpl::getRealNumber()
 {
-	std::set<RealNumber> res;
-	std::set<BON::Object> kinds = getChildObjects("RealNumber");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		RealNumber elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<FloatNumber> res;
+  std::set<BON::Object> kinds = getChildObjects("FloatNumber");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    FloatNumber elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -270,15 +271,15 @@ std::set<RealNumber> PredefinedTypesImpl::getRealNumber()
 //*******************************************************************
 std::set<ShortInteger> PredefinedTypesImpl::getShortInteger()
 {
-	std::set<ShortInteger> res;
-	std::set<BON::Object> kinds = getChildObjects("ShortInteger");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		ShortInteger elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ShortInteger> res;
+  std::set<BON::Object> kinds = getChildObjects("ShortInteger");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    ShortInteger elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -287,15 +288,15 @@ std::set<ShortInteger> PredefinedTypesImpl::getShortInteger()
 //*******************************************************************
 std::set<String> PredefinedTypesImpl::getString()
 {
-	std::set<String> res;
-	std::set<BON::Object> kinds = getChildObjects("String");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		String elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<String> res;
+  std::set<BON::Object> kinds = getChildObjects("String");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    String elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -304,15 +305,15 @@ std::set<String> PredefinedTypesImpl::getString()
 //*******************************************************************
 std::set<TypeEncoding> PredefinedTypesImpl::getTypeEncoding()
 {
-	std::set<TypeEncoding> res;
-	std::set<BON::Object> kinds = getChildObjects("TypeEncoding");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		TypeEncoding elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<TypeEncoding> res;
+  std::set<BON::Object> kinds = getChildObjects("TypeEncoding");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    TypeEncoding elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -321,15 +322,15 @@ std::set<TypeEncoding> PredefinedTypesImpl::getTypeEncoding()
 //*******************************************************************
 std::set<TypeKind> PredefinedTypesImpl::getTypeKind()
 {
-	std::set<TypeKind> res;
-	std::set<BON::Object> kinds = getChildObjects("TypeKind");
-	for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
-	{
-		TypeKind elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<TypeKind> res;
+  std::set<BON::Object> kinds = getChildObjects("TypeKind");
+  for( std::set<BON::Object>::iterator i = kinds.begin(); i != kinds.end(); ++i)
+  {
+    TypeKind elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -338,7 +339,7 @@ std::set<TypeKind> PredefinedTypesImpl::getTypeKind()
 //*******************************************************************
 std::string PrefixableImpl::getPrefixTag()
 {
-	return FCOImpl::getAttribute("PrefixTag")->getStringValue();
+  return FCOImpl::getAttribute("PrefixTag")->getStringValue();
 }
 
 
@@ -347,16 +348,16 @@ std::string PrefixableImpl::getPrefixTag()
 //*******************************************************************
 std::set<ManagesComponent> ManageableImpl::getInManagesComponentLinks()
 {
-	std::set<ManagesComponent> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		ManagesComponent c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<ManagesComponent> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    ManagesComponent c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -365,17 +366,17 @@ std::set<ManagesComponent> ManageableImpl::getInManagesComponentLinks()
 //*******************************************************************
 std::multiset<ComponentFactory> ManageableImpl::getManagesComponentSrcs()
 {
-	std::multiset<ComponentFactory> res;
-	{
-		std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("ManagesComponent");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-		{
-			ComponentFactory dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<ComponentFactory> res;
+  {
+    std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("ManagesComponent");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+    {
+      ComponentFactory dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -384,7 +385,7 @@ std::multiset<ComponentFactory> ManageableImpl::getManagesComponentSrcs()
 //*******************************************************************
 std::string TaggableImpl::getSpecifyIdTag()
 {
-	return FCOImpl::getAttribute("SpecifyIdTag")->getStringValue();
+  return FCOImpl::getAttribute("SpecifyIdTag")->getStringValue();
 }
 
 
@@ -393,7 +394,7 @@ std::string TaggableImpl::getSpecifyIdTag()
 //*******************************************************************
 std::string TaggableImpl::getVersionTag()
 {
-	return FCOImpl::getAttribute("VersionTag")->getStringValue();
+  return FCOImpl::getAttribute("VersionTag")->getStringValue();
 }
 
 
@@ -402,15 +403,15 @@ std::string TaggableImpl::getVersionTag()
 //*******************************************************************
 std::set<Member> ExceptionImpl::getMember()
 {
-	std::set<Member> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Member");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Member elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Member> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Member");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Member elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -419,7 +420,7 @@ std::set<Member> ExceptionImpl::getMember()
 //*******************************************************************
 std::string FileImpl::getpath()
 {
-	return FCOImpl::getAttribute("path")->getStringValue();
+  return FCOImpl::getAttribute("path")->getStringValue();
 }
 
 
@@ -470,15 +471,15 @@ void FileImpl::initialize ()
 //*******************************************************************
 std::set<Aggregate> FileImpl::getAggregate()
 {
-	std::set<Aggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Aggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Aggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Aggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -487,15 +488,15 @@ std::set<Aggregate> FileImpl::getAggregate()
 //*******************************************************************
 std::set<Alias> FileImpl::getAlias()
 {
-	std::set<Alias> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Alias");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Alias elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Alias> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Alias");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Alias elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -504,15 +505,15 @@ std::set<Alias> FileImpl::getAlias()
 //*******************************************************************
 std::set<Boxed> FileImpl::getBoxed()
 {
-	std::set<Boxed> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Boxed");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Boxed elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Boxed> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Boxed");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Boxed elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -521,15 +522,15 @@ std::set<Boxed> FileImpl::getBoxed()
 //*******************************************************************
 std::set<Collection> FileImpl::getCollection()
 {
-	std::set<Collection> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Collection");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Collection elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Collection> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Collection");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Collection elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -538,15 +539,15 @@ std::set<Collection> FileImpl::getCollection()
 //*******************************************************************
 std::set<Component> FileImpl::getComponent()
 {
-	std::set<Component> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Component");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Component elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Component> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Component");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Component elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -555,15 +556,15 @@ std::set<Component> FileImpl::getComponent()
 //*******************************************************************
 std::set<ComponentFactory> FileImpl::getComponentFactory()
 {
-	std::set<ComponentFactory> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ComponentFactory");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ComponentFactory elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ComponentFactory> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ComponentFactory");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ComponentFactory elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -572,15 +573,15 @@ std::set<ComponentFactory> FileImpl::getComponentFactory()
 //*******************************************************************
 std::set<ComponentRef> FileImpl::getComponentRef()
 {
-	std::set<ComponentRef> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ComponentRef");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ComponentRef elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ComponentRef> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ComponentRef");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ComponentRef elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -589,15 +590,15 @@ std::set<ComponentRef> FileImpl::getComponentRef()
 //*******************************************************************
 std::set<Constant> FileImpl::getConstant()
 {
-	std::set<Constant> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Constant");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Constant elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Constant> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Constant");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Constant elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -606,15 +607,15 @@ std::set<Constant> FileImpl::getConstant()
 //*******************************************************************
 std::set<Enum> FileImpl::getEnum()
 {
-	std::set<Enum> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Enum");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Enum elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Enum> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Enum");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Enum elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -623,15 +624,15 @@ std::set<Enum> FileImpl::getEnum()
 //*******************************************************************
 std::set<Event> FileImpl::getEvent()
 {
-	std::set<Event> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Event");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Event elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Event> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Event");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Event elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -640,15 +641,15 @@ std::set<Event> FileImpl::getEvent()
 //*******************************************************************
 std::set<Exception> FileImpl::getException()
 {
-	std::set<Exception> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Exception");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Exception elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Exception> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Exception");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Exception elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -657,15 +658,15 @@ std::set<Exception> FileImpl::getException()
 //*******************************************************************
 std::set<FileRef> FileImpl::getFileRef()
 {
-	std::set<FileRef> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("FileRef");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		FileRef elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<FileRef> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("FileRef");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    FileRef elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -674,15 +675,15 @@ std::set<FileRef> FileImpl::getFileRef()
 //*******************************************************************
 std::set<ManagesComponent> FileImpl::getManagesComponent()
 {
-	std::set<ManagesComponent> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ManagesComponent");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ManagesComponent elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ManagesComponent> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ManagesComponent");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ManagesComponent elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -691,28 +692,28 @@ std::set<ManagesComponent> FileImpl::getManagesComponent()
 //*******************************************************************
 std::set<NamedType> FileImpl::getNamedType()
 {
-	std::set<NamedType> res;
-	const int len = 11;
-	std::set<BON::FCO> roles_vec[ len];
-	roles_vec[0] = getChildFCOsAs("Aggregate");
-	roles_vec[1] = getChildFCOsAs("Component");
-	roles_vec[2] = getChildFCOsAs("ComponentFactory");
-	roles_vec[3] = getChildFCOsAs("Enum");
-	roles_vec[4] = getChildFCOsAs("Event");
-	roles_vec[5] = getChildFCOsAs("Object");
-	roles_vec[6] = getChildFCOsAs("SwitchedAggregate");
-	roles_vec[7] = getChildFCOsAs("ValueObject");
-	roles_vec[8] = getChildFCOsAs("Alias");
-	roles_vec[9] = getChildFCOsAs("Boxed");
-	roles_vec[10] = getChildFCOsAs("Collection");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
-		{
-			NamedType elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<NamedType> res;
+  const int len = 11;
+  std::set<BON::FCO> roles_vec[ len];
+  roles_vec[0] = getChildFCOsAs("Aggregate");
+  roles_vec[1] = getChildFCOsAs("Component");
+  roles_vec[2] = getChildFCOsAs("ComponentFactory");
+  roles_vec[3] = getChildFCOsAs("Enum");
+  roles_vec[4] = getChildFCOsAs("Event");
+  roles_vec[5] = getChildFCOsAs("Object");
+  roles_vec[6] = getChildFCOsAs("SwitchedAggregate");
+  roles_vec[7] = getChildFCOsAs("ValueObject");
+  roles_vec[8] = getChildFCOsAs("Alias");
+  roles_vec[9] = getChildFCOsAs("Boxed");
+  roles_vec[10] = getChildFCOsAs("Collection");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
+    {
+      NamedType elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
@@ -721,15 +722,15 @@ std::set<NamedType> FileImpl::getNamedType()
 //*******************************************************************
 std::set<Object> FileImpl::getObject()
 {
-	std::set<Object> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Object");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Object elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Object> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Object");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Object elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -738,15 +739,15 @@ std::set<Object> FileImpl::getObject()
 //*******************************************************************
 std::set<Package> FileImpl::getPackage()
 {
-	std::set<Package> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Package");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Package elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Package> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Package");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Package elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -755,15 +756,15 @@ std::set<Package> FileImpl::getPackage()
 //*******************************************************************
 std::set<SwitchedAggregate> FileImpl::getSwitchedAggregate()
 {
-	std::set<SwitchedAggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		SwitchedAggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<SwitchedAggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    SwitchedAggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -772,15 +773,15 @@ std::set<SwitchedAggregate> FileImpl::getSwitchedAggregate()
 //*******************************************************************
 std::set<ValueObject> FileImpl::getValueObject()
 {
-	std::set<ValueObject> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ValueObject");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ValueObject elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ValueObject> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ValueObject");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ValueObject elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -789,15 +790,15 @@ std::set<ValueObject> FileImpl::getValueObject()
 //*******************************************************************
 std::set<InParameter> OperationBaseImpl::getInParameter()
 {
-	std::set<InParameter> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("InParameter");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		InParameter elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<InParameter> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("InParameter");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    InParameter elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -806,15 +807,15 @@ std::set<InParameter> OperationBaseImpl::getInParameter()
 //*******************************************************************
 std::set<Aggregate> PackageImpl::getAggregate()
 {
-	std::set<Aggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Aggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Aggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Aggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -823,15 +824,15 @@ std::set<Aggregate> PackageImpl::getAggregate()
 //*******************************************************************
 std::set<Alias> PackageImpl::getAlias()
 {
-	std::set<Alias> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Alias");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Alias elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Alias> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Alias");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Alias elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -840,15 +841,15 @@ std::set<Alias> PackageImpl::getAlias()
 //*******************************************************************
 std::set<Boxed> PackageImpl::getBoxed()
 {
-	std::set<Boxed> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Boxed");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Boxed elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Boxed> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Boxed");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Boxed elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -857,15 +858,15 @@ std::set<Boxed> PackageImpl::getBoxed()
 //*******************************************************************
 std::set<Collection> PackageImpl::getCollection()
 {
-	std::set<Collection> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Collection");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Collection elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Collection> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Collection");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Collection elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -874,15 +875,15 @@ std::set<Collection> PackageImpl::getCollection()
 //*******************************************************************
 std::set<Component> PackageImpl::getComponent()
 {
-	std::set<Component> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Component");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Component elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Component> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Component");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Component elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -891,15 +892,15 @@ std::set<Component> PackageImpl::getComponent()
 //*******************************************************************
 std::set<ComponentFactory> PackageImpl::getComponentFactory()
 {
-	std::set<ComponentFactory> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ComponentFactory");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ComponentFactory elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ComponentFactory> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ComponentFactory");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ComponentFactory elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -908,15 +909,15 @@ std::set<ComponentFactory> PackageImpl::getComponentFactory()
 //*******************************************************************
 std::set<ComponentRef> PackageImpl::getComponentRef()
 {
-	std::set<ComponentRef> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ComponentRef");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ComponentRef elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ComponentRef> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ComponentRef");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ComponentRef elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -925,15 +926,15 @@ std::set<ComponentRef> PackageImpl::getComponentRef()
 //*******************************************************************
 std::set<Constant> PackageImpl::getConstant()
 {
-	std::set<Constant> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Constant");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Constant elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Constant> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Constant");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Constant elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -942,15 +943,15 @@ std::set<Constant> PackageImpl::getConstant()
 //*******************************************************************
 std::set<Enum> PackageImpl::getEnum()
 {
-	std::set<Enum> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Enum");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Enum elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Enum> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Enum");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Enum elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -959,15 +960,15 @@ std::set<Enum> PackageImpl::getEnum()
 //*******************************************************************
 std::set<Event> PackageImpl::getEvent()
 {
-	std::set<Event> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Event");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Event elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Event> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Event");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Event elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -976,15 +977,15 @@ std::set<Event> PackageImpl::getEvent()
 //*******************************************************************
 std::set<Exception> PackageImpl::getException()
 {
-	std::set<Exception> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Exception");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Exception elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Exception> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Exception");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Exception elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -993,15 +994,15 @@ std::set<Exception> PackageImpl::getException()
 //*******************************************************************
 std::set<ManagesComponent> PackageImpl::getManagesComponent()
 {
-	std::set<ManagesComponent> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ManagesComponent");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ManagesComponent elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ManagesComponent> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ManagesComponent");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ManagesComponent elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1010,28 +1011,28 @@ std::set<ManagesComponent> PackageImpl::getManagesComponent()
 //*******************************************************************
 std::set<NamedType> PackageImpl::getNamedType()
 {
-	std::set<NamedType> res;
-	const int len = 11;
-	std::set<BON::FCO> roles_vec[ len];
-	roles_vec[0] = getChildFCOsAs("Aggregate");
-	roles_vec[1] = getChildFCOsAs("Component");
-	roles_vec[2] = getChildFCOsAs("ComponentFactory");
-	roles_vec[3] = getChildFCOsAs("Enum");
-	roles_vec[4] = getChildFCOsAs("Event");
-	roles_vec[5] = getChildFCOsAs("Object");
-	roles_vec[6] = getChildFCOsAs("SwitchedAggregate");
-	roles_vec[7] = getChildFCOsAs("ValueObject");
-	roles_vec[8] = getChildFCOsAs("Alias");
-	roles_vec[9] = getChildFCOsAs("Boxed");
-	roles_vec[10] = getChildFCOsAs("Collection");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
-		{
-			NamedType elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<NamedType> res;
+  const int len = 11;
+  std::set<BON::FCO> roles_vec[ len];
+  roles_vec[0] = getChildFCOsAs("Aggregate");
+  roles_vec[1] = getChildFCOsAs("Component");
+  roles_vec[2] = getChildFCOsAs("ComponentFactory");
+  roles_vec[3] = getChildFCOsAs("Enum");
+  roles_vec[4] = getChildFCOsAs("Event");
+  roles_vec[5] = getChildFCOsAs("Object");
+  roles_vec[6] = getChildFCOsAs("SwitchedAggregate");
+  roles_vec[7] = getChildFCOsAs("ValueObject");
+  roles_vec[8] = getChildFCOsAs("Alias");
+  roles_vec[9] = getChildFCOsAs("Boxed");
+  roles_vec[10] = getChildFCOsAs("Collection");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
+    {
+      NamedType elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
@@ -1040,15 +1041,15 @@ std::set<NamedType> PackageImpl::getNamedType()
 //*******************************************************************
 std::set<Object> PackageImpl::getObject()
 {
-	std::set<Object> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Object");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Object elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Object> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Object");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Object elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1057,15 +1058,15 @@ std::set<Object> PackageImpl::getObject()
 //*******************************************************************
 std::set<Package> PackageImpl::getPackage()
 {
-	std::set<Package> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Package");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Package elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Package> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Package");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Package elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1074,15 +1075,15 @@ std::set<Package> PackageImpl::getPackage()
 //*******************************************************************
 std::set<SwitchedAggregate> PackageImpl::getSwitchedAggregate()
 {
-	std::set<SwitchedAggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		SwitchedAggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<SwitchedAggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    SwitchedAggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1091,15 +1092,15 @@ std::set<SwitchedAggregate> PackageImpl::getSwitchedAggregate()
 //*******************************************************************
 std::set<ValueObject> PackageImpl::getValueObject()
 {
-	std::set<ValueObject> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ValueObject");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ValueObject elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ValueObject> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ValueObject");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ValueObject elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1108,15 +1109,15 @@ std::set<ValueObject> PackageImpl::getValueObject()
 //*******************************************************************
 std::set<AttributeMember> ReadonlyAttributeImpl::getAttributeMember()
 {
-	std::set<AttributeMember> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("AttributeMember");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		AttributeMember elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<AttributeMember> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("AttributeMember");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    AttributeMember elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1125,15 +1126,15 @@ std::set<AttributeMember> ReadonlyAttributeImpl::getAttributeMember()
 //*******************************************************************
 std::set<GetException> ReadonlyAttributeImpl::getGetException()
 {
-	std::set<GetException> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("GetException");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		GetException elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<GetException> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("GetException");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    GetException elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1142,8 +1143,8 @@ std::set<GetException> ReadonlyAttributeImpl::getGetException()
 //*******************************************************************
 Component ComponentRefImpl::getComponent()
 {
-	BON::FCO r = getReferred();
-	return Component(r);
+  BON::FCO r = getReferred();
+  return Component(r);
 }
 
 
@@ -1152,7 +1153,7 @@ Component ComponentRefImpl::getComponent()
 //*******************************************************************
 std::string ConstantImpl::getvalue()
 {
-	return FCOImpl::getAttribute("value")->getStringValue();
+  return FCOImpl::getAttribute("value")->getStringValue();
 }
 
 
@@ -1161,8 +1162,8 @@ std::string ConstantImpl::getvalue()
 //*******************************************************************
 ConstantType ConstantImpl::getConstantType()
 {
-	BON::FCO r = getReferred();
-	return ConstantType(r);
+  BON::FCO r = getReferred();
+  return ConstantType(r);
 }
 
 
@@ -1171,15 +1172,15 @@ ConstantType ConstantImpl::getConstantType()
 //*******************************************************************
 std::set<SetException> AttributeImpl::getSetException()
 {
-	std::set<SetException> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("SetException");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		SetException elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<SetException> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("SetException");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    SetException elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1188,15 +1189,15 @@ std::set<SetException> AttributeImpl::getSetException()
 //*******************************************************************
 std::set<ExceptionRef> HasExceptionsImpl::getExceptionRef()
 {
-	std::set<ExceptionRef> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ExceptionRef");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ExceptionRef elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ExceptionRef> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ExceptionRef");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ExceptionRef elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1205,15 +1206,15 @@ std::set<ExceptionRef> HasExceptionsImpl::getExceptionRef()
 //*******************************************************************
 std::set<Attribute> InheritableImpl::getAttribute()
 {
-	std::set<Attribute> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Attribute");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Attribute elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Attribute> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Attribute");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Attribute elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1222,15 +1223,15 @@ std::set<Attribute> InheritableImpl::getAttribute()
 //*******************************************************************
 std::set<Inherits> InheritableImpl::getInherits()
 {
-	std::set<Inherits> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Inherits");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Inherits elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Inherits> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Inherits");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Inherits elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1239,15 +1240,15 @@ std::set<Inherits> InheritableImpl::getInherits()
 //*******************************************************************
 std::set<ReadonlyAttribute> InheritableImpl::getReadonlyAttribute()
 {
-	std::set<ReadonlyAttribute> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ReadonlyAttribute");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ReadonlyAttribute elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ReadonlyAttribute> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ReadonlyAttribute");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ReadonlyAttribute elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1256,19 +1257,19 @@ std::set<ReadonlyAttribute> InheritableImpl::getReadonlyAttribute()
 //*******************************************************************
 std::set<ReadonlyAttribute> InheritableImpl::getReadonlyAttribute(int dummy)
 {
-	std::set<ReadonlyAttribute> res;
-	const int len = 2;
-	std::set<BON::FCO> roles_vec[ len];
-	roles_vec[0] = getChildFCOsAs("Attribute");
-	roles_vec[1] = getChildFCOsAs("ReadonlyAttribute");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
-		{
-			ReadonlyAttribute elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<ReadonlyAttribute> res;
+  const int len = 2;
+  std::set<BON::FCO> roles_vec[ len];
+  roles_vec[0] = getChildFCOsAs("Attribute");
+  roles_vec[1] = getChildFCOsAs("ReadonlyAttribute");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
+    {
+      ReadonlyAttribute elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
@@ -1277,8 +1278,8 @@ std::set<ReadonlyAttribute> InheritableImpl::getReadonlyAttribute(int dummy)
 //*******************************************************************
 MemberType BoxedImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -1287,8 +1288,8 @@ MemberType BoxedImpl::getMemberType()
 //*******************************************************************
 Event InEventPortImpl::getEvent()
 {
-	BON::FCO r = getReferred();
-	return Event(r);
+  BON::FCO r = getReferred();
+  return Event(r);
 }
 
 
@@ -1297,7 +1298,7 @@ Event InEventPortImpl::getEvent()
 //*******************************************************************
 bool OutEventPortImpl::issingle_destination()
 {
-	return FCOImpl::getAttribute("single_destination")->getBooleanValue();
+  return FCOImpl::getAttribute("single_destination")->getBooleanValue();
 }
 
 
@@ -1306,8 +1307,8 @@ bool OutEventPortImpl::issingle_destination()
 //*******************************************************************
 Event OutEventPortImpl::getEvent()
 {
-	BON::FCO r = getReferred();
-	return Event(r);
+  BON::FCO r = getReferred();
+  return Event(r);
 }
 
 
@@ -1316,8 +1317,8 @@ Event OutEventPortImpl::getEvent()
 //*******************************************************************
 Provideable ProvidedRequestPortImpl::getProvideable()
 {
-	BON::FCO r = getReferred();
-	return Provideable(r);
+  BON::FCO r = getReferred();
+  return Provideable(r);
 }
 
 
@@ -1326,7 +1327,7 @@ Provideable ProvidedRequestPortImpl::getProvideable()
 //*******************************************************************
 bool RequiredRequestPortImpl::ismultiple_connections()
 {
-	return FCOImpl::getAttribute("multiple_connections")->getBooleanValue();
+  return FCOImpl::getAttribute("multiple_connections")->getBooleanValue();
 }
 
 
@@ -1335,8 +1336,8 @@ bool RequiredRequestPortImpl::ismultiple_connections()
 //*******************************************************************
 Provideable RequiredRequestPortImpl::getProvideable()
 {
-	BON::FCO r = getReferred();
-	return Provideable(r);
+  BON::FCO r = getReferred();
+  return Provideable(r);
 }
 
 
@@ -1345,15 +1346,15 @@ Provideable RequiredRequestPortImpl::getProvideable()
 //*******************************************************************
 std::set<Member> AggregateImpl::getMember()
 {
-	std::set<Member> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Member");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Member elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Member> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Member");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Member elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1362,15 +1363,15 @@ std::set<Member> AggregateImpl::getMember()
 //*******************************************************************
 std::set<EnumValue> EnumImpl::getEnumValue()
 {
-	std::set<EnumValue> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("EnumValue");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		EnumValue elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<EnumValue> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("EnumValue");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    EnumValue elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1379,15 +1380,15 @@ std::set<EnumValue> EnumImpl::getEnumValue()
 //*******************************************************************
 std::set<Aggregate> HasOperationsImpl::getAggregate()
 {
-	std::set<Aggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Aggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Aggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Aggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Aggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1396,15 +1397,15 @@ std::set<Aggregate> HasOperationsImpl::getAggregate()
 //*******************************************************************
 std::set<Alias> HasOperationsImpl::getAlias()
 {
-	std::set<Alias> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Alias");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Alias elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Alias> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Alias");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Alias elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1413,15 +1414,15 @@ std::set<Alias> HasOperationsImpl::getAlias()
 //*******************************************************************
 std::set<Collection> HasOperationsImpl::getCollection()
 {
-	std::set<Collection> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Collection");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Collection elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Collection> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Collection");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Collection elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1430,15 +1431,15 @@ std::set<Collection> HasOperationsImpl::getCollection()
 //*******************************************************************
 std::set<Constant> HasOperationsImpl::getConstant()
 {
-	std::set<Constant> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Constant");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Constant elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Constant> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Constant");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Constant elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1447,15 +1448,15 @@ std::set<Constant> HasOperationsImpl::getConstant()
 //*******************************************************************
 std::set<Enum> HasOperationsImpl::getEnum()
 {
-	std::set<Enum> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Enum");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Enum elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Enum> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Enum");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Enum elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1464,15 +1465,15 @@ std::set<Enum> HasOperationsImpl::getEnum()
 //*******************************************************************
 std::set<Exception> HasOperationsImpl::getException()
 {
-	std::set<Exception> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Exception");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Exception elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Exception> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Exception");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Exception elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1481,22 +1482,22 @@ std::set<Exception> HasOperationsImpl::getException()
 //*******************************************************************
 std::set<NoInheritable> HasOperationsImpl::getNoInheritable()
 {
-	std::set<NoInheritable> res;
-	const int len = 5;
-	std::set<BON::FCO> roles_vec[ len];
-	roles_vec[0] = getChildFCOsAs("Aggregate");
-	roles_vec[1] = getChildFCOsAs("Enum");
-	roles_vec[2] = getChildFCOsAs("SwitchedAggregate");
-	roles_vec[3] = getChildFCOsAs("Alias");
-	roles_vec[4] = getChildFCOsAs("Collection");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
-		{
-			NoInheritable elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<NoInheritable> res;
+  const int len = 5;
+  std::set<BON::FCO> roles_vec[ len];
+  roles_vec[0] = getChildFCOsAs("Aggregate");
+  roles_vec[1] = getChildFCOsAs("Enum");
+  roles_vec[2] = getChildFCOsAs("SwitchedAggregate");
+  roles_vec[3] = getChildFCOsAs("Alias");
+  roles_vec[4] = getChildFCOsAs("Collection");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
+    {
+      NoInheritable elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
@@ -1505,15 +1506,15 @@ std::set<NoInheritable> HasOperationsImpl::getNoInheritable()
 //*******************************************************************
 std::set<OnewayOperation> HasOperationsImpl::getOnewayOperation()
 {
-	std::set<OnewayOperation> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("OnewayOperation");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		OnewayOperation elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<OnewayOperation> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("OnewayOperation");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    OnewayOperation elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1522,15 +1523,15 @@ std::set<OnewayOperation> HasOperationsImpl::getOnewayOperation()
 //*******************************************************************
 std::set<SwitchedAggregate> HasOperationsImpl::getSwitchedAggregate()
 {
-	std::set<SwitchedAggregate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		SwitchedAggregate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<SwitchedAggregate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("SwitchedAggregate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    SwitchedAggregate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1539,15 +1540,15 @@ std::set<SwitchedAggregate> HasOperationsImpl::getSwitchedAggregate()
 //*******************************************************************
 std::set<TwowayOperation> HasOperationsImpl::getTwowayOperation()
 {
-	std::set<TwowayOperation> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("TwowayOperation");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		TwowayOperation elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<TwowayOperation> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("TwowayOperation");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    TwowayOperation elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1556,15 +1557,15 @@ std::set<TwowayOperation> HasOperationsImpl::getTwowayOperation()
 //*******************************************************************
 std::set<Supports> SupportsInterfacesImpl::getSupports()
 {
-	std::set<Supports> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Supports");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Supports elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Supports> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Supports");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Supports elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1573,15 +1574,15 @@ std::set<Supports> SupportsInterfacesImpl::getSupports()
 //*******************************************************************
 std::set<Discriminator> SwitchedAggregateImpl::getDiscriminator()
 {
-	std::set<Discriminator> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Discriminator");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Discriminator elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Discriminator> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Discriminator");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Discriminator elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1590,15 +1591,15 @@ std::set<Discriminator> SwitchedAggregateImpl::getDiscriminator()
 //*******************************************************************
 std::set<Label> SwitchedAggregateImpl::getLabel()
 {
-	std::set<Label> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Label");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Label elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Label> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Label");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Label elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1607,15 +1608,15 @@ std::set<Label> SwitchedAggregateImpl::getLabel()
 //*******************************************************************
 std::set<LabelConnection> SwitchedAggregateImpl::getLabelConnection()
 {
-	std::set<LabelConnection> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("LabelConnection");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		LabelConnection elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<LabelConnection> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("LabelConnection");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    LabelConnection elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1624,15 +1625,15 @@ std::set<LabelConnection> SwitchedAggregateImpl::getLabelConnection()
 //*******************************************************************
 std::set<Member> SwitchedAggregateImpl::getMember()
 {
-	std::set<Member> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Member");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Member elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Member> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Member");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Member elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1641,15 +1642,15 @@ std::set<Member> SwitchedAggregateImpl::getMember()
 //*******************************************************************
 std::set<InoutParameter> TwowayOperationImpl::getInoutParameter()
 {
-	std::set<InoutParameter> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("InoutParameter");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		InoutParameter elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<InoutParameter> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("InoutParameter");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    InoutParameter elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1658,15 +1659,15 @@ std::set<InoutParameter> TwowayOperationImpl::getInoutParameter()
 //*******************************************************************
 std::set<OutParameter> TwowayOperationImpl::getOutParameter()
 {
-	std::set<OutParameter> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("OutParameter");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		OutParameter elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<OutParameter> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("OutParameter");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    OutParameter elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1675,15 +1676,15 @@ std::set<OutParameter> TwowayOperationImpl::getOutParameter()
 //*******************************************************************
 std::set<ReturnType> TwowayOperationImpl::getReturnType()
 {
-	std::set<ReturnType> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ReturnType");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ReturnType elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ReturnType> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ReturnType");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ReturnType elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1692,8 +1693,8 @@ std::set<ReturnType> TwowayOperationImpl::getReturnType()
 //*******************************************************************
 MemberType AliasImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -1702,8 +1703,8 @@ MemberType AliasImpl::getMemberType()
 //*******************************************************************
 MemberType CollectionImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -1712,15 +1713,15 @@ MemberType CollectionImpl::getMemberType()
 //*******************************************************************
 std::set<InEventPort> ComponentImpl::getInEventPort()
 {
-	std::set<InEventPort> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("InEventPort");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		InEventPort elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<InEventPort> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("InEventPort");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    InEventPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1729,15 +1730,15 @@ std::set<InEventPort> ComponentImpl::getInEventPort()
 //*******************************************************************
 std::set<OutEventPort> ComponentImpl::getOutEventPort()
 {
-	std::set<OutEventPort> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("OutEventPort");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		OutEventPort elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<OutEventPort> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("OutEventPort");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    OutEventPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1746,21 +1747,21 @@ std::set<OutEventPort> ComponentImpl::getOutEventPort()
 //*******************************************************************
 std::set<Port> ComponentImpl::getPort()
 {
-	std::set<Port> res;
-	const int len = 4;
-	std::set<BON::FCO> roles_vec[ len];
-	roles_vec[0] = getChildFCOsAs("InEventPort");
-	roles_vec[1] = getChildFCOsAs("OutEventPort");
-	roles_vec[2] = getChildFCOsAs("ProvidedRequestPort");
-	roles_vec[3] = getChildFCOsAs("RequiredRequestPort");
-	for( int k = 0; k < len; ++k)
-		for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
-		{
-			Port elem(*i);
-			ASSERT(elem);
-			res.insert(elem);
-		}
-	return res;
+  std::set<Port> res;
+  const int len = 4;
+  std::set<BON::FCO> roles_vec[ len];
+  roles_vec[0] = getChildFCOsAs("InEventPort");
+  roles_vec[1] = getChildFCOsAs("OutEventPort");
+  roles_vec[2] = getChildFCOsAs("ProvidedRequestPort");
+  roles_vec[3] = getChildFCOsAs("RequiredRequestPort");
+  for( int k = 0; k < len; ++k)
+    for( std::set<BON::FCO>::iterator i = roles_vec[k].begin(); i != roles_vec[k].end(); ++i)
+    {
+      Port elem(*i);
+      ASSERT(elem);
+      res.insert(elem);
+    }
+  return res;
 }
 
 
@@ -1769,15 +1770,15 @@ std::set<Port> ComponentImpl::getPort()
 //*******************************************************************
 std::set<ProvidedRequestPort> ComponentImpl::getProvidedRequestPort()
 {
-	std::set<ProvidedRequestPort> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("ProvidedRequestPort");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		ProvidedRequestPort elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<ProvidedRequestPort> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("ProvidedRequestPort");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    ProvidedRequestPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1786,15 +1787,15 @@ std::set<ProvidedRequestPort> ComponentImpl::getProvidedRequestPort()
 //*******************************************************************
 std::set<RequiredRequestPort> ComponentImpl::getRequiredRequestPort()
 {
-	std::set<RequiredRequestPort> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("RequiredRequestPort");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		RequiredRequestPort elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<RequiredRequestPort> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("RequiredRequestPort");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    RequiredRequestPort elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 //*******************************************************************
@@ -1843,17 +1844,17 @@ void ComponentImpl::initialize ()
 //*******************************************************************
 std::multiset<Manageable> ComponentFactoryImpl::getManagesComponentDsts()
 {
-	std::multiset<Manageable> res;
-	{
-		std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("ManagesComponent");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
-		{
-			Manageable dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<Manageable> res;
+  {
+    std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("ManagesComponent");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
+    {
+      Manageable dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -1862,16 +1863,16 @@ std::multiset<Manageable> ComponentFactoryImpl::getManagesComponentDsts()
 //*******************************************************************
 std::set<ManagesComponent> ComponentFactoryImpl::getOutManagesComponentLinks()
 {
-	std::set<ManagesComponent> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		ManagesComponent c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<ManagesComponent> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    ManagesComponent c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -1880,15 +1881,15 @@ std::set<ManagesComponent> ComponentFactoryImpl::getOutManagesComponentLinks()
 //*******************************************************************
 std::set<FactoryOperation> ComponentFactoryImpl::getFactoryOperation()
 {
-	std::set<FactoryOperation> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("FactoryOperation");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		FactoryOperation elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<FactoryOperation> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("FactoryOperation");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    FactoryOperation elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1897,15 +1898,15 @@ std::set<FactoryOperation> ComponentFactoryImpl::getFactoryOperation()
 //*******************************************************************
 std::set<LookupKey> ComponentFactoryImpl::getLookupKey()
 {
-	std::set<LookupKey> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("LookupKey");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		LookupKey elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<LookupKey> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("LookupKey");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    LookupKey elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1914,15 +1915,15 @@ std::set<LookupKey> ComponentFactoryImpl::getLookupKey()
 //*******************************************************************
 std::set<LookupOperation> ComponentFactoryImpl::getLookupOperation()
 {
-	std::set<LookupOperation> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("LookupOperation");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		LookupOperation elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<LookupOperation> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("LookupOperation");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    LookupOperation elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1931,7 +1932,7 @@ std::set<LookupOperation> ComponentFactoryImpl::getLookupOperation()
 //*******************************************************************
 bool ObjectImpl::isabstract()
 {
-	return FCOImpl::getAttribute("abstract")->getBooleanValue();
+  return FCOImpl::getAttribute("abstract")->getBooleanValue();
 }
 
 
@@ -1940,7 +1941,7 @@ bool ObjectImpl::isabstract()
 //*******************************************************************
 bool ObjectImpl::islocal()
 {
-	return FCOImpl::getAttribute("local")->getBooleanValue();
+  return FCOImpl::getAttribute("local")->getBooleanValue();
 }
 
 
@@ -1949,7 +1950,7 @@ bool ObjectImpl::islocal()
 //*******************************************************************
 bool ObjectByValueImpl::isabstract()
 {
-	return FCOImpl::getAttribute("abstract")->getBooleanValue();
+  return FCOImpl::getAttribute("abstract")->getBooleanValue();
 }
 
 
@@ -1958,15 +1959,15 @@ bool ObjectByValueImpl::isabstract()
 //*******************************************************************
 std::set<FactoryOperation> ObjectByValueImpl::getFactoryOperation()
 {
-	std::set<FactoryOperation> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("FactoryOperation");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		FactoryOperation elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<FactoryOperation> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("FactoryOperation");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    FactoryOperation elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1975,15 +1976,15 @@ std::set<FactoryOperation> ObjectByValueImpl::getFactoryOperation()
 //*******************************************************************
 std::set<MakeMemberPrivate> ObjectByValueImpl::getMakeMemberPrivate()
 {
-	std::set<MakeMemberPrivate> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("MakeMemberPrivate");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		MakeMemberPrivate elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<MakeMemberPrivate> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("MakeMemberPrivate");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    MakeMemberPrivate elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -1992,15 +1993,15 @@ std::set<MakeMemberPrivate> ObjectByValueImpl::getMakeMemberPrivate()
 //*******************************************************************
 std::set<Member> ObjectByValueImpl::getMember()
 {
-	std::set<Member> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("Member");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		Member elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<Member> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("Member");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    Member elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -2009,15 +2010,15 @@ std::set<Member> ObjectByValueImpl::getMember()
 //*******************************************************************
 std::set<PrivateFlag> ObjectByValueImpl::getPrivateFlag()
 {
-	std::set<PrivateFlag> res;
-	std::set<BON::FCO> roles = getChildFCOsAs("PrivateFlag");
-	for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
-	{
-		PrivateFlag elem(*i);
-		ASSERT(elem);
-		res.insert(elem);
-	}
-	return res;
+  std::set<PrivateFlag> res;
+  std::set<BON::FCO> roles = getChildFCOsAs("PrivateFlag");
+  for( std::set<BON::FCO>::iterator i = roles.begin(); i != roles.end(); ++i)
+  {
+    PrivateFlag elem(*i);
+    ASSERT(elem);
+    res.insert(elem);
+  }
+  return res;
 }
 
 
@@ -2026,16 +2027,16 @@ std::set<PrivateFlag> ObjectByValueImpl::getPrivateFlag()
 //*******************************************************************
 std::set<LabelConnection> LabelImpl::getInLabelConnectionLinks()
 {
-	std::set<LabelConnection> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		LabelConnection c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<LabelConnection> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    LabelConnection c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -2044,17 +2045,17 @@ std::set<LabelConnection> LabelImpl::getInLabelConnectionLinks()
 //*******************************************************************
 std::multiset<Member> LabelImpl::getLabelConnectionSrcs()
 {
-	std::multiset<Member> res;
-	{
-		std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("LabelConnection");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-		{
-			Member dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<Member> res;
+  {
+    std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("LabelConnection");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+    {
+      Member dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -2063,16 +2064,16 @@ std::multiset<Member> LabelImpl::getLabelConnectionSrcs()
 //*******************************************************************
 std::set<MakeMemberPrivate> PrivateFlagImpl::getInMakeMemberPrivateLinks()
 {
-	std::set<MakeMemberPrivate> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		MakeMemberPrivate c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<MakeMemberPrivate> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getInConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    MakeMemberPrivate c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -2081,17 +2082,17 @@ std::set<MakeMemberPrivate> PrivateFlagImpl::getInMakeMemberPrivateLinks()
 //*******************************************************************
 std::multiset<Member> PrivateFlagImpl::getMakeMemberPrivateSrcs()
 {
-	std::multiset<Member> res;
-	{
-		std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("MakeMemberPrivate");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
-		{
-			Member dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<Member> res;
+  {
+    std::multiset<BON::ConnectionEnd> in_ends = getInConnEnds("MakeMemberPrivate");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = in_ends.begin() ; cit != in_ends.end() ; ++cit )
+    {
+      Member dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -2100,13 +2101,13 @@ std::multiset<Member> PrivateFlagImpl::getMakeMemberPrivateSrcs()
 //*******************************************************************
 Label LabelConnectionImpl::getDst()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getDst();
-	Label sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getDst();
+  Label sp( ce);
+  if ( sp)
+    return sp;
 
-	Label empty;
-	return empty;
+  Label empty;
+  return empty;
 }
 
 
@@ -2115,13 +2116,13 @@ Label LabelConnectionImpl::getDst()
 //*******************************************************************
 Member LabelConnectionImpl::getSrc()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
-	Member sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getSrc();
+  Member sp( ce);
+  if ( sp)
+    return sp;
 
-	Member empty;
-	return empty;
+  Member empty;
+  return empty;
 }
 
 
@@ -2130,13 +2131,13 @@ Member LabelConnectionImpl::getSrc()
 //*******************************************************************
 PrivateFlag MakeMemberPrivateImpl::getDst()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getDst();
-	PrivateFlag sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getDst();
+  PrivateFlag sp( ce);
+  if ( sp)
+    return sp;
 
-	PrivateFlag empty;
-	return empty;
+  PrivateFlag empty;
+  return empty;
 }
 
 
@@ -2145,13 +2146,13 @@ PrivateFlag MakeMemberPrivateImpl::getDst()
 //*******************************************************************
 Member MakeMemberPrivateImpl::getSrc()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
-	Member sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getSrc();
+  Member sp( ce);
+  if ( sp)
+    return sp;
 
-	Member empty;
-	return empty;
+  Member empty;
+  return empty;
 }
 
 
@@ -2160,13 +2161,13 @@ Member MakeMemberPrivateImpl::getSrc()
 //*******************************************************************
 Manageable ManagesComponentImpl::getDst()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getDst();
-	Manageable sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getDst();
+  Manageable sp( ce);
+  if ( sp)
+    return sp;
 
-	Manageable empty;
-	return empty;
+  Manageable empty;
+  return empty;
 }
 
 
@@ -2175,13 +2176,13 @@ Manageable ManagesComponentImpl::getDst()
 //*******************************************************************
 ComponentFactory ManagesComponentImpl::getSrc()
 {
-	BON::ConnectionEnd ce = ConnectionImpl::getSrc();
-	ComponentFactory sp( ce);
-	if ( sp)
-		return sp;
+  BON::ConnectionEnd ce = ConnectionImpl::getSrc();
+  ComponentFactory sp( ce);
+  if ( sp)
+    return sp;
 
-	ComponentFactory empty;
-	return empty;
+  ComponentFactory empty;
+  return empty;
 }
 
 
@@ -2190,8 +2191,8 @@ ComponentFactory ManagesComponentImpl::getSrc()
 //*******************************************************************
 MemberType AttributeMemberImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2200,8 +2201,8 @@ MemberType AttributeMemberImpl::getMemberType()
 //*******************************************************************
 ConstantType DiscriminatorImpl::getConstantType()
 {
-	BON::FCO r = getReferred();
-	return ConstantType(r);
+  BON::FCO r = getReferred();
+  return ConstantType(r);
 }
 
 
@@ -2210,8 +2211,8 @@ ConstantType DiscriminatorImpl::getConstantType()
 //*******************************************************************
 Exception ExceptionRefImpl::getException()
 {
-	BON::FCO r = getReferred();
-	return Exception(r);
+  BON::FCO r = getReferred();
+  return Exception(r);
 }
 
 
@@ -2220,8 +2221,8 @@ Exception ExceptionRefImpl::getException()
 //*******************************************************************
 File FileRefImpl::getFile()
 {
-	BON::FCO r = getReferred();
-	return File(r);
+  BON::FCO r = getReferred();
+  return File(r);
 }
 
 
@@ -2230,8 +2231,8 @@ File FileRefImpl::getFile()
 //*******************************************************************
 Exception GetExceptionImpl::getException()
 {
-	BON::FCO r = getReferred();
-	return Exception(r);
+  BON::FCO r = getReferred();
+  return Exception(r);
 }
 
 
@@ -2240,8 +2241,8 @@ Exception GetExceptionImpl::getException()
 //*******************************************************************
 MemberType InParameterImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2250,8 +2251,8 @@ MemberType InParameterImpl::getMemberType()
 //*******************************************************************
 Inheritable InheritsImpl::getInheritable()
 {
-	BON::FCO r = getReferred();
-	return Inheritable(r);
+  BON::FCO r = getReferred();
+  return Inheritable(r);
 }
 
 
@@ -2260,8 +2261,8 @@ Inheritable InheritsImpl::getInheritable()
 //*******************************************************************
 MemberType InoutParameterImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2270,8 +2271,8 @@ MemberType InoutParameterImpl::getMemberType()
 //*******************************************************************
 ValueObject LookupKeyImpl::getValueObject()
 {
-	BON::FCO r = getReferred();
-	return ValueObject(r);
+  BON::FCO r = getReferred();
+  return ValueObject(r);
 }
 
 
@@ -2280,17 +2281,17 @@ ValueObject LookupKeyImpl::getValueObject()
 //*******************************************************************
 std::multiset<Label> MemberImpl::getLabelConnectionDsts()
 {
-	std::multiset<Label> res;
-	{
-		std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("LabelConnection");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
-		{
-			Label dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<Label> res;
+  {
+    std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("LabelConnection");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
+    {
+      Label dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -2299,17 +2300,17 @@ std::multiset<Label> MemberImpl::getLabelConnectionDsts()
 //*******************************************************************
 std::multiset<PrivateFlag> MemberImpl::getMakeMemberPrivateDsts()
 {
-	std::multiset<PrivateFlag> res;
-	{
-		std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("MakeMemberPrivate");
-		for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
-		{
-			PrivateFlag dst( *cit );
-			ASSERT(dst);
-			res.insert( dst);
-		}
-	}
-	return res;
+  std::multiset<PrivateFlag> res;
+  {
+    std::multiset<BON::ConnectionEnd> out_ends = getOutConnEnds("MakeMemberPrivate");
+    for ( std::multiset<BON::ConnectionEnd>::iterator cit = out_ends.begin() ; cit != out_ends.end() ; ++cit )
+    {
+      PrivateFlag dst( *cit );
+      ASSERT(dst);
+      res.insert( dst);
+    }
+  }
+  return res;
 }
 
 
@@ -2318,16 +2319,16 @@ std::multiset<PrivateFlag> MemberImpl::getMakeMemberPrivateDsts()
 //*******************************************************************
 std::set<LabelConnection> MemberImpl::getOutLabelConnectionLinks()
 {
-	std::set<LabelConnection> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		LabelConnection c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<LabelConnection> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    LabelConnection c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -2336,16 +2337,16 @@ std::set<LabelConnection> MemberImpl::getOutLabelConnectionLinks()
 //*******************************************************************
 std::set<MakeMemberPrivate> MemberImpl::getOutMakeMemberPrivateLinks()
 {
-	std::set<MakeMemberPrivate> result;
-	std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
-	std::set<BON::Connection>::iterator it = conns.begin();
-	for( ; it != conns.end(); ++it)
-	{
-		MakeMemberPrivate c( *it);
-		if (c)
-			result.insert( c);
-	}
-	return result;
+  std::set<MakeMemberPrivate> result;
+  std::set<BON::Connection> conns = ConnectionEndImpl::getOutConnLinks();
+  std::set<BON::Connection>::iterator it = conns.begin();
+  for( ; it != conns.end(); ++it)
+  {
+    MakeMemberPrivate c( *it);
+    if (c)
+      result.insert( c);
+  }
+  return result;
 }
 
 
@@ -2354,8 +2355,8 @@ std::set<MakeMemberPrivate> MemberImpl::getOutMakeMemberPrivateLinks()
 //*******************************************************************
 MemberType MemberImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2364,8 +2365,8 @@ MemberType MemberImpl::getMemberType()
 //*******************************************************************
 MemberType OutParameterImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2374,8 +2375,8 @@ MemberType OutParameterImpl::getMemberType()
 //*******************************************************************
 MemberType ReturnTypeImpl::getMemberType()
 {
-	BON::FCO r = getReferred();
-	return MemberType(r);
+  BON::FCO r = getReferred();
+  return MemberType(r);
 }
 
 
@@ -2384,8 +2385,8 @@ MemberType ReturnTypeImpl::getMemberType()
 //*******************************************************************
 Exception SetExceptionImpl::getException()
 {
-	BON::FCO r = getReferred();
-	return Exception(r);
+  BON::FCO r = getReferred();
+  return Exception(r);
 }
 
 
@@ -2394,8 +2395,8 @@ Exception SetExceptionImpl::getException()
 //*******************************************************************
 Object SupportsImpl::getObject()
 {
-	BON::FCO r = getReferred();
-	return Object(r);
+  BON::FCO r = getReferred();
+  return Object(r);
 }
 
 

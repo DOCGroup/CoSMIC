@@ -593,9 +593,14 @@ namespace PICML
         this->curr_->appendChild (this->createSimpleContent ("string",
                                                              property.DataValue()));
       }
-    else if (refName == "RealNumber")
+    else if (refName == "DoubleNumber")
       {
         this->curr_->appendChild (this->createSimpleContent ("double",
+                                                             property.DataValue()));
+      }
+    else if (refName == "FloatNumber")
+      {
+        this->curr_->appendChild (this->createSimpleContent ("float",
                                                              property.DataValue()));
       }
     else if (refName == "ShortInteger")
@@ -631,9 +636,14 @@ namespace PICML
         String str = PICML::String::Cast (ref);
         str.Accept (*this);
       }
-    else if (kindName == "RealNumber")
+    else if (kindName == "DoubleNumber")
       {
-        RealNumber real = PICML::RealNumber::Cast (ref);
+        DoubleNumber real = PICML::DoubleNumber::Cast (ref);
+        real.Accept (*this);
+      }
+    else if (kindName == "FloatNumber")
+      {
+        FloatNumber real = PICML::FloatNumber::Cast (ref);
         real.Accept (*this);
       }
     else if (kindName == "ShortInteger")
@@ -683,7 +693,7 @@ namespace PICML
     this->pop();
   }
 
-  void PathVisitor::Visit_RealNumber(const RealNumber& real)
+  void PathVisitor::Visit_DoubleNumber(const DoubleNumber& real)
   {
     this->push();
     DOMElement* type = this->doc_->createElement (XStr ("type"));
@@ -691,6 +701,17 @@ namespace PICML
     this->curr_ = type;
     this->curr_->appendChild (this->createSimpleContent ("kind",
                                                          "tk_double"));
+    this->pop();
+  }
+
+  void PathVisitor::Visit_FloatNumber(const FloatNumber& real)
+  {
+    this->push();
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                         "tk_float"));
     this->pop();
   }
 

@@ -118,10 +118,15 @@ private:
 
   void add_name_element (DOMElement *elem, const char *name);
   void add_predefined_types (void);
+
+  template <typename T>
+  void add_predefined_type (DOMElement * pdt_folder);
+
   void add_predefined_sequences (void);
-  void add_one_predefined_sequence (const char *type,
-                                    unsigned long &model_slot,
-                                    unsigned long pdt_slot);
+
+  template <typename T>
+  unsigned long add_one_predefined_sequence (unsigned long model_slot);
+
   DOMElement *add_file_element (DOMElement *parent,
                                 AST_Root *node,
                                 const char *filename,
@@ -140,7 +145,7 @@ private:
 //  void add_include_elements (UTL_Scope *container, DOMElement *parent);
   void add_include_elements (const char *filename,
                              DOMElement *file);
-                             
+
   void add_regnodes (UTL_Scope *container,
                      DOMElement *parent,
                      size_t slot,
@@ -264,9 +269,11 @@ private:
   unsigned long manages_relid_offset_;
   unsigned long import_relid_offset_;
   unsigned long n_basic_seqs_;
-  
+
   char *line_buf_;
   size_t line_buf_size_;
 };
+
+#include "adding_visitor_t.cpp"
 
 #endif /* IDL_TO_PICML_ADDING_VISITOR_H */

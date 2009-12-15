@@ -112,7 +112,7 @@ IDB_BITMAP_GENERICVALUE BITMAP                  "..\\paradigms\\icons\\genericva
 IDB_BITMAP_GENERICVALUEOBJECT BITMAP                  "..\\paradigms\\icons\\genericvalueobject.bmp"
 IDB_BITMAP_LONG         BITMAP                  "..\\paradigms\\icons\\long.bmp"
 IDB_BITMAP_OBJECTREF    BITMAP                  "..\\paradigms\\icons\\objectref.bmp"
-IDB_BITMAP_REALNUMBER   BITMAP                  "..\\paradigms\\icons\\realnumber.bmp"
+IDB_BITMAP_FLOATNUMBER  BITMAP                  "..\\paradigms\\icons\\FloatNumber.bmp"
 IDB_BITMAP_VALUEREF     BITMAP                  "..\\paradigms\\icons\\valueref.bmp"
 IDB_BITMAP_COMPONENTFACTORYREF BITMAP                  "..\\paradigms\\icons\\componentfactoryref.bmp"
 IDB_BITMAP_SWITCHEDAGGREGATEREF BITMAP                  "..\\paradigms\\icons\\switchedaggregateref.bmp"
@@ -136,6 +136,7 @@ IDB_BITMAP_DATATYPE     BITMAP                  "..\\paradigms\\icons\\DataType.
 IDB_BITMAP_COMPONENTASSEMBLY BITMAP                  "..\\paradigms\\icons\\componentassembly.bmp"
 IDB_BITMAP_COMPONENTASSEMBLYREF BITMAP                  "..\\paradigms\\icons\\componentassemblyref.bmp"
 IDB_BITMAP_OBJECT       BITMAP                  "..\\paradigms\\icons\\object.bmp"
+IDB_BITMAP_DOUBLENUMBER BITMAP                  "E:\\proj\\CoSMIC\\PIM\\PICML\\paradigms\\icons\\DoubleNumber.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //

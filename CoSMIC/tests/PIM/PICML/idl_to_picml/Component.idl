@@ -1,0 +1,29 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file       Component.idl
+ *
+ *  $Id$
+ *
+ *  @author     James H. Hill
+ */
+//=============================================================================
+
+#ifndef _PICML_COMPONENT_IDL_H_
+#define _PICML_COMPONENT_IDL_H_
+
+module Example
+{
+  eventtype StockInfo
+  {
+
+  };
+
+  component StockBroker
+  {
+    publishes StockInfo stock_info;
+  };
+};
+
+#endif

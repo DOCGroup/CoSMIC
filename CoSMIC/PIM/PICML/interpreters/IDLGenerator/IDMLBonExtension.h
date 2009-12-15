@@ -36,7 +36,8 @@ DECLARE_BONEXTENSION3( BON::Atom, PredefinedType, Provideable, GenericObjectImpl
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, GenericValueImpl, GenericValue );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, GenericValueObjectImpl, GenericValueObject );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, LongIntegerImpl, LongInteger );
-DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, RealNumberImpl, RealNumber );
+DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, FloatNumberImpl, FloatNumber );
+DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, DoubleNumberImpl, DoubleNumber );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, ShortIntegerImpl, ShortInteger );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, StringImpl, String );
 DECLARE_BONEXTENSION2( BON::Atom, PredefinedType, TypeEncodingImpl, TypeEncoding );
@@ -94,7 +95,7 @@ public:
   std::set<Orderable> depends_on_me;
   std::set<std::pair<Orderable, int> > fwd_decl_children;
   std::vector<Orderable> ordered_children;
-  
+
   bool fwd_declared_;
 };
 
@@ -105,13 +106,13 @@ class InterfaceDefinitionsImpl :
   virtual public BON::FolderImpl
 {
 public:
-	//
-	// kind and subfolder getters
-	virtual std::set<File>                  getFile();
+  //
+  // kind and subfolder getters
+  virtual std::set<File>                  getFile();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -122,24 +123,24 @@ class PredefinedTypesImpl :
   virtual public BON::FolderImpl
 {
 public:
-	//
-	// kind and subfolder getters
-	virtual std::set<Boolean>               getBoolean();
-	virtual std::set<Byte>                  getByte();
-	virtual std::set<GenericObject>         getGenericObject();
-	virtual std::set<GenericValue>          getGenericValue();
-	virtual std::set<GenericValueObject>    getGenericValueObject();
-	virtual std::set<LongInteger>           getLongInteger();
-	virtual std::set<PredefinedType>        getPredefinedType();
-	virtual std::set<RealNumber>            getRealNumber();
-	virtual std::set<ShortInteger>          getShortInteger();
-	virtual std::set<String>                getString();
-	virtual std::set<TypeEncoding>          getTypeEncoding();
-	virtual std::set<TypeKind>              getTypeKind();
+  //
+  // kind and subfolder getters
+  virtual std::set<Boolean>               getBoolean();
+  virtual std::set<Byte>                  getByte();
+  virtual std::set<GenericObject>         getGenericObject();
+  virtual std::set<GenericValue>          getGenericValue();
+  virtual std::set<GenericValueObject>    getGenericValueObject();
+  virtual std::set<LongInteger>           getLongInteger();
+  virtual std::set<PredefinedType>        getPredefinedType();
+  virtual std::set<FloatNumber>            getRealNumber();
+  virtual std::set<ShortInteger>          getShortInteger();
+  virtual std::set<String>                getString();
+  virtual std::set<TypeEncoding>          getTypeEncoding();
+  virtual std::set<TypeKind>              getTypeKind();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -150,13 +151,13 @@ class PrefixableImpl :
   virtual public BON::ModelImpl
 {
 public:
-	//
-	// attribute getters
-	virtual std::string getPrefixTag();
+  //
+  // attribute getters
+  virtual std::string getPrefixTag();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -164,13 +165,13 @@ public:
 //   C  L  A  S  S   ConstantTypeImpl
 //*******************************************************************
 class ConstantTypeImpl :
-  virtual public BON::FCOImpl 
+  virtual public BON::FCOImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -178,17 +179,17 @@ public:
 //   C  L  A  S  S   ManageableImpl
 //*******************************************************************
 class ManageableImpl :
-  virtual public BON::FCOImpl 
+  virtual public BON::FCOImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual std::set<ManagesComponent>      getInManagesComponentLinks();
-	virtual std::multiset<ComponentFactory> getManagesComponentSrcs();
+  //
+  // connectionEnd getters
+  virtual std::set<ManagesComponent>      getInManagesComponentLinks();
+  virtual std::multiset<ComponentFactory> getManagesComponentSrcs();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -196,13 +197,13 @@ public:
 //   C  L  A  S  S   MemberTypeImpl
 //*******************************************************************
 class MemberTypeImpl :
-  virtual public BON::FCOImpl 
+  virtual public BON::FCOImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -210,13 +211,13 @@ public:
 //   C  L  A  S  S   ProvideableImpl
 //*******************************************************************
 class ProvideableImpl :
-  virtual public BON::FCOImpl 
+  virtual public BON::FCOImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -224,17 +225,17 @@ public:
 //   C  L  A  S  S   TaggableImpl
 //*******************************************************************
 class TaggableImpl :
-  virtual public BON::FCOImpl 
+  virtual public BON::FCOImpl
 {
 public:
-	//
-	// attribute getters
-	virtual std::string getSpecifyIdTag();
-	virtual std::string getVersionTag();
+  //
+  // attribute getters
+  virtual std::string getSpecifyIdTag();
+  virtual std::string getVersionTag();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -244,16 +245,16 @@ public:
 class ExceptionImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  virtual public TaggableImpl 
+  virtual public TaggableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Member>                getMember();
+  //
+  // kind and role getters
+  virtual std::set<Member>                getMember();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -262,41 +263,41 @@ public:
 //*******************************************************************
 class FileImpl :
   virtual public OrderableImpl,
-  virtual public PrefixableImpl 
+  virtual public PrefixableImpl
 {
 public:
-	//
-	// attribute getters
-	virtual std::string getpath();
-	//
-	// kind and role getters
-	virtual std::set<Aggregate>             getAggregate();
-	virtual std::set<Alias>                 getAlias();
-	virtual std::set<Boxed>                 getBoxed();
-	virtual std::set<Collection>            getCollection();
-	virtual std::set<Component>             getComponent();
-	virtual std::set<ComponentFactory>      getComponentFactory();
-	virtual std::set<ComponentRef>          getComponentRef();
-	virtual std::set<Constant>              getConstant();
-	virtual std::set<Enum>                  getEnum();
-	virtual std::set<Event>                 getEvent();
-	virtual std::set<Exception>             getException();
-	virtual std::set<FileRef>               getFileRef();
-	virtual std::set<ManagesComponent>      getManagesComponent();
-	virtual std::set<NamedType>             getNamedType();
-	virtual std::set<Object>                getObject();
-	virtual std::set<Package>               getPackage();
-	virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
-	virtual std::set<ValueObject>           getValueObject();
-  
+  //
+  // attribute getters
+  virtual std::string getpath();
+  //
+  // kind and role getters
+  virtual std::set<Aggregate>             getAggregate();
+  virtual std::set<Alias>                 getAlias();
+  virtual std::set<Boxed>                 getBoxed();
+  virtual std::set<Collection>            getCollection();
+  virtual std::set<Component>             getComponent();
+  virtual std::set<ComponentFactory>      getComponentFactory();
+  virtual std::set<ComponentRef>          getComponentRef();
+  virtual std::set<Constant>              getConstant();
+  virtual std::set<Enum>                  getEnum();
+  virtual std::set<Event>                 getEvent();
+  virtual std::set<Exception>             getException();
+  virtual std::set<FileRef>               getFileRef();
+  virtual std::set<ManagesComponent>      getManagesComponent();
+  virtual std::set<NamedType>             getNamedType();
+  virtual std::set<Object>                getObject();
+  virtual std::set<Package>               getPackage();
+  virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
+  virtual std::set<ValueObject>           getValueObject();
+
   bool include_components_idl () const;
   void include_components_idl (bool val);
-  
+
   bool include_orb_idl () const;
   void include_orb_idl (bool val);
-  
+
   virtual void initialize ();
-  
+
 public:
   std::set<File> discovered_includes_;
 
@@ -312,16 +313,16 @@ private:
 class OperationBaseImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  virtual public TaggableImpl 
+  virtual public TaggableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<InParameter>           getInParameter();
+  //
+  // kind and role getters
+  virtual std::set<InParameter>           getInParameter();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -331,32 +332,32 @@ public:
 class PackageImpl :
   virtual public OrderableImpl,
   virtual public TaggableImpl,
-  virtual public PrefixableImpl 
+  virtual public PrefixableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Aggregate>             getAggregate();
-	virtual std::set<Alias>                 getAlias();
-	virtual std::set<Boxed>                 getBoxed();
-	virtual std::set<Collection>            getCollection();
-	virtual std::set<Component>             getComponent();
-	virtual std::set<ComponentFactory>      getComponentFactory();
-	virtual std::set<ComponentRef>          getComponentRef();
-	virtual std::set<Constant>              getConstant();
-	virtual std::set<Enum>                  getEnum();
-	virtual std::set<Event>                 getEvent();
-	virtual std::set<Exception>             getException();
-	virtual std::set<ManagesComponent>      getManagesComponent();
-	virtual std::set<NamedType>             getNamedType();
-	virtual std::set<Object>                getObject();
-	virtual std::set<Package>               getPackage();
-	virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
-	virtual std::set<ValueObject>           getValueObject();
+  //
+  // kind and role getters
+  virtual std::set<Aggregate>             getAggregate();
+  virtual std::set<Alias>                 getAlias();
+  virtual std::set<Boxed>                 getBoxed();
+  virtual std::set<Collection>            getCollection();
+  virtual std::set<Component>             getComponent();
+  virtual std::set<ComponentFactory>      getComponentFactory();
+  virtual std::set<ComponentRef>          getComponentRef();
+  virtual std::set<Constant>              getConstant();
+  virtual std::set<Enum>                  getEnum();
+  virtual std::set<Event>                 getEvent();
+  virtual std::set<Exception>             getException();
+  virtual std::set<ManagesComponent>      getManagesComponent();
+  virtual std::set<NamedType>             getNamedType();
+  virtual std::set<Object>                getObject();
+  virtual std::set<Package>               getPackage();
+  virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
+  virtual std::set<ValueObject>           getValueObject();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -366,17 +367,17 @@ public:
 class ReadonlyAttributeImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  virtual public TaggableImpl 
+  virtual public TaggableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<AttributeMember>       getAttributeMember();
-	virtual std::set<GetException>          getGetException();
+  //
+  // kind and role getters
+  virtual std::set<AttributeMember>       getAttributeMember();
+  virtual std::set<GetException>          getGetException();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -385,13 +386,13 @@ public:
 //*******************************************************************
 class NamedTypeImpl :
   virtual public TaggableImpl,
-  virtual public MemberTypeImpl 
+  virtual public MemberTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -399,13 +400,13 @@ public:
 //   C  L  A  S  S   PortImpl
 //*******************************************************************
 class PortImpl :
-  virtual public TaggableImpl 
+  virtual public TaggableImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -414,13 +415,13 @@ public:
 //*******************************************************************
 class PredefinedTypeImpl :
   virtual public MemberTypeImpl,
-  virtual public ConstantTypeImpl 
+  virtual public ConstantTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -429,16 +430,16 @@ public:
 //*******************************************************************
 class ComponentRefImpl :
   virtual public BON::ReferenceImpl,
-  virtual public ManageableImpl 
+  virtual public ManageableImpl
 {
 public:
-	//
-	// ref getters
-	virtual Component   getComponent();
+  //
+  // ref getters
+  virtual Component   getComponent();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -448,19 +449,19 @@ public:
 class ConstantImpl :
   virtual public BON::ReferenceImpl,
   virtual public OrderableImpl,
-  virtual public TaggableImpl 
+  virtual public TaggableImpl
 {
 public:
-	//
-	// attribute getters
-	virtual std::string getvalue();
-	//
-	// ref getters
-	virtual ConstantType                    getConstantType();
+  //
+  // attribute getters
+  virtual std::string getvalue();
+  //
+  // ref getters
+  virtual ConstantType                    getConstantType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -468,16 +469,16 @@ public:
 //   C  L  A  S  S   AttributeImpl
 //*******************************************************************
 class AttributeImpl :
-  virtual public ReadonlyAttributeImpl 
+  virtual public ReadonlyAttributeImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<SetException>          getSetException();
+  //
+  // kind and role getters
+  virtual std::set<SetException>          getSetException();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -485,16 +486,16 @@ public:
 //   C  L  A  S  S   HasExceptionsImpl
 //*******************************************************************
 class HasExceptionsImpl :
-  virtual public OperationBaseImpl 
+  virtual public OperationBaseImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<ExceptionRef>          getExceptionRef();
+  //
+  // kind and role getters
+  virtual std::set<ExceptionRef>          getExceptionRef();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -504,19 +505,19 @@ public:
 class InheritableImpl :
   virtual public BON::ModelImpl,
   virtual public OrderableImpl,
-  virtual public NamedTypeImpl 
+  virtual public NamedTypeImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Attribute>             getAttribute();
-	virtual std::set<Inherits>              getInherits();
-	virtual std::set<ReadonlyAttribute>     getReadonlyAttribute();
-	virtual std::set<ReadonlyAttribute>     getReadonlyAttribute(int dummy);
+  //
+  // kind and role getters
+  virtual std::set<Attribute>             getAttribute();
+  virtual std::set<Inherits>              getInherits();
+  virtual std::set<ReadonlyAttribute>     getReadonlyAttribute();
+  virtual std::set<ReadonlyAttribute>     getReadonlyAttribute(int dummy);
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -524,13 +525,13 @@ public:
 //   C  L  A  S  S   OnewayOperationImpl
 //*******************************************************************
 class OnewayOperationImpl :
-  virtual public OperationBaseImpl 
+  virtual public OperationBaseImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -543,9 +544,9 @@ class NoInheritableImpl :
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -554,13 +555,13 @@ public:
 //*******************************************************************
 class BooleanImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -569,13 +570,13 @@ public:
 //*******************************************************************
 class ByteImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -585,13 +586,13 @@ public:
 class GenericObjectImpl :
   virtual public BON::AtomImpl,
   virtual public PredefinedTypeImpl,
-  virtual public ProvideableImpl 
+  virtual public ProvideableImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -600,13 +601,13 @@ public:
 //*******************************************************************
 class GenericValueImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -615,13 +616,13 @@ public:
 //*******************************************************************
 class GenericValueObjectImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -630,28 +631,43 @@ public:
 //*******************************************************************
 class LongIntegerImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
 //*******************************************************************
-//   C  L  A  S  S   RealNumberImpl
+//   C  L  A  S  S   FloatNumberImpl
 //*******************************************************************
-class RealNumberImpl :
+class FloatNumberImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
+};
+
+
+//*******************************************************************
+//   C  L  A  S  S   DoubleNumberImpl
+//*******************************************************************
+class DoubleNumberImpl :
+  virtual public BON::AtomImpl,
+  virtual public PredefinedTypeImpl
+{
+public:
+
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -660,13 +676,13 @@ public:
 //*******************************************************************
 class ShortIntegerImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -675,13 +691,13 @@ public:
 //*******************************************************************
 class StringImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -690,13 +706,13 @@ public:
 //*******************************************************************
 class TypeEncodingImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -705,13 +721,13 @@ public:
 //*******************************************************************
 class TypeKindImpl :
   virtual public BON::AtomImpl,
-  virtual public PredefinedTypeImpl 
+  virtual public PredefinedTypeImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -721,16 +737,16 @@ public:
 class BoxedImpl :
   virtual public BON::ReferenceImpl,
   virtual public OrderableImpl,
-  virtual public NamedTypeImpl 
+  virtual public NamedTypeImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -739,16 +755,16 @@ public:
 //*******************************************************************
 class InEventPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl 
+  virtual public PortImpl
 {
 public:
-	//
-	// ref getters
-	virtual Event       getEvent();
+  //
+  // ref getters
+  virtual Event       getEvent();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -757,19 +773,19 @@ public:
 //*******************************************************************
 class OutEventPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl 
+  virtual public PortImpl
 {
 public:
-	//
-	// attribute getters
-	virtual bool        issingle_destination();
-	//
-	// ref getters
-	virtual Event       getEvent();
+  //
+  // attribute getters
+  virtual bool        issingle_destination();
+  //
+  // ref getters
+  virtual Event       getEvent();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -778,16 +794,16 @@ public:
 //*******************************************************************
 class ProvidedRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl 
+  virtual public PortImpl
 {
 public:
-	//
-	// ref getters
-	virtual Provideable getProvideable();
+  //
+  // ref getters
+  virtual Provideable getProvideable();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -796,19 +812,19 @@ public:
 //*******************************************************************
 class RequiredRequestPortImpl :
   virtual public BON::ReferenceImpl,
-  virtual public PortImpl 
+  virtual public PortImpl
 {
 public:
-	//
-	// attribute getters
-	virtual bool        ismultiple_connections();
-	//
-	// ref getters
-	virtual Provideable getProvideable();
+  //
+  // attribute getters
+  virtual bool        ismultiple_connections();
+  //
+  // ref getters
+  virtual Provideable getProvideable();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -817,16 +833,16 @@ public:
 //*******************************************************************
 class AggregateImpl :
   virtual public BON::ModelImpl,
-  virtual public NoInheritableImpl 
+  virtual public NoInheritableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Member>                getMember();
+  //
+  // kind and role getters
+  virtual std::set<Member>                getMember();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -836,16 +852,16 @@ public:
 class EnumImpl :
   virtual public BON::ModelImpl,
   virtual public NoInheritableImpl,
-  virtual public ConstantTypeImpl 
+  virtual public ConstantTypeImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<EnumValue>             getEnumValue();
+  //
+  // kind and role getters
+  virtual std::set<EnumValue>             getEnumValue();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -853,13 +869,13 @@ public:
 //   C  L  A  S  S   FactoryOperationImpl
 //*******************************************************************
 class FactoryOperationImpl :
-  virtual public HasExceptionsImpl 
+  virtual public HasExceptionsImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -867,25 +883,25 @@ public:
 //   C  L  A  S  S   HasOperationsImpl
 //*******************************************************************
 class HasOperationsImpl :
-  virtual public InheritableImpl 
+  virtual public InheritableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Aggregate>             getAggregate();
-	virtual std::set<Alias>                 getAlias();
-	virtual std::set<Collection>            getCollection();
-	virtual std::set<Constant>              getConstant();
-	virtual std::set<Enum>                  getEnum();
-	virtual std::set<Exception>             getException();
-	virtual std::set<NoInheritable>         getNoInheritable();
-	virtual std::set<OnewayOperation>       getOnewayOperation();
-	virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
-	virtual std::set<TwowayOperation>       getTwowayOperation();
+  //
+  // kind and role getters
+  virtual std::set<Aggregate>             getAggregate();
+  virtual std::set<Alias>                 getAlias();
+  virtual std::set<Collection>            getCollection();
+  virtual std::set<Constant>              getConstant();
+  virtual std::set<Enum>                  getEnum();
+  virtual std::set<Exception>             getException();
+  virtual std::set<NoInheritable>         getNoInheritable();
+  virtual std::set<OnewayOperation>       getOnewayOperation();
+  virtual std::set<SwitchedAggregate>     getSwitchedAggregate();
+  virtual std::set<TwowayOperation>       getTwowayOperation();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -893,13 +909,13 @@ public:
 //   C  L  A  S  S   LookupOperationImpl
 //*******************************************************************
 class LookupOperationImpl :
-  virtual public HasExceptionsImpl 
+  virtual public HasExceptionsImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -911,13 +927,13 @@ class SupportsInterfacesImpl :
   virtual public OrderableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Supports>              getSupports();
+  //
+  // kind and role getters
+  virtual std::set<Supports>              getSupports();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -926,19 +942,19 @@ public:
 //*******************************************************************
 class SwitchedAggregateImpl :
   virtual public BON::ModelImpl,
-  virtual public NoInheritableImpl 
+  virtual public NoInheritableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<Discriminator>         getDiscriminator();
-	virtual std::set<Label>                 getLabel();
-	virtual std::set<LabelConnection>       getLabelConnection();
-	virtual std::set<Member>                getMember();
+  //
+  // kind and role getters
+  virtual std::set<Discriminator>         getDiscriminator();
+  virtual std::set<Label>                 getLabel();
+  virtual std::set<LabelConnection>       getLabelConnection();
+  virtual std::set<Member>                getMember();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -946,18 +962,18 @@ public:
 //   C  L  A  S  S   TwowayOperationImpl
 //*******************************************************************
 class TwowayOperationImpl :
-  virtual public HasExceptionsImpl 
+  virtual public HasExceptionsImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<InoutParameter>        getInoutParameter();
-	virtual std::set<OutParameter>          getOutParameter();
-	virtual std::set<ReturnType>            getReturnType();
+  //
+  // kind and role getters
+  virtual std::set<InoutParameter>        getInoutParameter();
+  virtual std::set<OutParameter>          getOutParameter();
+  virtual std::set<ReturnType>            getReturnType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -966,16 +982,16 @@ public:
 //*******************************************************************
 class AliasImpl :
   virtual public BON::ReferenceImpl,
-  virtual public NoInheritableImpl 
+  virtual public NoInheritableImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -984,16 +1000,16 @@ public:
 //*******************************************************************
 class CollectionImpl :
   virtual public BON::ReferenceImpl,
-  virtual public NoInheritableImpl 
+  virtual public NoInheritableImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1006,22 +1022,22 @@ class ComponentImpl :
   virtual public ManageableImpl
 {
 public:
-	//
-	// kind and role getters
-	virtual std::set<InEventPort>           getInEventPort();
-	virtual std::set<OutEventPort>          getOutEventPort();
-	virtual std::set<Port>                  getPort();
-	virtual std::set<ProvidedRequestPort>   getProvidedRequestPort();
-	virtual std::set<RequiredRequestPort>   getRequiredRequestPort();
+  //
+  // kind and role getters
+  virtual std::set<InEventPort>           getInEventPort();
+  virtual std::set<OutEventPort>          getOutEventPort();
+  virtual std::set<Port>                  getPort();
+  virtual std::set<ProvidedRequestPort>   getProvidedRequestPort();
+  virtual std::set<RequiredRequestPort>   getRequiredRequestPort();
 
-	bool ref_managed () const;
-	void ref_managed (bool val);
-	
-	Orderable base_component () const;
-	void base_component (const Orderable &base);
-	
-	virtual void initialize ();
-	
+  bool ref_managed () const;
+  void ref_managed (bool val);
+
+  Orderable base_component () const;
+  void base_component (const Orderable &base);
+
+  virtual void initialize ();
+
 private:
   bool ref_managed_;
   Orderable base_component_;
@@ -1033,22 +1049,22 @@ private:
 //*******************************************************************
 class ComponentFactoryImpl :
   virtual public SupportsInterfacesImpl,
-  virtual public HasOperationsImpl 
+  virtual public HasOperationsImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual std::multiset<Manageable>       getManagesComponentDsts();
-	virtual std::set<ManagesComponent>      getOutManagesComponentLinks();
-	//
-	// kind and role getters
-	virtual std::set<FactoryOperation>      getFactoryOperation();
-	virtual std::set<LookupKey>             getLookupKey();
-	virtual std::set<LookupOperation>       getLookupOperation();
+  //
+  // connectionEnd getters
+  virtual std::multiset<Manageable>       getManagesComponentDsts();
+  virtual std::set<ManagesComponent>      getOutManagesComponentLinks();
+  //
+  // kind and role getters
+  virtual std::set<FactoryOperation>      getFactoryOperation();
+  virtual std::set<LookupKey>             getLookupKey();
+  virtual std::set<LookupOperation>       getLookupOperation();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1058,17 +1074,17 @@ public:
 class ObjectImpl :
   virtual public HasOperationsImpl,
   virtual public ProvideableImpl,
-  virtual public PrefixableImpl 
+  virtual public PrefixableImpl
 {
 public:
-	//
-	// attribute getters
-	virtual bool        isabstract();
-	virtual bool        islocal();
+  //
+  // attribute getters
+  virtual bool        isabstract();
+  virtual bool        islocal();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1078,22 +1094,22 @@ public:
 class ObjectByValueImpl :
   virtual public PrefixableImpl,
   virtual public SupportsInterfacesImpl,
-  virtual public HasOperationsImpl 
+  virtual public HasOperationsImpl
 {
 public:
-	//
-	// attribute getters
-	virtual bool        isabstract();
-	//
-	// kind and role getters
-	virtual std::set<FactoryOperation>      getFactoryOperation();
-	virtual std::set<MakeMemberPrivate>     getMakeMemberPrivate();
-	virtual std::set<Member>                getMember();
-	virtual std::set<PrivateFlag>           getPrivateFlag();
+  //
+  // attribute getters
+  virtual bool        isabstract();
+  //
+  // kind and role getters
+  virtual std::set<FactoryOperation>      getFactoryOperation();
+  virtual std::set<MakeMemberPrivate>     getMakeMemberPrivate();
+  virtual std::set<Member>                getMember();
+  virtual std::set<PrivateFlag>           getPrivateFlag();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1101,13 +1117,13 @@ public:
 //   C  L  A  S  S   EventImpl
 //*******************************************************************
 class EventImpl :
-  virtual public ObjectByValueImpl 
+  virtual public ObjectByValueImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1115,13 +1131,13 @@ public:
 //   C  L  A  S  S   ValueObjectImpl
 //*******************************************************************
 class ValueObjectImpl :
-  virtual public ObjectByValueImpl 
+  virtual public ObjectByValueImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1129,13 +1145,13 @@ public:
 //   C  L  A  S  S   EnumValueImpl
 //*******************************************************************
 class EnumValueImpl :
-  virtual public BON::AtomImpl 
+  virtual public BON::AtomImpl
 {
 public:
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1143,17 +1159,17 @@ public:
 //   C  L  A  S  S   LabelImpl
 //*******************************************************************
 class LabelImpl :
-  virtual public BON::AtomImpl 
+  virtual public BON::AtomImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual std::set<LabelConnection>       getInLabelConnectionLinks();
-	virtual std::multiset<Member>           getLabelConnectionSrcs();
+  //
+  // connectionEnd getters
+  virtual std::set<LabelConnection>       getInLabelConnectionLinks();
+  virtual std::multiset<Member>           getLabelConnectionSrcs();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1161,17 +1177,17 @@ public:
 //   C  L  A  S  S   PrivateFlagImpl
 //*******************************************************************
 class PrivateFlagImpl :
-  virtual public BON::AtomImpl 
+  virtual public BON::AtomImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual std::set<MakeMemberPrivate>     getInMakeMemberPrivateLinks();
-	virtual std::multiset<Member>           getMakeMemberPrivateSrcs();
+  //
+  // connectionEnd getters
+  virtual std::set<MakeMemberPrivate>     getInMakeMemberPrivateLinks();
+  virtual std::multiset<Member>           getMakeMemberPrivateSrcs();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1179,17 +1195,17 @@ public:
 //   C  L  A  S  S   LabelConnectionImpl
 //*******************************************************************
 class LabelConnectionImpl :
-  virtual public BON::ConnectionImpl 
+  virtual public BON::ConnectionImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual Label       getDst();
-	virtual Member      getSrc();
+  //
+  // connectionEnd getters
+  virtual Label       getDst();
+  virtual Member      getSrc();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1197,17 +1213,17 @@ public:
 //   C  L  A  S  S   MakeMemberPrivateImpl
 //*******************************************************************
 class MakeMemberPrivateImpl :
-  virtual public BON::ConnectionImpl 
+  virtual public BON::ConnectionImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual PrivateFlag getDst();
-	virtual Member      getSrc();
+  //
+  // connectionEnd getters
+  virtual PrivateFlag getDst();
+  virtual Member      getSrc();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1215,17 +1231,17 @@ public:
 //   C  L  A  S  S   ManagesComponentImpl
 //*******************************************************************
 class ManagesComponentImpl :
-  virtual public BON::ConnectionImpl 
+  virtual public BON::ConnectionImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual Manageable  getDst();
-	virtual ComponentFactory                getSrc();
+  //
+  // connectionEnd getters
+  virtual Manageable  getDst();
+  virtual ComponentFactory                getSrc();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1233,16 +1249,16 @@ public:
 //   C  L  A  S  S   AttributeMemberImpl
 //*******************************************************************
 class AttributeMemberImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1250,16 +1266,16 @@ public:
 //   C  L  A  S  S   DiscriminatorImpl
 //*******************************************************************
 class DiscriminatorImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual ConstantType                    getConstantType();
+  //
+  // ref getters
+  virtual ConstantType                    getConstantType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1267,16 +1283,16 @@ public:
 //   C  L  A  S  S   ExceptionRefImpl
 //*******************************************************************
 class ExceptionRefImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual Exception   getException();
+  //
+  // ref getters
+  virtual Exception   getException();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1284,16 +1300,16 @@ public:
 //   C  L  A  S  S   FileRefImpl
 //*******************************************************************
 class FileRefImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual File        getFile();
+  //
+  // ref getters
+  virtual File        getFile();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1301,16 +1317,16 @@ public:
 //   C  L  A  S  S   GetExceptionImpl
 //*******************************************************************
 class GetExceptionImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual Exception   getException();
+  //
+  // ref getters
+  virtual Exception   getException();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1318,16 +1334,16 @@ public:
 //   C  L  A  S  S   InParameterImpl
 //*******************************************************************
 class InParameterImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1335,16 +1351,16 @@ public:
 //   C  L  A  S  S   InheritsImpl
 //*******************************************************************
 class InheritsImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual Inheritable getInheritable();
+  //
+  // ref getters
+  virtual Inheritable getInheritable();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1352,16 +1368,16 @@ public:
 //   C  L  A  S  S   InoutParameterImpl
 //*******************************************************************
 class InoutParameterImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1369,16 +1385,16 @@ public:
 //   C  L  A  S  S   LookupKeyImpl
 //*******************************************************************
 class LookupKeyImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual ValueObject getValueObject();
+  //
+  // ref getters
+  virtual ValueObject getValueObject();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1386,22 +1402,22 @@ public:
 //   C  L  A  S  S   MemberImpl
 //*******************************************************************
 class MemberImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// connectionEnd getters
-	virtual std::multiset<Label>            getLabelConnectionDsts();
-	virtual std::multiset<PrivateFlag>      getMakeMemberPrivateDsts();
-	virtual std::set<LabelConnection>       getOutLabelConnectionLinks();
-	virtual std::set<MakeMemberPrivate>     getOutMakeMemberPrivateLinks();
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // connectionEnd getters
+  virtual std::multiset<Label>            getLabelConnectionDsts();
+  virtual std::multiset<PrivateFlag>      getMakeMemberPrivateDsts();
+  virtual std::set<LabelConnection>       getOutLabelConnectionLinks();
+  virtual std::set<MakeMemberPrivate>     getOutMakeMemberPrivateLinks();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1409,16 +1425,16 @@ public:
 //   C  L  A  S  S   OutParameterImpl
 //*******************************************************************
 class OutParameterImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1426,16 +1442,16 @@ public:
 //   C  L  A  S  S   ReturnTypeImpl
 //*******************************************************************
 class ReturnTypeImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual MemberType  getMemberType();
+  //
+  // ref getters
+  virtual MemberType  getMemberType();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1443,16 +1459,16 @@ public:
 //   C  L  A  S  S   SetExceptionImpl
 //*******************************************************************
 class SetExceptionImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual Exception   getException();
+  //
+  // ref getters
+  virtual Exception   getException();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 
@@ -1460,16 +1476,16 @@ public:
 //   C  L  A  S  S   SupportsImpl
 //*******************************************************************
 class SupportsImpl :
-  virtual public BON::ReferenceImpl 
+  virtual public BON::ReferenceImpl
 {
 public:
-	//
-	// ref getters
-	virtual Object      getObject();
+  //
+  // ref getters
+  virtual Object      getObject();
 
-	///BUP
-	// add your own members here
-	///EUP
+  ///BUP
+  // add your own members here
+  ///EUP
 };
 
 

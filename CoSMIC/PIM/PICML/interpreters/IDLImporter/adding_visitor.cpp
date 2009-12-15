@@ -38,6 +38,8 @@
 #include "nr_extern.h"
 #include "fe_extern.h"
 
+#include "Type_Trait.h"
+
 #include "Utils/xercesc/XercesString.h"
 
 #include "ace/OS_NS_stdio.h"
@@ -94,7 +96,7 @@ adding_visitor::adding_visitor (DOMElement *sub_tree,
     }
 
   this->rel_id_ += this->import_relid_offset_;
-  
+
   ACE_NEW (this->line_buf_,
            char [this->line_buf_size_]);
 }
@@ -113,9 +115,9 @@ adding_visitor::visit_decl (AST_Decl *)
 int
 adding_visitor::visit_scope (UTL_Scope *node)
 {
-  bool in_root = 
+  bool in_root =
     ScopeAsDecl (node)->node_type () == AST_Decl::NT_root;
-    
+
   for (UTL_ScopeActiveIterator si (node, UTL_Scope::IK_decls);
        !si.is_done ();
        si.next ())
@@ -138,29 +140,27 @@ adding_visitor::visit_scope (UTL_Scope *node)
               continue;
             }
         }
-       
+
       if (in_root)
         {
           ACE_CString filename = d->file_name ();
           DOMElement *file = 0;
-          
+
           int result =
             be_global->decl_elem_table ().find (filename.c_str (),
                                                 file);
-            
+
           // Since we're concatenating all the files on the command
           // line into one big file, we can't use 'imported' any
           // more as a check. Instead, we see if the node's
           // associated filename is in the table, and skip it if
-          // it's not.  
+          // it's not.
           if (result != 0)
-            {
-              continue;
-            }
-            
+            continue;
+
           this->sub_tree_ = file;
           ACE_CString cur_file = be_global->filename ();
-          
+
           if (filename != cur_file)
             {
               be_global->filename (filename.c_str ());
@@ -171,7 +171,7 @@ adding_visitor::visit_scope (UTL_Scope *node)
                           filename.c_str ()));
             }
         }
-        
+
       if (d->ast_accept (this) != 0)
         {
           ACE_ERROR_RETURN ((LM_ERROR,
@@ -246,7 +246,7 @@ adding_visitor::visit_module (AST_Module *node)
     }
 
   adding_visitor scope_visitor (elem);
-  
+
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -341,7 +341,7 @@ adding_visitor::visit_interface (AST_Interface *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -391,11 +391,11 @@ adding_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
   (void) be_global->decl_elem_table ().bind (
     ACE::strnew (node->repoID ()),
     elem);
-                                             
+
   (void) be_global->decl_id_table ().bind (
     ACE::strnew (node->repoID ()),
     elem->getAttribute (X ("id")));
-    
+
   return 0;
 }
 
@@ -474,7 +474,7 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -486,7 +486,7 @@ adding_visitor::visit_valuetype (AST_ValueType *node)
                                 + 1);
 
   adding_visitor scope_visitor (elem, start_id);
-  
+
   if (scope_visitor.visit_scope (node) == -1)
     {
       ACE_ERROR_RETURN ((LM_ERROR,
@@ -534,7 +534,7 @@ adding_visitor::visit_component (AST_Component *node)
           be_global->decl_elem_table ().bind (
             ACE::strnew (node_id),
             elem);
-            
+
           be_global->decl_id_table ().bind (
             ACE::strnew (node_id),
             elem->getAttribute (X ("id")));
@@ -567,11 +567,11 @@ adding_visitor::visit_component (AST_Component *node)
       // Add default implementation for single component.
       char *id =
         XMLString::transcode (elem->getAttribute (X ("id")));
-        
+
       this->add_implementation (id,
                                 node,
                                 artifact_container);
-                                
+
       XMLString::release (&id);
     }
 
@@ -982,10 +982,10 @@ adding_visitor::visit_home (AST_Home *node)
       this->set_childrelidcntr_attr (elem, node);
       elem->setAttribute (X ("kind"), X ("ComponentFactory"));
       elem->setAttribute (X ("role"), X ("ComponentFactory"));
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1001,12 +1001,12 @@ adding_visitor::visit_home (AST_Home *node)
   this->add_replace_id_element (elem, node);
   this->add_version_element (elem, node);
   this->add_base_home (elem, node);
-  
+
   this->add_supported_elements (elem,
                                 node,
                                 node->supports (),
                                 node->n_supports ());
-                                
+
   this->add_manages (node);
   this->add_lookup_key (elem, node);
   this->add_home_factories (elem, node);
@@ -1029,7 +1029,7 @@ adding_visitor::visit_home (AST_Home *node)
     + node->factories ().size ()
     + node->finders ().size ()
     + 1;
-     
+
   adding_visitor scope_visitor (elem, start_id);
 
   if (scope_visitor.visit_scope (node) == -1)
@@ -1063,10 +1063,10 @@ adding_visitor::visit_factory (AST_Factory *node)
       elem->setAttribute (X ("role"), X ("FactoryOperation"));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1143,10 +1143,10 @@ adding_visitor::visit_structure (AST_Structure *node)
       elem->setAttribute (X ("role"), X ("Aggregate"));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1183,7 +1183,7 @@ adding_visitor::visit_structure (AST_Structure *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -1241,17 +1241,17 @@ adding_visitor::visit_structure_fwd (AST_StructureFwd *node)
   // Create a DOMElement and a GME id and store them in their
   // respective tables.
   elem = this->doc_->createElement (X ("model"));
-  
+
   (void) be_global->decl_elem_table ().bind (
     ACE::strnew (node->repoID ()),
     elem);
-    
+
   this->set_id_attr (elem, BE_GlobalData::MODEL);
-  
+
   (void) be_global->decl_id_table ().bind (
     ACE::strnew (node->repoID ()),
     elem->getAttribute (X ("id")));
-    
+
   return 0;
 }
 
@@ -1289,10 +1289,10 @@ adding_visitor::visit_exception (AST_Exception *node)
       elem->setAttribute (X ("role"), X ("Exception"));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1320,7 +1320,7 @@ adding_visitor::visit_exception (AST_Exception *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -1379,7 +1379,7 @@ adding_visitor::visit_enum (AST_Enum *node)
       elem->setAttribute (X ("role"), X ("Enum"));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem, node->local_name ()->get_string ());
       this->add_regnodes (node->defined_in (), elem, this->rel_id_ - 1);
 
@@ -1407,7 +1407,7 @@ adding_visitor::visit_enum (AST_Enum *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -1449,10 +1449,10 @@ adding_visitor::visit_operation (AST_Operation *node)
       elem->setAttribute (X ("role"), X (kind.c_str ()));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1577,12 +1577,12 @@ adding_visitor::visit_field (AST_Field *node)
       elem->setAttribute (X ("kind"), X ("Member"));
       elem->setAttribute (X ("role"), X ("Member"));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       slot = this->rel_id_ - 1;
-      
+
       this->add_regnodes (node->defined_in (), elem, slot);
 
       this->insert_element (elem, node);
@@ -1674,10 +1674,10 @@ adding_visitor::visit_argument (AST_Argument *node)
       arg->setAttribute (X ("kind"), X (kind.c_str ()));
       arg->setAttribute (X ("role"), X (kind.c_str ()));
       this->set_relid_attr (arg);
-      
+
       this->add_name_element (arg,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           arg,
                           this->rel_id_ - 1);
@@ -1729,10 +1729,10 @@ adding_visitor::visit_attribute (AST_Attribute *node)
       elem->setAttribute (X ("role"), X (kind));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, 0, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-      
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1758,7 +1758,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
         {
           unsigned long slot =
             (get_ex != 0 ? get_ex->length () : 0) + 2UL;
-            
+
           this->add_exception_elements (
             elem,
             0,
@@ -1789,7 +1789,7 @@ adding_visitor::visit_attribute (AST_Attribute *node)
     {
       be_global->gme_id_set ().insert (
         elem->getAttribute (X ("id")));
-        
+
       be_global->gme_id_set ().insert (
         member->getAttribute (X ("id")));
     }
@@ -1835,10 +1835,10 @@ adding_visitor::visit_union (AST_Union *node)
       elem->setAttribute (X ("role"), X ("SwitchedAggregate"));
       this->set_relid_attr (elem);
       this->set_childrelidcntr_attr (elem, node);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -1865,7 +1865,7 @@ adding_visitor::visit_union (AST_Union *node)
   // decl id table, we are in the first level of recursion and do
   // not need to visit the scope.
   ACE_Unbounded_Queue<AST_Type *> list;
-  
+
   if (result != 0 && node->in_recursion (list))
     {
       return 0;
@@ -1877,7 +1877,7 @@ adding_visitor::visit_union (AST_Union *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -1934,12 +1934,12 @@ adding_visitor::visit_union_branch (AST_UnionBranch *node)
       elem->setAttribute (X ("kind"), X ("Member"));
       elem->setAttribute (X ("role"), X ("Member"));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       slot = this->rel_id_ - 1;
-      
+
       this->add_regnodes (node->defined_in (), elem, slot);
 
       this->insert_element (elem, node);
@@ -2017,10 +2017,10 @@ adding_visitor::visit_constant (AST_Constant *node)
       elem->setAttribute (X ("kind"), X ("Constant"));
       elem->setAttribute (X ("role"), X ("Constant"));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -2057,7 +2057,7 @@ adding_visitor::visit_constant (AST_Constant *node)
   if (be_global->input_xme () != 0)
     {
       const XMLCh *id = elem->getAttribute (X ("id"));
-      
+
       be_global->gme_id_set ().insert (
         elem->getAttribute (X ("id")));
     }
@@ -2068,7 +2068,7 @@ adding_visitor::visit_constant (AST_Constant *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -2083,7 +2083,7 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
   // Enum values are also added to the enum's enclosing scope.
   // We don't want to generate anything for these nodes.
   const XMLCh *kind = this->sub_tree_->getAttribute (X ("kind"));
-  
+
   if (X (kind) != X ("Enum"))
     {
       return 0;
@@ -2117,10 +2117,10 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
       elem->setAttribute (X ("kind"), X ("EnumValue"));
       elem->setAttribute (X ("role"), X ("EnumValue"));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -2145,7 +2145,7 @@ adding_visitor::visit_enum_val (AST_EnumVal *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -2229,10 +2229,10 @@ adding_visitor::visit_typedef (AST_Typedef *node)
       elem->setAttribute (X ("kind"), X (role));
       elem->setAttribute (X ("role"), X (role));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -2263,7 +2263,7 @@ adding_visitor::visit_typedef (AST_Typedef *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -2341,11 +2341,11 @@ adding_visitor::visit_root (AST_Root *node)
 
   this->add_predefined_types ();
   this->add_picml_boilerplate ();
-  
+
   const char * const * files = be_global->allfiles ();
   unsigned long n_files =
     static_cast<unsigned long> (be_global->nfiles ());
-  
+
   for (unsigned long i = 0; i < n_files; ++i)
     {
       const char *filename = files[i];
@@ -2423,10 +2423,10 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
       elem->setAttribute (X ("kind"), X ("Boxed"));
       elem->setAttribute (X ("role"), X ("Boxed"));
       this->set_relid_attr (elem);
-      
+
       this->add_name_element (elem,
                               node->local_name ()->get_string ());
-                              
+
       this->add_regnodes (node->defined_in (),
                           elem,
                           this->rel_id_ - 1);
@@ -2457,7 +2457,7 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
       be_global->decl_elem_table ().bind (
         ACE::strnew (node->repoID ()),
         elem);
-        
+
       be_global->decl_id_table ().bind (
         ACE::strnew (node->repoID ()),
         elem->getAttribute (X ("id")));
@@ -2555,7 +2555,6 @@ adding_visitor::add_name_element (DOMElement *elem, const char *name)
 void
 adding_visitor::add_predefined_types (void)
 {
-  unsigned long npdt = be_global->npredefined ();
   DOMElement *pdt_folder = 0;
 
   if (0 == be_global->input_xme ())
@@ -2565,7 +2564,7 @@ adding_visitor::add_predefined_types (void)
       pdt_folder->setAttribute (X ("relid"), X ("0x1"));
 
       pdt_folder->setAttribute (X ("childrelidcntr"),
-                                X (be_global->hex_string (npdt)));
+                                X (be_global->hex_string (IDML_PREDEFINED_TYPES_COUNT)));
 
       pdt_folder->setAttribute (X ("kind"), X ("PredefinedTypes"));
       this->add_name_element (pdt_folder, "PredefinedTypes");
@@ -2580,48 +2579,21 @@ adding_visitor::add_predefined_types (void)
           "PredefinedTypes");
     }
 
-  for (unsigned long i = 0; i < npdt; ++i)
-    {
-      DOMElement *pdt = 0;
-      const char *pdt_name = be_global->pdt_names ()[i];
+  // Insert each of the predefined types into the folder.
+  this->add_predefined_type <IDML::String> (pdt_folder);
+  this->add_predefined_type <IDML::LongInteger> (pdt_folder);
+  this->add_predefined_type <IDML::TypeEncoding> (pdt_folder);
+  this->add_predefined_type <IDML::TypeKind> (pdt_folder);
+  this->add_predefined_type <IDML::Boolean> (pdt_folder);
+  this->add_predefined_type <IDML::ShortInteger> (pdt_folder);
+  this->add_predefined_type <IDML::FloatNumber> (pdt_folder);
+  this->add_predefined_type <IDML::DoubleNumber> (pdt_folder);
+  this->add_predefined_type <IDML::GenericValueObject> (pdt_folder);
+  this->add_predefined_type <IDML::GenericValue> (pdt_folder);
+  this->add_predefined_type <IDML::GenericObject> (pdt_folder);
+  this->add_predefined_type <IDML::Byte> (pdt_folder);
 
-      if (0 == be_global->input_xme ())
-        {
-          pdt = doc_->createElement (X ("atom"));
-          this->set_id_attr (pdt, BE_GlobalData::ATOM);
-          pdt->setAttribute (X ("kind"), X (pdt_name));
-
-          // The relid attributes are numbered in reverse order in all sample
-          // files - don't know if it's true for all attached libraries or not.
-          char *relid_str = be_global->hex_string (npdt - i);
-          pdt->setAttribute (X ("relid"), X (relid_str));
-          this->add_name_element (pdt, pdt_name);
-          pdt_folder->appendChild (pdt);
-        }
-      else
-        {
-          pdt =
-            be_global->lookup_by_tag_and_kind (pdt_folder,
-                                               "atom",
-                                               pdt_name);
-
-          if (pdt == 0)
-            {
-              ACE_ERROR ((LM_ERROR,
-                          ACE_TEXT ("PredefinedTypes folder, ")
-                          ACE_TEXT ("as seen in %s, has ")
-                          ACE_TEXT ("been altered.\n"),
-                          be_global->input_xme ()));
-              BE_abort ();
-            }
-        }
-
-      // Store the GME id for possible rererence by other XML elements.
-      be_global->decl_id_table ().bind (
-        ACE::strnew (pdt_name),
-        pdt->getAttribute (X ("id")));
-    }
-    
+  // Insert the predefined type sequences.
   this->add_predefined_sequences ();
 }
 
@@ -2631,106 +2603,18 @@ adding_visitor::add_predefined_sequences (void)
   // Create the sequences, their references to their basic type,
   // and stick them in the table.
   this->set_n_basic_seqs ();
-  
+
   // Start slot is after the basic types.
-  unsigned long slot = be_global->npredefined ();;
+  unsigned long slot = IDML_PREDEFINED_TYPES_COUNT;
 
-  this->add_one_predefined_sequence ("String",
-                                     slot,
-                                     2UL);
-
-  this->add_one_predefined_sequence ("LongInteger",
-                                     slot,
-                                     6UL);
-
-  this->add_one_predefined_sequence ("RealNumber",
-                                     slot,
-                                     5UL);
-
-  this->add_one_predefined_sequence ("ShortInteger",
-                                     slot,
-                                     4UL);
-
-  this->add_one_predefined_sequence ("Byte",
-                                     slot,
-                                     10UL);
-
-  this->add_one_predefined_sequence ("Boolean",
-                                     slot,
-                                     3UL);
-
-  this->add_one_predefined_sequence ("GenericValue",
-                                     slot,
-                                     8UL);
-}
-
-void
-adding_visitor::add_one_predefined_sequence (
-  const char *type,
-  unsigned long &model_slot,
-  unsigned long pdt_slot)
-{
-  // Can't create a basic type sequence more than once in a project.
-  // A processed basic type sequence is stored by its GME id.
-  const XMLCh *gme_id = 0;
-  ACE_CString name (type);
-  name += be_global->basic_seq_suffix ();
-  int result =
-    be_global->decl_id_table ().find (name.c_str (),
-                                      gme_id);
-
-  if (0 == result)
-    {
-      return;
-    }
-
-  DOMElement *seq = 0;
-  result =
-    be_global->decl_elem_table ().find (name.c_str (), seq);
-
-  if (result != 0)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "adding_visitor::add_one_predefined_sequence - "
-                  "lookup of sequence DOCElement %s failed\n",
-                  name.c_str ()));
-      return;
-    }
-
-  this->set_id_attr (seq, BE_GlobalData::REF);
-  seq->setAttribute (X ("relid"), X (be_global->hex_string (model_slot)));
-  ++model_slot;
-  seq->setAttribute (X ("kind"), X ("Collection"));
-  seq->setAttribute (X ("role"), X ("Collection"));
-
-  const char **pdts = be_global->pdt_names ();
-  const XMLCh *pdt_id = 0;
-  
-  result =
-    be_global->decl_id_table ().find (pdts[pdt_slot], pdt_id);
-
-  if (result != 0)
-    {
-      ACE_ERROR ((LM_ERROR,
-                  "adding_visitor::add_one_predefined_sequence - "
-                  "lookup of base type id %s failed\n",
-                  type));
-      return;
-    }
-
-  seq->setAttribute (X ("referred"), pdt_id);
-
-  this->add_name_element (seq, name.c_str ());
-
-  be_global->decl_id_table ().bind (ACE::strnew (
-    name.c_str ()),
-    seq->getAttribute (X ("id")));
-
-  DOMElement *pdt_folder =
-    be_global->lookup_by_tag_and_kind (be_global->root_folder (),
-                                       "folder",
-                                       "PredefinedTypes");
-  pdt_folder->appendChild (seq);
+  slot = this->add_one_predefined_sequence <IDML::String> (slot);
+  slot = this->add_one_predefined_sequence <IDML::Boolean> (slot);
+  slot = this->add_one_predefined_sequence <IDML::ShortInteger> (slot);
+  slot = this->add_one_predefined_sequence <IDML::DoubleNumber> (slot);
+  slot = this->add_one_predefined_sequence <IDML::LongInteger> (slot);
+  slot = this->add_one_predefined_sequence <IDML::FloatNumber> (slot);
+  slot = this->add_one_predefined_sequence <IDML::GenericValue> (slot);
+  slot = this->add_one_predefined_sequence <IDML::Byte> (slot);
 }
 
 DOMElement *
@@ -2742,7 +2626,7 @@ adding_visitor::add_file_element (DOMElement *parent,
   ACE_CString tmp (filename);
   tmp = tmp.substr (0, tmp.rfind ('.'));
   const char *tmp_cstr = tmp.c_str ();
-  
+
   int result = 0;
 
   // We split the filename (which has a relative path starting
@@ -2761,19 +2645,19 @@ adding_visitor::add_file_element (DOMElement *parent,
   // have it already stripped above).
   ACE_CString path (
     tmp.substr (0, 2) == "./" ? tmp.substr (2, pos - 2) : "");
-    
+
   ACE_CString::size_type lpos = path.find (lname);
-    
+
   if (lpos == 0)
     {
       path = "";
-    }  
+    }
   else if (lpos != ACE_CString::npos)
     {
       // Slice off the lname + the '/' separator.
       path = path.substr (0, lpos - 1);
     }
-  
+
   // See if we have already imported this file. If so, just return it.
   DOMElement *file =
     be_global->imported_file_dom_elem (lname.c_str (),
@@ -3010,20 +2894,20 @@ adding_visitor::add_include_elements (const char *filename,
 
   FILE *fp = ACE_OS::fopen (fullpath, "r");
   ACE_CString holder;
-  
+
   unsigned long slot = this->n_basic_seqs_ + 1UL;
 
   while (this->be_get_line (fp))
     {
       this->be_check_for_include (holder, this->line_buf_);
-      
+
       if (!holder.empty ())
         {
           ACE_CString lname;
-          
+
           ACE_CString::size_type pos =
             holder.rfind ('/');
-            
+
           if (pos == ACE_CString::npos)
             {
               lname = holder;
@@ -3033,7 +2917,7 @@ adding_visitor::add_include_elements (const char *filename,
               lname =
                 holder.substr (holder.rfind ('/') + 1);
             }
-                
+
           ACE_CString lname_noext =
             lname.substr (0, lname.rfind ('.'));
 
@@ -3051,12 +2935,12 @@ adding_visitor::add_include_elements (const char *filename,
           if (0 == fileref)
             {
               const XMLCh *id = 0;
-              
+
               int result =
                 be_global->decl_id_table ().find (
                   lname.c_str (),
                   id);
-                  
+
               if (result != 0)
                 {
                   ACE_ERROR ((LM_ERROR,
@@ -3064,8 +2948,8 @@ adding_visitor::add_include_elements (const char *filename,
                               ACE_TEXT ("add_include_elements - ")
                               ACE_TEXT ("included file <%s> not ")
                               ACE_TEXT ("found in decl table\n"),
-			                        lname_noext.c_str ()));
-                              
+                              lname_noext.c_str ()));
+
                   return;
                 }
 
@@ -3081,7 +2965,7 @@ adding_visitor::add_include_elements (const char *filename,
               this->add_regnodes (0, fileref, slot++);
 
               file->appendChild (fileref);
-              
+
               be_global->included_file_diagnostic (
                 fileref,
                 file,
@@ -3093,7 +2977,7 @@ adding_visitor::add_include_elements (const char *filename,
             {
               const XMLCh* id_attr =
                 fileref->getAttribute (X ("id"));
-                
+
               be_global->gme_id_set ().insert (id_attr);
             }
         }
@@ -3580,7 +3464,7 @@ adding_visitor::get_label_name (AST_UnionLabel *ul,
                   name =
                     this->print_scoped_name (
                       ScopeAsDecl (parent)->name ());
-                      
+
                   name += "::";
                 }
 
@@ -3655,7 +3539,7 @@ adding_visitor::add_private (AST_Field *f,
                        X (be_global->hex_string (base++)));
   ++this->private_relid_offset_;
   this->add_name_element (pflag, "PrivateFlag");
-  
+
   this->add_regnodes (f->defined_in (),
                       pflag,
                       this->rel_id_ - 1,
@@ -3689,13 +3573,13 @@ adding_visitor::add_private (AST_Field *f,
 
   DOMElement *conn_reg =
     this->doc_->createElement (X ("regnode"));
-    
+
   conn_reg->setAttribute (X ("name"), X ("autorouterPref"));
   conn_reg->setAttribute (X ("isopaque"), X ("yes"));
-  
+
   DOMElement *conn_value =
     this->doc_->createElement (X ("value"));
-    
+
   DOMText *val = this->doc_->createTextNode (X ("Ew"));
   conn_value->appendChild (val);
   conn_reg->appendChild (conn_value);
@@ -3774,7 +3658,7 @@ adding_visitor::add_base_component (DOMElement *elem,
                                                 node,
                                                 base,
                                                 was_derived);
-                                                
+
           elem->removeAttribute (X ("derivedfrom"));
           elem->removeAttribute (X ("isinstance"));
           elem->removeAttribute (X ("isprimary"));
@@ -3816,7 +3700,7 @@ adding_visitor::add_base_home (DOMElement *parent,
                                AST_Home *node)
 {
   AST_Home *base = node->base_home ();
-  
+
   if (0 == base)
     {
       return;
@@ -3875,13 +3759,13 @@ adding_visitor::add_manages (AST_Home *node)
 
       DOMElement *conn_reg =
         this->doc_->createElement (X ("regnode"));
-        
+
       conn_reg->setAttribute (X ("name"), X ("autorouterPref"));
       conn_reg->setAttribute (X ("isopaque"), X ("yes"));
-      
+
       DOMElement *conn_value =
         this->doc_->createElement (X ("value"));
-        
+
       DOMText *val = this->doc_->createTextNode (X ("Ws"));
       conn_value->appendChild (val);
       conn_reg->appendChild (conn_value);
@@ -3914,13 +3798,13 @@ adding_visitor::add_manages (AST_Home *node)
           ++this->manages_relid_offset_;
           comp_ref->setAttribute (X ("referred"), comp_id);
           this->add_name_element (comp_ref, "ComponentRef");
-          
+
           this->add_regnodes (s,
                               comp_ref,
                               this->rel_id_ - 1,
                               0,
                               true);
-          
+
           this->sub_tree_->appendChild (comp_ref);
         }
 
@@ -4293,7 +4177,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_Factory *f = AST_Factory::narrow_from_scope (s);
-  
+
   if (f != 0)
     {
       UTL_ExceptList *ex = f->exceptions ();
@@ -4302,7 +4186,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_Union *u = AST_Union::narrow_from_scope (s);
-  
+
   if (u != 0)
     {
       // Add 1 for the discriminator.
@@ -4311,7 +4195,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_Root *r = AST_Root::narrow_from_scope (s);
-  
+
   if (r != 0)
     {
       retval += this->user_includes () + this->n_basic_seqs_;
@@ -4319,7 +4203,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_Interface *i = AST_Interface::narrow_from_scope (s);
-  
+
   if (i != 0)
     {
       // This covers supported interfaces for components and homes.
@@ -4329,7 +4213,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
     }
 
   AST_ValueType *v = AST_ValueType::narrow_from_scope (s);
-  
+
   if (v != 0)
     {
       // Inherited valuetypes are in AST_Interface inheritance list.
@@ -4367,7 +4251,6 @@ const XMLCh *
 adding_visitor::lookup_constant_type (AST_Constant *c)
 {
   const char *ext_id = 0;
-  const char **namelist = be_global->pdt_names ();
   AST_Decl *enum_type = 0;
 
   switch (c->et ())
@@ -4378,33 +4261,43 @@ adding_visitor::lookup_constant_type (AST_Constant *c)
                                             true);
         ext_id = enum_type->repoID ();
         break;
+
       case AST_Expression::EV_short:
       case AST_Expression::EV_ushort:
-        ext_id = namelist[4UL];
+        ext_id = IDML::Type_Trait <IDML::ShortInteger>::metaname;
         break;
+
       case AST_Expression::EV_long:
       case AST_Expression::EV_ulong:
       case AST_Expression::EV_longlong:
       case AST_Expression::EV_ulonglong:
-        ext_id = namelist[6UL];
+        ext_id = IDML::Type_Trait <IDML::LongInteger>::metaname;
         break;
+
       case AST_Expression::EV_bool:
-        ext_id = namelist[3UL];
+        ext_id = IDML::Type_Trait <IDML::Boolean>::metaname;
         break;
+
       case AST_Expression::EV_float:
-      case AST_Expression::EV_longdouble:
-      case AST_Expression::EV_double:
-        ext_id = namelist[5UL];
+        ext_id = IDML::Type_Trait <IDML::FloatNumber>::metaname;
         break;
+
+      case AST_Expression::EV_double:
+      case AST_Expression::EV_longdouble:
+        ext_id = IDML::Type_Trait <IDML::DoubleNumber>::metaname;
+        break;
+
       case AST_Expression::EV_char:
       case AST_Expression::EV_wchar:
       case AST_Expression::EV_octet:
-        ext_id = namelist[10UL];
+        ext_id = IDML::Type_Trait <IDML::Byte>::metaname;
         break;
+
       case AST_Expression::EV_string:
       case AST_Expression::EV_wstring:
-        ext_id = namelist[2UL];
+        ext_id = IDML::Type_Trait <IDML::String>::metaname;
         break;
+
       default:
         break;
     }
@@ -4512,7 +4405,7 @@ adding_visitor::expr_val_to_string (
         value = buffer;
         break;
       case AST_Expression::EV_double:
-        ACE_OS::sprintf (buffer, "%24.16G", ev->u.dval);
+        ACE_OS::sprintf (buffer, "%0.16G", ev->u.dval);
         value = buffer;
         break;
       case AST_Expression::EV_char:
@@ -4582,12 +4475,17 @@ adding_visitor::user_includes (void)
 void
 adding_visitor::set_n_basic_seqs (void)
 {
-  const char **pdts = be_global->pdt_names ();
-  
-  for (int i = 0; i < 11; ++i)
-    {
-      this->set_one_basic_seq (pdts[i]);
-    }
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::String>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::LongInteger>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::TypeEncoding>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::TypeKind>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::Boolean>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::ShortInteger>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::FloatNumber>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::DoubleNumber>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::GenericValueObject>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::GenericValue>::metaname);
+  this->set_one_basic_seq (IDML::Type_Trait <IDML::Byte>::metaname);
 }
 
 void
@@ -4596,9 +4494,9 @@ adding_visitor::set_one_basic_seq (const char *base_type)
   DOMElement *elem = 0;
   ACE_CString name (base_type);
   name += be_global->basic_seq_suffix ();
-  
+
   int result = be_global->decl_elem_table ().find (
-    name.c_str (),\
+    name.c_str (),
     elem);
 
   if (result != 0)
@@ -4904,7 +4802,7 @@ adding_visitor::add_implementation (const char *id,
     {
       impl_name.replace (pos, 2, "_");
     }
-    
+
   impl_name += "Impl";
 
   this->add_name_element (container, impl_name.c_str ());
@@ -4923,22 +4821,22 @@ adding_visitor::add_implementation (const char *id,
   ACE_CString ior_name (impl_name.c_str ());
 
   ior_name += ".ior";
-  
+
   DOMElement *component_ior =
     this->add_property ("ComponentIOR",
                         2UL,
                         2UL,
                         7UL,
                         ior_name.c_str ());
-  
+
   container->appendChild (component_ior);
-  
+
   DOMElement *connection =
     this->add_connection (impl,
                           component_ior,
                           "ConfigProperty",
                           10UL);
-  
+
   container->appendChild (connection);
 
   this->add_artifact_refs (container,
@@ -4994,14 +4892,14 @@ adding_visitor::add_property (const char *name,
   data_type->setAttribute (X ("relid"), X ("0x2"));
   data_type->setAttribute (X ("kind"), X ("DataType"));
   data_type->setAttribute (X ("role"), X ("DataType"));
-  this->add_name_element (data_type, "String");
+  this->add_name_element (data_type, IDML::Type_Trait <IDML::String>::metaname);
 
-  const char **pdts = be_global->pdt_names ();
   const XMLCh *pdt_id = 0;
 
   // The slot for the predefined type 'string' is 2.
   int result =
-    be_global->decl_id_table ().find (pdts[2UL], pdt_id);
+    be_global->decl_id_table ().find (
+    IDML::Type_Trait <IDML::String>::metaname, pdt_id);
 
   if (result != 0)
     {
@@ -5094,7 +4992,7 @@ adding_visitor::add_artifact_refs (DOMElement *impl_container,
     {
       DOMElement *artifact =
         dynamic_cast<DOMElement *> (artifacts->item (index));
-        
+
       this->add_one_artifact_ref (impl_container,
                                   impl,
                                   artifact,
@@ -5160,7 +5058,7 @@ adding_visitor::add_one_artifact_ref (DOMElement *impl_container,
                           artifact_ref,
                           "MonolithprimaryArtifact",
                           index + 6);
-                          
+
   impl_container->appendChild (connection);
 }
 
@@ -5238,7 +5136,7 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
       this->redef_error (next, d);
       BE_abort ();
     }
-  
+
   (void) this->sub_tree_->insertBefore (elem, next);
 }
 
@@ -5280,7 +5178,7 @@ adding_visitor::redef_error (DOMElement *elem, AST_Decl *d)
               ACE_TEXT ("already defined in %C.idl\n"),
               d->full_name (),
               name));
-              
+
   XMLString::release (&name);
 }
 
@@ -5465,14 +5363,14 @@ adding_visitor::be_check_for_include (ACE_CString &result,
   incl_file [i] = '\0';
 
   size_t const len = ACE_OS::strlen (incl_file);
-  
+
   if (ACE_OS::strcmp (incl_file, "Components.idl") == 0
       || ACE_OS::strcmp (incl_file, "orb.idl") == 0
       || ACE_OS::strcmp (incl_file + len - 5, ".pidl") == 0)
     {
       return;
     }
-    
+
   result = incl_file;
 }
 

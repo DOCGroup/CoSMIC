@@ -19,6 +19,7 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, tao_
     be_produce.cpp
     removing_visitor.cpp
     removing_closure_visitor.cpp
+    Type_Trait.cpp
     xme_dom_visitor.cpp
   }
 
@@ -27,9 +28,14 @@ project(IDL_TO_PICML_BE) : acelib, core, crosscompile, cosmic_xerces_utils, tao_
     be_extern.h
     be_global.h
     IDL_TO_PICML_BE_Export.h
+    Predefined_Types.h
     removing_visitor.h
     removing_closure_visitor.h
     xme_dom_visitor.h
+  }
+
+  Template_Files {
+    adding_visitor_t.cpp
   }
 }
 

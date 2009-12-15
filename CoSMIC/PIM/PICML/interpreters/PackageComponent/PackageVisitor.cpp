@@ -329,8 +329,8 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
   this->curr_ = val;
 
   PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
-
   const Uml::Class& refType = ref.type();
+
   if (refType == Boolean::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("boolean",
@@ -346,7 +346,12 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
       this->curr_->appendChild (this->createSimpleContent ("string",
                                                            property.DataValue()));
     }
-  else if (refType == RealNumber::meta)
+  else if (refType == FloatNumber::meta)
+    {
+      this->curr_->appendChild (this->createSimpleContent ("float",
+                                                           property.DataValue()));
+    }
+  else if (refType == DoubleNumber::meta)
     {
       this->curr_->appendChild (this->createSimpleContent ("double",
                                                            property.DataValue()));
@@ -367,8 +372,8 @@ void PackageVisitor::CreatePropertyElement (string name, const Property& propert
 void PackageVisitor::Visit_DataType(const DataType& type)
 {
   PredefinedType ref = PICML::PredefinedType::Cast (type.ref());
-
   const Uml::Class& refType = ref.type();
+
   if (refType == Boolean::meta)
     {
       Boolean boolv = PICML::Boolean::Cast (ref);
@@ -384,9 +389,14 @@ void PackageVisitor::Visit_DataType(const DataType& type)
       String str = PICML::String::Cast (ref);
       str.Accept (*this);
     }
-  else if (refType == RealNumber::meta)
+  else if (refType == FloatNumber::meta)
     {
-      RealNumber real = PICML::RealNumber::Cast (ref);
+      FloatNumber real = PICML::FloatNumber::Cast (ref);
+      real.Accept (*this);
+    }
+  else if (refType == DoubleNumber::meta)
+    {
+      DoubleNumber real = PICML::DoubleNumber::Cast (ref);
       real.Accept (*this);
     }
   else if (refType == ShortInteger::meta)
@@ -436,7 +446,18 @@ void PackageVisitor::Visit_String(const String& str)
   this->pop();
 }
 
-void PackageVisitor::Visit_RealNumber(const RealNumber& real)
+void PackageVisitor::Visit_FloatNumber(const FloatNumber& real)
+{
+  this->push();
+  DOMElement* type = this->doc_->createElement (XStr ("type"));
+  this->curr_->appendChild (type);
+  this->curr_ = type;
+  this->curr_->appendChild (this->createSimpleContent ("kind",
+                                                       "tk_float"));
+  this->pop();
+}
+
+void PackageVisitor::Visit_DoubleNumber(const DoubleNumber& real)
 {
   this->push();
   DOMElement* type = this->doc_->createElement (XStr ("type"));

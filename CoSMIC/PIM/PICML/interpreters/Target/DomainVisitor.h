@@ -57,7 +57,8 @@ namespace PICML
     virtual void Visit_Boolean(const Boolean& boolean);
     virtual void Visit_Byte(const Byte& byte);
     virtual void Visit_String(const String& str);
-    virtual void Visit_RealNumber(const RealNumber& real);
+    virtual void Visit_FloatNumber(const FloatNumber& real);
+    virtual void Visit_DoubleNumber(const DoubleNumber& real);
     virtual void Visit_ShortInteger(const ShortInteger&);
     virtual void Visit_LongInteger(const LongInteger&);
 
