@@ -136,7 +136,7 @@ IDB_BITMAP_DATATYPE     BITMAP                  "..\\paradigms\\icons\\DataType.
 IDB_BITMAP_COMPONENTASSEMBLY BITMAP                  "..\\paradigms\\icons\\componentassembly.bmp"
 IDB_BITMAP_COMPONENTASSEMBLYREF BITMAP                  "..\\paradigms\\icons\\componentassemblyref.bmp"
 IDB_BITMAP_OBJECT       BITMAP                  "..\\paradigms\\icons\\object.bmp"
-IDB_BITMAP_DOUBLENUMBER BITMAP                  "E:\\proj\\CoSMIC\\PIM\\PICML\\paradigms\\icons\\DoubleNumber.bmp"
+IDB_BITMAP_DOUBLENUMBER BITMAP                  "..\\paradigms\\icons\\DoubleNumber.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
