@@ -1,15 +1,17 @@
 #include <boost/regex.hpp>
-#include "boost/tuple/tuple.hpp"
+#include <boost/tuple/tuple.hpp>
 
 namespace LEESA {
 
 class OpBase {}; // Base of all the operators
 
 template <class LExpr, class RExpr>
-struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>,
+struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, 
+                                   typename ET<RExpr>::argument_type>,
                OpBase
 {
-  typedef LEESAUnaryFunction <typename ET<LExpr>::result_type, void> Super;
+  typedef LEESAUnaryFunction <typename ET<LExpr>::result_type, 
+                              typename ET<RExpr>::argument_type> Super;
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<LExpr, DFSOp<LExpr, RExpr> > expression_type;
   typedef typename ET<LExpr>::result_kind LKind;
@@ -29,6 +31,7 @@ struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>,
   {
     typename KindTraits<argument_kind>::Container v = arg;
     std::for_each(v.begin(), v.end(), expr_);
+    return arg;
   }
 };
 
@@ -102,27 +105,25 @@ struct GetChildrenOp :
     typename KindTraits<argument_kind>::Container v = arg;
     BOOST_FOREACH(argument_kind kind, v)
     {
-      typename KindTraits<result_kind>::Container children = 
 #ifdef LEESA_FOR_UDM
-      kind.template children_kind<result_kind>();
+      result_type temp(kind.template children_kind<result_kind>());
 #else
-      children_kind (kind, result_kind());
+      result_type temp(children_kind (kind, result_kind()));
 #endif // LEESA_FOR_UDM
-      retval.Union(children);
-      dispatch_depth_first(children, expr_);
+      dispatch_depth_first(temp, expr_);
+      retval.Union(temp);
     }
     return retval;
   }
+
   template <class Left, class Right>
-  void dispatch_depth_first(typename KindTraits<result_kind>::Container const & c, 
-                            ChainExpr<Left, Right> & expr)
+  void dispatch_depth_first(result_type const & r, ChainExpr<Left, Right> & expr)
   {
     // If expr_ is a ChainExpr, that means some non-trivial depth-first expression
     // is present, which must be executed.
-    std::for_each(c.begin(), c.end(), expr);
+    std::for_each(r.begin(), r.end(), expr);
   }
-  void dispatch_depth_first(typename KindTraits<result_kind>::Container const & c, 
-                            typename ET<H>::argument_type const &)
+  void dispatch_depth_first(result_type const & c, typename ET<H>::argument_type const &)
   { 
     // If expr_ is a KindLit, it is basically a no-op.
   }
@@ -458,7 +459,7 @@ struct TupleHolder
   {
     Transpose tran;
     int i = 0;
-    for(HeadContainer::const_iterator iter = head_vector_.begin();
+    for(typename HeadContainer::const_iterator iter = head_vector_.begin();
         iter != head_vector_.end();
         ++iter, ++i)
     {
@@ -475,7 +476,7 @@ struct TupleHolder
   protected:
   void populate_tuple(OrigTuple & t, int i)
   {
-    t.get<TUPLE_INDEX>() = this->head_vector_[i];
+    boost::tuples::get<TUPLE_INDEX>(t) = this->head_vector_[i];
     super::populate_tuple (t, i);
   }
 };

@@ -111,16 +111,42 @@ public:
     std::copy(ukindlit.c_.begin(), ukindlit.c_.end(), std::back_inserter(c_));
   }
   KindLit (KindLit const & k) : c_ (k.c_) {}
-  KindLit (Kind const & k) { c_.push_back(k); }  
+  KindLit (Kind const & k) { this->Union(k); }  
   KindLit (Container const & c) : c_(c) { }
+  
+  void Union(KindLit const & k)
+  {
+    std::copy(k.begin(), k.end(), std::back_inserter(c_));
+  }
+
+  void Union(Kind const & k)
+  {
+    c_.push_back(k);
+  }
+  
+  void Union(Container const & in)
+  {
+    std::copy(in.begin(), in.end(), std::back_inserter(c_));
+  }
 
 #ifdef LEESA_FOR_UDM
+
+  KindLit (Udm::ParentAttr<Kind> const & c) 
+  {
+    this->Unioin(c);
+  }
 
   void Union(Udm::ParentAttr<Kind> const & c) 
   {
     Kind k = c;
     c_.push_back(k);
   }
+
+  KindLit(Udm::ChildrenAttr<Kind> const & ca) 
+  {
+    this->Union(ca);
+  }
+
   void Union(Udm::ChildrenAttr<Kind> const & ca) 
   {
     Container c = ca;
@@ -128,6 +154,11 @@ public:
   }
 
 #else 
+
+  KindLit (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
+  {
+    this->Union(o);
+  }
 
   void Union (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
   {
@@ -139,16 +170,6 @@ public:
 
 #endif // LEESA_FOR_UDM
 
-  void Union(Kind const & k)
-  {
-    c_.push_back(k);
-  }
-  
-  void Union(Container const & in)
-  {
-    std::copy(in.begin(), in.end(), std::back_inserter(c_));
-  }
-  
   iterator begin() { return c_.begin(); }
   const_iterator begin() const { return c_.begin(); }
 
@@ -237,7 +258,7 @@ class VisitorAsIndex : public VisitorAsIndexBase
 
   public:
     VisitorAsIndex (SchemaVisitor & v) : visitor_(v) {}
-    SchemaVisitor & getVisitor() { return visitor_; }
+    SchemaVisitor & getVisitor() const { return visitor_; }
 };
 
 template <class Kind, class Visitor>

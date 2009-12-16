@@ -1,3 +1,36 @@
+Wed Dec 16 22:11:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+	
+          Removed some debug information.
+
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+
+          Some bugfixes. Identity(Kind) allows expression to begin with
+	  depth-first operator.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/library-xsd/driver.cxx:
+
+          Updated the tests.
+
+        * tests/LEESA/UDM_DSL:
+        * tests/LEESA/UDM_DSL/HFSM.h:
+        * tests/LEESA/UDM_DSL/HFSM.xme:
+        * tests/LEESA/UDM_DSL/HFSM.cpp:
+        * tests/LEESA/UDM_DSL/HFSM.xml:
+        * tests/LEESA/UDM_DSL/HFSM.xsd:
+        * tests/LEESA/UDM_DSL/StdAfx.h:
+        * tests/LEESA/UDM_DSL/StdAfx.cpp:
+        * tests/LEESA/UDM_DSL/UDM_DSL.mwc:
+        * tests/LEESA/UDM_DSL/UDM_DSL.cpp:
+        * tests/LEESA/UDM_DSL/UDM_DSL.mpc:
+
+          Removed these files.
+
 Wed Dec 16 19:28:04 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/decorators/Decorator.rc:

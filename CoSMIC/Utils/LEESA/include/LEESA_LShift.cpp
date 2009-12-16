@@ -66,6 +66,47 @@ operator << (L const &l, OP op)
   return ChainExpr(ParentKindExpr(l), op);                   
 }
 
+template <class LKind, class R>
+typename disable_if_c <
+  IsDomainVisitorBaseOf<R>::value |
+  is_base_of<OpBase,R>::value,
+  ChainExpr<typename ET<LKind>::result_type,
+            DFSOp<typename ET<R>::argument_type,
+                  ChainExpr<typename ET<R>::result_type, 
+                            VisitorOp<typename ET<R>::result_type>
+                           >
+                 >
+           > >::type
+operator <<= (KindLit<LKind> const & k, VisitorAsIndex<R> const & vi)
+{
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, R>)); 
+
+  return k <<= R() >> vi.getVisitor();
+}
+
+template <class LKind, class R>
+typename disable_if_c <
+  IsDomainVisitorBaseOf<R>::value |
+  IsVisitorAsIndexBaseOf<R>::value |
+  is_base_of<OpBase,R>::value,
+  ChainExpr<typename ET<LKind>::result_type, 
+            DFSOp<typename ET<R>::argument_type,
+                  typename ET<R>::expression_type>
+           > >::type
+operator <<= (KindLit<LKind> const & k, R const & r)
+{
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, typename ET<R>::argument_kind>)); 
+
+  typedef typename ET<LKind>::result_type LResult;
+  typedef typename ET<R>::argument_type RArg;
+  typedef typename ET<R>::expression_type RExpr;
+  typedef DFSOp<RArg, RExpr> DFSOperator;
+  DFSOperator dfsop(r);
+  typedef ChainExpr <LResult, DFSOperator> ChainExpr;
+
+  return ChainExpr(k, dfsop);
+}
+
 #ifndef LEESA_NO_VISITOR
 
 template <class L, class R>

@@ -256,10 +256,10 @@ typename disable_if_c<
    is_base_of<std::ios_base, L>::value |
    is_base_of <OpBase, R>::value |
    is_base_of <OpBase, L>::value,
-   typename ChainExpr<typename ET<L>::expression_type, 
-                      GetChildrenOp<typename ET<L>::result_type, 
-                                    typename ET<R>::expression_type>
-                      > >::type
+   ChainExpr<typename ET<L>::expression_type, 
+             GetChildrenOp<typename ET<L>::result_type, 
+                           typename ET<R>::expression_type>
+             > >::type
 operator >> (L const &l, R const &r)
 {
   typedef GetChildrenOp<typename ET<L>::result_type, 
@@ -297,7 +297,7 @@ operator >> (L const &l, SequenceExpr<H,X> const & s)
 template <class L, class RESULT, class TARGETCLASS>
 typename disable_if<is_base_of<std::ios_base, L>, 
           ChainExpr<typename ET<L>::expression_type, 
-          AssociationOp<RESULT, TARGETCLASS>
+                    AssociationOp<RESULT, TARGETCLASS>
           > >::type
 operator >> (L const &l, Udm::AClassPointerAttr<RESULT, TARGETCLASS> (TARGETCLASS::*func)() const)
 {
@@ -364,6 +364,47 @@ operator >>= (L const &l, R const &r)
   return ChainExpr(ParentKindExpr(l), gcop);
 }
 
+template <class LKind, class R>
+typename disable_if_c <
+  IsDomainVisitorBaseOf<R>::value |
+  is_base_of<OpBase,R>::value,
+  ChainExpr<typename ET<LKind>::result_type,
+            DFSOp<typename ET<R>::argument_type,
+                  ChainExpr<typename ET<R>::result_type, 
+                            VisitorOp<typename ET<R>::result_type>
+                           >
+                 >
+           > >::type
+operator >>= (KindLit<LKind> const & k, VisitorAsIndex<R> const & vi)
+{
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, R>)); 
+
+  return k >>= R() >> vi.getVisitor();
+}
+
+template <class LKind, class R>
+typename disable_if_c <
+  IsDomainVisitorBaseOf<R>::value |
+  IsVisitorAsIndexBaseOf<R>::value |
+  is_base_of<OpBase,R>::value,
+  ChainExpr<typename ET<LKind>::result_type, 
+            DFSOp<typename ET<R>::argument_type,
+                  typename ET<R>::expression_type>
+           > >::type
+operator >>= (KindLit<LKind> const & k, R const & r)
+{
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, typename ET<R>::argument_kind>)); 
+
+  typedef typename ET<LKind>::result_type LResult;
+  typedef typename ET<R>::argument_type RArg;
+  typedef typename ET<R>::expression_type RExpr;
+  typedef DFSOp<RArg, RExpr> DFSOperator;
+  DFSOperator dfsop(r);
+  typedef ChainExpr <LResult, DFSOperator> ChainExpr;
+
+  return ChainExpr(k, dfsop);
+}
+
 template <class L, class R, class X>
 ChainExpr<typename ET<L>::expression_type, 
           DFSOp<typename ET<L>::expression_type,
@@ -388,3 +429,4 @@ operator >>= (L const &l, SequenceExpr<R,X> const &r)
 
 
 } // namespace LEESA
+

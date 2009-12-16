@@ -101,11 +101,11 @@ main (int argc, char* argv[])
     MyVisitor mv;
     using namespace LEESA;
     
-    SchemaTraits<catalog>::Container author_name_seq = 
-      evaluate (*c, catalog() >> Select(catalog(), selector));
+    SchemaTraits<book>::Container book_seq = 
+      evaluate (*c, catalog() >> book());
       
-    SchemaTraits<person_died>::Container person_died_seq = 
-      evaluate (*c, catalog() >> book() >> author() >> person_died());
+    //SchemaTraits<person_died>::Container person_died_seq = 
+    //  evaluate (book_seq, book() >> author() >> person_died());
     
     SchemaTraits<author>::Container author_seq = 
       evaluate(*c, catalog() >> DescendantsOf(catalog(), author()));

@@ -26,7 +26,7 @@ class TypeInfo:
   return_type = "####"
 
   def __str__(self):
-    return "TypeInfo = ['" + self.wrapper + "' '" + self.orig_type + "' '" + str(self.is_schema_type) + "' '" + self.typedef + "' '" + self.return_type + "']"
+    return "['" + self.wrapper + "' '" + self.orig_type + "' '" + str(self.is_schema_type) + "' '" + self.typedef + "' '" + self.return_type + "']"
     
 
 def extract_type_info (typedef_node):
@@ -574,7 +574,7 @@ def write_descendant_pairs(children_dict, meta_header_file):
 
 def print_dictionary(dict, message):
   print (message)
-  for key, value in dict.items():
+  for key, value in sorted(dict.items()):
     print (key)
     print (value)
 
@@ -780,6 +780,7 @@ cpp_file = open(cpp_filename, 'w')
 write_header_prolog(namespace, orig_header_without_ext, meta_header_file)
 write_cpp_prolog(namespace, orig_header_without_ext, cpp_file)
 
+print_dictionary(typedef_dict, "************************Printing typedef dictionary: ***************************** ")
 # This function updates the typedef dictionary.
 write_types(root, function_dict, typedef_dict, meta_header_file)
 
