@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{19E98327-EE9E-40D2-9421-99CDE5853565}" cdate="Sun Nov 29 11:07:47 2009" mdate="Sun Nov 29 11:07:47 2009" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{963B6260-B1AF-43FC-BA04-9409086625AD}" cdate="Sun Dec 13 12:03:56 2009" mdate="Sun Dec 13 12:03:56 2009" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>SM</name>
 	<comment></comment>
 	<author></author>
@@ -2534,8 +2534,8 @@ rrName = referedbyReference</value>
 				<attribute kind="Rolename" status="meta">
 					<value></value>
 				</attribute>
-				<connpoint role="src" target="id-0066-0000000a"/>
 				<connpoint role="dst" target="id-0066-0000000a"/>
+				<connpoint role="src" target="id-0066-0000000a"/>
 			</connection>
 			<connection id="id-0068-00000010" kind="HasAspect" role="HasAspect" guid="{905025a3-7eaa-49d6-bf06-7a41b0db4d38}" relid="0x6f">
 				<name>HasAspect</name>
@@ -2553,7 +2553,7 @@ rrName = referedbyReference</value>
 				<connpoint role="dst" target="id-0066-00000009"/>
 				<connpoint role="src" target="id-0069-00000001"/>
 			</connection>
-			<connection id="id-0068-0000001a" kind="Containment" role="Containment" guid="{ed3de556-9ae2-4f97-b78c-90f0b941fc39}" relid="0x71">
+			<connection id="id-0068-00000012" kind="Containment" role="Containment" guid="{ed3de556-9ae2-4f97-b78c-90f0b941fc39}" relid="0x71">
 				<name>Containment</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Sw</value>
@@ -3130,7 +3130,7 @@ dName = dstSequence</value>
 					<value></value>
 				</attribute>
 			</atom>
-			<connection id="id-0068-00000012" kind="HasAttribute" role="HasAttribute" guid="{e56651c6-bf92-4cf9-9e0f-a6db9cd9a3ad}" relid="0x1e">
+			<connection id="id-0068-00000013" kind="HasAttribute" role="HasAttribute" guid="{e56651c6-bf92-4cf9-9e0f-a6db9cd9a3ad}" relid="0x1e">
 				<name>HasAttribute</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -3138,7 +3138,7 @@ dName = dstSequence</value>
 				<connpoint role="src" target="id-0066-0000000b"/>
 				<connpoint role="dst" target="id-0066-00000010"/>
 			</connection>
-			<connection id="id-0068-00000013" kind="HasConstraint" role="HasConstraint" guid="{28bbbca1-e60b-4068-89cb-7499d153a32b}" relid="0x1c">
+			<connection id="id-0068-00000014" kind="HasConstraint" role="HasConstraint" guid="{28bbbca1-e60b-4068-89cb-7499d153a32b}" relid="0x1c">
 				<name>HasConstraint</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>Ns</value>
@@ -3146,7 +3146,7 @@ dName = dstSequence</value>
 				<connpoint role="src" target="id-0066-0000000c"/>
 				<connpoint role="dst" target="id-0066-00000010"/>
 			</connection>
-			<connection id="id-0068-00000014" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{74f3ac6e-92b9-484f-9159-045a3aef7944}" relid="0x1b">
+			<connection id="id-0068-00000015" kind="ConnectorToDestination" role="ConnectorToDestination" guid="{74f3ac6e-92b9-484f-9159-045a3aef7944}" relid="0x1b">
 				<name>ConnectorToDestination</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>s</value>
@@ -3163,7 +3163,7 @@ dName = dstSequence</value>
 				<connpoint role="src" target="id-0066-0000000e"/>
 				<connpoint role="dst" target="id-0066-00000010"/>
 			</connection>
-			<connection id="id-0068-00000015" kind="SourceToConnector" role="SourceToConnector" guid="{c90a505f-3183-4285-bc7d-38a3d074dbec}" relid="0x1a">
+			<connection id="id-0068-00000016" kind="SourceToConnector" role="SourceToConnector" guid="{c90a505f-3183-4285-bc7d-38a3d074dbec}" relid="0x1a">
 				<name>SourceToConnector</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>W</value>
@@ -3177,7 +3177,7 @@ dName = dstSequence</value>
 				<connpoint role="dst" target="id-0066-0000000e"/>
 				<connpoint role="src" target="id-0066-00000010"/>
 			</connection>
-			<connection id="id-0068-00000016" kind="Containment" role="Containment" guid="{33ed9ca9-f235-42f7-9983-b6d3c7241154}" relid="0x18">
+			<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{33ed9ca9-f235-42f7-9983-b6d3c7241154}" relid="0x18">
 				<name>Containment</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -3191,7 +3191,7 @@ dName = dstSequence</value>
 				<connpoint role="dst" target="id-0066-0000000f"/>
 				<connpoint role="src" target="id-0066-00000010"/>
 			</connection>
-			<connection id="id-0068-00000017" kind="Containment" role="Containment" guid="{f94f88e1-769d-49d7-8ebb-99e724c85f5f}" relid="0x11">
+			<connection id="id-0068-00000018" kind="Containment" role="Containment" guid="{f94f88e1-769d-49d7-8ebb-99e724c85f5f}" relid="0x11">
 				<name>Containment</name>
 				<attribute kind="Cardinality" status="meta">
 					<value>0..*</value>
@@ -3205,7 +3205,7 @@ dName = dstSequence</value>
 				<connpoint role="src" target="id-0066-0000000d"/>
 				<connpoint role="dst" target="id-0066-0000000f"/>
 			</connection>
-			<connection id="id-0068-00000018" kind="HasAspect" role="HasAspect" guid="{138ebc24-441b-410a-9d8a-3f920b72ca91}" relid="0xb">
+			<connection id="id-0068-00000019" kind="HasAspect" role="HasAspect" guid="{138ebc24-441b-410a-9d8a-3f920b72ca91}" relid="0xb">
 				<name>HasAspect</name>
 				<regnode name="autorouterPref" isopaque="yes">
 					<value>We</value>
@@ -3213,7 +3213,7 @@ dName = dstSequence</value>
 				<connpoint role="dst" target="id-0066-0000000f"/>
 				<connpoint role="src" target="id-0069-00000002"/>
 			</connection>
-			<connection id="id-0068-00000019" kind="AssociationClass" role="AssociationClass" guid="{110d0807-3b7a-49f7-ad01-12d83aa3b401}" relid="0x8">
+			<connection id="id-0068-0000001a" kind="AssociationClass" role="AssociationClass" guid="{110d0807-3b7a-49f7-ad01-12d83aa3b401}" relid="0x8">
 				<name>AssociationClass</name>
 				<connpoint role="src" target="id-0066-0000000d"/>
 				<connpoint role="dst" target="id-0066-0000000e"/>

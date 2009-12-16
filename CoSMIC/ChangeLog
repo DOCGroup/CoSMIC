@@ -1,3 +1,27 @@
+Wed Dec 16 00:53:23 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+
+          Improved LEESA in several ways: 
+          1. Depth-first and MembersOf expressions have return value.
+          2. GetChildrenOp and GetParentOp handle both breadth-first and depth-first.
+             DFSChildrenOp and DFSParentOp are gone.
+          3. MembersAsTupleOp returns boost::tuple.
+        
+        * tests/LEESA/SM-Win/SM-Win.vcproj:
+        * tests/LEESA/SM-Win/SM.xme:
+        * tests/LEESA/SM-Win/SM.xml:
+        * tests/LEESA/SM-Win/SM.xmp:
+        * tests/LEESA/SM-Win/SM_uml.xme:
+        * tests/LEESA/SM-Win/UdmApp.cpp:
+        
+          Updated the test to check the new capabilities.
+
 Tue Dec 15 20:25:55 UTC 2009  James H. Hill  <hillj@dre.vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/Type_Trait.cpp:

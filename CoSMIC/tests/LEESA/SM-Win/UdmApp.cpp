@@ -115,6 +115,63 @@ public:
 	}
 };
 
+struct VarUser : public std::unary_function<State, void>
+{
+  StateMachine & sm_;
+  State & s_;
+
+  VarUser(StateMachine & sm, State & s) 
+    : sm_(sm), s_(s)
+  {}
+  
+  void operator () (State s) const
+  {
+    std::string str = "StateMachine = " + std::string(sm_.name()) + "\n"
+                       + "State = " + std::string(s.name());
+	  AfxMessageBox(str.c_str());
+  }
+};
+
+void breadth_first_tests(RootFolder rf)
+{
+  SMVisitor visitor;
+
+  evaluate(rf, RootFolder() >> StateMachine() >> State());
+  evaluate(rf, RootFolder() >> visitor >> StateMachine() >> visitor >> State() >> visitor);
+  evaluate(rf, RootFolder()[visitor] >> StateMachine()[visitor]);
+  evaluate(rf, RootFolder()[visitor] >> StateMachine()[visitor] >> State()[visitor]);
+  evaluate(rf, RootFolder()[visitor] >> StateMachine()[visitor] >> State() >> visitor);
+  evaluate(rf, RootFolder()[visitor] >> visitor >> visitor);
+
+  std::vector<StateMachine> smv = evaluate(rf, RootFolder() >> StateMachine());
+  evaluate(smv, StateMachine() >> State());
+  evaluate(smv, StateMachine()[visitor] >> State());
+}
+
+template <class Kind>
+bool always_true (Kind)
+{
+  return true;
+}
+
+template <class Kind>
+void apply (Kind)
+{ }
+
+void breadth_first_operator_tests(RootFolder rf)
+{
+  SMVisitor visitor;
+
+  std::vector<StateMachine> smv = 
+  evaluate(rf, RootFolder() >> SelectByName(RootFolder(), "R.*") >> StateMachine());
+  evaluate(smv, StateMachine() >> Select(StateMachine(), always_true<StateMachine>));
+  evaluate(smv, StateMachine() >> SelectSubSet(smv));
+  evaluate(smv, StateMachine() >> SelectSubSet(smv.begin(), smv.end()));
+  evaluate(smv, StateMachine() >> ForEach(StateMachine(), apply<StateMachine>));
+  evaluate(smv, StateMachine() >> Unique(StateMachine()));
+  evaluate(smv, StateMachine() >> BaseState() >> CastFromTo(BaseState(), State()));
+}
+
 void CUdmApp::UdmMain(
 					 Udm::DataNetwork* p_backend,		// Backend pointer(already open!)
 					 Udm::Object focusObject,			// Focus object
@@ -122,13 +179,38 @@ void CUdmApp::UdmMain(
 					 long param)						// Parameters
 {	
 	using namespace LEESA;
+  using namespace boost::tuples;
+
 	try {
     
 		RootFolder rf = RootFolder::Cast (p_backend->GetRootObject());
-		SMVisitor visitor;
+    SMVisitor visitor;
 
-    evaluate (rf, RootFolder() >>= StateMachine()[visitor] >>= State()[visitor]);
-  
+    //breadth_first_tests(rf);
+    //breadth_first_operator_tests(rf);
+/*
+    BOOST_AUTO(test2, RootFolder() >> StateMachine() >>= State() >>  visitor);
+    std::vector<State> sv = evaluate(rf, test2);
+*/
+    std::vector<StateMachine> smv =
+    evaluate(rf, RootFolder() >> StateMachine()[visitor]);
+    
+    typedef tuple<State, StartState> TestTuple;
+
+    std::vector<TestTuple > vt = 
+      evaluate(smv, StateMachine() >> MembersAsTupleOf(StateMachine(), TestTuple()));
+
+    BOOST_FOREACH(TestTuple t, vt)
+    {
+      std::string ostr = std::string() 
+                         + "element<0>::type = " + typeid(element<0, TestTuple>::type).name() + "\n"
+                         + "get<0>::value = " + std::string(get<0>(t).name()) + "\n"
+                         + "element<1>::type = " + typeid(element<1, TestTuple>::type).name() + "\n"
+                         + "get<1>::value = " + std::string(get<1>(t).name()) + "\n";
+
+      AfxMessageBox(ostr.c_str());
+    }
+/*  
 		std::vector<StartState> SSvector = 
 		evaluate(rf, RootFolder()
 					>> StateMachine()
@@ -139,8 +221,9 @@ void CUdmApp::UdmMain(
 
 		show(SSvector.size(), "SSvector.size() = ");
 
-    evaluate(SSvector, StartState()[visitor] << StateMachine()[visitor] );
-
+    evaluate(SSvector, StartState()[visitor] <<= StateMachine()[visitor]);
+*/
+    /*
     evaluate(rf, RootFolder()
           >> StateMachine() 
           >> State()
@@ -173,7 +256,7 @@ void CUdmApp::UdmMain(
                        FROM(RootFolder),
                        TO(State),
                        THROUGH(StateMachine)));
-
+*/
 	}
 	catch (boost::regex_error & e)
 	{

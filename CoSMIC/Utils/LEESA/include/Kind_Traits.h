@@ -50,10 +50,16 @@ namespace LEESA {
     };
   };
 
+  template <class T>
+  struct ContainerTraits
+  {
+    typedef typename std::vector<T> Container;
+  };
+
   template <class Kind, class Custom = Default>
   struct KindTraits 
   {
-    typedef typename std::vector<Kind> Container;
+    typedef typename ContainerTraits<Kind>::Container Container;
     typedef typename Kind::ChildrenKinds ChildrenKinds;
     typedef typename Kind::ParentKinds ParentKinds;
     typedef typename Kind::MetaKind MetaKind;
@@ -69,6 +75,7 @@ namespace LEESA {
     typedef IsSchemaType type;
     enum { value = boost::is_base_of <Udm::Object, Kind>::value };
   };
+
 #else
 
   struct AtomMetaTag {};
@@ -80,10 +87,16 @@ namespace LEESA {
   
   struct Default {};
 
+  template <class T>
+  struct ContainerTraits
+  {
+    typedef typename DOMAIN_NAMESPACE::SchemaTraits<T>::Container Container;
+  };
+
   template <class Kind, class Custom = Default>
   struct KindTraits 
   {
-    typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Container Container;
+    typedef typename ContainerTraits<Kind>::Container Container;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;

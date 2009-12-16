@@ -8,45 +8,49 @@ typename disable_if_c
   <IsDomainVisitorBaseOf<H>::value |
    is_base_of<std::ios_base, L>::value |
    is_base_of <OpBase, H>::value,
-   typename ChainedOperator<L,H,GetParentOp>::Op>::type
-operator << (L const &l, H)
+   ChainExpr<typename ET<L>::expression_type,
+             GetParentOp<typename ET<L>::result_type,
+                         typename ET<H>::expression_type>
+            > >::type
+operator << (L const &l, H const & h)
 {
   // Don't replace the following with LOCAL_TYPEDEFS.
   typedef GetParentOp<typename ET<L>::result_type, 
-                      typename ET<H>::argument_type>  OP;
+                      typename ET<H>::expression_type>  GPOp;
   typedef typename ET<L>::expression_type ChildKindExpr;
   typedef typename ET<H>::argument_kind ParentKind;
   typedef typename ET<L>::result_kind ChildKind;
-  typedef ChainExpr<ChildKindExpr, OP> ChainExpr;
+  typedef ChainExpr<ChildKindExpr, GPOp> ChainExpr;
 
   BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
-  return ChainExpr(ChildKindExpr(l), OP());
+  GPOp gpop(h);
+  return ChainExpr(ChildKindExpr(l), gpop);
 }
 
 template <class L, class H>
-typename disable_if
-  <IsDomainVisitorBaseOf<H>,
+typename disable_if_c
+  <IsDomainVisitorBaseOf<H>::value |
+   is_base_of<OpBase, H>::value,
    ChainExpr<typename ET<L>::expression_type, 
-              DFSParentOp<typename ET<L>::expression_type,
+              GetParentOp<typename ET<L>::result_type,
                           typename ET<H>::expression_type>
             >
   >::type
 operator <<= (L const &l, H const & h)
 {
-  BOOST_MPL_ASSERT_NOT((is_base_of<OpBase, H>));
-
-  typedef typename ET<L>::expression_type ParentExpr;
-  typedef typename ET<H>::expression_type ChildExpr;
-  typedef DFSParentOp<ParentExpr, ChildExpr> Operator;
-  typedef typename ET<L>::result_kind ChildKind;
+  // Don't replace the following with LOCAL_TYPEDEFS.
+  typedef GetParentOp<typename ET<L>::result_type, 
+                      typename ET<H>::expression_type>  GPOp;
+  typedef typename ET<L>::expression_type ChildKindExpr;
   typedef typename ET<H>::argument_kind ParentKind;
-  typedef ChainExpr<ParentExpr, Operator> ChainExpr;
+  typedef typename ET<L>::result_kind ChildKind;
+  typedef ChainExpr<ChildKindExpr, GPOp> ChainExpr;
 
   BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <ChildKind, ParentKind>));
 
-  Operator op(h);
-  return ChainExpr(ParentExpr(l), op);
+  GPOp gpop(h);
+  return ChainExpr(ChildKindExpr(l), gpop);
 }
 
 template <class L, class OP>                              
@@ -68,9 +72,7 @@ template <class L, class R>
 ChainExpr<ChainExpr<typename ET<L>::expression_type,
                     VisitorOp<typename ET<L>::result_type>
                    >,
-          DFSParentOp <ChainExpr<typename ET<L>::expression_type,
-                                 VisitorOp<typename ET<L>::result_type>
-                                >,
+          GetParentOp <typename ET<L>::result_type,
                        ChainExpr<typename ET<R>::expression_type,
                                  VisitorOp<typename ET<R>::result_type>
                                 >
@@ -105,9 +107,12 @@ operator << (L const &l, SchemaVisitor & v)
 template <class L, class H>
 typename 
   disable_if<is_base_of<std::ios_base, L>, 
-             ChainExpr<typename ChainedOperator<L,H,GetParentOp>::Op,
-             VisitorOp<typename ET<H>::result_type>
-            > >::type
+  ChainExpr<ChainExpr<typename ET<L>::expression_type,
+                      GetParentOp<typename ET<L>::result_type,
+                                  typename ET<H>::expression_type>
+                     >,
+            VisitorOp<typename ET<H>::result_type>
+           > >::type
 operator << (L const &l, VisitorAsIndex<H> vi)
 {
   typedef typename ET<L>::result_kind ChildKind;
@@ -121,7 +126,7 @@ template <class L, class H>
 ChainExpr<ChainExpr<ChainExpr<typename ET<L>::expression_type, 
                               VisitorOp<typename ET<L>::result_type> 
                              >,
-                    GetParentOp<typename ET<L>::result_type,  
+                    GetParentOp<typename ET<L>::result_type,
                                 typename ET<H>::result_type>
                    >,
           VisitorOp<typename ET<H>::result_type> 

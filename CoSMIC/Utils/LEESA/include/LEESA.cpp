@@ -36,7 +36,6 @@ template <class L, class R> struct ChainExpr;
 template <class L, class R> struct SequenceExpr;
 
 template <class L, class R> struct GetChildrenOp;
-template <class L, class R> struct DFSChildrenOp;
 template <class L, class R> struct DFSOp;
 
 #ifndef LEESA_NO_VISITOR
@@ -52,12 +51,12 @@ template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
 template <class L, class R> struct CastOp;
+template <class L, class Tuple> struct MembersAsTupleOp;
 
 #ifdef LEESA_FOR_UDM
 
 template <class E> struct NonNullOp;
 template <class L, class R> struct GetParentOp;
-template <class L, class R> struct DFSParentOp;
 template <class RESULT, class TARGETCLASS> struct AssociationOp;
 template <class RESULT, class TARGETCLASS> struct AssociationEndOp;
 template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationManyOp;
@@ -189,9 +188,9 @@ struct ChainExpr : LEESAUnaryFunction <L, R>
 };
 
 template <class L, class R>
-struct SequenceExpr : public LEESAUnaryFunction <L, void>
+struct SequenceExpr : public LEESAUnaryFunction <L, typename ET<L>::argument_type>
 {
-  typedef LEESAUnaryFunction <L, void> Super;
+  typedef LEESAUnaryFunction <L, typename ET<L>::argument_type> Super;
   SUPER_TYPEDEFS(Super);
   typedef SequenceExpr<L, R> expression_type;
   typedef typename ET<R>::argument_kind child_kind;
@@ -210,8 +209,8 @@ struct SequenceExpr : public LEESAUnaryFunction <L, void>
     : l_(l), r_(r) {}
   
   result_type operator () (argument_type arg) 
-  { 
-    l_(arg); 
+  {
+    l_(arg);
     typename KindTraits<argument_kind>::Container v = arg;
     BOOST_FOREACH(argument_kind kind, v)
     {
@@ -222,7 +221,7 @@ struct SequenceExpr : public LEESAUnaryFunction <L, void>
         r_(ckind); 
       }
     }
-
+    return arg;
   }
 };
 
@@ -269,8 +268,8 @@ typename enable_if<IsSchemaType<typename ET<L>::argument_kind>,
 operator FOLLOWED_BY (L const &l, H const &h)
 {
   typedef SequenceExpr<typename ET<L>::expression_type, 
-                       typename ET<H>::expression_type > OP;
-  return OP(l, h);
+                       typename ET<H>::expression_type > Seq;
+  return Seq(l, h);
 }
 
 #ifndef LEESA_NO_VISITOR
@@ -301,6 +300,7 @@ evaluate (Para const & p, Expr e)
 
   return e(p);
 }
+
 
 } // namespace LEESA
 

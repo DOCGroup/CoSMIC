@@ -1,45 +1,9 @@
 #include <boost/regex.hpp>
+#include "boost/tuple/tuple.hpp"
 
 namespace LEESA {
 
 class OpBase {}; // Base of all the operators
-
-template <class LExpr, class RExpr>
-struct DFSChildrenOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>, 
-                       OpBase
-{
-  typedef LEESAUnaryFunction <typename ET<LExpr>::result_type, void> Super;
-  SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<LExpr, DFSChildrenOp<LExpr, RExpr> > expression_type;
-
-  RExpr expr_;
-  
-  explicit DFSChildrenOp () {}
-  
-  explicit DFSChildrenOp (RExpr const & e) : expr_(e) {}
-
-  DFSChildrenOp (DFSChildrenOp const &d) : expr_(d.expr_) {}
-  
-  result_type operator () (argument_type const & arg)
-  {
-    typedef typename ET<LExpr>::result_kind parent_kind;
-    typedef typename ET<RExpr>::argument_kind child_kind;
-
-    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<parent_kind, child_kind>));
-
-    typename KindTraits<parent_kind>::Container v = arg;
-    BOOST_FOREACH(parent_kind kind, v)
-    {
-      typename KindTraits<child_kind>::Container children = 
-#ifdef LEESA_FOR_UDM
-      kind.template children_kind<child_kind>();
-#else
-      children_kind (kind, child_kind());
-#endif // LEESA_FOR_UDM      
-      std::for_each(children.begin(), children.end(), expr_);
-    }
-  }
-};
 
 template <class LExpr, class RExpr>
 struct DFSOp : LEESAUnaryFunction <typename ET<LExpr>::result_type, void>,
@@ -74,12 +38,21 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
   typedef LEESA::LEESAUnaryFunction <E> Super;
   SUPER_TYPEDEFS(Super);
   typedef ChainExpr<E, SelectorOp> expression_type;
-  
-  typename KindTraits<argument_kind>::Container c_;
+  typedef typename KindTraits<argument_kind>::Container Container;
+
+  Container c_;
   bool logical_not_; 
   
   explicit SelectorOp (argument_type const & kl, bool logical_not = false) 
     : c_(kl), logical_not_(logical_not) {}
+  
+  explicit SelectorOp (Container const & c, bool logical_not = false) 
+    : c_(c), logical_not_(logical_not) {}
+  
+  // Iterator-pair idiom
+  template <class Iter>
+  explicit SelectorOp (Iter begin, Iter end, bool logical_not = false) 
+    : c_(begin, end), logical_not_(logical_not) {}
   
   SelectorOp (SelectorOp const & sop) 
     : logical_not_(sop.logical_not_), c_(sop.c_) {}
@@ -106,15 +79,21 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
 };
 
 template <class L, class H>
-struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
+struct GetChildrenOp :
+  LEESAUnaryFunction <typename ET<L>::result_type,
+                      typename ET<H>::argument_type>, OpBase
 {
-  typedef LEESA::LEESAUnaryFunction<L, H> Super;
+  typedef LEESA::LEESAUnaryFunction<typename ET<L>::result_type, 
+                                    typename ET<H>::argument_type> Super;
   SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<L, GetChildrenOp<argument_type, result_type> > expression_type;
+  typedef ChainExpr<L, GetChildrenOp> expression_type;
 
-  explicit GetChildrenOp () {}
+  H expr_;
+  
+  explicit GetChildrenOp (H const & h) : expr_(h) {}
 
-  GetChildrenOp (GetChildrenOp const &) {}
+  GetChildrenOp (GetChildrenOp const &g) : expr_(g.expr_) {}
+
   result_type operator () (argument_type const & arg)
   {
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
@@ -123,13 +102,29 @@ struct GetChildrenOp : LEESAUnaryFunction <L,H>, OpBase
     typename KindTraits<argument_kind>::Container v = arg;
     BOOST_FOREACH(argument_kind kind, v)
     {
+      typename KindTraits<result_kind>::Container children = 
 #ifdef LEESA_FOR_UDM
-      retval.Union(kind.template children_kind<result_kind>());
+      kind.template children_kind<result_kind>();
 #else
-      retval.Union(children_kind(kind, result_kind()));
+      children_kind (kind, result_kind());
 #endif // LEESA_FOR_UDM
+      retval.Union(children);
+      dispatch_depth_first(children, expr_);
     }
     return retval;
+  }
+  template <class Left, class Right>
+  void dispatch_depth_first(typename KindTraits<result_kind>::Container const & c, 
+                            ChainExpr<Left, Right> & expr)
+  {
+    // If expr_ is a ChainExpr, that means some non-trivial depth-first expression
+    // is present, which must be executed.
+    std::for_each(c.begin(), c.end(), expr);
+  }
+  void dispatch_depth_first(typename KindTraits<result_kind>::Container const & c, 
+                            typename ET<H>::argument_type const &)
+  { 
+    // If expr_ is a KindLit, it is basically a no-op.
   }
 };
 
@@ -293,19 +288,24 @@ struct NonNullOp : LEESAUnaryFunction <E>, OpBase
 };
 
 template <class L, class H>
-struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
+struct GetParentOp :
+  LEESAUnaryFunction <typename ET<L>::result_type,
+                      typename ET<H>::argument_type>, OpBase
 {
-  typedef LEESAUnaryFunction <L, H> Super;
+  typedef LEESAUnaryFunction <typename ET<L>::result_type,
+                              typename ET<H>::argument_type> Super;
   SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<L, GetParentOp<argument_type, result_type> > expression_type;
+  typedef ChainExpr<L, GetParentOp> expression_type;
 
-  explicit GetParentOp () {}
+  H expr_;
   
-  GetParentOp (GetParentOp const &) {}
+  GetParentOp (H const & h) : expr_(h) {}
+
+  GetParentOp (GetParentOp const & g) : expr_(g.expr_) {}
   
   result_type operator () (argument_type const & arg)
   {
-    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept <argument_kind, result_kind>));
+    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<result_kind, argument_kind>));
 
     result_type retval;
     typename KindTraits<argument_kind>::Container v = arg;
@@ -313,41 +313,23 @@ struct GetParentOp : LEESAUnaryFunction <L, H>, OpBase
     {
       result_kind parent = kind.template parent_kind<result_kind>();
       if (std::count (retval.begin(), retval.end(), parent) == 0)
+      {
         retval.Union(parent);
+        dispatch_depth_first(parent, expr_);
+      }
     }
     return retval;
   }
-};
-
-template <class LExpr, class RExpr>
-struct DFSParentOp : std::unary_function<typename ET<LExpr>::result_type, void>,
-                     OpBase
-{
-  typedef std::unary_function<typename ET<LExpr>::result_type, void> Super;
-  SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<LExpr, DFSParentOp<LExpr, RExpr> > expression_type;
-
-  RExpr expr_;
-  
-  explicit DFSParentOp () {}
-  
-  explicit DFSParentOp (RExpr const & e) : expr_(e) {}
-
-  DFSParentOp (DFSParentOp const &d) : expr_(d.expr_) {}
-  
-  result_type operator () (argument_type const & arg)
+  template <class Left, class Right>
+  void dispatch_depth_first(result_kind const & c, ChainExpr<Left, Right> & expr)
   {
-    typedef typename ET<RExpr>::argument_kind parent_kind;
-    typedef typename ET<LExpr>::result_kind child_kind;
-
-    BOOST_CONCEPT_ASSERT((LEESA::ChildToParentConcept<child_kind, parent_kind>));
-
-    typename KindTraits<child_kind>::Container v = arg;
-    BOOST_FOREACH(child_kind kind, v)
-    {
-      parent_kind parent = kind.template parent_kind<parent_kind>();
-      expr_(parent);
-    }
+    // If expr_ is a ChainExpr, that means some non-trivial depth-first expression
+    // is present, which must be executed.
+    expr(c);
+  }
+  void dispatch_depth_first(result_kind const &, typename ET<H>::argument_type const &)
+  { 
+    // If expr_ is a KindLit, it is basically a no-op.
   }
 };
 
@@ -432,6 +414,119 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 };
 
 #endif // LEESA_FOR_UDM
+
+template <class Kind, class Tuple>
+struct Concept_Violation_If_Not_Child
+{
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<Kind, typename Tuple::head_type>));  
+  typedef typename Concept_Violation_If_Not_Child<Kind, typename Tuple::tail_type>::type type;
+};
+
+template <class Kind>
+struct Concept_Violation_If_Not_Child<Kind, boost::tuples::null_type>
+{ 
+  typedef typename boost::tuples::null_type type;
+};
+
+template <class OrigTuple,
+          class ShrinkingTuple = OrigTuple,
+          unsigned int TUPLE_INDEX = 0,          
+          unsigned int TUPLE_LENGTH = boost::tuples::length<OrigTuple>::value>
+struct TupleHolder
+          : TupleHolder <OrigTuple, 
+                         typename ShrinkingTuple::tail_type, 
+                         TUPLE_INDEX + 1, 
+                         TUPLE_LENGTH - 1>
+{
+  typedef TupleHolder <OrigTuple, 
+                       typename ShrinkingTuple::tail_type, 
+                       TUPLE_INDEX + 1, 
+                       TUPLE_LENGTH - 1> super;
+
+  typedef typename ShrinkingTuple::head_type Head;
+  typedef typename KindTraits<Head>::Container HeadContainer;
+  typedef typename ContainerTraits<OrigTuple>::Container Transpose;
+
+  using super::add;
+
+  void add (HeadContainer const & hv)
+  {
+    this->head_vector_ = hv;
+  }
+
+  Transpose get_transpose ()
+  {
+    Transpose tran;
+    int i = 0;
+    for(HeadContainer::const_iterator iter = head_vector_.begin();
+        iter != head_vector_.end();
+        ++iter, ++i)
+    {
+      OrigTuple t;
+      this->populate_tuple(t, i);
+      tran.push_back(t);
+    }
+    return tran;
+  }
+
+  private:
+  HeadContainer head_vector_;
+
+  protected:
+  void populate_tuple(OrigTuple & t, int i)
+  {
+    t.get<TUPLE_INDEX>() = this->head_vector_[i];
+    super::populate_tuple (t, i);
+  }
+};
+
+template <class OrigTuple, class ShrinkingTuple, unsigned int TUPLE_INDEX>
+struct TupleHolder <OrigTuple, ShrinkingTuple, TUPLE_INDEX, 0 /* TUPLE_LENGTH */ >
+{
+  void add (void);
+  void populate_tuple(OrigTuple &, int i) {}
+};
+
+
+template <class L, class Tuple>
+struct MembersAsTupleOp 
+/* Do not inherit from LEESAUnaryFunction because the default
+   expression traits for KindTraits<Kind>::Container are undesirable.
+*/
+  : std::unary_function <typename ET<L>::argument_type, 
+                         typename ContainerTraits<Tuple>::Container>, OpBase
+{
+  typedef typename ET<L>::argument_kind argument_kind;
+  typedef typename ET<L>::argument_type argument_type;
+  typedef typename ContainerTraits<Tuple>::Container result_type;
+  typedef Tuple result_kind;
+  typedef ChainExpr<L, MembersAsTupleOp> expression_type;
+
+  typedef typename Concept_Violation_If_Not_Child<argument_kind, Tuple>::type _NullType;
+
+  explicit MembersAsTupleOp () {}
+  
+  MembersAsTupleOp (MembersAsTupleOp const & mtop) {}
+  
+  result_type operator () (argument_type const & arg)
+  {
+    TupleHolder<Tuple> th;
+    push_children(arg, th, Tuple());
+    return th.get_transpose();
+  }
+
+  template <class ShrinkingTuple>
+  void push_children(argument_type const & arg, TupleHolder<Tuple> & th, ShrinkingTuple)
+  {
+    typedef typename ShrinkingTuple::head_type Head;
+    typedef typename ShrinkingTuple::tail_type Tail;
+    th.add(evaluate(arg, argument_kind() >> Head()));
+    push_children(arg, th, Tail());
+  }
+
+  void push_children(argument_type const & arg, TupleHolder<Tuple> & th, boost::tuples::null_type)
+  {  }
+};
 
 template <class E, class Func>
 struct FilterOp : LEESAUnaryFunction <E>, OpBase
@@ -520,7 +615,7 @@ struct UniqueOp : LEESAUnaryFunction <E>,
 {
   typedef LEESAUnaryFunction <E> Super;
   SUPER_TYPEDEFS(Super);
-  typedef ChainExpr<E ,UniqueOp<E, BinPred> > expression_type;
+  typedef ChainExpr <E, UniqueOp> expression_type;
 
   BinPred pred_;
   
@@ -562,6 +657,19 @@ SelectSubSet (T const &t)
   
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
   return SelectorOp<result_type> (t);
+}
+
+template <class Iter>
+SelectorOp<typename ET<typename Iter::value_type>::result_type> 
+SelectSubSet (Iter begin, Iter end)
+{
+  typedef typename Iter::value_type Kind;
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
+
+  typedef typename ET<Kind>::result_type result_type;
+  typedef typename ET<Kind>::result_kind result_kind;
+  
+  return SelectorOp<result_type> (begin, end);
 }
 
 template <class E, class Func>
@@ -681,24 +789,27 @@ Sort (E, Result (*f) (Arg1, Arg2))
 }
 
 template <class E, class BinPred>
-UniqueOp<E, BinPred> 
+UniqueOp<typename ET<E>::result_type, BinPred> 
 Unique (E, BinPred c)
 {
   typedef typename ET<E>::result_kind result_kind;
+  typedef typename ET<E>::result_type result_type;
   
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
   BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::first_argument_type, result_kind>));
   BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::second_argument_type, result_kind>));
   BOOST_MPL_ASSERT((boost::is_convertible<typename BinPred::result_type, bool>));
   
-  return UniqueOp<E, BinPred> (c);
+  return UniqueOp<result_type, BinPred> (c);
 }
 
 template <class E>
-UniqueOp<E, std::equal_to<typename ET<E>::result_kind> > 
+UniqueOp<typename ET<E>::result_type, 
+         std::equal_to<typename ET<E>::result_kind> > 
 Unique (E)
 {
   typedef typename ET<E>::result_kind result_kind;
+  typedef typename ET<E>::result_type result_type;
   typedef std::equal_to<result_kind> EQ;  
 
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
@@ -706,8 +817,16 @@ Unique (E)
   BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::second_argument_type, result_kind>));
   BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::result_type, bool>));
   
-  return UniqueOp<E, EQ>(EQ());
+  return UniqueOp<result_type, EQ>(EQ());
 }
+
+template <class Kind, class Tuple>
+MembersAsTupleOp <typename ET<Kind>::result_kind, Tuple>
+MembersAsTupleOf (Kind, Tuple)
+{
+  return MembersAsTupleOp <typename ET<Kind>::result_kind, Tuple> ();
+}
+
 /*
 template <class K, class C1, class C2>
 ChoiceOp<typename ET<K>::result_type, C1, C2> 
