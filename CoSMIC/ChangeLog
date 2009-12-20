@@ -1,7 +1,23 @@
+Sun Dec 20 04:58:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA/library-xsd/driver.cxx:
+
+          Updated the test.
+
+        * tests/LEESA/xo-impedance:
+
+        * tests/LEESA/xo-impedance/README:
+        * tests/LEESA/xo-impedance/driver.cxx:
+        * tests/LEESA/xo-impedance/impedance.xml:
+        * tests/LEESA/xo-impedance/impedance.xsd:
+        * tests/LEESA/xo-impedance/makefile:
+
+          Added a new examples showing x/o impedance.
+
 Wed Dec 16 22:11:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
-	
+
           Removed some debug information.
 
         * Utils/LEESA/include/LEESA.cpp:
@@ -10,7 +26,7 @@ Wed Dec 16 22:11:35 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/LEESA_RShift.cpp:
 
           Some bugfixes. Identity(Kind) allows expression to begin with
-	  depth-first operator.
+          depth-first operator.
 
         * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
         * tests/LEESA/library-xsd/driver.cxx:

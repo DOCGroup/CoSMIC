@@ -100,7 +100,7 @@ main (int argc, char* argv[])
     
     MyVisitor mv;
     using namespace LEESA;
-    
+
     SchemaTraits<book>::Container book_seq = 
       evaluate (*c, catalog() >> book());
       
@@ -150,35 +150,14 @@ main (int argc, char* argv[])
         //  cerr << "  Recommends : " << (*ai->recommends ())->title () << endl;
       }
       cerr  << "Available    : " << std::boolalpha << bi->available () << endl;
-/*
-      cerr << "Iterating on person" << std::endl;
-      for (book::person_const_iterator pi (bi->person ().begin ());
-           pi != bi->person ().end ();
-           ++pi)
-      {
-        cerr << "Person       : " << pi->name () << endl;
-        cerr << "  Born       : " << pi->born () << endl;
-
-        if (pi->died ())
-          cerr << "  Died       : " << *pi->died () << endl;
-          
-        try {
-          const person & p = *pi;
-          const author & a = dynamic_cast<const author &> (p);
-        }
-        catch (std::bad_cast & e) {
-          cerr << e.what() << std::endl;
-        }
-     }
-*/
     }
 
 
     // Now we are going to modify the object model and serialize it
     // back to XML.
     //
-/*
-    catalog::book_sequence books (c->book ());
+
+    catalog::book_sequence  & books (c->book ());
 
 
     // Get rid of all unavailable books.
@@ -197,6 +176,7 @@ main (int argc, char* argv[])
     book b (679776443,         // ISBN
             "Dead Souls",      // Title
             genre::philosophy, // Genre
+            49.99,             // price
             "DS");             // ID
 
     b.author ().push_back (author ("Nikolai Gogol",
@@ -238,7 +218,7 @@ main (int argc, char* argv[])
     // Write it out.
     //
     catalog_ (std::cout, *c, map);
-*/
+
   }
   catch (const xml_schema::exception& e)
   {
