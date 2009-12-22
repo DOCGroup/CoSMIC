@@ -28,6 +28,7 @@
       <x>50</x>
       <y>60</y>
     </point>
+    <!-- Mixed contents don't seem to round-trip. -->
     <dot>This is
       <x>1</x>a 
       <y>2</y>dot
@@ -35,16 +36,18 @@
     <point>
       <x>100</x>
       <y>200</y>
+      <!-- Anytypes don't seem to round-trip. -->
+      <something>Something</something>
     </point>
   </points>
 
   <foobar>
-    <foo>
-      <x>99</x>
-    </foo>
-    <bar>
-      <x>11</x>
-    </bar>
+     <!-- An anonymous sequence below. Name-mangling should be used
+          to derive an unique name. xsd combines the first two element
+          names. The same for anonymous xsd:choice. -->
+    <foo>99</foo>
+    <bar>11</bar>
+    <zoo>0</zoo>
   </foobar>
 
 </impedance:top>

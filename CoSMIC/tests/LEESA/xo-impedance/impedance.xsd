@@ -22,6 +22,8 @@
     <xsd:sequence>
       <xsd:element name="x" type="xsd:integer" />
       <xsd:element name="y" type="xsd:integer" />
+      <!-- Note the use of xsd::Anytype below. Default is xsd:anyType. -->
+      <xsd:element name="something" minOccurs="0" />
     </xsd:sequence>
   </xsd:complexType>
 
@@ -44,21 +46,13 @@
       <xsd:element name="points" type="impedance:MultiplePoints" />
       <xsd:element name="foobar">
         <xsd:complexType>
+          <!-- An anonymous sequence below. Name-mangling should be used
+               to derive an unique name. xsd combines the first two element
+               names. The same for anonymous xsd:choice. -->
           <xsd:sequence>
-            <xsd:element name="foo" >
-              <xsd:complexType>
-                <xsd:sequence>
-                  <xsd:element name="x" type="xsd:integer"/>
-                </xsd:sequence>
-              </xsd:complexType>
-            </xsd:element>
-            <xsd:element name="bar" >
-              <xsd:complexType>
-                <xsd:sequence>
-                  <xsd:element name="x" type="xsd:integer"/>
-                </xsd:sequence>
-              </xsd:complexType>
-            </xsd:element>
+            <xsd:element name="foo" type="xsd:integer"/>
+            <xsd:element name="bar" type="xsd:integer"/>
+            <xsd:element name="zoo" type="xsd:integer"/>
           </xsd:sequence>
         </xsd:complexType>
       </xsd:element>

@@ -1,3 +1,10 @@
+Tue Dec 22 23:34:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * tests/LEESA/xo-impedance/impedance.xml:
+        * tests/LEESA/xo-impedance/impedance.xsd:
+
+          Tested some more examples of X/O impedance.
+
 Sun Dec 20 04:58:36 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA/library-xsd/driver.cxx:
