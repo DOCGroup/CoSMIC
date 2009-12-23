@@ -1,3 +1,11 @@
+Wed Dec 23 19:59:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+
+          Single-stage prototype implementation of LEESA. It does not use
+	  expression templates (therefore single-stage) but it is still quite
+	  expressive. It can't use depth-first >>= operator at all.
+
 Tue Dec 22 23:34:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA/xo-impedance/impedance.xml:
