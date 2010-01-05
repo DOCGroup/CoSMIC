@@ -24,6 +24,7 @@
 #include "ast_root.h"
 #include "ast_sequence.h"
 #include "ast_structure_fwd.h"
+#include "ast_typedef.h"
 #include "ast_union.h"
 #include "ast_union_branch.h"
 #include "ast_union_fwd.h"
@@ -399,11 +400,6 @@ adding_visitor::visit_interface_fwd (AST_InterfaceFwd *node)
   return 0;
 }
 
-int adding_visitor::visit_template_interface (AST_Template_Interface *)
-{
-  return 0;
-}
-
 int
 adding_visitor::visit_valuetype (AST_ValueType *node)
 {
@@ -628,7 +624,26 @@ adding_visitor::visit_component_fwd (AST_ComponentFwd *node)
   return this->visit_interface_fwd (node);
 }
 
-int adding_visitor::visit_porttype (AST_PortType *)
+int
+adding_visitor::visit_template_module (AST_Template_Module *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_template_module_inst (AST_Template_Module_Inst *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_template_module_ref (AST_Template_Module_Ref *)
+{
+  return 0;
+}
+
+int
+adding_visitor::visit_porttype (AST_PortType *)
 {
   return 0;
 }
@@ -909,25 +924,6 @@ adding_visitor::visit_mirror_port (AST_Mirror_Port *)
 
 int
 adding_visitor::visit_connector (AST_Connector *)
-{
-  return 0;
-}
-
-int
-adding_visitor::visit_instantiated_connector (
-  AST_Instantiated_Connector *)
-{
-  return 0;
-}
-
-int
-adding_visitor::visit_tmpl_port (AST_Tmpl_Port *)
-{
-  return 0;
-}
-
-int
-adding_visitor::visit_tmpl_mirror_port (AST_Tmpl_Mirror_Port *)
 {
   return 0;
 }
@@ -3095,7 +3091,7 @@ adding_visitor::add_inherited_elements (DOMElement *parent, AST_Interface *node)
 {
   for (long i = 0; i < node->n_inherits (); ++i)
     {
-      AST_Interface *p = node->inherits ()[i];
+      AST_Type *p = node->inherits ()[i];
       unsigned long slot = static_cast<unsigned long> (i + 1);
       this->add_one_inherited (parent, node, p, slot);
     }
@@ -3104,7 +3100,7 @@ adding_visitor::add_inherited_elements (DOMElement *parent, AST_Interface *node)
 void
 adding_visitor::add_one_inherited (DOMElement *parent,
                                    AST_Interface *node,
-                                   AST_Interface *base,
+                                   AST_Type *base,
                                    unsigned long slot)
 {
   // First see if it's been imported with an XME file.
@@ -3157,7 +3153,7 @@ adding_visitor::add_one_inherited (DOMElement *parent,
 void
 adding_visitor::add_supported_elements (DOMElement *parent,
                                         AST_Interface *node,
-                                        AST_Interface **supports,
+                                        AST_Type **supports,
                                         long n_supports)
 {
   unsigned long nparents = 0;
@@ -3240,7 +3236,7 @@ adding_visitor::add_exception_elements (DOMElement *parent,
        !ei.is_done ();
        ei.next ())
     {
-      AST_Exception *ex = ei.item ();
+      AST_Type *ex = ei.item ();
       const XMLCh *gme_id = be_global->lookup_id (ex);
 
       // Since the members of an exception list must be unique, we
@@ -3837,7 +3833,7 @@ void
 adding_visitor::add_lookup_key (DOMElement *parent,
                                 AST_Home *node)
 {
-  AST_ValueType *pk = node->primary_key ();
+  AST_Type *pk = node->primary_key ();
 
   if (0 == pk)
     {

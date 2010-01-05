@@ -2,15 +2,20 @@
 
 #include "be_global.h"
 #include "be_extern.h"
+
 #include "ast_generator.h"
 #include "ast_module.h"
 #include "ast_sequence.h"
+#include "ast_typedef.h"
+
 #include "utl_identifier.h"
 #include "utl_string.h"
+
 #include "fe_extern.h"
 #include "global_extern.h"
 #include "nr_extern.h"
 #include "idl_defines.h"
+
 #include "Type_Trait.h"
 
 #include "Utils/xercesc/XercesString.h"
