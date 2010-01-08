@@ -4,8 +4,17 @@
 #include "Kind_Traits.h"
 
 #include <boost/mpl/count_if.hpp>
+#include <boost/mpl/or.hpp>
+#include <boost/mpl/size.hpp>
+#include <boost/mpl/front.hpp>
+#include <boost/mpl/pop_front.hpp>
+#include <boost/mpl/placeholders.hpp>
 #include <boost/type_traits.hpp>
 #include <boost/concept_check.hpp>
+
+using boost::mpl::front;
+using boost::mpl::pop_front;
+using boost::mpl::size;
 
 namespace LEESA 
 {
@@ -101,6 +110,69 @@ namespace LEESA
             DomainKindConcept<DescendantKind, Custom>::value && 
             IsDescendantKind<ParentKind, DescendantKind, Custom>::value }; 
   };
+
+  template <class ParentKind, class DescendantKind, unsigned int SkipCount, class Custom> struct CheckExists;
+
+  template <class Vector, 
+            unsigned int SIZE, 
+            class DescendantKind, 
+            unsigned int SkipCount, 
+            class Custom>
+  struct CheckExistsVector
+  {
+    typedef CheckExistsVector type;
+    typedef typename front<Vector>::type Head;
+    typedef typename pop_front<Vector>::type Tail;
+    enum { value = CheckExists<Head, DescendantKind, SkipCount, Custom>::value ||
+                   CheckExistsVector<Tail, size<Tail>::value, DescendantKind, SkipCount, Custom>::value };
+  };
+
+  template <class Vector, 
+            class DescendantKind, 
+            unsigned int SkipCount, 
+            class Custom>
+  struct CheckExistsVector <Vector, 0, DescendantKind, SkipCount, Custom> 
+  {
+    typedef CheckExistsVector type;
+    enum { value = 0 };
+  };
+
+  template <class ParentKind, class DescendantKind, unsigned int SkipCount, class Custom>
+  struct CheckExists
+  {
+    typedef CheckExists type;
+    typedef typename KindTraits<ParentKind, Custom>::ChildrenKinds Children;
+    enum { value = CheckExistsVector<Children, 
+                                     size<Children>::value, 
+                                     DescendantKind, 
+                                     SkipCount-1, 
+                                     Custom>::value };
+  };
+
+  template <class ParentKind, class DescendantKind, class Custom>
+  struct CheckExists <ParentKind, DescendantKind, 0, Custom>
+  {
+    typedef CheckExists type;
+    typedef typename KindTraits<ParentKind, Custom>::ChildrenKinds Children;
+    enum { value = boost::mpl::contains<Children, DescendantKind>::value };
+  };
+
+  template <class ParentKind, class DescendantKind, unsigned int SkipCount, class Custom = Default>
+  struct LevelDescendantKindConcept
+  {
+    void constraints()
+    {
+      BOOST_MPL_ASSERT_RELATION( value, !=, 0 );
+    }
+
+    typedef LevelDescendantKindConcept type;
+    enum { value = 
+            DomainKindConcept<ParentKind, Custom>::value &&
+            DomainKindConcept<DescendantKind, Custom>::value &&
+            IsDescendantKind<ParentKind, DescendantKind, Custom>::value &&
+            CheckExists<ParentKind, DescendantKind, SkipCount, Custom>::value }; 
+  };
+
 /*
   template <bool Check, class StartVector, class Target>
   struct ReachableConcept

@@ -1,9 +1,29 @@
+Fri Jan  8 22:52:34 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          LEESA now supports LevelDescendants as in XPath's /*/*/ 
+          Renamed KindLit to Carrier.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA/library-xsd/driver.cxx:
+
+          Improved tests.
+
 Tue Jan  5 20:05:23 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
-        
+
           Updates to bring this backend in sync with IDL3+
           changes to the TAO_IDL frontend. These changes
           only elimiate compile errors, IDL3+ constructs are
@@ -14,8 +34,8 @@ Wed Dec 23 19:59:56 UTC 2009  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/LEESA_SingleStage.h:
 
           Single-stage prototype implementation of LEESA. It does not use
-	  expression templates (therefore single-stage) but it is still quite
-	  expressive. It can't use depth-first >>= operator at all.
+          expression templates (therefore single-stage) but it is still quite
+          expressive. It can't use depth-first >>= operator at all.
 
 Tue Dec 22 23:34:02 UTC 2009  Sumant Tambe  <sutambe@nospam>
 

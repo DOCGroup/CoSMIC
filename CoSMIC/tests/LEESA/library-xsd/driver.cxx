@@ -12,6 +12,7 @@
 #include "library.hxx"
 #include "library-meta.hxx"
 #include "LEESA.h"
+//#include "LEESA_SingleStage.h"
 
 using std::cerr;
 using std::endl;
@@ -104,12 +105,16 @@ main (int argc, char* argv[])
     SchemaTraits<book>::Container book_seq = 
       evaluate (*c, catalog() >> book());
       
-    //SchemaTraits<person_died>::Container person_died_seq = 
-    //  evaluate (book_seq, book() >> author() >> person_died());
+    SchemaTraits<person_died>::Container person_died_seq = 
+      evaluate (book_seq, book() >> author() >> person_died());
     
-    SchemaTraits<author>::Container author_seq = 
-      evaluate(*c, catalog() >> DescendantsOf(catalog(), author()));
-    
+    SchemaTraits<person_name>::Container names = 
+      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, person_name()));
+    BOOST_FOREACH(person_name n, names)
+    {
+      std::cout << "#########    " << n << std::endl;
+    }
+
     SchemaTraits<book_id>::Container book_id_seq = 
       evaluate (*c, catalog() >> book() >> book_id()[mv]);
     std::cout << "******** Count = " << mv.i << std::endl;
@@ -125,6 +130,16 @@ main (int argc, char* argv[])
         
     catalog::book_sequence seq = evaluate (*c, catalog() >> book());
     //catalog::book_sequence seq = c->book();
+
+/*  // **********************  SingleStage  ******************************
+    using namespace LEESA::SingleStage;
+    Carrier<catalog> catalog_kind = *c;
+
+    SchemaTraits<author_recommends>::Container author_recommends_seq = 
+      catalog_kind >> mv >> book() >> mv >> author() >> mv >> author_recommends() >> mv;
+
+    catalog::book_sequence seq = catalog_kind >> book();
+*/
 
     for (catalog::book_const_iterator bi (seq.begin ());
          bi != seq.end ();

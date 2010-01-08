@@ -57,41 +57,6 @@ template <class Strategy,
 EXPRESSION_TRAITS_3PARA(DescendantGraphOp);
 #endif // LEESA_FOR_UDM
 
-template <class H, class Custom> 
-/* By default Custom is LEESA::Default. Check in DescendantOp. */
-struct FilterChildrenIfNotDescendantCarry : Custom
-{};
-
-template <class Vector, class ResultKind, class Custom>
-/* By default Custom is LEESA::Default. Check in DescendantOp. */
-struct FilterChildrenIfNotDescendantImpl
-{
-  typedef typename 
-    copy_if<Vector, 
-            or_<is_same<boost::mpl::placeholders::_1, ResultKind>,
-                IsDescendantKind<boost::mpl::placeholders::_1, 
-                                 ResultKind, 
-                                 Custom> > >::type type;
-};
-
-template <class T, class H, class Custom>
-/* By default Custom is LEESA::Default. Check in DescendantOp. */
-struct KindTraits <T, FilterChildrenIfNotDescendantCarry <H, Custom> >
-  : public KindTraits<T, Custom>
-{
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<T>));
-    /* Pipes-and-filter architecture of meta-programs is in action here.
-     * If Custom is anything different from LEESA::Default, ChildrenKinds
-     * are obtained from that specialization of KindTraits. For exmaple,
-     * APOp specializes KindTraits for Custom=RemoveBypassingTypesCarry.
-     * This allows AP to remove 'bypass' types before
-     * FilterChildrenIfNotDescendantImpl meta-function is applied. */
-    typedef typename KindTraits<T, Custom>::ChildrenKinds Children;
-    typedef typename 
-      FilterChildrenIfNotDescendantImpl<Children, 
-                                        typename ET<H>::result_kind, 
-                                        Custom>::type ChildrenKinds;
-};
 
 #ifdef LEESA_FOR_UDM
 
@@ -141,11 +106,11 @@ protected:
     }
     void operator () (result_type k)
     {
-      retval_.Union(k);
+      retval_.push_back(k);
     }
     void operator () (result_kind k)
     {
-      retval_.Union(k);
+      retval_.push_back(k);
     }
   };
 

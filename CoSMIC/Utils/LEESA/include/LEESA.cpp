@@ -31,7 +31,7 @@
 // Forward declarations are necessary here for Expression_Traits (defined next)
 namespace LEESA {
 
-template <class Kind> class KindLit;
+template <class Kind> class Carrier;
 template <class L, class R> struct ChainExpr;
 template <class L, class R> struct SequenceExpr;
 
@@ -78,7 +78,7 @@ using boost::is_pointer;
 
 
 template <class Kind>
-class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
+class Carrier : public std::unary_function <Carrier<Kind>, Carrier<Kind> >
 {
   typedef typename KindTraits<Kind>::Container Container;
   Container c_;
@@ -87,67 +87,66 @@ class KindLit : public std::unary_function <KindLit<Kind>, KindLit<Kind> >
   // This is an important concept. Don't remove.
 
 public:
-  typedef KindLit<Kind> expression_type;
+  typedef Carrier<Kind> expression_type;
   typedef Kind result_kind;
   typedef Kind argument_kind;
-  typedef KindLit<Kind> result_type;
-  typedef KindLit<Kind> argument_type;
+  typedef Carrier<Kind> result_type;
+  typedef Carrier<Kind> argument_type;
   typedef typename Container::iterator iterator;
   typedef typename Container::const_iterator const_iterator;
 
   template <class U>
   struct rebind
   {
-    typedef KindLit<U> type;
+    typedef Carrier<U> type;
   };
 
-  explicit KindLit () {}
+  explicit Carrier () {}
  
   template <class U>
-  KindLit (KindLit<U> const & ukindlit)
+  Carrier (Carrier<U> const & u_carrier)
   {
     BOOST_MPL_ASSERT((is_base_of<Kind,U>));
-    //c_.insert(c_.end(), ukindlit.c_.begin(), ukindlit.c_.end());
-    std::copy(ukindlit.c_.begin(), ukindlit.c_.end(), std::back_inserter(c_));
+    std::copy(u_carrier.c_.begin(), u_carrier.c_.end(), std::back_inserter(c_));
   }
-  KindLit (KindLit const & k) : c_ (k.c_) {}
-  KindLit (Kind const & k) { this->Union(k); }  
-  KindLit (Container const & c) : c_(c) { }
+  Carrier (Carrier const & k) : c_ (k.c_) {}
+  Carrier (Kind const & k) { this->push_back(k); }  
+  Carrier (Container const & c) : c_(c) { }
   
-  void Union(KindLit const & k)
+  void push_back(Carrier const & k)
   {
     std::copy(k.begin(), k.end(), std::back_inserter(c_));
   }
 
-  void Union(Kind const & k)
+  void push_back(Kind const & k)
   {
     c_.push_back(k);
   }
   
-  void Union(Container const & in)
+  void push_back(Container const & in)
   {
     std::copy(in.begin(), in.end(), std::back_inserter(c_));
   }
 
 #ifdef LEESA_FOR_UDM
 
-  KindLit (Udm::ParentAttr<Kind> const & c) 
+  Carrier (Udm::ParentAttr<Kind> const & c) 
   {
     this->Unioin(c);
   }
 
-  void Union(Udm::ParentAttr<Kind> const & c) 
+  void push_back(Udm::ParentAttr<Kind> const & c) 
   {
     Kind k = c;
     c_.push_back(k);
   }
 
-  KindLit(Udm::ChildrenAttr<Kind> const & ca) 
+  Carrier(Udm::ChildrenAttr<Kind> const & ca) 
   {
-    this->Union(ca);
+    this->push_back(ca);
   }
 
-  void Union(Udm::ChildrenAttr<Kind> const & ca) 
+  void push_back(Udm::ChildrenAttr<Kind> const & ca) 
   {
     Container c = ca;
     std::copy(c.begin(), c.end(), std::back_inserter(c_));
@@ -155,12 +154,12 @@ public:
 
 #else 
 
-  KindLit (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
+  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
   {
-    this->Union(o);
+    this->push_back(o);
   }
 
-  void Union (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
+  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
   {
     if (o.present()) 
     {
@@ -182,7 +181,7 @@ public:
   }
   
   operator Container () const { return c_; } 
-  result_type operator () (argument_type p) const { return p; }
+  result_type & operator () (argument_type & p) const { return p; }
 };
 
 template <class L, class R>
@@ -333,21 +332,4 @@ evaluate (Para const & p, Expr e)
 #include "AP.cpp"
 
 #endif // __LEESA_CPP
-
-
-/*
-template <class L>
-typename disable_if<is_base_of<std::ios_base, L>, 
-  ChainExpr<typename ET<L>::expression_type, 
-            typename DFSVisitorOp<typename ET<L>::result_type> > 
-  >::type
-operator >>= (L const &l, SchemaVisitor & v)
-{
-  typedef DFSVisitorOp<typename ET<L>::result_type> OP;
-  LOCAL_TYPEDEFS(L, OP);
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<ParentKind, ChildKind>));
-
-  return ChainExpr(ParentKindExpr(l), OP(v));
-}
-*/
 

@@ -18,21 +18,21 @@ namespace LEESA {
 namespace SingleStage {
 
 template <class Kind>
-struct KindLit : public ContainerTraits<Kind>::Container
+struct Carrier : public ContainerTraits<Kind>::Container
 {
   typedef typename ContainerTraits<Kind>::Container super;
 
-  KindLit () {}
+  Carrier () {}
 
-  KindLit (const Kind & k) 
+  Carrier (const Kind & k) 
   {
     this->push_back(k);
   }
 
-  KindLit (const KindLit & k) : super(k) {}
+  Carrier (const Carrier & k) : super(k) {}
  
   using super::push_back;
-  void push_back(KindLit const & k)
+  void push_back(Carrier const & k)
   {
     this->insert(this->end(), k.begin(), k.end());
   }
@@ -44,7 +44,7 @@ struct KindLit : public ContainerTraits<Kind>::Container
 
 #ifdef LEESA_FOR_UDM
 
-  KindLit (Udm::ParentAttr<Kind> const & c) 
+  Carrier (Udm::ParentAttr<Kind> const & c) 
   {
     this->push_back(c);
   }
@@ -54,7 +54,7 @@ struct KindLit : public ContainerTraits<Kind>::Container
     this->push_back(c);
   }
 
-  KindLit(Udm::ChildrenAttr<Kind> const & ca) 
+  Carrier(Udm::ChildrenAttr<Kind> const & ca) 
   {
     this->push_back(ca);
   }
@@ -66,7 +66,7 @@ struct KindLit : public ContainerTraits<Kind>::Container
 
 #else 
 
-  KindLit (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional const & o)
+  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional const & o)
   {
     this->push_back(o);
   }
@@ -97,11 +97,11 @@ struct IsDomainVisitorBaseOf
 template <class ParentKind, class ChildKind>
 typename 
   boost::disable_if <IsDomainVisitorBaseOf<ChildKind>,
-                     KindLit<ChildKind> >::type
-operator >> (KindLit<ParentKind> const & k, ChildKind)
+                     Carrier<ChildKind> >::type
+operator >> (Carrier<ParentKind> const & k, ChildKind)
 {
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<ParentKind, ChildKind>));
-  KindLit<ChildKind> retval;
+  Carrier<ChildKind> retval;
   BOOST_FOREACH(ParentKind parent, k)
   {
 #ifdef LEESA_FOR_UDM
@@ -114,8 +114,8 @@ operator >> (KindLit<ParentKind> const & k, ChildKind)
 }
 
 template <class Kind>
-KindLit<Kind>
-operator >> (KindLit<Kind> const & k, SchemaVisitor & v)
+Carrier<Kind>
+operator >> (Carrier<Kind> const & k, SchemaVisitor & v)
 {
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
   BOOST_FOREACH(Kind kind, k)

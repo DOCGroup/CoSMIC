@@ -32,9 +32,9 @@ struct ET
      visitor types are possible parameters of this trait class.
      In such a case, the following associated types do not make
      sense. However, they are never instantiated and hence we are ok. */
-  typedef KindLit<T> expression_type;
-  typedef KindLit<T> result_type;
-  typedef KindLit<T> argument_type;
+  typedef Carrier<T> expression_type;
+  typedef Carrier<T> result_type;
+  typedef Carrier<T> argument_type;
   typedef T result_kind;
   typedef T argument_kind;
 };
@@ -42,9 +42,9 @@ struct ET
 template <class T, class U>
 struct ET <T (*) (U)>
 {
-  typedef KindLit<U> expression_type;
-  typedef KindLit<T> result_type;
-  typedef KindLit<U> argument_type;
+  typedef Carrier<U> expression_type;
+  typedef Carrier<T> result_type;
+  typedef Carrier<U> argument_type;
   typedef T result_kind;
   typedef U argument_kind;
 };
@@ -53,9 +53,9 @@ template <class Kind>
 struct ET <std::set<Kind> >
 {
   BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
-  typedef KindLit<Kind> expression_type;
-  typedef KindLit<Kind> result_type;
-  typedef KindLit<Kind> argument_type;
+  typedef Carrier<Kind> expression_type;
+  typedef Carrier<Kind> result_type;
+  typedef Carrier<Kind> argument_type;
   typedef Kind result_kind;
   typedef Kind argument_kind;
 };
@@ -64,9 +64,9 @@ template <class Kind>
 struct ET <std::vector<Kind> >
 {
   BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
-  typedef KindLit<Kind> expression_type;
-  typedef KindLit<Kind> result_type;
-  typedef KindLit<Kind> argument_type;
+  typedef Carrier<Kind> expression_type;
+  typedef Carrier<Kind> result_type;
+  typedef Carrier<Kind> argument_type;
   typedef Kind result_kind;
   typedef Kind argument_kind;
 };
@@ -81,7 +81,7 @@ struct ETBase
   typedef typename T::argument_kind argument_kind;
 };
 
-EXPRESSION_TRAITS_1PARA(KindLit);
+EXPRESSION_TRAITS_1PARA(Carrier);
 EXPRESSION_TRAITS_1PARA(SelectorOp);
 EXPRESSION_TRAITS_1PARA(RegexOp);
 #ifndef LEESA_NO_VISITOR

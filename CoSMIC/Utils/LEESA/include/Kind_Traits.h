@@ -102,6 +102,19 @@ namespace LEESA {
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;
   };
 
+  template <class T> struct ET;
+  template <class Kind> class Carrier;
+
+  template <class Kind>
+  struct ET <xsd::cxx::tree::sequence<Kind> >
+  {
+    typedef Carrier<Kind> expression_type;
+    typedef Carrier<Kind> result_type;
+    typedef Carrier<Kind> argument_type;
+    typedef Kind result_kind;
+    typedef Kind argument_kind;
+  };
+
   /* This traits is to prevent an embarassing match of overloaded
    * comma operator in LEESA.cpp. More documentation can be found 
    * before the definition of the operator.

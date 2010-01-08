@@ -77,7 +77,7 @@ typename disable_if_c <
                            >
                  >
            > >::type
-operator <<= (KindLit<LKind> const & k, VisitorAsIndex<R> const & vi)
+operator <<= (Carrier<LKind> const & k, VisitorAsIndex<R> const & vi)
 {
   BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, R>)); 
 
@@ -93,7 +93,7 @@ typename disable_if_c <
             DFSOp<typename ET<R>::argument_type,
                   typename ET<R>::expression_type>
            > >::type
-operator <<= (KindLit<LKind> const & k, R const & r)
+operator <<= (Carrier<LKind> const & k, R const & r)
 {
   BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, typename ET<R>::argument_kind>)); 
 

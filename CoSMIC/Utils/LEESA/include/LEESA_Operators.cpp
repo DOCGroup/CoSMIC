@@ -69,7 +69,7 @@ struct SelectorOp : LEESAUnaryFunction <E>, OpBase
       typename KindTraits<argument_kind>::Container::iterator i = 
         std::find(c_.begin(), c_.end(), kind);
       if ((i != c_.end()) ^ logical_not_) // Logical not of match, if required
-        retval.Union(kind);
+        retval.push_back(kind);
     }
     return retval;
   }
@@ -111,7 +111,7 @@ struct GetChildrenOp :
       result_type temp(children_kind (kind, result_kind()));
 #endif // LEESA_FOR_UDM
       dispatch_depth_first(temp, expr_);
-      retval.Union(temp);
+      retval.push_back(temp);
     }
     return retval;
   }
@@ -125,7 +125,7 @@ struct GetChildrenOp :
   }
   void dispatch_depth_first(result_type const & c, typename ET<H>::argument_type const &)
   { 
-    // If expr_ is a KindLit, it is basically a no-op.
+    // If expr_ is a Carrier, it is basically a no-op.
   }
 };
 
@@ -190,7 +190,7 @@ struct RegexOp : LEESAUnaryFunction <E>,
       bool match = boost::regex_match(std::string(kind.name()), regex_);
       //bool match = (regex_ == std::string(kind.name()));
       if (match ^ logical_not_) // Logical not of match, if required
-        retval.Union(kind);
+        retval.push_back(kind);
     }
     return retval;
   }
@@ -226,7 +226,7 @@ struct CastOp : LEESAUnaryFunction <L, H>, OpBase
       if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
       {
         result_kind r = result_kind::Cast(kind);
-        retval.Union(r);
+        retval.push_back(r);
       }
     }
     return retval;
@@ -243,7 +243,7 @@ struct CastOp : LEESAUnaryFunction <L, H>, OpBase
     {
       if (const result_kind * r = dynamic_cast<const result_kind *> (&*iter))
       {
-        retval.Union(*r);
+        retval.push_back(*r);
       }
     }
     return retval;
@@ -276,7 +276,7 @@ struct NonNullOp : LEESAUnaryFunction <E>, OpBase
     {
       bool match = (Udm::null != kind);
       if (match ^ logical_not_) // Logical not of match, if required
-        retval.Union(kind);
+        retval.push_back(kind);
     }
     return retval;
   }
@@ -315,7 +315,7 @@ struct GetParentOp :
       result_kind parent = kind.template parent_kind<result_kind>();
       if (std::count (retval.begin(), retval.end(), parent) == 0)
       {
-        retval.Union(parent);
+        retval.push_back(parent);
         dispatch_depth_first(parent, expr_);
       }
     }
@@ -330,7 +330,7 @@ struct GetParentOp :
   }
   void dispatch_depth_first(result_kind const &, typename ET<H>::argument_type const &)
   { 
-    // If expr_ is a KindLit, it is basically a no-op.
+    // If expr_ is a Carrier, it is basically a no-op.
   }
 };
 
@@ -356,7 +356,7 @@ struct AssociationOp : LEESAUnaryFunction <TARGETCLASS, RESULT>,
     {
       result_kind r = (kind.*func_)();
       if (r != Udm::null) // This check is important. Don't remove.
-        retval.Union(r);
+        retval.push_back(r);
     }
     return retval;
   }
@@ -380,7 +380,7 @@ struct AssociationManyOp : LEESAUnaryFunction <SOURCECLASS,ASSOC>, OpBase
     result_type retval;
     BOOST_FOREACH(argument_kind kind, v)
     {
-      retval.Union((kind.*func_)());
+      retval.push_back((kind.*func_)());
     }
     return retval;
   }
@@ -408,7 +408,7 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
     {
       result_kind r = (kind.*func_)();
       if (r != Udm::null) // This check is important. Don't remove.
-        retval.Union(r);
+        retval.push_back(r);
     }
     return retval;
   }
@@ -552,7 +552,7 @@ struct FilterOp : LEESAUnaryFunction <E>, OpBase
     BOOST_FOREACH(argument_kind kind, v)
     {
       if (func_(kind) ^ logical_not_) // Logical not of match, if required
-        retval.Union(kind);
+        retval.push_back(kind);
     }
     return retval;
   }
