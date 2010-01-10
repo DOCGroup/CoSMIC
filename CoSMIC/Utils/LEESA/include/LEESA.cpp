@@ -132,7 +132,7 @@ public:
 
   Carrier (Udm::ParentAttr<Kind> const & c) 
   {
-    this->Unioin(c);
+    this->push_back(c);
   }
 
   void push_back(Udm::ParentAttr<Kind> const & c) 

@@ -30,16 +30,37 @@ struct Carrier : public ContainerTraits<Kind>::Container
   }
 
   Carrier (const Carrier & k) : super(k) {}
- 
-  using super::push_back;
-  void push_back(Carrier const & k)
+
+  Carrier & operator = (const Carrier & c)
   {
-    this->insert(this->end(), k.begin(), k.end());
+    Carrier<Kind>(c).swap(*this);
+    return *this;
+  }
+
+  void swap (Carrier & c1, Carrier & c2)
+  {
+    using namespace std;
+    // This swap could be from super's namespace.
+    // If such a swap function is not there, std:swap will be used.
+    swap(super(c1), super(c2));
+  }
+
+  using super::push_back;
+  void push_back(Carrier const & c)
+  {
+    if(this->empty())
+      super::operator = (c);
+    else
+      this->insert(this->end(), c.begin(), c.end());
   }
 
   void push_back(super const & in)
   {
-    this->insert(this->end(), in.begin(), in.end());
+    std::cout << "push_back (super const &)\n";
+    if(this->empty())
+      super::operator = (in);
+    else
+      this->insert(this->end(), in.begin(), in.end());
   }
 
 #ifdef LEESA_FOR_UDM
@@ -81,6 +102,53 @@ struct Carrier : public ContainerTraits<Kind>::Container
 
 #endif // LEESA_FOR_UDM
 
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+
+  Carrier (Kind && k) 
+  {
+    this->push_back(std::move(k));
+  }
+
+  Carrier (Carrier && c) : super(std::move(c)) {}
+  
+  Carrier & operator = (Carrier && c)
+  {
+    super::operator = (std::move(c));
+    return *this;
+  }
+ 
+  void push_back(Carrier && c)
+  {
+    if(this->empty())
+      *this = std::move(c);
+    else
+      this->insert(this->end(), c.begin(), c.end());
+  }
+
+  void push_back(super && in)
+  {
+    std::cout << "push_back (super &&)\n";
+    if(this->empty())
+      super::operator = (std::move(in));
+    else
+      this->insert(this->end(), in.begin(), in.end());
+  }
+/*
+  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional const & o)
+  {
+    this->push_back(o);
+  }
+
+  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional const & o)
+  {
+    if (o.present()) 
+    {
+      this->push_back(o.get());
+    }
+  }
+*/  
+#endif // __GXX_EXPERIMENTAL_CXX0X__
+
 };
 
 template <class T>
@@ -98,16 +166,17 @@ template <class ParentKind, class ChildKind>
 typename 
   boost::disable_if <IsDomainVisitorBaseOf<ChildKind>,
                      Carrier<ChildKind> >::type
-operator >> (Carrier<ParentKind> const & k, ChildKind)
+
+operator >> (Carrier<ParentKind> const & cpk, ChildKind const & ck)
 {
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<ParentKind, ChildKind>));
   Carrier<ChildKind> retval;
-  BOOST_FOREACH(ParentKind parent, k)
+  BOOST_FOREACH(ParentKind const & parent, cpk)
   {
 #ifdef LEESA_FOR_UDM
     retval.push_back(parent.template children_kind<ChildKind>());
 #else
-    retval.push_back(children_kind(parent, ChildKind()));
+    retval.push_back(children_kind(parent, ck));
 #endif // LEESA_FOR_UDM
   }
   return retval;
@@ -115,10 +184,14 @@ operator >> (Carrier<ParentKind> const & k, ChildKind)
 
 template <class Kind>
 Carrier<Kind>
-operator >> (Carrier<Kind> const & k, SchemaVisitor & v)
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+operator >> (Carrier<Kind> && ck, SchemaVisitor & v)
+#else
+operator >> (Carrier<Kind> const & ck, SchemaVisitor & v)
+#endif // __GXX_EXPERIMENTAL_CXX0X__
 {
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
-  BOOST_FOREACH(Kind kind, k)
+  BOOST_FOREACH(Kind const & kind, ck)
   {
 #ifdef LEESA_FOR_UDM
     kind.Accept(v);
@@ -126,7 +199,11 @@ operator >> (Carrier<Kind> const & k, SchemaVisitor & v)
     kind.accept(v);
 #endif // LEESA_FOR_UDM
   }
-  return k;
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+  return std::move(ck);
+#else
+  return ck;
+#endif // __GXX_EXPERIMENTAL_CXX0X__
 }
 
 } // namespace SingleStage

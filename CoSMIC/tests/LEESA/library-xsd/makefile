@@ -5,6 +5,7 @@ include $(root)/build/xsd/tree-rules.make
 
 override XSDFLAGS += --export-symbol LIBRARY_Export --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last
 CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=
+# CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=
 
 all:
 	@echo "Enter 'make generate' then enter 'make driver'"
@@ -20,10 +21,12 @@ generate:
 # Build.
 #
 driver: driver.o library.o library-meta.o
+driver1stage: driver1stage.o library.o library-meta.o
 
 library.o: library.cxx library.hxx
 library-meta.o: library-meta.cxx library-meta.hxx
 driver.o: driver.cxx library.hxx library-meta.hxx
+driver1stage.o: driver1stage.cxx library.hxx library-meta.hxx
 
 
 # Test.
@@ -37,4 +40,4 @@ test: driver library.xml
 #
 .PHONY: clean
 clean:
-	rm -f library.o library.?xx driver.o driver *-meta* *.?xx.bak all.xml
+	rm -f library.o library.?xx driver*.o driver driver1stage *-meta* *.?xx.bak all.xml

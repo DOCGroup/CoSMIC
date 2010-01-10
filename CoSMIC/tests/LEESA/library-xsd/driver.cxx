@@ -12,7 +12,6 @@
 #include "library.hxx"
 #include "library-meta.hxx"
 #include "LEESA.h"
-//#include "LEESA_SingleStage.h"
 
 using std::cerr;
 using std::endl;
@@ -38,26 +37,20 @@ class MyVisitor : public library::visitor
     virtual void visit_catalog(catalog & x) { ++i; show(x, "Entering: "); }
     virtual void leave_catalog(catalog & x) { ++i; show(x, "Leaving: "); }
 
+    virtual void visit_author_name(author_name & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_author_name(author_name & x) { ++i; show(x, "Leaving: "); }
+
+    virtual void visit_author_died(author_died & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_author_died(author_died & x) { ++i; show(x, "Leaving: "); }
+
     virtual void visit_author(author & x) { ++i; show(x, "Entering: "); }
     virtual void leave_author(author & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_person_name(person_name & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_person_name(person_name & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_book_id(book_id & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_book_id(book_id & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_person_died(person_died & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_person_died(person_died & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_person(person & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_person(person & x) { ++i; show(x, "Leaving: "); }
 
     virtual void visit_book_price(book_price & x) { ++i; show(x, "Entering: "); }
     virtual void leave_book_price(book_price & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_person_born(person_born & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_person_born(person_born & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_author_born(author_born & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_author_born(author_born & x) { ++i; show(x, "Leaving: "); }
 
     virtual void visit_book_available(book_available & x) { ++i; show(x, "Entering: "); }
     virtual void leave_book_available(book_available & x) { ++i; show(x, "Leaving: "); }
@@ -70,9 +63,6 @@ class MyVisitor : public library::visitor
 
     virtual void visit_title(title & x) { ++i; show(x, "Entering: "); }
     virtual void leave_title(title & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_author_recommends(author_recommends & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_author_recommends(author_recommends & x) { ++i; show(x, "Leaving: "); }
 
     virtual void visit_genre(genre & x) { ++i; show(x, "Entering: "); }
     virtual void leave_genre(genre & x) { ++i; show(x, "Leaving: "); }
@@ -105,25 +95,15 @@ main (int argc, char* argv[])
     SchemaTraits<book>::Container book_seq = 
       evaluate (*c, catalog() >> book());
       
-    SchemaTraits<person_died>::Container person_died_seq = 
-      evaluate (book_seq, book() >> author() >> person_died());
+    SchemaTraits<author_died>::Container author_died_seq = 
+      evaluate (book_seq, book() >> author() >> author_died());
     
-    SchemaTraits<person_name>::Container names = 
-      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, person_name()));
-    BOOST_FOREACH(person_name n, names)
+    SchemaTraits<author_name>::Container names = 
+      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, author_name()));
+    BOOST_FOREACH(author_name n, names)
     {
       std::cout << "#########    " << n << std::endl;
     }
-
-    SchemaTraits<book_id>::Container book_id_seq = 
-      evaluate (*c, catalog() >> book() >> book_id()[mv]);
-    std::cout << "******** Count = " << mv.i << std::endl;
-      
-    SchemaTraits<book_available>::Container book_available_seq = 
-      evaluate (*c, catalog() >> book() >> book_available());
-      
-    SchemaTraits<author_recommends>::Container author_recommends_seq = 
-      evaluate (*c, catalog() >> book() >> author() >> author_recommends());
 
     evaluate(*c, catalog() >> AroundFullTD(catalog(), VisitStrategy(mv), LeaveStrategy(mv)));
     std::cout << "******** Count = " << mv.i << std::endl;
@@ -131,22 +111,11 @@ main (int argc, char* argv[])
     catalog::book_sequence seq = evaluate (*c, catalog() >> book());
     //catalog::book_sequence seq = c->book();
 
-/*  // **********************  SingleStage  ******************************
-    using namespace LEESA::SingleStage;
-    Carrier<catalog> catalog_kind = *c;
-
-    SchemaTraits<author_recommends>::Container author_recommends_seq = 
-      catalog_kind >> mv >> book() >> mv >> author() >> mv >> author_recommends() >> mv;
-
-    catalog::book_sequence seq = catalog_kind >> book();
-*/
-
     for (catalog::book_const_iterator bi (seq.begin ());
          bi != seq.end ();
          ++bi)
     {
       cerr << endl
-           << "ID           : " << bi->id () << endl
            << "ISBN         : " << bi->isbn () << endl
            << "Title        : " << bi->title () << endl
            << "Genre        : " << bi->genre () << endl;
@@ -160,9 +129,6 @@ main (int argc, char* argv[])
 
         if (ai->died ())
           cerr << "  Died       : " << *ai->died () << endl;
-
-        //if (ai->recommends ())
-        //  cerr << "  Recommends : " << (*ai->recommends ())->title () << endl;
       }
       cerr  << "Available    : " << std::boolalpha << bi->available () << endl;
     }
@@ -174,53 +140,17 @@ main (int argc, char* argv[])
 
     catalog::book_sequence  & books (c->book ());
 
-
-    // Get rid of all unavailable books.
-    //
-    for (catalog::book_iterator bi (books.begin ()); bi != books.end ();)
-    {
-      if (!bi->available ())
-        bi = books.erase (bi);
-      else
-        ++bi;
-    }
-
-
     // Insert a new book.
     //
     book b (679776443,         // ISBN
             "Dead Souls",      // Title
             genre::philosophy, // Genre
-            49.99,             // price
-            "DS");             // ID
+            49.99);             // price
 
     b.author ().push_back (author ("Nikolai Gogol",
                                    xml_schema::date (1809, 3, 31)));
 
     books.insert (books.begin (), b);
-
-
-    // Because we removed all unavailable books, some IDREFs might be
-    // broken. Let's fix this.
-    //
-    for (catalog::book_iterator bi (books.begin ()); bi != books.end (); ++bi)
-    {
-      for (book::author_iterator ai (bi->author ().begin ());
-           ai != bi->author ().end ();
-           ++ai)
-      {
-        author::recommends_optional& c (ai->recommends ());
-
-        if (c.present ())
-        {
-          author::recommends_type& ref (c.get ());
-
-          if (!ref)
-            c.reset ();
-        }
-      }
-    }
-
 
     // Prepare namespace mapping and schema location information.
     //
