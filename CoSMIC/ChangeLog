@@ -1,3 +1,36 @@
+Mon Jan 11 22:23:22 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+        * Utils/LEESA/include/SP.cpp:
+
+          Factored out Carrier into separate files. Two versions, simple 
+	  and optimized are available. 
+
+        * tests/LEESA/library-xsd/library.xml:
+        * tests/LEESA/library-xsd/makefile:
+	
+          Updated the test build files to make use of new 
+	  optimized carrier.
+
+Sun Jan 10 21:54:58 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+
+          Added support for rvalue references.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xsd:
+        * tests/LEESA/library-xsd/makefile:
+
+          Updated the test for some performance messurements.
+
 Fri Jan  8 22:52:34 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
@@ -10,7 +43,7 @@ Fri Jan  8 22:52:34 UTC 2010  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/LEESA_SingleStage.h:
         * Utils/LEESA/include/SP.cpp:
 
-          LEESA now supports LevelDescendants as in XPath's /*/*/ 
+          LEESA now supports LevelDescendants as in XPath's /*/*/
           Renamed KindLit to Carrier.
 
         * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:

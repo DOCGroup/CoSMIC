@@ -6,7 +6,6 @@
 #include "LEESA_VisitorAsIndex.h"
 
 #include <boost/typeof/typeof.hpp>
-#include <boost/type_traits.hpp>
 #include <boost/concept/assert.hpp>
 #include <boost/concept_check.hpp>
 #include <boost/foreach.hpp>
@@ -67,122 +66,14 @@ template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationM
 
 // Expression Traits must be defined before everything else.
 // Do not remove from this place.
+
 #include "Expression_Traits.h"
+#include "Carrier_Simple.h"
 
 namespace LEESA {
 
 using boost::enable_if_c;
 using boost::enable_if;
-using boost::is_base_of;
-using boost::is_pointer;
-
-
-template <class Kind>
-class Carrier : public std::unary_function <Carrier<Kind>, Carrier<Kind> >
-{
-  typedef typename KindTraits<Kind>::Container Container;
-  Container c_;
-  BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
-  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<Kind>));
-  // This is an important concept. Don't remove.
-
-public:
-  typedef Carrier<Kind> expression_type;
-  typedef Kind result_kind;
-  typedef Kind argument_kind;
-  typedef Carrier<Kind> result_type;
-  typedef Carrier<Kind> argument_type;
-  typedef typename Container::iterator iterator;
-  typedef typename Container::const_iterator const_iterator;
-
-  template <class U>
-  struct rebind
-  {
-    typedef Carrier<U> type;
-  };
-
-  explicit Carrier () {}
- 
-  template <class U>
-  Carrier (Carrier<U> const & u_carrier)
-  {
-    BOOST_MPL_ASSERT((is_base_of<Kind,U>));
-    std::copy(u_carrier.c_.begin(), u_carrier.c_.end(), std::back_inserter(c_));
-  }
-  Carrier (Carrier const & k) : c_ (k.c_) {}
-  Carrier (Kind const & k) { this->push_back(k); }  
-  Carrier (Container const & c) : c_(c) { }
-  
-  void push_back(Carrier const & k)
-  {
-    std::copy(k.begin(), k.end(), std::back_inserter(c_));
-  }
-
-  void push_back(Kind const & k)
-  {
-    c_.push_back(k);
-  }
-  
-  void push_back(Container const & in)
-  {
-    std::copy(in.begin(), in.end(), std::back_inserter(c_));
-  }
-
-#ifdef LEESA_FOR_UDM
-
-  Carrier (Udm::ParentAttr<Kind> const & c) 
-  {
-    this->push_back(c);
-  }
-
-  void push_back(Udm::ParentAttr<Kind> const & c) 
-  {
-    Kind k = c;
-    c_.push_back(k);
-  }
-
-  Carrier(Udm::ChildrenAttr<Kind> const & ca) 
-  {
-    this->push_back(ca);
-  }
-
-  void push_back(Udm::ChildrenAttr<Kind> const & ca) 
-  {
-    Container c = ca;
-    std::copy(c.begin(), c.end(), std::back_inserter(c_));
-  }
-
-#else 
-
-  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
-  {
-    this->push_back(o);
-  }
-
-  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional o)
-  {
-    if (o.present()) 
-    {
-      c_.push_back(o.get());
-    }
-  }
-
-#endif // LEESA_FOR_UDM
-
-  iterator begin() { return c_.begin(); }
-  const_iterator begin() const { return c_.begin(); }
-
-  iterator end() { return c_.end(); }
-  const_iterator end() const { return c_.end(); }
-  
-  bool isEmpty() const 
-  {
-    return c_.empty();
-  }
-  
-  operator Container () const { return c_; } 
-  result_type & operator () (argument_type & p) const { return p; }
-};
 
 template <class L, class R>
 struct ChainExpr : LEESAUnaryFunction <L, R>

@@ -1,4 +1,5 @@
 #include <boost/utility/enable_if.hpp>
+#include <boost/type_traits.hpp>
 #include <boost/mpl/if.hpp>
 
 using boost::disable_if_c;
@@ -6,6 +7,7 @@ using boost::disable_if;
 using boost::enable_if_c;
 using boost::enable_if;
 using boost::mpl::if_;
+using boost::is_base_of;
 
 namespace LEESA {
 

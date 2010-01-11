@@ -613,7 +613,7 @@ struct OneOp : LEESAUnaryFunction <K>, OpBase, _StrategyBase
   
   result_type operator () (argument_type const & arg)
   {
-    if (arg.isEmpty())
+    if (arg.empty())
         throw LEESAException<argument_type>();
     else
     {
