@@ -7,19 +7,15 @@
 
 namespace LEESA {
 
-namespace SingleStage {
-
-template <class U>
-class Carrier;
-
-template <class U>
-class Conductor;
+template <class U> class Carrier;
+template <class U> class Conductor;
+template <class U> class ConstConductor;
 
 template <class U>
 class Node
 {
-  const U * const single_;
-  const typename ContainerTraits<U>::Container * const many_;
+  U * const single_;
+  typename ContainerTraits<U>::Container * const many_;
   Node<U> *next_;
   Node<U> *prev_;
 
@@ -32,29 +28,54 @@ public:
       prev_(n.prev_)
   {  }
 
-  Node(const U & u)
+  Node(U & u)
     : single_(&u), many_(0), next_(0), prev_(0)
   {  }
 
-  Node(const U * const u)
+  Node(U * const u)
     : single_(u), many_(0), next_(0), prev_(0)
   {  }
 
-  Node(const typename ContainerTraits<U>::Container & container)
+  Node(typename ContainerTraits<U>::Container & container)
     : single_(0), many_(&container), next_(0), prev_(0)
   {  }
 
-  Node(const typename ContainerTraits<U>::Container * const container)
+  Node(typename ContainerTraits<U>::Container * const container)
     : single_(0), many_(container), next_(0), prev_(0)
   {  }
 
   friend class Carrier<U>;
+  friend class ConstConductor<U>;
   friend class Conductor<U>;
 };
 
-
 template <class U>
 class Conductor
+{
+  Node<U> * ptr_;
+  typename ContainerTraits<U>::Container::iterator iter_;
+  void search_next();
+
+  public:
+      
+  typedef U & value_type;
+  typedef U & reference;
+  typedef U * pointer;
+  typedef ptrdiff_t difference_type;
+  typedef std::forward_iterator_tag iterator_category;
+
+  Conductor(Node<U>  * = 0);
+  Conductor(Conductor const &);
+  Conductor & operator = (const Conductor &);
+  bool operator == (const Conductor &) const;
+  bool operator != (const Conductor &) const;
+  Conductor& operator ++();
+  Conductor operator ++(int);
+  U & operator *() const;
+};
+
+template <class U>
+class ConstConductor
 {
   Node<U> const * ptr_;
   typename ContainerTraits<U>::Container::const_iterator iter_;
@@ -68,14 +89,15 @@ class Conductor
   typedef ptrdiff_t difference_type;
   typedef std::forward_iterator_tag iterator_category;
 
-  Conductor(Node<U> const * = 0);
-  Conductor(Conductor const &);
-  Conductor & operator = (const Conductor &);
-  bool operator == (const Conductor &) const;
-  bool operator != (const Conductor &) const;
-  Conductor& operator ++();
-  Conductor operator ++(int);
-  const U& operator *() const;
+  ConstConductor(Node<U> const  * = 0);
+  ConstConductor(ConstConductor const &);
+  ConstConductor(Conductor<U> const &);
+  ConstConductor & operator = (const ConstConductor &);
+  bool operator == (const ConstConductor &) const;
+  bool operator != (const ConstConductor &) const;
+  ConstConductor& operator ++();
+  ConstConductor operator ++(int);
+  const U & operator *() const;
 };
 
 template <class U>
@@ -86,16 +108,18 @@ class Carrier
   unsigned int size_;
   
   void destroy();
-  void push_back(const U * const);
+  void push_back(U * const);
 
 public:
 
   typedef Conductor<U> iterator;
-  typedef Conductor<U> const_iterator;
+  typedef ConstConductor<U> const_iterator;
+  typedef U & reference;
+  typedef const U & const_reference;
 
   Carrier();
   Carrier(const Carrier &);
-  Carrier(const U &);
+  Carrier(U &);
 
   template <class ForwardIterator> 
   Carrier(ForwardIterator, ForwardIterator); //Iterator pair
@@ -103,23 +127,31 @@ public:
   Carrier& operator = (const Carrier &); 
   
   void swap (Carrier &) throw(); // Non-throw swap
+  void push_back(U &);
+  void push_back(Node<U> &);
+  void push_back(typename ContainerTraits<U>::Container &);
+  void push_back(Carrier &);
+  
   void push_back(const U &);
-  void push_back(const Node<U> &);
   void push_back(const typename ContainerTraits<U>::Container &);
-  void push_back(const Carrier &);
+  
   bool empty();
-  unsigned int size()const;
+  unsigned int size() const;
   
   const_iterator begin() const;
   const_iterator end() const;
+
+  iterator begin();
+  iterator end();
+  
   operator typename ContainerTraits<U>::Container () const;
   
   ~Carrier() throw(); 
 
 #ifndef LEESA_FOR_UDM 
 
-  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional const & o);
-  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional const & o);
+  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
+  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
 
 #endif // LEESA_FOR_UDM
 };
@@ -127,16 +159,15 @@ public:
 template <class U>
 void swap(Carrier<U>& t, Carrier<U> &u);
 
-} // namespace SingleStage
 } // namespace LEESA
 
 namespace std {
   template <class U>
-  void swap(LEESA::SingleStage::Carrier<U>& t, LEESA::SingleStage::Carrier<U> &u);
+  void swap(LEESA::Carrier<U>& t, LEESA::Carrier<U> &u);
 }
 
 
-#include "Carrier_optimized.cpp"
+#include "Carrier_Optimized.cpp"
 
 #endif //  __CARRIER_OPTIMIZED_H_
 

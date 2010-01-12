@@ -20,6 +20,14 @@ using std::cerr;
 using std::endl;
 using namespace library;
 
+struct MyVisitor : library::visitor
+{
+  virtual void visit_book(book & b) 
+  {
+    std::cout << "visit_book: " << b.title() << std::endl;  
+  }
+};
+
 void print_book(book const & b)
 {
   cerr << endl
@@ -88,6 +96,8 @@ int main (int argc, char* argv[])
   {
     // Read in the XML file and obtain its object model.
     //
+    
+    MyVisitor mv;
     timeval start, end;
     
     gettimeofday(&start, 0);
@@ -96,22 +106,26 @@ int main (int argc, char* argv[])
     
     std::cout << "Parsing time = " << end-start << std::endl;
     
+    using namespace LEESA;
     using namespace LEESA::SingleStage;
     int num = 0;
     
+    const Carrier<catalog> carrier1 = *c;
+    ContainerTraits<author>::Container seq_leesa1 = carrier1 >> book() >> author();
+    
     gettimeofday(&start, 0);
-    Carrier<catalog> carrier = *c;
-    BOOST_AUTO(seq_leesa, carrier >> book() >> author());
-    num = count(seq_leesa);
+    Carrier<catalog> carrier2 = *c;
+    num = count(carrier2 >> book() >> author());
     gettimeofday(&end, 0);
     
     std::cout << "LEESA Count = " << num << ", query-time = " << end-start << std::endl;
     
     num = 0;
     gettimeofday(&start, 0);
-    BOOST_FOREACH(book const & b, c->book())
+    catalog::book_sequence & seq = c->book(); 
+    BOOST_FOREACH(book & b, seq)
     {
-      BOOST_FOREACH(author const & a, b.author()) 
+      BOOST_FOREACH(author & a, b.author()) 
       {
         ++num;
       }

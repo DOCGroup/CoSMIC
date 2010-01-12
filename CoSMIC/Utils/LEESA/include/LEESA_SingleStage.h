@@ -13,9 +13,9 @@
 #include <boost/type_traits.hpp>
 
 #ifdef OPTIMIZED_CARRIER
-#include "Carrier_optimized.h"
+#include "Carrier_Optimized.h"
 #else
-#include "Carrier_simple.h"
+#include "Carrier_Simple.h"
 #endif // OPTIMIZED_CARRIER
 
 namespace LEESA {
@@ -36,12 +36,34 @@ template <class ParentKind, class ChildKind>
 typename 
   boost::disable_if <IsDomainVisitorBaseOf<ChildKind>,
                      Carrier<ChildKind> >::type
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+operator >> (Carrier<ParentKind> && cpk, ChildKind const & ck)
+#else
+operator >> (Carrier<ParentKind> & cpk, ChildKind const & ck)
+#endif // __GXX_EXPERIMENTAL_CXX0X__
+{
+  BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<ParentKind, ChildKind>));
+  Carrier<ChildKind> retval;
+  BOOST_FOREACH(typename Carrier<ParentKind>::reference parent, cpk)
+  {
+#ifdef LEESA_FOR_UDM
+    retval.push_back(parent.template children_kind<ChildKind>());
+#else
+    retval.push_back(children_kind(parent, ck));
+#endif // LEESA_FOR_UDM
+  }
+  return retval;
+}
 
+template <class ParentKind, class ChildKind>
+typename 
+  boost::disable_if <IsDomainVisitorBaseOf<ChildKind>,
+                     const Carrier<ChildKind> >::type
 operator >> (Carrier<ParentKind> const & cpk, ChildKind const & ck)
 {
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<ParentKind, ChildKind>));
   Carrier<ChildKind> retval;
-  BOOST_FOREACH(ParentKind const & parent, cpk)
+  BOOST_FOREACH(typename Carrier<ParentKind>::const_reference parent, cpk)
   {
 #ifdef LEESA_FOR_UDM
     retval.push_back(parent.template children_kind<ChildKind>());
@@ -57,11 +79,11 @@ Carrier<Kind>
 #ifdef __GXX_EXPERIMENTAL_CXX0X__
 operator >> (Carrier<Kind> && ck, SchemaVisitor & v)
 #else
-operator >> (Carrier<Kind> const & ck, SchemaVisitor & v)
+operator >> (Carrier<Kind> & ck, SchemaVisitor & v)
 #endif // __GXX_EXPERIMENTAL_CXX0X__
 {
   BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<Kind>));
-  BOOST_FOREACH(Kind const & kind, ck)
+  BOOST_FOREACH(typename Carrier<Kind>::reference kind, ck)
   {
 #ifdef LEESA_FOR_UDM
     kind.Accept(v);

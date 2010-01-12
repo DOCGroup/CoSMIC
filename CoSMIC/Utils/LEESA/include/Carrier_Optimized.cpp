@@ -1,12 +1,10 @@
 #ifndef __CARRIER_OPTIMIZED_CPP_
-#define __CARRIER_OPTIMIZEd_CPP_
+#define __CARRIER_OPTIMIZED_CPP_
 
-#include "Carrier_optimized.h"
+#include "Carrier_Optimized.h"
 #include <stdexcept>
 
 namespace LEESA {
-
-namespace SingleStage {
 
 template <class U>
 Carrier<U>::Carrier ()
@@ -14,7 +12,7 @@ Carrier<U>::Carrier ()
 {}
 
 template <class U>
-Carrier<U>::Carrier(const U & u)
+Carrier<U>::Carrier(U & u)
   : first_(0), last_(0), size_(0)
 {
   push_back(u);
@@ -29,11 +27,11 @@ Carrier<U>::Carrier(const Carrier<U> & c)
 }
 
 template <class U>
-void Carrier<U>::swap(Carrier<U> &t) throw() // Non-throw swap idiom
+void Carrier<U>::swap(Carrier<U> & c) throw() // Non-throw swap idiom
 {
-     std::swap(this->first_, t.first_);
-     std::swap(this->last_, t.last_);
-     std::swap(this->size_, t.size_);
+  std::swap(this->first_, c.first_);
+  std::swap(this->last_, c.last_);
+  std::swap(this->size_, c.size_);
 }
 
 template <class U>
@@ -42,20 +40,18 @@ Carrier<U>::Carrier(ForwardIterator start, ForwardIterator end)
   : first_(0), last_(0), size_(0)
 {
   for(;start != end; ++start)
-  {
     push_back (&*start);
-  }
 }
 
 template <class U>
-Carrier<U>& Carrier<U>::operator = (const Carrier<U> &t) //copy and swap idiom
+Carrier<U>& Carrier<U>::operator = (const Carrier<U> & c) //copy and swap idiom
 {
-  Carrier<U>(t).swap(*this);
+  Carrier<U>(c).swap(*this);
   return *this;
 }
 
 template <class U>
-void Carrier<U>::push_back(const U * const u)
+void Carrier<U>::push_back(U * const u)
 {
   if (empty())
   {
@@ -74,13 +70,19 @@ void Carrier<U>::push_back(const U * const u)
 }
 
 template <class U>
-void Carrier<U>::push_back(const U & u)
+void Carrier<U>::push_back(U & u)
 {
   push_back(&u);
 }
 
 template <class U>
-void Carrier<U>::push_back(const Node<U> & n)
+void Carrier<U>::push_back(const U & u)
+{
+  push_back(const_cast<U &> (u));
+}
+
+template <class U>
+void Carrier<U>::push_back(Node<U> & n)
 {
   if(n.single_)
     push_back(n.single_);
@@ -89,20 +91,18 @@ void Carrier<U>::push_back(const Node<U> & n)
 }
 
 template <class U>
-void Carrier<U>::push_back(const Carrier<U> & carrier)
+void Carrier<U>::push_back(Carrier<U> & carrier)
 {
   if(carrier.empty())
     return;
   
   for(Node<U> * temp(carrier.first_); temp != 0; temp=temp->next_)
-  {
     push_back (*temp);
-  }
 
 }
   
 template <class U>
-void Carrier<U>::push_back(const typename ContainerTraits<U>::Container & container)
+void Carrier<U>::push_back(typename ContainerTraits<U>::Container & container)
 {
   if(container.empty())
     return;
@@ -121,6 +121,12 @@ void Carrier<U>::push_back(const typename ContainerTraits<U>::Container & contai
      last_ = last_->next_;
   }
   size_+=container.size();
+}
+
+template <class U>
+void Carrier<U>::push_back(const typename ContainerTraits<U>::Container & container)
+{
+  push_back(const_cast<typename ContainerTraits<U>::Container &>(container));
 }
 
 template <class U>
@@ -149,7 +155,7 @@ bool Carrier<U>::empty()
 }
 
 template <class U>
-unsigned int Carrier<U>::size()const 
+unsigned int Carrier<U>::size() const 
 {
   return size_;
 }
@@ -159,21 +165,21 @@ Carrier<U>::operator typename ContainerTraits<U>::Container() const
 {
   typename ContainerTraits<U>::Container temp;
   temp.reserve(this->size());
-  temp.insert(temp.end(), begin(), end());
+  std::copy(this->begin(), this->end(), std::back_inserter(temp));
   return temp;
 }
 
 #ifndef LEESA_FOR_UDM
 
 template <class U>
-Carrier<U>::Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional const & o)
+Carrier<U>::Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional & o)
   : first_(0), last_(0), size_(0)
 {
   this->push_back(o);
 }
 
 template <class U>
-void Carrier<U>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional const & o)
+void Carrier<U>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional & o)
 {
   if(o.present())
     this->push_back(&o.get());
@@ -182,7 +188,39 @@ void Carrier<U>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional
 #endif // LEESA_FOR_UDM
 
 template <class U>
-Conductor<U>::Conductor(Node<U> const * n)
+typename Carrier<U>::const_iterator Carrier<U>::begin() const
+{
+  return Carrier<U>::const_iterator(first_);
+}
+
+template <class U>
+typename Carrier<U>::const_iterator Carrier<U>::end() const
+{
+  return Carrier<U>::const_iterator(0);
+}
+
+template <class U>
+typename Carrier<U>::iterator Carrier<U>::begin() 
+{
+  return Carrier<U>::iterator(first_);
+}
+
+template <class U>
+typename Carrier<U>::iterator Carrier<U>::end() 
+{
+  return Carrier<U>::iterator(0);
+}
+
+template<class U>
+void swap(Carrier<U> & c1, Carrier<U> & c2)
+{
+  c1.swap(c2);
+}            
+
+/************************ Conductor *************************/
+  
+template <class U>
+Conductor<U>::Conductor(Node<U> * n)
   : ptr_(n)
 { 
   if(!ptr_)
@@ -280,7 +318,7 @@ Conductor<U> Conductor<U>::operator ++(int)
 }
 
 template <class U>
-const U& Conductor<U>::operator *() const
+U & Conductor<U>::operator *() const
 {
   if(!ptr_)
     throw std::out_of_range("Conductor is NULL");
@@ -290,36 +328,135 @@ const U& Conductor<U>::operator *() const
     return *iter_;
 }
 
+
+/************************ ConstConductor *************************/
+  
 template <class U>
-typename Carrier<U>::const_iterator Carrier<U>::begin() const
-{
-  return Carrier<U>::const_iterator(first_);
+ConstConductor<U>::ConstConductor(Node<U> const * n)
+  : ptr_(n)
+{ 
+  if(!ptr_)
+    return;
+  if(ptr_->single_)
+    return;
+  if(ptr_->many_->size() > 0)
+    iter_ = ptr_->many_->begin();
+  else
+    ptr_ = 0; 
 }
 
 template <class U>
-typename Carrier<U>::const_iterator Carrier<U>::end() const
+ConstConductor<U>::ConstConductor(ConstConductor const & c)
+  : ptr_(c.ptr_), iter_(c.iter_)
+{ }
+
+template <class U>
+ConstConductor<U>::ConstConductor(Conductor<U> const & c)
+  : ptr_(c.ptr_), iter_(c.iter_)
+{ }
+
+template <class U>
+ConstConductor<U> & ConstConductor<U>::operator = (const ConstConductor<U> &c)
 {
-  return Carrier<U>::const_iterator(0);
+  ptr_ = c.ptr_;
+  iter_ = c.iter_;
+  return *this;
 }
 
-template<class U>
-void swap(Carrier<U>& t, Carrier<U> &u)
+template <class U>
+bool ConstConductor<U>::operator == (const ConstConductor & c) const
 {
-  t.swap(u);
-}            
+  if(ptr_ == c.ptr_)
+  {     
+    if(!ptr_)
+      return true;
+    if(ptr_->single_)
+      return true;
+    if(iter_ == c.iter_)
+      return true;
+    else
+      return false;
+  }
+  else
+    return false;
+}
 
-} // namespace SingleStage
+template <class U>
+bool ConstConductor<U>::operator != (const ConstConductor & c) const
+{
+  return !(*this == c);
+}
+
+template <class U>
+void ConstConductor<U>::search_next()
+{
+  while(ptr_)
+  {
+    ptr_ = ptr_->next_;
+    if(!ptr_)
+      break;
+    if(ptr_->single_)
+      break;
+    else 
+    {
+      if(ptr_->many_->size() > 0)
+      {
+        iter_ = ptr_->many_->begin();
+        break;
+      }
+    }
+  }
+}
+
+template <class U>
+ConstConductor<U> & ConstConductor<U>::operator ++()
+{
+  if(!ptr_)
+    throw std::out_of_range("ConstConductor is NULL");
+  if(ptr_->single_)
+  {
+    search_next();
+  }
+  else
+  {
+    if(++iter_ == ptr_->many_->end())
+      search_next();
+  }
+  
+  return *this;
+}
+
+template <class U>
+ConstConductor<U> ConstConductor<U>::operator ++(int)
+{
+  ConstConductor<U> temp(*this);
+  ++*this;
+  return temp;
+}
+
+template <class U>
+const U & ConstConductor<U>::operator *() const
+{
+  if(!ptr_)
+    throw std::out_of_range("ConstConductor is NULL");
+  if(ptr_->single_)
+    return *(ptr_->single_);
+  else
+    return *iter_;
+}
+
+
 } // namespace LEESA
 
 namespace std
 {
   template<class U>
-  void swap(LEESA::SingleStage::Carrier<U>& t, LEESA::SingleStage::Carrier<U> &u)
+  void swap(LEESA::Carrier<U> & c1, LEESA::Carrier<U> & c2)
   {
-    t.swap(u);
+    c1.swap(c2);
   }            
 }
 
 
-#endif // __CARRIER_OPTIMIZEd_CPP_
+#endif // __CARRIER_OPTIMIZED_CPP_
 

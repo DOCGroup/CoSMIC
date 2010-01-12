@@ -101,26 +101,35 @@ def dump_non_inheritable_type (classname, basic_type, meta_header_file):
   {
     public:
     
-      %(classname)s(%(basic_type)s x = %(basic_type)s())
-        : val_(x) { }
+      %(classname)s(%(basic_type)s const & x)
+        : val_(const_cast<%(basic_type)s *>(&x)) { }
                
-      operator %(basic_type)s () {
+      %(classname)s(%(basic_type)s & x)
+        : val_(&x) { }
+               
+      operator %(basic_type)s & () {
         // For booleans, safe-bool idiom should be used.
-        return this->val_;
+        return *(this->val_);
       }
 
-      virtual %(classname)s* _clone (::xml_schema::flags f,
+      operator %(basic_type)s const & () const {
+        // For booleans, safe-bool idiom should be used.
+        return *(this->val_);
+      }
+
+      virtual %(classname)s * _clone (::xml_schema::flags f,
                                       ::xml_schema::container * c) const
       {
-        return new %(classname)s(this->val_);
+        return new %(classname)s(*(this->val_));
       }
+
       virtual void accept (visitor & v);
       virtual void leave (visitor & v);
       using LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >::operator [];
 
     private:
     
-      %(basic_type)s val_;
+      %(basic_type)s * val_;
   };
   """ % locals()
   meta_header_file.write (outstr)
@@ -166,11 +175,11 @@ def write_types (root, function_dict, typedef_dict, meta_header_file):
       tinfo = typedef_dict[return_type]
       
       if(tinfo.is_schema_type):
-        tinfo.return_type = "const " + tinfo.typedef + " & "
+        tinfo.return_type = tinfo.typedef + " & "
         
       elif(len(tinfo.wrapper) > 0):
         if(typedef_dict[tinfo.orig_type].is_schema_type):
-           tinfo.return_type = "const " + tinfo.typedef + " & "
+           tinfo.return_type = tinfo.typedef + " & "
         else:
           base_type = typedef_dict[tinfo.orig_type].typedef
           # The following classname is the new type being introduced.
@@ -216,6 +225,9 @@ def push_dictionary(qualified_cname, child_type):
 def write_function_declaration(return_type, qualified_cname, child_type):
   outstr = """
 %(return_type)s
+children_kind(%(qualified_cname)s & x, %(child_type)s);
+
+const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s);
 """ % locals()
   meta_header_file.write(outstr)
@@ -224,6 +236,12 @@ children_kind(const %(qualified_cname)s & x, %(child_type)s);
 def write_function_definition(return_type, qualified_cname, child_type, body):
   outstr = """
 %(return_type)s
+children_kind(%(qualified_cname)s & x, %(child_type)s)
+{\
+  %(body)s\
+}
+
+const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s)
 {\
   %(body)s\
