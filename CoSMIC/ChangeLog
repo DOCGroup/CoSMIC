@@ -1,3 +1,16 @@
+Wed Jan 13 16:53:40 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+
+          Bug fix 
+
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xsd:
+
+          Changed the schema to force generation of classes for	simple
+          content.
+
 Tue Jan 12 19:57:24 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:

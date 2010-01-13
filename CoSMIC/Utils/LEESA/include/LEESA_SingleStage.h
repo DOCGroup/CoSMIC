@@ -21,6 +21,31 @@
 namespace LEESA {
 namespace SingleStage {
 
+struct OpBase {} ;
+
+template <class Kind>
+struct ConstCast : std::unary_function<LEESA::Carrier<Kind>, LEESA::Carrier<Kind> >, OpBase
+{
+  typedef typename LEESA::Carrier<Kind> result_type;
+  typedef typename LEESA::Carrier<Kind> argument_type;
+
+  result_type operator () (argument_type const & arg) const
+  {
+    argument_type & non_const_arg = const_cast<argument_type &>(arg);
+#ifdef __GXX_EXPERIMENTAL_CXX0X__
+    return std::move(non_const_arg);
+#else
+    return non_const_arg;
+#endif // __GXX_EXPERIMENTAL_CXX0X__ 
+  }
+};
+
+template <class Kind>
+ConstCast<Kind> RemoveConst(Kind)
+{
+  return ConstCast<Kind>();
+}
+
 template <class T>
 struct IsDomainVisitorBaseOf
 {
@@ -55,6 +80,18 @@ operator >> (Carrier<ParentKind> & cpk, ChildKind const & ck)
   return retval;
 }
 
+/* 
+ * const reference has priority over rvalue-reference when the acutal
+ * parameter is a lvalue. So for a non-const query, we've to use rvalue
+ * overloaded functions. That means, the query must begin with a
+ *
+ *   1. temporary or
+ *   2. explictely 'moved' object or
+ *   3. (non-const) t >> visitor
+ *
+ *   Such queries remain with rvalue overloaded operators and so 
+ *   allow non-const invocations.
+ * */
 template <class ParentKind, class ChildKind>
 typename 
   boost::disable_if <IsDomainVisitorBaseOf<ChildKind>,
@@ -72,6 +109,13 @@ operator >> (Carrier<ParentKind> const & cpk, ChildKind const & ck)
 #endif // LEESA_FOR_UDM
   }
   return retval;
+}
+
+template <class Kind>
+Carrier<Kind>
+operator >> (Carrier<Kind> const & ck, ConstCast<Kind> const & cc)
+{
+  return cc(ck);
 }
 
 template <class Kind>

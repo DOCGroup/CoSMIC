@@ -37,7 +37,11 @@ copyright : not copyrighted - public domain
 
   <xsd:complexType name="author">
     <xsd:sequence>
-      <xsd:element name="name" type="xsd:string"/>
+      <xsd:element name="name">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string" />
+        </xsd:simpleType>
+      </xsd:element>
       <xsd:element name="born" type="xsd:date"/>
       <xsd:element name="died" type="xsd:date" minOccurs="0"/>
     </xsd:sequence>
@@ -49,9 +53,17 @@ copyright : not copyrighted - public domain
       <xsd:element name="title" type="lib:title"/>
       <xsd:element name="genre" type="lib:genre"/>
       <xsd:element name="author" type="lib:author" maxOccurs="unbounded"/>
-      <xsd:element name="price" type="xsd:double"/>
-    </xsd:sequence>
-    <xsd:attribute name="available" type="xsd:boolean" default="true"/>
+       <xsd:element name="price" >
+         <xsd:simpleType>
+           <xsd:restriction base="xsd:double" />
+         </xsd:simpleType>
+       </xsd:element>
+     </xsd:sequence>
+    <xsd:attribute name="available" default="true">
+      <xsd:simpleType>
+        <xsd:restriction base="xsd:boolean" />
+      </xsd:simpleType>
+    </xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="catalog">

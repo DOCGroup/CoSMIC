@@ -26,6 +26,11 @@ struct MyVisitor : library::visitor
   {
     std::cout << "visit_book: " << b.title() << std::endl;  
   }
+  
+  virtual void visit_price(price & p) 
+  {
+    std::cout << "visit_price: " << p << std::endl;  
+  }
 };
 
 void print_book(book const & b)
@@ -110,12 +115,11 @@ int main (int argc, char* argv[])
     using namespace LEESA::SingleStage;
     int num = 0;
     
-    const Carrier<catalog> carrier1 = *c;
-    ContainerTraits<author>::Container seq_leesa1 = carrier1 >> book() >> author();
+    ContainerTraits<book>::Container seq_leesa1 = Carrier<catalog>(*c) >> book();
     
     gettimeofday(&start, 0);
     Carrier<catalog> carrier2 = *c;
-    num = count(carrier2 >> book() >> author());
+    num = count(carrier2 >> book() >> author() >> RemoveConst(author()) >> mv);
     gettimeofday(&end, 0);
     
     std::cout << "LEESA Count = " << num << ", query-time = " << end-start << std::endl;

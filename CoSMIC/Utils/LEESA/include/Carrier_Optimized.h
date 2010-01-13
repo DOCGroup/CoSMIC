@@ -7,6 +7,10 @@
 
 namespace LEESA {
 
+namespace SingleStage {
+  template <class Kind> struct ConstCast;
+}
+
 template <class U> class Carrier;
 template <class U> class Conductor;
 template <class U> class ConstConductor;
@@ -47,6 +51,7 @@ public:
   friend class Carrier<U>;
   friend class ConstConductor<U>;
   friend class Conductor<U>;
+  friend class LEESA::SingleStage::ConstCast<U>;
 };
 
 template <class U>
@@ -109,8 +114,11 @@ class Carrier
   
   void destroy();
   void push_back(U * const);
+  void push_back(Node<U> &);
 
 public:
+
+  friend class ::LEESA::SingleStage::ConstCast<U>;
 
   typedef Conductor<U> iterator;
   typedef ConstConductor<U> const_iterator;
@@ -128,7 +136,6 @@ public:
   
   void swap (Carrier &) throw(); // Non-throw swap
   void push_back(U &);
-  void push_back(Node<U> &);
   void push_back(typename ContainerTraits<U>::Container &);
   void push_back(Carrier &);
   
