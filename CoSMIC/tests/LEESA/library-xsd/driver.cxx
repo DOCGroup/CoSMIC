@@ -1,7 +1,3 @@
-// file      : examples/cxx/tree/library/driver.cxx
-// author    : Boris Kolpackov <boris@codesynthesis.com>
-// copyright : not copyrighted - public domain
-
 #include <memory>   // std::auto_ptr
 #include <iostream>
 #include <vector>
@@ -37,26 +33,26 @@ class MyVisitor : public library::visitor
     virtual void visit_catalog(catalog & x) { ++i; show(x, "Entering: "); }
     virtual void leave_catalog(catalog & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_author_name(author_name & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_author_name(author_name & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_name(name & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_name(name & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_author_died(author_died & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_author_died(author_died & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_died(died & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_died(died & x) { ++i; show(x, "Leaving: "); }
 
     virtual void visit_author(author & x) { ++i; show(x, "Entering: "); }
     virtual void leave_author(author & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_book_price(book_price & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_book_price(book_price & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_price(price & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_price(price & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_author_born(author_born & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_author_born(author_born & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_born(born & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_born(born & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_book_available(book_available & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_book_available(book_available & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_available(available & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_available(available & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_title_lang(title_lang & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_title_lang(title_lang & x) { ++i; show(x, "Leaving: "); }
+    virtual void visit_lang(lang & x) { ++i; show(x, "Entering: "); }
+    virtual void leave_lang(lang & x) { ++i; show(x, "Leaving: "); }
 
     virtual void visit_isbn(isbn & x) { ++i; show(x, "Entering: "); }
     virtual void leave_isbn(isbn & x) { ++i; show(x, "Leaving: "); }
@@ -67,9 +63,18 @@ class MyVisitor : public library::visitor
     virtual void visit_genre(genre & x) { ++i; show(x, "Entering: "); }
     virtual void leave_genre(genre & x) { ++i; show(x, "Leaving: "); }
 
-    virtual void visit_book(book & x) { ++i; show(x, "Entering: "); }
+    virtual void visit_book(book & x) 
+    { 
+      ++i; show(x, "Entering: "); 
+      x.title("abcd");
+    }
     virtual void leave_book(book & x) { ++i; show(x, "Leaving: "); }
 };
+
+void print_book (book & b)
+{
+  std::cout << b.title() << std::endl;
+}
 
 int
 main (int argc, char* argv[])
@@ -93,14 +98,16 @@ main (int argc, char* argv[])
     using namespace LEESA;
 
     SchemaTraits<book>::Container book_seq = 
-      evaluate (*c, catalog() >> book());
+        evaluate (*c, catalog() >> book() >> mv);
       
-    SchemaTraits<author_died>::Container author_died_seq = 
-      evaluate (book_seq, book() >> author() >> author_died());
-    
-    SchemaTraits<author_name>::Container names = 
-      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, author_name()));
-    BOOST_FOREACH(author_name n, names)
+    evaluate (*c, catalog() >> book() >> ForEach(book(), print_book));
+      
+    SchemaTraits<born>::Container born_seq = 
+      evaluate (book_seq, book() >> author() >> born());
+/*    
+    SchemaTraits<name>::Container names = 
+      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, name()));
+    BOOST_FOREACH(name n, names)
     {
       std::cout << "#########    " << n << std::endl;
     }
@@ -109,7 +116,7 @@ main (int argc, char* argv[])
     std::cout << "******** Count = " << mv.i << std::endl;
         
     catalog::book_sequence seq = evaluate (*c, catalog() >> book());
-    //catalog::book_sequence seq = c->book();
+*/    catalog::book_sequence seq = c->book();
 
     for (catalog::book_const_iterator bi (seq.begin ());
          bi != seq.end ();

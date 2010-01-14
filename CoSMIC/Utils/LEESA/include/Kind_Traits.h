@@ -20,8 +20,8 @@
 #ifndef NO_NAMESPACE
 namespace DOMAIN_NAMESPACE 
 {
-  template <class T>
-  struct SchemaTraits;
+  template <class T>  struct SchemaTraits;
+  template <class T>  struct ContainerTraits;
 }
 #else
   template <class T>
@@ -90,7 +90,7 @@ namespace LEESA {
   template <class T>
   struct ContainerTraits
   {
-    typedef typename DOMAIN_NAMESPACE::SchemaTraits<T>::Container Container;
+    typedef typename DOMAIN_NAMESPACE::ContainerTraits<T>::Container Container;
   };
 
   template <class Kind, class Custom = Default>

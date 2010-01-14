@@ -1,14 +1,39 @@
+Thu Jan 14 06:13:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Generates non-const data access functions. Fixed a bug that printed
+	  duplicate descendant pairs.
+
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+
+          Improved Carrier_Optimized vastly and is now being used as the
+	  carrier in XSD based queries. For UDM, Carrier_Simple is used.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xsd:
+        * tests/LEESA/library-xsd/makefile:
+
+          Updated the tests to reflect the above chages.
+
 Wed Jan 13 16:53:40 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/Carrier_Optimized.h:
         * Utils/LEESA/include/LEESA_SingleStage.h:
 
-          Bug fix 
+          Bug fix
 
         * tests/LEESA/library-xsd/driver1stage.cxx:
         * tests/LEESA/library-xsd/library.xsd:
 
-          Changed the schema to force generation of classes for	simple
+          Changed the schema to force generation of classes for simple
           content.
 
 Tue Jan 12 19:57:24 UTC 2010  Sumant Tambe  <sutambe@nospam>

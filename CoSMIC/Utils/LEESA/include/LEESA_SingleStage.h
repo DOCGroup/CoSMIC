@@ -74,7 +74,7 @@ operator >> (Carrier<ParentKind> & cpk, ChildKind const & ck)
 #ifdef LEESA_FOR_UDM
     retval.push_back(parent.template children_kind<ChildKind>());
 #else
-    retval.push_back(children_kind(parent, ck));
+    retval.push_back(children_kind(parent, &ck));
 #endif // LEESA_FOR_UDM
   }
   return retval;
@@ -100,12 +100,12 @@ operator >> (Carrier<ParentKind> const & cpk, ChildKind const & ck)
 {
   BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<ParentKind, ChildKind>));
   Carrier<ChildKind> retval;
-  BOOST_FOREACH(typename Carrier<ParentKind>::const_reference parent, cpk)
+  BOOST_FOREACH(typename Carrier<ParentKind>::reference parent, cpk)
   {
 #ifdef LEESA_FOR_UDM
     retval.push_back(parent.template children_kind<ChildKind>());
 #else
-    retval.push_back(children_kind(parent, ck));
+    retval.push_back(children_kind(parent, &ck));
 #endif // LEESA_FOR_UDM
   }
   return retval;

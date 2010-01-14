@@ -4,6 +4,7 @@
 def remove_cv_qualifiers(raw_type_str):
   strng = raw_type_str.replace("const ","")
   strng = strng.replace("&","")
+  strng = strng.replace("::","")
   return strng.strip()
   
 
@@ -200,6 +201,13 @@ def write_types (root, function_dict, typedef_dict, meta_header_file):
         tinfo.return_type = namespace + "::" + classname
 
 
+def push_all_types(type):
+  if(type[0] == ":"):
+    type = type.replace("::","", 1)
+
+  all_types_set.add(type)
+
+
 def push_dictionary(qualified_cname, child_type):
     length = 0
     if(qualified_cname in children_dict):
@@ -218,17 +226,17 @@ def push_dictionary(qualified_cname, child_type):
     parent_dict[child_type][length:] = [ qualified_cname ]
 
     # Duplicate entries are dropped automatically.
-    all_types_set.add(qualified_cname)
-    all_types_set.add(child_type)
+    push_all_types(qualified_cname)
+    push_all_types(child_type)
 
 
 def write_function_declaration(return_type, qualified_cname, child_type):
   outstr = """
 %(return_type)s
-children_kind(%(qualified_cname)s & x, %(child_type)s);
+children_kind(%(qualified_cname)s & x, %(child_type)s const *);
 
 const %(return_type)s
-children_kind(const %(qualified_cname)s & x, %(child_type)s);
+children_kind(const %(qualified_cname)s & x, %(child_type)s const *);
 """ % locals()
   meta_header_file.write(outstr)
 
@@ -236,13 +244,13 @@ children_kind(const %(qualified_cname)s & x, %(child_type)s);
 def write_function_definition(return_type, qualified_cname, child_type, body):
   outstr = """
 %(return_type)s
-children_kind(%(qualified_cname)s & x, %(child_type)s)
+children_kind(%(qualified_cname)s & x, %(child_type)s const *)
 {\
   %(body)s\
 }
 
 const %(return_type)s
-children_kind(const %(qualified_cname)s & x, %(child_type)s)
+children_kind(const %(qualified_cname)s & x, %(child_type)s const *)
 {\
   %(body)s\
 }
@@ -271,6 +279,7 @@ def write_one_function_list(qualified_cname, real_parent, function_list, typedef
     
     fname = pair[0]
     body = "\n  return x." + fname + "();\n"
+    '''
     if(typedef_dict[pair[1]].wrapper.count("::xsd::cxx::tree::optional") > 0):
       body = """
   if (x.%(fname)s()) 
@@ -282,7 +291,7 @@ def write_one_function_list(qualified_cname, real_parent, function_list, typedef
     return ::xsd::cxx::tree::optional<%(child_type)s>();
   }
 """ % locals()
-    
+    '''    
     
     write_function_definition(return_type, qualified_cname, child_type, body)
 
@@ -397,7 +406,7 @@ def write_cpp_epilog (namespace, orig_header_wihtout_ext, cpp_file):
 def write_schema_traits (all_types_set, children_dict, parent_dict, meta_header_file):
   outstr = """
 template <class T>
-struct _Wrapper
+struct ContainerTraits
 {
   typedef typename ::xsd::cxx::tree::sequence <T> Container;
   typedef typename ::xsd::cxx::tree::optional <T> Optional;
@@ -419,7 +428,7 @@ struct _Wrapper
 
     outstr = """
 template <>
-struct SchemaTraits< %(t)s > : public _Wrapper< %(t)s > {
+struct SchemaTraits< %(t)s > : public ContainerTraits< %(t)s > {
   typedef boost::mpl::vector < %(children_kinds)s > ChildrenKinds;
   typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
   typedef %(metakind)s MetaKind;
@@ -583,7 +592,8 @@ def write_descendant_pairs(children_dict, meta_header_file):
   for ancestor in sorted(children_dict.keys()):
     descendants = []
     push_descendants (ancestor, descendants, children_dict)
-    for descendant in sorted(descendants):
+    descendants = sorted(list(set(descendants)))
+    for descendant in descendants:
       meta_header_file.write(
       """  template <> struct IsDescendant < %(ancestor)s, %(descendant)s > : _True_ { };\n""" % locals())
     

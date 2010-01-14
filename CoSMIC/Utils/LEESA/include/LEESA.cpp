@@ -68,7 +68,13 @@ template <class ASSOC, class SOURCECLASS, class TARGETCLASS> struct AssociationM
 // Do not remove from this place.
 
 #include "Expression_Traits.h"
+
+#ifdef LEESA_FOR_UDM
 #include "Carrier_Simple.h"
+#else
+#include "Carrier_Optimized.h"
+#endif // LEESA_FOR_UDM
+
 
 namespace LEESA {
 
@@ -94,8 +100,11 @@ struct ChainExpr : LEESAUnaryFunction <L, R>
   
   explicit ChainExpr (L const &l, R const & r) 
     : l_(l), r_(r) {}
-  
-  result_type operator () (argument_type p) { return r_(l_(p)); }
+  result_type operator () (argument_type const & p) { return r_(l_(p)); }
+
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && p) { return r_(l_(p)); }
+#endif //  __GXX_EXPERIMENTAL_CXX_0X  
 };
 
 template <class L, class R>
@@ -202,7 +211,7 @@ operator FOLLOWED_BY (L const &l, VisitorAsIndex<H> vh)
 
 template <class Para, class Expr>
 typename Expr::result_type
-evaluate (Para const & p, Expr e)
+evaluate (Para & p, Expr e)
 {
   typedef typename ET<Expr>::argument_kind argument_kind;
   typedef typename ET<Para>::result_kind result_kind;

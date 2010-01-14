@@ -115,11 +115,9 @@ int main (int argc, char* argv[])
     using namespace LEESA::SingleStage;
     int num = 0;
     
-    ContainerTraits<book>::Container seq_leesa1 = Carrier<catalog>(*c) >> book();
-    
     gettimeofday(&start, 0);
     Carrier<catalog> carrier2 = *c;
-    num = count(carrier2 >> book() >> author() >> RemoveConst(author()) >> mv);
+    num = count(carrier2 >> book() >> author());
     gettimeofday(&end, 0);
     
     std::cout << "LEESA Count = " << num << ", query-time = " << end-start << std::endl;

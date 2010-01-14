@@ -23,7 +23,8 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
   typedef Carrier<Kind> result_type;
   typedef Carrier<Kind> argument_type;
   typedef typename Container::iterator iterator;
-  typedef typename Container::const_iterator const_iterator;
+  typedef typename Container::iterator const_iterator;
+  //typedef typename Container::const_iterator const_iterator;
 
   template <class U>
   struct rebind
@@ -31,7 +32,7 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
     typedef Carrier<U> type;
   };
   
-  Container c_;
+  mutable Container c_;
 
   explicit Carrier () {}
   
@@ -53,12 +54,13 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
     return *this;
   }
 
-  void swap (Carrier & c1, Carrier & c2)
+  void swap (Carrier & c)
   {
-    using std::swap;
+    //using std::swap;
     // I'm hoping that Koenig lookup will pickup the most
     // appropriate swap for whatever Carrier's container is.
-    swap(c1.c_, c2.c_);
+    //swap(c1.c_, c2.c_);
+    this->c_.swap(c.c_);
   }
 
   void push_back(Kind const & k)
@@ -80,10 +82,10 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
   }
 
   iterator begin() { return c_.begin(); }
-  const_iterator begin() const { return c_.begin(); }
+  iterator begin() const { return c_.begin(); }
 
   iterator end() { return c_.end(); }
-  const_iterator end() const { return c_.end(); }
+  iterator end() const { return c_.end(); }
   
   bool empty() const 
   {
@@ -91,7 +93,7 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
   }
   
   operator Container () const { return c_; } 
-  result_type & operator () (argument_type & p) const { return p; }
+  result_type const & operator () (argument_type const & p) const { return p; }
 
 #ifdef LEESA_FOR_UDM
 
@@ -139,14 +141,33 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
     this->push_back(std::move(k));
   }
 
-  Carrier (Carrier && c) : super(std::move(c)) {}
+  Carrier (Carrier && c) 
+  {
+    this->swap(c);
+  }
+  
+  Carrier (Container && c) 
+  {
+    this->c_.swap(c);
+  }
   
   Carrier & operator = (Carrier && c)
   {
-    super::operator = (std::move(c));
+    this->swap(c);
     return *this;
   }
  
+  Carrier & operator = (Container && c)
+  {
+    this->c_.swap(c.c_);
+    return *this;
+  }
+ 
+  void push_back(Kind && k)
+  {
+    this->push_back(std::move(k));
+  }
+
   void push_back(Carrier && c)
   {
     if(this->empty())
@@ -155,11 +176,11 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
       this->insert(this->end(), c.begin(), c.end());
   }
 
-  void push_back(super && in)
+  void push_back(Container && in)
   {
     //std::cout << "push_back (super &&)\n";
     if(this->empty())
-      super::operator = (std::move(in));
+      this->c_.swap(in);
     else
       this->insert(this->end(), in.begin(), in.end());
   }

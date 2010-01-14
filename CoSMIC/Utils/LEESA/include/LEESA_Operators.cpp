@@ -102,13 +102,13 @@ struct GetChildrenOp :
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
 
     result_type retval;
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
+    BOOST_FOREACH(argument_kind & kind, arg)
     {
+      result_type temp;
 #ifdef LEESA_FOR_UDM
-      result_type temp(kind.template children_kind<result_kind>());
+      temp.push_back(kind.template children_kind<result_kind>());
 #else
-      result_type temp(children_kind (kind, result_kind()));
+      temp.push_back(children_kind (kind, static_cast<result_kind *>(0)));
 #endif // LEESA_FOR_UDM
       dispatch_depth_first(temp, expr_);
       retval.push_back(temp);
@@ -116,14 +116,30 @@ struct GetChildrenOp :
     return retval;
   }
 
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && arg)
+  {
+    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
+
+    result_type retval;
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+      result_type temp(children_kind (kind, static_cast<result_kind *>(0)));
+      dispatch_depth_first(temp, expr_);
+      retval.push_back(temp);
+    }
+    return retval;
+  }
+#endif // __GXX_EXPERIMENTAL_CXX0X__  
+
   template <class Left, class Right>
-  void dispatch_depth_first(result_type const & r, ChainExpr<Left, Right> & expr)
+  void dispatch_depth_first(result_type & r, ChainExpr<Left, Right> & expr)
   {
     // If expr_ is a ChainExpr, that means some non-trivial depth-first expression
-    // is present, which must be executed.
+    // is present, which must be executed one object at a time.
     std::for_each(r.begin(), r.end(), expr);
   }
-  void dispatch_depth_first(result_type const & c, typename ET<H>::argument_type const &)
+  void dispatch_depth_first(result_type & c, typename ET<H>::argument_type &)
   { 
     // If expr_ is a Carrier, it is basically a no-op.
   }
@@ -148,17 +164,27 @@ struct VisitorOp : LEESAUnaryFunction <E>,
   
   result_type operator () (argument_type const & arg)
   {
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
+    BOOST_FOREACH(argument_kind & kind, arg)
     {
-#ifdef LEESA_FOR_UDM
+#ifdef LEESA_FOR_UDM      
       kind.Accept(visitor_);
-#else 
+#else
       kind.accept(visitor_);
 #endif // LEESA_FOR_UDM
     }
     return arg;
   }
+  
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && arg)
+  {
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+      kind.accept(visitor_);
+    }
+    return std::move(arg);
+  }
+#endif // __GXX_EXPERIMENTAL_CXX0X__  
 };
 
 #endif // LEESA_NO_VISITOR

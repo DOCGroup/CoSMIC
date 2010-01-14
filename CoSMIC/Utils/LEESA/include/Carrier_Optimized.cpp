@@ -11,13 +11,37 @@ Carrier<U>::Carrier ()
   : first_(0), last_(0), size_(0)
 {}
 
+/* Anything that comes in as const is considered part of
+ * the syntactic sugar. For instance return-by-value of
+ * operator functions in the query. Therefore, it is
+ * neglected altogether. Only non-const references coming 
+ * in either via constructor or push_back will be stored.
+ * */
+template <class U>
+Carrier<U>::Carrier(const U & u)
+  : first_(0), last_(0), size_(0)
+{ }
+
 template <class U>
 Carrier<U>::Carrier(U & u)
   : first_(0), last_(0), size_(0)
-{
-  push_back(u);
+{ 
+  this->push_back(&u);
 }
 
+template <class U>
+Carrier<U>::Carrier(typename ContainerTraits<U>::Container & c)
+  : first_(0), last_(0), size_(0)
+{ 
+  this->push_back(c);
+}
+
+template <class U>
+Carrier<U> const & Carrier<U>::operator ()(Carrier<U> const & c) const
+{
+  return c;
+}
+  
 template <class U>
 Carrier<U>::Carrier(const Carrier<U> & c)
   : first_(0), last_(0), size_(0)
@@ -41,6 +65,16 @@ Carrier<U>::Carrier(ForwardIterator start, ForwardIterator end)
 {
   for(;start != end; ++start)
     push_back (&*start);
+}
+
+template <class U>
+template <class Z>
+Carrier<U>::Carrier(Carrier<Z> const & z_carrier)
+  : first_(0), last_(0), size_(0)
+{
+  BOOST_MPL_ASSERT((boost::is_base_of<U, Z>));
+  Carrier<U> temp(z_carrier.begin(), z_carrier.end());
+  this->swap(temp);
 }
 
 template <class U>
@@ -74,13 +108,13 @@ void Carrier<U>::push_back(U & u)
 {
   push_back(&u);
 }
-
+/*
 template <class U>
 void Carrier<U>::push_back(const U & u)
 {
   push_back(const_cast<U &> (u));
 }
-
+*/
 template <class U>
 void Carrier<U>::push_back(Node<U> & n)
 {
@@ -122,13 +156,13 @@ void Carrier<U>::push_back(typename ContainerTraits<U>::Container & container)
   }
   size_+=container.size();
 }
-
+/*
 template <class U>
 void Carrier<U>::push_back(const typename ContainerTraits<U>::Container & container)
 {
   push_back(const_cast<typename ContainerTraits<U>::Container &>(container));
 }
-
+*/
 template <class U>
 void Carrier<U>::destroy()
 {
@@ -170,7 +204,7 @@ Carrier<U>::operator typename ContainerTraits<U>::Container() const
 }
 
 #ifndef LEESA_FOR_UDM
-
+/*
 template <class U>
 Carrier<U>::Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional & o)
   : first_(0), last_(0), size_(0)
@@ -184,19 +218,19 @@ void Carrier<U>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional
   if(o.present())
     this->push_back(&o.get());
 }
-
+*/
 #endif // LEESA_FOR_UDM
 
 template <class U>
-typename Carrier<U>::const_iterator Carrier<U>::begin() const
+typename Carrier<U>::iterator Carrier<U>::begin() const
 {
-  return Carrier<U>::const_iterator(first_);
+  return Carrier<U>::iterator(first_);
 }
 
 template <class U>
-typename Carrier<U>::const_iterator Carrier<U>::end() const
+typename Carrier<U>::iterator Carrier<U>::end() const
 {
-  return Carrier<U>::const_iterator(0);
+  return Carrier<U>::iterator(0);
 }
 
 template <class U>
@@ -216,6 +250,23 @@ void swap(Carrier<U> & c1, Carrier<U> & c2)
 {
   c1.swap(c2);
 }            
+
+#ifdef __GXX_EXPERIMENTAL_CXX0X__   
+template <class U>
+Carrier<U>::Carrier (Carrier<U> && c)
+  : first_(0), last_(0), size_(0)
+{
+  this->swap(c);
+}
+
+template <class U>
+Carrier<U> & Carrier<U>::operator = (Carrier<U> && c)
+{
+  this->swap(c);
+  return *this;
+}
+
+#endif // __GXX_EXPERIMENTAL_CXX0X__
 
 /************************ Conductor *************************/
   

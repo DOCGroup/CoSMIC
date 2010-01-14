@@ -4,8 +4,8 @@ include $(root)/build/cxx/rules.make
 include $(root)/build/xsd/tree-rules.make
 
 override XSDFLAGS += --export-symbol LIBRARY_Export --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last
-# CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=  -D OPTIMIZED_CARRIER
-CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export= -D OPTIMIZED_CARRIER 
+CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=  -D OPTIMIZED_CARRIER -D WITH_LEESA
+# CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export= -D OPTIMIZED_CARRIER -D WITH_LEESA
 
 all:
 	@echo "Enter 'make generate' then enter 'make driver'"
@@ -22,11 +22,13 @@ generate:
 #
 driver: driver.o library.o library-meta.o
 driver1stage: driver1stage.o library.o library-meta.o
+compilation_test: compilation_test.o library.o library-meta.o
 
 library.o: library.cxx library.hxx
 library-meta.o: library-meta.cxx library-meta.hxx
 driver.o: driver.cxx library.hxx library-meta.hxx
 driver1stage.o: driver1stage.cxx library.hxx library-meta.hxx
+compilation_test.o: compilation_test.cpp library.hxx library-meta.hxx
 
 
 # Test.
@@ -40,4 +42,4 @@ test: driver library.xml
 #
 .PHONY: clean
 clean:
-	rm -f library.o library.?xx driver*.o driver driver1stage *-meta* *.?xx.bak all.xml
+	rm -f *.o library.?xx driver driver1stage compilation_test *-meta* *.?xx.bak all.xml

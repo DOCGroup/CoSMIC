@@ -5,6 +5,8 @@
 #error "Please #define DOMAIN_NAMESPACE"
 #endif
 
+#include <boost/type_traits.hpp>
+
 namespace LEESA {
 
 namespace SingleStage {
@@ -106,7 +108,7 @@ class ConstConductor
 };
 
 template <class U>
-class Carrier
+class Carrier : public std::unary_function<Carrier<U>, Carrier<U> >
 {
   Node<U> *first_;
   Node<U> *last_;
@@ -117,17 +119,41 @@ class Carrier
   void push_back(Node<U> &);
 
 public:
+  
+  BOOST_CLASS_REQUIRE(U, LEESA, DomainKindConcept);
+  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<U>));
+  // This is an important concept. Don't remove.
 
-  friend class ::LEESA::SingleStage::ConstCast<U>;
-
+  typedef Carrier<U> expression_type;
+  typedef U result_kind;
+  typedef U argument_kind;
+  typedef Carrier<U> result_type;
+  typedef Carrier<U> argument_type;
+  
   typedef Conductor<U> iterator;
-  typedef ConstConductor<U> const_iterator;
+  typedef Conductor<U> const_iterator;
+  //typedef ConstConductor<U> const_iterator;
   typedef U & reference;
-  typedef const U & const_reference;
+  //typedef const U & const_reference;
+  
+  friend class ::LEESA::SingleStage::ConstCast<U>;
+  
+  template <class Z>
+  struct rebind
+  {
+    typedef Carrier<Z> type;
+  };
 
-  Carrier();
-  Carrier(const Carrier &);
-  Carrier(U &);
+  explicit Carrier();
+  
+  Carrier(const Carrier &); 
+
+  Carrier(const U &);       // Neglects data
+  Carrier(U &);             // Maintains data
+  Carrier(typename ContainerTraits<U>::Container &); // Maintains data
+  
+  template <class Z>
+  Carrier (Carrier<Z> const &);
 
   template <class ForwardIterator> 
   Carrier(ForwardIterator, ForwardIterator); //Iterator pair
@@ -138,15 +164,19 @@ public:
   void push_back(U &);
   void push_back(typename ContainerTraits<U>::Container &);
   void push_back(Carrier &);
-  
-  void push_back(const U &);
-  void push_back(const typename ContainerTraits<U>::Container &);
+ 
+  Carrier const & operator ()(Carrier const &) const;
+
+  //void push_back(const U &);
+  //void push_back(const typename ContainerTraits<U>::Container &);
+  //Carrier(typename ContainerTraits<U>::Container &);
+
   
   bool empty();
   unsigned int size() const;
   
-  const_iterator begin() const;
-  const_iterator end() const;
+  iterator begin() const;
+  iterator end() const;
 
   iterator begin();
   iterator end();
@@ -157,10 +187,16 @@ public:
 
 #ifndef LEESA_FOR_UDM 
 
-  Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
-  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
+  //Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
+  //void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
 
 #endif // LEESA_FOR_UDM
+
+#ifdef __GXX_EXPERIMENTAL_CXX0X__   
+  Carrier (Carrier && c);
+  Carrier & operator = (Carrier && c);
+#endif // __GXX_EXPERIMENTAL_CXX0X__
+
 };
 
 template <class U>
