@@ -13,17 +13,17 @@ namespace SingleStage {
   template <class Kind> struct ConstCast;
 }
 
-template <class U> class Carrier;
-template <class U> class Conductor;
-template <class U> class ConstConductor;
+template <class Kind> class Carrier;
+template <class Kind> class Conductor;
+template <class Kind> class ConstConductor;
 
-template <class U>
+template <class Kind>
 class Node
 {
-  U * const single_;
-  typename ContainerTraits<U>::Container * const many_;
-  Node<U> *next_;
-  Node<U> *prev_;
+  Kind * const single_;
+  typename ContainerTraits<Kind>::Container * const many_;
+  Node<Kind> *next_;
+  Node<Kind> *prev_;
 
 public:
     
@@ -34,109 +34,108 @@ public:
       prev_(n.prev_)
   {  }
 
-  Node(U & u)
+  Node(Kind & u)
     : single_(&u), many_(0), next_(0), prev_(0)
   {  }
 
-  Node(U * const u)
+  Node(Kind * const u)
     : single_(u), many_(0), next_(0), prev_(0)
   {  }
 
-  Node(typename ContainerTraits<U>::Container & container)
+  Node(typename ContainerTraits<Kind>::Container & container)
     : single_(0), many_(&container), next_(0), prev_(0)
   {  }
 
-  Node(typename ContainerTraits<U>::Container * const container)
+  Node(typename ContainerTraits<Kind>::Container * const container)
     : single_(0), many_(container), next_(0), prev_(0)
   {  }
 
-  friend class Carrier<U>;
-  friend class ConstConductor<U>;
-  friend class Conductor<U>;
-  friend class LEESA::SingleStage::ConstCast<U>;
+  friend class Carrier<Kind>;
+  friend class ConstConductor<Kind>;
+  friend class Conductor<Kind>;
+  friend class LEESA::SingleStage::ConstCast<Kind>;
 };
 
-template <class U>
+template <class Kind>
 class Conductor
 {
-  Node<U> * ptr_;
-  typename ContainerTraits<U>::Container::iterator iter_;
+  Node<Kind> * ptr_;
+  typename ContainerTraits<Kind>::Container::iterator iter_;
   void search_next();
 
   public:
       
-  typedef U & value_type;
-  typedef U & reference;
-  typedef U * pointer;
+  typedef Kind & value_type;
+  typedef Kind & reference;
+  typedef Kind * pointer;
   typedef ptrdiff_t difference_type;
   typedef std::forward_iterator_tag iterator_category;
 
-  Conductor(Node<U>  * = 0);
+  Conductor(Node<Kind>  * = 0);
   Conductor(Conductor const &);
   Conductor & operator = (const Conductor &);
   bool operator == (const Conductor &) const;
   bool operator != (const Conductor &) const;
   Conductor& operator ++();
   Conductor operator ++(int);
-  U & operator *() const;
+  Kind & operator *() const;
 };
 
-template <class U>
+template <class Kind>
 class ConstConductor
 {
-  Node<U> const * ptr_;
-  typename ContainerTraits<U>::Container::const_iterator iter_;
+  Node<Kind> const * ptr_;
+  typename ContainerTraits<Kind>::Container::const_iterator iter_;
   void search_next();
 
   public:
       
-  typedef const U & value_type;
-  typedef const U & reference;
-  typedef const U * pointer;
+  typedef const Kind & value_type;
+  typedef const Kind & reference;
+  typedef const Kind * pointer;
   typedef ptrdiff_t difference_type;
   typedef std::forward_iterator_tag iterator_category;
 
-  ConstConductor(Node<U> const  * = 0);
+  ConstConductor(Node<Kind> const  * = 0);
   ConstConductor(ConstConductor const &);
-  ConstConductor(Conductor<U> const &);
+  ConstConductor(Conductor<Kind> const &);
   ConstConductor & operator = (const ConstConductor &);
   bool operator == (const ConstConductor &) const;
   bool operator != (const ConstConductor &) const;
   ConstConductor& operator ++();
   ConstConductor operator ++(int);
-  const U & operator *() const;
+  const Kind & operator *() const;
 };
 
-template <class U>
-class Carrier : public std::unary_function<Carrier<U>, Carrier<U> >
+template <class Kind>
+class Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
 {
-  Node<U> *first_;
-  Node<U> *last_;
+  Node<Kind> *first_;
+  Node<Kind> *last_;
   unsigned int size_;
   
   void destroy();
-  void push_back(U * const);
-  void push_back(Node<U> &);
+  void push_back(Kind * const);
+  void push_back(Node<Kind> &);
 
 public:
   
-  BOOST_CLASS_REQUIRE(U, LEESA, DomainKindConcept);
-  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<U>));
+  BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
+  BOOST_MPL_ASSERT((LEESA::DomainKindConcept<Kind>));
   // This is an important concept. Don't remove.
 
-  typedef Carrier<U> expression_type;
-  typedef U result_kind;
-  typedef U argument_kind;
-  typedef Carrier<U> result_type;
-  typedef Carrier<U> argument_type;
+  typedef Carrier<Kind> expression_type;
+  typedef Kind result_kind;
+  typedef Kind argument_kind;
+  typedef Carrier<Kind> result_type;
+  typedef Carrier<Kind> argument_type;
   
-  typedef Conductor<U> iterator;
-  typedef Conductor<U> const_iterator;
-  //typedef ConstConductor<U> const_iterator;
-  typedef U & reference;
-  //typedef const U & const_reference;
+  typedef Conductor<Kind> iterator;
+  typedef Conductor<Kind> const_iterator;
+  typedef Kind & reference;
+  //typedef const Kind & const_reference;
   
-  friend class ::LEESA::SingleStage::ConstCast<U>;
+  friend class ::LEESA::SingleStage::ConstCast<Kind>;
   
   template <class Z>
   struct rebind
@@ -148,9 +147,9 @@ public:
   
   Carrier(const Carrier &); 
 
-  Carrier(const U &);       // Neglects data
-  Carrier(U &);             // Maintains data
-  Carrier(typename ContainerTraits<U>::Container &); // Maintains data
+  Carrier(const Kind &);       // Neglects data
+  Carrier(Kind &);             // Maintains data
+  Carrier(typename ContainerTraits<Kind>::Container &); // Maintains data
   
   template <class Z>
   Carrier (Carrier<Z> const &);
@@ -161,17 +160,21 @@ public:
   Carrier& operator = (const Carrier &); 
   
   void swap (Carrier &) throw(); // Non-throw swap
-  void push_back(U &);
-  void push_back(typename ContainerTraits<U>::Container &);
+
+  void push_back(Kind &);
+  void push_back(typename ContainerTraits<Kind>::Container &);
   void push_back(Carrier &);
+  
+  /* This operation is very similar to std::list<T>::splice. */
+  void move_carrier(Carrier &);
+
+  /* All the following 3 push_back functions do const_cast. */
+  void push_back(const Kind &);
+  void push_back(const typename ContainerTraits<Kind>::Container &);
+  void push_back(const Carrier &);
  
   Carrier const & operator ()(Carrier const &) const;
 
-  //void push_back(const U &);
-  //void push_back(const typename ContainerTraits<U>::Container &);
-  //Carrier(typename ContainerTraits<U>::Container &);
-
-  
   bool empty();
   unsigned int size() const;
   
@@ -181,14 +184,14 @@ public:
   iterator begin();
   iterator end();
   
-  operator typename ContainerTraits<U>::Container () const;
+  operator typename ContainerTraits<Kind>::Container () const;
   
   ~Carrier() throw(); 
 
 #ifndef LEESA_FOR_UDM 
 
-  //Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
-  //void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional &);
+  void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &);
+  void push_back (const typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &);
 
 #endif // LEESA_FOR_UDM
 
@@ -199,14 +202,14 @@ public:
 
 };
 
-template <class U>
-void swap(Carrier<U>& t, Carrier<U> &u);
+template <class Kind>
+void swap(Carrier<Kind>& t, Carrier<Kind> &u);
 
 } // namespace LEESA
 
 namespace std {
-  template <class U>
-  void swap(LEESA::Carrier<U>& t, LEESA::Carrier<U> &u);
+  template <class Kind>
+  void swap(LEESA::Carrier<Kind>& t, LEESA::Carrier<Kind> &u);
 }
 
 

@@ -1,9 +1,23 @@
+Fri Jan 15 01:08:20 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/SP.cpp:
+
+          Applied Carrier optimizations to All and Star. 
+
+        * tests/LEESA/library-xsd/makefile:
+
+          Now does -O3 optimizations.
+
 Thu Jan 14 06:13:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
 
           Generates non-const data access functions. Fixed a bug that printed
-	  duplicate descendant pairs.
+          duplicate descendant pairs.
 
         * Utils/LEESA/include/Carrier_Optimized.h:
         * Utils/LEESA/include/Carrier_Optimized.cpp:
@@ -14,7 +28,7 @@ Thu Jan 14 06:13:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/LEESA_SingleStage.h:
 
           Improved Carrier_Optimized vastly and is now being used as the
-	  carrier in XSD based queries. For UDM, Carrier_Simple is used.
+          carrier in XSD based queries. For UDM, Carrier_Simple is used.
 
         * tests/LEESA/library-xsd/driver.cxx:
         * tests/LEESA/library-xsd/driver1stage.cxx:

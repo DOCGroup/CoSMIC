@@ -99,16 +99,16 @@ protected:
       : retval_(r) {}
 
     template <class K>
-    void operator () (K arg)
+    void operator () (K const & arg)
     {
       /* For any type other than result_type and result_kind, simply neglect
        * the argument. Noop. For desired types, push them in the retval. */
     }
-    void operator () (result_type k)
+    void operator () (result_type const & k)
     {
       retval_.push_back(k);
     }
-    void operator () (result_kind k)
+    void operator () (result_kind const & k)
     {
       retval_.push_back(k);
     }
@@ -119,8 +119,11 @@ public:
   result_type operator () (argument_type const & arg)
   {
     Accumulate acc(retval_);
-    evaluate(arg, argument_kind() 
-        >> FullTD(argument_kind(), acc, FilterChildrenIfNotDescendantCarry<H, Custom>()));
+    FullTDOp<argument_kind, Accumulate, 
+             FilterChildrenIfNotDescendantCarry<H, Custom> > fulltd_op(acc);
+    fulltd_op(arg);
+//    evaluate(arg, argument_kind() 
+//        >> FullTD(argument_kind(), acc, FilterChildrenIfNotDescendantCarry<H, Custom>()));
     return retval_;
   }
 };

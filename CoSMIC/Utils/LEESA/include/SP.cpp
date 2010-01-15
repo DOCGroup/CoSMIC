@@ -111,7 +111,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                   
                                                                                    \
     result_type operator () (argument_type const & arg)                            \
     {                                                                              \
-      BOOST_FOREACH(argument_kind kind, arg)                                       \
+      BOOST_FOREACH(argument_kind const & kind, arg)                               \
       {                                                                            \
         (*this)(kind);                                                             \
       }                                                                            \
@@ -154,7 +154,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase                \
                                                                              \
   result_type operator () (argument_type const & arg)                        \
   {                                                                          \
-    BOOST_FOREACH(argument_kind kind, arg)                                   \
+    BOOST_FOREACH(argument_kind const & kind, arg)                           \
     {                                                                        \
       (*this)(kind);                                                         \
     }                                                                        \
@@ -195,7 +195,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase        \
                                                                              \
   result_type operator () (argument_type const & arg)                        \
   {                                                                          \
-    BOOST_FOREACH(argument_kind kind, arg)                                   \
+    BOOST_FOREACH(argument_kind const & kind, arg)                           \
     {                                                                        \
       (*this)(kind);                                                         \
     }                                                                        \
@@ -231,7 +231,7 @@ struct OP##Op : LEESAUnaryFunction <K>, OpBase, _StrategyBase               \
                                                                             \
     result_type operator () (argument_type const & arg)                     \
     {                                                                       \
-      BOOST_FOREACH(argument_kind kind, arg)                                \
+      BOOST_FOREACH(argument_kind const & kind, arg)                        \
       {                                                                     \
         (*this)(kind);                                                      \
       }                                                                     \
@@ -461,6 +461,9 @@ struct Collect : public _StrategyBase
   
   Collect (Storage & s) : storage_(s) {}
 
+  // These templates are needed because Star operator
+  // expects its parameter strategy to have a member template
+  // overloaded () operator.
   template <class Kind>
   typename    
     disable_if <is_same<typename ET<Storage>::argument_kind,
@@ -468,8 +471,8 @@ struct Collect : public _StrategyBase
                 void>::type
   operator () (typename ET<Kind>::argument_type const &)
   {
-    /* For any type other than result_type and result_kind, simply neglect
-     * the argument. Noop. For desired types, push them in the retval. */
+    // For any type other than result_type and result_kind, simply neglect
+    // the argument. Noop. For desired types, push them in the retval. 
   }
   template <class Kind>
   typename    
@@ -811,10 +814,11 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(All);
       typedef typename pop_front<ChildrenVector>::type Tail;
       typedef typename Strategy::template rebind<Head>::type HeadStrategy;
       HeadStrategy hs(strategy_);
-      typename KindTraits<Head, Custom>::Container head_container =
-        LEESA::evaluate(arg, argument_kind() >> Head());
+      const typename ET<Head>::result_type dummy;
+      GetChildrenOp <argument_type, typename ET<Head>::result_type> gcop(dummy);
+      const Carrier<Head> & head_carrier = gcop(arg);
 
-      BOOST_FOREACH(Head h, head_container)
+      BOOST_FOREACH(Head const & h, head_carrier)
       {
         hs(h);
       }
@@ -1108,14 +1112,15 @@ struct Star
     dispatch(typename ET<Kind>::argument_type const & arg, ChildrenVector)
     {
       typedef typename ET<Kind>::argument_kind argument_kind;
+      typedef typename ET<Kind>::argument_type argument_type;
       typedef typename front<ChildrenVector>::type Head;
       typedef typename pop_front<ChildrenVector>::type Tail;
-      typedef typename ET<Head>::result_type HeadCarrier;
-      HeadCarrier head_carrier =
-        LEESA::evaluate(arg, argument_kind() >> Head());
+      typedef typename ET<Head>::result_type result_type;
+      const result_type dummy;
+      GetChildrenOp <argument_type, result_type> gcop(dummy);
 
       Strategy strategy(store_);
-      strategy.template operator()<Head>(head_carrier);
+      strategy.template operator()<Head>(gcop(arg));
       this->template dispatch<Kind, Tail>(arg, Tail());
     }
     // Called when ChildrenVector is empty as in EmptyMPLVector0.

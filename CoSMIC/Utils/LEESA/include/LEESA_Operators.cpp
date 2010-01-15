@@ -100,7 +100,11 @@ struct GetChildrenOp :
   result_type operator () (argument_type const & arg)
   {
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
-
+    /* Do not refactor this code with the function below, even though the
+     * refactoing of the loop is obvious. The carrier data structure is
+     * optimized for this loop and can't beat its performance. Only rvalue
+     * reference can beat it.
+     * */
     result_type retval;
     BOOST_FOREACH(argument_kind & kind, arg)
     {
@@ -111,8 +115,23 @@ struct GetChildrenOp :
       temp.push_back(children_kind (kind, static_cast<result_kind *>(0)));
 #endif // LEESA_FOR_UDM
       dispatch_depth_first(temp, expr_);
-      retval.push_back(temp);
+      /* NOTE: move semantics here. Similar to std::list<T>::splice. */
+      retval.move_carrier(temp);
     }
+    return retval;
+  }
+
+  result_type operator () (argument_kind const & arg)
+  {
+    BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
+
+    result_type retval;
+#ifdef LEESA_FOR_UDM
+    retval.push_back(kind.template children_kind<result_kind>());
+#else
+    retval.push_back(children_kind (arg, static_cast<result_kind *>(0)));
+#endif // LEESA_FOR_UDM
+    dispatch_depth_first(retval, expr_);
     return retval;
   }
 

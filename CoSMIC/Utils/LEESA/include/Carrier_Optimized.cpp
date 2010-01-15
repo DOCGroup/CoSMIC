@@ -6,8 +6,8 @@
 
 namespace LEESA {
 
-template <class U>
-Carrier<U>::Carrier ()
+template <class Kind>
+Carrier<Kind>::Carrier ()
   : first_(0), last_(0), size_(0)
 {}
 
@@ -17,106 +17,106 @@ Carrier<U>::Carrier ()
  * neglected altogether. Only non-const references coming 
  * in either via constructor or push_back will be stored.
  * */
-template <class U>
-Carrier<U>::Carrier(const U & u)
+template <class Kind>
+Carrier<Kind>::Carrier(const Kind & u)
   : first_(0), last_(0), size_(0)
 { }
 
-template <class U>
-Carrier<U>::Carrier(U & u)
+template <class Kind>
+Carrier<Kind>::Carrier(Kind & u)
   : first_(0), last_(0), size_(0)
 { 
   this->push_back(&u);
 }
 
-template <class U>
-Carrier<U>::Carrier(typename ContainerTraits<U>::Container & c)
+template <class Kind>
+Carrier<Kind>::Carrier(typename ContainerTraits<Kind>::Container & c)
   : first_(0), last_(0), size_(0)
 { 
   this->push_back(c);
 }
 
-template <class U>
-Carrier<U> const & Carrier<U>::operator ()(Carrier<U> const & c) const
+template <class Kind>
+Carrier<Kind> const & Carrier<Kind>::operator ()(Carrier<Kind> const & c) const
 {
   return c;
 }
   
-template <class U>
-Carrier<U>::Carrier(const Carrier<U> & c)
+template <class Kind>
+Carrier<Kind>::Carrier(const Carrier<Kind> & c)
   : first_(0), last_(0), size_(0)
 {
-  for(Node<U> * iter = c.first_; iter != 0; iter=iter->next_)
+  for(Node<Kind> * iter = c.first_; iter != 0; iter=iter->next_)
     push_back (*iter);
 }
 
-template <class U>
-void Carrier<U>::swap(Carrier<U> & c) throw() // Non-throw swap idiom
+template <class Kind>
+void Carrier<Kind>::swap(Carrier<Kind> & c) throw() // Non-throw swap idiom
 {
   std::swap(this->first_, c.first_);
   std::swap(this->last_, c.last_);
   std::swap(this->size_, c.size_);
 }
 
-template <class U>
+template <class Kind>
 template <class ForwardIterator> // Iterator pair idiom
-Carrier<U>::Carrier(ForwardIterator start, ForwardIterator end)
+Carrier<Kind>::Carrier(ForwardIterator start, ForwardIterator end)
   : first_(0), last_(0), size_(0)
 {
   for(;start != end; ++start)
     push_back (&*start);
 }
 
-template <class U>
+template <class Kind>
 template <class Z>
-Carrier<U>::Carrier(Carrier<Z> const & z_carrier)
+Carrier<Kind>::Carrier(Carrier<Z> const & z_carrier)
   : first_(0), last_(0), size_(0)
 {
-  BOOST_MPL_ASSERT((boost::is_base_of<U, Z>));
-  Carrier<U> temp(z_carrier.begin(), z_carrier.end());
+  BOOST_MPL_ASSERT((boost::is_base_of<Kind, Z>));
+  Carrier<Kind> temp(z_carrier.begin(), z_carrier.end());
   this->swap(temp);
 }
 
-template <class U>
-Carrier<U>& Carrier<U>::operator = (const Carrier<U> & c) //copy and swap idiom
+template <class Kind>
+Carrier<Kind>& Carrier<Kind>::operator = (const Carrier<Kind> & c) //copy and swap idiom
 {
-  Carrier<U>(c).swap(*this);
+  Carrier<Kind>(c).swap(*this);
   return *this;
 }
 
-template <class U>
-void Carrier<U>::push_back(U * const u)
+template <class Kind>
+void Carrier<Kind>::push_back(Kind * const u)
 {
   if (empty())
   {
-     last_ = static_cast<Node<U> *>(operator new (sizeof(Node<U>)));
-     new (last_) Node<U>(u);
+     last_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
+     new (last_) Node<Kind>(u);
      first_ = last_;
   }
   else 
   {
-     last_->next_ = static_cast<Node<U> *>(operator new (sizeof(Node<U>)));
-     new (last_->next_) Node<U>(u);
+     last_->next_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
+     new (last_->next_) Node<Kind>(u);
      last_->next_->prev_ = last_;
      last_ = last_->next_;
   }
   ++size_;
 }
 
-template <class U>
-void Carrier<U>::push_back(U & u)
+template <class Kind>
+void Carrier<Kind>::push_back(Kind & u)
 {
   push_back(&u);
 }
-/*
-template <class U>
-void Carrier<U>::push_back(const U & u)
+
+template <class Kind>
+void Carrier<Kind>::push_back(const Kind & u)
 {
-  push_back(const_cast<U &> (u));
+  push_back(const_cast<Kind &> (u));
 }
-*/
-template <class U>
-void Carrier<U>::push_back(Node<U> & n)
+
+template <class Kind>
+void Carrier<Kind>::push_back(Node<Kind> & n)
 {
   if(n.single_)
     push_back(n.single_);
@@ -124,51 +124,76 @@ void Carrier<U>::push_back(Node<U> & n)
     push_back(*n.many_);
 }
 
-template <class U>
-void Carrier<U>::push_back(Carrier<U> & carrier)
+template <class Kind>
+void Carrier<Kind>::push_back(Carrier<Kind> & carrier)
 {
   if(carrier.empty())
     return;
   
-  for(Node<U> * temp(carrier.first_); temp != 0; temp=temp->next_)
+  for(Node<Kind> * temp(carrier.first_); temp != 0; temp=temp->next_)
     push_back (*temp);
-
 }
-  
-template <class U>
-void Carrier<U>::push_back(typename ContainerTraits<U>::Container & container)
+
+template <class Kind>
+void Carrier<Kind>::move_carrier(Carrier & c)
+{
+  /* This operation is very similar to std::list<T>::splice. */
+  if(this->empty())
+  {
+    this->swap(c);
+  }
+  else
+  {
+    this->last_->next_ = c.first_;
+    c.first_->prev_ = this->last_;
+    this->last_ = c.last_;
+    this->size_ += c.size_;
+    c.first_ = 0;
+    c.last_ = 0;
+    c.size_ = 0;
+  }
+}
+
+template <class Kind>
+void Carrier<Kind>::push_back(typename ContainerTraits<Kind>::Container & container)
 {
   if(container.empty())
     return;
 
   if (empty())
   {
-     last_ = static_cast<Node<U> *>(operator new (sizeof(Node<U>)));
-     new (last_) Node<U>(container);
+     last_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
+     new (last_) Node<Kind>(container);
      first_ = last_;
   }
   else 
   {
-     last_->next_ = static_cast<Node<U> *>(operator new (sizeof(Node<U>)));
-     new (last_->next_) Node<U>(container);
+     last_->next_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
+     new (last_->next_) Node<Kind>(container);
      last_->next_->prev_ = last_;
      last_ = last_->next_;
   }
   size_+=container.size();
 }
-/*
-template <class U>
-void Carrier<U>::push_back(const typename ContainerTraits<U>::Container & container)
+
+template <class Kind>
+void Carrier<Kind>::push_back(const typename ContainerTraits<Kind>::Container & container)
 {
-  push_back(const_cast<typename ContainerTraits<U>::Container &>(container));
+  push_back(const_cast<typename ContainerTraits<Kind>::Container &>(container));
 }
-*/
-template <class U>
-void Carrier<U>::destroy()
+
+template <class Kind>
+void Carrier<Kind>::push_back(const Carrier<Kind> & carrier)
 {
-  for(Node<U> * iter = first_; iter != 0; iter=iter->next_)
+  push_back(const_cast<Carrier<Kind> &>(carrier));
+}
+
+template <class Kind>
+void Carrier<Kind>::destroy()
+{
+  for(Node<Kind> * iter = first_; iter != 0; iter=iter->next_)
   {
-    iter->~Node<U>();
+    iter->~Node<Kind>();
     operator delete(iter);
   }
   first_ = 0;
@@ -176,91 +201,90 @@ void Carrier<U>::destroy()
   size_ = 0;
 }
 
-template<class U>
-Carrier<U>::~Carrier() throw()
+template<class Kind>
+Carrier<Kind>::~Carrier() throw()
 {
   destroy();
 }
 
-template <class U>
-bool Carrier<U>::empty()
+template <class Kind>
+bool Carrier<Kind>::empty()
 {
   return (size_ == 0);
 }
 
-template <class U>
-unsigned int Carrier<U>::size() const 
+template <class Kind>
+unsigned int Carrier<Kind>::size() const 
 {
   return size_;
 }
 
-template <class U>
-Carrier<U>::operator typename ContainerTraits<U>::Container() const
+template <class Kind>
+Carrier<Kind>::operator typename ContainerTraits<Kind>::Container() const
 {
-  typename ContainerTraits<U>::Container temp;
+  typename ContainerTraits<Kind>::Container temp;
   temp.reserve(this->size());
   std::copy(this->begin(), this->end(), std::back_inserter(temp));
   return temp;
 }
 
 #ifndef LEESA_FOR_UDM
-/*
-template <class U>
-Carrier<U>::Carrier (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional & o)
-  : first_(0), last_(0), size_(0)
+
+template <class Kind>
+void Carrier<Kind>::push_back (const typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional & o)
 {
-  this->push_back(o);
+  this->push_back(const_cast<typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &>(o));
 }
 
-template <class U>
-void Carrier<U>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<U>::Optional & o)
+template <class Kind>
+void Carrier<Kind>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional & o)
 {
   if(o.present())
     this->push_back(&o.get());
 }
-*/
+
 #endif // LEESA_FOR_UDM
 
-template <class U>
-typename Carrier<U>::iterator Carrier<U>::begin() const
+template <class Kind>
+typename Carrier<Kind>::iterator Carrier<Kind>::begin() const
 {
-  return Carrier<U>::iterator(first_);
+  return Carrier<Kind>::iterator(first_);
 }
 
-template <class U>
-typename Carrier<U>::iterator Carrier<U>::end() const
+template <class Kind>
+typename Carrier<Kind>::iterator Carrier<Kind>::end() const
 {
-  return Carrier<U>::iterator(0);
+  return Carrier<Kind>::iterator(0);
 }
 
-template <class U>
-typename Carrier<U>::iterator Carrier<U>::begin() 
+template <class Kind>
+typename Carrier<Kind>::iterator Carrier<Kind>::begin() 
 {
-  return Carrier<U>::iterator(first_);
+  return Carrier<Kind>::iterator(first_);
 }
 
-template <class U>
-typename Carrier<U>::iterator Carrier<U>::end() 
+template <class Kind>
+typename Carrier<Kind>::iterator Carrier<Kind>::end() 
 {
-  return Carrier<U>::iterator(0);
+  return Carrier<Kind>::iterator(0);
 }
 
-template<class U>
-void swap(Carrier<U> & c1, Carrier<U> & c2)
+template<class Kind>
+void swap(Carrier<Kind> & c1, Carrier<Kind> & c2)
 {
   c1.swap(c2);
 }            
 
 #ifdef __GXX_EXPERIMENTAL_CXX0X__   
-template <class U>
-Carrier<U>::Carrier (Carrier<U> && c)
+template <class Kind>
+Carrier<Kind>::Carrier (Carrier<Kind> && c)
   : first_(0), last_(0), size_(0)
 {
   this->swap(c);
 }
 
-template <class U>
-Carrier<U> & Carrier<U>::operator = (Carrier<U> && c)
+template <class Kind>
+Carrier<Kind> & Carrier<Kind>::operator = (Carrier<Kind> && c)
 {
   this->swap(c);
   return *this;
@@ -270,8 +294,8 @@ Carrier<U> & Carrier<U>::operator = (Carrier<U> && c)
 
 /************************ Conductor *************************/
   
-template <class U>
-Conductor<U>::Conductor(Node<U> * n)
+template <class Kind>
+Conductor<Kind>::Conductor(Node<Kind> * n)
   : ptr_(n)
 { 
   if(!ptr_)
@@ -284,21 +308,21 @@ Conductor<U>::Conductor(Node<U> * n)
     ptr_ = 0; 
 }
 
-template <class U>
-Conductor<U>::Conductor(Conductor const & c)
+template <class Kind>
+Conductor<Kind>::Conductor(Conductor const & c)
   : ptr_(c.ptr_), iter_(c.iter_)
 { }
 
-template <class U>
-Conductor<U> & Conductor<U>::operator = (const Conductor<U> &c)
+template <class Kind>
+Conductor<Kind> & Conductor<Kind>::operator = (const Conductor<Kind> &c)
 {
   ptr_ = c.ptr_;
   iter_ = c.iter_;
   return *this;
 }
 
-template <class U>
-bool Conductor<U>::operator == (const Conductor & c) const
+template <class Kind>
+bool Conductor<Kind>::operator == (const Conductor & c) const
 {
   if(ptr_ == c.ptr_)
   {     
@@ -315,14 +339,14 @@ bool Conductor<U>::operator == (const Conductor & c) const
     return false;
 }
 
-template <class U>
-bool Conductor<U>::operator != (const Conductor & c) const
+template <class Kind>
+bool Conductor<Kind>::operator != (const Conductor & c) const
 {
   return !(*this == c);
 }
 
-template <class U>
-void Conductor<U>::search_next()
+template <class Kind>
+void Conductor<Kind>::search_next()
 {
   while(ptr_)
   {
@@ -342,8 +366,8 @@ void Conductor<U>::search_next()
   }
 }
 
-template <class U>
-Conductor<U> & Conductor<U>::operator ++()
+template <class Kind>
+Conductor<Kind> & Conductor<Kind>::operator ++()
 {
   if(!ptr_)
     throw std::out_of_range("Conductor is NULL");
@@ -360,16 +384,16 @@ Conductor<U> & Conductor<U>::operator ++()
   return *this;
 }
 
-template <class U>
-Conductor<U> Conductor<U>::operator ++(int)
+template <class Kind>
+Conductor<Kind> Conductor<Kind>::operator ++(int)
 {
-  Conductor<U> temp(*this);
+  Conductor<Kind> temp(*this);
   ++*this;
   return temp;
 }
 
-template <class U>
-U & Conductor<U>::operator *() const
+template <class Kind>
+Kind & Conductor<Kind>::operator *() const
 {
   if(!ptr_)
     throw std::out_of_range("Conductor is NULL");
@@ -382,8 +406,8 @@ U & Conductor<U>::operator *() const
 
 /************************ ConstConductor *************************/
   
-template <class U>
-ConstConductor<U>::ConstConductor(Node<U> const * n)
+template <class Kind>
+ConstConductor<Kind>::ConstConductor(Node<Kind> const * n)
   : ptr_(n)
 { 
   if(!ptr_)
@@ -396,26 +420,26 @@ ConstConductor<U>::ConstConductor(Node<U> const * n)
     ptr_ = 0; 
 }
 
-template <class U>
-ConstConductor<U>::ConstConductor(ConstConductor const & c)
+template <class Kind>
+ConstConductor<Kind>::ConstConductor(ConstConductor const & c)
   : ptr_(c.ptr_), iter_(c.iter_)
 { }
 
-template <class U>
-ConstConductor<U>::ConstConductor(Conductor<U> const & c)
+template <class Kind>
+ConstConductor<Kind>::ConstConductor(Conductor<Kind> const & c)
   : ptr_(c.ptr_), iter_(c.iter_)
 { }
 
-template <class U>
-ConstConductor<U> & ConstConductor<U>::operator = (const ConstConductor<U> &c)
+template <class Kind>
+ConstConductor<Kind> & ConstConductor<Kind>::operator = (const ConstConductor<Kind> &c)
 {
   ptr_ = c.ptr_;
   iter_ = c.iter_;
   return *this;
 }
 
-template <class U>
-bool ConstConductor<U>::operator == (const ConstConductor & c) const
+template <class Kind>
+bool ConstConductor<Kind>::operator == (const ConstConductor & c) const
 {
   if(ptr_ == c.ptr_)
   {     
@@ -432,14 +456,14 @@ bool ConstConductor<U>::operator == (const ConstConductor & c) const
     return false;
 }
 
-template <class U>
-bool ConstConductor<U>::operator != (const ConstConductor & c) const
+template <class Kind>
+bool ConstConductor<Kind>::operator != (const ConstConductor & c) const
 {
   return !(*this == c);
 }
 
-template <class U>
-void ConstConductor<U>::search_next()
+template <class Kind>
+void ConstConductor<Kind>::search_next()
 {
   while(ptr_)
   {
@@ -459,8 +483,8 @@ void ConstConductor<U>::search_next()
   }
 }
 
-template <class U>
-ConstConductor<U> & ConstConductor<U>::operator ++()
+template <class Kind>
+ConstConductor<Kind> & ConstConductor<Kind>::operator ++()
 {
   if(!ptr_)
     throw std::out_of_range("ConstConductor is NULL");
@@ -477,16 +501,16 @@ ConstConductor<U> & ConstConductor<U>::operator ++()
   return *this;
 }
 
-template <class U>
-ConstConductor<U> ConstConductor<U>::operator ++(int)
+template <class Kind>
+ConstConductor<Kind> ConstConductor<Kind>::operator ++(int)
 {
-  ConstConductor<U> temp(*this);
+  ConstConductor<Kind> temp(*this);
   ++*this;
   return temp;
 }
 
-template <class U>
-const U & ConstConductor<U>::operator *() const
+template <class Kind>
+const Kind & ConstConductor<Kind>::operator *() const
 {
   if(!ptr_)
     throw std::out_of_range("ConstConductor is NULL");
@@ -501,8 +525,8 @@ const U & ConstConductor<U>::operator *() const
 
 namespace std
 {
-  template<class U>
-  void swap(LEESA::Carrier<U> & c1, LEESA::Carrier<U> & c2)
+  template<class Kind>
+  void swap(LEESA::Carrier<Kind> & c1, LEESA::Carrier<Kind> & c2)
   {
     c1.swap(c2);
   }            
