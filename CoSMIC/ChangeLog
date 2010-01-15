@@ -1,3 +1,23 @@
+Fri Jan 15 04:55:15 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/SP.cpp:
+        * Utils/LEESA/include/SP_Accumulation.cpp:
+
+          Improved SP for optimized accumulation.
+          DescendantsOf now uses accumulation optimizations of SP
+          instead of FullTD, which is more for visitation.
+
+        * tests/LEESA/library-xsd/comparison_test.cpp:
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/makefile:
+
+          Improved the tests to compare compilation times as well
+	  as run-time performance of LEESA and xsd
+
 Fri Jan 15 01:08:20 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
@@ -6,7 +26,7 @@ Fri Jan 15 01:08:20 UTC 2010  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/LEESA_Operators.cpp:
         * Utils/LEESA/include/SP.cpp:
 
-          Applied Carrier optimizations to All and Star. 
+          Applied Carrier optimizations to All and Star.
 
         * tests/LEESA/library-xsd/makefile:
 

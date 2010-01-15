@@ -328,9 +328,6 @@ template <class X, class Y, class Z> struct NaiveInnermostOp;
 template <class X, class Y, class Z> struct InnermostOp;
 
 template <class W, class X, class Y, class Z> struct AroundFullTDOp;
-#ifndef LEESA_FOR_UDM
-template <class A, class D, unsigned int S, class C> struct LevelDescendantsOp;
-#endif // LEESA_FOR_UDM
 
 EXPRESSION_TRAITS_1PARA(FailOp);
 
@@ -358,11 +355,6 @@ EXPRESSION_TRAITS_3PARA(NaiveInnermostOp);
 EXPRESSION_TRAITS_3PARA(InnermostOp);
 
 EXPRESSION_TRAITS_4PARA(AroundFullTDOp);
-#ifndef LEESA_FOR_UDM
-template <class A, class D, unsigned int S, class C>
-struct ET <LevelDescendantsOp<A, D, S, C> >
-  : public ETBase <LevelDescendantsOp<A, D, S, C> > {};
-#endif // LEESA_FOR_UDM
 
 template <class E, class Func>
 struct CallerOp : LEESAUnaryFunction <E>, OpBase
@@ -443,112 +435,6 @@ struct KindTraits <T, FilterChildrenIfNotDescendantCarry <H, Custom> >
                                         typename ET<H>::result_kind, 
                                         Custom>::type ChildrenKinds;
 };
-
-#ifndef LEESA_FOR_UDM
-
-struct Underbar {} _; 
-
-template <class Storage>
-struct Collect : public _StrategyBase
-{
-  template <class K>
-  struct rebind 
-  {
-    typedef Collect type;
-  };
-  
-  Storage & storage_;
-  
-  Collect (Storage & s) : storage_(s) {}
-
-  // These templates are needed because Star operator
-  // expects its parameter strategy to have a member template
-  // overloaded () operator.
-  template <class Kind>
-  typename    
-    disable_if <is_same<typename ET<Storage>::argument_kind,
-                        typename ET<Kind>::argument_kind>,
-                void>::type
-  operator () (typename ET<Kind>::argument_type const &)
-  {
-    // For any type other than result_type and result_kind, simply neglect
-    // the argument. Noop. For desired types, push them in the retval. 
-  }
-  template <class Kind>
-  typename    
-    enable_if <is_same<typename ET<Storage>::argument_kind,
-                       typename ET<Kind>::argument_kind>,
-               void>::type
-  operator () (typename ET<Kind>::argument_type const & arg)
-  {
-    storage_.push_back(arg);
-  }
-};
-
-template <class Strategy, class Descendant, class Custom> struct Star;
-
-template <class Descendant, 
-         unsigned int SkipCount, 
-         class Custom = LEESA::Default>
-struct StarGen
-{
-  typedef Star<typename StarGen<Descendant, 
-                                SkipCount - 1,
-                                Custom>::type,
-               Descendant,
-               Custom> type;
-};
-
-template <class Descendant, class Custom>
-struct StarGen <Descendant, 0, Custom>
-{
-  typedef Collect <typename ET<Descendant>::result_type> type;
-};
-
-template <class Ancestor, 
-          class Descendant, 
-          unsigned int SkipCount, 
-          class Custom = LEESA::Default>
-struct LevelDescendantsOp : public LEESAUnaryFunction<Ancestor, Descendant>, OpBase
-{
-  public:
-    typedef ChainExpr<Ancestor, LevelDescendantsOp> expression_type;
-    typedef LEESAUnaryFunction <Ancestor, Descendant> Super;
-    SUPER_TYPEDEFS(Super);
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<argument_kind>));
-    BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
-    BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<argument_kind, result_kind>));
-    BOOST_CONCEPT_ASSERT((LEESA::LevelDescendantKindConcept<argument_kind, result_kind, SkipCount, Custom>));
-
-    explicit LevelDescendantsOp () {}
-
-    result_type operator () (argument_type arg)
-    {
-      result_type result;
-      typedef typename 
-        StarGen<result_type, 
-                SkipCount + 1, 
-                FilterChildrenIfNotDescendantCarry<Descendant, Custom> 
-               >::type NestedStarStrategy;
-      NestedStarStrategy strategy(result);
-      strategy.template operator()<argument_kind>(arg);
-      return result;
-    }
-};
-
-/* 
-  This typechecking of argument kinds in 2 parameter strategies appears to be 
-  important but not all strategies are templates (e.g., VisitStrategy)
-  In such cases, there is no easy way of telling argument kind.
-
-  typedef typename ET<Strategy1>::argument_kind s1_kind;
-  typedef typename ET<Strategy2>::argument_kind s2_kind;
-
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s1_kind>));
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s2_kind>));
-*/
-
-#endif // LEESA_FOR_UDM
 
 CLASS_FOR_SP_OP_WITH_2STRATEGIES(Choice)
     result_kind operator () (argument_kind const & arg)                        
@@ -1022,6 +908,18 @@ CLASS_FOR_SP_OP_WITH_CUSTOMIZABLE_STRATEGY(Innermost);
 
 #ifndef LEESA_NO_VISITOR
 
+/* 
+  This typechecking of argument kinds in 2 parameter strategies appears to be 
+  important but not all strategies are templates (e.g., VisitStrategy)
+  In such cases, there is no easy way of telling argument kind.
+
+  typedef typename ET<Strategy1>::argument_kind s1_kind;
+  typedef typename ET<Strategy2>::argument_kind s2_kind;
+
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s1_kind>));
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, s2_kind>));
+*/
+
 class VisitStrategy : public _StrategyBase
 {
     SchemaVisitor & visitor_;
@@ -1089,48 +987,6 @@ class LeaveStrategy : public _StrategyBase
 
 #endif // LEESA_NO_VISITOR
 
-#ifndef LEESA_FOR_UDM
-
-template <class Strategy, class Store, class Custom = LEESA::Default> 
-struct Star 
-{
-    Store & store_;
-    
-    explicit Star (Store & s): store_(s) {}
-
-    template <class Kind>
-    void operator () (typename ET<Kind>::argument_type const & arg)
-    {
-      typedef typename KindTraits<Kind, Custom>::ChildrenKinds Children;
-      this->template dispatch<Kind, Children>(arg, Children());
-    }
-
-  protected:
-    // Called when ChildrenVector is non-empty. 
-    template <class Kind, class ChildrenVector>
-    typename disable_if<empty<ChildrenVector>, void>::type 
-    dispatch(typename ET<Kind>::argument_type const & arg, ChildrenVector)
-    {
-      typedef typename ET<Kind>::argument_kind argument_kind;
-      typedef typename ET<Kind>::argument_type argument_type;
-      typedef typename front<ChildrenVector>::type Head;
-      typedef typename pop_front<ChildrenVector>::type Tail;
-      typedef typename ET<Head>::result_type result_type;
-      const result_type dummy;
-      GetChildrenOp <argument_type, result_type> gcop(dummy);
-
-      Strategy strategy(store_);
-      strategy.template operator()<Head>(gcop(arg));
-      this->template dispatch<Kind, Tail>(arg, Tail());
-    }
-    // Called when ChildrenVector is empty as in EmptyMPLVector0.
-    template <class Kind, class ChildrenVector>
-    typename enable_if_c<empty<ChildrenVector>::value, void>::type 
-    dispatch(typename ET<Kind>::argument_type const &, ChildrenVector) { }
-};
-
-#endif // LEESA_FOR_UDM
-
 
 template <class E, class Func>
 CallerOp<typename ET<E>::result_type, Func> 
@@ -1179,88 +1035,6 @@ Identity (K)
   Carrier<argument_kind> k;
   return k;
 }  
-
-#ifndef LEESA_FOR_UDM
-
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 1>
-LevelDescendantsOf(Ancestor, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 1>();                       
-}
-
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 1, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 1, Custom>();                       
-}
-
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 2>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 2>();                       
-}
-
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 2, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 2, Custom>();
-}
-
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 3>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 3>();                       
-}
-
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 3, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 3, Custom>();
-}
-
-#endif // LEESA_FOR_UDM
 
 FUNCTION_FOR_SP_OP_WITH_1STRATEGY(Try);        // choice (s, id)
 FUNCTION_FOR_SP_OP_WITH_1STRATEGY(Repeat);     // try (sequence (s,repeat(s))

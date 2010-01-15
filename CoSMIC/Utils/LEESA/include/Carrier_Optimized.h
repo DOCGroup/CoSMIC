@@ -175,7 +175,7 @@ public:
  
   Carrier const & operator ()(Carrier const &) const;
 
-  bool empty();
+  bool empty() const;
   unsigned int size() const;
   
   iterator begin() const;

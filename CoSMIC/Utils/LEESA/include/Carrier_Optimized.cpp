@@ -208,7 +208,7 @@ Carrier<Kind>::~Carrier() throw()
 }
 
 template <class Kind>
-bool Carrier<Kind>::empty()
+bool Carrier<Kind>::empty() const
 {
   return (size_ == 0);
 }

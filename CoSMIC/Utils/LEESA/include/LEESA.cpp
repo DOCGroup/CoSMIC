@@ -229,6 +229,7 @@ evaluate (Para & p, Expr e)
 #include "LEESA_RShift.cpp"
 #include "LEESA_LShift.cpp"
 #include "SP.cpp"
+#include "SP_Accumulation.cpp"
 #include "AP.cpp"
 
 #endif // __LEESA_CPP

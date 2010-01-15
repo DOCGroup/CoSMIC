@@ -104,14 +104,15 @@ main (int argc, char* argv[])
       
     SchemaTraits<born>::Container born_seq = 
       evaluate (book_seq, book() >> author() >> born());
-/*    
-    SchemaTraits<name>::Container names = 
+    
+    SchemaTraits<name>::Container names =  
       evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, name()));
+      evaluate(*c, catalog() >> DescendantsOf(catalog(), name()));
     BOOST_FOREACH(name n, names)
     {
       std::cout << "#########    " << n << std::endl;
     }
-
+/*
     evaluate(*c, catalog() >> AroundFullTD(catalog(), VisitStrategy(mv), LeaveStrategy(mv)));
     std::cout << "******** Count = " << mv.i << std::endl;
         

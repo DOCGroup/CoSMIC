@@ -118,13 +118,14 @@ public:
 
   result_type operator () (argument_type const & arg)
   {
-    Accumulate acc(retval_);
-    FullTDOp<argument_kind, Accumulate, 
-             FilterChildrenIfNotDescendantCarry<H, Custom> > fulltd_op(acc);
-    fulltd_op(arg);
-//    evaluate(arg, argument_kind() 
-//        >> FullTD(argument_kind(), acc, FilterChildrenIfNotDescendantCarry<H, Custom>()));
-    return retval_;
+    result_type retval; 
+    typedef FilterChildrenIfNotDescendantCarry<H, Custom> Customizer;
+    typedef CollectBFS<result_type, Customizer> CollectBFS;
+    typedef Star<CollectBFS, result_type, Customizer> Star;
+
+    Star star(retval);
+    star.template apply<argument_kind>(arg);
+    return retval;
   }
 };
 
