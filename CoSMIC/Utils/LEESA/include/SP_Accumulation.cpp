@@ -1,8 +1,6 @@
 #ifndef __SP_BREADTH_FIRST_CPP
 #define __SP_BREADTH_FIRST_CPP
 
-#ifndef LEESA_FOR_UDM
-
 namespace LEESA {
 
 template <class A, class D, unsigned int S, class C> struct LevelDescendantsOp;
@@ -174,87 +172,46 @@ struct Star
 };
 
 
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 1>
-LevelDescendantsOf(Ancestor, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 1>();                       
+#define LEVEL_DESCENDANTS_OF_FUNCTIONS(x,...)                                                    \
+template <class Ancestor, class Descendant>                                                      \
+LevelDescendantsOp <typename ET<Ancestor>::argument_type,                                        \
+                    typename ET<Descendant>::result_type, x>                                     \
+LevelDescendantsOf(Ancestor, __VA_ARGS__, Descendant)                                            \
+{                                                                                                \
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));    \
+                                                                                                 \
+  typedef typename ET<Ancestor>::argument_type argument_type;                                    \
+  typedef typename ET<Descendant>::result_type result_type;                                      \
+                                                                                                 \
+  return LevelDescendantsOp<argument_type, result_type, x>();                                    \
+}                                                                                                \
+                                                                                                 \
+template <class Ancestor, class Descendant, class Custom>                                        \
+LevelDescendantsOp <typename ET<Ancestor>::argument_type,                                        \
+                    typename ET<Descendant>::result_type, x, Custom>                             \
+LevelDescendantsOf(Ancestor, __VA_ARGS__, Descendant, Custom)                                    \
+{                                                                                                \
+  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));            \
+                                                                                                 \
+  typedef typename ET<Ancestor>::argument_type argument_type;                                    \
+  typedef typename ET<Descendant>::result_type result_type;                                      \
+                                                                                                 \
+  return LevelDescendantsOp<argument_type, result_type, x, Custom>();                            \
 }
 
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 1, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 1, Custom>();                       
-}
 
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 2>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 2>();                       
-}
-
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 2, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 2, Custom>();
-}
-
-template <class Ancestor, class Descendant>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 3>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Underbar, Descendant)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, LEESA::Default>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 3>();                       
-}
-
-template <class Ancestor, class Descendant, class Custom>
-LevelDescendantsOp <typename ET<Ancestor>::argument_type, 
-                    typename ET<Descendant>::result_type, 3, Custom>
-LevelDescendantsOf(Ancestor, Underbar, Underbar, Underbar, Descendant, Custom)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::DescendantKindConcept<Ancestor, Descendant, Custom>));
-  
-  typedef typename ET<Ancestor>::argument_type argument_type;               
-  typedef typename ET<Descendant>::result_type result_type;                   
-                                                                     
-  return LevelDescendantsOp<argument_type, result_type, 3, Custom>();
-}
+LEVEL_DESCENDANTS_OF_FUNCTIONS(1,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(2,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(3,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(4,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(5,Underbar,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(6,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(7,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(8,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(9,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar);
+LEVEL_DESCENDANTS_OF_FUNCTIONS(10,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar,Underbar);
 
 } // namespace LEEESA
-
-#endif // LEESA_FOR_UDM
 
 #endif // __SP_BREADTH_FIRST_CPP
 

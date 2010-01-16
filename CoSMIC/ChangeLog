@@ -1,3 +1,23 @@
+Sat Jan 16 01:03:27 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/SP_Accumulation.cpp:
+
+          Fixed some UDM related issued.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/UdmApp-Linux/makefile:
+
+          Improved the tests for compilation time comparisons.
+
+        * tests/LEESA/library-xsd/comparison_test.cpp:
+        * tests/LEESA/library-xsd/makefile:
+
+          Improved the tests for run-time comparisons.
+
 Fri Jan 15 04:55:15 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/AP.cpp:
@@ -16,7 +36,7 @@ Fri Jan 15 04:55:15 UTC 2010  Sumant Tambe  <sutambe@nospam>
         * tests/LEESA/library-xsd/makefile:
 
           Improved the tests to compare compilation times as well
-	  as run-time performance of LEESA and xsd
+          as run-time performance of LEESA and xsd
 
 Fri Jan 15 01:08:20 UTC 2010  Sumant Tambe  <sutambe@nospam>
 

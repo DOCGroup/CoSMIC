@@ -1,5 +1,5 @@
 CC=g++
-CXXFLAGS= -D LEESA_FOR_UDM -c -I $(COSMIC_ROOT)/Utils/LEESA/include -I $(UDM_PATH)/include
+CXXFLAGS= -D LEESA_FOR_UDM -c -I $(COSMIC_ROOT)/Utils/LEESA/include -I $(UDM_PATH)/include -D WITHOUT_LEESA
 
 start:
 	@echo "Enter 'make generate' then 'make object'"

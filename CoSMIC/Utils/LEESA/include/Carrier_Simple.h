@@ -73,6 +73,11 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
     push_back(carrier.c_);
   }
 
+  void move_carrier(Carrier & carrier)
+  {
+    push_back(carrier.c_);
+  }
+
   void push_back(Container const & in)
   {
     if(c_.empty())

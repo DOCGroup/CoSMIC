@@ -5,13 +5,10 @@
 #include <string>
 #include <sys/time.h>
 
-#include "boost/tuple/tuple.hpp"
-
 #include "library.hxx"
 
 using std::cerr;
 using std::endl;
-using namespace boost::tuples;
 using namespace library;
 
 #ifdef WITH_LEESA
@@ -28,6 +25,7 @@ struct SeqType
   typedef ::xsd::cxx::tree::sequence< T > type;
 };
 
+/*
 // Get a sequence of books.
 SeqType<book>::type 
 get_books(catalog & c)
@@ -64,6 +62,7 @@ get_authors (catalog & c)
   return author_seq;
 }
 
+
 // Get a sequence of author names.
 SeqType<name>::type 
 get_author_names (catalog & c)
@@ -88,7 +87,8 @@ get_author_names (catalog & c)
 #endif
   return name_seq;
 }
-
+*/
+/*
 // Get a sequence of author names.
 SeqType<name>::type 
 get_author_names_descendants_of (catalog & c)
@@ -113,7 +113,7 @@ get_author_names_descendants_of (catalog & c)
 #endif
   return name_seq;
 }
-
+*/
 
 // Get a sequence of author names.
 SeqType<name>::type 
@@ -185,10 +185,10 @@ main (int argc, char* argv[])
 
     gettimeofday(&start, 0);
 
-    get_books(*c); 
-    get_authors(*c); 
-    get_author_names(*c); 
-    get_author_names_descendants_of(*c); 
+    //get_books(*c); 
+    //get_authors(*c); 
+    //get_author_names(*c); 
+    //get_author_names_descendants_of(*c); 
     get_author_names_level_descendants_of(*c); 
 
     gettimeofday(&end, 0);

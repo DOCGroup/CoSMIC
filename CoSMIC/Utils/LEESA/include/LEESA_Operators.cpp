@@ -121,7 +121,7 @@ struct GetChildrenOp :
     return retval;
   }
 
-  result_type operator () (argument_kind const & arg)
+  result_type operator () (argument_kind const & kind)
   {
     BOOST_CONCEPT_ASSERT((LEESA::ParentChildConcept<argument_kind, result_kind>));
 
@@ -129,7 +129,7 @@ struct GetChildrenOp :
 #ifdef LEESA_FOR_UDM
     retval.push_back(kind.template children_kind<result_kind>());
 #else
-    retval.push_back(children_kind (arg, static_cast<result_kind *>(0)));
+    retval.push_back(children_kind (kind, static_cast<result_kind *>(0)));
 #endif // LEESA_FOR_UDM
     dispatch_depth_first(retval, expr_);
     return retval;

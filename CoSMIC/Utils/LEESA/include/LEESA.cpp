@@ -6,6 +6,7 @@
 #include "LEESA_VisitorAsIndex.h"
 
 #include <boost/typeof/typeof.hpp>
+#include <boost/type_traits.hpp>
 #include <boost/concept/assert.hpp>
 #include <boost/concept_check.hpp>
 #include <boost/foreach.hpp>
@@ -213,8 +214,9 @@ template <class Para, class Expr>
 typename Expr::result_type
 evaluate (Para & p, Expr e)
 {
+  typedef typename boost::remove_const<Para>::type Parameter;
   typedef typename ET<Expr>::argument_kind argument_kind;
-  typedef typename ET<Para>::result_kind result_kind;
+  typedef typename ET<Parameter>::result_kind result_kind;
   BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<argument_kind, result_kind> ));
   BOOST_MPL_ASSERT((LEESA::SameKindsConcept<argument_kind, result_kind> ));
 
