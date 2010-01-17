@@ -17,15 +17,15 @@
 
 #include <boost/type_traits.hpp>
 
-#ifndef NO_NAMESPACE
+#ifdef NO_NAMESPACE
+  template <class T> struct SchemaTraits;
+  template <class T> struct ContainerTraits;
+#else
 namespace DOMAIN_NAMESPACE 
 {
   template <class T>  struct SchemaTraits;
   template <class T>  struct ContainerTraits;
 }
-#else
-  template <class T>
-  struct SchemaTraits;
 #endif // NO_NAMESPACE
 
 namespace LEESA {
@@ -96,7 +96,7 @@ namespace LEESA {
   template <class Kind, class Custom = Default>
   struct KindTraits 
   {
-    typedef typename ContainerTraits<Kind>::Container Container;
+    typedef typename DOMAIN_NAMESPACE::ContainerTraits<Kind>::Container Container;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;

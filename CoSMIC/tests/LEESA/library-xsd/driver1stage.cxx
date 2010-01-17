@@ -27,10 +27,6 @@ struct MyVisitor : library::visitor
     std::cout << "visit_book: " << b.title() << std::endl;  
   }
   
-  virtual void visit_price(price & p) 
-  {
-    std::cout << "visit_price: " << p << std::endl;  
-  }
 };
 
 void print_book(book const & b)

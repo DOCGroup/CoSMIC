@@ -1,3 +1,28 @@
+Sun Jan 17 21:42:18 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          The code generator no long synthesizes new types.
+          If new types are desired, change the schema itself.
+          Number of bug fixes. visit functions, data access etc.
+
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+
+          Bug fix. CastOp and ContainerTraits
+
+        * tests/LEESA/library-xsd/comparison_test.cpp:
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xsd:
+        * tests/LEESA/library-xsd/makefile:
+
+          No new types anymore. Fixed the tests.
+
+        * tests/LEESA/polymorphism-xsd/driver.cxx:
+        * tests/LEESA/polymorphism-xsd/makefile:
+
+          Changes according to the new generator
+
 Sat Jan 16 01:03:27 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/Carrier_Simple.h:

@@ -37,4 +37,4 @@ test: driver supermen.xml
 #
 .PHONY: clean
 clean:
-	rm -f supermen.o supermen.?xx driver.o driver *-meta* *.?xx.bak all.xml
+	rm -f *.o supermen.?xx driver *-meta* *.?xx.bak all.xml

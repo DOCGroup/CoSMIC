@@ -265,8 +265,7 @@ struct CastOp : LEESAUnaryFunction <L, H>, OpBase
   result_type operator () (argument_type const & arg)
   {
     result_type retval;
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
+    BOOST_FOREACH(argument_kind kind, arg)
     {
       if (Udm::IsDerivedFrom (kind.type(), result_kind::meta))
       {

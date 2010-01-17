@@ -51,10 +51,10 @@ main (int argc, char* argv[])
       cerr << endl;
     }
 
-    SchemaTraits<superman>::Container superman_seq = 
+    ::ContainerTraits<superman>::Container superman_seq; 
       evaluate(copy, supermen() >> person() >> CastFromTo(person(), superman()));
-    //supermen::person_sequence person_seq = copy.person();
-    for (SchemaTraits<superman>::Container::const_iterator i (superman_seq.begin ());
+    person_seq = copy.person();
+    for (::ContainerTraits<superman>::Container::const_iterator i (superman_seq.begin ());
          i != superman_seq.end ();
          ++i)
     {

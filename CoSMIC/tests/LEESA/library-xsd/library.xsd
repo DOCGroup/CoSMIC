@@ -65,11 +65,11 @@ copyright : not copyrighted - public domain
       <xsd:element name="title" type="lib:title"/>
       <xsd:element name="genre" type="lib:genre"/>
       <xsd:element name="author" type="lib:author" maxOccurs="unbounded"/>
-       <xsd:element name="price" >
-         <xsd:simpleType>
+       <xsd:element name="price" type="xsd:double" maxOccurs="unbounded"/>
+         <!--xsd:simpleType>
            <xsd:restriction base="xsd:double" />
          </xsd:simpleType>
-       </xsd:element>
+       </xsd:element-->
      </xsd:sequence>
     <xsd:attribute name="available" default="true">
       <xsd:simpleType>
