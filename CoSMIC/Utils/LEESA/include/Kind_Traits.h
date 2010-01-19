@@ -20,11 +20,13 @@
 #ifdef NO_NAMESPACE
   template <class T> struct SchemaTraits;
   template <class T> struct ContainerTraits;
+  template <class T, class U> struct IsDescendant;
 #else
 namespace DOMAIN_NAMESPACE 
 {
   template <class T>  struct SchemaTraits;
   template <class T>  struct ContainerTraits;
+  template <class T, class U> struct IsDescendant;
 }
 #endif // NO_NAMESPACE
 

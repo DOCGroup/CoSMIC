@@ -22,13 +22,11 @@ generate:
 #
 driver: driver.o library.o library-meta.o
 driver1stage: driver1stage.o library.o library-meta.o
-comparison_test: comparison_test.o library.o library-meta.o
 
 library.o: library.cxx library.hxx
 library-meta.o: library-meta.cxx library-meta.hxx
 driver.o: driver.cxx library.hxx library-meta.hxx
 driver1stage.o: driver1stage.cxx library.hxx library-meta.hxx
-comparison_test.o: comparison_test.cpp library.hxx library-meta.hxx
 
 
 # Test.
@@ -42,4 +40,4 @@ test: driver library.xml
 #
 .PHONY: clean
 clean:
-	rm -f *.o library.?xx driver driver1stage comparison_test *-meta* *.?xx.bak all.xml
+	rm -f *.o library.?xx driver driver1stage *-meta* *.?xx.bak all.xml

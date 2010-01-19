@@ -1,79 +1,165 @@
-#include <memory>   // std::auto_ptr
+#include <memory>
 #include <iostream>
 #include <vector>
 #include <exception>
 #include <string>
-#include <typeinfo>
+#include <sys/time.h>
 
 #include "library.hxx"
-#include "library-meta.hxx"
-#include "LEESA.h"
 
 using std::cerr;
 using std::endl;
 using namespace library;
 
-bool selector (library::catalog)
-{
-  return true;
-}
+#ifdef WITH_LEESA
+
+#include "library-meta.hxx"
+#include "LEESA.h"
+using namespace LEESA;
+
+#endif // WITH_LEESA
 
 template <class T>
-void show (T const & t, std::string const & message)
+struct SeqType
 {
-   std::cout << message << typeid(t).name() << std::endl;
-}
-
-class MyVisitor : public library::visitor
-{
-  public:
-    int i;
-    MyVisitor() : i(0) { } 
-
-    virtual void visit_catalog(catalog & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_catalog(catalog & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_name(name & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_name(name & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_died(died & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_died(died & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_author(author & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_author(author & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_price(price & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_price(price & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_born(born & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_born(born & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_available(available & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_available(available & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_lang(lang & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_lang(lang & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_isbn(isbn & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_isbn(isbn & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_title(title & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_title(title & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_genre(genre & x) { ++i; show(x, "Entering: "); }
-    virtual void leave_genre(genre & x) { ++i; show(x, "Leaving: "); }
-
-    virtual void visit_book(book & x) 
-    { 
-      ++i; show(x, "Entering: "); 
-      x.title("abcd");
-    }
-    virtual void leave_book(book & x) { ++i; show(x, "Leaving: "); }
+  typedef ::xsd::cxx::tree::sequence< T > type;
 };
 
-void print_book (book & b)
+
+// Get a sequence of books.
+SeqType<book>::type 
+get_books(catalog & c)
 {
-  std::cout << b.title() << std::endl;
+#ifdef WITH_LEESA  
+  SeqType<book>::type book_seq = 
+    evaluate (c, catalog() >> book());
+#endif 
+#ifdef WITHOUT_LEESA
+  SeqType<book>::type book_seq = 
+    c.book();
+#endif
+  
+  return book_seq;
+};
+
+// Get a sequence of authors.
+SeqType<author>::type
+get_authors (catalog & c)
+{
+#ifdef WITH_LEESA  
+  SeqType<author>::type author_seq = 
+    evaluate (c, catalog() >> book() >> author());
+#endif 
+#ifdef WITHOUT_LEESA
+  SeqType<author>::type author_seq; 
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    author_seq.insert(author_seq.end(), bi->author().begin(), bi->author().end());
+  }
+#endif 
+  return author_seq;
+}
+
+
+// Get a sequence of author names.
+SeqType<name>::type 
+get_author_names (catalog & c)
+{
+#ifdef WITH_LEESA  
+  SeqType<name>::type name_seq = 
+    evaluate (c, catalog() >> book() >> author() >> name());
+#endif 
+#ifdef WITHOUT_LEESA
+  SeqType<name>::type name_seq; 
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    for (book::author_const_iterator ai (bi->author().begin ());
+         ai != bi->author().end ();
+         ++ai)
+    {
+      name_seq.push_back(ai->name());
+    }
+  }
+#endif
+  return name_seq;
+}
+
+
+// Get a sequence of author names.
+SeqType<name>::type 
+get_author_names_descendants_of (catalog & c)
+{
+#ifdef WITH_LEESA  
+  SeqType<name>::type name_seq = 
+    evaluate (c, catalog() >> DescendantsOf(catalog(), name()));
+#endif 
+#ifdef WITHOUT_LEESA
+  SeqType<name>::type name_seq; 
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    for (book::author_const_iterator ai (bi->author().begin ());
+         ai != bi->author().end ();
+         ++ai)
+    {
+      name_seq.push_back(ai->name());
+    }
+  }
+#endif
+  return name_seq;
+}
+
+
+// Get a sequence of author names.
+SeqType<name>::type 
+get_author_names_level_descendants_of (catalog & c)
+{
+#ifdef WITH_LEESA  
+  SeqType<name>::type name_seq = 
+    evaluate (c, catalog() >> LevelDescendantsOf(catalog(), _, _, name()));
+#endif 
+#ifdef WITHOUT_LEESA
+  SeqType<name>::type name_seq; 
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    for (book::author_const_iterator ai (bi->author().begin ());
+         ai != bi->author().end ();
+         ++ai)
+    {
+      name_seq.push_back(ai->name());
+    }
+  }
+#endif
+  return name_seq;
+}
+
+timeval operator - (timeval t1, timeval t2)
+{
+  if (t1.tv_usec < t2.tv_usec)
+  {
+    t1.tv_sec--;
+    t1.tv_usec += 1000000;
+  }
+  time_t sec = t1.tv_sec - t2.tv_sec; 
+  suseconds_t usec = t1.tv_usec - t2.tv_usec;
+
+  timeval retval;
+  retval.tv_sec = sec;
+  retval.tv_usec = usec;
+  return retval;
+}
+
+std::ostream & operator << (std::ostream & o, timeval const & t)
+{
+  o << "[" << t.tv_sec << ", " << t.tv_usec << "]";
+  return o;
 }
 
 int
@@ -81,96 +167,31 @@ main (int argc, char* argv[])
 {
   if (argc != 2)
   {
-    cerr << "usage: " << argv[0] << " library.xml" << endl;
+    cerr << "usage: " << argv[0] << "<xml filename>" << endl;
     return 1;
   }
 
   try
   {
-    // Read in the XML file and obtain its object model.
-    //
+    timeval start, end;
+    
+    gettimeofday(&start, 0);
     std::auto_ptr<catalog> c (catalog_ (argv[1]));
-
-    // Let's print what we've got.
-    //
+    gettimeofday(&end, 0);
     
-    MyVisitor mv;
-    using namespace LEESA;
+    std::cout << "Parsing time = " << end-start << std::endl;
 
-    SchemaTraits<book>::Container book_seq = 
-        evaluate (*c, catalog() >> book() >> mv);
-      
-    evaluate (*c, catalog() >> book() >> ForEach(book(), print_book));
-      
-    SchemaTraits<born>::Container born_seq = 
-      evaluate (book_seq, book() >> author() >> born());
-    
-    SchemaTraits<name>::Container names =  
-      evaluate(*c, catalog() >> LevelDescendantsOf(catalog(), _, _, name()));
-      evaluate(*c, catalog() >> DescendantsOf(catalog(), name()));
-    BOOST_FOREACH(name n, names)
-    {
-      std::cout << "#########    " << n << std::endl;
-    }
-/*
-    evaluate(*c, catalog() >> AroundFullTD(catalog(), VisitStrategy(mv), LeaveStrategy(mv)));
-    std::cout << "******** Count = " << mv.i << std::endl;
-        
-    catalog::book_sequence seq = evaluate (*c, catalog() >> book());
-*/    catalog::book_sequence seq = c->book();
+    gettimeofday(&start, 0);
 
-    for (catalog::book_const_iterator bi (seq.begin ());
-         bi != seq.end ();
-         ++bi)
-    {
-      cerr << endl
-           << "ISBN         : " << bi->isbn () << endl
-           << "Title        : " << bi->title () << endl
-           << "Genre        : " << bi->genre () << endl;
+    get_books(*c); 
+    get_authors(*c); 
+    get_author_names(*c); 
+    get_author_names_descendants_of(*c); 
+    get_author_names_level_descendants_of(*c); 
 
-      for (book::author_const_iterator ai (bi->author ().begin ());
-           ai != bi->author ().end ();
-           ++ai)
-      {
-        cerr << "Author       : " << ai->name () << endl;
-        cerr << "  Born       : " << ai->born () << endl;
+    gettimeofday(&end, 0);
 
-        if (ai->died ())
-          cerr << "  Died       : " << *ai->died () << endl;
-      }
-      cerr  << "Available    : " << std::boolalpha << bi->available () << endl;
-    }
-
-
-    // Now we are going to modify the object model and serialize it
-    // back to XML.
-    //
-
-    catalog::book_sequence  & books (c->book ());
-
-    // Insert a new book.
-    //
-    book b (679776443,         // ISBN
-            "Dead Souls",      // Title
-            genre::philosophy, // Genre
-            49.99);             // price
-
-    b.author ().push_back (author ("Nikolai Gogol",
-                                   xml_schema::date (1809, 3, 31)));
-
-    books.insert (books.begin (), b);
-
-    // Prepare namespace mapping and schema location information.
-    //
-    xml_schema::namespace_infomap map;
-
-    map["lib"].name = "http://www.codesynthesis.com/library";
-    map["lib"].schema = "library.xsd";
-
-
-    // Write it out.
-    //
-    catalog_ (std::cout, *c, map);
+    std::cout << "Query-time = " << end-start << std::endl;
 
   }
   catch (const xml_schema::exception& e)

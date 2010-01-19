@@ -33,7 +33,6 @@ main (int argc, char* argv[])
     using namespace LEESA;
     
     supermen::person_sequence person_seq = evaluate(copy, supermen() >> person());
-    //supermen::person_sequence person_seq = copy.person();
     for (supermen::person_const_iterator i (person_seq.begin ());
          i != person_seq.end ();
          ++i)

@@ -15,13 +15,12 @@ def get_return_type_from_function_node(root, class_id, fnode):
     raw_type_str = fnode.xpath("type/ref/text()")[0] 
     ret_type = remove_cv_qualifiers(raw_type_str)
 
-  '''query = """compounddef[@id='%(class_id)s']
+  query = """compounddef[@id='%(class_id)s']
             /sectiondef[@kind='public-type']
             /memberdef[@kind='typedef'][name/text() = '%(ret_type)s']
             /definition/text()""" % locals()
 
-  return root.xpath(query)[0].split()[-1]'''
-  return ret_type
+  return root.xpath(query)[0].split()[-1]
 
 
 def remove_non_schema_types(function_dict, typedef_dict):
@@ -53,10 +52,9 @@ class TypeInfo:
   wrapper = ""
   orig_type = ""
   is_schema_type = False
-  typedef = ""
 
   def __str__(self):
-    return "['" + self.wrapper + "' '" + self.orig_type + "' '" + str(self.is_schema_type) + "' '" + self.typedef + "']"
+    return "['" + self.wrapper + "' '" + self.orig_type + "' '" + str(self.is_schema_type) + "']"
     
 
 def extract_type_info (typedef_node):
@@ -65,7 +63,6 @@ def extract_type_info (typedef_node):
   ref_nodes = typedef_node.xpath("type/ref") 
   if(len(ref_nodes) > 0):
     
-    tinfo.orig_type = ref_nodes[0].text
     wrapper = typedef_node.xpath("type/text()")[0]
     
     if(wrapper.count("::xsd::cxx::tree::traits") > 0):
@@ -88,9 +85,13 @@ def extract_type_info (typedef_node):
       tinfo.is_schema_type = True
       tinfo.wrapper = ""
 
-    # The last literal in the typedef is the actual type we are looking for.
-    tinfo.typedef = typedef_node.xpath("definition/text()")[0].split()[-1]
-
+    if (not tinfo.is_schema_type):
+      # Prepend full qualification of the typedef. That means namespace::classname::typedef
+      # Full qualification is needed to disambiguate same typedefs in different classes
+      tinfo.orig_type = typedef_node.xpath("definition/text()")[0].split()[-1].rpartition("::")[0] + "::" + ref_nodes[0].text 
+    else:
+      tinfo.orig_type = ref_nodes[0].text
+    
   else:
     wrapper = typedef_node.xpath("type/text()")[0]
     m = re.match(".+<(.+)>.*", wrapper)
@@ -116,7 +117,6 @@ def extract_type_info (typedef_node):
       tinfo.orig_type = typedef_node.xpath("type/text()")[0]
     
     tinfo.is_schema_type = False
-    tinfo.typedef = typedef_node.xpath("definition/text()")[0].split()[-1]
 
   return tinfo
 
@@ -130,8 +130,8 @@ def populate_typedef_dictionary(function_dict, typedef_dict, root):
       tinfo = extract_type_info(tnode)
       typename = tnode.xpath("name/text()")[0]
       if((not typename.endswith("_iterator")) and (not typename.endswith("_traits"))):
-        typedef_dict[typename] = tinfo
-        #typedef_dict[tinfo.typedef] = tinfo
+        typedef = tnode.xpath("definition/text()")[0].split()[-1]
+        typedef_dict[typedef] = tinfo
 
 
 
@@ -218,6 +218,11 @@ def push_dictionary(qualified_cname, child_type):
     
     children_dict[qualified_cname][length:] = [ child_type ]
 
+    global max_length
+
+    if(max_length < len(children_dict[qualified_cname])):
+      max_length = len(children_dict[qualified_cname]) 
+
     length = 0
     if(child_type in parent_dict):
       length = len(parent_dict[child_type])
@@ -226,8 +231,12 @@ def push_dictionary(qualified_cname, child_type):
 
     parent_dict[child_type][length:] = [ qualified_cname ]
 
+    if(max_length < len(parent_dict[child_type])):
+      max_length = len(parent_dict[child_type]) 
 
-def write_function_declaration(return_type, qualified_cname, child_type):
+
+def synthesize_function_declaration(return_type, qualified_cname, child_type):
+  global synthesized_function_declarations
   outstr = """
 %(return_type)s
 children_kind(%(qualified_cname)s & x, %(child_type)s const *);
@@ -235,82 +244,62 @@ children_kind(%(qualified_cname)s & x, %(child_type)s const *);
 const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s const *);
 """ % locals()
-  meta_header_file.write(outstr)
+  synthesized_function_declarations += outstr
 
 
-def write_function_definition(return_type, qualified_cname, child_type, body):
+def synthesize_function_definition(return_type, qualified_cname, child_type, fname):
+  global synthesized_function_definitions
   outstr = """
 %(return_type)s
 children_kind(%(qualified_cname)s & x, %(child_type)s const *)
 {\
-  %(body)s\
+  return x.%(fname)s();\
 }
 
 const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s const *)
 {\
-  %(body)s\
+  return x.%(fname)s();\
 }
 """ % locals()
-  cpp_file.write(outstr)
+  synthesized_function_definitions += outstr
 
 
-def write_one_function_list(qualified_cname, real_parent, function_list, typedef_dict):
+def synthesize_one_function_list(qualified_cname, real_parent, function_list, typedef_dict):
   for pair in function_list:
     if(pair[1] in typedef_dict):
       fname = pair[0]
-      return_type = typedef_dict[pair[1]].typedef + " & "
+      return_type = pair[1] + " & "
       typedef_child_type = "::"
 
       if(len(typedef_dict[pair[1]].wrapper) > 0):
-        #Deref orig_type and check is_schema_type
-        if(typedef_dict[typedef_dict[pair[1]].orig_type].is_schema_type):
           actual_child_class = typedef_dict[typedef_dict[pair[1]].orig_type].orig_type
           typedef_child_type = qualified_cname + "::" + fname + "_type"
-        #else:
-        #  child_type = namespace + "::" + real_parent + "_" + pair[0]
       elif(typedef_dict[pair[1]].is_schema_type):
         actual_child_class = typedef_dict[pair[1]].orig_type
         typedef_child_type = qualified_cname + "::" + fname + "_type"
-      #else:        
-        #child_type = namespace + "::" + real_parent + "_" + pair[0]
 
       push_dictionary(qualified_cname, actual_child_class)    
-      write_function_declaration(return_type, qualified_cname, typedef_child_type)
       
-      body = "\n  return x." + fname + "();\n"
-      '''
-      if(typedef_dict[pair[1]].wrapper.count("::xsd::cxx::tree::optional") > 0):
-        body = """
-    if (x.%(fname)s()) 
-    {
-      return ::xsd::cxx::tree::optional<%(child_type)s>(x.%(fname)s().get());
-    }
-    else 
-    {
-      return ::xsd::cxx::tree::optional<%(child_type)s>();
-    }
-  """ % locals()
-      '''    
-      
-      write_function_definition(return_type, qualified_cname, typedef_child_type, body)
+      synthesize_function_declaration(return_type, qualified_cname, typedef_child_type)
+      synthesize_function_definition(return_type, qualified_cname, typedef_child_type, fname)
 
 
 
-def write_recursive_function_list(classid, real_parent_id, function_dict, typedef_dict):
+def synthesize_recursive_function_list(classid, real_parent_id, function_dict, typedef_dict):
   function_list = function_dict[real_parent_id]
   qualified_cname = root.xpath("compounddef[@id='" + classid + "']/compoundname/text()")[0]
   real_parent_cname = root.xpath("compounddef[@id='" + real_parent_id + "']/compoundname/text()")[0].split("::")[-1]
   
-  write_one_function_list(qualified_cname, real_parent_cname, function_list, typedef_dict)
+  synthesize_one_function_list(qualified_cname, real_parent_cname, function_list, typedef_dict)
   if(len(baseclass_dict[real_parent_id]) > 0):
     for baseid in baseclass_dict[real_parent_id]:
-      write_recursive_function_list(classid, baseid, function_dict, typedef_dict)
+      synthesize_recursive_function_list(classid, baseid, function_dict, typedef_dict)
 
 
-def write_functions(root, function_dict, baseclass_dict, typedef_dict):
+def synthesize_functions(root, function_dict, baseclass_dict, typedef_dict):
   for classid, function_list in function_dict.items():
-    write_recursive_function_list(classid, classid, function_dict, typedef_dict)
+    synthesize_recursive_function_list(classid, classid, function_dict, typedef_dict)
      
 
 def get_all_member_functions_of(classid, function_dict, baseclass_dict):
@@ -329,14 +318,30 @@ def inherit_baseclass_functions(function_dict, baseclass_dict):
     function_dict[classid] = flist
 
 
-def write_header_prolog(namespace, orig_header_without_ext, meta_header_file):
+def write_header_prolog(max_length, namespace, orig_header_without_ext, meta_header_file):
   guard_macro = "__" + orig_header_without_ext.upper() + "_META_HXX"
-  if(namespace != ""):
-    outstr = """\
+  outstr = """\
 #ifndef %(guard_macro)s
 #define %(guard_macro)s
 
 #include "%(orig_header_without_ext)s.hxx"
+
+#ifndef DOMAIN_HAS_DESCENDANT_PAIRS
+#define DOMAIN_HAS_DESCENDANT_PAIRS
+#endif // DOMAIN_HAS_DESCENDANT_PAIRS
+""" % locals()
+  meta_header_file.write(outstr)
+  
+  if(max_length > 20):
+    vector_size = (max_length/10 + 1)*10 
+    outstr = """
+#define BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
+#define BOOST_MPL_LIMIT_VECTOR_SIZE %(vector_size)s
+""" % locals()
+    meta_header_file.write(outstr)
+
+  if(namespace != ""):
+    outstr = """\
 
 #define DOMAIN_NAMESPACE %(namespace)s
 #include "Kind_Traits.h"
@@ -346,10 +351,6 @@ namespace %(namespace)s {
     meta_header_file.write(outstr)
   else:
     outstr = """\
-#ifndef %(guard_macro)s
-#define %(guard_macro)s
-
-#include "%(orig_header_without_ext)s.hxx"
 
 #define NO_NAMESPACE
 #define DOMAIN_NAMESPACE 
@@ -561,12 +562,13 @@ class visitor {
   meta_header_file.write("\n};\n")
   
   
-def push_descendants (parent, descendants, children_dict):
+def push_descendants (parent, descendants, children_dict, visited):
   children = children_dict[parent]
   descendants[len(descendants):] = children
   for c in children:
-    if c in children_dict:
-      push_descendants(c, descendants, children_dict)
+    if((c in children_dict) and (not c in visited)):
+      visited.add(c)
+      push_descendants(c, descendants, children_dict, visited)
 
 
   
@@ -588,7 +590,8 @@ def write_descendant_pairs(children_dict, meta_header_file):
   
   for ancestor in sorted(children_dict.keys()):
     descendants = []
-    push_descendants (ancestor, descendants, children_dict)
+    visited = set()
+    push_descendants (ancestor, descendants, children_dict, visited)
     descendants = sorted(list(set(descendants)))
     for descendant in descendants:
       meta_header_file.write(
@@ -726,52 +729,6 @@ except OSError:
 shutil.copy("all.xml", pwd)
 os.chdir(pwd)
 shutil.rmtree(tempdir)
-  
-non_inheritable = { "::xml_schema::boolean"                 : True, 
-                    "::xml_schema::double_"                 : True,
-                    "::xml_schema::float_"                  : True,
-                    "::xml_schema::decimal"                 : True,
-                    "::xml_schema::byte"                    : True,
-                    "::xml_schema::unsigned_byte"           : True,
-                    "::xml_schema::short_"                  : True,
-                    "::xml_schema::unsigned_short"          : True,
-                    "::xml_schema::int_"                    : True,
-                    "::xml_schema::unsigned_int"            : True,
-                    "::xml_schema::long_"                   : True,
-                    "::xml_schema::unsigned_long"           : True,
-                    "::xml_schema::integer"                 : True,
-                    "::xml_schema::non_positive_integer"    : True,
-                    "::xml_schema::non_negative_integer"    : True,
-                    "::xml_schema::positive_integer"        : True,
-                    "::xml_schema::negative_integer"        : True,
-
-                    "::xml_schema::string"                  : False,
-                    "::xml_schema::normalized_string"       : False,
-                    "::xml_schema::token"                   : False,
-                    "::xml_schema::name"                    : False,
-                    "::xml_schema::nmtoken"                 : False,
-                    "::xml_schema::nmtokens"                : False,
-                    "::xml_schema::ncname"                  : False,
-                    "::xml_schema::language"                : False,
-                    "::xml_schema::id"                      : False,
-                    "::xml_schema::idref"                   : False,
-                    "::xml_schema::idrefs"                  : False,
-                    "::xml_schema::uri"                     : False,
-                    "::xml_schema::qname"                   : False,
-                    "::xml_schema::buffer"                  : False,
-                    "::xml_schema::base64_binary"           : False,
-                    "::xml_schema::hex_binary"              : False,
-                    "::xml_schema::date"                    : False,
-                    "::xml_schema::time_zone"               : False,
-                    "::xml_schema::date_time"               : False,
-                    "::xml_schema::duration"                : False,
-                    "::xml_schema::gday"                    : False,
-                    "::xml_schema::gmonth"                  : False,
-                    "::xml_schema::gmonth_day"              : False,
-                    "::xml_schema::gyear"                   : False,
-                    "::xml_schema::gyear_month"             : False,
-                    "::xml_schema::time"                    : False }
-
 
 f = open("all.xml", 'r')
 root = etree.parse(f).getroot()
@@ -789,7 +746,6 @@ populate_functions_and_baseclasses(function_dict, baseclass_dict, root)
 # Maintains information of nested typedefs inside schema classes
 typedef_dict = {}
 populate_typedef_dictionary(function_dict, typedef_dict, root)
-#print_dictionary(typedef_dict, "************************ Printing typedef dictionary: ***************************** ")
 
 namespace = root.xpath("compounddef[@kind='namespace']/compoundname/text()")[0]
 if(namespace == "xml_schema"):
@@ -798,34 +754,45 @@ if(namespace == "xml_schema"):
 else:
   print("Using namespace = ", namespace)
 
+# This function removes non-schema types from both the directories.
+# Particularly, simple content nodes do not have their own vocabulary-specific
+# types. Those functions and basic types are neglected. If vocabulary-specific
+# types for them are desired, please change the schema. Simply add
+# <xsd:simpleType> 
+#   <xsd:extension base="xsd:whatever_basic_type" />
+# </xsd:simpleType>
+remove_non_schema_types(function_dict, typedef_dict)
+print_dictionary(typedef_dict, "############################ Printing typedef dictionary: ############################# ")
+print_dictionary(function_dict, "$$$$$$$$$$$$$$$$$$$$$$$$$$ Printing function dictionary: $$$$$$$$$$$$$$$$$$$$$$")
+
+# Populate these two dictionaries while synthesizing data access functions.
+# It also updates the max_length that determines
+# BOOST_MPL_LIMIT_VECTOR_SIZE
+children_dict = {}
+parent_dict = {}
+max_length = 0
+synthesized_function_declarations = ""
+synthesized_function_definitions = ""
+synthesize_functions(root, function_dict, baseclass_dict, typedef_dict)
+
 meta_header_filename = orig_header_without_ext + "-meta.hxx"
 meta_header_file = open(meta_header_filename, 'w')
 cpp_filename = orig_header_without_ext + "-meta.cxx"
 cpp_file = open(cpp_filename, 'w')
 
-write_header_prolog(namespace, orig_header_without_ext, meta_header_file)
+write_header_prolog(max_length, namespace, orig_header_without_ext, meta_header_file)
 write_cpp_prolog(namespace, orig_header_without_ext, cpp_file)
+meta_header_file.write(synthesized_function_declarations)
+cpp_file.write(synthesized_function_definitions)
 
-#print_dictionary(typedef_dict, "############################ Printing typedef dictionary: ############################# ")
-#print_dictionary(function_dict, "$$$$$$$$$$$$$$$$$$$$$$$$$$ Printing function dictionary: $$$$$$$$$$$$$$$$$$$$$$")
-
-remove_non_schema_types(function_dict, typedef_dict)
-print_dictionary(typedef_dict, "############################ Printing typedef dictionary: ############################# ")
-print_dictionary(function_dict, "$$$$$$$$$$$$$$$$$$$$$$$$$$ Printing function dictionary: $$$$$$$$$$$$$$$$$$$$$$")
-
-# Populate these two dictionaries while writing functions.
-children_dict = {}
-parent_dict = {}
-write_functions(root, function_dict, baseclass_dict, typedef_dict)
-
-#Populate the fully qualified names of the types. Namespace name will be there.
+# Populate the fully qualified names of the types. Namespace name will be there.
 all_types_set = set()
 populate_all_types(root, all_types_set)
 
 print_dictionary(children_dict, "%%%%%%%%%%%%%%%%%%%%%%%%%%% Printing children dictionary: %%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 print_dictionary(parent_dict, "@@@@@@@@@@@@@@@@@@@@@@@@@@@ Printing parent dictionary: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-print ("Printing all types:")
+print ("**************************** Printing all types:  ******************************")
 print (all_types_set)
 
 write_accept_definitions(all_types_set, cpp_file)
