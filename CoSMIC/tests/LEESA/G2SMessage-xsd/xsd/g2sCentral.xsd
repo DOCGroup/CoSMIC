@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-19 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_gameSetId">
+		<xs:annotation>
+			<xs:documentation>Game Set Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeExceptions">
+		<xs:annotation>
+			<xs:documentation>Outcome Exception Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeId">
+		<xs:annotation>
+			<xs:documentation>Outcome Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeQty">
+		<xs:annotation>
+			<xs:documentation>Outcome Quantity Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeRefs">
+		<xs:annotation>
+			<xs:documentation>Outcome Reference Data Type - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_direct"/>
+			<xs:enumeration value="G2S_indirect"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeStates">
+		<xs:annotation>
+			<xs:documentation>Outcome Status Data Type - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_outcomeRequest"/>
+			<xs:enumeration value="G2S_outcomePend"/>
+			<xs:enumeration value="G2S_outcomeCommit"/>
+			<xs:enumeration value="G2S_outcomeAck"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_outcomeTypes">
+		<xs:annotation>
+			<xs:documentation>Outcome Type Data Type - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_standard"/>
+			<xs:enumeration value="G2S_progressive"/>
+			<xs:enumeration value="G2S_fractional"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_subSetId">
+		<xs:annotation>
+			<xs:documentation>Game Subset Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_centralProfile">
+		<xs:annotation>
+			<xs:documentation>Central Determination Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="300000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_centralGamePlay">
+		<xs:annotation>
+			<xs:documentation>Central Determination to GamePlay Xref Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="gamePlayId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="wagerCategory" type="g2s:t_wagerCategory" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_getCentralOutcome">
+		<xs:annotation>
+			<xs:documentation>Central Determination Outcome Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="wagerAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="outcomeQty" type="g2s:t_outcomeQty" use="optional" default="1"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_outcome">
+		<xs:annotation>
+			<xs:documentation>Central Determination Outcome Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="outcomeId" type="g2s:t_outcomeId" use="required"/>
+		<xs:attribute name="gameSetId" type="g2s:t_gameSetId" use="required"/>
+		<xs:attribute name="subSetId" type="g2s:t_subSetId" use="required"/>
+		<xs:attribute name="outcomeReference" type="g2s:t_outcomeRefs" use="required"/>
+		<xs:attribute name="outcomeType" type="g2s:t_outcomeTypes" use="optional" default="G2S_standard"/>
+		<xs:attribute name="outcomeValue" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="winLevelIndex" type="g2s:t_winLevelIndex" use="optional" default="0"/>
+		<xs:attribute name="lookupReference" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="32"/>
+					<xs:minLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commitOutcome">
+		<xs:annotation>
+			<xs:documentation>Commit Outcome Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="outcomeException" type="g2s:t_outcomeExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_centralLog">
+		<xs:annotation>
+			<xs:documentation>Central Determination Log Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="outcomeState" type="g2s:t_outcomeStates" use="required"/>
+		<xs:attribute name="outcomeDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="outcomeException" type="g2s:t_outcomeExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_centralProfile">
+		<xs:annotation>
+			<xs:documentation>Central Determination Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:choice>
+					<xs:element ref="g2s:centralGamePlay" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:choice>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_centralProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_centralGamePlay">
+		<xs:annotation>
+			<xs:documentation>Central Determination To GamePlay XRef Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_centralGamePlay"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getCentralOutcome">
+		<xs:annotation>
+			<xs:documentation>Central Determination Outcome Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_centralGamePlay"/>
+				<xs:attributeGroup ref="g2s:p_getCentralOutcome"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_outcome">
+		<xs:annotation>
+			<xs:documentation>Game Outcome Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_outcome"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_centralOutcome">
+		<xs:annotation>
+			<xs:documentation>Game Outcome List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:outcome" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commitOutcome">
+		<xs:annotation>
+			<xs:documentation>Commit Outcome Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_commitOutcome"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_centralLog">
+		<xs:annotation>
+			<xs:documentation>Central Determinal Log Entry Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:outcome" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_centralGamePlay"/>
+				<xs:attributeGroup ref="g2s:p_getCentralOutcome"/>
+				<xs:attributeGroup ref="g2s:p_centralLog"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_centralLogList">
+		<xs:annotation>
+			<xs:documentation>Central Determination Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:centralLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Class-specific Intermediary Sub-Elements.-->
+	<xs:element name="centralGamePlay">
+		<xs:annotation>
+			<xs:documentation>Central Determination To Game Play Xref Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_centralGamePlay">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="outcome">
+		<xs:annotation>
+			<xs:documentation>Game Outcome Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_outcome">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralLog">
+		<xs:annotation>
+			<xs:documentation>Central Determination Log Entry Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_centralLog">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Central Determination Status Commands.-->
+	<xs:element name="setCentralState">
+		<xs:annotation>
+			<xs:documentation>Set Central Determination State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCentralStatus">
+		<xs:annotation>
+			<xs:documentation>Request Central Determination Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralStatus">
+		<xs:annotation>
+			<xs:documentation>Central Determination Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCentralProfile">
+		<xs:annotation>
+			<xs:documentation>Request Central Determination Configuration Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralProfile">
+		<xs:annotation>
+			<xs:documentation>Central Determination Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_centralProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Central Determination Transaction Commands.-->
+	<xs:element name="getCentralOutcome">
+		<xs:annotation>
+			<xs:documentation>Request Central Determination Outcome.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getCentralOutcome">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralOutcome">
+		<xs:annotation>
+			<xs:documentation>Central Determination Outcome Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_centralOutcome">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitOutcome">
+		<xs:annotation>
+			<xs:documentation>Commit Central Determination Outcome.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commitOutcome">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitOutcomeAck">
+		<xs:annotation>
+			<xs:documentation>Acknowledge Central Determination Commit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Central Determination Transaction Log Commands.-->
+	<xs:element name="getCentralLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Central Determination log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralLogStatus">
+		<xs:annotation>
+			<xs:documentation>Central Determination Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCentralLog">
+		<xs:annotation>
+			<xs:documentation>Request Central Determination log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="centralLogList">
+		<xs:annotation>
+			<xs:documentation>Central Determination Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_centralLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="central">
+		<xs:annotation>
+			<xs:documentation>Class Wrapper.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setCentralState"/>
+						<xs:element ref="g2s:getCentralStatus"/>
+						<xs:element ref="g2s:centralStatus"/>
+						<xs:element ref="g2s:getCentralProfile"/>
+						<xs:element ref="g2s:centralProfile"/>
+						<xs:element ref="g2s:getCentralOutcome"/>
+						<xs:element ref="g2s:centralOutcome"/>
+						<xs:element ref="g2s:commitOutcome"/>
+						<xs:element ref="g2s:commitOutcomeAck"/>
+						<xs:element ref="g2s:getCentralLogStatus"/>
+						<xs:element ref="g2s:centralLogStatus"/>
+						<xs:element ref="g2s:getCentralLog"/>
+						<xs:element ref="g2s:centralLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_countAward">
+		<xs:annotation>
+			<xs:documentation>Countdown Award (Points Awarded).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_countBasis">
+		<xs:annotation>
+			<xs:documentation>Countdown Basis RPN Calculation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_countDirection">
+		<xs:annotation>
+			<xs:documentation>Countdown Direction - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_up"/>
+			<xs:enumeration value="G2S_down"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_countIncrement">
+		<xs:annotation>
+			<xs:documentation>Countdown Basis Increment.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_meterValue"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_countTarget">
+		<xs:annotation>
+			<xs:documentation>Countdown Target (Number Of Increments).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_overrideId">
+		<xs:annotation>
+			<xs:documentation>Host-assigned Override Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_sessionStates">
+		<xs:annotation>
+			<xs:documentation>Player Session Status.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_sessionOpen"/>
+			<xs:enumeration value="G2S_sessionCommit"/>
+			<xs:enumeration value="G2S_sessionAck"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_baseCountdown">
+		<xs:annotation>
+			<xs:documentation>Base Countdown Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="countBasis" type="g2s:t_countBasis" use="optional" default=""/>
+		<xs:attribute name="countDirection" type="g2s:t_countDirection" use="optional" default="G2S_down"/>
+		<xs:attribute name="baseTarget" type="g2s:t_countTarget" use="optional" default="0"/>
+		<xs:attribute name="baseIncrement" type="g2s:t_countIncrement" use="optional" default="0"/>
+		<xs:attribute name="baseAward" type="g2s:t_countAward" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_playerCountdown">
+		<xs:annotation>
+			<xs:documentation>Player-specific Countdown Override Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="playerStart" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="playerEnd" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="playerTarget" type="g2s:t_countTarget" use="optional" default="0"/>
+		<xs:attribute name="playerIncrement" type="g2s:t_countIncrement" use="optional" default="0"/>
+		<xs:attribute name="playerAward" type="g2s:t_countAward" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_overrideCountdown">
+		<xs:annotation>
+			<xs:documentation>Generic Countdown Override Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+		<xs:attribute name="overrideStart" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="overrideEnd" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="overrideTarget" type="g2s:t_countTarget" use="optional" default="0"/>
+		<xs:attribute name="overrideIncrement" type="g2s:t_countIncrement" use="optional" default="0"/>
+		<xs:attribute name="overrideAward" type="g2s:t_countAward" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_hotPlayer">
+		<xs:annotation>
+			<xs:documentation>Hot Player Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hotPlayerBasis" type="g2s:t_countBasis" use="optional" default=""/>
+		<xs:attribute name="hotPlayerPeriod" use="optional" default="600000">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_milliseconds">
+					<xs:minInclusive value="60000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="hotPlayerLimit1" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hotPlayerLimit2" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hotPlayerLimit3" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hotPlayerLimit4" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hotPlayerLimit5" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_playerProfile">
+		<xs:annotation>
+			<xs:documentation>Player Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="displayPresent" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="idReaderId" type="g2s:t_idReaderId" use="required">
+		</xs:attribute>
+		<xs:attribute name="minTheoHoldPct" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="decimalPoints" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="inactiveSessionEnd" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="intervalPeriod" type="g2s:t_milliseconds" use="optional" default="600000"/>
+		<xs:attribute name="gamePlayInterval" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="msgDuration" type="g2s:t_milliseconds" use="optional" default="30000"/>
+		<xs:attribute name="welcomeMessage" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="sessionMessage" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="awardMessage" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="goodbyeMessage" type="g2s:t_textMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_sessionStart">
+		<xs:annotation>
+			<xs:documentation>Session Start Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="startDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_sessionEnd">
+		<xs:annotation>
+			<xs:documentation>Player Rating Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="stopDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+		<xs:attribute name="basePointAward" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="overridePointAward" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="playerPointAward" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hostPointAward" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hostCarryOver" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="sessionCarryOver" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="currentHotLevel" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="highestHotLevel" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_sessionAction">
+		<xs:annotation>
+			<xs:documentation>Player Activity Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="wageredCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="wageredPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="wageredNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidGameWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="handPaidGameWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidProgWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="handPaidProgWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidBonusWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="handPaidBonusWonAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="wonCnt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="lostCnt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="tiedCnt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="theoPaybackAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="theoHoldAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_playerProfile">
+		<xs:annotation>
+			<xs:documentation>Player Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_playerProfile"/>
+				<xs:attributeGroup ref="g2s:p_baseCountdown"/>
+				<xs:attributeGroup ref="g2s:p_hotPlayer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerStatus">
+		<xs:annotation>
+			<xs:documentation>Player Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_overrideCountdown"/>
+				<xs:attribute name="pointBalance" type="g2s:t_meterValue" use="optional"/>
+				<xs:attributeGroup ref="g2s:p_playerCountdown"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setCountdownOverride">
+		<xs:annotation>
+			<xs:documentation>Set Countdown Override Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_overrideCountdown"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerSessionStart">
+		<xs:annotation>
+			<xs:documentation>Player Session Start Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_sessionStart"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerSessionStartAck">
+		<xs:annotation>
+			<xs:documentation>Player Session Start Ack Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+				<xs:attribute name="hostCarryOver" type="g2s:t_meterValue" use="optional" default="0"/>
+				<xs:attribute name="pointBalance" type="g2s:t_meterValue" use="optional"/>
+				<xs:attributeGroup ref="g2s:p_playerCountdown"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setCarryOver">
+		<xs:annotation>
+			<xs:documentation>Set Initial Carryover Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+				<xs:attribute name="hostCarryOver" type="g2s:t_meterValue" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setPointBalance">
+		<xs:annotation>
+			<xs:documentation>Set Player Point Balance Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+				<xs:attribute name="pointBalance" type="g2s:t_meterValue" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setPlayerOverride">
+		<xs:annotation>
+			<xs:documentation>Set Player-specific Countdown Override Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+				<xs:attributeGroup ref="g2s:p_playerCountdown"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setHostPoints">
+		<xs:annotation>
+			<xs:documentation>Set Host Point Award Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="overrideId" type="g2s:t_overrideId" use="optional" default="0"/>
+				<xs:attribute name="hostPointAward" type="g2s:t_meterValue" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerSessionEnd">
+		<xs:annotation>
+			<xs:documentation>Player Session End Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_sessionStart"/>
+				<xs:attributeGroup ref="g2s:p_sessionEnd"/>
+				<xs:attributeGroup ref="g2s:p_sessionAction"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerLogItem">
+		<xs:annotation>
+			<xs:documentation>Player Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:attribute name="sessionState" type="g2s:t_sessionStates" use="required"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_sessionStart"/>
+				<xs:attributeGroup ref="g2s:p_sessionEnd"/>
+				<xs:attributeGroup ref="g2s:p_sessionAction"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_playerLogList">
+		<xs:annotation>
+			<xs:documentation>Player Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:playerLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Player Status Commands.-->
+	<xs:element name="setPlayerState">
+		<xs:annotation>
+			<xs:documentation>Set the state of the player device</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPlayerStatus">
+		<xs:annotation>
+			<xs:documentation>Request Player Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerStatus">
+		<xs:annotation>
+			<xs:documentation>Current Player Status Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPlayerProfile">
+		<xs:annotation>
+			<xs:documentation>Player Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerProfile">
+		<xs:annotation>
+			<xs:documentation>Player Profile Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCountdownOverride">
+		<xs:annotation>
+			<xs:documentation>Request Generic Countdown Override.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setCountdownOverride">
+		<xs:annotation>
+			<xs:documentation>Set Generic Countdown Override.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setCountdownOverride">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Player Session Commands.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="playerSessionStart">
+		<xs:annotation>
+			<xs:documentation>Player Session Start Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerSessionStart">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerSessionStartAck">
+		<xs:annotation>
+			<xs:documentation>Player Session Start Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerSessionStartAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setCarryOver">
+		<xs:annotation>
+			<xs:documentation>Set Initial Carryover Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setCarryOver">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="carryOverAck">
+		<xs:annotation>
+			<xs:documentation>Set Initial Carryover Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setPointBalance">
+		<xs:annotation>
+			<xs:documentation>Set Player Point Balance Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setPointBalance">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setPlayerOverride">
+		<xs:annotation>
+			<xs:documentation>Set Player-specific Countdown Override Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setPlayerOverride">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setHostPoints">
+		<xs:annotation>
+			<xs:documentation>Set Host Point Award Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setHostPoints">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hostPointsAck">
+		<xs:annotation>
+			<xs:documentation>Set Host Point Award Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerSessionEnd">
+		<xs:annotation>
+			<xs:documentation>Player Session End Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerSessionEnd">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerSessionEndAck">
+		<xs:annotation>
+			<xs:documentation>Player Session End Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Player Message Commands.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="setPlayerMessage">
+		<xs:annotation>
+			<xs:documentation>Send Direct Player Message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setPlayerMessage">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerMessageAck">
+		<xs:annotation>
+			<xs:documentation>Message Displayed Confirmation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Player Class Log Commands.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="getPlayerLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Player Tracking Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerLogStatus">
+		<xs:annotation>
+			<xs:documentation>Player Tracking Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPlayerLog">
+		<xs:annotation>
+			<xs:documentation>Request Player Tracking Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerLog">
+		<xs:annotation>
+			<xs:documentation>Player Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerLogList">
+		<xs:annotation>
+			<xs:documentation>Player Tracking Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_playerLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Class Wrapper.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="player">
+		<xs:annotation>
+			<xs:documentation>Player Tracking Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getPlayerProfile"/>
+						<xs:element ref="g2s:playerProfile"/>
+						<xs:element ref="g2s:setPlayerState"/>
+						<xs:element ref="g2s:setPointBalance"/>
+						<xs:element ref="g2s:setPlayerOverride"/>
+						<xs:element ref="g2s:setCountdownOverride"/>
+						<xs:element ref="g2s:getCountdownOverride"/>
+						<xs:element ref="g2s:getPlayerStatus"/>
+						<xs:element ref="g2s:playerStatus"/>
+						<xs:element ref="g2s:playerSessionStart"/>
+						<xs:element ref="g2s:playerSessionStartAck"/>
+						<xs:element ref="g2s:setCarryOver"/>
+						<xs:element ref="g2s:carryOverAck"/>
+						<xs:element ref="g2s:setHostPoints"/>
+						<xs:element ref="g2s:hostPointsAck"/>
+						<xs:element ref="g2s:setPlayerMessage"/>
+						<xs:element ref="g2s:playerMessageAck"/>
+						<xs:element ref="g2s:playerSessionEnd"/>
+						<xs:element ref="g2s:playerSessionEndAck"/>
+						<xs:element ref="g2s:getPlayerLogStatus"/>
+						<xs:element ref="g2s:playerLogStatus"/>
+						<xs:element ref="g2s:getPlayerLog"/>
+						<xs:element ref="g2s:playerLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="playerMulticast">
+		<xs:annotation>
+			<xs:documentation>Player Multicast Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseMulticast">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setCountdownOverride"/>
+						<xs:element ref="g2s:setPlayerMessage"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

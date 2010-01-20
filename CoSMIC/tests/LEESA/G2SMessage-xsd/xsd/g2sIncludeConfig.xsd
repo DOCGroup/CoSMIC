@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Configuration Change Data Types - Shared Amongst commConfig And optionConfig Classes.-->
+	<xs:simpleType name="t_applyConditionsBase">
+		<xs:annotation>
+			<xs:documentation>Conditions For Applying Configuration Changes - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_immediate"/>
+			<xs:enumeration value="G2S_disable"/>
+			<xs:enumeration value="G2S_egmAction"/>
+			<xs:enumeration value="G2S_cancel"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_applyConditions">
+		<xs:annotation>
+			<xs:documentation>Conditions For Applying Configuration Changes - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_applyConditionsBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_disableConditionsBase">
+		<xs:annotation>
+			<xs:documentation>Conditions For Disabling The EGM - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_none"/>
+			<xs:enumeration value="G2S_immediate"/>
+			<xs:enumeration value="G2S_zeroCredits"/>
+			<xs:enumeration value="G2S_idle"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_disableConditions">
+		<xs:annotation>
+			<xs:documentation>Conditions For Disabling The EGM - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_disableConditionsBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_changeStatus">
+		<xs:annotation>
+			<xs:documentation>Configuration Change Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_pending"/>
+			<xs:enumeration value="G2S_authorized"/>
+			<xs:enumeration value="G2S_cancelled"/>
+			<xs:enumeration value="G2S_applied"/>
+			<xs:enumeration value="G2S_aborted"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_timeoutActionTypes">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Time-out Action Types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_abort"/>
+			<xs:enumeration value="G2S_ignore"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_authorizationStates">
+		<xs:annotation>
+			<xs:documentation>Host Authorization States.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_authorized"/>
+			<xs:enumeration value="G2S_timeout"/>
+			<xs:enumeration value="G2S_pending"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Common Attribute Groups.-->
+	<xs:attributeGroup name="p_authorizeItem">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="timeoutDate" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="timeoutAction" type="g2s:t_timeoutActionTypes" use="optional" default="G2S_ignore"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_authorizeStatus">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="authorizationState" type="g2s:t_authorizationStates" use="required"/>
+		<xs:attribute name="timeoutDate" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_configChange">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="applyCondition" type="g2s:t_applyConditions" use="required"/>
+		<xs:attribute name="disableCondition" type="g2s:t_disableConditions" use="optional" default="G2S_none"/>
+		<xs:attribute name="startDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="endDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="restartAfter" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_configChangeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Status Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="changeStatus" type="g2s:t_changeStatus" use="required"/>
+		<xs:attribute name="changeDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_configDeviceStatus">
+		<xs:annotation>
+			<xs:documentation>Standard Device Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="enabled" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_configDeviceProfile">
+		<xs:annotation>
+			<xs:documentation>Configuration Device Profile Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="10">
+		</xs:attribute>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="300000"/>
+	</xs:attributeGroup>
+	<!--Common Complex Data Types.-->
+	<xs:complexType name="c_authorizeItem">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_authorizeItem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_authorizeList">
+		<xs:annotation>
+			<xs:documentation>Host Authorization List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeItem" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_authorizeStatusItem">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Status Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_authorizeStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_authorizeStatusList">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Status List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeStatus" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_configDeviceStatus">
+		<xs:annotation>
+			<xs:documentation>Configuration Device Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_configDeviceStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_configDeviceProfile">
+		<xs:annotation>
+			<xs:documentation>Configuration Device Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_configDeviceProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Common Elements.-->
+	<xs:element name="authorizeItem">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeList">
+		<xs:annotation>
+			<xs:documentation>Host Authorization List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeStatus">
+		<xs:annotation>
+			<xs:documentation>Host Authorization Status Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeStatusItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeStatusList">
+		<xs:annotation>
+			<xs:documentation>Host Authoriization Staus List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeStatusList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

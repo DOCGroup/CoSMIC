@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_commsStates">
+		<xs:annotation>
+			<xs:documentation>Communications State Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_closed"/>
+			<xs:enumeration value="G2S_opening"/>
+			<xs:enumeration value="G2S_sync"/>
+			<xs:enumeration value="G2S_onLine"/>
+			<xs:enumeration value="G2S_overflow"/>
+			<xs:enumeration value="G2S_closing"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_descriptorText">
+		<xs:annotation>
+			<xs:documentation>Descriptor Text Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_equipmentTypesBase">
+		<xs:annotation>
+			<xs:documentation>Equipment Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_egm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_equipmentTypes">
+		<xs:annotation>
+			<xs:documentation>Equipment Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_equipmentTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_keepAliveTimer">
+		<xs:annotation>
+			<xs:documentation>KeepAlive Timer Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_milliseconds"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_securityParams">
+		<xs:annotation>
+			<xs:documentation>Multicast Security Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="1024"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_syncTimer">
+		<xs:annotation>
+			<xs:documentation>Sync Timer Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_milliseconds">
+			<xs:minInclusive value="15000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transportStatesBase">
+		<xs:annotation>
+			<xs:documentation>Transport State Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_hostUnreachable"/>
+			<xs:enumeration value="G2S_transportUp"/>
+			<xs:enumeration value="G2S_transportDown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transportStates">
+		<xs:annotation>
+			<xs:documentation>Transport State Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_transportStatesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_commsProfile">
+		<xs:annotation>
+			<xs:documentation>Communications Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="useDefaultConfig" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="requiredForPlay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="300000"/>
+		<xs:attribute name="allowMulticast" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="displayCommFault" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commsStatus">
+		<xs:annotation>
+			<xs:documentation>Communications Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="outboundOverflow" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="inboundOverflow" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="g2sProtocol" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="commsState" type="g2s:t_commsStates" use="required"/>
+		<xs:attribute name="transportState" type="g2s:t_transportStates" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commsOnLine">
+		<xs:annotation>
+			<xs:documentation>Communications OnLine Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="equipmentType" type="g2s:t_equipmentTypes" use="optional" default="G2S_egm"/>
+		<xs:attribute name="egmLocation" type="g2s:t_transportLocation" use="required"/>
+		<xs:attribute name="deviceReset" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="deviceChanged" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="subscriptionLost" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="metersReset" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commsSyncAck">
+		<xs:annotation>
+			<xs:documentation>Communications Synchronization Ack Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="syncTimer" type="g2s:t_syncTimer" use="optional" default="30000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commsClosing">
+		<xs:annotation>
+			<xs:documentation>Communications Closing Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="reason" type="g2s:t_egmMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keepAlive">
+		<xs:annotation>
+			<xs:documentation>Keep Alive Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="interval" type="g2s:t_keepAliveTimer" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_descriptor">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="deviceActive" type="xs:boolean" use="required"/>
+		<xs:attribute name="egmLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="ownerId" type="g2s:t_deviceId" use="optional" default="0"/>
+		<xs:attribute name="configId" type="g2s:t_deviceId" use="optional" default="0"/>
+		<xs:attribute name="deviceOwner" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="deviceConfig" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="deviceGuest" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="vendorId" type="g2s:t_descriptorText" use="optional" default=""/>
+		<xs:attribute name="productId" type="g2s:t_descriptorText" use="optional" default=""/>
+		<xs:attribute name="releaseNum" type="g2s:t_descriptorText" use="optional" default=""/>
+		<xs:attribute name="vendorName" type="g2s:t_descriptorText" use="optional" default=""/>
+		<xs:attribute name="productName" type="g2s:t_descriptorText" use="optional" default=""/>
+		<xs:attribute name="serialNum" type="g2s:t_descriptorText" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_descriptorRequest">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="includeOwners" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="includeConfigs" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="includeGuests" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="includeOthers" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_joinMulticast">
+		<xs:annotation>
+			<xs:documentation>Multicast Group Join Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+		<xs:attribute name="multicastLocation" type="g2s:t_transportLocation" use="required"/>
+		<xs:attribute name="securityParams" type="g2s:t_securityParams" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_leaveMulticast">
+		<xs:annotation>
+			<xs:documentation>Multicast Security Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_getMulticastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Multicast Key Update Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_multicastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Multicast Key Update Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+		<xs:attribute name="securityParams" type="g2s:t_securityParams" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_multicastMember">
+		<xs:annotation>
+			<xs:documentation>Multicast Group Member Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+		<xs:attribute name="multicastLocation" type="g2s:t_transportLocation" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_commsOnLine">
+		<xs:annotation>
+			<xs:documentation>Communications OnLine Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_commsOnLine"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commsSyncAck">
+		<xs:annotation>
+			<xs:documentation>Communications Synchronization Ack Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_commsSyncAck"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commsClosing">
+		<xs:annotation>
+			<xs:documentation>Communications Closing Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_commsClosing"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setKeepAlive">
+		<xs:annotation>
+			<xs:documentation>Set Keep Alive Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_keepAlive"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commsStatus">
+		<xs:annotation>
+			<xs:documentation>Communications Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_commsStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commsProfile">
+		<xs:annotation>
+			<xs:documentation>Communications Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_commsProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getDescriptor">
+		<xs:annotation>
+			<xs:documentation>Descriptor List Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_descriptorRequest"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_descriptorItem">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_deviceStatus"/>
+				<xs:attributeGroup ref="g2s:p_descriptor"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_descriptorList">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:descriptor" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getMulticastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Multicast Key Update Request data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_getMulticastKeyUpdate"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_multicastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Multicast Security Key Update Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_multicastKeyUpdate"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_joinMulticast">
+		<xs:annotation>
+			<xs:documentation>Join Multicast Group Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_joinMulticast"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_leaveMulticast">
+		<xs:annotation>
+			<xs:documentation>Leave Multicast Group Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_leaveMulticast"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_multicastMember">
+		<xs:annotation>
+			<xs:documentation>Multicast Member data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_multicastMember"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_multicastList">
+		<xs:annotation>
+			<xs:documentation>Multicast Group Member List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:member" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Communication Device Status Commands.-->
+	<xs:element name="setCommsState">
+		<xs:annotation>
+			<xs:documentation>Set Communications State Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCommsStatus">
+		<xs:annotation>
+			<xs:documentation>Get Communications Status Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsStatus">
+		<xs:annotation>
+			<xs:documentation>Communications Status Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Communications Configuration Profile Comamnds.-->
+	<xs:element name="getCommsProfile">
+		<xs:annotation>
+			<xs:documentation>Get Communications Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsProfile">
+		<xs:annotation>
+			<xs:documentation>Communications Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Communications Commands.-->
+	<xs:element name="commsOnLine">
+		<xs:annotation>
+			<xs:documentation>Communications OnLine Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsOnLine">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsOnLineAck">
+		<xs:annotation>
+			<xs:documentation>Communications OnLine Ack Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsSyncAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsDisabled">
+		<xs:annotation>
+			<xs:documentation>Communications Disabled Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsDisabledAck">
+		<xs:annotation>
+			<xs:documentation>Communications Disabled Ack Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsSyncAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsClosing">
+		<xs:annotation>
+			<xs:documentation>Communications Closing Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commsClosing">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commsClosingAck">
+		<xs:annotation>
+			<xs:documentation>Communications Closing Ack Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Device Descriptor Commands.-->
+	<xs:element name="getDescriptor">
+		<xs:annotation>
+			<xs:documentation>Request Device Descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getDescriptor">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="descriptor">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_descriptorItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="descriptorList">
+		<xs:annotation>
+			<xs:documentation>Device Descriptor List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_descriptorList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Multicast Commands.-->
+	<xs:element name="joinMcast">
+		<xs:annotation>
+			<xs:documentation>Join Multicast Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_joinMulticast">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="joinMcastAck">
+		<xs:annotation>
+			<xs:documentation>Join Multicast Ack Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="leaveMcast">
+		<xs:annotation>
+			<xs:documentation>Leave Multicast Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_leaveMulticast">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="leaveMcastAck">
+		<xs:annotation>
+			<xs:documentation>Leave Multicast Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mcastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Multicast Key Update Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_multicastKeyUpdate">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mcastKeyAck">
+		<xs:annotation>
+			<xs:documentation>Multicast Key Ack Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getMcastKeyUpdate">
+		<xs:annotation>
+			<xs:documentation>Get Multicast Key Update Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMulticastKeyUpdate">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getMcastList">
+		<xs:annotation>
+			<xs:documentation>Get Multicast List Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="member">
+		<xs:annotation>
+			<xs:documentation>Multicast List Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_multicastMember">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="mcastList">
+		<xs:annotation>
+			<xs:documentation>Multicast List Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_multicastList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Keep Alive Commands.-->
+	<xs:element name="setKeepAlive">
+		<xs:annotation>
+			<xs:documentation>Set keepAlive Interval Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setKeepAlive">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setKeepAliveAck">
+		<xs:annotation>
+			<xs:documentation>Set KeepAlive Ack Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keepAlive">
+		<xs:annotation>
+			<xs:documentation>Communications keepAlive Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keepAliveAck">
+		<xs:annotation>
+			<xs:documentation>Communications keepAlive Ack Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="communications">
+		<xs:annotation>
+			<xs:documentation>G2S Communications Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setCommsState"/>
+						<xs:element ref="g2s:getCommsStatus"/>
+						<xs:element ref="g2s:commsStatus"/>
+						<xs:element ref="g2s:getCommsProfile"/>
+						<xs:element ref="g2s:commsProfile"/>
+						<xs:element ref="g2s:commsOnLine"/>
+						<xs:element ref="g2s:commsOnLineAck"/>
+						<xs:element ref="g2s:commsDisabled"/>
+						<xs:element ref="g2s:commsDisabledAck"/>
+						<xs:element ref="g2s:commsClosing"/>
+						<xs:element ref="g2s:commsClosingAck"/>
+						<xs:element ref="g2s:setKeepAlive"/>
+						<xs:element ref="g2s:setKeepAliveAck"/>
+						<xs:element ref="g2s:keepAlive"/>
+						<xs:element ref="g2s:keepAliveAck"/>
+						<xs:element ref="g2s:getDescriptor"/>
+						<xs:element ref="g2s:descriptorList"/>
+						<xs:element ref="g2s:getMcastKeyUpdate"/>
+						<xs:element ref="g2s:mcastKeyUpdate"/>
+						<xs:element ref="g2s:mcastKeyAck"/>
+						<xs:element ref="g2s:joinMcast"/>
+						<xs:element ref="g2s:joinMcastAck"/>
+						<xs:element ref="g2s:leaveMcast"/>
+						<xs:element ref="g2s:leaveMcastAck"/>
+						<xs:element ref="g2s:getMcastList"/>
+						<xs:element ref="g2s:mcastList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Commands in Ext1: getNamespaceList, namespaceList, getClassDescriptors, classDescriptrorList, closeComms, closeCommsAck.-->
+</xs:schema>

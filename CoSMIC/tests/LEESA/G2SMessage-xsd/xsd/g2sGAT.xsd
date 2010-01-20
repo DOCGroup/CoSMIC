@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_algorithmTypesBase">
+		<xs:annotation>
+			<xs:documentation>Algorithm Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_CRC16"/>
+			<xs:enumeration value="G2S_CRC32"/>
+			<xs:enumeration value="G2S_MD5"/>
+			<xs:enumeration value="G2S_SHA1"/>
+			<xs:enumeration value="G2S_SHA256"/>
+			<xs:enumeration value="G2S_SHA384"/>
+			<xs:enumeration value="G2S_SHA512"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_algorithmTypes">
+		<xs:annotation>
+			<xs:documentation>Component Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_algorithmTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_componentId">
+		<xs:annotation>
+			<xs:documentation>Component Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_componentTypesBase">
+		<xs:annotation>
+			<xs:documentation>Component Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_module"/>
+			<xs:enumeration value="G2S_package"/>
+			<xs:enumeration value="G2S_software"/>
+			<xs:enumeration value="G2S_OS"/>
+			<xs:enumeration value="G2S_hardware"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_componentTypes">
+		<xs:annotation>
+			<xs:documentation>Component Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_componentTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_functionTypes">
+		<xs:annotation>
+			<xs:documentation>Function Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_doVerification"/>
+			<xs:enumeration value="G2S_runSpecialFunction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_gatExec">
+		<xs:annotation>
+			<xs:documentation>GAT Executable Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_gatFeature">
+		<xs:annotation>
+			<xs:documentation>GAT Feature Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_gatSalt">
+		<xs:annotation>
+			<xs:documentation>GAT Salt Value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:base64Binary">
+			<xs:maxLength value="1024"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_gatSeed">
+		<xs:annotation>
+			<xs:documentation>GAT Seed Value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_verificationId">
+		<xs:annotation>
+			<xs:documentation>Host-assigned Verification Request Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_verifyStates">
+		<xs:annotation>
+			<xs:documentation>Verification Status - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_queued"/>
+			<xs:enumeration value="G2S_inProcess"/>
+			<xs:enumeration value="G2S_complete"/>
+			<xs:enumeration value="G2S_error"/>
+			<xs:enumeration value="G2S_passed"/>
+			<xs:enumeration value="G2S_failed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_verifyResult">
+		<xs:annotation>
+			<xs:documentation>Verification Result Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_gatProfile">
+		<xs:annotation>
+			<xs:documentation>GAT Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="useDefaultConfig" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="idReaderId" type="g2s:t_idReaderId" use="optional" default="0">
+		</xs:attribute>
+		<xs:attribute name="minQueuedComps" use="optional" default="1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_component">
+		<xs:annotation>
+			<xs:documentation>Component Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+		<xs:attribute name="componentType" type="g2s:t_componentTypes" use="required"/>
+		<xs:attribute name="description" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="256"/>
+					<xs:minLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="size" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_algorithm">
+		<xs:annotation>
+			<xs:documentation>Algorithm Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="algorithmType" type="g2s:t_algorithmTypes" use="required"/>
+		<xs:attribute name="supportsSeed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="supportsSalt" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="supportsOffsets" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_verifyComponent">
+		<xs:annotation>
+			<xs:documentation>Verify Component Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="algorithmType" type="g2s:t_algorithmTypes" use="required"/>
+		<xs:attribute name="seed" type="g2s:t_gatSeed" use="optional" default=""/>
+		<xs:attribute name="salt" type="g2s:t_gatSalt" use="optional" default=""/>
+		<xs:attribute name="startOffset" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="endOffset" use="optional" default="-1">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="-1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_componentStatus">
+		<xs:annotation>
+			<xs:documentation>Component Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="verifyState" type="g2s:t_verifyStates" use="optional" default="G2S_inProcess"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_componentResult">
+		<xs:annotation>
+			<xs:documentation>Component Result Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="verifyState" type="g2s:t_verifyStates" use="optional" default="G2S_complete"/>
+		<xs:attribute name="verifyResult" type="g2s:t_verifyResult" use="optional" default=""/>
+		<xs:attribute name="gatExec" type="g2s:t_gatExec" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_componentResultAck">
+		<xs:annotation>
+			<xs:documentation>Component Result Ack Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="passed" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_function">
+		<xs:annotation>
+			<xs:documentation>GAT Function Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="feature" use="required">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_gatFeature">
+					<xs:minLength value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="gatExec" type="g2s:t_gatExec" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gatLog">
+		<xs:annotation>
+			<xs:documentation>GAT Log Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="functionType" type="g2s:t_functionTypes" use="required"/>
+		<xs:attribute name="verificationId" type="g2s:t_verificationId" use="optional" default="0"/>
+		<xs:attribute name="feature" type="g2s:t_gatFeature" use="optional" default=""/>
+		<xs:attribute name="parameter" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="256"/>
+					<xs:minLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="employeeId" type="g2s:t_idNumber" use="optional" default=""/>
+		<xs:attribute name="gatDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_gatProfile">
+		<xs:annotation>
+			<xs:documentation>GAT Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_gatProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_component">
+		<xs:annotation>
+			<xs:documentation>GAT Component Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:algorithm" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_component"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_componentList">
+		<xs:annotation>
+			<xs:documentation>GAT component List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:component" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_algorithm">
+		<xs:annotation>
+			<xs:documentation>GAT Algorithm Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_algorithm"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_doVerification">
+		<xs:annotation>
+			<xs:documentation>GAT doVerification Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:verifyComponent" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_verifyComponent">
+		<xs:annotation>
+			<xs:documentation>GAT verifyComponent Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_verifyComponent"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getVerificationStatus">
+		<xs:annotation>
+			<xs:documentation>getVerificationStatus Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_verificationStatus">
+		<xs:annotation>
+			<xs:documentation>GAT verificationStatus Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:componentStatus" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_componentStatus">
+		<xs:annotation>
+			<xs:documentation>GAT componentStatus Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_componentStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_verificationResult">
+		<xs:annotation>
+			<xs:documentation>GAT verificationResult Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:componentResult" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_componentResult">
+		<xs:annotation>
+			<xs:documentation>GAT componentStatus Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_componentResult"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_verificationResultAck">
+		<xs:annotation>
+			<xs:documentation>GAT verificationResultAck Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:componentAck" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_componentAck">
+		<xs:annotation>
+			<xs:documentation>GAT componentAck Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_componentResultAck"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_specialFunctions">
+		<xs:annotation>
+			<xs:documentation>specialFunctions Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:function" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_function">
+		<xs:annotation>
+			<xs:documentation>GAT function Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element name="parameter" minOccurs="0" maxOccurs="unbounded">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:maxLength value="256"/>
+								<xs:minLength value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_function"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_runSpecialFunction">
+		<xs:annotation>
+			<xs:documentation>runSpecialFunction Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="optional" default="0"/>
+				<xs:attribute name="feature" use="required">
+					<xs:simpleType>
+						<xs:restriction base="g2s:t_gatFeature">
+							<xs:minLength value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+				<xs:attribute name="parameter" use="optional" default="">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:maxLength value="256"/>
+							<xs:minLength value="0"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_specialFunctionResult">
+		<xs:annotation>
+			<xs:documentation>specialFunctionResult Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:rawData" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="verificationId" type="g2s:t_verificationId" use="optional" default="0"/>
+				<xs:attributeGroup ref="g2s:p_function"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gatLogList">
+		<xs:annotation>
+			<xs:documentation>GAT Access Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:gatLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gatLogItem">
+		<xs:annotation>
+			<xs:documentation>GAT Access Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:componentLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_gatLog"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_componentLogItem">
+		<xs:annotation>
+			<xs:documentation>GAT Access Log Component Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="componentId" type="g2s:t_componentId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_verifyComponent"/>
+				<xs:attributeGroup ref="g2s:p_componentResult"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--GAT Support Elements-->
+	<xs:element name="component">
+		<xs:annotation>
+			<xs:documentation>GAT Component Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_component">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="algorithm">
+		<xs:annotation>
+			<xs:documentation>GAT Algorithm Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_algorithm">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verifyComponent">
+		<xs:annotation>
+			<xs:documentation>GAT verifyComponent Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_verifyComponent">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="componentStatus">
+		<xs:annotation>
+			<xs:documentation>GAT componentStatus Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_componentStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="componentResult">
+		<xs:annotation>
+			<xs:documentation>GAT componentResult Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_componentResult">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="componentAck">
+		<xs:annotation>
+			<xs:documentation>GAT componentAck Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_componentAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="componentLog">
+		<xs:annotation>
+			<xs:documentation>GAT component Log Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_componentLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="function">
+		<xs:annotation>
+			<xs:documentation>GAT function Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_function">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rawData">
+		<xs:annotation>
+			<xs:documentation>GAT Raw Data Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:base64Binary">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gatLog">
+		<xs:annotation>
+			<xs:documentation>GAT function Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gatLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--GAT commands.-->
+	<xs:element name="getGatProfile">
+		<xs:annotation>
+			<xs:documentation>GAT Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gatProfile">
+		<xs:annotation>
+			<xs:documentation>Read-only GAT profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gatProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getComponentList">
+		<xs:annotation>
+			<xs:documentation>Request Component List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="componentList">
+		<xs:annotation>
+			<xs:documentation>List of Components.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_componentList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="doVerification">
+		<xs:annotation>
+			<xs:documentation>Request Component Verification.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_doVerification">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getVerificationStatus">
+		<xs:annotation>
+			<xs:documentation>Request Component Verification Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getVerificationStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verificationStatus">
+		<xs:annotation>
+			<xs:documentation>Component Verification Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_verificationStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verificationResult">
+		<xs:annotation>
+			<xs:documentation>Component Verification Result.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_verificationResult">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="verificationResultAck">
+		<xs:annotation>
+			<xs:documentation>Component Verification Result Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_verificationResultAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getSpecialFunctions">
+		<xs:annotation>
+			<xs:documentation>Request List of Special Functions.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="specialFunctions">
+		<xs:annotation>
+			<xs:documentation>Special Functions List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_specialFunctions">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="runSpecialFunction">
+		<xs:annotation>
+			<xs:documentation>Request Special Function Execution.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_runSpecialFunction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="specialFunctionResult">
+		<xs:annotation>
+			<xs:documentation>Special Function Result.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_specialFunctionResult">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getGatLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gatLogStatus">
+		<xs:annotation>
+			<xs:documentation>Current GAT Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getGatLog">
+		<xs:annotation>
+			<xs:documentation>GAT Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gatLogList">
+		<xs:annotation>
+			<xs:documentation>Current GAT Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gatLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="gat">
+		<xs:annotation>
+			<xs:documentation>Game Access Terminal Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getGatProfile"/>
+						<xs:element ref="g2s:gatProfile"/>
+						<xs:element ref="g2s:getComponentList"/>
+						<xs:element ref="g2s:componentList"/>
+						<xs:element ref="g2s:doVerification"/>
+						<xs:element ref="g2s:getVerificationStatus"/>
+						<xs:element ref="g2s:verificationStatus"/>
+						<xs:element ref="g2s:verificationResult"/>
+						<xs:element ref="g2s:verificationResultAck"/>
+						<xs:element ref="g2s:getSpecialFunctions"/>
+						<xs:element ref="g2s:specialFunctions"/>
+						<xs:element ref="g2s:runSpecialFunction"/>
+						<xs:element ref="g2s:specialFunctionResult"/>
+						<xs:element ref="g2s:getGatLogStatus"/>
+						<xs:element ref="g2s:gatLogStatus"/>
+						<xs:element ref="g2s:getGatLog"/>
+						<xs:element ref="g2s:gatLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

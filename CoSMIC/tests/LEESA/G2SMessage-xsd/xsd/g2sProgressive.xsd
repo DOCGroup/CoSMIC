@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_levelId">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_progExceptions">
+		<xs:annotation>
+			<xs:documentation>Progressive Exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_progId">
+		<xs:annotation>
+			<xs:documentation>Progressive Group Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_progPayMethods">
+		<xs:annotation>
+			<xs:documentation>Progressive Payment Methods - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_payAny"/>
+			<xs:enumeration value="G2S_payHandpay"/>
+			<xs:enumeration value="G2S_payVoucher"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_progSeq">
+		<xs:annotation>
+			<xs:documentation>Progressive Sequence.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_progStates">
+		<xs:annotation>
+			<xs:documentation>Progressive Transaction Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_progHit"/>
+			<xs:enumeration value="G2S_progPend"/>
+			<xs:enumeration value="G2S_progCommit"/>
+			<xs:enumeration value="G2S_progAck"/>
+			<xs:enumeration value="G2S_progFailed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_progressiveProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="progId" type="g2s:t_progId" use="required"/>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="30000"/>
+		<xs:attribute name="noProgInfo" type="g2s:t_milliseconds" use="optional" default="30000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_levelProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="levelId" type="g2s:t_levelId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gameWinSelect">
+		<xs:annotation>
+			<xs:documentation>Game Progressive Win Level Selection Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="gamePlayId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="winLevelIndex" type="g2s:t_winLevelIndex" use="required"/>
+		<xs:attribute name="winLevelCombo" type="g2s:t_winLevelCombo" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gameLevelConfig">
+		<xs:annotation>
+			<xs:documentation>Game-Level Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="winLevelOdds" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="numberOfCredits" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_hostInfoRange">
+		<xs:annotation>
+			<xs:documentation>Host Info Range Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="numberOfCredits" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="odds" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressiveStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressiveSelect">
+		<xs:annotation>
+			<xs:documentation>Progressive Selection Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="progId" type="g2s:t_progId" use="required"/>
+		<xs:attribute name="levelId" type="g2s:t_levelId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressiveValue">
+		<xs:annotation>
+			<xs:documentation>Progressive Value Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="progValueAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="progValueText" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="progValueSeq" type="g2s:t_progSeq" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressiveHit">
+		<xs:annotation>
+			<xs:documentation>Progressive Hit Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hitDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressiveWin">
+		<xs:annotation>
+			<xs:documentation>Progressive Win Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="progWinAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="progWinText" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="progWinSeq" type="g2s:t_progSeq" use="required"/>
+		<xs:attribute name="payMethod" type="g2s:t_progPayMethods" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_progressivePaid">
+		<xs:annotation>
+			<xs:documentation>Progressive Payment Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="progPaidAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="progException" type="g2s:t_progExceptions" use="optional" default="0"/>
+		<xs:attribute name="paidDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_progressiveProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:levelProfile" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_progressiveProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_levelProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:gameLevelConfig" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_levelProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gameLevelConfig">
+		<xs:annotation>
+			<xs:documentation>Game-Level Configuration Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_gameWinSelect"/>
+				<xs:attributeGroup ref="g2s:p_gameLevelConfig"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_hostInfo">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:progressiveLevel" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_hostInfoLevel">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Level Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:rangeHigh"/>
+					<xs:element ref="g2s:rangeLow"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_hostInfoRange">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Level range Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_hostInfoRange"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_progressiveStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:sequence>
+					<xs:element ref="g2s:levelStatus" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_progressiveStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_levelStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+				<xs:attributeGroup ref="g2s:p_progressiveValue"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setProgressiveValue">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:setLevelValue" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_progressiveHit">
+		<xs:annotation>
+			<xs:documentation>Progressive Hit Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+				<xs:attributeGroup ref="g2s:p_gameWinSelect"/>
+				<xs:attributeGroup ref="g2s:p_progressiveValue"/>
+				<xs:attributeGroup ref="g2s:p_progressiveHit"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setProgressiveWin">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Win Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+				<xs:attributeGroup ref="g2s:p_progressiveWin"/>
+				<xs:attributeGroup ref="g2s:p_playerMessage"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_progressiveCommit">
+		<xs:annotation>
+			<xs:documentation>Progressive Commit Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+				<xs:attributeGroup ref="g2s:p_progressiveWin"/>
+				<xs:attributeGroup ref="g2s:p_progressivePaid"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_progressiveLogList">
+		<xs:annotation>
+			<xs:documentation>Progressive Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:progressiveLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_progressiveLogItem">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:attribute name="progState" type="g2s:t_progStates" use="required"/>
+				<xs:attributeGroup ref="g2s:p_progressiveSelect"/>
+				<xs:attributeGroup ref="g2s:p_gameWinSelect"/>
+				<xs:attributeGroup ref="g2s:p_progressiveValue"/>
+				<xs:attributeGroup ref="g2s:p_progressiveHit"/>
+				<xs:attributeGroup ref="g2s:p_progressiveWin"/>
+				<xs:attributeGroup ref="g2s:p_progressivePaid"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Progressive Status Comamnds.-->
+	<xs:element name="setProgressiveState">
+		<xs:annotation>
+			<xs:documentation>Set Progressive State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setProgressiveLockOut">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Lock Out Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setLockOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getProgressiveStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Status Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levelStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Status Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_levelStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getProgressiveProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Profile Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="levelProfile">
+		<xs:annotation>
+			<xs:documentation>Progressive Level Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_levelProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameLevelConfig">
+		<xs:annotation>
+			<xs:documentation>Game-Level Configuration Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gameLevelConfig">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Progressive Transaction Elements.-->
+	<xs:element name="setProgressiveValue">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Value Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setProgressiveValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setLevelValue">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Level Value Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_levelStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveValueAck">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Value Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveHit">
+		<xs:annotation>
+			<xs:documentation>Progressive Hit Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveHit">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setProgressiveWin">
+		<xs:annotation>
+			<xs:documentation>Set Progressive Win Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setProgressiveWin">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveCommit">
+		<xs:annotation>
+			<xs:documentation>Progressive Commit Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveCommit">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveCommitAck">
+		<xs:annotation>
+			<xs:documentation>Progressive Commit Ack Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Progressive Host Info Commands.-->
+	<xs:element name="getProgressiveHostInfo">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveHostInfo">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hostInfo">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveLevel">
+		<xs:annotation>
+			<xs:documentation>Progressive Host Info Level Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hostInfoLevel">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rangeLow">
+		<xs:annotation>
+			<xs:documentation>Progressive Range - Lower Limit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hostInfoRange">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rangeHigh">
+		<xs:annotation>
+			<xs:documentation>Progressive Range - Upper Limit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hostInfoRange">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Progressive Log Elements.-->
+	<xs:element name="getProgressiveLogStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveLogStatus">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Status Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getProgressiveLog">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveLogList">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveLog">
+		<xs:annotation>
+			<xs:documentation>Progressive Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_progressiveLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="progressive">
+		<xs:annotation>
+			<xs:documentation>Progressive Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getProgressiveProfile"/>
+						<xs:element ref="g2s:progressiveProfile"/>
+						<xs:element ref="g2s:getProgressiveHostInfo"/>
+						<xs:element ref="g2s:progressiveHostInfo"/>
+						<xs:element ref="g2s:setProgressiveState"/>
+						<xs:element ref="g2s:setProgressiveLockOut"/>
+						<xs:element ref="g2s:getProgressiveStatus"/>
+						<xs:element ref="g2s:progressiveStatus"/>
+						<xs:element ref="g2s:setProgressiveValue"/>
+						<xs:element ref="g2s:progressiveValueAck"/>
+						<xs:element ref="g2s:progressiveHit"/>
+						<xs:element ref="g2s:setProgressiveWin"/>
+						<xs:element ref="g2s:progressiveCommit"/>
+						<xs:element ref="g2s:progressiveCommitAck"/>
+						<xs:element ref="g2s:getProgressiveLogStatus"/>
+						<xs:element ref="g2s:progressiveLogStatus"/>
+						<xs:element ref="g2s:getProgressiveLog"/>
+						<xs:element ref="g2s:progressiveLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="progressiveMulticast">
+		<xs:annotation>
+			<xs:documentation>Progressive Multicast.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseMulticast">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setProgressiveValue"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

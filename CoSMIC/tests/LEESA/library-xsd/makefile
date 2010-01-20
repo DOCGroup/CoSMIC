@@ -14,7 +14,7 @@ all:
 #
 generate: 
 	$(XSD_ROOT)/bin/xsd cxx-tree $(XSDFLAGS) library.xsd
-	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -xsd library.hxx
+	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -doxygen library.hxx
 	@echo "Now enter 'make driver'"
 
 

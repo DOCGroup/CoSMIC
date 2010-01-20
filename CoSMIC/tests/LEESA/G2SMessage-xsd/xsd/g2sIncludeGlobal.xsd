@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-03-19 Errata">
+	<!--Common Data Types & attribute Groups-->
+        <xs:simpleType name="t_minLogEntries">
+                <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                </xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType name="t_idReaderId">
+                <xs:restriction base="g2s:t_deviceId">
+                        <xs:minInclusive value="0"/>
+                </xs:restriction>
+        </xs:simpleType>
+        <xs:simpleType name="t_maxWagerCredits">
+                <xs:restriction base="xs:int">
+                        <xs:minInclusive value="1"/>
+                </xs:restriction>
+        </xs:simpleType>
+	<xs:simpleType name="t_commandId">
+		<xs:annotation>
+			<xs:documentation>Command Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_configurationId">
+		<xs:annotation>
+			<xs:documentation>Standard Configuration Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_countryId">
+		<xs:annotation>
+			<xs:documentation>Country Identifier; ISO 3166 2-character Alpha.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:minLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_creditTypes">
+		<xs:annotation>
+			<xs:documentation>Credit Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_cashable"/>
+			<xs:enumeration value="G2S_promo"/>
+			<xs:enumeration value="G2S_nonCash"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_currencyId">
+		<xs:annotation>
+			<xs:documentation>Currency identifier - ISO 4217 3-character Alpha.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3"/>
+			<xs:minLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_currencyTypes">
+		<xs:annotation>
+			<xs:documentation>Currency Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_coin"/>
+			<xs:enumeration value="G2S_token"/>
+			<xs:enumeration value="G2S_note"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_denomId">
+		<xs:annotation>
+			<xs:documentation>Denomination Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="-1"/>
+			<xs:maxInclusive value="999999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_deviceClassBase">
+		<xs:annotation>
+			<xs:documentation>Device Class Identifier - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_communications"/>
+			<xs:enumeration value="G2S_cabinet"/>
+			<xs:enumeration value="G2S_eventHandler"/>
+			<xs:enumeration value="G2S_meters"/>
+			<xs:enumeration value="G2S_gamePlay"/>
+			<xs:enumeration value="G2S_deviceConfig"/>
+			<xs:enumeration value="G2S_commConfig"/>
+			<xs:enumeration value="G2S_optionConfig"/>
+			<xs:enumeration value="G2S_download"/>
+			<xs:enumeration value="G2S_handpay"/>
+			<xs:enumeration value="G2S_coinAcceptor"/>
+			<xs:enumeration value="G2S_noteAcceptor"/>
+			<xs:enumeration value="G2S_hopper"/>
+			<xs:enumeration value="G2S_noteDispenser"/>
+			<xs:enumeration value="G2S_printer"/>
+			<xs:enumeration value="G2S_progressive"/>
+			<xs:enumeration value="G2S_idReader"/>
+			<xs:enumeration value="G2S_bonus"/>
+			<xs:enumeration value="G2S_player"/>
+			<xs:enumeration value="G2S_voucher"/>
+			<xs:enumeration value="G2S_wat"/>
+			<xs:enumeration value="G2S_gat"/>
+			<xs:enumeration value="G2S_central"/>
+			<xs:enumeration value="G2S_all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_deviceClass">
+		<xs:annotation>
+			<xs:documentation>Device Class Identifier -  Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_deviceClassBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_deviceId">
+		<xs:annotation>
+			<xs:documentation>EGM Device Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="-1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_egmId">
+		<xs:annotation>
+			<xs:documentation>Electronic Gaming Machine Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier32"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_egmMessage">
+		<xs:annotation>
+			<xs:documentation>EGM Text Message Data Type - Sent By EGM.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_errorCode">
+		<xs:annotation>
+			<xs:documentation>Error Code Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier10"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_exceptionCode">
+		<xs:annotation>
+			<xs:documentation>Transaction exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_extensibleList">
+		<xs:annotation>
+			<xs:documentation>Extensible enumeration list - union.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier64"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_g2sDateTime">
+		<xs:annotation>
+			<xs:documentation>G2S Date/Time Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:dateTime">
+			<xs:pattern value="\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([\+|-]\d\d:\d\d)|Z)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idNumber">
+		<xs:annotation>
+			<xs:documentation>Identification Number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idReaderTypesBase">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_magCard"/>
+			<xs:enumeration value="G2S_proxCard"/>
+			<xs:enumeration value="G2S_fingerScan"/>
+			<xs:enumeration value="G2S_retinaScan"/>
+			<xs:enumeration value="G2S_smartCard"/>
+			<xs:enumeration value="G2S_barCode"/>
+			<xs:enumeration value="G2S_keyPad"/>
+			<xs:enumeration value="G2S_hollerith"/>
+			<xs:enumeration value="G2S_none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idReaderTypes">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_idReaderTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_idRestricts">
+		<xs:annotation>
+			<xs:documentation>Identification Restriction Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_thisId"/>
+			<xs:enumeration value="G2S_anyId"/>
+			<xs:enumeration value="G2S_none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_languageId">
+		<xs:annotation>
+			<xs:documentation>Langauge Identifier ISO 639 2-character Alpha.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2"/>
+			<xs:minLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_localeId">
+		<xs:annotation>
+			<xs:documentation>Locality Identifier; languageId_countryId.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_lockTimeOut">
+		<xs:annotation>
+			<xs:documentation>Lock Time Out Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_milliseconds">
+			<xs:minInclusive value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_logSequence">
+		<xs:annotation>
+			<xs:documentation>Standard Log Sequence Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_meterValue">
+		<xs:annotation>
+			<xs:documentation>Meter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_milliseconds">
+		<xs:annotation>
+			<xs:documentation>Millisecond Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_multicastId">
+		<xs:annotation>
+			<xs:documentation>Multicast Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier32"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_paytableId">
+		<xs:annotation>
+			<xs:documentation>Paytable Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier32"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_playerId">
+		<xs:annotation>
+			<xs:documentation>CMS Account Number For Player.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_sessionId">
+		<xs:annotation>
+			<xs:documentation>Session Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_sessionTypes">
+		<xs:annotation>
+			<xs:documentation>Session Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_request"/>
+			<xs:enumeration value="G2S_response"/>
+			<xs:enumeration value="G2S_notification"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_textMessage">
+		<xs:annotation>
+			<xs:documentation>Conforms to G2S Text Message Format - For Display By EGM.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_themeId">
+		<xs:annotation>
+			<xs:documentation>Theme Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier32"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_timeToLive">
+		<xs:annotation>
+			<xs:documentation>Time-to-live Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_milliseconds"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_transactionId">
+		<xs:annotation>
+			<xs:documentation>Standard Transaction Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transportLocation">
+		<xs:annotation>
+			<xs:documentation>Transport Location Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:anyURI">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_uniqueIdentifier10">
+		<xs:annotation>
+			<xs:documentation>Conforms to G2S conventions for unique identifiers - 10 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{3}_[ -~]{1,6}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_uniqueIdentifier32">
+		<xs:annotation>
+			<xs:documentation>Conforms to G2S conventions for unique identifiers - 32 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{3}_[ -~]{1,28}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_uniqueIdentifier64">
+		<xs:annotation>
+			<xs:documentation>Conforms to G2S conventions for unique identifiers - 64 characters.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Z0-9]{3}_[ -~]{1,60}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_wagerCategory">
+		<xs:annotation>
+			<xs:documentation>Wager Category Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_winLevelCombo">
+		<xs:annotation>
+			<xs:documentation>Game Win Level Combination Description.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_egmMessage"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_winLevelIndex">
+		<xs:annotation>
+			<xs:documentation>Game Win Level Index.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Standard GDS Device Data Types.-->
+	<xs:attributeGroup name="p_gdsDeviceStatus">
+		<xs:annotation>
+			<xs:documentation>GDS Device Status Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="disconnected" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="firmwareFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="mechanicalFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="opticalFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="componentFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="nvMemoryFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="illegalActivity" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_gdsDeviceStatus">
+		<xs:annotation>
+			<xs:documentation>gdsDeviceStatus Base Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_gdsDeviceStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Standard Class-Level Data Types.-->
+	<xs:attributeGroup name="p_routing">
+		<xs:annotation>
+			<xs:documentation>Command Routing Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="deviceId" type="g2s:t_deviceId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_command">
+		<xs:annotation>
+			<xs:documentation>Command Identification Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="dateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="commandId" type="g2s:t_commandId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_session">
+		<xs:annotation>
+			<xs:documentation>Standard Session Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="sessionType" type="g2s:t_sessionTypes" use="optional" default="G2S_request"/>
+		<xs:attribute name="sessionId" type="g2s:t_sessionId" use="optional" default="0"/>
+		<xs:attribute name="sessionRetry" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="sessionMore" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_error">
+		<xs:annotation>
+			<xs:documentation>Standard Error Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="errorCode" type="g2s:t_errorCode" use="optional" default="G2S_none"/>
+		<xs:attribute name="errorText" type="g2s:t_egmMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_baseClass">
+		<xs:annotation>
+			<xs:documentation>Standard Point-To-Point Class Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="g2s:p_routing"/>
+		<xs:attributeGroup ref="g2s:p_command"/>
+		<xs:attributeGroup ref="g2s:p_session"/>
+		<xs:attributeGroup ref="g2s:p_error"/>
+	</xs:complexType>
+	<xs:complexType name="c_baseMulticast">
+		<xs:annotation>
+			<xs:documentation>Standard Multicast Class Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="g2s:p_command"/>
+	</xs:complexType>
+	<!--Standard Command Data Types.-->
+	<xs:attributeGroup name="p_setDeviceState">
+		<xs:annotation>
+			<xs:documentation>Standard setDeviceState Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="enable" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="disableText" type="g2s:t_textMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_setLockOut">
+		<xs:annotation>
+			<xs:documentation>Standard setLockOut Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="lockOut" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="lockText" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="lockTimeOut" type="g2s:t_lockTimeOut" use="optional" default="1000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_deviceClass">
+		<xs:annotation>
+			<xs:documentation>Class, Device Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="deviceClass" type="g2s:t_deviceClass" use="required"/>
+		<xs:attribute name="deviceId" type="g2s:t_deviceId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_deviceStatus">
+		<xs:annotation>
+			<xs:documentation>Standard Device Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="egmEnabled" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="hostEnabled" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_deviceProfile">
+		<xs:annotation>
+			<xs:documentation>Standard Device Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="optional" default="0"/>
+		<xs:attribute name="restartStatus" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="useDefaultConfig" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="requiredForPlay" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_logStatus">
+		<xs:annotation>
+			<xs:documentation>Standard Transaction Log Status Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="lastSequence" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_logSequence">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="totalEntries" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_logRequest">
+		<xs:annotation>
+			<xs:documentation>Standard Transaction Log Request Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="lastSequence" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_logSequence">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="totalEntries" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:complexType name="c_baseCommand">
+		<xs:annotation>
+			<xs:documentation>Base Command Data Type.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+	<xs:complexType name="c_setDeviceState">
+		<xs:annotation>
+			<xs:documentation>Standard setDeviceState Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_setDeviceState"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setLockOut">
+		<xs:annotation>
+			<xs:documentation>Standard setLockOut Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_setLockOut"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_deviceSelect">
+		<xs:annotation>
+			<xs:documentation>Device Selection Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceClass"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_deviceStatus">
+		<xs:annotation>
+			<xs:documentation>Standard Device Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_logStatus">
+		<xs:annotation>
+			<xs:documentation>Standard Transaction Log Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_logStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_logRequest">
+		<xs:annotation>
+			<xs:documentation>Standard Transaction Log Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_logRequest"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_logRecord">
+		<xs:annotation>
+			<xs:documentation>Standard Log Record Data Type - Used For Event Logs.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="logSequence" type="g2s:t_logSequence" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_logClassRecord">
+		<xs:annotation>
+			<xs:documentation>Standard Log Record For All Other Class-level Logs.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logRecord">
+				<xs:attribute name="deviceId" type="g2s:t_deviceId" use="required"/>
+				<xs:attribute name="transactionId" use="required">
+					<xs:simpleType>
+						<xs:restriction base="g2s:t_transactionId">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_baseTransaction">
+		<xs:annotation>
+			<xs:documentation>Base Transaction Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="transactionId" use="required">
+					<xs:simpleType>
+						<xs:restriction base="g2s:t_transactionId">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Player Message Components.-->
+	<xs:attributeGroup name="p_playerInfo">
+		<xs:annotation>
+			<xs:documentation>Player Information Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="idReaderType" type="g2s:t_idReaderTypes" use="optional" default="G2S_none"/>
+		<xs:attribute name="idNumber" type="g2s:t_idNumber" use="optional" default=""/>
+		<xs:attribute name="playerId" type="g2s:t_playerId" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_playerMessage">
+		<xs:annotation>
+			<xs:documentation>Player Message Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="textMessage" type="g2s:t_textMessage" use="optional" default=""/>
+		<xs:attribute name="msgDuration" type="g2s:t_milliseconds" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_setPlayerMessage">
+		<xs:annotation>
+			<xs:documentation>Set Player Message Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="idRestrict" type="g2s:t_idRestricts" use="optional" default="G2S_none"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_playerMessage"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Transaction Cross Reference Parameters-->
+	<xs:attributeGroup name="p_transactionReference">
+		<xs:annotation>
+			<xs:documentation>Transaction Cross Reference Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="deviceClass" type="g2s:t_deviceClass" use="required"/>
+		<xs:attribute name="deviceId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="transactionId" use="required">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_transactionId">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="logSequence" type="g2s:t_logSequence" use="required"/>
+		<xs:attribute name="cashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="promoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="nonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_transactionReference">
+		<xs:annotation>
+			<xs:documentation>Transaction Cross Reference Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_transactionReference"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

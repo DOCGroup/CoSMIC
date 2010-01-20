@@ -134,81 +134,6 @@ def populate_typedef_dictionary(function_dict, typedef_dict, root):
         typedef_dict[typedef] = tinfo
 
 
-
-def dump_non_inheritable_type (classname, basic_type, meta_header_file):
-  
-  outstr = """
-  struct %(classname)s : 
-    public ::xml_schema::simple_type,
-    public LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >
-  {
-    public:
-    
-      %(classname)s(%(basic_type)s const & x)
-        : val_(const_cast<%(basic_type)s *>(&x)) { }
-               
-      %(classname)s(%(basic_type)s & x)
-        : val_(&x) { }
-               
-      operator %(basic_type)s & () {
-        // For booleans, safe-bool idiom should be used.
-        return *(this->val_);
-      }
-
-      operator %(basic_type)s const & () const {
-        // For booleans, safe-bool idiom should be used.
-        return *(this->val_);
-      }
-
-      virtual %(classname)s * _clone (::xml_schema::flags f,
-                                      ::xml_schema::container * c) const
-      {
-        return new %(classname)s(*(this->val_));
-      }
-
-      virtual void accept (visitor & v);
-      virtual void leave (visitor & v);
-      using LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >::operator [];
-
-    private:
-    
-      %(basic_type)s * val_;
-  };
-  """ % locals()
-  meta_header_file.write (outstr)
-  
-
-def dump_inheritable_type (classname, baseclass, meta_header_file):
-  
-  outstr = """
-  struct %(classname)s : 
-    public %(baseclass)s, 
-    public LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >
-  {
-    typedef %(baseclass)s super;
-    %(classname)s () { }
-    %(classname)s (const super & x) 
-      : super (x)
-    { }
-    %(classname)s (const %(classname)s & x, 
-                   ::xml_schema::flags f = 0, 
-                   ::xml_schema::container * c = 0)
-      : super(x, f, c) 
-    { }
-    virtual %(classname)s * _clone (::xml_schema::flags f, 
-                                    ::xml_schema::container * c) const 
-    {
-      return new %(classname)s (*this, f, c);
-    }
-    virtual void accept (visitor & v);
-    virtual void leave (visitor & v);
-    using LEESA::VisitorAsIndex_CRTP < %(classname)s, visitor >::operator [];
-  };
-  """ % locals()
-  meta_header_file.write(outstr)
- 
-
-
 def push_dictionary(qualified_cname, child_type):
     length = 0
     if(qualified_cname in children_dict):
@@ -231,8 +156,8 @@ def push_dictionary(qualified_cname, child_type):
 
     parent_dict[child_type][length:] = [ qualified_cname ]
 
-    if(max_length < len(parent_dict[child_type])):
-      max_length = len(parent_dict[child_type]) 
+    #if(max_length < len(parent_dict[child_type])):
+    #  max_length = len(parent_dict[child_type]) 
 
 
 def synthesize_function_declaration(return_type, qualified_cname, child_type):
@@ -460,7 +385,27 @@ def populate_functions_and_baseclasses(function_dict, baseclass_dict, root):
 
 
 
-def write_accept_functions(namespace, orig_header_file, enhanced_header_file, root):
+def write_forward_declarations(namespace, orig_header_file, enhanced_header_file):
+  for line in orig_header_file:
+    if("Forward declarations." in line):
+      if(namespace != ""):
+        line="""\
+namespace %(namespace)s 
+{
+  typedef xml_schema::type type;
+}
+// Forward declarations.
+""" % locals()
+      else:
+        line="""\
+typedef xml_schema::type type;
+// Forward declarations.
+"""
+    
+    enhanced_header_file.write(line)
+
+
+def write_accept_declarations(namespace, orig_header_file, enhanced_header_file, root):
   compound_nodes = root.xpath("compounddef[@kind='class']")
   class_end_dict = {}
   class_start_dict = {}
@@ -522,12 +467,6 @@ typedef xml_schema::type type;
     enhanced_header_file.write(line)
         
   
-def populate_all_types(root, all_types_set):
-  all_class_names = root.xpath("compounddef[@kind='class']/compoundname/text()")
-  for cname in all_class_names:
-    all_types_set.add(cname)
-  
-  
 def write_accept_definitions(all_types_set, cpp_file):
   for qualified_cname in all_types_set:
     cname = qualified_cname.split("::")[-1]
@@ -560,6 +499,12 @@ class visitor {
     meta_header_file.write(outstr)
   
   meta_header_file.write("\n};\n")
+  
+  
+def populate_all_types(root, all_types_set):
+  all_class_names = root.xpath("compounddef[@kind='class']/compoundname/text()")
+  for cname in all_class_names:
+    all_types_set.add(cname)
   
   
 def push_descendants (parent, descendants, children_dict, visited):
@@ -607,8 +552,60 @@ def print_dictionary(dict, message):
     print (value)
 
 
+def generate_xml():
+  global orig_header_file_name
+
+  pwd = os.getcwd()
+  tempdir = tempfile.mkdtemp(dir = pwd)
+  shutil.copy(orig_header_file_name, tempdir)
+  os.chdir(tempdir)
+
+  try:  
+    subprocess.call(["doxygen",  "-g"])
+  except OSError:
+    print("Can't find doxygen in path")
+    os.chdir(pwd)
+    quit()
+    
+  if(not os.path.exists("Doxyfile")):
+    print("Doxyfile was not generated. Please make sure you have the latest version of doxygen installed.")  
+    os.chdir(pwd)
+    quit()
+
+  for line in fileinput.FileInput("Doxyfile",inplace=1):
+      if re.match("GENERATE_XML.+=.+", line):
+        line=line.replace("NO","YES")
+      elif re.match("WARNINGS.+=.+", line):
+        line=line.replace("YES","NO")
+      elif re.match("WARN_IF_UNDOCUMENTED.+=.+", line):
+        line=line.replace("YES","NO")
+      sys.stdout.write(line)
+
+  try:  
+    returncode = subprocess.call(["doxygen"])
+  except OSError:
+    print("Can't find doxygen in path")
+    os.chdir(pwd)
+    quit()
+    
+  os.chdir("xml")
+
+  try:  
+    combined_xml_file = open("all.xml", 'w')
+    subprocess.call(["xsltproc", "combine.xslt", "index.xml"], stdout = combined_xml_file)
+    combined_xml_file.close()
+  except OSError:
+    print("Can't find xsltproc in path. Please make sure you have installed xsltproc and it is in the path.")
+    os.chdir(pwd)
+
+  shutil.copy("all.xml", pwd)
+  os.chdir(pwd)
+  shutil.rmtree(tempdir)
+
+
 def usage():
-  print("python gen-meta.py < -xsd | -udm > <header file>")
+  print("python gen-meta.py < -doxygen | -no-doxygen (reads all.xml) > [-no-visitor] <top level header file>")
+  print("Note: all.xml should be obtained by running doxygen on *.hxx only.")
   
     
 try:
@@ -646,25 +643,32 @@ except ImportError:
           print("Failed to import ElementTree from any known place.")
           quit()
 
-if(len(sys.argv) != 3):
+if(len(sys.argv) < 3):
   usage()
   quit()
 
 tool = ""        
-if(sys.argv[1] == "-xsd"):
-  tool = "xsd"
-elif(sys.argv[1] == "-udm"):
-  tool = "udm"
+if(sys.argv[1] == "-doxygen"):
+  tool = "doxygen"
+elif(sys.argv[1] == "-no-doxygen"):
+  tool = "no-doxygen"
 else:
   usage()
   quit()
 
-orig_header_file_name = sys.argv[2]
+no_visitor = False 
+orig_header_file_name = ""
 cpp_file_name = ""
 
-if (tool == "udm"):
-  print("Udm is not supported yet.")
-  quit()
+if(sys.argv[2] == "-no-visitor"):
+  if(len(sys.argv) != 4):
+    usage()
+    quit()
+  
+  no_visitor = True
+  orig_header_file_name = sys.argv[3]
+else:
+  orig_header_file_name = sys.argv[2]
 
 if(not os.path.exists(orig_header_file_name)):
   print(orig_header_file_name + " does not exist.")
@@ -687,48 +691,9 @@ except Exception:
 if(not os.path.exists(cpp_file_name)):
   print(cpp_file_name + " does not exist.")
 
-pwd = os.getcwd()
-tempdir = tempfile.mkdtemp(dir = pwd)
-shutil.copy(orig_header_file_name, tempdir)
-os.chdir(tempdir)
+if(tool == "doxygen"):
+  generate_xml()
 
-try:  
-  subprocess.call(["doxygen",  "-g"])
-except OSError:
-  print("Can't find doxygen in path")
-  os.chdir(pwd)
-  quit()
-  
-if(not os.path.exists("Doxyfile")):
-  print("Doxyfile was not generated. Please make sure you have the latest version of doxygen installed.")  
-  os.chdir(pwd)
-  quit()
-
-for line in fileinput.FileInput("Doxyfile",inplace=1):
-    if "GENERATE_XML" in line:
-      line=line.replace("NO","YES")
-    sys.stdout.write(line)
-
-try:  
-  returncode = subprocess.call(["doxygen"])
-except OSError:
-  print("Can't find doxygen in path")
-  os.chdir(pwd)
-  quit()
-  
-os.chdir("xml")
-
-try:  
-  combined_xml_file = open("all.xml", 'w')
-  subprocess.call(["xsltproc", "combine.xslt", "index.xml"], stdout = combined_xml_file)
-  combined_xml_file.close()
-except OSError:
-  print("Can't find xsltproc in path. Please make sure you have installed xsltproc and it is the path.")
-  os.chdir(pwd)
-
-shutil.copy("all.xml", pwd)
-os.chdir(pwd)
-shutil.rmtree(tempdir)
 
 f = open("all.xml", 'r')
 root = etree.parse(f).getroot()
@@ -795,16 +760,23 @@ print_dictionary(parent_dict, "@@@@@@@@@@@@@@@@@@@@@@@@@@@ Printing parent dicti
 print ("**************************** Printing all types:  ******************************")
 print (all_types_set)
 
-write_accept_definitions(all_types_set, cpp_file)
+if (no_visitor == False):
+  write_accept_definitions(all_types_set, cpp_file)
 
 shutil.copy(orig_header_file_name, orig_header_file_name + ".bak")
 orig_header_file = open(orig_header_file_name + ".bak", 'r')
 enhanced_header_file = open(orig_header_file_name, 'w')
 
-write_accept_functions(namespace, orig_header_file, enhanced_header_file, root)
+if (no_visitor == False):
+  write_accept_declarations(namespace, orig_header_file, enhanced_header_file, root)
+else:
+  write_forward_declarations(namespace, orig_header_file, enhanced_header_file)
+
 write_schema_traits (all_types_set, children_dict, parent_dict, meta_header_file)
 write_descendant_pairs(children_dict, meta_header_file)
-write_visitor(all_types_set, meta_header_file)
+
+if (no_visitor == False):
+  write_visitor(all_types_set, meta_header_file)
 
 write_header_epilog(namespace, orig_header_without_ext, meta_header_file)
 write_cpp_epilog(namespace, orig_header_without_ext, cpp_file)

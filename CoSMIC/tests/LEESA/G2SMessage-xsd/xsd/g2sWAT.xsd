@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_accountId">
+		<xs:annotation>
+			<xs:documentation>Player WAT Account Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_authCode">
+		<xs:annotation>
+			<xs:documentation>WAT Authorization Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="256"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_cashOutModes">
+		<xs:annotation>
+			<xs:documentation>WAT Cash Out Modes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_anyDevice"/>
+			<xs:enumeration value="G2S_watOnly"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_hashTypesBase">
+		<xs:annotation>
+			<xs:documentation>WAT Hashing Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_CRC16"/>
+			<xs:enumeration value="G2S_CRC32"/>
+			<xs:enumeration value="G2S_MD5"/>
+			<xs:enumeration value="G2S_SHA1"/>
+			<xs:enumeration value="G2S_SHA256"/>
+			<xs:enumeration value="G2S_SHA384"/>
+			<xs:enumeration value="G2S_SHA512"/>
+			<xs:enumeration value="G2S_none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_hashTypes">
+		<xs:annotation>
+			<xs:documentation>WAT Hashing Types - Extensible List.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_hashTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_interfaceModes">
+		<xs:annotation>
+			<xs:documentation>WAT Interface Modes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_hostControl"/>
+			<xs:enumeration value="G2S_egmControl"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_keyPairId">
+		<xs:annotation>
+			<xs:documentation>WAT Key Pair Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_requestId">
+		<xs:annotation>
+			<xs:documentation>WAT Host Request Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_watDirections">
+		<xs:annotation>
+			<xs:documentation>WAT Direction Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_toEgm"/>
+			<xs:enumeration value="G2S_fromEgm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_watEgmExceptions">
+		<xs:annotation>
+			<xs:documentation>WAT EGM Transfer Exceptions.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_watHostExceptions">
+		<xs:annotation>
+			<xs:documentation>WAT Host Transfer Exceptions.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_watPayMethods">
+		<xs:annotation>
+			<xs:documentation>WAT Payment Methods.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_payCredit"/>
+			<xs:enumeration value="G2S_payVoucher"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_watStates">
+		<xs:annotation>
+			<xs:documentation>WAT Transaction Status Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_requestReceived"/>
+			<xs:enumeration value="G2S_cancelReceived"/>
+			<xs:enumeration value="G2S_initiateSent"/>
+			<xs:enumeration value="G2S_transferAuth"/>
+			<xs:enumeration value="G2S_commitSent"/>
+			<xs:enumeration value="G2S_commitAcked"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_watProfile">
+		<xs:annotation>
+			<xs:documentation>WAT Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="idReaderID" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_deviceId">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="interfaceMode" type="g2s:t_interfaceModes" use="optional" default="G2S_hostControl"/>
+		<xs:attribute name="cashOutMode" type="g2s:t_cashOutModes" use="optional" default="G2S_anyDevice"/>
+		<xs:attribute name="cashOutDelay" type="g2s:t_milliseconds" use="optional" default="15000"/>
+		<xs:attribute name="authRequired" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="mixCreditTypes" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="allowNonCash" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="hashType" type="g2s:t_hashTypes" use="optional" default="G2S_none"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watStatus">
+		<xs:annotation>
+			<xs:documentation>WAT Account Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="cashOutToWat" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="keyPairId" type="g2s:t_keyPairId" use="optional" default="1"/>
+		<xs:attribute name="keyPairExpiry" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watAccount">
+		<xs:annotation>
+			<xs:documentation>WAT Player Account Information Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="accountId" type="g2s:t_accountId" use="optional" default=""/>
+		<xs:attribute name="accountDescription" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="64"/>
+					<xs:minLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="authRequired" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="withdrawOk" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="cashDepositOk" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="promoDepositOk" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="nonCashDepositOk" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="selectAmount" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="defaultAmount" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="withdrawMax" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="depositMax" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watBalance">
+		<xs:annotation>
+			<xs:documentation>WAT Player Account Balance Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="accountId" type="g2s:t_accountId" use="optional" default=""/>
+		<xs:attribute name="cashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="promoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="nonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="frozen" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_setWatCashOut">
+		<xs:annotation>
+			<xs:documentation>Set WAT Cash Out Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="cashOutToWat" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watAction">
+		<xs:annotation>
+			<xs:documentation>WAT Account Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="requestId" type="g2s:t_requestId" use="required"/>
+		<xs:attribute name="accountId" type="g2s:t_accountId" use="optional" default=""/>
+		<xs:attribute name="watDirection" type="g2s:t_watDirections" use="required"/>
+		<xs:attribute name="payMethod" type="g2s:t_watPayMethods" use="optional" default="G2S_payCredit"/>
+		<xs:attribute name="expireCredits" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="expireDateTime" type="g2s:t_g2sDateTime" use="optional" default="2000-01-01T00:00:00.000-00:00"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watAuthCode">
+		<xs:annotation>
+			<xs:documentation>WAT Authorization Code Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="keyPairId" type="g2s:t_keyPairId" use="optional" default="1"/>
+		<xs:attribute name="authCode" type="g2s:t_authCode" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watRequest">
+		<xs:annotation>
+			<xs:documentation>Transfer Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="reqCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="reqPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="reqNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="reduceAmts" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watAuth">
+		<xs:annotation>
+			<xs:documentation>Transfer Authorization Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="authCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="authPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="authNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="hostException" type="g2s:t_watHostExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_watTransfer">
+		<xs:annotation>
+			<xs:documentation>Transfer Commit Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="transPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="transNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="transDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="egmException" type="g2s:t_watEgmExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keyPairReq">
+		<xs:annotation>
+			<xs:documentation>Key Pair Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="keyPairId" type="g2s:t_keyPairId" use="required"/>
+		<xs:attribute name="hashType" type="g2s:t_hashTypes" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keyPairRsp">
+		<xs:annotation>
+			<xs:documentation>Key Pair Response Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="keyValue" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:hexBinary">
+					<xs:maxLength value="1024"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="keyPairExpiry" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_watProfile">
+		<xs:annotation>
+			<xs:documentation>WAT Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_watProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watStatus">
+		<xs:annotation>
+			<xs:documentation>WAT Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_watStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setWatCashOut">
+		<xs:annotation>
+			<xs:documentation>Set WAT Cash Out State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_setWatCashOut"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_initiateRequest">
+		<xs:annotation>
+			<xs:documentation>WAT Host-Originated Transfer Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAction"/>
+				<xs:attributeGroup ref="g2s:p_watRequest"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cancelRequest">
+		<xs:annotation>
+			<xs:documentation>WAT Host-Originated Request Cancellation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="requestId" type="g2s:t_requestId" use="required"/>
+				<xs:attribute name="hostException" type="g2s:t_watHostExceptions" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_requestAck">
+		<xs:annotation>
+			<xs:documentation>WAT Host-Originated Request Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="requestId" type="g2s:t_requestId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_requestTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAction"/>
+				<xs:attributeGroup ref="g2s:p_watRequest"/>
+				<xs:attribute name="maxAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_authorizeTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Authorizartion Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAction"/>
+				<xs:attributeGroup ref="g2s:p_watAuth"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commitTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Commit Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:watSourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAction"/>
+				<xs:attributeGroup ref="g2s:p_watTransfer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getWatAccounts">
+		<xs:annotation>
+			<xs:documentation>WAT Account Info List Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAuthCode"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watAccountList">
+		<xs:annotation>
+			<xs:documentation>WAT Account Info List Response Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:watAccount" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watAccount">
+		<xs:annotation>
+			<xs:documentation>WAT Account Info Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_watAccount"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getWatBalance">
+		<xs:annotation>
+			<xs:documentation>WAT Account Balance Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attribute name="accountId" type="g2s:t_accountId" use="optional" default=""/>
+				<xs:attributeGroup ref="g2s:p_watAuthCode"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watBalance">
+		<xs:annotation>
+			<xs:documentation>WAT Account Balance.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watBalance"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watLogItem">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:watSourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="watState" type="g2s:t_watStates" use="required"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_watAction"/>
+				<xs:attributeGroup ref="g2s:p_watRequest"/>
+				<xs:attribute name="maxAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+				<xs:attributeGroup ref="g2s:p_watAuth"/>
+				<xs:attributeGroup ref="g2s:p_watTransfer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_watLogList">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:watLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getKeyPair">
+		<xs:annotation>
+			<xs:documentation>Key Pair Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_keyPairReq"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_keyPair">
+		<xs:annotation>
+			<xs:documentation>Key Pair Response Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_keyPairReq"/>
+				<xs:attributeGroup ref="g2s:p_keyPairRsp"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Wat Status Commands.-->
+	<xs:element name="setWatState">
+		<xs:annotation>
+			<xs:documentation>Set Wagering Account Transfer Status Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setWatLockOut">
+		<xs:annotation>
+			<xs:documentation>Set Wagering Account Transfer Lock Out.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setLockOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setWatCashOut">
+		<xs:annotation>
+			<xs:documentation>Set WAT Cash Out Request Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setWatCashOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getWatStatus">
+		<xs:annotation>
+			<xs:documentation>Get Wagering Account Transfer Status Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watStatus">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Device Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getWatProfile">
+		<xs:annotation>
+			<xs:documentation>Get Wagering Account Transfer Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watProfile">
+		<xs:annotation>
+			<xs:documentation>Current Wagering Account Transfer Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Key Pair Exchange Commands.-->
+	<xs:element name="getKeyPair">
+		<xs:annotation>
+			<xs:documentation>Key Pair Request Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getKeyPair">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keyPair">
+		<xs:annotation>
+			<xs:documentation>Key Pair Response Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_keyPair">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Wat Account Commands.-->
+	<xs:element name="getWatAccounts">
+		<xs:annotation>
+			<xs:documentation>Request WAT Account List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getWatAccounts">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watAccountList">
+		<xs:annotation>
+			<xs:documentation>WAT Account List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watAccountList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watAccount">
+		<xs:annotation>
+			<xs:documentation>WAT Account Info.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watAccount">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getWatBalance">
+		<xs:annotation>
+			<xs:documentation>WAT Account Balance Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getWatBalance">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watBalance">
+		<xs:annotation>
+			<xs:documentation>WAT Account Balance.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watBalance">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Host-Initaited Request Commands.-->
+	<xs:element name="initiateRequest">
+		<xs:annotation>
+			<xs:documentation>Host-Initiated WAT Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_initiateRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="requestPending">
+		<xs:annotation>
+			<xs:documentation>Host-Initiated WAT Request Ack.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_requestAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelRequest">
+		<xs:annotation>
+			<xs:documentation>Host-Initiated WAT Cancellation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cancelRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelRequestAck">
+		<xs:annotation>
+			<xs:documentation>Host-Initiated WAT Cancellation Ack.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_requestAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--WAT Transfer Commands.-->
+	<xs:element name="initiateTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Transfer Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_requestTransfer">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Transfer Authorization.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeTransfer">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitTransfer">
+		<xs:annotation>
+			<xs:documentation>WAT Transfer Commit.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commitTransfer">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watSourceRef">
+		<xs:annotation>
+			<xs:documentation>WAT Transaction Source Reference.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_transactionReference">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitTransferAck">
+		<xs:annotation>
+			<xs:documentation>WAT transfer Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_requestAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--WAT Log Commands.-->
+	<xs:element name="getWatLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Wagering Account Transfer Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watLogStatus">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getWatLog">
+		<xs:annotation>
+			<xs:documentation>Request Wagering Account Transfer Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watLog">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="watLogList">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_watLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="wat">
+		<xs:annotation>
+			<xs:documentation>Wagering Account Transfer Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setWatState"/>
+						<xs:element ref="g2s:setWatLockOut"/>
+						<xs:element ref="g2s:setWatCashOut"/>
+						<xs:element ref="g2s:getWatStatus"/>
+						<xs:element ref="g2s:watStatus"/>
+						<xs:element ref="g2s:getWatProfile"/>
+						<xs:element ref="g2s:watProfile"/>
+						<xs:element ref="g2s:getKeyPair"/>
+						<xs:element ref="g2s:keyPair"/>
+						<xs:element ref="g2s:initiateRequest"/>
+						<xs:element ref="g2s:requestPending"/>
+						<xs:element ref="g2s:cancelRequest"/>
+						<xs:element ref="g2s:cancelRequestAck"/>
+						<xs:element ref="g2s:initiateTransfer"/>
+						<xs:element ref="g2s:authorizeTransfer"/>
+						<xs:element ref="g2s:commitTransfer"/>
+						<xs:element ref="g2s:commitTransferAck"/>
+						<xs:element ref="g2s:getWatAccounts"/>
+						<xs:element ref="g2s:watAccountList"/>
+						<xs:element ref="g2s:getWatBalance"/>
+						<xs:element ref="g2s:watBalance"/>
+						<xs:element ref="g2s:getWatLogStatus"/>
+						<xs:element ref="g2s:watLogStatus"/>
+						<xs:element ref="g2s:getWatLog"/>
+						<xs:element ref="g2s:watLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

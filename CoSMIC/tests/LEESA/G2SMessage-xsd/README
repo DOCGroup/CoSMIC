@@ -1,0 +1,12 @@
+G2SMessage schema (v 1.0.3) obtained from http://www.gamingstandards.com
+This is an extremely large schema with over 1000 types.
+
+1. Obtain xsd from http://www.codesynthesis.com/products/xsd/download.xhtml
+   Set XSD_ROOT 
+
+2. Obtain CoSMIC from svn://svn.dre.vanderbilt.edu/CoSMIC/trunk/CoSMIC
+   Set COSMIC_ROOT
+
+3. make generate
+4. make driver
+

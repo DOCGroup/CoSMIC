@@ -14,13 +14,14 @@ all:
 #
 generate: 
 	$(XSD_ROOT)/bin/xsd cxx-tree $(XSDFLAGS) PICML.xsd
-	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -xsd PICML.hxx
+	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -doxygen PICML.hxx
 	@echo "Now enter 'make driver'"
 
 
 # Build.
 #
-driver: driver.o PICML.o PICML-meta.o
+driver: driver.o PICML.o 
+#PICML-meta.o
 
 PICML.o: PICML.cxx PICML.hxx
 PICML-meta.o: PICML-meta.cxx PICML-meta.hxx

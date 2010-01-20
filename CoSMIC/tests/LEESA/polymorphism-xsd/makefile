@@ -13,7 +13,7 @@ all:
 #
 generate: 
 	$(XSD_ROOT)/bin/xsd cxx-tree $(XSDFLAGS) supermen.xsd
-	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -xsd supermen.hxx
+	python $(COSMIC_ROOT)/Utils/LEESA/bin/gen-meta.py -doxygen supermen.hxx
 	@echo "Now enter 'make driver'"
 
 

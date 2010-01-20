@@ -16,11 +16,17 @@ using namespace LEESA;
 
 #endif // WITH_LEESA
 
-::ContainerTraits<AttributeMemberType>::Container
-get_member_child_axis(RootFolderType rf)
+template <class T>
+struct SeqType
+{
+  typedef ::xsd::cxx::tree::sequence< T > type;
+};
+
+::SeqType<AttributeMemberType>::type
+get_member_child_axis(RootFolderType & rf)
 {
 #ifdef WITH_LEESA
-  ::ContainerTraits<AttributeMemberType>::Container members =   
+  ::SeqType<AttributeMemberType>::type members =   
     evaluate (rf, RootFolderType() >> InterfaceDefinitionsType()
                                    >> FileType()
                                    >> PackageType()
@@ -29,39 +35,33 @@ get_member_child_axis(RootFolderType rf)
                                    >> AttributeMemberType());
   return members;
 #else
-  ::ContainerTraits<AttributeMemberType>::Container members;   
-  ::ContainerTraits<InterfaceDefinitionsType>::Container ifaces = rf.InterfaceDefinitions_kind_children();
-  for(::ContainerTraits<InterfaceDefinitionsType>::Container::iterator iface_iter(ifaces.begin());
+  ::SeqType<AttributeMemberType>::type members;   
+  ::SeqType<InterfaceDefinitionsType>::type ifaces = rf.InterfaceDefinitions();
+  for(::SeqType<InterfaceDefinitionsType>::type::iterator iface_iter(ifaces.begin());
       iface_iter != ifaces.end();
       ++iface_iter)
       {
-        ::ContainerTraits<FileType>::Container files = iface_iter->File_kind_children();
-        for(::ContainerTraits<FileType>::Container::iterator file_iter(files.begin());
+        ::SeqType<FileType>::type files = iface_iter->File();
+        for(::SeqType<FileType>::type::iterator file_iter(files.begin());
             file_iter != files.end();
             ++file_iter)
             {
-              ::ContainerTraits<PackageType>::Container packages = file_iter->Package_kind_children();
-              for(::ContainerTraits<PackageType>::Container::iterator package_iter(packages.begin());
+              ::SeqType<PackageType>::type packages = file_iter->Package();
+              for(::SeqType<PackageType>::type::iterator package_iter(packages.begin());
                   package_iter != packages.end();
                   ++package_iter)
                   {
-                    ::ContainerTraits<ComponentType>::Container components = package_iter->Component_kind_children();
-                    for(::ContainerTraits<ComponentType>::Container::iterator component_iter(components.begin());
+                    ::SeqType<ComponentType>::type components = package_iter->Component();
+                    for(::SeqType<ComponentType>::type::iterator component_iter(components.begin());
                         component_iter != components.end();
                         ++component_iter)
                         {
-                          ::ContainerTraits<AttributeType>::Container attrs = component_iter->Attribute_kind_children();
-                          for(::ContainerTraits<AttributeType>::Container::iterator attr_iter(attrs.begin());
+                          ::SeqType<AttributeType>::type attrs = component_iter->Attribute();
+                          for(::SeqType<AttributeType>::type::iterator attr_iter(attrs.begin());
                               attr_iter != attrs.end();
                               ++attr_iter)
                               {
-                                ::ContainerTraits<AttributeMemberType>::Container attr_mems = attr_iter->AttributeMember_kind_children();
-                                for(::ContainerTraits<AttributeMemberType>::Container::iterator attrmem_iter(attr_mems.begin());
-                                    attrmem_iter != attr_mems.end();
-                                    ++attrmem_iter)
-                                    {
-                                      members.push_back(*attrmem_iter);
-                                    }
+                                members.push_back(attr_iter->AttributeMember());
                               }
                         }
                   }
@@ -71,12 +71,12 @@ get_member_child_axis(RootFolderType rf)
 #endif
 }
 
-
-::ContainerTraits<AttributeMemberType>::Container
-get_member_descendants(RootFolderType rf)
+/*
+::SeqType<AttributeMemberType>::type
+get_member_descendants(RootFolderType & rf)
 {
 #ifdef WITH_LEESA
-  ::ContainerTraits<AttributeMemberType>::Container members =   
+  ::SeqType<AttributeMemberType>::type members =   
     evaluate (rf, RootFolderType() >> DescendantsOf(RootFolderType(), AttributeMemberType()));
   return members;
 #else
@@ -88,11 +88,11 @@ get_member_descendants(RootFolderType rf)
 #endif
 }
 
-::ContainerTraits<AttributeMemberType>::Container
-get_member_level_descendants(RootFolderType rf)
+::SeqType<AttributeMemberType>::type
+get_member_level_descendants(RootFolderType & rf)
 {
 #ifdef WITH_LEESA
-  ::ContainerTraits<AttributeMemberType>::Container members =   
+  ::SeqType<AttributeMemberType>::type members =   
     evaluate (rf, RootFolderType() 
         >> LevelDescendantsOf(RootFolderType(), _, _, _, _, AttributeMemberType()));
   return members;
@@ -103,7 +103,7 @@ get_member_level_descendants(RootFolderType rf)
 // We get (39+136)/2 = 88 lines. This metric is highly schema-specific.
 #endif
 }
-
+*/
 
 int
 main (int argc, char* argv[])
@@ -119,8 +119,8 @@ main (int argc, char* argv[])
     auto_ptr<RootFolderType> rf_root (RootFolder (argv[1]));
 
     get_member_child_axis(*rf_root);
-    get_member_descendants(*rf_root);
-    get_member_level_descendants(*rf_root);
+    //get_member_descendants(*rf_root);
+    //get_member_level_descendants(*rf_root);
 
   }
   catch (const xml_schema::exception& e)

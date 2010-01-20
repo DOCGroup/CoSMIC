@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_hopperStatus">
+		<xs:annotation>
+			<xs:documentation>Hopper Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="doorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hopperEmpty" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hopperFull" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hopperJammed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hopperFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="lowWaterMark" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="highWaterMark" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="runawayHopper" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_hopperProfile">
+		<xs:annotation>
+			<xs:documentation>Hopper Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="token" type="xs:boolean" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_hopperStatus">
+		<xs:annotation>
+			<xs:documentation>Hopper Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_hopperStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_hopperProfile">
+		<xs:annotation>
+			<xs:documentation>Hopper Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_hopperProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Hopper Status Commands.-->
+	<xs:element name="setHopperState">
+		<xs:annotation>
+			<xs:documentation>Set Hopper Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getHopperStatus">
+		<xs:annotation>
+			<xs:documentation>Request Hopper Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hopperStatus">
+		<xs:annotation>
+			<xs:documentation>Current Hopper Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hopperStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Hopper Profile Commands.-->
+	<xs:element name="getHopperProfile">
+		<xs:annotation>
+			<xs:documentation>Request Hopper Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="hopperProfile">
+		<xs:annotation>
+			<xs:documentation>Hopper Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hopperProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="hopper">
+		<xs:annotation>
+			<xs:documentation>Hopper Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setHopperState"/>
+						<xs:element ref="g2s:getHopperStatus"/>
+						<xs:element ref="g2s:hopperStatus"/>
+						<xs:element ref="g2s:getHopperProfile"/>
+						<xs:element ref="g2s:hopperProfile"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

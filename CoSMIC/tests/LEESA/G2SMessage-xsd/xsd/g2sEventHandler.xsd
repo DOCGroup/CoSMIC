@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeClasses.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Class-specific Simple Data Types</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="t_eventCode">
+		<xs:annotation>
+			<xs:documentation>Event Code Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier10"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_eventId">
+		<xs:annotation>
+			<xs:documentation>Event Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_queueBehaviors">
+		<xs:annotation>
+			<xs:documentation>Event Queue Overflow Behavior Types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_disable"/>
+			<xs:enumeration value="G2S_discard"/>
+			<xs:enumeration value="G2S_overwrite"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_eventCode">
+		<xs:annotation>
+			<xs:documentation>Event Code Related Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="eventCode" type="g2s:t_eventCode" use="required"/>
+		<xs:attribute name="eventText" type="g2s:t_egmMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_eventSubscription">
+		<xs:annotation>
+			<xs:documentation>Host Event Subscription Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="sendDeviceStatus" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="sendTransaction" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="sendClassMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="sendDeviceMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="sendUpdatableMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="eventPersist" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_eventForced">
+		<xs:annotation>
+			<xs:documentation>Forced Event Subscription Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="forceDeviceStatus" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="forceTransaction" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="forceClassMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="forceDeviceMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="forceUpdatableMeters" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="forcePersist" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_eventReport">
+		<xs:annotation>
+			<xs:documentation>Event Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="eventId" type="g2s:t_eventId" use="required"/>
+		<xs:attribute name="eventDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="transactionId" type="g2s:t_transactionId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_getEventSub">
+		<xs:annotation>
+			<xs:documentation>Event Subscription Request Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="getForcedSubs" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="getHostSubs" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_eventHandlerProfile">
+		<xs:annotation>
+			<xs:documentation>Event Handler Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="queueBehavior" type="g2s:t_queueBehaviors" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_eventSelect">
+		<xs:annotation>
+			<xs:documentation>Event Selection Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attribute name="eventCode" type="g2s:t_eventCode" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventSelectList">
+		<xs:annotation>
+			<xs:documentation>Event Selection List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:eventSelect" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_supportedEvent">
+		<xs:annotation>
+			<xs:documentation>Supported Event Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_eventCode"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_supportedEventList">
+		<xs:annotation>
+			<xs:documentation>Supported Event List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:supportedEvent" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setEventSub">
+		<xs:annotation>
+			<xs:documentation>Set Event Subscription Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:eventHostSubscription" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventSubscription">
+		<xs:annotation>
+			<xs:documentation>Event Host And Forced Subscription Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_supportedEvent">
+				<xs:attributeGroup ref="g2s:p_eventSubscription"/>
+				<xs:attributeGroup ref="g2s:p_eventForced"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_hostSubscription">
+		<xs:annotation>
+			<xs:documentation>Event Host Subscription Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_eventSelect">
+				<xs:attributeGroup ref="g2s:p_eventSubscription"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_forcedSubscription">
+		<xs:annotation>
+			<xs:documentation>Event Host And Forced Subscription Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_eventSelect">
+				<xs:attributeGroup ref="g2s:p_eventForced"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getEventSub">
+		<xs:annotation>
+			<xs:documentation>Event Subscription Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:eventSelect" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_getEventSub"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventSubList">
+		<xs:annotation>
+			<xs:documentation>Event Subscription List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:eventSubscription" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventReport">
+		<xs:annotation>
+			<xs:documentation>Event Report Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_supportedEvent">
+				<xs:sequence>
+					<xs:element ref="g2s:deviceList" minOccurs="0"/>
+					<xs:element ref="g2s:transactionList" minOccurs="0"/>
+					<xs:element ref="g2s:meterList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_eventReport"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventAck">
+		<xs:annotation>
+			<xs:documentation>Event Acknowledgement Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="eventId" type="g2s:t_eventId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventHandlerStatus">
+		<xs:annotation>
+			<xs:documentation>Event Handler Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attribute name="eventHandlerOverflow" type="xs:boolean" use="optional" default="false"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventHandlerProfile">
+		<xs:annotation>
+			<xs:documentation>Event Handler Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:forcedSubscription" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_eventHandlerProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_transactionSelect">
+		<xs:annotation>
+			<xs:documentation>Transaction Selection Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceClass"/>
+				<xs:attribute name="transactionId" use="required">
+					<xs:simpleType>
+						<xs:restriction base="g2s:t_transactionId">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventHandlerLog">
+		<xs:annotation>
+			<xs:documentation>Event handler Log data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:affectedDeviceList" minOccurs="0"/>
+					<xs:element ref="g2s:affectedTransactionList" minOccurs="0"/>
+					<xs:element ref="g2s:affectedMeterList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceClass"/>
+				<xs:attributeGroup ref="g2s:p_eventCode"/>
+				<xs:attributeGroup ref="g2s:p_eventReport"/>
+				<xs:attribute name="eventAck" type="xs:boolean" use="optional" default="false"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_eventHandlerLogList">
+		<xs:annotation>
+			<xs:documentation>Event Handler Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:eventHandlerLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Event Handler Status Commands</xs:documentation>
+	</xs:annotation>
+	<xs:element name="setEventHandlerState">
+		<xs:annotation>
+			<xs:documentation>Set Event Handler Device State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getEventHandlerStatus">
+		<xs:annotation>
+			<xs:documentation>Event Handler Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHandlerStatus">
+		<xs:annotation>
+			<xs:documentation>Event Handler Status Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventHandlerStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Event Handler Configuration Profile Commands.</xs:documentation>
+	</xs:annotation>
+	<xs:element name="getEventHandlerProfile">
+		<xs:annotation>
+			<xs:documentation>Request Event Handler Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHandlerProfile">
+		<xs:annotation>
+			<xs:documentation>Event Handler Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventHandlerProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="forcedSubscription">
+		<xs:annotation>
+			<xs:documentation>Forced Subscription Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_forcedSubscription">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Supported Events Discovery Commands.-->
+	<xs:element name="getSupportedEvents">
+		<xs:annotation>
+			<xs:documentation>Request For Supported Events.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="supportedEvents">
+		<xs:annotation>
+			<xs:documentation>Supported Event List Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_supportedEventList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="supportedEvent">
+		<xs:annotation>
+			<xs:documentation>Supported Event Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_supportedEvent">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Subscription Management Commands</xs:documentation>
+	</xs:annotation>
+	<xs:element name="setEventSub">
+		<xs:annotation>
+			<xs:documentation>Set Event Subscription Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setEventSub">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHostSubscription">
+		<xs:annotation>
+			<xs:documentation>Event Host Subscription Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_hostSubscription">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setEventSubAck">
+		<xs:annotation>
+			<xs:documentation>Acknowledge the setting of an event subscription</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getEventSub">
+		<xs:annotation>
+			<xs:documentation>Get Event Subscriptions Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getEventSub">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventSelect">
+		<xs:annotation>
+			<xs:documentation>Event Selection Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventSubList">
+		<xs:annotation>
+			<xs:documentation>Event Subscription List Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventSubList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventSubscription">
+		<xs:annotation>
+			<xs:documentation>Event Subscription Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventSubscription">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="clearEventSub">
+		<xs:annotation>
+			<xs:documentation>Clear All Event Subscriptions Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventSelectList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="clearEventSubAck">
+		<xs:annotation>
+			<xs:documentation>Acknowledge the clearing of an event subscription</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>EGM Initiated Commands</xs:documentation>
+	</xs:annotation>
+	<xs:element name="eventReport">
+		<xs:annotation>
+			<xs:documentation>Event Reporting Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventReport">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Class in Ext1: deviceConfig.-->
+	<xs:element name="deviceList">
+		<xs:annotation>
+			<xs:documentation>Event Affected Device List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:statusInfo" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="statusInfo">
+		<xs:annotation>
+			<xs:documentation>Affected Device Status Info Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceSelect">
+					<xs:choice>
+						<xs:element ref="g2s:commsStatus"/>
+						<xs:element ref="g2s:cabinetStatus"/>
+						<xs:element ref="g2s:eventHandlerStatus"/>
+						<xs:element ref="g2s:gamePlayStatus"/>
+						<xs:element ref="g2s:commConfigModeStatus"/>
+						<xs:element ref="g2s:optionConfigModeStatus"/>
+						<xs:element ref="g2s:downloadStatus"/>
+						<xs:element ref="g2s:handpayStatus"/>
+						<xs:element ref="g2s:coinAcceptorStatus"/>
+						<xs:element ref="g2s:noteAcceptorStatus"/>
+						<xs:element ref="g2s:hopperStatus"/>
+						<xs:element ref="g2s:noteDispenserStatus"/>
+						<xs:element ref="g2s:printerStatus"/>
+						<xs:element ref="g2s:progressiveStatus"/>
+						<xs:element ref="g2s:idReaderStatus"/>
+						<xs:element ref="g2s:bonusStatus"/>
+						<xs:element ref="g2s:playerStatus"/>
+						<xs:element ref="g2s:voucherStatus"/>
+						<xs:element ref="g2s:watStatus"/>
+						<xs:element ref="g2s:centralStatus"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transactionList">
+		<xs:annotation>
+			<xs:documentation>Event Affected Transaction List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:transactionInfo" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transactionInfo">
+		<xs:annotation>
+			<xs:documentation>Affected Tranaction Info Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceSelect">
+					<xs:choice>
+						<xs:element ref="g2s:recallLog"/>
+						<xs:element ref="g2s:commChangeLog"/>
+						<xs:element ref="g2s:optionChangeLog"/>
+						<xs:element ref="g2s:packageLog"/>
+						<xs:element ref="g2s:scriptLog"/>
+						<xs:element ref="g2s:handpayLog"/>
+						<xs:element ref="g2s:notesAcceptedLog"/>
+						<xs:element ref="g2s:notesDispensedLog"/>
+						<xs:element ref="g2s:printLog"/>
+						<xs:element ref="g2s:progressiveLog"/>
+						<xs:element ref="g2s:bonusLog"/>
+						<xs:element ref="g2s:playerLog"/>
+						<xs:element ref="g2s:voucherLog"/>
+						<xs:element ref="g2s:watLog"/>
+						<xs:element ref="g2s:gatLog"/>
+						<xs:element ref="g2s:centralLog"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="meterList">
+		<xs:annotation>
+			<xs:documentation>Event Affected Meter List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:meterInfo" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventAck">
+		<xs:annotation>
+			<xs:documentation>Event Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventAck">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Transaction Log Commands</xs:documentation>
+	</xs:annotation>
+	<xs:element name="getEventHandlerLogStatus">
+		<xs:annotation>
+			<xs:documentation>Event handler Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHandlerLogStatus">
+		<xs:annotation>
+			<xs:documentation>Event Handler Log Status Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getEventHandlerLog">
+		<xs:annotation>
+			<xs:documentation>Event Handler Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHandlerLog">
+		<xs:annotation>
+			<xs:documentation>Event Handler Log Entry Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventHandlerLog">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="affectedDeviceList">
+		<xs:annotation>
+			<xs:documentation>Affected Device Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:deviceSelect" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deviceSelect">
+		<xs:annotation>
+			<xs:documentation>Affected Device Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="affectedTransactionList">
+		<xs:annotation>
+			<xs:documentation>Affected Transaction Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:transactionSelect" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="transactionSelect">
+		<xs:annotation>
+			<xs:documentation>Affected Transaction Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_transactionSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="affectedMeterList">
+		<xs:annotation>
+			<xs:documentation>Affected Meter Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence>
+						<xs:element ref="g2s:deviceSelect" maxOccurs="unbounded"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="eventHandlerLogList">
+		<xs:annotation>
+			<xs:documentation>Event Handler Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_eventHandlerLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:annotation>
+		<xs:documentation>Class Wrapper</xs:documentation>
+	</xs:annotation>
+	<xs:element name="eventHandler">
+		<xs:annotation>
+			<xs:documentation>Event Handler Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setEventHandlerState"/>
+						<xs:element ref="g2s:getEventHandlerStatus"/>
+						<xs:element ref="g2s:eventHandlerStatus"/>
+						<xs:element ref="g2s:getEventHandlerProfile"/>
+						<xs:element ref="g2s:eventHandlerProfile"/>
+						<xs:element ref="g2s:getSupportedEvents"/>
+						<xs:element ref="g2s:supportedEvents"/>
+						<xs:element ref="g2s:setEventSub"/>
+						<xs:element ref="g2s:setEventSubAck"/>
+						<xs:element ref="g2s:getEventSub"/>
+						<xs:element ref="g2s:eventSubList"/>
+						<xs:element ref="g2s:clearEventSub"/>
+						<xs:element ref="g2s:clearEventSubAck"/>
+						<xs:element ref="g2s:getEventHandlerLogStatus"/>
+						<xs:element ref="g2s:eventHandlerLogStatus"/>
+						<xs:element ref="g2s:getEventHandlerLog"/>
+						<xs:element ref="g2s:eventHandlerLogList"/>
+						<xs:element ref="g2s:eventReport"/>
+						<xs:element ref="g2s:eventAck"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

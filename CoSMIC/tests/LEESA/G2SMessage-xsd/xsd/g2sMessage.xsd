@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" 
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" 
+           elementFormDefault="qualified" 
+           attributeFormDefault="qualified" 
+           version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sEventHandler.xsd"/>
+	<!--Message-Level Attribute Groups.-->
+	<xs:attributeGroup name="p_point2point">
+		<xs:annotation>
+			<xs:documentation>Header/Ack Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="egmId" type="g2s:t_egmId" use="required"/>
+		<xs:attribute name="dateTimeSent" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_multicast">
+		<xs:annotation>
+			<xs:documentation>Multicast Header Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="multicastId" type="g2s:t_multicastId" use="required"/>
+		<xs:attribute name="dateTimeSent" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Message-Level Complex Data Types.-->
+	<xs:complexType name="c_point2point">
+		<xs:annotation>
+			<xs:documentation>Point-to-point Message Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="g2s:communications"/>
+			<xs:element ref="g2s:cabinet"/>
+			<xs:element ref="g2s:eventHandler"/>
+			<xs:element ref="g2s:meters"/>
+			<xs:element ref="g2s:gamePlay"/>
+			<xs:element ref="g2s:commConfig"/>
+			<xs:element ref="g2s:optionConfig"/>
+			<xs:element ref="g2s:download"/>
+			<xs:element ref="g2s:handpay"/>
+			<xs:element ref="g2s:coinAcceptor"/>
+			<xs:element ref="g2s:noteAcceptor"/>
+			<xs:element ref="g2s:hopper"/>
+			<xs:element ref="g2s:noteDispenser"/>
+			<xs:element ref="g2s:printer"/>
+			<xs:element ref="g2s:progressive"/>
+			<xs:element ref="g2s:idReader"/>
+			<xs:element ref="g2s:bonus"/>
+			<xs:element ref="g2s:player"/>
+			<xs:element ref="g2s:voucher"/>
+			<xs:element ref="g2s:wat"/>
+			<xs:element ref="g2s:gat"/>
+			<xs:element ref="g2s:central"/>
+			<xs:any namespace="##other" processContents="lax"/>
+		</xs:choice>
+		<xs:attributeGroup ref="g2s:p_point2point"/>
+	</xs:complexType>
+	<xs:complexType name="c_point2pointAck">
+		<xs:annotation>
+			<xs:documentation>Point-to-point Acknowledgement Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="g2s:p_point2point"/>
+		<xs:attributeGroup ref="g2s:p_error"/>
+	</xs:complexType>
+	<xs:complexType name="c_multicast">
+		<xs:annotation>
+			<xs:documentation>Multicast Message Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="g2s:noteAcceptorMulticast"/>
+			<xs:element ref="g2s:progressiveMulticast"/>
+			<xs:element ref="g2s:bonusMulticast"/>
+			<xs:element ref="g2s:playerMulticast"/>
+			<xs:any namespace="##other" processContents="lax"/>
+		</xs:choice>
+		<xs:attributeGroup ref="g2s:p_multicast"/>
+	</xs:complexType>
+	<!--G2S Message-Level Elements.-->
+	<xs:element name="g2sBody" type="g2s:c_point2point">
+		<xs:annotation>
+			<xs:documentation>G2S Point-To-Point Message Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--New Class in Ext1: deviceConfig.-->
+	<xs:element name="g2sAck" type="g2s:c_point2pointAck">
+		<xs:annotation>
+			<xs:documentation>G2S Point-To-Point Acknowledgement.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="g2sMulticast" type="g2s:c_multicast">
+		<xs:annotation>
+			<xs:documentation>G2S Multicast Message Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--G2S Root Message Element.-->
+	<xs:complexType name="c_message">
+		<xs:annotation>
+			<xs:documentation>G2S Message Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="g2s:g2sBody"/>
+			<xs:element ref="g2s:g2sAck"/>
+			<xs:element ref="g2s:g2sMulticast"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="g2sMessage" type="g2s:c_message">
+		<xs:annotation>
+			<xs:documentation>G2S Root Message Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

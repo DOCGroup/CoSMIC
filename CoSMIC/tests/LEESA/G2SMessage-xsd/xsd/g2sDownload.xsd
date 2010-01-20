@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<xs:include schemaLocation="g2sIncludeConfig.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_packageId">
+		<xs:annotation>
+			<xs:documentation>Package Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier64"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_pkgFormats">
+		<xs:annotation>
+			<xs:documentation>Package Formats.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_other"/>
+			<xs:enumeration value="G2S_binary"/>
+			<xs:enumeration value="G2S_tar"/>
+			<xs:enumeration value="G2S_zip"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_pkgStates">
+		<xs:annotation>
+			<xs:documentation>Package Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_pending"/>
+			<xs:enumeration value="G2S_available"/>
+			<xs:enumeration value="G2S_inUse"/>
+			<xs:enumeration value="G2S_deletePending"/>
+			<xs:enumeration value="G2S_deleted"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_pkgExceptions">
+		<xs:annotation>
+			<xs:documentation>Package Exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_pkgActivityTypes">
+		<xs:annotation>
+			<xs:documentation>Activity Types for Package Activity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_other"/>
+			<xs:enumeration value="G2S_createPackage"/>
+			<xs:enumeration value="G2S_deletePackage"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferId">
+		<xs:annotation>
+			<xs:documentation>Transfer Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferTypes">
+		<xs:annotation>
+			<xs:documentation>Transfer Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_downloadGet"/>
+			<xs:enumeration value="G2S_downloadPut"/>
+			<xs:enumeration value="G2S_uploadGet"/>
+			<xs:enumeration value="G2S_uploadPut"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferStates">
+		<xs:annotation>
+			<xs:documentation>Transfer Status - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_pending"/>
+			<xs:enumeration value="G2S_inProgress"/>
+			<xs:enumeration value="G2S_transferred"/>
+			<xs:enumeration value="G2S_validated"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferExceptions">
+		<xs:annotation>
+			<xs:documentation>Transfer Exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_scriptId">
+		<xs:annotation>
+			<xs:documentation>Script Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_scriptStates">
+		<xs:annotation>
+			<xs:documentation>Script Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_pendingDateTime"/>
+			<xs:enumeration value="G2S_pendingDisable"/>
+			<xs:enumeration value="G2S_pendingAuthorization"/>
+			<xs:enumeration value="G2S_pendingOperatorAction"/>
+			<xs:enumeration value="G2S_pendingPackage"/>
+			<xs:enumeration value="G2S_inProgress"/>
+			<xs:enumeration value="G2S_completed"/>
+			<xs:enumeration value="G2S_cancelled"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_scriptExceptions">
+		<xs:annotation>
+			<xs:documentation>Script Exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_operPackage">
+		<xs:annotation>
+			<xs:documentation>Package Command Operation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_install"/>
+			<xs:enumeration value="G2S_uninstall"/>
+			<xs:enumeration value="G2S_exec"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_operModule">
+		<xs:annotation>
+			<xs:documentation>Module Command Operation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_install"/>
+			<xs:enumeration value="G2S_uninstall"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_operSystem">
+		<xs:annotation>
+			<xs:documentation>System Command Operation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_disableEgm"/>
+			<xs:enumeration value="G2S_enableEgm"/>
+			<xs:enumeration value="G2S_resetEgm"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_operCmdStates">
+		<xs:annotation>
+			<xs:documentation>Command Operation Statuses.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_pending"/>
+			<xs:enumeration value="G2S_inProgress"/>
+			<xs:enumeration value="G2S_complete"/>
+			<xs:enumeration value="G2S_cancelled"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_operCmdExceptions">
+		<xs:annotation>
+			<xs:documentation>Command Operation Excecption Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_moduleId">
+		<xs:annotation>
+			<xs:documentation>Module Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier64"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_modTypes">
+		<xs:annotation>
+			<xs:documentation>Module Types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_other"/>
+			<xs:enumeration value="G2S_boot"/>
+			<xs:enumeration value="G2S_os"/>
+			<xs:enumeration value="G2S_game"/>
+			<xs:enumeration value="G2S_firmware"/>
+			<xs:enumeration value="G2S_configuration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_modStates">
+		<xs:annotation>
+			<xs:documentation>Module Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_disabled"/>
+			<xs:enumeration value="G2S_enabled"/>
+			<xs:enumeration value="G2S_error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_modExceptions">
+		<xs:annotation>
+			<xs:documentation>Module Exception Code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_reasonCodes">
+		<xs:annotation>
+			<xs:documentation>Reason Code for Package Activity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="10"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_storageId">
+		<xs:annotation>
+			<xs:documentation>Storage Identifer.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="-1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_storageApplication">
+		<xs:annotation>
+			<xs:documentation>Storage Application Usage.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_download"/>
+			<xs:enumeration value="G2S_boot"/>
+			<xs:enumeration value="G2S_os"/>
+			<xs:enumeration value="G2S_game"/>
+			<xs:enumeration value="G2S_internal"/>
+			<xs:enumeration value="G2S_other"/>
+			<xs:enumeration value="G2S_configuration"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_descriptionText">
+		<xs:annotation>
+			<xs:documentation>Common Description Text.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_downloadStatus">
+		<xs:annotation>
+			<xs:documentation>Download Device Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="egmLocked" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_downloadProfile">
+		<xs:annotation>
+			<xs:documentation>Download Device Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="noMessageTimer" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="minPackageLogEntries" use="optional" default="35">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minScriptLogEntries" use="optional" default="35">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minPackageListEntries" use="optional" default="10">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minScriptListEntries" use="optional" default="10">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="authWaitTimeOut" type="g2s:t_milliseconds" use="optional" default="60000"/>
+		<xs:attribute name="authWaitRetries" use="optional" default="2">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="downloadEnabled" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="uploadEnabled" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="scriptingEnabled" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageStatus">
+		<xs:annotation>
+			<xs:documentation>Package Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pkgState" type="g2s:t_pkgStates" use="required"/>
+		<xs:attribute name="pkgException" type="g2s:t_pkgExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageTransferReq">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transferId" type="g2s:t_transferId" use="optional" default="0"/>
+		<xs:attribute name="transferLocation" type="g2s:t_transportLocation" use="required"/>
+		<xs:attribute name="transferParameters" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:maxLength value="128"/>
+					<xs:minLength value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="reasonCode" type="g2s:t_reasonCodes" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageTransferStatus">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transferType" type="g2s:t_transferTypes" use="optional" default="G2S_downloadGet"/>
+		<xs:attribute name="transferState" type="g2s:t_transferStates" use="required"/>
+		<xs:attribute name="transferException" type="g2s:t_transferExceptions" use="optional" default="0"/>
+		<xs:attribute name="pkgSize" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="deleteAfter" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="transferCompleteDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="pkgValidateDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageActivityStatus">
+		<xs:annotation>
+			<xs:documentation>Package Activity Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="activityType" type="g2s:t_pkgActivityTypes" use="required"/>
+		<xs:attribute name="overwrite" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="reasonCode" type="g2s:t_reasonCodes" use="optional" default=""/>
+		<xs:attribute name="activityDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageInfo">
+		<xs:annotation>
+			<xs:documentation>Package Information Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="pkgFormat" type="g2s:t_pkgFormats" use="optional" default="G2S_other"/>
+		<xs:attribute name="pkgDescription" type="g2s:t_descriptionText" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_packageMetrics">
+		<xs:annotation>
+			<xs:documentation>Package Metrics Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="releaseNum" type="xs:string" use="required"/>
+		<xs:attribute name="pkgSize" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:long">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="pkgVerifyCode" type="xs:string" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_scriptConditions">
+		<xs:annotation>
+			<xs:documentation>Script Condition Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="startDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="endDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="disableCondition" type="g2s:t_disableConditions" use="required"/>
+		<xs:attribute name="applyCondition" type="g2s:t_applyConditions" use="required"/>
+		<xs:attribute name="reasonCode" type="g2s:t_reasonCodes" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_scriptStatus">
+		<xs:annotation>
+			<xs:documentation>Script Status Paramaters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="scriptStatus" type="g2s:t_scriptStates" use="required"/>
+		<xs:attribute name="scriptException" type="g2s:t_scriptExceptions" use="optional" default="0"/>
+		<xs:attribute name="authorizeDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="completeDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_operPackage">
+		<xs:attribute name="operation" type="g2s:t_operPackage" use="required"/>
+		<xs:attribute name="commandString" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="256"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="deletePkgAfter" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="cmdSequence" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_operModule">
+		<xs:attribute name="operation" type="g2s:t_operModule" use="required"/>
+		<xs:attribute name="pkgId" type="g2s:t_packageId" use="optional"/>
+		<xs:attribute name="cmdSequence" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_operSystem">
+		<xs:attribute name="operation" type="g2s:t_operSystem" use="required"/>
+		<xs:attribute name="cmdSequence" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_operStatus">
+		<xs:attribute name="status" type="g2s:t_operCmdStates" use="required"/>
+		<xs:attribute name="exception" type="g2s:t_operCmdExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_modInfo">
+		<xs:annotation>
+			<xs:documentation>Module Information Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="modReleaseNum" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="32"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="modType" type="g2s:t_modTypes" use="optional" default="G2S_other"/>
+		<xs:attribute name="modDescription" type="g2s:t_descriptionText" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_modStatus">
+		<xs:annotation>
+			<xs:documentation>Module Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="modStatus" type="g2s:t_modStates" use="required"/>
+		<xs:attribute name="modException" type="g2s:t_modExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_storageSelect">
+		<xs:attribute name="storageId" type="g2s:t_storageId" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_packageSelect">
+		<xs:annotation>
+			<xs:documentation>Package Selection Complex Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="pkgId" type="g2s:t_packageId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_packageStatus">
+		<xs:annotation>
+			<xs:documentation>Package Status Complex Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_packageSelect">
+				<xs:attributeGroup ref="g2s:p_packageStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_packageTransferReq">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Request Complex Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_packageSelect">
+				<xs:attributeGroup ref="g2s:p_packageTransferReq"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_packageTransferStatus">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Status Complex Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_packageTransferReq"/>
+				<xs:attributeGroup ref="g2s:p_packageTransferStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_packageActivityStatus">
+		<xs:annotation>
+			<xs:documentation>Package Activity Status Complex Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_packageActivityStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_scriptSelect" abstract="true">
+		<xs:annotation>
+			<xs:documentation>Script Select Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="scriptId" type="g2s:t_scriptId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cmdPackage">
+		<xs:annotation>
+			<xs:documentation>Package Command Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_packageSelect">
+				<xs:attributeGroup ref="g2s:p_operPackage"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cmdModule">
+		<xs:annotation>
+			<xs:documentation>Module Command Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_moduleSelect">
+				<xs:attributeGroup ref="g2s:p_operModule"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cmdSystem">
+		<xs:annotation>
+			<xs:documentation>System Command Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_operSystem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_moduleSelect">
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="modId" type="g2s:t_moduleId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_moduleInfo">
+		<xs:annotation>
+			<xs:documentation>Module Info With Type and Release Number.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_moduleSelect">
+				<xs:attributeGroup ref="g2s:p_modInfo"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Download Status Commands.-->
+	<xs:element name="setDownloadState">
+		<xs:annotation>
+			<xs:documentation>CMD: Enable/Disable Download Device.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDownloadStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Download Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="downloadStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Current Download Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceStatus">
+					<xs:attributeGroup ref="g2s:p_downloadStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Profile Commands-->
+	<xs:element name="getDownloadProfile">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Download Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="downloadProfile">
+		<xs:annotation>
+			<xs:documentation>CMD: Current Download Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+					<xs:attributeGroup ref="g2s:p_downloadProfile"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Package Commands.-->
+	<xs:element name="addPackage">
+		<xs:annotation>
+			<xs:documentation>CMD: Add a Package to the packageList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageTransferReq">
+					<xs:attribute name="transferType" type="g2s:t_transferTypes" use="optional" default="G2S_downloadGet"/>
+					<xs:attribute name="pkgSize" use="optional" default="0">
+						<xs:simpleType>
+							<xs:restriction base="xs:long">
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleSelect">
+		<xs:annotation>
+			<xs:documentation>Module Selection.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_moduleSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="createPackage">
+		<xs:annotation>
+			<xs:documentation>CMD: Create a Package and add to the packageList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageSelect">
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element ref="g2s:moduleSelect"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="g2s:p_packageInfo"/>
+					<xs:attribute name="overwrite" type="xs:boolean" use="optional" default="false"/>
+					<xs:attribute name="reasonCode" type="g2s:t_reasonCodes" use="optional" default=""/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deletePackage">
+		<xs:annotation>
+			<xs:documentation>CMD: Delete a Package from the packageList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageSelect">
+					<xs:attribute name="reasonCode" type="g2s:t_reasonCodes" use="optional" default=""/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="uploadPackage">
+		<xs:annotation>
+			<xs:documentation>CMD: Upload a Package to the Specified Location.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageTransferReq">
+					<xs:attribute name="transferType" type="g2s:t_transferTypes" use="optional" default="G2S_uploadPut"/>
+					<xs:attribute name="deleteAfter" type="xs:boolean" use="optional" default="true"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPackageStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Request the Status of a package.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageTransferStatus">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageTransferStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageActivityStatus">
+		<xs:annotation>
+			<xs:documentation>Package Activity Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageActivityStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Status of a Package.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageStatus">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:packageTransferStatus"/>
+						<xs:element ref="g2s:packageActivityStatus"/>
+					</xs:choice>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageStatusAck">
+		<xs:annotation>
+			<xs:documentation>CMD: Ack Recieve of packageStatus Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="readPackageContents">
+		<xs:annotation>
+			<xs:documentation>CMD: Read the Contents of a Package.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleInfo">
+		<xs:annotation>
+			<xs:documentation>Information About a Module Within a Package.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_moduleInfo">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageContents">
+		<xs:annotation>
+			<xs:documentation>CMD: Contents of a Package.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageSelect">
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element ref="g2s:moduleInfo"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="g2s:p_packageInfo"/>
+					<xs:attributeGroup ref="g2s:p_packageMetrics"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPackageList">
+		<xs:annotation>
+			<xs:documentation>CMD: Request the packageList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageList">
+		<xs:annotation>
+			<xs:documentation>CMD: List of Current packages.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:packageStatus"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Package Log Commands.-->
+	<xs:element name="getPackageLogStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Package Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageLogStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Current Package Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPackageLog">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Package Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageTransferLog">
+		<xs:annotation>
+			<xs:documentation>Package Transfer Log</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageTransferStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageActivityLog">
+		<xs:annotation>
+			<xs:documentation>Package Activity Log</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_packageActivityStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageLog">
+		<xs:annotation>
+			<xs:documentation>Package Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logClassRecord">
+					<xs:choice>
+						<xs:element ref="g2s:packageTransferLog"/>
+						<xs:element ref="g2s:packageActivityLog"/>
+					</xs:choice>
+					<xs:attribute name="pkgId" type="g2s:t_packageId" use="required"/>
+					<xs:attributeGroup ref="g2s:p_packageStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageLogList">
+		<xs:annotation>
+			<xs:documentation>CMD: List From the Package Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:packageLog"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Script Commands.-->
+	<xs:element name="packageCmd">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdPackage">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleCmd">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdModule">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="systemCmd">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdSystem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commandList">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="g2s:packageCmd"/>
+						<xs:element ref="g2s:moduleCmd"/>
+						<xs:element ref="g2s:systemCmd"/>
+					</xs:choice>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setScript">
+		<xs:annotation>
+			<xs:documentation>CMD: Set a Script for Execution.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_scriptSelect">
+					<xs:sequence>
+						<xs:element ref="g2s:commandList"/>
+						<xs:element ref="g2s:authorizeList" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="g2s:p_scriptConditions"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelScript">
+		<xs:annotation>
+			<xs:documentation>CMD: Delete a Script.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_scriptSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeScript">
+		<xs:annotation>
+			<xs:documentation>CMD: Authorize execution of a Script.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_scriptSelect">
+					<xs:attribute name="authorized" type="xs:boolean" use="required"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getScriptStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Request the Status of a Script.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_scriptSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="packageCmdStatus">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdPackage">
+					<xs:attributeGroup ref="g2s:p_operStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleCmdStatus">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdModule">
+					<xs:attributeGroup ref="g2s:p_operStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="systemCmdStatus">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cmdSystem">
+					<xs:attributeGroup ref="g2s:p_operStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commandStatusList">
+		<xs:annotation>
+			<xs:documentation>List of Command Statuses.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="g2s:packageCmdStatus"/>
+						<xs:element ref="g2s:moduleCmdStatus"/>
+						<xs:element ref="g2s:systemCmdStatus"/>
+					</xs:choice>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Current Status of a Script.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_scriptSelect">
+					<xs:sequence>
+						<xs:element ref="g2s:commandStatusList"/>
+						<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="g2s:p_scriptConditions"/>
+					<xs:attributeGroup ref="g2s:p_scriptStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptStatusAck">
+		<xs:annotation>
+			<xs:documentation>CMD: Ack Receive of scriptStatus Command.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getScriptList">
+		<xs:annotation>
+			<xs:documentation>CMD: Request the scriptList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptList">
+		<xs:annotation>
+			<xs:documentation>CMD: List of Current scripts.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:scriptStatus"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Script Log Commands.-->
+	<xs:element name="getScriptLogStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Script Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptLogStatus">
+		<xs:annotation>
+			<xs:documentation>CMD: Current Script Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getScriptLog">
+		<xs:annotation>
+			<xs:documentation>CMD: Request Script Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptLog">
+		<xs:annotation>
+			<xs:documentation>Script Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logClassRecord">
+					<xs:sequence>
+						<xs:element ref="g2s:commandStatusList"/>
+						<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="scriptId" type="g2s:t_scriptId" use="required"/>
+					<xs:attributeGroup ref="g2s:p_scriptConditions"/>
+					<xs:attributeGroup ref="g2s:p_scriptStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="scriptLogList">
+		<xs:annotation>
+			<xs:documentation>CMD: List From the Script Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:scriptLog"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Module Commands.-->
+	<xs:element name="getModuleList">
+		<xs:annotation>
+			<xs:documentation>CMD: Request the moduleList.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="storageUsed">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:attributeGroup ref="g2s:p_deviceClass"/>
+					<xs:attributeGroup ref="g2s:p_storageSelect"/>
+					<xs:attribute name="storageUsed" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:long">
+								<xs:minInclusive value="0"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+					<xs:attribute name="storageApp" type="g2s:t_storageApplication" use="optional" default="G2S_other"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleStatus">
+		<xs:annotation>
+			<xs:documentation>Module Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_moduleInfo">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:storageUsed"/>
+					</xs:sequence>
+					<xs:attributeGroup ref="g2s:p_modStatus"/>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="moduleList">
+		<xs:annotation>
+			<xs:documentation>CMD: List of Current Modules.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="g2s:moduleStatus"/>
+					</xs:sequence>
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="download">
+		<xs:annotation>
+			<xs:documentation>Download Class Wrapper.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setDownloadState"/>
+						<xs:element ref="g2s:getDownloadStatus"/>
+						<xs:element ref="g2s:downloadStatus"/>
+						<xs:element ref="g2s:getDownloadProfile"/>
+						<xs:element ref="g2s:downloadProfile"/>
+						<xs:element ref="g2s:addPackage"/>
+						<xs:element ref="g2s:createPackage"/>
+						<xs:element ref="g2s:deletePackage"/>
+						<xs:element ref="g2s:uploadPackage"/>
+						<xs:element ref="g2s:getPackageStatus"/>
+						<xs:element ref="g2s:packageStatus"/>
+						<xs:element ref="g2s:packageStatusAck"/>
+						<xs:element ref="g2s:readPackageContents"/>
+						<xs:element ref="g2s:packageContents"/>
+						<xs:element ref="g2s:getPackageList"/>
+						<xs:element ref="g2s:packageList"/>
+						<xs:element ref="g2s:getPackageLogStatus"/>
+						<xs:element ref="g2s:packageLogStatus"/>
+						<xs:element ref="g2s:getPackageLog"/>
+						<xs:element ref="g2s:packageLogList"/>
+						<xs:element ref="g2s:setScript"/>
+						<xs:element ref="g2s:cancelScript"/>
+						<xs:element ref="g2s:authorizeScript"/>
+						<xs:element ref="g2s:getScriptStatus"/>
+						<xs:element ref="g2s:scriptStatus"/>
+						<xs:element ref="g2s:scriptStatusAck"/>
+						<xs:element ref="g2s:getScriptList"/>
+						<xs:element ref="g2s:scriptList"/>
+						<xs:element ref="g2s:getScriptLogStatus"/>
+						<xs:element ref="g2s:scriptLogStatus"/>
+						<xs:element ref="g2s:getScriptLog"/>
+						<xs:element ref="g2s:scriptLogList"/>
+						<xs:element ref="g2s:getModuleList"/>
+						<xs:element ref="g2s:moduleList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

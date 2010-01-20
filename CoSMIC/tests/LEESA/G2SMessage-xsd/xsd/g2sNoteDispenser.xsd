@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_noteDispenserProfile">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_noteDispenserStatus">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="doorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="dispenserJam" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="dispenserFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="dispenserEmpty" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="dispenserFull" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="highWaterMark" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="lowWaterMark" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_noteDispenserDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Note Data Table Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="noteActive" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_notesDispensedLog">
+		<xs:annotation>
+			<xs:documentation>Notes Dispensed Log Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="noteDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_noteDispenserStatus">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_noteDispenserStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_noteDispenserDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Data Table Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_noteDispenserDataTableItem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_noteDispenserProfile">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:noteDispenserData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_noteDispenserProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_notesDispensedLogItem">
+		<xs:annotation>
+			<xs:documentation>Notes Dispensed Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:attributeGroup ref="g2s:p_notesDispensedLog"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_notesDispensedLogList">
+		<xs:annotation>
+			<xs:documentation>Notes Dispensed Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:notesDispensedLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Note Dispenser Status Commands.-->
+	<xs:element name="setNoteDispenserState">
+		<xs:annotation>
+			<xs:documentation>Set Note Dispenser State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNoteDispenserStatus">
+		<xs:annotation>
+			<xs:documentation>Request Note Dispenser Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteDispenserStatus">
+		<xs:annotation>
+			<xs:documentation>Current Note Dispenser Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteDispenserStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Note Dispenser Data Table Commands.-->
+	<xs:element name="getNoteDispenserProfile">
+		<xs:annotation>
+			<xs:documentation>Request Note Dispenser Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteDispenserProfile">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteDispenserProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteDispenserData">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteDispenserDataTableItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Note Dispenser Log Commands.-->
+	<xs:element name="getNotesDispensedStatus">
+		<xs:annotation>
+			<xs:documentation>Request Note Dispenser Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesDispensedStatus">
+		<xs:annotation>
+			<xs:documentation>Current Status Of The Note Dispenser Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNotesDispensed">
+		<xs:annotation>
+			<xs:documentation>Request Last n Notes Dispensed.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesDispensedLog">
+		<xs:annotation>
+			<xs:documentation>Notes Dispensed Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_notesDispensedLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesDispensedList">
+		<xs:annotation>
+			<xs:documentation>Last n Notes Dispensed Message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_notesDispensedLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="noteDispenser">
+		<xs:annotation>
+			<xs:documentation>Note Dispenser Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setNoteDispenserState"/>
+						<xs:element ref="g2s:getNoteDispenserStatus"/>
+						<xs:element ref="g2s:noteDispenserStatus"/>
+						<xs:element ref="g2s:getNoteDispenserProfile"/>
+						<xs:element ref="g2s:noteDispenserProfile"/>
+						<xs:element ref="g2s:getNotesDispensedStatus"/>
+						<xs:element ref="g2s:notesDispensedStatus"/>
+						<xs:element ref="g2s:getNotesDispensed"/>
+						<xs:element ref="g2s:notesDispensedList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

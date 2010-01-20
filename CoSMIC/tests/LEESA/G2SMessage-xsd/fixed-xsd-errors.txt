@@ -1,0 +1,70 @@
+[1295 sutambe@prince G2SMessage]$ $XSD_ROOT/bin/xsd cxx-tree --export-symbol LIBRARY_Export --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last g2sMessage.xsd 
+g2sGamePlay.xsd:59:67: error: attribute name 'p_wagerCategory/maxWagerCredits' creates an unstable conflict when used as a type name
+g2sCabinet.xsd:138:19: info: conflicting type is defined here
+g2sGamePlay.xsd:59:67: info: use --anonymous-regex to resolve this conflict
+g2sGamePlay.xsd:59:67: info: and don't forget to pass the same option when translating 'g2sGamePlay.xsd' and all the schemas that refer to it
+g2sGamePlay.xsd:79:66: error: attribute name 'p_gameProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sGamePlay.xsd:79:66: info: use --anonymous-regex to resolve this conflict
+g2sGamePlay.xsd:79:66: info: and don't forget to pass the same option when translating 'g2sGamePlay.xsd' and all the schemas that refer to it
+g2sGamePlay.xsd:88:67: error: attribute name 'p_gameProfile/maxWagerCredits' creates an unstable conflict when used as a type name
+g2sCabinet.xsd:138:19: info: conflicting type is defined here
+g2sGamePlay.xsd:88:67: info: use --anonymous-regex to resolve this conflict
+g2sGamePlay.xsd:88:67: info: and don't forget to pass the same option when translating 'g2sGamePlay.xsd' and all the schemas that refer to it
+g2sHandpay.xsd:55:66: error: attribute name 'p_handpayProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sHandpay.xsd:55:66: info: use --anonymous-regex to resolve this conflict
+g2sHandpay.xsd:55:66: info: and don't forget to pass the same option when translating 'g2sHandpay.xsd' and all the schemas that refer to it
+g2sNoteAcceptor.xsd:25:66: error: attribute name 'p_noteAcceptorProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sNoteAcceptor.xsd:25:66: info: use --anonymous-regex to resolve this conflict
+g2sNoteAcceptor.xsd:25:66: info: and don't forget to pass the same option when translating 'g2sNoteAcceptor.xsd' and all the schemas that refer to it
+g2sNoteDispenser.xsd:10:66: error: attribute name 'p_noteDispenserProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sNoteDispenser.xsd:10:66: info: use --anonymous-regex to resolve this conflict
+g2sNoteDispenser.xsd:10:66: info: and don't forget to pass the same option when translating 'g2sNoteDispenser.xsd' and all the schemas that refer to it
+g2sPrinter.xsd:38:66: error: attribute name 'p_printerProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sPrinter.xsd:38:66: info: use --anonymous-regex to resolve this conflict
+g2sPrinter.xsd:38:66: info: and don't forget to pass the same option when translating 'g2sPrinter.xsd' and all the schemas that refer to it
+g2sProgressive.xsd:64:66: error: attribute name 'p_progressiveProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sProgressive.xsd:64:66: info: use --anonymous-regex to resolve this conflict
+g2sProgressive.xsd:64:66: info: and don't forget to pass the same option when translating 'g2sProgressive.xsd' and all the schemas that refer to it
+g2sBonus.xsd:70:66: error: attribute name 'p_bonusProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sBonus.xsd:70:66: info: use --anonymous-regex to resolve this conflict
+g2sBonus.xsd:70:66: info: and don't forget to pass the same option when translating 'g2sBonus.xsd' and all the schemas that refer to it
+g2sPlayer.xsd:118:66: error: attribute name 'p_playerProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sPlayer.xsd:118:66: info: use --anonymous-regex to resolve this conflict
+g2sPlayer.xsd:118:66: info: and don't forget to pass the same option when translating 'g2sPlayer.xsd' and all the schemas that refer to it
+g2sPlayer.xsd:127:50: error: attribute name 'p_playerProfile/idReaderId' creates an unstable conflict when used as a type name
+g2sHandpay.xsd:67:19: info: conflicting type is defined here
+g2sPlayer.xsd:127:50: info: use --anonymous-regex to resolve this conflict
+g2sPlayer.xsd:127:50: info: and don't forget to pass the same option when translating 'g2sPlayer.xsd' and all the schemas that refer to it
+g2sVoucher.xsd:127:66: error: attribute name 'p_voucherProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sVoucher.xsd:127:66: info: use --anonymous-regex to resolve this conflict
+g2sVoucher.xsd:127:66: info: and don't forget to pass the same option when translating 'g2sVoucher.xsd' and all the schemas that refer to it
+g2sVoucher.xsd:135:62: error: attribute name 'p_voucherProfile/idReaderId' creates an unstable conflict when used as a type name
+g2sHandpay.xsd:67:19: info: conflicting type is defined here
+g2sVoucher.xsd:135:62: info: use --anonymous-regex to resolve this conflict
+g2sVoucher.xsd:135:62: info: and don't forget to pass the same option when translating 'g2sVoucher.xsd' and all the schemas that refer to it
+g2sWAT.xsd:127:66: error: attribute name 'p_watProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sWAT.xsd:127:66: info: use --anonymous-regex to resolve this conflict
+g2sWAT.xsd:127:66: info: and don't forget to pass the same option when translating 'g2sWAT.xsd' and all the schemas that refer to it
+g2sGAT.xsd:135:66: error: attribute name 'p_gatProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sGAT.xsd:135:66: info: use --anonymous-regex to resolve this conflict
+g2sGAT.xsd:135:66: info: and don't forget to pass the same option when translating 'g2sGAT.xsd' and all the schemas that refer to it
+g2sGAT.xsd:143:62: error: attribute name 'p_gatProfile/idReaderId' creates an unstable conflict when used as a type name
+g2sHandpay.xsd:67:19: info: conflicting type is defined here
+g2sGAT.xsd:143:62: info: use --anonymous-regex to resolve this conflict
+g2sGAT.xsd:143:62: info: and don't forget to pass the same option when translating 'g2sGAT.xsd' and all the schemas that refer to it
+g2sCentral.xsd:79:66: error: attribute name 'p_centralProfile/minLogEntries' creates an unstable conflict when used as a type name
+g2sIncludeConfig.xsd:119:19: info: conflicting type is defined here
+g2sCentral.xsd:79:66: info: use --anonymous-regex to resolve this conflict
+g2sCentral.xsd:79:66: info: and don't forget to pass the same option when translating 'g2sCentral.xsd' and all the schemas that refer to it
+

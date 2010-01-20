@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_meterInfoTypesBase">
+		<xs:annotation>
+			<xs:documentation>Type Of Meter Information - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_onPeriodic"/>
+			<xs:enumeration value="G2S_onEOD"/>
+			<xs:enumeration value="G2S_onDemand"/>
+			<xs:enumeration value="G2S_onEvent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_meterInfoTypes">
+		<xs:annotation>
+			<xs:documentation>Type Of Meter Information - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_meterInfoTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_meterSubTypesBase">
+		<xs:annotation>
+			<xs:documentation>Type Of Meter Subscription - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_onPeriodic"/>
+			<xs:enumeration value="G2S_onEOD"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_meterSubTypes">
+		<xs:annotation>
+			<xs:documentation>Type Of Meter Subscription - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_meterSubTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_meterTypes">
+		<xs:annotation>
+			<xs:documentation>Type Of Meter - Count or Amount - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_count"/>
+			<xs:enumeration value="G2S_amount"/>
+			<xs:enumeration value="G2S_percent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Meter Group Data Types.-->
+	<xs:simpleType name="t_cabinetMeters">
+		<xs:annotation>
+			<xs:documentation>Cabinet Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_playerCashableAmt"/>
+			<xs:enumeration value="G2S_playerPromoAmt"/>
+			<xs:enumeration value="G2S_playerNonCashAmt"/>
+			<xs:enumeration value="G2S_wageredCashableAmt"/>
+			<xs:enumeration value="G2S_wageredPromoAmt"/>
+			<xs:enumeration value="G2S_wageredNonCashAmt"/>
+			<xs:enumeration value="G2S_cardedWageredCashableAmt"/>
+			<xs:enumeration value="G2S_cardedWageredPromoAmt"/>
+			<xs:enumeration value="G2S_cardedWageredNonCashAmt"/>
+			<xs:enumeration value="G2S_egmPaidGameWonAmt"/>
+			<xs:enumeration value="G2S_handPaidGameWonAmt"/>
+			<xs:enumeration value="G2S_cardedGameWonAmt"/>
+			<xs:enumeration value="G2S_egmPaidProgWonAmt"/>
+			<xs:enumeration value="G2S_handPaidProgWonAmt"/>
+			<xs:enumeration value="G2S_cardedProgWonAmt"/>
+			<xs:enumeration value="G2S_egmPaidBonusWonAmt"/>
+			<xs:enumeration value="G2S_handPaidBonusWonAmt"/>
+			<xs:enumeration value="G2S_egmPaidBonusNonWonAmt"/>
+			<xs:enumeration value="G2S_handPaidBonusNonWonAmt"/>
+			<xs:enumeration value="G2S_cardedBonusWonAmt"/>
+			<xs:enumeration value="G2S_cardedBonusNonWonAmt"/>
+			<xs:enumeration value="G2S_egmDispensedCashableAmt"/>
+			<xs:enumeration value="G2S_egmDispensedPromoAmt"/>
+			<xs:enumeration value="G2S_egmDispensedNonCashAmt"/>
+			<xs:enumeration value="G2S_handPaidCancelAmt"/>
+			<xs:enumeration value="G2S_cardedPlayedCnt"/>
+			<xs:enumeration value="G2S_gamesSinceInitCnt"/>
+			<xs:enumeration value="G2S_gamesSincePowerResetCnt"/>
+			<xs:enumeration value="G2S_gamesSinceDoorClosedCnt"/>
+			<xs:enumeration value="G2S_logicDoorOpenCnt"/>
+			<xs:enumeration value="G2S_auxDoorOpenCnt"/>
+			<xs:enumeration value="G2S_cabinetDoorOpenCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_currencyInMeters">
+		<xs:annotation>
+			<xs:documentation>Currency In Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_currencyInAmt"/>
+			<xs:enumeration value="G2S_currencyInCnt"/>
+			<xs:enumeration value="G2S_currencyToDropAmt"/>
+			<xs:enumeration value="G2S_currencyToDropCnt"/>
+			<xs:enumeration value="G2S_currencyToDispAmt"/>
+			<xs:enumeration value="G2S_currencyToDispCnt"/>
+			<xs:enumeration value="G2S_dropDoorOpenCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_currencyOutMeters">
+		<xs:annotation>
+			<xs:documentation>Currency Out Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_currencyOutAmt"/>
+			<xs:enumeration value="G2S_currencyOutCnt"/>
+			<xs:enumeration value="G2S_dispDoorOpenCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_gameDenomMeters">
+		<xs:annotation>
+			<xs:documentation>Game Denominationn Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_wageredAmt"/>
+			<xs:enumeration value="G2S_playedCnt"/>
+			<xs:enumeration value="G2S_avgPaybackPct"/>
+			<xs:enumeration value="G2S_theoPaybackAmt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_performanceMeters">
+		<xs:annotation>
+			<xs:documentation>Performance Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_wageredAmt"/>
+			<xs:enumeration value="G2S_egmPaidGameWonAmt"/>
+			<xs:enumeration value="G2S_handPaidGameWonAmt"/>
+			<xs:enumeration value="G2S_egmPaidProgWonAmt"/>
+			<xs:enumeration value="G2S_handPaidProgWonAmt"/>
+			<xs:enumeration value="G2S_wonCnt"/>
+			<xs:enumeration value="G2S_lostCnt"/>
+			<xs:enumeration value="G2S_tiedCnt"/>
+			<xs:enumeration value="G2S_failedCnt"/>
+			<xs:enumeration value="G2S_avgPaybackPct"/>
+			<xs:enumeration value="G2S_theoPaybackAmt"/>
+			<xs:enumeration value="G2S_secWageredAmt"/>
+			<xs:enumeration value="G2S_secWonAmt"/>
+			<xs:enumeration value="G2S_secWonCnt"/>
+			<xs:enumeration value="G2S_secLostCnt"/>
+			<xs:enumeration value="G2S_secTiedCnt"/>
+			<xs:enumeration value="G2S_secFailedCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_progressiveMeters">
+		<xs:annotation>
+			<xs:documentation>Progressive Contribution Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_wageredAmt"/>
+			<xs:enumeration value="G2S_playedCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferInMeters">
+		<xs:annotation>
+			<xs:documentation>Transfer In Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_cashableInAmt"/>
+			<xs:enumeration value="G2S_promoInAmt"/>
+			<xs:enumeration value="G2S_nonCashInAmt"/>
+			<xs:enumeration value="G2S_transferInCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_transferOutMeters">
+		<xs:annotation>
+			<xs:documentation>Transfer Out Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_cashableOutAmt"/>
+			<xs:enumeration value="G2S_promoOutAmt"/>
+			<xs:enumeration value="G2S_nonCashOutAmt"/>
+			<xs:enumeration value="G2S_transferOutCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherMeters">
+		<xs:annotation>
+			<xs:documentation>Transfer In Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_cashableInAmt"/>
+			<xs:enumeration value="G2S_cashableInCnt"/>
+			<xs:enumeration value="G2S_promoInAmt"/>
+			<xs:enumeration value="G2S_promoInCnt"/>
+			<xs:enumeration value="G2S_nonCashInAmt"/>
+			<xs:enumeration value="G2S_nonCashInCnt"/>
+			<xs:enumeration value="G2S_cashableSysInAmt"/>
+			<xs:enumeration value="G2S_cashableSysInCnt"/>
+			<xs:enumeration value="G2S_promoSysInAmt"/>
+			<xs:enumeration value="G2S_promoSysInCnt"/>
+			<xs:enumeration value="G2S_nonCashSysInAmt"/>
+			<xs:enumeration value="G2S_nonCashSysInCnt"/>
+			<xs:enumeration value="G2S_cashableOutAmt"/>
+			<xs:enumeration value="G2S_cashableOutCnt"/>
+			<xs:enumeration value="G2S_promoOutAmt"/>
+			<xs:enumeration value="G2S_promoOutCnt"/>
+			<xs:enumeration value="G2S_nonCashOutAmt"/>
+			<xs:enumeration value="G2S_nonCashOutCnt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_wagerCategoryMeters">
+		<xs:annotation>
+			<xs:documentation>Wager Category Meters - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_wageredAmt"/>
+			<xs:enumeration value="G2S_playedCnt"/>
+			<xs:enumeration value="G2S_paybackPct"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Composite Meter Name Data Type.-->
+	<xs:simpleType name="t_meterNames">
+		<xs:annotation>
+			<xs:documentation>Meter Name Data Type - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_performanceMeters g2s:t_wagerCategoryMeters g2s:t_gameDenomMeters g2s:t_transferInMeters g2s:t_transferOutMeters g2s:t_currencyInMeters g2s:t_currencyOutMeters g2s:t_progressiveMeters g2s:t_voucherMeters g2s:t_cabinetMeters g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_simpleMeter">
+		<xs:annotation>
+			<xs:documentation>Simple Meter Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="meterName" type="g2s:t_meterNames" use="required"/>
+		<xs:attribute name="meterValue" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="meterType" type="g2s:t_meterTypes" use="optional"/>
+		<xs:attribute name="meterRollover" type="g2s:t_meterValue" use="optional"/>
+		<xs:attribute name="meterIncreasing" type="xs:boolean" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_complexMeter">
+		<xs:annotation>
+			<xs:documentation>Complex Meter Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="meterName" type="g2s:t_meterNames" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_meterSub">
+		<xs:annotation>
+			<xs:documentation>Meter Subscription Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="meterSubType" type="g2s:t_meterSubTypes" use="required"/>
+		<xs:attribute name="periodicInterval" use="optional" default="900000">
+			<xs:simpleType>
+				<xs:restriction base="g2s:t_milliseconds">
+					<xs:minInclusive value="60000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="periodicBase" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="eodBase" type="g2s:t_milliseconds" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--Simple/Complex Meter Definitions.-->
+	<xs:complexType name="c_simpleMeter">
+		<xs:annotation>
+			<xs:documentation>Meter Information Type Definition - Leaf Level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_simpleMeter"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_complexMeter">
+		<xs:annotation>
+			<xs:documentation>Meter Information Type Definition - Branch Level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:simpleMeter" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:complexMeter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_complexMeter"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="simpleMeter">
+		<xs:annotation>
+			<xs:documentation>Meter Information Element - Leaf level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_simpleMeter">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="complexMeter">
+		<xs:annotation>
+			<xs:documentation>Meter Information Element - Branch Level.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_complexMeter">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_getMeters">
+		<xs:annotation>
+			<xs:documentation>Meter Information Request Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attribute name="meterDefinitions" type="xs:boolean" use="optional" default="false"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getMeterInfo">
+		<xs:annotation>
+			<xs:documentation>Get Meter Information Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:getDeviceMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:getGameDenomMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:getWagerMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:getCurrencyMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_deviceMeters">
+		<xs:annotation>
+			<xs:documentation>Meter Information Response Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:simpleMeter" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:complexMeter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_wagerMeters">
+		<xs:annotation>
+			<xs:documentation>Wager Meter Information Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:simpleMeter" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:complexMeter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="wagerCategory" type="g2s:t_wagerCategory" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_denomMeters">
+		<xs:annotation>
+			<xs:documentation>Denomination Meter Information Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:simpleMeter" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:complexMeter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_currencyMeters">
+		<xs:annotation>
+			<xs:documentation>Currency Meter Information Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:simpleMeter" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:complexMeter" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="currencyType" type="g2s:t_currencyTypes" use="required"/>
+				<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+				<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_meterInfo">
+		<xs:annotation>
+			<xs:documentation>Meter Information Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:deviceMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:gameDenomMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:wagerMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:currencyMeters" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="meterInfoType" type="g2s:t_meterInfoTypes" use="required"/>
+				<xs:attribute name="meterDateTime" type="g2s:t_g2sDateTime" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_meterSubDetail">
+		<xs:annotation>
+			<xs:documentation>Meter Subscription Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_getMeterInfo">
+				<xs:attributeGroup ref="g2s:p_meterSub"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_meterSubSelect">
+		<xs:annotation>
+			<xs:documentation>Get / Clear Meter Subscription Type Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="meterSubType" type="g2s:t_meterSubTypes" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Meter Information Request Elements.-->
+	<xs:element name="getDeviceMeters">
+		<xs:annotation>
+			<xs:documentation>Meter Information Request Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getWagerMeters">
+		<xs:annotation>
+			<xs:documentation>Wager Meter Request Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getGameDenomMeters">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Meter Request Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCurrencyMeters">
+		<xs:annotation>
+			<xs:documentation>Currency Meter Request Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Meter Information Response Elements.-->
+	<xs:element name="deviceMeters">
+		<xs:annotation>
+			<xs:documentation>Meter Information Response Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wagerMeters">
+		<xs:annotation>
+			<xs:documentation>Wager Meter Information Response Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_wagerMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameDenomMeters">
+		<xs:annotation>
+			<xs:documentation>Denomination Meter Information Response Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_denomMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currencyMeters">
+		<xs:annotation>
+			<xs:documentation>Currency Meter Information Response Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_currencyMeters">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getMeterInfo">
+		<xs:annotation>
+			<xs:documentation>Meter Information Request Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getMeterInfo">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="meterInfo">
+		<xs:annotation>
+			<xs:documentation>Meter Information Request-Response Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_meterInfo">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="meterInfoAck">
+		<xs:annotation>
+			<xs:documentation>Meter Information Response Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Meter Subscription Elements.-->
+	<xs:element name="setMeterSub">
+		<xs:annotation>
+			<xs:documentation>Set Meter Subscription Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_meterSubDetail">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="clearMeterSub">
+		<xs:annotation>
+			<xs:documentation>Clear Meter Subscription Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_meterSubSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getMeterSub">
+		<xs:annotation>
+			<xs:documentation>Get Meter Subscription Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_meterSubSelect">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="meterSubList">
+		<xs:annotation>
+			<xs:documentation>Meter Subscription List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_meterSubDetail">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Meters Point-to-Point Class Element.-->
+	<xs:element name="meters">
+		<xs:annotation>
+			<xs:documentation>Meters Point-to-Point Class Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getMeterInfo"/>
+						<xs:element ref="g2s:meterInfo"/>
+						<xs:element ref="g2s:meterInfoAck"/>
+						<xs:element ref="g2s:setMeterSub"/>
+						<xs:element ref="g2s:getMeterSub"/>
+						<xs:element ref="g2s:clearMeterSub"/>
+						<xs:element ref="g2s:meterSubList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-26 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_egmVoucherActions">
+		<xs:annotation>
+			<xs:documentation>Voucher Action Codes - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_issued"/>
+			<xs:enumeration value="G2S_pending"/>
+			<xs:enumeration value="G2S_redeemed"/>
+			<xs:enumeration value="G2S_rejected"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_egmVoucherExceptions">
+		<xs:annotation>
+			<xs:documentation>EGM Exception Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_hostVoucherActions">
+		<xs:annotation>
+			<xs:documentation>Host Action Codes - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_egmAction"/>
+			<xs:enumeration value="G2S_stack"/>
+			<xs:enumeration value="G2S_reject"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_hostVoucherExceptions">
+		<xs:annotation>
+			<xs:documentation>Host Exception Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_validationListId">
+		<xs:annotation>
+			<xs:documentation>Validation List Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_validationSeed">
+		<xs:annotation>
+			<xs:documentation>Validation Id Seed Value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:minLength value="0"/>
+			<xs:pattern value="[ -~]{0,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherActions">
+		<xs:annotation>
+			<xs:documentation>Type of Log Entry - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_issue"/>
+			<xs:enumeration value="G2S_redeem"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_validationId">
+		<xs:annotation>
+			<xs:documentation>Voucher Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="18"/>
+			<xs:minLength value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherSources">
+		<xs:annotation>
+			<xs:documentation>Voucher Issuance Source - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_egmIssued"/>
+			<xs:enumeration value="G2S_systemIssued"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherStates">
+		<xs:annotation>
+			<xs:documentation>Current Status of the Voucher transaction - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_issueSent"/>
+			<xs:enumeration value="G2S_issueAcked"/>
+			<xs:enumeration value="G2S_redeemSent"/>
+			<xs:enumeration value="G2S_redeemAuth"/>
+			<xs:enumeration value="G2S_commitSent"/>
+			<xs:enumeration value="G2S_commitAcked"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherTitle16">
+		<xs:annotation>
+			<xs:documentation>16-Character Voucher Title.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_voucherTitle40">
+		<xs:annotation>
+			<xs:documentation>40-Character Voucher Title.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="40"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_voucherStatus">
+		<xs:annotation>
+			<xs:documentation>Voucher Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="validationListId" type="g2s:t_validationListId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_voucherProfile">
+		<xs:annotation>
+			<xs:documentation>Voucher Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="idReaderId" type="g2s:t_idReaderId" use="optional" default="0">
+		</xs:attribute>
+		<xs:attribute name="combineCashableOut" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="allowNonCashOut" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="maxValIds" use="optional" default="20">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="minLevelValIds" use="optional" default="15">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="valIdListRefresh" type="g2s:t_milliseconds" use="optional" default="43200000"/>
+		<xs:attribute name="valIdListLife" type="g2s:t_milliseconds" use="optional" default="86400000"/>
+		<xs:attribute name="voucherHoldTime" type="g2s:t_milliseconds" use="optional" default="15000"/>
+		<xs:attribute name="printOffLine" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="expireCashPromo" use="optional" default="30">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="expireNonCash" use="optional" default="30">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="printExpCashPromo" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="printExpNonCash" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="propName" type="g2s:t_voucherTitle40" use="required"/>
+		<xs:attribute name="propLine1" type="g2s:t_voucherTitle40" use="required"/>
+		<xs:attribute name="propLine2" type="g2s:t_voucherTitle40" use="required"/>
+		<xs:attribute name="titleCash" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titlePromo" type="g2s:t_voucherTitle16" use="optional" default=""/>
+		<xs:attribute name="titleNonCash" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titleLargeWin" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titleBonusCash" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titleBonusPromo" type="g2s:t_voucherTitle16" use="optional" default=""/>
+		<xs:attribute name="titleBonusNonCash" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titleWatCash" type="g2s:t_voucherTitle16" use="required"/>
+		<xs:attribute name="titleWatPromo" type="g2s:t_voucherTitle16" use="optional" default=""/>
+		<xs:attribute name="titleWatNonCash" type="g2s:t_voucherTitle16" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_getValidationData">
+		<xs:annotation>
+			<xs:documentation>Validation Id List Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+		<xs:attribute name="validationListId" type="g2s:t_validationListId" use="required"/>
+		<xs:attribute name="numValidationIds" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="valIdListExpired" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_validationData">
+		<xs:annotation>
+			<xs:documentation>Validation Id List Response Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="validationListId" type="g2s:t_validationListId" use="required"/>
+		<xs:attribute name="deleteCurrent" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_validationItem">
+		<xs:annotation>
+			<xs:documentation>Validation Id Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="validationId" type="g2s:t_validationId" use="required"/>
+		<xs:attribute name="validationSeed" type="g2s:t_validationSeed" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_voucherInfo">
+		<xs:annotation>
+			<xs:documentation>Voucher Information Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="validationId" type="g2s:t_validationId" use="required"/>
+		<xs:attribute name="voucherAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="creditType" type="g2s:t_creditTypes" use="required"/>
+		<xs:attribute name="voucherSource" type="g2s:t_voucherSources" use="optional" default="G2S_egmIssued"/>
+		<xs:attribute name="largeWin" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="voucherSequence" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="expireCredits" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="expireDateTime" type="g2s:t_g2sDateTime" use="optional" default="2000-01-01T00:00:00.000-00:00"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_hostAuthorization">
+		<xs:annotation>
+			<xs:documentation>Transfer Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostAction" type="g2s:t_hostVoucherActions" use="optional" default="G2S_egmAction"/>
+		<xs:attribute name="hostException" type="g2s:t_hostVoucherExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_transfer">
+		<xs:annotation>
+			<xs:documentation>Transfer Parameters</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transferAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="transferDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="egmAction" type="g2s:t_egmVoucherActions" use="required"/>
+		<xs:attribute name="egmException" type="g2s:t_egmVoucherExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_expireDays">
+		<xs:annotation>
+			<xs:documentation>Expiration Days Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="expireDays" use="optional" default="-1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="-1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_voucherProfileType">
+		<xs:annotation>
+			<xs:documentation>Voucher Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_voucherProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_voucherStatusType">
+		<xs:annotation>
+			<xs:documentation>Voucher Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_voucherStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getValidationDataType">
+		<xs:annotation>
+			<xs:documentation>Validation Id Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_getValidationData"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_validationDataType">
+		<xs:annotation>
+			<xs:documentation>Validation Id Response Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:validationIdItem" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_validationData"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_validationIdItemType">
+		<xs:annotation>
+			<xs:documentation>Validation Id Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_validationItem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_issueVoucherType">
+		<xs:annotation>
+			<xs:documentation>Issue Voucher Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:voucherSourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_voucherInfo"/>
+				<xs:attributeGroup ref="g2s:p_expireDays"/>
+				<xs:attributeGroup ref="g2s:p_transfer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_redeemVoucherType">
+		<xs:annotation>
+			<xs:documentation>Redeem Voucher Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attribute name="validationId" type="g2s:t_validationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_authorizeVoucherType">
+		<xs:annotation>
+			<xs:documentation>Authorize Redemption Response Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_voucherInfo"/>
+				<xs:attributeGroup ref="g2s:p_hostAuthorization"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commitVoucherType">
+		<xs:annotation>
+			<xs:documentation>Commit Voucher Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_voucherInfo"/>
+				<xs:attributeGroup ref="g2s:p_transfer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_voucherLogListType">
+		<xs:annotation>
+			<xs:documentation>Voucher Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:voucherLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_voucherLogItemType">
+		<xs:annotation>
+			<xs:documentation>Voucher Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:voucherSourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="voucherState" type="g2s:t_voucherStates" use="required"/>
+				<xs:attribute name="voucherAction" type="g2s:t_voucherActions" use="required"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_voucherInfo"/>
+				<xs:attributeGroup ref="g2s:p_expireDays"/>
+				<xs:attributeGroup ref="g2s:p_hostAuthorization"/>
+				<xs:attributeGroup ref="g2s:p_transfer"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Voucher Status Commands.-->
+	<xs:element name="setVoucherState">
+		<xs:annotation>
+			<xs:documentation>Change Voucher State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setVoucherLockOut">
+		<xs:annotation>
+			<xs:documentation>Set Voucher Lock Out</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setLockOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getVoucherStatus">
+		<xs:annotation>
+			<xs:documentation>Request Voucher Device Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherStatus">
+		<xs:annotation>
+			<xs:documentation>Voucher Device Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_voucherStatusType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getVoucherProfile">
+		<xs:annotation>
+			<xs:documentation>Request Voucher Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherProfile">
+		<xs:annotation>
+			<xs:documentation>Current Voucher Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_voucherProfileType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Voucher Validation Id Commands.-->
+	<xs:element name="getValidationData">
+		<xs:annotation>
+			<xs:documentation>Request Validation Data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getValidationDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="validationData">
+		<xs:annotation>
+			<xs:documentation>Current Validation Data.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_validationDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="validationIdItem">
+		<xs:annotation>
+			<xs:documentation>Validation Id Item Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_validationIdItemType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Voucher Transaction Commands.-->
+	<xs:element name="issueVoucher">
+		<xs:annotation>
+			<xs:documentation>Issue Voucher Notification.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_issueVoucherType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="issueVoucherAck">
+		<xs:annotation>
+			<xs:documentation>Acknowledge issueVoucher Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="redeemVoucher">
+		<xs:annotation>
+			<xs:documentation>Redeem Voucher Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_redeemVoucherType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeVoucher">
+		<xs:annotation>
+			<xs:documentation>Authorize Voucher Redemption.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_authorizeVoucherType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitVoucher">
+		<xs:annotation>
+			<xs:documentation>Voucher Committed Notification.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commitVoucherType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitVoucherAck">
+		<xs:annotation>
+			<xs:documentation>Acknowledge commitVoucher Command</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherSourceRef">
+		<xs:annotation>
+			<xs:documentation>Voucher Source Reference Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_transactionReference">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Voucher Log Commands.-->
+	<xs:element name="getVoucherLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Voucher Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherLogStatus">
+		<xs:annotation>
+			<xs:documentation>Current Status Of The Voucher Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getVoucherLog">
+		<xs:annotation>
+			<xs:documentation>Request Voucher History Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherLogList">
+		<xs:annotation>
+			<xs:documentation>Current Voucher History Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_voucherLogListType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="voucherLog">
+		<xs:annotation>
+			<xs:documentation>Voucher Log Entry Record</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_voucherLogItemType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="voucher">
+		<xs:annotation>
+			<xs:documentation>Voucher Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setVoucherState"/>
+						<xs:element ref="g2s:setVoucherLockOut"/>
+						<xs:element ref="g2s:getVoucherStatus"/>
+						<xs:element ref="g2s:voucherStatus"/>
+						<xs:element ref="g2s:getVoucherProfile"/>
+						<xs:element ref="g2s:voucherProfile"/>
+						<xs:element ref="g2s:getValidationData"/>
+						<xs:element ref="g2s:validationData"/>
+						<xs:element ref="g2s:issueVoucher"/>
+						<xs:element ref="g2s:issueVoucherAck"/>
+						<xs:element ref="g2s:redeemVoucher"/>
+						<xs:element ref="g2s:authorizeVoucher"/>
+						<xs:element ref="g2s:commitVoucher"/>
+						<xs:element ref="g2s:commitVoucherAck"/>
+						<xs:element ref="g2s:getVoucherLogStatus"/>
+						<xs:element ref="g2s:voucherLogStatus"/>
+						<xs:element ref="g2s:getVoucherLog"/>
+						<xs:element ref="g2s:voucherLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

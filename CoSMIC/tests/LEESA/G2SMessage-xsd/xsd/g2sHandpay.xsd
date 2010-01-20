@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_handpayStates">
+		<xs:annotation>
+			<xs:documentation>Handpay Transaction Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_handpayRequest"/>
+			<xs:enumeration value="G2S_handpayPend"/>
+			<xs:enumeration value="G2S_handpayCommit"/>
+			<xs:enumeration value="G2S_handpayAck"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_handpayTypes">
+		<xs:annotation>
+			<xs:documentation>Handpay Types - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_gameWin"/>
+			<xs:enumeration value="G2S_bonusPay"/>
+			<xs:enumeration value="G2S_cancelCredit"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_keyOffTypesBase">
+		<xs:annotation>
+			<xs:documentation>Handpay Key Off Type - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_localHandpay"/>
+			<xs:enumeration value="G2S_localVoucher"/>
+			<xs:enumeration value="G2S_localWat"/>
+			<xs:enumeration value="G2S_localCredit"/>
+			<xs:enumeration value="G2S_remoteHandpay"/>
+			<xs:enumeration value="G2S_remoteVoucher"/>
+			<xs:enumeration value="G2S_remoteWat"/>
+			<xs:enumeration value="G2S_remoteCredit"/>
+			<xs:enumeration value="G2S_cancelled"/>
+			<xs:enumeration value="G2S_unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_keyOffTypes">
+		<xs:annotation>
+			<xs:documentation>Handpay Key Off Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_keyOffTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_handpayProfile">
+		<xs:annotation>
+			<xs:documentation>Handpay Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="mixCreditTypes" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="requestNonCash" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="combineCashableOut" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idReaderId" type="g2s:t_idReaderId" use="optional" default="0">
+		</xs:attribute>
+		<xs:attribute name="enabledLocalHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledLocalCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledLocalVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledLocalWat" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledRemoteHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledRemoteCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledRemoteVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="enabledRemoteWat" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledLocalHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledLocalCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledLocalVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledLocalWat" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledRemoteHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledRemoteCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledRemoteVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="disabledRemoteWat" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_handpayRequest">
+		<xs:annotation>
+			<xs:documentation>Handpay Request Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="handpayType" type="g2s:t_handpayTypes" use="required"/>
+		<xs:attribute name="handpayDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="requestCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="requestPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="requestNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="egmPaidNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="idReaderType" type="g2s:t_idReaderTypes" use="optional" default="G2S_none"/>
+		<xs:attribute name="idNumber" type="g2s:t_idNumber" use="optional" default=""/>
+		<xs:attribute name="playerId" type="g2s:t_playerId" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keyOffOption">
+		<xs:annotation>
+			<xs:documentation>Key Off Option Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="localHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="localCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="localVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="localWat" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="remoteHandpay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="remoteCredit" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="remoteVoucher" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="remoteWat" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keyOff">
+		<xs:annotation>
+			<xs:documentation>Key Off Authorization Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="keyOffType" type="g2s:t_keyOffTypes" use="required"/>
+		<xs:attribute name="keyOffCashableAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="keyOffPromoAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="keyOffNonCashAmt" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_keyedOff">
+		<xs:annotation>
+			<xs:documentation>Key Off Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="keyOffDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_handpayStatus">
+		<xs:annotation>
+			<xs:documentation>Handpay Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attribute name="egmLocked" type="xs:boolean" use="optional" default="false"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_handpayProfile">
+		<xs:annotation>
+			<xs:documentation>Handpay Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_handpayProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_handpayRequest">
+		<xs:annotation>
+			<xs:documentation>HandpayRequest Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:handpaySourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_handpayRequest"/>
+				<xs:attributeGroup ref="g2s:p_keyOffOption"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_remoteKeyOff">
+		<xs:annotation>
+			<xs:documentation>Remote Key Off Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_keyOff"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_keyedOff">
+		<xs:annotation>
+			<xs:documentation>Keyed Off Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_keyOff"/>
+				<xs:attributeGroup ref="g2s:p_keyedOff"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_handpayLogItem">
+		<xs:annotation>
+			<xs:documentation>Handpay Log Record Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:handpaySourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="handpayState" type="g2s:t_handpayStates" use="required"/>
+				<xs:attributeGroup ref="g2s:p_handpayRequest"/>
+				<xs:attributeGroup ref="g2s:p_keyOffOption"/>
+				<xs:attributeGroup ref="g2s:p_keyOff"/>
+				<xs:attributeGroup ref="g2s:p_keyedOff"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_handpayLogList">
+		<xs:annotation>
+			<xs:documentation>Handpay Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:handpayLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Handpay Status Commands.-->
+	<xs:element name="setHandpayState">
+		<xs:annotation>
+			<xs:documentation>Change Handpay State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getHandpayStatus">
+		<xs:annotation>
+			<xs:documentation>Handpay Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayStatus">
+		<xs:annotation>
+			<xs:documentation>Current Handpay Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_handpayStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getHandpayProfile">
+		<xs:annotation>
+			<xs:documentation>Handpay Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayProfile">
+		<xs:annotation>
+			<xs:documentation>Current Handpay Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_handpayProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Handpay Transaction Commands.-->
+	<xs:element name="handpaySourceRef">
+		<xs:annotation>
+			<xs:documentation>Handpay Source Reference Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_transactionReference">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayRequest">
+		<xs:annotation>
+			<xs:documentation>Handpay Request Pending.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_handpayRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayAck">
+		<xs:annotation>
+			<xs:documentation>Handpay Request Acknowledgment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setRemoteKeyOff">
+		<xs:annotation>
+			<xs:documentation>Remote Key Off Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_remoteKeyOff">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="remoteKeyOffAck">
+		<xs:annotation>
+			<xs:documentation>Remote Key Off Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keyedOff">
+		<xs:annotation>
+			<xs:documentation>Key Off Confirmation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_keyedOff">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="keyedOffAck">
+		<xs:annotation>
+			<xs:documentation>Key Off Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Handpay Transaction Log Commands.-->
+	<xs:element name="getHandpayLogStatus">
+		<xs:annotation>
+			<xs:documentation>Request Handpay Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayLogStatus">
+		<xs:annotation>
+			<xs:documentation>Handpay Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getHandpayLog">
+		<xs:annotation>
+			<xs:documentation>Request Handpay Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayLog">
+		<xs:annotation>
+			<xs:documentation>Handpay Log Entry Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_handpayLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="handpayLogList">
+		<xs:annotation>
+			<xs:documentation>Handpay Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_handpayLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="handpay">
+		<xs:annotation>
+			<xs:documentation>Handpay Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getHandpayProfile"/>
+						<xs:element ref="g2s:handpayProfile"/>
+						<xs:element ref="g2s:setHandpayState"/>
+						<xs:element ref="g2s:getHandpayStatus"/>
+						<xs:element ref="g2s:handpayStatus"/>
+						<xs:element ref="g2s:handpayRequest"/>
+						<xs:element ref="g2s:handpayAck"/>
+						<xs:element ref="g2s:setRemoteKeyOff"/>
+						<xs:element ref="g2s:remoteKeyOffAck"/>
+						<xs:element ref="g2s:keyedOff"/>
+						<xs:element ref="g2s:keyedOffAck"/>
+						<xs:element ref="g2s:getHandpayLogStatus"/>
+						<xs:element ref="g2s:handpayLogStatus"/>
+						<xs:element ref="g2s:getHandpayLog"/>
+						<xs:element ref="g2s:handpayLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

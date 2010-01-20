@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_regionIndex">
+		<xs:annotation>
+			<xs:documentation>Region Index Value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_templateIndex">
+		<xs:annotation>
+			<xs:documentation>Template Index Value.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_printerTransferStates">
+		<xs:annotation>
+			<xs:documentation>Transfer Status Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_printerProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printerTemplateProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Template Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="templateIndex" type="g2s:t_templateIndex" use="required"/>
+		<xs:attribute name="templateConfig" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="15555"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printerRegionProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Region Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="regionIndex" type="g2s:t_regionIndex" use="required"/>
+		<xs:attribute name="regionConfig" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="15555"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printerStatus">
+		<xs:annotation>
+			<xs:documentation>Printer Status Parameters - xC8.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="chassisOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="printHeadOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="paperJam" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="paperLow" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="paperEmpty" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printerTemplate">
+		<xs:annotation>
+			<xs:documentation>Printer Template Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="templateIndex" type="g2s:t_templateIndex" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printerRegion">
+		<xs:annotation>
+			<xs:documentation>Printer Region Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="regionIndex" type="g2s:t_regionIndex" use="required"/>
+		<xs:attribute name="regionData" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="15555"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_transferStatus">
+		<xs:annotation>
+			<xs:documentation>Transfer Status Parameters - xC6.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="transferState" type="g2s:t_printerTransferStates" use="optional" default="1"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printComplete">
+		<xs:annotation>
+			<xs:documentation>Print Completion Parameters - xC5.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="printComplete" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_regionComplete">
+		<xs:annotation>
+			<xs:documentation>Print Completion Parameters - xC5.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="regionIndex" type="g2s:t_regionIndex" use="required"/>
+		<xs:attribute name="regionComplete" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_printLog">
+		<xs:annotation>
+			<xs:documentation>Print Log Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="printDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="transactionClass" type="g2s:t_deviceClass" use="required"/>
+		<xs:attribute name="transactionDevice" type="g2s:t_deviceId" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_printerStatus">
+		<xs:annotation>
+			<xs:documentation>Printer Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_printerStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printerProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:printerTemplateProfile" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:printerRegionProfile" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_printerProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printerTemplateProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Template Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_printerTemplateProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printerRegionProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Region Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_printerRegionProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printerTemplateItem">
+		<xs:annotation>
+			<xs:documentation>Printer Template Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_printerTemplate"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printerTemplateList">
+		<xs:annotation>
+			<xs:documentation>Printer Template List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:printerTemplate" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printRegion">
+		<xs:annotation>
+			<xs:documentation>Print Region Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_printerRegion"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printTicket">
+		<xs:annotation>
+			<xs:documentation>Print Ticket Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:printRegion" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_printerTemplate"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_regionComplete">
+		<xs:annotation>
+			<xs:documentation>Region Completion Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_regionComplete"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printComplete">
+		<xs:annotation>
+			<xs:documentation>Print Completion Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:sequence>
+					<xs:element ref="g2s:regionComplete" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_transferStatus"/>
+				<xs:attributeGroup ref="g2s:p_printComplete"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printLogItem">
+		<xs:annotation>
+			<xs:documentation>Print Log Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:regionComplete" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_printLog"/>
+				<xs:attributeGroup ref="g2s:p_printerTemplate"/>
+				<xs:attributeGroup ref="g2s:p_transferStatus"/>
+				<xs:attributeGroup ref="g2s:p_printComplete"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_printLogList">
+		<xs:annotation>
+			<xs:documentation>Print Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:printLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Printer Status Commands.-->
+	<xs:element name="setPrinterState">
+		<xs:annotation>
+			<xs:documentation>Set Printer State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPrinterStatus">
+		<xs:annotation>
+			<xs:documentation>Request Printer Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerStatus">
+		<xs:annotation>
+			<xs:documentation>Current Printer Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPrinterProfile">
+		<xs:annotation>
+			<xs:documentation>Request Printer Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerTemplateProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Template Profile Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerTemplateProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerRegionProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Region Profile Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerRegionProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerProfile">
+		<xs:annotation>
+			<xs:documentation>Printer Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPrinterTemplates">
+		<xs:annotation>
+			<xs:documentation>Request Printer Templates - xC7.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerTemplate">
+		<xs:annotation>
+			<xs:documentation>Printer Template Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerTemplateItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printerTemplateList">
+		<xs:annotation>
+			<xs:documentation>Printer Template List - xC8.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printerTemplateList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Print Ticket Commands.-->
+	<xs:element name="printRegion">
+		<xs:annotation>
+			<xs:documentation>Print Region Sub-Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printRegion">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printTicket">
+		<xs:annotation>
+			<xs:documentation>Print Ticket Command - xC2.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printTicket">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="regionComplete">
+		<xs:annotation>
+			<xs:documentation>Region Completion Confirmation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_regionComplete">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printComplete">
+		<xs:annotation>
+			<xs:documentation>Print Completion Confirmation - xC5 xC6.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printComplete">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Printer Log Commands.-->
+	<xs:element name="getPrintLogStatus">
+		<xs:annotation>
+			<xs:documentation>Print Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printLogStatus">
+		<xs:annotation>
+			<xs:documentation>Current Print Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getPrintLog">
+		<xs:annotation>
+			<xs:documentation>Print Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printLog">
+		<xs:annotation>
+			<xs:documentation>Print Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="printLogList">
+		<xs:annotation>
+			<xs:documentation>Current Print Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_printLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class wrapper.-->
+	<xs:element name="printer">
+		<xs:annotation>
+			<xs:documentation>Printer Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:getPrinterProfile"/>
+						<xs:element ref="g2s:printerProfile"/>
+						<xs:element ref="g2s:setPrinterState"/>
+						<xs:element ref="g2s:getPrinterStatus"/>
+						<xs:element ref="g2s:printerStatus"/>
+						<xs:element ref="g2s:getPrinterTemplates"/>
+						<xs:element ref="g2s:printerTemplateList"/>
+						<xs:element ref="g2s:printTicket"/>
+						<xs:element ref="g2s:printComplete"/>
+						<xs:element ref="g2s:getPrintLogStatus"/>
+						<xs:element ref="g2s:printLogStatus"/>
+						<xs:element ref="g2s:getPrintLog"/>
+						<xs:element ref="g2s:printLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

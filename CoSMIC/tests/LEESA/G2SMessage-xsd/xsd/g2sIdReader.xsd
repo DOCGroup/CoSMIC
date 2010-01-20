@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_idGenders">
+		<xs:annotation>
+			<xs:documentation>Identification Genders.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_Female"/>
+			<xs:enumeration value="G2S_Male"/>
+			<xs:enumeration value="G2S_Unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idReaderTracks">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Tracks.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idSources">
+		<xs:annotation>
+			<xs:documentation>Identification Verification Sources - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_host"/>
+			<xs:enumeration value="G2S_self"/>
+			<xs:enumeration value="G2S_offLine"/>
+			<xs:enumeration value="G2S_none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idStates">
+		<xs:annotation>
+			<xs:documentation>Identification Statuses - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_active"/>
+			<xs:enumeration value="G2S_inactive"/>
+			<xs:enumeration value="G2s_lost"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idTypesBase">
+		<xs:annotation>
+			<xs:documentation>Identification Types - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_player"/>
+			<xs:enumeration value="G2S_employee"/>
+			<xs:enumeration value="G2S_regulator"/>
+			<xs:enumeration value="G2S_vendor"/>
+			<xs:enumeration value="G2S_anonymous"/>
+			<xs:enumeration value="G2S_invalid"/>
+			<xs:enumeration value="G2S_unknown"/>
+			<xs:enumeration value="G2S_none"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_idTypes">
+		<xs:annotation>
+			<xs:documentation>Identification Types - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_idTypesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_idValidMethods">
+		<xs:annotation>
+			<xs:documentation>Identification Validation Methods - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_host"/>
+			<xs:enumeration value="G2S_self"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_idReaderProfile">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="egmPhysicallyControls" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idReaderType" type="g2s:t_idReaderTypes" use="optional" default="G2S_magCard"/>
+		<xs:attribute name="idReaderTrack" type="g2s:t_idReaderTracks" use="optional" default="1"/>
+		<xs:attribute name="idValidMethod" type="g2s:t_idValidMethods" use="optional" default="G2S_host"/>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="waitTimeOut" type="g2s:t_milliseconds" use="optional" default="300000"/>
+		<xs:attribute name="offLineValid" type="xs:boolean" use="required"/>
+		<xs:attribute name="validTimeOut" type="g2s:t_milliseconds" use="optional" default="300000"/>
+		<xs:attribute name="removalDelay" type="g2s:t_milliseconds" use="optional" default="5000"/>
+		<xs:attribute name="attractMsg" type="g2s:t_textMessage" use="optional" default="Insert Card"/>
+		<xs:attribute name="waitMsg" type="g2s:t_textMessage" use="optional" default="Validating"/>
+		<xs:attribute name="validMsg" type="g2s:t_textMessage" use="optional" default="Card Validated"/>
+		<xs:attribute name="invalidMsg" type="g2s:t_textMessage" use="optional" default="Invalid Card"/>
+		<xs:attribute name="lostMsg" type="g2s:t_textMessage" use="optional" default="Lost Card"/>
+		<xs:attribute name="offLineMsg" type="g2s:t_textMessage" use="optional" default="Unable To Validate"/>
+		<xs:attribute name="abandonMsg" type="g2s:t_textMessage" use="optional" default="Remove Card"/>
+		<xs:attribute name="msgDuration" type="g2s:t_milliseconds" use="optional" default="15000"/>
+		<xs:attribute name="limitLosses" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_idTypeProfile">
+		<xs:annotation>
+			<xs:documentation>Identification Type Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="idType" type="g2s:t_idTypes" use="required"/>
+		<xs:attribute name="offLinePattern" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="1"/>
+					<xs:maxLength value="256"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_idValidation">
+		<xs:annotation>
+			<xs:documentation>Identification Validation Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="idNumber" type="g2s:t_idNumber" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_idValidationStatus">
+		<xs:annotation>
+			<xs:documentation>Identification Validation Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="idType" type="g2s:t_idTypes" use="optional" default="G2S_none"/>
+		<xs:attribute name="idValidDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="idValidSource" type="g2s:t_idSources" use="optional" default="G2S_none"/>
+		<xs:attribute name="idState" type="g2s:t_idStates" use="optional" default="G2S_inactive"/>
+		<xs:attribute name="idPreferName" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="32"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="idFullName" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="64"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="idClass" use="optional" default="">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:minLength value="0"/>
+					<xs:maxLength value="32"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="localeId" type="g2s:t_localeId" use="required"/>
+		<xs:attribute name="playerId" type="g2s:t_playerId" use="optional" default=""/>
+		<xs:attribute name="idLossLimit" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="idTripEnd" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="idValidExpired" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="idVIP" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idBirthday" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idAnniversary" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idBanned" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idPrivacy" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="idGender" type="g2s:t_idGenders" use="optional" default="G2S_Unknown"/>
+		<xs:attribute name="idRank" type="xs:int" use="optional" default="0"/>
+		<xs:attribute name="idAge" type="xs:int" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_idTypeProfileItem">
+		<xs:annotation>
+			<xs:documentation>Identifaction Type Configuration Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_idTypeProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_idReaderProfile">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Configuration Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:idTypeProfile" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_idReaderProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_idReaderStatus">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_idValidation"/>
+				<xs:attributeGroup ref="g2s:p_idValidationStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getIdValidation">
+		<xs:annotation>
+			<xs:documentation>Identification Validation Request Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_idValidation"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setIdValidation">
+		<xs:annotation>
+			<xs:documentation>Set Identification Validation Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_idValidation"/>
+				<xs:attributeGroup ref="g2s:p_idValidationStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Identifcation Reader Status Commands.-->
+	<xs:element name="setIdReaderState">
+		<xs:annotation>
+			<xs:documentation>Set Identification Reader State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getIdReaderStatus">
+		<xs:annotation>
+			<xs:documentation>Request Identification Reader Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idReaderStatus">
+		<xs:annotation>
+			<xs:documentation>Current Identification Reader Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_idReaderStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getIdReaderProfile">
+		<xs:annotation>
+			<xs:documentation>Request Identification Reader Configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idReaderProfile">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_idReaderProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="idTypeProfile">
+		<xs:annotation>
+			<xs:documentation>Identification Type Off Line Recognition Configuration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_idTypeProfileItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Identification Validation And Authentication Commands.-->
+	<xs:element name="getIdValidation">
+		<xs:annotation>
+			<xs:documentation>Request Id Validation.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getIdValidation">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setIdValidation">
+		<xs:annotation>
+			<xs:documentation>Set Id Validation - response or request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setIdValidation">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="idReader">
+		<xs:annotation>
+			<xs:documentation>Identification Reader Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setIdReaderState"/>
+						<xs:element ref="g2s:getIdReaderStatus"/>
+						<xs:element ref="g2s:idReaderStatus"/>
+						<xs:element ref="g2s:getIdReaderProfile"/>
+						<xs:element ref="g2s:idReaderProfile"/>
+						<xs:element ref="g2s:getIdValidation"/>
+						<xs:element ref="g2s:setIdValidation"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

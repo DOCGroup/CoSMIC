@@ -40,7 +40,10 @@ namespace LEESA {
 
 #ifdef LEESA_FOR_UDM
 
+#ifndef LEESA_NO_VISITOR
   typedef DOMAIN_NAMESPACE::Visitor SchemaVisitor;
+#endif
+
   typedef Udm::MetaTagList MetaTagList; 
   typedef std::set<Udm::Object> ObjectSet;
 
@@ -85,8 +88,11 @@ namespace LEESA {
   struct ReferenceMetaTag {};
 
   typedef boost::mpl::vector < AtomMetaTag, ModelMetaTag, ReferenceMetaTag > MetaTagList;
+
+#ifndef LEESA_NO_VISITOR
   typedef DOMAIN_NAMESPACE::visitor SchemaVisitor;
-  
+#endif
+
   struct Default {};
 
   template <class T>
@@ -100,7 +106,9 @@ namespace LEESA {
   {
     typedef typename DOMAIN_NAMESPACE::ContainerTraits<Kind>::Container Container;
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ChildrenKinds ChildrenKinds;
+#ifndef LEESA_NO_PARENT_KINDS
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::ParentKinds ParentKinds;
+#endif 
     typedef typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::MetaKind MetaKind;
   };
 

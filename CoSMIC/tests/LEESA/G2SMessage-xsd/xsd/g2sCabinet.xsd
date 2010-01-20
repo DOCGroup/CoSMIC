@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_acceptNonCashAmts">
+		<xs:annotation>
+			<xs:documentation>Non-cashable Credit Acceptance Options.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_acceptAlways"/>
+			<xs:enumeration value="G2S_acceptSameExpiration"/>
+			<xs:enumeration value="G2S_acceptNoMix"/>
+			<xs:enumeration value="G2S_acceptNever"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_areaId">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned Area Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_bankId">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned Bank Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_cabinetStylesBase">
+		<xs:annotation>
+			<xs:documentation>Cabinet Styles - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_slant"/>
+			<xs:enumeration value="G2S_roundTop"/>
+			<xs:enumeration value="G2S_barTop"/>
+			<xs:enumeration value="G2S_upRight"/>
+			<xs:enumeration value="G2S_other"/>
+			<xs:enumeration value="G2S_unknown"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_cabinetStyles">
+		<xs:annotation>
+			<xs:documentation>Cabinet Styles - Extensible Union.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_cabinetStylesBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_egmPosition">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned EGM Position Within The Bank.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_egmStates">
+		<xs:annotation>
+			<xs:documentation>EGM States - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_transportDisabled"/>
+			<xs:enumeration value="G2S_operatorDisabled"/>
+			<xs:enumeration value="G2S_hostDisabled"/>
+			<xs:enumeration value="G2S_egmDisabled"/>
+			<xs:enumeration value="G2S_enabled"/>
+			<xs:enumeration value="G2S_operatorMode"/>
+			<xs:enumeration value="G2S_demoMode"/>
+			<xs:enumeration value="G2S_auditMode"/>
+			<xs:enumeration value="G2S_operatorLocked"/>
+			<xs:enumeration value="G2S_egmLocked"/>
+			<xs:enumeration value="G2S_hostLocked"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_machineId">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned Machine Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_machineLoc">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned EGM Location - Zone-Bank-Position.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="16"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_machineNum">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned Machine Number.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_zoneId">
+		<xs:annotation>
+			<xs:documentation>Property-Assigned Zone Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="8"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_cabinetEnable">
+		<xs:annotation>
+			<xs:documentation>Additional Cabinet Enable Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="enableGamePlay" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="enableMoneyIn" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="enableMoneyOut" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_cabinetStatus">
+		<xs:annotation>
+			<xs:documentation>Cabinet Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="egmState" type="g2s:t_egmStates" use="required"/>
+		<xs:attribute name="deviceClass" type="g2s:t_deviceClass" use="required"/>
+		<xs:attribute name="deviceId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="gamePlayId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="maxWagerCredits" type="g2s:t_maxWagerCredits" use="required">
+		</xs:attribute>
+		<xs:attribute name="serviceLampOn" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="logicDoorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="logicDoorDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="auxDoorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="auxDoorDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="cabinetDoorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="cabinetDoorDateTime" type="g2s:t_g2sDateTime" use="optional"/>
+		<xs:attribute name="hardMetersDisconnected" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_cabinetProfile">
+		<xs:annotation>
+			<xs:documentation>Cabinet Configuration Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="machineNum" type="g2s:t_machineNum" use="required"/>
+		<xs:attribute name="machineId" type="g2s:t_machineId" use="optional" default=""/>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="reportDenomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="localeId" type="g2s:t_localeId" use="required"/>
+		<xs:attribute name="areaId" type="g2s:t_areaId" use="optional" default=""/>
+		<xs:attribute name="zoneId" type="g2s:t_zoneId" use="optional" default=""/>
+		<xs:attribute name="bankId" type="g2s:t_bankId" use="optional" default=""/>
+		<xs:attribute name="egmPosition" type="g2s:t_egmPosition" use="optional" default=""/>
+		<xs:attribute name="machineLoc" type="g2s:t_machineLoc" use="optional" default=""/>
+		<xs:attribute name="cabinetStyle" type="g2s:t_cabinetStyles" use="required"/>
+		<xs:attribute name="largeWinLimit" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="maxCreditMeter" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="maxHopperPayOut" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="splitPayOut" type="xs:boolean" use="required"/>
+		<xs:attribute name="idleTimePeriod" type="g2s:t_milliseconds" use="required"/>
+		<xs:attribute name="timeZoneOffset" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="[-+]{1}[0-9]{2}[:]{1}[0-9]{2}"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="acceptNonCashAmts" type="g2s:t_acceptNonCashAmts" use="optional" default="G2S_acceptAlways"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_setCabinetState">
+		<xs:annotation>
+			<xs:documentation>Set Cabinet State Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_setDeviceState">
+				<xs:attributeGroup ref="g2s:p_cabinetEnable"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cabinetStatus">
+		<xs:annotation>
+			<xs:documentation>Cabinet Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_cabinetEnable"/>
+				<xs:attributeGroup ref="g2s:p_cabinetStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cabinetProfile">
+		<xs:annotation>
+			<xs:documentation>Cabinet Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_cabinetProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_cabinetDateTime">
+		<xs:annotation>
+			<xs:documentation>Cabinet Date Time Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attribute name="cabinetDateTime" type="g2s:t_g2sDateTime" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Cabinet Status Commands.-->
+	<xs:element name="setCabinetState">
+		<xs:annotation>
+			<xs:documentation>Set Cabinet State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setCabinetState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCabinetStatus">
+		<xs:annotation>
+			<xs:documentation>Request Cabinet Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cabinetStatus">
+		<xs:annotation>
+			<xs:documentation>Current Cabinet Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cabinetStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCabinetProfile">
+		<xs:annotation>
+			<xs:documentation>Cabinet Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cabinetProfile">
+		<xs:annotation>
+			<xs:documentation>Current Cabinet Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cabinetProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setCabinetLockOut">
+		<xs:annotation>
+			<xs:documentation>Set Cabinet Lock Out Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setLockOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Date Time Commands.-->
+	<xs:element name="setDateTime">
+		<xs:annotation>
+			<xs:documentation>Change Processor Date/Time.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cabinetDateTime">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getDateTime">
+		<xs:annotation>
+			<xs:documentation>Request Processor Date/Time.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cabinetDateTime">
+		<xs:annotation>
+			<xs:documentation>Current Processor Date/Time.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_cabinetDateTime">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Processor Reset Commands.-->
+	<xs:element name="resetProcessor">
+		<xs:annotation>
+			<xs:documentation>Request To Initiate A Processor Reset.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="resetStarted">
+		<xs:annotation>
+			<xs:documentation>Notification That A Processor Reset Has Started.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="cabinet">
+		<xs:annotation>
+			<xs:documentation>Cabinet Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setCabinetState"/>
+						<xs:element ref="g2s:setCabinetLockOut"/>
+						<xs:element ref="g2s:getCabinetStatus"/>
+						<xs:element ref="g2s:cabinetStatus"/>
+						<xs:element ref="g2s:getCabinetProfile"/>
+						<xs:element ref="g2s:cabinetProfile"/>
+						<xs:element ref="g2s:setDateTime"/>
+						<xs:element ref="g2s:getDateTime"/>
+						<xs:element ref="g2s:cabinetDateTime"/>
+						<xs:element ref="g2s:resetProcessor"/>
+						<xs:element ref="g2s:resetStarted"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

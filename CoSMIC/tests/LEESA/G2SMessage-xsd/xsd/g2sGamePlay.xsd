@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_playStates">
+		<xs:annotation>
+			<xs:documentation>Game Play States - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_gameIdle"/>
+			<xs:enumeration value="G2S_primaryGameEscrow"/>
+			<xs:enumeration value="G2S_primaryGameStarted"/>
+			<xs:enumeration value="G2S_primaryGameEnded"/>
+			<xs:enumeration value="G2S_progressivePending"/>
+			<xs:enumeration value="G2S_secondaryGameChoice"/>
+			<xs:enumeration value="G2S_secondaryGameEscrow"/>
+			<xs:enumeration value="G2S_secondaryGameStarted"/>
+			<xs:enumeration value="G2S_secondaryGameEnded"/>
+			<xs:enumeration value="G2S_payGameResults"/>
+			<xs:enumeration value="G2S_gameEnded"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_playResults">
+		<xs:annotation>
+			<xs:documentation>Game Play Results - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_noResult"/>
+			<xs:enumeration value="G2S_gameFailed"/>
+			<xs:enumeration value="G2S_gameLost"/>
+			<xs:enumeration value="G2S_gameTied"/>
+			<xs:enumeration value="G2S_gameWon"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_gamePlayStatus">
+		<xs:annotation>
+			<xs:documentation>GamePlay Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="generalTilt" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="reelTilt" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_wagerCategory">
+		<xs:annotation>
+			<xs:documentation>Wager Category Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="wagerCategory" type="g2s:t_wagerCategory" use="required"/>
+		<xs:attribute name="theoPaybackPct" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="minWagerCredits" use="optional" default="1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxWagerCredits" type="g2s:t_maxWagerCredits" use="optional" default="1">
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_winLevel">
+		<xs:annotation>
+			<xs:documentation>Win Level Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="winLevelIndex" type="g2s:t_winLevelIndex" use="required"/>
+		<xs:attribute name="winLevelCombo" type="g2s:t_winLevelCombo" use="optional" default=""/>
+		<xs:attribute name="progressiveAllowed" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gameProfile">
+		<xs:annotation>
+			<xs:documentation>Game Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="10">
+		</xs:attribute>
+		<xs:attribute name="themeId" type="g2s:t_themeId" use="required"/>
+		<xs:attribute name="paytableId" type="g2s:t_paytableId" use="required"/>
+		<xs:attribute name="maxWagerCredits" use="optional" default="1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="progAllowed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="secondaryAllowed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="centralAllowed" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gameDenom">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_gameRange">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Range Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="denomMin" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="denomMax" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="denomInterval" type="g2s:t_denomId" use="optional" default="1000"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_recallLog">
+		<xs:annotation>
+			<xs:documentation>Recall Log Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="gameDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="playState" type="g2s:t_playStates" use="required"/>
+		<xs:attribute name="playResult" type="g2s:t_playResults" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="initialWager" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="finalWager" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="initialWin" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="secondaryPlayed" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="secondaryWager" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="secondaryWin" type="g2s:t_meterValue" use="optional" default="0"/>
+		<xs:attribute name="finalWin" type="g2s:t_meterValue" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_gamePlayStatus">
+		<xs:annotation>
+			<xs:documentation>Game Play Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_gamePlayStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_wagerCategoryItem">
+		<xs:annotation>
+			<xs:documentation>Wager Category Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_wagerCategory"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_wagerCategoryList">
+		<xs:annotation>
+			<xs:documentation>Wager Category List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:wagerCategoryItem" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_winLevelItem">
+		<xs:annotation>
+			<xs:documentation>Win Level Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_winLevel"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_winLevelList">
+		<xs:annotation>
+			<xs:documentation>Win Level List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:winLevelItem" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gamePlayProfile">
+		<xs:annotation>
+			<xs:documentation>Game Play Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:wagerCategoryList"/>
+					<xs:element ref="g2s:winLevelList"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_gameProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_recallLogItem">
+		<xs:annotation>
+			<xs:documentation>Game Recall Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:winLevelList" minOccurs="0"/>
+					<xs:element ref="g2s:gamePlaySourceRef" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_recallLog"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_recallLogList">
+		<xs:annotation>
+			<xs:documentation>Game Recall Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:recallLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_activeDenom">
+		<xs:annotation>
+			<xs:documentation>Active Denomination Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_gameDenom"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_activeRange">
+		<xs:annotation>
+			<xs:documentation>Active Denomination Range Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_gameRange"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_activeDenomList">
+		<xs:annotation>
+			<xs:documentation>Active Denomination List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="g2s:activeDenom"/>
+					<xs:element ref="g2s:activeRange"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gameDenom">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_activeDenom">
+				<xs:attribute name="active" type="xs:boolean" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gameRange">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Range Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_activeRange">
+				<xs:attribute name="active" type="xs:boolean" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_gameDenomList">
+		<xs:annotation>
+			<xs:documentation>Game Denomination List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="g2s:gameDenom"/>
+					<xs:element ref="g2s:gameRange"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Game Status Commands.-->
+	<xs:element name="setGamePlayState">
+		<xs:annotation>
+			<xs:documentation>Set Game Play State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getGamePlayStatus">
+		<xs:annotation>
+			<xs:documentation>Request GamePlay Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gamePlayStatus">
+		<xs:annotation>
+			<xs:documentation>Current GamePlay Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gamePlayStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Game Configuration Profile Commands.-->
+	<xs:element name="getGamePlayProfile">
+		<xs:annotation>
+			<xs:documentation>Game Play Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gamePlayProfile">
+		<xs:annotation>
+			<xs:documentation>Read only game profile</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gamePlayProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wagerCategoryItem">
+		<xs:annotation>
+			<xs:documentation>Wager Category Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_wagerCategoryItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="wagerCategoryList">
+		<xs:annotation>
+			<xs:documentation>Wager Category List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_wagerCategoryList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="winLevelItem">
+		<xs:annotation>
+			<xs:documentation>Win Level Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_winLevelItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="winLevelList">
+		<xs:annotation>
+			<xs:documentation>Win Level List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_winLevelList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Active Denom Commands.-->
+	<xs:element name="getGameDenoms">
+		<xs:annotation>
+			<xs:documentation>Request the Denomination List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setActiveDenoms">
+		<xs:annotation>
+			<xs:documentation>Change Active Denominations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_activeDenomList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="activeDenom">
+		<xs:annotation>
+			<xs:documentation>Active Denomination Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_activeDenom">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="activeRange">
+		<xs:annotation>
+			<xs:documentation>Active Range Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_activeRange">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameDenomList">
+		<xs:annotation>
+			<xs:documentation>List of Denominations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gameDenomList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameDenom">
+		<xs:annotation>
+			<xs:documentation>Game Denomination Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gameDenom">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gameRange">
+		<xs:annotation>
+			<xs:documentation>Game Range Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_gameRange">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Game Recall Log Commands.-->
+	<xs:element name="getRecallLogStatus">
+		<xs:annotation>
+			<xs:documentation>Recall Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recallLogStatus">
+		<xs:annotation>
+			<xs:documentation>Current Recall Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getRecallLog">
+		<xs:annotation>
+			<xs:documentation>Recall Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gamePlaySourceRef">
+		<xs:annotation>
+			<xs:documentation>Source Transaction Reference.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_transactionReference">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recallLog">
+		<xs:annotation>
+			<xs:documentation>Recall Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_recallLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="recallLogList">
+		<xs:annotation>
+			<xs:documentation>Current Recall Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_recallLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="gamePlay">
+		<xs:annotation>
+			<xs:documentation>Game Play Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setGamePlayState"/>
+						<xs:element ref="g2s:getGamePlayStatus"/>
+						<xs:element ref="g2s:gamePlayStatus"/>
+						<xs:element ref="g2s:getGamePlayProfile"/>
+						<xs:element ref="g2s:gamePlayProfile"/>
+						<xs:element ref="g2s:setActiveDenoms"/>
+						<xs:element ref="g2s:getGameDenoms"/>
+						<xs:element ref="g2s:gameDenomList"/>
+						<xs:element ref="g2s:getRecallLogStatus"/>
+						<xs:element ref="g2s:recallLogStatus"/>
+						<xs:element ref="g2s:getRecallLog"/>
+						<xs:element ref="g2s:recallLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:g2s1="http://www.gamingstandards.com/g2s/schemas/v1.0.3/Ext1" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_noteAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="doorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="stackerRemoved" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="stackerNearlyFull" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="stackerFull" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="stackerJam" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="stackerFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="acceptorJam" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="acceptorFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="noteValueInEscrow" type="g2s:t_meterValue" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_noteAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="noMessageTimer" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="noteEnabled" type="xs:boolean" use="required"/>
+		<xs:attribute name="voucherEnabled" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_noteAcceptorDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Note Data Table Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="noteActive" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_notesAcceptedLog">
+		<xs:annotation>
+			<xs:documentation>Notes Accepted Log Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="noteDateTime" type="g2s:t_g2sDateTime" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_noteAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_noteAcceptorStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_noteAcceptorDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Data Table Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_noteAcceptorDataTableItem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_noteAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:noteAcceptorData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_noteAcceptorProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_notesAcceptedLogItem">
+		<xs:annotation>
+			<xs:documentation>Notes Accepted Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:attributeGroup ref="g2s:p_notesAcceptedLog"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_notesAcceptedLogList">
+		<xs:annotation>
+			<xs:documentation>Notes Accepted Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:notesAcceptedLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Note Acceptor Status Commands.-->
+	<xs:element name="setNoteAcceptorState">
+		<xs:annotation>
+			<xs:documentation>Set Note Acceptor State.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNoteAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Request Note Acceptor Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Current Note Acceptor Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteAcceptorStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Note Acceptor Data Table Commands.-->
+	<xs:element name="getNoteAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Request Note Acceptor Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteAcceptorProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteAcceptorData">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Data Table Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_noteAcceptorDataTableItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Note Acceptor Log Commands.-->
+	<xs:element name="getNotesAcceptedStatus">
+		<xs:annotation>
+			<xs:documentation>Request Note Acceptor Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesAcceptedStatus">
+		<xs:annotation>
+			<xs:documentation>Current Status Of The Note Acceptor Log.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getNotesAccepted">
+		<xs:annotation>
+			<xs:documentation>Request Last n Notes Accepted.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesAcceptedLog">
+		<xs:annotation>
+			<xs:documentation>Notes Accepted Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_notesAcceptedLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="notesAcceptedList">
+		<xs:annotation>
+			<xs:documentation>Last n Notes Accepted Message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_notesAcceptedLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="noteAcceptor">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setNoteAcceptorState"/>
+						<xs:element ref="g2s:getNoteAcceptorStatus"/>
+						<xs:element ref="g2s:noteAcceptorStatus"/>
+						<xs:element ref="g2s:getNoteAcceptorProfile"/>
+						<xs:element ref="g2s:noteAcceptorProfile"/>
+						<xs:element ref="g2s:getNotesAcceptedStatus"/>
+						<xs:element ref="g2s:notesAcceptedStatus"/>
+						<xs:element ref="g2s:getNotesAccepted"/>
+						<xs:element ref="g2s:notesAcceptedList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="noteAcceptorMulticast">
+		<xs:annotation>
+			<xs:documentation>Note Acceptor Class Multicast.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseMulticast">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setNoteAcceptorState"/>
+						<xs:element ref="g2s:getNoteAcceptorStatus"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

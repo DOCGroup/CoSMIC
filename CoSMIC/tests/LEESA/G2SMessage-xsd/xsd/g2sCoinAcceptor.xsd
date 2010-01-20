@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_coinAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Coin Acceptor Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="doorOpen" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="jammed" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="lockoutMalfunction" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="acceptorFault" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="diverterFault" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_coinDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Coin Data Table Item Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="currencyId" type="g2s:t_currencyId" use="required"/>
+		<xs:attribute name="denomId" type="g2s:t_denomId" use="required"/>
+		<xs:attribute name="token" type="xs:boolean" use="required"/>
+		<xs:attribute name="baseCashableAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="coinActive" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_coinAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Coin Acceptor Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_gdsDeviceStatus">
+				<xs:attributeGroup ref="g2s:p_coinAcceptorStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_coinDataTableItem">
+		<xs:annotation>
+			<xs:documentation>Coin Data Table Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_coinDataTableItem"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_coinAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Coin Data Table Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:coinData" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Coin Acceptor Status Commands.-->
+	<xs:element name="setCoinAcceptorState">
+		<xs:annotation>
+			<xs:documentation>Set Coin Acceptor Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCoinAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Request Coin Acceptor Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="coinAcceptorStatus">
+		<xs:annotation>
+			<xs:documentation>Current Coin Acceptor Status Message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_coinAcceptorStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Coin Acceptor Profile Commands.-->
+	<xs:element name="getCoinAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Request Coin Acceptor Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="coinAcceptorProfile">
+		<xs:annotation>
+			<xs:documentation>Coin Acceptor Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_coinAcceptorProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="coinData">
+		<xs:annotation>
+			<xs:documentation>Coin Data Table Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_coinDataTableItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="coinAcceptor">
+		<xs:annotation>
+			<xs:documentation>Coin Acceptor Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setCoinAcceptorState"/>
+						<xs:element ref="g2s:getCoinAcceptorStatus"/>
+						<xs:element ref="g2s:coinAcceptorStatus"/>
+						<xs:element ref="g2s:getCoinAcceptorProfile"/>
+						<xs:element ref="g2s:coinAcceptorProfile"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

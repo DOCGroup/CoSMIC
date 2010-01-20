@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeConfig.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_commConfigExceptions">
+		<xs:annotation>
+			<xs:documentation>Configuration Change Exception Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_commHostConfig">
+		<xs:annotation>
+			<xs:documentation>Host Configuration Item Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostIndex" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="hostId" type="g2s:t_deviceId" use="required"/>
+		<xs:attribute name="hostLocation" type="g2s:t_transportLocation" use="required"/>
+		<xs:attribute name="hostRegistered" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="useDefaultConfig" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="requiredForPlay" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="timeToLive" type="g2s:t_timeToLive" use="optional" default="30000"/>
+		<xs:attribute name="noResponseTimer" type="g2s:t_milliseconds" use="optional" default="300000"/>
+		<xs:attribute name="allowMulticast" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="displayCommFault" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_commHostStatus">
+		<xs:annotation>
+			<xs:documentation>Host Configuration Item Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="canModLocal" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="canModRemote" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_ownedDevice">
+		<xs:annotation>
+			<xs:documentation>Owned Device Attribute Group.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="deviceActive" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_ownedDevice">
+		<xs:annotation>
+			<xs:documentation>Owned Device Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_ownedDevice"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commHostConfigItem">
+		<xs:annotation>
+			<xs:documentation>Host Configuration Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element name="ownedDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Owned Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="configDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Configurator Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="guestDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Guest Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_commHostConfig"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setHostItem">
+		<xs:annotation>
+			<xs:documentation>Set Host Configuration Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element name="ownedDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Owned Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="configDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Configurator Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="guestDevice" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Guest Device Element.</xs:documentation>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="g2s:c_ownedDevice">
+									<xs:anyAttribute namespace="##other" processContents="lax"/>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_commHostConfig"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commHostConfigList">
+		<xs:annotation>
+			<xs:documentation>Host Configuration List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:setHostItem" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:authorizeList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commHostStatusItem">
+		<xs:annotation>
+			<xs:documentation>Host Configuration Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_commHostConfigItem">
+				<xs:attributeGroup ref="g2s:p_commHostStatus"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commHostStatusList">
+		<xs:annotation>
+			<xs:documentation>Host Configuration List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:commHostItem" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commChangeTrans">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Transaction Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commChangeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_commChangeTrans">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+				<xs:attributeGroup ref="g2s:p_configChangeStatus"/>
+				<xs:attribute name="changeException" type="g2s:t_commConfigExceptions" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commChangeLog">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Log Record Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+				<xs:attributeGroup ref="g2s:p_configChangeStatus"/>
+				<xs:attribute name="changeException" type="g2s:t_commConfigExceptions" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_commChangeLogList">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Chnage Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:commChangeLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Device State Commands.-->
+	<xs:element name="enterCommConfigMode">
+		<xs:annotation>
+			<xs:documentation>Set Comm Configuration Mode Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCommConfigModeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Mode Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commConfigModeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Mode Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_configDeviceStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCommConfigProfile">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commConfigProfile">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_configDeviceProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Supported Hosts Inquiry Commands.-->
+	<xs:element name="getCommHostList">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Host List Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commHostItem">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Host Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commHostStatusItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commHostList">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Host List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commHostStatusList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commHostListAck">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Host List Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Configuration Change Comamnds.-->
+	<xs:element name="setHostItem">
+		<xs:annotation>
+			<xs:documentation>Set Comm Configuration Host Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setHostItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setCommChange">
+		<xs:annotation>
+			<xs:documentation>Set Comm Configuration Change Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commHostConfigList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelCommChange">
+		<xs:annotation>
+			<xs:documentation>Cancel Comm Configuration Change Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeCommChange">
+		<xs:annotation>
+			<xs:documentation>Authorize Comm Configuration Change Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commChangeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commChangeStatusAck">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Transaction Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Configuration Log Inquiry Commands.-->
+	<xs:element name="getCommChangeLogStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commChangeLogStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getCommChangeLog">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Chnage Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commChangeLog">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeLog">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commChangeLogList">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Chnage Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_commChangeLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="commConfig">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:enterCommConfigMode"/>
+						<xs:element ref="g2s:getCommConfigModeStatus"/>
+						<xs:element ref="g2s:commConfigModeStatus"/>
+						<xs:element ref="g2s:getCommConfigProfile"/>
+						<xs:element ref="g2s:commConfigProfile"/>
+						<xs:element ref="g2s:getCommHostList"/>
+						<xs:element ref="g2s:commHostList"/>
+						<xs:element ref="g2s:commHostListAck"/>
+						<xs:element ref="g2s:setCommChange"/>
+						<xs:element ref="g2s:cancelCommChange"/>
+						<xs:element ref="g2s:authorizeCommChange"/>
+						<xs:element ref="g2s:commChangeStatus"/>
+						<xs:element ref="g2s:commChangeStatusAck"/>
+						<xs:element ref="g2s:getCommChangeLogStatus"/>
+						<xs:element ref="g2s:commChangeLogStatus"/>
+						<xs:element ref="g2s:getCommChangeLog"/>
+						<xs:element ref="g2s:commChangeLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Commands in Ext1: getCommChangeStatus-->
+</xs:schema>

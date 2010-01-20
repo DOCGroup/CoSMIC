@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<xs:include schemaLocation="g2sIncludeConfig.xsd"/>
+	<xs:include schemaLocation="g2sCommunications.xsd"/>
+	<xs:include schemaLocation="g2sCabinet.xsd"/>
+	<xs:include schemaLocation="g2sMeters.xsd"/>
+	<xs:include schemaLocation="g2sGamePlay.xsd"/>
+	<xs:include schemaLocation="g2sCommConfig.xsd"/>
+	<xs:include schemaLocation="g2sOptionConfig.xsd"/>
+	<xs:include schemaLocation="g2sDownload.xsd"/>
+	<xs:include schemaLocation="g2sHandpay.xsd"/>
+	<xs:include schemaLocation="g2sCoinAcceptor.xsd"/>
+	<xs:include schemaLocation="g2sNoteAcceptor.xsd"/>
+	<xs:include schemaLocation="g2sHopper.xsd"/>
+	<xs:include schemaLocation="g2sNoteDispenser.xsd"/>
+	<xs:include schemaLocation="g2sPrinter.xsd"/>
+	<xs:include schemaLocation="g2sProgressive.xsd"/>
+	<xs:include schemaLocation="g2sIdReader.xsd"/>
+	<xs:include schemaLocation="g2sBonus.xsd"/>
+	<xs:include schemaLocation="g2sPlayer.xsd"/>
+	<xs:include schemaLocation="g2sVoucher.xsd"/>
+	<xs:include schemaLocation="g2sWAT.xsd"/>
+	<xs:include schemaLocation="g2sGAT.xsd"/>
+	<xs:include schemaLocation="g2sCentral.xsd"/>
+</xs:schema>

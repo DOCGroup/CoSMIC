@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeGlobal.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_bonusExceptions">
+		<xs:annotation>
+			<xs:documentation>Bonus Exception Enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_bonusId">
+		<xs:annotation>
+			<xs:documentation>Standard Bonus Identifier Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:long">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_bonusPayMethods">
+		<xs:annotation>
+			<xs:documentation>Bonus Payment Methods - Not Extensible.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_payAny"/>
+			<xs:enumeration value="G2S_payCredit"/>
+			<xs:enumeration value="G2S_payHandpay"/>
+			<xs:enumeration value="G2S_payVoucher"/>
+			<xs:enumeration value="G2S_payWat"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_bonusStates">
+		<xs:annotation>
+			<xs:documentation>Bonus Status Enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_bonusPending"/>
+			<xs:enumeration value="G2S_bonusCommit"/>
+			<xs:enumeration value="G2S_bonusAck"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_gameDelay">
+		<xs:annotation>
+			<xs:documentation>Game Delay Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="delayValue" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="delayTime" type="g2s:t_milliseconds" use="optional" default="0"/>
+		<xs:attribute name="delayGames" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="delayLater" type="xs:boolean" use="optional" default="true"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_bonusStatus">
+		<xs:annotation>
+			<xs:documentation>Bonus Status Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="hostLocked" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="hostActive" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="bonusActive" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_bonusProfile">
+		<xs:annotation>
+			<xs:documentation>Bonus Profile Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLogEntries" type="g2s:t_minLogEntries" use="optional" default="35">
+		</xs:attribute>
+		<xs:attribute name="timeToLive" type="g2s:t_milliseconds" use="optional" default="30000"/>
+		<xs:attribute name="idReaderId" type="g2s:t_deviceId" use="optional" default="0"/>
+		<xs:attribute name="maxPendingBonus" use="optional" default="8">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="noMessageTimer" type="g2s:t_milliseconds" use="optional" default="30000"/>
+		<xs:attribute name="noHostText" type="g2s:t_textMessage" use="optional" default=""/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_bonusActivity">
+		<xs:annotation>
+			<xs:documentation>Bonus Activity Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="bonusActive" type="xs:boolean" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_bonusAward">
+		<xs:annotation>
+			<xs:documentation>Bonus Win Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="bonusId" type="g2s:t_bonusId" use="required"/>
+		<xs:attribute name="bonusAwardAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="creditType" type="g2s:t_creditTypes" use="required"/>
+		<xs:attribute name="payMethod" type="g2s:t_bonusPayMethods" use="optional" default="G2S_payAny"/>
+		<xs:attribute name="expireCredits" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="expireDateTime" type="g2s:t_g2sDateTime" use="optional" default="2000-01-01T00:00:00.000-00:00"/>
+		<xs:attribute name="idRestrict" type="g2s:t_idRestricts" use="optional" default="G2S_none"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_bonusPaid">
+		<xs:annotation>
+			<xs:documentation>Bonus Payment Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="bonusPaidAmt" type="g2s:t_meterValue" use="required"/>
+		<xs:attribute name="bonusDateTime" type="g2s:t_g2sDateTime" use="required"/>
+		<xs:attribute name="bonusException" type="g2s:t_bonusExceptions" use="optional" default="0"/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_setGameDelay">
+		<xs:annotation>
+			<xs:documentation>Set Game Delay Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_gameDelay"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusStatus">
+		<xs:annotation>
+			<xs:documentation>Bonus Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceStatus">
+				<xs:attributeGroup ref="g2s:p_bonusStatus"/>
+				<xs:attributeGroup ref="g2s:p_gameDelay"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusProfile">
+		<xs:annotation>
+			<xs:documentation>Bonus Profile Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_deviceProfile"/>
+				<xs:attributeGroup ref="g2s:p_bonusProfile"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusActivity">
+		<xs:annotation>
+			<xs:documentation>Bonus Activity Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_bonusActivity"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_setBonusAward">
+		<xs:annotation>
+			<xs:documentation>Set Bonus Win Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_bonusAward"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_playerMessage"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusTransaction">
+		<xs:annotation>
+			<xs:documentation>Bonus Transaction Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="bonusId" type="g2s:t_bonusId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusCommit">
+		<xs:annotation>
+			<xs:documentation>Bonus Commit Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attributeGroup ref="g2s:p_bonusAward"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_bonusPaid"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusLogItem">
+		<xs:annotation>
+			<xs:documentation>Bonus Log Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:attribute name="bonusState" type="g2s:t_bonusStates" use="required"/>
+				<xs:attributeGroup ref="g2s:p_bonusAward"/>
+				<xs:attributeGroup ref="g2s:p_playerInfo"/>
+				<xs:attributeGroup ref="g2s:p_bonusPaid"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_bonusLogList">
+		<xs:annotation>
+			<xs:documentation>Bonus Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:bonusLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Bonus Status Commands.-->
+	<xs:element name="setBonusState">
+		<xs:annotation>
+			<xs:documentation>Set Bonus State Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getBonusStatus">
+		<xs:annotation>
+			<xs:documentation>Get Bonus Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setBonusLockOut">
+		<xs:annotation>
+			<xs:documentation>Set Bonus Lock Out Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setLockOut">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setGameDelay">
+		<xs:annotation>
+			<xs:documentation>Set Game Delay Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setGameDelay">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusStatus">
+		<xs:annotation>
+			<xs:documentation>Current Bonus Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getBonusProfile">
+		<xs:annotation>
+			<xs:documentation>Get Bonus Profile Reqeust.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusProfile">
+		<xs:annotation>
+			<xs:documentation>Bonus Profile Response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Transaction Elements.-->
+	<xs:element name="bonusActivity">
+		<xs:annotation>
+			<xs:documentation>Bonus Activity Keep Alive.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusActivity">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setBonusAward">
+		<xs:annotation>
+			<xs:documentation>Bonus Award Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setBonusAward">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusAwardAck">
+		<xs:annotation>
+			<xs:documentation>Bonus Award Acknowledgment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelBonusAward">
+		<xs:annotation>
+			<xs:documentation>Cancel Bonus Win Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelBonusAwardAck">
+		<xs:annotation>
+			<xs:documentation>Cancel Bonus Win Acknowledgment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitBonus">
+		<xs:annotation>
+			<xs:documentation>Bonus Commit Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusCommit">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="commitBonusAck">
+		<xs:annotation>
+			<xs:documentation>Bonus Commit Acknowledgment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusTransaction">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setBonusMessage">
+		<xs:annotation>
+			<xs:documentation>Set Bonus Message Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setPlayerMessage">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusMessageAck">
+		<xs:annotation>
+			<xs:documentation>Bonus Message Acknowledgment.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Log Elements.-->
+	<xs:element name="getBonusLogStatus">
+		<xs:annotation>
+			<xs:documentation>Get Bonus Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusLogStatus">
+		<xs:annotation>
+			<xs:documentation>Bonus Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getBonusLog">
+		<xs:annotation>
+			<xs:documentation>Get Bonus Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusLog">
+		<xs:annotation>
+			<xs:documentation>Bonus Log Entry Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusLogItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="bonusLogList">
+		<xs:annotation>
+			<xs:documentation>Bonus Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_bonusLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="bonus">
+		<xs:annotation>
+			<xs:documentation>Bonus Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:setBonusState"/>
+						<xs:element ref="g2s:setBonusLockOut"/>
+						<xs:element ref="g2s:setGameDelay"/>
+						<xs:element ref="g2s:getBonusStatus"/>
+						<xs:element ref="g2s:bonusStatus"/>
+						<xs:element ref="g2s:getBonusProfile"/>
+						<xs:element ref="g2s:bonusProfile"/>
+						<xs:element ref="g2s:bonusActivity"/>
+						<xs:element ref="g2s:setBonusAward"/>
+						<xs:element ref="g2s:bonusAwardAck"/>
+						<xs:element ref="g2s:cancelBonusAward"/>
+						<xs:element ref="g2s:cancelBonusAwardAck"/>
+						<xs:element ref="g2s:commitBonus"/>
+						<xs:element ref="g2s:commitBonusAck"/>
+						<xs:element ref="g2s:setBonusMessage"/>
+						<xs:element ref="g2s:bonusMessageAck"/>
+						<xs:element ref="g2s:getBonusLogStatus"/>
+						<xs:element ref="g2s:bonusLogStatus"/>
+						<xs:element ref="g2s:getBonusLog"/>
+						<xs:element ref="g2s:bonusLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Commands in Ext1: skipGameDelay.-->
+	<xs:element name="bonusMulticast">
+		<xs:annotation>
+			<xs:documentation>Bonus Multicast.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseMulticast">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:bonusActivity"/>
+						<xs:element ref="g2s:setBonusAward"/>
+						<xs:element ref="g2s:setBonusMessage"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Commands in Ext1: skipGameDelay.-->
+</xs:schema>

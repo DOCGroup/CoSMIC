@@ -234,6 +234,24 @@ operator >>= (VisitorAsIndex<L> vl, SequenceExpr<R,X> const &r)
   return L() >> vl.getVisitor() >>= r;
 }
 
+template <class LKind, class R>
+typename disable_if_c <
+  IsDomainVisitorBaseOf<R>::value |
+  is_base_of<OpBase,R>::value,
+  ChainExpr<typename ET<LKind>::result_type,
+            DFSOp<typename ET<R>::argument_type,
+                  ChainExpr<typename ET<R>::result_type, 
+                            VisitorOp<typename ET<R>::result_type>
+                           >
+                 >
+           > >::type
+operator >>= (Carrier<LKind> const & k, VisitorAsIndex<R> const & vi)
+{
+  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, R>)); 
+
+  return k >>= R() >> vi.getVisitor();
+}
+
 #endif // LEESA_NO_VISITOR
 
 template <class L, class OP>                              
@@ -364,24 +382,6 @@ operator >>= (L const &l, R const &r)
 
   GCOp gcop(r);
   return ChainExpr(ParentKindExpr(l), gcop);
-}
-
-template <class LKind, class R>
-typename disable_if_c <
-  IsDomainVisitorBaseOf<R>::value |
-  is_base_of<OpBase,R>::value,
-  ChainExpr<typename ET<LKind>::result_type,
-            DFSOp<typename ET<R>::argument_type,
-                  ChainExpr<typename ET<R>::result_type, 
-                            VisitorOp<typename ET<R>::result_type>
-                           >
-                 >
-           > >::type
-operator >>= (Carrier<LKind> const & k, VisitorAsIndex<R> const & vi)
-{
-  BOOST_CONCEPT_ASSERT((LEESA::SameKindsConcept<LKind, R>)); 
-
-  return k >>= R() >> vi.getVisitor();
 }
 
 template <class LKind, class R>

@@ -1,0 +1,959 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by Ethan Tower (private) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:g2s="http://www.gamingstandards.com/g2s/schemas/v1.0.3" targetNamespace="http://www.gamingstandards.com/g2s/schemas/v1.0.3" elementFormDefault="qualified" attributeFormDefault="qualified" version="2009-02-17 Errata">
+	<xs:include schemaLocation="g2sIncludeConfig.xsd"/>
+	<!--Class-specific Simple Data Types.-->
+	<xs:simpleType name="t_optionConfigExceptions">
+		<xs:annotation>
+			<xs:documentation>Change Exception Codes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_exceptionCode"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionGroupIdBase">
+		<xs:annotation>
+			<xs:documentation>Option Group Identifier - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionGroupId">
+		<xs:annotation>
+			<xs:documentation>Option Group Identifier - Extensible List.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_optionGroupIdBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionGroupName">
+		<xs:annotation>
+			<xs:documentation>Option Group Name Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionIdBase">
+		<xs:annotation>
+			<xs:documentation>Option Identifier - Base Enumerations.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_all"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionId">
+		<xs:annotation>
+			<xs:documentation>Option Identifier - Extensible List.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="g2s:t_optionIdBase g2s:t_extensibleList"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_optionName">
+		<xs:annotation>
+			<xs:documentation>Option Name Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64"/>
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="t_securityLevels">
+		<xs:annotation>
+			<xs:documentation>Option Security Level.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="G2S_attendant"/>
+			<xs:enumeration value="G2S_operator"/>
+			<xs:enumeration value="G2S_administrator"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!--Class-specific Attribute Groups.-->
+	<xs:attributeGroup name="p_optionSelect">
+		<xs:annotation>
+			<xs:documentation>Option Group / Option Id Selection Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="optionGroupId" type="g2s:t_optionGroupId" use="required"/>
+		<xs:attribute name="optionId" type="g2s:t_optionId" use="required"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_optionGroup">
+		<xs:annotation>
+			<xs:documentation>Option Group Parameters.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="optionGroupId" type="g2s:t_optionGroupId" use="required"/>
+		<xs:attribute name="optionGroupName" type="g2s:t_optionGroupName" use="optional" default=""/>
+	</xs:attributeGroup>
+	<!--Class-specific Complex Data Types.-->
+	<xs:complexType name="c_optionSelect">
+		<xs:annotation>
+			<xs:documentation>Option Selection data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:attributeGroup ref="g2s:p_optionSelect"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_deviceOptionSelect">
+		<xs:annotation>
+			<xs:documentation>Device / Option Selection Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:attributeGroup ref="g2s:p_optionSelect"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_getOptionList">
+		<xs:annotation>
+			<xs:documentation>Request Option List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceOptionSelect">
+				<xs:attribute name="optionDetail" type="xs:boolean" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionGroupItem">
+		<xs:annotation>
+			<xs:documentation>Option Group Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:optionItem" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_optionGroup"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_deviceOptionItem">
+		<xs:annotation>
+			<xs:documentation>Device Option List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:optionGroup" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionList">
+		<xs:annotation>
+			<xs:documentation>Option List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:deviceOptions" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeItem">
+		<xs:annotation>
+			<xs:documentation>Option Change Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_deviceOptionSelect">
+				<xs:sequence>
+					<xs:element ref="g2s:optionCurrentValues"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeList">
+		<xs:annotation>
+			<xs:documentation>Option Change List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:option" maxOccurs="unbounded"/>
+					<xs:element ref="g2s:authorizeList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeTrans">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Transaction Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseTransaction">
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeStatus">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Status Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_optionChangeTrans">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+				<xs:attributeGroup ref="g2s:p_configChangeStatus"/>
+				<xs:attribute name="changeException" type="g2s:t_optionConfigExceptions" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeLog">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Change Log Record Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_logClassRecord">
+				<xs:sequence>
+					<xs:element ref="g2s:authorizeStatusList" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="configurationId" type="g2s:t_configurationId" use="required"/>
+				<xs:attributeGroup ref="g2s:p_configChange"/>
+				<xs:attributeGroup ref="g2s:p_configChangeStatus"/>
+				<xs:attribute name="changeException" type="g2s:t_optionConfigExceptions" use="optional" default="0"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="c_optionChangeLogList">
+		<xs:annotation>
+			<xs:documentation>Comm Configuration Chnage Log List Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="g2s:c_baseCommand">
+				<xs:sequence>
+					<xs:element ref="g2s:optionChangeLog" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!--Device Status Commands.-->
+	<xs:element name="enterOptionConfigMode">
+		<xs:annotation>
+			<xs:documentation>Set Option Configuration Mode.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_setDeviceState">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getOptionConfigModeStatus">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Mode Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionConfigModeStatus">
+		<xs:annotation>
+			<xs:documentation>Current Option Configuration Mode Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_configDeviceStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getOptionConfigProfile">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Profile Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionConfigProfile">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Profile.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_configDeviceProfile">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Option Configuration Inquiry Commands.-->
+	<xs:element name="getOptionList">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_getOptionList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionList">
+		<xs:annotation>
+			<xs:documentation>Option Configuration List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionGroup">
+		<xs:annotation>
+			<xs:documentation>Option Group Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionGroupItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="deviceOptions">
+		<xs:annotation>
+			<xs:documentation>Device Options Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_deviceOptionItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionListAck">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Receipt Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Change Option Configuration Commands.-->
+	<xs:element name="option">
+		<xs:annotation>
+			<xs:documentation>Option Change Item.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="setOptionChange">
+		<xs:annotation>
+			<xs:documentation>Set Option Configuration Changes Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="cancelOptionChange">
+		<xs:annotation>
+			<xs:documentation>Cancel Option Configuration Change Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="authorizeOptionChange">
+		<xs:annotation>
+			<xs:documentation>Authorize Option Configuration Change Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionChangeStatus">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Change Request Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionChangeStatusAck">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Change Receipt Acknowledgement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeTrans">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Option Configuration Log Commands.-->
+	<xs:element name="getOptionChangeLogStatus">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Log Status Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseCommand">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionChangeLogStatus">
+		<xs:annotation>
+			<xs:documentation>Current Option Configuration Log Status.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logStatus">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getOptionChangeLog">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Log Request.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_logRequest">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionChangeLog">
+		<xs:annotation>
+			<xs:documentation>Option Change Log Record.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeLog">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="optionChangeLogList">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Log List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionChangeLogList">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Class Wrapper.-->
+	<xs:element name="optionConfig">
+		<xs:annotation>
+			<xs:documentation>Option Configuration Class.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_baseClass">
+					<xs:choice minOccurs="0">
+						<xs:element ref="g2s:enterOptionConfigMode"/>
+						<xs:element ref="g2s:getOptionConfigModeStatus"/>
+						<xs:element ref="g2s:optionConfigModeStatus"/>
+						<xs:element ref="g2s:getOptionConfigProfile"/>
+						<xs:element ref="g2s:optionConfigProfile"/>
+						<xs:element ref="g2s:getOptionList"/>
+						<xs:element ref="g2s:optionList"/>
+						<xs:element ref="g2s:optionListAck"/>
+						<xs:element ref="g2s:setOptionChange"/>
+						<xs:element ref="g2s:cancelOptionChange"/>
+						<xs:element ref="g2s:authorizeOptionChange"/>
+						<xs:element ref="g2s:optionChangeStatus"/>
+						<xs:element ref="g2s:optionChangeStatusAck"/>
+						<xs:element ref="g2s:getOptionChangeLogStatus"/>
+						<xs:element ref="g2s:optionChangeLogStatus"/>
+						<xs:element ref="g2s:getOptionChangeLog"/>
+						<xs:element ref="g2s:optionChangeLogList"/>
+						<xs:any namespace="##other" processContents="lax"/>
+					</xs:choice>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--New Commands in Ext1: getOptionChangeStatus-->
+	<!--####### Start OptionItem Definitions #######-->
+	<!--Option Parameter Data Definitions.-->
+	<xs:simpleType name="t_paramId">
+		<xs:annotation>
+			<xs:documentation>Option Parameter Identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="g2s:t_uniqueIdentifier64"/>
+	</xs:simpleType>
+	<xs:attributeGroup name="p_name">
+		<xs:annotation>
+			<xs:documentation>Parameter Definition Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="paramId" type="g2s:t_paramId" use="required"/>
+		<xs:attribute name="paramName" type="g2s:t_optionName" use="optional" default=""/>
+		<xs:attribute name="paramHelp" type="g2s:t_egmMessage" use="optional" default=""/>
+		<xs:attribute name="paramKey" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_canMod">
+		<xs:annotation>
+			<xs:documentation>Can-Mod Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="canModLocal" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="canModRemote" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_integer">
+		<xs:annotation>
+			<xs:documentation>Integer Parameter Definition Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minIncl" type="xs:long" use="optional" default="0"/>
+		<xs:attribute name="maxIncl" type="xs:long" use="optional"/>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_decimal">
+		<xs:annotation>
+			<xs:documentation>Decimal Parameter Definition Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minIncl" type="xs:decimal" use="optional" default="0"/>
+		<xs:attribute name="maxIncl" type="xs:decimal" use="optional"/>
+		<xs:attribute name="fracDig" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_string">
+		<xs:annotation>
+			<xs:documentation>String Parameter Definition Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="minLen" use="optional" default="0">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxLen" use="optional" default="64">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:attributeGroup>
+	<xs:attributeGroup name="p_boolean">
+		<xs:annotation>
+			<xs:documentation>Boolean Parameter Definition Attributes.</xs:documentation>
+		</xs:annotation>
+	</xs:attributeGroup>
+	<xs:element name="integerEnum" type="xs:long" default="0">
+		<xs:annotation>
+			<xs:documentation>Integer Enumeration Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="decimalEnum" type="xs:decimal" default="0">
+		<xs:annotation>
+			<xs:documentation>Decimal Enumeration Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="stringEnum" type="xs:string">
+		<xs:annotation>
+			<xs:documentation>String Enumeration Element.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="c_integerDataType">
+		<xs:annotation>
+			<xs:documentation>Integer Parameter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="g2s:integerEnum" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="g2s:p_name"/>
+		<xs:attributeGroup ref="g2s:p_canMod"/>
+		<xs:attributeGroup ref="g2s:p_integer"/>
+	</xs:complexType>
+	<xs:complexType name="c_decimalDataType">
+		<xs:annotation>
+			<xs:documentation>Decimal Parameter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="g2s:decimalEnum" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="g2s:p_name"/>
+		<xs:attributeGroup ref="g2s:p_canMod"/>
+		<xs:attributeGroup ref="g2s:p_decimal"/>
+	</xs:complexType>
+	<xs:complexType name="c_stringDataType">
+		<xs:annotation>
+			<xs:documentation>String Parameter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="g2s:stringEnum" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="g2s:p_name"/>
+		<xs:attributeGroup ref="g2s:p_canMod"/>
+		<xs:attributeGroup ref="g2s:p_string"/>
+	</xs:complexType>
+	<xs:complexType name="c_booleanDataType">
+		<xs:annotation>
+			<xs:documentation>Boolean Parameter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:attributeGroup ref="g2s:p_name"/>
+		<xs:attributeGroup ref="g2s:p_canMod"/>
+		<xs:attributeGroup ref="g2s:p_boolean"/>
+	</xs:complexType>
+	<xs:element name="integerParameter">
+		<xs:annotation>
+			<xs:documentation>Integer Parameter Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_integerDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="decimalParameter">
+		<xs:annotation>
+			<xs:documentation>Decimal Parameter Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_decimalDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stringParameter">
+		<xs:annotation>
+			<xs:documentation>String Parameter Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_stringDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="booleanParameter">
+		<xs:annotation>
+			<xs:documentation>Boolean Parameter Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_booleanDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="c_complexDataType">
+		<xs:annotation>
+			<xs:documentation>Complex Parameter Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="g2s:integerParameter"/>
+			<xs:element ref="g2s:decimalParameter"/>
+			<xs:element ref="g2s:stringParameter"/>
+			<xs:element ref="g2s:booleanParameter"/>
+			<xs:element ref="g2s:complexParameter"/>
+		</xs:choice>
+		<xs:attributeGroup ref="g2s:p_name"/>
+	</xs:complexType>
+	<xs:element name="complexParameter">
+		<xs:annotation>
+			<xs:documentation>Complex Parameter Definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_complexDataType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="c_optionParametersType">
+		<xs:annotation>
+			<xs:documentation>Option Parameters Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="g2s:integerParameter"/>
+			<xs:element ref="g2s:decimalParameter"/>
+			<xs:element ref="g2s:stringParameter"/>
+			<xs:element ref="g2s:booleanParameter"/>
+			<xs:element ref="g2s:complexParameter"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="optionParameters">
+		<xs:annotation>
+			<xs:documentation>Option Parameter List Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionParametersType">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Option Value Data Definitions.-->
+	<xs:attributeGroup name="p_paramId">
+		<xs:annotation>
+			<xs:documentation>Parameter Identifier Attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="paramId" type="g2s:t_paramId" use="required"/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_integerValue">
+		<xs:annotation>
+			<xs:documentation>Integer Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:long">
+				<xs:attributeGroup ref="g2s:p_paramId"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="c_decimalValue">
+		<xs:annotation>
+			<xs:documentation>Decimal Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attributeGroup ref="g2s:p_paramId"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="c_stringValue">
+		<xs:annotation>
+			<xs:documentation>String Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attributeGroup ref="g2s:p_paramId"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="c_booleanValue">
+		<xs:annotation>
+			<xs:documentation>Boolean Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:boolean">
+				<xs:attributeGroup ref="g2s:p_paramId"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:element name="integerValue" default="0">
+		<xs:annotation>
+			<xs:documentation>Integer Value Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="g2s:c_integerValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="decimalValue" default="0">
+		<xs:annotation>
+			<xs:documentation>Decimal Value Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="g2s:c_decimalValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="stringValue">
+		<xs:annotation>
+			<xs:documentation>String Value Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="g2s:c_stringValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="booleanValue" default="false">
+		<xs:annotation>
+			<xs:documentation>Boolean Value Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="g2s:c_booleanValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="c_complexValue">
+		<xs:annotation>
+			<xs:documentation>Complex Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="g2s:integerValue"/>
+			<xs:element ref="g2s:decimalValue"/>
+			<xs:element ref="g2s:stringValue"/>
+			<xs:element ref="g2s:booleanValue"/>
+			<xs:element ref="g2s:complexValue"/>
+		</xs:choice>
+		<xs:attributeGroup ref="g2s:p_paramId"/>
+	</xs:complexType>
+	<xs:element name="complexValue">
+		<xs:annotation>
+			<xs:documentation>Complex Value Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_complexValue">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Current Option Values.-->
+	<xs:complexType name="c_optionCurrentValues">
+		<xs:annotation>
+			<xs:documentation>Current Option Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="g2s:integerValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:decimalValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:stringValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:booleanValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:complexValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="optionCurrentValues">
+		<xs:annotation>
+			<xs:documentation>Current Option Value List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionCurrentValues">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Default Option Values.-->
+	<xs:complexType name="c_optionDefaultValues">
+		<xs:annotation>
+			<xs:documentation>Default Option Value Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element ref="g2s:integerValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:decimalValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:stringValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:booleanValue" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="g2s:complexValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="optionDefaultValues">
+		<xs:annotation>
+			<xs:documentation>Default Option Value List.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionDefaultValues">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--Option Item Data Definition.-->
+	<xs:attributeGroup name="p_optionItem">
+		<xs:annotation>
+			<xs:documentation>Option Item Attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="optionId" type="g2s:t_optionId" use="required"/>
+		<xs:attribute name="securityLevel" type="g2s:t_securityLevels" use="required"/>
+		<xs:attribute name="minSelections" use="optional" default="1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="0"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="maxSelections" use="optional" default="1">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="duplicates" type="xs:boolean" use="optional" default="false"/>
+	</xs:attributeGroup>
+	<xs:complexType name="c_optionItem">
+		<xs:annotation>
+			<xs:documentation>Option Item Data Type.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="g2s:optionParameters" minOccurs="0"/>
+			<xs:element ref="g2s:optionCurrentValues"/>
+			<xs:element ref="g2s:optionDefaultValues" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="g2s:p_optionItem"/>
+	</xs:complexType>
+	<xs:element name="optionItem">
+		<xs:annotation>
+			<xs:documentation>Option Item Element.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="g2s:c_optionItem">
+					<xs:anyAttribute namespace="##other" processContents="lax"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<!--####### End OptionItem Definitions #######-->
+</xs:schema>
