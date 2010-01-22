@@ -1,3 +1,11 @@
+Fri Jan 22 16:46:54 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        
+          Added no-op visit_* method that was recently added (as
+          pure virtual) to the front end base class.
+
 Fri Jan 22 01:45:52 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:

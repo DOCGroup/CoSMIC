@@ -2462,6 +2462,12 @@ adding_visitor::visit_valuebox (AST_ValueBox *node)
   return 0;
 }
 
+int
+adding_visitor::visit_param_holder (AST_Param_Holder *)
+{
+  return 0;
+}
+
 ACE_CString
 adding_visitor::set_id_attr (DOMElement *elem, BE_GlobalData::kind_id kind)
 {

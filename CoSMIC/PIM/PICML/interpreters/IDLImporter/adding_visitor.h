@@ -103,6 +103,7 @@ public:
   virtual int visit_root (AST_Root *node);
   virtual int visit_native (AST_Native *node);
   virtual int visit_valuebox (AST_ValueBox *node);
+  virtual int visit_param_holder (AST_Param_Holder *node);
 
 private:
   typedef void (BE_GlobalData::*folder_setter) (DOMElement *);
