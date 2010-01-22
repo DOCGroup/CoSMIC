@@ -156,8 +156,8 @@ def push_dictionary(qualified_cname, child_type):
 
     parent_dict[child_type][length:] = [ qualified_cname ]
 
-    #if(max_length < len(parent_dict[child_type])):
-    #  max_length = len(parent_dict[child_type]) 
+    if(max_length < len(parent_dict[child_type])):
+      max_length = len(parent_dict[child_type]) 
 
 
 def synthesize_function_declaration(return_type, qualified_cname, child_type):
@@ -177,14 +177,14 @@ def synthesize_function_definition(return_type, qualified_cname, child_type, fna
   outstr = """
 %(return_type)s
 children_kind(%(qualified_cname)s & x, %(child_type)s const *)
-{\
-  return x.%(fname)s();\
+{
+  return x.%(fname)s();
 }
 
 const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s const *)
-{\
-  return x.%(fname)s();\
+{
+  return x.%(fname)s();
 }
 """ % locals()
   synthesized_function_definitions += outstr

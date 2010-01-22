@@ -25,9 +25,12 @@ struct SeqType
   typedef ::xsd::cxx::tree::sequence< T > type;
 };
 
+#define TEST3
 
+
+#ifdef TEST1
 // Get a sequence of books.
-SeqType<book>::type 
+SeqType<book>::type
 get_books(catalog & c)
 {
 #ifdef WITH_LEESA  
@@ -41,7 +44,9 @@ get_books(catalog & c)
   
   return book_seq;
 };
+#endif // TEST1 
 
+#ifdef TEST2
 // Get a sequence of authors.
 SeqType<author>::type
 get_authors (catalog & c)
@@ -61,14 +66,16 @@ get_authors (catalog & c)
 #endif 
   return author_seq;
 }
+#endif // TEST2
 
-
+#ifdef TEST3
 // Get a sequence of author names.
-SeqType<name>::type 
+SeqType<name>::type
+//unsigned int
 get_author_names (catalog & c)
 {
 #ifdef WITH_LEESA  
-  SeqType<name>::type name_seq = 
+  SeqType<name>::type name_seq =   
     evaluate (c, catalog() >> book() >> author() >> name());
 #endif 
 #ifdef WITHOUT_LEESA
@@ -87,10 +94,11 @@ get_author_names (catalog & c)
 #endif
   return name_seq;
 }
+#endif // TEST3
 
-
+#ifdef TEST4
 // Get a sequence of author names.
-SeqType<name>::type 
+SeqType<name>::type
 get_author_names_descendants_of (catalog & c)
 {
 #ifdef WITH_LEESA  
@@ -113,10 +121,11 @@ get_author_names_descendants_of (catalog & c)
 #endif
   return name_seq;
 }
+#endif // TEST4
 
-
+#ifdef TEST5
 // Get a sequence of author names.
-SeqType<name>::type 
+SeqType<name>::type
 get_author_names_level_descendants_of (catalog & c)
 {
 #ifdef WITH_LEESA  
@@ -139,6 +148,7 @@ get_author_names_level_descendants_of (catalog & c)
 #endif
   return name_seq;
 }
+#endif // TEST5
 
 timeval operator - (timeval t1, timeval t2)
 {
@@ -158,7 +168,8 @@ timeval operator - (timeval t1, timeval t2)
 
 std::ostream & operator << (std::ostream & o, timeval const & t)
 {
-  o << "[" << t.tv_sec << ", " << t.tv_usec << "]";
+  //o << "[" << t.tv_sec << ", " << t.tv_usec << "]";
+  o << t.tv_sec << " " << t.tv_usec;
   return o;
 }
 
@@ -183,11 +194,21 @@ main (int argc, char* argv[])
 
     gettimeofday(&start, 0);
 
-    get_books(*c); 
-    get_authors(*c); 
-    get_author_names(*c); 
-    get_author_names_descendants_of(*c); 
-    get_author_names_level_descendants_of(*c); 
+#ifdef TEST1
+    std::cout << "Size = " << get_books(*c).size() << std::endl; 
+#endif
+#ifdef TEST2
+    std::cout << "Size = " << get_authors(*c).size() << std::endl; 
+#endif
+#ifdef TEST3
+    std::cout << "Size = " << get_author_names(*c).size() << std::endl; 
+#endif
+#ifdef TEST4
+    std::cout << "Size = " << get_author_names_descendants_of(*c).size() << std::endl; 
+#endif
+#ifdef TEST5
+    std::cout << "Size = " << get_author_names_level_descendants_of(*c).size() << std::endl; 
+#endif
 
     gettimeofday(&end, 0);
 

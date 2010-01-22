@@ -164,6 +164,34 @@ struct GetChildrenOp :
   }
 };
 
+template <class E>
+struct StoreAtOp : LEESAUnaryFunction <E>, OpBase
+{
+  typedef LEESAUnaryFunction <E> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<E, StoreAtOp<argument_type> > expression_type;
+
+  typedef typename KindTraits<argument_kind>::Container Container;
+  Container & store_;
+
+  StoreAtOp (Container & c) 
+    : store_ (c) {}
+  
+  StoreAtOp (const StoreAtOp & sop) : store_(sop.store_) { }
+  
+  result_type operator () (argument_type const & arg)
+  {
+    store_ = arg;
+  }
+  
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && arg)
+  {
+    store_ = std::move(arg);
+  }
+#endif // __GXX_EXPERIMENTAL_CXX0X__  
+};
+
 #ifndef LEESA_NO_VISITOR
 
 template <class E>
@@ -743,6 +771,19 @@ Select (E, Result (*f) (Arg))
   FilterOp<E, std::pointer_to_unary_function<Arg, Result> > 
     filter(std::ptr_fun(f));
   return filter;
+}
+
+template <class E>
+StoreAtOp<typename ET<E>::result_type> 
+StoreAt (E, typename KindTraits<typename ET<E>::result_kind>::Container & c)
+{
+  typedef typename ET<E>::result_kind result_kind;
+  typedef typename KindTraits<result_kind>::Container Container;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  BOOST_MPL_ASSERT((boost::is_convertible<result_kind, typename Container::value_type>));
+  
+  return StoreAtOp<typename ET<E>::result_type> (c);
 }
 
 template <class E, class Func>

@@ -46,6 +46,8 @@ template <class E> struct VisitorOp;
 
 template <class E> struct RegexOp;
 template <class E> struct SelectorOp;
+template <class E> struct StoreAtOp;
+
 template <class E, class Func> struct FilterOp;
 template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;

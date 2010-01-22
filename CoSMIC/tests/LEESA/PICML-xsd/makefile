@@ -4,7 +4,7 @@ include $(root)/build/cxx/rules.make
 include $(root)/build/xsd/tree-rules.make
 
 override XSDFLAGS += --export-symbol PICML_Export --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last
-CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D PICML_Export=  -D WITH_LEESA -O3
+CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D PICML_Export=  -D WITH_LEESA_DESC -O3
 # CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D PICML_Export= -D WITH_LEESA -O3
 
 all:
@@ -20,8 +20,7 @@ generate:
 
 # Build.
 #
-driver: driver.o PICML.o 
-#PICML-meta.o
+driver: driver.o PICML.o PICML-meta.o
 
 PICML.o: PICML.cxx PICML.hxx
 PICML-meta.o: PICML-meta.cxx PICML-meta.hxx

@@ -1,3 +1,26 @@
+Fri Jan 22 01:45:52 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Readable code generation.
+
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+
+          Addition of StoreAt operator for storing intermediate results
+	  in outside containers.
+
+        * tests/LEESA/PICML-xsd/driver.cxx:
+        * tests/LEESA/PICML-xsd/makefile:
+
+          Improved tests for compilation times.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/makefile:
+
+          Improved tests for run-time performance.
+
 Wed Jan 20 02:32:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
