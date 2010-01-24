@@ -68,6 +68,31 @@
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_Operators.cpp' />
 
+          <File Id='LEESA_Carrier_Optimized_cpp'
+                Name='Carrier_Optimized.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Carrier_Optimized.cpp' />
+
+          <File Id='LEESA_Carrier_Optimized_h'
+                Name='Carrier_Optimized.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Carrier_Optimized.h' />
+
+          <File Id='LEESA_Carrier_Simple_h'
+                Name='Carrier_Simple.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\Carrier_Simple.h' />
+
+          <File Id='LEESA_SingleStage_h'
+                Name='LEESA_SingleStage.h'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\LEESA_SingleStage.h' />
+
+          <File Id='SP_Accumulation_cpp'
+                Name='SP_Accumulation.cpp'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\include\SP_Accumulation.cpp' />
+
         </Component>
       </DirectoryRef>
       
@@ -82,6 +107,11 @@
                 Name='gen-pairs.pl'
                 DiskId='1'
                 Source='$(var.COSMIC_ROOT)\Utils\LEESA\bin\gen-pairs.pl' />
+
+          <File Id='GEN_META_PL'
+                Name='gen-meta.py'
+                DiskId='1'
+                Source='$(var.COSMIC_ROOT)\Utils\LEESA\bin\gen-meta.py' />
 
         </Component>
       </DirectoryRef>
