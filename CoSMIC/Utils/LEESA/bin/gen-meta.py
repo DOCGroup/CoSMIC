@@ -48,6 +48,7 @@ def remove_non_schema_types(function_dict, typedef_dict):
 
 
 
+
 class TypeInfo:
   wrapper = ""
   orig_type = ""
@@ -55,6 +56,9 @@ class TypeInfo:
 
   def __str__(self):
     return "['" + self.wrapper + "' '" + self.orig_type + "' '" + str(self.is_schema_type) + "']"
+    
+  def __eq__(self, other):
+    return (self.wrapper == other.wrapper) and (self.orig_type == other.orig_type) and (self.is_schema_type == other.is_schema_type)
     
 
 def extract_type_info (typedef_node):
@@ -160,16 +164,31 @@ def push_dictionary(qualified_cname, child_type):
       max_length = len(parent_dict[child_type]) 
 
 
-def synthesize_function_declaration(return_type, qualified_cname, child_type):
+def synthesize_function_declaration(return_type, qualified_cname, child_type, conflicting_types):
   global synthesized_function_declarations
-  outstr = """
+  
+  if(len(conflicting_types) > 0):
+    str_types = ", ".join(conflicting_types)
+    outstr = """
+/************ %(child_type)s conflicts with %(str_types)s
+%(return_type)s
+children_kind(%(qualified_cname)s & x, %(child_type)s const *);
+
+const %(return_type)s
+children_kind(const %(qualified_cname)s & x, %(child_type)s const *);
+************/
+""" % locals()
+    synthesized_function_declarations += outstr
+
+  else:
+    outstr = """
 %(return_type)s
 children_kind(%(qualified_cname)s & x, %(child_type)s const *);
 
 const %(return_type)s
 children_kind(const %(qualified_cname)s & x, %(child_type)s const *);
 """ % locals()
-  synthesized_function_declarations += outstr
+    synthesized_function_declarations += outstr
 
 
 def synthesize_function_definition(return_type, qualified_cname, child_type, fname):
@@ -190,6 +209,22 @@ children_kind(const %(qualified_cname)s & x, %(child_type)s const *)
   synthesized_function_definitions += outstr
 
 
+
+def get_conflicting_types(type, tyepdef_dict):
+  """Finds typedefs defined in the same class that conflict. General algo 
+     is: Find a type definition that is identical to type but for a 
+     different key. If the type definitions is coming from a different
+     class, neglect it. This is a pretty slow function for large dictionaries.""" 
+  conflicting_types = []
+  if type in typedef_dict:
+    typedef = typedef_dict[type] # Look for an identical typedef mapped under a different key.
+    for key, value in typedef_dict.items():
+      if((typedef == value) and (type != key) and (type.rpartition("::")[0] == key.rpartition("::")[0])):
+        conflicting_types.append(key)
+
+  return conflicting_types
+
+
 def synthesize_one_function_list(qualified_cname, real_parent, function_list, typedef_dict):
   for pair in function_list:
     if(pair[1] in typedef_dict):
@@ -198,16 +233,19 @@ def synthesize_one_function_list(qualified_cname, real_parent, function_list, ty
       typedef_child_type = "::"
 
       if(len(typedef_dict[pair[1]].wrapper) > 0):
-          actual_child_class = typedef_dict[typedef_dict[pair[1]].orig_type].orig_type
-          typedef_child_type = qualified_cname + "::" + fname + "_type"
+        original_type = typedef_dict[pair[1]].orig_type 
+        actual_child_class = typedef_dict[original_type].orig_type
       elif(typedef_dict[pair[1]].is_schema_type):
+        original_type = pair[1]
         actual_child_class = typedef_dict[pair[1]].orig_type
-        typedef_child_type = qualified_cname + "::" + fname + "_type"
 
+      typedef_child_type = qualified_cname + "::" + fname + "_type"
       push_dictionary(qualified_cname, actual_child_class)    
-      
-      synthesize_function_declaration(return_type, qualified_cname, typedef_child_type)
-      synthesize_function_definition(return_type, qualified_cname, typedef_child_type, fname)
+      conflicting_types = get_conflicting_types(original_type, typedef_dict);
+
+      synthesize_function_declaration(return_type, qualified_cname, typedef_child_type, conflicting_types)
+      if(len(conflicting_types) == 0):
+        synthesize_function_definition(return_type, qualified_cname, typedef_child_type, fname)
 
 
 
@@ -217,6 +255,8 @@ def synthesize_recursive_function_list(classid, real_parent_id, function_dict, t
   real_parent_cname = root.xpath("compounddef[@id='" + real_parent_id + "']/compoundname/text()")[0].split("::")[-1]
   
   synthesize_one_function_list(qualified_cname, real_parent_cname, function_list, typedef_dict)
+  sys.stdout.write(".")
+  sys.stdout.flush()
   if(len(baseclass_dict[real_parent_id]) > 0):
     for baseid in baseclass_dict[real_parent_id]:
       synthesize_recursive_function_list(classid, baseid, function_dict, typedef_dict)
@@ -243,7 +283,7 @@ def inherit_baseclass_functions(function_dict, baseclass_dict):
     function_dict[classid] = flist
 
 
-def write_header_prolog(max_length, namespace, orig_header_without_ext, meta_header_file):
+def write_header_prolog(no_visitor, max_length, namespace, orig_header_without_ext, meta_header_file):
   guard_macro = "__" + orig_header_without_ext.upper() + "_META_HXX"
   outstr = """\
 #ifndef %(guard_macro)s
@@ -263,6 +303,14 @@ def write_header_prolog(max_length, namespace, orig_header_without_ext, meta_hea
 #define BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
 #define BOOST_MPL_LIMIT_VECTOR_SIZE %(vector_size)s
 """ % locals()
+    meta_header_file.write(outstr)
+
+  if(no_visitor):
+    outstr = """
+#ifndef LEESA_NO_VISITOR
+#define LEESA_NO_VISITOR
+#endif // LEESA_NO_VISITOR
+"""
     meta_header_file.write(outstr)
 
   if(namespace != ""):
@@ -346,17 +394,17 @@ struct ContainerTraits
     metakind = "LEESA::AtomMetaTag"
 
     if(t in children_dict):
-      children_kinds = ",".join(children_dict[t])
+      children_kinds = ", ".join(children_dict[t])
       metakind = "LEESA::ModelMetaTag"
 
     if(t in parent_dict):
-      parent_kinds = ",".join(parent_dict[t])
+      parent_kinds = ", ".join(parent_dict[t])
 
     outstr = """
 template <>
 struct SchemaTraits< %(t)s > : public ContainerTraits< %(t)s > {
   typedef boost::mpl::vector < %(children_kinds)s > ChildrenKinds;
-  typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
+  //typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
   typedef %(metakind)s MetaKind;
 };
 """ % locals()
@@ -545,6 +593,36 @@ def write_descendant_pairs(children_dict, meta_header_file):
     meta_header_file.write("\n")
 
 
+def transform_xsd(xsd_file_name):
+  xsd_file = open(xsd_file_name, 'r')
+  root = etree.parse(xsd_file).getroot()
+  xsd_file.close()
+
+  NSMAP = { root.prefix : 'http://www.w3.org/2001/XMLSchema'} 
+  
+  xsd_basic_types = ["boolean",      "byte",          "date",         "dateTime",     "decimal",
+                     "double",       "duration",      "float",        "int",          "integer", 
+                     "language",     "long", "Short", "string",       "time",         "token",        
+                     "unsignedByte", "unsignedInt",   "unsignedLong", "unsignedShort", ]
+  all_types = ""
+
+  for t in xsd_basic_types:
+    # Append all types in the @type predicate.
+    all_types = all_types + " @type='" + root.prefix + ":" + t + "' or " 
+  
+  all_types = all_types[:all_types.rfind("or")] # remove the last "or"
+  query = "//" + root.prefix + ":element[" + all_types + "]"
+
+  element_nodes = root.xpath(query, namespaces=NSMAP)
+  for n in element_nodes:
+    simpleType = etree.Element("{http://www.w3.org/2001/XMLSchema}simpleType") 
+    simpleType.append(etree.Element("{http://www.w3.org/2001/XMLSchema}restriction", {'base' : n.attrib["type"] }))
+    n.append(simpleType)
+    del(n.attrib["type"])
+
+  print(etree.tostring(root, pretty_print = True))
+
+
 def print_dictionary(dict, message):
   print (message)
   for key, value in sorted(dict.items()):
@@ -604,7 +682,11 @@ def generate_xml():
 
 
 def usage():
-  print("python gen-meta.py < -doxygen | -no-doxygen (reads all.xml) > [-no-visitor] <top level header file>")
+  print("Usage #1: python gen-meta.py -doxygen <top level header file>")
+  print("Usage #2: python gen-meta.py -doxygen -no-visitor <top level header file>")
+  print("Usage #3: python gen-meta.py -no-doxygen (reads all.xml) <top level header file>")
+  print("Usage #4: python gen-meta.py -no-doxygen (reads all.xml) -no-visitor <top level header file>")
+  print("Usage #4: python gen-meta.py -transform-xsd <source xsd file>")
   print("Note: all.xml should be obtained by running doxygen on *.hxx only.")
   
     
@@ -652,6 +734,16 @@ if(sys.argv[1] == "-doxygen"):
   tool = "doxygen"
 elif(sys.argv[1] == "-no-doxygen"):
   tool = "no-doxygen"
+elif(sys.argv[1] == "-transform-xsd"):
+  if(len(sys.argv) != 3):
+    usage()
+    quit()
+  else:
+    if (not os.path.exists(sys.argv[2])):
+      print(sys.argv[2] + " does not exist.")
+    else:
+      transform_xsd(sys.argv[2])
+    quit()
 else:
   usage()
   quit()
@@ -670,7 +762,7 @@ if(sys.argv[2] == "-no-visitor"):
 else:
   orig_header_file_name = sys.argv[2]
 
-if(not os.path.exists(orig_header_file_name)):
+if((tool == "doxygen" or tool == "no-doxygen") and (not os.path.exists(orig_header_file_name))):
   print(orig_header_file_name + " does not exist.")
   quit()
 
@@ -738,6 +830,7 @@ parent_dict = {}
 max_length = 0
 synthesized_function_declarations = ""
 synthesized_function_definitions = ""
+print("============================ Synthesizing functions =========================")
 synthesize_functions(root, function_dict, baseclass_dict, typedef_dict)
 
 meta_header_filename = orig_header_without_ext + "-meta.hxx"
@@ -745,12 +838,12 @@ meta_header_file = open(meta_header_filename, 'w')
 cpp_filename = orig_header_without_ext + "-meta.cxx"
 cpp_file = open(cpp_filename, 'w')
 
-write_header_prolog(max_length, namespace, orig_header_without_ext, meta_header_file)
+write_header_prolog(no_visitor, max_length, namespace, orig_header_without_ext, meta_header_file)
 write_cpp_prolog(namespace, orig_header_without_ext, cpp_file)
 meta_header_file.write(synthesized_function_declarations)
 cpp_file.write(synthesized_function_definitions)
 
-# Populate the fully qualified names of the types. Namespace name will be there.
+# Populate the fully qualified names of the types. Namespace prefix will be there.
 all_types_set = set()
 populate_all_types(root, all_types_set)
 

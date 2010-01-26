@@ -4,7 +4,7 @@ include $(root)/build/cxx/rules.make
 include $(root)/build/xsd/tree-rules.make
 
 override XSDFLAGS += --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last --namespace-map http://www.gamingstandards.com/g2s/schemas/v1.0.3=G2Sv1_0_3
-CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include 
+CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LEESA_NO_VISITOR
 
 SRCS = $(wildcard *.cxx)
 OBJS = $(patsubst %.cxx,%.o,$(SRCS))

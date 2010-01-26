@@ -1,7 +1,21 @@
+Tue Jan 26 02:18:04 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+
+          Improved code generation. Avoid conflicting types.
+
+        * tests/LEESA/G2SMessage-xsd/makefile:
+
+          Added LEESA_NO_VISITOR
+
+        * tests/LEESA/rss2-xsd/rss2-original.xsd:
+
+          Bug fix.
+
 Sun Jan 24 19:34:28 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/etc/LEESA.wxs:
-		
+
           Added new files in the distribution.
 
 Fri Jan 22 16:46:54 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
