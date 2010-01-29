@@ -1106,6 +1106,12 @@ adding_visitor::visit_factory (AST_Factory *node)
 }
 
 int
+adding_visitor::visit_finder (AST_Finder *)
+{
+  return 0;
+}
+
+int
 adding_visitor::visit_structure (AST_Structure *node)
 {
   // First see if it's been imported with an XME file.

@@ -1,3 +1,12 @@
+Fri Jan 29 15:33:36 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        
+          Added no-op visit_finder() method, in anticipation of the
+          branch merge where the same method has been added to the
+          front end base class as pure virtual.
+
 Tue Jan 26 02:18:04 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/bin/gen-meta.py:
