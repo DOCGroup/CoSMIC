@@ -17,7 +17,7 @@
 #include "ast_eventtype.h"
 #include "ast_eventtype_fwd.h"
 #include "ast_exception.h"
-#include "ast_factory.h"
+#include "ast_finder.h"
 #include "ast_field.h"
 #include "ast_home.h"
 #include "ast_operation.h"
@@ -1005,8 +1005,6 @@ adding_visitor::visit_home (AST_Home *node)
 
   this->add_manages (node);
   this->add_lookup_key (elem, node);
-  this->add_home_factories (elem, node);
-  this->add_finders (elem, node);
 
   // Keep track of where we are in the DOM tree so the next
   // element can be inserted in the correct position.
@@ -1022,8 +1020,6 @@ adding_visitor::visit_home (AST_Home *node)
     (0 == node->base_home () ? 0UL : 1UL)
     + static_cast<unsigned long> (node->n_supports ())
     + (0 == node->primary_key () ? 0UL : 1UL)
-    + node->factories ().size ()
-    + node->finders ().size ()
     + 1;
 
   adding_visitor scope_visitor (elem, start_id);
@@ -1106,8 +1102,68 @@ adding_visitor::visit_factory (AST_Factory *node)
 }
 
 int
-adding_visitor::visit_finder (AST_Finder *)
+adding_visitor::visit_finder (AST_Finder *node)
 {
+  DOMElement *elem = 0;
+
+  // See if it's been imported with an XME file.
+  elem =
+    be_global->imported_dom_element (
+      this->sub_tree_,
+      node->local_name ()->get_string ());
+
+  // If not, create it.
+  if (0 == elem)
+    {
+      elem = this->doc_->createElement (X ("model"));
+      this->set_id_attr (elem, BE_GlobalData::MODEL);
+      elem->setAttribute (X ("kind"), X ("LookupOperation"));
+      elem->setAttribute (X ("role"), X ("LookupOperation"));
+      this->set_relid_attr (elem);
+      this->set_childrelidcntr_attr (elem, node);
+
+      this->add_name_element (elem,
+                              node->local_name ()->get_string ());
+
+      this->add_regnodes (node->defined_in (),
+                          elem,
+                          this->rel_id_ - 1);
+    }
+
+  this->add_replace_id_element (elem, node);
+  this->add_version_element (elem, node);
+
+  // Add to list used in check for removed IDL decls.
+  if (be_global->input_xme () != 0)
+    {
+      be_global->gme_id_set ().insert (
+        elem->getAttribute (X ("id")));
+    }
+
+  adding_visitor scope_visitor (elem);
+
+  if (scope_visitor.visit_scope (node) != 0)
+    {
+      ACE_ERROR_RETURN ((LM_ERROR,
+                         "adding_visitor::visit_finder - "
+                         "code generation for scope failed\n"),
+                        -1);
+    }
+
+  this->add_exception_elements (elem,
+                                node,
+                                0,
+                                node->exceptions (),
+                                "ExceptionRef",
+                                scope_visitor.rel_id_);
+
+  this->insert_element (elem, node);
+  be_global->emit_diagnostic (elem);
+
+  // Keep track of where we are in the DOM tree so the next
+  // new element can be inserted in the correct position.
+  this->previous_ = elem;
+
   return 0;
 }
 
@@ -3911,140 +3967,6 @@ adding_visitor::add_lookup_key (DOMElement *parent,
     }
 }
 
-void
-adding_visitor::add_home_factories (DOMElement *parent,
-                                    AST_Home *node)
-{
-  AST_Operation **op = 0;
-  unsigned long slot =
-    (0 == node->base_home () ? 0UL : 1UL)
-    + static_cast<unsigned long> (node->n_supports ())
-    + (0 == node->primary_key () ? 0UL : 1UL)
-    + 1;
-
-  for (ACE_Unbounded_Queue_Iterator<AST_Operation *> i (node->factories ());
-       !i.done ();
-       i.advance ())
-    {
-      i.next (op);
-      DOMElement *factory =
-        be_global->imported_dom_element (
-          parent,
-          (*op)->local_name ()->get_string ());
-
-      if (0 == factory)
-        {
-          factory = this->doc_->createElement (X ("model"));
-          this->set_id_attr (factory, BE_GlobalData::MODEL);
-          this->set_childrelidcntr_attr (factory, *op);
-          factory->setAttribute (X ("relid"),
-                                 X (be_global->hex_string (slot)));
-          factory->setAttribute (X ("kind"), X ("FactoryOperation"));
-          factory->setAttribute (X ("role"), X ("FactoryOperation"));
-          this->add_name_element (factory,
-                                  (*op)->local_name ()->get_string ());
-          this->add_regnodes (node, factory, slot++);
-          parent->appendChild (factory);
-          be_global->emit_diagnostic (factory);
-        }
-
-      // Emits diagnostic if changed, idempotent otherwise.
-      this->add_replace_id_element (factory, *op);
-      this->add_version_element (factory, *op);
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              factory->getAttribute (X ("id"))
-            );
-        }
-
-      adding_visitor scope_visitor (factory);
-
-      if (scope_visitor.visit_scope (*op) != 0)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      "adding_visitor::add_home_factories - "
-                      "code generation for scope failed\n"));
-        }
-
-      this->add_exception_elements (factory,
-                                    *op,
-                                    0,
-                                    (*op)->exceptions (),
-                                    "ExceptionRef",
-                                    scope_visitor.rel_id_);
-    }
-}
-
-void
-adding_visitor::add_finders (DOMElement *parent, AST_Home *node)
-{
-  AST_Operation **op = 0;
-  unsigned long slot =
-    (0 == node->base_home () ? 0UL : 1UL)
-    + static_cast<unsigned long> (node->n_supports ())
-    + (0 == node->primary_key () ? 0UL : 1UL)
-    + node->factories ().size ()
-    + 1;
-
-  for (ACE_Unbounded_Queue_Iterator<AST_Operation *> i (node->finders ());
-       !i.done ();
-       i.advance ())
-    {
-      i.next (op);
-      DOMElement *finder =
-        be_global->imported_dom_element (
-          parent,
-          (*op)->local_name ()->get_string ());
-
-      if (0 == finder)
-        {
-          finder = this->doc_->createElement (X ("model"));
-          this->set_id_attr (finder, BE_GlobalData::MODEL);
-          this->set_childrelidcntr_attr (finder, *op);
-          finder->setAttribute (X ("relid"),
-                                X (be_global->hex_string (slot)));
-          finder->setAttribute (X ("kind"), X ("LookupOperation"));
-          finder->setAttribute (X ("role"), X ("LookupOperation"));
-          this->add_name_element (finder,
-                                  (*op)->local_name ()->get_string ());
-          this->add_regnodes (node, finder, slot++);
-          parent->appendChild (finder);
-          be_global->emit_diagnostic (finder);
-        }
-
-      // Add to list used in check for removed IDL decls.
-      if (be_global->input_xme () != 0)
-        {
-          be_global->gme_id_set ().insert (
-              finder->getAttribute (X ("id"))
-            );
-        }
-
-      // Emits diagnostic if changed, idempotent otherwise.
-      this->add_replace_id_element (finder, *op);
-      this->add_version_element (finder, *op);
-
-      adding_visitor scope_visitor (finder);
-
-      if (scope_visitor.visit_scope (*op) != 0)
-        {
-          ACE_ERROR ((LM_ERROR,
-                      "adding_visitor::add_finders - "
-                      "code generation for scope failed\n"));
-        }
-
-      this->add_exception_elements (finder,
-                                    *op,
-                                    0,
-                                    (*op)->exceptions (),
-                                    "ExceptionRef",
-                                    scope_visitor.rel_id_);
-    }
-}
-
 ACE_TCHAR *
 adding_visitor::timestamp (ACE_TCHAR date_and_time[],
                           int length)
@@ -4248,8 +4170,7 @@ adding_visitor::nmembers_gme (UTL_Scope *s, AST_Attribute *a)
       // Supported interfaces are in AST_Interface inheritance list.
       retval += (h->base_home () != 0 ? 1 : 0)
                 + (h->primary_key () != 0 ? 1: 0)
-                + h->factories ().size ()
-                + h->finders ().size ();
+                + DeclAsScope (h)->nmembers ();
     }
 
   return retval;

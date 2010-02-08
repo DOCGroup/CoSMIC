@@ -1,3 +1,11 @@
+Mon Feb  8 16:15:16 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
+        
+          Updates corresponding to changes in the frontend regarding
+          the handling of home factories and finders.
+
 Fri Jan 29 15:33:36 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:

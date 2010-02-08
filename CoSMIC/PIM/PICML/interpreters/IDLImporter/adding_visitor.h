@@ -143,7 +143,6 @@ private:
   void add_local_element (DOMElement *parent, AST_Decl *node);
 
   void add_abstract_element (DOMElement *parent, AST_Decl *node);
-//  void add_include_elements (UTL_Scope *container, DOMElement *parent);
   void add_include_elements (const char *filename,
                              DOMElement *file);
 
@@ -190,8 +189,6 @@ private:
   void add_base_home (DOMElement *parent, AST_Home *node);
   void add_manages (AST_Home *node);
   void add_lookup_key (DOMElement *parent, AST_Home *node);
-  void add_home_factories (DOMElement *parent, AST_Home *node);
-  void add_finders (DOMElement *parent, AST_Home *node);
 
   ACE_TCHAR *timestamp (ACE_TCHAR date_and_time[], int length);
   unsigned long nmembers_gme (UTL_Scope *s, AST_Attribute *a = 0);
