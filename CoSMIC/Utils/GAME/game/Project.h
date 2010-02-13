@@ -19,14 +19,11 @@
 
 namespace GME
 {
-  //===========================================================================
   /**
    * @class Project
    *
    * Wrapper class for the IMgaProject interface.
    */
-  //===========================================================================
-
   class GME_Export Project
   {
   public:
@@ -242,6 +239,8 @@ namespace GME
      * @param[in]       flag        Setting for auto add-ons.
      */
     void enable_auto_addons (bool flag);
+
+    IMgaAddOn * create_addon (IMgaEventSink * sink);
 
   private:
     /// The project type.

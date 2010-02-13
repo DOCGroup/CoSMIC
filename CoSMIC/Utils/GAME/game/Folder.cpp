@@ -164,14 +164,17 @@ namespace GME
   //
   Folder Folder::_create (const std::string & type, Folder & parent)
   {
-    CComPtr <IMgaFolder> folder;
     Meta::Folder meta = parent.meta ().folder (type);
+    return Folder::_create (meta, parent);
+  }
 
-    if (meta)
-    {
-      VERIFY_HRESULT (parent.impl ()->CreateFolder (meta, &folder));
-    }
-
+  //
+  // _create
+  //
+  Folder Folder::_create (const Meta::Folder & meta, Folder & parent)
+  {
+    CComPtr <IMgaFolder> folder;
+    VERIFY_HRESULT (parent.impl ()->CreateFolder (meta, &folder));
     return folder.p;
   }
 

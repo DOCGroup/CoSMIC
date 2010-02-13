@@ -7,9 +7,11 @@
 #include "Atom.inl"
 #endif
 
+#include "Folder.h"
 #include "Model.h"
-#include "MetaRole.h"
+#include "MetaFolder.h"
 #include "MetaModel.h"
+#include "MetaRole.h"
 #include "Visitor.h"
 
 namespace GME
@@ -63,13 +65,43 @@ namespace GME
   //
   // _create
   //
-  Atom Atom::_create (const std::string & role, Model & parent)
+  Atom Atom::_create (const std::string & type, Model & parent)
+  {
+    Meta::Role role = parent.meta ().role (type);
+    return Atom::_create (role, parent);
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (const Meta::Role & role, Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    Meta::Role metarole = parent.meta ().role (role);
 
     VERIFY_HRESULT (
-      parent.impl ()->CreateChildObject (metarole, &child));
+      parent.impl ()->CreateChildObject (role, &child));
+
+    return Atom::_narrow (FCO (child));
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (const std::string & type, Folder & parent)
+  {
+    Meta::FCO role = parent.meta ().child (type);
+    return Atom::_create (role, parent);
+  }
+
+  //
+  // _create
+  //
+  Atom Atom::_create (const Meta::FCO & type, Folder & parent)
+  {
+    CComPtr <IMgaFCO> child;
+
+    VERIFY_HRESULT (
+      parent.impl ()->CreateRootObject (type.impl (), &child));
 
     return Atom::_narrow (FCO (child));
   }

@@ -53,12 +53,19 @@ namespace GME
   //
   // _create
   //
-  Model Model::_create (const std::string & role, Model & parent)
+  Model Model::_create (const std::string & type, Model & parent)
+  {
+    Meta::Role role = parent.meta ().role (type);
+    return Model::_create (role, parent);
+  }
+
+  //
+  // _create
+  //
+  Model Model::_create (const Meta::Role & role, Model & parent)
   {
     CComPtr <IMgaFCO> child;
-    Meta::Role metarole = parent.meta ().role (role);
-
-    VERIFY_HRESULT (parent.impl ()->CreateChildObject (metarole, &child));
+    VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
 
     return Model::_narrow (FCO (child));
   }
@@ -66,12 +73,19 @@ namespace GME
   //
   // _create
   //
-  Model Model::_create (const std::string & role, Folder & parent)
+  Model Model::_create (const std::string & type, Folder & parent)
+  {
+    Meta::FCO meta = parent.meta ().child (type);
+    return Model::_create (meta, parent);
+  }
+
+  //
+  // _create
+  //
+  Model Model::_create (const Meta::FCO & meta, Folder & parent)
   {
     CComPtr <IMgaFCO> child;
-    Meta::FCO metafco = parent.meta ().child (role);
-
-    VERIFY_HRESULT (parent.impl ()->CreateRootObject (metafco.impl (), &child));
+    VERIFY_HRESULT (parent.impl ()->CreateRootObject (meta.impl (), &child));
 
     return Model::_narrow (FCO (child));
   }
@@ -91,6 +105,21 @@ namespace GME
   {
     CComPtr <IMgaFCOs> fcos;
     VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
+
+    // Determine how many folders there are.
+    children.attach (fcos.Detach ());
+    return children.size ();
+  }
+
+  //
+  // children
+  //
+  size_t Model::
+  children (const std::string & type, GME::Collection_T <GME::FCO> & children) const
+  {
+    CComPtr <IMgaFCOs> fcos;
+    CComBSTR bstr (type.length (), type.c_str ());
+    VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
     // Determine how many folders there are.
     children.attach (fcos.Detach ());

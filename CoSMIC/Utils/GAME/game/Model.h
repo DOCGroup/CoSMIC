@@ -48,6 +48,8 @@ namespace GME
      */
     static Model _create (const std::string & type, Model & parent);
 
+    static Model _create (const Meta::Role & role, Model & parent);
+
     /**
      * Create a new model element.
      *
@@ -56,6 +58,8 @@ namespace GME
      * @return          The newly created model.
      */
     static Model _create (const std::string & type, Folder & parent);
+
+    static Model _create (const Meta::FCO & type, Folder & parent);
 
     /// Default constructor.
     Model (void);
@@ -103,6 +107,9 @@ namespace GME
                      GME::Collection_T <GME::Folder> & folders) const;
 
     size_t children (GME::Collection_T <GME::FCO> & children) const;
+
+    size_t children (const std::string & type,
+                     GME::Collection_T <GME::FCO> & children) const;
 
     size_t children (const std::string & type,
                      GME::Collection_T <GME::Atom> & children) const;

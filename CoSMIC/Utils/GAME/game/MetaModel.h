@@ -16,6 +16,7 @@
 #define _GME_METAMODEL_H_
 
 #include "MetaFCO.h"
+#include "Collection_T.h"
 
 namespace GME
 {
@@ -95,6 +96,8 @@ namespace Meta
      * @return          COM interface pointer.
      */
     IMgaMetaModel * impl (void) const;
+
+    size_t children (GME::Collection_T <GME::Meta::FCO> & fcos) const;
 
   private:
     /// Pointer to the raw COM interface.

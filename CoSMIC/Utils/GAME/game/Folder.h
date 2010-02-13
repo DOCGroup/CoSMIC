@@ -54,6 +54,7 @@ namespace GME
      * @return          The newly created folder.
      */
     static Folder _create (const std::string & type, Folder & parent);
+    static Folder _create (const Meta::Folder & type, Folder & parent);
 
     /**
      * Extract the folder element from the object.

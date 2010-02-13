@@ -50,10 +50,24 @@ namespace Meta
   {
     CComPtr <IMgaMetaModel> model;
 
-    VERIFY_HRESULT_THROW_EX (meta.impl ()->QueryInterface (&model), 
+    VERIFY_HRESULT_THROW_EX (meta.impl ()->QueryInterface (&model),
                              GME::Invalid_Cast ());
 
     return model.p;
+  }
+
+  //
+  // children
+  //
+  size_t Model::
+  children (GME::Collection_T <GME::Meta::FCO> & fcos) const
+  {
+    // Get a pointer to all the legal folders.
+    CComPtr <IMgaMetaFCOs> metas;
+    VERIFY_HRESULT (this->impl ()->get_DefinedFCOs (&metas));
+
+    fcos.attach (metas.Detach ());
+    return fcos.size ();
   }
 }
 }

@@ -338,10 +338,23 @@ GME::Project Object::project (void) const
 }
 
 //
-// project
+// is_equal_to
 //
 bool Object::is_equal_to (const GME::Object & obj) const
 {
+  // Check for self comparison.
+  if (this == &obj)
+    return true;
+
+  // Check for NIL values on either side.
+  if ((this->object_.p == 0 && obj.object_.p != 0) ||
+      (this->object_.p != 0 && obj.object_.p == 0))
+  {
+    return false;
+  }
+
+  // Since we made it this far, we need to further check the
+  // values for equality.
   VARIANT_BOOL equal;
   VERIFY_HRESULT (this->impl ()->get_IsEqual (obj.object_, &equal));
 
@@ -357,6 +370,14 @@ GME::Object Object::child_by_relative_id (long relid)
   VERIFY_HRESULT (this->impl ()->get_ChildObjectByRelID (relid, &object));
 
   return object.p;
+}
+
+//
+// send_event
+//
+void Object::send_event (objectevent_enum mask)
+{
+  VERIFY_HRESULT (this->impl ()->SendEvent (mask));
 }
 
 //

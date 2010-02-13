@@ -45,7 +45,8 @@ namespace GME
      * @param[in]       parent        The parent model.
      * @return          The newly created set.
      */
-    static Set _create (const std::string & role, Model & parent);
+    static Set _create (const std::string & type, Model & parent);
+    static Set _create (const Meta::Role & role, Model & parent);
 
     /// Default constructor.
     Set (void);

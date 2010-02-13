@@ -1,8 +1,52 @@
+Sat Feb 13 16:04:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+
+          . Implemented minimal support for using filters to request a
+            subset of elements in a project based on a search criteria.
+
+        * Utils/GAME/game/Atom.h:
+        * Utils/GAME/game/Atom.cpp:
+        * Utils/GAME/game/Attribute.h:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/GAME.mpc:
+        * Utils/GAME/game/GME.h:
+        * Utils/GAME/game/MetaModel.h:
+        * Utils/GAME/game/MetaModel.cpp:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.cpp:
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+        * Utils/GAME/game/Set.h:
+        * Utils/GAME/game/Set.cpp:
+
+          . Added support for creating each element using the Role object.
+
+        * Utils/GAME/game/be/Event_Sink_Impl.h:
+        * Utils/GAME/game/be/Event_Sink_Impl.inl:
+        * Utils/GAME/game/be/Event_Sink_Impl.cpp:
+        * Utils/GAME/game/be/Event_Sink_T.h:
+        * Utils/GAME/game/be/Event_Sink_T.inl:
+        * Utils/GAME/game/be/Event_Sink_T.cpp:
+
+          . Added support for implementing event sinks, which are used
+            to create add-ons for a project.
+
+        * Utils/GAME/game/be/GAME_BE.mpc:
+
+          . Added new files to the project.
+
 Mon Feb  8 16:15:16 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
-        
+
           Updates corresponding to changes in the frontend regarding
           the handling of home factories and finders.
 
@@ -10,7 +54,7 @@ Fri Jan 29 15:33:36 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
-        
+
           Added no-op visit_finder() method, in anticipation of the
           branch merge where the same method has been added to the
           front end base class as pure virtual.

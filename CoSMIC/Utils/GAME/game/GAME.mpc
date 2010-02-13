@@ -29,6 +29,7 @@ project (GAME) : acelib, cosmic_common {
     ComponentEx.cpp
     Exception.cpp
     FCO.cpp
+    Filter.cpp
     Folder.cpp
     GME.cpp
     Interpreter.cpp

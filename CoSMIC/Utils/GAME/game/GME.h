@@ -10,6 +10,9 @@
  */
 //=============================================================================
 
+#ifndef _GAME_GME_H_
+#define _GAME_GME_H_
+
 #include "Attribute.h"
 #include "Connection.h"
 #include "Project.h"
@@ -24,3 +27,5 @@
 #include "MetaModel.h"
 #include "MetaFolder.h"
 #include "MetaRole.h"
+
+#endif

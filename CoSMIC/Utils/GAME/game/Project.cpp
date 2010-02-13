@@ -378,4 +378,12 @@ namespace GME
   {
     VERIFY_HRESULT (this->project_->EnableAutoAddOns (flag ? VARIANT_TRUE : VARIANT_FALSE));
   }
+
+  IMgaAddOn * Project::create_addon (IMgaEventSink * sink)
+  {
+    IMgaAddOn * addon = 0;
+    VERIFY_HRESULT (this->project_->CreateAddOn (sink, &addon));
+
+    return addon;
+  }
 }

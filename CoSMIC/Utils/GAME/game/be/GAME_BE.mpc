@@ -9,6 +9,7 @@ project (GAME_BE) : game, cosmic_common {
   }
 
   Source_Files {
+    Event_Sink_Impl.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
   }
@@ -19,6 +20,7 @@ project (GAME_BE) : game, cosmic_common {
 
   Template_Files {
     ComponentEx_T.cpp
+    Event_Sink_T.cpp
     Interpreter_T.cpp
     Plugin_T.cpp
   }

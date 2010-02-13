@@ -30,12 +30,24 @@ namespace GME
     /// Type definition of the COM pointer type.
     typedef IMgaAttribute interface_type;
 
+    /// Default constructor.
     Attribute (void);
 
+    /**
+     * Initializing constructor
+     *
+     * @param[in]     attr      Raw pointer to attribute
+     */
     Attribute (IMgaAttribute * attr);
 
+    /**
+     * Copy consturctor
+     *
+     * @param[in]     attr      Source attribute
+     */
     Attribute (const Attribute & attr);
 
+    /// Destructor.
     virtual ~Attribute (void);
 
     void attach (IMgaAttribute * attr);
@@ -120,6 +132,11 @@ namespace GME
      */
     void float_value (double val);
 
+    /**
+     * Retrieve the attributes meta information
+     *
+     * @return        Meta information
+     */
     Meta::Attribute meta (void) const;
 
   private:
