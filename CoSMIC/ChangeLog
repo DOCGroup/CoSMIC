@@ -1,3 +1,104 @@
+Sat Feb 13 16:09:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/T3:
+        * Utils/T3/AUTHORS:
+        * Utils/T3/t3:
+        * Utils/T3/t3/compiler:
+        * Utils/T3/t3/compiler/Attr_Node.h:
+        * Utils/T3/t3/compiler/Attr_Node.inl:
+        * Utils/T3/t3/compiler/Attr_Node.cpp:
+        * Utils/T3/t3/compiler/Compiler_App.h:
+        * Utils/T3/t3/compiler/Compiler_App.cpp:
+        * Utils/T3/t3/compiler/Core_export.h:
+        * Utils/T3/t3/compiler/Definition.h:
+        * Utils/T3/t3/compiler/Definition.inl:
+        * Utils/T3/t3/compiler/Definition.cpp:
+        * Utils/T3/t3/compiler/Grammar_Generator.h:
+        * Utils/T3/t3/compiler/Grammar_Generator.inl:
+        * Utils/T3/t3/compiler/Grammar_Generator.cpp:
+        * Utils/T3/t3/compiler/Grammar_Parser.hpp:
+        * Utils/T3/t3/compiler/Node.h:
+        * Utils/T3/t3/compiler/Node.inl:
+        * Utils/T3/t3/compiler/Node.cpp:
+        * Utils/T3/t3/compiler/Node_Manager.h:
+        * Utils/T3/t3/compiler/Node_Manager.inl:
+        * Utils/T3/t3/compiler/Node_Manager.cpp:
+        * Utils/T3/t3/compiler/Node_Visitor.h:
+        * Utils/T3/t3/compiler/Node_Visitor.inl:
+        * Utils/T3/t3/compiler/Node_Visitor.cpp:
+        * Utils/T3/t3/compiler/Optional_Node.h:
+        * Utils/T3/t3/compiler/Optional_Node.inl:
+        * Utils/T3/t3/compiler/Optional_Node.cpp:
+        * Utils/T3/t3/compiler/Parse_Tree.h:
+        * Utils/T3/t3/compiler/Parse_Tree.inl:
+        * Utils/T3/t3/compiler/Parse_Tree.cpp:
+        * Utils/T3/t3/compiler/Parser_Generator.h:
+        * Utils/T3/t3/compiler/Parser_Generator.inl:
+        * Utils/T3/t3/compiler/Parser_Generator.cpp:
+        * Utils/T3/t3/compiler/Quantifier_Node.h:
+        * Utils/T3/t3/compiler/Quantifier_Node.inl:
+        * Utils/T3/t3/compiler/Quantifier_Node.cpp:
+        * Utils/T3/t3/compiler/Reference_Node.h:
+        * Utils/T3/t3/compiler/Reference_Node.inl:
+        * Utils/T3/t3/compiler/Reference_Node.cpp:
+        * Utils/T3/t3/compiler/Rule_Node.h:
+        * Utils/T3/t3/compiler/Rule_Node.inl:
+        * Utils/T3/t3/compiler/Rule_Node.cpp:
+        * Utils/T3/t3/compiler/Selection_Node.h:
+        * Utils/T3/t3/compiler/Selection_Node.inl:
+        * Utils/T3/t3/compiler/Selection_Node.cpp:
+        * Utils/T3/t3/compiler/Sequence_Node.h:
+        * Utils/T3/t3/compiler/Sequence_Node.inl:
+        * Utils/T3/t3/compiler/Sequence_Node.cpp:
+        * Utils/T3/t3/compiler/String_Literal_Node.h:
+        * Utils/T3/t3/compiler/String_Literal_Node.inl:
+        * Utils/T3/t3/compiler/String_Literal_Node.cpp:
+        * Utils/T3/t3/compiler/Substitution_Node.h:
+        * Utils/T3/t3/compiler/Substitution_Node.inl:
+        * Utils/T3/t3/compiler/Substitution_Node.cpp:
+        * Utils/T3/t3/compiler/actors.h:
+        * Utils/T3/t3/compiler/actors.inl:
+        * Utils/T3/t3/compiler/actors.cpp:
+        * Utils/T3/t3/compiler/actors_t.cpp:
+        * Utils/T3/t3/compiler/compiler.cpp:
+        * Utils/T3/t3/compiler/t3_compiler.mpc:
+        * Utils/T3/t3/runtime:
+        * Utils/T3/t3/runtime/Auto_Model.h:
+        * Utils/T3/t3/runtime/Auto_Model.inl:
+        * Utils/T3/t3/runtime/Auto_Model.cpp:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.h:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.inl:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.cpp:
+        * Utils/T3/t3/runtime/BON:
+        * Utils/T3/t3/runtime/Event_Handler.inl:
+        * Utils/T3/t3/runtime/Event_Listener.h:
+        * Utils/T3/t3/runtime/Event_Listener.inl:
+        * Utils/T3/t3/runtime/Event_Listener.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.h:
+        * Utils/T3/t3/runtime/Runtime_Engine.inl:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+        * Utils/T3/t3/runtime/Runtime_export.h:
+        * Utils/T3/t3/runtime/Symbol.h:
+        * Utils/T3/t3/runtime/Symbol.inl:
+        * Utils/T3/t3/runtime/Symbol.cpp:
+        * Utils/T3/t3/runtime/actors.hpp:
+        * Utils/T3/t3/runtime/algorithm.h:
+        * Utils/T3/t3/runtime/algorithm_t.cpp:
+        * Utils/T3/t3/runtime/conditions.hpp:
+        * Utils/T3/t3/runtime/grammar.hpp:
+        * Utils/T3/t3/runtime/parsers.hpp:
+        * Utils/T3/t3/runtime/reference.hpp:
+        * Utils/T3/t3/runtime/reference.inl:
+        * Utils/T3/t3/runtime/reference.cpp:
+        * Utils/T3/t3/runtime/t3_runtime.mpc:
+
+          . First commit of the Text-2-Model Transformation Tool (T3). In
+            the near future, T3 is going to be moved outside of this workspace
+            and have its own workspace in the CoSMIC repo -- similar to how
+            the DOC Middleware repo is setup. Right now, it has been hardcoded
+            to support the IDLTextEditor utility. Future version will work on
+            breaking this coupling.
+
 Sat Feb 13 16:04:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Filter.h:

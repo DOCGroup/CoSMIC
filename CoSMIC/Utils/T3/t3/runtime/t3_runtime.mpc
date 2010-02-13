@@ -1,0 +1,26 @@
+// $Id$
+
+project (T3_Runtime) : game, cosmic_lib {
+  sharedname    = t3_runtime
+  dynamicflags += T3_RUNTIME_BUILD_DLL
+
+  Source_Files {
+    Auto_Model.cpp
+    Auto_Model_Impl.cpp
+    Event_Listener.cpp
+    reference.cpp
+    Runtime_Engine.cpp
+    Symbol.cpp
+  }
+
+  Header_Files {
+    algorithm.h
+    actors.hpp
+    grammar.hpp
+    parsers.hpp
+  }
+
+  Template_Files {
+    algorithm_t.cpp
+  }
+}
