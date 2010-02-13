@@ -29,6 +29,11 @@ struct Utils_Export Sort_T2B
 {
   bool operator () (const Utils::Point & lhs, const Utils::Point & rhs) const;
 };
+
+struct Utils_Export Sort_L2R
+{
+  bool operator () (const Utils::Point & lhs, const Utils::Point & rhs) const;
+};
 }
 
 #include "Sort.inl"
