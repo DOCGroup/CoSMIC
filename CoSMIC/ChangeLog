@@ -1,3 +1,138 @@
+Sat Feb 13 16:21:54 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_be.mpb:
+        * MPC/config/game_component.mpb:
+
+          . Moved the GAME_BE specifications from game_component.mpb
+            to its own base project.
+
+        * MPC/config/t3_runtime.mpb:
+
+          . Base project for using T3 runtime library.
+
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Component.rc:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_TextEditor.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_View.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.wxs:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor_Core_export.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Resource.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.inl:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/actors.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/attribute_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/attribute_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/attribute_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/base_type_spec.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/base_type_spec.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/base_type_spec_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/char_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/char_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/char_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/component.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/component_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/const_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/const_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/const_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/event.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/event.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/event_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/except_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/except_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/except_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/export.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/export.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/export_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/floating_pt_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/floating_pt_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/floating_pt_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/grammar.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/grammar.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/grammar_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/home_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/home_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/home_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/ident.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/ident.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/ident_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/init_params_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/init_params_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/init_params_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/integer_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/integer_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/integer_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/interface.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/interface.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/interface_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/octet.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/octet.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/octet_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/op_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/op_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/op_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/param_type_spec.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/param_type_spec.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/param_type_spec_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/preprocessor.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/preprocessor.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/preprocessor_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/raises_expr.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/raises_expr.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/raises_expr_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/scoped_name.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/scoped_name.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/scoped_name_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/simple_type_spec.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/simple_type_spec.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/simple_type_spec_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/string_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/string_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/string_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/template_type_spec.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/template_type_spec.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/template_type_spec_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_decl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_decl.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_decl_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_spec.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_spec.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/type_spec_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value_element.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value_element.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value_element_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/value_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/wide_string_type.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/wide_string_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/wide_string_type_impl.hpp:
+        * picml.mwc:
+
+          . First commit of the IDLTextEditor.
+
+        * PIM/PICML/interpreters/IDLTextEditor/IDLGenerator.wxs:
+
+          Removed this file.
+
 Sat Feb 13 16:18:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:

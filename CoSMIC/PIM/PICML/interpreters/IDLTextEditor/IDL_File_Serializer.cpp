@@ -4,6 +4,7 @@
 #include "IDL_File_Serializer.h"
 #include "IDLEmitVisitor.h"
 #include "DependencyVisitor.h"
+#include "game/Object.h"
 
 //
 // IDL_File_Serializer
@@ -25,10 +26,13 @@ IDL_File_Serializer::~IDL_File_Serializer (void)
 // serialize
 //
 int IDL_File_Serializer::
-serialize (const BON::Object & obj, std::ostream & stream)
+serialize (const ::GME::Object & obj, std::ostream & stream)
 {
-  // Convert the object to a File object.
-  IDML::File file (obj);
+  // Make this an BON object type.
+  BON::Object bon_obj (::BON::Object::attach (obj.impl ()));
+
+  // Now, we can use IDML::File BON extension object.
+  IDML::File file (bon_obj);
 
   if (!file)
     return -1;

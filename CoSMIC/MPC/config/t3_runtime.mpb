@@ -1,0 +1,8 @@
+// $Id$
+
+project : game, boost_base {
+  after += T3_Runtime
+
+  includes += $(COSMIC_ROOT)/Utils/T3
+  libs     += t3_runtime
+}

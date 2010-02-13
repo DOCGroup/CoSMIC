@@ -14,7 +14,7 @@
 #define _DSL_DOCUMENT_H_
 
 #include <afxrich.h>
-#include "BON.h"
+#include "game/Object.h"
 
 // Forward decl.
 class DSL_Serializer;
@@ -38,7 +38,7 @@ public:
    *
    * @param[in]       obj       Source object.
    */
-  DSL_Document (const BON::Object & obj);
+  DSL_Document (const ::GME::Object & obj);
 
   /// Destructor.
   virtual ~DSL_Document (void);
@@ -53,12 +53,7 @@ public:
    */
   virtual void OnFileSave (void);
 
-  /**
-   * Serialize contained object to specified output stream.
-   *
-   * @param[in]     stream      Target output stream.
-   */
-  int serialize (std::ostream & stream);
+  void OnInitialUpdate (void);
 
   /**
    * Configure document with DSL serializer and deserializer. These
@@ -67,8 +62,7 @@ public:
    * @param[in]     serializer    The serializer for the document
    * @param[in]     deserialzer   The deserialzer for the document
    */
-  void configure (DSL_Serializer * serializer,
-                  DSL_Deserializer * deserializer);
+  void configure (DSL_Serializer * serial, DSL_Deserializer * deserial);
 
   /// Test if the document is readonly. The document is realonly
   /// if the contained object is marked as readonly, or it is
@@ -79,7 +73,7 @@ protected:
   DECLARE_MESSAGE_MAP ()
 
   /// Object associated with the document.
-  BON::Object obj_;
+  ::GME::Object obj_;
 
   /// Serializer for the document.
   DSL_Serializer * serializer_;

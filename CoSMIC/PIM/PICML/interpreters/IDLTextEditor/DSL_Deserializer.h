@@ -15,7 +15,7 @@
 
 #include <istream>
 
-namespace BON
+namespace GME
 {
   // Forward decl.
   class Object;
@@ -24,7 +24,8 @@ namespace BON
 /**
  * @class DSL_Deserializer
  *
- * Base class for all domain-specific language (DSL) serializers.
+ * Base class for all domain-specific language (DSL) deserializers. The
+ * deserializer converts a (text) stream back into the object-model.
  */
 class DSL_Deserializer
 {
@@ -43,7 +44,7 @@ public:
    * @retval          0         Success
    * @retval          -1        Failure
    */
-  virtual int deserialize (const BON::Object & obj, std::istream & stream) = 0;
+  virtual int deserialize (std::istream & stream, ::GME::Object & obj) = 0;
 };
 
 #endif  // !define _DSL_SERIALIZER_H_

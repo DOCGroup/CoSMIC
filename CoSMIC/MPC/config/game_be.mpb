@@ -1,0 +1,16 @@
+// $Id$
+
+project : game {
+  dynamicflags += _MIDL_USE_GUIDDEF_ _USRDLL
+
+  libs  += GAME_BE
+  after += GAME_BE
+
+  specific (prop:microsoft) {
+    midl_flags    += /server none /client none
+    midl_includes += . $(GME_ROOT)/Interfaces $(GME_ROOT)
+    midl_notlb     = 1
+
+    link_options += /DEF:$(COSMIC_ROOT)/Utils/GAME/etc/Component.def
+  }
+}

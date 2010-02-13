@@ -7,6 +7,7 @@
 #define IDR_ACCELERATOR1                203
 #define IDC_DSL_EDITOR                  204
 #define IDI_ICON1                       205
+#define IDR_ACCELERATOR2                208
 #define ID_FILE_EXIT                    32768
 #define ID_FILE_SAVE32769               32769
 
@@ -14,8 +15,8 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        208
-#define _APS_NEXT_COMMAND_VALUE         32771
+#define _APS_NEXT_RESOURCE_VALUE        209
+#define _APS_NEXT_COMMAND_VALUE         32772
 #define _APS_NEXT_CONTROL_VALUE         201
 #define _APS_NEXT_SYMED_VALUE           101
 #endif

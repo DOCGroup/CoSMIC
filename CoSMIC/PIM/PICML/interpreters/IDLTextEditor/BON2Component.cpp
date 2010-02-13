@@ -6,6 +6,7 @@
 #include "DSL_Document.h"
 #include "DSL_TextEditor.h"
 #include "IDL_File_Serializer.h"
+#include "IDL_File_Deserializer.h"
 
 namespace BON
 {
@@ -103,11 +104,14 @@ void Component::invokeEx (Project& project,
 void Component::processFile (const IDML::File & file)
 {
   // Create a new document for the model element.
-  DSL_Document * dsl_doc = new DSL_Document (file);
+  GME::Object obj (file->getObjectI ());
+  DSL_Document * dsl_doc = new DSL_Document (obj);
+
 
   // Configure the document serializer and deserializer.
   IDL_File_Serializer idl_file_serializer;
-  dsl_doc->configure (&idl_file_serializer, 0);
+  IDL_File_Deserializer idl_file_deserializer;
+  dsl_doc->configure (&idl_file_serializer, &idl_file_deserializer);
 
   // Create a new frame for the document. We are going to use
   // the new document for the initial view.

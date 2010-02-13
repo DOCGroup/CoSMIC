@@ -94,7 +94,7 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&Save",                       ID_FILE_SAVE
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
         MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
@@ -112,13 +112,24 @@ IDR_MAINFRAME           ICON                    "DSL.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
 STRINGTABLE 
 BEGIN
     IDS_PROJNAME            "Component"
-    IDR_MAINFRAME           "DSL TextEditor"
+    IDR_MAINFRAME           "TextEditor"
 END
 
 #endif    // English (U.S.) resources

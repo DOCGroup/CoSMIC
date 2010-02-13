@@ -29,7 +29,7 @@ public:
   /// Destructor.
   virtual ~IDL_File_Serializer (void);
 
-  virtual int serialize (const BON::Object & obj, std::ostream & stream);
+  virtual int serialize (const ::GME::Object & obj, std::ostream & stream);
 };
 
 #endif  // !defined _IDL_FILE_SERIALIZER_H_

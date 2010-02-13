@@ -6,6 +6,7 @@ workspace : cosmic_common {
   Utils/GAME
   Utils/ModelUpgrade
   Utils/xercesc
+  Utils/T3
 
   // -- build the interpreters, addons, and decorators
   PIM/PICML/addons

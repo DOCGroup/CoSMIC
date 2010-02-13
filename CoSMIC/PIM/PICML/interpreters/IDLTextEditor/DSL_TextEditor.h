@@ -14,7 +14,6 @@
 #define _IDL_TEXTEDITOR_H_
 
 #include <afxcmn.h>
-#include "BON.h"
 
 /**
  * @class DSL_TextEditor
@@ -53,9 +52,6 @@ public:
 private:
   // Message map for the window.
   DECLARE_MESSAGE_MAP ();
-
-  /// The project assigned to this editor.
-  BON::Project project_;
 
   /// The parent window, since the other do not work!!
   CWnd * parent_;

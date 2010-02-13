@@ -3,37 +3,12 @@
 #include "StdAfx.h"
 #include "DSL_View.h"
 #include "DSL_Document.h"
-#include <sstream>
 
 IMPLEMENT_DYNCREATE (DSL_View, CRichEditView)
 
 BEGIN_MESSAGE_MAP (DSL_View, CRichEditView)
   ON_WM_CREATE ()
 END_MESSAGE_MAP ()
-
-namespace DSL
-{
-//
-// streamin_callback
-//
-static DWORD CALLBACK
-streamin_callback (DWORD_PTR cookie, LPBYTE buffer, LONG size, LONG * bytes_xfered)
-{
-  // Extract the stream from the cookie.
-  std::istream * stream = reinterpret_cast <std::istream *> (cookie);
-
-  if (0 == stream)
-    return -1;
-
-  // Read the next chunk of data into the buffer.
-  stream->read ((char *)buffer, size);
-
-  // Get the number of bytes transfered.
-  *bytes_xfered = stream->gcount ();
-  return 0;
-}
-
-}
 
 //
 // DSL_View
@@ -96,16 +71,10 @@ void DSL_View::OnInitialUpdate (void)
 
   richedit.SetDefaultCharFormat (char_format);
 
-  // Stream the document to a temporary stream.
-  std::stringstream stream;
-
-  if (0 == dsl_document->serialize (stream))
-  {
-    // Update the control with the stream's contents.
-    EDITSTREAM editstream;
-    editstream.dwCookie = reinterpret_cast <DWORD_PTR> (&stream);
-    editstream.pfnCallback = DSL::streamin_callback;
-
-    richedit.StreamIn (SF_TEXT, editstream);
-  }
+  // Stream the document into the view.
+  //
+  // @note There has to be a way to stream the document into
+  // the view without manaully doing it this way. The framework
+  // has to support this functionality some kind of way!!
+  dsl_document->OnInitialUpdate ();
 }
