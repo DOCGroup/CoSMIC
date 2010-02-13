@@ -218,7 +218,7 @@ namespace IDML
     // If this component does not have a home declared (not used
     // in EJB for example), we generate a ault declaration in IDL,
     // since it is required.
-    this->emitDefaultHome (object);
+    //this->emitDefaultHome (object);
 
     return true;
   }
@@ -1834,13 +1834,31 @@ namespace IDML
         ofs << idt << idt_nl;
       }
 
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <BON::Reference,
+                BON::Utils::Position_Sorter_T <BON::Reference, Utils::Sort_L2R> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (refs.begin (),
+                   refs.end (),
+                   boost::bind (&sorted_set::insert,
+                                boost::ref (sorted),
+                                _1));
+
     bool first = true;
     BON::FCO holder;
     BON::Model op_parent = he->getParentModel ();
     BON::Model arg_parent;
 
-    for (std::set<BON::Reference>::const_iterator i = refs.begin ();
-         i != refs.end ();
+    for (sorted_set::const_iterator i = sorted.begin ();
+         i != sorted.end ();
          i++)
       {
         if (ReturnType (*i)) continue;
@@ -1878,13 +1896,29 @@ namespace IDML
 
     ofs << idt << idt_nl;
 
+    // This is really a hack since BON does not allow you to override the
+    // accessor method such that the user can sort the returned collection.
+    // So, the approach here is to duplicate the retuned collection into
+    // a collection that has the appropriate *comparison* functor associated
+    // with it. This way, the elements will be iterated in the desired order.
+    typedef
+      std::set <BON::Reference,
+                BON::Utils::Position_Sorter_T <BON::Reference, Utils::Sort_L2R> >
+                sorted_set;
+
+    sorted_set sorted;
+
+    std::for_each (refs.begin (),
+                   refs.end (),
+                   boost::bind (&sorted_set::insert, boost::ref (sorted), _1));
+
     BON::FCO holder;
     BON::Model op_parent = op->getParentModel ();
     BON::Model arg_parent;
     bool first = true;
 
-    for (std::set<BON::Reference>::const_iterator i = refs.begin ();
-         i != refs.end ();
+    for (sorted_set::const_iterator i = sorted.begin ();
+         i != sorted.end ();
          ++i)
       {
         if (ExceptionRef (*i)) continue;
