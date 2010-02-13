@@ -64,21 +64,33 @@ bool DefaultArtifactGenerator::generate (const GME::Model & component)
 
   if (GAME::create_if_not (this->artifacts_, "ArtifactContainer", container,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      name,
+                      container_name,
                       boost::bind (&GME::Model::name, _1)))))
   {
-    container.name (name);
+    container.name (container_name);
   }
 
   // Create the servant artifact for the component.
-  this->svnt_artifact_ = GME::Atom::_create ("ImplementationArtifact", container);
-  this->svnt_artifact_.name (svnt_name);
+  if (GAME::create_if_not (container, "ImplementationArtifact", this->svnt_artifact_,
+      GAME::contains (boost::bind (std::equal_to <std::string> (),
+                      svnt_name,
+                      boost::bind (&GME::Atom::name, _1)))))
+  {
+    this->svnt_artifact_.name (svnt_name);
+  }
+
   this->svnt_artifact_.attribute ("location").string_value (svnt_name);
   GME::position ("Packaging", Utils::Point (150, 150), this->svnt_artifact_);
 
   // Create the implementation artifact for the component.
-  this->impl_artifact_ = GME::Atom::_create ("ImplementationArtifact", container);
-  this->impl_artifact_.name (impl_name);
+  if (GAME::create_if_not (container, "ImplementationArtifact", this->impl_artifact_,
+      GAME::contains (boost::bind (std::equal_to <std::string> (),
+                      impl_name,
+                      boost::bind (&GME::Atom::name, _1)))))
+  {
+    this->impl_artifact_.name (impl_name);
+  }
+
   this->impl_artifact_.attribute ("location").string_value (impl_name);
   GME::position ("Packaging", Utils::Point (450, 150), this->impl_artifact_);
 
