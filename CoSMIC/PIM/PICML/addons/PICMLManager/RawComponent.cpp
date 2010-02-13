@@ -575,24 +575,33 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
     GME::Object parent = obj.parent ();
     std::string type = parent.meta ().name ();
 
-    if (type == "File" || type == "Package")
+    if ((type == "File" || type == "Package"))
     {
-      // First, we need to get the name of the component.
+      // If the name is "Component", then this means that the
+      // object was manaully added to the model and the default
+      // name was assigned to the object.
       NewComponentConfig config;
-      NewComponentDialog new_component (config, ::AfxGetMainWnd ());
+      config.component_name_ = obj.name ().c_str ();
 
-      if (new_component.DoModal () == IDOK)
+      if (obj.name () == "Component")
       {
+        // Allow the end-user to rename the component. This will
+        // also set the suffixes for the artifacts.
+        NewComponentDialog new_component (config, ::AfxGetMainWnd ());
+
+        if (new_component.DoModal () == IDCANCEL)
+          return;
+
         // Set the name of the component.
         obj.name (config.component_name_.c_str ());
-
-        // Generate the component's default implementation.
-        GME::Folder root_folder = obj.project ().root_folder ();
-        DefaultImplementationGenerator impl_gen (root_folder, config);
-
-        GME::Model component = GME::Model::_narrow (obj);
-        impl_gen.generate (component);
       }
+
+      // Generate the component's default implementation.
+      GME::Folder root_folder = obj.project ().root_folder ();
+      DefaultImplementationGenerator impl_gen (root_folder, config);
+
+      GME::Model component = GME::Model::_narrow (obj);
+      impl_gen.generate (component);
     }
   }
 }
