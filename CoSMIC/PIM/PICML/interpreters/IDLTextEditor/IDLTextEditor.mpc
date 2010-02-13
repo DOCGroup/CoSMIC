@@ -25,6 +25,10 @@ project (IDLTextEditor_Core) : t3_runtime, acelib, cosmic_lib {
 
   Template_Files {
   }
+
+  Resource_Files {
+
+  }
 }
 
 project (IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, cosmic_utils {
