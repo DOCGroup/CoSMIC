@@ -6,6 +6,7 @@ workspace : cosmic_common {
   Utils/Utils.mpc
   Utils/GAME
   Utils/xercesc
+  Utils/T3/t3/runtime
 
   $(ACE_ROOT)/ace/ace.mpc
   $(ACE_ROOT)/contrib/minizip
@@ -26,6 +27,7 @@ workspace : cosmic_common {
   PIM/PICML/interpreters/TargetComponent
   PIM/PICML/interpreters/DeploymentPlanComponent
   PIM/PICML/interpreters/IDLGenerator
+  PIM/PICML/interpreters/IDLTextEditor
   PIM/PICML/interpreters/MPC
   PIM/PICML/interpreters/MPCComponent
   PIM/PICML/interpreters/Path
