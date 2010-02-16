@@ -27,6 +27,7 @@
       <ComponentRef Id='MPCComponentLibrary' />
       <ComponentRef Id='PathComponentLibrary' />
       <ComponentRef Id='IDLGeneratorLibrary' />
+      <ComponentRef Id='IDLTextEditor' />
       <ComponentRef Id='IDLImporterExecutable' />
       <ComponentRef Id='QEDDeploymentLibrary' />
 

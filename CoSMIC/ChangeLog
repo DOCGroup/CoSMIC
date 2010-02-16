@@ -1,3 +1,11 @@
+Tue Feb 16 05:32:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.wxs:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+
+          Added IDL TextEditor to the installer.
+
 Tue Feb 16 05:04:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/T3/t3/compiler/t3_compiler.mpc:

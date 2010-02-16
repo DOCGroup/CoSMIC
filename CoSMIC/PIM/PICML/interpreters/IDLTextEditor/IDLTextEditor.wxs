@@ -2,54 +2,56 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?include $(env.COSMIC_ROOT)/installer/CoSMIC_Installer/EnvironmentVars.wxi ?>
 
-  <Fragment Id="IDLGeneratorFrag">
+  <Fragment Id="IDLTextEditorFrag">
     <DirectoryRef Id="CoSMICBinDir">
-      <Component Id='IDLGeneratorLibrary' Guid='E9D28F15-DE39-4BD6-9DDE-05D31A597E39'>
-         <File Id='IDLGenerator.dll'
-               Name='IDLGenerator.dll'
-               Source='$(var.COSMIC_ROOT)\bin\IDLGenerator.dll'
-               DiskId='1' />
-
-        <File Id='IDLGeneratorComponent.dll'
-              Name='IDLGeneratorComponent.dll'
-              Source='$(var.COSMIC_ROOT)\bin\IDLGeneratorComponent.dll'
+      <Component Id='IDLTextEditor' Guid='C8483E54-94D8-4F6C-97AB-9E3337E6AFD9'>
+        <File Id='IDLTextEditor.dll'
+              Name='IDLTextEditor.dll'
+              Source='$(var.COSMIC_ROOT)\bin\IDLTextEditor.dll'
               DiskId='1' />
 
+        <File Id='IDLTextEditor_Core.dll'
+              Name='IDLTextEditor_Core.dll'
+              Source='$(var.COSMIC_ROOT)\bin\IDLTextEditor_Core.dll'
+              DiskId='1' />
+
+        <File Id='t3_runtime.dll'
+              Name='t3_runtime.dll'
+              Source='$(var.COSMIC_ROOT)\bin\t3_runtime.dll'
+              DiskId='1' />
 
         <RegistryKey Root="HKLM" Key="Software\Classes" Action="create"/>
         <RegistryKey Root="HKLM" Key="Software\Classes\CLSID" Action="create"/>
-        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}"
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{C8483E54-94D8-4F6C-97AB-9E3337E6AFD9}"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="MGA.Interpreter.IDLGenerator" Type="string" />
+          <RegistryValue Value="MGA.Interpreter.IDLTextEditor" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\ProgID"
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{C8483E54-94D8-4F6C-97AB-9E3337E6AFD9}\ProgID"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="MGA.Interpreter.IDLGenerator" Type="string" />
+          <RegistryValue Value="MGA.Interpreter.IDLTextEditor" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}\InProcServer32"
+        <RegistryKey Root="HKLM" Key="Software\Classes\CLSID\{C8483E54-94D8-4F6C-97AB-9E3337E6AFD9}\InProcServer32"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="[CoSMICBinDir]IDLGeneratorComponent.dll" Type="string" />
+          <RegistryValue Value="[CoSMICBinDir]IDLTextEditor.dll" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLGenerator"
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLTextEditor"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="MGA.Interpreter.IDLGenerator" Type="string" />
+          <RegistryValue Value="MGA.Interpreter.IDLTextEditor" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLGenerator\CLSID"
+        <RegistryKey Root="HKLM" Key="Software\Classes\MGA.Interpreter.IDLTextEditor\CLSID"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Value="{E9D28F15-DE39-4BD6-9DDE-05D31A597E39}" Type="string" />
+          <RegistryValue Value="{C8483E54-94D8-4F6C-97AB-9E3337E6AFD9}" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.IDLGenerator"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.IDLTextEditor"
                      Action="createAndRemoveOnUninstall">
-          <RegistryValue Name="Tooltip" Value="IDLGenerator Interpreter" Type="string" />
-          <RegistryValue Name="Icon" Value=",IDI_COMPICON" Type="string" />
+          <RegistryValue Name="Tooltip" Value="IDL TextEditor" Type="string" />
           <RegistryValue Name="Paradigm" Value="PICML" Type="string" />
           <RegistryValue Name="Type" Value="1" Type="integer" />
-          <RegistryValue Name="Description" Value="IDLGenerator" Type="string" />
+          <RegistryValue Name="Description" Value="IDL TextEditor" Type="string" />
         </RegistryKey>
-        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.IDLGenerator\Associated"
+        <RegistryKey Root="HKLM" Key="Software\GME\Components\MGA.Interpreter.IDLTextEditor\Associated"
                      Action="createAndRemoveOnUninstall">
           <RegistryValue Name="PICML" Value="" Type="string" />
-          <RegistryValue Name="SIML" Value="" Type="string" />
         </RegistryKey>
       </Component>
     </DirectoryRef>

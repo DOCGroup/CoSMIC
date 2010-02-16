@@ -44,6 +44,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/pim/PICML/interpreters/TargetComponent/DomainComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/IDLGenerator
+    $(COSMIC_ROOT)/pim/PICML/interpreters/IDLTextEditor
     $(COSMIC_ROOT)/pim/PICML/interpreters/IDLImporter
     $(COSMIC_ROOT)/pim/PICML/interpreters/BGMLComponent/BGMLComponent.wxs
     $(COSMIC_ROOT)/pim/PICML/interpreters/MPCComponent/MPCComponent.wxs
