@@ -1,3 +1,10 @@
+Tue Feb 16 05:04:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/T3/t3/compiler/t3_compiler.mpc:
+        * Utils/T3/t3/runtime/t3_runtime.mpc:
+
+          Fixed compile errors with vc8 Release.
+
 Sun Feb 14 19:46:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Release.mwc:

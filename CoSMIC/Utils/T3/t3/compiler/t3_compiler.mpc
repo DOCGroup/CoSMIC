@@ -3,6 +3,8 @@
 project (T3_Compiler) : aceexe, codegenerationkit, cosmic_bin {
   exename = t3-compiler
 
+  macros += _WIN32_WINNT=0x0400
+
   Source_Files {
     Attr_Node.cpp
     compiler.cpp

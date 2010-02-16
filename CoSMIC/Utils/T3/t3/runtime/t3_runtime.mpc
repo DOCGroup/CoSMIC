@@ -4,6 +4,8 @@ project (T3_Runtime) : game, cosmic_lib {
   sharedname    = t3_runtime
   dynamicflags += T3_RUNTIME_BUILD_DLL
 
+  macros += _WIN32_WINNT=0x0400
+
   Source_Files {
     Auto_Model.cpp
     Auto_Model_Impl.cpp
