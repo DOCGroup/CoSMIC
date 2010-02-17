@@ -36,9 +36,7 @@ struct create_embedded_type
 
       // Create the return type in *this* object.
       GME::Object object =
-        T3_RUNTIME_ENGINE->create_element_if_not (parent.model (),
-                                                  this->type_,
-                                                  exists ());
+        parent.create_element_if_not (this->type_, exists ());
 
       // Since we know its the name, let's set the name.
       object.name (this->type_);

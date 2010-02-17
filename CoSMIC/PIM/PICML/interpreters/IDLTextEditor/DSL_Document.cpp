@@ -80,7 +80,7 @@ DSL_Document::DSL_Document (const ::GME::Object & obj)
 //
 DSL_Document::~DSL_Document (void)
 {
-  this->obj_.release ();
+
 }
 
 //
@@ -106,7 +106,7 @@ void DSL_Document::OnFileSave (void)
   std::stringstream stream;
   EDITSTREAM editstream;
   editstream.dwCookie = reinterpret_cast <DWORD_PTR> (&stream);
-  editstream.pfnCallback = DSL::streamout_callback;
+  editstream.pfnCallback = &DSL::streamout_callback;
 
   richedit.StreamOut (SF_TEXT, editstream);
 
@@ -139,7 +139,7 @@ void DSL_Document::OnInitialUpdate (void)
   // Stream information into the control.
   EDITSTREAM editstream;
   editstream.dwCookie = reinterpret_cast <DWORD_PTR> (&stream);
-  editstream.pfnCallback = DSL::streamin_callback;
+  editstream.pfnCallback = &DSL::streamin_callback;
 
   richedit.StreamIn (SF_TEXT, editstream);
 }

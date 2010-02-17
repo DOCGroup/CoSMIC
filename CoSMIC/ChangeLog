@@ -1,3 +1,23 @@
+Wed Feb 17 06:11:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+
+          . Removed code from destructor since the contained object
+            is released automatically.
+
+        * PIM/PICML/interpreters/IDLTextEditor/rules/actors.hpp (create_embedded_type):
+
+          . Bug fix where the creation operation did not go through
+            the proxy. This resulted in an object being deleted from
+            the model that was not supposed to be deleted.
+
+        * Utils/T3/t3/runtime/Auto_Model_Impl.cpp:
+
+          . Added more comments to the code.
+
+          . In store (), we only store children if the object is either
+            a folder or model.
+
 Tue Feb 16 12:54:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
