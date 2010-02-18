@@ -1,5 +1,6 @@
 #include <boost/regex.hpp>
 #include <boost/tuple/tuple.hpp>
+#include <boost/type_traits/add_reference.hpp>
 
 namespace LEESA {
 
@@ -501,63 +502,85 @@ struct Concept_Violation_If_Not_Child<Kind, boost::tuples::null_type>
   typedef typename boost::tuples::null_type type;
 };
 
+/*
+template <class Tuple>
+struct MakeReferenceTuple;
+
+template <class A>
+struct MakeReferenceTuple <boost::tuples::tuple<A> >
+{
+  typedef boost::tuples::tuple<typename boost::add_reference<A>::type> type;
+};
+
+template <class A, class B>
+struct MakeReferenceTuple <boost::tuples::tuple<A, B> >
+{
+  typedef boost::tuples::tuple<typename boost::add_reference<A>::type, 
+                               typename boost::add_reference<B>::type> type;
+};
+*/
+
 template <class OrigTuple,
           class ShrinkingTuple = OrigTuple,
           unsigned int TUPLE_INDEX = 0,          
           unsigned int TUPLE_LENGTH = boost::tuples::length<OrigTuple>::value>
-struct TupleHolder
-          : TupleHolder <OrigTuple, 
+struct Transposer
+          : Transposer <OrigTuple, 
                          typename ShrinkingTuple::tail_type, 
                          TUPLE_INDEX + 1, 
                          TUPLE_LENGTH - 1>
 {
-  typedef TupleHolder <OrigTuple, 
+  typedef Transposer <OrigTuple, 
                        typename ShrinkingTuple::tail_type, 
                        TUPLE_INDEX + 1, 
                        TUPLE_LENGTH - 1> super;
 
   typedef typename ShrinkingTuple::head_type Head;
-  typedef typename KindTraits<Head>::Container HeadContainer;
-  typedef typename ContainerTraits<OrigTuple>::Container Transpose;
+  typedef Carrier<Head> HeadCarrier;
+  typedef std::vector<OrigTuple> Transpose;
 
   using super::add;
 
-  void add (HeadContainer const & hv)
+  void add (HeadCarrier const & hc)
   {
-    this->head_vector_ = hv;
+    this->head_carrier_ = hc;
+    this->head_iter_ = this->head_carrier_.begin();
   }
 
   Transpose get_transpose ()
   {
     Transpose tran;
-    int i = 0;
-    for(typename HeadContainer::const_iterator iter = head_vector_.begin();
-        iter != head_vector_.end();
-        ++iter, ++i)
+    tran.reserve(head_carrier_.size());
+    while(head_iter_ != head_carrier_.end())
     {
       OrigTuple t;
-      this->populate_tuple(t, i);
+      this->populate_tuple(t);
       tran.push_back(t);
     }
     return tran;
   }
 
   private:
-  HeadContainer head_vector_;
+  HeadCarrier head_carrier_;
+  typename HeadCarrier::iterator head_iter_;
 
   protected:
-  void populate_tuple(OrigTuple & t, int i)
+  void populate_tuple(OrigTuple & t)
   {
-    boost::tuples::get<TUPLE_INDEX>(t) = this->head_vector_[i];
-    super::populate_tuple (t, i);
+    if(head_iter_ != head_carrier_.end())
+    {
+      boost::tuples::get<TUPLE_INDEX>(t) = *head_iter_;
+      ++head_iter_;
+    }
+    super::populate_tuple (t);
   }
 };
 
 template <class OrigTuple, class ShrinkingTuple, unsigned int TUPLE_INDEX>
-struct TupleHolder <OrigTuple, ShrinkingTuple, TUPLE_INDEX, 0 /* TUPLE_LENGTH */ >
+struct Transposer <OrigTuple, ShrinkingTuple, TUPLE_INDEX, 0 /* TUPLE_LENGTH */ >
 {
   void add (void);
-  void populate_tuple(OrigTuple &, int i) {}
+  void populate_tuple(OrigTuple &) { }
 };
 
 
@@ -567,11 +590,11 @@ struct MembersAsTupleOp
    expression traits for KindTraits<Kind>::Container are undesirable.
 */
   : std::unary_function <typename ET<L>::argument_type, 
-                         typename ContainerTraits<Tuple>::Container>, OpBase
+                         typename Transposer<Tuple>::Transpose>, OpBase
 {
   typedef typename ET<L>::argument_kind argument_kind;
   typedef typename ET<L>::argument_type argument_type;
-  typedef typename ContainerTraits<Tuple>::Container result_type;
+  typedef typename Transposer<Tuple>::Transpose result_type;
   typedef Tuple result_kind;
   typedef ChainExpr<L, MembersAsTupleOp> expression_type;
 
@@ -583,21 +606,24 @@ struct MembersAsTupleOp
   
   result_type operator () (argument_type const & arg)
   {
-    TupleHolder<Tuple> th;
+    Transposer<Tuple> th;
     push_children(arg, th, Tuple());
     return th.get_transpose();
   }
 
   template <class ShrinkingTuple>
-  void push_children(argument_type const & arg, TupleHolder<Tuple> & th, ShrinkingTuple)
+  void push_children(argument_type const & arg, Transposer<Tuple> & th, ShrinkingTuple)
   {
     typedef typename ShrinkingTuple::head_type Head;
+    typedef typename ET<Head>::result_type result_type;
     typedef typename ShrinkingTuple::tail_type Tail;
-    th.add(evaluate(arg, argument_kind() >> Head()));
+    const result_type dummy;
+    GetChildrenOp <argument_type, result_type> gcop(dummy);
+    th.add(gcop(arg));
     push_children(arg, th, Tail());
   }
 
-  void push_children(argument_type const & arg, TupleHolder<Tuple> & th, boost::tuples::null_type)
+  void push_children(argument_type const & arg, Transposer<Tuple> & th, boost::tuples::null_type)
   {  }
 };
 

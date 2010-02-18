@@ -11,6 +11,7 @@ generate:
 	cp PICML-orig.cpp PICML.cpp
 	perl $(COSMIC_ROOT)/Utils/LEESA/bin/gen-pairs.pl SM
 	perl $(COSMIC_ROOT)/Utils/LEESA/bin/gen-pairs.pl PICML
+	@echo "Now enter 'make object'"
 
 
 object: UdmApp-SM.o UdmApp-PICML.o

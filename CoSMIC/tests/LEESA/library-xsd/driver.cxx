@@ -1,15 +1,20 @@
 #include <memory>
 #include <iostream>
-#include <vector>
+#include <iterator>
+#include <algorithm>
 #include <exception>
 #include <string>
+#include <boost/tuple/tuple.hpp>
+#include <boost/tuple/tuple_io.hpp>
 #include <sys/time.h>
 
 #include "library.hxx"
 
 using std::cerr;
 using std::endl;
+using boost::cref;
 using namespace library;
+using namespace boost::tuples;
 
 #ifdef WITH_LEESA
 
@@ -25,7 +30,8 @@ struct SeqType
   typedef ::xsd::cxx::tree::sequence< T > type;
 };
 
-#define TEST3
+#include <vector>
+#define TEST6
 
 
 #ifdef TEST1
@@ -150,6 +156,35 @@ get_author_names_level_descendants_of (catalog & c)
 }
 #endif // TEST5
 
+#ifdef TEST6
+// Get a sequence of tuples of author names and born.
+std::vector<tuple<name, born> >
+get_tuples (catalog & c)
+{
+#ifdef WITH_LEESA  
+  std::vector<tuple<name, born> > tuple_seq =
+    evaluate (c, catalog() >> book() 
+                           >> author() 
+                           >> MembersAsTupleOf(author(), make_tuple(name(), born())));
+#endif
+#ifdef WITHOUT_LEESA
+  std::vector<tuple<name, born> > tuple_seq;
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    for (book::author_const_iterator ai (bi->author().begin ());
+         ai != bi->author().end ();
+         ++ai)
+    {
+      tuple_seq.push_back(make_tuple(ai->name(), ai->born()));
+    }
+  }
+#endif 
+  return tuple_seq;
+}
+#endif // TEST6
+
 timeval operator - (timeval t1, timeval t2)
 {
   if (t1.tv_usec < t2.tv_usec)
@@ -168,8 +203,8 @@ timeval operator - (timeval t1, timeval t2)
 
 std::ostream & operator << (std::ostream & o, timeval const & t)
 {
-  //o << "[" << t.tv_sec << ", " << t.tv_usec << "]";
-  o << t.tv_sec << " " << t.tv_usec;
+  o << "[" << t.tv_sec << ", " << t.tv_usec << "]";
+  //o << t.tv_sec << " " << t.tv_usec;
   return o;
 }
 
@@ -208,6 +243,11 @@ main (int argc, char* argv[])
 #endif
 #ifdef TEST5
     std::cout << "Size = " << get_author_names_level_descendants_of(*c).size() << std::endl; 
+#endif
+#ifdef TEST6
+    std::vector<tuple<name, born> > tuple_vec = get_tuples(*c);
+    std::cout << "Size = " << tuple_vec.size() << std::endl; 
+    std::copy(tuple_vec.begin(), tuple_vec.end(), std::ostream_iterator<tuple<name, born> >(std::cout, "\n"));
 #endif
 
     gettimeofday(&end, 0);

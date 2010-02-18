@@ -1,3 +1,20 @@
+Thu Feb 18 22:42:27 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/bin/gen-meta.py:
+          Generates ParentKinds.
+
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          Improved support for MembersAsTuple on xsd.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/UdmApp-Linux/makefile:
+          Added a test for MembersAsTuple.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/makefile:
+          Added a performance test for MembersAsTuple.
+
 Thu Feb 18 03:52:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * NEWS:

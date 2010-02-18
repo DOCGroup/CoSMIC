@@ -404,7 +404,7 @@ struct ContainerTraits
 template <>
 struct SchemaTraits< %(t)s > : public ContainerTraits< %(t)s > {
   typedef boost::mpl::vector < %(children_kinds)s > ChildrenKinds;
-  //typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
+  typedef boost::mpl::vector < %(parent_kinds)s > ParentKinds;
   typedef %(metakind)s MetaKind;
 };
 """ % locals()

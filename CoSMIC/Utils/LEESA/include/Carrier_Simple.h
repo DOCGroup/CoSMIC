@@ -97,6 +97,11 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
     return c_.empty();
   }
   
+  size_t size() const 
+  {
+    return c_.size();
+  }
+  
   operator Container () const { return c_; } 
   result_type const & operator () (argument_type const & p) const { return p; }
 

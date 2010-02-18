@@ -4,8 +4,8 @@ include $(root)/build/cxx/rules.make
 include $(root)/build/xsd/tree-rules.make
 
 override XSDFLAGS += --export-symbol LIBRARY_Export --generate-polymorphic --generate-default-ctor --generate-ostream --generate-serialization --root-element-last
-CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=  -D OPTIMIZED_CARRIER -D WITHOUT_LEESA -O3
-# CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export= -D OPTIMIZED_CARRIER -D WITHOUT_LEESA -O3
+CXXFLAGS = -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export=  -D OPTIMIZED_CARRIER -D WITH_LEESA -O3
+# CXXFLAGS = --std=c++0x -I $(COSMIC_ROOT)/Utils/LEESA/include -D LIBRARY_Export= -D OPTIMIZED_CARRIER -D WITH_LEESA -O3
 
 all:
 	@echo "Enter 'make generate' then enter 'make driver'"
