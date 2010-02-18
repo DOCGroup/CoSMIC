@@ -18,7 +18,8 @@ public:
   ~Auto_Model (void);
 
   const Auto_Model & operator = (const Auto_Model & rhs);
-  const Auto_Model & operator = (const ::GME::Object & model);
+
+  void attach (const ::GME::Object & obj);
 
   ::GME::Object & model (void);
 

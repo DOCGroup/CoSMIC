@@ -10,9 +10,9 @@ Auto_Model::Auto_Model (void)
 
 inline
 Auto_Model::Auto_Model (const ::GME::Object & model)
-: impl_ (new Auto_Model_Impl (model))
+: impl_ (0)
 {
-
+  this->attach (model);
 }
 
 inline

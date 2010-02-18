@@ -31,20 +31,20 @@ namespace T3
    * Base class for all T3 parser grammars.
    */
   template <typename IteratorT>
-  class grammar : public qi::grammar < IteratorT, void (Auto_Model), ascii::space_type >
+  class grammar : public qi::grammar < IteratorT, void (Auto_Model &), ascii::space_type >
   {
   protected:
     /// Type definition for rules that return no value
     typedef
       qi::rule <IteratorT,
-                void (Auto_Model),
+                void (Auto_Model &),
                 ascii::space_type>
                 noreturn_rule;
 
     /// Type definition for rules that return a value.
     typedef
       qi::rule <IteratorT,
-                Auto_Model (Auto_Model),
+                Auto_Model (Auto_Model &),
                 ascii::space_type>
                 model_rule;
 

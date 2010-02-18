@@ -26,8 +26,7 @@ Auto_Model::~Auto_Model (void)
 //
 // operator =
 //
-const Auto_Model  &
-Auto_Model::operator = (const Auto_Model & rhs)
+const Auto_Model  & Auto_Model::operator = (const Auto_Model & rhs)
 {
   if (this == &rhs)
     return *this;
@@ -48,24 +47,20 @@ Auto_Model::operator = (const Auto_Model & rhs)
 //
 // operator =
 //
-const Auto_Model  &
-Auto_Model::operator = (const ::GME::Object & rhs)
+void Auto_Model::attach (const ::GME::Object & obj)
 {
-  // Check for self assignment.
-  if (0 != this->impl_ && this->impl_->model () == rhs)
-    return *this;
+  if (0 == this->impl_ || this->impl_->model () != obj)
+  {
+    // We need to create a new wrapper.
+    std::auto_ptr <Auto_Model_Impl> auto_clean (new Auto_Model_Impl (obj));
 
-  // We need to create a new wrapper.
-  std::auto_ptr <Auto_Model_Impl> auto_clean (new Auto_Model_Impl (rhs));
+    // Release our current reference.
+    if (0 != this->impl_)
+      this->impl_->dec_refcount ();
 
-  // Release our current reference.
-  if (0 != this->impl_)
-    this->impl_->dec_refcount ();
-
-  // Take ownership of the new object.
-  this->impl_ = auto_clean.release ();
-
-  return *this;
+    // Take ownership of the new object.
+    this->impl_ = auto_clean.release ();
+  }
 }
 
 //

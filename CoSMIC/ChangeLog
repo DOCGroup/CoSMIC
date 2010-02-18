@@ -1,3 +1,13 @@
+Thu Feb 18 02:18:24 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/T3/t3/runtime/Auto_Model.h:
+        * Utils/T3/t3/runtime/Auto_Model.inl:
+        * Utils/T3/t3/runtime/Auto_Model.cpp:
+        * Utils/T3/t3/runtime/grammar.hpp:
+
+          . Updated the grammar's inherited attributes to use
+            pass-by-reference semantics.
+
 Wed Feb 17 06:11:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
