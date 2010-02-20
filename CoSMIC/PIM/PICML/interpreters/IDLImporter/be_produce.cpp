@@ -163,10 +163,12 @@ BE_produce (void)
     }
   catch (const DOMException &e)
     {
+      char *message = XMLString::transcode (e.getMessage ());
       ACE_ERROR ((LM_ERROR,
                   ACE_TEXT ("BE_produce - ")
-                  ACE_TEXT ("DOMException code is:  %d\n"),
-                  e.code));
+                  ACE_TEXT ("DOMException message is:  %s\n"),
+                  message));
+      XMLString::release (&message);
       BE_abort ();
     }
   catch (const XMLException &e)

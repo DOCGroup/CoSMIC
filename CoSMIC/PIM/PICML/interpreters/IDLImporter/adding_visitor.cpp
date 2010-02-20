@@ -5021,6 +5021,7 @@ void
 adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
 {
   DOMElement *next = 0;
+  const XMLCh *tag = 0;
 
   // If we have no previous_, then get the first element in this DOM
   // tree scope corresonding to an IDL declaration. Otherwise, get
@@ -5040,7 +5041,7 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
               continue;
             }
 
-          const XMLCh *tag = child->getTagName ();
+          tag = child->getTagName ();
 
           // An element corresponding to something in the IDL file
           // will have to be one of these.
@@ -5057,6 +5058,20 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
     {
       next =
         dynamic_cast<DOMElement *> (this->previous_->getNextSibling ());
+  
+      if (next != 0)
+        {
+          tag = next->getTagName ();
+
+          // An element corresponding to something in the
+          // (imported) IDL file will have to be one of these.
+          if (X ("model") != X (tag)
+              && X ("reference") != X (tag)
+              && X ("atom") != X (tag))
+            {
+              next = 0;
+            }
+        }
     }
 
   if (elem == next)
@@ -5065,6 +5080,10 @@ adding_visitor::insert_element (DOMElement *elem, AST_Decl *d)
       this->redef_error (next, d);
       BE_abort ();
     }
+    
+    const XMLCh *ttag = 0;
+    if (next != 0)
+          ttag = next->getTagName ();
 
   (void) this->sub_tree_->insertBefore (elem, next);
 }

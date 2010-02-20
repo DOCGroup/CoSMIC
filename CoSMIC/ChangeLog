@@ -1,3 +1,21 @@
+Sat Feb 20 19:20:12 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
+
+        * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp(insert_element):
+        
+          This method calls the Xerces method insertBefore(), passing the new
+          element and a 'next' (in case we have imported an existing XME file
+          and are inserting an updated IDL declaration). The 'next' element
+          needs to be something that corresponds to an IDL declaration and
+          not some other automatically added model element (such as a
+          connection). This checkin fixes a bug in the check for that
+          condition.
+          
+        * PIM/PICML/interpreters/IDLImporter/be_produce.cpp:
+        
+          In the catch block for a DOMException, changed the output to
+          be the text exception message, which is more informative than
+          the code number, which was previously output.
+
 Sat Feb 20 17:04:19 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 
         * PIM/PICML/interpreters/IDLImporter/be_global.cpp:
