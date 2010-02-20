@@ -5,6 +5,7 @@
 
 #include "ast_generator.h"
 #include "ast_module.h"
+#include "ast_component.h"
 #include "ast_sequence.h"
 #include "ast_typedef.h"
 
