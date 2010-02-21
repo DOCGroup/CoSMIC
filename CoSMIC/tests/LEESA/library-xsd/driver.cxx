@@ -247,7 +247,7 @@ main (int argc, char* argv[])
 #ifdef TEST6
     std::vector<tuple<name, born> > tuple_vec = get_tuples(*c);
     std::cout << "Size = " << tuple_vec.size() << std::endl; 
-    std::copy(tuple_vec.begin(), tuple_vec.end(), std::ostream_iterator<tuple<name, born> >(std::cout, "\n"));
+    //std::copy(tuple_vec.begin(), tuple_vec.end(), std::ostream_iterator<tuple<name, born> >(std::cout, "\n"));
 #endif
 
     gettimeofday(&end, 0);
