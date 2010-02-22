@@ -1,9 +1,19 @@
+Mon Feb 22 21:04:17 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          Fixed FilterOp to use optimized carrier. 
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/libxml2-perf.c:
+        * tests/LEESA/library-xsd/makefile:
+          A new performance test using libxml2 library for C programming language.
+
 Sun Feb 21 18:40:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * tests/LEESA/library-xsd/lxml-perf.py:
 
           A performance test using Python lxml. It's fast but more than twice
-	  slower than LEESA!
+          slower than LEESA!
 
 Sat Feb 20 19:20:12 UTC 2010  Jeff Parsons <j.parsons@vanderbilt.edu>
 

@@ -31,8 +31,7 @@ struct SeqType
 };
 
 #include <vector>
-#define TEST6
-
+#define TEST5 
 
 #ifdef TEST1
 // Get a sequence of books.
@@ -130,6 +129,12 @@ get_author_names_descendants_of (catalog & c)
 #endif // TEST4
 
 #ifdef TEST5
+
+bool comparator(library::name const & n)
+{
+  return n=="Leo Tolstoy";
+}
+
 // Get a sequence of author names.
 SeqType<name>::type
 get_author_names_level_descendants_of (catalog & c)
@@ -137,6 +142,10 @@ get_author_names_level_descendants_of (catalog & c)
 #ifdef WITH_LEESA  
   SeqType<name>::type name_seq = 
     evaluate (c, catalog() >> LevelDescendantsOf(catalog(), _, _, name()));
+/*
+    evaluate (c, catalog() >> LevelDescendantsOf(catalog(), _, _, name())
+                           >> Select(name(), comparator));
+*/
 #endif 
 #ifdef WITHOUT_LEESA
   SeqType<name>::type name_seq; 

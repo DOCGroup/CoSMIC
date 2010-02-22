@@ -28,6 +28,8 @@ library-meta.o: library-meta.cxx library-meta.hxx
 driver.o: driver.cxx library.hxx library-meta.hxx
 driver1stage.o: driver1stage.cxx library.hxx library-meta.hxx
 
+libxml2-perf: libxml2-perf.c
+	gcc libxml2-perf.c -o libxml2-perf -Wall -I/usr/include/libxml2 -lxml2
 
 # Test.
 #

@@ -646,8 +646,7 @@ struct FilterOp : LEESAUnaryFunction <E>, OpBase
   result_type operator () (argument_type const & arg)
   {
     result_type retval;
-    typename KindTraits<argument_kind>::Container v = arg;
-    BOOST_FOREACH(argument_kind kind, v)
+    BOOST_FOREACH(argument_kind & kind, arg)
     {
       if (func_(kind) ^ logical_not_) // Logical not of match, if required
         retval.push_back(kind);
