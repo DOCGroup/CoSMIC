@@ -10,8 +10,9 @@
 namespace LEESA {
 
 template <class Kind>
-struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
+class Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
 {
+  public:
   BOOST_CLASS_REQUIRE(Kind, LEESA, DomainKindConcept);
   BOOST_MPL_ASSERT((LEESA::DomainKindConcept<Kind>));
   // This is an important concept. Don't remove.
@@ -119,12 +120,14 @@ struct Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
 
   Carrier(Udm::ChildrenAttr<Kind> const & ca) 
   {
-    this->push_back(ca);
+    Kind kind = ca;
+    this->push_back(kind);
   }
 
   void push_back(Udm::ChildrenAttr<Kind> const & ca) 
   {
-    this->push_back(ca);
+    Container c = ca;
+    this->push_back(c);
   }
 
 #else 

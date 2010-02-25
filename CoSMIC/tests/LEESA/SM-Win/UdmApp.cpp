@@ -196,9 +196,16 @@ void CUdmApp::UdmMain(
     evaluate(rf, RootFolder() >> StateMachine()[visitor]);
     
     typedef tuple<State, StartState> TestTuple;
-
     std::vector<TestTuple > vt = 
       evaluate(smv, StateMachine() >> MembersAsTupleOf(StateMachine(), TestTuple()));
+    
+    evaluate(rf, RootFolder() >> LevelDescendantsOf(RootFolder(), _, _, StateMachine()));
+    evaluate(smv, StateMachine() >> DescendantsOf(StateMachine(), State()));
+    evaluate(rf, RootFolder() >> VisitLeave(RootFolder(), visitor,
+                                 RootFolder() >>= StateMachine() 
+                                 >> VisitLeave(StateMachine(), visitor,
+                                    StateMachine() >>= State()
+                                    >> VisitLeave(State(), visitor))));
 
     BOOST_FOREACH(TestTuple t, vt)
     {
