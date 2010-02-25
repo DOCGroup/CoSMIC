@@ -41,6 +41,8 @@ template <class L, class R> struct DFSOp;
 #ifndef LEESA_NO_VISITOR
 
 template <class E> struct VisitorOp;
+template <class E> struct LeaveCallerOp;
+template <class E, class Func> struct PairCallerOp;
 
 #endif // LEESA_NO_VISITOR
 

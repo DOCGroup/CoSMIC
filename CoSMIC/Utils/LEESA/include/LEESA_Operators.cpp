@@ -235,6 +235,97 @@ struct VisitorOp : LEESAUnaryFunction <E>,
 #endif // __GXX_EXPERIMENTAL_CXX0X__  
 };
 
+template <class E>
+struct LeaveCallerOp : LEESAUnaryFunction <E>,
+                        OpBase
+{
+  typedef LEESAUnaryFunction <E> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<E, LeaveCallerOp> expression_type;
+
+  SchemaVisitor & visitor_;
+
+  LeaveCallerOp (SchemaVisitor const &v) 
+    : visitor_ (const_cast<SchemaVisitor &> (v)) {}
+  
+  LeaveCallerOp (const LeaveCallerOp & vop) : visitor_ (vop.visitor_) {}
+  
+  result_type operator () (argument_type const & arg)
+  {
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+#ifdef LEESA_FOR_UDM      
+      kind.Leave(visitor_);
+#else
+      kind.leave(visitor_);
+#endif // LEESA_FOR_UDM
+    }
+    return arg;
+  }
+  
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && arg)
+  {
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+      kind.leave(visitor_);
+    }
+    return std::move(arg);
+  }
+#endif // __GXX_EXPERIMENTAL_CXX0X__  
+};
+
+template <class E, class Func = E>
+struct PairCallerOp : LEESAUnaryFunction <E>, OpBase
+{
+  typedef LEESAUnaryFunction <E> Super;
+  SUPER_TYPEDEFS(Super);
+  typedef ChainExpr<E, PairCallerOp> expression_type;
+
+  SchemaVisitor & visitor_;
+  Func func_;
+
+  PairCallerOp (SchemaVisitor const &v, Func f = Func()) 
+    : visitor_ (const_cast<SchemaVisitor &> (v)),
+      func_(f)
+  {}
+  
+  PairCallerOp (const PairCallerOp & vop) 
+    : visitor_ (vop.visitor_),
+      func_(vop.func_)
+  {}
+  
+  result_type operator () (argument_type const & arg)
+  {
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+#ifdef LEESA_FOR_UDM      
+      kind.Accept(visitor_);
+      func_(kind);
+      kind.Leave(visitor_);
+#else
+      kind.accept(visitor_);
+      func_(kind);
+      kind.leave(visitor_);
+#endif // LEESA_FOR_UDM
+    }
+    return arg;
+  }
+  
+#ifdef __GXX_EXPERIMENTAL_CXX0X__  
+  result_type operator () (argument_type && arg)
+  {
+    BOOST_FOREACH(argument_kind & kind, arg)
+    {
+      kind.accept(visitor_);
+      func_(kind);
+      kind.leave(visitor_);
+    }
+    return std::move(arg);
+  }
+#endif // __GXX_EXPERIMENTAL_CXX0X__  
+};
+
 #endif // LEESA_NO_VISITOR
 
 template <class E>
@@ -929,6 +1020,50 @@ Unique (E)
   BOOST_MPL_ASSERT((boost::is_convertible<typename EQ::result_type, bool>));
   
   return UniqueOp<result_type, EQ>(EQ());
+}
+
+template <class E>
+LeaveCallerOp<typename ET<E>::result_type> 
+Leave (E, SchemaVisitor & v)
+{
+  typedef typename ET<E>::result_kind result_kind;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  
+  return LeaveCallerOp<typename ET<E>::result_type> (v);
+}
+
+template <class E>
+VisitorOp<typename ET<E>::result_type> 
+Visit (E, SchemaVisitor & v)
+{
+  typedef typename ET<E>::result_kind result_kind;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  
+  return VisitorOp<typename ET<E>::result_type> (v);
+}
+
+template <class E, class Func>
+PairCallerOp<typename ET<E>::result_type, Func> 
+VisitLeave (E, SchemaVisitor & v, Func f)
+{
+  typedef typename ET<E>::result_kind result_kind;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  
+  return PairCallerOp<typename ET<E>::result_type, Func> (v, f);
+}
+
+template <class E>
+PairCallerOp<typename ET<E>::result_type> 
+VisitLeave (E, SchemaVisitor & v)
+{
+  typedef typename ET<E>::result_kind result_kind;
+  
+  BOOST_CONCEPT_ASSERT((LEESA::DomainKindConcept<result_kind>));
+  
+  return PairCallerOp<typename ET<E>::result_type> (v); // Default Func is identity.
 }
 
 template <class Kind, class Tuple>

@@ -31,7 +31,7 @@ struct SeqType
 };
 
 #include <vector>
-#define TEST5 
+#define TEST10
 
 #ifdef TEST1
 // Get a sequence of books.
@@ -194,6 +194,86 @@ get_tuples (catalog & c)
 }
 #endif // TEST6
 
+#ifdef TEST7
+// Get a sequence of "died" date, which is optional.
+SeqType<died>::type
+get_died (catalog & c)
+{
+#ifdef WITH_LEESA  
+  SeqType<died>::type died_seq =
+    evaluate (c, catalog() >> DescendantsOf(catalog(), died()));
+#endif
+#ifdef WITHOUT_LEESA
+  SeqType<died>::type died_seq; 
+  for (catalog::book_const_iterator bi (c.book().begin ());
+       bi != c.book().end ();
+       ++bi)
+  {
+    for (book::author_const_iterator ai (bi->author().begin ());
+         ai != bi->author().end ();
+         ++ai)
+    {
+      if(ai->died().present())
+        died_seq.push_back(ai->died().get());
+    }
+  }
+#endif 
+  return died_seq;
+}
+#endif // TEST7
+
+#ifdef TEST8
+// Nesting test
+void visit (catalog & c, visitor & v)
+{
+#ifdef WITH_LEESA  
+  BOOST_AUTO(inner_author, author() >>= born() >> v >> Leave(born(), v));
+  BOOST_AUTO(inner_book, book() >>= author() >> v
+                                             >> Call(author(), inner_author)
+                                             >> Leave(author(), v));
+  BOOST_AUTO(inner_catalog, catalog() >>= book() >> v 
+                                                 >> Call(book(), inner_book)
+                                                 >> Leave(book(), v));
+  evaluate (c, catalog() >> v 
+                         >> Call(catalog(), inner_catalog) 
+                         >> Leave(catalog(), v));
+#endif
+}
+#endif // TEST8
+
+#ifdef TEST9
+// Nesting test
+void pair_caller_many (catalog & c, visitor & v)
+{
+#ifdef WITH_LEESA  
+
+  BOOST_AUTO(inner_author, author() >>= born() >> Visit(born(), v) >> Leave(born(), v));
+  BOOST_AUTO(inner_book, book() >>= author() >> VisitLeave(author(), v, inner_author));
+  BOOST_AUTO(inner_catalog, catalog() >>= book() >> VisitLeave(book(), v, inner_book));
+  evaluate(c, catalog() >> VisitLeave(catalog(), v, inner_catalog));
+
+#endif
+}
+#endif // TEST9
+
+#ifdef TEST10
+// Nesting test
+void pair_caller_single (catalog & c, visitor & v)
+{
+#ifdef WITH_LEESA  
+  evaluate(c, catalog() 
+              >> VisitLeave(catalog(), v, 
+                 catalog() >>= book() 
+                 >> VisitLeave(book(), v,
+                    book() >>= author() 
+                    >> VisitLeave(author(), v, 
+                       author() >>= born() 
+                       >> VisitLeave(born(), v)))));
+
+#endif
+}
+#endif // TEST10
+
 timeval operator - (timeval t1, timeval t2)
 {
   if (t1.tv_usec < t2.tv_usec)
@@ -217,8 +297,38 @@ std::ostream & operator << (std::ostream & o, timeval const & t)
   return o;
 }
 
-int
-main (int argc, char* argv[])
+class MyVisitor : public visitor
+{
+  public:
+
+    virtual void visit_catalog(catalog & x) {
+      std::cout << "Catalog:" << std::endl;  
+    }
+    virtual void visit_author(author & x) {
+      std::cout << "Author: " << x.name() << std::endl;  
+    }
+    virtual void visit_book(book & x) {
+      std::cout << "Book: " << x.title() << std::endl;  
+    }
+    virtual void visit_born(born & x) {
+      std::cout << "Born: " << x << std::endl;  
+    }
+    
+    virtual void leave_catalog(catalog & x) {
+      std::cout << "Leave Catalog:" << std::endl;  
+    }
+    virtual void leave_author(author & x) {
+      std::cout << "Leave Author: " << x.name() << std::endl;  
+    }
+    virtual void leave_book(book & x) {
+      std::cout << "Leave Book: " << x.title() << std::endl;  
+    }
+    virtual void leave_born(born & x) {
+      std::cout << "Leave Born: " << x << std::endl;  
+    }
+};
+
+int main (int argc, char* argv[])
 {
   if (argc != 2)
   {
@@ -257,6 +367,23 @@ main (int argc, char* argv[])
     std::vector<tuple<name, born> > tuple_vec = get_tuples(*c);
     std::cout << "Size = " << tuple_vec.size() << std::endl; 
     //std::copy(tuple_vec.begin(), tuple_vec.end(), std::ostream_iterator<tuple<name, born> >(std::cout, "\n"));
+#endif
+#ifdef TEST7
+    SeqType<died>::type died_seq = get_died(*c);
+    std::cout << "Size = " << died_seq.size() << std::endl; 
+    //std::copy(died_seq.begin(), died_seq.end(), std::ostream_iterator<died> (std::cout, "\n"));
+#endif
+#ifdef TEST8
+    MyVisitor v;
+    visit(*c, v);
+#endif
+#ifdef TEST9
+    MyVisitor v;
+    pair_caller_many(*c, v);
+#endif
+#ifdef TEST10
+    MyVisitor v;
+    pair_caller_single(*c, v);
 #endif
 
     gettimeofday(&end, 0);

@@ -1,7 +1,19 @@
+Thu Feb 25 02:27:00 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          Added support for hierarchical visitation (visit/leave) 
+          in regular LEESA expressions. It was there only in SP.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+          Added tests for hierarchical visitation.
+
 Mon Feb 22 21:04:17 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/LEESA_Operators.cpp:
-          Fixed FilterOp to use optimized carrier. 
+          Fixed FilterOp to use optimized carrier.
 
         * tests/LEESA/library-xsd/driver.cxx:
         * tests/LEESA/library-xsd/libxml2-perf.c:

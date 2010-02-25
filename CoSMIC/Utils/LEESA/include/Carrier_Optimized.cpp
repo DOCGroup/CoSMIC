@@ -138,19 +138,20 @@ template <class Kind>
 void Carrier<Kind>::move_carrier(Carrier & c)
 {
   /* This operation is very similar to std::list<T>::splice. */
-  if(this->empty())
+  if(!c.empty())
   {
-    this->swap(c);
-  }
-  else
-  {
-    this->last_->next_ = c.first_;
-    c.first_->prev_ = this->last_;
-    this->last_ = c.last_;
-    this->size_ += c.size_;
-    c.first_ = 0;
-    c.last_ = 0;
-    c.size_ = 0;
+    if(this->empty())
+      this->swap(c);
+    else
+    {
+      this->last_->next_ = c.first_;
+      c.first_->prev_ = this->last_;
+      this->last_ = c.last_;
+      this->size_ += c.size_;
+      c.first_ = 0;
+      c.last_ = 0;
+      c.size_ = 0;
+    }
   }
 }
 
@@ -233,7 +234,8 @@ Carrier<Kind>::operator typename ContainerTraits<Kind>::Container() const
 template <class Kind>
 void Carrier<Kind>::push_back (const typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional & o)
 {
-  this->push_back(const_cast<typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &>(o));
+  if(o.present())
+    this->push_back(const_cast<Kind *>(&o.get()));
 }
 
 template <class Kind>
