@@ -26,6 +26,7 @@
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Unbounded_Set.h"
 #include "ace/Null_Mutex.h"
+#include "Utils/xercesc/XercesString.h"
 
 #include <string>
 
