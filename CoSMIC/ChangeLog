@@ -1,10 +1,25 @@
+Fri Feb 26 23:45:34 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+        * NEWS:
+        * README:
+        * RELEASE-NOTES:
+        * VERSION:
+        * contrib:
+        
+          Preparing for CoSMIC release 0.7.7.
+          svn:external property on contrib = 
+          CCF     -r 89267 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/CCF
+          utility -r 89267 svn://svn.dre.vanderbilt.edu/DOC/Middleware/old-contrib/utility
+
 Fri Feb 26 17:25:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.h:
         * PIM/PICML/interpreters/IDLImporter/adding_visitor.cpp:
         * PIM/PICML/interpreters/IDLImporter/be_global.h:
-        
-          Fixed build errors in idl_to_picml on non-Windows 
+
+          Fixed build errors in idl_to_picml on non-Windows
           machines.
 
 Thu Feb 25 02:45:42 UTC 2010  Sumant Tambe  <sutambe@nospam>

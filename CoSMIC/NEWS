@@ -1,11 +1,11 @@
-USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.4.5 and CoSMIC-0.7.5
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.4.5 and CoSMIC-0.7.7
 ============================================================
 
 . Re-enable the model intelligence feature that auto-generates
   default artifacts when a new Component is added to an
   File model element.
 
-. When a user add a new Component to the model, they can
+. When a user adds a new Component to the model, they can
   rename the component and set the suffix of the implementation
   and servant artifact.
 
