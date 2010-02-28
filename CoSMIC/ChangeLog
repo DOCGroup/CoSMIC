@@ -1,3 +1,12 @@
+Sun Feb 28 18:16:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          MembersAsTupleOf now returns a vector of tuple of pointers
+	  for better performance.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+          Test6 updated for MembersAsTupleOf.
+
 Sat Feb 27 05:42:48 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * ChangeLog:

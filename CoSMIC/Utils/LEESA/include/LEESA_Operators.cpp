@@ -593,23 +593,125 @@ struct Concept_Violation_If_Not_Child<Kind, boost::tuples::null_type>
   typedef typename boost::tuples::null_type type;
 };
 
-/*
-template <class Tuple>
-struct MakeReferenceTuple;
+
+template <class Tuple> struct AddPointerTuple;
 
 template <class A>
-struct MakeReferenceTuple <boost::tuples::tuple<A> >
-{
-  typedef boost::tuples::tuple<typename boost::add_reference<A>::type> type;
+struct AddPointerTuple <boost::tuples::tuple<A> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type> type;
 };
 
 template <class A, class B>
-struct MakeReferenceTuple <boost::tuples::tuple<A, B> >
-{
-  typedef boost::tuples::tuple<typename boost::add_reference<A>::type, 
-                               typename boost::add_reference<B>::type> type;
+struct AddPointerTuple <boost::tuples::tuple<A, B> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type, 
+                               typename boost::add_pointer<B>::type> type;
 };
-*/
+
+template <class A, class B, class C>
+struct AddPointerTuple <boost::tuples::tuple<A, B, C> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type, 
+                               typename boost::add_pointer<B>::type,
+                               typename boost::add_pointer<C>::type> type;
+};
+
+template <class A, class B, class C, class D>
+struct AddPointerTuple <boost::tuples::tuple<A, B, C, D> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type, 
+                               typename boost::add_pointer<B>::type,
+                               typename boost::add_pointer<C>::type,
+                               typename boost::add_pointer<D>::type> type;
+};
+
+template <class A, class B, class C, class D, class E>
+struct AddPointerTuple <boost::tuples::tuple<A, B, C, D, E> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type, 
+                               typename boost::add_pointer<B>::type,
+                               typename boost::add_pointer<C>::type,
+                               typename boost::add_pointer<D>::type,
+                               typename boost::add_pointer<E>::type> type;
+};
+
+template <class A, class B, class C, class D, class E, class F>
+struct AddPointerTuple <boost::tuples::tuple<A, B, C, D, E, F> > {
+  typedef boost::tuples::tuple<typename boost::add_pointer<A>::type, 
+                               typename boost::add_pointer<B>::type,
+                               typename boost::add_pointer<C>::type,
+                               typename boost::add_pointer<D>::type,
+                               typename boost::add_pointer<E>::type,
+                               typename boost::add_pointer<F>::type> type;
+};
+
+template <class Tuple> struct RemovePointerIfAnyTuple;
+
+template <class A>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A> > {
+  typedef boost::tuples::tuple<A> type;
+};
+template <class A>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A> >::type type;
+};
+
+template <class A, class B>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A, B> > {
+  typedef boost::tuples::tuple<typename boost::remove_pointer<A>::type, 
+                               typename boost::remove_pointer<B>::type> type;
+};
+template <class A, class B>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *, B *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A, B> >::type type;
+};
+
+template <class A, class B, class C>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A, B, C> > {
+  typedef boost::tuples::tuple<typename boost::remove_pointer<A>::type, 
+                               typename boost::remove_pointer<B>::type,
+                               typename boost::remove_pointer<C>::type> type;
+};
+template <class A, class B, class C>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *, B *, C *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A, B, C> >::type type;
+};
+
+template <class A, class B, class C, class D>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A, B, C, D> > {
+  typedef boost::tuples::tuple<typename boost::remove_pointer<A>::type, 
+                               typename boost::remove_pointer<B>::type,
+                               typename boost::remove_pointer<C>::type,
+                               typename boost::remove_pointer<D>::type> type;
+};
+template <class A, class B, class C, class D>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *, B *, C *, D *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A, B, C, D> >::type type;
+};
+
+template <class A, class B, class C, class D, class E>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A, B, C, D, E> > {
+  typedef boost::tuples::tuple<typename boost::remove_pointer<A>::type, 
+                               typename boost::remove_pointer<B>::type,
+                               typename boost::remove_pointer<C>::type,
+                               typename boost::remove_pointer<D>::type,
+                               typename boost::remove_pointer<E>::type> type;
+};
+template <class A, class B, class C, class D, class E>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *, B *, C *, D *, E *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A, B, C, D, E> >::type type;
+};
+
+template <class A, class B, class C, class D, class E, class F>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A, B, C, D, E, F> > {
+  typedef boost::tuples::tuple<typename boost::remove_pointer<A>::type, 
+                               typename boost::remove_pointer<B>::type,
+                               typename boost::remove_pointer<C>::type,
+                               typename boost::remove_pointer<D>::type,
+                               typename boost::remove_pointer<E>::type,
+                               typename boost::remove_pointer<F>::type> type;
+};
+template <class A, class B, class C, class D, class E, class F>
+struct RemovePointerIfAnyTuple <boost::tuples::tuple<A *, B *, C *, D *, E *, F *> > {
+  typedef typename RemovePointerIfAnyTuple<boost::tuples::tuple<A, B, C, D, E, F> >::type type;
+};
+
 
 template <class OrigTuple,
           class ShrinkingTuple = OrigTuple,
@@ -628,7 +730,8 @@ struct Transposer
 
   typedef typename ShrinkingTuple::head_type Head;
   typedef Carrier<Head> HeadCarrier;
-  typedef std::vector<OrigTuple> Transpose;
+  typedef typename AddPointerTuple<OrigTuple>::type PointerTuple;
+  typedef std::vector<PointerTuple> Transpose;
 
   using super::add;
 
@@ -644,7 +747,7 @@ struct Transposer
     tran.reserve(head_carrier_.size());
     while(head_iter_ != head_carrier_.end())
     {
-      OrigTuple t;
+      PointerTuple t;
       this->populate_tuple(t);
       tran.push_back(t);
     }
@@ -656,13 +759,14 @@ struct Transposer
   typename HeadCarrier::iterator head_iter_;
 
   protected:
-  void populate_tuple(OrigTuple & t)
+  void populate_tuple(PointerTuple & t)
   {
     if(head_iter_ != head_carrier_.end())
     {
-      boost::tuples::get<TUPLE_INDEX>(t) = *head_iter_;
+      boost::tuples::get<TUPLE_INDEX>(t) = &*head_iter_;
       ++head_iter_;
     }
+
     super::populate_tuple (t);
   }
 };
@@ -670,8 +774,9 @@ struct Transposer
 template <class OrigTuple, class ShrinkingTuple, unsigned int TUPLE_INDEX>
 struct Transposer <OrigTuple, ShrinkingTuple, TUPLE_INDEX, 0 /* TUPLE_LENGTH */ >
 {
+  typedef typename AddPointerTuple<OrigTuple>::type PointerTuple;
   void add (void);
-  void populate_tuple(OrigTuple &) { }
+  void populate_tuple(PointerTuple &) { }
 };
 
 
@@ -1067,10 +1172,12 @@ VisitLeave (E, SchemaVisitor & v)
 }
 
 template <class Kind, class Tuple>
-MembersAsTupleOp <typename ET<Kind>::result_kind, Tuple>
+MembersAsTupleOp <typename ET<Kind>::result_kind, 
+                  typename RemovePointerIfAnyTuple<Tuple>::type>
 MembersAsTupleOf (Kind, Tuple)
 {
-  return MembersAsTupleOp <typename ET<Kind>::result_kind, Tuple> ();
+  return MembersAsTupleOp <typename ET<Kind>::result_kind, 
+                           typename RemovePointerIfAnyTuple<Tuple>::type> ();
 }
 
 /*

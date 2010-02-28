@@ -6,6 +6,7 @@
 #include <string>
 #include <boost/tuple/tuple.hpp>
 #include <boost/tuple/tuple_io.hpp>
+#include <boost/iterator/transform_iterator.hpp>
 #include <sys/time.h>
 
 #include "library.hxx"
@@ -31,7 +32,7 @@ struct SeqType
 };
 
 #include <vector>
-#define TEST10
+#define TEST6
 
 #ifdef TEST1
 // Get a sequence of books.
@@ -167,26 +168,27 @@ get_author_names_level_descendants_of (catalog & c)
 
 #ifdef TEST6
 // Get a sequence of tuples of author names and born.
-std::vector<tuple<name, born> >
+typedef tuple<name *, born *> PtrTuple;
+std::vector<PtrTuple>
 get_tuples (catalog & c)
 {
 #ifdef WITH_LEESA  
-  std::vector<tuple<name, born> > tuple_seq =
+  std::vector<PtrTuple> tuple_seq =
     evaluate (c, catalog() >> book() 
                            >> author() 
-                           >> MembersAsTupleOf(author(), make_tuple(name(), born())));
+                           >> MembersAsTupleOf(author(), PtrTuple()));
 #endif
 #ifdef WITHOUT_LEESA
-  std::vector<tuple<name, born> > tuple_seq;
-  for (catalog::book_const_iterator bi (c.book().begin ());
+  std::vector<tuple<name *, born *> > tuple_seq;
+  for (catalog::book_iterator bi (c.book().begin ());
        bi != c.book().end ();
        ++bi)
   {
-    for (book::author_const_iterator ai (bi->author().begin ());
+    for (book::author_iterator ai (bi->author().begin ());
          ai != bi->author().end ();
          ++ai)
     {
-      tuple_seq.push_back(make_tuple(ai->name(), ai->born()));
+      tuple_seq.push_back(make_tuple(&ai->name(), &ai->born()));
     }
   }
 #endif 
@@ -297,6 +299,7 @@ std::ostream & operator << (std::ostream & o, timeval const & t)
   return o;
 }
 
+#ifdef WITH_LEESA
 class MyVisitor : public visitor
 {
   public:
@@ -327,6 +330,7 @@ class MyVisitor : public visitor
       std::cout << "Leave Born: " << x << std::endl;  
     }
 };
+#endif // WITH_LEESA
 
 int main (int argc, char* argv[])
 {
@@ -364,9 +368,24 @@ int main (int argc, char* argv[])
     std::cout << "Size = " << get_author_names_level_descendants_of(*c).size() << std::endl; 
 #endif
 #ifdef TEST6
-    std::vector<tuple<name, born> > tuple_vec = get_tuples(*c);
+    typedef std::vector<PtrTuple> TupleVector;
+    TupleVector tuple_vec = get_tuples(*c);
     std::cout << "Size = " << tuple_vec.size() << std::endl; 
-    //std::copy(tuple_vec.begin(), tuple_vec.end(), std::ostream_iterator<tuple<name, born> >(std::cout, "\n"));
+    for(TupleVector::const_iterator iter(tuple_vec.begin());
+        iter != tuple_vec.end();
+        ++iter)
+    {
+      /*
+      if (get<0>(*iter) && get<1>(*iter))
+        std::cout << "[" << *get<0>(*iter) << ", " << *get<1>(*iter) << "]\n";
+      else if (!get<0>(*iter) && get<1>(*iter))
+        std::cout << "[0, " << *get<1>(*iter) << "]\n";
+      else if (get<0>(*iter) && !get<1>(*iter))
+        std::cout << "[" << *get<0>(*iter) << ", 0]\n";
+      else
+        std::cout << "[0, 0]\n";
+      */
+    }
 #endif
 #ifdef TEST7
     SeqType<died>::type died_seq = get_died(*c);
