@@ -1,3 +1,205 @@
+Mon Mar  1 20:36:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA:
+
+        * Utils/LEESA/bin:
+
+        * Utils/LEESA/bin/gen-meta.py:
+        * Utils/LEESA/bin/gen-pairs.pl:
+
+        * Utils/LEESA/doc:
+
+        * Utils/LEESA/doc/LEESA.docx:
+        * Utils/LEESA/doc/LEESA.pdf:
+
+        * Utils/LEESA/etc:
+
+        * Utils/LEESA/etc/DSL09primitives.cpp:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.h:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/etc/LEESA.wxs:
+        * Utils/LEESA/etc/UdmMPL.h:
+        * Utils/LEESA/etc/UdmObjectConcept.h:
+        * Utils/LEESA/etc/concept-mpl.cpp:
+        * Utils/LEESA/etc/xsd:
+
+        * Utils/LEESA/etc/xsd/LEESA.h:
+        * Utils/LEESA/etc/xsd/LEESA.cpp:
+        * Utils/LEESA/etc/xsd/LEESAConcepts.h:
+        * Utils/LEESA/etc/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/etc/xsd/example:
+
+        * Utils/LEESA/etc/xsd/example/driver.cxx:
+        * Utils/LEESA/etc/xsd/example/library.hpp:
+        * Utils/LEESA/etc/xsd/example/library.xsd:
+        * Utils/LEESA/etc/xsd/example/library.cpp:
+        * Utils/LEESA/etc/xsd/example/library.xml:
+        * Utils/LEESA/etc/xsd/example/makefile.txt:
+        * Utils/LEESA/etc/xsd/example/xsd.sh:
+
+        * Utils/LEESA/etc/xsd/patch:
+
+        * Utils/LEESA/etc/xsd/patch/Readme.txt:
+        * Utils/LEESA/etc/xsd/patch/cli.hxx:
+        * Utils/LEESA/etc/xsd/patch/generator.cxx:
+        * Utils/LEESA/etc/xsd/patch/makefile.txt:
+        * Utils/LEESA/etc/xsd/patch/template-header.cxx:
+        * Utils/LEESA/etc/xsd/patch/template-header.hxx:
+
+        * Utils/LEESA/include:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+        * Utils/LEESA/include/SP_Accumulation.cpp:
+
+        * tests/LEESA:
+
+        * tests/LEESA/G2SMessage-xsd:
+
+        * tests/LEESA/G2SMessage-xsd/Doxyfile:
+        * tests/LEESA/G2SMessage-xsd/README:
+        * tests/LEESA/G2SMessage-xsd/all.xml:
+        * tests/LEESA/G2SMessage-xsd/driver.cpp:
+        * tests/LEESA/G2SMessage-xsd/fixed-xsd-errors.txt:
+        * tests/LEESA/G2SMessage-xsd/makefile:
+        * tests/LEESA/G2SMessage-xsd/xsd:
+
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sBonus.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCabinet.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCentral.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCoinAcceptor.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCommConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCommunications.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sDownload.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sEventHandler.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sGAT.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sGamePlay.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sHandpay.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sHopper.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIdReader.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeClasses.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeGlobal.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sMessage.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sMeters.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sNoteAcceptor.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sNoteDispenser.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sOptionConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sPlayer.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sPrinter.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sProgressive.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sVoucher.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sWAT.xsd:
+
+        * tests/LEESA/PICML-xsd:
+
+        * tests/LEESA/PICML-xsd/PICML.xsd:
+        * tests/LEESA/PICML-xsd/README:
+        * tests/LEESA/PICML-xsd/driver.cxx:
+        * tests/LEESA/PICML-xsd/makefile:
+
+        * tests/LEESA/SM-Win:
+
+        * tests/LEESA/SM-Win/CompIcon.ico:
+        * tests/LEESA/SM-Win/Component.def:
+        * tests/LEESA/SM-Win/Component.rc:
+        * tests/LEESA/SM-Win/ComponentConfig.h:
+        * tests/LEESA/SM-Win/ComponentObj.h:
+        * tests/LEESA/SM-Win/ComponentObj.cpp:
+        * tests/LEESA/SM-Win/RawComponent.h:
+        * tests/LEESA/SM-Win/RawComponent.cpp:
+        * tests/LEESA/SM-Win/Resource.h:
+        * tests/LEESA/SM-Win/SM-Win.vcproj:
+        * tests/LEESA/SM-Win/SM.h:
+        * tests/LEESA/SM-Win/SM.xml:
+        * tests/LEESA/SM-Win/SM.xmp:
+        * tests/LEESA/SM-Win/SM.xsd:
+        * tests/LEESA/SM-Win/SM.cpp:
+        * tests/LEESA/SM-Win/SM.xme:
+        * tests/LEESA/SM-Win/SM_export.h:
+        * tests/LEESA/SM-Win/SM_uml.xme:
+        * tests/LEESA/SM-Win/StdAfx.h:
+        * tests/LEESA/SM-Win/StdAfx.cpp:
+        * tests/LEESA/SM-Win/TestSM.xme:
+        * tests/LEESA/SM-Win/UdmApp.h:
+        * tests/LEESA/SM-Win/UdmApp.cpp:
+        * tests/LEESA/SM-Win/UdmConfig.h:
+        * tests/LEESA/SM-Win/UdmConsole.h:
+        * tests/LEESA/SM-Win/UdmConsole.cpp:
+        * tests/LEESA/SM-Win/UdmFormatter.h:
+        * tests/LEESA/SM-Win/UdmFormatter.cpp:
+        * tests/LEESA/SM-Win/string_utils.h:
+
+        * tests/LEESA/UdmApp-Linux:
+
+        * tests/LEESA/UdmApp-Linux/PICML-orig.h:
+        * tests/LEESA/UdmApp-Linux/PICML-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/PICML_export.h:
+        * tests/LEESA/UdmApp-Linux/README:
+        * tests/LEESA/UdmApp-Linux/SM-orig.h:
+        * tests/LEESA/UdmApp-Linux/SM-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/SM_export.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-SM.h:
+        * tests/LEESA/UdmApp-Linux/makefile:
+
+        * tests/LEESA/library-xsd:
+
+        * tests/LEESA/library-xsd/README:
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xml:
+        * tests/LEESA/library-xsd/library.xsd:
+        * tests/LEESA/library-xsd/libxml2-perf.c:
+        * tests/LEESA/library-xsd/lxml-perf.py:
+        * tests/LEESA/library-xsd/makefile:
+        * tests/LEESA/library-xsd/swap_options.sh:
+
+        * tests/LEESA/polymorphism-xsd:
+
+        * tests/LEESA/polymorphism-xsd/README:
+        * tests/LEESA/polymorphism-xsd/driver.cxx:
+        * tests/LEESA/polymorphism-xsd/makefile:
+        * tests/LEESA/polymorphism-xsd/supermen.xml:
+        * tests/LEESA/polymorphism-xsd/supermen.xsd:
+
+        * tests/LEESA/rss2-xsd:
+
+        * tests/LEESA/rss2-xsd/README:
+        * tests/LEESA/rss2-xsd/driver.cxx:
+        * tests/LEESA/rss2-xsd/makefile:
+        * tests/LEESA/rss2-xsd/rss2-original.xsd:
+        * tests/LEESA/rss2-xsd/rss2.xsd:
+
+        * tests/LEESA/xo-impedance:
+
+        * tests/LEESA/xo-impedance/README:
+        * tests/LEESA/xo-impedance/driver.cxx:
+        * tests/LEESA/xo-impedance/impedance.xml:
+        * tests/LEESA/xo-impedance/impedance.xsd:
+        * tests/LEESA/xo-impedance/makefile:
+
+          Removed these files.
+          Moved LEESA to its own repository.
+          https://svn.dre.vanderbilt.edu/LEESA/trunk/LEESA
+
 Mon Mar  1 06:18:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA/include/Carrier_Optimized.h:
@@ -5,8 +207,8 @@ Mon Mar  1 06:18:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
         * Utils/LEESA/include/Expression_Traits.h:
         * Utils/LEESA/include/LEESA.cpp:
         * Utils/LEESA/include/LEESA_Operators.cpp:
-          Tuple creation honors optional elements. 
-	  Leaves them blank in the tuple.
+          Tuple creation honors optional elements.
+          Leaves them blank in the tuple.
 
         * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
           No tuple support for UDM at least for now.
