@@ -27,7 +27,6 @@ project (CoSMIC_Installer) : wix {
 
     $(COSMIC_ROOT)/includes/includes.wxs
     $(COSMIC_ROOT)/Utils/Utils.wxs
-    $(COSMIC_ROOT)/Utils/LEESA/etc/LEESA.wxs
 
 /////////////////////////////////////////////////////////////////////////
 /////////////// PICML
