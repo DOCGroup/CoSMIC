@@ -32,7 +32,11 @@ struct SeqType
 };
 
 #include <vector>
-#define TEST6
+
+//#if(!defined TEST1 && !defined TEST2 && !defined TEST3 && !defined TEST4 && !defined TEST5 && \
+//    !defined TEST6 && !defined TEST7 && !defined TEST8 && !defined TEST9 && !defined TEST10)
+//#define TEST1
+//#endif 
 
 #ifdef TEST1
 // Get a sequence of books.
@@ -42,6 +46,16 @@ get_books(catalog & c)
 #ifdef WITH_LEESA  
   SeqType<book>::type book_seq = 
     evaluate (c, catalog() >> book());
+  Carrier<book> book_carrier = 
+    evaluate (c, catalog() >> book());
+/*  std::cout << "Carrier size = "  << book_carrier.size() << std::endl;
+  for(Carrier<book>::iterator iter (book_carrier.begin());
+      iter != book_carrier.end();
+      ++iter)
+  {
+    std::cout << *iter << std::endl;
+  }*/
+
 #endif 
 #ifdef WITHOUT_LEESA
   SeqType<book>::type book_seq = 
@@ -168,7 +182,7 @@ get_author_names_level_descendants_of (catalog & c)
 
 #ifdef TEST6
 // Get a sequence of tuples of author names and born.
-typedef tuple<name *, born *> PtrTuple;
+typedef tuple<name *, died *> PtrTuple;
 std::vector<PtrTuple>
 get_tuples (catalog & c)
 {
@@ -375,7 +389,6 @@ int main (int argc, char* argv[])
         iter != tuple_vec.end();
         ++iter)
     {
-      /*
       if (get<0>(*iter) && get<1>(*iter))
         std::cout << "[" << *get<0>(*iter) << ", " << *get<1>(*iter) << "]\n";
       else if (!get<0>(*iter) && get<1>(*iter))
@@ -384,7 +397,7 @@ int main (int argc, char* argv[])
         std::cout << "[" << *get<0>(*iter) << ", 0]\n";
       else
         std::cout << "[0, 0]\n";
-      */
+      
     }
 #endif
 #ifdef TEST7

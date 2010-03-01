@@ -117,8 +117,6 @@ void CUdmApp::UdmMain( Udm::DataNetwork* p_backend,    // Backend pointer(alread
     
     evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), State()));
     evaluate (rf, RootFolder() >> DescendantsOf(RootFolder(), Transition()));
-    evaluate (rf, RootFolder() >> StateMachine() 
-                               >> MembersAsTupleOf(StateMachine(), boost::tuples::make_tuple(State(), StartState())));
     
     evaluate(rf, RootFolder() 
                   >> AP(VisitStrategy(visitor),

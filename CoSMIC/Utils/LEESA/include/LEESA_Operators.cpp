@@ -580,6 +580,8 @@ struct AssociationEndOp : LEESAUnaryFunction <TARGETCLASS,RESULT>,
 
 #endif // LEESA_FOR_UDM
 
+#ifndef LEESA_FOR_UDM
+
 template <class Kind, class Tuple>
 struct Concept_Violation_If_Not_Child
 {
@@ -738,14 +740,14 @@ struct Transposer
   void add (HeadCarrier const & hc)
   {
     this->head_carrier_ = hc;
-    this->head_iter_ = this->head_carrier_.begin();
+    this->node_iter_ = this->head_carrier_.begin_node_iterator();
   }
 
   Transpose get_transpose ()
   {
     Transpose tran;
     tran.reserve(head_carrier_.size());
-    while(head_iter_ != head_carrier_.end())
+    while(node_iter_ != head_carrier_.end_node_iterator())
     {
       PointerTuple t;
       this->populate_tuple(t);
@@ -756,15 +758,15 @@ struct Transposer
 
   private:
   HeadCarrier head_carrier_;
-  typename HeadCarrier::iterator head_iter_;
+  NodeIterator<Head> node_iter_;
 
   protected:
   void populate_tuple(PointerTuple & t)
   {
-    if(head_iter_ != head_carrier_.end())
+    if(node_iter_ != head_carrier_.end_node_iterator())
     {
-      boost::tuples::get<TUPLE_INDEX>(t) = &*head_iter_;
-      ++head_iter_;
+      boost::tuples::get<TUPLE_INDEX>(t) = node_iter_.get();
+      node_iter_.next();
     }
 
     super::populate_tuple (t);
@@ -822,6 +824,8 @@ struct MembersAsTupleOp
   void push_children(argument_type const & arg, Transposer<Tuple> & th, boost::tuples::null_type)
   {  }
 };
+
+#endif // LEESA_FOR_UDM
 
 template <class E, class Func>
 struct FilterOp : LEESAUnaryFunction <E>, OpBase
@@ -1171,6 +1175,7 @@ VisitLeave (E, SchemaVisitor & v)
   return PairCallerOp<typename ET<E>::result_type> (v); // Default Func is identity.
 }
 
+#ifndef LEESA_FOR_UDM
 template <class Kind, class Tuple>
 MembersAsTupleOp <typename ET<Kind>::result_kind, 
                   typename RemovePointerIfAnyTuple<Tuple>::type>
@@ -1179,6 +1184,7 @@ MembersAsTupleOf (Kind, Tuple)
   return MembersAsTupleOp <typename ET<Kind>::result_kind, 
                            typename RemovePointerIfAnyTuple<Tuple>::type> ();
 }
+#endif // LEESA_FOR_UDM
 
 /*
 template <class K, class C1, class C2>

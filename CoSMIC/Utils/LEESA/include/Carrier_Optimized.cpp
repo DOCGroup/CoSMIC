@@ -46,8 +46,8 @@ template <class Kind>
 Carrier<Kind>::Carrier(const Carrier<Kind> & c)
   : first_(0), last_(0), size_(0)
 {
-  for(Node<Kind> * iter = c.first_; iter != 0; iter=iter->next_)
-    push_back (*iter);
+  for(Node<Kind> * iter = c.first_; iter != 0; iter = iter->next_)
+    push_back (iter);
 }
 
 template <class Kind>
@@ -87,20 +87,19 @@ Carrier<Kind>& Carrier<Kind>::operator = (const Carrier<Kind> & c) //copy and sw
 template <class Kind>
 void Carrier<Kind>::push_back(Kind * const u)
 {
-  if (empty())
+  if (!first_)
   {
-     last_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
-     new (last_) Node<Kind>(u);
+     last_ = new Node<Kind>(u);
      first_ = last_;
   }
   else 
   {
-     last_->next_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
-     new (last_->next_) Node<Kind>(u);
+     last_->next_ = new Node<Kind>(u);
      last_->next_->prev_ = last_;
      last_ = last_->next_;
   }
-  ++size_;
+  if(u)
+    ++size_;
 }
 
 template <class Kind>
@@ -112,35 +111,36 @@ void Carrier<Kind>::push_back(Kind & u)
 template <class Kind>
 void Carrier<Kind>::push_back(const Kind & u)
 {
-  push_back(const_cast<Kind &> (u));
+  push_back(const_cast<Kind *> (&u));
 }
 
 template <class Kind>
-void Carrier<Kind>::push_back(Node<Kind> & n)
+void Carrier<Kind>::push_back(Node<Kind> * n)
 {
-  if(n.single_)
-    push_back(n.single_);
-  else if(n.many_)
-    push_back(*n.many_);
+  if(!n)
+    return;
+  if(n->single_)
+    push_back(n->single_);
+  else if(n->many_)
+    push_back(*n->many_);
+  else 
+    push_back(static_cast<Kind *>(0));
 }
 
 template <class Kind>
 void Carrier<Kind>::push_back(Carrier<Kind> & carrier)
 {
-  if(carrier.empty())
-    return;
-  
-  for(Node<Kind> * temp(carrier.first_); temp != 0; temp=temp->next_)
-    push_back (*temp);
+  for(Node<Kind> *iter(carrier.first_); iter != 0; iter=iter->next_)
+    this->push_back (iter);
 }
 
 template <class Kind>
 void Carrier<Kind>::move_carrier(Carrier & c)
 {
   /* This operation is very similar to std::list<T>::splice. */
-  if(!c.empty())
+  if(c.first_)  
   {
-    if(this->empty())
+    if(!first_)
       this->swap(c);
     else
     {
@@ -161,20 +161,19 @@ void Carrier<Kind>::push_back(typename ContainerTraits<Kind>::Container & contai
   if(container.empty())
     return;
 
-  if (empty())
+  if (!first_)
   {
-     last_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
-     new (last_) Node<Kind>(container);
+     last_ = new Node<Kind>(container);
      first_ = last_;
   }
   else 
   {
-     last_->next_ = static_cast<Node<Kind> *>(operator new (sizeof(Node<Kind>)));
-     new (last_->next_) Node<Kind>(container);
+     last_->next_ = new Node<Kind>(container);
      last_->next_->prev_ = last_;
      last_ = last_->next_;
   }
-  size_+=container.size();
+
+  size_ += container.size();
 }
 
 template <class Kind>
@@ -186,16 +185,17 @@ void Carrier<Kind>::push_back(const typename ContainerTraits<Kind>::Container & 
 template <class Kind>
 void Carrier<Kind>::push_back(const Carrier<Kind> & carrier)
 {
-  push_back(const_cast<Carrier<Kind> &>(carrier));
+  this->push_back(const_cast<Carrier<Kind> &>(carrier));
 }
 
 template <class Kind>
 void Carrier<Kind>::destroy()
 {
-  for(Node<Kind> * iter = first_; iter != 0; iter=iter->next_)
+  for(Node<Kind> * iter = first_; iter != 0;)
   {
-    iter->~Node<Kind>();
-    operator delete(iter);
+    Node<Kind> * temp = iter->next_;
+    delete iter;
+    iter = temp;
   }
   first_ = 0;
   last_ = 0;
@@ -236,6 +236,8 @@ void Carrier<Kind>::push_back (const typename DOMAIN_NAMESPACE::SchemaTraits<Kin
 {
   if(o.present())
     this->push_back(const_cast<Kind *>(&o.get()));
+  else
+    this->push_back(static_cast<Kind *>(0));
 }
 
 template <class Kind>
@@ -243,6 +245,20 @@ void Carrier<Kind>::push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Op
 {
   if(o.present())
     this->push_back(&o.get());
+  else
+    this->push_back(static_cast<Kind *>(0));
+}
+
+template <class Kind>
+NodeIterator<Kind> Carrier<Kind>::begin_node_iterator() const
+{
+  return NodeIterator<Kind>(first_);
+}
+
+template <class Kind>
+NodeIterator<Kind> Carrier<Kind>::end_node_iterator() const 
+{
+  return NodeIterator<Kind>(0);
 }
 
 #endif // LEESA_FOR_UDM
@@ -302,25 +318,12 @@ Conductor<Kind>::Conductor(Node<Kind> * n)
 { 
   if(!ptr_)
     return;
-  if(ptr_->single_)
+  else if(ptr_->single_)
     return;
-  if(ptr_->many_->size() > 0)
-    iter_ = ptr_->many_->begin();
+  else if(ptr_->many_ && (ptr_->many_->size() > 0))
+      iter_ = ptr_->many_->begin();
   else
-    ptr_ = 0; 
-}
-
-template <class Kind>
-Conductor<Kind>::Conductor(Conductor const & c)
-  : ptr_(c.ptr_), iter_(c.iter_)
-{ }
-
-template <class Kind>
-Conductor<Kind> & Conductor<Kind>::operator = (const Conductor<Kind> &c)
-{
-  ptr_ = c.ptr_;
-  iter_ = c.iter_;
-  return *this;
+      search_next();
 }
 
 template <class Kind>
@@ -332,10 +335,10 @@ bool Conductor<Kind>::operator == (const Conductor & c) const
       return true;
     if(ptr_->single_)
       return true;
-    if(iter_ == c.iter_)
-      return true;
+    else if(ptr_->many_)
+      return iter_ == c.iter_;
     else
-      return false;
+      return true;
   }
   else
     return false;
@@ -355,15 +358,12 @@ void Conductor<Kind>::search_next()
     ptr_ = ptr_->next_;
     if(!ptr_)
       break;
-    if(ptr_->single_)
+    else if(ptr_->single_)
       break;
-    else 
+    else if(ptr_->many_ && (ptr_->many_->size() > 0))
     {
-      if(ptr_->many_->size() > 0)
-      {
-        iter_ = ptr_->many_->begin();
-        break;
-      }
+      iter_ = ptr_->many_->begin();
+      break;
     }
   }
 }
@@ -372,16 +372,17 @@ template <class Kind>
 Conductor<Kind> & Conductor<Kind>::operator ++()
 {
   if(!ptr_)
-    throw std::out_of_range("Conductor is NULL");
+    throw std::out_of_range("Conductor<Kind>::operator ++(): Conductor is NULL");
   if(ptr_->single_)
-  {
     search_next();
-  }
-  else
+  else if(ptr_->many_)
   {
-    if(++iter_ == ptr_->many_->end())
+    ++iter_;
+    if(iter_ == ptr_->many_->end())
       search_next();
   }
+  else
+    search_next();
   
   return *this;
 }
@@ -398,11 +399,13 @@ template <class Kind>
 Kind & Conductor<Kind>::operator *() const
 {
   if(!ptr_)
-    throw std::out_of_range("Conductor is NULL");
+    throw std::out_of_range("Conductor<Kind>::operator *(): Conductor is NULL");
   if(ptr_->single_)
     return *(ptr_->single_);
-  else
+  else if(ptr_->many_)
     return *iter_;
+  else
+    throw std::runtime_error("Conductor<Kind>::operator *(): Non-existent Kind.");
 }
 
 
@@ -414,31 +417,18 @@ ConstConductor<Kind>::ConstConductor(Node<Kind> const * n)
 { 
   if(!ptr_)
     return;
-  if(ptr_->single_)
+  else if(ptr_->single_)
     return;
-  if(ptr_->many_->size() > 0)
-    iter_ = ptr_->many_->begin();
+  else if(ptr_->many_ && (ptr_->many_->size() > 0))
+      iter_ = ptr_->many_->begin();
   else
-    ptr_ = 0; 
+      search_next();
 }
-
-template <class Kind>
-ConstConductor<Kind>::ConstConductor(ConstConductor const & c)
-  : ptr_(c.ptr_), iter_(c.iter_)
-{ }
 
 template <class Kind>
 ConstConductor<Kind>::ConstConductor(Conductor<Kind> const & c)
   : ptr_(c.ptr_), iter_(c.iter_)
 { }
-
-template <class Kind>
-ConstConductor<Kind> & ConstConductor<Kind>::operator = (const ConstConductor<Kind> &c)
-{
-  ptr_ = c.ptr_;
-  iter_ = c.iter_;
-  return *this;
-}
 
 template <class Kind>
 bool ConstConductor<Kind>::operator == (const ConstConductor & c) const
@@ -449,10 +439,10 @@ bool ConstConductor<Kind>::operator == (const ConstConductor & c) const
       return true;
     if(ptr_->single_)
       return true;
-    if(iter_ == c.iter_)
-      return true;
+    else if(ptr_->many_)
+      return iter_ == c.iter_;
     else
-      return false;
+      return true;
   }
   else
     return false;
@@ -472,15 +462,12 @@ void ConstConductor<Kind>::search_next()
     ptr_ = ptr_->next_;
     if(!ptr_)
       break;
-    if(ptr_->single_)
+    else if(ptr_->single_)
       break;
-    else 
+    else if(ptr_->many_ && (ptr_->many_->size() > 0))
     {
-      if(ptr_->many_->size() > 0)
-      {
-        iter_ = ptr_->many_->begin();
-        break;
-      }
+      iter_ = ptr_->many_->begin();
+      break;
     }
   }
 }
@@ -489,16 +476,17 @@ template <class Kind>
 ConstConductor<Kind> & ConstConductor<Kind>::operator ++()
 {
   if(!ptr_)
-    throw std::out_of_range("ConstConductor is NULL");
+    throw std::out_of_range("ConstConductor<Kind>::operator ++(): Conductor is NULL");
   if(ptr_->single_)
-  {
     search_next();
-  }
-  else
+  else if(ptr_->many_)
   {
-    if(++iter_ == ptr_->many_->end())
+    ++iter_;
+    if(iter_ == ptr_->many_->end())
       search_next();
   }
+  else
+    search_next();
   
   return *this;
 }
@@ -515,13 +503,92 @@ template <class Kind>
 const Kind & ConstConductor<Kind>::operator *() const
 {
   if(!ptr_)
-    throw std::out_of_range("ConstConductor is NULL");
+    throw std::out_of_range("ConstConductor<Kind>::operator *(): Conductor is NULL");
   if(ptr_->single_)
     return *(ptr_->single_);
-  else
+  else if(ptr_->many_)
     return *iter_;
+  else
+    throw std::runtime_error("ConstConductor<Kind>::operator *(): Non-existent Kind.");
 }
 
+
+/************************ NodeIterator *************************/
+
+template <class Kind>
+NodeIterator<Kind>::NodeIterator(Node<Kind> * n)
+  : ptr_(n)
+{
+  if(!ptr_)
+    return;
+  else if(ptr_->single_)
+    return;
+  else if(ptr_->many_ && (ptr_->many_->size() > 0))
+      iter_ = ptr_->many_->begin();
+}
+
+template <class Kind>
+bool NodeIterator<Kind>::operator == (const NodeIterator & n) const
+{
+  if(ptr_ == n.ptr_)
+  {     
+    if(!ptr_)
+      return true;
+    if(ptr_->single_)
+      return true;
+    else if(ptr_->many_)
+      return iter_ == n.iter_;
+    else
+      return true;
+  }
+  else
+    return false;
+}
+
+template <class Kind>
+bool NodeIterator<Kind>::operator != (const NodeIterator & n) const
+{
+  return !(*this == n);
+}
+
+template <class Kind>
+void NodeIterator<Kind>::advance()
+{
+  if(ptr_)
+  {     
+    ptr_ = ptr_->next_;
+    if(ptr_ && ptr_->many_ && (ptr_->many_->size() > 0))
+      iter_ = ptr_->many_->begin();
+  }
+}
+
+template <class Kind>
+void NodeIterator<Kind>::next()
+{
+  if(!ptr_)
+    throw std::out_of_range("NodeIterator<Kind>::next(): NodeIterator is NULL");
+  if(ptr_->many_)
+  {
+    ++iter_;
+    if(iter_ == ptr_->many_->end())
+      advance();
+  }
+  else
+    advance();
+}
+
+template <class Kind>
+Kind * NodeIterator<Kind>::get() const
+{
+  if(!ptr_)
+    throw std::out_of_range("NodeIterator<Kind>::get(): NodeIterator is NULL");
+  if(ptr_->single_)
+    return ptr_->single_;
+  else if(ptr_->many_)
+    return &*iter_;
+  else
+    return 0;
+}
 
 } // namespace LEESA
 

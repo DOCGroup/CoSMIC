@@ -16,6 +16,7 @@ namespace SingleStage {
 template <class Kind> class Carrier;
 template <class Kind> class Conductor;
 template <class Kind> class ConstConductor;
+template <class Kind> class NodeIterator;
 
 template <class Kind>
 class Node
@@ -53,6 +54,7 @@ public:
   friend class Carrier<Kind>;
   friend class ConstConductor<Kind>;
   friend class Conductor<Kind>;
+  friend class NodeIterator<Kind>;
   friend class LEESA::SingleStage::ConstCast<Kind>;
 };
 
@@ -72,8 +74,6 @@ class Conductor
   typedef std::forward_iterator_tag iterator_category;
 
   Conductor(Node<Kind>  * = 0);
-  Conductor(Conductor const &);
-  Conductor & operator = (const Conductor &);
   bool operator == (const Conductor &) const;
   bool operator != (const Conductor &) const;
   Conductor& operator ++();
@@ -97,14 +97,29 @@ class ConstConductor
   typedef std::forward_iterator_tag iterator_category;
 
   ConstConductor(Node<Kind> const  * = 0);
-  ConstConductor(ConstConductor const &);
   ConstConductor(Conductor<Kind> const &);
-  ConstConductor & operator = (const ConstConductor &);
   bool operator == (const ConstConductor &) const;
   bool operator != (const ConstConductor &) const;
   ConstConductor& operator ++();
   ConstConductor operator ++(int);
   const Kind & operator *() const;
+};
+
+template <class Kind>
+class NodeIterator 
+{
+  Node<Kind> * ptr_;
+  typename ContainerTraits<Kind>::Container::iterator iter_;
+
+  void advance();
+
+  public:
+      
+  NodeIterator(Node<Kind>  * = 0);
+  bool operator == (const NodeIterator &) const;
+  bool operator != (const NodeIterator &) const;
+  void next();
+  Kind * get() const;
 };
 
 template <class Kind>
@@ -116,7 +131,7 @@ class Carrier : public std::unary_function<Carrier<Kind>, Carrier<Kind> >
   
   void destroy();
   void push_back(Kind * const);
-  void push_back(Node<Kind> &);
+  void push_back(Node<Kind> *);
 
 public:
   
@@ -192,6 +207,8 @@ public:
 
   void push_back (typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &);
   void push_back (const typename DOMAIN_NAMESPACE::SchemaTraits<Kind>::Optional &);
+  NodeIterator<Kind> begin_node_iterator() const;
+  NodeIterator<Kind> end_node_iterator() const;
 
 #endif // LEESA_FOR_UDM
 

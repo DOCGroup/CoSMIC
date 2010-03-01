@@ -55,7 +55,10 @@ template <class E, class Func> struct ForEachOp;
 template <class E, class Comp> struct SortOp;
 template <class E, class BinPred> struct UniqueOp;
 template <class L, class R> struct CastOp;
+
+#ifndef LEESA_FOR_UDM
 template <class L, class Tuple> struct MembersAsTupleOp;
+#endif
 
 #ifdef LEESA_FOR_UDM
 

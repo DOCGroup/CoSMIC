@@ -1,10 +1,27 @@
+Mon Mar  1 06:18:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          Tuple creation honors optional elements. 
+	  Leaves them blank in the tuple.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+          No tuple support for UDM at least for now.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/makefile:
+          New test for new tuples with optional elements.
+
 Mon Mar  1 00:24:18 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
         * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
         * Installer/CoSMIC_Installer/Directories.wxs:
-        
-          Removed LEESA from the CoSMIC installer due to potential 
+
+          Removed LEESA from the CoSMIC installer due to potential
           licensing issues.
 
 Sun Feb 28 18:16:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
