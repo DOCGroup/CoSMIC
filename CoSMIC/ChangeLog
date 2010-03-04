@@ -1,3 +1,16 @@
+Thu Mar  4 04:36:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/POSAML/interpreters/interpreters.mwc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * cosmic.mwc:
+        * picml.mwc:
+          
+          . Added exclude sections to the workspaces so it is possible
+            to build CoSMIC and the appropriate projects on non-Windows
+            systems.
+
 Mon Mar  1 20:36:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * Utils/LEESA:

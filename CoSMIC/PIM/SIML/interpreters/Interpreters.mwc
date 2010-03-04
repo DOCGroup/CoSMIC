@@ -1,8 +1,10 @@
+// $Id$
+
 workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  exclude(!vc8, !vc9) {
+  exclude(prop:microsoft) {
     GatewayGenerator
   }
 }
