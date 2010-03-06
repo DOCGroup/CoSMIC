@@ -1,17 +1,10 @@
 // $Id$
 
 workspace : cosmic_common {
-  static {
-    cmdline += -static \
-               -name_modifier *_Static
+  $(ACE_ROOT)/ace/ace.mpc
+  $(TAO_ROOT)/TAO_IDL/tao_idl_fe.mpc
+  $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
 
-    $(ACE_ROOT)/ace/ace.mpc
-    $(TAO_ROOT)/TAO_IDL/tao_idl_fe.mpc
-    $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc
-
-    PIM/PICML/interpreters/IDLImporter
-    $(COSMIC_ROOT)/Utils/xercesc
-
-    //PIM/WSML/interpreters/Interpreters.mwc
-  }
+  PIM/PICML/interpreters/IDLImporter
+  $(COSMIC_ROOT)/Utils/xercesc
 }

@@ -1,3 +1,19 @@
+Sat Mar  6 00:23:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/char_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/component_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/scoped_name.hpp:
+
+          . Move the #include around so they appear in the correct
+            file, or ones that are not needed are removed.
+
+        * Release_idl_to_picml.mwc:
+
+          . Removed the static setting for idl_to_picml since
+            -static does not work correctly on non-Windows platforms.
+
 Thu Mar  4 04:36:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/Interpreters.mwc:
@@ -6,7 +22,7 @@ Thu Mar  4 04:36:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PSM/CQML/interpreters/Interpreters.mwc:
         * cosmic.mwc:
         * picml.mwc:
-          
+
           . Added exclude sections to the workspaces so it is possible
             to build CoSMIC and the appropriate projects on non-Windows
             systems.

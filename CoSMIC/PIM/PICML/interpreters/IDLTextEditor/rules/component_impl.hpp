@@ -2,7 +2,6 @@
 #define _COMPONENT_IMPL_H_
 
 #include "component.hpp"
-#include "attribute_decl_impl.hpp"
 
 template <typename IteratorT>
 const char * component <IteratorT>::strlit_[] =

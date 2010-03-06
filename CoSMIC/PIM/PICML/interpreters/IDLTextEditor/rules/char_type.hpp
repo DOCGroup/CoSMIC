@@ -2,7 +2,6 @@
 #define _CHAR_TYPE_H_
 
 #include "t3/runtime/grammar.hpp"
-#include "t3/runtime/actors.hpp"
 
 namespace qi = ::boost::spirit::qi;
 namespace ascii = ::boost::spirit::ascii;

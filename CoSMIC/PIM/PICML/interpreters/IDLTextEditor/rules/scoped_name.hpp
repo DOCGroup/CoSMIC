@@ -1,7 +1,7 @@
 #ifndef _RULE_SCOPED_NAME_H_
 #define _RULE_SCOPED_NAME_H_
 
-#include "ident_impl.hpp"
+#include "ident.hpp"
 
 template <typename IteratorT>
 class scoped_name :

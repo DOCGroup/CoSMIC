@@ -2,6 +2,7 @@
 #define _BOOLEAN_TYPE_IMPL_H_
 
 #include "boolean_type.hpp"
+#include "t3/runtime/actors.hpp"
 
 template <typename IteratorT>
 const char * boolean_type <IteratorT>::strlit_ [] =

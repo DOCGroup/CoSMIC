@@ -2,9 +2,6 @@
 #define _RULE_BOOLEAN_TYPE_H_
 
 #include "t3/runtime/grammar.hpp"
-#include "t3/runtime/actors.hpp"
-#include "t3/runtime/parsers.hpp"
-#include "../IDLTextEditor_Core_export.h"
 
 namespace qi = ::boost::spirit::qi;
 namespace ascii = ::boost::spirit::ascii;
