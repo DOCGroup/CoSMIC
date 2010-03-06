@@ -1,9 +1,11 @@
 // $Id$
 
 workspace : cosmic_common {
-  // The follow directories and workspaces only apply to 
+  // The follow directories and workspaces only apply to
   // building CoSMIC using Visual C++.
-  exclude (!prop:microsoft) {
+  exclude (prop:windows) {
+  }
+  else {
     Utils/Utils.mpc
     Utils/GAME
     Utils/ModelUpgrade
@@ -11,17 +13,19 @@ workspace : cosmic_common {
   }
 
   Utils/xercesc
-  
-  // The following directories and workspaces apply only 
+
+  // The following directories and workspaces apply only
   // apply to building CoSMIC using Visual C++.
-  exclude (!prop:microsoft) {
+  exclude (prop:windows) {
+  }
+  else {
     PIM/PICML/addons
     PIM/PICML/decorators/Decorators.mwc
     PIM/PICML/utils
   }
 
   PIM/PICML/interpreters/Interpreters.mwc
-  
+
   // -- build the contributions
   $(ACE_ROOT)/contrib/minizip/minizip.mpc
   $(TAO_ROOT)/TAO_IDL/contrib/mcpp/mcpp.mpc

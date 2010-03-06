@@ -1,3 +1,15 @@
+Sat Mar  6 16:38:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * cosmic.mwc:
+        * picml.mwc:
+
+          . It seems as if !prop:windows does not work in the 'excludes'
+            statement. Right now, this have been removed and replaced with
+            a workaround to such support is available in MPC.
+
 Sat Mar  6 00:23:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type.hpp:

@@ -4,11 +4,9 @@ workspace {
   cmdline += -feature_file $COSMIC_ROOT/default.features \
              -include $COSMIC_ROOT/MPC/config
 
-  specific (prop:microsoft) {
-    OmnetInterpreter
-    AspectInterpreter
-    ConfiguratorInterpreter
-  }
+  OmnetInterpreter
+  AspectInterpreter
+  ConfiguratorInterpreter
 
   exclude {
     BenchmarkInterpreter/benchmark_test

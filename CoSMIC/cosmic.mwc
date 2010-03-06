@@ -1,7 +1,9 @@
 // $Id$
 
 workspace : picml {
-  exclude (!prop:windows) {
+  exclude (prop:windows) {
+  }
+  else {
     PIM/SIML/interpreters/Interpreters.mwc
     PIM/POSAML/interpreters/interpreters.mwc
     PSM/CQML/interpreters/Interpreters.mwc
