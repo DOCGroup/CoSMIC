@@ -6,15 +6,17 @@ project (DeploymentPlan): boost_base, picmllib {
 
   Source_Files {
     DeploymentPlanVisitor.cpp
+    External_Reference_Visitor.cpp
     PlanLocalityVisitor.cpp
+    XML_Document.cpp
   }
 
   Header_Files {
     DeploymentPlan_Export.h
   }
-  
+
   Resource_Files {
-  
+
   }
 }
 

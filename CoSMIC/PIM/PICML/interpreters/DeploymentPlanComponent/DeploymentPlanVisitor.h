@@ -14,6 +14,7 @@
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
 #include "DeploymentPlan_Export.h"
+#include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
 
 namespace PICML
 {
@@ -293,6 +294,8 @@ namespace PICML
 
     void write_artifact_execParameter (const std::string & name,
                                        const std::string & value);
+
+    static UDM_Abstract_Type_Dispatcher_T <DeploymentPlanVisitor> datatypes_;
 
     DOMImplementation*  impl_;
     DOMDocument*        doc_;

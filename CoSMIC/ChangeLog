@@ -1,3 +1,46 @@
+Fri Mar 12 18:42:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_common.mpb:
+        * MPC/config/game_xme.mpb:
+
+          Refactored base projects to increase granularity.
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * picml.mwc:
+
+          . External ports are now defined as an Atom instead of
+            as a Reference since the attaching port determines the
+            type of the external reference.
+
+          . Added a constraint to make sure the location of the
+            external port is not empty.
+
+          . Added a constraint to make sure that multiple ports
+            connected to the same external port are of the same
+            kind and object type.
+
+        * Utils/GAME/game/GME_export.h:
+        * Utils/GAME/game/config.h:
+        * Utils/UDM/Abstract_Type_Dispatcher_T.h:
+        * Utils/UDM/Abstract_Type_Dispatcher_T.cpp:
+
+          . Simple abstract type dispatcher contributed from CUTS.
+
 Sat Mar  6 16:38:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/POSAML/interpreters/interpreters.mwc:

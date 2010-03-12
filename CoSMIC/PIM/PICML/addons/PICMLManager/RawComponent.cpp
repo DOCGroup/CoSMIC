@@ -451,18 +451,11 @@ handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj)
 
     // Get the destination port type (i.e., the target delegation port).
     GME::Reference dst_port = GME::Reference::_narrow (ext_dst.target ());
-    GME::Reference src_port = GME::Reference::_narrow (ext_src.target ());
+    GME::Atom src_port = GME::Atom::_narrow (ext_src.target ());
 
-    GME::FCO dst_type = dst_port.refers_to ();
-
-    if (dst_type)
-    {
-      if (!src_port.refers_to ())
-      {
-        src_port.refers_to (dst_type);
-        src_port.name (dst_port.name ());
-      }
-    }
+    // Update the name of the external reference.
+    if (src_port.name () != dst_port.name ())
+      src_port.name (dst_port.name ());
   }
 }
 

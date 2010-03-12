@@ -1,9 +1,10 @@
 // $Id$
 
-#include "Utils/xercesc/XercesString.h"
-#include "Utils/Utils.h"
 #include "DeploymentPlanVisitor.h"
 #include "PlanLocalityVisitor.h"
+#include "External_Reference_Visitor.h"
+#include "Utils/xercesc/XercesString.h"
+#include "Utils/Utils.h"
 #include "UmlExt.h"
 #include "boost/bind.hpp"
 #include <algorithm>
@@ -20,8 +21,15 @@ using xercesc::XMLUni;
 using xercesc::XMLException;
 using xercesc::DOMText;
 
+
 namespace PICML
 {
+  //
+  // datatypes_
+  //
+  UDM_Abstract_Type_Dispatcher_T <DeploymentPlanVisitor>
+  DeploymentPlanVisitor::datatypes_;
+
   //
   // DeploymentPlanVisitor
   //
@@ -37,6 +45,18 @@ namespace PICML
       outputPath_ (outputPath),
       disable_opt_ (disable_opt)
   {
+    if (this->datatypes_.is_empty ())
+    {
+      this->datatypes_.insert <PICML::Boolean> ();
+      this->datatypes_.insert <PICML::Byte> ();
+      this->datatypes_.insert <PICML::String> ();
+      this->datatypes_.insert <PICML::FloatNumber> ();
+      this->datatypes_.insert <PICML::DoubleNumber> ();
+      this->datatypes_.insert <PICML::ShortInteger> ();
+      this->datatypes_.insert <PICML::LongInteger> ();
+    }
+
+    // Initialize the document.
     this->init ();
   }
 
@@ -207,84 +227,6 @@ namespace PICML
                                 boost::ref (*this)));
   }
 
-  //
-  // Visit_LongInteger
-  //
-  void DeploymentPlanVisitor::
-  Visit_LongInteger (const LongInteger &)
-  {
-    this->push ();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_long"));
-    this->pop ();
-  }
-
-  //
-  // Visit_FloatNumber
-  //
-  void DeploymentPlanVisitor::
-  Visit_FloatNumber (const FloatNumber &)
-  {
-    this->push ();
-
-    DOMElement * type = this->doc_->createElement (XStr ("type"));
-
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-
-    this->curr_->appendChild (
-      this->createSimpleContent ("kind", "tk_float"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_DoubleNumber
-  //
-  void DeploymentPlanVisitor::
-  Visit_DoubleNumber (const DoubleNumber &)
-  {
-    this->push ();
-
-    DOMElement * type = this->doc_->createElement (XStr ("type"));
-
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-
-    this->curr_->appendChild (
-      this->createSimpleContent ("kind", "tk_double"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_Boolean
-  //
-  void DeploymentPlanVisitor::Visit_Boolean (const Boolean&)
-  {
-    this->push ();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_boolean"));
-    this->pop ();
-  }
-
-  void DeploymentPlanVisitor::Visit_ShortInteger (const ShortInteger&)
-  {
-    this->push ();
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_short"));
-    this->pop ();
-  }
-
   // Implementation Artifact operations
 
   void DeploymentPlanVisitor::Visit_ImplementationArtifacts (
@@ -327,8 +269,8 @@ namespace PICML
         iter != info_properties.end ();
         ++iter)
       {
-        Property property = *iter;
-        property.Accept (*this);
+        Property prop = *iter;
+        prop.Accept (*this);
       }
       this->pop ();
     }
@@ -429,16 +371,16 @@ namespace PICML
   // Visit_Property
   //
   void DeploymentPlanVisitor::
-  Visit_Property (const Property& property)
+  Visit_Property (const Property& prop)
   {
-    this->CreatePropertyElement (property.name (), property);
+    this->CreatePropertyElement (prop.name (), prop);
   }
 
   //
   // CreatePropertyElement
   //
   void DeploymentPlanVisitor::
-  CreatePropertyElement (std::string name, const Property & property)
+  CreatePropertyElement (std::string name, const Property & prop)
   {
     this->push ();
 
@@ -454,15 +396,20 @@ namespace PICML
     this->curr_->appendChild (value);
     this->curr_ = value;
 
-    // Property's type
-    DataType type = property.DataType_child ();
+    // Visit the actual data type. This will add the necessary elements
+    // to the document that determine if property's data type.
+    DataType type = prop.DataType_child ();
     type.Accept (*this);
 
-    // Property's type's value
+    // Now, we need to write the value of the attributed to the
+    // XML document.
+    // DataType_Value value;
+    // this->datatypes_.dispatch (value, mt);
     DOMElement* val = this->doc_->createElement (XStr ("value"));
     this->curr_->appendChild (val);
     this->curr_ = val;
 
+    //TODO Fix PredefinedType here to support Enum
     PredefinedType ref = PICML::PredefinedType::Cast (type.ref ());
     const Uml::Class & meta = ref.type ();
 
@@ -483,77 +430,126 @@ namespace PICML
     else if (meta == PICML::LongInteger::meta)
       datatype = "long";
 
-    this->curr_->appendChild (this->createSimpleContent (datatype, property.DataValue ()));
+    this->curr_->appendChild (this->createSimpleContent (datatype, prop.DataValue ()));
 
     this->pop ();
   }
 
   void DeploymentPlanVisitor::Visit_DataType (const DataType& type)
   {
-    PredefinedType ref = PICML::PredefinedType::Cast (type.ref ());
-    const Uml::Class & meta = ref.type ();
-
-    if (meta == PICML::Boolean::meta)
-    {
-      Boolean boolv = PICML::Boolean::Cast (ref);
-      boolv.Accept (*this);
-    }
-    else if (meta == PICML::Byte::meta)
-    {
-      Byte byte = PICML::Byte::Cast (ref);
-      byte.Accept (*this);
-    }
-    else if (meta == PICML::String::meta)
-    {
-      String str = PICML::String::Cast (ref);
-      str.Accept (*this);
-    }
-    else if (meta == PICML::FloatNumber::meta)
-    {
-      FloatNumber real = PICML::FloatNumber::Cast (ref);
-      real.Accept (*this);
-    }
-    else if (meta == PICML::DoubleNumber::meta)
-    {
-      DoubleNumber real = PICML::DoubleNumber::Cast (ref);
-      real.Accept (*this);
-    }
-    else if (meta == PICML::ShortInteger::meta)
-    {
-      ShortInteger shortv = PICML::ShortInteger::Cast (ref);
-      shortv.Accept (*this);
-    }
-    else if (meta == PICML::LongInteger::meta)
-    {
-      LongInteger lint = PICML::LongInteger::Cast (ref);
-      lint.Accept (*this);
-    }
+    PICML::MemberType mt = type.ref ();
+    this->datatypes_.dispatch (*this, mt);
   }
 
+  //
+  // Visit_String
+  //
   void DeploymentPlanVisitor::Visit_String (const String& str)
   {
     this->push ();
+
     DOMElement* type = this->doc_->createElement (XStr ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_string"));
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_string"));
+
     this->pop ();
   }
 
+  //
+  // Visit_Byte
+  //
   void DeploymentPlanVisitor::Visit_Byte (const Byte& byte)
   {
     this->push ();
+
     DOMElement* type = this->doc_->createElement (XStr ("type"));
     this->curr_->appendChild (type);
     this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind",
-      "tk_octet"));
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_octet"));
+
     this->pop ();
   }
 
-  void DeploymentPlanVisitor::Visit_ComponentImplementations (
-    const ComponentImplementations& cimpls)
+  //
+  // Visit_FloatNumber
+  //
+  void DeploymentPlanVisitor::Visit_FloatNumber (const FloatNumber &)
+  {
+    this->push ();
+
+    DOMElement * type = this->doc_->createElement (XStr ("type"));
+
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_float"));
+
+    this->pop ();
+  }
+
+  //
+  // Visit_DoubleNumber
+  //
+  void DeploymentPlanVisitor::Visit_DoubleNumber (const DoubleNumber &)
+  {
+    this->push ();
+
+    DOMElement * type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_double"));
+
+    this->pop ();
+  }
+
+  //
+  // Visit_Boolean
+  //
+  void DeploymentPlanVisitor::Visit_Boolean (const Boolean&)
+  {
+    this->push ();
+
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_boolean"));
+
+    this->pop ();
+  }
+
+  //
+  // Visit_LongInteger
+  //
+  void DeploymentPlanVisitor::Visit_LongInteger (const LongInteger &)
+  {
+    this->push ();
+
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_long"));
+
+    this->pop ();
+  }
+
+  //
+  // Visit_ShortInteger
+  //
+  void DeploymentPlanVisitor::Visit_ShortInteger (const ShortInteger&)
+  {
+    this->push ();
+
+    DOMElement* type = this->doc_->createElement (XStr ("type"));
+    this->curr_->appendChild (type);
+    this->curr_ = type;
+    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_short"));
+
+    this->pop ();
+  }
+
+  void DeploymentPlanVisitor::
+  Visit_ComponentImplementations (const ComponentImplementations& cimpls)
   {
     std::set<ComponentImplementationContainer>
       cics = cimpls.ComponentImplementationContainer_kind_children ();
@@ -1266,6 +1262,15 @@ namespace PICML
     this->generate_assembly_instance_deployment_descriptions ();
     this->generate_parent_connections ();
     this->generate_child_connections ();
+
+    // Use the selected components to generate any external
+    // references that may exists into the deployment plan.
+    PICML_External_Reference_Visitor erv (this->root_);
+
+    std::for_each (this->monolith_components_.begin (),
+                   this->monolith_components_.end (),
+                   boost::bind (&PICML::Component::Accept, _1, boost::ref (erv)));
+
     this->generate_artifact_descriptions (plan);
     this->generate_infoproperties (plan);
 
@@ -2130,7 +2135,7 @@ namespace PICML
       {
         // Get the component, attribute pair
         pair<std::string, std::string> compAttr = *iter;
-        // Set the name of the associated property to the attribute name
+        // Set the name of the associated prop to the attribute name
         // prop.name () = compAttr.second;
         // If this component's attribute hasn't been assigned a value,
         // i.e., a value hasn't been propagated from a higher-level assembly,
