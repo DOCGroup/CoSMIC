@@ -36,6 +36,7 @@
       <ComponentRef Id="PICMLRegistryComponent" />
 
       <ComponentRef Id="PICMLGameUtils" />
+      <ComponentRef Id="PICMLUdmUtils" />
     </Feature>
 
     <DirectoryRef Id="PICMLParadigmDir">

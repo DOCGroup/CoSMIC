@@ -51,6 +51,7 @@ project (CoSMIC_Installer) : wix {
     $(COSMIC_ROOT)/pim/PICML/interpreters/PropertyManager/PropertyManager.wxs
     $(COSMIC_ROOT)/PIM/PICML/interpreters/QED/deployment/QEDDeploymentComponent.wxs
     $(COSMIC_ROOT)/PIM/PICML/utils/game/PICML_GAME_Utils.wxs
+    $(COSMIC_ROOT)/PIM/PICML/utils/udm/PICML_UDM_Utils.wxs
 
 /////////////////////////////////////////////////////////////////////////
 /////////////// CQML

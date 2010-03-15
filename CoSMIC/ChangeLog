@@ -1,3 +1,11 @@
+Mon Mar 15 16:37:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils.wxs:
+
+          . Added PICML_UDM_Utils to the installer.
+
 Mon Mar 15 16:21:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.h:
