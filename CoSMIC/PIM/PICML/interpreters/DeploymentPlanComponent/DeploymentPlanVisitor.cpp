@@ -1,8 +1,10 @@
 // $Id$
 
 #include "DeploymentPlanVisitor.h"
-#include "PlanLocalityVisitor.h"
+#include "Data_Type_Visitor.h"
+#include "Data_Value_Visitor.h"
 #include "External_Reference_Visitor.h"
+#include "PlanLocalityVisitor.h"
 #include "Utils/xercesc/XercesString.h"
 #include "Utils/Utils.h"
 #include "UmlExt.h"
@@ -24,1767 +26,1819 @@ using xercesc::DOMText;
 
 namespace PICML
 {
-  //
-  // datatypes_
-  //
-  UDM_Abstract_Type_Dispatcher_T <DeploymentPlanVisitor>
-  DeploymentPlanVisitor::datatypes_;
+//
+// datatypes_
+//
+UDM_Abstract_Type_Dispatcher_T <PICML::Visitor> DeploymentPlanVisitor::datatypes_;
 
-  //
-  // DeploymentPlanVisitor
-  //
-  DeploymentPlanVisitor::
-  DeploymentPlanVisitor (const std::string & outputPath,
-                         int disable_opt)
-    : impl_ (0),
-      doc_ (0),
-      root_ (0),
-      curr_ (0),
-      serializer_ (0),
-      target_ (0),
-      outputPath_ (outputPath),
-      disable_opt_ (disable_opt)
+//
+// DeploymentPlanVisitor
+//
+DeploymentPlanVisitor::
+DeploymentPlanVisitor (const std::string & outputPath,
+                       int disable_opt)
+  : impl_ (0),
+    doc_ (0),
+    root_ (0),
+    curr_ (0),
+    serializer_ (0),
+    target_ (0),
+    outputPath_ (outputPath),
+    disable_opt_ (disable_opt)
+{
+  if (this->datatypes_.is_empty ())
   {
-    if (this->datatypes_.is_empty ())
-    {
-      this->datatypes_.insert <PICML::Boolean> ();
-      this->datatypes_.insert <PICML::Byte> ();
-      this->datatypes_.insert <PICML::String> ();
-      this->datatypes_.insert <PICML::FloatNumber> ();
-      this->datatypes_.insert <PICML::DoubleNumber> ();
-      this->datatypes_.insert <PICML::ShortInteger> ();
-      this->datatypes_.insert <PICML::LongInteger> ();
-    }
-
-    // Initialize the document.
-    this->init ();
+    this->datatypes_.insert <PICML::Boolean> ();
+    this->datatypes_.insert <PICML::Byte> ();
+    this->datatypes_.insert <PICML::String> ();
+    this->datatypes_.insert <PICML::FloatNumber> ();
+    this->datatypes_.insert <PICML::DoubleNumber> ();
+    this->datatypes_.insert <PICML::ShortInteger> ();
+    this->datatypes_.insert <PICML::LongInteger> ();
+    this->datatypes_.insert <PICML::Enum> ();
   }
 
-  //
-  // ~DeploymentPlanVisitor
-  //
-  DeploymentPlanVisitor::~DeploymentPlanVisitor (void)
-  {
-    if (this->doc_)
-      this->doc_->release ();
+  // Initialize the document.
+  this->init ();
+}
 
+//
+// ~DeploymentPlanVisitor
+//
+DeploymentPlanVisitor::~DeploymentPlanVisitor (void)
+{
+  if (this->doc_)
+    this->doc_->release ();
+
+  delete this->target_;
+}
+
+//
+// init
+//
+void DeploymentPlanVisitor::init (void)
+{
+  this->impl_ = DOMImplementationRegistry::getDOMImplementation (XStr ("LS"));
+  this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer ();
+
+  // Set features if the serializer supports the feature/mode
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
+
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
+
+  if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
+    this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
+}
+
+//
+// initTarget
+//
+void DeploymentPlanVisitor::
+initTarget (const std::string & fileName)
+{
+  if (this->target_)
     delete this->target_;
-  }
 
-  //
-  // init
-  //
-  void DeploymentPlanVisitor::init (void)
+  this->target_ = new LocalFileFormatTarget (fileName.c_str ());
+}
+
+//
+// initNodeRefName
+//
+void DeploymentPlanVisitor::initNodeRefName (const std::string& nodeRefName)
+{
+  this->node_ref_name_ = nodeRefName;
+}
+
+//
+// retNodeRefName
+//
+std::string DeploymentPlanVisitor::retNodeRefName (void)
+{
+  return this->node_ref_name_;
+}
+
+//
+// initcgName
+//
+void DeploymentPlanVisitor::initcgName (const std::string& cgName)
+{
+  this->cg_name_ = cgName;
+}
+
+//
+// retcgName
+//
+std::string DeploymentPlanVisitor::retcgName (void)
+{
+  return this->cg_name_;
+}
+
+//
+// initDocument
+//
+void DeploymentPlanVisitor::initDocument (const std::string& rootName)
+{
+  if (this->doc_)
+    this->doc_->release ();
+  // Create the document
+  this->doc_ =
+    this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
+    XStr (rootName.c_str ()),
+    0);
+}
+
+void DeploymentPlanVisitor::initRootAttributes ()
+{
+  //this->doc_->setXmlEncoding (XStr ("UTF-8"));
+  this->doc_->setXmlVersion (XStr ("1.0"));
+  this->root_ = this->doc_->getDocumentElement ();
+  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
+    XStr ("xmlns:Deployment"),
+    XStr ("http://www.omg.org/Deployment"));
+  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
+    XStr ("xmlns:xsi"),
+    XStr
+    ("http://www.w3.org/2001/XMLSchema-instance"));
+  this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
+    XStr ("xmlns:xmi"),
+    XStr ("http://www.omg.org/XMI"));
+  this->root_->setAttribute (XStr ("xsi:schemaLocation"),
+    XStr
+    ("http://www.omg.org/Deployment Deployment.xsd"));
+  this->curr_ = this->root_;
+}
+
+void DeploymentPlanVisitor::dumpDocument ()
+{
+  xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
+  output->setByteStream (this->target_);
+
+  this->serializer_->write (this->doc_, output);
+  output->release ();
+}
+
+void DeploymentPlanVisitor::push ()
+{
+  this->curr_stack_.push (this->curr_);
+}
+
+void DeploymentPlanVisitor::pop ()
+{
+  if (!this->curr_stack_.empty ())
   {
-    this->impl_ = DOMImplementationRegistry::getDOMImplementation (XStr ("LS"));
-    this->serializer_ = ((DOMImplementationLS*)impl_)->createLSSerializer ();
-
-    // Set features if the serializer supports the feature/mode
-    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true))
-      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTDiscardDefaultContent, true);
-
-    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true))
-      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
-
-    if (this->serializer_->getDomConfig ()->canSetParameter (XMLUni::fgDOMWRTBOM, false))
-      this->serializer_->getDomConfig ()->setParameter (XMLUni::fgDOMWRTBOM, false);
+    this->curr_ = this->curr_stack_.top ();
+    this->curr_stack_.pop ();
   }
-
-  //
-  // initTarget
-  //
-  void DeploymentPlanVisitor::
-  initTarget (const std::string & fileName)
+  else
   {
-    if (this->target_)
-      delete this->target_;
-
-    this->target_ = new LocalFileFormatTarget (fileName.c_str ());
+    throw (std::exception ());
   }
+}
 
-  //
-  // initNodeRefName
-  //
-  void DeploymentPlanVisitor::initNodeRefName (const std::string& nodeRefName)
+//
+// createSimpleContent
+//
+DOMElement* DeploymentPlanVisitor::
+createSimpleContent (const std::string& name, const std::string& value)
+{
+  DOMElement* pName = this->doc_->createElement (XStr (name.c_str ()));
+
+  if (!value.empty ())
+    pName->appendChild (this->doc_->createTextNode (XStr (value.c_str ())));
+
+  return pName;
+}
+
+//
+// Visit_RootFolder
+//
+void DeploymentPlanVisitor::Visit_RootFolder (const RootFolder& rf)
+{
+  this->root_folder_ = rf;
+
+  typedef std::set <DeploymentPlans> DeploymentPlans_Set;
+  DeploymentPlans_Set folders = rf.DeploymentPlans_kind_children ();
+
+  std::for_each (folders.begin (),
+                 folders.end (),
+                 boost::bind (&DeploymentPlans_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+// Implementation Artifact operations
+
+void DeploymentPlanVisitor::Visit_ImplementationArtifacts (
+  const ImplementationArtifacts& ia)
+{
+  std::set<ArtifactContainer> afs = ia.ArtifactContainer_kind_children ();
+  for (std::set<ArtifactContainer>::iterator iter = afs.begin ();
+    iter != afs.end ();
+    ++iter)
   {
-    this->node_ref_name_ = nodeRefName;
+    ArtifactContainer ac = *iter;
+    ac.Accept (*this);
   }
+}
 
-  //
-  // retNodeRefName
-  //
-  std::string DeploymentPlanVisitor::retNodeRefName (void)
+void DeploymentPlanVisitor::Visit_ArtifactContainer (const ArtifactContainer& ac)
+{
+  const std::set<ImplementationArtifact>
+    ias = ac.ImplementationArtifact_kind_children ();
+  for (std::set<ImplementationArtifact>::const_iterator iter = ias.begin ();
+    iter != ias.end ();
+    ++iter)
   {
-    return this->node_ref_name_;
+    ImplementationArtifact ia = *iter;
+    ia.Accept (*this);
   }
+}
 
-  //
-  // initcgName
-  //
-  void DeploymentPlanVisitor::initcgName (const std::string& cgName)
+void DeploymentPlanVisitor::generate_infoproperties (const DeploymentPlan &plan)
+{
+  std::set <Property> info_properties = plan.Property_kind_children ();
+  if (!info_properties.empty ())
   {
-    this->cg_name_ = cgName;
-  }
-
-  //
-  // retcgName
-  //
-  std::string DeploymentPlanVisitor::retcgName (void)
-  {
-    return this->cg_name_;
-  }
-
-  //
-  // initDocument
-  //
-  void DeploymentPlanVisitor::initDocument (const std::string& rootName)
-  {
-    if (this->doc_)
-      this->doc_->release ();
-    // Create the document
-    this->doc_ =
-      this->impl_->createDocument (XStr ("http://www.omg.org/Deployment"),
-      XStr (rootName.c_str ()),
-      0);
-  }
-
-  void DeploymentPlanVisitor::initRootAttributes ()
-  {
-    //this->doc_->setXmlEncoding (XStr ("UTF-8"));
-    this->doc_->setXmlVersion (XStr ("1.0"));
-    this->root_ = this->doc_->getDocumentElement ();
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:Deployment"),
-      XStr ("http://www.omg.org/Deployment"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xsi"),
-      XStr
-      ("http://www.w3.org/2001/XMLSchema-instance"));
-    this->root_->setAttributeNS (XStr ("http://www.w3.org/2000/xmlns/"),
-      XStr ("xmlns:xmi"),
-      XStr ("http://www.omg.org/XMI"));
-    this->root_->setAttribute (XStr ("xsi:schemaLocation"),
-      XStr
-      ("http://www.omg.org/Deployment Deployment.xsd"));
-    this->curr_ = this->root_;
-  }
-
-  void DeploymentPlanVisitor::dumpDocument ()
-  {
-    xercesc::DOMLSOutput * output = ((DOMImplementationLS*)this->impl_)->createLSOutput ();
-    output->setByteStream (this->target_);
-
-    this->serializer_->write (this->doc_, output);
-    output->release ();
-  }
-
-  void DeploymentPlanVisitor::push ()
-  {
-    this->curr_stack_.push (this->curr_);
-  }
-
-  void DeploymentPlanVisitor::pop ()
-  {
-    if (!this->curr_stack_.empty ())
-    {
-      this->curr_ = this->curr_stack_.top ();
-      this->curr_stack_.pop ();
-    }
-    else
-    {
-      throw (std::exception ());
-    }
-  }
-
-  //
-  // createSimpleContent
-  //
-  DOMElement* DeploymentPlanVisitor::
-  createSimpleContent (const std::string& name, const std::string& value)
-  {
-    DOMElement* pName = this->doc_->createElement (XStr (name.c_str ()));
-
-    if (!value.empty ())
-      pName->appendChild (this->doc_->createTextNode (XStr (value.c_str ())));
-
-    return pName;
-  }
-
-  //
-  // Visit_RootFolder
-  //
-  void DeploymentPlanVisitor::Visit_RootFolder (const RootFolder& rf)
-  {
-    this->root_folder_ = rf;
-
-    typedef std::set <DeploymentPlans> DeploymentPlans_Set;
-    DeploymentPlans_Set folders = rf.DeploymentPlans_kind_children ();
-
-    std::for_each (folders.begin (),
-                   folders.end (),
-                   boost::bind (&DeploymentPlans_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
-  }
-
-  // Implementation Artifact operations
-
-  void DeploymentPlanVisitor::Visit_ImplementationArtifacts (
-    const ImplementationArtifacts& ia)
-  {
-    std::set<ArtifactContainer> afs = ia.ArtifactContainer_kind_children ();
-    for (std::set<ArtifactContainer>::iterator iter = afs.begin ();
-      iter != afs.end ();
-      ++iter)
-    {
-      ArtifactContainer ac = *iter;
-      ac.Accept (*this);
-    }
-  }
-
-  void DeploymentPlanVisitor::Visit_ArtifactContainer (const ArtifactContainer& ac)
-  {
-    const std::set<ImplementationArtifact>
-      ias = ac.ImplementationArtifact_kind_children ();
-    for (std::set<ImplementationArtifact>::const_iterator iter = ias.begin ();
-      iter != ias.end ();
-      ++iter)
-    {
-      ImplementationArtifact ia = *iter;
-      ia.Accept (*this);
-    }
-  }
-
-  void DeploymentPlanVisitor::generate_infoproperties (const DeploymentPlan &plan)
-  {
-    std::set <Property> info_properties = plan.Property_kind_children ();
-    if (!info_properties.empty ())
-    {
-      DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
-      this->curr_->appendChild (ele);
-      this->push ();
-      this->curr_ = ele;
-
-      for (std::set <Property>::const_iterator iter = info_properties.begin ();
-        iter != info_properties.end ();
-        ++iter)
-      {
-        Property prop = *iter;
-        prop.Accept (*this);
-      }
-      this->pop ();
-    }
-  }
-
-  void DeploymentPlanVisitor::
-  Visit_ImplementationArtifact (const ImplementationArtifact& ia)
-  {
-    // We only need to continue if we need this artifact.
-    if (this->disable_opt_ == 0)
-    {
-      if (this->artifacts_.find (ia) == this->artifacts_.end ())
-        return;
-    }
-
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
-
-    std::string artifactName = ia.getPath (".",false,true,"name",true);
-    std::string uniqueName = ia.UUID ();
-    if (uniqueName.empty ())
-      ia.UUID () = uniqueName = CreateUuid ();
-    uniqueName = std::string ("_") + uniqueName;
-
-    ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
-    ele->appendChild (this->createSimpleContent ("name", artifactName));
-    //ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
-    ele->appendChild (this->doc_->createElement (XStr ("node")));
-    std::string location = ia.location ();
-    if (!location.empty ())
-    {
-      ele->appendChild (this->createSimpleContent ("location",
-        location));
-    }
-    else
-    {
-      ele->appendChild (this->doc_->createElement (XStr ("location")));
-    }
+    DOMElement* ele = this->doc_->createElement (XStr ("infoProperty"));
     this->curr_->appendChild (ele);
+    this->push ();
     this->curr_ = ele;
-    const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter ();
-    for (std::set<ArtifactExecParameter>::const_iterator it = exec.begin ();
-      it != exec.end ();
-      ++it)
+
+    for (std::set <Property>::const_iterator iter = info_properties.begin ();
+      iter != info_properties.end ();
+      ++iter)
     {
-      ArtifactExecParameter aep = *it;
-      aep.Accept (*this);
+      Property prop = *iter;
+      prop.Accept (*this);
     }
     this->pop ();
   }
+}
 
-  void DeploymentPlanVisitor::Visit_ArtifactDependsOn (const ArtifactDependsOn& ado)
+void DeploymentPlanVisitor::
+Visit_ImplementationArtifact (const ImplementationArtifact& ia)
+{
+  // We only need to continue if we need this artifact.
+  if (this->disable_opt_ == 0)
   {
-    ImplementationArtifactReference ref = ado.dstArtifactDependsOn_end ();
-    ref.Accept (*this);
+    if (this->artifacts_.find (ia) == this->artifacts_.end ())
+      return;
   }
 
-  //
-  // Visit_ImplementationArtifactReference
-  //
-  void DeploymentPlanVisitor::
-  Visit_ImplementationArtifactReference (const ImplementationArtifactReference& iar)
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("artifact"));
+
+  std::string artifactName = ia.getPath (".",false,true,"name",true);
+  std::string uniqueName = ia.UUID ();
+  if (uniqueName.empty ())
+    ia.UUID () = uniqueName = CreateUuid ();
+  uniqueName = std::string ("_") + uniqueName;
+
+  ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+  ele->appendChild (this->createSimpleContent ("name", artifactName));
+  //ele->appendChild (this->createSimpleContent ("node", "<!-- empty-->"));
+  ele->appendChild (this->doc_->createElement (XStr ("source")));
+  ele->appendChild (this->doc_->createElement (XStr ("node")));
+  std::string location = ia.location ();
+  if (!location.empty ())
   {
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
-    ele->appendChild (this->createSimpleContent ("name", iar.name ()));
-    const ImplementationArtifact ref = iar.ref ();
-    std::string refName (ref.name ());
-    refName += ".iad";
-    DOMElement*
-      refEle = this->doc_->createElement (XStr ("referencedArtifact"));
-    refEle->setAttribute (XStr ("href"), XStr (refName));
-    ele->appendChild (refEle);
-    this->curr_->appendChild (ele);
-    this->pop ();
+    ele->appendChild (this->createSimpleContent ("location",
+      location));
+  }
+  else
+  {
+    ele->appendChild (this->doc_->createElement (XStr ("location")));
+  }
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  const std::set<ArtifactExecParameter> exec = ia.dstArtifactExecParameter ();
+  for (std::set<ArtifactExecParameter>::const_iterator it = exec.begin ();
+    it != exec.end ();
+    ++it)
+  {
+    ArtifactExecParameter aep = *it;
+    aep.Accept (*this);
+  }
+  this->pop ();
+}
+
+void DeploymentPlanVisitor::Visit_ArtifactDependsOn (const ArtifactDependsOn& ado)
+{
+  ImplementationArtifactReference ref = ado.dstArtifactDependsOn_end ();
+  ref.Accept (*this);
+}
+
+//
+// Visit_ImplementationArtifactReference
+//
+void DeploymentPlanVisitor::
+Visit_ImplementationArtifactReference (const ImplementationArtifactReference& iar)
+{
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("dependsOn"));
+  ele->appendChild (this->createSimpleContent ("name", iar.name ()));
+  const ImplementationArtifact ref = iar.ref ();
+  std::string refName (ref.name ());
+  refName += ".iad";
+  DOMElement*
+    refEle = this->doc_->createElement (XStr ("referencedArtifact"));
+  refEle->setAttribute (XStr ("href"), XStr (refName));
+  ele->appendChild (refEle);
+  this->curr_->appendChild (ele);
+  this->pop ();
+}
+
+//
+// Visit_ArtifactExecParameter
+//
+void DeploymentPlanVisitor::
+Visit_ArtifactExecParameter (const ArtifactExecParameter& param)
+{
+  this->push ();
+
+  DOMElement* value = this->doc_->createElement (XStr ("execParameter"));
+  this->curr_->appendChild (value);
+  this->curr_ = value;
+
+  Property ref = param.dstArtifactExecParameter_end ();
+  ref.Accept (*this);
+
+  this->pop ();
+}
+
+//
+// Visit_Property
+//
+void DeploymentPlanVisitor::Visit_Property (const Property & prop)
+{
+  this->push ();
+
+  std::string name = prop.name ();
+
+  if (name == "ComponentIOR")
+    name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
+  else if (name == "RegisterNaming")
+    name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
+
+  this->curr_->appendChild (this->createSimpleContent ("name", name));
+
+  // Property's value
+  DOMElement* value = this->doc_->createElement (XStr ("value"));
+  this->curr_->appendChild (value);
+  this->curr_ = value;
+
+  // Visit the actual data type. This will add the necessary elements
+  // to the document that determine if property's data type.
+  DataType type = prop.DataType_child ();
+  type.Accept (*this);
+
+  // Now, we need to write attribute value to XML document.
+  PICML_Data_Value_Visitor dvv (this->curr_, prop);
+  this->datatypes_.dispatch (dvv, type.ref ());
+
+  this->pop ();
+}
+
+////
+//// CreatePropertyElement
+////
+//void DeploymentPlanVisitor::
+//CreatePropertyElement (std::string name, const Property & prop)
+//{
+//  this->push ();
+//
+//  if (name == "ComponentIOR")
+//    name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
+//  else if (name == "RegisterNaming")
+//    name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
+//
+//  this->curr_->appendChild (this->createSimpleContent ("name", name));
+//
+//  // Property's value
+//  DOMElement* value = this->doc_->createElement (XStr ("value"));
+//  this->curr_->appendChild (value);
+//  this->curr_ = value;
+//
+//  // Visit the actual data type. This will add the necessary elements
+//  // to the document that determine if property's data type.
+//  DataType type = prop.DataType_child ();
+//  type.Accept (*this);
+//
+//  // Now, we need to write attribute value to XML document.
+//  PICML_Data_Value_Visitor dvv (this->curr_, prop);
+//  this->datatypes_.dispatch (dvv, type.ref ());
+//
+//  this->pop ();
+//}
+
+//
+// Visit_DataType
+//
+void DeploymentPlanVisitor::Visit_DataType (const DataType& type)
+{
+  // Prepare the datatype visitor.
+  PICML_Data_Type_Visitor dtv (this->curr_);
+
+  // Visit the concrete data type.
+  PICML::MemberType mt = type.ref ();
+  this->datatypes_.dispatch (dtv, mt);
+}
+
+void DeploymentPlanVisitor::
+Visit_ComponentImplementations (const ComponentImplementations& cimpls)
+{
+  std::set<ComponentImplementationContainer>
+    cics = cimpls.ComponentImplementationContainer_kind_children ();
+  for (std::set<ComponentImplementationContainer>::iterator
+    iter = cics.begin ();
+    iter != cics.end ();
+  ++iter)
+  {
+    ComponentImplementationContainer cc = *iter;
+    cc.Accept (*this);
+  }
+}
+
+//
+// Visit_ComponentImplementationContainer
+//
+void DeploymentPlanVisitor::
+Visit_ComponentImplementationContainer (const ComponentImplementationContainer& cic)
+{
+  std::set <MonolithicImplementation> mimpls = cic.MonolithicImplementation_kind_children ();
+
+  std::for_each (mimpls.begin (),
+                 mimpls.end (),
+                 boost::bind (&PICML::MonolithicImplementation::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_MonolithicImplementation
+//
+void DeploymentPlanVisitor::
+Visit_MonolithicImplementation (const MonolithicImplementation & mimpl)
+{
+  // Get the component type for this monolithic implementation. We
+  // need to make sure we really need this type before generating
+  // any of the descriptor XML.
+  Implements iface = mimpl.dstImplements ();
+  const ComponentRef iface_ref = iface.dstImplements_end ();
+  const Component comp_ref = iface_ref.ref ();
+
+  if (0 == this->disable_opt_)
+  {
+    if (this->monolith_types_.find (comp_ref) == this->monolith_types_.end ())
+      return;
   }
 
-  //
-  // Visit_ArtifactExecParameter
-  //
-  void DeploymentPlanVisitor::
-  Visit_ArtifactExecParameter (const ArtifactExecParameter& param)
+  // We can begin the generation of this monolithic implemenation's
+  // descriptor meta data.
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
+
+  std::string refName (comp_ref.name ());
+  this->monoimpls_.insert (make_pair (refName, mimpl));
+
+  std::string implName = mimpl.getPath (".", false, true, "name", true);
+  std::string uniqueName = mimpl.UUID ();
+
+  if (uniqueName.empty ())
+    mimpl.UUID () = uniqueName = CreateUuid ();
+
+  uniqueName = std::string ("_") + uniqueName;
+
+  ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+  ele->appendChild (this->createSimpleContent ("name", implName));
+  ele->appendChild (this->doc_->createElement (XStr ("source")));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+
+  // Visit all the primary artifacts for this component.
+  std::set <MonolithprimaryArtifact> mpas = mimpl.dstMonolithprimaryArtifact ();
+
+  std::for_each (mpas.begin (),
+                 mpas.end (),
+                 boost::bind (&PICML::MonolithprimaryArtifact::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // Visit all the monolithic executor parameters for this implementation.
+  std::set <MonolithExecParameter> mexecs = mimpl.dstMonolithExecParameter ();
+
+  std::for_each (mexecs.begin (),
+                 mexecs.end (),
+                 boost::bind (&PICML::MonolithExecParameter::Accept,
+                              _1,
+                              boost::ref (*this)));
+
+  // Write the executor parameters for the required artifacts.
+  if (Udm::null != this->impl_artifact_)
+    this->impl_artifact_.Accept (*this);
+
+  if (Udm::null != this->svnt_artifact_)
+    this->svnt_artifact_.Accept (*this);
+
+  this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (Udm::null);
+  this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (Udm::null);
+
+  this->pop ();
+}
+
+//
+// Visit_ComponentImplementationArtifact
+//
+void DeploymentPlanVisitor::
+Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact & cia)
+{
+  this->write_artifact_execParameter ("component factory", cia.EntryPoint ());
+
+  ImplementationArtifact ia = cia.ref ();
+
+  if (Udm::null != ia)
   {
-    this->push ();
+    std::string id = this->unique_id (ia);
+    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", id);
+  }
+}
 
-    DOMElement* value = this->doc_->createElement (XStr ("execParameter"));
-    this->curr_->appendChild (value);
-    this->curr_ = value;
+//
+// Visit_ComponentServantArtifact
+//
+void DeploymentPlanVisitor::
+Visit_ComponentServantArtifact (const ComponentServantArtifact & csa)
+{
+  this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantEntrypoint",
+                                      csa.EntryPoint ());
 
-    Property ref = param.dstArtifactExecParameter_end ();
-    ref.Accept (*this);
+  ImplementationArtifact ia = csa.ref ();
 
-    this->pop ();
+  if (Udm::null != ia)
+  {
+    std::string id = this->unique_id (ia);
+    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", id);
+  }
+}
+
+//
+// write_artifact_execParameter
+//
+void DeploymentPlanVisitor::
+write_artifact_execParameter (const std::string & name,
+                              const std::string & value)
+{
+  DOMElement * element = this->doc_->createElement (XStr ("execParameter"));
+  this->curr_->appendChild (element);
+
+  element->appendChild (this->createSimpleContent ("name", name));
+
+  DOMElement * val = this->doc_->createElement (XStr ("value"));
+  element->appendChild (val);
+
+  DOMElement * type = this->doc_->createElement (XStr ("type"));
+  val->appendChild (type);
+
+  type->appendChild (this->createSimpleContent ("kind", "tk_string"));
+
+  element = this->doc_->createElement (XStr ("value"));
+  val->appendChild (element);
+
+  element->appendChild (this->createSimpleContent ("string", value));
+}
+
+//
+// Visit_MonolithExecParameter
+//
+void DeploymentPlanVisitor::
+Visit_MonolithExecParameter (const MonolithExecParameter& mexec)
+{
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = mexec.dstMonolithExecParameter_end ();
+  ref.Accept (*this);
+  this->pop ();
+}
+
+//
+// Visit_Implements
+//
+void DeploymentPlanVisitor::
+Visit_Implements (const Implements& impl)
+{
+  this->push ();
+
+  const ComponentRef iface = impl.dstImplements_end ();
+  const Component ref = iface.ref ();
+
+  std::string refName (ref.name ());
+  refName += ".ccd";
+
+  DOMElement * refEle = this->doc_->createElement (XStr ("implements"));
+  refEle->setAttribute (XStr ("href"), XStr (refName));
+  this->curr_->appendChild (refEle);
+
+  this->pop ();
+}
+
+//
+// Visit_MonolithprimaryArtifact
+//
+void DeploymentPlanVisitor::
+Visit_MonolithprimaryArtifact (const MonolithprimaryArtifact& mpa)
+{
+  this->push ();
+
+  const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end ();
+  const ImplementationArtifact ref = iaref.ref ();
+  std::string name = iaref.name ();
+
+  // Cache the artifact.
+  this->artifacts_.insert (ref);
+
+  std::string uniqueName = ref.UUID ();
+
+  if (uniqueName.empty ())
+    ref.UUID () = uniqueName = CreateUuid ();
+
+  uniqueName = std::string ("_") + uniqueName;
+
+  // Create the artifact element.
+  DOMElement * artifact = this->doc_->createElement (XStr ("artifact"));
+  this->curr_->appendChild (artifact);
+
+  // Set the idref of the artifact
+  artifact->setAttribute (XStr ("xmi:idref"), XStr (uniqueName));
+
+  if (PICML::ComponentImplementationArtifact::meta == iaref.type ())
+  {
+    this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (iaref);
+  }
+  else if (PICML::ComponentServantArtifact::meta == iaref.type ())
+  {
+    this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (iaref);
   }
 
-  //
-  // Visit_Property
-  //
-  void DeploymentPlanVisitor::
-  Visit_Property (const Property& prop)
+  this->pop ();
+}
+
+//
+// Visit_ConfigProperty
+//
+void DeploymentPlanVisitor::
+Visit_ConfigProperty (const ConfigProperty& cp)
+{
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = cp.dstConfigProperty_end ();
+  ref.Accept (*this);
+  this->pop ();
+}
+
+//
+// Visit_AssemblyConfigProperty
+//
+void DeploymentPlanVisitor::
+Visit_AssemblyConfigProperty (const AssemblyConfigProperty & acp)
+{
+  this->push ();
+  DOMElement* value = this->doc_->createElement (XStr ("configProperty"));
+  this->curr_->appendChild (value);
+  this->curr_ = value;
+  Property ref = acp.dstAssemblyConfigProperty_end ();
+  ref.Accept (*this);
+  this->pop ();
+}
+
+template <typename T, typename Del, typename DelRet, typename DelEndRet>
+  void DeploymentPlanVisitor::GetComponents (const T& port,
+  DelRet (T::*srcDel)() const,
+  DelRet (T::*dstDel) () const,
+  DelEndRet (Del::*srcDelEnd)() const,
+  DelEndRet (Del::*dstDelEnd)() const,
+  std::map<Component, std::string>& output,
+  std::set<T>& visited)
+{
+  visited.insert (port);
+  Udm::Object par = port.parent ();
+  std::string recepName = port.name ();
+  std::string parentName = this->ExtractName (par);
+  if (Udm::IsDerivedFrom (par.type (), ComponentAssembly::meta))
   {
-    this->CreatePropertyElement (prop.name (), prop);
+    std::set<Del> delegates = (port.*dstDel)();
+    for (std::set<Del>::const_iterator iter = delegates.begin ();
+      iter != delegates.end ();
+      ++iter)
+    {
+      Del delegate = *iter;
+      T srcPort = (delegate.*dstDelEnd)();
+      std::string srcPortName = this->ExtractName (srcPort);
+      if (std::find (visited.begin (),
+        visited.end (),
+        srcPort) == visited.end ())
+        this->GetComponents (srcPort, srcDel, dstDel,
+        srcDelEnd, dstDelEnd, output, visited);
+    }
+    delegates = (port.*srcDel)();
+    for (std::set<Del>::const_iterator iter = delegates.begin ();
+      iter != delegates.end ();
+      ++iter)
+    {
+      Del delegate = *iter;
+      T dstPort = (delegate.*srcDelEnd)();
+      std::string dstPortName = this->ExtractName (dstPort);
+      if (std::find (visited.begin (),
+        visited.end (),
+        dstPort) == visited.end ())
+        this->GetComponents (dstPort, srcDel, dstDel,
+        srcDelEnd, dstDelEnd, output, visited);
+    }
   }
-
-  //
-  // CreatePropertyElement
-  //
-  void DeploymentPlanVisitor::
-  CreatePropertyElement (std::string name, const Property & prop)
+  else if (Udm::IsDerivedFrom (par.type (), Component::meta))
   {
-    this->push ();
-
-    if (name == "ComponentIOR")
-      name = "edu.vanderbilt.dre.DAnCE.InstanceIOR";
-    else if (name == "RegisterNaming")
-      name = "edu.vanderbilt.dre.DAnCE.RegisterNaming";
-
-    this->curr_->appendChild (this->createSimpleContent ("name", name));
-
-    // Property's value
-    DOMElement* value = this->doc_->createElement (XStr ("value"));
-    this->curr_->appendChild (value);
-    this->curr_ = value;
-
-    // Visit the actual data type. This will add the necessary elements
-    // to the document that determine if property's data type.
-    DataType type = prop.DataType_child ();
-    type.Accept (*this);
-
-    // Now, we need to write the value of the attributed to the
-    // XML document.
-    // DataType_Value value;
-    // this->datatypes_.dispatch (value, mt);
-    DOMElement* val = this->doc_->createElement (XStr ("value"));
-    this->curr_->appendChild (val);
-    this->curr_ = val;
-
-    //TODO Fix PredefinedType here to support Enum
-    PredefinedType ref = PICML::PredefinedType::Cast (type.ref ());
-    const Uml::Class & meta = ref.type ();
-
-    std::string datatype;
-
-    if (meta == PICML::Boolean::meta)
-      datatype = "boolean";
-    else if (meta == PICML::Byte::meta)
-      datatype = "octet";
-    else if (meta == PICML::String::meta)
-      datatype = "string";
-    else if (meta == PICML::FloatNumber::meta)
-      datatype = "float";
-    else if (meta == PICML::DoubleNumber::meta)
-      datatype = "double";
-    else if (meta == PICML::ShortInteger::meta)
-      datatype = "short";
-    else if (meta == PICML::LongInteger::meta)
-      datatype = "long";
-
-    this->curr_->appendChild (this->createSimpleContent (datatype, prop.DataValue ()));
-
-    this->pop ();
+    Component recep_comp = Component::Cast (par);
+    output.insert (make_pair (recep_comp, port.name ()));
   }
+  visited.erase (port);
+  return;
+}
 
-  void DeploymentPlanVisitor::Visit_DataType (const DataType& type)
+void DeploymentPlanVisitor::GetReceptacleComponents
+  (const RequiredRequestPort& receptacle,
+  std::map<Component,std::string>& output)
+{
+  std::set<RequiredRequestPort> visited;
+  this->GetComponents (receptacle,
+    &RequiredRequestPort::srcReceptacleDelegate,
+    &RequiredRequestPort::dstReceptacleDelegate,
+    &ReceptacleDelegate::srcReceptacleDelegate_end,
+    &ReceptacleDelegate::dstReceptacleDelegate_end,
+    output,
+    visited);
+}
+
+void DeploymentPlanVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
+  std::map<Component,
+  std::string>& output)
+{
+  std::set<ProvidedRequestPort> visited;
+  this->GetComponents (facet,
+    &ProvidedRequestPort::srcFacetDelegate,
+    &ProvidedRequestPort::dstFacetDelegate,
+    &FacetDelegate::srcFacetDelegate_end,
+    &FacetDelegate::dstFacetDelegate_end,
+    output,
+    visited);
+}
+
+//
+// GetEventSinkComponents
+//
+void DeploymentPlanVisitor::
+GetEventSinkComponents (const InEventPort& consumer,
+                        std::map<Component, std::string>& output)
+{
+  std::set<InEventPort> visited;
+
+  this->GetComponents (consumer,
+                       &InEventPort::srcEventSinkDelegate,
+                       &InEventPort::dstEventSinkDelegate,
+                       &EventSinkDelegate::srcEventSinkDelegate_end,
+                       &EventSinkDelegate::dstEventSinkDelegate_end,
+                       output,
+                       visited);
+}
+
+//
+// GetEventSourceComponents
+//
+void DeploymentPlanVisitor::
+GetEventSourceComponents (const OutEventPort& publisher,
+                          std::map <Component,std::string> & output)
+{
+  std::set<OutEventPort> visited;
+
+  this->GetComponents (publisher,
+                       &OutEventPort::srcEventSourceDelegate,
+                       &OutEventPort::dstEventSourceDelegate,
+                       &EventSourceDelegate::srcEventSourceDelegate_end,
+                       &EventSourceDelegate::dstEventSourceDelegate_end,
+                       output,
+                       visited);
+}
+
+void DeploymentPlanVisitor::CreateConnections (const std::map<Component,
+  std::string>& src,
+  const std::map<Component,
+  std::string>& dst,
+  const std::string& source_kind,
+  const std::string& dest_kind)
+{
+  for (std::map<Component,std::string>::const_iterator iter = src.begin ();
+    iter != src.end ();
+    ++iter)
   {
-    PICML::MemberType mt = type.ref ();
-    this->datatypes_.dispatch (*this, mt);
-  }
-
-  //
-  // Visit_String
-  //
-  void DeploymentPlanVisitor::Visit_String (const String& str)
-  {
-    this->push ();
-
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_string"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_Byte
-  //
-  void DeploymentPlanVisitor::Visit_Byte (const Byte& byte)
-  {
-    this->push ();
-
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_octet"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_FloatNumber
-  //
-  void DeploymentPlanVisitor::Visit_FloatNumber (const FloatNumber &)
-  {
-    this->push ();
-
-    DOMElement * type = this->doc_->createElement (XStr ("type"));
-
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_float"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_DoubleNumber
-  //
-  void DeploymentPlanVisitor::Visit_DoubleNumber (const DoubleNumber &)
-  {
-    this->push ();
-
-    DOMElement * type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_double"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_Boolean
-  //
-  void DeploymentPlanVisitor::Visit_Boolean (const Boolean&)
-  {
-    this->push ();
-
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_boolean"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_LongInteger
-  //
-  void DeploymentPlanVisitor::Visit_LongInteger (const LongInteger &)
-  {
-    this->push ();
-
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_long"));
-
-    this->pop ();
-  }
-
-  //
-  // Visit_ShortInteger
-  //
-  void DeploymentPlanVisitor::Visit_ShortInteger (const ShortInteger&)
-  {
-    this->push ();
-
-    DOMElement* type = this->doc_->createElement (XStr ("type"));
-    this->curr_->appendChild (type);
-    this->curr_ = type;
-    this->curr_->appendChild (this->createSimpleContent ("kind", "tk_short"));
-
-    this->pop ();
-  }
-
-  void DeploymentPlanVisitor::
-  Visit_ComponentImplementations (const ComponentImplementations& cimpls)
-  {
-    std::set<ComponentImplementationContainer>
-      cics = cimpls.ComponentImplementationContainer_kind_children ();
-    for (std::set<ComponentImplementationContainer>::iterator
-      iter = cics.begin ();
-      iter != cics.end ();
+    Component srcComp = iter->first;
+    std::string srcPortName = iter->second;
+    for (std::map<Component,
+      std::string>::const_iterator iter = dst.begin ();
+      iter != dst.end ();
     ++iter)
     {
-      ComponentImplementationContainer cc = *iter;
-      cc.Accept (*this);
+      Component dstComp = iter->first;
+      std::string dstPortName = iter->second;
+      this->CreateConnection (srcComp, srcPortName, dstComp,
+        dstPortName, source_kind, dest_kind);
     }
   }
+}
 
-  //
-  // Visit_ComponentImplementationContainer
-  //
-  void DeploymentPlanVisitor::
-  Visit_ComponentImplementationContainer (const ComponentImplementationContainer& cic)
+//
+// unique_id
+//
+template <typename T>
+std::string DeploymentPlanVisitor::unique_id (const T &comp)
+{
+  return comp.getPath (".", false, true, "name", true);
+}
+
+//
+// CreateConnection
+//
+void DeploymentPlanVisitor::
+CreateConnection (const Component& srcComp,
+                  const std::string& srcPortName,
+                  const Component& dstComp,
+                  const std::string& dstPortName,
+                  const std::string& source_kind,
+                  const std::string& dest_kind)
+{
+  std::string source_comp_instance = "_" + std::string (srcComp.UUID ());
+  std::string dest_comp_instance = "_" + std::string (dstComp.UUID ());
+
+  if (this->selected_instances_.find (source_comp_instance) != this->selected_instances_.end () &&
+      this->selected_instances_.find (dest_comp_instance) != this->selected_instances_.end ())
   {
-    std::set <MonolithicImplementation> mimpls = cic.MonolithicImplementation_kind_children ();
-
-    std::for_each (mimpls.begin (),
-                   mimpls.end (),
-                   boost::bind (&PICML::MonolithicImplementation::Accept,
-                                _1,
-                                boost::ref (*this)));
-  }
-
-  //
-  // Visit_MonolithicImplementation
-  //
-  void DeploymentPlanVisitor::
-  Visit_MonolithicImplementation (const MonolithicImplementation & mimpl)
-  {
-    // Get the component type for this monolithic implementation. We
-    // need to make sure we really need this type before generating
-    // any of the descriptor XML.
-    Implements iface = mimpl.dstImplements ();
-    const ComponentRef iface_ref = iface.dstImplements_end ();
-    const Component comp_ref = iface_ref.ref ();
-
-    if (0 == this->disable_opt_)
-    {
-      if (this->monolith_types_.find (comp_ref) == this->monolith_types_.end ())
-        return;
-    }
-
-    // We can begin the generation of this monolithic implemenation's
-    // descriptor meta data.
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("implementation"));
-
-    std::string refName (comp_ref.name ());
-    this->monoimpls_.insert (make_pair (refName, mimpl));
-
-    std::string implName = mimpl.getPath (".", false, true, "name", true);
-    std::string uniqueName = mimpl.UUID ();
-
-    if (uniqueName.empty ())
-      mimpl.UUID () = uniqueName = CreateUuid ();
-
-    uniqueName = std::string ("_") + uniqueName;
-
-    ele->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
-    ele->appendChild (this->createSimpleContent ("name", implName));
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
+    // Create a connection
+    DOMElement* ele = this->doc_->createElement (XStr ("connection"));
     this->curr_->appendChild (ele);
-    this->curr_ = ele;
 
-    // Visit all the primary artifacts for this component.
-    std::set <MonolithprimaryArtifact> mpas = mimpl.dstMonolithprimaryArtifact ();
+    std::string connection =
+      this->unique_id (srcComp) + ":" + srcPortName + "::" +
+      this->unique_id (dstComp) + ":" + dstPortName;
 
-    std::for_each (mpas.begin (),
-                   mpas.end (),
-                   boost::bind (&PICML::MonolithprimaryArtifact::Accept,
-                                _1,
-                                boost::ref (*this)));
+    ele->appendChild (this->createSimpleContent ("name", connection));
 
-    // Visit all the monolithic executor parameters for this implementation.
-    std::set <MonolithExecParameter> mexecs = mimpl.dstMonolithExecParameter ();
+    // Source endPoint
+    DOMElement * endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
+    endPoint->appendChild (this->createSimpleContent ("provider", "false"));
+    endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
 
-    std::for_each (mexecs.begin (),
-                   mexecs.end (),
-                   boost::bind (&PICML::MonolithExecParameter::Accept,
-                                _1,
-                                boost::ref (*this)));
+    DOMElement * instance = this->doc_->createElement (XStr ("instance"));
+    endPoint->appendChild (instance);
+    instance->setAttribute (XStr ("xmi:idref"), XStr (source_comp_instance.c_str ()));
+    ele->appendChild (endPoint);
 
-    // Write the executor parameters for the required artifacts.
-    if (Udm::null != this->impl_artifact_)
-      this->impl_artifact_.Accept (*this);
+    // Destination endPoint
+    endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
+    endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
+    endPoint->appendChild (this->createSimpleContent ("provider", "true"));
+    endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
 
-    if (Udm::null != this->svnt_artifact_)
-      this->svnt_artifact_.Accept (*this);
+    instance = this->doc_->createElement (XStr ("instance"));
+    endPoint->appendChild (instance);
+    instance->setAttribute (XStr ("xmi:idref"), XStr (dest_comp_instance.c_str ()));
 
-    this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (Udm::null);
-    this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (Udm::null);
-
-    this->pop ();
+    ele->appendChild (endPoint);
   }
+}
 
-  //
-  // Visit_ComponentImplementationArtifact
-  //
-  void DeploymentPlanVisitor::
-  Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact & cia)
+std::string DeploymentPlanVisitor::ExtractName (Udm::Object ob)
+{
+  Uml::Class cls= ob.type ();
+  set<Uml::Attribute> attrs=cls.attributes ();
+
+  // Adding parent attributes
+  set<Uml::Attribute> aattrs=Uml::AncestorAttributes (cls);
+  attrs.insert (aattrs.begin (),aattrs.end ());
+
+  for (set<Uml::Attribute>::iterator ai = attrs.begin ();
+    ai != attrs.end (); ai++)
   {
-    this->write_artifact_execParameter ("component factory", cia.EntryPoint ());
-
-    ImplementationArtifact ia = cia.ref ();
-
-    if (Udm::null != ia)
+    if (string (ai->type ())=="String")
     {
-      std::string id = this->unique_id (ia);
-      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ExecutorArtifact", id);
-    }
-  }
-
-  //
-  // Visit_ComponentServantArtifact
-  //
-  void DeploymentPlanVisitor::
-  Visit_ComponentServantArtifact (const ComponentServantArtifact & csa)
-  {
-    this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantEntrypoint",
-                                        csa.EntryPoint ());
-
-    ImplementationArtifact ia = csa.ref ();
-
-    if (Udm::null != ia)
-    {
-      std::string id = this->unique_id (ia);
-      this->write_artifact_execParameter ("edu.vanderbilt.dre.CIAO.ServantArtifact", id);
-    }
-  }
-
-  //
-  // write_artifact_execParameter
-  //
-  void DeploymentPlanVisitor::
-  write_artifact_execParameter (const std::string & name,
-                                const std::string & value)
-  {
-    DOMElement * element = this->doc_->createElement (XStr ("execParameter"));
-    this->curr_->appendChild (element);
-
-    element->appendChild (this->createSimpleContent ("name", name));
-
-    DOMElement * val = this->doc_->createElement (XStr ("value"));
-    element->appendChild (val);
-
-    DOMElement * type = this->doc_->createElement (XStr ("type"));
-    val->appendChild (type);
-
-    type->appendChild (this->createSimpleContent ("kind", "tk_string"));
-
-    element = this->doc_->createElement (XStr ("value"));
-    val->appendChild (element);
-
-    element->appendChild (this->createSimpleContent ("string", value));
-  }
-
-  //
-  // Visit_MonolithExecParameter
-  //
-  void DeploymentPlanVisitor::
-  Visit_MonolithExecParameter (const MonolithExecParameter& mexec)
-  {
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("execParameter"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-    Property ref = mexec.dstMonolithExecParameter_end ();
-    ref.Accept (*this);
-    this->pop ();
-  }
-
-  //
-  // Visit_Implements
-  //
-  void DeploymentPlanVisitor::
-  Visit_Implements (const Implements& impl)
-  {
-    this->push ();
-
-    const ComponentRef iface = impl.dstImplements_end ();
-    const Component ref = iface.ref ();
-
-    std::string refName (ref.name ());
-    refName += ".ccd";
-
-    DOMElement * refEle = this->doc_->createElement (XStr ("implements"));
-    refEle->setAttribute (XStr ("href"), XStr (refName));
-    this->curr_->appendChild (refEle);
-
-    this->pop ();
-  }
-
-  //
-  // Visit_MonolithprimaryArtifact
-  //
-  void DeploymentPlanVisitor::
-  Visit_MonolithprimaryArtifact (const MonolithprimaryArtifact& mpa)
-  {
-    this->push ();
-
-    const ImplementationArtifactReference iaref = mpa.dstMonolithprimaryArtifact_end ();
-    const ImplementationArtifact ref = iaref.ref ();
-    std::string name = iaref.name ();
-
-    // Cache the artifact.
-    this->artifacts_.insert (ref);
-
-    std::string uniqueName = ref.UUID ();
-
-    if (uniqueName.empty ())
-      ref.UUID () = uniqueName = CreateUuid ();
-
-    uniqueName = std::string ("_") + uniqueName;
-
-    // Create the artifact element.
-    DOMElement * artifact = this->doc_->createElement (XStr ("artifact"));
-    this->curr_->appendChild (artifact);
-
-    // Set the idref of the artifact
-    artifact->setAttribute (XStr ("xmi:idref"), XStr (uniqueName));
-
-    if (PICML::ComponentImplementationArtifact::meta == iaref.type ())
-    {
-      this->impl_artifact_ = PICML::ComponentImplementationArtifact::Cast (iaref);
-    }
-    else if (PICML::ComponentServantArtifact::meta == iaref.type ())
-    {
-      this->svnt_artifact_ = PICML::ComponentServantArtifact::Cast (iaref);
-    }
-
-    this->pop ();
-  }
-
-  //
-  // Visit_ConfigProperty
-  //
-  void DeploymentPlanVisitor::
-  Visit_ConfigProperty (const ConfigProperty& cp)
-  {
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-    Property ref = cp.dstConfigProperty_end ();
-    ref.Accept (*this);
-    this->pop ();
-  }
-
-  //
-  // Visit_AssemblyConfigProperty
-  //
-  void DeploymentPlanVisitor::
-  Visit_AssemblyConfigProperty (const AssemblyConfigProperty & acp)
-  {
-    this->push ();
-    DOMElement* value = this->doc_->createElement (XStr ("configProperty"));
-    this->curr_->appendChild (value);
-    this->curr_ = value;
-    Property ref = acp.dstAssemblyConfigProperty_end ();
-    ref.Accept (*this);
-    this->pop ();
-  }
-
-  template <typename T, typename Del, typename DelRet, typename DelEndRet>
-    void DeploymentPlanVisitor::GetComponents (const T& port,
-    DelRet (T::*srcDel)() const,
-    DelRet (T::*dstDel) () const,
-    DelEndRet (Del::*srcDelEnd)() const,
-    DelEndRet (Del::*dstDelEnd)() const,
-    std::map<Component, std::string>& output,
-    std::set<T>& visited)
-  {
-    visited.insert (port);
-    Udm::Object par = port.parent ();
-    std::string recepName = port.name ();
-    std::string parentName = this->ExtractName (par);
-    if (Udm::IsDerivedFrom (par.type (), ComponentAssembly::meta))
-    {
-      std::set<Del> delegates = (port.*dstDel)();
-      for (std::set<Del>::const_iterator iter = delegates.begin ();
-        iter != delegates.end ();
-        ++iter)
+      string str=ai->name ();
+      if (str=="name")
       {
-        Del delegate = *iter;
-        T srcPort = (delegate.*dstDelEnd)();
-        std::string srcPortName = this->ExtractName (srcPort);
-        if (std::find (visited.begin (),
-          visited.end (),
-          srcPort) == visited.end ())
-          this->GetComponents (srcPort, srcDel, dstDel,
-          srcDelEnd, dstDelEnd, output, visited);
-      }
-      delegates = (port.*srcDel)();
-      for (std::set<Del>::const_iterator iter = delegates.begin ();
-        iter != delegates.end ();
-        ++iter)
-      {
-        Del delegate = *iter;
-        T dstPort = (delegate.*srcDelEnd)();
-        std::string dstPortName = this->ExtractName (dstPort);
-        if (std::find (visited.begin (),
-          visited.end (),
-          dstPort) == visited.end ())
-          this->GetComponents (dstPort, srcDel, dstDel,
-          srcDelEnd, dstDelEnd, output, visited);
+        string value=ob.getStringAttr (*ai);
+        if (value.empty ())value="<empty string>";
+        return value;
       }
     }
-    else if (Udm::IsDerivedFrom (par.type (), Component::meta))
+  }
+  return string ("<no name specified>");
+}
+
+void DeploymentPlanVisitor::Visit_invoke (const invoke& iv)
+{
+
+  // Get the receptacle end
+  RequiredRequestPort receptacle = iv.srcinvoke_end ();
+
+  // Get the facet end. This could be a supported interface.
+  ProvidedRequestPort facet =
+    PICML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
+
+  std::map<Component,std::string> receptacles;
+  std::map<Component,std::string> facets;
+  std::string source_kind = "Facet";
+  std::string dest_kind = "SimplexReceptacle";
+  this->GetReceptacleComponents (receptacle, receptacles);
+  this->GetFacetComponents (facet, facets);
+  this->CreateConnections (receptacles, facets, source_kind, dest_kind);
+}
+
+void DeploymentPlanVisitor::Visit_emit (const emit& ev)
+{
+  // Get the emitter end
+  OutEventPort emitter = ev.srcemit_end ();
+
+  // Get the consumer end
+  InEventPort consumer = ev.dstemit_end ();
+
+  std::map<Component,std::string> emitters;
+  std::map<Component,std::string> consumers;
+  std::string source_kind = "EventConsumer";
+  std::string dest_kind = "EventEmitter";
+  this->GetEventSourceComponents (emitter, emitters);
+  this->GetEventSinkComponents (consumer, consumers);
+  this->CreateConnections (emitters, consumers, source_kind, dest_kind);
+}
+
+void DeploymentPlanVisitor::Visit_publish (const publish& ev)
+{
+  // Get the publisher end
+  const OutEventPort publisher = ev.srcpublish_end ();
+
+  // Get the connector end
+  const PublishConnector connector = ev.dstpublish_end ();
+
+  // Create an entry in the publishers_ map
+  this->publishers_[std::string (connector.name ())] = publisher;
+}
+
+void DeploymentPlanVisitor::Visit_deliverTo (const deliverTo& dv)
+{
+  // Get the connector end
+  const  PublishConnector connector = dv.srcdeliverTo_end ();
+
+  // Get the consumer end
+  const InEventPort consumer = dv.dstdeliverTo_end ();
+
+  // Create an entry in the consumers_ map
+  this->consumers_.insert (make_pair (std::string (connector.name ()),
+    consumer));
+}
+
+void DeploymentPlanVisitor::Visit_PublishConnector (const PublishConnector& pubctor)
+{
+  std::string ctor = pubctor.name ();
+
+  // Get Publisher
+  OutEventPort publisher = this->publishers_[ctor];
+  std::map<Component,std::string> publishers;
+  this->GetEventSourceComponents (publisher, publishers);
+
+  for (std::map<Component,std::string>::const_iterator
+    iter = publishers.begin ();
+    iter != publishers.end ();
+  ++iter)
+  {
+    Component srcComp = iter->first;
+    std::string srcPortName = iter->second;
+
+    for (std::multimap<std::string, InEventPort>::const_iterator
+      iter = this->consumers_.lower_bound (ctor);
+      iter != this->consumers_.upper_bound (ctor);
+    ++iter)
     {
-      Component recep_comp = Component::Cast (par);
-      output.insert (make_pair (recep_comp, port.name ()));
-    }
-    visited.erase (port);
-    return;
-  }
-
-  void DeploymentPlanVisitor::GetReceptacleComponents
-    (const RequiredRequestPort& receptacle,
-    std::map<Component,std::string>& output)
-  {
-    std::set<RequiredRequestPort> visited;
-    this->GetComponents (receptacle,
-      &RequiredRequestPort::srcReceptacleDelegate,
-      &RequiredRequestPort::dstReceptacleDelegate,
-      &ReceptacleDelegate::srcReceptacleDelegate_end,
-      &ReceptacleDelegate::dstReceptacleDelegate_end,
-      output,
-      visited);
-  }
-
-  void DeploymentPlanVisitor::GetFacetComponents (const ProvidedRequestPort& facet,
-    std::map<Component,
-    std::string>& output)
-  {
-    std::set<ProvidedRequestPort> visited;
-    this->GetComponents (facet,
-      &ProvidedRequestPort::srcFacetDelegate,
-      &ProvidedRequestPort::dstFacetDelegate,
-      &FacetDelegate::srcFacetDelegate_end,
-      &FacetDelegate::dstFacetDelegate_end,
-      output,
-      visited);
-  }
-
-  //
-  // GetEventSinkComponents
-  //
-  void DeploymentPlanVisitor::
-  GetEventSinkComponents (const InEventPort& consumer,
-                          std::map<Component, std::string>& output)
-  {
-    std::set<InEventPort> visited;
-
-    this->GetComponents (consumer,
-                         &InEventPort::srcEventSinkDelegate,
-                         &InEventPort::dstEventSinkDelegate,
-                         &EventSinkDelegate::srcEventSinkDelegate_end,
-                         &EventSinkDelegate::dstEventSinkDelegate_end,
-                         output,
-                         visited);
-  }
-
-  //
-  // GetEventSourceComponents
-  //
-  void DeploymentPlanVisitor::
-  GetEventSourceComponents (const OutEventPort& publisher,
-                            std::map <Component,std::string> & output)
-  {
-    std::set<OutEventPort> visited;
-
-    this->GetComponents (publisher,
-                         &OutEventPort::srcEventSourceDelegate,
-                         &OutEventPort::dstEventSourceDelegate,
-                         &EventSourceDelegate::srcEventSourceDelegate_end,
-                         &EventSourceDelegate::dstEventSourceDelegate_end,
-                         output,
-                         visited);
-  }
-
-  void DeploymentPlanVisitor::CreateConnections (const std::map<Component,
-    std::string>& src,
-    const std::map<Component,
-    std::string>& dst,
-    const std::string& source_kind,
-    const std::string& dest_kind)
-  {
-    for (std::map<Component,std::string>::const_iterator iter = src.begin ();
-      iter != src.end ();
-      ++iter)
-    {
-      Component srcComp = iter->first;
-      std::string srcPortName = iter->second;
-      for (std::map<Component,
-        std::string>::const_iterator iter = dst.begin ();
-        iter != dst.end ();
+      // Get Consumer
+      InEventPort consumer = iter->second;
+      std::map<Component,std::string> consumers;
+      this->GetEventSinkComponents (consumer, consumers);
+      for (std::map<Component,std::string>::const_iterator
+        iter = consumers.begin ();
+        iter != consumers.end ();
       ++iter)
       {
         Component dstComp = iter->first;
         std::string dstPortName = iter->second;
+        std::string source_kind = "EventConsumer";
+        std::string dest_kind = "EventPublisher";
         this->CreateConnection (srcComp, srcPortName, dstComp,
           dstPortName, source_kind, dest_kind);
       }
     }
   }
+}
 
-  //
-  // unique_id
-  //
-  template <typename T>
-  std::string DeploymentPlanVisitor::unique_id (const T &comp)
+void DeploymentPlanVisitor::Visit_ArtifactDeployRequirement
+  (const ArtifactDeployRequirement&)
+{}
+
+void DeploymentPlanVisitor::Visit_ArtifactInfoProperty (const ArtifactInfoProperty&)
+{}
+
+void DeploymentPlanVisitor::Visit_ImplementationRequirement
+  (const ImplementationRequirement&)
+{}
+
+void DeploymentPlanVisitor::Visit_TopLevelPackages (const TopLevelPackages& tp)
+{
+
+}
+
+
+void DeploymentPlanVisitor::Visit_TopLevelPackageContainer (const TopLevelPackageContainer& tpc)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_TopLevelPackage (const TopLevelPackage& tp)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_package (const package& pkg)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_PackageConfigurationReference
+  (const PackageConfigurationReference& pcr)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_PackageConfigurations
+  (const PackageConfigurations& pcs)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_PackageConfigurationContainer
+  (const PackageConfigurationContainer& pcc)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_PackageConfiguration
+  (const PackageConfiguration& pc)
+{
+
+}
+
+void DeploymentPlanVisitor::Visit_PackageConfConfigProperty
+  (const PackageConfConfigProperty&)
+{}
+
+void DeploymentPlanVisitor::Visit_PackageConfReference (const PackageConfReference&)
+{}
+
+void DeploymentPlanVisitor::Visit_PackageConfSpecializedConfig
+  (const PackageConfSpecializedConfig&)
+{}
+
+void DeploymentPlanVisitor::Visit_PackageConfSelectRequirement
+  (const PackageConfSelectRequirement&)
+{}
+
+void DeploymentPlanVisitor::Visit_PackageConfBasePackage
+  (const PackageConfBasePackage&)
+{}
+
+void DeploymentPlanVisitor::Visit_ComponentPackageReference
+  (const ComponentPackageReference&)
+{}
+
+//
+// Visit_DeploymentPlans
+//
+void DeploymentPlanVisitor::
+Visit_DeploymentPlans (const DeploymentPlans & dps)
+{
+  typedef std::set <DeploymentPlan> DeploymentPlan_Set;
+  DeploymentPlan_Set plans = dps.DeploymentPlan_kind_children ();
+
+  std::for_each (plans.begin (),
+                 plans.end (),
+                 boost::bind (&DeploymentPlan_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// Visit_DeploymentPlan
+//
+void DeploymentPlanVisitor::
+Visit_DeploymentPlan (const DeploymentPlan & plan)
+{
+  this->Visit_DeploymentPlan_i (plan);
+
+  this->instantiate_deployment_plan_descriptor (plan);
+  this->create_label_and_uuid (plan);
+  this->generate_implementation_descriptions (plan);
+
+  this->generate_instance_deployment_descriptions ();
+  this->generate_assembly_instance_deployment_descriptions ();
+  this->generate_parent_connections ();
+  this->generate_child_connections ();
+
+  // Use the selected components to generate any external
+  // references that may exists into the deployment plan.
+  PICML_External_Reference_Visitor erv (this->root_);
+
+  std::for_each (this->monolith_components_.begin (),
+                 this->monolith_components_.end (),
+                 boost::bind (&PICML::Component::Accept, _1, boost::ref (erv)));
+
+  this->generate_artifact_descriptions (plan);
+  this->generate_infoproperties (plan);
+
+  // Write plan locality information to the document.
+  PlanLocalityVisitor plv (this->root_);
+  PICML::DeploymentPlan (plan).Accept (plv);
+
+  this->finalize_deployment_plan_descriptor ();
+
+  this->selected_instances_.clear ();
+  this->path_parents_.clear ();
+  this->containing_assemblies_.clear ();
+  this->assembly_components_.clear ();
+  this->monoimpls_.clear ();
+  this->deployed_instances_.clear ();
+  this->selected_impls_.clear ();
+  this->monolith_components_.clear ();
+  this->monolith_types_.clear ();
+  this->artifacts_.clear ();
+  this->final_assembly_components_.clear ();
+}
+
+//
+// Visit_DeploymentPlan_i
+//
+void DeploymentPlanVisitor::
+Visit_DeploymentPlan_i (const PICML::DeploymentPlan & plan)
+{
+  const std::set<CollocationGroup> dps = plan.CollocationGroup_children ();
+
+  for (std::set <CollocationGroup>::const_iterator iter = dps.begin ();
+       iter != dps.end ();
+       ++ iter)
   {
-    return comp.getPath (".", false, true, "name", true);
-  }
+    std::string nodeRefName;
+    std::string cgName;
+    CollocationGroup cg = *iter;
+    cgName = cg.name ();
+    this->initcgName (cgName);
 
-  //
-  // CreateConnection
-  //
-  void DeploymentPlanVisitor::
-  CreateConnection (const Component& srcComp,
-                    const std::string& srcPortName,
-                    const Component& dstComp,
-                    const std::string& dstPortName,
-                    const std::string& source_kind,
-                    const std::string& dest_kind)
-  {
-    std::string source_comp_instance = "_" + std::string (srcComp.UUID ());
-    std::string dest_comp_instance = "_" + std::string (dstComp.UUID ());
+    const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
 
-    if (this->selected_instances_.find (source_comp_instance) != this->selected_instances_.end () &&
-        this->selected_instances_.find (dest_comp_instance) != this->selected_instances_.end ())
+    for (std::set<InstanceMapping>::const_iterator
+         cg_ins_map_iter = cg_ins_maps.begin ();
+         cg_ins_map_iter != cg_ins_maps.end ();
+         ++ cg_ins_map_iter)
     {
-      // Create a connection
-      DOMElement* ele = this->doc_->createElement (XStr ("connection"));
-      this->curr_->appendChild (ele);
-
-      std::string connection =
-        this->unique_id (srcComp) + ":" + srcPortName + "::" +
-        this->unique_id (dstComp) + ":" + dstPortName;
-
-      ele->appendChild (this->createSimpleContent ("name", connection));
-
-      // Source endPoint
-      DOMElement * endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-      endPoint->appendChild (this->createSimpleContent ("portName", srcPortName));
-      endPoint->appendChild (this->createSimpleContent ("provider", "false"));
-      endPoint->appendChild (this->createSimpleContent ("kind", dest_kind));
-
-      DOMElement * instance = this->doc_->createElement (XStr ("instance"));
-      endPoint->appendChild (instance);
-      instance->setAttribute (XStr ("xmi:idref"), XStr (source_comp_instance.c_str ()));
-      ele->appendChild (endPoint);
-
-      // Destination endPoint
-      endPoint = this->doc_->createElement (XStr ("internalEndpoint"));
-      endPoint->appendChild (this->createSimpleContent ("portName", dstPortName));
-      endPoint->appendChild (this->createSimpleContent ("provider", "true"));
-      endPoint->appendChild (this->createSimpleContent ("kind", source_kind));
-
-      instance = this->doc_->createElement (XStr ("instance"));
-      endPoint->appendChild (instance);
-      instance->setAttribute (XStr ("xmi:idref"), XStr (dest_comp_instance.c_str ()));
-
-      ele->appendChild (endPoint);
+      InstanceMapping cg_ins = *cg_ins_map_iter;
+      NodeReference node_ref = cg_ins.dstInstanceMapping_end ();
+      const Node ref = node_ref.ref ();
+      nodeRefName = ref.name ();
+      this->initNodeRefName (nodeRefName);
     }
-  }
 
-  std::string DeploymentPlanVisitor::ExtractName (Udm::Object ob)
-  {
-    Uml::Class cls= ob.type ();
-    set<Uml::Attribute> attrs=cls.attributes ();
+    std::set<CollocationGroupMember> comp_types = cg.members ();
 
-    // Adding parent attributes
-    set<Uml::Attribute> aattrs=Uml::AncestorAttributes (cls);
-    attrs.insert (aattrs.begin (),aattrs.end ());
-
-    for (set<Uml::Attribute>::iterator ai = attrs.begin ();
-      ai != attrs.end (); ai++)
+    for (std::set<CollocationGroupMember>::const_iterator
+         comp_type_iter = comp_types.begin ();
+         comp_type_iter != comp_types.end (); ++comp_type_iter)
     {
-      if (string (ai->type ())=="String")
+      CollocationGroupMember comp_type = *comp_type_iter;
+
+      if (Udm::IsDerivedFrom (comp_type.type (), ComponentRef::meta))
       {
-        string str=ai->name ();
-        if (str=="name")
-        {
-          string value=ob.getStringAttr (*ai);
-          if (value.empty ())value="<empty string>";
-          return value;
-        }
+        ComponentRef component_ref = ComponentRef::Cast (comp_type);
+        Component comp = component_ref.ref ();
+
+        // Save the component instance and it's type.
+        this->monolith_components_.insert (comp);
+
+        PICML::Component monotype =
+          PICML::Component::Cast (comp.Archetype ());
+
+        while (monotype.isInstance ())
+          monotype = PICML::Component::Cast (monotype.Archetype ());
+
+        this->monolith_types_.insert (monotype);
+
+        update_component_parents (comp);
+        update_component_instance (comp, nodeRefName);
       }
-    }
-    return string ("<no name specified>");
-  }
-
-  void DeploymentPlanVisitor::Visit_invoke (const invoke& iv)
-  {
-
-    // Get the receptacle end
-    RequiredRequestPort receptacle = iv.srcinvoke_end ();
-
-    // Get the facet end. This could be a supported interface.
-    ProvidedRequestPort facet =
-      PICML::ProvidedRequestPort::Cast (iv.dstinvoke_end ());
-
-    std::map<Component,std::string> receptacles;
-    std::map<Component,std::string> facets;
-    std::string source_kind = "Facet";
-    std::string dest_kind = "SimplexReceptacle";
-    this->GetReceptacleComponents (receptacle, receptacles);
-    this->GetFacetComponents (facet, facets);
-    this->CreateConnections (receptacles, facets, source_kind, dest_kind);
-  }
-
-  void DeploymentPlanVisitor::Visit_emit (const emit& ev)
-  {
-    // Get the emitter end
-    OutEventPort emitter = ev.srcemit_end ();
-
-    // Get the consumer end
-    InEventPort consumer = ev.dstemit_end ();
-
-    std::map<Component,std::string> emitters;
-    std::map<Component,std::string> consumers;
-    std::string source_kind = "EventConsumer";
-    std::string dest_kind = "EventEmitter";
-    this->GetEventSourceComponents (emitter, emitters);
-    this->GetEventSinkComponents (consumer, consumers);
-    this->CreateConnections (emitters, consumers, source_kind, dest_kind);
-  }
-
-  void DeploymentPlanVisitor::Visit_publish (const publish& ev)
-  {
-    // Get the publisher end
-    const OutEventPort publisher = ev.srcpublish_end ();
-
-    // Get the connector end
-    const PublishConnector connector = ev.dstpublish_end ();
-
-    // Create an entry in the publishers_ map
-    this->publishers_[std::string (connector.name ())] = publisher;
-  }
-
-  void DeploymentPlanVisitor::Visit_deliverTo (const deliverTo& dv)
-  {
-    // Get the connector end
-    const  PublishConnector connector = dv.srcdeliverTo_end ();
-
-    // Get the consumer end
-    const InEventPort consumer = dv.dstdeliverTo_end ();
-
-    // Create an entry in the consumers_ map
-    this->consumers_.insert (make_pair (std::string (connector.name ()),
-      consumer));
-  }
-
-  void DeploymentPlanVisitor::Visit_PublishConnector (const PublishConnector& pubctor)
-  {
-    std::string ctor = pubctor.name ();
-
-    // Get Publisher
-    OutEventPort publisher = this->publishers_[ctor];
-    std::map<Component,std::string> publishers;
-    this->GetEventSourceComponents (publisher, publishers);
-
-    for (std::map<Component,std::string>::const_iterator
-      iter = publishers.begin ();
-      iter != publishers.end ();
-    ++iter)
-    {
-      Component srcComp = iter->first;
-      std::string srcPortName = iter->second;
-
-      for (std::multimap<std::string, InEventPort>::const_iterator
-        iter = this->consumers_.lower_bound (ctor);
-        iter != this->consumers_.upper_bound (ctor);
-      ++iter)
+      else if (Udm::IsDerivedFrom (comp_type.type (), ComponentAssemblyReference::meta))
       {
-        // Get Consumer
-        InEventPort consumer = iter->second;
-        std::map<Component,std::string> consumers;
-        this->GetEventSinkComponents (consumer, consumers);
-        for (std::map<Component,std::string>::const_iterator
-          iter = consumers.begin ();
-          iter != consumers.end ();
-        ++iter)
+        ComponentAssemblyReference comp_assembly_ref =
+          ComponentAssemblyReference::Cast (comp_type);
+
+        std::string comp_assembly_ref_name = comp_assembly_ref.name ();
+        ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
+        comp_assembly.Accept (*this);
+
+        for (std::set <Component>::iterator iter = this->assembly_components_.begin ();
+             iter != this->assembly_components_.end ();
+             ++iter)
         {
-          Component dstComp = iter->first;
-          std::string dstPortName = iter->second;
-          std::string source_kind = "EventConsumer";
-          std::string dest_kind = "EventPublisher";
-          this->CreateConnection (srcComp, srcPortName, dstComp,
-            dstPortName, source_kind, dest_kind);
-        }
-      }
-    }
-  }
-
-  void DeploymentPlanVisitor::Visit_ArtifactDeployRequirement
-    (const ArtifactDeployRequirement&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_ArtifactInfoProperty (const ArtifactInfoProperty&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_ImplementationRequirement
-    (const ImplementationRequirement&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_TopLevelPackages (const TopLevelPackages& tp)
-  {
-
-  }
-
-
-  void DeploymentPlanVisitor::Visit_TopLevelPackageContainer (const TopLevelPackageContainer& tpc)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_TopLevelPackage (const TopLevelPackage& tp)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_package (const package& pkg)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_PackageConfigurationReference
-    (const PackageConfigurationReference& pcr)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_PackageConfigurations
-    (const PackageConfigurations& pcs)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_PackageConfigurationContainer
-    (const PackageConfigurationContainer& pcc)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_PackageConfiguration
-    (const PackageConfiguration& pc)
-  {
-
-  }
-
-  void DeploymentPlanVisitor::Visit_PackageConfConfigProperty
-    (const PackageConfConfigProperty&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_PackageConfReference (const PackageConfReference&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_PackageConfSpecializedConfig
-    (const PackageConfSpecializedConfig&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_PackageConfSelectRequirement
-    (const PackageConfSelectRequirement&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_PackageConfBasePackage
-    (const PackageConfBasePackage&)
-  {}
-
-  void DeploymentPlanVisitor::Visit_ComponentPackageReference
-    (const ComponentPackageReference&)
-  {}
-
-  //
-  // Visit_DeploymentPlans
-  //
-  void DeploymentPlanVisitor::
-  Visit_DeploymentPlans (const DeploymentPlans & dps)
-  {
-    typedef std::set <DeploymentPlan> DeploymentPlan_Set;
-    DeploymentPlan_Set plans = dps.DeploymentPlan_kind_children ();
-
-    std::for_each (plans.begin (),
-                   plans.end (),
-                   boost::bind (&DeploymentPlan_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
-  }
-
-  //
-  // Visit_DeploymentPlan
-  //
-  void DeploymentPlanVisitor::
-  Visit_DeploymentPlan (const DeploymentPlan & plan)
-  {
-    this->Visit_DeploymentPlan_i (plan);
-
-    this->instantiate_deployment_plan_descriptor (plan);
-    this->create_label_and_uuid (plan);
-    this->generate_implementation_descriptions (plan);
-
-    this->generate_instance_deployment_descriptions ();
-    this->generate_assembly_instance_deployment_descriptions ();
-    this->generate_parent_connections ();
-    this->generate_child_connections ();
-
-    // Use the selected components to generate any external
-    // references that may exists into the deployment plan.
-    PICML_External_Reference_Visitor erv (this->root_);
-
-    std::for_each (this->monolith_components_.begin (),
-                   this->monolith_components_.end (),
-                   boost::bind (&PICML::Component::Accept, _1, boost::ref (erv)));
-
-    this->generate_artifact_descriptions (plan);
-    this->generate_infoproperties (plan);
-
-    // Write plan locality information to the document.
-    PlanLocalityVisitor plv (this->root_);
-    PICML::DeploymentPlan (plan).Accept (plv);
-
-    this->finalize_deployment_plan_descriptor ();
-
-    this->selected_instances_.clear ();
-    this->path_parents_.clear ();
-    this->containing_assemblies_.clear ();
-    this->assembly_components_.clear ();
-    this->monoimpls_.clear ();
-    this->deployed_instances_.clear ();
-    this->selected_impls_.clear ();
-    this->monolith_components_.clear ();
-    this->monolith_types_.clear ();
-    this->artifacts_.clear ();
-    this->final_assembly_components_.clear ();
-  }
-
-  //
-  // Visit_DeploymentPlan_i
-  //
-  void DeploymentPlanVisitor::
-  Visit_DeploymentPlan_i (const PICML::DeploymentPlan & plan)
-  {
-    const std::set<CollocationGroup> dps = plan.CollocationGroup_children ();
-
-    for (std::set <CollocationGroup>::const_iterator iter = dps.begin ();
-         iter != dps.end ();
-         ++ iter)
-    {
-      std::string nodeRefName;
-      std::string cgName;
-      CollocationGroup cg = *iter;
-      cgName = cg.name ();
-      this->initcgName (cgName);
-
-      const std::set<InstanceMapping> cg_ins_maps = cg.dstInstanceMapping ();
-
-      for (std::set<InstanceMapping>::const_iterator
-           cg_ins_map_iter = cg_ins_maps.begin ();
-           cg_ins_map_iter != cg_ins_maps.end ();
-           ++ cg_ins_map_iter)
-      {
-        InstanceMapping cg_ins = *cg_ins_map_iter;
-        NodeReference node_ref = cg_ins.dstInstanceMapping_end ();
-        const Node ref = node_ref.ref ();
-        nodeRefName = ref.name ();
-        this->initNodeRefName (nodeRefName);
-      }
-
-      std::set<CollocationGroupMember> comp_types = cg.members ();
-
-      for (std::set<CollocationGroupMember>::const_iterator
-           comp_type_iter = comp_types.begin ();
-           comp_type_iter != comp_types.end (); ++comp_type_iter)
-      {
-        CollocationGroupMember comp_type = *comp_type_iter;
-
-        if (Udm::IsDerivedFrom (comp_type.type (), ComponentRef::meta))
-        {
-          ComponentRef component_ref = ComponentRef::Cast (comp_type);
-          Component comp = component_ref.ref ();
-
-          // Save the component instance and it's type.
-          this->monolith_components_.insert (comp);
-
-          PICML::Component monotype =
-            PICML::Component::Cast (comp.Archetype ());
-
-          while (monotype.isInstance ())
-            monotype = PICML::Component::Cast (monotype.Archetype ());
-
-          this->monolith_types_.insert (monotype);
-
-          update_component_parents (comp);
+          Component comp = *iter;
           update_component_instance (comp, nodeRefName);
-        }
-        else if (Udm::IsDerivedFrom (comp_type.type (), ComponentAssemblyReference::meta))
-        {
-          ComponentAssemblyReference comp_assembly_ref =
-            ComponentAssemblyReference::Cast (comp_type);
-
-          std::string comp_assembly_ref_name = comp_assembly_ref.name ();
-          ComponentAssembly comp_assembly = comp_assembly_ref.ref ();
-          comp_assembly.Accept (*this);
-
-          for (std::set <Component>::iterator iter = this->assembly_components_.begin ();
-               iter != this->assembly_components_.end ();
-               ++iter)
-          {
-            Component comp = *iter;
-            update_component_instance (comp, nodeRefName);
-
-            // Save the component instance and it's type.
-            this->final_assembly_components_.insert (comp);
-            this->monolith_types_.insert (comp.Archetype ());
-          }
-
-          this->containing_assemblies_.insert (comp_assembly);
-          update_component_assembly_parents (comp_assembly);
-        }
-        else if (Udm::IsDerivedFrom (comp_type.type (), SharedComponentReference::meta))
-        {
-          SharedComponentReference shared_component_ref = SharedComponentReference::Cast (comp_type);
-          std::string shared_comp_ref_name = shared_component_ref.name ();
-          ComponentRef shared_comp = shared_component_ref.ref ();
-          Component referred_comp = shared_comp.ref ();
 
           // Save the component instance and it's type.
-          this->monolith_components_.insert (referred_comp);
-
-          PICML::Component monotype =
-            PICML::Component::Cast (referred_comp.Archetype ());
-
-          while (monotype.isInstance ())
-            monotype = PICML::Component::Cast (monotype.Archetype ());
-
-          this->monolith_types_.insert (monotype);
-
-          update_shared_component_parents (shared_comp);
-          update_component_instance (referred_comp, nodeRefName);
+          this->final_assembly_components_.insert (comp);
+          this->monolith_types_.insert (comp.Archetype ());
         }
+
+        this->containing_assemblies_.insert (comp_assembly);
+        update_component_assembly_parents (comp_assembly);
       }
-    }
-  }
-
-  //
-  // instantiate_deployment_plan_descriptor
-  //
-  void DeploymentPlanVisitor::
-  instantiate_deployment_plan_descriptor (const DeploymentPlan & dp)
-  {
-    this->push ();
-    std::string name = this->outputPath_ + "\\";
-    name += dp.name ();
-    name += ".cdp";
-    this->initTarget (name);
-    this->initDocument ("Deployment:DeploymentPlan");
-    this->initRootAttributes ();
-  }
-
-  //
-  // create_label_and_uuid
-  //
-  void DeploymentPlanVisitor::
-  create_label_and_uuid (const DeploymentPlan& dp)
-  {
-    // First, append the label the deployment place.
-    std::string label = dp.label ();
-
-    if (!label.empty ())
-      this->curr_->appendChild (this->createSimpleContent ("label", label));
-
-    std::string uuid = dp.UUID ();
-
-    if (uuid.empty ())
-    {
-      dp.UUID () = uuid = CreateUuid ();
-    }
-    else
-    {
-      // Make a copy as opposed to casting away constness
-      DeploymentPlan new_dp = dp;
-      // Make sure that every instance has a UUID
-      if (dp.isInstance ())
+      else if (Udm::IsDerivedFrom (comp_type.type (), SharedComponentReference::meta))
       {
-        DeploymentPlan typeParent = new_dp.Archetype ();
-        std::string parentUuid (typeParent.UUID ());
+        SharedComponentReference shared_component_ref = SharedComponentReference::Cast (comp_type);
+        std::string shared_comp_ref_name = shared_component_ref.name ();
+        ComponentRef shared_comp = shared_component_ref.ref ();
+        Component referred_comp = shared_comp.ref ();
 
-        if (uuid == parentUuid)
-          new_dp.UUID () = uuid = CreateUuid ();
+        // Save the component instance and it's type.
+        this->monolith_components_.insert (referred_comp);
+
+        PICML::Component monotype =
+          PICML::Component::Cast (referred_comp.Archetype ());
+
+        while (monotype.isInstance ())
+          monotype = PICML::Component::Cast (monotype.Archetype ());
+
+        this->monolith_types_.insert (monotype);
+
+        update_shared_component_parents (shared_comp);
+        update_component_instance (referred_comp, nodeRefName);
       }
     }
-
-    this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
   }
+}
 
-  //
-  // finalize_deployment_plan_descriptor
-  //
-  void DeploymentPlanVisitor::finalize_deployment_plan_descriptor (void)
+//
+// instantiate_deployment_plan_descriptor
+//
+void DeploymentPlanVisitor::
+instantiate_deployment_plan_descriptor (const DeploymentPlan & dp)
+{
+  this->push ();
+  std::string name = this->outputPath_ + "\\";
+  name += dp.name ();
+  name += ".cdp";
+  this->initTarget (name);
+  this->initDocument ("Deployment:DeploymentPlan");
+  this->initRootAttributes ();
+}
+
+//
+// create_label_and_uuid
+//
+void DeploymentPlanVisitor::
+create_label_and_uuid (const DeploymentPlan& dp)
+{
+  // First, append the label the deployment place.
+  std::string label = dp.label ();
+
+  if (!label.empty ())
+    this->curr_->appendChild (this->createSimpleContent ("label", label));
+
+  std::string uuid = dp.UUID ();
+
+  if (uuid.empty ())
   {
-    this->dumpDocument ();
-    this->pop ();
+    dp.UUID () = uuid = CreateUuid ();
   }
-
-  void DeploymentPlanVisitor::generate_parent_connections (void)
+  else
   {
-    for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter =
-      this->path_parents_.begin ();
-      assembly_iter != this->path_parents_.end (); ++assembly_iter)
+    // Make a copy as opposed to casting away constness
+    DeploymentPlan new_dp = dp;
+    // Make sure that every instance has a UUID
+    if (dp.isInstance ())
     {
-      ComponentAssembly component_assembly = *assembly_iter;
-      update_parent_connections (component_assembly);
+      DeploymentPlan typeParent = new_dp.Archetype ();
+      std::string parentUuid (typeParent.UUID ());
+
+      if (uuid == parentUuid)
+        new_dp.UUID () = uuid = CreateUuid ();
     }
   }
 
-  void DeploymentPlanVisitor::generate_child_connections (void)
+  this->curr_->appendChild (this->createSimpleContent ("UUID", uuid));
+}
+
+//
+// finalize_deployment_plan_descriptor
+//
+void DeploymentPlanVisitor::finalize_deployment_plan_descriptor (void)
+{
+  this->dumpDocument ();
+  this->pop ();
+}
+
+void DeploymentPlanVisitor::generate_parent_connections (void)
+{
+  for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter =
+    this->path_parents_.begin ();
+    assembly_iter != this->path_parents_.end (); ++assembly_iter)
   {
-    for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter =
-      this->containing_assemblies_.begin ();
-      assembly_iter != this->containing_assemblies_.end (); ++assembly_iter)
-    {
-      ComponentAssembly component_assembly = *assembly_iter;
-      update_connections (component_assembly);
-    }
+    ComponentAssembly component_assembly = *assembly_iter;
+    update_parent_connections (component_assembly);
+  }
+}
+
+void DeploymentPlanVisitor::generate_child_connections (void)
+{
+  for (std::set<PICML::ComponentAssembly>::const_iterator assembly_iter =
+    this->containing_assemblies_.begin ();
+    assembly_iter != this->containing_assemblies_.end (); ++assembly_iter)
+  {
+    ComponentAssembly component_assembly = *assembly_iter;
+    update_connections (component_assembly);
+  }
+}
+
+//
+// generate_implementation_descriptions
+//
+void DeploymentPlanVisitor::
+generate_implementation_descriptions (const PICML::DeploymentPlan & plan)
+{
+  if (this->root_folder_ == Udm::null)
+  {
+    this->root_folder_ =
+      PICML::RootFolder::Cast (
+      PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
   }
 
-  //
-  // generate_implementation_descriptions
-  //
-  void DeploymentPlanVisitor::
-  generate_implementation_descriptions (const PICML::DeploymentPlan & plan)
+  typedef std::set <ComponentImplementations> ComponentImplementations_Set;
+
+  ComponentImplementations_Set folders =
+    this->root_folder_.ComponentImplementations_kind_children ();
+
+  std::for_each (folders.begin (),
+                 folders.end (),
+                 boost::bind (&ComponentImplementations_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// generate_artifact_descriptions
+//
+void DeploymentPlanVisitor::
+generate_artifact_descriptions (const PICML::DeploymentPlan & plan)
+{
+  if (this->root_folder_ == Udm::null)
   {
-    if (this->root_folder_ == Udm::null)
-    {
-      this->root_folder_ =
-        PICML::RootFolder::Cast (
-        PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
-    }
-
-    typedef std::set <ComponentImplementations> ComponentImplementations_Set;
-
-    ComponentImplementations_Set folders =
-      this->root_folder_.ComponentImplementations_kind_children ();
-
-    std::for_each (folders.begin (),
-                   folders.end (),
-                   boost::bind (&ComponentImplementations_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
+    this->root_folder_ =
+      PICML::RootFolder::Cast (
+      PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
   }
 
-  //
-  // generate_artifact_descriptions
-  //
-  void DeploymentPlanVisitor::
-  generate_artifact_descriptions (const PICML::DeploymentPlan & plan)
+  typedef std::set <ImplementationArtifacts> ImplementationArtifacts_Set;
+
+  ImplementationArtifacts_Set folders =
+    this->root_folder_.ImplementationArtifacts_kind_children ();
+
+  std::for_each (folders.begin (),
+                 folders.end (),
+                 boost::bind (&ImplementationArtifacts_Set::value_type::Accept,
+                              _1,
+                              boost::ref (*this)));
+}
+
+//
+// generate_instance_deployment_descriptions
+//
+void DeploymentPlanVisitor::
+generate_instance_deployment_descriptions (void)
+{
+  std::for_each (this->monolith_components_.begin (),
+                 this->monolith_components_.end (),
+                 boost::bind (&DeploymentPlanVisitor::generate_instance_deployment_description,
+                              this,
+                              _1));
+}
+
+//
+// generate_instance_deployment_descriptions
+//
+void DeploymentPlanVisitor::
+generate_instance_deployment_description (const PICML::Component & component)
+{
+  std::string name = component.name ();
+
+  this->push ();
+  update_monolith_impl (component, name);
+  create_component_instance (component);
+  create_component_config_properties (this->mimpl_);
+  create_assembly_config_properties (component);
+  create_component_readonly_attributes (component);
+  this->pop ();
+}
+
+void DeploymentPlanVisitor::generate_assembly_instance_deployment_descriptions (void)
+{
+  for (std::set<PICML::Component>::const_iterator assembly_comp_iter =
+    this->final_assembly_components_.begin ();
+    assembly_comp_iter != this->final_assembly_components_.end ();
+  ++assembly_comp_iter)
   {
-    if (this->root_folder_ == Udm::null)
-    {
-      this->root_folder_ =
-        PICML::RootFolder::Cast (
-        PICML::DeploymentPlans::Cast (plan.parent ()).parent ());
-    }
-
-    typedef std::set <ImplementationArtifacts> ImplementationArtifacts_Set;
-
-    ImplementationArtifacts_Set folders =
-      this->root_folder_.ImplementationArtifacts_kind_children ();
-
-    std::for_each (folders.begin (),
-                   folders.end (),
-                   boost::bind (&ImplementationArtifacts_Set::value_type::Accept,
-                                _1,
-                                boost::ref (*this)));
-  }
-
-  //
-  // generate_instance_deployment_descriptions
-  //
-  void DeploymentPlanVisitor::
-  generate_instance_deployment_descriptions (void)
-  {
-    std::for_each (this->monolith_components_.begin (),
-                   this->monolith_components_.end (),
-                   boost::bind (&DeploymentPlanVisitor::generate_instance_deployment_description,
-                                this,
-                                _1));
-  }
-
-  //
-  // generate_instance_deployment_descriptions
-  //
-  void DeploymentPlanVisitor::
-  generate_instance_deployment_description (const PICML::Component & component)
-  {
-    std::string name = component.name ();
-
+    Component assembly_component = *assembly_comp_iter;
+    std::string assembly_component_name = assembly_component.name ();
     this->push ();
-    update_monolith_impl (component, name);
-    create_component_instance (component);
-    create_component_config_properties (this->mimpl_);
-    create_assembly_config_properties (component);
-    create_component_readonly_attributes (component);
+    update_monolith_impl (assembly_component, assembly_component_name);
+    create_component_instance (assembly_component);
+    create_component_readonly_attributes (assembly_component);
+    create_assembly_config_properties (assembly_component);
+    create_assembly_attribute_properties (assembly_component);
     this->pop ();
   }
+}
 
-  void DeploymentPlanVisitor::generate_assembly_instance_deployment_descriptions (void)
+//
+// update_monolith_impl
+//
+void DeploymentPlanVisitor::
+update_monolith_impl (const Component& comp, std::string& comp_ref_name)
+{
+  if (!comp.isInstance ())
+    return;
+
+  Component typeParent = PICML::Component::Cast (comp.Archetype ());
+
+  while (typeParent.isInstance ())
+    typeParent = PICML::Component::Cast (typeParent.Archetype ());
+
+  std::string component_name = typeParent.name ();
+
+  if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
   {
-    for (std::set<PICML::Component>::const_iterator assembly_comp_iter =
-      this->final_assembly_components_.begin ();
-      assembly_comp_iter != this->final_assembly_components_.end ();
-    ++assembly_comp_iter)
+    this->mimpl_ = this->monoimpls_[component_name];
+    this->selected_impls_.insert (make_pair (comp_ref_name, this->mimpl_));
+  }
+}
+
+void DeploymentPlanVisitor::update_component_assembly_parents (ComponentAssembly& comp_assembly)
+{
+  ComponentAssembly comp_assembly_parent;
+  // containing_assemblies.insert (comp_assembly);
+  if (comp_assembly.isInstance ())
+  {
+    //comp_assembly_parent = comp_assembly.Archetype ();
+    comp_assembly_parent =
+      comp_assembly.ComponentAssembly_parent ();
+    this->path_parents_.insert (comp_assembly_parent);
+    while (comp_assembly_parent.isInstance ())
     {
-      Component assembly_component = *assembly_comp_iter;
-      std::string assembly_component_name = assembly_component.name ();
+      comp_assembly_parent =
+        comp_assembly_parent.ComponentAssembly_parent ();
+      this->path_parents_.insert (comp_assembly_parent);
+    }
+  }
+  // containing_assemblies.insert
+  //     (comp_assembly.ComponentAssembly_parent ());
+  // containing_assemblies.insert (comp_assembly_parent);
+  // comp_assembly.Accept (*this);
+}
+
+  void DeploymentPlanVisitor::update_shared_component_parents (ComponentRef& comp_ref)
+{
+  ComponentAssembly component_assembly_parent;
+  component_assembly_parent = comp_ref.ComponentAssembly_parent ();
+
+  if (component_assembly_parent.isInstance ())
+  {
+    this->path_parents_.insert (component_assembly_parent);
+    component_assembly_parent =
+      component_assembly_parent.ComponentAssembly_parent ();
+    while (component_assembly_parent.isInstance ())
+    {
+      this->path_parents_.insert (component_assembly_parent);
+      component_assembly_parent =
+        component_assembly_parent.ComponentAssembly_parent ();
+    }
+  }
+  this->path_parents_.insert (component_assembly_parent);
+}
+
+void DeploymentPlanVisitor::update_component_parents (Component& comp)
+{
+  ComponentAssembly component_assembly_parent;
+  component_assembly_parent = comp.ComponentAssembly_parent ();
+
+  if (component_assembly_parent.isInstance ())
+  {
+    this->path_parents_.insert (component_assembly_parent);
+    component_assembly_parent =
+      component_assembly_parent.ComponentAssembly_parent ();
+    while (component_assembly_parent.isInstance ())
+    {
+      this->path_parents_.insert (component_assembly_parent);
+      component_assembly_parent =
+        component_assembly_parent.ComponentAssembly_parent ();
+    }
+  }
+  this->path_parents_.insert (component_assembly_parent);
+}
+
+void DeploymentPlanVisitor::create_assembly_config_properties (const Component& comp)
+{
+  std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
+  for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin ();
+    it2 != cps.end ();
+    ++it2)
+  {
+    AssemblyConfigProperty cp = *it2;
+    cp.Accept (*this);
+  }
+}
+
+void DeploymentPlanVisitor::
+create_assembly_attribute_properties (const Component& comp)
+{
+  std::string uniqueName = comp.UUID ();
+  uniqueName = std::string ("_") + uniqueName;
+
+  for (std::map<std::pair<std::string, std::string>, Property>::
+       const_iterator iter = this->attrValues_.begin ();
+       iter != this->attrValues_.end ();
+       ++iter)
+  {
+    std::pair<std::pair<std::string, std::string>, Property>
+      attrVal = *iter;
+    std::pair<std::string, std::string> compAttr = attrVal.first;
+    if (compAttr.first == comp.getPath (".",false,true,"name",true))
+    {
       this->push ();
-      update_monolith_impl (assembly_component, assembly_component_name);
-      create_component_instance (assembly_component);
-      create_component_readonly_attributes (assembly_component);
-      create_assembly_config_properties (assembly_component);
-      create_assembly_attribute_properties (assembly_component);
+      DOMElement * ele = this->doc_->createElement (XStr ("configProperty"));
+      this->curr_->appendChild (ele);
+      this->curr_ = ele;
+
+      Property val = attrVal.second;
+      val.Accept (*this);
+
+      // this->CreatePropertyElement (compAttr.second, val);
+
       this->pop ();
     }
   }
+}
 
-  //
-  // update_monolith_impl
-  //
-  void DeploymentPlanVisitor::
-  update_monolith_impl (const Component& comp, std::string& comp_ref_name)
+void DeploymentPlanVisitor::create_component_config_properties (MonolithicImplementation& mimpl)
+{
+  const std::set<ConfigProperty> imcps =
+    mimpl.dstConfigProperty ();
+  for (std::set<ConfigProperty>::const_iterator it2 =
+    imcps.begin ();
+    it2 != imcps.end ();
+  ++it2)
   {
-    if (!comp.isInstance ())
-      return;
+    ConfigProperty imcp = *it2;
+    imcp.Accept (*this);
+  }
+}
 
-    Component typeParent = PICML::Component::Cast (comp.Archetype ());
+void DeploymentPlanVisitor::create_component_readonly_attributes (const Component& comp)
+{
+  std::set<ReadonlyAttribute> attrs =
+    comp.ReadonlyAttribute_children ();
+  for (std::set<ReadonlyAttribute>::const_iterator
+    iter = attrs.begin ();
+    iter != attrs.end ();
+  ++iter)
+  {
+    ReadonlyAttribute attr = *iter;
+    attr.Accept (*this);
+  }
+}
 
-    while (typeParent.isInstance ())
-      typeParent = PICML::Component::Cast (typeParent.Archetype ());
 
-    std::string component_name = typeParent.name ();
+void DeploymentPlanVisitor::
+update_component_instance (const Component& comp, std::string & nodeRefName)
+{
+  std::string instanceName = this->unique_id (comp);
+  this->deployed_instances_.insert (make_pair (instanceName, nodeRefName));
+}
 
-    if (this->monoimpls_.find (component_name) != this->monoimpls_.end ())
-    {
-      this->mimpl_ = this->monoimpls_[component_name];
-      this->selected_impls_.insert (make_pair (comp_ref_name, this->mimpl_));
-    }
+void DeploymentPlanVisitor::
+create_component_instance (const Component & comp)
+{
+  DOMElement* ele = this->doc_->createElement (XStr ("instance"));
+
+  std::string instanceName = this->unique_id (comp);
+  std::string instanceUUID = "_" + std::string (comp.UUID ());
+  std::string nodeRefName = this->deployed_instances_[instanceName];
+
+  this->selected_instances_.insert (instanceUUID);
+
+  ele->setAttribute (XStr ("xmi:id"), XStr (instanceUUID));
+  ele->appendChild (this->createSimpleContent ("name", instanceName));
+  ele->appendChild (this->createSimpleContent ("node", nodeRefName));
+  ele->appendChild (this->doc_->createElement (XStr ("source")));
+
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+
+  std::string mimpl_name = this->mimpl_.UUID ();
+
+  if (mimpl_name.empty ())
+    this->mimpl_.UUID () = mimpl_name = CreateUuid ();
+
+  mimpl_name = "_" + mimpl_name;
+
+  DOMElement * impl = this->doc_->createElement (XStr ("implementation"));
+  impl->setAttribute (XStr ("xmi:idref"), XStr (mimpl_name));
+
+  ele->appendChild (impl);
+}
+
+void DeploymentPlanVisitor::update_parent_connections
+  (const ComponentAssembly& assembly)
+{
+  //std::string node_reference_name = this->retNodeRefName ();
+
+  const std::set<invoke> invokes = assembly.invoke_kind_children ();
+  for (std::set<invoke>::const_iterator iter = invokes.begin ();
+    iter != invokes.end ();
+    ++iter)
+  {
+    invoke iv = *iter;
+    iv.Accept (*this);
   }
 
-  void DeploymentPlanVisitor::update_component_assembly_parents (ComponentAssembly& comp_assembly)
+  const std::set<emit> emits = assembly.emit_kind_children ();
+  for (std::set<emit>::const_iterator iter = emits.begin ();
+    iter != emits.end ();
+    ++iter)
   {
-    ComponentAssembly comp_assembly_parent;
-    // containing_assemblies.insert (comp_assembly);
-    if (comp_assembly.isInstance ())
-    {
-      //comp_assembly_parent = comp_assembly.Archetype ();
-      comp_assembly_parent =
-        comp_assembly.ComponentAssembly_parent ();
-      this->path_parents_.insert (comp_assembly_parent);
-      while (comp_assembly_parent.isInstance ())
-      {
-        comp_assembly_parent =
-          comp_assembly_parent.ComponentAssembly_parent ();
-        this->path_parents_.insert (comp_assembly_parent);
-      }
-    }
-    // containing_assemblies.insert
-    //     (comp_assembly.ComponentAssembly_parent ());
-    // containing_assemblies.insert (comp_assembly_parent);
-    // comp_assembly.Accept (*this);
+    emit ev = *iter;
+    ev.Accept (*this);
   }
 
-    void DeploymentPlanVisitor::update_shared_component_parents (ComponentRef& comp_ref)
+  const std::set<publish> publishers = assembly.publish_kind_children ();
+  for (std::set<publish>::const_iterator iter = publishers.begin ();
+    iter != publishers.end ();
+    ++iter)
   {
-    ComponentAssembly component_assembly_parent;
-    component_assembly_parent = comp_ref.ComponentAssembly_parent ();
-
-    if (component_assembly_parent.isInstance ())
-    {
-      this->path_parents_.insert (component_assembly_parent);
-      component_assembly_parent =
-        component_assembly_parent.ComponentAssembly_parent ();
-      while (component_assembly_parent.isInstance ())
-      {
-        this->path_parents_.insert (component_assembly_parent);
-        component_assembly_parent =
-          component_assembly_parent.ComponentAssembly_parent ();
-      }
-    }
-    this->path_parents_.insert (component_assembly_parent);
+    publish ev = *iter;
+    ev.Accept (*this);
   }
 
-  void DeploymentPlanVisitor::update_component_parents (Component& comp)
+  const std::set<deliverTo> deliverTos = assembly.deliverTo_kind_children ();
+  for (std::set<deliverTo>::const_iterator iter = deliverTos.begin ();
+    iter != deliverTos.end ();
+    ++iter)
   {
-    ComponentAssembly component_assembly_parent;
-    component_assembly_parent = comp.ComponentAssembly_parent ();
-
-    if (component_assembly_parent.isInstance ())
-    {
-      this->path_parents_.insert (component_assembly_parent);
-      component_assembly_parent =
-        component_assembly_parent.ComponentAssembly_parent ();
-      while (component_assembly_parent.isInstance ())
-      {
-        this->path_parents_.insert (component_assembly_parent);
-        component_assembly_parent =
-          component_assembly_parent.ComponentAssembly_parent ();
-      }
-    }
-    this->path_parents_.insert (component_assembly_parent);
+    deliverTo dv = *iter;
+    dv.Accept (*this);
   }
 
-  void DeploymentPlanVisitor::create_assembly_config_properties (const Component& comp)
+  const std::set<PublishConnector>
+    connectors = assembly.PublishConnector_kind_children ();
+  for (std::set<PublishConnector>::const_iterator iter =
+    connectors.begin ();
+    iter != connectors.end ();
+  ++iter)
   {
-    std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
-    for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin ();
-      it2 != cps.end ();
-      ++it2)
-    {
-      AssemblyConfigProperty cp = *it2;
-      cp.Accept (*this);
-    }
+    PublishConnector conn = *iter;
+    conn.Accept (*this);
   }
 
-  void DeploymentPlanVisitor::create_assembly_attribute_properties (const Component& comp)
-  {
-    std::string uniqueName = comp.UUID ();
-    if (uniqueName.empty ())
-    {
-      comp.UUID () = uniqueName = CreateUuid ();
-    }
-    uniqueName = std::string ("_") + uniqueName;
+  this->publishers_.erase (this->publishers_.begin (),
+    this->publishers_.end ());
 
-    for (std::map<std::pair<std::string, std::string>, Property>::
-      const_iterator iter = this->attrValues_.begin ();
-      iter != this->attrValues_.end ();
+  this->consumers_.erase (this->consumers_.begin (),
+    this->consumers_.end ());
+}
+
+void DeploymentPlanVisitor::update_connections (const ComponentAssembly& assembly)
+{
+  // Collect all the Components of this assembly into a set.
+  std::set<Component> comps = assembly.Component_kind_children ();
+
+  // Add all the shared Components of this assembly into the set.  A
+  // shared Component is implemented as a reference to a Component.  So
+  // just traverse the reference and add it to the set.
+  std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children ();
+  for (std::set<ComponentRef>::const_iterator
+    iter = scomps.begin ();
+    iter != scomps.end ();
+  ++iter)
+  {
+    const ComponentRef compRef = *iter;
+    comps.insert (compRef.ref ());
+  }
+
+  // Collect all the immediate ComponentAssembly children of this assembly
+  std::set<ComponentAssembly>
+    subasms = assembly.ComponentAssembly_kind_children ();
+
+  // Add all the shared ComponentAssemblies of the current assembly.
+  // Like shared components, shared assemblies are also implemented as
+  // references.  So just traverse the references, and add them to the set.
+  std::set<ComponentAssemblyReference>
+    sasms = assembly.ComponentAssemblyReference_kind_children ();
+  for (std::set<ComponentAssemblyReference>::const_iterator
+    iter = sasms.begin ();
+    iter != sasms.end ();
+  ++iter)
+  {
+    const ComponentAssemblyReference asmRef = *iter;
+    subasms.insert (asmRef.ref ());
+  }
+
+  // Maintain a list of all ComponentAssemblies in this assembly
+  std::vector<ComponentAssembly> assemblies;
+
+  // Put ourselves in the global list first.
+  assemblies.push_back (assembly);
+
+  // Do a Depth-First search and collect all the ComponentAssembly,
+  // Component children of this assembly, and add them to the
+  // assembly-specific list.
+  while (!subasms.empty ())
+  {
+    ComponentAssembly rassembly = *subasms.begin ();
+    // Put the first assembly from the current list to the
+    // assembly-specific list.
+    assemblies.push_back (rassembly);
+
+    subasms.erase (rassembly);
+
+    // Get the components of the current assembly, and insert them into
+    // the component list
+    std::set<Component> rcomps = rassembly.Component_kind_children ();
+
+    // Get the shared components of the current assembly
+    scomps = rassembly.ComponentRef_kind_children ();
+    for (std::set<ComponentRef>::const_iterator
+      iter = scomps.begin ();
+      iter != scomps.end ();
     ++iter)
     {
-      std::pair<std::pair<std::string, std::string>, Property>
-        attrVal = *iter;
-      std::pair<std::string, std::string> compAttr = attrVal.first;
-      if (compAttr.first == comp.getPath (".",false,true,"name",true))
-      {
-        this->push ();
-        DOMElement*
-          ele = this->doc_->createElement (XStr ("configProperty"));
-        this->curr_->appendChild (ele);
-        this->curr_ = ele;
-        Property val = attrVal.second;
-        this->CreatePropertyElement (compAttr.second, val);
-        this->pop ();
-      }
+      const ComponentRef compRef = *iter;
+      rcomps.insert (compRef.ref ());
     }
-  }
 
-  void DeploymentPlanVisitor::create_component_config_properties (MonolithicImplementation& mimpl)
-  {
-    const std::set<ConfigProperty> imcps =
-      mimpl.dstConfigProperty ();
-    for (std::set<ConfigProperty>::const_iterator it2 =
-      imcps.begin ();
-      it2 != imcps.end ();
-    ++it2)
-    {
-      ConfigProperty imcp = *it2;
-      imcp.Accept (*this);
-    }
-  }
+    comps.insert (rcomps.begin (), rcomps.end ());
 
-  void DeploymentPlanVisitor::create_component_readonly_attributes (const Component& comp)
-  {
-    std::set<ReadonlyAttribute> attrs =
-      comp.ReadonlyAttribute_children ();
-    for (std::set<ReadonlyAttribute>::const_iterator
-      iter = attrs.begin ();
-      iter != attrs.end ();
+    // Get the subassemblies of the first assembly.
+    std::set<ComponentAssembly>
+      rasms = rassembly.ComponentAssembly_kind_children ();
+
+    // Add all the shared ComponentAssemblies of the current assembly.
+    // Like shared components, shared assemblies are also implemented
+    // as references.  So just traverse the references, and add them to
+    // the set.
+    std::set<ComponentAssemblyReference>
+      sasms = rassembly.ComponentAssemblyReference_kind_children ();
+    for (std::set<ComponentAssemblyReference>::const_iterator
+      iter = sasms.begin ();
+      iter != sasms.end ();
     ++iter)
     {
-      ReadonlyAttribute attr = *iter;
-      attr.Accept (*this);
+      const ComponentAssemblyReference asmRef = *iter;
+      rasms.insert (asmRef.ref ());
     }
+
+    // Insert them to the current list.
+    // std::copy (rasms.begin (), rasms.end (), std::back_inserter (subasms));
+    subasms.insert (rasms.begin (), rasms.end ());
   }
 
-
-  void DeploymentPlanVisitor::
-  update_component_instance (const Component& comp, std::string & nodeRefName)
+  for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
+    iter != assemblies.end ();
+    ++iter)
   {
-    std::string instanceName = this->unique_id (comp);
-    this->deployed_instances_.insert (make_pair (instanceName, nodeRefName));
-  }
+    ComponentAssembly subasm = *iter;
 
-  void DeploymentPlanVisitor::
-  create_component_instance (const Component & comp)
-  {
-    DOMElement* ele = this->doc_->createElement (XStr ("instance"));
-
-    std::string instanceName = this->unique_id (comp);
-    std::string instanceUUID = "_" + std::string (comp.UUID ());
-    std::string nodeRefName = this->deployed_instances_[instanceName];
-
-    this->selected_instances_.insert (instanceUUID);
-
-    ele->setAttribute (XStr ("xmi:id"), XStr (instanceUUID));
-    ele->appendChild (this->createSimpleContent ("name", instanceName));
-    ele->appendChild (this->createSimpleContent ("node", nodeRefName));
-    ele->appendChild (this->doc_->createElement (XStr ("source")));
-
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-
-    std::string mimpl_name = this->mimpl_.UUID ();
-
-    if (mimpl_name.empty ())
-      this->mimpl_.UUID () = mimpl_name = CreateUuid ();
-
-    mimpl_name = "_" + mimpl_name;
-
-    DOMElement * impl = this->doc_->createElement (XStr ("implementation"));
-    impl->setAttribute (XStr ("xmi:idref"), XStr (mimpl_name));
-
-    ele->appendChild (impl);
-  }
-
-  void DeploymentPlanVisitor::update_parent_connections
-    (const ComponentAssembly& assembly)
-  {
-    //std::string node_reference_name = this->retNodeRefName ();
-
-    const std::set<invoke> invokes = assembly.invoke_kind_children ();
+    const std::set<invoke> invokes = subasm.invoke_kind_children ();
     for (std::set<invoke>::const_iterator iter = invokes.begin ();
       iter != invokes.end ();
       ++iter)
@@ -1793,7 +1847,7 @@ namespace PICML
       iv.Accept (*this);
     }
 
-    const std::set<emit> emits = assembly.emit_kind_children ();
+    const std::set<emit> emits = subasm.emit_kind_children ();
     for (std::set<emit>::const_iterator iter = emits.begin ();
       iter != emits.end ();
       ++iter)
@@ -1802,7 +1856,7 @@ namespace PICML
       ev.Accept (*this);
     }
 
-    const std::set<publish> publishers = assembly.publish_kind_children ();
+    const std::set<publish> publishers = subasm.publish_kind_children ();
     for (std::set<publish>::const_iterator iter = publishers.begin ();
       iter != publishers.end ();
       ++iter)
@@ -1811,7 +1865,7 @@ namespace PICML
       ev.Accept (*this);
     }
 
-    const std::set<deliverTo> deliverTos = assembly.deliverTo_kind_children ();
+    const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children ();
     for (std::set<deliverTo>::const_iterator iter = deliverTos.begin ();
       iter != deliverTos.end ();
       ++iter)
@@ -1821,7 +1875,7 @@ namespace PICML
     }
 
     const std::set<PublishConnector>
-      connectors = assembly.PublishConnector_kind_children ();
+      connectors = subasm.PublishConnector_kind_children ();
     for (std::set<PublishConnector>::const_iterator iter =
       connectors.begin ();
       iter != connectors.end ();
@@ -1837,542 +1891,389 @@ namespace PICML
     this->consumers_.erase (this->consumers_.begin (),
       this->consumers_.end ());
   }
+}
 
-  void DeploymentPlanVisitor::update_connections (const ComponentAssembly& assembly)
+void DeploymentPlanVisitor::Visit_ComponentAssembly
+  (const ComponentAssembly& assembly)
+{
+  std::string node_reference_name = this->retNodeRefName ();
+  std::string cg_name = this->retcgName ();
+
+  // Collect all the Components of this assembly into a set.
+  std::set<Component> comps = assembly.Component_kind_children ();
+
+  // Add all the shared Components of this assembly into the set.  A
+  // shared Component is implemented as a reference to a Component.  So
+  // just traverse the reference and add it to the set.
+  std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children ();
+  for (std::set<ComponentRef>::const_iterator
+    iter = scomps.begin ();
+    iter != scomps.end ();
+  ++iter)
   {
-    // Collect all the Components of this assembly into a set.
-    std::set<Component> comps = assembly.Component_kind_children ();
+    const ComponentRef compRef = *iter;
+    comps.insert (compRef.ref ());
+  }
 
-    // Add all the shared Components of this assembly into the set.  A
-    // shared Component is implemented as a reference to a Component.  So
-    // just traverse the reference and add it to the set.
-    std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children ();
+  // Collect all the immediate ComponentAssembly children of this assembly
+  std::set<ComponentAssembly>
+    subasms = assembly.ComponentAssembly_kind_children ();
+
+  // Add all the shared ComponentAssemblies of the current assembly.
+  // Like shared components, shared assemblies are also implemented as
+  // references.  So just traverse the references, and add them to the set.
+  std::set<ComponentAssemblyReference>
+    sasms = assembly.ComponentAssemblyReference_kind_children ();
+  for (std::set<ComponentAssemblyReference>::const_iterator
+    iter = sasms.begin ();
+    iter != sasms.end ();
+  ++iter)
+  {
+    const ComponentAssemblyReference asmRef = *iter;
+    subasms.insert (asmRef.ref ());
+  }
+
+  // Maintain a list of all ComponentAssemblies in this assembly
+  std::vector<ComponentAssembly> assemblies;
+
+  // Put ourselves in the global list first.
+  assemblies.push_back (assembly);
+
+  // Do a Depth-First search and collect all the ComponentAssembly,
+  // Component children of this assembly, and add them to the
+  // assembly-specific list.
+  while (!subasms.empty ())
+  {
+    ComponentAssembly rassembly = *subasms.begin ();
+    // Put the first assembly from the current list to the
+    // assembly-specific list.
+    assemblies.push_back (rassembly);
+
+    subasms.erase (rassembly);
+
+    // Get the components of the current assembly, and insert them into
+    // the component list
+    std::set<Component> rcomps = rassembly.Component_kind_children ();
+
+    // Get the shared components of the current assembly
+    scomps = rassembly.ComponentRef_kind_children ();
     for (std::set<ComponentRef>::const_iterator
       iter = scomps.begin ();
       iter != scomps.end ();
     ++iter)
     {
       const ComponentRef compRef = *iter;
-      comps.insert (compRef.ref ());
+      rcomps.insert (compRef.ref ());
     }
 
-    // Collect all the immediate ComponentAssembly children of this assembly
+    comps.insert (rcomps.begin (), rcomps.end ());
+
+    // Get the subassemblies of the first assembly.
     std::set<ComponentAssembly>
-      subasms = assembly.ComponentAssembly_kind_children ();
+      rasms = rassembly.ComponentAssembly_kind_children ();
 
     // Add all the shared ComponentAssemblies of the current assembly.
-    // Like shared components, shared assemblies are also implemented as
-    // references.  So just traverse the references, and add them to the set.
+    // Like shared components, shared assemblies are also implemented
+    // as references.  So just traverse the references, and add them to
+    // the set.
     std::set<ComponentAssemblyReference>
-      sasms = assembly.ComponentAssemblyReference_kind_children ();
+      sasms = rassembly.ComponentAssemblyReference_kind_children ();
     for (std::set<ComponentAssemblyReference>::const_iterator
       iter = sasms.begin ();
       iter != sasms.end ();
     ++iter)
     {
       const ComponentAssemblyReference asmRef = *iter;
-      subasms.insert (asmRef.ref ());
+      rasms.insert (asmRef.ref ());
     }
 
-    // Maintain a list of all ComponentAssemblies in this assembly
-    std::vector<ComponentAssembly> assemblies;
-
-    // Put ourselves in the global list first.
-    assemblies.push_back (assembly);
-
-    // Do a Depth-First search and collect all the ComponentAssembly,
-    // Component children of this assembly, and add them to the
-    // assembly-specific list.
-    while (!subasms.empty ())
-    {
-      ComponentAssembly rassembly = *subasms.begin ();
-      // Put the first assembly from the current list to the
-      // assembly-specific list.
-      assemblies.push_back (rassembly);
-
-      subasms.erase (rassembly);
-
-      // Get the components of the current assembly, and insert them into
-      // the component list
-      std::set<Component> rcomps = rassembly.Component_kind_children ();
-
-      // Get the shared components of the current assembly
-      scomps = rassembly.ComponentRef_kind_children ();
-      for (std::set<ComponentRef>::const_iterator
-        iter = scomps.begin ();
-        iter != scomps.end ();
-      ++iter)
-      {
-        const ComponentRef compRef = *iter;
-        rcomps.insert (compRef.ref ());
-      }
-
-      comps.insert (rcomps.begin (), rcomps.end ());
-
-      // Get the subassemblies of the first assembly.
-      std::set<ComponentAssembly>
-        rasms = rassembly.ComponentAssembly_kind_children ();
-
-      // Add all the shared ComponentAssemblies of the current assembly.
-      // Like shared components, shared assemblies are also implemented
-      // as references.  So just traverse the references, and add them to
-      // the set.
-      std::set<ComponentAssemblyReference>
-        sasms = rassembly.ComponentAssemblyReference_kind_children ();
-      for (std::set<ComponentAssemblyReference>::const_iterator
-        iter = sasms.begin ();
-        iter != sasms.end ();
-      ++iter)
-      {
-        const ComponentAssemblyReference asmRef = *iter;
-        rasms.insert (asmRef.ref ());
-      }
-
-      // Insert them to the current list.
-      // std::copy (rasms.begin (), rasms.end (), std::back_inserter (subasms));
-      subasms.insert (rasms.begin (), rasms.end ());
-    }
-
-    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
-      iter != assemblies.end ();
-      ++iter)
-    {
-      ComponentAssembly subasm = *iter;
-
-      const std::set<invoke> invokes = subasm.invoke_kind_children ();
-      for (std::set<invoke>::const_iterator iter = invokes.begin ();
-        iter != invokes.end ();
-        ++iter)
-      {
-        invoke iv = *iter;
-        iv.Accept (*this);
-      }
-
-      const std::set<emit> emits = subasm.emit_kind_children ();
-      for (std::set<emit>::const_iterator iter = emits.begin ();
-        iter != emits.end ();
-        ++iter)
-      {
-        emit ev = *iter;
-        ev.Accept (*this);
-      }
-
-      const std::set<publish> publishers = subasm.publish_kind_children ();
-      for (std::set<publish>::const_iterator iter = publishers.begin ();
-        iter != publishers.end ();
-        ++iter)
-      {
-        publish ev = *iter;
-        ev.Accept (*this);
-      }
-
-      const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children ();
-      for (std::set<deliverTo>::const_iterator iter = deliverTos.begin ();
-        iter != deliverTos.end ();
-        ++iter)
-      {
-        deliverTo dv = *iter;
-        dv.Accept (*this);
-      }
-
-      const std::set<PublishConnector>
-        connectors = subasm.PublishConnector_kind_children ();
-      for (std::set<PublishConnector>::const_iterator iter =
-        connectors.begin ();
-        iter != connectors.end ();
-      ++iter)
-      {
-        PublishConnector conn = *iter;
-        conn.Accept (*this);
-      }
-
-      this->publishers_.erase (this->publishers_.begin (),
-        this->publishers_.end ());
-
-      this->consumers_.erase (this->consumers_.begin (),
-        this->consumers_.end ());
-    }
+    // Insert them to the current list.
+    // std::copy (rasms.begin (), rasms.end (), std::back_inserter (subasms));
+    subasms.insert (rasms.begin (), rasms.end ());
   }
 
-  void DeploymentPlanVisitor::Visit_ComponentAssembly
-    (const ComponentAssembly& assembly)
+  // Create the appropriate component attribute value mappings
+  this->CreateAttributeMappings (assemblies);
+  this->assembly_components_ = comps;
+}
+
+void DeploymentPlanVisitor::CreateAttributeMappings (
+  std::vector<ComponentAssembly>& assemblies)
+{
+  for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
+    iter != assemblies.end ();
+    ++iter)
   {
-    std::string node_reference_name = this->retNodeRefName ();
-    std::string cg_name = this->retcgName ();
+    ComponentAssembly assembly = *iter;
+    std::string assemblyName = this->ExtractName (assembly);
+    const std::set<AttributeMapping>
+      mappings = assembly.AttributeMapping_kind_children ();
+    for (std::set<AttributeMapping>::const_iterator iter = mappings.begin ();
+      iter != mappings.end ();
+      ++iter)
+    {
+      AttributeMapping mapping = *iter;
+      mapping.Accept (*this);
+    }
+  }
+}
 
-    // Collect all the Components of this assembly into a set.
-    std::set<Component> comps = assembly.Component_kind_children ();
-
-    // Add all the shared Components of this assembly into the set.  A
-    // shared Component is implemented as a reference to a Component.  So
-    // just traverse the reference and add it to the set.
-    std::set<ComponentRef> scomps = assembly.ComponentRef_kind_children ();
-    for (std::set<ComponentRef>::const_iterator
-      iter = scomps.begin ();
-      iter != scomps.end ();
+void DeploymentPlanVisitor::Visit_AttributeMapping (const AttributeMapping& mapping)
+{
+  std::string mappingName = this->ExtractName (mapping);
+  AttributeMappingValue value = mapping.dstAttributeMappingValue ();
+  if (value != Udm::null)
+  {
+    Property prop = value.dstAttributeMappingValue_end ();
+    std::set<std::pair<std::string, std::string> > compAttrs;
+    this->GetAttributeComponents (mapping, compAttrs);
+    for (std::set<std::pair<std::string, std::string> >::const_iterator
+      iter = compAttrs.begin ();
+      iter != compAttrs.end ();
     ++iter)
     {
-      const ComponentRef compRef = *iter;
-      comps.insert (compRef.ref ());
-    }
-
-    // Collect all the immediate ComponentAssembly children of this assembly
-    std::set<ComponentAssembly>
-      subasms = assembly.ComponentAssembly_kind_children ();
-
-    // Add all the shared ComponentAssemblies of the current assembly.
-    // Like shared components, shared assemblies are also implemented as
-    // references.  So just traverse the references, and add them to the set.
-    std::set<ComponentAssemblyReference>
-      sasms = assembly.ComponentAssemblyReference_kind_children ();
-    for (std::set<ComponentAssemblyReference>::const_iterator
-      iter = sasms.begin ();
-      iter != sasms.end ();
-    ++iter)
-    {
-      const ComponentAssemblyReference asmRef = *iter;
-      subasms.insert (asmRef.ref ());
-    }
-
-    // Maintain a list of all ComponentAssemblies in this assembly
-    std::vector<ComponentAssembly> assemblies;
-
-    // Put ourselves in the global list first.
-    assemblies.push_back (assembly);
-
-    // Do a Depth-First search and collect all the ComponentAssembly,
-    // Component children of this assembly, and add them to the
-    // assembly-specific list.
-    while (!subasms.empty ())
-    {
-      ComponentAssembly rassembly = *subasms.begin ();
-      // Put the first assembly from the current list to the
-      // assembly-specific list.
-      assemblies.push_back (rassembly);
-
-      subasms.erase (rassembly);
-
-      // Get the components of the current assembly, and insert them into
-      // the component list
-      std::set<Component> rcomps = rassembly.Component_kind_children ();
-
-      // Get the shared components of the current assembly
-      scomps = rassembly.ComponentRef_kind_children ();
-      for (std::set<ComponentRef>::const_iterator
-        iter = scomps.begin ();
-        iter != scomps.end ();
-      ++iter)
-      {
-        const ComponentRef compRef = *iter;
-        rcomps.insert (compRef.ref ());
-      }
-
-      comps.insert (rcomps.begin (), rcomps.end ());
-
-      // Get the subassemblies of the first assembly.
-      std::set<ComponentAssembly>
-        rasms = rassembly.ComponentAssembly_kind_children ();
-
-      // Add all the shared ComponentAssemblies of the current assembly.
-      // Like shared components, shared assemblies are also implemented
-      // as references.  So just traverse the references, and add them to
-      // the set.
-      std::set<ComponentAssemblyReference>
-        sasms = rassembly.ComponentAssemblyReference_kind_children ();
-      for (std::set<ComponentAssemblyReference>::const_iterator
-        iter = sasms.begin ();
-        iter != sasms.end ();
-      ++iter)
-      {
-        const ComponentAssemblyReference asmRef = *iter;
-        rasms.insert (asmRef.ref ());
-      }
-
-      // Insert them to the current list.
-      // std::copy (rasms.begin (), rasms.end (), std::back_inserter (subasms));
-      subasms.insert (rasms.begin (), rasms.end ());
-    }
-
-    // Create the appropriate component attribute value mappings
-    this->CreateAttributeMappings (assemblies);
-    this->assembly_components_ = comps;
-  }
-
-  void DeploymentPlanVisitor::CreateAttributeMappings (
-    std::vector<ComponentAssembly>& assemblies)
-  {
-    for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
-      iter != assemblies.end ();
-      ++iter)
-    {
-      ComponentAssembly assembly = *iter;
-      std::string assemblyName = this->ExtractName (assembly);
-      const std::set<AttributeMapping>
-        mappings = assembly.AttributeMapping_kind_children ();
-      for (std::set<AttributeMapping>::const_iterator iter = mappings.begin ();
-        iter != mappings.end ();
-        ++iter)
-      {
-        AttributeMapping mapping = *iter;
-        mapping.Accept (*this);
-      }
+      // Get the component, attribute pair
+      pair<std::string, std::string> compAttr = *iter;
+      // Set the name of the associated prop to the attribute name
+      // prop.name () = compAttr.second;
+      // If this component's attribute hasn't been assigned a value,
+      // i.e., a value hasn't been propagated from a higher-level assembly,
+      // set it to the current value.
+      if (this->attrValues_.find (compAttr) == this->attrValues_.end ())
+        this->attrValues_[compAttr] = prop;
     }
   }
+}
 
-  void DeploymentPlanVisitor::Visit_AttributeMapping (const AttributeMapping& mapping)
+void DeploymentPlanVisitor::GetAttributeComponents (const AttributeMapping& mapping,
+  std::set<std::pair<std::string, std::string> >& output)
+{
+  std::string mappingName = this->ExtractName (mapping);
+  std::set<AttributeDelegate> delegates = mapping.dstAttributeDelegate ();
+  if (delegates.empty ())
   {
-    std::string mappingName = this->ExtractName (mapping);
-    AttributeMappingValue value = mapping.dstAttributeMappingValue ();
-    if (value != Udm::null)
+    std::set<AttributeMappingDelegate>
+      mapDelegates = mapping.dstAttributeMappingDelegate ();
+    if (mapDelegates.empty ())
     {
-      Property prop = value.dstAttributeMappingValue_end ();
-      std::set<std::pair<std::string, std::string> > compAttrs;
-      this->GetAttributeComponents (mapping, compAttrs);
-      for (std::set<std::pair<std::string, std::string> >::const_iterator
-        iter = compAttrs.begin ();
-        iter != compAttrs.end ();
-      ++iter)
-      {
-        // Get the component, attribute pair
-        pair<std::string, std::string> compAttr = *iter;
-        // Set the name of the associated prop to the attribute name
-        // prop.name () = compAttr.second;
-        // If this component's attribute hasn't been assigned a value,
-        // i.e., a value hasn't been propagated from a higher-level assembly,
-        // set it to the current value.
-        if (this->attrValues_.find (compAttr) == this->attrValues_.end ())
-          this->attrValues_[compAttr] = prop;
-      }
-    }
-  }
+      std::string mapPath =
+        mapping.getPath ("_", false, true,"name",true);
 
-  void DeploymentPlanVisitor::GetAttributeComponents (const AttributeMapping& mapping,
-    std::set<std::pair<std::string, std::string> >& output)
-  {
-    std::string mappingName = this->ExtractName (mapping);
-    std::set<AttributeDelegate> delegates = mapping.dstAttributeDelegate ();
-    if (delegates.empty ())
-    {
-      std::set<AttributeMappingDelegate>
-        mapDelegates = mapping.dstAttributeMappingDelegate ();
-      if (mapDelegates.empty ())
-      {
-        std::string mapPath =
-          mapping.getPath ("_", false, true,"name",true);
-
-        throw udm_exception (std::string ("AttributeMapping " +
-          mapPath +
-          " is not connected to any attributes or delegated to another AttributeMapping"));
-      }
-      else
-      {
-        for (std::set<AttributeMappingDelegate>::const_iterator
-          iter = mapDelegates.begin ();
-          iter != mapDelegates.end ();
-        ++iter)
-        {
-          AttributeMappingDelegate mapDelegate = *iter;
-          AttributeMapping
-            delegate = mapDelegate.dstAttributeMappingDelegate_end ();
-          std::string delegateName = this->ExtractName (delegate);
-          this->GetAttributeComponents (delegate, output);
-        }
-      }
+      throw udm_exception (std::string ("AttributeMapping " +
+        mapPath +
+        " is not connected to any attributes or delegated to another AttributeMapping"));
     }
     else
     {
-      for (std::set<AttributeDelegate>::const_iterator
-        iter = delegates.begin ();
-        iter != delegates.end ();
+      for (std::set<AttributeMappingDelegate>::const_iterator
+        iter = mapDelegates.begin ();
+        iter != mapDelegates.end ();
       ++iter)
       {
-        AttributeDelegate delegate = *iter;
-        ReadonlyAttribute attr = delegate.dstAttributeDelegate_end ();
-        std::string attrName = this->ExtractName (attr);
-        Component parent = attr.Component_parent ();
-        std::string parentName = this->ExtractName (parent);
-
-        // std::string compName =
-        //      parent.getPath ("_", false, true,"name",true);
-        std::string compName = parent.UUID ();
-        if (compName.empty ())
-          parent.UUID () = compName = CreateUuid ();
-        compName = std::string ("_") + compName;
-
-        output.insert (make_pair (compName, attr.name ()));
+        AttributeMappingDelegate mapDelegate = *iter;
+        AttributeMapping
+          delegate = mapDelegate.dstAttributeMappingDelegate_end ();
+        std::string delegateName = this->ExtractName (delegate);
+        this->GetAttributeComponents (delegate, output);
       }
     }
   }
-
-  void DeploymentPlanVisitor::CreateAssemblyInstances (std::set<Component>& comps)
+  else
   {
-    for (std::set<Component>::iterator iter = comps.begin ();
-      iter != comps.end ();
+    for (std::set<AttributeDelegate>::const_iterator
+      iter = delegates.begin ();
+      iter != delegates.end ();
+    ++iter)
+    {
+      AttributeDelegate delegate = *iter;
+      ReadonlyAttribute attr = delegate.dstAttributeDelegate_end ();
+      std::string attrName = this->ExtractName (attr);
+      Component parent = attr.Component_parent ();
+      std::string parentName = this->ExtractName (parent);
+
+      // std::string compName =
+      //      parent.getPath ("_", false, true,"name",true);
+      std::string compName = parent.UUID ();
+      if (compName.empty ())
+        parent.UUID () = compName = CreateUuid ();
+      compName = std::string ("_") + compName;
+
+      output.insert (make_pair (compName, attr.name ()));
+    }
+  }
+}
+
+void DeploymentPlanVisitor::CreateAssemblyInstances (std::set<Component>& comps)
+{
+  for (std::set<Component>::iterator iter = comps.begin ();
+    iter != comps.end ();
+    ++iter)
+  {
+    Component comp = *iter;
+    DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+    this->curr_->appendChild (instance);
+    this->push ();
+    this->curr_ = instance;
+
+    // std::string uniqueName = this->unique_id (comp);
+    std::string uniqueName = comp.UUID ();
+    if (uniqueName.empty ())
+      comp.UUID () = uniqueName = CreateUuid ();
+    uniqueName = std::string ("_") + uniqueName;
+
+    instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
+    instance->appendChild (this->createSimpleContent ("name",
+      uniqueName));
+    Component typeParent;
+
+    if (comp.isInstance ())
+    {
+      typeParent = comp.Archetype ();
+      while (typeParent.isInstance ())
+        typeParent = typeParent.Archetype ();
+    }
+
+    std::string interfaceName = typeParent.name ();
+    std::string refName = this->interfaces_[interfaceName];
+    refName += ".cpd";
+    DOMElement* refEle = this->doc_->createElement (XStr ("package"));
+    refEle->setAttribute (XStr ("href"), XStr (refName));
+    instance->appendChild (refEle);
+    std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
+    for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin ();
+      it2 != cps.end ();
+      ++it2)
+    {
+      AssemblyConfigProperty cp = *it2;
+      cp.Accept (*this);
+    }
+    std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children ();
+    for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin ();
+      iter != attrs.end ();
       ++iter)
     {
-      Component comp = *iter;
-      DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-      this->curr_->appendChild (instance);
-      this->push ();
-      this->curr_ = instance;
-
-      // std::string uniqueName = this->unique_id (comp);
-      std::string uniqueName = comp.UUID ();
-      if (uniqueName.empty ())
-        comp.UUID () = uniqueName = CreateUuid ();
-      uniqueName = std::string ("_") + uniqueName;
-
-      instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
-      instance->appendChild (this->createSimpleContent ("name",
-        uniqueName));
-      Component typeParent;
-
-      if (comp.isInstance ())
-      {
-        typeParent = comp.Archetype ();
-        while (typeParent.isInstance ())
-          typeParent = typeParent.Archetype ();
-      }
-
-      std::string interfaceName = typeParent.name ();
-      std::string refName = this->interfaces_[interfaceName];
-      refName += ".cpd";
-      DOMElement* refEle = this->doc_->createElement (XStr ("package"));
-      refEle->setAttribute (XStr ("href"), XStr (refName));
-      instance->appendChild (refEle);
-      std::set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
-      for (std::set<AssemblyConfigProperty>::const_iterator it2 = cps.begin ();
-        it2 != cps.end ();
-        ++it2)
-      {
-        AssemblyConfigProperty cp = *it2;
-        cp.Accept (*this);
-      }
-      std::set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children ();
-      for (std::set<ReadonlyAttribute>::const_iterator iter = attrs.begin ();
-        iter != attrs.end ();
-        ++iter)
-      {
-        ReadonlyAttribute attr = *iter;
-        attr.Accept (*this);
-      }
-      for (std::map<std::pair<std::string, std::string>,
-        Property>::const_iterator iter = this->attrValues_.begin ();
-        iter != this->attrValues_.end ();
-      ++iter)
-      {
-        std::pair<std::pair<std::string, std::string>, Property>
-          attrVal = *iter;
-        std::pair<std::string, std::string> compAttr = attrVal.first;
-        if (compAttr.first == comp.getPath (".",false,true,"name",true))
-        {
-          this->push ();
-          DOMElement*
-            ele = this->doc_->createElement (XStr ("configProperty"));
-          this->curr_->appendChild (ele);
-          this->curr_ = ele;
-          Property val = attrVal.second;
-          //val.Accept (*this);
-          this->CreatePropertyElement (compAttr.second, val);
-          this->pop ();
-        }
-      }
-      this->pop ();
+      ReadonlyAttribute attr = *iter;
+      attr.Accept (*this);
     }
-  }
+    for (std::map<std::pair<std::string, std::string>,
+      Property>::const_iterator iter = this->attrValues_.begin ();
+      iter != this->attrValues_.end ();
+    ++iter)
+    {
+      std::pair<std::pair<std::string, std::string>, Property>
+        attrVal = *iter;
+      std::pair<std::string, std::string> compAttr = attrVal.first;
+      if (compAttr.first == comp.getPath (".",false,true,"name",true))
+      {
+        this->push ();
+        DOMElement*
+          ele = this->doc_->createElement (XStr ("configProperty"));
+        this->curr_->appendChild (ele);
+        this->curr_ = ele;
+        Property val = attrVal.second;
 
-  void DeploymentPlanVisitor::Visit_ReadonlyAttribute (const ReadonlyAttribute& attr)
-  {
-    AttributeValue attValue = attr.dstAttributeValue ();
-    if (attValue != Udm::null)
-      attValue.Accept (*this);
-  }
+        val.Accept (*this);
 
-  void DeploymentPlanVisitor::Visit_AttributeValue (const AttributeValue& value)
-  {
-    this->push ();
-    DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
-    this->curr_->appendChild (ele);
-    this->curr_ = ele;
-    Property ref = value.dstAttributeValue_end ();
-    ReadonlyAttribute attr = value.srcAttributeValue_end ();
-    ref.name () = attr.name ();
-    ref.Accept (*this);
+        //this->CreatePropertyElement (compAttr.second, val);
+        this->pop ();
+      }
+    }
     this->pop ();
   }
+}
 
-  void DeploymentPlanVisitor::Visit_AttributeDelegate (const AttributeDelegate&){}
+void DeploymentPlanVisitor::Visit_ReadonlyAttribute (const ReadonlyAttribute& attr)
+{
+  AttributeValue attValue = attr.dstAttributeValue ();
+  if (attValue != Udm::null)
+    attValue.Accept (*this);
+}
 
-  void DeploymentPlanVisitor::Visit_AttributeMappingValue
-    (const AttributeMappingValue&){}
+void DeploymentPlanVisitor::Visit_AttributeValue (const AttributeValue& value)
+{
+  this->push ();
+  DOMElement* ele = this->doc_->createElement (XStr ("configProperty"));
+  this->curr_->appendChild (ele);
+  this->curr_ = ele;
+  Property ref = value.dstAttributeValue_end ();
+  ReadonlyAttribute attr = value.srcAttributeValue_end ();
+  ref.name () = attr.name ();
+  ref.Accept (*this);
+  this->pop ();
+}
 
-    void DeploymentPlanVisitor::Visit_AttributeMappingDelegate
-      (const AttributeMappingDelegate&){}
+void DeploymentPlanVisitor::Visit_AttributeDelegate (const AttributeDelegate&){}
 
-      void DeploymentPlanVisitor::CreateAssemblyConnections
-        (std::vector<ComponentAssembly>& assemblies)
+void DeploymentPlanVisitor::Visit_AttributeMappingValue
+  (const AttributeMappingValue&){}
+
+  void DeploymentPlanVisitor::Visit_AttributeMappingDelegate
+    (const AttributeMappingDelegate&){}
+
+    void DeploymentPlanVisitor::CreateAssemblyConnections
+      (std::vector<ComponentAssembly>& assemblies)
+    {
+      for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
+        iter != assemblies.end ();
+        ++iter)
       {
-        for (std::vector<ComponentAssembly>::iterator iter = assemblies.begin ();
-          iter != assemblies.end ();
+        ComponentAssembly subasm = *iter;
+        const std::set<invoke> invokes = subasm.invoke_kind_children ();
+        for (std::set<invoke>::const_iterator iter = invokes.begin ();
+          iter != invokes.end ();
           ++iter)
         {
-          ComponentAssembly subasm = *iter;
-          const std::set<invoke> invokes = subasm.invoke_kind_children ();
-          for (std::set<invoke>::const_iterator iter = invokes.begin ();
-            iter != invokes.end ();
-            ++iter)
-          {
-            invoke iv = *iter;
-            iv.Accept (*this);
-          }
-          const std::set<emit> emits = subasm.emit_kind_children ();
-          for (std::set<emit>::const_iterator iter = emits.begin ();
-            iter != emits.end ();
-            ++iter)
-          {
-            emit ev = *iter;
-            ev.Accept (*this);
-          }
-          const std::set<publish> publishers = subasm.publish_kind_children ();
-          for (std::set<publish>::const_iterator iter = publishers.begin ();
-            iter != publishers.end ();
-            ++iter)
-          {
-            publish ev = *iter;
-            ev.Accept (*this);
-          }
-          const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children ();
-          for (std::set<deliverTo>::const_iterator iter = deliverTos.begin ();
-            iter != deliverTos.end ();
-            ++iter)
-          {
-            deliverTo dv = *iter;
-            dv.Accept (*this);
-          }
-          const std::set<PublishConnector>
-            connectors = subasm.PublishConnector_kind_children ();
-          for (std::set<PublishConnector>::const_iterator iter =
-            connectors.begin ();
-            iter != connectors.end ();
-          ++iter)
-          {
-            PublishConnector conn = *iter;
-            conn.Accept (*this);
-          }
-          this->publishers_.clear ();
-          this->consumers_.clear ();
+          invoke iv = *iter;
+          iv.Accept (*this);
         }
-
-
+        const std::set<emit> emits = subasm.emit_kind_children ();
+        for (std::set<emit>::const_iterator iter = emits.begin ();
+          iter != emits.end ();
+          ++iter)
+        {
+          emit ev = *iter;
+          ev.Accept (*this);
+        }
+        const std::set<publish> publishers = subasm.publish_kind_children ();
+        for (std::set<publish>::const_iterator iter = publishers.begin ();
+          iter != publishers.end ();
+          ++iter)
+        {
+          publish ev = *iter;
+          ev.Accept (*this);
+        }
+        const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children ();
+        for (std::set<deliverTo>::const_iterator iter = deliverTos.begin ();
+          iter != deliverTos.end ();
+          ++iter)
+        {
+          deliverTo dv = *iter;
+          dv.Accept (*this);
+        }
+        const std::set<PublishConnector>
+          connectors = subasm.PublishConnector_kind_children ();
+        for (std::set<PublishConnector>::const_iterator iter =
+          connectors.begin ();
+          iter != connectors.end ();
+        ++iter)
+        {
+          PublishConnector conn = *iter;
+          conn.Accept (*this);
+        }
+        this->publishers_.clear ();
+        this->consumers_.clear ();
       }
 
-      void DeploymentPlanVisitor::Visit_InstanceMapping (const InstanceMapping& ins_map)
-      {
-        NodeReference node_ref = ins_map.dstInstanceMapping_end ();
-        node_ref.Accept (*this);
-      }
 
-      void DeploymentPlanVisitor::Visit_NodeReference (const NodeReference& node_ref)
-      {
-      }
+    }
+
+    void DeploymentPlanVisitor::Visit_InstanceMapping (const InstanceMapping& ins_map)
+    {
+      NodeReference node_ref = ins_map.dstInstanceMapping_end ();
+      node_ref.Accept (*this);
+    }
+
+    void DeploymentPlanVisitor::Visit_NodeReference (const NodeReference& node_ref)
+    {
+    }
 }

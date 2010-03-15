@@ -57,22 +57,6 @@ namespace PICML
     // Lord Of the Rings..
     virtual void Visit_RootFolder(const RootFolder&);
 
-    // Predefined Types
-    virtual void Visit_LongInteger(const LongInteger&);
-    virtual void Visit_Byte(const Byte&);
-    virtual void Visit_String(const String&);
-    virtual void Visit_FloatNumber(const FloatNumber&);
-    virtual void Visit_DoubleNumber(const DoubleNumber&);
-    virtual void Visit_Boolean(const Boolean&);
-    virtual void Visit_ShortInteger(const ShortInteger&);
-
-    virtual void Visit_GenericValue(const GenericValue&){};
-    virtual void Visit_TypeKind(const TypeKind&){};
-    virtual void Visit_GenericObject(const GenericObject&){};
-    virtual void Visit_PredefinedTypes(const PredefinedTypes&){};
-    virtual void Visit_TypeEncoding(const TypeEncoding&){};
-    virtual void Visit_GenericValueObject(const GenericValueObject&){};
-
     // Implementation Artifact operations
 
     virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&);
@@ -255,7 +239,7 @@ namespace PICML
     void CreateAssemblyInstances (std::set<Component>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-    void CreatePropertyElement (std::string name, const Property& property);
+    //void CreatePropertyElement (std::string name, const Property& property);
     virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
     virtual void Visit_AttributeValue(const AttributeValue&);
     virtual void Visit_AttributeDelegate(const AttributeDelegate&);
@@ -295,7 +279,7 @@ namespace PICML
     void write_artifact_execParameter (const std::string & name,
                                        const std::string & value);
 
-    static UDM_Abstract_Type_Dispatcher_T <DeploymentPlanVisitor> datatypes_;
+    static UDM_Abstract_Type_Dispatcher_T <PICML::Visitor> datatypes_;
 
     DOMImplementation*  impl_;
     DOMDocument*        doc_;

@@ -1,10 +1,12 @@
 // $Id$
 
-project (DeploymentPlan): boost_base, picmllib {
+project (DeploymentPlan): boost_base, picml_udm_utils {
   sharedname    = DeploymentPlan
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
+    Data_Type_Visitor.cpp
+    Data_Value_Visitor.cpp
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
     PlanLocalityVisitor.cpp

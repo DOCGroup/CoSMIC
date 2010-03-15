@@ -51,6 +51,10 @@ public:
 protected:
   xercesc::DOMElement * create_element (const std::string & name);
 
+  xercesc::DOMElement *
+    create_simple_content (const std::string & name,
+                           const std::string & value);
+
   /// The current parent element.
   xercesc::DOMElement * curr_;
 };

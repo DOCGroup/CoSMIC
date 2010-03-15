@@ -1,3 +1,41 @@
+Mon Mar 15 16:21:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.inl:
+
+          . Enabled support for defining assembly attributes of
+            type Enum.
+
+        * PIM/PICML/utils/udm:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils.mpc:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils_export.h:
+        * PIM/PICML/utils/udm/functional.h:
+        * PIM/PICML/utils/udm/functional.cpp:
+        * MPC/config/picml_udm_utils.mpb:
+
+          . Refactored the following functions into a utility library
+            for PICML interpreters that use UDM:
+
+            - scope: generates the scope of an object
+            - fq_type: generates the fully qualified type name of
+                       an object
+            - repository_id: generates the repository id for a named type.
+
+        * Utils/UDM/Position_Sort_T.h:
+        * Utils/UDM/Position_Sort_T.cpp:
+
+          . Utility class from CUTS that sorts UDM elements by their
+            position in the model view.
+
 Fri Mar 12 18:52:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/examples/ExternalPort.xme:
