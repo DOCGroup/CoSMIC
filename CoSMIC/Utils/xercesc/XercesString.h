@@ -14,6 +14,7 @@
 #define _XERCESSTRING_H
 
 #include <iosfwd>
+#include <memory>
 #include <string>
 #include "xercesc/util/XMLString.hpp"
 #include "Xerces_Utils_export.h"
@@ -33,54 +34,129 @@ namespace Utils
 class COSMIC_XERCES_UTILS_Export XStr
 {
 public:
-  /// Default constructor.
-  XStr (void) : _wstr(0L) { };
+  /**
+   * Default constructor.
+   *
+   * @param[in]         allocator       Pointer to the string's allocator
+   */
+  XStr (xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  XStr (const char* str);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]     str         Source string
+   */
+  XStr (const char * str, xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  XStr (const std::string & str);
+  /**
+   * @overload
+   */
+  XStr (const std::string & str, xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  XStr (XMLCh* wstr);
+  /**
+   * @overload
+   *
+   * @param[in]     release     Take ownership of string
+   */
+  XStr (const XMLCh * wstr,
+        bool release = true,
+        xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  XStr (const XMLCh* wstr);
+  /**
+   * Copy constructor
+   *
+   * @param[in]     copy        Source string
+   */
+  XStr (const XStr & copy,
+        xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  XStr (const XStr& copy);
+  /// Destructor.
+  ~XStr (void);
 
-  XStr& operator= (const XStr& rhs);
+  const XStr & operator = (const char * rhs);
+  const XStr & operator = (const XMLCh * rhs);
+  const XStr & operator = (const XStr & rhs);
 
-  ~XStr();
+  XMLCh * begin (void);
+  const XMLCh * begin (void) const;
 
-  const XMLCh* begin() const;
+  XMLCh * end (void);
+  const XMLCh * end (void) const;
 
-  const XMLCh* end() const;
+  void append (const XMLCh * tail);
 
-  bool append(const XMLCh* tail);
+  // bool erase (const XMLCh * head, const XMLCh * tail);
 
-  bool erase(const XMLCh* head, const XMLCh* tail);
+  /**
+   * Get the size of the string.
+   *
+   * @return      Number of character in string.
+   */
+  size_t size (void) const;
 
-  int size() const;
+  /**
+   * Get character at the specified index.
+   *
+   * @param[in]       i       Source index
+   * @return          Character of interest
+   */
+  XMLCh & operator [] (size_t i);
 
-  XMLCh operator [] (const int i);
+  /**
+   * @overload
+   */
+  const XMLCh & operator [] (size_t i) const;
 
-  const XMLCh operator [] (const int i) const;
+  /**
+   * Convert the object to a XMLCh pointer.
+   *
+   * @return      Pointer to the string.
+   */
+  operator const XMLCh * (void) const;
+  operator XMLCh * (void);
 
-  operator const XMLCh* () const;
+  /**
+   * Get the string value. This will replace the old value
+   * and release its resources, if necessary.
+   *
+   * @param[in]       str           The new string value
+   * @param[in]       release       Take ownership of new string
+   */
+  void set (const XMLCh * str,
+            bool release = true,
+            xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  char* c_str() const;
+  void set (const char * str,
+            xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
 
-  bool operator== (const XMLCh* wstr) const;
+  const std::string & to_string (void) const;
 
+  bool operator == (const XMLCh * wstr) const;
+  bool operator != (const XMLCh * wstr) const;
+
+  bool operator == (const XStr & rhs) const;
+  bool operator != (const XStr & rhs) const;
+
+  static const ::Utils::XStr EMPTY_STRING;
 
 private:
-  /// Internal representation of the string
-  XMLCh* _wstr;
+  /// Pointer to the actual string.
+  XMLCh * wstr_;
+
+  /// Release the contained string.
+  bool release_;
+
+  /// Pointer to the allocator for this string.
+  xercesc::MemoryManager * allocator_;
+
+  /// C string version of the string.
+  mutable std::auto_ptr <std::string> as_string_;
 };
 
-COSMIC_XERCES_UTILS_Export bool operator == (const XStr& lhs, const XStr& rhs);
-COSMIC_XERCES_UTILS_Export bool operator != (const XStr& lhs, const XStr& rhs);
-
-COSMIC_XERCES_UTILS_Export std::ostream& operator << (std::ostream& o, XStr const& str);
+COSMIC_XERCES_UTILS_Export std::ostream & operator << (std::ostream & o, const XStr & str);
 
 }
+
+#include "XercesString.inl"
 
 #endif /* _XERCESSTRING_H */

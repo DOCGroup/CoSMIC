@@ -1,4 +1,4 @@
-/* -*- c++ -*- */
+/* -*- C++ -*- */
 // $Id$
 
 // ============================================================================
@@ -21,8 +21,7 @@
 #define ENTITYRESOLVER_H
 
 #include "xercesc/sax/EntityResolver.hpp"
-#include "ace/SString.h"
-#include "Xerces_Utils_export.h"
+#include "XercesString.h"
 
 namespace Utils
 {
@@ -44,7 +43,7 @@ public:
 
 private:
   /// Base path for resolving entities.
-  ACE_CString base_path_;
+  const XStr base_path_;
 };
 
 }

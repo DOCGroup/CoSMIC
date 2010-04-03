@@ -1,156 +1,145 @@
 // $Id: XercesString.cpp 571 2005-11-23 18:00:18Z kitty $
 
 #include "XercesString.h"
+#include "xercesc/util/XMLUniDefs.hpp"
+#include "ace/Auto_Functor.h"
 #include <ostream>
-#include <memory>
-
-using xercesc::XMLString;
 
 namespace Utils
 {
-XStr::XStr (const char* str)
-  : _wstr(0)
+using xercesc::XMLString;
+
+//
+// EMPTY_STRING
+//
+const ::Utils::XStr XStr::EMPTY_STRING ("");
+
+//
+// append
+//
+void XStr::append (const XMLCh * tail)
 {
-  _wstr = XMLString::transcode(str);
+  // Calculate all the required string lengths.
+  size_t curr_length = this->size ();
+  size_t tail_length = XMLString::stringLen (tail);
+  size_t length = curr_length + tail_length;
+
+  // Allocate space for the new string.
+  XMLCh * buffer = (XMLCh *)this->allocator_->allocate (length + 1);
+  XStr temp_str (buffer, true, this->allocator_);
+
+  // Simple trick, swap the two string's state. We do not have
+  // to swap the allocators since they are one in the same.
+  std::swap (temp_str.wstr_, this->wstr_);
+  std::swap (temp_str.release_, this->release_);
+
+  // Copy the characters into the new string buffer.
+  XMLString::moveChars (this->wstr_, temp_str.wstr_, curr_length);
+  XMLString::moveChars (this->wstr_ + curr_length, tail, tail_length);
+  this->wstr_[length] = xercesc::chNull;
+
+  // Reset the cstring.
+  this->as_string_.reset ();
 }
 
-XStr::XStr (const std::string& str)
-  : _wstr (0)
+////
+//// erase
+////
+//bool XStr::erase(const XMLCh *head, const XMLCh *tail)
+//{
+//  bool bOK = head <= tail && head >= begin() && tail <= end();
+//  if (bOK)
+//    {
+//      XMLCh *result = new XMLCh[ size() - (tail - head) + 1 ];
+//      XMLCh *target = result;
+//      bOK = target != NULL;
+//      if (bOK)
+//        {
+//          const XMLCh *cursor = begin();
+//
+//          while (cursor != head) *target++ = *cursor++;
+//          cursor = tail;
+//          while ( cursor != end() ) *target++ = *cursor++;
+//          *target ++ = 0;
+//          XMLString::release(&wstr_);
+//          wstr_ = result;
+//        }
+//    }
+//  return bOK;
+//}
+//
+
+const std::string & XStr::to_string (void) const
 {
-  _wstr = XMLString::transcode (str.c_str());
+  // Take the quick path out if we can.
+  if (0 != this->as_string_.get ())
+    return *this->as_string_;
+
+  // Allocate a new string and reserve space.
+  this->as_string_.reset (new std::string ());
+  this->as_string_->reserve (this->size ());
+
+  // Save a copy of the string.
+  char * temp_str = XMLString::transcode (this->wstr_);
+  this->as_string_->assign (temp_str);
+  XMLString::release (&temp_str);
+
+  return *this->as_string_;
 }
 
-XStr::XStr (XMLCh *wstr)
-  : _wstr(wstr)
+//
+// set
+//
+void XStr::
+set (const XMLCh * wstr, bool release, xercesc::MemoryManager * const allocator)
 {
+  // Handle the current string.
+  if (this->release_ && 0 != this->wstr_)
+    XMLString::release (&this->wstr_, this->allocator_);
 
+  // Save the new string, or make a copy of it. This will also
+  // determine what we do with the new allocator.
+  if (release)
+  {
+    this->wstr_ = XMLString::replicate (wstr, allocator);
+    this->allocator_ = allocator;
+  }
+  else
+    this->wstr_ = const_cast <XMLCh *> (wstr);
+
+  // Save the release state.
+  this->release_ = release;
+
+  // Reset the cstring
+  this->as_string_.reset ();
 }
 
-XStr::XStr (const XMLCh* wstr)
-  : _wstr(0)
+//
+// set
+//
+void XStr::
+set (const char * str, xercesc::MemoryManager * const allocator)
 {
-  _wstr = XMLString::replicate(wstr);
+  // Handle the current string.
+  if (this->release_ && 0 != this->wstr_)
+    XMLString::release (&this->wstr_, this->allocator_);
+
+  // Make a copy of the source string.
+  this->wstr_ = XMLString::transcode (str, allocator);
+  this->allocator_ = allocator;
+  this->release_ = true;
+
+  // Reset the cstring.
+  this->as_string_.reset ();
 }
 
-XStr::XStr (const XStr &right)
-  : _wstr(0)
+//
+// operator <<
+//
+std::ostream & operator << (std::ostream & out, const XStr & str)
 {
-  _wstr = XMLString::replicate(right._wstr);
+  out << str.to_string ().c_str ();
+  return out;
 }
 
-XStr& XStr::operator= (const XStr& rhs)
-{
-  if (&rhs == this)
-    return *this;
-  XStr temp (rhs);
-  std::swap (this->_wstr, temp._wstr);
-  return *this;
-}
-
-XStr::~XStr ()
-{
-  if (_wstr)
-    XMLString::release(&_wstr);
-}
-
-const XMLCh* XStr::begin () const
-{
-  return _wstr;
-}
-
-const XMLCh* XStr::end () const
-{
-  return _wstr + size();
-}
-
-bool XStr::append(const XMLCh *tail)
-{
-  int iTailLen = XMLString::stringLen(tail);
-  int iWorkLen = XMLString::stringLen(_wstr);
-  XMLCh *result = new XMLCh[ iWorkLen + iTailLen + 1 ];
-  bool bOK = result != 0;
-  if (bOK)
-    {
-      XMLCh *target = result;
-      XMLString::moveChars(target, _wstr, iWorkLen);
-      target += iWorkLen;
-      XMLString::moveChars(target, tail, iTailLen);
-      target += iTailLen;
-      *target++ = 0;
-      XMLString::release(&_wstr);
-      _wstr = result;
-    }
-  return bOK;
-}
-
-bool XStr::erase(const XMLCh *head, const XMLCh *tail)
-{
-  bool bOK = head <= tail && head >= begin() && tail <= end();
-  if (bOK)
-    {
-      XMLCh *result = new XMLCh[ size() - (tail - head) + 1 ];
-      XMLCh *target = result;
-      bOK = target != NULL;
-      if (bOK)
-        {
-          const XMLCh *cursor = begin();
-
-          while (cursor != head) *target++ = *cursor++;
-          cursor = tail;
-          while ( cursor != end() ) *target++ = *cursor++;
-          *target ++ = 0;
-          XMLString::release(&_wstr);
-          _wstr = result;
-        }
-    }
-  return bOK;
-}
-
-int XStr::size () const
-{
-  return XMLString::stringLen(_wstr);
-}
-
-XMLCh XStr::operator [] (const int i)
-{
-  return _wstr[i];
-}
-
-const XMLCh XStr::operator [] (const int i) const
-{
-  return _wstr[i];
-}
-
-bool XStr::operator== (const XMLCh* wstr) const
-{
-  return XMLString::compareIString (wstr, this->_wstr) == 0;
-}
-
-bool operator== (const XStr& lhs, const XStr& rhs)
-{
-  return XMLString::compareIString (lhs,rhs) == 0;
-}
-
-bool operator!= (const XStr& lhs, const XStr& rhs)
-{
-  return !operator==(lhs, rhs);
-}
-
-char* XStr::c_str() const
-{
-return XMLString::transcode (_wstr);
-}
-
-XStr::operator const XMLCh* () const
-{
-return _wstr;
-};
-
-std::ostream&
-operator<< (std::ostream& o, XStr const& str)
-{
-  std::string conv (XMLString::transcode (str));
-  o << conv;
-  return o;
-}
 }

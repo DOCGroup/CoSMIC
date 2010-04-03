@@ -1,3 +1,66 @@
+Sat Apr  3 13:43:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme:
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.inl:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Collection.h:
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Collection.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.inl:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+        * Utils/GAME/game/xme/Exceptions.cpp:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator.h:
+        * Utils/GAME/game/xme/GME_ID_Generator.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.h:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Object.gperf:
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+        * Utils/GAME/game/xme/Object_Type.h:
+        * Utils/GAME/game/xme/Object_Type_Map.hpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.inl:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/XME_Utils.h:
+        * Utils/GAME/game/xme/XME_Utils.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+        * Utils/GAME/game/xme/XME_export.h:
+
+          . First implementation of the XME backend for GAME. Now it
+            is possible to handle raw XML documents of GME models.
+
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+        * Utils/xercesc/Memory_Manager.h:
+        * Utils/xercesc/Memory_Manager.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+        * Utils/xercesc/Xerces_Utils.mpc:
+
+          . Improved the implementation of XStr so that the client
+            has the option of doing shallow/deep copies of the string.
+
 Mon Mar 15 16:37:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
