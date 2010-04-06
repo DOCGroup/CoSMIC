@@ -43,17 +43,17 @@ public:
   int initialize (GME::Project & project);
 
   int invoke (GME::Project & project,
-              GME::Collection_T <GME::FCO> & selected,
+              std::vector <GME::FCO> & selected,
               long flags);
 
   int invoke_ex (GME::Project & project,
                  GME::FCO & fco,
-                 GME::Collection_T <GME::FCO> & selected,
+                 std::vector <GME::FCO> & selected,
                  long flags);
 
   int invoke_object_ex (GME::Project & project,
                         GME::Object & obj,
-                        GME::Collection_T <GME::Object> & selected,
+                        std::vector <GME::Object> & selected,
                         long flags);
 
   void interactive (bool mode);

@@ -150,7 +150,7 @@ namespace GME
      * @param[in]       virtualinterface_types       Include the virtual nodes.
      * @return          Collection of child nodes.
      */
-    size_t children (GME::Collection_T <GME::RegistryNode> & nodes,
+    size_t children (std::vector <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
     /// Clear the current value of this node.

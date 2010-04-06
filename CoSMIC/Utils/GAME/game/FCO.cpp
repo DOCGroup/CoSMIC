@@ -218,13 +218,12 @@ namespace GME
   //
   // attributes
   //
-  size_t FCO::attributes (Collection_T <Attribute> & attrs) const
+  size_t FCO::attributes (std::vector <Attribute> & attrs) const
   {
-    IMgaAttributes * coll = 0;
+    CComPtr <IMgaAttributes> coll;
     VERIFY_HRESULT (this->impl ()->get_Attributes (&coll));
 
-    attrs.attach (coll);
-    return attrs.size ();
+    return get_children (coll, attrs);
   }
 
   //
@@ -290,7 +289,7 @@ namespace GME
   //
   // registry
   //
-  size_t FCO::registry (GME::Collection_T <GME::RegistryNode> & nodes,
+  size_t FCO::registry (std::vector <GME::RegistryNode> & nodes,
                         bool virtual_types) const
   {
     // Get all the subnodes.
@@ -298,8 +297,7 @@ namespace GME
     VARIANT_BOOL vtypes = !virtual_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
-    nodes.attach (rawnodes.Detach ());
-    return nodes.size ();
+    return get_children (rawnodes, nodes);
   }
 
   //
@@ -317,13 +315,12 @@ namespace GME
   //
   // in_sets
   //
-  size_t FCO::in_sets (GME::Collection_T <GME::Set> & sets) const
+  size_t FCO::in_sets (std::vector <GME::Set> & sets) const
   {
     CComPtr <IMgaFCOs> temp;
     VERIFY_HRESULT (this->impl ()->get_MemberOfSets (&temp));
 
-    sets.attach (temp.Detach ());
-    return sets.size ();
+    return get_children (temp, sets);
   }
 
   void FCO::accept (GME::Visitor & visitor)

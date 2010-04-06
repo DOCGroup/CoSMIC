@@ -42,11 +42,11 @@ create_element (GME::Folder & parent, const std::string & type)
     switch (meta_fco.type ())
     {
     case OBJTYPE_ATOM:
-      object = GME::Atom::_create (meta_fco, parent);
+      object = GME::Atom::_create (parent, meta_fco);
       break;
 
     case OBJTYPE_MODEL:
-      object = GME::Model::_create (meta_fco, parent);
+      object = GME::Model::_create (parent, meta_fco);
       break;
 
     default:
@@ -64,7 +64,7 @@ create_element (GME::Folder & parent, const std::string & type)
     // Since we failed to locate the FCO meta information,
     // this must be a folder type.
     GME::Meta::Folder meta_folder = parent.meta ().folder (type);
-    return GME::Folder::_create (meta_folder, parent);
+    return GME::Folder::_create (parent, meta_folder);
   }
 }
 
@@ -82,19 +82,19 @@ create_element (GME::Model & parent, const std::string & type)
   switch (obj_type)
   {
   case OBJTYPE_ATOM:
-    object = GME::Atom::_create (role, parent);
+    object = GME::Atom::_create (parent, role);
     break;
 
   case OBJTYPE_MODEL:
-    object = GME::Model::_create (role, parent);
+    object = GME::Model::_create (parent, role);
     break;
 
   case OBJTYPE_REFERENCE:
-    object = GME::Reference::_create (role, parent);
+    object = GME::Reference::_create (parent, role);
     break;
 
   case OBJTYPE_SET:
-    object = GME::Set::_create (role, parent);
+    object = GME::Set::_create (parent, role);
     break;
 
   default:
@@ -185,7 +185,7 @@ store_predefined_reference (const GME::Object & obj, const char * pt)
   filter.kind (pt);
 
   // Apply the filter to the project.
-  GME::Collection_T <GME::FCO> result;
+  std::vector <GME::FCO> result;
   GME::FCO fco;
 
   if (0 != filter.apply (result))
@@ -211,7 +211,7 @@ store_predefined_reference (const GME::Object & obj, const char * pt)
     }
 
     // Create the new predefined type.
-    fco = GME::Atom::_create (pt, predefined_types);
+    fco = GME::Atom::_create (predefined_types, pt);
     fco.name (pt);
   }
 
@@ -278,7 +278,7 @@ preprocess (GME::Object & parent, const std::string & include_file)
   filter.name (basename);
 
 
-  GME::Collection_T <GME::FCO> files;
+  std::vector <GME::FCO> files;
 
   if (filter.apply (files))
     this->preprocess_impl (GME::Model::_narrow (*files.begin ()));
@@ -290,7 +290,7 @@ preprocess (GME::Object & parent, const std::string & include_file)
 void T3_Runtime_Engine::preprocess_impl (GME::Model & model)
 {
   // Go through all the packages in the file.
-  GME::Collection_T <GME::Model> packages;
+  std::vector <GME::Model> packages;
   model.children ("Package", packages);
 
   std::for_each (packages.begin (),
@@ -322,12 +322,12 @@ void T3_Runtime_Engine::preprocess_impl (GME::Model & model)
   for (const char ** type = named_types; *type != 0; ++ type)
   {
     // Add all named type elements to the symbol table.
-    GME::Collection_T <GME::FCO> children;
+    std::vector <GME::FCO> children;
     model.children (*type, children);
 
     std::string fq_name;
 
-    for (GME::Collection_T <GME::FCO>::iterator iter = children.begin (),
+    for (std::vector <GME::FCO>::iterator iter = children.begin (),
          iter_end = children.end (); iter != iter_end; ++ iter)
     {
       // Construct the fully qualified name for this element.
@@ -459,6 +459,6 @@ create_connection_to (const GME::Object & src,
     return false;
 
   GME::FCO src_fco = GME::FCO::_narrow (src);
-  GME::Connection::_create (type, parent, src_fco, dst_fco);
+  GME::Connection::_create (parent, type, src_fco, dst_fco);
   return true;
 }

@@ -53,7 +53,7 @@ int GME::Interpreter_Impl_Base::initialize (GME::Project & project)
 GME_INLINE
 int GME::Interpreter_Impl_Base::
 invoke (GME::Project & project,
-        GME::Collection_T <GME::FCO> & selected,
+        std::vector <GME::FCO> & selected,
         long flags)
 {
   return 0;
@@ -66,7 +66,7 @@ GME_INLINE
 int GME::Interpreter_Impl_Base::
 invoke_ex (GME::Project & project,
            GME::FCO & fco,
-           GME::Collection_T <GME::FCO> & selected,
+           std::vector <GME::FCO> & selected,
            long flags)
 {
   return 0;
@@ -79,7 +79,7 @@ GME_INLINE
 int GME::Interpreter_Impl_Base::
 invoke_object_ex (GME::Project & project,
                   GME::Object & obj,
-                  GME::Collection_T <GME::Object> & selected,
+                  std::vector <GME::Object> & selected,
                   long flags)
 {
   return 0;

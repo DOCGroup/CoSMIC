@@ -75,16 +75,16 @@ namespace GME
   //
   // _create
   //
-  Reference Reference::_create (const std::string & type, Model & parent)
+  Reference Reference::_create (Model & parent, const std::string & type)
   {
     Meta::Role role = parent.meta ().role (type);
-    return Reference::_create (role, parent);
+    return Reference::_create (parent, role);
   }
 
   //
   // _create
   //
-  Reference Reference::_create (const Meta::Role & role, Model & parent)
+  Reference Reference::_create (Model & parent, const Meta::Role & role)
   {
     CComPtr <IMgaFCO> child;
     VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));

@@ -182,12 +182,12 @@ public:
                                      Cond cond)
   {
     // Get the children of the specified type.
-    GME::Collection_T <GME::FCO> children;
+    std::vector <GME::FCO> children;
     GME::FCO fco;
 
     if (parent.children (type, children))
     {
-      GME::Collection_T <GME::FCO>::const_iterator result;
+      std::vector <GME::FCO>::const_iterator result;
 
       result = std::find_if (children.begin (),
                              children.end (),

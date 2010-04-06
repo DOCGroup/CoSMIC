@@ -44,13 +44,12 @@ void Filter::name (const std::string & value)
 //
 // apply
 //
-size_t Filter::apply (GME::Collection_T <FCO> & result) const
+size_t Filter::apply (std::vector <FCO> & result) const
 {
   CComPtr <IMgaFCOs> fcos;
   VERIFY_HRESULT (this->project_.impl ()->AllFCOs (this->filter_, &fcos));
 
-  result.attach (fcos.Detach ());
-  return result.size ();
+  return get_children (fcos, result);
 }
 
 }

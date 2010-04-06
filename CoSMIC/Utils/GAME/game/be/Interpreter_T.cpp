@@ -75,7 +75,7 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 
     try
     {
-      GME::Collection_T <GME::FCO> selected (fcos);
+      std::vector <GME::FCO> selected (fcos);
 
       // Begin a new transaction.
       if (this->impl_.is_managed ())
@@ -120,7 +120,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
     try
     {
       GME::FCO current (fco);
-      GME::Collection_T <GME::FCO> selected (select);
+      std::vector <GME::FCO> selected (select);
 
       // Begin a new transaction for the process.
       if (this->impl_.is_managed ())
@@ -166,7 +166,7 @@ ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long 
     try
     {
       GME::Object object (obj);
-      GME::Collection_T <GME::Object> objects (objs);
+      std::vector <GME::Object> objects (objs);
 
       // Start a new transaction.
       if (this->impl_.is_managed ())

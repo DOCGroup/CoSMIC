@@ -65,21 +65,20 @@ namespace GME
   //
   // _create
   //
-  Atom Atom::_create (const std::string & type, Model & parent)
+  Atom Atom::_create (Model & parent, const std::string & type)
   {
     Meta::Role role = parent.meta ().role (type);
-    return Atom::_create (role, parent);
+    return Atom::_create (parent, role);
   }
 
   //
   // _create
   //
-  Atom Atom::_create (const Meta::Role & role, Model & parent)
+  Atom Atom::_create (Model & parent, const Meta::Role & role)
   {
     CComPtr <IMgaFCO> child;
 
-    VERIFY_HRESULT (
-      parent.impl ()->CreateChildObject (role, &child));
+    VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
 
     return Atom::_narrow (FCO (child));
   }
@@ -87,16 +86,16 @@ namespace GME
   //
   // _create
   //
-  Atom Atom::_create (const std::string & type, Folder & parent)
+  Atom Atom::_create (Folder & parent, const std::string & type)
   {
     Meta::FCO role = parent.meta ().child (type);
-    return Atom::_create (role, parent);
+    return Atom::_create (parent, role);
   }
 
   //
   // _create
   //
-  Atom Atom::_create (const Meta::FCO & type, Folder & parent)
+  Atom Atom::_create (Folder & parent, const Meta::FCO & type)
   {
     CComPtr <IMgaFCO> child;
 

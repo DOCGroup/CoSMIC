@@ -21,6 +21,7 @@
 
 #include "GME_export.h"
 #include "GME_fwd.h"
+#include "Exception.h"
 #include <atlcomcli.h>
 #include <vector>
 
@@ -174,129 +175,10 @@ struct item_traits <Meta::FCO>
   typedef IMgaMetaFCOs collection_type;
 };
 
-/**
- * @class Collection_T
- *
- * Default container class for managing GME collections.
- */
-template <typename T>
-class Collection_T
-{
-public:
-  /// Type definition for the item type.
-  typedef T type;
-
-  /// Type definition for the collection type.
-  typedef typename item_traits <T>::collection_type collection_type;
-
-  /// Type definition for the container type.
-  typedef std::vector <T> container_type;
-
-  /// Type definition for the interator type.
-  typedef typename container_type::iterator iterator;
-
-  /// Type definition for the const iterator type.
-  typedef typename container_type::const_iterator const_iterator;
-
-  /// Type definition for the size type.
-  typedef typename container_type::size_type size_type;
-
-  /// Type definition for the value type.
-  typedef typename container_type::value_type value_type;
-
-  /// Default constructor.
-  Collection_T (void);
-
-  /**
-   * Initializing constructor.
-   *
-   * @param[in]     collection      The source collection.
-   */
-  Collection_T (typename collection_type * collection);
-
-  /// Destructor.
-  ~Collection_T (void);
-
-  /**
-   * Attach to the specified collection.
-   *
-   * @param[in]     collection      The source collection.
-   */
-  void attach (typename collection_type * collection);
-
-  /**
-   * Get the collection of items.
-   *
-   * @return        The collection of items.
-   */
-  typename container_type & items (void);
-
-  /**
-   * Get the collection of items.
-   *
-   * @return        The collection of items.
-   */
-  const typename container_type & items (void) const;
-
-  /**
-   * Get the number of items in the collection.
-   *
-   * @return        Number of items in the collection.
-   */
-  typename size_type size (void) const;
-
-  /**
-   * Determine if the collection is empty.
-   *
-   * @retval        true      The collection is empty.
-   * @retval        false     The collection is not empty.
-   */
-  bool empty (void) const;
-
-  /**
-   * Get the underlying implementation.
-   *
-   * @return        Pointer to the implementation.
-   */
-  typename collection_type * impl (void) const;
-
-  /// Clear the collection.
-  void clear (void);
-
-  /**
-   * @name iterators
-   *
-   * Standard Template Library (STL) iterator methods.
-   */
-  // @{
-
-  typename iterator begin (void);
-  typename iterator end (void);
-
-  typename const_iterator begin (void) const;
-  typename const_iterator end (void) const;
-  // @}
-
-private:
-  /// Populate the collection object with the items.
-  void populate (void);
-
-  /// The underlying collection.
-  ATL::CComPtr <typename collection_type> collection_;
-
-  /// The collection of items.
-  std::vector <T> items_;
-
-  // prevent the following operations
-  Collection_T (const Collection_T &);
-  const Collection_T & operator = (const Collection_T &);
-};
+template <typename ITER, typename T>
+size_t get_children (ITER iter, std::vector <T> & coll);
 
 }
-
-#if defined (__GME_INLINE__)
-#include "Collection_T.inl"
-#endif
 
 #include "Collection_T.cpp"
 

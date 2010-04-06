@@ -43,17 +43,16 @@ public:
    * @param[in]         metaname          Metaname of the \a element.
    * @param[out]        element           The child element.
    */
-  template <typename P, typename T>
+  template <typename P, typename T, typename META>
   bool operator () (P parent,
-                    const std::string & metaname,
+                    const META & metaname,
                     T & element);
 
   /**
    * @overloaded
    */
   template <typename T>
-  bool operator () (const GME::Collection_T <T> & parent,
-                    T & element);
+  bool operator () (const T & parent, typename T::value_type & element);
 
 private:
   /**
@@ -64,7 +63,8 @@ private:
    * @param[out]      element           Contains to found element.
    */
   template <typename T>
-  bool find_i (T iter_begin, T iter_end,
+  bool find_i (T iter_begin,
+               T iter_end,
                typename std::iterator_traits <T>::value_type & element);
 
   /// The predicate of interest.
@@ -80,8 +80,8 @@ private:
 template <typename PRED>
 contains_t <PRED> contains (PRED predicate);
 
-template <typename P, typename T, typename PRED>
-bool find (P & parent, const std::string & metaname, T & element, PRED predicate);
+template <typename P, typename T, typename META, typename PRED>
+bool find (P & parent, const META & metaname, T & element, PRED predicate);
 
 /**
  * Create an element if a child that satifies the specified predicate can
@@ -92,8 +92,8 @@ bool find (P & parent, const std::string & metaname, T & element, PRED predicate
  * @param[out]      element     Target storage for child element.
  * @param[in]       predicate    Predicate to search for.
  */
-template <typename P, typename T, typename PRED>
-bool create_if (P & parent, const std::string & metaname, T & element, PRED predicate);
+template <typename P, typename T, typename META, typename PRED>
+bool create_if (P & parent, const META & metaname, T & element, PRED predicate);
 
 /**
  * Create an element if a child that satifies the specified predicate can
@@ -104,24 +104,24 @@ bool create_if (P & parent, const std::string & metaname, T & element, PRED pred
  * @param[out]      element       Target storage for child element.
  * @param[in]       predicate     Predicate to search for.
  */
-template <typename P, typename C, typename T, typename PRED>
+template <typename P, typename T, typename META, typename PRED>
 bool create_if (P & parent,
-                const std::string & metaname,
-                const GME::Collection_T <T> & collection,
-                T & element,
+                const META & metaname,
+                T collection,
+                typename T::value_type & element,
                 PRED predicate);
 
-template <typename P, typename T, typename PRED>
+template <typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
-                    const std::string & metaname,
+                    const META & metaname,
                     T & element,
                     PRED predicate);
 
-template <typename P, typename T, typename PRED>
+template <typename P, typename T, typename META, typename PRED>
 bool create_if_not (P & parent,
-                    const std::string & metaname,
-                    const GME::Collection_T <T> & collection,
-                    T & element,
+                    const META & metaname,
+                    const T & collection,
+                    typename T::value_type & element,
                     PRED predicate);
 
 /**

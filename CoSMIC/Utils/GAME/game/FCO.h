@@ -208,7 +208,7 @@ namespace GME
      * @param[out]  attrs     The attributes of the FCO.
      * @return      Number of attributes.
      */
-    size_t attributes (Collection_T <Attribute> & attrs) const;
+    size_t attributes (std::vector <Attribute> & attrs) const;
 
     /**
      * Get the parent of the FCO, which is a model.
@@ -240,7 +240,7 @@ namespace GME
      * @param[out]      sets        Collection of sets
      * @return          Number of items in \a sets
      */
-    size_t in_sets (GME::Collection_T <GME::Set> & sets) const;
+    size_t in_sets (std::vector <GME::Set> & sets) const;
 
     /**
      * Get the collection of objects this object is derived
@@ -256,7 +256,7 @@ namespace GME
      * @param[out]      nodes         The collection of registry nodes
      * @param[in]       vtypes        Include virtual registry nodes
      */
-    size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
+    size_t registry (std::vector <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
     /**

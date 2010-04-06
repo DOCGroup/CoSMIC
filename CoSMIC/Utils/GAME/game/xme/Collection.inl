@@ -32,7 +32,7 @@ Collection <T>::Collection (xercesc::DOMNodeList * list)
 //
 template <typename T>
 GME_INLINE
-Collection <T>::Collection (Collection & coll)
+Collection <T>::Collection (const Collection & coll)
 : list_ (coll.list_)
 {
 

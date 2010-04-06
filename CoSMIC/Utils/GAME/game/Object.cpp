@@ -304,7 +304,7 @@ find_object_by_path (const std::string & path) const
 // children
 //
 size_t Object::
-children (GME::Collection_T <GME::Object> & children) const
+children (std::vector <GME::Object> & children) const
 {
   switch (this->type ())
   {
@@ -314,7 +314,7 @@ children (GME::Collection_T <GME::Object> & children) const
       CComPtr <IMgaObjects> temp;
       VERIFY_HRESULT (this->object_->get_ChildObjects (&temp));
 
-      children.attach (temp.Detach ());
+      return get_children (temp, children);
     }
     break;
 

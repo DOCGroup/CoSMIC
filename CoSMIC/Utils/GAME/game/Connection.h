@@ -258,8 +258,8 @@ namespace GME
      * @param[in]       dst         Destination FCO of the connection.
      * @return          Newly created connection object.
      */
-    static Connection _create (const std::string & role,
-                               const Model & parent,
+    static Connection _create (const Model & parent,
+                               const std::string & role,
                                const FCO & src,
                                const FCO & dst);
 

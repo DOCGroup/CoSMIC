@@ -84,7 +84,7 @@ size_t Folder::relid_counter (void) const
 // folders
 //
 GME_INLINE
-size_t Folder::folders (std::vector <Folder> & folders)
+size_t Folder::children (std::vector <Folder> & folders)
 {
   return Utils::get_children (this->obj_, folders);
 }
@@ -94,7 +94,7 @@ size_t Folder::folders (std::vector <Folder> & folders)
 //
 GME_INLINE
 size_t Folder::
-folders (const std::string & metaname, std::vector <Folder> & folders)
+children (const ::Utils::XStr & metaname, std::vector <Folder> & folders)
 {
   return Utils::get_children (this->obj_, metaname, folders);
 }
@@ -103,7 +103,7 @@ folders (const std::string & metaname, std::vector <Folder> & folders)
 // fcos
 //
 GME_INLINE
-size_t Folder::fcos (std::vector <FCO> & folders)
+size_t Folder::children (std::vector <FCO> & folders)
 {
   return Utils::get_children (this->obj_, folders);
 }
@@ -113,7 +113,7 @@ size_t Folder::fcos (std::vector <FCO> & folders)
 //
 GME_INLINE
 size_t Folder::
-fcos (const std::string & metaname, std::vector <FCO> & folders)
+children (const ::Utils::XStr & metaname, std::vector <FCO> & folders)
 {
   return Utils::get_children (this->obj_, metaname, folders);
 }
@@ -122,7 +122,7 @@ fcos (const std::string & metaname, std::vector <FCO> & folders)
 // atoms
 //
 GME_INLINE
-size_t Folder::atoms (std::vector <Atom> & coll)
+size_t Folder::children (std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, coll);
 }
@@ -132,7 +132,7 @@ size_t Folder::atoms (std::vector <Atom> & coll)
 //
 GME_INLINE
 size_t Folder::
-atoms (const std::string & metaname, std::vector <Atom> & coll)
+children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
@@ -141,7 +141,7 @@ atoms (const std::string & metaname, std::vector <Atom> & coll)
 // models
 //
 GME_INLINE
-size_t Folder::models (std::vector <Model> & coll)
+size_t Folder::children (std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, coll);
 }
@@ -151,7 +151,7 @@ size_t Folder::models (std::vector <Model> & coll)
 //
 GME_INLINE
 size_t Folder::
-models (const std::string & metaname, std::vector <Model> & coll)
+children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }

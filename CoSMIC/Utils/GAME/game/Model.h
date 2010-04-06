@@ -46,9 +46,9 @@ namespace GME
      * @param[in]       parent        The parent model.
      * @return          The newly created model.
      */
-    static Model _create (const std::string & type, Model & parent);
+    static Model _create (Model & parent, const std::string & type);
 
-    static Model _create (const Meta::Role & role, Model & parent);
+    static Model _create (Model & parent, const Meta::Role & role);
 
     /**
      * Create a new model element.
@@ -57,9 +57,9 @@ namespace GME
      * @param[in]       parent        Parent folder of the model.
      * @return          The newly created model.
      */
-    static Model _create (const std::string & type, Folder & parent);
+    static Model _create (Folder & parent, const std::string & type);
 
-    static Model _create (const Meta::FCO & type, Folder & parent);
+    static Model _create (Folder & parent, const Meta::FCO & type);
 
     /// Default constructor.
     Model (void);
@@ -104,24 +104,24 @@ namespace GME
      * @return      Collection of folder objects.
      */
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Folder> & folders) const;
+                     std::vector <GME::Folder> & folders) const;
 
-    size_t children (GME::Collection_T <GME::FCO> & children) const;
-
-    size_t children (const std::string & type,
-                     GME::Collection_T <GME::FCO> & children) const;
+    size_t children (std::vector <GME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Atom> & children) const;
+                     std::vector <GME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Model> & children) const;
+                     std::vector <GME::Atom> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Reference> & children) const;
+                     std::vector <GME::Model> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Set> & children) const;
+                     std::vector <GME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     std::vector <GME::Set> & children) const;
 
     void Model::attach (IMgaModel * model);
 

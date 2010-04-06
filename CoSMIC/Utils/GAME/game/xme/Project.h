@@ -37,6 +37,14 @@ public:
                           const std::string & paradigm,
                           const std::string & guid);
 
+  /**
+   * Open an existing file.
+   *
+   * @paramp[in]
+   */
+  static Project _open (const ::Utils::XStr & location,
+                        const ::Utils::XStr & schema);
+
   /// Default constructor.
   Project (void);
 
@@ -45,14 +53,14 @@ public:
    *
    * @param[in]     proj          Root element of the project.
    */
-  Project (xercesc::DOMDocument * proj);
+  Project (xercesc::DOMDocument * proj, bool validate);
 
   /**
    * Copy constructor
    *
    * @param[in]     obj           Source project
    */
-  Project (Project & proj);
+  Project (const Project & proj);
 
   /// Destructor.
   ~Project (void);
@@ -77,7 +85,7 @@ public:
    *
    * @param[in]     obj       The right side of the operator
    */
-  const Project & operator = (Project & proj);
+  const Project & operator = (const Project & proj);
 
   /**
    * Get the name of the object.
@@ -131,6 +139,14 @@ public:
   xercesc::DOMDocument * release (void);
 
   /**
+   * Attach to an existing XML document.
+   *
+   * @param[in]     proj        Target project
+   * @param[in]     validate    Validate XML document is project
+   */
+  void attach (xercesc::DOMDocument * proj, bool validate);
+
+  /**
    * Get the root folder for the project.
    *
    * @return        The root folder.
@@ -138,6 +154,9 @@ public:
   Folder root_folder (void) const;
 
 private:
+  static const ::Utils::XStr TAGNAME;
+  static const ::Utils::XStr DTD;
+  static const ::Utils::XStr XML_VERSION;
   static const ::Utils::XStr ELEMENT_NAME;
   static const ::Utils::XStr ELEMENT_AUTHOR;
   static const ::Utils::XStr ELEMENT_COMMENT;

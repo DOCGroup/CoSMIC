@@ -64,7 +64,7 @@ public:
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
-  size_t children (GME::Collection_T <GME::Meta::Folder> & folders) const;
+  size_t children (std::vector <GME::Meta::Folder> & folders) const;
 
   /**
    * Get all the subfolders defined by this folder.
@@ -72,7 +72,7 @@ public:
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
-  size_t children (GME::Collection_T <GME::Meta::FCO> & fcos) const;
+  size_t children (std::vector <GME::Meta::FCO> & fcos) const;
 
   FCO child (const std::string & name) const;
 

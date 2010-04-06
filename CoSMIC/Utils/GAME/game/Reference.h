@@ -44,8 +44,8 @@ namespace GME
      * @param[in]       parent        The parent model.
      * @return          The newly created atom.
      */
-    static Reference _create (const std::string & type, Model & parent);
-    static Reference _create (const Meta::Role & type, Model & parent);
+    static Reference _create (Model & parent, const std::string & type);
+    static Reference _create (Model & parent, const Meta::Role & type);
 
     /// Default constructor.
     Reference (void);

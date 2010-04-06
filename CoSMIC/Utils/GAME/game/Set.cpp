@@ -81,16 +81,13 @@ namespace GME
   //
   // members
   //
-  size_t Set::members (GME::Collection_T <GME::FCO> & members) const
+  size_t Set::members (std::vector <GME::FCO> & members) const
   {
     // Get all the members in the set.
     CComPtr <IMgaFCOs> fcos;
     VERIFY_HRESULT (this->impl ()->get_Members (&fcos));
 
-    // Attach the implementation to the collection. We also need
-    // to return the size of the set.
-    members.attach (fcos);
-    return members.size ();
+    return get_children (fcos, members);
   }
 
   //
@@ -135,16 +132,16 @@ namespace GME
   //
   // _create
   //
-  Set Set::_create (const std::string & type, Model & parent)
+  Set Set::_create (Model & parent, const std::string & type)
   {
     Meta::Role role = parent.meta ().role (type);
-    return Set::_create (role, parent);
+    return Set::_create (parent, role);
   }
 
   //
   // _create
   //
-  Set Set::_create (const Meta::Role & type, Model & parent)
+  Set Set::_create (Model & parent, const Meta::Role & type)
   {
     CComPtr <IMgaFCO> child;
     VERIFY_HRESULT (parent.impl ()->CreateChildObject (type, &child));

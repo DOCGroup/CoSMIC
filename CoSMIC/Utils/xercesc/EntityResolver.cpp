@@ -6,7 +6,19 @@
 
 namespace Utils
 {
+//
+// EntityResolver
+//
 EntityResolver::EntityResolver (const char * path)
+: base_path_ (path)
+{
+
+}
+
+//
+// EntityResolver
+//
+EntityResolver::EntityResolver (const ::Utils::XStr & path)
 : base_path_ (path)
 {
 

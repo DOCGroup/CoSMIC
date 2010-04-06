@@ -36,7 +36,7 @@ private:
   ::GME::Object model_;
 
   /// Collection of existing models.
-  GME::Collection_T <::GME::Object> existing_;
+  std::vector <::GME::Object> existing_;
 
   size_t ref_count_;
 

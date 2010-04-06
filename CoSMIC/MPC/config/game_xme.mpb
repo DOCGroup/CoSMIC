@@ -1,6 +1,6 @@
 // $Id$
 
-project : cosmic_xerces_utils {
+project : game_common, cosmic_xerces_utils {
   after += GAME_XME
   libs  += GAME_XME
 }

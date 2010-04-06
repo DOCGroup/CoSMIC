@@ -78,23 +78,23 @@ public:
    * @param[out]    coll      Child folders
    * @return        Number of folders in collection
    */
-  size_t folders (std::vector <Folder> & folders);
+  size_t children (std::vector <Folder> & folders);
 
   /**
    * @overload
    *
    * @param[in]     metaname          Metaname of the child folders.
    */
-  size_t folders (const std::string & metaname, std::vector <Folder> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Folder> & coll);
 
-  size_t fcos (std::vector <FCO> & coll);
-  size_t fcos (const std::string & metaname, std::vector <FCO> & coll);
+  size_t children (std::vector <FCO> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <FCO> & coll);
 
-  size_t atoms (std::vector <Atom> & coll);
-  size_t atoms (const std::string & metaname, std::vector <Atom> & coll);
+  size_t children (std::vector <Atom> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Atom> & coll);
 
-  size_t models (std::vector <Model> & coll);
-  size_t models (const std::string & metaname, std::vector <Model> & coll);
+  size_t children (std::vector <Model> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Model> & coll);
 
   /**
    * Reset the relative id counter. This method should only be

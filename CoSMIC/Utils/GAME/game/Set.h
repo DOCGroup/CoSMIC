@@ -45,8 +45,8 @@ namespace GME
      * @param[in]       parent        The parent model.
      * @return          The newly created set.
      */
-    static Set _create (const std::string & type, Model & parent);
-    static Set _create (const Meta::Role & role, Model & parent);
+    static Set _create (Model & parent, const std::string & type);
+    static Set _create (Model & parent, const Meta::Role & role);
 
     /// Default constructor.
     Set (void);
@@ -114,7 +114,7 @@ namespace GME
      * @param[out]    members       Collection of objects in the set.
      * @return        Number of elements in \a members.
      */
-    size_t members (GME::Collection_T <FCO> & members) const;
+    size_t members (std::vector <FCO> & members) const;
 
     virtual void accept (GME::Visitor & visitor);
 

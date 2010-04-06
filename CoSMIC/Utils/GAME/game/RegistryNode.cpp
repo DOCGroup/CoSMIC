@@ -99,7 +99,7 @@ namespace GME
   //
   // children
   //
-  size_t RegistryNode::children (GME::Collection_T <GME::RegistryNode> & nodes, 
+  size_t RegistryNode::children (std::vector <GME::RegistryNode> & nodes,
                                  bool virtualinterface_types) const
   {
     // Get all the subnodes.
@@ -107,9 +107,7 @@ namespace GME
     VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->node_->get_SubNodes (vtypes, &rawnodes));
 
-    // Get the count and resize the nodes.
-    nodes.attach (rawnodes.Detach ());
-    return nodes.size ();
+    return get_children (rawnodes, nodes);
   }
 
   //

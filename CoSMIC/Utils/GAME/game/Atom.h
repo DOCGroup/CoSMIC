@@ -44,11 +44,11 @@ namespace GME
      * @param[in]       parent        The parent model.
      * @return          The newly created atom.
      */
-    static Atom _create (const std::string & type, Model & parent);
-    static Atom _create (const Meta::Role & type, Model & parent);
+    static Atom _create (Model & parent, const std::string & type);
+    static Atom _create (Model & parent, const Meta::Role & type);
 
-    static Atom _create (const std::string & type, Folder & parent);
-    static Atom _create (const Meta::FCO & type, Folder & parent);
+    static Atom _create (Folder & parent, const std::string & type);
+    static Atom _create (Folder & parent, const Meta::FCO & type);
 
     /// Default constructor.
     Atom (void);

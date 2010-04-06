@@ -53,16 +53,16 @@ namespace GME
   //
   // _create
   //
-  Model Model::_create (const std::string & type, Model & parent)
+  Model Model::_create (Model & parent, const std::string & type)
   {
     Meta::Role role = parent.meta ().role (type);
-    return Model::_create (role, parent);
+    return Model::_create (parent, role);
   }
 
   //
   // _create
   //
-  Model Model::_create (const Meta::Role & role, Model & parent)
+  Model Model::_create (Model & parent, const Meta::Role & role)
   {
     CComPtr <IMgaFCO> child;
     VERIFY_HRESULT (parent.impl ()->CreateChildObject (role, &child));
@@ -73,16 +73,16 @@ namespace GME
   //
   // _create
   //
-  Model Model::_create (const std::string & type, Folder & parent)
+  Model Model::_create (Folder & parent, const std::string & type)
   {
     Meta::FCO meta = parent.meta ().child (type);
-    return Model::_create (meta, parent);
+    return Model::_create (parent, meta);
   }
 
   //
   // _create
   //
-  Model Model::_create (const Meta::FCO & meta, Folder & parent)
+  Model Model::_create (Folder & parent, const Meta::FCO & meta)
   {
     CComPtr <IMgaFCO> child;
     VERIFY_HRESULT (parent.impl ()->CreateRootObject (meta.impl (), &child));
@@ -101,89 +101,77 @@ namespace GME
   //
   // children
   //
-  size_t Model::children (GME::Collection_T <FCO> & children) const
+  size_t Model::children (std::vector <FCO> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Model::
-  children (const std::string & type, GME::Collection_T <GME::FCO> & children) const
+  children (const std::string & type, std::vector <GME::FCO> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Model::
-  children (const std::string & type, GME::Collection_T <GME::Atom> & children) const
+  children (const std::string & type, std::vector <GME::Atom> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Model::
-  children (const std::string & type, GME::Collection_T <GME::Model> & children) const
+  children (const std::string & type, std::vector <GME::Model> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Model::
-  children (const std::string & type, GME::Collection_T <GME::Reference> & children) const
+  children (const std::string & type, std::vector <GME::Reference> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Model::
-  children (const std::string & type, GME::Collection_T <GME::Set> & children) const
+  children (const std::string & type, std::vector <GME::Set> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //

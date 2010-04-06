@@ -61,7 +61,9 @@ void Auto_Model_Impl::cleanup (void)
 
     if (listener)
     {
-      for (GME::Collection_T <GME::Object>::iterator iter = this->existing_.begin (),
+      typedef std::vector <GME::Object>::iterator iterator;
+
+      for (iterator iter = this->existing_.begin (),
            iter_end = this->existing_.end (); iter != iter_end; ++ iter)
       {
         // Notify the listener.
@@ -93,13 +95,13 @@ void Auto_Model_Impl::cleanup (void)
 //
 void Auto_Model_Impl::handle_new_object (const GME::Object & obj)
 {
-  GME::Collection_T <GME::Object>::iterator iter =
+  std::vector <GME::Object>::iterator iter =
     std::find (this->existing_.begin (),
                this->existing_.end (),
                obj);
 
   if (iter != this->existing_.end ())
-    this->existing_.items ().erase (iter);
+    this->existing_.erase (iter);
 }
 
 }

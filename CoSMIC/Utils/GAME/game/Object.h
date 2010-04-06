@@ -272,7 +272,7 @@ public:
    * @param[out]      children     Children of this object.
    * @return          Number of children.
    */
-  size_t children (GME::Collection_T <GME::Object> & children) const;
+  size_t children (std::vector <GME::Object> & children) const;
 
   /// Release the pointer to the object. This does not actually
   /// delete the object. Please see destory () to delete the

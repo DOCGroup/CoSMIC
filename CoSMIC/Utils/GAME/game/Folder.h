@@ -53,8 +53,8 @@ namespace GME
      * @param[in]       parent        The parent folder.
      * @return          The newly created folder.
      */
-    static Folder _create (const std::string & type, Folder & parent);
-    static Folder _create (const Meta::Folder & type, Folder & parent);
+    static Folder _create (Folder & parent, const std::string & type);
+    static Folder _create (Folder & parent, const Meta::Folder & type);
 
     /**
      * Extract the folder element from the object.
@@ -79,7 +79,7 @@ namespace GME
      *
      * @return      Collection of folder objects.
      */
-    size_t children (GME::Collection_T <GME::Folder> & folders) const;
+    size_t children (std::vector <GME::Folder> & folders) const;
 
     /**
      * Get all the first-level child folders of this folder.
@@ -87,21 +87,21 @@ namespace GME
      * @return      Collection of folder objects.
      */
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Folder> & folders) const;
+                     std::vector <GME::Folder> & folders) const;
 
-    size_t children (GME::Collection_T <GME::FCO> & children) const;
-
-    size_t children (const std::string & type,
-                     GME::Collection_T <GME::Atom> & children) const;
+    size_t children (std::vector <GME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Model> & children) const;
+                     std::vector <GME::Atom> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Reference> & children) const;
+                     std::vector <GME::Model> & children) const;
 
     size_t children (const std::string & type,
-                     GME::Collection_T <GME::Set> & children) const;
+                     std::vector <GME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     std::vector <GME::Set> & children) const;
 
     /**
      * Get the parent of this folder.
@@ -147,7 +147,7 @@ namespace GME
      * @param[in]   vtypes    The the virtual nodes as well.
      * @return      Number of elements in \a nodes.
      */
-    size_t registry (GME::Collection_T <GME::RegistryNode> & nodes,
+    size_t registry (std::vector <GME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
     virtual void accept (GME::Visitor & visitor);

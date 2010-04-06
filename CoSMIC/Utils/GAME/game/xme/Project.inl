@@ -21,8 +21,8 @@ Project::Project (void)
 // Project
 //
 GME_INLINE
-Project::Project (Project & proj)
-: doc_ (proj.release ()),
+Project::Project (const Project & proj)
+: doc_ (proj.doc_),
   xmefile_ (proj.xmefile_)
 {
 
@@ -32,10 +32,10 @@ Project::Project (Project & proj)
 // Project
 //
 GME_INLINE
-Project::Project (xercesc::DOMDocument * doc)
-: doc_ (doc)
+Project::Project (xercesc::DOMDocument * doc, bool validate)
+: doc_ (0)
 {
-
+  this->attach (doc, validate);
 }
 
 //

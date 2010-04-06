@@ -43,7 +43,7 @@ public:
    *
    * @param[in]     result        Number of elements in result.
    */
-  size_t apply (Collection_T <FCO> & result) const;
+  size_t apply (std::vector <FCO> & result) const;
 
   /**
    * Set the kind attribute for the filter.

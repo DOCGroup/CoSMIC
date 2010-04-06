@@ -97,7 +97,7 @@ namespace Meta
      */
     IMgaMetaModel * impl (void) const;
 
-    size_t children (GME::Collection_T <GME::Meta::FCO> & fcos) const;
+    size_t children (std::vector <GME::Meta::FCO> & fcos) const;
 
   private:
     /// Pointer to the raw COM interface.

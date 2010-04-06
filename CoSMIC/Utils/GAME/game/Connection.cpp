@@ -147,8 +147,8 @@ namespace GME
   //
   // _create
   //
-  Connection Connection::_create (const std::string & name,
-                                  const Model & parent,
+  Connection Connection::_create (const Model & parent,
+                                  const std::string & name,
                                   const FCO & src,
                                   const FCO & dst)
   {

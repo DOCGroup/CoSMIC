@@ -1,3 +1,79 @@
+Tue Apr  6 05:17:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_xme.mpb:
+        * Utils/GAME/game/Atom.h:
+        * Utils/GAME/game/Atom.cpp:
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/Collection_T.cpp:
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.cpp:
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/MetaFolder.h:
+        * Utils/GAME/game/MetaFolder.cpp:
+        * Utils/GAME/game/MetaModel.h:
+        * Utils/GAME/game/MetaModel.cpp:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+        * Utils/GAME/game/RegistryNode.h:
+        * Utils/GAME/game/RegistryNode.cpp:
+        * Utils/GAME/game/Set.h:
+        * Utils/GAME/game/Set.cpp:
+
+          . Reordered the parameters in the _create () method.
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/GAME/game/be/Interpreter_Impl_Base.h:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.inl:
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.inl:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Generalized the algorithms to support both the COM or
+            XME version of GME in GAME.
+
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Renamed the method(s) that retrieve the collection of
+            child elements in a Model/Folder to children ().
+
+        * Utils/T3/t3/runtime/Auto_Model_Impl.h:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.h:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+
+          . Overloaded the constructor to support ::Utils::XStr.
+
+        * Utils/GAME/game/Collection_T.inl:
+
+          Removed this file.
+
 Mon Apr  5 16:28:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/xercesc/Xerces_Initializer.cpp:

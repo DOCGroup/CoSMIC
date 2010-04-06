@@ -36,6 +36,8 @@ public:
   /// constructor is called.
   EntityResolver (const char *path);
 
+  EntityResolver (const ::Utils::XStr & path);
+
   /// This function is called by the Xerces infrastructure to
   /// actually resolve the location of a schema.
   virtual xercesc::InputSource * resolveEntity (const XMLCh *const publicId,

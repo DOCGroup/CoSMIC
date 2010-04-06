@@ -9,12 +9,12 @@ namespace GAME
 // contains_t::operator ()
 //
 template <typename PRED>
-template <typename P, typename T>
+template <typename P, typename T, typename META>
 bool contains_t <PRED>::
-operator () (P parent, const std::string & metaname, T & element)
+operator () (P parent, const META & metaname, T & element)
 {
   // Get the children of the parent.
-  GME::Collection_T <T> children;
+  std::vector <T> children;
 
   if (0 != parent.children (metaname, children))
     return this->find_i (children.begin (), children.end (), element);
@@ -28,7 +28,8 @@ operator () (P parent, const std::string & metaname, T & element)
 template <typename PRED>
 template <typename T>
 bool contains_t <PRED>::
-find_i (T iter_begin, T iter_end,
+find_i (T iter_begin,
+        T iter_end,
         typename std::iterator_traits <T>::value_type & element)
 {
   T iter = std::find_if (iter_begin, iter_end, this->predicate_);
@@ -43,8 +44,8 @@ find_i (T iter_begin, T iter_end,
 //
 // create_if
 //
-template <typename P, typename T, typename PRED>
-bool create_if (P & parent, const std::string & metaname, T & element, PRED predicate)
+template <typename P, typename T, typename META, typename PRED>
+bool create_if (P & parent, const META & metaname, T & element, PRED predicate)
 {
   // Determine if the parent has an element that matches the specified
   // predicate. If it does contain such an element then we need to
@@ -52,7 +53,7 @@ bool create_if (P & parent, const std::string & metaname, T & element, PRED pred
   if (!predicate (parent, metaname, element))
     return false;
 
-  element = T::_create (metaname, parent);
+  element = T::_create (parent, metaname);
   return true;
 }
 
@@ -62,8 +63,8 @@ bool create_if (P & parent, const std::string & metaname, T & element, PRED pred
 template <typename P, typename T, typename PRED>
 bool create_if (P & parent,
                 const std::string & metaname,
-                const GME::Collection_T <T> & collection,
-                T & element,
+                const T & collection,
+                typename T::value_type & element,
                 PRED predicate)
 {
   // Determine if the parent has an element that matches the specified
@@ -72,16 +73,16 @@ bool create_if (P & parent,
   if (!predicate (collection, element))
     return false;
 
-  element = T::_create (metaname, parent);
+  element = T::_create (parent, metaname);
   return true;
 }
 
 //
 // create_if_not
 //
-template <typename P, typename T, typename PRED>
+template <typename P, typename T, typename META, typename PRED>
 bool create_if_not (P parent,
-                    const std::string & metaname,
+                    const META & metaname,
                     T & element,
                     PRED predicate)
 {
@@ -91,18 +92,18 @@ bool create_if_not (P parent,
   if (predicate (parent, metaname, element))
     return false;
 
-  element = T::_create (metaname, parent);
+  element = T::_create (parent, metaname);
   return true;
 }
 
 //
 // create_if_not
 //
-template <typename P, typename C, typename T, typename PRED>
+template <typename P, typename T, typename META, typename PRED>
 bool create_if_not (P & parent,
-                    const std::string & metaname,
-                    const GME::Collection_T <T> & collection,
-                    T & element,
+                    const META & metaname,
+                    const T & collection,
+                    typename T::value_type & element,
                     PRED predicate)
 {
   // Determine if the parent has an element that matches the specified

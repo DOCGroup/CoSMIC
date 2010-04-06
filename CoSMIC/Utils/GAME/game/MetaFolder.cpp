@@ -15,28 +15,26 @@ namespace Meta
   // children
   //
   size_t Folder::
-  children (GME::Collection_T <GME::Meta::Folder> & folders) const
+  children (std::vector <GME::Meta::Folder> & folders) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFolders> metas;
     VERIFY_HRESULT (this->impl ()->get_LegalChildFolders (&metas));
 
-    folders.attach (metas.Detach ());
-    return folders.size ();
+    return get_children (metas, folders);
   }
 
   //
   // children
   //
   size_t Folder::
-  children (GME::Collection_T <GME::Meta::FCO> & fcos) const
+  children (std::vector <GME::Meta::FCO> & fcos) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFCOs> metas;
     VERIFY_HRESULT (this->impl ()->get_LegalRootObjects (&metas));
 
-    fcos.attach (metas.Detach ());
-    return fcos.size ();
+    return get_children (metas, fcos);
   }
 
   //

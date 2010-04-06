@@ -20,13 +20,12 @@ namespace GME
   //
   // children
   //
-  size_t Folder::children (GME::Collection_T <GME::Folder> & folders) const
+  size_t Folder::children (std::vector <GME::Folder> & folders) const
   {
     CComPtr <IMgaFolders> tempptr;
     VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
 
-    folders.attach (tempptr.Detach ());
-    return folders.size ();
+    return get_children (tempptr, folders);
   }
 
   /**
@@ -36,7 +35,7 @@ namespace GME
    */
   struct filter_t
   {
-    filter_t (const std::string & type, GME::Collection_T <GME::Folder> & coll)
+    filter_t (const std::string & type, std::vector <GME::Folder> & coll)
       : type_ (type),
         coll_ (coll)
     {
@@ -46,26 +45,26 @@ namespace GME
     void operator () (const GME::Folder & folder) const
     {
       if (folder.meta ().name () == this->type_)
-        this->coll_.items ().push_back (folder);
+        this->coll_.push_back (folder);
     }
 
   private:
     const std::string & type_;
 
-    GME::Collection_T <GME::Folder> & coll_;
+    std::vector <GME::Folder> & coll_;
   };
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, GME::Collection_T <GME::Folder> & folders) const
+  children (const std::string & type, std::vector <GME::Folder> & folders) const
   {
     // Clear the folders in the collection.
     folders.clear ();
 
     // Get all the child folders in this folder.
-    GME::Collection_T <GME::Folder> temp_set;
+    std::vector <GME::Folder> temp_set;
 
     if (this->children (temp_set) > 0)
       std::for_each (temp_set.begin (),
@@ -78,74 +77,64 @@ namespace GME
   //
   // children
   //
-  size_t Folder::children (GME::Collection_T <FCO> & children) const
+  size_t Folder::children (std::vector <FCO> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     VERIFY_HRESULT (this->impl ()->get_ChildFCOs (&fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, GME::Collection_T <GME::Atom> & children) const
+  children (const std::string & type, std::vector <GME::Atom> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, GME::Collection_T <GME::Model> & children) const
+  children (const std::string & type, std::vector <GME::Model> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, GME::Collection_T <GME::Reference> & children) const
+  children (const std::string & type, std::vector <GME::Reference> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, GME::Collection_T <GME::Set> & children) const
+  children (const std::string & type, std::vector <GME::Set> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
     VERIFY_HRESULT (this->impl ()->GetChildrenOfKind (bstr, &fcos));
 
-    // Determine how many folders there are.
-    children.attach (fcos.Detach ());
-    return children.size ();
+    return get_children (fcos, children);
   }
 
   //
@@ -162,16 +151,16 @@ namespace GME
   //
   // _create
   //
-  Folder Folder::_create (const std::string & type, Folder & parent)
+  Folder Folder::_create (Folder & parent, const std::string & type)
   {
     Meta::Folder meta = parent.meta ().folder (type);
-    return Folder::_create (meta, parent);
+    return Folder::_create (parent, meta);
   }
 
   //
   // _create
   //
-  Folder Folder::_create (const Meta::Folder & meta, Folder & parent)
+  Folder Folder::_create (Folder & parent, const Meta::Folder & meta)
   {
     CComPtr <IMgaFolder> folder;
     VERIFY_HRESULT (parent.impl ()->CreateFolder (meta, &folder));
@@ -254,7 +243,7 @@ namespace GME
   //
   // registry
   //
-  size_t Folder::registry (GME::Collection_T <GME::RegistryNode> & nodes,
+  size_t Folder::registry (std::vector <GME::RegistryNode> & nodes,
                            bool virtualinterface_types) const
   {
     // Get all the subnodes.
@@ -262,8 +251,7 @@ namespace GME
     VARIANT_BOOL vtypes = !virtualinterface_types ? VARIANT_FALSE : VARIANT_TRUE;
     VERIFY_HRESULT (this->impl ()->get_Registry (vtypes, &rawnodes));
 
-    nodes.attach (rawnodes.Detach ());
-    return nodes.size ();
+    return get_children (rawnodes, nodes);
   }
 
   //
