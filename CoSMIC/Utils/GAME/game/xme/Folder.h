@@ -19,6 +19,9 @@ namespace GME
 {
 namespace XME
 {
+// Forward decl.
+class Project;
+
 /**
  * @class Folder
  *
@@ -27,6 +30,8 @@ namespace XME
 class GAME_XME_Export Folder : public Object
 {
 public:
+  friend class Project;
+
   /**
    * Create a new folder
    *

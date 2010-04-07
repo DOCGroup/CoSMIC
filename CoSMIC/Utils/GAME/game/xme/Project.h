@@ -33,9 +33,9 @@ public:
    * @param[in]     paradigm      Name of the project's paradigm.
    * @param[in]     guid          Version guid of the paradigm
    */
-  static Project _create (const std::string & xmefile,
-                          const std::string & paradigm,
-                          const std::string & guid);
+  static Project _create (const ::Utils::XStr & xmefile,
+                          const ::Utils::XStr & paradigm,
+                          const ::Utils::XStr & guid);
 
   /**
    * Open an existing file.
@@ -72,7 +72,7 @@ public:
    *
    * @param[in]     xmefile       Name of the XME file.
    */
-  bool save (const std::string & xmefile);
+  bool save (const ::Utils::XStr & xmefile);
 
   /// Save the file at the current location.
   bool save (void) const;
@@ -153,6 +153,14 @@ public:
    */
   Folder root_folder (void) const;
 
+  /**
+   * Test if the project is NIL.
+   *
+   * @return        true          Project is NIL
+   * @return        false         Project is not NIL.
+   */
+  bool is_nil (void) const;
+
 private:
   static const ::Utils::XStr TAGNAME;
   static const ::Utils::XStr DTD;
@@ -162,13 +170,13 @@ private:
   static const ::Utils::XStr ELEMENT_COMMENT;
 
   // Implementation of the save method.
-  bool save_i (const std::string & xmefile) const;
+  bool save_i (const ::Utils::XStr & xmefile) const;
 
   /// The XML document for the project.
   xercesc::DOMDocument * doc_;
 
   /// Location of the project.
-  std::string xmefile_;
+  ::Utils::XStr xmefile_;
 };
 
 }

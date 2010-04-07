@@ -112,7 +112,7 @@ bool create_if_not (P & parent,
   if (predicate (collection, element))
     return false;
 
-  element = T::_create (metaname, parent);
+  element = T::value_type::_create (parent, metaname);
   return true;
 }
 

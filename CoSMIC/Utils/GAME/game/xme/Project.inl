@@ -44,8 +44,7 @@ Project::Project (xercesc::DOMDocument * doc, bool validate)
 GME_INLINE
 Project::~Project (void)
 {
-  if (0 != this->doc_)
-    this->doc_->release ();
+
 }
 
 //
@@ -148,6 +147,15 @@ xercesc::DOMDocument * Project::release (void)
   this->doc_ = 0;
 
   return temp;
+}
+
+//
+// release
+//
+GME_INLINE
+bool Project::is_nil (void) const
+{
+  return this->doc_ == 0;
 }
 }
 }

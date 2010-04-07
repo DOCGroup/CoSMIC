@@ -139,6 +139,9 @@ public:
 
   static const ::Utils::XStr EMPTY_STRING;
 
+  /// Clear the string's contents.
+  void clear (void);
+
 private:
   /// Pointer to the actual string.
   XMLCh * wstr_;

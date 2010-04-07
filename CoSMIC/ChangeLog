@@ -1,3 +1,32 @@
+Wed Apr  7 14:36:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Bug fix where create_if_not () invoked the _create ()
+            method with the parameters in the incorrect order.
+
+        * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
+
+          . Bug fix where the last chunk of the ID did not have
+            the necessary padding to ensure it was 8 characters.
+
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where the <project> tag had an invalid
+            attribute.
+
+          . Replaced the 'paradigm' attribute of the <project> tag
+            with 'metaname'.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented the method clear () for clearing the
+            contents of the string.
+
 Tue Apr  6 05:17:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_xme.mpb:

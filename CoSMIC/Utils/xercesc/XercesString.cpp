@@ -142,4 +142,15 @@ std::ostream & operator << (std::ostream & out, const XStr & str)
   return out;
 }
 
+//
+// ~XStr
+//
+void XStr::clear (void)
+{
+  if (this->release_ && 0 != this->wstr_)
+    XMLString::release (&this->wstr_, this->allocator_);
+
+  this->wstr_ = 0;
+}
+
 }

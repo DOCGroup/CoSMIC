@@ -52,10 +52,22 @@ const ::Utils::XStr & GME_ID_Generator_T <T>::generate_id  (void)
 #define COUNT_ENCODE_BUFSIZE  9
 #define COUNT_ENCODE_RADIX    16
 
+  static XMLCh buffer[COUNT_ENCODE_BUFSIZE];
   XMLString::sizeToText (this->count_,
-                         this->id_ + COUNT_ENCODE_OFFSET,
+                         buffer,
                          COUNT_ENCODE_BUFSIZE,
                          COUNT_ENCODE_RADIX);
+
+  // Pad the id with zeros.
+  size_t length = XMLString::stringLen (buffer);
+  size_t adjust = 8 - length;
+
+  XMLCh * ptr = this->id_ + COUNT_ENCODE_OFFSET;
+  for (; adjust != 0; -- adjust)
+    *ptr ++ = xercesc::chDigit_0;
+
+  // Insert the number into the id.
+  XMLString::moveChars (ptr, buffer, length + 1);
 
   // Increment the count for the next id
   ++ this->count_;

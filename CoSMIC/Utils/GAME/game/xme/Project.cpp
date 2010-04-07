@@ -105,9 +105,9 @@ static ACE_TCHAR * timestamp (ACE_TCHAR * buffer, int length)
 // _create
 //
 Project Project::
-_create (const std::string & xmefile,
-         const std::string & paradigm,
-         const std::string & guid)
+_create (const ::Utils::XStr & xmefile,
+         const ::Utils::XStr & paradigm,
+         const ::Utils::XStr & guid)
 {
   using namespace xercesc;
 
@@ -137,11 +137,8 @@ _create (const std::string & xmefile,
   std::ostringstream metaguid;
   metaguid << "{" << guid << "}";
 
-  root->setAttribute (::Utils::XStr ("metaguid"),
-                      ::Utils::XStr (metaguid.str ().c_str ()));
-
-  root->setAttribute (::Utils::XStr ("paradigm"),
-                      ::Utils::XStr (paradigm.c_str ()));
+  root->setAttribute (::Utils::XStr ("metaguid"), ::Utils::XStr (metaguid.str ()));
+  root->setAttribute (::Utils::XStr ("metaname"), paradigm);
 
 #define TIMESTAMP_BUFSIZE 27
   ACE_TCHAR ts[TIMESTAMP_BUFSIZE];
@@ -155,13 +152,8 @@ _create (const std::string & xmefile,
   project.comment (::Utils::XStr::EMPTY_STRING);
   project.author (::Utils::XStr::EMPTY_STRING);
 
-  // Create the root folder. We are going to *emulate* a parent
-  // for the root folder, so we can reuse the create method. We
-  // just have to release the emulated parent before its object
-  // is destroyed.
-  Folder temp_folder (root, false);
-  Folder root_folder = Folder::_create (temp_folder, "RootFolder");
-  temp_folder.release ();
+  // Create the root folder for the project.
+  Folder root_folder (root, "RootFolder", 0);
 
   // Save the current state of the project.
   project.save (xmefile);
@@ -200,13 +192,17 @@ _open (const ::Utils::XStr & location, const ::Utils::XStr & schema)
   if (handler.getErrors ())
     throw;
 
-  return Project (parser.adoptDocument (), false);
+  // Initialize a project variable.
+  Project proj (parser.adoptDocument (), false);
+  proj.xmefile_ = location;
+
+  return proj;
 }
 
 //
 // save
 //
-bool Project::save (const std::string & xmefile)
+bool Project::save (const ::Utils::XStr & xmefile)
 {
   if (!this->save_i (xmefile))
     return false;
@@ -218,7 +214,7 @@ bool Project::save (const std::string & xmefile)
 //
 // save_i
 //
-bool Project::save_i (const std::string & xmefile) const
+bool Project::save_i (const ::Utils::XStr & xmefile) const
 {
   using namespace xercesc;
 
@@ -239,7 +235,7 @@ bool Project::save_i (const std::string & xmefile) const
     serializer->getDomConfig ()->setParameter (XMLUni::fgDOMWRTFormatPrettyPrint, true);
 
   // Write the document to the URI.
-  bool retval = serializer->writeToURI (this->doc_, ::Utils::XStr (xmefile.c_str ()));
+  bool retval = serializer->writeToURI (this->doc_, xmefile);
 
   // Release the serializer.
   serializer->release ();
@@ -260,8 +256,7 @@ void Project::close (void)
   }
 
   // Erase the target filename.
-  if (!this->xmefile_.empty ())
-    this->xmefile_.clear ();
+  this->xmefile_.clear ();
 }
 
 //
