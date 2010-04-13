@@ -13,8 +13,8 @@
 #ifndef _GAME_XME_MODEL_H_
 #define _GAME_XME_MODEL_H_
 
-#include <vector>
 #include "Atom.h"
+#include "Reference.h"
 
 namespace GME
 {
@@ -102,14 +102,17 @@ public:
    */
   size_t relid_counter (void) const;
 
-  size_t fcos (std::vector <FCO> & atoms);
-  size_t fcos (const std::string & metaname, std::vector <FCO> & coll);
+  size_t children (std::vector <FCO> & atoms);
+  size_t children (const ::Utils::XStr & metaname, std::vector <FCO> & coll);
 
-  size_t atoms (std::vector <Atom> & atoms);
-  size_t atoms (const std::string & metaname, std::vector <Atom> & coll);
+  size_t children (std::vector <Atom> & atoms);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Atom> & coll);
 
-  size_t models (std::vector <Model> & coll);
-  size_t models (const std::string & metaname, std::vector <Model> & coll);
+  size_t children (std::vector <Model> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Model> & coll);
+
+  size_t children (std::vector <Reference> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Reference> & coll);
 
   /// The XML tagname for this element.
   static const ::Utils::XStr TAGNAME;

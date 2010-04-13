@@ -44,7 +44,7 @@ public:
    * @param[out]        element           The child element.
    */
   template <typename P, typename T, typename META>
-  bool operator () (P parent,
+  bool operator () (P & parent,
                     const META & metaname,
                     T & element);
 
@@ -112,7 +112,7 @@ bool create_if (P & parent,
                 PRED predicate);
 
 template <typename P, typename T, typename META, typename PRED>
-bool create_if_not (P parent,
+bool create_if_not (P & parent,
                     const META & metaname,
                     T & element,
                     PRED predicate);

@@ -146,6 +146,8 @@ public:
 
   static bool _is_type (const ::Utils::XStr & type);
 
+  unsigned long hash (void) const;
+
 protected:
   // Initializing constructor.
   Object (xercesc::DOMElement * parent,

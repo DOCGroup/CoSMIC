@@ -99,7 +99,7 @@ protected:
 private:
   /// Implementation of the creation method.
   template <typename T>
-  static Atom create_impl (T parent, const ::Utils::XStr & kind);
+  static Atom create_impl (T & parent, const ::Utils::XStr & kind);
 };
 
 }

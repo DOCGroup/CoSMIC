@@ -1,3 +1,42 @@
+Tue Apr 13 13:11:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Bug fix where the some of the parents were not pass-by-reference,
+            which prevented the parent element from being updated correctly.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+
+          . Bug fix where the parent in the _create () method was not
+            pass-by-reference, which prevented the parent element from
+            being updated correctly.
+
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/Attribute.h:
+        * Utils/GAME/game/xme/Attribute.inl:
+        * Utils/GAME/game/xme/Attribute.cpp:
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+
+          . Added support for attributes in FCO types.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+
+          . Changed the name of all the methods that return a collection to
+            child elements to children ().
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+
+          . Added a hash () method to the object so it can be used at the
+            id type in ACE_Hash_Map_Manager classes.
+
 Wed Apr  7 14:36:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/utils/modelgen.cpp:

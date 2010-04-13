@@ -69,59 +69,78 @@ size_t Model::relid_counter (void) const
 }
 
 //
-// fcos
+// children
 //
 GME_INLINE
-size_t Model::fcos (std::vector <FCO> & coll)
+size_t Model::children (std::vector <FCO> & coll)
 {
   return Utils::get_children (this->obj_, coll);
 }
 
 //
-// fcos
+// children
 //
 GME_INLINE
 size_t Model::
-fcos (const std::string & metaname, std::vector <FCO> & coll)
+children (const ::Utils::XStr & metaname, std::vector <FCO> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
 
 //
-// atoms
+// children
 //
 GME_INLINE
-size_t Model::atoms (std::vector <Atom> & coll)
+size_t Model::children (std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, coll);
 }
 
 //
-// atoms
+// children
 //
 GME_INLINE
 size_t Model::
-atoms (const std::string & metaname, std::vector <Atom> & coll)
+children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }
 
 
 //
-// atoms
+// children
 //
 GME_INLINE
-size_t Model::models (std::vector <Model> & coll)
+size_t Model::children (std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, coll);
 }
 
 //
-// atoms
+// children
 //
 GME_INLINE
 size_t Model::
-models (const std::string & metaname, std::vector <Model> & coll)
+children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
+{
+  return Utils::get_children (this->obj_, metaname, coll);
+}
+
+//
+// children
+//
+GME_INLINE
+size_t Model::children (std::vector <Reference> & coll)
+{
+  return Utils::get_children (this->obj_, coll);
+}
+
+//
+// children
+//
+GME_INLINE
+size_t Model::
+children (const ::Utils::XStr & metaname, std::vector <Reference> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }

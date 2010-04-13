@@ -158,5 +158,14 @@ xercesc::DOMElement * Object::release (void)
   return e;
 }
 
+//
+// hash
+//
+GME_INLINE
+unsigned long Object::hash (void) const
+{
+  return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (this->obj_));
+}
+
 }
 }

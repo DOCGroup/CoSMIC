@@ -10,6 +10,7 @@ project (GAME_XME) : game_common, cosmic_xerces_utils, cosmic_lib {
 
   Source_Files {
     Atom.cpp
+    Attribute.cpp
     Connection.cpp
     Exceptions.cpp
     FCO.cpp

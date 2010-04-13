@@ -11,7 +11,7 @@ namespace GAME
 template <typename PRED>
 template <typename P, typename T, typename META>
 bool contains_t <PRED>::
-operator () (P parent, const META & metaname, T & element)
+operator () (P & parent, const META & metaname, T & element)
 {
   // Get the children of the parent.
   std::vector <T> children;
@@ -81,7 +81,7 @@ bool create_if (P & parent,
 // create_if_not
 //
 template <typename P, typename T, typename META, typename PRED>
-bool create_if_not (P parent,
+bool create_if_not (P & parent,
                     const META & metaname,
                     T & element,
                     PRED predicate)

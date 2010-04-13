@@ -13,7 +13,9 @@
 #ifndef _GAME_XME_FCO_H_
 #define _GAME_XME_FCO_H_
 
+#include <vector>
 #include "Object.h"
+#include "Attribute.h"
 
 namespace GME
 {
@@ -56,6 +58,9 @@ public:
 
   void attach (xercesc::DOMElement * fco, bool validate = true);
 
+  size_t attributes (std::vector <Attribute> & attrs) const;
+  Attribute attribute (const ::Utils::XStr & name, bool create = false) const;
+
 protected:
   /// Initalizing constructor. This will create the actual
   /// FCO element and initialize its contents.
@@ -69,6 +74,7 @@ protected:
   FCO (xercesc::DOMElement * fco, int type);
 
   static const ::Utils::XStr ATTR_ROLE;
+  static const ::Utils::XStr ATTR_KIND;
 };
 
 }

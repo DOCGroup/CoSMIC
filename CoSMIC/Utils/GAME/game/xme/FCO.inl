@@ -1,6 +1,8 @@
 // -*- C++ -*-
 // $Id$
 
+#include "XME_Utils.h"
+
 namespace GME
 {
 namespace XME
@@ -77,8 +79,19 @@ FCO::~FCO (void)
 GME_INLINE
 const FCO & FCO::operator = (const FCO & fco)
 {
-  this->attach (fco.obj_);
+  this->obj_ = fco.obj_;
+  this->type_ = fco.type_;
+
   return *this;
+}
+
+//
+// attributes
+//
+GME_INLINE
+size_t FCO::attributes (std::vector <Attribute> & attrs) const
+{
+  return Utils::get_children (this->obj_, attrs);
 }
 
 }
