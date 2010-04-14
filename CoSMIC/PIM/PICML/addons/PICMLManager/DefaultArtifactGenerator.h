@@ -33,8 +33,7 @@ public:
    *
    * @param[in]       root        Root folder for the project
    */
-  DefaultArtifactGenerator (const GME::Folder & root,
-                            const NewComponentConfig & config);
+  DefaultArtifactGenerator (GME::Folder & root, const NewComponentConfig & config);
 
   /// Destructor.
   ~DefaultArtifactGenerator (void);

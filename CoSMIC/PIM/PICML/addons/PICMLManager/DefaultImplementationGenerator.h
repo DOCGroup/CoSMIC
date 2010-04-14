@@ -31,8 +31,7 @@ public:
    * @param[in]       root        Root folder for the project
    * @param[in]       config      Configuration for the new component.
    */
-  DefaultImplementationGenerator (const GME::Folder & root,
-                                  const NewComponentConfig & config);
+  DefaultImplementationGenerator (GME::Folder & root, const NewComponentConfig & config);
 
   /// Destructor.
   ~DefaultImplementationGenerator (void);

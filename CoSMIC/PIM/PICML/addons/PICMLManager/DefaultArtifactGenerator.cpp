@@ -28,8 +28,7 @@ std::string operator + (const std::string & str, const ACE_CString & acestr)
 // DefaultArtifactGenerator
 //
 DefaultArtifactGenerator::
-DefaultArtifactGenerator (const GME::Folder & root,
-                          const NewComponentConfig & config)
+DefaultArtifactGenerator (GME::Folder & root, const NewComponentConfig & config)
 : config_ (config)
 {
   if (GAME::create_if_not (root, "ImplementationArtifacts", this->artifacts_,

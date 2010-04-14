@@ -78,14 +78,14 @@ build_aggregate (const std::string & name,
   PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value (name, parent);
   std::auto_ptr <PICML_Aggregate_Data_Value> auto_clean (aggr);
 
-  typedef GME::Collection_T <GME::Reference> Member_Set;
+  typedef std::vector <GME::Reference> Member_Set;
   Member_Set members;
 
   if (aggregate.children ("Member", members) > 0)
   {
     Member_Set::iterator
-      iter = members.items ().begin (),
-      iter_end = members.items ().end ();
+      iter = members.begin (),
+      iter_end = members.end ();
 
     PICML_Data_Value * temp = 0;
 
@@ -114,14 +114,14 @@ build_event (const std::string & name,
   PICML_Event_Data_Value * ev = new PICML_Event_Data_Value (name, parent);
   std::auto_ptr <PICML_Event_Data_Value> auto_clean (ev);
 
-  typedef GME::Collection_T <GME::Reference> Member_Set;
+  typedef std::vector <GME::Reference> Member_Set;
   Member_Set members;
 
   if (evt.children ("Member", members) > 0)
   {
     Member_Set::iterator
-      iter = members.items ().begin (),
-      iter_end = members.items ().end ();
+      iter = members.begin (),
+      iter_end = members.end ();
 
     PICML_Data_Value * temp = 0;
 
@@ -192,14 +192,14 @@ build_enum (const std::string & name,
   PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value (name, parent);
   std::auto_ptr <PICML_Enum_Data_Value> auto_clean (e_val);
 
-  typedef GME::Collection_T <GME::Atom> EnumValue_Set;
+  typedef std::vector <GME::Atom> EnumValue_Set;
   EnumValue_Set opts;
 
   if (e.children ("EnumValue", opts) > 0)
   {
     EnumValue_Set::iterator
-      iter = opts.items ().begin (),
-      iter_end = opts.items ().end ();
+      iter = opts.begin (),
+      iter_end = opts.end ();
 
     for (; iter != iter_end; iter ++)
       e_val->insert_option (iter->name ());

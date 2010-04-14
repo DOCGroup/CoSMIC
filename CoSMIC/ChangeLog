@@ -1,3 +1,20 @@
+Wed Apr 14 15:24:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          . Fixed compilation errors related to chagning the order to
+            parameters in the _create () methods.
+
+          . Fixed compilation errors related to replacing the Collection
+            class with std::vector.
+
 Tue Apr 13 13:11:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/utils/modelgen.h:

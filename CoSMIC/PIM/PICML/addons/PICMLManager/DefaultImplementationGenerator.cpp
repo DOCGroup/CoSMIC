@@ -18,16 +18,17 @@
 // DefaultImplementationGenerator
 //
 DefaultImplementationGenerator::
-DefaultImplementationGenerator (const GME::Folder & root,
-                                const NewComponentConfig & config)
+DefaultImplementationGenerator (GME::Folder & root, const NewComponentConfig & config)
 : artifact_gen_ (root, config)
 {
-  if (GAME::create_if_not (root, "ComponentImplementations", this->impls_,
+  static const std::string metaname ("ComponentImplementations");
+
+  if (GAME::create_if_not (root, metaname, this->impls_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
-                      "ComponentImplementations",
+                      metaname,
                       boost::bind (&GME::Folder::name, _1)))))
   {
-    this->impls_.name ("ComponentImplementations");
+    this->impls_.name (metaname);
   }
 }
 
@@ -76,18 +77,18 @@ bool DefaultImplementationGenerator::generate (const GME::Model & component)
   }
 
   // Create the reference to the target component.
-  GME::Reference ref = GME::Reference::_create ("ComponentRef", container);
+  GME::Reference ref = GME::Reference::_create (container, "ComponentRef");
   ref.name (name);
   ref.refers_to (component);
   GME::position ("Packaging", Utils::Point (187, 75), ref);
 
   // Associate the monolithic implementation with the reference.
   GME::Connection implements =
-    GME::Connection::_create ("Implements", container, impl, ref);
+    GME::Connection::_create (container, "Implements", impl, ref);
 
   // Insert the servant artifact for this component.
   GME::Reference svnt_artifact =
-    GME::Reference::_create ("ComponentServantArtifact", container);
+    GME::Reference::_create (container, "ComponentServantArtifact");
 
   svnt_artifact.refers_to (this->artifact_gen_.svnt_artifact ());
   svnt_artifact.name (this->artifact_gen_.svnt_artifact ().name ());
@@ -97,11 +98,11 @@ bool DefaultImplementationGenerator::generate (const GME::Model & component)
   GME::position ("Packaging", Utils::Point (506,347), svnt_artifact);
 
   GME::Connection pa =
-    GME::Connection::_create ("MonolithprimaryArtifact", container, impl, svnt_artifact);
+    GME::Connection::_create (container, "MonolithprimaryArtifact", impl, svnt_artifact);
 
   // Insert the implementation artifact for this component.
   GME::Reference impl_artifact =
-    GME::Reference::_create ("ComponentImplementationArtifact", container);
+    GME::Reference::_create (container, "ComponentImplementationArtifact");
 
   impl_artifact.refers_to (this->artifact_gen_.exec_artifact ());
   impl_artifact.name (this->artifact_gen_.exec_artifact ().name ());
@@ -110,7 +111,7 @@ bool DefaultImplementationGenerator::generate (const GME::Model & component)
   impl_artifact.attribute ("EntryPoint").string_value (entrypoint);
   GME::position ("Packaging", Utils::Point (506,151), impl_artifact);
 
-  pa = GME::Connection::_create ("MonolithprimaryArtifact", container, impl, impl_artifact);
+  pa = GME::Connection::_create (container, "MonolithprimaryArtifact", impl, impl_artifact);
 
   return true;
 }

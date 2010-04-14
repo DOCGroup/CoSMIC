@@ -16,7 +16,7 @@
 #include <sstream>
 
 // Type definition
-typedef GME::Collection_T <GME::Reference> Reference_Set;
+typedef std::vector <GME::Reference> Reference_Set;
 
 //
 // RawComponent
@@ -288,7 +288,7 @@ void RawComponent::verify_uuid (const GME::FCO & fco)
 bool RawComponent::
 get_uuid_i (const GME::FCO & fco, GME::Attribute & attr)
 {
-  typedef GME::Collection_T <GME::Attribute> Attribute_Set;
+  typedef std::vector <GME::Attribute> Attribute_Set;
   Attribute_Set attrs;
 
   // Get all the attributes of this FCO. It would be nice to query
@@ -299,8 +299,8 @@ get_uuid_i (const GME::FCO & fco, GME::Attribute & attr)
     // We need to iterate over all the attribute until we find the
     // attribute with the name of UUID. That will be the attribute
     // we return to the caller.
-    for (Attribute_Set::iterator iter = attrs.items ().begin ();
-         iter != attrs.items ().end ();
+    for (Attribute_Set::iterator iter = attrs.begin ();
+         iter != attrs.end ();
          iter ++)
     {
       if (iter->meta ().name () == "UUID")
@@ -377,11 +377,11 @@ set_property_datatype (GME::Model & prop, const GME::FCO & type)
 
   if (0 == prop.children ("DataType", datatypes))
   {
-    datatype = GME::Reference::_create ("DataType", prop);
+    datatype = GME::Reference::_create (prop, "DataType");
   }
   else
   {
-    datatype = datatypes.items ().front ();
+    datatype = datatypes.front ();
   }
 
   // Set the name of the data type and its reference.
@@ -531,7 +531,7 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
         // Let's get the data type of the attribute. Since there
         // is only 1 attribute member, we can just get the front
         // element in the container.
-        attr_type = attr_members.items ().front ().refers_to ();
+        attr_type = attr_members.front ().refers_to ();
       }
 
       // We have the destination connection point. This should
@@ -715,13 +715,13 @@ handle_NodeReference (unsigned long eventmask, GME::Object & obj)
     GME::Model parent = GME::Model::_narrow (node.parent ());
 
     // Create a 'default' collocation group for the node reference
-    GME::Set group = GME::Set::_create ("CollocationGroup", parent);
+    GME::Set group = GME::Set::_create (parent, "CollocationGroup");
     group.name ("DefaultGroup");
 
     // Create an InstanceMapping connection between the node reference
     // and the collocation group.
     GME::Connection mapping =
-      GME::Connection::_create ("InstanceMapping", parent, group, node);
+      GME::Connection::_create (parent, "InstanceMapping", group, node);
 
     // Align the collocation group with its corresponding node.
     Utils::Point pt;
@@ -741,7 +741,7 @@ handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
   if (this->cg_member_)
   {
     // Get all sets that contain previously inserted collocation group member.
-    typedef GME::Collection_T <GME::Set> Sets;
+    typedef std::vector <GME::Set> Sets;
     Sets sets;
 
     size_t count = this->cg_member_.in_sets (sets);
@@ -752,7 +752,7 @@ handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
       GME::Set group = GME::Set::_narrow (obj);
 
       Sets::iterator
-        iter = sets.items ().begin (), iter_end = sets.items ().end ();
+        iter = sets.begin (), iter_end = sets.end ();
 
       // Make sure the last object added to this group does not appear
       // in any collocation group.

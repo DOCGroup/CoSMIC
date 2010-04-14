@@ -64,13 +64,15 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
       project.begin_transaction ();
 
       // Extract the selected objects.
-      typedef GME::Collection_T <GME::FCO> FCO_set;
-      FCO_set properties (selected);
+      typedef std::vector <GME::FCO> FCO_set;
+      FCO_set properties;
 
-      typedef FCO_set::container_type::iterator iterator;
+      GME::get_children (selected, properties);
 
-      for (iterator iter = properties.items ().begin ();
-           iter != properties.items ().end ();
+      typedef FCO_set::iterator iterator;
+
+      for (iterator iter = properties.begin ();
+           iter != properties.end ();
            iter ++)
       {
         if (iter->meta ().name () == "Property")
@@ -177,14 +179,14 @@ get_datatype (const GME::FCO & property, GME::FCO & datatype)
 
     // Get the datatype, which is a reference. If there aren't
     // any datatypes in the models, then we need to just leave.
-    GME::Collection_T <GME::Reference> datatypes;
+    std::vector <GME::Reference> datatypes;
 
     if (model.children ("DataType", datatypes) == 0)
       return false;
 
     // Now, get the referenced object. This is the actual
     // data type that we need to build the for.
-    datatype = datatypes.items ()[0].refers_to ();
+    datatype = datatypes[0].refers_to ();
     return true;
   }
   catch (const GME::Failed_Result &)

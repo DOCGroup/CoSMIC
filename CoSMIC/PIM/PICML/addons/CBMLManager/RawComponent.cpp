@@ -403,21 +403,21 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
     if (retval == 0)
     {
       GME::Connection transition =
-        GME::Connection::_create (transition_type,
-                                  parent,
+        GME::Connection::_create (parent,
+                                  transition_type,
                                   this->active_state_,
                                   action);
     }
   }
 
   // Create the new State element for the action.
-  GME::Atom state = GME::Atom::_create ("State", parent);
+  GME::Atom state = GME::Atom::_create (parent, "State");
   state.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
   // Create the effect connection from the action to the state.
   GME::Connection effect =
-    GME::Connection::_create (conntype,
-                              parent,
+    GME::Connection::_create (parent,
+                              conntype,
                               action,
                               state);
 
@@ -453,7 +453,7 @@ handle_objevent_modelopen (GME::Object & obj)
 
     if (!model.is_instance ())
     {
-      typedef GME::Collection_T <GME::Reference> reference_set_type;
+      typedef std::vector <GME::Reference> reference_set_type;
       reference_set_type refs;
 
       // Cache information about the workers in this component.
@@ -509,7 +509,7 @@ void RawComponent::cache_worker_type (const GME::Reference & worker)
 void RawComponent::resolve_output_action (GME::FCO & action)
 {
   GME::Reference output;
-  GME::Collection_T <GME::Reference> refs;
+  std::vector <GME::Reference> refs;
   GME::Model model = action.parent_model ();
 
   if (model.children ("OutEventPort", refs))
