@@ -2,6 +2,7 @@
 // $Id$
 
 #include "XME_Utils.h"
+#include "Registry.h"
 
 namespace GME
 {

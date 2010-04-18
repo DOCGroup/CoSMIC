@@ -19,6 +19,8 @@ project (GAME_XME) : game_common, cosmic_xerces_utils, cosmic_lib {
     Model.cpp
     Object.cpp
     Reference.cpp
+    Registry.cpp
+    Registry_Node.cpp
     Project.cpp
     XME_Utils.cpp
   }

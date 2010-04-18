@@ -68,5 +68,29 @@ Attribute FCO::attribute (const ::Utils::XStr & name, bool create) const
   throw Bad_Attribute ();
 }
 
+//
+// registry
+//
+Registry & FCO::registry (void)
+{
+  if (0 != this->registry_.get ())
+    return *this->registry_;
+
+  this->registry_.reset (new Registry (*this));
+  return *this->registry_;
+}
+
+//
+// registry
+//
+const Registry & FCO::registry (void) const
+{
+  if (0 != this->registry_.get ())
+    return *this->registry_;
+
+  this->registry_.reset (new Registry (const_cast <FCO &> (*this)));
+  return *this->registry_;
+}
+
 }
 }

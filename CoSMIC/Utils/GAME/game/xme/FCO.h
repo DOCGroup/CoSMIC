@@ -14,6 +14,7 @@
 #define _GAME_XME_FCO_H_
 
 #include <vector>
+#include <memory>
 #include "Object.h"
 #include "Attribute.h"
 
@@ -21,6 +22,9 @@ namespace GME
 {
 namespace XME
 {
+// Forward decl.
+class Registry;
+
 /**
  * @class FCO
  *
@@ -61,6 +65,18 @@ public:
   size_t attributes (std::vector <Attribute> & attrs) const;
   Attribute attribute (const ::Utils::XStr & name, bool create = false) const;
 
+  /**
+   * Get the registry for this FCO.
+   *
+   * @return        Registry element
+   */
+  const Registry & registry (void) const;
+
+  /**
+   * @overload
+   */
+  Registry & registry (void);
+
 protected:
   /// Initalizing constructor. This will create the actual
   /// FCO element and initialize its contents.
@@ -75,6 +91,10 @@ protected:
 
   static const ::Utils::XStr ATTR_ROLE;
   static const ::Utils::XStr ATTR_KIND;
+
+private:
+  /// Pointer to the object's registry.
+  mutable std::auto_ptr <Registry> registry_;
 };
 
 }

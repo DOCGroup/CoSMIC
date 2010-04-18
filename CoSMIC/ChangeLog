@@ -1,3 +1,18 @@
+Sun Apr 18 22:56:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.inl:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+
+          . Added support for getting/setting values of an FCO's registry.
+
 Wed Apr 14 15:24:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
