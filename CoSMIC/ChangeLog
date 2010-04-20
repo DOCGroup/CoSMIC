@@ -1,3 +1,10 @@
+Tue Apr 20 01:55:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Fixed compilation errors related to replacing GME::Collection_T
+            with std::vector.
+
 Sun Apr 18 22:56:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/FCO.h:

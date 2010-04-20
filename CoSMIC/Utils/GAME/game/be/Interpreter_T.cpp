@@ -75,7 +75,9 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 
     try
     {
-      std::vector <GME::FCO> selected (fcos);
+      // Convert the iterator to a vector.
+      std::vector <GME::FCO> selected;
+      GME::get_children (fcos, selected);
 
       // Begin a new transaction.
       if (this->impl_.is_managed ())
@@ -119,15 +121,19 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 
     try
     {
-      GME::FCO current (fco);
-      std::vector <GME::FCO> selected (select);
+      // Get the iterator to a collection of elements.
+      std::vector <GME::FCO> selected;
+      GME::get_children (select, selected);
 
       // Begin a new transaction for the process.
       if (this->impl_.is_managed ())
         project.begin_transaction ();
 
       // Pass control to the implemention.
-      int retval = this->impl_.invoke_ex (project, current, selected, flags);
+      int retval = this->impl_.invoke_ex (project,
+                                          GME::FCO (fco),
+                                          selected,
+                                          flags);
 
       // Commit the transaction.
       if (retval == 0 && this->impl_.is_managed ())
@@ -165,14 +171,17 @@ ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long 
 
     try
     {
-      GME::Object object (obj);
-      std::vector <GME::Object> objects (objs);
+      std::vector <GME::Object> objects;
+      GME::get_children (objs, objects);
 
       // Start a new transaction.
       if (this->impl_.is_managed ())
         project.begin_transaction ();
 
-      int retval = this->impl_.invoke_object_ex (project, object, objects, flags);
+      int retval = this->impl_.invoke_object_ex (project,
+                                                 GME::Object (obj),
+                                                 objects,
+                                                 flags);
 
       // Commit the transaction.
       if (retval == 0 && this->impl_.is_managed ())
