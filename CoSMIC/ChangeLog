@@ -1,7 +1,13 @@
+Fri Apr 23 13:46:14 UTC 2010  Abdul Sowayan  <sowayan@gmail.com>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Minor change to allow static linking of xerces on Linux platforms.
+
 Fri Apr 23 04:19:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/cosmic_common.mpb:
-          
+
           . Added $(COSMIC_ROOT)/bin to the libpaths since idl_to_picml was
             not linking on non-Windows systems.
 
