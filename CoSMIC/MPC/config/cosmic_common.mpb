@@ -5,7 +5,7 @@ project : vc8warnings, boost_base, acedefaults  {
   dllout = $(COSMIC_ROOT)/bin
 
   includes += $(COSMIC_ROOT)
-  libpaths += $(COSMIC_ROOT)/lib
+  libpaths += $(COSMIC_ROOT)/lib $COSMIC_ROOT/bin
 
   specific (prop:microsoft) {
     macros   += _CRT_SECURE_NO_WARNINGS
