@@ -32,7 +32,7 @@ public:
   static const int OT_OBJECT      = 0x01;   /* 00000001 */
   static const int OT_FOLDER      = 0x03;   /* 00000011 */
   static const int OT_FCO         = 0x04;   /* 00000101 */
-  static const int OT_ATOM        = 0x00;   /* 00001101 */
+  static const int OT_ATOM        = 0x0D;   /* 00001101 */
   static const int OT_MODEL       = 0x15;   /* 00010101 */
   static const int OT_REFERENCE   = 0x25;   /* 00100101 */
   static const int OT_CONNECTION  = 0x45;   /* 01000101 */

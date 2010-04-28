@@ -13,9 +13,7 @@
 #ifndef _GAME_XME_REGISTRY_H_
 #define _GAME_XME_REGISTRY_H_
 
-#include "xercesc/dom/DOM.hpp"
-#include "Utils/xercesc/XercesString.h"
-#include "XME_export.h"
+#include "Registry_Node.h"
 
 namespace GME
 {
@@ -60,9 +58,15 @@ public:
 
   const FCO & owner (void) const;
 
+  Registry_Node child (const ::Utils::XStr & name, bool create);
+
 private:
   /// The parent of the registry.
   FCO & parent_;
+
+  static const ::Utils::XStr TAGNAME;
+  static const ::Utils::XStr ATTR_TAGNAME;
+  static const ::Utils::XStr ATTR_NAME;
 };
 
 }

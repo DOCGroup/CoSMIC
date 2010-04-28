@@ -40,7 +40,7 @@ public:
  *
  * The cast operation failed.
  */
-  class GAME_XME_Export Bad_Attribute : public std::runtime_error
+class GAME_XME_Export Bad_Attribute : public std::runtime_error
 {
 public:
   /// Default constructor
@@ -48,6 +48,21 @@ public:
 
   /// Destructor
   ~Bad_Attribute (void);
+};
+
+/**
+ * @class Not_Found
+ *
+ * The cast operation failed.
+ */
+class GAME_XME_Export Not_Found : public std::runtime_error
+{
+public:
+  /// Default constructor
+  Not_Found (void);
+
+  /// Destructor
+  ~Not_Found (void);
 };
 
 }

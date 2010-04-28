@@ -105,6 +105,9 @@ public:
   /// The XML tagname for this element.
   static const ::Utils::XStr TAGNAME;
 
+  /// Test if the reference is null.
+  bool is_null (void);
+
 protected:
   /**
    * Initializing constructor. This constructor creates the actual
@@ -117,12 +120,15 @@ protected:
   Reference (xercesc::DOMElement * ref);
 
 private:
+  /// Helper method that locates referenced object in document.
+  void get_reference (void) const;
+
   /// Implementation of the creation method.
   template <typename T>
   static Reference create_impl (T parent, const ::Utils::XStr & kind);
 
   /// FCO that this object references.
-  FCO refers_to_;
+  mutable FCO refers_to_;
 
   /// XML attributes for this element.
   static const ::Utils::XStr ATTR_REFERRED;

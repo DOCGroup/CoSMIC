@@ -142,6 +142,8 @@ public:
   /// Clear the string's contents.
   void clear (void);
 
+  int find (const XMLCh ch, size_t start = 0);
+
 private:
   /// Pointer to the actual string.
   XMLCh * wstr_;

@@ -4,7 +4,7 @@
 struct object_type
 {
   /// Name of the object type.
-  char * type;
+  char * name;
 
   /// GME object type value.
   ::GME::XME::Object_Type type;

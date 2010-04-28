@@ -159,6 +159,15 @@ xercesc::DOMElement * Object::release (void)
 }
 
 //
+// release
+//
+GME_INLINE
+const XMLCh * Object::kind (void) const
+{
+  return this->obj_->getAttribute (ATTR_KIND);
+}
+
+//
 // hash
 //
 GME_INLINE

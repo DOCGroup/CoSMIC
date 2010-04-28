@@ -1,3 +1,99 @@
+Wed Apr 28 13:54:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/XME.mpc:
+
+          . Added more files to the project.
+
+        * Utils/GAME/game/xme/Attribute.inl:
+
+          . Bug fix where the value_ data member was not initialized
+            in one of the constructors.
+
+        * Utils/GAME/game/xme/Auto_Model_T.h:
+        * Utils/GAME/game/xme/Auto_Model_T.inl:
+        * Utils/GAME/game/xme/Auto_Model_T.cpp:
+
+          . First implementation of the auto_model for this GME::XME backend
+            version of GAME.
+
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+
+          . Implemented the Not_Found exception.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.cpp:
+
+          . Bug fix where creating a new element with a Model as its parent
+            failed to update the parent model's relative child id counter.
+
+        * Utils/GAME/game/xme/Object.gperf:
+        * Utils/GAME/game/xme/Object_Type_Map.hpp:
+
+          . Bug fix where the hash table stated that invalid elements were
+            in the table. This was due to bad command-line options passed
+            into gperf.
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+
+          . Implemented the kind () method.
+
+        * Utils/GAME/game/xme/Object_Type.h:
+
+          . Bug fix where OT_ATOM had the incorrect value.
+
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where _open () kept crashing for some unknown reason. This
+            was resolved by dynamically allocating the error handler and schema
+            resolver.
+
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.inl:
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          . Implemented the is_null () method.
+
+          . Bug fix where the reference failed to return the correct
+            refered object if it was attached to a pre-existing DOMElement.
+
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+
+          . Implemented registry support for FCO objects.
+
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          . Implemented methods for setting/getting position of an
+            FCO in its parent model.
+
+        * Utils/xercesc/EntityResolver.h:
+
+          . Removed the 'using' statement from the global namespace.
+
+        * Utils/xercesc/XML_Error_Handler.h:
+        * Utils/xercesc/XML_Error_Handler.cpp:
+
+          . Optimized the generation of the error string.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented the find () method.
+
+        * Utils/GAME/game/xme/Collection.h:
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Collection.cpp:
+
+          Removed these files.
+
 Wed Apr 28 14:10:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:

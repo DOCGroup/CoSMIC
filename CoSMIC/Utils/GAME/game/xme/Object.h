@@ -148,6 +148,8 @@ public:
 
   unsigned long hash (void) const;
 
+  const XMLCh * kind (void) const;
+
 protected:
   // Initializing constructor.
   Object (xercesc::DOMElement * parent,

@@ -222,4 +222,14 @@ const XStr & XStr::operator = (const char * rhs)
   return *this;
 }
 
+//
+// find
+//
+inline
+int XStr::find (const XMLCh ch, size_t start)
+{
+  return XMLString::indexOf (this->wstr_, ch, start, this->allocator_);
+}
+
+
 }

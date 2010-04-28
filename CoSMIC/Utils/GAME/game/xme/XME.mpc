@@ -15,6 +15,7 @@ project (GAME_XME) : game_common, cosmic_xerces_utils, cosmic_lib {
     Exceptions.cpp
     FCO.cpp
     Folder.cpp
+    functional.cpp
     GME_ID_Generator.cpp
     Model.cpp
     Object.cpp
@@ -26,7 +27,7 @@ project (GAME_XME) : game_common, cosmic_xerces_utils, cosmic_lib {
   }
 
   Template_Files {
-    Collection.cpp
+    Auto_Model_T.cpp
     GME_ID_Generator_T.cpp
   }
 }

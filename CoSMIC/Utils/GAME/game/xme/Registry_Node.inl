@@ -28,17 +28,6 @@ Registry_Node::Registry_Node (const Registry_Node & node)
 }
 
 //
-// Registry_Node
-//
-GME_INLINE
-Registry_Node::Registry_Node (xercesc::DOMElement * node)
-: node_ (node),
-  value_ (0)
-{
-
-}
-
-//
 // ~Registry_Node
 //
 GME_INLINE
@@ -65,6 +54,24 @@ GME_INLINE
 const XMLCh * Registry_Node::name (void) const
 {
   return this->node_->getAttribute (ATTR_NAME);
+}
+
+//
+// value
+//
+GME_INLINE
+void Registry_Node::value (const ::Utils::XStr & v) const
+{
+  this->value_->setTextContent (v);
+}
+
+//
+// value
+//
+GME_INLINE
+const XMLCh * Registry_Node::value (void) const
+{
+  return this->value_->getTextContent ();
 }
 
 }

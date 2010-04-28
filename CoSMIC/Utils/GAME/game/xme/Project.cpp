@@ -179,22 +179,22 @@ _open (const ::Utils::XStr & location, const ::Utils::XStr & schema)
   parser.setDoSchema (true);
 
   // Set the error handler.
-  ::Utils::XML_Error_Handler handler;
-  parser.setErrorHandler (&handler);
+  xercesc::HandlerBase * handler = new ::Utils::XML_Error_Handler ();
+  parser.setErrorHandler (handler);
 
   // Set the entity resolver.
-  ::Utils::EntityResolver resolver (schema);
-  parser.setEntityResolver (&resolver);
+  xercesc::EntityResolver * resolver = new ::Utils::EntityResolver (schema);
+  parser.setEntityResolver (resolver);
 
   // Parse the specified XML document.
   parser.parse (location);
 
-  if (handler.getErrors ())
-    throw;
-
   // Initialize a project variable.
   Project proj (parser.adoptDocument (), false);
   proj.xmefile_ = location;
+
+  delete handler;
+  delete resolver;
 
   return proj;
 }

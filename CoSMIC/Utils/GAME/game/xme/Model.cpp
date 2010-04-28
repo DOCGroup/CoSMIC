@@ -22,7 +22,7 @@ const ::Utils::XStr Model::NO_CHILDREN ("0x0");
 // _create_impl
 //
 template <typename T>
-Model Model::create_impl (T parent, const ::Utils::XStr & kind)
+Model Model::create_impl (T & parent, const ::Utils::XStr & kind)
 {
   // Generate the relative id for the new folder.
   size_t counter = parent.relid_counter ();

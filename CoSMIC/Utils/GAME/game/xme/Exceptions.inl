@@ -43,5 +43,24 @@ Bad_Attribute::~Bad_Attribute (void)
 
 }
 
+//
+// Not_Found
+//
+GME_INLINE
+Not_Found::Not_Found (void)
+: std::runtime_error ("not found")
+{
+
+}
+
+//
+// Not_Found
+//
+GME_INLINE
+Not_Found::~Not_Found (void)
+{
+
+}
+
 }
 }

@@ -2,66 +2,61 @@
 
 #include "XML_Error_Handler.h"
 #include "ace/Log_Msg.h"
-#include "ace/Auto_Ptr.h"
-#include <xercesc/util/XMLString.hpp>
 #include <xercesc/dom/DOMLocator.hpp>
 #include "XercesString.h"
 
-using xercesc::XMLString;
 namespace Utils
 {
-
+//
+// XML_Error_Handler
+//
 XML_Error_Handler::XML_Error_Handler (void)
-  : errors_ (false)
+: errors_ (false)
 {
+
 }
 
-XML_Error_Handler::~XML_Error_Handler()
+//
+// ~XML_Error_Handler
+//
+XML_Error_Handler::~XML_Error_Handler (void)
 {
+
 }
 
-
-bool
-XML_Error_Handler::handleError (const DOMError& domError)
+//
+// handleError
+//
+bool XML_Error_Handler::handleError (const xercesc::DOMError& domError)
 {
-  this->errors_ = true;
+  static const char * severity [] = {"", "warning", "error", "fatal error"};
 
-  if (domError.getSeverity() == DOMError::DOM_SEVERITY_WARNING)
-    {
-      ACE_DEBUG ((LM_DEBUG,
-                  "(%P|%t), Warning "));
-    }
-  else if (domError.getSeverity() == DOMError::DOM_SEVERITY_ERROR)
-    {
-      ACE_DEBUG ((LM_DEBUG,
-                  "(%P|%t), Error "));
-    }
-  else
-    {
-      ACE_DEBUG ((LM_DEBUG,
-                  "(%P|%t), Fatal Error "));
-    }
+  if (this->errors_ != true)
+    this->errors_ = true;
 
-  char *msg =
-    XMLString::transcode (domError.getMessage ());
+  XStr error_msg (domError.getMessage (), false);
+
   ACE_DEBUG ((LM_DEBUG,
-              "%s at line %d and column %d\n",
-              msg,
+              ACE_TEXT ("%s at line %d and column %d\n"),
+              error_msg.to_string ().c_str (),
               domError.getLocation ()->getLineNumber (),
               domError.getLocation ()->getColumnNumber ()));
-  XMLString::release (&msg);
 
   return true;
 }
 
-void
-XML_Error_Handler::resetErrors (void)
+//
+// resetErrors
+//
+void XML_Error_Handler::resetErrors (void)
 {
   this->errors_ = false;
 }
 
-bool
-XML_Error_Handler::getErrors (void) const
+//
+// getErrors
+//
+bool XML_Error_Handler::getErrors (void) const
 {
   return this->errors_;
 }

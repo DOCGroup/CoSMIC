@@ -95,11 +95,11 @@ void Object::attach (xercesc::DOMElement *e, bool validate)
   static Perfect_Hash hash_map;
   const object_type * info = hash_map.in_word_set (str.c_str (), str.length ());
 
-  if (validate && !(info->type_ & Object_Type::OT_OBJECT))
+  if (0 == info)
     throw Invalid_Cast ();
 
   // Save the identified type information.
-  this->type_ = info->type_;
+  this->type_ = info->type;
   this->obj_ = e;
 }
 

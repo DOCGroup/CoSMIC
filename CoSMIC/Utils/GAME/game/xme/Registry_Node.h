@@ -32,6 +32,9 @@ class Registry;
 class GAME_XME_Export Registry_Node
 {
 public:
+  // Friend decl.
+  friend class Registry;
+
   /**
    * Create a new folder
    *
@@ -78,6 +81,8 @@ public:
   void value (const ::Utils::XStr & v) const;
 
   const XMLCh * value (void) const;
+
+  Registry_Node child (const ::Utils::XStr & name, bool create = false);
 
 private:
   static const ::Utils::XStr TAGNAME;

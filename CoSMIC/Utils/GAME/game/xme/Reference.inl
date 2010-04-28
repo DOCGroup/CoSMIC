@@ -34,7 +34,7 @@ Reference::
 Reference (xercesc::DOMElement * ref)
 : FCO (ref, Object_Type::OT_REFERENCE)
 {
-  // need to get referenced element
+
 }
 
 //
@@ -67,15 +67,6 @@ const Reference & Reference::operator = (const Reference & ref)
   this->obj_ = ref.obj_;
   this->refers_to_ = ref.refers_to_;
   return *this;
-}
-
-//
-// refers_to
-//
-GME_INLINE
-FCO Reference::refers_to (void) const
-{
-  return this->refers_to_;
 }
 
 //

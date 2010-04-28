@@ -128,7 +128,7 @@ protected:
 
 private:
   template <typename T>
-  static Model create_impl (T parent, const ::Utils::XStr & kind);
+  static Model create_impl (T & parent, const ::Utils::XStr & kind);
 
   /// Help method for initializing the counter.
   void initialize_counter (void);

@@ -18,8 +18,6 @@
 #include "xercesc/sax/HandlerBase.hpp"
 #include "Xerces_Utils_export.h"
 
-using xercesc::DOMError;
-
 namespace Utils
 {
 /**
@@ -27,8 +25,8 @@ namespace Utils
   *
   * @brief Error handler for XERCES
   */
-class COSMIC_XERCES_UTILS_Export  XML_Error_Handler
-  : public xercesc::HandlerBase
+class COSMIC_XERCES_UTILS_Export XML_Error_Handler :
+  public xercesc::HandlerBase
 {
 public:
   /// Default constructor.
@@ -37,7 +35,7 @@ public:
   /// Destructor.
   ~XML_Error_Handler (void);
 
-  bool handleError (const DOMError& domError);
+  bool handleError (const xercesc::DOMError& domError);
 
   /// Reset the error flag.
   void resetErrors (void);
@@ -50,7 +48,7 @@ private :
 
   // Disallow copying
   XML_Error_Handler (const XML_Error_Handler&);
-  XML_Error_Handler& operator= (const XML_Error_Handler&);
+  XML_Error_Handler& operator = (const XML_Error_Handler&);
 };
 
 }

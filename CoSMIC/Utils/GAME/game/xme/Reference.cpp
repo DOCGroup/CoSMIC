@@ -73,6 +73,49 @@ void Reference::refers_to (const FCO & fco)
 }
 
 //
+// refers_to
+//
+FCO Reference::refers_to (void) const
+{
+  if (this->refers_to_.is_nil ())
+    this->get_reference ();
+
+  return this->refers_to_;
+}
+
+//
+// get_reference
+//
+void Reference::get_reference (void) const
+{
+  ::Utils::XStr id (this->obj_->getAttribute (ATTR_REFERRED), false);
+
+  if (id != NULL_REFERENCE)
+  {
+    using xercesc::DOMDocument;
+    using xercesc::DOMElement;
+
+    // Search for the element by id.
+    DOMDocument * doc = this->obj_->getOwnerDocument ();
+    DOMElement * element = doc->getElementById (id);
+
+    // Save the element.
+    this->refers_to_.attach (element);
+  }
+}
+
+//
+// is_null
+//
+bool Reference::is_null (void)
+{
+  if (this->refers_to_.is_nil ())
+    this->get_reference ();
+
+  return this->refers_to_.is_nil ();
+}
+
+//
 // reset
 //
 void Reference::reset (void)

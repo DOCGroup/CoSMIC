@@ -29,7 +29,7 @@ namespace Utils
  * @class EntityResolver
  */
 class COSMIC_XERCES_UTILS_Export EntityResolver :
-  public virtual xercesc::EntityResolver
+  public xercesc::EntityResolver
 {
 public:
   /// Guaranteed to be a non-empty path - check is made before

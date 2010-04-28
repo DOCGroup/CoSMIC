@@ -77,53 +77,61 @@ _create (xercesc::DOMElement * parent, const ::Utils::XStr & name)
 }
 
 //
-// value
+// Registry_Node
 //
-void Registry_Node::value (const ::Utils::XStr & v) const
+GME_INLINE
+Registry_Node::Registry_Node (xercesc::DOMElement * node)
+: node_ (node),
+  value_ (0)
 {
-  if (0 == this->value_)
-    this->init_value ();
+  using xercesc::DOMDocument;
 
-  this->value_->setTextContent (v);
+  // Create the value element.
+  DOMDocument * doc = this->node_->getOwnerDocument ();
+  this->value_ = doc->createElement (TAGNAME_VALUE);
+
+  // Add the value node to the registry node.
+  this->node_->appendChild (this->value_);
 }
 
 //
-// value
+// child
 //
-const XMLCh * Registry_Node::value (void) const
-{
-  if (0 == this->value_)
-    this->init_value ();
-
-  return this->value_->getTextContent ();
-}
-
-//
-// value
-//
-void Registry_Node::init_value (void) const
+Registry_Node Registry_Node::child (const ::Utils::XStr & name, bool create)
 {
   using xercesc::DOMElement;
+  using xercesc::DOMNode;
+  using xercesc::DOMNodeList;
 
-  if (this->node_->hasChildNodes ())
+  // Get the list of child nodes for this node.
+  DOMNodeList * list = this->node_->getChildNodes ();
+  size_t length = list->getLength ();
+
+  DOMElement * e = 0;
+  DOMNode * node = 0;
+
+  for (size_t i = 0; i < length; ++ i)
   {
-    using xercesc::DOMNodeList;
+    // Get the next node in the list.
+    node = list->item (i);
 
-    // The first child if the value element.
-    DOMNodeList * list = this->node_->getChildNodes ();
-    this->value_ = dynamic_cast <DOMElement *> (list->item (0));
+    if (node->getNodeType () == DOMNode::ELEMENT_NODE)
+    {
+      // Check if this attibute is the correct one.
+      e = dynamic_cast <DOMElement *> (node);
+
+      if (e->getAttribute (ATTR_NAME) == name)
+        return e;
+    }
   }
-  else
-  {
-    using xercesc::DOMDocument;
 
-    // Create the value element.
-    DOMDocument * doc = this->node_->getOwnerDocument ();
-    this->value_ = doc->createElement (TAGNAME_VALUE);
+  // Should we create the node instead since we were not able to
+  // find it in the list.
+  if (create)
+    return Registry_Node::_create (*this, name);
 
-    // Add the value node to the registry node.
-    this->node_->appendChild (this->value_);
-  }
+  // Throw an exception as last resort.
+  throw Not_Found ();
 }
 
 }

@@ -1,12 +1,15 @@
 /* C++ code produced by gperf version 2.8 (ACE version) */
-/* Command-line: ace_gperf -t -L C++ -O -C -g -E Object.gperf  */
+/* Command-line: ace_gperf -t -L C++ -C -g -E Object.gperf  */
 #include "Object_Type.h"
 #include "ace/OS_NS_string.h"
 
 struct object_type
 {
-  char * name_;
-  int type_;
+  /// Name of the object type.
+  char * name;
+
+  /// GME object type value.
+  int type;
 };
 
 class Perfect_Hash
@@ -14,7 +17,7 @@ class Perfect_Hash
 private:
   static unsigned int hash (const char *str, unsigned int len);
 public:
-  static const object_type *in_word_set (const char *str, unsigned int len);
+  static const object_type * in_word_set (const char *str, unsigned int len);
 };
 
 inline
@@ -85,21 +88,32 @@ Perfect_Hash::in_word_set (const char *str, unsigned int len)
       WORDLIST_SIZE = 9
     };
 
-  static const object_type wordlist[] =
+  static const struct object_type wordlist[] =
     {
       {"", ::GME::XME::Object_Type::OT_UNKNOWN},
       {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"", ::GME::XME::Object_Type::OT_SET},
-      {"set",  ::GME::XME::Object_Type::OT_SET},
-      {"atom",  ::GME::XME::Object_Type::OT_ATOM},
-      {"model",  ::GME::XME::Object_Type::OT_MODEL},
-      {"folder",  ::GME::XME::Object_Type::OT_FOLDER},
+      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
+      {"set", ::GME::XME::Object_Type::OT_SET},
+      {"atom", ::GME::XME::Object_Type::OT_ATOM},
+      {"model", ::GME::XME::Object_Type::OT_MODEL},
+      {"folder", ::GME::XME::Object_Type::OT_FOLDER},
       {"", ::GME::XME::Object_Type::OT_UNKNOWN},
       {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"reference",  ::GME::XME::Object_Type::OT_REFERENCE},
-      {"connection",  ::GME::XME::Object_Type::OT_CONNECTION},
+      {"reference", ::GME::XME::Object_Type::OT_REFERENCE},
+      {"connection", ::GME::XME::Object_Type::OT_CONNECTION},
     };
 
-  unsigned int key = hash (str, len);
-  return &(wordlist[key]);
+  if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)
+    {
+      unsigned int key = hash (str, len);
+
+      if (key <= MAX_HASH_VALUE && key >= MIN_HASH_VALUE)
+        {
+          const char *s = wordlist[key].name;
+
+          if (*str == *s && !ACE_OS::strcmp (str + 1, s + 1))
+            return &(wordlist[key]);
+        }
+    }
+  return 0;
 }

@@ -32,7 +32,8 @@ Attribute::Attribute (const Attribute & attr)
 //
 GME_INLINE
 Attribute::Attribute (xercesc::DOMElement * attr)
-: attr_ (attr)
+: attr_ (attr),
+  value_ (0)
 {
 
 }
