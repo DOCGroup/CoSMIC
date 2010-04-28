@@ -55,9 +55,11 @@ project(IDL_TO_PICML_EXE) : aceexe, core, crosscompile, cosmic_xerces_utils, mcp
     endif
 
     VPATH = $(TAO_ROOT)/TAO_IDL $(TAO_ROOT)/TAO_IDL/driver
-
+    
     ifeq ($(static_libs_only), 1)
-      LDFLAGS += -static
+      ifneq ($(with_ld), macosx)
+        LDFLAGS += -static 
+      endif
     endif
   }
 

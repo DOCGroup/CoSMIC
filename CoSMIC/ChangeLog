@@ -1,3 +1,10 @@
+Wed Apr 28 14:10:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          . Updated to IDL_TO_PICML_EXE project to force linkage against
+            static libraries except on MacOS X.
+
 Fri Apr 23 13:46:14 UTC 2010  Abdul Sowayan  <sowayan@gmail.com>
 
         * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
