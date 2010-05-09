@@ -231,5 +231,22 @@ int XStr::find (const XMLCh ch, size_t start)
   return XMLString::indexOf (this->wstr_, ch, start, this->allocator_);
 }
 
+}
 
+//
+// operator ==
+//
+inline
+bool operator == (const XMLCh * lhs, const ::Utils::XStr & rhs)
+{
+  return ::Utils::XStr (lhs, false) == rhs;
+}
+
+//
+// operator !=
+//
+inline
+bool operator != (const XMLCh * lhs, const ::Utils::XStr & rhs)
+{
+  return ::Utils::XStr (lhs, false) != rhs;
 }

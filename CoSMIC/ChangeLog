@@ -1,3 +1,57 @@
+Sun May  9 21:14:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.inl:
+        * Utils/GAME/game/xme/Connection.cpp:
+
+          . Implemented methods for setting/getting the source and
+            destination connection points.
+
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+
+          . Added the Id svn property tag to the document.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+
+          . Added support for getting all the Connection children
+            in a model element.
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+
+          . Bug fix where operator == () had an invalid conditional.
+
+          . Optimized the implementation of both name () methods.
+
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where opening a project failed to initialize
+            the id generator.
+
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          . Bug fix where the program would crash if the referenced
+            object could not be located in the document.
+
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+
+          . Bug fix where locating a child registry node that already
+            existing resulted in creating a duplicate version of the
+            registry node.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented equality comparison operator for XMLCh strings
+            with XStr when the XMLCh string is on the left hand side
+            of the operator.
+
 Wed Apr 28 13:54:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/XME.mpc:

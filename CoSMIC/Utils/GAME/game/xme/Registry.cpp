@@ -44,7 +44,7 @@ Registry_Node Registry::child (const ::Utils::XStr & name, bool create)
       e = dynamic_cast <DOMElement *> (node);
 
       if (e->getAttribute (ATTR_NAME) == name)
-        return e;
+        return Registry_Node (e, true);
     }
     else if (node->getNodeName () == ATTR_TAGNAME)
       break;

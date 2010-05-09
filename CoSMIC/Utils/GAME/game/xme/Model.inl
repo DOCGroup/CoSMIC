@@ -32,8 +32,8 @@ Model::Model (const Model & model)
 //
 // Model
 //
-Model::Model (xercesc::DOMElement * folder)
-: FCO (folder, Object_Type::OT_MODEL),
+Model::Model (xercesc::DOMElement * model)
+: FCO (model, Object_Type::OT_MODEL),
   counter_ (0)
 {
   this->initialize_counter ();
@@ -141,6 +141,25 @@ size_t Model::children (std::vector <Reference> & coll)
 GME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <Reference> & coll)
+{
+  return Utils::get_children (this->obj_, metaname, coll);
+}
+
+//
+// children
+//
+GME_INLINE
+size_t Model::children (std::vector <Connection> & coll)
+{
+  return Utils::get_children (this->obj_, coll);
+}
+
+//
+// children
+//
+GME_INLINE
+size_t Model::
+children (const ::Utils::XStr & metaname, std::vector <Connection> & coll)
 {
   return Utils::get_children (this->obj_, metaname, coll);
 }

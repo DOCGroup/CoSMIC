@@ -287,7 +287,8 @@ void Project::attach (xercesc::DOMDocument * proj, bool validate)
       throw Invalid_Cast ();
   }
 
-  // Save the project.
+  // Initialize the ID generator and save the project.
+  ID_GENERATOR::instance ()->init (proj);
   this->doc_ = proj;
 }
 

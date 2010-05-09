@@ -38,7 +38,7 @@ _create (Registry & parent, const ::Utils::XStr & name)
   // <attribute> tag.
   ptr->insertBefore (regnode, list->item (1));
 
-  return regnode;
+  return Registry_Node (regnode, false);
 }
 
 //
@@ -54,7 +54,7 @@ _create (Registry_Node & parent, const ::Utils::XStr & name)
   // Append the node to the end pare.
   parent.node_->appendChild (node);
 
-  return node;
+  return Registry_Node (node, false);
 }
 
 //
@@ -74,24 +74,6 @@ _create (xercesc::DOMElement * parent, const ::Utils::XStr & name)
   node->setAttribute (ATTR_NAME, name);
 
   return node;
-}
-
-//
-// Registry_Node
-//
-GME_INLINE
-Registry_Node::Registry_Node (xercesc::DOMElement * node)
-: node_ (node),
-  value_ (0)
-{
-  using xercesc::DOMDocument;
-
-  // Create the value element.
-  DOMDocument * doc = this->node_->getOwnerDocument ();
-  this->value_ = doc->createElement (TAGNAME_VALUE);
-
-  // Add the value node to the registry node.
-  this->node_->appendChild (this->value_);
 }
 
 //
@@ -121,7 +103,7 @@ Registry_Node Registry_Node::child (const ::Utils::XStr & name, bool create)
       e = dynamic_cast <DOMElement *> (node);
 
       if (e->getAttribute (ATTR_NAME) == name)
-        return e;
+        return Registry_Node (e, true);
     }
   }
 
@@ -133,6 +115,57 @@ Registry_Node Registry_Node::child (const ::Utils::XStr & name, bool create)
   // Throw an exception as last resort.
   throw Not_Found ();
 }
+
+//
+// value
+//
+void Registry_Node::value (const ::Utils::XStr & v) const
+{
+  if (0 == this->value_)
+    this->get_value ();
+
+  this->value_->setTextContent (v);
+}
+
+//
+// value
+//
+const XMLCh * Registry_Node::value (void) const
+{
+  if (0 != this->value_)
+    return this->value_->getTextContent ();
+
+  this->get_value ();
+  return this->value_->getTextContent ();
+}
+
+//
+// get_value
+//
+void Registry_Node::get_value (void) const
+{
+  using xercesc::DOMNode;
+  using xercesc::DOMElement;
+
+  DOMNode * node = this->node_->getFirstChild ();
+  this->value_ = dynamic_cast <DOMElement *> (node);
+}
+
+//
+// new_value
+//
+void Registry_Node::new_value (void)
+{
+  using xercesc::DOMDocument;
+
+  // Create the new value element.
+  DOMDocument * doc = this->node_->getOwnerDocument ();
+  this->value_ = doc->createElement (TAGNAME_VALUE);
+
+  // Add the value node to the registry node.
+  this->node_->appendChild (this->value_);
+}
+
 
 }
 }

@@ -15,6 +15,7 @@
 
 #include "Atom.h"
 #include "Reference.h"
+#include "Connection.h"
 
 namespace GME
 {
@@ -113,6 +114,9 @@ public:
 
   size_t children (std::vector <Reference> & coll);
   size_t children (const ::Utils::XStr & metaname, std::vector <Reference> & coll);
+
+  size_t children (std::vector <Connection> & coll);
+  size_t children (const ::Utils::XStr & metaname, std::vector <Connection> & coll);
 
   /// The XML tagname for this element.
   static const ::Utils::XStr TAGNAME;

@@ -162,6 +162,9 @@ COSMIC_XERCES_UTILS_Export std::ostream & operator << (std::ostream & o, const X
 
 }
 
+COSMIC_XERCES_UTILS_Export bool operator == (const XMLCh * lhs, const ::Utils::XStr & rhs);
+COSMIC_XERCES_UTILS_Export bool operator != (const XMLCh * lhs, const ::Utils::XStr & rhs);
+
 #include "XercesString.inl"
 
 #endif /* _XERCESSTRING_H */

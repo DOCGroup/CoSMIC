@@ -54,6 +54,9 @@ GME_INLINE
 const Connection & Connection::operator = (const Connection & conn)
 {
   this->attach (conn.obj_);
+  this->dst_ = conn.dst_;
+  this->src_ = conn.src_;
+
   return *this;
 }
 

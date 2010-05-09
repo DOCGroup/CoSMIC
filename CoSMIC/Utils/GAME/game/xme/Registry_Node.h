@@ -91,9 +91,13 @@ private:
 
   static xercesc::DOMElement * _create (xercesc::DOMElement * parent, const ::Utils::XStr & name);
 
-  Registry_Node (xercesc::DOMElement * node);
+  Registry_Node (xercesc::DOMElement * node, bool existing);
 
-  void init_value (void) const;
+  // Helper method to add the value tag.
+  void new_value (void);
+
+  // Helper method to get the existing value tag.
+  void get_value (void) const;
 
   /// Pointer to the actual node.
   xercesc::DOMElement * node_;

@@ -26,8 +26,9 @@ void XStr::append (const XMLCh * tail)
   size_t alloc_size = (length + 1) * sizeof (XMLCh);
 
   // Allocate space for the new string.
-  XMLCh * buffer = (XMLCh *)this->allocator_->allocate (alloc_size);
-  XStr temp_str (buffer, true, this->allocator_);
+  XStr temp_str (this->allocator_);
+  temp_str.wstr_ = (XMLCh *)this->allocator_->allocate (alloc_size);
+  temp_str.release_ = true;
 
   // Simple trick, swap the two string's state. We do not have
   // to swap the allocators since they are one in the same.

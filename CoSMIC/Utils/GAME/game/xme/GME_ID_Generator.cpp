@@ -1,4 +1,4 @@
-// -*- C++ -*-
+// $Id$
 
 #include "GME_ID_Generator.h"
 

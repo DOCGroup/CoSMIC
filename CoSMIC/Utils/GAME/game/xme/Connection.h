@@ -71,6 +71,22 @@ public:
   /// The XML tagname for this element.
   static const ::Utils::XStr TAGNAME;
 
+  void src (const FCO & fco);
+  const FCO & src (void) const;
+
+  void dst (const FCO & fco);
+  const FCO & dst (void) const;
+
+  /**
+   * Release the current element. The client takes ownership of
+   * this element once this method returns.
+   *
+   * @return        The contained element.
+   */
+  virtual xercesc::DOMElement * release (void);
+
+  virtual void attach (xercesc::DOMElement * e, bool validate = true);
+
 protected:
   Connection (xercesc::DOMElement * parent,
               const ::Utils::XStr & kind,
@@ -83,6 +99,12 @@ private:
   static const ::Utils::XStr CONNPOINT_SRC;
   static const ::Utils::XStr CONNPOINT_DST;
   static const ::Utils::XStr ATTR_TARGET;
+
+  /// The source FCO.
+  mutable FCO src_;
+
+  /// The destination FCO.
+  mutable FCO dst_;
 };
 
 }

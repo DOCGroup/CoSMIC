@@ -99,8 +99,8 @@ void Reference::get_reference (void) const
     DOMDocument * doc = this->obj_->getOwnerDocument ();
     DOMElement * element = doc->getElementById (id);
 
-    // Save the element.
-    this->refers_to_.attach (element);
+    if (element)
+      this->refers_to_.attach (element);
   }
 }
 

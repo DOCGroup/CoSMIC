@@ -87,9 +87,7 @@ const Object & Object::operator = (const Object & obj)
 GME_INLINE
 bool Object::operator == (const Object & rhs) const
 {
-  return this->obj_ != 0 &&
-         this->obj_ != rhs.obj_ &&
-         this->obj_->isSameNode (rhs.obj_);
+  return this->obj_ == rhs.obj_ || (0 != this->obj_ && this->obj_->isSameNode (rhs.obj_));
 }
 
 //
@@ -116,7 +114,7 @@ const XMLCh * Object::id (void) const
 GME_INLINE
 const XMLCh * Object::name (void) const
 {
-  return Utils::get_element_value (this->obj_, ELEMENT_NAME);
+  return this->obj_->getFirstChild ()->getTextContent ();
 }
 
 //
@@ -125,7 +123,7 @@ const XMLCh * Object::name (void) const
 GME_INLINE
 void Object::name (const ::Utils::XStr & value)
 {
-  Utils::set_element_value (this->obj_, ELEMENT_NAME, value);
+  this->obj_->getFirstChild ()->setTextContent (value);
 }
 
 //

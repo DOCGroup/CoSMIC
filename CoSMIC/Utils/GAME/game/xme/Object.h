@@ -117,7 +117,7 @@ public:
    *
    * @param[in]     e         Source element.
    */
-  void attach (xercesc::DOMElement * e, bool validate = true);
+  virtual void attach (xercesc::DOMElement * e, bool validate = true);
 
   /**
    * Release the current element. The client takes ownership of
@@ -125,7 +125,7 @@ public:
    *
    * @return        The contained element.
    */
-  xercesc::DOMElement * release (void);
+  virtual xercesc::DOMElement * release (void);
 
   /**
    * Get a pointer to the underlying element.

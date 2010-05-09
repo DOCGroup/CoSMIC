@@ -36,8 +36,8 @@ Model Model::create_impl (T & parent, const ::Utils::XStr & kind)
 // Model
 //
 Model::
-Model (xercesc::DOMElement * folder, bool validate)
-: FCO (folder, false),
+Model (xercesc::DOMElement * model, bool validate)
+: FCO (model, false),
   counter_ (0)
 {
   if (validate && !(this->type_ & Object_Type::OT_MODEL))
@@ -60,7 +60,7 @@ Model (xercesc::DOMElement * parent,
        kind,
        kind,
        relid),
- counter_ (0)
+  counter_ (0)
 {
   this->obj_->setAttribute (ATTR_CHILDRELIDCNTR, NO_CHILDREN);
 }
@@ -87,7 +87,7 @@ Model Model::_create (Folder & parent, const ::Utils::XStr & kind)
 void Model::attach (xercesc::DOMElement * obj, bool validate)
 {
   // Pass control to the base class.
-  Object::attach (obj, false);
+  FCO::attach (obj, false);
 
   if (validate && !(this->type_ & Object_Type::OT_MODEL))
     throw Invalid_Cast ();
