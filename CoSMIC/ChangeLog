@@ -1,3 +1,9 @@
+Sun May  9 22:07:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * picml.mwc:
+
+          . Added a missing project.
+
 Sun May  9 21:14:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/xme/Connection.h:
