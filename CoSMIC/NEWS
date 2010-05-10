@@ -1,3 +1,19 @@
+USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.7 and CoSMIC-0.7.8
+============================================================
+
+. Enum type property values are supported.
+
+. External ports are now defined as an Atom instead of
+  as a Reference.
+
+. Location of the external port can not be empty.
+
+. Multiple ports connected to the same external port must of 
+  the same kind and object type. 
+
+. LEESA has been moved to its own repository. Please visit
+  http://www.dre.vanderbilt.edu/LEESA
+
 USER VISIBLE CHANGES BETWEEN CoSMIC-0.7.4.5 and CoSMIC-0.7.7
 ============================================================
 

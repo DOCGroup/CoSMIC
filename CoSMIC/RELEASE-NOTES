@@ -1,23 +1,37 @@
 Component Synthesis using Model-Integrated Computing (CoSMIC)
 
-This is a release version 0.7.7 of Component Synthesis using Model-Integrated 
+This is a release version 0.7.8 of Component Synthesis using Model-Integrated 
 Computing (CoSMIC) suite of tools. Currently CoSMIC tool suite consists of 
     o   Platform-Independent Component Modeling Language (PICML)
     o   Component QoS Modeling Language (CQML)
     o   DDS QoS Modeling Language (DQML)
-    o   Language for Embedded Query and Traversal (LEESA). 
 
 PICML is a Model-Integrated Computing (MIC) based paradigm for modeling CORBA 
 Component Model (CCM) based applications, which use the latest Deployment and 
 Configuration Specification (D&C), for configuration and deployment. CQML 
 allows PICML-based models to capture the higher level QoS design intent and 
 helps generate QoS configuration metadata from annotated models. DQML allows 
-modeling of large number QoS knobs provided by DDS. LEESA is a domain-specific
-embedded language (DSEL) in C++ that provides a succinct and expressive 
-notation for writing object structure (e.g., XML documents, models) traversal.
+modeling of large number QoS knobs provided by DDS. 
 
 This document lists the new features that are introduced in the latest 
 version.
+
+Release CoSMIC-0.7.8
+======================
+
+. Enum type property values are supported.
+
+. External ports are now defined as an Atom instead of
+  as a Reference.
+
+. Location of the external port can not be empty.
+
+. Multiple ports connected to the same external port must of 
+  the same kind and object type. 
+
+. LEESA has been moved to its own repository. Please visit
+  http://www.dre.vanderbilt.edu/LEESA
+
 
 Release CoSMIC-0.7.7
 ======================
