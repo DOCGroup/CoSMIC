@@ -1,0 +1,828 @@
+Mon May 10 17:08:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+
+        * NEWS:
+        * README:
+        * RELEASE-NOTES:
+        * VERSION:
+        * contrib:
+		
+          Preparing for CoSMIC release 0.7.8. contrib revision number 90110
+
+Sun May  9 22:07:32 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * picml.mwc:
+
+          . Added a missing project.
+
+Sun May  9 21:14:43 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.inl:
+        * Utils/GAME/game/xme/Connection.cpp:
+
+          . Implemented methods for setting/getting the source and
+            destination connection points.
+
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+
+          . Added the Id svn property tag to the document.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+
+          . Added support for getting all the Connection children
+            in a model element.
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+
+          . Bug fix where operator == () had an invalid conditional.
+
+          . Optimized the implementation of both name () methods.
+
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where opening a project failed to initialize
+            the id generator.
+
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          . Bug fix where the program would crash if the referenced
+            object could not be located in the document.
+
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+
+          . Bug fix where locating a child registry node that already
+            existing resulted in creating a duplicate version of the
+            registry node.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented equality comparison operator for XMLCh strings
+            with XStr when the XMLCh string is on the left hand side
+            of the operator.
+
+Wed Apr 28 13:54:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/XME.mpc:
+
+          . Added more files to the project.
+
+        * Utils/GAME/game/xme/Attribute.inl:
+
+          . Bug fix where the value_ data member was not initialized
+            in one of the constructors.
+
+        * Utils/GAME/game/xme/Auto_Model_T.h:
+        * Utils/GAME/game/xme/Auto_Model_T.inl:
+        * Utils/GAME/game/xme/Auto_Model_T.cpp:
+
+          . First implementation of the auto_model for this GME::XME backend
+            version of GAME.
+
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+
+          . Implemented the Not_Found exception.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.cpp:
+
+          . Bug fix where creating a new element with a Model as its parent
+            failed to update the parent model's relative child id counter.
+
+        * Utils/GAME/game/xme/Object.gperf:
+        * Utils/GAME/game/xme/Object_Type_Map.hpp:
+
+          . Bug fix where the hash table stated that invalid elements were
+            in the table. This was due to bad command-line options passed
+            into gperf.
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+
+          . Implemented the kind () method.
+
+        * Utils/GAME/game/xme/Object_Type.h:
+
+          . Bug fix where OT_ATOM had the incorrect value.
+
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where _open () kept crashing for some unknown reason. This
+            was resolved by dynamically allocating the error handler and schema
+            resolver.
+
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.inl:
+        * Utils/GAME/game/xme/Reference.cpp:
+
+          . Implemented the is_null () method.
+
+          . Bug fix where the reference failed to return the correct
+            refered object if it was attached to a pre-existing DOMElement.
+
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+
+          . Implemented registry support for FCO objects.
+
+        * Utils/GAME/game/xme/functional.h:
+        * Utils/GAME/game/xme/functional.cpp:
+
+          . Implemented methods for setting/getting position of an
+            FCO in its parent model.
+
+        * Utils/xercesc/EntityResolver.h:
+
+          . Removed the 'using' statement from the global namespace.
+
+        * Utils/xercesc/XML_Error_Handler.h:
+        * Utils/xercesc/XML_Error_Handler.cpp:
+
+          . Optimized the generation of the error string.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented the find () method.
+
+        * Utils/GAME/game/xme/Collection.h:
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Collection.cpp:
+
+          Removed these files.
+
+Wed Apr 28 14:10:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          . Updated to IDL_TO_PICML_EXE project to force linkage against
+            static libraries except on MacOS X.
+
+Fri Apr 23 13:46:14 UTC 2010  Abdul Sowayan  <sowayan@gmail.com>
+
+        * PIM/PICML/interpreters/IDLImporter/IDLImporter.mpc:
+
+          Minor change to allow static linking of xerces on Linux platforms.
+
+Fri Apr 23 04:19:07 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/cosmic_common.mpb:
+
+          . Added $(COSMIC_ROOT)/bin to the libpaths since idl_to_picml was
+            not linking on non-Windows systems.
+
+Tue Apr 20 01:55:55 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Fixed compilation errors related to replacing GME::Collection_T
+            with std::vector.
+
+Sun Apr 18 22:56:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Registry.h:
+        * Utils/GAME/game/xme/Registry.inl:
+        * Utils/GAME/game/xme/Registry.cpp:
+        * Utils/GAME/game/xme/Registry_Node.h:
+        * Utils/GAME/game/xme/Registry_Node.inl:
+        * Utils/GAME/game/xme/Registry_Node.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+
+          . Added support for getting/setting values of an FCO's registry.
+
+Wed Apr 14 15:24:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+
+          . Fixed compilation errors related to chagning the order to
+            parameters in the _create () methods.
+
+          . Fixed compilation errors related to replacing the Collection
+            class with std::vector.
+
+Tue Apr 13 13:11:20 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Bug fix where the some of the parents were not pass-by-reference,
+            which prevented the parent element from being updated correctly.
+
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.cpp:
+
+          . Bug fix where the parent in the _create () method was not
+            pass-by-reference, which prevented the parent element from
+            being updated correctly.
+
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/Attribute.h:
+        * Utils/GAME/game/xme/Attribute.inl:
+        * Utils/GAME/game/xme/Attribute.cpp:
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+
+          . Added support for attributes in FCO types.
+
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+
+          . Changed the name of all the methods that return a collection to
+            child elements to children ().
+
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+
+          . Added a hash () method to the object so it can be used at the
+            id type in ACE_Hash_Map_Manager classes.
+
+Wed Apr  7 14:36:40 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Bug fix where create_if_not () invoked the _create ()
+            method with the parameters in the incorrect order.
+
+        * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
+
+          . Bug fix where the last chunk of the ID did not have
+            the necessary padding to ensure it was 8 characters.
+
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Bug fix where the <project> tag had an invalid
+            attribute.
+
+          . Replaced the 'paradigm' attribute of the <project> tag
+            with 'metaname'.
+
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.cpp:
+
+          . Implemented the method clear () for clearing the
+            contents of the string.
+
+Tue Apr  6 05:17:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_xme.mpb:
+        * Utils/GAME/game/Atom.h:
+        * Utils/GAME/game/Atom.cpp:
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/Collection_T.cpp:
+        * Utils/GAME/game/Connection.h:
+        * Utils/GAME/game/Connection.cpp:
+        * Utils/GAME/game/FCO.h:
+        * Utils/GAME/game/FCO.cpp:
+        * Utils/GAME/game/Filter.h:
+        * Utils/GAME/game/Filter.cpp:
+        * Utils/GAME/game/Folder.h:
+        * Utils/GAME/game/Folder.cpp:
+        * Utils/GAME/game/MetaFolder.h:
+        * Utils/GAME/game/MetaFolder.cpp:
+        * Utils/GAME/game/MetaModel.h:
+        * Utils/GAME/game/MetaModel.cpp:
+        * Utils/GAME/game/Model.h:
+        * Utils/GAME/game/Model.cpp:
+        * Utils/GAME/game/Object.h:
+        * Utils/GAME/game/Object.cpp:
+        * Utils/GAME/game/Reference.h:
+        * Utils/GAME/game/Reference.cpp:
+        * Utils/GAME/game/RegistryNode.h:
+        * Utils/GAME/game/RegistryNode.cpp:
+        * Utils/GAME/game/Set.h:
+        * Utils/GAME/game/Set.cpp:
+
+          . Reordered the parameters in the _create () method.
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/GAME/game/be/Interpreter_Impl_Base.h:
+        * Utils/GAME/game/be/Interpreter_Impl_Base.inl:
+        * Utils/GAME/game/be/Interpreter_T.cpp:
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/GAME/game/utils/modelgen.h:
+        * Utils/GAME/game/utils/modelgen.inl:
+        * Utils/GAME/game/utils/modelgen.cpp:
+
+          . Generalized the algorithms to support both the COM or
+            XME version of GME in GAME.
+
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+
+          . Renamed the method(s) that retrieve the collection of
+            child elements in a Model/Folder to children ().
+
+        * Utils/T3/t3/runtime/Auto_Model_Impl.h:
+        * Utils/T3/t3/runtime/Auto_Model_Impl.cpp:
+        * Utils/T3/t3/runtime/Runtime_Engine.h:
+        * Utils/T3/t3/runtime/Runtime_Engine.cpp:
+
+          . Replaced the GME::Collection_T with std::vector. This makes
+            it easier to use STL methods/functions.
+
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+
+          . Overloaded the constructor to support ::Utils::XStr.
+
+        * Utils/GAME/game/Collection_T.inl:
+
+          Removed this file.
+
+Mon Apr  5 16:28:37 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/xercesc/Xerces_Initializer.cpp:
+
+          Missing source file.
+
+Sat Apr  3 13:43:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/xme:
+        * Utils/GAME/game/xme/Atom.h:
+        * Utils/GAME/game/xme/Atom.inl:
+        * Utils/GAME/game/xme/Atom.cpp:
+        * Utils/GAME/game/xme/Collection.h:
+        * Utils/GAME/game/xme/Collection.inl:
+        * Utils/GAME/game/xme/Collection.cpp:
+        * Utils/GAME/game/xme/Connection.h:
+        * Utils/GAME/game/xme/Connection.inl:
+        * Utils/GAME/game/xme/Connection.cpp:
+        * Utils/GAME/game/xme/Exceptions.h:
+        * Utils/GAME/game/xme/Exceptions.inl:
+        * Utils/GAME/game/xme/Exceptions.cpp:
+        * Utils/GAME/game/xme/FCO.h:
+        * Utils/GAME/game/xme/FCO.inl:
+        * Utils/GAME/game/xme/FCO.cpp:
+        * Utils/GAME/game/xme/Folder.h:
+        * Utils/GAME/game/xme/Folder.inl:
+        * Utils/GAME/game/xme/Folder.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator.h:
+        * Utils/GAME/game/xme/GME_ID_Generator.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator.cpp:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.h:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.inl:
+        * Utils/GAME/game/xme/GME_ID_Generator_T.cpp:
+        * Utils/GAME/game/xme/Model.h:
+        * Utils/GAME/game/xme/Model.inl:
+        * Utils/GAME/game/xme/Model.cpp:
+        * Utils/GAME/game/xme/Object.gperf:
+        * Utils/GAME/game/xme/Object.h:
+        * Utils/GAME/game/xme/Object.inl:
+        * Utils/GAME/game/xme/Object.cpp:
+        * Utils/GAME/game/xme/Object_Type.h:
+        * Utils/GAME/game/xme/Object_Type_Map.hpp:
+        * Utils/GAME/game/xme/Project.h:
+        * Utils/GAME/game/xme/Project.inl:
+        * Utils/GAME/game/xme/Project.cpp:
+        * Utils/GAME/game/xme/Reference.h:
+        * Utils/GAME/game/xme/Reference.inl:
+        * Utils/GAME/game/xme/Reference.cpp:
+        * Utils/GAME/game/xme/XME.mpc:
+        * Utils/GAME/game/xme/XME_Utils.h:
+        * Utils/GAME/game/xme/XME_Utils.cpp:
+        * Utils/GAME/game/xme/XME_Utils_T.cpp:
+        * Utils/GAME/game/xme/XME_export.h:
+
+          . First implementation of the XME backend for GAME. Now it
+            is possible to handle raw XML documents of GME models.
+
+        * Utils/xercesc/EntityResolver.h:
+        * Utils/xercesc/EntityResolver.cpp:
+        * Utils/xercesc/Memory_Manager.h:
+        * Utils/xercesc/Memory_Manager.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/XercesString.inl:
+        * Utils/xercesc/XercesString.cpp:
+        * Utils/xercesc/Xerces_Utils.mpc:
+
+          . Improved the implementation of XStr so that the client
+            has the option of doing shallow/deep copies of the string.
+
+Mon Mar 15 16:37:00 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils.wxs:
+
+          . Added PICML_UDM_Utils to the installer.
+
+Mon Mar 15 16:21:34 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Type_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Data_Value_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.inl:
+
+          . Enabled support for defining assembly attributes of
+            type Enum.
+
+        * PIM/PICML/utils/udm:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils.mpc:
+        * PIM/PICML/utils/udm/PICML_UDM_Utils_export.h:
+        * PIM/PICML/utils/udm/functional.h:
+        * PIM/PICML/utils/udm/functional.cpp:
+        * MPC/config/picml_udm_utils.mpb:
+
+          . Refactored the following functions into a utility library
+            for PICML interpreters that use UDM:
+
+            - scope: generates the scope of an object
+            - fq_type: generates the fully qualified type name of
+                       an object
+            - repository_id: generates the repository id for a named type.
+
+        * Utils/UDM/Position_Sort_T.h:
+        * Utils/UDM/Position_Sort_T.cpp:
+
+          . Utility class from CUTS that sorts UDM elements by their
+            position in the model view.
+
+Fri Mar 12 18:52:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/examples/ExternalPort.xme:
+
+          Example illustrating usage of ExternalPort elements.
+
+Fri Mar 12 18:42:22 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game.mpb:
+        * MPC/config/game_common.mpb:
+        * MPC/config/game_xme.mpb:
+
+          Refactored base projects to increase granularity.
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.cpp:
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * picml.mwc:
+
+          . External ports are now defined as an Atom instead of
+            as a Reference since the attaching port determines the
+            type of the external reference.
+
+          . Added a constraint to make sure the location of the
+            external port is not empty.
+
+          . Added a constraint to make sure that multiple ports
+            connected to the same external port are of the same
+            kind and object type.
+
+        * Utils/GAME/game/GME_export.h:
+        * Utils/GAME/game/config.h:
+        * Utils/UDM/Abstract_Type_Dispatcher_T.h:
+        * Utils/UDM/Abstract_Type_Dispatcher_T.cpp:
+
+          . Simple abstract type dispatcher contributed from CUTS.
+
+Sat Mar  6 16:38:19 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/POSAML/interpreters/interpreters.mwc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * cosmic.mwc:
+        * picml.mwc:
+
+          . It seems as if !prop:windows does not work in the 'excludes'
+            statement. Right now, this have been removed and replaced with
+            a workaround to such support is available in MPC.
+
+Sat Mar  6 00:23:56 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/boolean_type_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/char_type.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/component_impl.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/scoped_name.hpp:
+
+          . Move the #include around so they appear in the correct
+            file, or ones that are not needed are removed.
+
+        * Release_idl_to_picml.mwc:
+
+          . Removed the static setting for idl_to_picml since
+            -static does not work correctly on non-Windows platforms.
+
+Thu Mar  4 04:36:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Interpreters.mwc:
+        * PIM/POSAML/interpreters/interpreters.mwc:
+        * PIM/SIML/interpreters/Interpreters.mwc:
+        * PSM/CQML/interpreters/Interpreters.mwc:
+        * cosmic.mwc:
+        * picml.mwc:
+
+          . Added exclude sections to the workspaces so it is possible
+            to build CoSMIC and the appropriate projects on non-Windows
+            systems.
+
+Mon Mar  1 20:36:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA:
+
+        * Utils/LEESA/bin:
+
+        * Utils/LEESA/bin/gen-meta.py:
+        * Utils/LEESA/bin/gen-pairs.pl:
+
+        * Utils/LEESA/doc:
+
+        * Utils/LEESA/doc/LEESA.docx:
+        * Utils/LEESA/doc/LEESA.pdf:
+
+        * Utils/LEESA/etc:
+
+        * Utils/LEESA/etc/DSL09primitives.cpp:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.h:
+        * Utils/LEESA/etc/DeploymentPlanVisitor.cpp:
+        * Utils/LEESA/etc/LEESA.wxs:
+        * Utils/LEESA/etc/UdmMPL.h:
+        * Utils/LEESA/etc/UdmObjectConcept.h:
+        * Utils/LEESA/etc/concept-mpl.cpp:
+        * Utils/LEESA/etc/xsd:
+
+        * Utils/LEESA/etc/xsd/LEESA.h:
+        * Utils/LEESA/etc/xsd/LEESA.cpp:
+        * Utils/LEESA/etc/xsd/LEESAConcepts.h:
+        * Utils/LEESA/etc/xsd/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/etc/xsd/example:
+
+        * Utils/LEESA/etc/xsd/example/driver.cxx:
+        * Utils/LEESA/etc/xsd/example/library.hpp:
+        * Utils/LEESA/etc/xsd/example/library.xsd:
+        * Utils/LEESA/etc/xsd/example/library.cpp:
+        * Utils/LEESA/etc/xsd/example/library.xml:
+        * Utils/LEESA/etc/xsd/example/makefile.txt:
+        * Utils/LEESA/etc/xsd/example/xsd.sh:
+
+        * Utils/LEESA/etc/xsd/patch:
+
+        * Utils/LEESA/etc/xsd/patch/Readme.txt:
+        * Utils/LEESA/etc/xsd/patch/cli.hxx:
+        * Utils/LEESA/etc/xsd/patch/generator.cxx:
+        * Utils/LEESA/etc/xsd/patch/makefile.txt:
+        * Utils/LEESA/etc/xsd/patch/template-header.cxx:
+        * Utils/LEESA/etc/xsd/patch/template-header.hxx:
+
+        * Utils/LEESA/include:
+
+        * Utils/LEESA/include/AP.cpp:
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Carrier_Simple.h:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/Kind_Traits.h:
+        * Utils/LEESA/include/LEESA.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Concepts.h:
+        * Utils/LEESA/include/LEESA_LShift.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+        * Utils/LEESA/include/LEESA_RShift.cpp:
+        * Utils/LEESA/include/LEESA_SingleStage.h:
+        * Utils/LEESA/include/LEESA_VisitorAsIndex.h:
+        * Utils/LEESA/include/SP.cpp:
+        * Utils/LEESA/include/SP_Accumulation.cpp:
+
+        * tests/LEESA:
+
+        * tests/LEESA/G2SMessage-xsd:
+
+        * tests/LEESA/G2SMessage-xsd/Doxyfile:
+        * tests/LEESA/G2SMessage-xsd/README:
+        * tests/LEESA/G2SMessage-xsd/all.xml:
+        * tests/LEESA/G2SMessage-xsd/driver.cpp:
+        * tests/LEESA/G2SMessage-xsd/fixed-xsd-errors.txt:
+        * tests/LEESA/G2SMessage-xsd/makefile:
+        * tests/LEESA/G2SMessage-xsd/xsd:
+
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sBonus.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCabinet.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCentral.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCoinAcceptor.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCommConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sCommunications.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sDownload.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sEventHandler.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sGAT.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sGamePlay.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sHandpay.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sHopper.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIdReader.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeClasses.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sIncludeGlobal.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sMessage.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sMeters.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sNoteAcceptor.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sNoteDispenser.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sOptionConfig.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sPlayer.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sPrinter.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sProgressive.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sVoucher.xsd:
+        * tests/LEESA/G2SMessage-xsd/xsd/g2sWAT.xsd:
+
+        * tests/LEESA/PICML-xsd:
+
+        * tests/LEESA/PICML-xsd/PICML.xsd:
+        * tests/LEESA/PICML-xsd/README:
+        * tests/LEESA/PICML-xsd/driver.cxx:
+        * tests/LEESA/PICML-xsd/makefile:
+
+        * tests/LEESA/SM-Win:
+
+        * tests/LEESA/SM-Win/CompIcon.ico:
+        * tests/LEESA/SM-Win/Component.def:
+        * tests/LEESA/SM-Win/Component.rc:
+        * tests/LEESA/SM-Win/ComponentConfig.h:
+        * tests/LEESA/SM-Win/ComponentObj.h:
+        * tests/LEESA/SM-Win/ComponentObj.cpp:
+        * tests/LEESA/SM-Win/RawComponent.h:
+        * tests/LEESA/SM-Win/RawComponent.cpp:
+        * tests/LEESA/SM-Win/Resource.h:
+        * tests/LEESA/SM-Win/SM-Win.vcproj:
+        * tests/LEESA/SM-Win/SM.h:
+        * tests/LEESA/SM-Win/SM.xml:
+        * tests/LEESA/SM-Win/SM.xmp:
+        * tests/LEESA/SM-Win/SM.xsd:
+        * tests/LEESA/SM-Win/SM.cpp:
+        * tests/LEESA/SM-Win/SM.xme:
+        * tests/LEESA/SM-Win/SM_export.h:
+        * tests/LEESA/SM-Win/SM_uml.xme:
+        * tests/LEESA/SM-Win/StdAfx.h:
+        * tests/LEESA/SM-Win/StdAfx.cpp:
+        * tests/LEESA/SM-Win/TestSM.xme:
+        * tests/LEESA/SM-Win/UdmApp.h:
+        * tests/LEESA/SM-Win/UdmApp.cpp:
+        * tests/LEESA/SM-Win/UdmConfig.h:
+        * tests/LEESA/SM-Win/UdmConsole.h:
+        * tests/LEESA/SM-Win/UdmConsole.cpp:
+        * tests/LEESA/SM-Win/UdmFormatter.h:
+        * tests/LEESA/SM-Win/UdmFormatter.cpp:
+        * tests/LEESA/SM-Win/string_utils.h:
+
+        * tests/LEESA/UdmApp-Linux:
+
+        * tests/LEESA/UdmApp-Linux/PICML-orig.h:
+        * tests/LEESA/UdmApp-Linux/PICML-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/PICML_export.h:
+        * tests/LEESA/UdmApp-Linux/README:
+        * tests/LEESA/UdmApp-Linux/SM-orig.h:
+        * tests/LEESA/UdmApp-Linux/SM-orig.cpp:
+        * tests/LEESA/UdmApp-Linux/SM_export.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-PICML.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.h:
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-PICML.h:
+        * tests/LEESA/UdmApp-Linux/UdmConfig-SM.h:
+        * tests/LEESA/UdmApp-Linux/makefile:
+
+        * tests/LEESA/library-xsd:
+
+        * tests/LEESA/library-xsd/README:
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/driver1stage.cxx:
+        * tests/LEESA/library-xsd/library.xml:
+        * tests/LEESA/library-xsd/library.xsd:
+        * tests/LEESA/library-xsd/libxml2-perf.c:
+        * tests/LEESA/library-xsd/lxml-perf.py:
+        * tests/LEESA/library-xsd/makefile:
+        * tests/LEESA/library-xsd/swap_options.sh:
+
+        * tests/LEESA/polymorphism-xsd:
+
+        * tests/LEESA/polymorphism-xsd/README:
+        * tests/LEESA/polymorphism-xsd/driver.cxx:
+        * tests/LEESA/polymorphism-xsd/makefile:
+        * tests/LEESA/polymorphism-xsd/supermen.xml:
+        * tests/LEESA/polymorphism-xsd/supermen.xsd:
+
+        * tests/LEESA/rss2-xsd:
+
+        * tests/LEESA/rss2-xsd/README:
+        * tests/LEESA/rss2-xsd/driver.cxx:
+        * tests/LEESA/rss2-xsd/makefile:
+        * tests/LEESA/rss2-xsd/rss2-original.xsd:
+        * tests/LEESA/rss2-xsd/rss2.xsd:
+
+        * tests/LEESA/xo-impedance:
+
+        * tests/LEESA/xo-impedance/README:
+        * tests/LEESA/xo-impedance/driver.cxx:
+        * tests/LEESA/xo-impedance/impedance.xml:
+        * tests/LEESA/xo-impedance/impedance.xsd:
+        * tests/LEESA/xo-impedance/makefile:
+
+          Removed these files.
+          Moved LEESA to its own repository.
+          https://svn.dre.vanderbilt.edu/LEESA/trunk/LEESA
+
+Mon Mar  1 06:18:42 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/Carrier_Optimized.h:
+        * Utils/LEESA/include/Carrier_Optimized.cpp:
+        * Utils/LEESA/include/Expression_Traits.h:
+        * Utils/LEESA/include/LEESA.cpp:
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          Tuple creation honors optional elements.
+          Leaves them blank in the tuple.
+
+        * tests/LEESA/UdmApp-Linux/UdmApp-SM.cpp:
+          No tuple support for UDM at least for now.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+        * tests/LEESA/library-xsd/makefile:
+          New test for new tuples with optional elements.
+
+Mon Mar  1 00:24:18 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.wxs:
+        * Installer/CoSMIC_Installer/Directories.wxs:
+
+          Removed LEESA from the CoSMIC installer due to potential
+          licensing issues.
+
+Sun Feb 28 18:16:09 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * Utils/LEESA/include/LEESA_Operators.cpp:
+          MembersAsTupleOf now returns a vector of tuple of pointers
+          for better performance.
+
+        * tests/LEESA/library-xsd/driver.cxx:
+          Test6 updated for MembersAsTupleOf.
+
+Sat Feb 27 05:42:48 UTC 2010  Sumant Tambe  <sutambe@nospam>
+
+        * ChangeLog:
+        * ChangeLogs/ChangeLog-10a:
+        * contrib:
+
+          . CoSMIC version 0.7.7 was released. Tag: CoSMIC-0.7.7
+            Moved the old ChangeLog to ChangeLogs/ChangeLog-10a.
+            contrib svn:externals property back to HEAD now.
+
+Local Variables:
+mode: change-log
+add-log-time-format: (lambda () (progn (setq tz (getenv "TZ")) (set-time-zone-rule "UTC") (setq time (format-time-string "%a %b %e %H:%M:%S %Z %Y" (current-time))) (set-time-zone-rule tz) time))
+indent-tabs-mode: nil
+End:

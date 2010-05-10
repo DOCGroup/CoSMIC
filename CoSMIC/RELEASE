@@ -50,19 +50,26 @@ This file documents the CoSMIC release procedure
 
 6. Commit the modified files:  CoSMIC_Installer.wxs, NEWS, README, 
    RELEASE-NOTES, VERSION, and ChangeLog.
+ 
+7. Build the CoSMIC installers. At the time of this writing, CoSMIC was 
+   built using both GME 7.6.29 (vc8) and GME 9.8.28 (vc9) on equus and 
+   trian nightly build machines respectively. Check the CoSMIC scoreboard
+   at http://www.dre.vanderbilt.edu/scoreboard/cosmic.html to make sure
+   they build properly. Upload the installers in the WWW repository as 
+   described in step #12
    
-7. Create a tag. For example,
+8. Create a tag. For example,
 
    svn cp https://svn.dre.vanderbilt.edu/CoSMIC/trunk 
           https://svn.dre.vanderbilt.edu/CoSMIC/tags/CoSMIC-0.7.4 
           -m "Tagging for CoSMIC release 0.7.4" 
 
-8. Bring the svn:externals property back to the HEAD revision. Remove 
+9. Bring the svn:externals property back to the HEAD revision. Remove 
    any -r ##### from the property.
          
-9. Prepare a fresh ChangeLog file to be used after the release. Move the 
-   existing ChangeLog file to ChangeLogs/ChangeLog-##. Fresh ChangeLog file 
-   looks like the one below.
+10. Prepare a fresh ChangeLog file to be used after the release. Move the 
+    existing ChangeLog file to ChangeLogs/ChangeLog-##. Fresh ChangeLog file 
+    looks like the one below.
    
    Mon Oct 19 23:07:02 UTC 2009  PQR XYZ  <XYZ@nospam>
    
@@ -80,27 +87,27 @@ This file documents the CoSMIC release procedure
    indent-tabs-mode: nil
    End:
 
-10. Check the changes to the ChangeLog and svn:externals back in the repo.
-   
-11. Update the WWW repository. The subversion URL for WWW repo is:
-    https://svn.dre.vanderbilt.edu/DOC/WWW/trunk
+11. Commit the changes to the ChangeLog and svn:externals back in the repo.
+
+12. Update installers to the WWW repository. The subversion URL for WWW 
+    repo is: https://svn.dre.vanderbilt.edu/DOC/WWW/trunk
 
    o  Obtain the latest CoSMIC installers from the nightly build machines.
    
-   o  Check in the latest CoSMIC installers in the subvesion repository
+   o  Commit the latest CoSMIC installers in the WWW repository
       under WWW/COSMIC/downloads/beta/GME_#_#_#
       
    o  Update the md5sum of every installer using the md5sum command.
    
-   o  Copy the old installers under WWW/COSMIC/downloads/old and check 
+   o  Copy the old installers under WWW/COSMIC/downloads/old and commit
       them in the subversion repository.
    
    o  Remove the unwanted installers from the GME_#_#_# direcotry.
 
-12. Update the CoSMIC release version in the following files in the WWW
+13. Update the CoSMIC release version in the following files in the WWW
     repo.
     WWW/COSMIC/html/download.html
     Make sure that the hyperlinks in download.html are valid.
 
   
-Last modified: Tue Nov 24, 2009
+Last modified: Mon May 10, 2010
