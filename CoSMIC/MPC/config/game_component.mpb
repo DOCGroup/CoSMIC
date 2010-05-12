@@ -8,8 +8,14 @@ project : game_be {
   Source_Files {
     Component.def
     RawComponent.cpp
-
-    $(GME_ROOT)/SDK/BON/ComponentLib.idl
     $(COSMIC_ROOT)/Utils/GAME/game/be/ComponentDLL.cpp
+
+    conditional (vc8) {
+      $(GME_ROOT)/SDK/BON/ComponentLib.idl
+    }
+    
+    conditional (vc9) {
+      $(GME_ROOT)/SDK/BON/Common/ComponentLib.idl
+    }
   }
 }

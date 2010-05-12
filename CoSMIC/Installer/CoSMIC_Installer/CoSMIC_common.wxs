@@ -115,6 +115,12 @@
               Source="$(var.UDM_PATH)\bin\$(var.UDM_VERSION).DLL"
               DiskId="1" />
 			  
+<?if $(var.GME_VERSION) = 10_2_9 ?>
+        <File Id="XERCES_C_2_8.DLL" Name="XERCES-C_2_8.DLL"
+              Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_8_0\bin\XERCES-C_2_8.DLL"
+              DiskId="1" />
+<?endif ?>
+
 <?if $(var.GME_VERSION) = 9_8_28 ?>
         <File Id="XERCES_C_2_8.DLL" Name="XERCES-C_2_8.DLL"
               Source="$(env.UDM_PATH)\3rdparty\xerces-c_2_8_0\bin\XERCES-C_2_8.DLL"

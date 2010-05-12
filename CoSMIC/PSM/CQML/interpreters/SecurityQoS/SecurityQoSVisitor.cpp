@@ -204,15 +204,23 @@ namespace CQML
         rule.role_ = role;
 
         OperationInvokeConn opn_invoke_conn = port_rule.dstOperationInvokeConn();
-        if (Udm::null == opn_invoke_conn) return;
+
+        if (Udm::null == opn_invoke_conn) 
+          return;
+        
         ResourceActionBase res_act_base = opn_invoke_conn.dstOperationInvokeConn_end();
         rule.action_ = res_act_base;
 
         OnInterfaceConn on_iface_conn = port_rule.dstOnInterfaceConn();
-        if (Udm::null == on_iface_conn) return;
+        if (Udm::null == on_iface_conn) 
+          return;
+
         TargetObjectRef obj_ref = on_iface_conn.dstOnInterfaceConn_end();
-        if (Udm::null == obj_ref.ref ()) return;
-        CQML::Object obj = obj_ref.ref ();
+        
+        if (Udm::null == obj_ref.ref ()) 
+          return;
+
+        CQML::Object obj = CQML::Object::Cast (obj_ref.ref ());
         rule.target_ = obj;
 
         this->rule_set_.insert(rule);

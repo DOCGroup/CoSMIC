@@ -1,3 +1,13 @@
+Wed May 12 14:58:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
+        * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
+        * MPC/config/game_component.mpb:
+        * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
+        
+          . Fixed build errors related to the following files so that
+            CoSMIC builds against GME 10.
+
 Mon May 10 21:15:51 UTC 2010  Sumant Tambe  <sutambe@nospam>
 
         * ChangeLog:
