@@ -21,7 +21,7 @@
       <ComponentRef Id='CBMLManagerLibrary' />
       <ComponentRef Id='CBMLManagerRegistry' />
 
-      <ComponentRef Id='PackageComponentLibrary' />
+      <!--ComponentRef Id='PackageComponentLibrary' /-->
       <ComponentRef Id='DomainComponentLibrary' />
       <ComponentRef Id='DeploymentPlanComponentLibrary' />
       <ComponentRef Id='MPCComponentLibrary' />

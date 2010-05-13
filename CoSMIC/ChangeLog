@@ -1,10 +1,20 @@
+Thu May 13 11:58:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        * PIM/PICML/paradigms/PICMLParadigm.wxs:
+        
+          . Updated PICML metamodel to GME 10.
+
 Wed May 12 14:58:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Installer/CoSMIC_Installer/CoSMIC_Installer.mpc:
         * Installer/CoSMIC_Installer/CoSMIC_common.wxs:
         * MPC/config/game_component.mpb:
         * PSM/CQML/interpreters/SecurityQoS/SecurityQoSVisitor.cpp:
-        
+
           . Fixed build errors related to the following files so that
             CoSMIC builds against GME 10.
 
