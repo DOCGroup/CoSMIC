@@ -1,3 +1,9 @@
+Wed May 19 22:59:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
+        
+          . Fix compile errors for GME 10.
+
 Thu May 13 11:58:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
@@ -5,7 +11,7 @@ Thu May 13 11:58:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
         * PIM/PICML/paradigms/PICMLParadigm.wxs:
-        
+
           . Updated PICML metamodel to GME 10.
 
 Wed May 12 14:58:04 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

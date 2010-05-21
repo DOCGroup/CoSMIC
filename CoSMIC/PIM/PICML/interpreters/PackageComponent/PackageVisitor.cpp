@@ -952,7 +952,7 @@ void PackageVisitor::CollectSupportedTypes(const Component& comp)
            ++iter)
         {
           Supports supported = *iter;
-          Object interFace = supported.ref();
+          Object interFace = PICML::Object::Cast (supported.ref());
           interFace.Accept (*this);
         }
     }
