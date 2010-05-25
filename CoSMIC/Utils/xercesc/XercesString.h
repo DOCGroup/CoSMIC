@@ -40,7 +40,7 @@ public:
    * @param[in]         allocator       Pointer to the string's allocator
    */
   XStr (xercesc::MemoryManager * const allocator = 
-        STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+        ::cosmic::xercesc::utils::STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * Initializing constructor.
@@ -49,14 +49,14 @@ public:
    */
   XStr (const char * str, 
         xercesc::MemoryManager * const allocator = 
-          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+          ::cosmic::xercesc::utils::STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * @overload
    */
   XStr (const std::string & str,
         xercesc::MemoryManager * const allocator = 
-          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+          ::cosmic::xercesc::utils::STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * @overload
@@ -66,7 +66,7 @@ public:
   XStr (const XMLCh * wstr,
         bool release = true,
         xercesc::MemoryManager * const allocator = 
-          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
+          ::cosmic::xercesc::utils::STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * Copy constructor

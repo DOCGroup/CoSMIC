@@ -39,14 +39,17 @@ public:
 private:
   Memory_Manager allocator_;  
 };
+
+typedef ACE_Singleton <Static_Configuration, ACE_Null_Mutex> STATIC_CONFIGURATION_SINGLETON;
+
 }
 }
 }
 
-#define STATIC_CONFIGURATION_SINGLETON \
-  ACE_Singleton <::cosmic::xercesc::utils::Static_Configuration, ACE_Null_Mutex>
 
-COSMIC_XERCES_UTILS_SINGLETON_DECLARATION (STATIC_CONFIGURATION_SINGLETON);
+COSMIC_XERCES_UTILS_SINGLETON_DECLARE (ACE_Singleton,
+                                       ::cosmic::xercesc::utils::Static_Configuration,
+                                       ACE_Null_Mutex);
 
 #endif  // _STATIC_CONFIGURATION_H_
 

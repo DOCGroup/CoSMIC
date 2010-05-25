@@ -1,3 +1,11 @@
+Mon May 24 15:07:09 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/xercesc/Static_Configuration.h:
+        * Utils/xercesc/XercesString.h:
+      
+          . Re-defined how the static configuration singleton is declared
+            to fix compile errors on non-Windows platforms.
+
 Mon May 24 14:36:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/xercesc/Memory_Manager.h:
@@ -6,8 +14,8 @@ Mon May 24 14:36:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/xercesc/Static_Configuration.cpp:
         * Utils/xercesc/XercesString.h:
         * Utils/xercesc/Xerces_Utils.mpc:
-        
-          . Bug fix where Xerces-C was not initialized properly for 
+
+          . Bug fix where Xerces-C was not initialized properly for
             static builds of idl_to_picml.
 
         * Utils/xercesc/Xerces_Initializer.cpp:
