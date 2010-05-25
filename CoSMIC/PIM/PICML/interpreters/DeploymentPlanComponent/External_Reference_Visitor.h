@@ -44,13 +44,10 @@ public:
 
   virtual void Visit_OutEventPort (const PICML::OutEventPort & out_event);
 
-  virtual void Visit_ExternalDelegate (const PICML::ExternalDelegate & ed);
-
-  virtual void Visit_ExternalPort (const PICML::ExternalPort & port);
-
 protected:
   void Visit_Port (const PICML::Port & port,
                    const std::string & type,
+                   const std::string & provider,
                    const PICML::ExternalDelegate & ed);
 };
 

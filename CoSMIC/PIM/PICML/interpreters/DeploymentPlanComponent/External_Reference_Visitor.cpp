@@ -36,12 +36,19 @@ Visit_RequiredRequestPort (const PICML::RequiredRequestPort & port)
   // Check if the port has an external connection.
   std::set <PICML::ExternalDelegate> ed = port.srcExternalDelegate ();
 
+  std::string kind;
+  if (port.multiple_connections ())
+    kind = "MultiplexReceptacle";
+  else
+    kind = "SimplexReceptacle";
+
   std::for_each (ed.begin (),
                  ed.end (),
                  boost::bind (&PICML_External_Reference_Visitor::Visit_Port,
                               this,
                               port,
-                              std::string ("Receptacle"),
+                              kind,
+                              "false",
                               _1));
 }
 
@@ -60,6 +67,7 @@ Visit_ProvidedRequestPort (const PICML::ProvidedRequestPort & port)
                               this,
                               port,
                               std::string ("Facet"),
+                              "true",
                               _1));
 }
 
@@ -77,6 +85,7 @@ Visit_InEventPort (const PICML::InEventPort & port)
                               this,
                               port,
                               std::string ("EventConsumer"),
+                              "false",
                               _1));
 }
 
@@ -94,6 +103,7 @@ Visit_OutEventPort (const PICML::OutEventPort & port)
                               this,
                               port,
                               std::string ("EventProducer"),
+                              "true",
                               _1));
 }
 
@@ -103,6 +113,7 @@ Visit_OutEventPort (const PICML::OutEventPort & port)
 void PICML_External_Reference_Visitor::
 Visit_Port (const PICML::Port & port,
             const std::string & provider_type,
+            const std::string & provider,
             const PICML::ExternalDelegate & ed)
 {
   using namespace xercesc;
@@ -122,7 +133,7 @@ Visit_Port (const PICML::Port & port,
 
   // Create the child elements for this element.
   this->create_simple_content (endpoint, "portName", port.name ());
-  this->create_simple_content (endpoint, "provider", "true");
+  this->create_simple_content (endpoint, "provider", provider);
   this->create_simple_content (endpoint, "kind", provider_type);
 
   // Set the instance for the connection.
@@ -134,34 +145,15 @@ Visit_Port (const PICML::Port & port,
 
   // Visit the other end of the connection.
   std::swap (this->curr_, conn);
-  PICML::ExternalDelegate (ed).Accept (*this);
-  std::swap (this->curr_, conn);
-}
-
-//
-//
-//
-void PICML_External_Reference_Visitor::
-Visit_ExternalDelegate (const PICML::ExternalDelegate & ed)
-{
-  PICML::ExternalPort epr = ed.srcExternalDelegate_end ();
-  epr.Accept (*this);
-}
-
-//
-// Visit_ExternalPortReference
-//
-void PICML_External_Reference_Visitor::
-Visit_ExternalPort (const PICML::ExternalPort & port)
-{
-  using namespace xercesc;
 
   // Create the <externalReference> element.
+  PICML::ExternalPort ex = ed.srcExternalDelegate_end ();
   DOMElement * external = this->create_element ("externalReference");
 
   // Create the child elements for this element.
-  this->create_simple_content (external, "location", port.location ());
-  this->create_simple_content (external, "provider", "false");
-  this->create_simple_content (external, "portName", port.name ());
+  this->create_simple_content (external, "location", ex.location ());
+  this->create_simple_content (external, "provider", provider == "true" ? "false" : "true");
+  this->create_simple_content (external, "portName", ex.name ());
   this->create_simple_content (external, "supportedType", "");
+  std::swap (this->curr_, conn);
 }
