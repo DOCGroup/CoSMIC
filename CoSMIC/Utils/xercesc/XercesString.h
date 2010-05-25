@@ -16,8 +16,8 @@
 #include <iosfwd>
 #include <memory>
 #include <string>
+#include "Static_Configuration.h"
 #include "xercesc/util/XMLString.hpp"
-#include "Xerces_Utils_export.h"
 
 // Utility class that provides a std::string like facade to XMLString.
 // Doesn't implement all of the methods of std::string.
@@ -39,19 +39,24 @@ public:
    *
    * @param[in]         allocator       Pointer to the string's allocator
    */
-  XStr (xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
+  XStr (xercesc::MemoryManager * const allocator = 
+        STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * Initializing constructor.
    *
    * @param[in]     str         Source string
    */
-  XStr (const char * str, xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
+  XStr (const char * str, 
+        xercesc::MemoryManager * const allocator = 
+          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * @overload
    */
-  XStr (const std::string & str, xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
+  XStr (const std::string & str,
+        xercesc::MemoryManager * const allocator = 
+          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * @overload
@@ -60,7 +65,8 @@ public:
    */
   XStr (const XMLCh * wstr,
         bool release = true,
-        xercesc::MemoryManager * const allocator = xercesc::XMLPlatformUtils::fgMemoryManager);
+        xercesc::MemoryManager * const allocator = 
+          STATIC_CONFIGURATION_SINGLETON::instance ()->memory_manager ());
 
   /**
    * Copy constructor

@@ -7,8 +7,8 @@ project (CoSMIC_Xerces_Utils) : xerces, acelib, cosmic_lib {
   Source_Files {
     EntityResolver.cpp
     Memory_Manager.cpp
+    Static_Configuration.cpp
     XercesString.cpp
-    Xerces_Initializer.cpp
     XML_Error_Handler.cpp
   }
 }

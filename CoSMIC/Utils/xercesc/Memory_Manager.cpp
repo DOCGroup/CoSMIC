@@ -3,7 +3,11 @@
 #include "Memory_Manager.h"
 #include "ace/OS_NS_stdlib.h"
 
-namespace Utils
+namespace cosmic
+{
+namespace xercesc
+{
+namespace utils
 {
 //
 // Memory_Manager
@@ -24,7 +28,7 @@ Memory_Manager::~Memory_Manager (void)
 //
 // getExceptionMemoryManager
 //
-xercesc::MemoryManager * Memory_Manager::getExceptionMemoryManager (void)
+::xercesc::MemoryManager * Memory_Manager::getExceptionMemoryManager (void)
 {
   return this;
 }
@@ -44,5 +48,8 @@ void Memory_Manager::deallocate (void * p)
 {
   ACE_OS::free (p);
 }
+
+}
 }
 
+}

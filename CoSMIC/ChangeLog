@@ -1,7 +1,23 @@
+Mon May 24 14:36:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/xercesc/Memory_Manager.h:
+        * Utils/xercesc/Memory_Manager.cpp:
+        * Utils/xercesc/Static_Configuration.h:
+        * Utils/xercesc/Static_Configuration.cpp:
+        * Utils/xercesc/XercesString.h:
+        * Utils/xercesc/Xerces_Utils.mpc:
+        
+          . Bug fix where Xerces-C was not initialized properly for 
+            static builds of idl_to_picml.
+
+        * Utils/xercesc/Xerces_Initializer.cpp:
+
+          Removed this file.
+
 Wed May 19 22:59:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/PackageComponent/PackageVisitor.cpp:
-        
+
           . Fix compile errors for GME 10.
 
 Thu May 13 11:58:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
