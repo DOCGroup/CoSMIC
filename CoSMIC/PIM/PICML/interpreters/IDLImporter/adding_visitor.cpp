@@ -323,8 +323,11 @@ adding_visitor::visit_interface (AST_Interface *node)
   this->add_prefix_element (elem, node);
   this->add_replace_id_element (elem, node);
   this->add_version_element (elem, node);
-  this->add_abstract_element (elem, node);
-  this->add_local_element (elem, node);
+
+  if (node->is_abstract ())
+    this->add_tag_common ("abstract", "InterfaceSemantics", elem);
+  else if (node->is_local ())
+    this->add_tag_common ("local", "InterfaceSemantics", elem);
 
   // Keep track of where we are in the DOM tree so the next
   // new element can be inserted in the correct position.
