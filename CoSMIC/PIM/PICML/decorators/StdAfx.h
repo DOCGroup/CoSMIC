@@ -39,4 +39,10 @@ extern CComModule _Module;
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 
+#include "GMEVersion.h"
+
+#if GME_VERSION_MAJOR >= 10
+#include <Gdiplus.h>
+#endif
+
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

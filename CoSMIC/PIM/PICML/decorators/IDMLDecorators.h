@@ -11,6 +11,13 @@
 #include <vector>
 #include <string>
 
+#include "game/FCO.h"
+#include "game/MetaFCO.h"
+
+#if GME_VERSION_MAJOR >= 10
+#include <Gdiplus.h>
+#endif
+
 using namespace std;
 
 static const char* PICML_AGGREGATE_NAME =         "Aggregate";
@@ -55,18 +62,12 @@ static const char* PREF_TYPESHOWN = "isTypeShown";
 
 class PortDecorator;
 
-static bool NamespaceEquals (const CString& target, const char* name)
+static bool NamespaceEquals (const std::string & target, const char* name)
 {
-  CString nsname ("PICML::");
+  std::string nsname ("PICML::");
   nsname += name;
-  return (target == name || target == nsname);
-}
 
-static bool NamespaceEquals (const CComBSTR& target, const char* name)
-{
-    CComBSTR nsname ("PICML::");
-    nsname += name;
-    return (target == name || target == nsname);
+  return (target == name || target == nsname);
 }
 
 //########################################################
@@ -80,9 +81,10 @@ class DecoratorBase
 public:
   virtual ~DecoratorBase();
 
-  virtual void      initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
+  virtual void      initialize (const GME::FCO & fco, const GME::Meta::FCO & meta);
+
   virtual void      destroy();
-  CComPtr<IMgaFCO>  getFCO() const;
+  const GME::FCO &  getFCO() const;
   objtype_enum      getType() const;
   CRect             getBoxLocation( bool bWithBorder = false ) const;
   long              getBorderWidth( bool bActive = true ) const;
@@ -90,7 +92,8 @@ public:
   virtual void      setLocation( const CRect& cRect );
   virtual CRect     getLocation() const;
   virtual void      setActive( bool bActive );
-  virtual void      draw( CDC* pDC ) = 0;
+
+  virtual void      draw (CDC * pDC) = 0;
   virtual void      LoadBitmap() = 0;
 
   virtual vector<PortDecorator*>  getPorts() const;
@@ -100,13 +103,17 @@ protected:
   DecoratorBase();
 
 protected:
-  CRect                 m_rect;
-  CComPtr<IMgaFCO>  m_mgaFco;
-  CComPtr<IMgaMetaFCO>  m_metaFco;
+  CRect m_rect;
+
+  GME::FCO m_mgaFco;
+  GME::Meta::FCO m_metaFco;
+
   CString    m_name;
-  CString               m_metaName;
-  objtype_enum    m_eType;
+  std::string    metaname_;
+  objtype_enum   m_eType;
+
   CMaskedBitmap         m_bitmap;
+
   long      m_lBorderWidth;
   bool      m_bActive;
 
@@ -125,7 +132,7 @@ class MemberDecorator : public DecoratorBase
 public:
   MemberDecorator();
 
-  virtual void draw( CDC* pDC );
+  virtual void draw (CDC * pDC);
   virtual void LoadBitmap();
 };
 
@@ -140,7 +147,7 @@ class InheritsDecorator : public DecoratorBase
 public:
   InheritsDecorator();
 
-  virtual void draw( CDC* pDC );
+  virtual void draw (CDC * pDC);
   virtual void LoadBitmap();
 };
 
@@ -157,12 +164,13 @@ private :
   bool m_right;
 
 public :
-  PortDecorator( CComPtr<IMgaFCO> mgaFco, const CPoint& ptInner );
+  PortDecorator( const GME::FCO & mgaFco, const CPoint& ptInner );
 
   virtual void   initialize();
   virtual CSize   getPreferredSize() const;
   CPoint getInnerPosition() const;
-  virtual void    draw( CDC* pDC );
+
+  virtual void draw (CDC * pDC);
   virtual void   LoadBitmap();
   void   setToRight();
 };
@@ -188,11 +196,12 @@ public:
   ComponentDecorator( CComPtr<IMgaMetaPart>  metaPart );
   virtual ~ComponentDecorator();
 
-  virtual void  initialize( IMgaFCO *obj, CComPtr<IMgaMetaFCO>& metaFco );
+  virtual void  initialize(const GME::FCO & fco, const GME::Meta::FCO & meta);
   virtual CSize getPreferredSize() const;
   virtual void  setLocation( const CRect& cRect );
   virtual void  setActive( bool bActive );
-  virtual void  draw( CDC* pDC );
+
+  virtual void draw (CDC * pDC);
   virtual void  LoadBitmap();
 
   virtual vector<PortDecorator*>  getPorts() const;
@@ -201,7 +210,7 @@ public:
 private:
   void loadPorts();
   void orderPorts( vector<PortDecorator*>& );
-  void findPorts( vector<PortDecorator*>&, CComPtr<IMgaFCOs>& );
+  void findPorts( vector<PortDecorator*>&, const std::vector <GME::FCO> & fcos );
   void checkInherits( vector<PortDecorator*>&, CComPtr<IMgaFCO>& );
 };
 

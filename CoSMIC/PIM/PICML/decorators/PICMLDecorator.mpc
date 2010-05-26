@@ -1,17 +1,20 @@
 // $Id$
 
-project (PICMLDecorator): gme_decorator {
-   sharedname = PICMLDecorator
+project (PICMLDecorator): gdiplus, game, gme_decorator {
+  sharedname = PICMLDecorator
 
-   Source_Files {
-     IDMLDecorators.cpp
-   }
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+  
+  Source_Files {
+    IDMLDecorators.cpp
+  }
 
-   Header_Files {
-     IDMLDecorators.h
-   }
+  Header_Files {
+    IDMLDecorators.h
+  }
 
-   Resource_Files {
-     Decorator.rgs
-   }
+  Resource_Files {
+    Decorator.rgs
+  }
 }

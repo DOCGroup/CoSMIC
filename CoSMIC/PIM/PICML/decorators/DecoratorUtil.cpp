@@ -97,7 +97,7 @@ CPen *CDecoratorUtil::GetPen(COLORREF color,bool dash)
 	return pen;
 }
 
-CBrush *CDecoratorUtil::GetBrush(COLORREF color)
+CBrush *CDecoratorUtil::GetBrush (COLORREF color)
 {
 	CBrush *brush = 0;
 	if(!(brushes.Lookup((void *)color,brush))) {

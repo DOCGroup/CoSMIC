@@ -15,45 +15,81 @@ class DecoratorBase;
 /////////////////////////////////////////////////////////////////////////////
 // CDecorator
 class ATL_NO_VTABLE CDecorator : 
-	public CComObjectRootEx<CComSingleThreadModel>,
-	public IMgaDecorator,
-	public CComCoClass<CDecorator, &CLSID_Decorator>
+	public CComObjectRootEx <CComSingleThreadModel>,
+	public IMgaElementDecorator,
+	public CComCoClass <CDecorator, &CLSID_Decorator>
 {
 public:
-	CDecorator();
-	~CDecorator();
+  /// Default constructor
+	CDecorator (void);
 
-DECLARE_REGISTRY_RESOURCEID(IDR_DECORATOR)
+  /// Destructor.
+	~CDecorator (void);
 
-DECLARE_PROTECT_FINAL_CONSTRUCT()
+  DECLARE_REGISTRY_RESOURCEID (IDR_DECORATOR)
 
-BEGIN_COM_MAP(CDecorator)
-	COM_INTERFACE_ENTRY(IMgaDecorator)
-END_COM_MAP()
+  DECLARE_PROTECT_FINAL_CONSTRUCT()
+
+  BEGIN_COM_MAP(CDecorator)
+	  COM_INTERFACE_ENTRY(IMgaElementDecorator)
+  END_COM_MAP()
 
 // IMgaDecorator
 public:
-	STDMETHOD(Initialize)(/*[in]*/ IMgaProject *project, /*[in]*/ IMgaMetaPart *meta, /*[in]*/ IMgaFCO *obj);
-	STDMETHOD(Destroy)();
-	STDMETHOD(GetMnemonic)(/*[out]*/ BSTR *mnemonic);
-	STDMETHOD(GetFeatures)(/*[out]*/ feature_code *features);
-	STDMETHOD(SetParam)(/*[in]*/ BSTR name, /*[in]*/ VARIANT value);
-	STDMETHOD(GetParam)(/*[in]*/ BSTR name, /*[out]*/ VARIANT* value);
-	STDMETHOD(SetActive)(/*[in]*/ VARIANT_BOOL isActive);
-	STDMETHOD(GetPreferredSize)(/*[out]*/ long* sizex, /*[out]*/ long* sizey);
-	STDMETHOD(SetLocation)(/*[in]*/ long sx, /*[in]*/ long sy, /*[in]*/ long ex, /*[in]*/ long ey);
-	STDMETHOD(GetLocation)(/*[out]*/ long *sx, /*[out]*/ long *sy, /*[out]*/ long *ex, /*[out]*/ long *ey);	
-	STDMETHOD(GetLabelLocation)( /*[out]*/ long *sx, /*[out]*/ long *sy, /*[out]*/ long *ex, /*[out]*/ long *ey);
-	STDMETHOD(GetPortLocation)(/*[in]*/ IMgaFCO *fco, /*[out]*/ long *sx, /*[out]*/ long *sy, /*[out]*/ long *ex, /*[out]*/ long *ey);
-	STDMETHOD(GetPorts)(/*[out, retval]*/ IMgaFCOs **portFCOs);
-	STDMETHOD(Draw)(/*[in]*/ HDC hdc);
-	STDMETHOD(SaveState)();
+	// =============== inherited from IMgaDecorator
+	STDMETHOD( Initialize )						( /*[in]*/ IMgaProject* pProject, /*[in]*/ IMgaMetaPart* pPart, /*[in]*/ IMgaFCO* pFCO );
+	STDMETHOD( Destroy )						( void );
+	STDMETHOD( GetMnemonic )					( /*[out]*/ BSTR* bstrMnemonic );
+	STDMETHOD( GetFeatures )					( /*[out]*/ feature_code* pFeatureCodes );
+	STDMETHOD( SetParam )						( /*[in]*/ BSTR bstrName, /*[in]*/ VARIANT vValue );
+	STDMETHOD( GetParam )						( /*[in]*/ BSTR bstrName, /*[out]*/ VARIANT* pvValue );
+	STDMETHOD( SetActive )						( /*[in]*/ VARIANT_BOOL bIsActive );
+	STDMETHOD( GetPreferredSize )				( /*[out]*/ LONG* plWidth, /*[out]*/ LONG* plHeight );
+	STDMETHOD( SetLocation )					( /*[in]*/ LONG sx, /*[in]*/ LONG sy, /*[in]*/ LONG ex, /*[in]*/ LONG ey );
+	STDMETHOD( GetLocation )					( /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
+	STDMETHOD( GetLabelLocation )				( /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
+	STDMETHOD( GetPortLocation )				( /*[in]*/ IMgaFCO* fco, /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
+	STDMETHOD( GetPorts )						( /*[out, retval]*/ IMgaFCOs** portFCOs );
+	STDMETHOD( Draw )							( /*[in]*/ HDC hdc );
+	STDMETHOD( SaveState )						( void );
+
+#if GME_VERSION_MAJOR >= 10
+	// =============== IMgaElementDecorator
+	STDMETHOD( InitializeEx )					( /*[in]*/ IMgaProject* pProject, /*[in]*/ IMgaMetaPart* pPart, /*[in]*/ IMgaFCO* pFCO, /*[in]*/ IMgaCommonDecoratorEvents* eventSink, /*[in]*/ ULONGLONG parentWnd );
+	STDMETHOD( DrawEx )							( /*[in]*/ HDC hdc, /*[in]*/ ULONGLONG gdipGraphics );
+	STDMETHOD( SetSelected )					( /*[in]*/ VARIANT_BOOL bIsSelected );
+	STDMETHOD( MouseMoved )						( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseLeftButtonDown )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseLeftButtonUp )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseLeftButtonDoubleClick )		( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseRightButtonDown )			( /*[in]*/ ULONGLONG hCtxMenu, /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseRightButtonUp )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseRightButtonDoubleClick )	( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseMiddleButtonDown )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseMiddleButtonUp )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseMiddleButtonDoubleClick )	( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MouseWheelTurned )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG distance, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( DragEnter )						( /*[out]*/ ULONG* dropEffect, /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG keyState, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( DragOver )						( /*[out]*/ ULONG* dropEffect, /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG keyState, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( Drop )							( /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG dropEffect, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( DropFile )						( /*[in]*/ ULONGLONG hDropInfo, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( MenuItemSelected )				( /*[in]*/ ULONG menuItemId, /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
+	STDMETHOD( OperationCanceled )				( void );
+#endif
 
 private:
 	bool m_isInitialized;
 	bool m_isLocSet;
  	bool m_isActive;
   DecoratorBase*	m_pDecorator;
+
+#if GME_VERSION_MAJOR >= 10
+  // add for the new decorator
+  bool m_bInitCallFromEx;
+  CComPtr<IMgaCommonDecoratorEvents>	m_eventSink;
+	HWND								m_parentWnd;
+	bool								m_bSelected;
+#endif
 
 private:
 	bool GetMetaFCO(const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco);
