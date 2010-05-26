@@ -1,3 +1,10 @@
+Tue May 25 23:01:45 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Collection_T.h:
+        * Utils/GAME/game/MetaBase.h:
+        
+          . Fix compile errors related to using GAME in a GME decorator.
+
 Tue May 25 23:00:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/Decorator.h:
@@ -7,11 +14,11 @@ Tue May 25 23:00:13 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/PICMLDecorator.mpc:
         * PIM/PICML/decorators/StdAfx.h:
-        
+
           . Updated the decorator to work with GME 10. There are still some
-            fixes needed, such as the font, but for the most part it works. 
+            fixes needed, such as the font, but for the most part it works.
             This can therefore be considered a checkpoint.
-          
+
 Mon May 24 17:15:24 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.h:

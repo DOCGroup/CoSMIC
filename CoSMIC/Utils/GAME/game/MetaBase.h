@@ -15,7 +15,7 @@
 
 #include "Exception.h"
 
-#if !defined (__ComponentLib_h__)
+#if !defined (__ComponentLib_h__) && !defined (__DecoratorLib_h__)
 #include "Mga.h"
 #endif
 
