@@ -172,22 +172,37 @@ MemberDecorator::MemberDecorator (void)
 }
 
 //
+// ~MemberDecorator
+//
+MemberDecorator::~MemberDecorator (void)
+{
+
+}
+
+//
 // LoadBitmap
 //
 void MemberDecorator::LoadBitmap (void)
 {
-  if (NamespaceEquals (this->metaname_, PICML_MEMBER_NAME) || 
-      NamespaceEquals (this->metaname_, PICML_ATTRIBUTEMEMBER_NAME) ||
-      NamespaceEquals (this->metaname_, PICML_DATATYPE_NAME)) 
+  GME::FCO referred;
+
+  if (!this->m_mgaFco.is_nil ())
+    referred = GME::Reference::_narrow (this->m_mgaFco).refers_to ();  
+ 
+  if (this->m_mgaFco.is_nil () || referred.is_nil ())
   {
-    // This is a reference element. So, narrow it to a reference
-    // and get its referred element.
-    GME::Reference ref = GME::Reference::_narrow (this->m_mgaFco);
-    GME::FCO referred = ref.refers_to ();
-
-    if (referred.is_nil ())
-      return;
-
+    if (NamespaceEquals (this->metaname_, PICML_MEMBER_NAME) ||
+        NamespaceEquals (this->metaname_, PICML_ATTRIBUTEMEMBER_NAME))
+    {
+      m_bitmap.ReadFromResource (IDB_BITMAP_MEMBER);
+    }
+    else
+    {
+      m_bitmap.ReadFromResource (IDB_BITMAP_DATATYPE);
+    }
+  }
+  else
+  {
     std::string metaname = referred.meta ().name ();
 
     if (NamespaceEquals (metaname, PICML_STRING_NAME) ) {
@@ -258,18 +273,6 @@ void MemberDecorator::LoadBitmap (void)
     }
     else if ( NamespaceEquals (metaname, PICML_BOXED_NAME) ) {
       m_bitmap.ReadFromResource( IDB_BITMAP_BOXEDREF );
-    }
-  }
-  else 
-  {
-    if (NamespaceEquals (this->metaname_, PICML_MEMBER_NAME) ||
-        NamespaceEquals (this->metaname_, PICML_ATTRIBUTEMEMBER_NAME))
-    {
-      m_bitmap.ReadFromResource (IDB_BITMAP_MEMBER);
-    }
-    else
-    {
-      m_bitmap.ReadFromResource (IDB_BITMAP_DATATYPE);
     }
   }
 }

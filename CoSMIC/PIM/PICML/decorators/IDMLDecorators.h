@@ -130,7 +130,8 @@ protected:
 class MemberDecorator : public DecoratorBase
 {
 public:
-  MemberDecorator();
+  MemberDecorator (void);
+  virtual ~MemberDecorator (void);
 
   virtual void draw (CDC * pDC);
   virtual void LoadBitmap();
