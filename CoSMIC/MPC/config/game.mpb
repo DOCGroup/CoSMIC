@@ -3,4 +3,6 @@
 project : game_common {
   after += GAME
   libs  += GAME
+  
+  includes += $(COSMIC_ROOT)/Utils/GAME/game
 }

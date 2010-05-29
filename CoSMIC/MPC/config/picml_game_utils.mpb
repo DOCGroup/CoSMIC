@@ -1,6 +1,6 @@
 // $Id$
 
-project : game {
+project : game_utils {
   after += PICML_GAME_Utils
   libs  += PICML_GAME_Utils
 }
