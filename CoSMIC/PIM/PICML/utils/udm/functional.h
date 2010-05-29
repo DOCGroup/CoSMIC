@@ -32,6 +32,16 @@ std::string scope (const PICML::NamedType & named_type,
                    const std::string & separator,
                    bool leading = false);
 
+PICML_UDM_UTILS_Export
+std::string scope (const PICML::Exception & ex,
+                   const std::string & separator,
+                   bool leading = false);
+
+PICML_UDM_UTILS_Export
+std::string scope (const PICML::Package & ex,
+                   const std::string & separator,
+                   bool leading = false);
+
 /**
  * Generate the fully qualified type name of a PICML named type.
  *
@@ -41,6 +51,16 @@ std::string scope (const PICML::NamedType & named_type,
  */
 PICML_UDM_UTILS_Export
 std::string fq_type (const PICML::NamedType & named_type,
+                     const std::string & separator,
+                     bool leading = false);
+
+PICML_UDM_UTILS_Export
+std::string fq_type (const PICML::Exception & ex,
+                     const std::string & separator,
+                     bool leading = false);
+
+PICML_UDM_UTILS_Export
+std::string fq_type (const PICML::Package & ex,
                      const std::string & separator,
                      bool leading = false);
 

@@ -10,17 +10,15 @@ namespace PICML
 {
 namespace utils
 {
-//
-// scope
-//
-std::string scope (const PICML::NamedType & named_type,
-                   const std::string & separator,
-                   bool leading)
+static std::string 
+_scope (const PICML::MgaObject & obj,
+        const std::string & separator,
+        bool leading)
 {
   std::stack <PICML::MgaObject> temp_stack;
 
   // Continue walking up the tree until we reach a File object.
-  PICML::MgaObject parent = named_type.parent ();
+  PICML::MgaObject parent = PICML::MgaObject::Cast (obj.parent ());
 
   while (parent.type () == PICML::Package::meta)
   {
@@ -47,6 +45,35 @@ std::string scope (const PICML::NamedType & named_type,
 }
 
 //
+// scope
+//
+std::string scope (const PICML::NamedType & named_type,
+                   const std::string & separator,
+                   bool leading)
+{
+  return _scope (named_type, separator, leading);
+}
+
+//
+// scope
+//
+std::string scope (const PICML::Exception & ex,
+                   const std::string & separator,
+                   bool leading)
+{
+  return _scope (ex, separator, leading);
+}
+
+//
+// scope
+//
+std::string scope (const PICML::Package & p,
+                   const std::string & separator,
+                   bool leading)
+{
+  return _scope (p, separator, leading);
+}
+//
 // fq_type
 //
 std::string fq_type (const PICML::NamedType & named_type,
@@ -55,6 +82,32 @@ std::string fq_type (const PICML::NamedType & named_type,
 {
   std::ostringstream fq_name;
   fq_name << scope (named_type, separator, leading) << named_type.name ();
+
+  return fq_name.str ();
+}
+
+//
+// fq_type
+//
+std::string fq_type (const PICML::Exception & ex,
+                     const std::string & separator,
+                     bool leading)
+{
+  std::ostringstream fq_name;
+  fq_name << scope (ex, separator, leading) << ex.name ();
+
+  return fq_name.str ();
+}
+
+//
+// fq_type
+//
+std::string fq_type (const PICML::Package & p,
+                     const std::string & separator,
+                     bool leading)
+{
+  std::ostringstream fq_name;
+  fq_name << scope (p, separator, leading) << p.name ();
 
   return fq_name.str ();
 }

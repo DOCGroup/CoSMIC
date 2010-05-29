@@ -11,15 +11,15 @@ namespace GAME
 //
 // scope
 //
-std::string scope (const GME::Model & named_type,
+std::string scope (const ::GAME::Model & named_type,
                    const std::string & separator,
                    bool leading)
 {
   std::string scope;
-  std::stack <GME::Object> temp_stack;
+  std::stack <::GAME::Object> temp_stack;
 
   // Continue walking up the tree until we reach a File object.
-  GME::Object parent = named_type.parent ();
+  ::GAME::Object parent = named_type.parent ();
 
   while (parent.meta ().name () == "Package")
   {
@@ -46,7 +46,7 @@ std::string scope (const GME::Model & named_type,
 //
 // fq_type
 //
-std::string fq_type (const GME::Model & named_type,
+std::string fq_type (const ::GAME::Model & named_type,
                      const std::string & separator,
                      bool leading)
 {

@@ -1,17 +1,25 @@
+Sat May 29 18:19:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/utils/game/Utility.h:
+        * PIM/PICML/utils/game/Utility.cpp:
+        * PIM/PICML/utils/udm/functional.h:
+        * PIM/PICML/utils/udm/functional.cpp:
+
+          . Updated to reflect changes to GAME below.
+
 Sat May 29 18:16:47 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game.mpb:
-        
+
           . Added the 'includes' specification.
-          
+
         * MPC/config/game_utils.mpb:
-        
+
           . New base project.
-          
+
         * MPC/config/picml_game_utils.mpb:
-        
+
           . Derived from the game_utils base project.
-          
 
 Sat May 29 18:13:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
