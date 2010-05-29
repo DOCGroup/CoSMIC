@@ -28,7 +28,7 @@ public:
   /// Destructor.
   virtual ~IDL_File_Deserializer (void);
 
-  virtual int deserialize (std::istream & stream, ::GME::Object & obj);
+  virtual int deserialize (std::istream & stream, ::GAME::Object & obj);
 
 private:
   IDL_File_Parser parser_;

@@ -28,7 +28,7 @@ public:
   virtual ~fq_name (void);
 
   // Generate the symbol.
-  virtual int generate (const ::GME::FCO & fco, ACE_CString & symbol);
+  virtual int generate (const GAME::FCO & fco, ACE_CString & symbol);
 };
 
 #endif  // !defined _IDML_SYMBOLS_H_

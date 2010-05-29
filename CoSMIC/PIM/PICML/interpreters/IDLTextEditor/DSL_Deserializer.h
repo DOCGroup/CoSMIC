@@ -15,7 +15,7 @@
 
 #include <istream>
 
-namespace GME
+namespace GAME
 {
   // Forward decl.
   class Object;
@@ -44,7 +44,7 @@ public:
    * @retval          0         Success
    * @retval          -1        Failure
    */
-  virtual int deserialize (std::istream & stream, ::GME::Object & obj) = 0;
+  virtual int deserialize (std::istream & stream, ::GAME::Object & obj) = 0;
 };
 
 #endif  // !define _DSL_SERIALIZER_H_

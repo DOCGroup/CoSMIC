@@ -334,9 +334,9 @@ put_ComponentParameter (BSTR name, VARIANT newVal)
 //
 void RawComponent::preprocess (IMgaProject * project)
 {
-  GME::Utils::Project_Settings settings (project);
-  std::string outdir = settings.default_output_directory ("QEDDeployment");
-  this->app_.SetParameter ("-o", outdir);
+  //GAME::utils::Project_Settings s (GAME::Project (project));
+  //std::string outdir = s.default_output_directory ("QEDDeployment");
+  //this->app_.SetParameter ("-o", outdir);
 }
 
 //
@@ -344,6 +344,6 @@ void RawComponent::preprocess (IMgaProject * project)
 //
 void RawComponent::postprocess (IMgaProject * project)
 {
-  //GME::Utils::Project_Settings settings (project);
+  //GAME::Utils::Project_Settings settings (project);
   //settings.default_output_directory ("QEDDeployment", CUdmApp::outdir_);
 }

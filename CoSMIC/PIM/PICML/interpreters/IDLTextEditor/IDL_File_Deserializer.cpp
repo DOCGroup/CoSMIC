@@ -28,7 +28,7 @@ IDL_File_Deserializer::~IDL_File_Deserializer (void)
 // deserialize
 //
 int IDL_File_Deserializer::
-deserialize (std::istream & stream, ::GME::Object & obj)
+deserialize (std::istream & stream, ::GAME::Object & obj)
 {
   // Right now, we are going to copy the contents to a string
   // and process it from there. Later version will work directly

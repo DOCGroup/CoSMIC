@@ -26,7 +26,7 @@ IDL_File_Serializer::~IDL_File_Serializer (void)
 // serialize
 //
 int IDL_File_Serializer::
-serialize (const ::GME::Object & obj, std::ostream & stream)
+serialize (const ::GAME::Object & obj, std::ostream & stream)
 {
   // Make this an BON object type.
   BON::Object bon_obj (::BON::Object::attach (obj.impl ()));

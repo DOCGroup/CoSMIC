@@ -3,6 +3,7 @@
 #include "StdAfx.h"
 #include "Layout_Manager.h"
 #include "game/utils/Point.h"
+#include "game/FCO.h"
 #include "game/MetaBase.h"
 
 std::set <std::string> Layout_Manager::horizontal_models_;
@@ -34,7 +35,7 @@ Layout_Manager::~Layout_Manager (void)
 
 }
 
-void Layout_Manager::handle_open_model (GME::Object & obj)
+void Layout_Manager::handle_open_model (GAME::Object & obj)
 {
   // Save the current state.
   this->stack_.push (this->current_);
@@ -46,7 +47,7 @@ void Layout_Manager::handle_open_model (GME::Object & obj)
 //
 // handle_close_model
 //
-void Layout_Manager::handle_close_model (GME::Object & obj)
+void Layout_Manager::handle_close_model (GAME::Object & obj)
 {
   // Prepare the current state for deletion.
   std::auto_ptr <object_list> auto_clean (this->current_);
@@ -68,7 +69,7 @@ void Layout_Manager::handle_close_model (GME::Object & obj)
 //
 // handle_new_object
 //
-void Layout_Manager::handle_new_object (GME::Object & obj)
+void Layout_Manager::handle_new_object (GAME::Object & obj)
 {
   // We need to perserve the order the objects were created
   // since some models require preservation of this property.
@@ -81,19 +82,19 @@ void Layout_Manager::handle_new_object (GME::Object & obj)
 //
 void Layout_Manager::arrange_objects (bool vertical)
 {
-  GME::FCO fco;
-  Utils::Point pt (60, 60);
-  ACE_INT32 cx = vertical ? 0 : 100;
-  ACE_INT32 cy = vertical ? 100 : 0;
+  GAME::FCO fco;
+  GAME::utils::Point pt (60, 60);
+  int cx = vertical ? 0 : 100;
+  int cy = vertical ? 100 : 0;
 
   for (object_list::const_iterator iter = this->current_->begin (),
        iter_end = this->current_->end (); iter != iter_end; ++ iter)
   {
     // Get the FCO from the object.
-    fco = GME::FCO::_narrow (*iter);
+    fco = GAME::FCO::_narrow (*iter);
 
     // Set the position of the object.
-    GME::position ("InterfaceDefinition", pt, fco);
+    GAME::utils::position ("InterfaceDefinition", pt, fco);
 
     // Move to the next position.
     pt.shift (cx, cy);

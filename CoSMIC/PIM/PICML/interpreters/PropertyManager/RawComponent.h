@@ -69,7 +69,7 @@ private:
    * @retval        true          Successfully retrieved the data type.
    * @retval        false         Failed to retrieve the data type.
    */
-  bool get_datatype (const GME::FCO & property, GME::FCO & datatype);
+  bool get_datatype (const GAME::FCO & property, GAME::FCO & datatype);
 };
 
 #endif  // !defined RAWCOMPONENT_H

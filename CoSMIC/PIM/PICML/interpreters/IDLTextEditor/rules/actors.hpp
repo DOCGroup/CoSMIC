@@ -20,7 +20,7 @@ struct create_embedded_type
 
   struct exists
   {
-    bool operator () (const GME::Object & ) const
+    bool operator () (const GAME::Object & ) const
     {
       return true;
     }
@@ -35,7 +35,7 @@ struct create_embedded_type
       T3::Auto_Model & parent = fusion::at_c <0> (ctx.attributes);
 
       // Create the return type in *this* object.
-      GME::Object object =
+      GAME::Object object =
         parent.create_element_if_not (this->type_, exists ());
 
       // Since we know its the name, let's set the name.

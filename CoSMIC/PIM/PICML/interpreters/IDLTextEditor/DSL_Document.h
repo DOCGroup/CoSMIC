@@ -38,7 +38,7 @@ public:
    *
    * @param[in]       obj       Source object.
    */
-  DSL_Document (const ::GME::Object & obj);
+  DSL_Document (const ::GAME::Object & obj);
 
   /// Destructor.
   virtual ~DSL_Document (void);
@@ -73,7 +73,7 @@ protected:
   DECLARE_MESSAGE_MAP ()
 
   /// Object associated with the document.
-  ::GME::Object obj_;
+  ::GAME::Object obj_;
 
   /// Serializer for the document.
   DSL_Serializer * serializer_;

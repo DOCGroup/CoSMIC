@@ -43,44 +43,44 @@ public:
   ~PICML_Data_Value_Builder (void);
 
   bool create_data_value (const std::string & name,
-                          const GME::FCO & type,
+                          const GAME::FCO & type,
                           PICML_Data_Value * & value,
                           PICML_Data_Value * parent = 0);
 
 private:
   bool build_complex (const std::string & name,
-                      const GME::FCO & datatype,
+                      const GAME::FCO & datatype,
                       PICML_Data_Value * & value,
                       PICML_Data_Value * parent = 0);
 
   bool build_aggregate (const std::string & name,
-                        const GME::Model & aggregate,
+                        const GAME::Model & aggregate,
                         PICML_Data_Value * & value,
                         PICML_Data_Value * parent = 0);
 
   bool build_collection (const std::string & name,
-                         const GME::Reference & collection,
+                         const GAME::Reference & collection,
                          PICML_Data_Value * & value,
                          PICML_Data_Value * parent = 0);
 
   bool build_enum (const std::string & name,
-                   const GME::Model & en,
+                   const GAME::Model & en,
                    PICML_Data_Value * & value,
                    PICML_Data_Value * parent = 0);
 
   bool build_alias (const std::string & name,
-                    const GME::Reference & alias,
+                    const GAME::Reference & alias,
                     PICML_Data_Value * & value,
                     PICML_Data_Value * parent = 0);
 
   bool build_event (const std::string & name,
-                    const GME::Model & model,
+                    const GAME::Model & model,
                     PICML_Data_Value * & value,
                     PICML_Data_Value * parent = 0);
 
   bool build_complex_i (const std::string & name,
                         const std::string & meta,
-                        const GME::FCO & model,
+                        const GAME::FCO & model,
                         PICML_Data_Value * & value,
                         PICML_Data_Value * parent = 0);
 

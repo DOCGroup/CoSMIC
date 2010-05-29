@@ -8,7 +8,7 @@ bool
 IDL_File_Parser::
 parse (std::string::const_iterator begin,
        std::string::const_iterator end,
-       ::GME::Object & obj)
+       GAME::Object & obj)
 {
   using boost::phoenix::ref;
   namespace qi = boost::spirit::qi;

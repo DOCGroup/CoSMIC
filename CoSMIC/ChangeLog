@@ -1,3 +1,32 @@
+Sat May 29 18:22:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.h:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Document.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/DSL_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDLTextEditor.mpc:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Deserializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Parser.hpp:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.h:
+        * PIM/PICML/interpreters/IDLTextEditor/IDL_File_Serializer.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Layout_Manager.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.h:
+        * PIM/PICML/interpreters/IDLTextEditor/Symbols.cpp:
+        * PIM/PICML/interpreters/IDLTextEditor/rules/actors.hpp:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.h:
+        * PIM/PICML/interpreters/PICML/Data_Value_Builder.cpp:
+        * PIM/PICML/interpreters/PackageComponent/PackageComponent.mpc:
+        * PIM/PICML/interpreters/PackageComponent/RawComponent.cpp:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.h:
+        * PIM/PICML/interpreters/PropertyManager/RawComponent.cpp:
+        * PIM/PICML/interpreters/QED/deployment/RawComponent.cpp:
+
+          . Updated to reflect changes to GAME below.
+
 Sat May 29 18:19:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/utils/game/Utility.h:

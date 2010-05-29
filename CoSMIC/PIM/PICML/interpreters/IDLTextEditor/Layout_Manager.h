@@ -21,20 +21,20 @@ public:
    * We are starting a new model. This will save the current
    * state of the event handler.
    */
-  virtual void handle_open_model (GME::Object &);
+  virtual void handle_open_model (GAME::Object &);
 
   /**
    * Handle the closing of a model. When this method is invoked,
    * we can correctly arrange the elements in the model.
    */
-  virtual void handle_close_model (GME::Object & obj);
+  virtual void handle_close_model (GAME::Object & obj);
 
-  virtual void handle_new_object (GME::Object & obj);
+  virtual void handle_new_object (GAME::Object & obj);
 
 private:
   void arrange_objects (bool vertical);
 
-  typedef std::vector <GME::Object> object_list;
+  typedef std::vector <GAME::Object> object_list;
 
   object_list * current_;
 

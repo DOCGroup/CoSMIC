@@ -22,7 +22,7 @@ project(Package): acelib, picmllib, boost_base, zlib, minizip {
    }
 }
 
-project (PackageComponent): game, picmllib, gme_udm_component {
+project (PackageComponent): game_utils, picmllib, gme_udm_component {
   sharedname = PackageComponent
 
   // prevent build if Package project does not build.

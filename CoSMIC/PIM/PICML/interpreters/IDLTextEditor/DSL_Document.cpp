@@ -67,7 +67,7 @@ DSL_Document::DSL_Document (void)
 //
 // DSL_Document
 //
-DSL_Document::DSL_Document (const ::GME::Object & obj)
+DSL_Document::DSL_Document (const ::GAME::Object & obj)
 : obj_ (obj),
   serializer_ (0),
   deserializer_ (0)

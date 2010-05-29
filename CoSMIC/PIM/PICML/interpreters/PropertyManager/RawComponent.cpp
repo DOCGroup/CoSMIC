@@ -56,7 +56,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
 {
   try
   {
-    GME::Project project (proj);
+    GAME::Project project (proj);
 
     try
     {
@@ -64,10 +64,10 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
       project.begin_transaction ();
 
       // Extract the selected objects.
-      typedef std::vector <GME::FCO> FCO_set;
+      typedef std::vector <GAME::FCO> FCO_set;
       FCO_set properties;
 
-      GME::get_children (selected, properties);
+      GAME::get_children (selected, properties);
 
       typedef FCO_set::iterator iterator;
 
@@ -78,7 +78,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
         if (iter->meta ().name () == "Property")
         {
           // Get the data type of the property.
-          GME::FCO datatype;
+          GAME::FCO datatype;
 
           if (this->get_datatype (*iter, datatype))
           {
@@ -100,7 +100,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
 
               // Get the data value of the property. We are going to
               // initialize all the values of the <data_value>.
-              GME::Attribute attr = iter->attribute ("DataValue");
+              GAME::Attribute attr = iter->attribute ("DataValue");
               value->value (attr.string_value ());
 
               // Display the dialog to the user. This will enable him to
@@ -122,14 +122,14 @@ InvokeEx (IMgaProject * proj, IMgaFCO * curr,
       // Save all the changes we made to the model.
       project.commit_transaction ();
     }
-    catch (GME::Failed_Result & )
+    catch (GAME::Failed_Result & )
     {
       // Abort the transaction since we encountered an
       // error during the update process.
       project.abort_transaction ();
     }
   }
-  catch (GME::Failed_Result &)
+  catch (GAME::Failed_Result &)
   {
 
   }
@@ -170,16 +170,16 @@ put_ComponentParameter(BSTR name, VARIANT newVal)
 // get_datatype
 //
 bool RawComponent::
-get_datatype (const GME::FCO & property, GME::FCO & datatype)
+get_datatype (const GAME::FCO & property, GAME::FCO & datatype)
 {
   try
   {
     // Try to convert the object into a model.
-    GME::Model model = GME::Model::_narrow (property);
+    GAME::Model model = GAME::Model::_narrow (property);
 
     // Get the datatype, which is a reference. If there aren't
     // any datatypes in the models, then we need to just leave.
-    std::vector <GME::Reference> datatypes;
+    std::vector <GAME::Reference> datatypes;
 
     if (model.children ("DataType", datatypes) == 0)
       return false;
@@ -189,7 +189,7 @@ get_datatype (const GME::FCO & property, GME::FCO & datatype)
     datatype = datatypes[0].refers_to ();
     return true;
   }
-  catch (const GME::Failed_Result &)
+  catch (const GAME::Failed_Result &)
   {
 
   }

@@ -34,7 +34,7 @@ PICML_Data_Value_Builder::~PICML_Data_Value_Builder (void)
 //
 bool PICML_Data_Value_Builder::
 build_complex (const std::string & name,
-               const GME::FCO & datatype,
+               const GAME::FCO & datatype,
                PICML_Data_Value * & value,
                PICML_Data_Value * parent)
 {
@@ -48,20 +48,20 @@ build_complex (const std::string & name,
 bool PICML_Data_Value_Builder::
 build_complex_i (const std::string & name,
                  const std::string & meta,
-                 const GME::FCO & fco,
+                 const GAME::FCO & fco,
                  PICML_Data_Value * & value,
                  PICML_Data_Value * parent)
 {
   if (meta == "Aggregate")
-    return this->build_aggregate (name, GME::Model::_narrow (fco), value, parent);
+    return this->build_aggregate (name, GAME::Model::_narrow (fco), value, parent);
   else if (meta  == "Enum")
-    return this->build_enum (name, GME::Model::_narrow (fco), value, parent);
+    return this->build_enum (name, GAME::Model::_narrow (fco), value, parent);
   else if (meta == "Collection")
-    return this->build_collection (name, GME::Reference::_narrow (fco), value, parent);
+    return this->build_collection (name, GAME::Reference::_narrow (fco), value, parent);
   else if (meta == "Alias")
-    return this->build_alias (name, GME::Reference::_narrow (fco), value, parent);
+    return this->build_alias (name, GAME::Reference::_narrow (fco), value, parent);
   else if (meta == "Event")
-    return this->build_event (name, GME::Model::_narrow (fco), value, parent);
+    return this->build_event (name, GAME::Model::_narrow (fco), value, parent);
   else
     return false;
 }
@@ -71,14 +71,14 @@ build_complex_i (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_aggregate (const std::string & name,
-                 const GME::Model & aggregate,
+                 const GAME::Model & aggregate,
                  PICML_Data_Value * & value,
                  PICML_Data_Value * parent)
 {
   PICML_Aggregate_Data_Value * aggr = new PICML_Aggregate_Data_Value (name, parent);
   std::auto_ptr <PICML_Aggregate_Data_Value> auto_clean (aggr);
 
-  typedef std::vector <GME::Reference> Member_Set;
+  typedef std::vector <GAME::Reference> Member_Set;
   Member_Set members;
 
   if (aggregate.children ("Member", members) > 0)
@@ -107,14 +107,14 @@ build_aggregate (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_event (const std::string & name,
-             const GME::Model & evt,
+             const GAME::Model & evt,
              PICML_Data_Value * & value,
              PICML_Data_Value * parent)
 {
   PICML_Event_Data_Value * ev = new PICML_Event_Data_Value (name, parent);
   std::auto_ptr <PICML_Event_Data_Value> auto_clean (ev);
 
-  typedef std::vector <GME::Reference> Member_Set;
+  typedef std::vector <GAME::Reference> Member_Set;
   Member_Set members;
 
   if (evt.children ("Member", members) > 0)
@@ -144,11 +144,11 @@ build_event (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_collection (const std::string & name,
-                  const GME::Reference & collection,
+                  const GAME::Reference & collection,
                   PICML_Data_Value * & value,
                   PICML_Data_Value * parent)
 {
-  GME::FCO mt = collection.refers_to ();
+  GAME::FCO mt = collection.refers_to ();
 
   if (!mt)
     return false;
@@ -167,12 +167,12 @@ build_collection (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_alias (const std::string & name,
-             const GME::Reference & alias,
+             const GAME::Reference & alias,
              PICML_Data_Value * & value,
              PICML_Data_Value * parent)
 {
   // Get the alias type.
-  GME::FCO ref = alias.refers_to ();
+  GAME::FCO ref = alias.refers_to ();
 
   if (ref)
     return this->create_data_value (name, ref, value, parent);
@@ -185,14 +185,14 @@ build_alias (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 build_enum (const std::string & name,
-            const GME::Model & e,
+            const GAME::Model & e,
             PICML_Data_Value * & value,
             PICML_Data_Value * parent)
 {
   PICML_Enum_Data_Value * e_val = new PICML_Enum_Data_Value (name, parent);
   std::auto_ptr <PICML_Enum_Data_Value> auto_clean (e_val);
 
-  typedef std::vector <GME::Atom> EnumValue_Set;
+  typedef std::vector <GAME::Atom> EnumValue_Set;
   EnumValue_Set opts;
 
   if (e.children ("EnumValue", opts) > 0)
@@ -214,7 +214,7 @@ build_enum (const std::string & name,
 //
 bool PICML_Data_Value_Builder::
 create_data_value (const std::string & name,
-                   const GME::FCO & type,
+                   const GAME::FCO & type,
                    PICML_Data_Value * & value,
                    PICML_Data_Value * parent)
 {

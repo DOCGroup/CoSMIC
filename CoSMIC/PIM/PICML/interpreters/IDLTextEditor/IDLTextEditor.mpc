@@ -15,7 +15,7 @@ project (IDLTextEditor_Core) : t3_runtime, acelib, cosmic_lib {
     }
   }
 
-  specific (prop:microsoft) {
+  specific (vc71, vc8) {
     link_options += /FORCE:MULTIPLE
   }
 
@@ -33,7 +33,7 @@ project (IDLTextEditor_Core) : t3_runtime, acelib, cosmic_lib {
   }
 }
 
-project (IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, cosmic_utils {
+project (IDLTextEditor) : t3_runtime, gme_bon2_component, acelib, game_utils, cosmic_common {
   sharedname = IDLTextEditor
 
   includes += ../IDLGenerator
