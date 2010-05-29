@@ -60,7 +60,7 @@ DecoratorBase::~DecoratorBase (void)
 //
 // initialize
 //
-void DecoratorBase::initialize (const GME::FCO & fco, const GME::Meta::FCO & meta)
+void DecoratorBase::initialize (const GAME::FCO & fco, const GAME::Meta::FCO & meta)
 {
   // obj == NULL, if we are in the PartBrowser
   m_mgaFco = fco;    
@@ -92,10 +92,11 @@ void DecoratorBase::initialize (const GME::FCO & fco, const GME::Meta::FCO & met
 //
 void DecoratorBase::destroy (void)
 {
-
+  this->m_mgaFco.release ();
+  this->m_metaFco.release ();
 }
 
-const GME::FCO & DecoratorBase::getFCO (void) const
+const GAME::FCO & DecoratorBase::getFCO (void) const
 {
   return m_mgaFco;
 }
@@ -184,10 +185,10 @@ MemberDecorator::~MemberDecorator (void)
 //
 void MemberDecorator::LoadBitmap (void)
 {
-  GME::FCO referred;
+  GAME::FCO referred;
 
   if (!this->m_mgaFco.is_nil ())
-    referred = GME::Reference::_narrow (this->m_mgaFco).refers_to ();  
+    referred = GAME::Reference::_narrow (this->m_mgaFco).refers_to ();  
  
   if (this->m_mgaFco.is_nil () || referred.is_nil ())
   {
@@ -353,7 +354,7 @@ void InheritsDecorator::draw (CDC * pDC)
 //########################################################
 
 PortDecorator::
-PortDecorator (const GME::FCO & mgaFco, const CPoint& ptInner)
+PortDecorator (const GAME::FCO & mgaFco, const CPoint& ptInner)
   : m_ptInner( ptInner ),
     m_right( false )
 {
@@ -472,11 +473,10 @@ struct PortLess
 // ComponentDecorator
 //
 ComponentDecorator::ComponentDecorator( CComPtr<IMgaMetaPart>  metaPart )
-  : DecoratorBase(),
-    m_metaPart( metaPart ),
-    m_iMaxPortTextLength( MAX_PORT_LENGTH ),
-    m_bTypeNameEnabled( false ),
-    m_iTypeInfo( 0 )
+: m_metaPart( metaPart ),
+  m_iMaxPortTextLength( MAX_PORT_LENGTH ),
+  m_bTypeNameEnabled( false ),
+  m_iTypeInfo( 0 )
 {
 }
 
@@ -496,7 +496,7 @@ ComponentDecorator::~ComponentDecorator (void)
 // initialize
 //
 void ComponentDecorator::
-initialize (const GME::FCO & fco, const GME::Meta::FCO & meta)
+initialize (const GAME::FCO & fco, const GAME::Meta::FCO & meta)
 {
   DecoratorBase::initialize (fco, meta);
 
@@ -506,24 +506,25 @@ initialize (const GME::FCO & fco, const GME::Meta::FCO & meta)
   CComPtr <IMgaMetaAspect>  spParentAspect;
   COMTHROW (m_metaPart->get_ParentAspect( &spParentAspect ) );
 
-  GME::Meta::Model metamodel;
+  GAME::Meta::Model metamodel;
 
   if (NamespaceEquals (this->metaname_, PICML_COMPONENT_NAME)|| 
-      NamespaceEquals (this->metaname_, PICML_COMPONENTASSEMBLY_NAME))
+      NamespaceEquals (this->metaname_, PICML_COMPONENTASSEMBLY_NAME) ||
+      NamespaceEquals (this->metaname_, PICML_COMPONENTINSTANCE_NAME))
   {
-    metamodel = GME::Meta::Model::_narrow (this->m_mgaFco.meta ());
+    metamodel = GAME::Meta::Model::_narrow (this->m_mgaFco.meta ());
   }
   else if (NamespaceEquals (metaname_, PICML_COMPONENTREF_NAME) ||
            NamespaceEquals (metaname_, PICML_COMPONENTASMREF_NAME))
   {
-    GME::Reference ref = GME::Reference::_narrow (m_mgaFco);
-    GME::FCO referred = ref.refers_to ();
+    GAME::Reference ref = GAME::Reference::_narrow (m_mgaFco);
+    GAME::FCO referred = ref.refers_to ();
 
     // We could be drawing an unassigned ComponentRef.
     if (referred.is_nil ())
       return;
 
-    metamodel = GME::Meta::Model::_narrow (referred.meta ());
+    metamodel = GAME::Meta::Model::_narrow (referred.meta ());
   }
 
   CComBSTR bstrAspect;
@@ -570,13 +571,13 @@ initialize (const GME::FCO & fco, const GME::Meta::FCO & meta)
 
     if (this->m_bTypeNameEnabled) 
     {
-      GME::FCO type = m_mgaFco.derived_from ();
+      GAME::FCO type = m_mgaFco.derived_from ();
       this->m_strTypeName = type.name ().c_str ();
     }
   }
   else 
   {
-    GME::FCO derived_from = m_mgaFco.derived_from ();
+    GAME::FCO derived_from = m_mgaFco.derived_from ();
 
     if (derived_from)
     {
@@ -673,6 +674,8 @@ void ComponentDecorator::setActive ( bool bActive)
 void ComponentDecorator::LoadBitmap (void)
 {
   if ( NamespaceEquals (metaname_, PICML_COMPONENT_NAME))
+    m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );
+  else if (NamespaceEquals (metaname_, PICML_COMPONENTINSTANCE_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENT );
   else if (NamespaceEquals (metaname_, PICML_COMPONENTASSEMBLY_NAME))
     m_bitmap.ReadFromResource( IDB_BITMAP_COMPONENTASSEMBLY);
@@ -774,26 +777,27 @@ ComponentDecorator::loadPorts()
     return;
 
   vector <PortDecorator*>  vecPorts;
-  GME::Model model;
+  GAME::Model model;
 
   if (NamespaceEquals (this->metaname_, PICML_COMPONENT_NAME) ||
-      NamespaceEquals (this->metaname_, PICML_COMPONENTASSEMBLY_NAME))
+      NamespaceEquals (this->metaname_, PICML_COMPONENTASSEMBLY_NAME) ||
+      NamespaceEquals (this->metaname_, PICML_COMPONENTINSTANCE_NAME))
   {
-    model = GME::Model::_narrow (this->m_mgaFco);
+    model = GAME::Model::_narrow (this->m_mgaFco);
   }
   else if (NamespaceEquals (this->metaname_, PICML_COMPONENTREF_NAME) ||
            NamespaceEquals (this->metaname_, PICML_COMPONENTASMREF_NAME))
   {
-    GME::Reference ref = GME::Reference::_narrow (this->m_mgaFco);
-    GME::FCO referred = ref.refers_to ();
+    GAME::Reference ref = GAME::Reference::_narrow (this->m_mgaFco);
+    GAME::FCO referred = ref.refers_to ();
 
     if (referred.is_nil ())
       return;
 
-    model = GME::Model::_narrow (referred);
+    model = GAME::Model::_narrow (referred);
   }
 
-  std::vector <GME::FCO> fcos;
+  std::vector <GAME::FCO> fcos;
   model.children (fcos);
 
   // Iterate over the child FCOs list and add any ports to
@@ -836,9 +840,9 @@ ComponentDecorator::orderPorts( vector<PortDecorator*>& vecPorts )
 //
 void ComponentDecorator::
 findPorts (vector<PortDecorator*>& vecPorts,
-           const std::vector <GME::FCO> & fcos)
+           const std::vector <GAME::FCO> & fcos)
 {
-  std::vector <GME::FCO>::const_iterator 
+  std::vector <GAME::FCO>::const_iterator 
     iter = fcos.begin (), iter_end = fcos.end ();
 
   for (; iter != iter_end; ++ iter)

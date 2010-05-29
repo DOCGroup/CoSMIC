@@ -21,12 +21,12 @@
 class CBML_Output_Event_Builder
 {
 public:
-  CBML_Output_Event_Builder (GME::Model & output);
+  CBML_Output_Event_Builder (GAME::Model & output);
 
   ~CBML_Output_Event_Builder (void);
 
 private:
-  GME::Model & output_;
+  GAME::Model & output_;
 };
 
 #endif  // !defined _OUTPUT_EVENT_BUILDER_H_

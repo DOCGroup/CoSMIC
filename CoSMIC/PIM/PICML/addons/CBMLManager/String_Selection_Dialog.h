@@ -27,7 +27,7 @@
 class String_Selection_Dialog : public CDialog
 {
 public:
-  typedef std::map <std::string, GME::FCO> items_type;
+  typedef std::map <std::string, GAME::FCO> items_type;
 
   /**
    * Initializing constructor.

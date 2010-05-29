@@ -51,38 +51,38 @@ public:
   STDMETHODIMP ObjectEvent (IMgaObject *, unsigned long, VARIANT);
 
 private:
-  void handle_AttributeMember (unsigned long eventmask, GME::Object & obj);
-  void handle_AttributeValue (unsigned long eventmask, GME::Object & obj);
-  void handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj);
-  void handle_PublishConnector (unsigned long eventmask, GME::Object & obj);
-  void handle_Component (unsigned long eventmask, GME::Object & obj);
-  void handle_DeploymentPlan (unsigned long eventmask, GME::Object & obj);
-  void handle_ComponentAssembly (unsigned long eventmask, GME::Object & obj);
-  void handle_ComponentPackage (unsigned long eventmask, GME::Object & obj);
-  void handle_ComponentRef (unsigned long eventmask, GME::Object & obj);
-  void handle_ComponentImplementation (unsigned long eventmask, GME::Object & obj);
-  void handle_ComponentFactoryInstance (unsigned long eventmask, GME::Object & obj);
-  void handle_Domain (unsigned long eventmask, GME::Object & obj);
-  void handle_MonolithicImplementation (unsigned long eventmask, GME::Object & obj);
-  void handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj);
-  void handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj);
-  void handle_NodeReference (unsigned long eventmask, GME::Object & obj);
-  void handle_CollocationGroup (unsigned long eventmask, GME::Object & obj);
-  void handle_UUID (unsigned long eventmask, GME::FCO & fco);
+  void handle_AttributeMember (unsigned long eventmask, GAME::Object & obj);
+  void handle_AttributeValue (unsigned long eventmask, GAME::Object & obj);
+  void handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj);
+  void handle_PublishConnector (unsigned long eventmask, GAME::Object & obj);
+  void handle_Component (unsigned long eventmask, GAME::Object & obj);
+  void handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentRef (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj);
+  void handle_Domain (unsigned long eventmask, GAME::Object & obj);
+  void handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj);
+  void handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj);
+  void handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
+  void handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
+  void handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
+  void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
 
   /**
    * Create a UUID for the FCO.
    *
    * @param[in]       fco         Target FCO.
    */
-  void create_uuid (const GME::FCO & fco);
+  void create_uuid (const GAME::FCO & fco);
 
   /**
    * Verify the UUID of an FCO.
    *
    * @param[in]       fco         Target FCO.
    */
-  void verify_uuid (const GME::FCO & fco);
+  void verify_uuid (const GAME::FCO & fco);
 
   /// This verifies all UUID's in the project.
   void verify_all_uuids (void);
@@ -97,40 +97,40 @@ private:
    * @retval        true      The attribute was found.
    * @retval        false     The attribute was not found.
    */
-  bool get_uuid_i (const GME::FCO & fco,
-                   GME::Attribute & attr);
+  bool get_uuid_i (const GAME::FCO & fco,
+                   GAME::Attribute & attr);
 
-  static void set_property_datatype (GME::Model & property,
-                                     const GME::FCO & type);
+  static void set_property_datatype (GAME::Model & property,
+                                     const GAME::FCO & type);
 
-  static void verify_property_datatype (GME::ConnectionPoint & attr,
-                                        const GME::FCO & attr_type);
+  static void verify_property_datatype (GAME::ConnectionPoint & attr,
+                                        const GAME::FCO & attr_type);
 
-  static void verify_property_datatype_entry (GME::ConnectionPoints::value_type & attr,
-                                              const GME::FCO & attr_type);
+  static void verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
+                                              const GAME::FCO & attr_type);
 
   /// The project is in import mode.
   int importing_;
 
   /// Collection of pending FCO's to validate.
-  std::vector <GME::FCO> pending_;
+  std::vector <GAME::FCO> pending_;
 
   /// Interface pointer to the hosting project.
-  GME::Project project_;
+  GAME::Project project_;
 
   /// PICML types with a UUID attribute.
   std::set <std::string> uuid_types_;
 
   typedef
     void (RawComponent::*_member_function) (unsigned long,
-                                            GME::Object &);
+                                            GAME::Object &);
 
   ACE_Hash_Map_Manager <std::string,
                         _member_function,
                         ACE_Null_Mutex> handlers_;
 
   /// Latest member of the collocation group.
-  GME::FCO cg_member_;
+  GAME::FCO cg_member_;
 };
 
 

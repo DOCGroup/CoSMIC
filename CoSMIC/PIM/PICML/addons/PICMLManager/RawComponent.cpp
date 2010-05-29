@@ -16,7 +16,7 @@
 #include <sstream>
 
 // Type definition
-typedef std::vector <GME::Reference> Reference_Set;
+typedef std::vector <GAME::Reference> Reference_Set;
 
 //
 // RawComponent
@@ -204,7 +204,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
   try
   {
-    GME::Object object (obj);
+    GAME::Object object (obj);
 
     if (object.is_lib_object ())
       return 0;
@@ -218,7 +218,7 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
     if (this->handlers_.find (type, handler) != -1)
       (this->*handler) (eventmask, object);
   }
-  catch (GME::Exception &)
+  catch (GAME::Exception &)
   {
     /* what should we really do right here??? */
   }
@@ -234,9 +234,9 @@ ObjectEvent (IMgaObject * obj, unsigned long eventmask, VARIANT v)
 // create_uuid
 //
 void RawComponent::
-create_uuid (const GME::FCO & fco)
+create_uuid (const GAME::FCO & fco)
 {
-  GME::Attribute uuid_attr;
+  GAME::Attribute uuid_attr;
 
   if (this->get_uuid_i (fco, uuid_attr))
   {
@@ -258,9 +258,9 @@ create_uuid (const GME::FCO & fco)
 //
 // verify_uuid
 //
-void RawComponent::verify_uuid (const GME::FCO & fco)
+void RawComponent::verify_uuid (const GAME::FCO & fco)
 {
-  GME::Attribute uuid_attr;
+  GAME::Attribute uuid_attr;
 
   if (this->get_uuid_i (fco, uuid_attr))
   {
@@ -271,7 +271,7 @@ void RawComponent::verify_uuid (const GME::FCO & fco)
     {
       uuid_attr.string_value (Utils::CreateUuid ());
     }
-    catch (GME::Exception &)
+    catch (GAME::Exception &)
     {
       this->pending_.push_back (fco);
     }
@@ -286,9 +286,9 @@ void RawComponent::verify_uuid (const GME::FCO & fco)
 // get_uuid_i
 //
 bool RawComponent::
-get_uuid_i (const GME::FCO & fco, GME::Attribute & attr)
+get_uuid_i (const GAME::FCO & fco, GAME::Attribute & attr)
 {
-  typedef std::vector <GME::Attribute> Attribute_Set;
+  typedef std::vector <GAME::Attribute> Attribute_Set;
   Attribute_Set attrs;
 
   // Get all the attributes of this FCO. It would be nice to query
@@ -368,16 +368,16 @@ void RawComponent::handle_pending (void)
 // set_property_datatype
 //
 void RawComponent::
-set_property_datatype (GME::Model & prop, const GME::FCO & type)
+set_property_datatype (GAME::Model & prop, const GAME::FCO & type)
 {
   // We need to make sure there isn't a data type already
   // present in the target prop.
   Reference_Set datatypes;
-  GME::Reference datatype;
+  GAME::Reference datatype;
 
   if (0 == prop.children ("DataType", datatypes))
   {
-    datatype = GME::Reference::_create (prop, "DataType");
+    datatype = GAME::Reference::_create (prop, "DataType");
   }
   else
   {
@@ -389,7 +389,7 @@ set_property_datatype (GME::Model & prop, const GME::FCO & type)
     datatype.name (type.name ());
 
   // Get the current data type.
-  GME::FCO curr_type = datatype.refers_to ();
+  GAME::FCO curr_type = datatype.refers_to ();
 
   if (curr_type.is_nil () || (curr_type != type))
     datatype.refers_to (type);
@@ -399,8 +399,8 @@ set_property_datatype (GME::Model & prop, const GME::FCO & type)
 // verify_property_datatype
 //
 void RawComponent::
-verify_property_datatype_entry (GME::ConnectionPoints::value_type & attr,
-                                const GME::FCO & attr_type)
+verify_property_datatype_entry (GAME::ConnectionPoints::value_type & attr,
+                                const GAME::FCO & attr_type)
 {
   verify_property_datatype (attr.item (), attr_type);
 }
@@ -409,24 +409,24 @@ verify_property_datatype_entry (GME::ConnectionPoints::value_type & attr,
 // verify_property_datatype
 //
 void RawComponent::
-verify_property_datatype (GME::ConnectionPoint & attr,
-                          const GME::FCO & attr_type)
+verify_property_datatype (GAME::ConnectionPoint & attr,
+                          const GAME::FCO & attr_type)
 {
   // Get the own of this connection. If this is an AttributeValue
   // connection, then we should continue walking the connection
   // until we get to the prop.
-  GME::Connection attr_value = GME::Connection::_narrow (attr.owner ());
+  GAME::Connection attr_value = GAME::Connection::_narrow (attr.owner ());
 
   if (attr_value.meta ().name () == "AttributeValue")
   {
     // We need to find the 'dst' connection point in this collection.
     // It will point to the target prop model.
-    GME::ConnectionPoints connpoints;
+    GAME::ConnectionPoints connpoints;
     attr_value.connection_points (connpoints);
 
     // Get the prop element from the connection. It will be
     // the 'dst' connection point.
-    GME::Model prop = GME::Model::_narrow (connpoints["dst"].target ());
+    GAME::Model prop = GAME::Model::_narrow (connpoints["dst"].target ());
 
     // Set the data type for the prop.
     set_property_datatype (prop, attr_type);
@@ -437,21 +437,21 @@ verify_property_datatype (GME::ConnectionPoint & attr,
 // handle_ExternalDelegate
 //
 void RawComponent::
-handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj)
+handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj)
 {
   // Extract the connection for the FCO.
-  GME::Connection ext_conn = GME::Connection::_narrow (obj);
-  GME::ConnectionPoints points;
+  GAME::Connection ext_conn = GAME::Connection::_narrow (obj);
+  GAME::ConnectionPoints points;
 
   if (ext_conn.connection_points (points))
   {
     // Get the connection points.
-    GME::ConnectionPoint ext_src = points["src"];
-    GME::ConnectionPoint ext_dst = points["dst"];
+    GAME::ConnectionPoint ext_src = points["src"];
+    GAME::ConnectionPoint ext_dst = points["dst"];
 
     // Get the destination port type (i.e., the target delegation port).
-    GME::Reference dst_port = GME::Reference::_narrow (ext_dst.target ());
-    GME::Atom src_port = GME::Atom::_narrow (ext_src.target ());
+    GAME::Reference dst_port = GAME::Reference::_narrow (ext_dst.target ());
+    GAME::Atom src_port = GAME::Atom::_narrow (ext_src.target ());
 
     // Update the name of the external reference.
     if (src_port.name () != dst_port.name ())
@@ -463,7 +463,7 @@ handle_ExternalDelegate (unsigned long eventmask, GME::Object & obj)
 // handle_PublishConnector
 //
 void RawComponent::
-handle_PublishConnector (unsigned long eventmask, GME::Object & obj)
+handle_PublishConnector (unsigned long eventmask, GAME::Object & obj)
 {
   // We need to set the name of the newly create connector.
   if ((eventmask & OBJEVENT_CREATED))
@@ -474,7 +474,7 @@ handle_PublishConnector (unsigned long eventmask, GME::Object & obj)
 // handle_AttributeValue
 //
 void RawComponent::
-handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
+handle_AttributeMember (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_RELATION))
   {
@@ -483,16 +483,16 @@ handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
     // was referenced. Either way, we need to update all the
     // properties in component assemblies for this attribute.
 
-    GME::Reference member = GME::Reference::_narrow (obj);
-    GME::FCO attr_type = member.refers_to ();
+    GAME::Reference member = GAME::Reference::_narrow (obj);
+    GAME::FCO attr_type = member.refers_to ();
 
     if (attr_type)
     {
       // Get the AttributeValue connection.
-      GME::Model attr = member.parent_model ();
+      GAME::Model attr = member.parent_model ();
 
       // Get all connection points that connect to this attribute.
-      GME::ConnectionPoints connpoints;
+      GAME::ConnectionPoints connpoints;
       attr.in_connection_points (connpoints);
 
       std::for_each (connpoints.begin (),
@@ -508,22 +508,22 @@ handle_AttributeMember (unsigned long eventmask, GME::Object & obj)
 // handle_AttributeValue
 //
 void RawComponent::
-handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
+handle_AttributeValue (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_CREATED))
   {
     // Extract the connection from the object and get
     // the connection points in model.
-    GME::Connection attr_value = GME::Connection::_narrow (obj);
-    GME::ConnectionPoints connpoints;
+    GAME::Connection attr_value = GAME::Connection::_narrow (obj);
+    GAME::ConnectionPoints connpoints;
 
     if (attr_value.connection_points (connpoints) >= 2)
     {
       // Get the attribute at the 'src' of the connection.
-      GME::Model attr =
-        GME::Model::_narrow (connpoints["src"].target ());
+      GAME::Model attr =
+        GAME::Model::_narrow (connpoints["src"].target ());
 
-      GME::FCO attr_type;
+      GAME::FCO attr_type;
       Reference_Set attr_members;
 
       if (1 == attr.children ("AttributeMember", attr_members))
@@ -536,8 +536,8 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
 
       // We have the destination connection point. This should
       // be a prop in an assembly.
-      GME::Model prop =
-        GME::Model::_narrow (connpoints["dst"].target ());
+      GAME::Model prop =
+        GAME::Model::_narrow (connpoints["dst"].target ());
 
       // Set the name of the Property. We want to ensure the name
       // to the prop matches the name of the attribute.
@@ -554,9 +554,9 @@ handle_AttributeValue (unsigned long eventmask, GME::Object & obj)
 // handle_Component
 //
 void RawComponent::
-handle_Component (unsigned long eventmask, GME::Object & obj)
+handle_Component (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 
   // If this is a newly created component, we need to generate
   // the default implementation elements for this component.
@@ -565,7 +565,7 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
     // The parent determines if we should move forward. We should
     // only generate default artifacts for components that appear
     // in the file.
-    GME::Object parent = obj.parent ();
+    GAME::Object parent = obj.parent ();
     std::string type = parent.meta ().name ();
 
     if ((type == "File" || type == "Package"))
@@ -590,10 +590,10 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
       }
 
       // Generate the component's default implementation.
-      GME::Folder root_folder = obj.project ().root_folder ();
+      GAME::Folder root_folder = obj.project ().root_folder ();
       DefaultImplementationGenerator impl_gen (root_folder, config);
 
-      GME::Model component = GME::Model::_narrow (obj);
+      GAME::Model component = GAME::Model::_narrow (obj);
       impl_gen.generate (component);
     }
   }
@@ -603,88 +603,88 @@ handle_Component (unsigned long eventmask, GME::Object & obj)
 // handle_ComponentAssembly
 //
 void RawComponent::
-handle_ComponentAssembly (unsigned long eventmask, GME::Object & obj)
+handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_ComponentPackage
 //
 void RawComponent::
-handle_ComponentPackage (unsigned long eventmask, GME::Object & obj)
+handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_ComponentFactoryInstance
 //
 void RawComponent::
-handle_ComponentFactoryInstance (unsigned long eventmask, GME::Object & obj)
+handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_Domain
 //
 void RawComponent::
-handle_Domain (unsigned long eventmask, GME::Object & obj)
+handle_Domain (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_MonolithicImplementation
 //
 void RawComponent::
-handle_MonolithicImplementation (unsigned long eventmask, GME::Object & obj)
+handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_PackageConfiguration
 //
 void RawComponent::
-handle_PackageConfiguration (unsigned long eventmask, GME::Object & obj)
+handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_ComponentImplementation
 //
 void RawComponent::
-handle_ComponentImplementation (unsigned long eventmask, GME::Object & obj)
+handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_DeploymentPlan
 //
 void RawComponent::
-handle_DeploymentPlan (unsigned long eventmask, GME::Object & obj)
+handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_ImplementationArtifact
 //
 void RawComponent::
-handle_ImplementationArtifact (unsigned long eventmask, GME::Object & obj)
+handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj)
 {
-  this->handle_UUID (eventmask, GME::FCO::_narrow (obj));
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }
 
 //
 // handle_UUID
 //
 void RawComponent::
-handle_UUID (unsigned long eventmask, GME::FCO & fco)
+handle_UUID (unsigned long eventmask, GAME::FCO & fco)
 {
   // We are managing an object that has a UUID.
   if ((eventmask & OBJEVENT_CREATED) != 0)
@@ -701,7 +701,7 @@ handle_UUID (unsigned long eventmask, GME::FCO & fco)
 // handle_NodeReference
 //
 void RawComponent::
-handle_NodeReference (unsigned long eventmask, GME::Object & obj)
+handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->importing_)
     return;
@@ -711,24 +711,24 @@ handle_NodeReference (unsigned long eventmask, GME::Object & obj)
     static const char * _REGPATH_ = "PartRegs/NodeMapping/Position";
 
     // Get the parent model for the node reference.
-    GME::Reference node = GME::Reference::_narrow (obj);
-    GME::Model parent = GME::Model::_narrow (node.parent ());
+    GAME::Reference node = GAME::Reference::_narrow (obj);
+    GAME::Model parent = GAME::Model::_narrow (node.parent ());
 
     // Create a 'default' collocation group for the node reference
-    GME::Set group = GME::Set::_create (parent, "CollocationGroup");
+    GAME::Set group = GAME::Set::_create (parent, "CollocationGroup");
     group.name ("DefaultGroup");
 
     // Create an InstanceMapping connection between the node reference
     // and the collocation group.
-    GME::Connection mapping =
-      GME::Connection::_create (parent, "InstanceMapping", group, node);
+    GAME::Connection mapping =
+      GAME::Connection::_create (parent, "InstanceMapping", group, node);
 
     // Align the collocation group with its corresponding node.
-    Utils::Point pt;
-    GME::position ("NodeMapping", node, pt);
+    GAME::utils::Point pt;
+    GAME::utils::position ("NodeMapping", node, pt);
     pt.shift (4, 128);
 
-    GME::position ("NodeMapping", pt, group);
+    GAME::utils::position ("NodeMapping", pt, group);
   }
 }
 
@@ -736,12 +736,12 @@ handle_NodeReference (unsigned long eventmask, GME::Object & obj)
 // handle_CollocationGroup
 //
 void RawComponent::
-handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
+handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj)
 {
   if (this->cg_member_)
   {
     // Get all sets that contain previously inserted collocation group member.
-    typedef std::vector <GME::Set> Sets;
+    typedef std::vector <GAME::Set> Sets;
     Sets sets;
 
     size_t count = this->cg_member_.in_sets (sets);
@@ -749,7 +749,7 @@ handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
     if (count > 1)
     {
       // Get the updated collocation group.
-      GME::Set group = GME::Set::_narrow (obj);
+      GAME::Set group = GAME::Set::_narrow (obj);
 
       Sets::iterator
         iter = sets.begin (), iter_end = sets.end ();
@@ -772,10 +772,10 @@ handle_CollocationGroup (unsigned long eventmask, GME::Object & obj)
 // handle_ComponentRef
 //
 void RawComponent::
-handle_ComponentRef (unsigned long eventmask, GME::Object & obj)
+handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_SETINCLUDED) != 0)
   {
-    this->cg_member_ = GME::FCO::_narrow (obj);
+    this->cg_member_ = GAME::FCO::_narrow (obj);
   }
 }

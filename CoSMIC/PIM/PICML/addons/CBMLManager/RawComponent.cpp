@@ -34,7 +34,7 @@ public:
 
   }
 
-  void operator () (const GME::Reference & ref) const
+  void operator () (const GAME::Reference & ref) const
   {
     this->items_.insert (std::make_pair (ref.name (), ref));
   }
@@ -161,7 +161,7 @@ ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
   {
     if (!this->importing_)
     {
-      GME::Object object (obj);
+      GAME::Object object (obj);
 
       // This is a cool case of optimizing for the mostly frequently
       // taken path. We know for a fact that the elements will be
@@ -188,7 +188,7 @@ ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
 
     return S_OK;
   }
-  catch (const GME::Failed_Result & ex)
+  catch (const GAME::Failed_Result & ex)
   {
     HRESULT hr = ex.value ();
   }
@@ -208,7 +208,7 @@ ObjectEvent(IMgaObject * obj, unsigned long eventmask, VARIANT v)
 void RawComponent::save_active_state (void)
 {
   // Get the parent of the active state.
-  GME::FCO parent = GME::FCO::_narrow (this->active_state_.parent ());
+  GAME::FCO parent = GAME::FCO::_narrow (this->active_state_.parent ());
 
   // Get the relative id for the active state
   long relid = parent.relative_id ();
@@ -224,10 +224,10 @@ void RawComponent::save_active_state (void)
 //
 // load_active_state
 //
-void RawComponent::load_active_state (GME::Object & model)
+void RawComponent::load_active_state (GAME::Object & model)
 {
   // Get the parent of the active state.
-  GME::FCO parent = GME::FCO::_narrow (model);
+  GAME::FCO parent = GAME::FCO::_narrow (model);
 
   // Get the relative id from the registry.
   std::string value = parent.registry_value ("CBML/ActiveState");
@@ -239,18 +239,18 @@ void RawComponent::load_active_state (GME::Object & model)
 
   // Locate the child with the relative id. We need to then save the
   // object as the active state.
-  GME::Object relobj = parent.child_by_relative_id (relid);
+  GAME::Object relobj = parent.child_by_relative_id (relid);
 
   if (relobj)
-    this->active_state_ = GME::FCO::_narrow (relobj);
+    this->active_state_ = GAME::FCO::_narrow (relobj);
 }
 
 //
 // handle_objevent_destroyed
 //
-void RawComponent::handle_objevent_destroyed (GME::Object & obj)
+void RawComponent::handle_objevent_destroyed (GAME::Object & obj)
 {
-  GME::FCO fco = GME::FCO::_narrow (obj);
+  GAME::FCO fco = GAME::FCO::_narrow (obj);
 
   std::string metaname = obj.meta ().name ();
 
@@ -264,12 +264,12 @@ void RawComponent::handle_objevent_destroyed (GME::Object & obj)
 //
 // handle_objevent_select
 //
-void RawComponent::handle_objevent_select (GME::Object & obj)
+void RawComponent::handle_objevent_select (GAME::Object & obj)
 {
   if (obj.meta ().name () == "State")
   {
     // Set the active state of the behavior.
-    this->active_state_ = GME::FCO::_narrow (obj);
+    this->active_state_ = GAME::FCO::_narrow (obj);
 
     // We no longer need to last action.
     this->last_action_ = 0;
@@ -279,19 +279,19 @@ void RawComponent::handle_objevent_select (GME::Object & obj)
 //
 // handle_objevent_created
 //
-void RawComponent::handle_objevent_created (GME::Object & obj)
+void RawComponent::handle_objevent_created (GAME::Object & obj)
 {
   // We need to get the parent of the newly created object and determine
   // its type. We only need to continue if the parent's type is a
   // component.
 
-  GME::Object parent = obj.parent ();
+  GAME::Object parent = obj.parent ();
   std::string metaname = parent.meta ().name ();
 
   if (metaname == "Component")
   {
     // Narrow the parent to its FCO type.
-    GME::FCO parent_fco = GME::FCO::_narrow (parent);
+    GAME::FCO parent_fco = GAME::FCO::_narrow (parent);
 
     if (!parent_fco.is_instance ())
     {
@@ -304,7 +304,7 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
       if (metaname == "Action" ||
           metaname == "OutputAction")
       {
-        GME::FCO base_type = parent_fco.derived_from ();
+        GAME::FCO base_type = parent_fco.derived_from ();
 
         // First, go ahead and connect the state to the action.
         this->create_state_and_connect (obj, "Effect");
@@ -313,7 +313,7 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
           this->last_action_ = 0;
 
         // Save the action as the last action.
-        this->last_action_ = GME::FCO::_narrow (obj);
+        this->last_action_ = GAME::FCO::_narrow (obj);
       }
       else if (metaname == "InputAction" ||
                metaname == "MultiInputAction")
@@ -327,15 +327,15 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
           this->last_action_ = 0;
 
         // Save the action as the last action.
-        this->last_action_ = GME::FCO::_narrow (obj);
+        this->last_action_ = GAME::FCO::_narrow (obj);
       }
       else if (this->state_transition_map_.find (metaname.c_str ()) == 0)
       {
-        this->active_state_ = GME::FCO::_narrow (obj);
+        this->active_state_ = GAME::FCO::_narrow (obj);
       }
       else if (metaname == "WorkerType")
       {
-        GME::Reference ref = GME::Reference::_narrow (obj);
+        GAME::Reference ref = GAME::Reference::_narrow (obj);
         this->cache_worker_type (ref);
       }
     }
@@ -346,26 +346,26 @@ void RawComponent::handle_objevent_created (GME::Object & obj)
 // create_state_and_connect
 //
 void RawComponent::
-create_state_and_connect (GME::Object & src, const std::string & conntype)
+create_state_and_connect (GAME::Object & src, const std::string & conntype)
 {
   if (this->last_action_)
   {
     // Delete the <active_state_> if the <last_action_> is a subtype
     // of the newly created action.
-    GME::FCO basetype = this->last_action_.derived_from ();
+    GAME::FCO basetype = this->last_action_.derived_from ();
 
     if (basetype && (basetype == src))
       this->active_state_.destroy ();
   }
 
   // Get the model interface from the parent.
-  GME::Model parent = GME::Model::_narrow (src.parent ());
+  GAME::Model parent = GAME::Model::_narrow (src.parent ());
 
   if (this->active_state_)
   {
     // Get the parent of the active state and determine if this
     // state is in the same model as the current action.
-    GME::Object temp = this->active_state_.parent ();
+    GAME::Object temp = this->active_state_.parent ();
 
     if (!parent == temp)
       this->active_state_ = 0;
@@ -373,7 +373,7 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
 
   // Get the FCO interface from the object. We also need to change
   // the auto router preferences for the action.
-  GME::FCO action = GME::FCO::_narrow (src);
+  GAME::FCO action = GAME::FCO::_narrow (src);
   action.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
   // Resolve worker that owns the newly created action.
@@ -384,15 +384,15 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
   else if (metaname == "OutputAction")
     this->resolve_output_action (action);
 
-  Utils::Point position;
+  GAME::utils::Point position;
 
   if (this->active_state_)
   {
     // Align newly created action with previous state.
-    GME::position ("Behavior", this->active_state_, position);
+    GAME::utils::position ("Behavior", this->active_state_, position);
     position.shift (OFFSET_X, OFFSET_Y);
 
-    GME::position ("Behavior", position, action);
+    GAME::utils::position ("Behavior", position, action);
 
     // Create a connection between the <active_state_> and the <action>.
     std::string transition_type;
@@ -402,8 +402,8 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
 
     if (retval == 0)
     {
-      GME::Connection transition =
-        GME::Connection::_create (parent,
+      GAME::Connection transition =
+        GAME::Connection::_create (parent,
                                   transition_type,
                                   this->active_state_,
                                   action);
@@ -411,30 +411,30 @@ create_state_and_connect (GME::Object & src, const std::string & conntype)
   }
 
   // Create the new State element for the action.
-  GME::Atom state = GME::Atom::_create (parent, "State");
+  GAME::Atom state = GAME::Atom::_create (parent, "State");
   state.registry_value (PREF_AUTOROUTER, PREF_AUTOROUTER_ALL);
 
   // Create the effect connection from the action to the state.
-  GME::Connection effect =
-    GME::Connection::_create (parent,
+  GAME::Connection effect =
+    GAME::Connection::_create (parent,
                               conntype,
                               action,
                               state);
 
   // Get the position of the action, if not already set.
   if (!this->active_state_)
-    GME::position ("Behavior", action, position);
+    GAME::utils::position ("Behavior", action, position);
 
   // Align the <state> to the right of the <action>.
   position.shift (OFFSET_X, -OFFSET_Y);
-  GME::position ("Behavior", position, state);
+  GAME::utils::position ("Behavior", position, state);
 }
 
 //
 // handle_objevent_modelopen
 //
 void RawComponent::
-handle_objevent_modelopen (GME::Object & obj)
+handle_objevent_modelopen (GAME::Object & obj)
 {
   // Get the metaname of the object
   std::string metaname = obj.meta ().name ();
@@ -442,7 +442,7 @@ handle_objevent_modelopen (GME::Object & obj)
   if (metaname == "Component")
   {
     // Extract the FCO object from the object.
-    GME::Model model = GME::Model::_narrow (obj);
+    GAME::Model model = GAME::Model::_narrow (obj);
 
     // Clear the model worker cache.
     if (!this->workers_.empty ())
@@ -453,7 +453,7 @@ handle_objevent_modelopen (GME::Object & obj)
 
     if (!model.is_instance ())
     {
-      typedef std::vector <GME::Reference> reference_set_type;
+      typedef std::vector <GAME::Reference> reference_set_type;
       reference_set_type refs;
 
       // Cache information about the workers in this component.
@@ -471,7 +471,7 @@ handle_objevent_modelopen (GME::Object & obj)
 // handle_objevent_modelopen
 //
 void RawComponent::
-handle_objevent_modelclose (GME::Object & obj)
+handle_objevent_modelclose (GAME::Object & obj)
 {
   if (obj.meta ().name () == "Component")
   {
@@ -487,15 +487,15 @@ handle_objevent_modelclose (GME::Object & obj)
 //
 // cache_worker_type
 //
-void RawComponent::cache_worker_type (const GME::Reference & worker)
+void RawComponent::cache_worker_type (const GAME::Reference & worker)
 {
   // Get the reference for this worker.
-  GME::FCO ref = worker.refers_to ();
+  GAME::FCO ref = worker.refers_to ();
 
   if (ref)
   {
     // Cache this worker type for the component.
-    GME::Model model = GME::Model::_narrow (ref);
+    GAME::Model model = GAME::Model::_narrow (ref);
     this->worker_types_.insert (model);
 
     // Also, save the worker instance information.
@@ -506,11 +506,11 @@ void RawComponent::cache_worker_type (const GME::Reference & worker)
 //
 // resolve_output_action
 //
-void RawComponent::resolve_output_action (GME::FCO & action)
+void RawComponent::resolve_output_action (GAME::FCO & action)
 {
-  GME::Reference output;
-  std::vector <GME::Reference> refs;
-  GME::Model model = action.parent_model ();
+  GAME::Reference output;
+  std::vector <GAME::Reference> refs;
+  GAME::Model model = action.parent_model ();
 
   if (model.children ("OutEventPort", refs))
   {
@@ -535,7 +535,7 @@ void RawComponent::resolve_output_action (GME::FCO & action)
 
       // Display the dialog for the end-user.
       if (dialog.DoModal () == IDOK)
-        output = GME::Reference::_narrow (dialog.selection ()->second);
+        output = GAME::Reference::_narrow (dialog.selection ()->second);
     }
   }
 
@@ -545,9 +545,9 @@ void RawComponent::resolve_output_action (GME::FCO & action)
     action.name (output.name ());
 
     // Create the elements for the output event.
-    GME::Model event = GME::Model::_narrow (output.refers_to ());
+    GAME::Model event = GAME::Model::_narrow (output.refers_to ());
 
-    GME::Model output_action = GME::Model::_narrow (action);
+    GAME::Model output_action = GAME::Model::_narrow (action);
     CBML_Output_Event_Builder builder (output_action);
   }
 }
@@ -555,16 +555,16 @@ void RawComponent::resolve_output_action (GME::FCO & action)
 //
 // resolve_worker_action
 //
-void RawComponent::resolve_worker_action (GME::FCO & action)
+void RawComponent::resolve_worker_action (GAME::FCO & action)
 {
   // Locate the archetype for this action instance.
-  GME::FCO basetype = action.archetype ();
+  GAME::FCO basetype = action.archetype ();
 
   while (basetype.is_instance ())
     basetype = basetype.archetype ();
 
   // Get the parent of this instance. It should be a Worker.
-  GME::Model worker = GME::Model::_narrow (basetype.parent ());
+  GAME::Model worker = GAME::Model::_narrow (basetype.parent ());
 
   // Determine many workers this model contains that match this worker.
   worker_map_type::iterator iter = this->workers_.find (worker);

@@ -31,7 +31,7 @@ public:
    * @param[in]       root        Root folder for the project
    * @param[in]       config      Configuration for the new component.
    */
-  DefaultImplementationGenerator (GME::Folder & root, const NewComponentConfig & config);
+  DefaultImplementationGenerator (GAME::Folder & root, const NewComponentConfig & config);
 
   /// Destructor.
   ~DefaultImplementationGenerator (void);
@@ -41,11 +41,11 @@ public:
    *
    * @param[in]       component         Compent
    */
-  bool generate (const GME::Model & component);
+  bool generate (const GAME::Model & component);
 
 private:
   /// Folder that contains the implementations.
-  GME::Folder impls_;
+  GAME::Folder impls_;
 
   /// Default artifact generator.
   DefaultArtifactGenerator artifact_gen_;

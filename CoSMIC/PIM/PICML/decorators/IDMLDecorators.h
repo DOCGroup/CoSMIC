@@ -30,6 +30,7 @@ static const char* PICML_BYTE_NAME =              "Byte";
 static const char* PICML_COLLECTION_NAME =        "Collection";
 static const char* PICML_COMPONENT_NAME =         "Component";
 static const char* PICML_COMPONENTREF_NAME =      "ComponentRef";
+static const char* PICML_COMPONENTINSTANCE_NAME = "ComponentInstance";
 static const char* PICML_COMPONENTFACTORY_NAME =  "ComponentFactory";
 static const char* PICML_ENUM_NAME =              "Enum";
 static const char* PICML_EVENT_NAME =             "Event";
@@ -81,10 +82,10 @@ class DecoratorBase
 public:
   virtual ~DecoratorBase();
 
-  virtual void      initialize (const GME::FCO & fco, const GME::Meta::FCO & meta);
+  virtual void      initialize (const GAME::FCO & fco, const GAME::Meta::FCO & meta);
 
   virtual void      destroy();
-  const GME::FCO &  getFCO() const;
+  const GAME::FCO &  getFCO() const;
   objtype_enum      getType() const;
   CRect             getBoxLocation( bool bWithBorder = false ) const;
   long              getBorderWidth( bool bActive = true ) const;
@@ -105,8 +106,8 @@ protected:
 protected:
   CRect m_rect;
 
-  GME::FCO m_mgaFco;
-  GME::Meta::FCO m_metaFco;
+  GAME::FCO m_mgaFco;
+  GAME::Meta::FCO m_metaFco;
 
   CString    m_name;
   std::string    metaname_;
@@ -165,7 +166,7 @@ private :
   bool m_right;
 
 public :
-  PortDecorator( const GME::FCO & mgaFco, const CPoint& ptInner );
+  PortDecorator( const GAME::FCO & mgaFco, const CPoint& ptInner );
 
   virtual void   initialize();
   virtual CSize   getPreferredSize() const;
@@ -197,7 +198,7 @@ public:
   ComponentDecorator( CComPtr<IMgaMetaPart>  metaPart );
   virtual ~ComponentDecorator();
 
-  virtual void  initialize(const GME::FCO & fco, const GME::Meta::FCO & meta);
+  virtual void  initialize(const GAME::FCO & fco, const GAME::Meta::FCO & meta);
   virtual CSize getPreferredSize() const;
   virtual void  setLocation( const CRect& cRect );
   virtual void  setActive( bool bActive );
@@ -211,7 +212,7 @@ public:
 private:
   void loadPorts();
   void orderPorts( vector<PortDecorator*>& );
-  void findPorts( vector<PortDecorator*>&, const std::vector <GME::FCO> & fcos );
+  void findPorts( vector<PortDecorator*>&, const std::vector <GAME::FCO> & fcos );
   void checkInherits( vector<PortDecorator*>&, CComPtr<IMgaFCO>& );
 };
 

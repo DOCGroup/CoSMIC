@@ -33,7 +33,7 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj )
     if (!GetMetaFCO (metaPart, mf ))
       return E_DECORATOR_INIT_WITH_NULL;
 
-    GME::Meta::FCO meta_fco (mf.Detach ());
+    GAME::Meta::FCO meta_fco (mf.Detach ());
 
     if (project && metaPart) 
     {
@@ -42,7 +42,7 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj )
 
       if (obj)
       {
-        GME::Object object (obj);
+        GAME::Object object (obj);
         eType = object.type ();
       }
       else
@@ -50,7 +50,7 @@ Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj )
         IMgaMetaRole * r = 0;
         COMTHROW (metaPart->get_Role( &r));
         
-        GME::Meta::Role role (r);
+        GAME::Meta::Role role (r);
         eType = role.kind ().type ();    
       }
 
@@ -289,6 +289,7 @@ STDMETHODIMP CDecorator::SaveState()
 }
 
 #if GME_VERSION_MAJOR >= 10
+
 //
 // InitializeEx
 //

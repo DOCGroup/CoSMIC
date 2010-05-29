@@ -1,6 +1,6 @@
 // $Id$
 
-project (PICMLDecorator): gdiplus, game, gme_decorator {
+project (PICMLDecorator): gdiplus, game, game_utils, gme_decorator {
   sharedname = PICMLDecorator
 
   pch_header = StdAfx.h

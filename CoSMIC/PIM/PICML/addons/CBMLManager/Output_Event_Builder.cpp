@@ -7,7 +7,7 @@
 // CBML_Output_Event_Builder
 //
 CBML_Output_Event_Builder::
-CBML_Output_Event_Builder (GME::Model & output)
+CBML_Output_Event_Builder (GAME::Model & output)
 : output_ (output)
 {
 

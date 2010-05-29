@@ -28,13 +28,13 @@ std::string operator + (const std::string & str, const ACE_CString & acestr)
 // DefaultArtifactGenerator
 //
 DefaultArtifactGenerator::
-DefaultArtifactGenerator (GME::Folder & root, const NewComponentConfig & config)
+DefaultArtifactGenerator (GAME::Folder & root, const NewComponentConfig & config)
 : config_ (config)
 {
   if (GAME::create_if_not (root, "ImplementationArtifacts", this->artifacts_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
                       "ImplementationArtifacts",
-                      boost::bind (&GME::Folder::name, _1)))))
+                      boost::bind (&GAME::Folder::name, _1)))))
   {
     this->artifacts_.name ("ImplementationArtifacts");
   }
@@ -51,7 +51,7 @@ DefaultArtifactGenerator::~DefaultArtifactGenerator (void)
 //
 // generate
 //
-bool DefaultArtifactGenerator::generate (const GME::Model & component)
+bool DefaultArtifactGenerator::generate (const GAME::Model & component)
 {
   std::string name = PICML::GAME::fq_type (component, "_");
   std::string impl_name = name + this->config_.exec_artifact_suffix_;
@@ -59,12 +59,12 @@ bool DefaultArtifactGenerator::generate (const GME::Model & component)
 
   // Create a new container for the component's artifacts.
   std::string container_name = name + "Artifacts";
-  GME::Model container;
+  GAME::Model container;
 
   if (GAME::create_if_not (this->artifacts_, "ArtifactContainer", container,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
                       container_name,
-                      boost::bind (&GME::Model::name, _1)))))
+                      boost::bind (&GAME::Model::name, _1)))))
   {
     container.name (container_name);
   }
@@ -73,25 +73,25 @@ bool DefaultArtifactGenerator::generate (const GME::Model & component)
   if (GAME::create_if_not (container, "ImplementationArtifact", this->svnt_artifact_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
                       svnt_name,
-                      boost::bind (&GME::Atom::name, _1)))))
+                      boost::bind (&GAME::Atom::name, _1)))))
   {
     this->svnt_artifact_.name (svnt_name);
   }
 
   this->svnt_artifact_.attribute ("location").string_value (svnt_name);
-  GME::position ("Packaging", Utils::Point (150, 150), this->svnt_artifact_);
+  GAME::utils::position ("Packaging", GAME::utils::Point (150, 150), this->svnt_artifact_);
 
   // Create the implementation artifact for the component.
   if (GAME::create_if_not (container, "ImplementationArtifact", this->impl_artifact_,
       GAME::contains (boost::bind (std::equal_to <std::string> (),
                       impl_name,
-                      boost::bind (&GME::Atom::name, _1)))))
+                      boost::bind (&GAME::Atom::name, _1)))))
   {
     this->impl_artifact_.name (impl_name);
   }
 
   this->impl_artifact_.attribute ("location").string_value (impl_name);
-  GME::position ("Packaging", Utils::Point (450, 150), this->impl_artifact_);
+  GAME::utils::position ("Packaging", GAME::utils::Point (450, 150), this->impl_artifact_);
 
   return true;
 }
@@ -99,7 +99,7 @@ bool DefaultArtifactGenerator::generate (const GME::Model & component)
 //
 // svnt_artifact
 //
-const GME::Atom & DefaultArtifactGenerator::svnt_artifact (void) const
+const GAME::Atom & DefaultArtifactGenerator::svnt_artifact (void) const
 {
   return this->svnt_artifact_;
 }
@@ -107,7 +107,7 @@ const GME::Atom & DefaultArtifactGenerator::svnt_artifact (void) const
 //
 // exec_artifact
 //
-const GME::Atom & DefaultArtifactGenerator::exec_artifact (void) const
+const GAME::Atom & DefaultArtifactGenerator::exec_artifact (void) const
 {
   return this->impl_artifact_;
 }

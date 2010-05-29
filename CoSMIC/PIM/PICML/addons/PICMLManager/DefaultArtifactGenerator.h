@@ -33,7 +33,7 @@ public:
    *
    * @param[in]       root        Root folder for the project
    */
-  DefaultArtifactGenerator (GME::Folder & root, const NewComponentConfig & config);
+  DefaultArtifactGenerator (GAME::Folder & root, const NewComponentConfig & config);
 
   /// Destructor.
   ~DefaultArtifactGenerator (void);
@@ -43,21 +43,21 @@ public:
    *
    * @param[in]       component         Compent
    */
-  bool generate (const GME::Model & component);
+  bool generate (const GAME::Model & component);
 
-  const GME::Atom & svnt_artifact (void) const;
+  const GAME::Atom & svnt_artifact (void) const;
 
-  const GME::Atom & exec_artifact (void) const;
+  const GAME::Atom & exec_artifact (void) const;
 
 private:
   /// Folder that contains the artifacts.
-  GME::Folder artifacts_;
+  GAME::Folder artifacts_;
 
   /// The servant's artifact.
-  GME::Atom svnt_artifact_;
+  GAME::Atom svnt_artifact_;
 
   /// The implementation's artifact.
-  GME::Atom impl_artifact_;
+  GAME::Atom impl_artifact_;
 
   /// Configuration for the new component.
   const NewComponentConfig & config_;

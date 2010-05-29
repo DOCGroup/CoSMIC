@@ -1,3 +1,24 @@
+Sat May 29 18:13:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/CBMLManager/CBMLManager.mpc:
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.h:
+        * PIM/PICML/addons/CBMLManager/Output_Event_Builder.cpp:
+        * PIM/PICML/addons/CBMLManager/RawComponent.h:
+        * PIM/PICML/addons/CBMLManager/RawComponent.cpp:
+        * PIM/PICML/addons/CBMLManager/String_Selection_Dialog.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultArtifactGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.h:
+        * PIM/PICML/addons/PICMLManager/DefaultImplementationGenerator.cpp:
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/PICMLDecorator.mpc:
+
+          . Updated to reflect changes to GAME below.
+
 Sat May 29 18:05:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Atom.h:
@@ -163,13 +184,13 @@ Sat May 29 18:05:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/xme/functional.cpp:
         * Utils/ModelUpgrade/Model_Upgrade.h:
         * Utils/ModelUpgrade/Model_Upgrade.cpp:
-        
+
           . Please everything under the GAME namespace so that all the
             packages are consistant.
 
         * Utils/Point.h:
         * Utils/Point.inl:
-        
+
           . Changed the x-, y-coordinate type to 'int'.
 
         * Utils/T3/t3/runtime/Auto_Model.h:
@@ -185,7 +206,7 @@ Sat May 29 18:05:53 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/T3/t3/runtime/Runtime_Engine.cpp:
         * Utils/T3/t3/runtime/Symbol.h:
         * Utils/T3/t3/runtime/actors.hpp:
-        
+
           . Updated to reflect changes to GAME above.
 
         * Utils/GAME/game/GME_export.h:

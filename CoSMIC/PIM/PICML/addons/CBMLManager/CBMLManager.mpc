@@ -1,6 +1,6 @@
 // $Id$
 
-project (CBMLManager): boost_base, game, cosmic_common, cosmic_utils, gme_raw_component {
+project (CBMLManager): boost_base, game_utils, gme_raw_component, cosmic_common {
   sharedname = CBMLManager
 
   Source_Files {

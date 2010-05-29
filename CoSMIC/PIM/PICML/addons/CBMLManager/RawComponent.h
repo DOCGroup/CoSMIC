@@ -82,17 +82,17 @@ public:
 
 private:
   /// Event handler for OBJEVENT_CREATED.
-  void handle_objevent_created (GME::Object & obj);
+  void handle_objevent_created (GAME::Object & obj);
 
   /// Event handler for OBJEVENT_SELECT.
-  void handle_objevent_select (GME::Object & obj);
+  void handle_objevent_select (GAME::Object & obj);
 
   /// Event handler for OBJEVENT_DESTROYED.
-  void handle_objevent_destroyed (GME::Object & obj);
+  void handle_objevent_destroyed (GAME::Object & obj);
 
-  void handle_objevent_modelopen (GME::Object & obj);
+  void handle_objevent_modelopen (GAME::Object & obj);
 
-  void handle_objevent_modelclose (GME::Object & obj);
+  void handle_objevent_modelclose (GAME::Object & obj);
 
   /**
    * Helper method that will create a state and connect it to the
@@ -101,7 +101,7 @@ private:
    * @param[in]     src         Source object in connection.
    * @param[in]     conntype    Connection type between source and state.
    */
-  void create_state_and_connect (GME::Object & src,
+  void create_state_and_connect (GAME::Object & src,
                                  const std::string & conntype);
 
   /**
@@ -111,7 +111,7 @@ private:
    *
    * @param[in]     model       Parent model.
    */
-  void load_active_state (GME::Object & model);
+  void load_active_state (GAME::Object & model);
 
   /**
    * Save the active state. This will store in the parent model's
@@ -121,16 +121,16 @@ private:
    */
   void save_active_state (void);
 
-  void cache_worker_type (const GME::Reference & worker_type);
+  void cache_worker_type (const GAME::Reference & worker_type);
 
-  void resolve_worker_action (GME::FCO & action);
+  void resolve_worker_action (GAME::FCO & action);
 
-  void resolve_output_action (GME::FCO & action);
+  void resolve_output_action (GAME::FCO & action);
 
   typedef std::set <std::string> string_set;
 
   /// Type definition for mapping worker types to instances.
-  typedef std::map <GME::Model, string_set> worker_map_type;
+  typedef std::map <GAME::Model, string_set> worker_map_type;
 
   /// Collection of action types we are monitoring.
   static string_set actions_types_;
@@ -140,11 +140,11 @@ private:
                         ACE_Null_Mutex> state_transition_map_;
 
   /// The active state in the model.
-  GME::FCO active_state_;
+  GAME::FCO active_state_;
 
-  GME::FCO last_action_;
+  GAME::FCO last_action_;
 
-  std::set <GME::Model> worker_types_;
+  std::set <GAME::Model> worker_types_;
 
   /// Collection of worker types.
   worker_map_type workers_;
