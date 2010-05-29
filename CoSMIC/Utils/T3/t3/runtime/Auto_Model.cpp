@@ -47,7 +47,7 @@ const Auto_Model  & Auto_Model::operator = (const Auto_Model & rhs)
 //
 // operator =
 //
-void Auto_Model::attach (const ::GME::Object & obj)
+void Auto_Model::attach (const ::GAME::Object & obj)
 {
   if (0 == this->impl_ || this->impl_->model () != obj)
   {
@@ -66,9 +66,9 @@ void Auto_Model::attach (const ::GME::Object & obj)
 //
 // create_element
 //
-GME::Object Auto_Model::create_element (const std::string & type)
+GAME::Object Auto_Model::create_element (const std::string & type)
 {
-  GME::Object object =
+  GAME::Object object =
     T3_RUNTIME_ENGINE->create_element (this->impl_->model (), type);
 
   this->impl_->handle_new_object (object);
@@ -82,7 +82,7 @@ GME::Object Auto_Model::create_element (const std::string & type)
 bool Auto_Model::
 create_unique_reference (const std::string & symbol, const std::string & type)
 {
-  GME::FCO ref_element;
+  GAME::FCO ref_element;
 
   bool result =
     T3_RUNTIME_ENGINE->create_unique_reference (this->impl_->model (),

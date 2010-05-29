@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (void)
   {
 
@@ -15,9 +15,9 @@ namespace GME
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (IMgaFolder * folder)
-    : GME::Object (folder)
+    : GAME::Object (folder)
   {
 
   }
@@ -25,9 +25,9 @@ namespace GME
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (const Folder & folder)
-    : GME::Object (folder)
+    : GAME::Object (folder)
   {
 
   }
@@ -35,7 +35,7 @@ namespace GME
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::~Folder (void)
   {
 

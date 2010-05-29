@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // Role
   //
-  GME_INLINE
+  GAME_INLINE
   Role::Role (void)
   {
 
@@ -17,7 +17,7 @@ namespace Meta
   //
   // Role
   //
-  GME_INLINE
+  GAME_INLINE
   Role::Role (IMgaMetaRole * meta)
   : Base (meta)
   {
@@ -27,7 +27,7 @@ namespace Meta
   //
   // Role
   //
-  GME_INLINE
+  GAME_INLINE
   Role::Role (const Role & role)
   : Base (role)
   {
@@ -37,7 +37,7 @@ namespace Meta
   //
   // ~Role
   //
-  GME_INLINE
+  GAME_INLINE
   Role::~Role (void)
   {
 
@@ -46,7 +46,7 @@ namespace Meta
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const Role & Role::operator = (const Role & role)
   {
     Base::attach (role);
@@ -56,7 +56,7 @@ namespace Meta
   //
   // operater IMgaMetaRole *
   //
-  GME_INLINE
+  GAME_INLINE
   Role::operator IMgaMetaRole * (void) const
   {
     return this->impl ();

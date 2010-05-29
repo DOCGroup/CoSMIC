@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Atom.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Atom.inl"
 #endif
 
@@ -14,7 +14,7 @@
 #include "MetaRole.h"
 #include "Visitor.h"
 
-namespace GME
+namespace GAME
 {
   //
   // operator =
@@ -52,12 +52,12 @@ namespace GME
   //
   // _narrow
   //
-  Atom Atom::_narrow (const GME::Object & object)
+  Atom Atom::_narrow (const GAME::Object & object)
   {
     CComPtr <IMgaAtom> atom;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&atom),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return atom.p;
   }
@@ -108,7 +108,7 @@ namespace GME
   //
   // accept
   //
-  void Atom::accept (GME::Visitor & visitor)
+  void Atom::accept (GAME::Visitor & visitor)
   {
     visitor.visit_Atom (*this);
   }

@@ -2,6 +2,6 @@
 
 #include "Visitor.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Visitor.inl"
 #endif

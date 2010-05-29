@@ -15,14 +15,14 @@
 
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Atom
    *
    * Wrapper class for the IMgaAtom interface.
    */
-  class GME_Export Atom : public FCO
+  class GAME_Export Atom : public FCO
   {
   public:
     /// Type definition for the interface.
@@ -34,7 +34,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The atom object.
      */
-    static Atom _narrow (const GME::Object & object);
+    static Atom _narrow (const GAME::Object & object);
 
     /**
      * Create a new atom element.
@@ -85,7 +85,7 @@ namespace GME
      */
     void attach (IMgaAtom * atom);
 
-    virtual void accept (GME::Visitor & visitor);
+    virtual void accept (GAME::Visitor & visitor);
 
   protected:
     /// Helper method to get the correct implementation.
@@ -96,7 +96,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Atom.inl"
 #endif
 

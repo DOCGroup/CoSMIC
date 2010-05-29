@@ -2,7 +2,7 @@
 
 #include "Utils/xercesc/XercesString.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

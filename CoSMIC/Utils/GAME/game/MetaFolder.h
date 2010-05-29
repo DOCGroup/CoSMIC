@@ -16,7 +16,7 @@
 #include "MetaFCO.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -25,7 +25,7 @@ namespace Meta
  *
  * Wrapper class for the IMgaMetaFolder interface.
  */
-class GME_Export Folder : public Base
+class GAME_Export Folder : public Base
 {
 public:
   /// Type definition of the underlying interface.
@@ -64,7 +64,7 @@ public:
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
-  size_t children (std::vector <GME::Meta::Folder> & folders) const;
+  size_t children (std::vector <GAME::Meta::Folder> & folders) const;
 
   /**
    * Get all the subfolders defined by this folder.
@@ -72,7 +72,7 @@ public:
    * @param[out]      metafolder      Collection of meta folders
    * @return          Number of folders in \a metafolders.
    */
-  size_t children (std::vector <GME::Meta::FCO> & fcos) const;
+  size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
 
   FCO child (const std::string & name) const;
 
@@ -99,7 +99,7 @@ public:
    * @param[in]       in_scope    Scope of the FCO.
    * @return          Meta FCO object.
    */
-  GME::Meta::FCO fco (const std::string & name, bool in_scope = true);
+  GAME::Meta::FCO fco (const std::string & name, bool in_scope = true);
 
 private:
   /// Cached pointer to the metafolder.
@@ -108,7 +108,7 @@ private:
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaFolder.inl"
 #endif
 

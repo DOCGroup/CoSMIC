@@ -13,10 +13,10 @@
 #ifndef _GAME_CONFIG_H_
 #define _GAME_CONFIG_H_
 
-#if defined (__GME_INLINE__)
-#define GME_INLINE inline
+#if defined (__GAME_INLINE__)
+#define GAME_INLINE inline
 #else
-#define GME_INLINE
+#define GAME_INLINE
 #endif
 
 #endif

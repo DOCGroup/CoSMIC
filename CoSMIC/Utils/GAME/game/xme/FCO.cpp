@@ -2,11 +2,11 @@
 
 #include "FCO.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "FCO.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

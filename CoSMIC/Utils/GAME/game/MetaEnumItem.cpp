@@ -3,13 +3,13 @@
 #include "stdafx.h"
 #include "MetaEnumItem.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaEnumItem.inl"
 #endif
 
 #include "MetaAttribute.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {

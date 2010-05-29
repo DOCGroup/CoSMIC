@@ -13,7 +13,7 @@
 #ifndef _GME_FWD_H_
 #define _GME_FWD_H_
 
-namespace GME
+namespace GAME
 {
   // Forward decl.
   class Attribute;

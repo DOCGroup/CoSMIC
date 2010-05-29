@@ -2,14 +2,14 @@
 
 #include "Reference.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Reference.inl"
 #endif
 
 #include "GME_ID_Generator.h"
 #include "Folder.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -31,7 +31,7 @@ static Reference Reference::create_impl (T parent, const ::Utils::XStr & kind)
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::
 Reference (xercesc::DOMElement * parent,
            const ::Utils::XStr & kind,

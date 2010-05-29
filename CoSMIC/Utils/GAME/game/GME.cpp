@@ -4,7 +4,7 @@
 #include "GME.h"
 #include "Exception.h"
 
-namespace GME
+namespace GAME
 {
   class GME_Initializer
   {
@@ -36,4 +36,4 @@ namespace GME
   int GME_Initializer::is_init_ = false;
 }
 
-static GME::GME_Initializer init;
+static GAME::GME_Initializer init;

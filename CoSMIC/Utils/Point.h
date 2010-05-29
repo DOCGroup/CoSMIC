@@ -13,7 +13,6 @@
 #ifndef _COSMIC_UTILS_POINT_H_
 #define _COSMIC_UTILS_POINT_H_
 
-#include "ace/Basic_Types.h"
 #include "Utils_export.h"
 
 namespace Utils
@@ -36,7 +35,7 @@ public:
    * @param[in]     x       The x-value for the point
    * @param[in]     y       The v-yalue for the point
    */
-  Point (ACE_UINT32 x, ACE_UINT32 y);
+  Point (int x, int y);
 
   /**
    * Copy constructor
@@ -53,28 +52,28 @@ public:
    *
    * @return      The x-value
    */
-  ACE_UINT32 x_value (void) const;
+  int x_value (void) const;
 
   /**
    * Set the x-value of the point.
    *
    * @param[in]   x       The new x-value
    */
-  void x_value (ACE_UINT32 x);
+  void x_value (int x);
 
   /**
    * Get the current y-value of the point
    *
    * @return      The y-value
    */
-  ACE_UINT32 y_value (void) const;
+  int y_value (void) const;
 
   /**
    * Set the y-value of the point.
    *
    * @param[in]   x       The new x-value
    */
-  void y_value (ACE_UINT32 y);
+  void y_value (int y);
 
   /**
    * Change the current location of the point.
@@ -82,7 +81,7 @@ public:
    * @param[in]       cx      Shift value for x-coordinate
    * @param[in]       cy      Shift value for y-coordinate
    */
-  void shift (ACE_UINT32 cx, ACE_UINT32 cy);
+  void shift (int cx, int cy);
 
   /**
    * Set the value of the point
@@ -90,7 +89,7 @@ public:
    * @param[in]     x         New x-coordinate
    * @param[in]     y         New y-coordinate
    */
-  void set (ACE_UINT32 x, ACE_UINT32 y);
+  void set (int x, int y);
 
   /**
    * Assignment operator
@@ -119,10 +118,10 @@ public:
 
 private:
   /// The X-value of the point.
-  ACE_UINT32 x_;
+  int x_;
 
   /// The y-value of the point.
-  ACE_UINT32 y_;
+  int y_;
 };
 
 }

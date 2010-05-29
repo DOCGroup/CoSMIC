@@ -17,14 +17,14 @@
 #include "FCO.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Model
    *
    * Wrapper class for the IMgaModel interface.
    */
-  class GME_Export Model : public GME::FCO
+  class GAME_Export Model : public GAME::FCO
   {
   public:
     /// Type definition of the COM interface.
@@ -36,7 +36,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The model object.
      */
-    static Model _narrow (const GME::Object & object);
+    static Model _narrow (const GAME::Object & object);
 
     /**
      * Create a new model element.
@@ -96,7 +96,7 @@ namespace GME
      */
     Meta::Model meta (void) const;
 
-    virtual void accept (GME::Visitor & visitor);
+    virtual void accept (GAME::Visitor & visitor);
 
     /**
      * Get all the first-level child folders of this folder.
@@ -104,24 +104,24 @@ namespace GME
      * @return      Collection of folder objects.
      */
     size_t children (const std::string & type,
-                     std::vector <GME::Folder> & folders) const;
+                     std::vector <GAME::Folder> & folders) const;
 
-    size_t children (std::vector <GME::FCO> & children) const;
-
-    size_t children (const std::string & type,
-                     std::vector <GME::FCO> & children) const;
+    size_t children (std::vector <GAME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Atom> & children) const;
+                     std::vector <GAME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Model> & children) const;
+                     std::vector <GAME::Atom> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Reference> & children) const;
+                     std::vector <GAME::Model> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Set> & children) const;
+                     std::vector <GAME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     std::vector <GAME::Set> & children) const;
 
     void Model::attach (IMgaModel * model);
 
@@ -134,7 +134,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Model.inl"
 #endif
 

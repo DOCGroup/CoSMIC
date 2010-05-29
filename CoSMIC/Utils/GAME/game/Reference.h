@@ -15,14 +15,14 @@
 
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Reference
    *
    * Wrapper class for the IMgaReference interface.
    */
-  class GME_Export Reference : public FCO
+  class GAME_Export Reference : public FCO
   {
   public:
     /// Type definition of the COM interface.
@@ -34,7 +34,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The atom object.
      */
-    static Reference _narrow (const GME::Object & object);
+    static Reference _narrow (const GAME::Object & object);
 
     /**
      * Create a new atom element.
@@ -103,7 +103,7 @@ namespace GME
      */
     operator IMgaReference * (void) const;
 
-    virtual void accept (GME::Visitor & visitor);
+    virtual void accept (GAME::Visitor & visitor);
 
   private:
     /// Helper method to get the correct implementation.
@@ -114,7 +114,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Reference.inl"
 #endif
 

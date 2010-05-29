@@ -3,14 +3,14 @@
 
 #include "XME_Utils.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Model
 //
-GME_INLINE
+GAME_INLINE
 Model::Model (void)
 : FCO (0, Object_Type::OT_MODEL),
   counter_ (0)
@@ -21,7 +21,7 @@ Model::Model (void)
 //
 // Model
 //
-GME_INLINE
+GAME_INLINE
 Model::Model (const Model & model)
 : FCO (model),
   counter_ (model.counter_)
@@ -42,7 +42,7 @@ Model::Model (xercesc::DOMElement * model)
 //
 // ~Model
 //
-GME_INLINE
+GAME_INLINE
 Model::~Model (void)
 {
 
@@ -51,7 +51,7 @@ Model::~Model (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Model & Model::operator = (const Model & model)
 {
   this->obj_ = model.obj_;
@@ -62,7 +62,7 @@ const Model & Model::operator = (const Model & model)
 //
 // relid_counter
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::relid_counter (void) const
 {
   return this->counter_;
@@ -71,7 +71,7 @@ size_t Model::relid_counter (void) const
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::children (std::vector <FCO> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -80,7 +80,7 @@ size_t Model::children (std::vector <FCO> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <FCO> & coll)
 {
@@ -90,7 +90,7 @@ children (const ::Utils::XStr & metaname, std::vector <FCO> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::children (std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -99,7 +99,7 @@ size_t Model::children (std::vector <Atom> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 {
@@ -110,7 +110,7 @@ children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::children (std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -119,7 +119,7 @@ size_t Model::children (std::vector <Model> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
 {
@@ -129,7 +129,7 @@ children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::children (std::vector <Reference> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -138,7 +138,7 @@ size_t Model::children (std::vector <Reference> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <Reference> & coll)
 {
@@ -148,7 +148,7 @@ children (const ::Utils::XStr & metaname, std::vector <Reference> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::children (std::vector <Connection> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -157,7 +157,7 @@ size_t Model::children (std::vector <Connection> & coll)
 //
 // children
 //
-GME_INLINE
+GAME_INLINE
 size_t Model::
 children (const ::Utils::XStr & metaname, std::vector <Connection> & coll)
 {

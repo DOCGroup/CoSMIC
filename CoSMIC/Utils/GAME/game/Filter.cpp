@@ -4,7 +4,7 @@
 #include "Project.h"
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
 //
 // Filter

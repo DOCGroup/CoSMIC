@@ -4,7 +4,7 @@
 /**
  * @file        MetaModel.h
  *
- * Defines the GME::Meta::Model class
+ * Defines the GAME::Meta::Model class
  *
  * $Id$
  *
@@ -18,7 +18,7 @@
 #include "MetaFCO.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -33,7 +33,7 @@ namespace Meta
    */
   //===========================================================================
 
-  class GME_Export Model : public FCO
+  class GAME_Export Model : public FCO
   {
   public:
     /// Type definition of COM type.
@@ -97,7 +97,7 @@ namespace Meta
      */
     IMgaMetaModel * impl (void) const;
 
-    size_t children (std::vector <GME::Meta::FCO> & fcos) const;
+    size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
 
   private:
     /// Pointer to the raw COM interface.
@@ -106,7 +106,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaModel.inl"
 #endif
 

@@ -1,6 +1,6 @@
 // $Id$
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Interpreter_T.inl"
 #endif
 
@@ -10,11 +10,11 @@
 // Initialize
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
-  GME::Project project (proj);
+  GAME::Project project (proj);
   return this->impl_.initialize (project) == 0 ? S_OK : S_FALSE;
 }
 
@@ -22,7 +22,7 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::Initialize (IMgaProject * proj)
 // get_InteractiveMode
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
 get_InteractiveMode (VARIANT_BOOL * mode)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
@@ -40,7 +40,7 @@ get_InteractiveMode (VARIANT_BOOL * mode)
 // get_ComponentName
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
 {
   // Get the name of the component.
   std::string temp = this->impl_.name ();
@@ -52,7 +52,7 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentName (BSTR * name)
 // get_Paradigm
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
 {
   // Get the name of the component.
   std::string temp = this->impl_.paradigm ();
@@ -64,20 +64,20 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_Paradigm (BSTR * paradigm)
 // Invoke
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
 Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
   try
   {
-    GME::Project project (proj);
+    GAME::Project project (proj);
 
     try
     {
       // Convert the iterator to a vector.
-      std::vector <GME::FCO> selected;
-      GME::get_children (fcos, selected);
+      std::vector <GAME::FCO> selected;
+      GAME::get_children (fcos, selected);
 
       // Begin a new transaction.
       if (this->impl_.is_managed ())
@@ -91,14 +91,14 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 
       return retval == 0 ? S_OK : S_FALSE;
     }
-    catch (const GME::Exception &)
+    catch (const GAME::Exception &)
     {
       // Abort the transaction.
       if (this->impl_.is_managed ())
         project.abort_transaction ();
     }
   }
-  catch (const GME::Exception &)
+  catch (const GAME::Exception &)
   {
 
   }
@@ -110,20 +110,20 @@ Invoke (IMgaProject * proj, IMgaFCOs * fcos, long flags)
 // InvokeEx
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
 InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
   try
   {
-    GME::Project project (proj);
+    GAME::Project project (proj);
 
     try
     {
       // Get the iterator to a collection of elements.
-      std::vector <GME::FCO> selected;
-      GME::get_children (select, selected);
+      std::vector <GAME::FCO> selected;
+      GAME::get_children (select, selected);
 
       // Begin a new transaction for the process.
       if (this->impl_.is_managed ())
@@ -131,7 +131,7 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 
       // Pass control to the implemention.
       int retval = this->impl_.invoke_ex (project,
-                                          GME::FCO (fco),
+                                          GAME::FCO (fco),
                                           selected,
                                           flags);
 
@@ -141,14 +141,14 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 
       return retval == 0 ? S_OK : S_FALSE;
     }
-    catch (const GME::Exception &)
+    catch (const GAME::Exception &)
     {
       // Abort the tranaction.
       if (this->impl_.is_managed ())
         project.abort_transaction ();
     }
   }
-  catch (const GME::Exception &)
+  catch (const GAME::Exception &)
   {
 
   }
@@ -160,26 +160,26 @@ InvokeEx (IMgaProject * proj, IMgaFCO * fco, IMgaFCOs * select, long flags)
 // ObjectsInvokeEx
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
 ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long flags)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
   try
   {
-    GME::Project project (proj);
+    GAME::Project project (proj);
 
     try
     {
-      std::vector <GME::Object> objects;
-      GME::get_children (objs, objects);
+      std::vector <GAME::Object> objects;
+      GAME::get_children (objs, objects);
 
       // Start a new transaction.
       if (this->impl_.is_managed ())
         project.begin_transaction ();
 
       int retval = this->impl_.invoke_object_ex (project,
-                                                 GME::Object (obj),
+                                                 GAME::Object (obj),
                                                  objects,
                                                  flags);
 
@@ -189,13 +189,13 @@ ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long 
 
       return retval == 0 ? S_OK : S_FALSE;
     }
-    catch (const GME::Exception &)
+    catch (const GAME::Exception &)
     {
       if (this->impl_.is_managed ())
         project.abort_transaction ();
     }
   }
-  catch (const GME::Exception &)
+  catch (const GAME::Exception &)
   {
 
   }
@@ -207,7 +207,7 @@ ObjectsInvokeEx (IMgaProject * proj, IMgaObject * obj, IMgaObjects * objs, long 
 // get_ComponentProgID
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
 {
   std::string temp = this->impl_.progid ();
   CComBSTR progid (temp.length (), temp.c_str ());
@@ -218,7 +218,7 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::get_ComponentProgID (BSTR * val)
 // Enable
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
 
@@ -230,7 +230,7 @@ STDMETHODIMP GME::Interpreter_T <T, IMPL>::Enable (VARIANT_BOOL enable)
 // put_InteractiveMode
 //
 template <typename T, typename IMPL>
-STDMETHODIMP GME::Interpreter_T <T, IMPL>::
+STDMETHODIMP GAME::Interpreter_T <T, IMPL>::
 put_InteractiveMode (VARIANT_BOOL  mode)
 {
   AFX_MANAGE_STATE (::AfxGetStaticModuleState ());

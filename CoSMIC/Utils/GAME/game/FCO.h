@@ -17,14 +17,14 @@
 #include "Object.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class FCO
    *
    * Wrapper class for the IMgaFCO interface.
    */
-  class GME_Export FCO : public Object
+  class GAME_Export FCO : public Object
   {
   public:
     /// Type definition of the COM pointer type.
@@ -46,7 +46,7 @@ namespace GME
      * @param[in]       object        The source object.
      * @return          The FCO version of the object, if applicable.
      */
-    static FCO _narrow (const GME::Object & object);
+    static FCO _narrow (const GAME::Object & object);
 
     /// Default constructor.
     FCO (void);
@@ -240,7 +240,7 @@ namespace GME
      * @param[out]      sets        Collection of sets
      * @return          Number of items in \a sets
      */
-    size_t in_sets (std::vector <GME::Set> & sets) const;
+    size_t in_sets (std::vector <GAME::Set> & sets) const;
 
     /**
      * Get the collection of objects this object is derived
@@ -256,7 +256,7 @@ namespace GME
      * @param[out]      nodes         The collection of registry nodes
      * @param[in]       vtypes        Include virtual registry nodes
      */
-    size_t registry (std::vector <GME::RegistryNode> & nodes,
+    size_t registry (std::vector <GAME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
     /**
@@ -266,8 +266,8 @@ namespace GME
      */
     RegistryNode registry_node (const std::string & path) const;
 
-    /// Accept the GME::Visitor object.
-    virtual void accept (GME::Visitor & visitor);
+    /// Accept the GAME::Visitor object.
+    virtual void accept (GAME::Visitor & visitor);
 
   private:
     /// The COM pointer for the FCO type.
@@ -275,7 +275,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "FCO.inl"
 #endif
 

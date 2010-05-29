@@ -21,7 +21,7 @@
 #include "Meta.h"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -38,7 +38,7 @@ namespace Meta
    */
   //===========================================================================
 
-  class GME_Export EnumItem
+  class GAME_Export EnumItem
   {
   public:
     /// Type definition of the COM type.
@@ -123,7 +123,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaEnumItem.inl"
 #endif
 

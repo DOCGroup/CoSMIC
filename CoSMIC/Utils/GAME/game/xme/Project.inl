@@ -3,14 +3,14 @@
 
 #include "XME_Utils.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Project
 //
-GME_INLINE
+GAME_INLINE
 Project::Project (void)
 : doc_ (0)
 {
@@ -20,7 +20,7 @@ Project::Project (void)
 //
 // Project
 //
-GME_INLINE
+GAME_INLINE
 Project::Project (const Project & proj)
 : doc_ (proj.doc_),
   xmefile_ (proj.xmefile_)
@@ -31,7 +31,7 @@ Project::Project (const Project & proj)
 //
 // Project
 //
-GME_INLINE
+GAME_INLINE
 Project::Project (xercesc::DOMDocument * doc, bool validate)
 : doc_ (0)
 {
@@ -41,7 +41,7 @@ Project::Project (xercesc::DOMDocument * doc, bool validate)
 //
 // ~Project
 //
-GME_INLINE
+GAME_INLINE
 Project::~Project (void)
 {
 
@@ -50,7 +50,7 @@ Project::~Project (void)
 //
 // operator ==
 //
-GME_INLINE
+GAME_INLINE
 bool Project::operator == (const Project & rhs) const
 {
   return this->doc_ != 0 && this->doc_->isSameNode (rhs.doc_);
@@ -59,7 +59,7 @@ bool Project::operator == (const Project & rhs) const
 //
 // operator !=
 //
-GME_INLINE
+GAME_INLINE
 bool Project::operator != (const Project & rhs) const
 {
   return !(*this == rhs);
@@ -68,7 +68,7 @@ bool Project::operator != (const Project & rhs) const
 //
 // save
 //
-GME_INLINE
+GAME_INLINE
 bool Project::save (void) const
 {
   return this->save_i (this->xmefile_);
@@ -77,7 +77,7 @@ bool Project::save (void) const
 //
 // name
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Project::name (void) const
 {
   return Utils::get_element_value (this->doc_->getDocumentElement (),
@@ -87,7 +87,7 @@ const XMLCh * Project::name (void) const
 //
 // name
 //
-GME_INLINE
+GAME_INLINE
 void Project::name (const ::Utils::XStr & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
@@ -98,7 +98,7 @@ void Project::name (const ::Utils::XStr & value)
 //
 // author
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Project::author (void) const
 {
   return Utils::get_element_value (this->doc_->getDocumentElement (),
@@ -108,7 +108,7 @@ const XMLCh * Project::author (void) const
 //
 // author
 //
-GME_INLINE
+GAME_INLINE
 void Project::author (const ::Utils::XStr & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
@@ -119,7 +119,7 @@ void Project::author (const ::Utils::XStr & value)
 //
 // comment
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Project::comment (void) const
 {
   return Utils::get_element_value (this->doc_->getDocumentElement (),
@@ -129,7 +129,7 @@ const XMLCh * Project::comment (void) const
 //
 // commnet
 //
-GME_INLINE
+GAME_INLINE
 void Project::comment (const ::Utils::XStr & value)
 {
   Utils::set_element_value (this->doc_->getDocumentElement (),
@@ -140,7 +140,7 @@ void Project::comment (const ::Utils::XStr & value)
 //
 // release
 //
-GME_INLINE
+GAME_INLINE
 xercesc::DOMDocument * Project::release (void)
 {
   xercesc::DOMDocument * temp = this->doc_;
@@ -152,7 +152,7 @@ xercesc::DOMDocument * Project::release (void)
 //
 // release
 //
-GME_INLINE
+GAME_INLINE
 bool Project::is_nil (void) const
 {
   return this->doc_ == 0;

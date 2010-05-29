@@ -15,7 +15,7 @@
 
 #include "XME_export.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

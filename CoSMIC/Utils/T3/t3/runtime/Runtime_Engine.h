@@ -34,14 +34,14 @@ namespace T3
   class T3_RUNTIME_Export create_failed
   {
   public:
-    create_failed (const GME::Object & parent, const std::string & type)
+    create_failed (const GAME::Object & parent, const std::string & type)
       : parent_ (parent),
         type_ (type)
     {
 
     }
 
-    const GME::Object & parent (void) const
+    const GAME::Object & parent (void) const
     {
       return this->parent_;
     }
@@ -53,7 +53,7 @@ namespace T3
 
   private:
     /// Parent for the creation.
-    GME::Object parent_;
+    GAME::Object parent_;
 
     /// Target type to create.
     std::string type_;
@@ -68,14 +68,14 @@ namespace T3
   class T3_RUNTIME_Export bad_parent
   {
   public:
-    bad_parent (const GME::Object & parent)
+    bad_parent (const GAME::Object & parent)
       : parent_ (parent)
     {
 
     }
 
   private:
-    GME::Object parent_;
+    GAME::Object parent_;
   };
 
   /**
@@ -88,7 +88,7 @@ namespace T3
   class T3_RUNTIME_Export invalid_type
   {
   public:
-    invalid_type (const GME::Object & parent, const std::string & type)
+    invalid_type (const GAME::Object & parent, const std::string & type)
       : parent_ (parent),
         type_ (type)
     {
@@ -96,7 +96,7 @@ namespace T3
     }
 
   private:
-    GME::Object parent_;
+    GAME::Object parent_;
 
     std::string type_;
   };
@@ -111,7 +111,7 @@ namespace T3
   class T3_RUNTIME_Export invalid_attr
   {
   public:
-    invalid_attr (const GME::FCO & fco, const std::string & attr)
+    invalid_attr (const GAME::FCO & fco, const std::string & attr)
       : fco_ (fco),
         attr_ (attr)
     {
@@ -119,7 +119,7 @@ namespace T3
     }
 
   private:
-    GME::FCO fco_;
+    GAME::FCO fco_;
 
     std::string attr_;
   };
@@ -131,7 +131,7 @@ namespace T3
 class T3_RUNTIME_Export T3_Runtime_Engine
 {
 public:
-  typedef ACE_Hash_Map_Manager <ACE_CString, GME::FCO, ACE_Null_Mutex>
+  typedef ACE_Hash_Map_Manager <ACE_CString, GAME::FCO, ACE_Null_Mutex>
     SYMBOL_TABLE;
 
   typedef ACE_Hash_Map_Manager <ACE_CString, bool, ACE_Null_Mutex>
@@ -152,18 +152,18 @@ public:
   /// Destructor.
   ~T3_Runtime_Engine (void);
 
-  GME::Object create_element (GME::Object & parent,
+  GAME::Object create_element (GAME::Object & parent,
                               const std::string & type);
 
   template <typename Cond>
-  GME::Object create_element_if_not (GME::Object & parent,
+  GAME::Object create_element_if_not (GAME::Object & parent,
                                      const std::string & type,
                                      Cond cond)
   {
     switch (parent.type ())
     {
     case OBJTYPE_MODEL:
-      return create_element_if_not (GME::Model::_narrow (parent), type, cond);
+      return create_element_if_not (GAME::Model::_narrow (parent), type, cond);
       break;
 
     case OBJTYPE_FOLDER:
@@ -177,17 +177,17 @@ public:
   }
 
   template <typename Cond>
-  GME::Object create_element_if_not (GME::Model & parent,
+  GAME::Object create_element_if_not (GAME::Model & parent,
                                      const std::string & type,
                                      Cond cond)
   {
     // Get the children of the specified type.
-    std::vector <GME::FCO> children;
-    GME::FCO fco;
+    std::vector <GAME::FCO> children;
+    GAME::FCO fco;
 
     if (parent.children (type, children))
     {
-      std::vector <GME::FCO>::const_iterator result;
+      std::vector <GAME::FCO>::const_iterator result;
 
       result = std::find_if (children.begin (),
                              children.end (),
@@ -205,20 +205,20 @@ public:
     // Since we could not find the object, we need to create
     // a new one for the model.
     if (fco.is_nil ())
-      fco = GME::FCO::_narrow (this->create_element (parent, type));
+      fco = GAME::FCO::_narrow (this->create_element (parent, type));
 
     // Initialize the FCO.
     this->init_fco (fco);
     return fco;
   }
 
-  GME::Object create_element (GME::Folder & parent,
+  GAME::Object create_element (GAME::Folder & parent,
                               const std::string & type);
 
-  GME::Object create_element (GME::Model & parent,
+  GAME::Object create_element (GAME::Model & parent,
                               const std::string & type);
 
-  bool create_connection_to (const GME::Object & src,
+  bool create_connection_to (const GAME::Object & src,
                              const std::string & dest,
                              const std::string & type);
 
@@ -228,17 +228,17 @@ public:
    * @param[in]       name        Name of the target attribute
    * @param[in]       value       Value of the target attribute
    */
-  void set_attribute (GME::FCO & fco, const std::string & name, const std::string & value);
+  void set_attribute (GAME::FCO & fco, const std::string & name, const std::string & value);
 
-  void set_attribute (GME::FCO & fco, const std::string & name, long value);
+  void set_attribute (GAME::FCO & fco, const std::string & name, long value);
 
-  void set_attribute (GME::FCO & fco, const std::string & name, bool value);
+  void set_attribute (GAME::FCO & fco, const std::string & name, bool value);
 
-  void set_attribute (GME::FCO & fco, const std::string & name, double value);
+  void set_attribute (GAME::FCO & fco, const std::string & name, double value);
 
-  bool store_reference (const GME::Object & obj, const std::string & symbol);
+  bool store_reference (const GAME::Object & obj, const std::string & symbol);
 
-  bool resolve (const GME::Object & obj, const std::string & symbol, GME::FCO & fco);
+  bool resolve (const GAME::Object & obj, const std::string & symbol, GAME::FCO & fco);
 
   bool store_attribute (const std::string & name, bool value);
 
@@ -248,33 +248,33 @@ public:
 
   bool store_attribute (const std::string & name, const std::string & value);
 
-  bool store_predefined_reference (const GME::Object & obj, const char * pt);
+  bool store_predefined_reference (const GAME::Object & obj, const char * pt);
 
   const SYMBOL_TABLE & symbols (void) const;
 
   SYMBOL_TABLE & symbols (void);
 
-  void preprocess (GME::Object & parent, const std::string & include_file);
+  void preprocess (GAME::Object & parent, const std::string & include_file);
 
-  bool create_unique_reference (GME::Object & parent,
+  bool create_unique_reference (GAME::Object & parent,
                                 const std::string & symbol,
                                 const std::string & type);
 
-  bool create_unique_reference (GME::Object & parent,
+  bool create_unique_reference (GAME::Object & parent,
                                 const std::string & symbol,
                                 const std::string & type,
-                                GME::FCO & ref_element);
+                                GAME::FCO & ref_element);
 
   T3_Event_Listener * event_listener (void);
 
   void event_listener (T3_Event_Listener * listener);
 
 private:
-  void preprocess_impl (GME::Model & model);
+  void preprocess_impl (GAME::Model & model);
 
-  void init_fco (GME::FCO & fco);
+  void init_fco (GAME::FCO & fco);
 
-  void resolve_reference (GME::FCO & fco);
+  void resolve_reference (GAME::FCO & fco);
 
   /// Symbol table for the engine.
   SYMBOL_TABLE sym_table_;
@@ -287,12 +287,12 @@ private:
 
   DOUBLE_TABLE stored_doubles_;
 
-  GME::FCO stored_ref_;
+  GAME::FCO stored_ref_;
 
   /// Event listener for the runtime engine.
   T3_Event_Listener * listener_;
 
-  void get_scope (const GME::Object & obj, std::string & scope);
+  void get_scope (const GAME::Object & obj, std::string & scope);
 };
 
 #define T3_RUNTIME_ENGINE_SINGLETON \

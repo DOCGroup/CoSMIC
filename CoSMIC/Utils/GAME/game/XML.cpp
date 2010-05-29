@@ -3,13 +3,13 @@
 #include "stdafx.h"
 #include "XML.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "XML.inl"
 #endif
 
 #include "Project.h"
 
-namespace GME
+namespace GAME
 {
 ///////////////////////////////////////////////////////////////////////////////
 // XML_Parser
@@ -87,7 +87,7 @@ get_info (const std::string & xmlfile, XML_Info & info)
 //
 // parse
 //
-void XML_Parser::parse (const std::string & xmlfile, GME::Project & project)
+void XML_Parser::parse (const std::string & xmlfile, GAME::Project & project)
 {
   CComBSTR bstr (xmlfile.length (), xmlfile.c_str ());
 
@@ -110,7 +110,7 @@ XML_Dumper::XML_Dumper (void)
 // write
 //
 void XML_Dumper::
-write (const std::string & xmlfile, GME::Project & project)
+write (const std::string & xmlfile, GAME::Project & project)
 {
   CComBSTR bstr (xmlfile.length (), xmlfile.c_str ());
 

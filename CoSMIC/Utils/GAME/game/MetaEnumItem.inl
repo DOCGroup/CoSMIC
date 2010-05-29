@@ -1,13 +1,13 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // EnumItem
   //
-  GME_INLINE
+  GAME_INLINE
   EnumItem::EnumItem (void)
   {
 
@@ -16,7 +16,7 @@ namespace Meta
   //
   // EnumItem
   //
-  GME_INLINE
+  GAME_INLINE
   EnumItem::EnumItem (IMgaMetaEnumItem * item)
   : enum_item_ (item)
   {
@@ -26,7 +26,7 @@ namespace Meta
   //
   // EnumItem
   //
-  GME_INLINE
+  GAME_INLINE
   EnumItem::EnumItem (const EnumItem & item)
   : enum_item_ (item.enum_item_)
   {
@@ -35,7 +35,7 @@ namespace Meta
   //
   // EnumItem
   //
-  GME_INLINE
+  GAME_INLINE
   EnumItem::~EnumItem (void)
   {
 
@@ -44,7 +44,7 @@ namespace Meta
   //
   // impl
   //
-  GME_INLINE
+  GAME_INLINE
   IMgaMetaEnumItem * EnumItem::impl (void) const
   {
     return this->enum_item_.p;
@@ -53,7 +53,7 @@ namespace Meta
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const EnumItem & EnumItem::operator = (const EnumItem & item)
   {
     this->enum_item_ = item.enum_item_;

@@ -1,7 +1,7 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -9,7 +9,7 @@ namespace XME
 // Auto_Model_T
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 Auto_Model_T <T>::Auto_Model_T (void)
 {
 
@@ -19,7 +19,7 @@ Auto_Model_T <T>::Auto_Model_T (void)
 // Auto_Model_T
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 Auto_Model_T <T>::Auto_Model_T (T & model)
 : model_ (model)
 {
@@ -30,7 +30,7 @@ Auto_Model_T <T>::Auto_Model_T (T & model)
 // Auto_Model_T
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 Auto_Model_T <T>::~Auto_Model_T (void)
 {
   this->purge_models ();
@@ -40,7 +40,7 @@ Auto_Model_T <T>::~Auto_Model_T (void)
 // get
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 T & Auto_Model_T <T>::get (void)
 {
   return this->model_;
@@ -50,7 +50,7 @@ T & Auto_Model_T <T>::get (void)
 // operator ->
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 T * Auto_Model_T <T>::operator -> (void)
 {
   return &this->model_;
@@ -60,7 +60,7 @@ T * Auto_Model_T <T>::operator -> (void)
 // children
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 const typename Auto_Model_T <T>::collection_type &
 Auto_Model_T <T>::children (void) const
 {
@@ -71,7 +71,7 @@ Auto_Model_T <T>::children (void) const
 // children
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 typename Auto_Model_T <T>::collection_type & Auto_Model_T <T>::children (void)
 {
   return this->children_;

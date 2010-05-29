@@ -3,14 +3,14 @@
 
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Registry
 //
-GME_INLINE
+GAME_INLINE
 Registry::Registry (const Registry & r)
 : parent_ (r.parent_)
 {
@@ -20,7 +20,7 @@ Registry::Registry (const Registry & r)
 //
 // Registry
 //
-GME_INLINE
+GAME_INLINE
 Registry::Registry (FCO & parent)
 : parent_ (parent)
 {
@@ -30,7 +30,7 @@ Registry::Registry (FCO & parent)
 //
 // ~Registry
 //
-GME_INLINE
+GAME_INLINE
 Registry::~Registry (void)
 {
 
@@ -39,7 +39,7 @@ Registry::~Registry (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Registry & Registry::operator = (const Registry & r)
 {
   this->parent_ = r.parent_;
@@ -49,7 +49,7 @@ const Registry & Registry::operator = (const Registry & r)
 //
 // owner
 //
-GME_INLINE
+GAME_INLINE
 FCO & Registry::owner (void)
 {
   return this->parent_;
@@ -58,7 +58,7 @@ FCO & Registry::owner (void)
 //
 // owner
 //
-GME_INLINE
+GAME_INLINE
 const FCO & Registry::owner (void) const
 {
   return this->parent_;

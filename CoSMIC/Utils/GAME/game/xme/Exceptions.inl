@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Invalid_Cast
 //
-GME_INLINE
+GAME_INLINE
 Invalid_Cast::Invalid_Cast (void)
 : std::runtime_error ("invalid cast")
 {
@@ -18,7 +18,7 @@ Invalid_Cast::Invalid_Cast (void)
 //
 // Invalid_Cast
 //
-GME_INLINE
+GAME_INLINE
 Invalid_Cast::~Invalid_Cast (void)
 {
 
@@ -27,7 +27,7 @@ Invalid_Cast::~Invalid_Cast (void)
 //
 // Bad_Attribute
 //
-GME_INLINE
+GAME_INLINE
 Bad_Attribute::Bad_Attribute (void)
 : std::runtime_error ("bad attribute")
 {
@@ -37,7 +37,7 @@ Bad_Attribute::Bad_Attribute (void)
 //
 // Invalid_Cast
 //
-GME_INLINE
+GAME_INLINE
 Bad_Attribute::~Bad_Attribute (void)
 {
 
@@ -46,7 +46,7 @@ Bad_Attribute::~Bad_Attribute (void)
 //
 // Not_Found
 //
-GME_INLINE
+GAME_INLINE
 Not_Found::Not_Found (void)
 : std::runtime_error ("not found")
 {
@@ -56,7 +56,7 @@ Not_Found::Not_Found (void)
 //
 // Not_Found
 //
-GME_INLINE
+GAME_INLINE
 Not_Found::~Not_Found (void)
 {
 

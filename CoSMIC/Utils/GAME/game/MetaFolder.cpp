@@ -3,11 +3,11 @@
 #include "stdafx.h"
 #include "MetaFolder.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaFolder.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -15,7 +15,7 @@ namespace Meta
   // children
   //
   size_t Folder::
-  children (std::vector <GME::Meta::Folder> & folders) const
+  children (std::vector <GAME::Meta::Folder> & folders) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFolders> metas;
@@ -28,7 +28,7 @@ namespace Meta
   // children
   //
   size_t Folder::
-  children (std::vector <GME::Meta::FCO> & fcos) const
+  children (std::vector <GAME::Meta::FCO> & fcos) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFCOs> metas;
@@ -79,7 +79,7 @@ namespace Meta
   //
   // fco
   //
-  GME::Meta::FCO Folder::fco (const std::string & name, bool in_scope)
+  GAME::Meta::FCO Folder::fco (const std::string & name, bool in_scope)
   {
     // Convert the parameters values to COM.
     CComBSTR bstr (name.length (), name.c_str ());

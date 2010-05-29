@@ -3,13 +3,13 @@
 #include "stdafx.h"
 #include "Attribute.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Attribute.inl"
 #endif
 
 #include "MetaAttribute.h"
 
-namespace GME
+namespace GAME
 {
   //
   // status

@@ -2,14 +2,14 @@
 
 #include "Object.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Object.inl"
 #endif
 
 #include "Object_Type_Map.hpp"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

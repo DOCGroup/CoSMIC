@@ -17,7 +17,7 @@
 #include "ace/Singleton.h"
 #include "ace/Null_Mutex.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -80,10 +80,10 @@ private:
 }
 
 #define GME_XME_ID_GENERATOR(T) \
-  ACE_Singleton <::GME::XME::GME_ID_Generator_T <T>, \
+  ACE_Singleton <::GAME::XME::GME_ID_Generator_T <T>, \
                  ACE_Null_Mutex>::instance ()
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "GME_ID_Generator_T.inl"
 #endif
 

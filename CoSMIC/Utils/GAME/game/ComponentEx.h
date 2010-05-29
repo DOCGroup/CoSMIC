@@ -15,7 +15,7 @@
 
 #include "Component.h"
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   /**
@@ -25,7 +25,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export ComponentEx : public Component
+  class GAME_Export ComponentEx : public Component
   {
   public:
     /// Default constructor.

@@ -61,7 +61,7 @@ int GME_Model_Upgrade::run_main (int argc, char * argv [])
 
     return 0;
   }
-  catch (const GME::Exception & )
+  catch (const GAME::Exception & )
   {
     ACE_ERROR ((LM_ERROR,
                 "%T - %M - caught unknown GME exception\n"));
@@ -87,8 +87,8 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
   mgafile += ".mga";
 
   // Get information about the XML file.
-  GME::XML_Parser parser;
-  GME::XML_Info info;
+  GAME::XML_Parser parser;
+  GAME::XML_Info info;
   parser.get_info (xmefile.c_str (), info);
 
   // Create a empty PICML project and import the XML file.
@@ -104,7 +104,7 @@ int GME_Model_Upgrade::import_xme_file (const ACE_CString & xmefile)
 int GME_Model_Upgrade::export_project_file (const ACE_CString & file)
 {
   // Export the project to the source XML file.
-  GME::XML_Dumper dumper;
+  GAME::XML_Dumper dumper;
   dumper.write (file.c_str (), this->project_);
 
   return 0;

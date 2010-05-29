@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // GME_ID_Generator
 //
-GME_INLINE
+GAME_INLINE
 GME_ID_Generator::GME_ID_Generator (void)
 {
 
@@ -17,7 +17,7 @@ GME_ID_Generator::GME_ID_Generator (void)
 //
 // ~GME_ID_Generator
 //
-GME_INLINE
+GAME_INLINE
 GME_ID_Generator::~GME_ID_Generator (void)
 {
 

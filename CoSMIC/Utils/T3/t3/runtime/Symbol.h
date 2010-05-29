@@ -16,7 +16,7 @@
 #include "Runtime_export.h"
 #include "ace/SString.h"
 
-namespace GME
+namespace GAME
 {
   // Forward decl.
   class FCO;
@@ -43,7 +43,7 @@ public:
    * @retval        0           Success
    * @retval        -1          Failure
    */
-  virtual int generate (const ::GME::FCO & fco, ACE_CString & symbol) = 0;
+  virtual int generate (const ::GAME::FCO & fco, ACE_CString & symbol) = 0;
 };
 
 #include "Symbol.inl"

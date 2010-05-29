@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Reference.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Reference.inl"
 #endif
 
@@ -12,7 +12,7 @@
 #include "MetaModel.h"
 #include "Visitor.h"
 
-namespace GME
+namespace GAME
 {
   //
   // operator =
@@ -62,12 +62,12 @@ namespace GME
   //
   // _narrow
   //
-  Reference Reference::_narrow (const GME::Object & object)
+  Reference Reference::_narrow (const GAME::Object & object)
   {
     CComPtr <IMgaReference> ref;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&ref),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return ref.p;
   }
@@ -95,7 +95,7 @@ namespace GME
   //
   // accept
   //
-  void Reference::accept (GME::Visitor & visitor)
+  void Reference::accept (GAME::Visitor & visitor)
   {
     visitor.visit_Reference (*this);
   }

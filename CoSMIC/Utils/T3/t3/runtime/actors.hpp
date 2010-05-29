@@ -67,7 +67,7 @@ namespace T3
         Auto_Model & parent = fusion::at_c <1> (ctx.attributes);
 
         // Create the new element based on its type and store
-        GME::Object object = parent.create_element (this->type_);
+        GAME::Object object = parent.create_element (this->type_);
 
         // Since we know its the name, let's set the name.
         object.name (name);
@@ -107,11 +107,11 @@ namespace T3
         Auto_Model & parent = fusion::at_c <1> (ctx.attributes);
 
         // Create the new element based on its type and store
-        GME::Object object =
+        GAME::Object object =
           parent.create_element_if_not (this->type_,
                                         boost::bind (std::equal_to <std::string> (),
                                                      name,
-                                                     boost::bind (&GME::FCO::name, _1)));
+                                                     boost::bind (&GAME::FCO::name, _1)));
 
         // Since we know its the name, let's set the name.
         object.name (name);
@@ -185,7 +185,7 @@ namespace T3
       {
         // Get parent from the context, which is qi::_r1.
         Auto_Model & model = fusion::at_c <0> (ctx.attributes);
-        GME::FCO fco = GME::FCO::_narrow (model.model ());
+        GAME::FCO fco = GAME::FCO::_narrow (model.model ());
 
         T3_RUNTIME_ENGINE->set_attribute (fco, this->attr_name_, value);
         result = true;
@@ -394,7 +394,7 @@ namespace T3
       {
         // Get the current qi::_val
         Auto_Model & model = fusion::at_c <0> (ctx.attributes);
-        GME::FCO fco = GME::FCO::_narrow (model.model ());
+        GAME::FCO fco = GAME::FCO::_narrow (model.model ());
 
         ACE_CString symbol;
         if (this->symbol_gen_.generate (fco, symbol) == 0)

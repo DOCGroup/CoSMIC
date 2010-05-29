@@ -16,14 +16,14 @@
 #include "FCO.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Set
    *
    * Wrapper class for the IMgaSet interface.
    */
-  class GME_Export Set : public FCO
+  class GAME_Export Set : public FCO
   {
   public:
     /// Type definition for the interface pointer.
@@ -35,7 +35,7 @@ namespace GME
      * @param[in]       fco           The source FCO object.
      * @return          The atom object.
      */
-    static Set _narrow (GME::Object & object);
+    static Set _narrow (GAME::Object & object);
 
     /**
      * Create a new set element.
@@ -116,7 +116,7 @@ namespace GME
      */
     size_t members (std::vector <FCO> & members) const;
 
-    virtual void accept (GME::Visitor & visitor);
+    virtual void accept (GAME::Visitor & visitor);
 
   protected:
     /// Helper method for getting the correct implemenation.

@@ -20,7 +20,7 @@
 #include "Mga.h"
 #endif
 
-namespace GME
+namespace GAME
 {
   /**
    * @class ComponentEx_T
@@ -85,7 +85,7 @@ namespace GME
   RawComponent::~RawComponent (void) { } \
   GME_COMPONENT_DECLARE (DLL, NAME, LIBID_MgaComponentLib)
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "ComponentEx_T.inl"
 #endif
 

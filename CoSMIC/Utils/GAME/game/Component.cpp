@@ -5,7 +5,7 @@
 #include "FCO.h"
 #include "Set.h"
 
-namespace GME
+namespace GAME
 {
   //
   // Component
@@ -94,7 +94,7 @@ namespace GME
     CComPtr <IMgaFCOs> selected_raw;
     VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
 
-    std::vector <GME::FCO>::const_iterator
+    std::vector <GAME::FCO>::const_iterator
       iter = selected.begin (), iter_end = selected.end ();
 
     for ( ; iter != iter_end; ++ iter)

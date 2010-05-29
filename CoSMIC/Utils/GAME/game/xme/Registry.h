@@ -15,7 +15,7 @@
 
 #include "Registry_Node.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -72,7 +72,7 @@ private:
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Registry.inl"
 #endif
 

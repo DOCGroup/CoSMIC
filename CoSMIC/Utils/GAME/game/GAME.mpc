@@ -3,8 +3,8 @@
 project (GAME) : acelib, cosmic_common {
   sharedname = GAME
 
-  dynamicflags += GME_BUILD_DLL
-  staticflags  += GME_AS_STATIC_LIBS
+  dynamicflags += GAME_BUILD_DLL
+  staticflags  += GAME_AS_STATIC_LIBS
 
   includes += $(COSMIC_ROOT)/Utils/GAME
 
@@ -21,7 +21,7 @@ project (GAME) : acelib, cosmic_common {
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/Parser.idl
-
+    
     Attribute.cpp
     Atom.cpp
     Connection.cpp
@@ -52,19 +52,14 @@ project (GAME) : acelib, cosmic_common {
 
     stlace.cpp
     Visitor.cpp
-
-    utils/Project_Settings.cpp
-    utils/Point.cpp
   }
 
   Template_Files {
     Collection_T.cpp
-
-    utils/modelgen.cpp
   }
 
   Header_Files {
-    GME_export.h
+    GAME_export.h
     GME_fwd.h
   }
 }

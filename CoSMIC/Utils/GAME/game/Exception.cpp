@@ -3,6 +3,6 @@
 #include "stdafx.h"
 #include "Exception.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Exception.inl"
 #endif

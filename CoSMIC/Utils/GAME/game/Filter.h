@@ -16,7 +16,7 @@
 #include "Exception.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
 // Forward decl.
 class Project;
@@ -26,7 +26,7 @@ class Project;
  *
  * Help class for filter objects in a project.
  */
-class GME_Export Filter
+class GAME_Export Filter
 {
 public:
   /**
@@ -56,7 +56,7 @@ public:
 
 private:
   /// Reference to the project.
-  GME::Project & project_;
+  GAME::Project & project_;
 
   /// Pointer to the actual filter.
   mutable ATL::CComPtr <IMgaFilter> filter_;

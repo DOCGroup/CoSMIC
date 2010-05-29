@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 //
 // Visitor
 //
-GME_INLINE
+GAME_INLINE
 Visitor::~Visitor (void)
 {
 
@@ -15,7 +15,7 @@ Visitor::~Visitor (void)
 //
 // Visitor
 //
-GME_INLINE
+GAME_INLINE
 Visitor::Visitor (void)
 {
 
@@ -24,8 +24,8 @@ Visitor::Visitor (void)
 //
 // visit_Object
 //
-GME_INLINE
-void Visitor::visit_Object (GME::Object &)
+GAME_INLINE
+void Visitor::visit_Object (GAME::Object &)
 {
 
 }
@@ -33,8 +33,8 @@ void Visitor::visit_Object (GME::Object &)
 //
 // visit_FCO
 //
-GME_INLINE
-void Visitor::visit_FCO (GME::FCO &)
+GAME_INLINE
+void Visitor::visit_FCO (GAME::FCO &)
 {
 
 }
@@ -42,8 +42,8 @@ void Visitor::visit_FCO (GME::FCO &)
 //
 // visit_Model
 //
-GME_INLINE
-void Visitor::visit_Model (GME::Model &)
+GAME_INLINE
+void Visitor::visit_Model (GAME::Model &)
 {
 
 }
@@ -51,8 +51,8 @@ void Visitor::visit_Model (GME::Model &)
 //
 // visit_Atom
 //
-GME_INLINE
-void Visitor::visit_Atom (GME::Atom &)
+GAME_INLINE
+void Visitor::visit_Atom (GAME::Atom &)
 {
 
 }
@@ -60,8 +60,8 @@ void Visitor::visit_Atom (GME::Atom &)
 //
 // visit_Folder
 //
-GME_INLINE
-void Visitor::visit_Folder (GME::Folder &)
+GAME_INLINE
+void Visitor::visit_Folder (GAME::Folder &)
 {
 
 }
@@ -69,8 +69,8 @@ void Visitor::visit_Folder (GME::Folder &)
 //
 // visit_Reference
 //
-GME_INLINE
-void Visitor::visit_Reference (GME::Reference &)
+GAME_INLINE
+void Visitor::visit_Reference (GAME::Reference &)
 {
 
 }
@@ -78,8 +78,8 @@ void Visitor::visit_Reference (GME::Reference &)
 //
 // visit_Set
 //
-GME_INLINE
-void Visitor::visit_Set (GME::Set &)
+GAME_INLINE
+void Visitor::visit_Set (GAME::Set &)
 {
 
 }

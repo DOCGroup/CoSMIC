@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "FCO.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "FCO.inl"
 #endif
 
@@ -18,7 +18,7 @@
 #include "Visitor.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
   //
   // is_instance
@@ -184,7 +184,7 @@ namespace GME
     CComPtr <IMgaFCO> fco;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&fco),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return fco.p;
   }
@@ -198,6 +198,8 @@ namespace GME
     CComBSTR bstrpath (path.length (), path.c_str ());
 
     VERIFY_HRESULT (this->impl ()->get_RegistryValue (bstrpath, &bstrvalue));
+    if (!bstrvalue)
+      return "";
 
     CW2A tempstr (bstrvalue);
     return tempstr.m_psz;
@@ -277,7 +279,7 @@ namespace GME
   Attribute FCO::attribute (const std::string & name) const
   {
     // Get the meta attribute with the specified name.
-    GME::Meta::Attribute meta_attr = this->meta ().attribute (name);
+    GAME::Meta::Attribute meta_attr = this->meta ().attribute (name);
 
     // Get the attribute that corresponds to the meta information.
     CComPtr <IMgaAttribute> attr;
@@ -289,7 +291,7 @@ namespace GME
   //
   // registry
   //
-  size_t FCO::registry (std::vector <GME::RegistryNode> & nodes,
+  size_t FCO::registry (std::vector <GAME::RegistryNode> & nodes,
                         bool virtual_types) const
   {
     // Get all the subnodes.
@@ -315,7 +317,7 @@ namespace GME
   //
   // in_sets
   //
-  size_t FCO::in_sets (std::vector <GME::Set> & sets) const
+  size_t FCO::in_sets (std::vector <GAME::Set> & sets) const
   {
     CComPtr <IMgaFCOs> temp;
     VERIFY_HRESULT (this->impl ()->get_MemberOfSets (&temp));
@@ -323,7 +325,7 @@ namespace GME
     return get_children (temp, sets);
   }
 
-  void FCO::accept (GME::Visitor & visitor)
+  void FCO::accept (GAME::Visitor & visitor)
   {
     visitor.visit_FCO (*this);
   }

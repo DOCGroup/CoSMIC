@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Atom
   //
-  GME_INLINE
+  GAME_INLINE
   Atom::Atom (void)
   {
 
@@ -15,7 +15,7 @@ namespace GME
   //
   // Atom
   //
-  GME_INLINE
+  GAME_INLINE
   Atom::Atom (IMgaAtom * atom)
     : FCO (atom)
   {
@@ -25,7 +25,7 @@ namespace GME
   //
   // Atom
   //
-  GME_INLINE
+  GAME_INLINE
   Atom::Atom (const Atom & atom)
     : FCO (atom)
   {
@@ -35,7 +35,7 @@ namespace GME
   //
   // ~Atom
   //
-  GME_INLINE
+  GAME_INLINE
   Atom::~Atom (void)
   {
 

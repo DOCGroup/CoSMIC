@@ -2,14 +2,14 @@
 
 #include "Attribute.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Attribute.inl"
 #endif
 
 #include "GME_ID_Generator.h"
 #include "Folder.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

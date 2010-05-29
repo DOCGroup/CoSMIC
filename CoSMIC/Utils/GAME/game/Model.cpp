@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Model.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Model.inl"
 #endif
 
@@ -16,7 +16,7 @@
 #include "MetaRole.h"
 #include "Visitor.h"
 
-namespace GME
+namespace GAME
 {
   //
   // operator =
@@ -40,12 +40,12 @@ namespace GME
   //
   // _narrow
   //
-  Model Model::_narrow (const GME::Object & object)
+  Model Model::_narrow (const GAME::Object & object)
   {
     CComPtr <IMgaModel> model;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&model),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return model.p;
   }
@@ -113,7 +113,7 @@ namespace GME
   // children
   //
   size_t Model::
-  children (const std::string & type, std::vector <GME::FCO> & children) const
+  children (const std::string & type, std::vector <GAME::FCO> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -126,7 +126,7 @@ namespace GME
   // children
   //
   size_t Model::
-  children (const std::string & type, std::vector <GME::Atom> & children) const
+  children (const std::string & type, std::vector <GAME::Atom> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -139,7 +139,7 @@ namespace GME
   // children
   //
   size_t Model::
-  children (const std::string & type, std::vector <GME::Model> & children) const
+  children (const std::string & type, std::vector <GAME::Model> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -152,7 +152,7 @@ namespace GME
   // children
   //
   size_t Model::
-  children (const std::string & type, std::vector <GME::Reference> & children) const
+  children (const std::string & type, std::vector <GAME::Reference> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -165,7 +165,7 @@ namespace GME
   // children
   //
   size_t Model::
-  children (const std::string & type, std::vector <GME::Set> & children) const
+  children (const std::string & type, std::vector <GAME::Set> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());

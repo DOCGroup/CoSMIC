@@ -1,14 +1,14 @@
 // -*- C++ -*
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (void)
   {
 
@@ -17,7 +17,7 @@ namespace Meta
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (const FCO & meta)
   : Base (meta)
   {
@@ -27,7 +27,7 @@ namespace Meta
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (IMgaMetaFCO * meta)
   : Base (meta)
   {
@@ -37,7 +37,7 @@ namespace Meta
   //
   // ~FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::~FCO (void)
   {
 
@@ -46,7 +46,7 @@ namespace Meta
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const FCO & FCO::operator = (const FCO & meta)
   {
     Base::attach (meta);

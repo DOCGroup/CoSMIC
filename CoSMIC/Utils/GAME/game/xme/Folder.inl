@@ -3,14 +3,14 @@
 
 #include "XME_Utils.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder::Folder (void)
 : Object (0, Object_Type::OT_FOLDER),
   counter_ (0)
@@ -21,7 +21,7 @@ Folder::Folder (void)
 //
 // Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder::Folder (const Folder & folder)
 : Object (folder),
   counter_ (folder.counter_)
@@ -32,7 +32,7 @@ Folder::Folder (const Folder & folder)
 //
 // Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder::Folder (xercesc::DOMElement * folder)
 : Object (folder, Object_Type::OT_FOLDER)
 {
@@ -42,7 +42,7 @@ Folder::Folder (xercesc::DOMElement * folder)
 //
 // ~Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder::~Folder (void)
 {
 
@@ -51,7 +51,7 @@ Folder::~Folder (void)
 //
 // Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder Folder::_narrow (const Object & obj)
 {
   if ((obj.type () & Object_Type::OT_FOLDER))
@@ -63,7 +63,7 @@ Folder Folder::_narrow (const Object & obj)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Folder & Folder::operator = (const Folder & folder)
 {
   this->obj_ = folder.obj_;
@@ -74,7 +74,7 @@ const Folder & Folder::operator = (const Folder & folder)
 //
 // relid_counter
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::relid_counter (void) const
 {
   return this->counter_;
@@ -83,7 +83,7 @@ size_t Folder::relid_counter (void) const
 //
 // folders
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::children (std::vector <Folder> & folders)
 {
   return Utils::get_children (this->obj_, folders);
@@ -92,7 +92,7 @@ size_t Folder::children (std::vector <Folder> & folders)
 //
 // folders
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::
 children (const ::Utils::XStr & metaname, std::vector <Folder> & folders)
 {
@@ -102,7 +102,7 @@ children (const ::Utils::XStr & metaname, std::vector <Folder> & folders)
 //
 // fcos
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::children (std::vector <FCO> & folders)
 {
   return Utils::get_children (this->obj_, folders);
@@ -111,7 +111,7 @@ size_t Folder::children (std::vector <FCO> & folders)
 //
 // fcos
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::
 children (const ::Utils::XStr & metaname, std::vector <FCO> & folders)
 {
@@ -121,7 +121,7 @@ children (const ::Utils::XStr & metaname, std::vector <FCO> & folders)
 //
 // atoms
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::children (std::vector <Atom> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -130,7 +130,7 @@ size_t Folder::children (std::vector <Atom> & coll)
 //
 // atoms
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::
 children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 {
@@ -140,7 +140,7 @@ children (const ::Utils::XStr & metaname, std::vector <Atom> & coll)
 //
 // models
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::children (std::vector <Model> & coll)
 {
   return Utils::get_children (this->obj_, coll);
@@ -149,7 +149,7 @@ size_t Folder::children (std::vector <Model> & coll)
 //
 // models
 //
-GME_INLINE
+GAME_INLINE
 size_t Folder::
 children (const ::Utils::XStr & metaname, std::vector <Model> & coll)
 {

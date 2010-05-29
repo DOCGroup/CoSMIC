@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (void)
   {
 
@@ -15,7 +15,7 @@ namespace GME
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (IMgaModel * model)
     : FCO (model)
   {
@@ -25,7 +25,7 @@ namespace GME
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (const Model & model)
     : FCO (model)
   {
@@ -35,7 +35,7 @@ namespace GME
   //
   // ~Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::~Model (void)
   {
 

@@ -15,7 +15,7 @@
 
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -110,7 +110,7 @@ private:
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Connection.inl"
 #endif
 

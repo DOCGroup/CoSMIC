@@ -2,13 +2,13 @@
 
 #include "GME_ID_Generator.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "GME_ID_Generator.inl"
 #endif
 
 #include "GME_ID_Generator_T.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

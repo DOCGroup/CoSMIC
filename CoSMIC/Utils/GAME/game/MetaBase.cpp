@@ -3,11 +3,11 @@
 #include "stdafx.h"
 #include "MetaBase.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaBase.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {

@@ -2,14 +2,14 @@
 
 #include "Atom.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Atom.inl"
 #endif
 
 #include "GME_ID_Generator.h"
 #include "Folder.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -32,7 +32,7 @@ static Atom Atom::create_impl (T & parent, const ::Utils::XStr & kind)
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::
 Atom (xercesc::DOMElement * parent,
       const ::Utils::XStr & kind,

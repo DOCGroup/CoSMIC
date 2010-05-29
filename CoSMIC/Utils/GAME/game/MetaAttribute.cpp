@@ -3,11 +3,11 @@
 #include "stdafx.h"
 #include "MetaAttribute.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaAttribute.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -19,7 +19,7 @@ namespace Meta
     CComPtr <IMgaMetaAttribute> attr;
 
     VERIFY_HRESULT_THROW_EX (base.impl ()->QueryInterface (&attr),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return attr.p;
   }

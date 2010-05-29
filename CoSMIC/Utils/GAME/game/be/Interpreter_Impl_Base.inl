@@ -3,8 +3,8 @@
 //
 // Interpreter_Impl_Base
 //
-GME_INLINE
-GME::Interpreter_Impl_Base::Interpreter_Impl_Base (bool is_managed)
+GAME_INLINE
+GAME::Interpreter_Impl_Base::Interpreter_Impl_Base (bool is_managed)
 : name_ ("Interpreter"),
   paradigm_ ("*"),
   is_managed_ (is_managed)
@@ -15,8 +15,8 @@ GME::Interpreter_Impl_Base::Interpreter_Impl_Base (bool is_managed)
 //
 // Interpreter_Impl_Base
 //
-GME_INLINE
-GME::Interpreter_Impl_Base::
+GAME_INLINE
+GAME::Interpreter_Impl_Base::
 Interpreter_Impl_Base (const std::string & name,
                        const std::string & paradigm,
                        const std::string & progid,
@@ -32,8 +32,8 @@ Interpreter_Impl_Base (const std::string & name,
 //
 // ~Interpreter_Impl_Base
 //
-GME_INLINE
-GME::Interpreter_Impl_Base::~Interpreter_Impl_Base (void)
+GAME_INLINE
+GAME::Interpreter_Impl_Base::~Interpreter_Impl_Base (void)
 {
 
 }
@@ -41,8 +41,8 @@ GME::Interpreter_Impl_Base::~Interpreter_Impl_Base (void)
 //
 // initialize
 //
-GME_INLINE
-int GME::Interpreter_Impl_Base::initialize (GME::Project & project)
+GAME_INLINE
+int GAME::Interpreter_Impl_Base::initialize (GAME::Project & project)
 {
   return 0;
 }
@@ -50,10 +50,10 @@ int GME::Interpreter_Impl_Base::initialize (GME::Project & project)
 //
 // invoke
 //
-GME_INLINE
-int GME::Interpreter_Impl_Base::
-invoke (GME::Project & project,
-        std::vector <GME::FCO> & selected,
+GAME_INLINE
+int GAME::Interpreter_Impl_Base::
+invoke (GAME::Project & project,
+        std::vector <GAME::FCO> & selected,
         long flags)
 {
   return 0;
@@ -62,11 +62,11 @@ invoke (GME::Project & project,
 //
 // invoke
 //
-GME_INLINE
-int GME::Interpreter_Impl_Base::
-invoke_ex (GME::Project & project,
-           GME::FCO & fco,
-           std::vector <GME::FCO> & selected,
+GAME_INLINE
+int GAME::Interpreter_Impl_Base::
+invoke_ex (GAME::Project & project,
+           GAME::FCO & fco,
+           std::vector <GAME::FCO> & selected,
            long flags)
 {
   return 0;
@@ -75,11 +75,11 @@ invoke_ex (GME::Project & project,
 //
 // invoke
 //
-GME_INLINE
-int GME::Interpreter_Impl_Base::
-invoke_object_ex (GME::Project & project,
-                  GME::Object & obj,
-                  std::vector <GME::Object> & selected,
+GAME_INLINE
+int GAME::Interpreter_Impl_Base::
+invoke_object_ex (GAME::Project & project,
+                  GAME::Object & obj,
+                  std::vector <GAME::Object> & selected,
                   long flags)
 {
   return 0;
@@ -88,8 +88,8 @@ invoke_object_ex (GME::Project & project,
 //
 // interactive
 //
-GME_INLINE
-void GME::Interpreter_Impl_Base::interactive (bool mode)
+GAME_INLINE
+void GAME::Interpreter_Impl_Base::interactive (bool mode)
 {
   this->is_interactive_ = mode;
 }
@@ -97,8 +97,8 @@ void GME::Interpreter_Impl_Base::interactive (bool mode)
 //
 // interactive
 //
-GME_INLINE
-bool GME::Interpreter_Impl_Base::interactive (void) const
+GAME_INLINE
+bool GAME::Interpreter_Impl_Base::interactive (void) const
 {
   return this->is_interactive_;
 }
@@ -106,8 +106,8 @@ bool GME::Interpreter_Impl_Base::interactive (void) const
 //
 // interactive
 //
-GME_INLINE
-void GME::Interpreter_Impl_Base::enable (bool mode)
+GAME_INLINE
+void GAME::Interpreter_Impl_Base::enable (bool mode)
 {
   this->is_enabled_ = mode;
 }
@@ -115,8 +115,8 @@ void GME::Interpreter_Impl_Base::enable (bool mode)
 //
 // paradigm
 //
-GME_INLINE
-const std::string & GME::Interpreter_Impl_Base::paradigm (void) const
+GAME_INLINE
+const std::string & GAME::Interpreter_Impl_Base::paradigm (void) const
 {
   return this->paradigm_;
 }
@@ -124,8 +124,8 @@ const std::string & GME::Interpreter_Impl_Base::paradigm (void) const
 //
 // name
 //
-GME_INLINE
-const std::string & GME::Interpreter_Impl_Base::name (void) const
+GAME_INLINE
+const std::string & GAME::Interpreter_Impl_Base::name (void) const
 {
   return this->name_;
 }
@@ -133,8 +133,8 @@ const std::string & GME::Interpreter_Impl_Base::name (void) const
 //
 // paradigm
 //
-GME_INLINE
-const std::string & GME::Interpreter_Impl_Base::progid (void) const
+GAME_INLINE
+const std::string & GAME::Interpreter_Impl_Base::progid (void) const
 {
   return this->progid_;
 }
@@ -142,8 +142,8 @@ const std::string & GME::Interpreter_Impl_Base::progid (void) const
 //
 // paradigm
 //
-GME_INLINE
-bool GME::Interpreter_Impl_Base::is_managed (void) const
+GAME_INLINE
+bool GAME::Interpreter_Impl_Base::is_managed (void) const
 {
   return this->is_managed_;
 }

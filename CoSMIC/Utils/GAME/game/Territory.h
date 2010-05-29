@@ -19,7 +19,7 @@
 #include "Mga.h"
 #endif
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   /**
@@ -29,7 +29,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export Territory
+  class GAME_Export Territory
   {
   public:
     /// Default constructor.

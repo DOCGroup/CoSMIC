@@ -16,7 +16,7 @@
 #include "Exception.h"
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
   // Forward decl.
   class RegistryNode;
@@ -29,7 +29,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export RegistryNode
+  class GAME_Export RegistryNode
   {
   public:
     /// Type definition for the interface.
@@ -150,7 +150,7 @@ namespace GME
      * @param[in]       virtualinterface_types       Include the virtual nodes.
      * @return          Collection of child nodes.
      */
-    size_t children (std::vector <GME::RegistryNode> & nodes,
+    size_t children (std::vector <GAME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
     /// Clear the current value of this node.
@@ -195,7 +195,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "RegistryNode.inl"
 #endif
 

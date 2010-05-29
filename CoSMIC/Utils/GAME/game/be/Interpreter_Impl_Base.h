@@ -10,21 +10,21 @@
  */
 //=============================================================================
 
-#ifndef _GME_INTERPRETER_IMPL_BASE_H_
-#define _GME_INTERPRETER_IMPL_BASE_H_
+#ifndef _GAME_INTERPRETER_IMPL_BASE_H_
+#define _GAME_INTERPRETER_IMPL_BASE_H_
 
 #include "BE_export.h"
 #include "game/GME_fwd.h"
 #include "game/Collection_T.h"
 #include <string>
 
-namespace GME
+namespace GAME
 {
 /**
  * @class Interpreter_Impl_Base
  *
  * Base implemenation for all interperters. Subclasses of this class
- * are used as the second parameter for GME::Interpreter_T
+ * are used as the second parameter for GAME::Interpreter_T
  */
 class GAME_BE_Export Interpreter_Impl_Base
 {
@@ -40,20 +40,20 @@ public:
   /// Destructor.
   ~Interpreter_Impl_Base (void);
 
-  int initialize (GME::Project & project);
+  int initialize (GAME::Project & project);
 
-  int invoke (GME::Project & project,
-              std::vector <GME::FCO> & selected,
+  int invoke (GAME::Project & project,
+              std::vector <GAME::FCO> & selected,
               long flags);
 
-  int invoke_ex (GME::Project & project,
-                 GME::FCO & fco,
-                 std::vector <GME::FCO> & selected,
+  int invoke_ex (GAME::Project & project,
+                 GAME::FCO & fco,
+                 std::vector <GAME::FCO> & selected,
                  long flags);
 
-  int invoke_object_ex (GME::Project & project,
-                        GME::Object & obj,
-                        std::vector <GME::Object> & selected,
+  int invoke_object_ex (GAME::Project & project,
+                        GAME::Object & obj,
+                        std::vector <GAME::Object> & selected,
                         long flags);
 
   void interactive (bool mode);
@@ -91,8 +91,8 @@ protected:
 
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Interpreter_Impl_Base.inl"
 #endif
 
-#endif  // !defined _GME_INTERPRETER_IMPL_BASE_H_
+#endif  // !defined _GAME_INTERPRETER_IMPL_BASE_H_

@@ -3,11 +3,11 @@
 #include "stdafx.h"
 #include "RegistryNode.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "RegistryNode.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
   //
   // value
@@ -99,7 +99,7 @@ namespace GME
   //
   // children
   //
-  size_t RegistryNode::children (std::vector <GME::RegistryNode> & nodes,
+  size_t RegistryNode::children (std::vector <GAME::RegistryNode> & nodes,
                                  bool virtualinterface_types) const
   {
     // Get all the subnodes.

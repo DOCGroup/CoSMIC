@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Territory.h"
 
-namespace GME
+namespace GAME
 {
   //
   // Territory

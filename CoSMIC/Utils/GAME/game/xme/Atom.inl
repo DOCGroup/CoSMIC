@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::Atom (void)
 : FCO (0, Object_Type::OT_ATOM)
 {
@@ -18,7 +18,7 @@ Atom::Atom (void)
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::Atom (const Atom & atom)
 : FCO (atom)
 {
@@ -28,7 +28,7 @@ Atom::Atom (const Atom & atom)
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::Atom (xercesc::DOMElement * atom, bool validate)
 : FCO (atom, false)
 {
@@ -39,7 +39,7 @@ Atom::Atom (xercesc::DOMElement * atom, bool validate)
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::Atom (xercesc::DOMElement * atom)
 : FCO (atom, Object_Type::OT_ATOM)
 {
@@ -49,7 +49,7 @@ Atom::Atom (xercesc::DOMElement * atom)
 //
 // Atom
 //
-GME_INLINE
+GAME_INLINE
 Atom::~Atom (void)
 {
 
@@ -58,7 +58,7 @@ Atom::~Atom (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Atom & Atom::operator = (const Atom & atom)
 {
   this->obj_ = atom.obj_;
@@ -68,7 +68,7 @@ const Atom & Atom::operator = (const Atom & atom)
 //
 // _narrow
 //
-GME_INLINE
+GAME_INLINE
 Atom Atom::_narrow (const Object & obj)
 {
   if ((Object_Type::OT_ATOM & obj.type ()))

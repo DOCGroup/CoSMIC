@@ -1,11 +1,11 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (void)
   {
 
@@ -14,7 +14,7 @@ namespace GME
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (IMgaAttribute * attr)
   : attr_ (attr)
   {
@@ -24,7 +24,7 @@ namespace GME
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (const Attribute & attr)
   : attr_ (attr.attr_)
   {
@@ -34,7 +34,7 @@ namespace GME
   //
   // ~Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::~Attribute (void)
   {
 
@@ -43,7 +43,7 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void Attribute::attach (IMgaAttribute * attr)
   {
     this->attr_.Attach (attr);
@@ -52,7 +52,7 @@ namespace GME
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const Attribute & Attribute::operator = (const Attribute & attr)
   {
     this->attr_ = attr.attr_;

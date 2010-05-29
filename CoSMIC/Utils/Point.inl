@@ -16,7 +16,7 @@ Point::Point (void)
 // Point
 //
 inline
-Point::Point (ACE_UINT32 x, ACE_UINT32 y)
+Point::Point (int x, int y)
 : x_ (x),
   y_ (y)
 {
@@ -47,7 +47,7 @@ Point::~Point (void)
 // x_value
 //
 inline
-ACE_UINT32 Point::x_value (void) const
+int Point::x_value (void) const
 {
   return this->x_;
 }
@@ -56,7 +56,7 @@ ACE_UINT32 Point::x_value (void) const
 // x_value
 //
 inline
-void Point::x_value (ACE_UINT32 x)
+void Point::x_value (int x)
 {
   this->x_ = x;
 }
@@ -65,7 +65,7 @@ void Point::x_value (ACE_UINT32 x)
 // y_value
 //
 inline
-ACE_UINT32 Point::y_value (void) const
+int Point::y_value (void) const
 {
   return this->y_;
 }
@@ -74,7 +74,7 @@ ACE_UINT32 Point::y_value (void) const
 // y_value
 //
 inline
-void Point::y_value (ACE_UINT32 y)
+void Point::y_value (int y)
 {
   this->y_ = y;
 }
@@ -83,7 +83,7 @@ void Point::y_value (ACE_UINT32 y)
 // shift
 //
 inline
-void Point::shift (ACE_UINT32 cx, ACE_UINT32 cy)
+void Point::shift (int cx, int cy)
 {
   this->x_ += cx;
   this->y_ += cy;
@@ -121,7 +121,7 @@ bool Point::operator != (const Point & pt) const
 // set
 //
 inline
-void Point::set (ACE_UINT32 x, ACE_UINT32 y)
+void Point::set (int x, int y)
 {
   this->x_ = x;
   this->y_ = y;

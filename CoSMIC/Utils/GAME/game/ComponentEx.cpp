@@ -4,7 +4,7 @@
 #include "ComponentEx.h"
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
   //
   // ComponentEx
@@ -49,14 +49,14 @@ namespace GME
   //
   void ComponentEx::invoke (Project & project,
                             FCO & current,
-                            std::vector <GME::FCO> & selected,
+                            std::vector <GAME::FCO> & selected,
                             long param)
   {
     CComBSTR progid ("Mga.MgaFCOs");
     CComPtr <IMgaFCOs> selected_raw;
     VERIFY_HRESULT (selected_raw.CoCreateInstance (progid));
 
-    std::vector <GME::FCO>::const_iterator
+    std::vector <GAME::FCO>::const_iterator
       iter = selected.begin (), iter_end = selected.end ();
 
     for ( ; iter != iter_end; ++ iter)

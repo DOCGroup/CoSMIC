@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Connection
 //
-GME_INLINE
+GAME_INLINE
 Connection::Connection (void)
 {
 
@@ -17,7 +17,7 @@ Connection::Connection (void)
 //
 // Connection
 //
-GME_INLINE
+GAME_INLINE
 Connection::Connection (const Connection & conn)
 : FCO (conn)
 {
@@ -27,7 +27,7 @@ Connection::Connection (const Connection & conn)
 //
 // Connection
 //
-GME_INLINE
+GAME_INLINE
 Connection::
 Connection (xercesc::DOMElement * conn, bool validate)
 : FCO (conn, false)
@@ -41,7 +41,7 @@ Connection (xercesc::DOMElement * conn, bool validate)
 //
 // Connection
 //
-GME_INLINE
+GAME_INLINE
 Connection::~Connection (void)
 {
 
@@ -50,7 +50,7 @@ Connection::~Connection (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Connection & Connection::operator = (const Connection & conn)
 {
   this->attach (conn.obj_);

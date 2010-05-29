@@ -20,7 +20,7 @@
 #include "GME_fwd.h"
 #include "Exception.h"
 
-namespace GME
+namespace GAME
 {
 //=============================================================================
 /**
@@ -28,7 +28,7 @@ namespace GME
  */
 //=============================================================================
 
-struct GME_Export XML_Info
+struct GAME_Export XML_Info
 {
   std::string paradigm_;
   
@@ -48,7 +48,7 @@ struct GME_Export XML_Info
  */
 //=============================================================================
 
-class GME_Export XML_Parser
+class GAME_Export XML_Parser
 {
 public:
   /// Default constructor.
@@ -70,7 +70,7 @@ public:
    *
    * @param[in]       xmlfile         Target XML file.
    */
-  void parse (const std::string & xmlfile, GME::Project & project);
+  void parse (const std::string & xmlfile, GAME::Project & project);
 
 private:
   /// Pointer to the parser's interface.
@@ -90,7 +90,7 @@ private:
  */
 //=============================================================================
 
-class GME_Export XML_Dumper
+class GAME_Export XML_Dumper
 {
 public:
   /// Default constructor.
@@ -104,7 +104,7 @@ public:
    *
    * @param[in]       xmlfile         Target XML file.
    */
-  void write (const std::string & xmlfile, GME::Project & project);
+  void write (const std::string & xmlfile, GAME::Project & project);
 
 private:
   /// Pointer to the parser's interface.
@@ -117,7 +117,7 @@ private:
 
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "XML.inl"
 #endif
 

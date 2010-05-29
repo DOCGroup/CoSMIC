@@ -2,7 +2,7 @@
 
 #include "Project.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Project.inl"
 #endif
 
@@ -19,7 +19,7 @@
 #include "ace/OS_NS_time.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

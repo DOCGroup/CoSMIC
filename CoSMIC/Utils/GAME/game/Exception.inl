@@ -1,11 +1,11 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Exception
   //
-  GME_INLINE
+  GAME_INLINE
   Exception::Exception (void)
   {
 
@@ -14,7 +14,7 @@ namespace GME
   //
   // ~Exception
   //
-  GME_INLINE
+  GAME_INLINE
   Exception::~Exception (void)
   {
 
@@ -23,7 +23,7 @@ namespace GME
   //
   // Failed_Result
   //
-  GME_INLINE
+  GAME_INLINE
   Failed_Result::Failed_Result (HRESULT value)
     : value_ (value)
   {
@@ -33,7 +33,7 @@ namespace GME
   //
   // ~Failed_Result
   //
-  GME_INLINE
+  GAME_INLINE
   Failed_Result::~Failed_Result (void)
   {
 
@@ -42,7 +42,7 @@ namespace GME
   //
   // error
   //
-  GME_INLINE
+  GAME_INLINE
   const HRESULT & Failed_Result::value (void) const
   {
     return this->value_;
@@ -51,7 +51,7 @@ namespace GME
   //
   // Invalid_Cast
   //
-  GME_INLINE
+  GAME_INLINE
   Invalid_Cast::Invalid_Cast (void)
   {
 
@@ -60,7 +60,7 @@ namespace GME
   //
   // Invalid_Cast
   //
-  GME_INLINE
+  GAME_INLINE
   Invalid_Cast::~Invalid_Cast (void)
   {
 

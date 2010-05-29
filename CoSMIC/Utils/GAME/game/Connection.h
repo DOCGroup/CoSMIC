@@ -4,7 +4,7 @@
 /**
  * @file        Connection.h
  *
- * Defines the GME::Connection object.
+ * Defines the GAME::Connection object.
  *
  * $Id$
  *
@@ -20,7 +20,7 @@
 #include "ace/Hash_Map_Manager_T.h"
 #include "ace/Null_Mutex.h"
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   /**
@@ -30,7 +30,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export ConnectionPoint
+  class GAME_Export ConnectionPoint
   {
   public:
     /// Type definition of the interface type.
@@ -124,12 +124,12 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export ConnectionPoints
+  class GAME_Export ConnectionPoints
   {
   public:
     /// Type definition of the connection point manager.
     typedef ACE_Hash_Map_Manager <std::string,
-                                  GME::ConnectionPoint,
+                                  GAME::ConnectionPoint,
                                   ACE_Null_Mutex> ConnectionPoint_Mgr;
 
     /// Type definition of the iterator.
@@ -243,7 +243,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export Connection : public FCO
+  class GAME_Export Connection : public FCO
   {
   public:
     /// Type definition of the interface type.
@@ -320,7 +320,7 @@ namespace GME
      * @param[in]       role        Role of the connection point.
      * @return          The connection point
      */
-    GME::ConnectionPoint operator [] (const std::string & role);
+    GAME::ConnectionPoint operator [] (const std::string & role);
 
   private:
     /// Pointer to the connection object.
@@ -328,7 +328,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Connection.inl"
 #endif
 

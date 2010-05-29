@@ -2,7 +2,7 @@
 
 #include "Model.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Model.inl"
 #endif
 
@@ -10,7 +10,7 @@
 #include "GME_ID_Generator.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -49,7 +49,7 @@ Model (xercesc::DOMElement * model, bool validate)
 //
 // Model
 //
-GME_INLINE
+GAME_INLINE
 Model::
 Model (xercesc::DOMElement * parent,
        const ::Utils::XStr & kind,

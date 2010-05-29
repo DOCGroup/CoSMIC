@@ -90,17 +90,17 @@ Perfect_Hash::in_word_set (const char *str, unsigned int len)
 
   static const struct object_type wordlist[] =
     {
-      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"set", ::GME::XME::Object_Type::OT_SET},
-      {"atom", ::GME::XME::Object_Type::OT_ATOM},
-      {"model", ::GME::XME::Object_Type::OT_MODEL},
-      {"folder", ::GME::XME::Object_Type::OT_FOLDER},
-      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"", ::GME::XME::Object_Type::OT_UNKNOWN},
-      {"reference", ::GME::XME::Object_Type::OT_REFERENCE},
-      {"connection", ::GME::XME::Object_Type::OT_CONNECTION},
+      {"", ::GAME::XME::Object_Type::OT_UNKNOWN},
+      {"", ::GAME::XME::Object_Type::OT_UNKNOWN},
+      {"", ::GAME::XME::Object_Type::OT_UNKNOWN},
+      {"set", ::GAME::XME::Object_Type::OT_SET},
+      {"atom", ::GAME::XME::Object_Type::OT_ATOM},
+      {"model", ::GAME::XME::Object_Type::OT_MODEL},
+      {"folder", ::GAME::XME::Object_Type::OT_FOLDER},
+      {"", ::GAME::XME::Object_Type::OT_UNKNOWN},
+      {"", ::GAME::XME::Object_Type::OT_UNKNOWN},
+      {"reference", ::GAME::XME::Object_Type::OT_REFERENCE},
+      {"connection", ::GAME::XME::Object_Type::OT_CONNECTION},
     };
 
   if (len <= MAX_WORD_LENGTH && len >= MIN_WORD_LENGTH)

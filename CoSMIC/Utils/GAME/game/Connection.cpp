@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Connection.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Connection.inl"
 #endif
 
@@ -11,7 +11,7 @@
 #include "MetaModel.h"
 #include "MetaRole.h"
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   // ConnectionPoint
@@ -139,7 +139,7 @@ namespace GME
     CComPtr <IMgaConnection> conn;
 
     VERIFY_HRESULT_THROW_EX (obj.impl ()->QueryInterface (&conn),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return conn.p;
   }
@@ -171,7 +171,7 @@ namespace GME
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const Connection & Connection::operator = (const Connection & conn)
   {
     if (this != &conn)
@@ -210,10 +210,10 @@ namespace GME
   //
   // operator []
   //
-  GME::ConnectionPoint Connection:: operator [] (const std::string & role)
+  GAME::ConnectionPoint Connection:: operator [] (const std::string & role)
   {
-    GME::ConnectionPoint point;
-    GME::ConnectionPoints points;
+    GAME::ConnectionPoint point;
+    GAME::ConnectionPoints points;
 
     if (this->connection_points (points))
       point = points[role];

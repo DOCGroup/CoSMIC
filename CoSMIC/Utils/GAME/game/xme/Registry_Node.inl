@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Registry_Node
 //
-GME_INLINE
+GAME_INLINE
 Registry_Node::Registry_Node (void)
 : node_ (0),
   value_ (0)
@@ -19,7 +19,7 @@ Registry_Node::Registry_Node (void)
 //
 // Registry_Node
 //
-GME_INLINE
+GAME_INLINE
 Registry_Node::Registry_Node (const Registry_Node & node)
 : node_ (node.node_),
   value_ (node.value_)
@@ -30,7 +30,7 @@ Registry_Node::Registry_Node (const Registry_Node & node)
 //
 // Registry_Node
 //
-GME_INLINE
+GAME_INLINE
 Registry_Node::Registry_Node (xercesc::DOMElement * node, bool existing)
 : node_ (node),
   value_ (0)
@@ -42,7 +42,7 @@ Registry_Node::Registry_Node (xercesc::DOMElement * node, bool existing)
 //
 // ~Registry_Node
 //
-GME_INLINE
+GAME_INLINE
 Registry_Node::~Registry_Node (void)
 {
 
@@ -51,7 +51,7 @@ Registry_Node::~Registry_Node (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Registry_Node & Registry_Node::operator = (const Registry_Node & node)
 {
   this->node_ = node.node_;
@@ -62,7 +62,7 @@ const Registry_Node & Registry_Node::operator = (const Registry_Node & node)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Registry_Node::name (void) const
 {
   return this->node_->getAttribute (ATTR_NAME);

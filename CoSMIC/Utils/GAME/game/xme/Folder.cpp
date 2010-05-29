@@ -2,14 +2,14 @@
 
 #include "Folder.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Folder.inl"
 #endif
 
 #include "GME_ID_Generator.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -46,7 +46,7 @@ Folder::Folder (xercesc::DOMElement * folder, bool validate)
 //
 // Folder
 //
-GME_INLINE
+GAME_INLINE
 Folder::
 Folder (xercesc::DOMElement * parent,
         const ::Utils::XStr & kind,

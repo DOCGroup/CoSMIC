@@ -17,7 +17,7 @@
 
 #include "MetaBase.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -26,7 +26,7 @@ namespace Meta
    *
    * Wrapper class for the IMgaMetaAttribute inteface.
    */
-  class GME_Export Attribute : public Base
+  class GAME_Export Attribute : public Base
   {
   public:
     /**
@@ -118,7 +118,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaAttribute.inl"
 #endif
 

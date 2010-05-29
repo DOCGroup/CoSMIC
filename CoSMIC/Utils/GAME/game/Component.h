@@ -19,7 +19,7 @@
 #include "Mga.h"
 #endif
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   /**
@@ -29,7 +29,7 @@ namespace GME
    */
   //===========================================================================
 
-  class GME_Export Component
+  class GAME_Export Component
   {
   public:
     /// Default constructor.
@@ -51,7 +51,7 @@ namespace GME
      *
      * @param[in]   project     The target project.
      */
-    void initialize (GME::Project & project);
+    void initialize (GAME::Project & project);
 
     /**
      * Get the name of the component.

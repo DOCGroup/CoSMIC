@@ -3,13 +3,13 @@
 #include "stdafx.h"
 #include "MetaModel.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaModel.inl"
 #endif
 
 #include "MetaRole.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -51,7 +51,7 @@ namespace Meta
     CComPtr <IMgaMetaModel> model;
 
     VERIFY_HRESULT_THROW_EX (meta.impl ()->QueryInterface (&model),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return model.p;
   }
@@ -60,7 +60,7 @@ namespace Meta
   // children
   //
   size_t Model::
-  children (std::vector <GME::Meta::FCO> & fcos) const
+  children (std::vector <GAME::Meta::FCO> & fcos) const
   {
     // Get a pointer to all the legal folders.
     CComPtr <IMgaMetaFCOs> metas;

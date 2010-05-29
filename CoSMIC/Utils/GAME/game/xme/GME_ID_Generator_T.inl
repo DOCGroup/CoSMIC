@@ -2,7 +2,7 @@
 // $Id$
 
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -10,7 +10,7 @@ namespace XME
 // GME_ID_Generator_T
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 GME_ID_Generator_T <T>::~GME_ID_Generator_T (void)
 {
 
@@ -20,7 +20,7 @@ GME_ID_Generator_T <T>::~GME_ID_Generator_T (void)
 // reset
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 void GME_ID_Generator_T <T>::reset (void)
 {
   this->count_ = 0;
@@ -30,7 +30,7 @@ void GME_ID_Generator_T <T>::reset (void)
 // current_id
 //
 template <typename T>
-GME_INLINE
+GAME_INLINE
 const ::Utils::XStr & GME_ID_Generator_T <T>::current_id (void) const
 {
   return this->id_;

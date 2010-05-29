@@ -1,6 +1,6 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
 ///////////////////////////////////////////////////////////////////////////////
 // XML_Parser
@@ -8,7 +8,7 @@ namespace GME
 //
 // ~XML_Parser
 //
-GME_INLINE
+GAME_INLINE
 XML_Parser::~XML_Parser (void)
 {
 
@@ -20,7 +20,7 @@ XML_Parser::~XML_Parser (void)
 //
 // ~XML_Dumper
 //
-GME_INLINE
+GAME_INLINE
 XML_Dumper::~XML_Dumper (void)
 {
 

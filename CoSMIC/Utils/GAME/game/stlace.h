@@ -16,7 +16,7 @@
 #define _STLACE_H_
 
 #include <string>
-#include "GME_export.h"
+#include "GAME_export.h"
 
 // Forward decl.
 template <typename T>
@@ -28,7 +28,7 @@ class ACE_Hash;
  * Specialization of the ACE_Hash for std::string objects
  */
 template < >
-class GME_Export ACE_Hash <std::string>
+class GAME_Export ACE_Hash <std::string>
 {
 public:
   unsigned long operator () (const std::string & lhs) const;
@@ -40,7 +40,7 @@ public:
  * Specialization of the ACE_Hash for std::string objects
  */
 template < >
-class GME_Export ACE_Hash <std::wstring>
+class GAME_Export ACE_Hash <std::wstring>
 {
 public:
   unsigned long operator () (const std::wstring & lhs) const;

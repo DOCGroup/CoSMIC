@@ -4,14 +4,14 @@
 #include "XME_Utils.h"
 #include "Registry.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::FCO (void)
 : Object (0, Object_Type::OT_FCO)
 {
@@ -21,7 +21,7 @@ FCO::FCO (void)
 //
 // FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::FCO (const FCO & fco)
 : Object (fco)
 {
@@ -31,7 +31,7 @@ FCO::FCO (const FCO & fco)
 //
 // FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::FCO (xercesc::DOMElement * fco,  bool validate)
 : Object (fco, false)
 {
@@ -42,7 +42,7 @@ FCO::FCO (xercesc::DOMElement * fco,  bool validate)
 //
 // FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::FCO (xercesc::DOMElement * fco, int type)
 : Object (fco, type)
 {
@@ -52,7 +52,7 @@ FCO::FCO (xercesc::DOMElement * fco, int type)
 //
 // FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::
 FCO (xercesc::DOMElement * parent,
      const ::Utils::XStr & tagname,
@@ -68,7 +68,7 @@ FCO (xercesc::DOMElement * parent,
 //
 // ~FCO
 //
-GME_INLINE
+GAME_INLINE
 FCO::~FCO (void)
 {
 
@@ -77,7 +77,7 @@ FCO::~FCO (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const FCO & FCO::operator = (const FCO & fco)
 {
   this->obj_ = fco.obj_;
@@ -89,7 +89,7 @@ const FCO & FCO::operator = (const FCO & fco)
 //
 // attributes
 //
-GME_INLINE
+GAME_INLINE
 size_t FCO::attributes (std::vector <Attribute> & attrs) const
 {
   return Utils::get_children (this->obj_, attrs);

@@ -22,7 +22,7 @@
 
 #include "game/Object.h"
 
-namespace GME
+namespace GAME
 {
 // Forward decl.
 class Event_Sink_Impl;
@@ -44,7 +44,7 @@ public:
 
   virtual int handle_global_event (globalevent_enum global_event);
 
-  virtual int handle_object_event (GME::Object & obj, unsigned long mask);
+  virtual int handle_object_event (GAME::Object & obj, unsigned long mask);
 
 private:
   // IMgaEventSink interface
@@ -63,7 +63,7 @@ private:
 
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Event_Sink_T.inl"
 #endif
 

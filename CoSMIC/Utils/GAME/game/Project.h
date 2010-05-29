@@ -17,14 +17,14 @@
 #include "Folder.h"
 #include "Object.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Project
    *
    * Wrapper class for the IMgaProject interface.
    */
-  class GME_Export Project
+  class GAME_Export Project
   {
   public:
     /**

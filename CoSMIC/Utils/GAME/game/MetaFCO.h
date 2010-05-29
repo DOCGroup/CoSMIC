@@ -4,7 +4,7 @@
 /**
  * @file      MetaFCO.h
  *
- * Defines the GME::Meta::FCO object.
+ * Defines the GAME::Meta::FCO object.
  *
  * $Id$
  *
@@ -17,7 +17,7 @@
 
 #include "MetaAttribute.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -29,7 +29,7 @@ namespace Meta
    */
   //===========================================================================
 
-  class GME_Export FCO : public Base
+  class GAME_Export FCO : public Base
   {
   public:
     /// Type definition of the interface pointer.
@@ -96,7 +96,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaFCO.inl"
 #endif
 

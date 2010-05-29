@@ -15,14 +15,14 @@
 
 #include "Interpreter_T.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Plugin_T
    */
   template <typename T, typename IMPL>
   class ATL_NO_VTABLE Plugin_T :
-    public GME::Interpreter_T <T, IMPL>
+    public GAME::Interpreter_T <T, IMPL>
   {
   public:
     /// Default constructor
@@ -33,7 +33,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Plugin_T.inl"
 #endif
 

@@ -9,20 +9,20 @@ Auto_Model::Auto_Model (void)
 }
 
 inline
-Auto_Model::Auto_Model (const ::GME::Object & model)
+Auto_Model::Auto_Model (const ::GAME::Object & model)
 : impl_ (0)
 {
   this->attach (model);
 }
 
 inline
-::GME::Object & Auto_Model::model (void)
+::GAME::Object & Auto_Model::model (void)
 {
   return this->impl_->model ();
 }
 
 inline
-const ::GME::Object & Auto_Model::model (void) const
+const ::GAME::Object & Auto_Model::model (void) const
 {
   return this->impl_->model ();
 }

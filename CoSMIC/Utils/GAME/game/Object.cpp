@@ -9,11 +9,11 @@
 #include <stack>
 #include <sstream>
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Object.inl"
 #endif
 
-namespace GME
+namespace GAME
 {
 //
 // status
@@ -290,7 +290,7 @@ void Object::destroy (void)
 //
 // find_object_by_path
 //
-GME::Object Object::
+GAME::Object Object::
 find_object_by_path (const std::string & path) const
 {
   CComPtr <IMgaObject> object;
@@ -304,7 +304,7 @@ find_object_by_path (const std::string & path) const
 // children
 //
 size_t Object::
-children (std::vector <GME::Object> & children) const
+children (std::vector <GAME::Object> & children) const
 {
   switch (this->type ())
   {
@@ -329,7 +329,7 @@ children (std::vector <GME::Object> & children) const
 //
 // project
 //
-GME::Project Object::project (void) const
+GAME::Project Object::project (void) const
 {
   CComPtr <IMgaProject> proj;
   VERIFY_HRESULT (this->object_->get_Project (&proj));
@@ -340,7 +340,7 @@ GME::Project Object::project (void) const
 //
 // is_equal_to
 //
-bool Object::is_equal_to (const GME::Object & obj) const
+bool Object::is_equal_to (const GAME::Object & obj) const
 {
   // Check for self comparison.
   if (this == &obj)
@@ -364,7 +364,7 @@ bool Object::is_equal_to (const GME::Object & obj) const
 //
 // child_by_relative_id
 //
-GME::Object Object::child_by_relative_id (long relid)
+GAME::Object Object::child_by_relative_id (long relid)
 {
   CComPtr <IMgaObject> object;
   VERIFY_HRESULT (this->impl ()->get_ChildObjectByRelID (relid, &object));
@@ -383,7 +383,7 @@ void Object::send_event (objectevent_enum mask)
 //
 // accept
 //
-void Object::accept (GME::Visitor & visitor)
+void Object::accept (GAME::Visitor & visitor)
 {
   visitor.visit_Object (*this);
 }

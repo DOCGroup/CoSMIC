@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // Reference
   //
-  GME_INLINE
+  GAME_INLINE
   Reference::Reference (void)
   {
 
@@ -15,7 +15,7 @@ namespace GME
   //
   // Reference
   //
-  GME_INLINE
+  GAME_INLINE
   Reference::Reference (IMgaReference * ref)
     : FCO (ref)
   {
@@ -25,7 +25,7 @@ namespace GME
   //
   // Reference
   //
-  GME_INLINE
+  GAME_INLINE
   Reference::Reference (const Reference & ref)
     : FCO (ref)
   {
@@ -35,7 +35,7 @@ namespace GME
   //
   // ~Reference
   //
-  GME_INLINE
+  GAME_INLINE
   Reference::~Reference (void)
   {
 
@@ -44,7 +44,7 @@ namespace GME
   //
   // operator IMgaReference *
   //
-  GME_INLINE
+  GAME_INLINE
   Reference::operator IMgaReference * (void) const
   {
     return this->impl ();
@@ -53,7 +53,7 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void Reference::attach (IMgaReference * ref)
   {
     FCO::attach (ref);

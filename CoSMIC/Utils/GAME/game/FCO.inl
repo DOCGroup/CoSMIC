@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (void)
   {
 
@@ -15,7 +15,7 @@ namespace GME
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (IMgaFCO * fco)
     : Object (fco)
   {
@@ -25,7 +25,7 @@ namespace GME
   //
   // FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::FCO (const FCO & fco)
     : Object (fco)
   {
@@ -35,7 +35,7 @@ namespace GME
   //
   // ~FCO
   //
-  GME_INLINE
+  GAME_INLINE
   FCO::~FCO (void)
   {
 
@@ -44,7 +44,7 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void FCO::attach (IMgaFCO * fco)
   {
     Object::attach (fco);
@@ -53,7 +53,7 @@ namespace GME
   //
   // is_subtype
   //
-  GME_INLINE
+  GAME_INLINE
   bool FCO::is_subtype (void) const
   {
     return this->basetype ();

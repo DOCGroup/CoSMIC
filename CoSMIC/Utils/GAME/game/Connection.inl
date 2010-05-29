@@ -1,6 +1,6 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //===========================================================================
   // ConnectoinPoint
@@ -8,7 +8,7 @@ namespace GME
   //
   // ConnectionPoint
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoint::ConnectionPoint (void)
   {
 
@@ -17,7 +17,7 @@ namespace GME
   //
   // ConnectionPoint
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoint::ConnectionPoint (IMgaConnPoint * point)
     : point_ (point)
   {
@@ -27,7 +27,7 @@ namespace GME
   //
   // ConnectionPoint
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoint::ConnectionPoint (const ConnectionPoint & point)
     : point_ (point.point_)
   {
@@ -37,7 +37,7 @@ namespace GME
   //
   // ~ConnectionPoint
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoint::~ConnectionPoint (void)
   {
 
@@ -46,7 +46,7 @@ namespace GME
   //
   // impl
   //
-  GME_INLINE
+  GAME_INLINE
   IMgaConnPoint * ConnectionPoint::impl (void) const
   {
     return this->point_.p;
@@ -55,7 +55,7 @@ namespace GME
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const ConnectionPoint & ConnectionPoint::
   operator = (const ConnectionPoint & point)
   {
@@ -66,7 +66,7 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void ConnectionPoint::attach (IMgaConnPoint * point)
   {
     this->point_.Attach (point);
@@ -75,7 +75,7 @@ namespace GME
   //===========================================================================
   // ConnectionPoint
 
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoints::ConnectionPoints (void)
   {
 
@@ -84,7 +84,7 @@ namespace GME
   //
   // find
   //
-  GME_INLINE
+  GAME_INLINE
   bool ConnectionPoints::find (const std::string & role)
   {
     return this->points_mgr_.find (role) == 0 ? true : false;
@@ -93,7 +93,7 @@ namespace GME
   //
   // find
   //
-  GME_INLINE
+  GAME_INLINE
   bool ConnectionPoints::
   find (const std::string & role, ConnectionPoint & point)
   {
@@ -103,7 +103,7 @@ namespace GME
   //
   // size
   //
-  GME_INLINE
+  GAME_INLINE
   size_t ConnectionPoints::size (void) const
   {
     return this->points_mgr_.current_size ();
@@ -112,7 +112,7 @@ namespace GME
   //
   // begin
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoints::iterator ConnectionPoints::begin (void)
   {
     return this->points_mgr_.begin ();
@@ -121,7 +121,7 @@ namespace GME
   //
   // begin
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoints::const_iterator ConnectionPoints::begin (void) const
   {
     return this->points_mgr_.begin ();
@@ -130,7 +130,7 @@ namespace GME
   //
   // end
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoints::iterator ConnectionPoints::end (void)
   {
     return this->points_mgr_.end ();
@@ -139,7 +139,7 @@ namespace GME
   //
   // end
   //
-  GME_INLINE
+  GAME_INLINE
   ConnectionPoints::const_iterator ConnectionPoints::end (void) const
   {
     return this->points_mgr_.end ();
@@ -151,7 +151,7 @@ namespace GME
   //
   // Connection
   //
-  GME_INLINE
+  GAME_INLINE
   Connection::Connection (void)
   {
 
@@ -160,7 +160,7 @@ namespace GME
   //
   // Connection
   //
-  GME_INLINE
+  GAME_INLINE
   Connection::Connection (const Connection & conn)
   : FCO (conn)
   {
@@ -170,7 +170,7 @@ namespace GME
   //
   // Connection
   //
-  GME_INLINE
+  GAME_INLINE
   Connection::Connection (IMgaConnection * conn)
   : FCO (conn)
   {
@@ -180,7 +180,7 @@ namespace GME
   //
   // ~Connection
   //
-  GME_INLINE
+  GAME_INLINE
   Connection::~Connection (void)
   {
 

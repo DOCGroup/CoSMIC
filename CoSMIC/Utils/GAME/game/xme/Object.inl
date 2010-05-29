@@ -3,14 +3,14 @@
 
 #include "XME_Utils.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (void)
 : obj_ (0),
   type_ (Object_Type::OT_UNKNOWN)
@@ -21,7 +21,7 @@ Object::Object (void)
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (xercesc::DOMElement * e, int type)
 : obj_ (e),
   type_ (type)
@@ -32,7 +32,7 @@ Object::Object (xercesc::DOMElement * e, int type)
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (xercesc::DOMElement * e, bool validate)
 : obj_ (0),
   type_ (Object_Type::OT_UNKNOWN)
@@ -43,7 +43,7 @@ Object::Object (xercesc::DOMElement * e, bool validate)
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (const Object & obj)
 : obj_ (obj.obj_),
   type_ (obj.type_)
@@ -54,7 +54,7 @@ Object::Object (const Object & obj)
 //
 // ~Object
 //
-GME_INLINE
+GAME_INLINE
 Object::~Object (void)
 {
 
@@ -63,7 +63,7 @@ Object::~Object (void)
 //
 // ptr
 //
-GME_INLINE
+GAME_INLINE
 xercesc::DOMElement * Object::ptr (void) const
 {
   return this->obj_;
@@ -72,7 +72,7 @@ xercesc::DOMElement * Object::ptr (void) const
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Object & Object::operator = (const Object & obj)
 {
   this->obj_ = obj.obj_;
@@ -84,7 +84,7 @@ const Object & Object::operator = (const Object & obj)
 //
 // operator ==
 //
-GME_INLINE
+GAME_INLINE
 bool Object::operator == (const Object & rhs) const
 {
   return this->obj_ == rhs.obj_ || (0 != this->obj_ && this->obj_->isSameNode (rhs.obj_));
@@ -93,7 +93,7 @@ bool Object::operator == (const Object & rhs) const
 //
 // operator !=
 //
-GME_INLINE
+GAME_INLINE
 bool Object::operator != (const Object & rhs) const
 {
   return !(*this == rhs);
@@ -102,7 +102,7 @@ bool Object::operator != (const Object & rhs) const
 //
 // id
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Object::id (void) const
 {
   return this->obj_->getAttribute (ATTR_ID);
@@ -111,7 +111,7 @@ const XMLCh * Object::id (void) const
 //
 // name
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Object::name (void) const
 {
   return this->obj_->getFirstChild ()->getTextContent ();
@@ -120,7 +120,7 @@ const XMLCh * Object::name (void) const
 //
 // name
 //
-GME_INLINE
+GAME_INLINE
 void Object::name (const ::Utils::XStr & value)
 {
   this->obj_->getFirstChild ()->setTextContent (value);
@@ -129,7 +129,7 @@ void Object::name (const ::Utils::XStr & value)
 //
 // is_nil
 //
-GME_INLINE
+GAME_INLINE
 bool Object::is_nil (void) const
 {
   return this->obj_ == 0;
@@ -138,7 +138,7 @@ bool Object::is_nil (void) const
 //
 // type
 //
-GME_INLINE
+GAME_INLINE
 int Object::type (void) const
 {
   return this->type_;
@@ -147,7 +147,7 @@ int Object::type (void) const
 //
 // release
 //
-GME_INLINE
+GAME_INLINE
 xercesc::DOMElement * Object::release (void)
 {
   xercesc::DOMElement * e = this->obj_;
@@ -159,7 +159,7 @@ xercesc::DOMElement * Object::release (void)
 //
 // release
 //
-GME_INLINE
+GAME_INLINE
 const XMLCh * Object::kind (void) const
 {
   return this->obj_->getAttribute (ATTR_KIND);
@@ -168,7 +168,7 @@ const XMLCh * Object::kind (void) const
 //
 // hash
 //
-GME_INLINE
+GAME_INLINE
 unsigned long Object::hash (void) const
 {
   return static_cast <unsigned long> (reinterpret_cast <uintptr_t> (this->obj_));

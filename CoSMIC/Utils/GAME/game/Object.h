@@ -17,7 +17,7 @@
 #include <string>
 #include "Collection_T.h"
 
-namespace GME
+namespace GAME
 {
 // Forward decl.
 class Visitor;
@@ -29,7 +29,7 @@ class Visitor;
  * class for all the GME modeling elements, such as Model, FCO, and
  * Folder.
  */
-class GME_Export Object
+class GAME_Export Object
 {
 public:
   /// Type definition of the COM pointer type.
@@ -257,14 +257,14 @@ public:
    *
    * @param[in]       obj           Object for comparison.
    */
-  bool is_equal_to (const GME::Object & obj) const;
+  bool is_equal_to (const GAME::Object & obj) const;
 
   /**
    * Find a GME object relative to this location.
    *
    * @param[in]       path          Path name of the object.
    */
-  GME::Object find_object_by_path (const std::string & path) const;
+  GAME::Object find_object_by_path (const std::string & path) const;
 
   /**
    * Get the child objects of this object.
@@ -272,7 +272,7 @@ public:
    * @param[out]      children     Children of this object.
    * @return          Number of children.
    */
-  size_t children (std::vector <GME::Object> & children) const;
+  size_t children (std::vector <GAME::Object> & children) const;
 
   /// Release the pointer to the object. This does not actually
   /// delete the object. Please see destory () to delete the
@@ -284,7 +284,7 @@ public:
    *
    * @return          The GME project that owns the object.
    */
-  GME::Project project (void) const;
+  GAME::Project project (void) const;
 
   /**
    * Get the child object by its relative id.
@@ -292,13 +292,13 @@ public:
    * @param[in]       relid         Relative id of child object.
    * @return          The child object.
    */
-  GME::Object child_by_relative_id (long relid);
+  GAME::Object child_by_relative_id (long relid);
 
-  bool operator < (const GME::Object & obj) const;
-  bool operator > (const GME::Object & obj) const;
+  bool operator < (const GAME::Object & obj) const;
+  bool operator > (const GAME::Object & obj) const;
 
-  /// Accept the GME::Visitor object.
-  virtual void accept (GME::Visitor & visitor);
+  /// Accept the GAME::Visitor object.
+  virtual void accept (GAME::Visitor & visitor);
 
   void send_event (objectevent_enum mask);
 
@@ -308,7 +308,7 @@ protected:
 };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Object.inl"
 #endif
 

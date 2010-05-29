@@ -16,7 +16,7 @@
 #include <stdexcept>
 #include "XME_export.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -68,7 +68,7 @@ public:
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Exceptions.inl"
 #endif
 

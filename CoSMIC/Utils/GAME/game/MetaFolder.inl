@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (void)
   {
 
@@ -17,7 +17,7 @@ namespace Meta
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (IMgaMetaFolder * meta)
   : Base (meta)
   {
@@ -27,7 +27,7 @@ namespace Meta
   //
   // Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::Folder (const Folder & meta)
   : Base (meta)
   {
@@ -37,7 +37,7 @@ namespace Meta
   //
   // ~Folder
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::~Folder (void)
   {
 
@@ -46,7 +46,7 @@ namespace Meta
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void Folder::attach (IMgaMetaFolder * meta)
   {
     Base::attach (meta);
@@ -55,7 +55,7 @@ namespace Meta
   //
   // operator IMgaMetaFolder *
   //
-  GME_INLINE
+  GAME_INLINE
   Folder::operator IMgaMetaFolder * (void) const
   {
     return this->impl ();

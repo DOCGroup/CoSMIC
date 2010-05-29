@@ -51,7 +51,7 @@ private:
   filelist_t xme_files_;
 
   /// The GME project.
-  GME::Project project_;
+  GAME::Project project_;
 };
 
 #endif  // !defined _GME_MODEL_UPGRADE_H_

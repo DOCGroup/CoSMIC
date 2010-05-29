@@ -1,13 +1,13 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (void)
   {
 
@@ -16,7 +16,7 @@ namespace Meta
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (IMgaMetaModel * meta)
     : FCO (meta)
   {
@@ -26,7 +26,7 @@ namespace Meta
   //
   // Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::Model (const Model & meta)
     : FCO (meta)
   {
@@ -36,7 +36,7 @@ namespace Meta
   //
   // ~Model
   //
-  GME_INLINE
+  GAME_INLINE
   Model::~Model (void)
   {
 
@@ -45,7 +45,7 @@ namespace Meta
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const Model & Model::operator = (const Model & meta)
   {
     FCO::attach (meta);
@@ -55,7 +55,7 @@ namespace Meta
   //
   // operator IMgaMetaModel *
   //
-  GME_INLINE
+  GAME_INLINE
   Model::operator IMgaMetaModel * (void) const
   {
     return this->impl ();

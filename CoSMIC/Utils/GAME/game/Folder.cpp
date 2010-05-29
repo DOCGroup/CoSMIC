@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "Folder.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Folder.inl"
 #endif
 
@@ -15,12 +15,12 @@
 #include "Model.h"
 #include <algorithm>
 
-namespace GME
+namespace GAME
 {
   //
   // children
   //
-  size_t Folder::children (std::vector <GME::Folder> & folders) const
+  size_t Folder::children (std::vector <GAME::Folder> & folders) const
   {
     CComPtr <IMgaFolders> tempptr;
     VERIFY_HRESULT (this->impl ()->get_ChildFolders (&tempptr));
@@ -35,14 +35,14 @@ namespace GME
    */
   struct filter_t
   {
-    filter_t (const std::string & type, std::vector <GME::Folder> & coll)
+    filter_t (const std::string & type, std::vector <GAME::Folder> & coll)
       : type_ (type),
         coll_ (coll)
     {
 
     }
 
-    void operator () (const GME::Folder & folder) const
+    void operator () (const GAME::Folder & folder) const
     {
       if (folder.meta ().name () == this->type_)
         this->coll_.push_back (folder);
@@ -51,20 +51,20 @@ namespace GME
   private:
     const std::string & type_;
 
-    std::vector <GME::Folder> & coll_;
+    std::vector <GAME::Folder> & coll_;
   };
 
   //
   // children
   //
   size_t Folder::
-  children (const std::string & type, std::vector <GME::Folder> & folders) const
+  children (const std::string & type, std::vector <GAME::Folder> & folders) const
   {
     // Clear the folders in the collection.
     folders.clear ();
 
     // Get all the child folders in this folder.
-    std::vector <GME::Folder> temp_set;
+    std::vector <GAME::Folder> temp_set;
 
     if (this->children (temp_set) > 0)
       std::for_each (temp_set.begin (),
@@ -89,7 +89,7 @@ namespace GME
   // children
   //
   size_t Folder::
-  children (const std::string & type, std::vector <GME::Atom> & children) const
+  children (const std::string & type, std::vector <GAME::Atom> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -102,7 +102,7 @@ namespace GME
   // children
   //
   size_t Folder::
-  children (const std::string & type, std::vector <GME::Model> & children) const
+  children (const std::string & type, std::vector <GAME::Model> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -115,7 +115,7 @@ namespace GME
   // children
   //
   size_t Folder::
-  children (const std::string & type, std::vector <GME::Reference> & children) const
+  children (const std::string & type, std::vector <GAME::Reference> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -128,7 +128,7 @@ namespace GME
   // children
   //
   size_t Folder::
-  children (const std::string & type, std::vector <GME::Set> & children) const
+  children (const std::string & type, std::vector <GAME::Set> & children) const
   {
     CComPtr <IMgaFCOs> fcos;
     CComBSTR bstr (type.length (), type.c_str ());
@@ -170,12 +170,12 @@ namespace GME
   //
   // _narrow
   //
-  Folder Folder::_narrow (const GME::Object & object)
+  Folder Folder::_narrow (const GAME::Object & object)
   {
     CComPtr <IMgaFolder> folder;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&folder),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return folder.p;
   }
@@ -243,7 +243,7 @@ namespace GME
   //
   // registry
   //
-  size_t Folder::registry (std::vector <GME::RegistryNode> & nodes,
+  size_t Folder::registry (std::vector <GAME::RegistryNode> & nodes,
                            bool virtualinterface_types) const
   {
     // Get all the subnodes.
@@ -257,7 +257,7 @@ namespace GME
   //
   // accept
   //
-  void Folder::accept (GME::Visitor & visitor)
+  void Folder::accept (GAME::Visitor & visitor)
   {
     visitor.visit_Folder (*this);
   }

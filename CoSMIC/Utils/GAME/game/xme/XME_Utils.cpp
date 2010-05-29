@@ -3,7 +3,7 @@
 #include "XME_Utils.h"
 #include "Utils/xercesc/XercesString.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

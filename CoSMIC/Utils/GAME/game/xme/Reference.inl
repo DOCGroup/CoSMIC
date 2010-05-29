@@ -1,14 +1,14 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::Reference (void)
 : FCO (0, Object_Type::OT_REFERENCE)
 {
@@ -18,7 +18,7 @@ Reference::Reference (void)
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::Reference (const Reference & atom)
 : FCO (atom),
   refers_to_ (atom.refers_to_)
@@ -29,7 +29,7 @@ Reference::Reference (const Reference & atom)
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::
 Reference (xercesc::DOMElement * ref)
 : FCO (ref, Object_Type::OT_REFERENCE)
@@ -40,7 +40,7 @@ Reference (xercesc::DOMElement * ref)
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::
 Reference (xercesc::DOMElement * ref, bool validate)
 : FCO (ref, false)
@@ -52,7 +52,7 @@ Reference (xercesc::DOMElement * ref, bool validate)
 //
 // Reference
 //
-GME_INLINE
+GAME_INLINE
 Reference::~Reference (void)
 {
 
@@ -61,7 +61,7 @@ Reference::~Reference (void)
 //
 // operator =
 //
-GME_INLINE
+GAME_INLINE
 const Reference & Reference::operator = (const Reference & ref)
 {
   this->obj_ = ref.obj_;
@@ -72,7 +72,7 @@ const Reference & Reference::operator = (const Reference & ref)
 //
 // _narrow
 //
-GME_INLINE
+GAME_INLINE
 Reference Reference::_narrow (const Object & obj)
 {
   if ((obj.type () & Object_Type::OT_REFERENCE))

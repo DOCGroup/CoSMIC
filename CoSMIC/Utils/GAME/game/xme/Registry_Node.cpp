@@ -2,14 +2,14 @@
 
 #include "Registry_Node.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Registry_Node.inl"
 #endif
 
 #include "FCO.h"
 #include "Registry.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

@@ -3,13 +3,13 @@
 #include "stdafx.h"
 #include "MetaRole.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "MetaRole.inl"
 #endif
 
 #include "MetaModel.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {

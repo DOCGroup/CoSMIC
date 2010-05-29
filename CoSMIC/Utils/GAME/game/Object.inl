@@ -1,12 +1,12 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (void)
 {
 
@@ -15,7 +15,7 @@ Object::Object (void)
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (IMgaObject * object)
 : object_ (object)
 {
@@ -24,7 +24,7 @@ Object::Object (IMgaObject * object)
 //
 // Object
 //
-GME_INLINE
+GAME_INLINE
 Object::Object (const Object & obj)
 : object_ (obj.object_)
 {
@@ -34,7 +34,7 @@ Object::Object (const Object & obj)
 //
 // ~Object
 //
-GME_INLINE
+GAME_INLINE
 Object::~Object (void)
 {
 
@@ -43,7 +43,7 @@ Object::~Object (void)
 //
 // attach
 //
-GME_INLINE
+GAME_INLINE
 void Object::attach (IMgaObject * object)
 {
   this->object_.Attach (object);
@@ -52,7 +52,7 @@ void Object::attach (IMgaObject * object)
 //
 // operator ==
 //
-GME_INLINE
+GAME_INLINE
 bool Object::operator == (const Object & obj) const
 {
   return this->is_equal_to (obj);
@@ -61,7 +61,7 @@ bool Object::operator == (const Object & obj) const
 //
 // operator !=
 //
-GME_INLINE
+GAME_INLINE
 bool Object::operator != (const Object & obj) const
 {
   return !this->is_equal_to (obj);
@@ -70,7 +70,7 @@ bool Object::operator != (const Object & obj) const
 //
 // impl
 //
-GME_INLINE
+GAME_INLINE
 IMgaObject * Object::impl (void) const
 {
   return this->object_.p;
@@ -79,7 +79,7 @@ IMgaObject * Object::impl (void) const
 //
 // is_nil
 //
-GME_INLINE
+GAME_INLINE
 bool Object::is_nil (void) const
 {
   return this->object_.p == 0;
@@ -88,7 +88,7 @@ bool Object::is_nil (void) const
 //
 // release
 //
-GME_INLINE
+GAME_INLINE
 void Object::release (void)
 {
   this->object_.Release ();
@@ -97,8 +97,8 @@ void Object::release (void)
 //
 // operator <
 //
-GME_INLINE
-bool Object::operator < (const GME::Object & obj) const
+GAME_INLINE
+bool Object::operator < (const GAME::Object & obj) const
 {
   return this->object_.p < obj.object_.p;
 }
@@ -106,8 +106,8 @@ bool Object::operator < (const GME::Object & obj) const
 //
 // operator >
 //
-GME_INLINE
-bool Object::operator > (const GME::Object & obj) const
+GAME_INLINE
+bool Object::operator > (const GAME::Object & obj) const
 {
   return this->object_.p > obj.object_.p;
 }
@@ -115,7 +115,7 @@ bool Object::operator > (const GME::Object & obj) const
 //
 // operator bool
 //
-GME_INLINE
+GAME_INLINE
 Object::operator bool (void)
 {
   return this->object_.p != 0;

@@ -1,7 +1,7 @@
 // -*- C++ -*-
 // $Id$
 
-namespace GME
+namespace GAME
 {
 //
 // Plugin_T

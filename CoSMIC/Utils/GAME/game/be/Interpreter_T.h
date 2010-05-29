@@ -5,14 +5,14 @@
 
 #include "ComponentEx_T.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Interpreter_T
    */
   template <typename T, typename IMPL>
   class ATL_NO_VTABLE Interpreter_T :
-    public GME::ComponentEx_T <T, &CLSID_MgaComponent>
+    public GAME::ComponentEx_T <T, &CLSID_MgaComponent>
   {
   public:
     /// Default constructor
@@ -42,7 +42,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Interpreter_T.inl"
 #endif
 

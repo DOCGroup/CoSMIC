@@ -19,7 +19,7 @@
 #include "Mga.h"
 #endif
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -31,7 +31,7 @@ namespace Meta
    */
   //===========================================================================
 
-  class GME_Export Base
+  class GAME_Export Base
   {
   public:
     /// Default constructor.
@@ -181,6 +181,9 @@ namespace Meta
      */
     operator bool (void) const;
 
+    /// Release the underlying pointer.
+    void release (void);
+
   protected:
     /// The underlying interface pointer.
     mutable ATL::CComPtr <IMgaMetaBase> metabase_;
@@ -188,7 +191,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaBase.inl"
 #endif
 

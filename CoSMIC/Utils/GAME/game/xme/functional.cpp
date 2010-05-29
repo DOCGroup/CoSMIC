@@ -5,7 +5,7 @@
 #include "Registry.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

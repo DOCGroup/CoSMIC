@@ -2,7 +2,7 @@
 
 #include "Exception.h"
 
-namespace GME
+namespace GAME
 {
 //
 // get_collection

@@ -19,13 +19,13 @@
 #include "Mga.h"
 #endif
 
-#include "GME_export.h"
+#include "GAME_export.h"
 #include "GME_fwd.h"
 #include "Exception.h"
 #include <atlcomcli.h>
 #include <vector>
 
-namespace GME
+namespace GAME
 {
 /**
  * @struct collection_traits

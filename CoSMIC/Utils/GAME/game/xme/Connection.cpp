@@ -2,14 +2,14 @@
 
 #include "Connection.h"
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Connection.inl"
 #endif
 
 #include "GME_ID_Generator.h"
 #include "Model.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -39,7 +39,7 @@ _create (Model & parent,
 //
 // Connection
 //
-GME_INLINE
+GAME_INLINE
 Connection::
 Connection (xercesc::DOMElement * parent,
             const ::Utils::XStr & kind,

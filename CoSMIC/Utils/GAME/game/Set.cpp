@@ -7,7 +7,7 @@
 #include "MetaModel.h"
 #include "Visitor.h"
 
-namespace GME
+namespace GAME
 {
   //
   // Set
@@ -81,7 +81,7 @@ namespace GME
   //
   // members
   //
-  size_t Set::members (std::vector <GME::FCO> & members) const
+  size_t Set::members (std::vector <GAME::FCO> & members) const
   {
     // Get all the members in the set.
     CComPtr <IMgaFCOs> fcos;
@@ -119,12 +119,12 @@ namespace GME
   //
   // _narrow
   //
-  Set Set::_narrow (GME::Object & object)
+  Set Set::_narrow (GAME::Object & object)
   {
     CComPtr <IMgaSet> set;
 
     VERIFY_HRESULT_THROW_EX (object.impl ()->QueryInterface (&set),
-                             GME::Invalid_Cast ());
+                             GAME::Invalid_Cast ());
 
     return set.p;
   }
@@ -160,7 +160,7 @@ namespace GME
   //
   // accept
   //
-  void Set::accept (GME::Visitor & visitor)
+  void Set::accept (GAME::Visitor & visitor)
   {
     visitor.visit_Set (*this);
   }

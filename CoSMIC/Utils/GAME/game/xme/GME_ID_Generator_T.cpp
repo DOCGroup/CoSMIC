@@ -1,6 +1,6 @@
 // $Id$
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "GME_ID_Generator_T.inl"
 #endif
 
@@ -9,7 +9,7 @@
 #include "Connection.h"
 #include "Reference.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {

@@ -15,7 +15,7 @@
 
 #include "Interpreter_Impl_Base.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Plugin_Impl_Base
@@ -25,7 +25,7 @@ namespace GME
    * as the IMPL parameter in Plugin_T class.
    */
   class GAME_BE_Export Plugin_Impl :
-    public GME::Interpreter_Impl_Base
+    public GAME::Interpreter_Impl_Base
   {
   public:
     /**
@@ -41,7 +41,7 @@ namespace GME
 }
 
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Plugin_Impl.inl"
 #endif
 

@@ -1,13 +1,13 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (void)
   {
 
@@ -16,7 +16,7 @@ namespace Meta
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (IMgaMetaAttribute * meta)
     : Base (meta)
   {
@@ -26,7 +26,7 @@ namespace Meta
   //
   // Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::Attribute (const Attribute & meta)
     : Base (meta)
   {
@@ -36,7 +36,7 @@ namespace Meta
   //
   // ~Attribute
   //
-  GME_INLINE
+  GAME_INLINE
   Attribute::~Attribute (void)
   {
 

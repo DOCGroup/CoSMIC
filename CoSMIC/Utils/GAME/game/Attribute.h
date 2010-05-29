@@ -17,14 +17,14 @@
 
 #include "FCO.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Attribute
    *
    * Wrapper class for the IMgaAttribute interface.
    */
-  class GME_Export Attribute
+  class GAME_Export Attribute
   {
   public:
     /// Type definition of the COM pointer type.
@@ -145,7 +145,7 @@ namespace GME
   };
 };
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Attribute.inl"
 #endif
 

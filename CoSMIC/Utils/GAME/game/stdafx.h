@@ -13,7 +13,7 @@
 #ifndef _STDAFX_H_
 #define _STDAFX_H_
 
-#include "GME_export.h"
+#include "GAME_export.h"
 #include <atlcomcli.h>
 
 #endif  // !defined _STDAFX_H_

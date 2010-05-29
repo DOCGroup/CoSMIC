@@ -1,11 +1,11 @@
 // $Id$
 
-namespace GME
+namespace GAME
 {
   //
   // RegistryNode
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::RegistryNode (void)
   {
 
@@ -14,7 +14,7 @@ namespace GME
   //
   // RegistryNode
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::RegistryNode (IMgaRegNode * node)
   : node_ (node)
   {
@@ -24,7 +24,7 @@ namespace GME
   //
   // RegistryNode
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::RegistryNode (const RegistryNode & node)
   : node_ (node.node_)
   {
@@ -34,7 +34,7 @@ namespace GME
   //
   // RegistryNode
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::~RegistryNode (void)
   {
 
@@ -43,7 +43,7 @@ namespace GME
   //
   // operator bool
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::operator bool (void) const
   {
     return this->node_.p != 0;
@@ -52,7 +52,7 @@ namespace GME
   //
   // operator IMgaRegNode *
   //
-  GME_INLINE
+  GAME_INLINE
   RegistryNode::operator IMgaRegNode * (void) const
   {
     return this->node_.p;
@@ -61,7 +61,7 @@ namespace GME
   //
   // status_here
   //
-  GME_INLINE
+  GAME_INLINE
   bool RegistryNode::status_here (void) const
   {
     return this->status () == 0;
@@ -70,7 +70,7 @@ namespace GME
   //
   // status_meta
   //
-  GME_INLINE
+  GAME_INLINE
   bool RegistryNode::status_meta (void) const
   {
     return this->status () == -1;
@@ -79,7 +79,7 @@ namespace GME
   //
   // status_inherited
   //
-  GME_INLINE
+  GAME_INLINE
   bool RegistryNode::status_inherited (void) const
   {
     return this->status () > 0;
@@ -88,7 +88,7 @@ namespace GME
   //
   // attach
   //
-  GME_INLINE
+  GAME_INLINE
   void RegistryNode::attach (IMgaRegNode * node)
   {
     this->node_.Attach (node);
@@ -97,7 +97,7 @@ namespace GME
   //
   // operator =
   //
-  GME_INLINE
+  GAME_INLINE
   const RegistryNode & RegistryNode::operator = (const RegistryNode & node)
   {
     if (this->node_ != node.node_)

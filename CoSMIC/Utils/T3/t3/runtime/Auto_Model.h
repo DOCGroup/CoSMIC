@@ -11,7 +11,7 @@ class T3_RUNTIME_Export Auto_Model
 public:
   Auto_Model (void);
 
-  Auto_Model (const ::GME::Object & model);
+  Auto_Model (const ::GAME::Object & model);
 
   Auto_Model (const Auto_Model & copy);
 
@@ -19,21 +19,21 @@ public:
 
   const Auto_Model & operator = (const Auto_Model & rhs);
 
-  void attach (const ::GME::Object & obj);
+  void attach (const ::GAME::Object & obj);
 
-  ::GME::Object & model (void);
+  ::GAME::Object & model (void);
 
-  const ::GME::Object & model (void) const;
+  const ::GAME::Object & model (void) const;
 
-  GME::Object create_element (const std::string & type);
+  GAME::Object create_element (const std::string & type);
 
   bool create_unique_reference (const std::string & symbol,
                                 const std::string & type);
 
   template <typename Cond>
-  GME::Object create_element_if_not (const std::string & type, Cond cond)
+  GAME::Object create_element_if_not (const std::string & type, Cond cond)
   {
-    GME::Object object =
+    GAME::Object object =
       T3_RUNTIME_ENGINE->
       create_element_if_not (this->impl_->model (), type, cond);
 

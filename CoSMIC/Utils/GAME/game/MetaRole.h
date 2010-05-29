@@ -4,7 +4,7 @@
 /**
  * @file        MetaRole.h
  *
- * Defines the GME::Meta::Role class
+ * Defines the GAME::Meta::Role class
  *
  * $Id$
  *
@@ -17,7 +17,7 @@
 
 #include "MetaBase.h"
 
-namespace GME
+namespace GAME
 {
 namespace Meta
 {
@@ -35,7 +35,7 @@ namespace Meta
    */
   //===========================================================================
 
-  class GME_Export Role : public Base
+  class GAME_Export Role : public Base
   {
   public:
     /// Type definition of the COM interface.
@@ -104,7 +104,7 @@ namespace Meta
 }
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "MetaRole.inl"
 #endif
 

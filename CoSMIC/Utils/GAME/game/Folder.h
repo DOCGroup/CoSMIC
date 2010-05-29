@@ -16,14 +16,14 @@
 #include "RegistryNode.h"
 #include "Object.h"
 
-namespace GME
+namespace GAME
 {
   /**
    * @class Folder
    *
    * Wrapper class for the IMgaFolder interface.
    */
-  class GME_Export Folder : public GME::Object
+  class GAME_Export Folder : public GAME::Object
   {
   public:
     /// Type definition of the interface type.
@@ -61,7 +61,7 @@ namespace GME
      *
      * @param[in]       object        The source object.
      */
-    static Folder _narrow (const GME::Object & object);
+    static Folder _narrow (const GAME::Object & object);
 
     /// Destructor.
     virtual ~Folder (void);
@@ -79,7 +79,7 @@ namespace GME
      *
      * @return      Collection of folder objects.
      */
-    size_t children (std::vector <GME::Folder> & folders) const;
+    size_t children (std::vector <GAME::Folder> & folders) const;
 
     /**
      * Get all the first-level child folders of this folder.
@@ -87,21 +87,21 @@ namespace GME
      * @return      Collection of folder objects.
      */
     size_t children (const std::string & type,
-                     std::vector <GME::Folder> & folders) const;
+                     std::vector <GAME::Folder> & folders) const;
 
-    size_t children (std::vector <GME::FCO> & children) const;
-
-    size_t children (const std::string & type,
-                     std::vector <GME::Atom> & children) const;
+    size_t children (std::vector <GAME::FCO> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Model> & children) const;
+                     std::vector <GAME::Atom> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Reference> & children) const;
+                     std::vector <GAME::Model> & children) const;
 
     size_t children (const std::string & type,
-                     std::vector <GME::Set> & children) const;
+                     std::vector <GAME::Reference> & children) const;
+
+    size_t children (const std::string & type,
+                     std::vector <GAME::Set> & children) const;
 
     /**
      * Get the parent of this folder.
@@ -147,10 +147,10 @@ namespace GME
      * @param[in]   vtypes    The the virtual nodes as well.
      * @return      Number of elements in \a nodes.
      */
-    size_t registry (std::vector <GME::RegistryNode> & nodes,
+    size_t registry (std::vector <GAME::RegistryNode> & nodes,
                      bool vtypes = false) const;
 
-    virtual void accept (GME::Visitor & visitor);
+    virtual void accept (GAME::Visitor & visitor);
 
     /**
      * Attach to an existing folder.
@@ -168,7 +168,7 @@ namespace GME
   };
 }
 
-#if defined (__GME_INLINE__)
+#if defined (__GAME_INLINE__)
 #include "Folder.inl"
 #endif
 

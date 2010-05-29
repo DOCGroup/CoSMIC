@@ -1,12 +1,12 @@
 // $Id$
 
-#if !defined (__GME_INLINE__)
+#if !defined (__GAME_INLINE__)
 #include "Auto_Model_T.inl"
 #endif
 
 #include "game/utils/modelgen.h"
 
-namespace GME
+namespace GAME
 {
 namespace XME
 {
@@ -42,7 +42,7 @@ void Auto_Model_T <T>::attach (T & model)
 template <typename T>
 void Auto_Model_T <T>::purge_models (void)
 {
-  using GME::XME::Object;
+  using GAME::XME::Object;
 
   std::for_each (this->purge_set_.begin (),
                  this->purge_set_.end (),

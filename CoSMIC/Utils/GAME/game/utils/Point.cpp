@@ -1,15 +1,23 @@
 // $Id$
 
-#include "game/StdAfx.h"
 #include "Point.h"
+
+#if !defined (__GAME_INLINE__)
+#include "Point.inl"
+#endif
+
+#include "game/FCO.h"
+#include "Utils/Point.h"
 #include <sstream>
 
-namespace GME
+namespace GAME
+{
+namespace utils
 {
 //
 // position
 //
-bool position (const std::string & aspect, const GME::FCO & fco, Utils::Point & pt)
+bool position (const std::string & aspect, const GAME::FCO & fco, Point & pt)
 {
   // Get the string version of the position
   std::ostringstream regval;
@@ -19,7 +27,7 @@ bool position (const std::string & aspect, const GME::FCO & fco, Utils::Point & 
   // Extract the points from the position.
   std::istringstream istr (position);
 
-  ACE_UINT32 value;
+  int value;
 
   // Read the x-coordinate
   istr >> value;
@@ -38,7 +46,7 @@ bool position (const std::string & aspect, const GME::FCO & fco, Utils::Point & 
 //
 // position
 //
-bool position (const std::string & aspect, const Utils::Point & pt, GME::FCO & fco)
+bool position (const std::string & aspect, const Point & pt, GAME::FCO & fco)
 {
   // Convert the point in a position value.
   std::ostringstream position;
@@ -55,4 +63,5 @@ bool position (const std::string & aspect, const Utils::Point & pt, GME::FCO & f
   return true;
 }
 
+}
 }
