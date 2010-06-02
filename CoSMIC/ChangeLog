@@ -1,3 +1,44 @@
+Wed Jun  2 15:36:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/Decorator.cpp:
+        * PIM/PICML/decorators/IDMLDecorators.h:
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        
+          . Made the MemberDecorator a stand-alone decorator.
+          
+        * PIM/PICML/decorators/ShowReference:
+        * PIM/PICML/decorators/ShowReference/CommonError.h:
+        * PIM/PICML/decorators/ShowReference/CommonError.cpp:
+        * PIM/PICML/decorators/ShowReference/CommonSmart.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.aps:
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/decorators/ShowReference/Decorator.rc:
+        * PIM/PICML/decorators/ShowReference/DecoratorApp.cpp:
+        * PIM/PICML/decorators/ShowReference/DecoratorApp.def:
+        * PIM/PICML/decorators/ShowReference/DecoratorConfig.h:
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.idl:
+        * PIM/PICML/decorators/ShowReference/DecoratorStd.h:
+        * PIM/PICML/decorators/ShowReference/DecoratorUtil.h:
+        * PIM/PICML/decorators/ShowReference/DecoratorUtil.cpp:
+        * PIM/PICML/decorators/ShowReference/MaskedBitmap.h:
+        * PIM/PICML/decorators/ShowReference/MaskedBitmap.cpp:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+        * PIM/PICML/decorators/ShowReference/ShowReference.wxs:
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecorator.reg:
+        * PIM/PICML/decorators/ShowReference/ShowReferenceDecoratord.reg:
+        * PIM/PICML/decorators/ShowReference/StdAfx.h:
+        * PIM/PICML/decorators/ShowReference/StdAfx.cpp:
+        * PIM/PICML/decorators/ShowReference/resource.h:
+        
+          . Stand-alone version of the original MemberDecorator.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
 Sat May 29 18:22:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/IDLTextEditor/BON2Component.cpp:

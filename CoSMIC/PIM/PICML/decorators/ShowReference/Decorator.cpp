@@ -2,289 +2,277 @@
 
 #include "stdafx.h"
 #include "Decorator.h"
-#include "IDMLDecorators.h"
 
 #include "game/FCO.h"
+#include "game/Reference.h"
+#include "game/Project.h"
 #include "game/MetaRole.h"
 #include "game/MetaFCO.h"
+#include "game/utils/Parser.hpp"
+#include <fstream>
 
 #define VERIFY_INIT   { if (!m_isInitialized) return E_DECORATOR_UNINITIALIZED; }
 #define VERIFY_LOCSET { if (!m_isLocSet) return E_DECORATOR_LOCISNOTSET; }
 
-/////////////////////////////////////////////////////////////////////////////
+CDecoratorUtil d_util;
+
+//
+// registrar_
+//
+GAME::utils::Registrar CDecorator::registrar_;
+
+//
 // CDecorator
+//
+CDecorator::CDecorator (void)
+{
 
+}
+
+//
+// ~CDecorator
+//
+CDecorator::~CDecorator (void)
+{
+
+}
+
+//
+// Initialize
+//
 STDMETHODIMP CDecorator::
-Initialize (IMgaProject *project, IMgaMetaPart *metaPart, IMgaFCO *obj )
+Initialize (IMgaProject *p, IMgaMetaPart *metaPart, IMgaFCO *obj)
 {
-  AFX_MANAGE_STATE (::AfxGetStaticModuleState ());
+  if (!this->m_bInitCallFromEx)
+    return E_DECORATOR_USING_DEPRECATED_FUNCTION;
 
-  try
+  // Set the parser configuration.
+  GAME::Project project (p);
+  GAME::utils::PathParserConfig config (project);
+
+  // Initialize the parser.
+  std::vector <std::string> paths;
+  GAME::utils::PathParser <std::string::const_iterator> grammar (config, paths);
+
+  // Extract paths from registrar and tokenize the string.
+  std::string path = this->registrar_.icon_path (GAME::utils::Registrar::ACCESS_BOTH);
+  
+  using boost::phoenix::ref;
+  namespace qi = boost::spirit::qi;
+  namespace ascii = boost::spirit::ascii;
+
+  bool result = qi::phrase_parse (path.begin (), 
+                                  path.end (), 
+                                  grammar, 
+                                  ascii::space);
+
+  std::string icon_filename;
+
+  if (obj == 0)
   {
-	  //
-	  // TODO: read all important data from MGA and cache them for later use
-	  //
-#if GME_VERSION_MAJOR >= 10
-    if (!this->m_bInitCallFromEx)
-      return E_DECORATOR_USING_DEPRECATED_FUNCTION;
-#endif
-
+    // Get the icon for the element in the parts browser.
     CComPtr <IMgaMetaFCO> mf;
-    if (!GetMetaFCO (metaPart, mf ))
-      return E_DECORATOR_INIT_WITH_NULL;
+    if (!this->GetMetaFCO (metaPart, mf))
+      return E_DECORATOR_INIT_WITH_NULL;   
 
-    GAME::Meta::FCO meta_fco (mf.Detach ());
-
-    if (project && metaPart) 
-    {
-      // Get the object's type information.
-      objtype_enum eType;
-
-      if (obj)
-      {
-        GAME::Object object (obj);
-        eType = object.type ();
-      }
-      else
-      {
-        IMgaMetaRole * r = 0;
-        COMTHROW (metaPart->get_Role( &r));
-        
-        GAME::Meta::Role role (r);
-        eType = role.kind ().type ();    
-      }
-
-      // Determine what kind of decorator to create. In the future, we 
-      // should use COM correctly and create a seperate decorator for 
-      // each case. Then, we can register each decorator under its own 
-      // program id. Right now, we are manually doing what COM and the 
-      // windows architecture will do automatically. Moreover, it should 
-      // improve the decorator's performance.
-      switch (eType)
-      {
-      case OBJTYPE_MODEL :
-        m_pDecorator = new ComponentDecorator (metaPart);
-        break;
-
-      case OBJTYPE_REFERENCE :
-        {
-          std::string name = meta_fco.name ();
-
-          if (NamespaceEquals (name, PICML_COMPONENTREF_NAME) || 
-              NamespaceEquals (name, PICML_COMPONENTASMREF_NAME))
-          {
-            // ComponentDecorator draws ComponentRefs too.
-            m_pDecorator = new ComponentDecorator (metaPart);
-          }
-          else if (NamespaceEquals (name, PICML_INHERITS_NAME))
-          {
-            m_pDecorator = new InheritsDecorator;
-          }
-        }
-
-        break;
-      }
-
-      if (m_pDecorator)
-        m_pDecorator->initialize (obj, meta_fco);
-
-      m_isInitialized = true;
-      return S_OK;
-    }
+    GAME::Meta::FCO metafco (mf.Detach ());
+    icon_filename = metafco.registry_value ("icon");
+    this->label_ = metafco.display_name ().c_str ();
   }
-  catch (...)
+  else
   {
+    GAME::FCO fco (obj);
 
+    // Get the icon filename for the referenced element. If no 
+    // element is referenced, then display the reference's icon.
+    GAME::Reference ref = GAME::Reference::_narrow (fco);
+    fco = ref.refers_to ();
+
+
+    if (!fco.is_nil ())
+      icon_filename = fco.registry_value ("icon");
+    else
+      icon_filename = ref.registry_value ("icon");
+
+    // Determine if we need to show the label for the element.
+    std::string show_name = ref.registry_value ("isNameEnabled");
+
+    if (show_name.empty () || show_name == "true")
+      this->label_ = ref.name ().c_str ();
   }
 
-  return E_DECORATOR_INIT_WITH_NULL;
-}
+  // Determine the exact location of the filename based on the
+  // paths retrieved from the registrar.
+  std::string filename;
+  std::vector <std::string>::const_iterator 
+    iter = paths.begin (), iter_end = paths.end ();
 
-STDMETHODIMP CDecorator::Destroy()
-{
-  //
-  // TODO: At least free all references to MGA objects
-  //
-  VERIFY_INIT;
-  m_isInitialized = false;
-  m_isLocSet = false;
-  m_pDecorator->destroy();
+  CFile bitmap_file;
+  for (; iter != iter_end; ++ iter)
+  {
+    filename = *iter + "\\" + icon_filename;
+
+    if (bitmap_file.Open (filename.c_str (), CFile::modeRead | CFile::shareDenyWrite))
+      break;
+  }
+
+  // If we are not able to locate the bitmap, we should just load
+  // the default bitmap for the reference.
+
+  // Now, let's load the bitmap into memory.
+  this->bitmap_.Read (bitmap_file);
+  bitmap_file.Close ();
+
+  m_isInitialized = true;
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetMnemonic( BSTR *mnemonic )
+//
+// Destroy
+//
+STDMETHODIMP CDecorator::Destroy (void)
 {
-  //
-  // TODO: Return the logical name of the decorator (currently not used by GME)
-  //
-  *mnemonic = CComBSTR(DECORATOR_NAME).Detach();
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetFeatures( feature_code *features )
+//
+// GetMnemonic
+//
+STDMETHODIMP CDecorator::GetMnemonic (BSTR *mnemonic)
 {
-  //
-  // TODO: Return supported features (combine multiple features with bitwise-OR)
-  // Available feature codes are found in MgaDecorator.idl
-  // (curently not used by GME)
+  *mnemonic = CComBSTR (L"MGA.Decorator.ShowReference").Detach ();
+  return S_OK;
+}
+
+//
+// GetFeatures
+//
+STDMETHODIMP CDecorator::GetFeatures (feature_code *features )
+{
   *features = 0;
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::SetParam( BSTR name, VARIANT value )
+//
+// SetParam
+//
+STDMETHODIMP CDecorator::SetParam (BSTR name, VARIANT value)
 {
-  //
-  // TODO:  Parse and set all supported parameters, otherwise return error
-  // (currently all values are BSTR type)
-  //
-  VERIFY_INIT;
   return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
-STDMETHODIMP CDecorator::GetParam( BSTR name, VARIANT* value )
+//
+// GetParam
+//
+STDMETHODIMP CDecorator::GetParam (BSTR name, VARIANT* value)
 {
-  //
-  // TODO: Return values of supported and previously set parameters, otherwise return error
-  // (currently GME does not use this method)
-  //
-  VERIFY_INIT;
   return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
-STDMETHODIMP CDecorator::SetActive( VARIANT_BOOL isActive )
+//
+// SetActive
+//
+STDMETHODIMP CDecorator::SetActive (VARIANT_BOOL isActive)
 {
-  VERIFY_INIT;
-  m_pDecorator->setActive( isActive == VARIANT_TRUE );
+  return S_OK;
+}
+
+//
+// GetPreferredSize
+//
+STDMETHODIMP CDecorator::GetPreferredSize (long* sizex, long* sizey)
+{
+  *sizex = this->bitmap_.Width ();
+  *sizey = this->bitmap_.Height ();
 
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetPreferredSize( long* sizex, long* sizey )
+//
+// SetLocation
+//
+STDMETHODIMP CDecorator::
+SetLocation (long sx, long sy, long ex, long ey)
 {
-  VERIFY_INIT;
-
-  CSize cSize = m_pDecorator->getPreferredSize();
-  *sizex = cSize.cx;
-  *sizey = cSize.cy;
+  this->location_.left = sx;
+  this->location_.top = sy;
+  this->location_.right = ex;
+  this->location_.bottom = ey;
 
   return S_OK;
 }
 
-
-STDMETHODIMP CDecorator::SetLocation( long sx,
-                                      long sy,
-                                      long ex,
-                                      long ey )
+//
+// GetLocation
+//
+STDMETHODIMP CDecorator::
+GetLocation (long *sx, long *sy, long *ex, long *ey)
 {
-  VERIFY_INIT;
-  m_pDecorator->setLocation (CRect (sx, sy, ex, ey ) );
-  m_isLocSet = true;
+  *sx = this->location_.left;
+  *sy = this->location_.top;
+  *ex = this->location_.right;
+  *ey = this->location_.bottom;
 
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetLocation( long *sx,
-                                      long *sy,
-                                      long *ex,
-                                      long *ey )
+//
+// GetLabelLocation
+//
+STDMETHODIMP CDecorator::
+GetLabelLocation (long *sx, long *sy, long *ex, long *ey)
 {
-  VERIFY_INIT;
-  VERIFY_LOCSET;
-  CRect cRect = m_pDecorator->getLocation();
-  *sx = cRect.left;
-  *sy = cRect.top;
-  *ex = cRect.right;
-  *ey = cRect.bottom;
-
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::GetLabelLocation( long *sx,
-                                           long *sy,
-                                           long *ex,
-                                           long *ey )
+//
+// GetPortLocation
+//
+STDMETHODIMP CDecorator::
+GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 {
-  //
-  // TODO: Return the location of the text box of your label if you support labels.
-  // (currently GME does not call this)
-  //
-  VERIFY_INIT;
-  VERIFY_LOCSET;
-  return S_OK;
-}
-
-STDMETHODIMP CDecorator::GetPortLocation( IMgaFCO *pFCO,
-                                          long *sx,
-                                          long *sy,
-                                          long *ex,
-                                          long *ey )
-{
-  VERIFY_INIT;
-  VERIFY_LOCSET;
-
-  PortDecorator* pPort = m_pDecorator->getPort( pFCO );
-
-  if ( pPort ) {
-    CRect cRect = pPort->getBoxLocation();
-    *sx = cRect.left;
-    *sy = cRect.top;
-    *ex = cRect.right;
-    *ey = cRect.bottom;
-    return S_OK;
-  }
-
-  return E_DECORATOR_PORTNOTFOUND;
-}
-
-STDMETHODIMP CDecorator::GetPorts (IMgaFCOs **portFCOs)
-{
-  try
-  {
-    VERIFY_INIT;
-    CComPtr<IMgaFCOs> spFCOs;
-    COMTHROW (spFCOs.CoCreateInstance (OLESTR("Mga.MgaFCOs")));
-
-    vector <PortDecorator*> vecPorts = m_pDecorator->getPorts ();
-
-    for ( unsigned int i = 0 ; i < vecPorts.size() ; i++ )
-      COMTHROW (spFCOs->Append (vecPorts[ i ]->getFCO().impl ()));
-
-    *portFCOs = spFCOs.Detach();
-    return S_OK;
-  }
-  catch (...)
-  {
-    
-  }
-
   return S_FALSE;
 }
 
-
-STDMETHODIMP CDecorator::Draw ( HDC hdc )
+//
+// GetPorts
+//
+STDMETHODIMP CDecorator::GetPorts (IMgaFCOs **portFCOs)
 {
-  VERIFY_INIT;
-  VERIFY_LOCSET;
+  return S_FALSE;
+}
 
-  CDC dc;
-  dc.Attach( hdc );
-  m_pDecorator->draw( &dc );
-  dc.Detach();
+//
+// Draw
+//
+STDMETHODIMP CDecorator::Draw (HDC hdc)
+{
+  CDC context;
+  context.Attach (hdc);
+
+  this->bitmap_.Draw (&context, this->location_);
+ 
+  CPoint name_location (this->location_.left + this->bitmap_.Width () / 2,
+                        this->location_.bottom + 20);
+
+  COLORREF name_color (RGB (0x00, 0x00, 0x00));
+
+  d_util.DrawText (&context,
+                   this->label_,
+                   name_location,
+                   d_util.GetFont (GME_NAME_FONT),
+                   name_color,
+                   TA_BOTTOM | TA_CENTER);
+
+  context.Detach ();
+
   return S_OK;
 }
 
-STDMETHODIMP CDecorator::SaveState()
+STDMETHODIMP CDecorator::SaveState (void)
 {
-  //
-  // TODO: The only method where we are in read-write transaction.
-  // Store all permanent information
-  // (currently GME does not support this)
-  //
-  VERIFY_INIT;
   return S_OK;
 }
-
-#if GME_VERSION_MAJOR >= 10
 
 //
 // InitializeEx
@@ -296,50 +284,35 @@ InitializeEx (IMgaProject* pProject,
               IMgaCommonDecoratorEvents* eventSink, 
               ULONGLONG parentWnd)
 {
-	//
-	// TODO: handle extra parameters, call Initialize with the rest
-	//
 	m_bInitCallFromEx = true;
-
-	// If this wouldn't be a simple decorator, we would initialize the Decorator utilities facility framework
-	//DecoratorSDK::getFacilities().loadPathes(pProject, true);
-
 	this->Initialize (pProject, pPart, pFCO);
-	m_eventSink = eventSink;
-	m_parentWnd = (HWND)parentWnd;
 
 	return S_OK;
 }
 
+//
+// DrawEx
+//
 STDMETHODIMP CDecorator::DrawEx (HDC hdc, ULONGLONG gdipGraphics)
 {
-  //
-	// TODO: gdipGraphics is a Gdiplus::Graphics* variable, it is advisable to use this for drawing and don't use the HDC
-	//
-  return this->Draw (hdc);
-
-  //VERIFY_INIT;
-  //VERIFY_LOCSET;
-
-  //Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (gdipGraphics);
-  //m_pDecorator->draw (*g);
-
-  //return S_OK;
+  this->Draw (hdc);
+  return S_OK;
 }
 
+//
+// SetSelected
+//
 STDMETHODIMP CDecorator::SetSelected(VARIANT_BOOL vbIsSelected)
 {
-	//
-	// TODO: memorize selected state, it might be needed for some operations later
-	//
-	//VERIFY_INITIALIZATION
-
 	m_bSelected = (vbIsSelected == VARIANT_TRUE);
-
 	return S_OK;
 }
 
-STDMETHODIMP CDecorator::MouseMoved(ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC)
+//
+// MouseMoved
+//
+STDMETHODIMP CDecorator::
+MouseMoved (ULONG nFlags, LONG pointx, LONG pointy, ULONGLONG transformHDC)
 {
 	//
 	// TODO: if you respond to the message, for example change the mouse cursor, you should return
@@ -531,25 +504,12 @@ STDMETHODIMP CDecorator::OperationCanceled()
 	//
 	return S_DECORATOR_EVENT_NOT_HANDLED;
 }
-#endif
 
-//////////// Decorator private functions
-
-CDecorator::CDecorator (void)
-: m_isInitialized( false),
-  m_isLocSet( false ),
-  m_pDecorator( 0 )
-{
-}
-
-CDecorator::~CDecorator()
-{
-  delete m_pDecorator;
-}
-
-bool
-CDecorator::GetMetaFCO( const CComPtr<IMgaMetaPart> &metaPart,
-                        CComPtr<IMgaMetaFCO> &metaFco )
+//
+// GetMetaFCO
+//
+bool CDecorator::
+GetMetaFCO (const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco)
 {
   if ( !metaPart ) {
     return false;

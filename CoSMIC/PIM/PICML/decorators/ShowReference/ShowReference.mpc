@@ -1,0 +1,19 @@
+// $Id$
+
+project (ShowReferenceDecorator): boost_base, gdiplus, game, game_utils, gme_decorator {
+  sharedname = ShowReferenceDecorator
+
+  pch_header = StdAfx.h
+  pch_source = StdAfx.cpp
+  
+  Source_Files {
+
+  }
+
+  Header_Files {
+  }
+
+  Resource_Files {
+
+  }
+}
