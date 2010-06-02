@@ -1,11 +1,39 @@
+Wed Jun  2 16:30:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/Territory.h:
+        
+          . Fixed build errors with using this file within
+            a decorator.
+
+        * Utils/GAME/game/Project.h:
+        * Utils/GAME/game/Project.cpp:
+        
+          . Added support for getting the paradigm's connection string
+            via the project.
+            
+        * Utils/GAME/game/utils:
+        * Utils/GAME/game/utils/GAME_Utils.mpc:
+        * Utils/GAME/game/utils/Parser.cpp:
+        * Utils/GAME/game/utils/Parser.hpp:
+        * Utils/GAME/game/utils/Registrar.h:
+        * Utils/GAME/game/utils/Registrar.inl:
+        * Utils/GAME/game/utils/Registrar.cpp:
+        
+          . Added support for getting the paradigm's connection string.
+          
+        * Utils/UDM/visit.h:
+        * Utils/UDM/visit.cpp:
+        
+          . Helper functions for writing visitor based intepreters.
+
 Wed Jun  2 15:36:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/Decorator.cpp:
         * PIM/PICML/decorators/IDMLDecorators.h:
         * PIM/PICML/decorators/IDMLDecorators.cpp:
-        
+
           . Made the MemberDecorator a stand-alone decorator.
-          
+
         * PIM/PICML/decorators/ShowReference:
         * PIM/PICML/decorators/ShowReference/CommonError.h:
         * PIM/PICML/decorators/ShowReference/CommonError.cpp:
@@ -31,7 +59,7 @@ Wed Jun  2 15:36:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/ShowReference/StdAfx.h:
         * PIM/PICML/decorators/ShowReference/StdAfx.cpp:
         * PIM/PICML/decorators/ShowReference/resource.h:
-        
+
           . Stand-alone version of the original MemberDecorator.
 
         * PIM/PICML/paradigms/PICML-uml.xme:

@@ -17,9 +17,11 @@ project (GAME_Utils) : game, acelib, cosmic_common {
     Project_Settings.cpp
     Point.cpp
     Registrar.cpp
+    Parser.cpp
   }
   
   Template_Files {
     modelgen.cpp
+    Parser.hpp
   }
 }

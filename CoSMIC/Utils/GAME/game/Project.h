@@ -234,6 +234,13 @@ namespace GAME
     std::string paradigm_version (void) const;
 
     /**
+     * Get the connection string for the project's paradigm.
+     *
+     * @return          Version of the paradigm.
+     */
+    std::string paradigm_connstr (void) const;
+
+    /**
      * Enable auto add-ons for the projet.
      *
      * @param[in]       flag        Setting for auto add-ons.

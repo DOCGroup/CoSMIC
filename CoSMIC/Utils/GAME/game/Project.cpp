@@ -372,6 +372,18 @@ namespace GAME
   }
 
   //
+  // paradigm_connstr
+  //
+  std::string Project::paradigm_connstr (void) const
+  {
+    CComBSTR bstr;
+    VERIFY_HRESULT (this->project_->get_ParadigmConnStr (&bstr));
+
+    CW2A tempstr (bstr);
+    return tempstr.m_psz;
+  }
+
+  //
   // enable_auto_addons
   //
   void Project::enable_auto_addons (bool flag)

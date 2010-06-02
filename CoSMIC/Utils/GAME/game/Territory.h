@@ -15,67 +15,64 @@
 
 #include "Exception.h"
 
-#if !defined (__ComponentLib_h__)
+#if !defined (__ComponentLib_h__) && !defined (__DecoratorLib_h__)
 #include "Mga.h"
 #endif
 
 namespace GAME
 {
-  //===========================================================================
+/**
+ * @class Territory
+ *
+ * Wrapper class for the IMgaTerritory interface.
+ */
+class GAME_Export Territory
+{
+public:
+  /// Default constructor.
+  Territory (void);
+
   /**
-   * @class Territory
+   * Initializing constructor
    *
-   * Wrapper class for the IMgaTerritory interface.
+   * @param[in]     terr        Source territory.
    */
-  //===========================================================================
+  Territory (IMgaTerritory * terr);
 
-  class GAME_Export Territory
-  {
-  public:
-    /// Default constructor.
-    Territory (void);
+  /**
+   * Copy constructor.
+   *
+   * @param[in]     terr        Source territory.
+   */
+  Territory (const Territory & terr);
 
-    /**
-     * Initializing constructor
-     *
-     * @param[in]     terr        Source territory.
-     */
-    Territory (IMgaTerritory * terr);
+  /// Destructor.
+  ~Territory (void);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]     terr        Source territory.
-     */
-    Territory (const Territory & terr);
+  /**
+   * Close the territory. After this method call, the territory
+   * is no longer valid.
+   */
+  void close (void);
 
-    /// Destructor.
-    ~Territory (void);
+  /**
+   * Attach to an existing territory.
+   *
+   * @param[in]       terr      Source territory.
+   */
+  void attach (IMgaTerritory * terr);
 
-    /**
-     * Close the territory. After this method call, the territory
-     * is no longer valid.
-     */
-    void close (void);
+  /**
+   * Convert the territory to an interface pointer.
+   *
+   * @return          Interface pointer to the territory.
+   */
+  operator IMgaTerritory * (void) const;
 
-    /**
-     * Attach to an existing territory.
-     *
-     * @param[in]       terr      Source territory.
-     */
-    void attach (IMgaTerritory * terr);
-
-    /**
-     * Convert the territory to an interface pointer.
-     *
-     * @return          Interface pointer to the territory.
-     */
-    operator IMgaTerritory * (void) const;
-
-  private:
-    /// The COM pointer to the underlying territory.
-    ATL::CComPtr <IMgaTerritory> terr_;
-  };
+private:
+  /// The COM pointer to the underlying territory.
+  ATL::CComPtr <IMgaTerritory> terr_;
+};
 }
 
 #endif  // !defined _GME_TERRITORY_H_

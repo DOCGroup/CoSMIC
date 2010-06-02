@@ -14,9 +14,9 @@
 #define _GME_UTILS_REGISTRAR_H_
 
 #include <atlcomcli.h>
-#include "game/config.h"
 #include <string>
 #include "GAME_Utils_export.h"
+#include "game/config.h"
 
 // Forward decl.
 struct IMgaRegistrar;
@@ -33,6 +33,16 @@ namespace utils
 class GAME_UTILS_Export Registrar
 {
 public:
+  enum ACCESS_MODE
+  {
+    ACCESS_NONE       = 0,
+    ACCESS_USER       = 1,
+    ACCESS_SYSTEM     = 2,
+    ACCESS_BOTH       = 3,
+    ACCESS_PRIORITY   = 5,
+    ACCESS_TEST       = 8,
+  };
+
   /// Default constructor
   Registrar (void);
 
@@ -46,11 +56,13 @@ public:
   /// Destructor
   ~Registrar (void);
 
-  std::string icon_path (int mode);
+  std::string icon_path (ACCESS_MODE mode);
+
+  std::string get_paradigm_connstr (const std::string & name, ACCESS_MODE mode);
 
 private:
   /// Pointer to the implementation.
-  ATL::CComPtr <IMgaRegistrar> impl_;
+  IMgaRegistrar * impl_;
 };
 
 }
