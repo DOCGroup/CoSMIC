@@ -1,10 +1,23 @@
+Thu Jun  3 04:08:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ShowReference/Decorator.aps:
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/decorators/ShowReference/DecoratorApp.cpp:
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+        * PIM/PICML/decorators/ShowReference/StdAfx.h:
+        
+          . Updated decorator to use ATL 7.0. This results in a 
+            somewhat cleaner implementation of the decorator.
+
 Thu Jun  3 04:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/GAME.mpc:
         * Utils/GAME/game/MetaPart.h:
         * Utils/GAME/game/MetaPart.inl:
         * Utils/GAME/game/MetaPart.cpp:
-        
+
           . Implemented wrapper class for the IMgaMetaPart interface.
 
 Wed Jun  2 16:30:18 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

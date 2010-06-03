@@ -1,95 +1,76 @@
-// DecoratorApp.cpp : Implementation of DLL Exports.
-
-
-// Note: Proxy/Stub Information
-//      To build a separate proxy/stub DLL, 
-//      run nmake -f DecoratorAppps.mk in the project directory.
+// $Id$
 
 #include "stdafx.h"
-#include <initguid.h>
 #include "Resource.h"
 #include "DecoratorLib.h"
 #include "DecoratorLib_i.c"
 #include "Decorator.h"
 
+/**
+ * @class CDecoratorModule
+ */
+class CDecoratorModule : public CAtlDllModuleT < CDecoratorModule >
+{
+public :
+	DECLARE_LIBID (LIBID_DecoratorLib)
+  DECLARE_REGISTRY_APPID_RESOURCEID (IDR_DECORATOR, "{CDD72C3A-3340-4225-83D6-46B10E9A763E}")
+};
 
-CComModule _Module;
+CDecoratorModule _AtlModule;
 
-BEGIN_OBJECT_MAP(ObjectMap)
-OBJECT_ENTRY(CLSID_Decorator, CDecorator)
-END_OBJECT_MAP()
-
+/**
+ * @class CDecoratorApp
+ */
 class CDecoratorApp : public CWinApp
 {
 public:
+  virtual BOOL InitInstance (void) {
+    _AtlModule.InitLibId ();
+    return CWinApp::InitInstance();
+  }
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CDecoratorApp)
-	public:
-    virtual BOOL InitInstance();
-    virtual int ExitInstance();
-	//}}AFX_VIRTUAL
+  virtual int ExitInstance (void) {
+    _AtlModule.Term ();
+    return CWinApp::ExitInstance();
+  }
 
-	//{{AFX_MSG(CDecoratorApp)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+  DECLARE_MESSAGE_MAP ()
 };
 
-BEGIN_MESSAGE_MAP(CDecoratorApp, CWinApp)
-	//{{AFX_MSG_MAP(CDecoratorApp)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
+BEGIN_MESSAGE_MAP (CDecoratorApp, CWinApp)
+
 END_MESSAGE_MAP()
 
 CDecoratorApp theApp;
 
-BOOL CDecoratorApp::InitInstance()
+//
+// DllCanUnloadNow
+//
+STDAPI DllCanUnloadNow (void)
 {
-    _Module.Init(ObjectMap, m_hInstance, &LIBID_DecoratorLib);
-    return CWinApp::InitInstance();
+  return (AfxDllCanUnloadNow () == S_OK && _AtlModule.GetLockCount () == 0) ? S_OK : S_FALSE;
 }
 
-int CDecoratorApp::ExitInstance()
+//
+// DllGetClassObject
+//
+STDAPI DllGetClassObject (REFCLSID rclsid, REFIID riid, LPVOID* ppv)
 {
-    _Module.Term();
-    return CWinApp::ExitInstance();
+  return _AtlModule.GetClassObject (rclsid, riid, ppv);
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// Used to determine whether the DLL can be unloaded by OLE
-
-STDAPI DllCanUnloadNow(void)
+//
+// DllRegisterServer
+//
+STDAPI DllRegisterServer (void)
 {
-	AFX_MANAGE_STATE (AfxGetStaticModuleState ());
-  return (AfxDllCanUnloadNow () == S_OK && _Module.GetLockCount () == 0) ? S_OK : S_FALSE;
+  return _AtlModule.DllRegisterServer ();
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// Returns a class factory to create an object of the requested type
-
-STDAPI DllGetClassObject(REFCLSID rclsid, REFIID riid, LPVOID* ppv)
+//
+// DllUnregisterServer
+//
+STDAPI DllUnregisterServer (void)
 {
-  return _Module.GetClassObject (rclsid, riid, ppv);
+  return _AtlModule.DllUnregisterServer ();
 }
-
-/////////////////////////////////////////////////////////////////////////////
-// DllRegisterServer - Adds entries to the system registry
-
-STDAPI DllRegisterServer(void)
-{
-  return S_FALSE;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-// DllUnregisterServer - Removes entries from the system registry
-
-STDAPI DllUnregisterServer(void)
-{
-  return S_FALSE;
-}
-
-

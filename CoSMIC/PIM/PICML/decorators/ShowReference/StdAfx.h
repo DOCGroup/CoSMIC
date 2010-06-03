@@ -17,6 +17,7 @@
 		#define _WIN32_WINNT 0x0400
 	#endif 
 #endif
+
 #define _ATL_APARTMENT_THREADED
 
 #include <afxwin.h>
@@ -27,22 +28,7 @@
 #include <afxtempl.h>
 
 #include <atlbase.h>
-//You may derive a class from CComModule and use it if you want to override
-//something, but do not change the name of _Module
-extern CComModule _Module;
 #include <atlcom.h>
-
-#include "CommonError.h"
-
-#include <stdio.h>
-
-//{{AFX_INSERT_LOCATION}}
-// Microsoft Visual C++ will insert additional declarations immediately before the previous line.
-
-#include "GMEVersion.h"
-
-#if GME_VERSION_MAJOR >= 10
 #include <Gdiplus.h>
-#endif
 
 #endif // !defined(AFX_STDAFX_H__8B8917B1_B409_43D6_9604_73055641403B__INCLUDED)

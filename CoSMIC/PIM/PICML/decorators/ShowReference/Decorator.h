@@ -4,12 +4,10 @@
 #define __DECORATOR_H_
 
 #include "DecoratorStd.h"
-#include "DecoratorConfig.h"
 #include "Resource.h"       // main symbols
 #include "DecoratorLib.h"
 #include "DecoratorUtil.h"
 #include "MaskedBitmap.h"
-
 #include "game/utils/Registrar.h"
 
 /**
@@ -90,12 +88,13 @@ private:
 	bool m_bSelected;
 
 private:
-	bool GetMetaFCO(const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco);
-
   static GAME::utils::Registrar registrar_;
 
   CMaskedBitmap bitmap_;
 };
+
+OBJECT_ENTRY_AUTO (__uuidof (Decorator), CDecorator)
+
 
 
 #endif //__DECORATOR_H_

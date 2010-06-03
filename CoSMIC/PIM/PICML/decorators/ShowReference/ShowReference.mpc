@@ -2,7 +2,9 @@
 
 project (ShowReferenceDecorator): boost_base, gdiplus, game, game_utils, gme_decorator {
   sharedname = ShowReferenceDecorator
-
+  
+  macros -= _ATL_DLL
+  
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
   

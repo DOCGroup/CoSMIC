@@ -8,6 +8,7 @@
 #include "game/Project.h"
 #include "game/MetaRole.h"
 #include "game/MetaFCO.h"
+#include "game/MetaPart.h"
 #include "game/utils/Parser.hpp"
 #include <fstream>
 
@@ -71,11 +72,9 @@ Initialize (IMgaProject *p, IMgaMetaPart *metaPart, IMgaFCO *obj)
   if (obj == 0)
   {
     // Get the icon for the element in the parts browser.
-    CComPtr <IMgaMetaFCO> mf;
-    if (!this->GetMetaFCO (metaPart, mf))
-      return E_DECORATOR_INIT_WITH_NULL;   
+    GAME::Meta::Part metapart (metaPart);
+    GAME::Meta::FCO metafco = metapart.role ().kind ();
 
-    GAME::Meta::FCO metafco (mf.Detach ());
     icon_filename = metafco.registry_value ("icon");
     this->label_ = metafco.display_name ().c_str ();
   }
@@ -503,26 +502,4 @@ STDMETHODIMP CDecorator::OperationCanceled()
 	// else you should return S_DECORATOR_EVENT_NOT_HANDLED
 	//
 	return S_DECORATOR_EVENT_NOT_HANDLED;
-}
-
-//
-// GetMetaFCO
-//
-bool CDecorator::
-GetMetaFCO (const CComPtr<IMgaMetaPart> &metaPart, CComPtr<IMgaMetaFCO> &metaFco)
-{
-  if ( !metaPart ) {
-    return false;
-  }
-
-  metaFco = NULL;
-  CComPtr<IMgaMetaRole> metaRole;
-  try {
-    COMTHROW( metaPart->get_Role( &metaRole ) );
-    COMTHROW( metaRole->get_Kind( &metaFco ) );
-  }
-  catch ( hresult_exception & ) {
-    metaFco = NULL;
-  }
-  return ( metaFco != NULL );
 }
