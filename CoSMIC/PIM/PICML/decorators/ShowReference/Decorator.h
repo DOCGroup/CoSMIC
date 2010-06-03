@@ -1,100 +1,64 @@
-// Decorator.h : Declaration of the CDecorator
+// -*- C++ -*-
+
+//=============================================================================
+/**
+ *  @file       Decorator.h
+ *
+ *  $Id$
+ *
+ *  @author     James H. Hill
+ */
+//=============================================================================
 
 #ifndef __DECORATOR_H_
 #define __DECORATOR_H_
 
-#include "DecoratorStd.h"
-#include "Resource.h"       // main symbols
-#include "DecoratorLib.h"
-#include "DecoratorUtil.h"
 #include "MaskedBitmap.h"
 #include "game/utils/Registrar.h"
 
+#include "game/be/Decorator_T.h"
+#include "game/be/Decorator_Impl.h"
+
 /**
- * @class CDecorator
+ * @class Show_Reference_Decorator_Impl
+ *
+ * Implementation of the ShowReferenceDecorator.
  */
-class ATL_NO_VTABLE CDecorator : 
-	public CComObjectRootEx <CComSingleThreadModel>,
-	public IMgaElementDecorator,
-	public CComCoClass <CDecorator, &CLSID_Decorator>
+class Show_Reference_Decorator_Impl : public GAME::Decorator_Impl
 {
 public:
-  /// Default constructor
-	CDecorator (void);
+  /// Default constructor.
+  Show_Reference_Decorator_Impl (void);
 
-  /// Destructor.
-	~CDecorator (void);
+  /// Destructor
+  ~Show_Reference_Decorator_Impl (void);
 
-  DECLARE_REGISTRY_RESOURCEID (IDR_DECORATOR)
+  int initialize (const GAME::Project & proj, 
+                  const GAME::Meta::Part & part, 
+                  const GAME::FCO & fco);
 
-  DECLARE_PROTECT_FINAL_CONSTRUCT()
+  int initialize (const GAME::Project & proj, 
+                  const GAME::Meta::Part & part, 
+                  const GAME::FCO & fco,
+                  IMgaCommonDecoratorEvents * eventSink, 
+                  ULONGLONG parentWnd);
 
-  BEGIN_COM_MAP(CDecorator)
-	  COM_INTERFACE_ENTRY(IMgaElementDecorator)
-  END_COM_MAP()
+  int get_preferred_size (long & sx, long & sy);
 
-// IMgaDecorator
-public:
-	// =============== inherited from IMgaDecorator
-	STDMETHOD( Initialize )						( /*[in]*/ IMgaProject* pProject, /*[in]*/ IMgaMetaPart* pPart, /*[in]*/ IMgaFCO* pFCO );
-	STDMETHOD( Destroy )						( void );
-	STDMETHOD( GetMnemonic )					( /*[out]*/ BSTR* bstrMnemonic );
-	STDMETHOD( GetFeatures )					( /*[out]*/ feature_code* pFeatureCodes );
-	STDMETHOD( SetParam )						( /*[in]*/ BSTR bstrName, /*[in]*/ VARIANT vValue );
-	STDMETHOD( GetParam )						( /*[in]*/ BSTR bstrName, /*[out]*/ VARIANT* pvValue );
-	STDMETHOD( SetActive )						( /*[in]*/ VARIANT_BOOL bIsActive );
-	STDMETHOD( GetPreferredSize )				( /*[out]*/ LONG* plWidth, /*[out]*/ LONG* plHeight );
-	STDMETHOD( SetLocation )					( /*[in]*/ LONG sx, /*[in]*/ LONG sy, /*[in]*/ LONG ex, /*[in]*/ LONG ey );
-	STDMETHOD( GetLocation )					( /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
-	STDMETHOD( GetLabelLocation )				( /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
-	STDMETHOD( GetPortLocation )				( /*[in]*/ IMgaFCO* fco, /*[out]*/ LONG* sx, /*[out]*/ LONG* sy, /*[out]*/ LONG* ex, /*[out]*/ LONG* ey );
-	STDMETHOD( GetPorts )						( /*[out, retval]*/ IMgaFCOs** portFCOs );
-	STDMETHOD( Draw )							( /*[in]*/ HDC hdc );
-	STDMETHOD( SaveState )						( void );
+  int draw (CDC & context);
 
-	// =============== IMgaElementDecorator
-	STDMETHOD( InitializeEx )					( /*[in]*/ IMgaProject* pProject, /*[in]*/ IMgaMetaPart* pPart, /*[in]*/ IMgaFCO* pFCO, /*[in]*/ IMgaCommonDecoratorEvents* eventSink, /*[in]*/ ULONGLONG parentWnd );
-	STDMETHOD( DrawEx )							( /*[in]*/ HDC hdc, /*[in]*/ ULONGLONG gdipGraphics );
-	STDMETHOD( SetSelected )					( /*[in]*/ VARIANT_BOOL bIsSelected );
-	STDMETHOD( MouseMoved )						( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseLeftButtonDown )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseLeftButtonUp )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseLeftButtonDoubleClick )		( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseRightButtonDown )			( /*[in]*/ ULONGLONG hCtxMenu, /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseRightButtonUp )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseRightButtonDoubleClick )	( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseMiddleButtonDown )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseMiddleButtonUp )			( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseMiddleButtonDoubleClick )	( /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MouseWheelTurned )				( /*[in]*/ ULONG nFlags, /*[in]*/ LONG distance, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( DragEnter )						( /*[out]*/ ULONG* dropEffect, /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG keyState, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( DragOver )						( /*[out]*/ ULONG* dropEffect, /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG keyState, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( Drop )							( /*[in]*/ ULONGLONG pCOleDataObject, /*[in]*/ ULONG dropEffect, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( DropFile )						( /*[in]*/ ULONGLONG hDropInfo, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( MenuItemSelected )				( /*[in]*/ ULONG menuItemId, /*[in]*/ ULONG nFlags, /*[in]*/ LONG pointx, /*[in]*/ LONG pointy, /*[in]*/ ULONGLONG transformHDC );
-	STDMETHOD( OperationCanceled )				( void );
-
-private:
-	bool m_isInitialized;
-	bool m_isLocSet;
- 	bool m_isActive;
-
-  CRect location_;
-  CSize preferred_size_;
-  CString label_;
-
-  // add for the new decorator
-  bool m_bInitCallFromEx;
-	bool m_bSelected;
+  int draw (CDC & context, Gdiplus::Graphics & g);
 
 private:
   static GAME::utils::Registrar registrar_;
 
+  /// The bitmap image for the element.
   CMaskedBitmap bitmap_;
+
+  /// The label for the element.
+  CString label_;
 };
 
-OBJECT_ENTRY_AUTO (__uuidof (Decorator), CDecorator)
-
-
+DECLARE_DECORATOR (ShowReferenceDecorator, Show_Reference_Decorator_Impl);
 
 #endif //__DECORATOR_H_

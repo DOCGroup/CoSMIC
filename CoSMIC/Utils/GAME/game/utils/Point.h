@@ -138,6 +138,31 @@ private:
 };
 
 /**
+ * @class Rect
+ */
+class GAME_UTILS_Export Rect
+{
+public:
+  /// Default constructor.
+  Rect (void);
+
+  Rect (const Rect & r);
+  Rect (int x, int y, int cx, int cy);
+
+  /// Destructor.
+  ~Rect (void);
+
+  /// Assignment operator
+  const Rect & operator = (const Rect & r);
+
+  long x_;
+  long y_;
+
+  long cx_;
+  long cy_;
+};
+
+/**
  * Get the current position of the FCO.
  *
  * @param[in]     aspect        Aspect to retrieve position

@@ -7,39 +7,39 @@
 
 namespace GAME
 {
-  /**
-   * @class Interpreter_T
-   */
-  template <typename T, typename IMPL>
-  class ATL_NO_VTABLE Interpreter_T :
-    public GAME::ComponentEx_T <T, &CLSID_MgaComponent>
-  {
-  public:
-    /// Default constructor
-    Interpreter_T (void);
+/**
+ * @class Interpreter_T
+ */
+template <typename T, typename IMPL>
+class ATL_NO_VTABLE Interpreter_T :
+  public GAME::ComponentEx_T <T, &CLSID_MgaComponent>
+{
+public:
+  /// Default constructor
+  Interpreter_T (void);
 
-    /// Destructor
-    virtual ~Interpreter_T (void);
+  /// Destructor
+  virtual ~Interpreter_T (void);
 
-    STDMETHOD (Initialize) (IMgaProject * proj);
-    STDMETHOD (Invoke) (IMgaProject * proj, IMgaFCOs * selected, long flags);
-    STDMETHOD (Enable) (VARIANT_BOOL enable);
-    STDMETHOD (get_InteractiveMode) (VARIANT_BOOL * mode);
-    STDMETHOD (put_InteractiveMode) (VARIANT_BOOL mode);
-    STDMETHOD (get_ComponentName) (BSTR * name);
-    STDMETHOD (get_ComponentType) (componenttype_enum * type);
-    STDMETHOD (get_Paradigm) (BSTR * paradigm);
+  STDMETHOD (Initialize) (IMgaProject * proj);
+  STDMETHOD (Invoke) (IMgaProject * proj, IMgaFCOs * selected, long flags);
+  STDMETHOD (Enable) (VARIANT_BOOL enable);
+  STDMETHOD (get_InteractiveMode) (VARIANT_BOOL * mode);
+  STDMETHOD (put_InteractiveMode) (VARIANT_BOOL mode);
+  STDMETHOD (get_ComponentName) (BSTR * name);
+  STDMETHOD (get_ComponentType) (componenttype_enum * type);
+  STDMETHOD (get_Paradigm) (BSTR * paradigm);
 
-    STDMETHOD (InvokeEx) (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * selected, long flags);
-    STDMETHOD (ObjectsInvokeEx) (IMgaProject *, IMgaObject *, IMgaObjects *, long);
-    STDMETHOD (get_ComponentProgID) (BSTR *pVal);
-    STDMETHOD (put_ComponentParameter) (BSTR name, VARIANT newVal);
-    STDMETHOD (get_ComponentParameter) (BSTR name, VARIANT *pVal);
+  STDMETHOD (InvokeEx) (IMgaProject * proj, IMgaFCO * current, IMgaFCOs * selected, long flags);
+  STDMETHOD (ObjectsInvokeEx) (IMgaProject *, IMgaObject *, IMgaObjects *, long);
+  STDMETHOD (get_ComponentProgID) (BSTR *pVal);
+  STDMETHOD (put_ComponentParameter) (BSTR name, VARIANT newVal);
+  STDMETHOD (get_ComponentParameter) (BSTR name, VARIANT *pVal);
 
-  protected:
-    /// The actual implementation of the interpreter
-    IMPL impl_;
-  };
+protected:
+  /// The actual implementation of the interpreter
+  IMPL impl_;
+};
 }
 
 #if defined (__GAME_INLINE__)

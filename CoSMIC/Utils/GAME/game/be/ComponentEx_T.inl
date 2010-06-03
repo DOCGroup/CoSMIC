@@ -1,11 +1,13 @@
 // $Id$
 
+namespace GAME
+{
 //
 // RawComponent_i
 //
 template <typename T, const CLSID * pclsid>
 GAME_INLINE
-GAME::ComponentEx_T <T, pclsid>::ComponentEx_T (void)
+ComponentEx_T <T, pclsid>::ComponentEx_T (void)
 {
 
 }
@@ -15,7 +17,9 @@ GAME::ComponentEx_T <T, pclsid>::ComponentEx_T (void)
 //
 template <typename T, const CLSID * pclsid>
 GAME_INLINE
-GAME::ComponentEx_T <T, pclsid>::~ComponentEx_T (void)
+ComponentEx_T <T, pclsid>::~ComponentEx_T (void)
 {
+
+}
 
 }

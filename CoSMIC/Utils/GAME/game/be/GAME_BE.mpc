@@ -1,6 +1,6 @@
 // $Id$
 
-project (GAME_BE) : game, cosmic_common {
+project (GAME_BE) : game_utils, cosmic_common {
   sharedname    = GAME_BE
   dynamicflags += GAME_BE_BUILD_DLL
 
@@ -9,6 +9,7 @@ project (GAME_BE) : game, cosmic_common {
   }
 
   Source_Files {
+    Decorator_Impl.cpp
     Event_Sink_Impl.cpp
     Interpreter_Impl_Base.cpp
     Plugin_Impl.cpp
@@ -21,6 +22,7 @@ project (GAME_BE) : game, cosmic_common {
   Template_Files {
     ComponentEx_T.cpp
     Event_Sink_T.cpp
+    Decorator_T.cpp
     Interpreter_T.cpp
     Plugin_T.cpp
   }

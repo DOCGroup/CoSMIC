@@ -1,25 +1,16 @@
- 
-import "oaidl.idl";
-import "ocidl.idl";
+// -*- IDL -*-
 
-#define GME_INTERFACES_BASE .
-#define MAKE_STR(PAR) #PAR
-#define PATH3(X,Y) MAKE_STR(X##Y)
-#define PATH2(X,Y) PATH3(X,Y)
-#define PATH(NAME) PATH2(GME_INTERFACES_BASE,NAME)
+#ifndef _DECORATORLIB_IDL_
+#define _DECORATORLIB_IDL_
 
-#include PATH(/InterfaceColl.h)
-#include PATH(/meta.idl)
-#include PATH(/mga.idl)
-#include PATH(/gme.idl)
-#include PATH(/MgaDecorator.idl)
-
+#include "MgaDecorator.idl"
+#include "gme.idl"
 
 [
 	uuid (F32BA453-EA0A-4B33-972D-6BCE205891F8),
 	version (1.0),
 ]
-library DecoratorLib
+library ShowReferenceDecoratorLibrary
 {
 	importlib ("stdole32.tlb");
 	importlib ("stdole2.tlb");
@@ -27,11 +18,12 @@ library DecoratorLib
 	[
 		uuid (E3EA54FF-CE85-4F3B-92C4-6652FF130FE4),
 	]
-	coclass Decorator
+	coclass ShowReferenceDecorator
 	{
-		[default] 
-    interface IMgaDecorator;
+		[default] interface IMgaDecorator;
 		interface IMgaVersionInfo;
 	};
 
 };
+
+#endif

@@ -1,3 +1,41 @@
+Thu Jun  3 16:56:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        * PIM/PICML/decorators/ShowReference/Decorator.rc:
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.idl:
+        * PIM/PICML/decorators/ShowReference/MaskedBitmap.h:
+        * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
+        * PIM/PICML/decorators/ShowReference/StdAfx.cpp:       
+        
+          . Re-implemented the show reference decorator using 
+            the GAME decorator backend.
+        
+        * Utils/GAME/game/MetaBase.h:
+        * Utils/GAME/game/be/ComponentEx_T.h:
+        * Utils/GAME/game/be/ComponentEx_T.inl:
+        * Utils/GAME/game/be/ComponentEx_T.cpp:
+        * Utils/GAME/game/be/Interpreter_T.h:
+        
+          . Updated formatting.
+          
+        * Utils/GAME/game/be/Decorator_Impl.h:
+        * Utils/GAME/game/be/Decorator_Impl.inl:
+        * Utils/GAME/game/be/Decorator_Impl.cpp:
+        * Utils/GAME/game/be/Decorator_Module.h:
+        * Utils/GAME/game/be/Decorator_T.h:
+        * Utils/GAME/game/be/Decorator_T.inl:
+        * Utils/GAME/game/be/Decorator_T.cpp:
+        * Utils/GAME/game/be/GAME_BE.mpc:
+        
+          . Implemented decorator support for the backend.
+
+        * Utils/GAME/game/utils/Point.h:
+        * Utils/GAME/game/utils/Point.inl:
+        
+          . Changed the point's data type.
+
 Thu Jun  3 04:08:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ShowReference/Decorator.aps:
@@ -7,8 +45,8 @@ Thu Jun  3 04:08:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
         * PIM/PICML/decorators/ShowReference/ShowReference.mpc:
         * PIM/PICML/decorators/ShowReference/StdAfx.h:
-        
-          . Updated decorator to use ATL 7.0. This results in a 
+
+          . Updated decorator to use ATL 7.0. This results in a
             somewhat cleaner implementation of the decorator.
 
 Thu Jun  3 04:06:46 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

@@ -129,5 +129,70 @@ void Point::set (int x, int y)
   this->y_ = y;
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Rect
+
+//
+// Rect
+//
+GAME_INLINE
+Rect::Rect (void)
+: x_ (0),
+  y_ (0),
+  cx_ (0),
+  cy_ (0)
+{
+
+}
+
+//
+// Rect
+//
+GAME_INLINE
+Rect::Rect (const Rect & r)
+: x_ (r.x_),
+  y_ (r.y_),
+  cx_ (r.cx_),
+  cy_ (r.cy_)
+{
+
+}
+
+//
+// Rect
+//
+GAME_INLINE
+Rect::Rect (int x, int y, int cx, int cy)
+: x_ (x),
+  y_ (y),
+  cx_ (cx),
+  cy_ (cy)
+{
+
+}
+
+//
+// ~Rect
+//
+GAME_INLINE
+Rect::~Rect (void)
+{
+
+}
+
+//
+// Rect
+//
+GAME_INLINE
+const Rect & Rect::operator = (const Rect & r)
+{
+  this->x_ = r.x_;
+  this->y_ = r.y_;
+  this->cx_ = r.cx_;
+  this->cy_ = r.cy_;
+
+  return *this;
+}
+
 }
 }

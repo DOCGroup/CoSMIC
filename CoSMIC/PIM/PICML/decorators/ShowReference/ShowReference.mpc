@@ -1,21 +1,23 @@
 // $Id$
 
-project (ShowReferenceDecorator): boost_base, gdiplus, game, game_utils, gme_decorator {
+project (ShowReferenceDecorator): game_utils, game_decorator {
   sharedname = ShowReferenceDecorator
-  
-  macros -= _ATL_DLL
   
   pch_header = StdAfx.h
   pch_source = StdAfx.cpp
   
   Source_Files {
-
+    Decorator.cpp
+    DecoratorLib.idl
+    CommonError.cpp
+    DecoratorUtil.cpp
+    MaskedBitmap.cpp
   }
 
   Header_Files {
   }
 
   Resource_Files {
-
+    Decorator.rc
   }
 }

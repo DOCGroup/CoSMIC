@@ -23,171 +23,168 @@ namespace GAME
 {
 namespace Meta
 {
-  //===========================================================================
+/**
+ * @class Base
+ *
+ * Wrapper class for the IMgaMetaBase interface.
+ */
+class GAME_Export Base
+{
+public:
+  /// Default constructor.
+  Base (void);
+
   /**
-   * @class Base
+   * Initializing constructor.
    *
-   * Wrapper class for the IMgaMetaBase interface.
+   * @param[in]       meta        Pointer to the source interface.
    */
-  //===========================================================================
+  Base (IMgaMetaBase * meta);
 
-  class GAME_Export Base
-  {
-  public:
-    /// Default constructor.
-    Base (void);
+  /**
+   * Copy constructor.
+   *
+   * @param[in]       meta        The source object.
+   */
+  Base (const Base & meta);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]       meta        Pointer to the source interface.
-     */
-    Base (IMgaMetaBase * meta);
+  /// Destructor.
+  virtual ~Base (void);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]       meta        The source object.
-     */
-    Base (const Base & meta);
+  /**
+   * Get the actual meta name.
+   *
+   * @return          The name of the meta object.
+   */
+  std::string name (void) const;
 
-    /// Destructor.
-    virtual ~Base (void);
+  /**
+   * Set the actual meta name.
+   *
+   * @param[in]       name      The name of the meta object.
+   */
+  void name (const std::string & name);
 
-    /**
-     * Get the actual meta name.
-     *
-     * @return          The name of the meta object.
-     */
-    std::string name (void) const;
+  /**
+   * Get the displayed name for the meta.
+   *
+   * @return          The displayed name.
+   */
+  std::string display_name (void) const;
 
-    /**
-     * Set the actual meta name.
-     *
-     * @param[in]       name      The name of the meta object.
-     */
-    void name (const std::string & name);
+  /**
+   * Set the displayed meta name.
+   *
+   * @param[in]       name      The name of the meta object.
+   */
+  void display_name (const std::string & name);
 
-    /**
-     * Get the displayed name for the meta.
-     *
-     * @return          The displayed name.
-     */
-    std::string display_name (void) const;
+  /**
+   * Attach to an existing interface.
+   *
+   * @param[in]       meta        Pointer to the source object.
+   */
+  void attach (IMgaMetaBase * meta);
 
-    /**
-     * Set the displayed meta name.
-     *
-     * @param[in]       name      The name of the meta object.
-     */
-    void display_name (const std::string & name);
+  /**
+   * Assignment operator.
+   *
+   * @param[in]       meta        The source meta.
+   * @return          Reference to this object.
+   */
+  const Base & operator = (const Base & meta);
 
-    /**
-     * Attach to an existing interface.
-     *
-     * @param[in]       meta        Pointer to the source object.
-     */
-    void attach (IMgaMetaBase * meta);
+  /**
+   * Convert the object to a IMgaMetaBase pointer.
+   *
+   * @return          Pointer to a IMgaMetaBase object.
+   */
+  operator IMgaMetaBase * (void) const;
 
-    /**
-     * Assignment operator.
-     *
-     * @param[in]       meta        The source meta.
-     * @return          Reference to this object.
-     */
-    const Base & operator = (const Base & meta);
+  /**
+   * Determine if the metabase's name is equal to \a name. This
+   * compares the name with the real name, not the displayed name
+   * of the metabase.
+   *
+   * @param[in]       name        Name to compare.
+   * @retval          true        The object matches \a name.
+   * @retval          false       The object does not match \a name.
+   */
+  bool operator == (const std::string & name) const;
 
-    /**
-     * Convert the object to a IMgaMetaBase pointer.
-     *
-     * @return          Pointer to a IMgaMetaBase object.
-     */
-    operator IMgaMetaBase * (void) const;
+  /**
+   * Determine if two Base objects are equal.
+   *
+   * @param[in]       meta        The source object.
+   * @retval          true        The two objects are the same
+   * @retval          false       The two objects are not the name.
+   */
+  bool operator == (const Base & meta) const;
 
-    /**
-     * Determine if the metabase's name is equal to \a name. This
-     * compares the name with the real name, not the displayed name
-     * of the metabase.
-     *
-     * @param[in]       name        Name to compare.
-     * @retval          true        The object matches \a name.
-     * @retval          false       The object does not match \a name.
-     */
-    bool operator == (const std::string & name) const;
+  /**
+   * Get the meta reference id.
+   *
+   * @return          The reference id.
+   */
+  long refid (void) const;
 
-    /**
-     * Determine if two Base objects are equal.
-     *
-     * @param[in]       meta        The source object.
-     * @retval          true        The two objects are the same
-     * @retval          false       The two objects are not the name.
-     */
-    bool operator == (const Base & meta) const;
+  /**
+   * Set the meta reference id.
+   *
+   * @param[in]       refid       The reference id.
+   */
+  void refid (long refid);
 
-    /**
-     * Get the meta reference id.
-     *
-     * @return          The reference id.
-     */
-    long refid (void) const;
+  /**
+   * Get the object type of the meta information.
+   *
+   * @return          The object type.
+   */
+  objtype_enum type (void) const;
 
-    /**
-     * Set the meta reference id.
-     *
-     * @param[in]       refid       The reference id.
-     */
-    void refid (long refid);
+  /// Delete the meta object.
+  void destroy (void);
 
-    /**
-     * Get the object type of the meta information.
-     *
-     * @return          The object type.
-     */
-    objtype_enum type (void) const;
+  /**
+   * Get the specified registry value.
+   *
+   * @param[in]       path      The target path.
+   * @return          The registry value of \a path.
+   */
+  std::string registry_value (const std::string & path) const;
 
-    /// Delete the meta object.
-    void destroy (void);
+  /**
+   * Set the specified registry value.
+   *
+   * @param[in]       path      The target path.
+   * @param[in]       value     The new value.
+   */
+  void registry_value (const std::string & path,
+                       const std::string & value);
 
-    /**
-     * Get the specified registry value.
-     *
-     * @param[in]       path      The target path.
-     * @return          The registry value of \a path.
-     */
-    std::string registry_value (const std::string & path) const;
+  /**
+   * Get a pointer to the implementation.
+   *
+   * @return          Pointer to the implementation.
+   */
+  IMgaMetaBase * impl (void) const;
 
-    /**
-     * Set the specified registry value.
-     *
-     * @param[in]       path      The target path.
-     * @param[in]       value     The new value.
-     */
-    void registry_value (const std::string & path,
-                         const std::string & value);
+  /**
+   * Convert the object to a boolean value. This will test the
+   * validity of the object.
+   *
+   * @retval          true      The object is valid.
+   * @retval          false     The object is not valid.
+   */
+  operator bool (void) const;
 
-    /**
-     * Get a pointer to the implementation.
-     *
-     * @return          Pointer to the implementation.
-     */
-    IMgaMetaBase * impl (void) const;
+  /// Release the underlying pointer.
+  void release (void);
 
-    /**
-     * Convert the object to a boolean value. This will test the
-     * validity of the object.
-     *
-     * @retval          true      The object is valid.
-     * @retval          false     The object is not valid.
-     */
-    operator bool (void) const;
-
-    /// Release the underlying pointer.
-    void release (void);
-
-  protected:
-    /// The underlying interface pointer.
-    mutable ATL::CComPtr <IMgaMetaBase> metabase_;
-  };
+protected:
+  /// The underlying interface pointer.
+  mutable ATL::CComPtr <IMgaMetaBase> metabase_;
+};
 }
 }
 

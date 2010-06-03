@@ -12,7 +12,7 @@
 class CMaskedBitmap
 {
 public:
-	CMaskedBitmap();
+	CMaskedBitmap (void);
 	~CMaskedBitmap();
 
 	BOOL  IsValid()   const	{ return (m_pBits != NULL); }
