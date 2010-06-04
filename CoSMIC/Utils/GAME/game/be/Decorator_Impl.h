@@ -77,11 +77,11 @@ public:
                   const GAME::Meta::Part & part, 
                   const GAME::FCO & fco);
 
-  int initialize (const GAME::Project & proj, 
-                  const GAME::Meta::Part & part, 
-                  const GAME::FCO & fco,
-                  IMgaCommonDecoratorEvents * eventSink, 
-                  ULONGLONG parentWnd);
+  int initialize_ex (const GAME::Project & proj, 
+                     const GAME::Meta::Part & part, 
+                     const GAME::FCO & fco,
+                     IMgaCommonDecoratorEvents * eventSink, 
+                     ULONGLONG parentWnd);
 
   /// Destroy the decorator.
   void destroy (void);
@@ -96,20 +96,22 @@ public:
   void set_active (bool state);
   void set_selected (bool state);
 
-  void location (const GAME::utils::Rect & location);    
-  const GAME::utils::Rect & location (void) const;
+  void set_location (const GAME::utils::Rect & location);    
+  const GAME::utils::Rect & get_location (void) const;
 
   int get_preferred_size (long & sx, long & sy);
   
   int get_label_location (long & sx, long & sy, long & ex, long & ey);
 
   int get_port_location (const GAME::FCO & fco, 
-                         GAME::utils::Rect & location);
+                         long & sx, 
+                         long & sy, 
+                         long & ex, 
+                         long & ey);
   
-  int ports (std::vector < ::GAME::FCO > & v);
+  int get_ports (std::vector < ::GAME::FCO > & v);
   
-  int draw (CDC & context);
-  int draw (CDC & context, Gdiplus::Graphics & g);
+  int draw (Gdiplus::Graphics & g);
 
   int save_state (void);
 
@@ -187,8 +189,6 @@ public:
 
   /// The current operation is canceled.
   int operation_canceled (void);
-
-  // GME 10
 
 protected:
   /// The active state of the decorator.

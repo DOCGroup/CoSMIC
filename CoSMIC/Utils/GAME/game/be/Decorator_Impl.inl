@@ -38,11 +38,11 @@ initialize (const GAME::Project & proj,
 //
 GAME_INLINE
 int Decorator_Impl::
-initialize (const GAME::Project & proj, 
-            const GAME::Meta::Part & part, 
-            const GAME::FCO & fco,
-            IMgaCommonDecoratorEvents * eventSink, 
-            ULONGLONG parentWnd)
+initialize_ex (const GAME::Project & proj, 
+               const GAME::Meta::Part & part, 
+               const GAME::FCO & fco,
+               IMgaCommonDecoratorEvents * eventSink, 
+               ULONGLONG parentWnd)
 {
   return 0;
 }
@@ -117,7 +117,7 @@ int Decorator_Impl::get_preferred_size (long & sx, long & sy)
 // set_location
 //
 GAME_INLINE
-void Decorator_Impl::location (const GAME::utils::Rect & location)
+void Decorator_Impl::set_location (const GAME::utils::Rect & location)
 {
   this->location_ = location;
 }
@@ -126,7 +126,7 @@ void Decorator_Impl::location (const GAME::utils::Rect & location)
 // get_location
 //
 GAME_INLINE
-const GAME::utils::Rect & Decorator_Impl::location (void) const
+const GAME::utils::Rect & Decorator_Impl::get_location (void) const
 {
   return this->location_;
 }
@@ -146,16 +146,16 @@ get_label_location (long & sx, long & sy, long & ex, long & ey)
 //
 GAME_INLINE
 int Decorator_Impl::
-get_port_location (const GAME::FCO & fco, GAME::utils::Rect & pt)
+get_port_location (const GAME::FCO & fco, long & sx, long & sy, long & ex, long & ey)
 {
-  return 0;
+  return -1;
 }
 
 //
 // ports
 //
 GAME_INLINE
-int Decorator_Impl::ports (std::vector < ::GAME::FCO > & v)
+int Decorator_Impl::get_ports (std::vector < ::GAME::FCO > & v)
 {
   return 0;
 }
@@ -164,16 +164,7 @@ int Decorator_Impl::ports (std::vector < ::GAME::FCO > & v)
 // draw
 //
 GAME_INLINE
-int Decorator_Impl::draw (CDC & context)
-{
-  return 0;
-}
-
-//
-// draw
-//
-GAME_INLINE
-int Decorator_Impl::draw (CDC & context, Gdiplus::Graphics & g)
+int Decorator_Impl::draw (Gdiplus::Graphics & g)
 {
   return 0;
 }

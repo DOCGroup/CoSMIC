@@ -12,26 +12,24 @@
  */
 //=============================================================================
 
-#ifndef _GME_METAPART_H_
-#define _GME_METAPART_H_
+#ifndef _GME_PART_H_
+#define _GME_PART_H_
 
 #include "MetaRole.h"
-#include "MetaAspect.h"
+#include "MetaPart.h"
 
 namespace GAME
-{
-namespace Meta
 {
 /**
  * @class Part
  *
  * Wrapper class for the IMgaMetaPart interface.
  */
-class GAME_Export Part : public Base
+class GAME_Export Part
 {
 public:
   /// Type definition of the COM interface.
-  typedef IMgaMetaPart interface_type;
+  typedef IMgaPart interface_type;
 
   /// Default constructor.
   Part (void);
@@ -41,7 +39,7 @@ public:
    *
    * @param[in]     role        Pointer to a COM interface.
    */
-  Part (IMgaMetaPart * role);
+  Part (IMgaPart * part);
 
   /**
    * Copy constructor.
@@ -51,7 +49,7 @@ public:
   Part (const Part & part);
 
   /// Destructor.
-  virtual ~Part (void);
+  ~Part (void);
 
   /**
    * Assignment operator.
@@ -61,39 +59,27 @@ public:
    */
   const Part & operator = (const Part & role);
 
-  /**
-   * Get the meta FCO for the role.
-   *
-   * @return          The meta FCO of the role.
-   */
-  std::string kind_aspect (void) const;
+  /// Get the meta information for this object.
+  Meta::Part meta (void) const;
 
-  /**
-   * Get a raw pointer to the underlying COM object.
-   *
-   * @return        Pointer to the raw COM object.
-   */
-  IMgaMetaPart * impl (void) const;
+  /// Get a pointer the underlying interface.
+  IMgaPart * impl (void) const;
 
-  bool is_linked (void) const;
+  /// Test if the object is nil.
+  bool is_nil (void) const;
 
-  bool is_primary (void) const;
-
-  /// Get the role for the part.
-  Role role (void) const;
-
-  /// Get the parent aspect for this part.
-  Aspect parent_aspect (void) const;
+  void get_location (long & x, long & y);
+  void set_location (long x, long y);
 
 private:
   /// Pointer to the COM object.
-  mutable ATL::CComPtr <IMgaMetaPart> part_;
+  mutable ATL::CComPtr <IMgaPart> part_;
 };
-}
+
 }
 
 #if defined (__GAME_INLINE__)
-#include "MetaPart.inl"
+#include "Part.inl"
 #endif
 
 #endif  // !defined _GME_METAROLE_H_

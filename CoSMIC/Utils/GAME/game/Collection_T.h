@@ -86,6 +86,12 @@ struct collection_traits <IMgaMetaFCOs>
   typedef IMgaMetaFCO interface_type;
 };
 
+template < >
+struct collection_traits <IMgaMetaAspects>
+{
+  typedef IMgaMetaAspect interface_type;
+};
+
 /**
  * @struct item_traits
  *
@@ -173,6 +179,12 @@ template < >
 struct item_traits <Meta::FCO>
 {
   typedef IMgaMetaFCOs collection_type;
+};
+
+template < >
+struct item_traits <Meta::Aspect>
+{
+  typedef IMgaMetaAspects collection_type;
 };
 
 template <typename ITER, typename T>

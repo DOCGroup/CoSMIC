@@ -56,6 +56,9 @@ namespace GAME
 
   namespace Meta
   {
+    // Foward decl.
+    class Aspect;
+
     // Forward decl.
     class Attribute;
 

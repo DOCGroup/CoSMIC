@@ -13,12 +13,8 @@
 #ifndef _GAME_BE_DECORATOR_T_H_
 #define _GAME_BE_DECORATOR_T_H_
 
-#include "StdAfx.h"
+#include "game/config.h"
 #include "GAME_export.h"
-
-#if !defined (__DecoratorLib_h__)
-#include "DecoratorLib.h"
-#endif
 
 namespace GAME
 {
@@ -88,6 +84,7 @@ private:
   /// The implementation of the decorator.
   T impl_;
 };
+
 }
 
 #define DECLARE_DECORATOR(type, impl) \

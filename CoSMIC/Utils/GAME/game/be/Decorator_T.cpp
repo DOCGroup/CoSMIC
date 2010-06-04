@@ -4,6 +4,7 @@
 #include "Decorator_T.inl"
 #endif
 
+#include "game/Exception.h"
 #include <gdiplus.h>
 
 namespace GAME
@@ -33,13 +34,22 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 GetLocation (long *sx, long *sy, long *ex, long *ey)
 {
-  const GAME::utils::Rect & location = this->impl_.location ();
-  *sx = location.x_;
-  *sy = location.y_;
-  *ex = location.cx_;
-  *ey = location.cy_;
+  try
+  {
+    const GAME::utils::Rect & location = this->impl_.get_location ();
+    *sx = location.x_;
+    *sy = location.y_;
+    *ex = location.cx_;
+    *ey = location.cy_;
 
-  return S_OK;
+    return S_OK;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
 }
 
 //
@@ -49,7 +59,19 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 {
-  return E_DECORATOR_PORTNOTFOUND;
+  try
+  {
+    GAME::FCO fco (pFCO);
+    int retval = this->impl_.get_port_location (fco, *sx, *sy, *ex, *ey);
+
+    return 0 == retval ? S_OK : E_DECORATOR_PORTNOTFOUND;
+  }
+  catch (...)
+  {
+
+  }
+
+  return S_FALSE;
 }
 
 //
@@ -58,43 +80,32 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
 {
+  try
+  {
+    // First, let's get the ports for the FCO
+    ATL::CComPtr <IMgaFCOs> temp;
+    VERIFY_HRESULT (temp.CoCreateInstance (L"Mga.MgaFCOs"));
+
+    std::vector <GAME::FCO> ports;
+    if (0 != this->impl_.get_ports (ports))
+      return S_FALSE;
+
+    std::vector <GAME::FCO>::const_iterator
+      iter = ports.begin (), iter_end = ports.end ();
+
+    for (; iter != iter_end; ++ iter)
+      temp->Append (iter->impl ());
+
+    *portFCOs = temp.Detach ();
+
+    return S_OK;
+  }
+  catch (...)
+  {
+    
+  }
+
   return S_FALSE;
-}
-
-//
-// Draw
-//
-template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
-{
-  CDC context;
-  context.Attach (hdc);
-
-  int retval = this->impl_.draw (context);
-  
-  // Make sure we release the context.
-  context.Detach ();
-
-  return 0 == retval ? S_OK : S_FALSE;
-}
-
-//
-// DrawEx
-//
-template <typename T, const CLSID * pclsid>
-STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
-{
-  Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
-
-  CDC context;
-  context.Attach (hdc);
-
-  int retval = this->impl_.draw (context, *g);
-  
-  // Make sure we release the context.
-  context.Detach ();
-
-  return 0 == retval ? S_OK : S_FALSE;
 }
 
 //

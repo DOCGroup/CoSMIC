@@ -122,6 +122,15 @@ public:
   bool operator == (const Base & meta) const;
 
   /**
+   * Determine if two Base objects are equal.
+   *
+   * @param[in]       meta        The source object.
+   * @retval          true        The two objects are the same
+   * @retval          false       The two objects are not the name.
+   */
+  bool operator < (const Base & meta) const;
+
+  /**
    * Get the meta reference id.
    *
    * @return          The reference id.

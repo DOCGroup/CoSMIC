@@ -1,6 +1,10 @@
 // -*- C++ -*-
 // $Id$
 
+#include "game/Project.h"
+#include "game/MetaPart.h"
+#include "game/FCO.h"
+
 namespace GAME
 {
 //
@@ -54,7 +58,7 @@ InitializeEx (IMgaProject* project,
   GAME::Meta::Part part (pPart);
   GAME::FCO fco (pFCO);
 
-  return this->impl_.initialize (proj, part, fco, eventSink, parentWnd);
+  return this->impl_.initialize_ex (proj, part, fco, eventSink, parentWnd);
 }
 
 //
@@ -76,6 +80,28 @@ GAME_INLINE
 STDMETHODIMP Decorator_T <T, pclsid>::GetMnemonic (BSTR *mnemonic)
 {
   return S_OK;
+}
+
+//
+// Draw
+//
+template <typename T, const CLSID * pclsid>
+GAME_INLINE
+STDMETHODIMP Decorator_T <T, pclsid>::Draw (HDC hdc)
+{
+  std::auto_ptr <Gdiplus::Graphics> g (Gdiplus::Graphics::FromHDC (hdc));
+  return this->impl_.draw (*g);
+}
+
+//
+// DrawEx
+//
+template <typename T, const CLSID * pclsid>
+GAME_INLINE
+STDMETHODIMP Decorator_T <T, pclsid>::DrawEx (HDC hdc, ULONGLONG graphics)
+{
+  Gdiplus::Graphics * g = reinterpret_cast <Gdiplus::Graphics *> (graphics);
+  return this->impl_.draw (*g);  
 }
 
 //
@@ -164,7 +190,7 @@ STDMETHODIMP Decorator_T <T, pclsid>::
 SetLocation (long sx, long sy, long ex, long ey)
 {
   GAME::utils::Rect location (sx, sy, ex, ey);
-  this->impl_.location (location);
+  this->impl_.set_location (location);
   return S_OK;
 }
 

@@ -70,6 +70,15 @@ bool Base::operator == (const std::string & name) const
 }
 
 //
+// operator <
+//
+GAME_INLINE
+bool Base::operator < (const Base & meta) const
+{
+  return this->metabase_.p < meta.metabase_.p;
+}
+
+//
 // operator ==
 //
 GAME_INLINE

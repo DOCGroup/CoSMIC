@@ -16,93 +16,96 @@
 #define _GME_METAMODEL_H_
 
 #include "MetaFCO.h"
+#include "MetaAspect.h"
 #include "Collection_T.h"
 
 namespace GAME
 {
 namespace Meta
 {
-  /// Forward decl.
-  class Role;
+/// Forward decl.
+class Role;
 
-  //===========================================================================
+/**
+ * @class Model
+ *
+ * Wrapper class for the IMgaMetaModel COM interface.
+ */
+class GAME_Export Model : public FCO
+{
+public:
+  /// Type definition of COM type.
+  typedef IMgaMetaModel interface_type;
+
   /**
-   * @class Model
+   * Extract the meta model object from the base meta object.
    *
-   * Wrapper class for the IMgaMetaModel COM interface.
+   * @param[in]       meta        Source meta object.
+   * @return          Extracted meta model object.
    */
-  //===========================================================================
+  static Model _narrow (Base & meta);
 
-  class GAME_Export Model : public FCO
-  {
-  public:
-    /// Type definition of COM type.
-    typedef IMgaMetaModel interface_type;
+  /// Default constructor.
+  Model (void);
 
-    /**
-     * Extract the meta model object from the base meta object.
-     *
-     * @param[in]       meta        Source meta object.
-     * @return          Extracted meta model object.
-     */
-    static Model _narrow (Base & meta);
+  /**
+   * Initializing constructor.
+   *
+   * @param[in]       meta        Pointer to the COM interface.
+   */
+  Model (IMgaMetaModel * meta);
 
-    /// Default constructor.
-    Model (void);
+  /**
+   * Copy constructor.
+   *
+   * @param[in]       model       Source object.
+   */
+  Model (const Model & model);
 
-    /**
-     * Initializing constructor.
-     *
-     * @param[in]       meta        Pointer to the COM interface.
-     */
-    Model (IMgaMetaModel * meta);
+  /// Destructor.
+  virtual ~Model (void);
 
-    /**
-     * Copy constructor.
-     *
-     * @param[in]       model       Source object.
-     */
-    Model (const Model & model);
+  /**
+   * Asssignment operator.
+   *
+   * @param[in]       meta        Source object.
+   * @return          Reference to self.
+   */
+  const Model & operator = (const Model & meta);
 
-    /// Destructor.
-    virtual ~Model (void);
+  /**
+   * Conversion operator.
+   *
+   * @return          Pointer to the COM interface.
+   */
+  operator IMgaMetaModel * (void) const;
 
-    /**
-     * Asssignment operator.
-     *
-     * @param[in]       meta        Source object.
-     * @return          Reference to self.
-     */
-    const Model & operator = (const Model & meta);
+  /**
+   * Get the role by name.
+   *
+   * @param[in]       name        Name of the role.
+   * @return          The role for the specified \a name.
+   */
+  Role role (const std::string & name) const;
 
-    /**
-     * Conversion operator.
-     *
-     * @return          Pointer to the COM interface.
-     */
-    operator IMgaMetaModel * (void) const;
+  /**
+   * Get the underlying COM interface pointer.
+   *
+   * @return          COM interface pointer.
+   */
+  IMgaMetaModel * impl (void) const;
 
-    /**
-     * Get the role by name.
-     *
-     * @param[in]       name        Name of the role.
-     * @return          The role for the specified \a name.
-     */
-    Role role (const std::string & name) const;
+  size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
 
-    /**
-     * Get the underlying COM interface pointer.
-     *
-     * @return          COM interface pointer.
-     */
-    IMgaMetaModel * impl (void) const;
+  Aspect aspect (const std::string & name) const;
 
-    size_t children (std::vector <GAME::Meta::FCO> & fcos) const;
+  size_t aspects (std::vector <Aspect> & children) const;
 
-  private:
-    /// Pointer to the raw COM interface.
-    mutable CComPtr <IMgaMetaModel> metamodel_;
-  };
+private:
+  /// Pointer to the raw COM interface.
+  mutable CComPtr <IMgaMetaModel> metamodel_;
+};
+
 }
 }
 

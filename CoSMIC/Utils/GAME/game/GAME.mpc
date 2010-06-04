@@ -19,7 +19,6 @@ project (GAME) : acelib, cosmic_common {
   }
 
   Source_Files {
-    //GAME.idl
     $(GME_ROOT)/Interfaces/Meta.idl
     $(GME_ROOT)/Interfaces/Mga.idl
     $(GME_ROOT)/Interfaces/Parser.idl
@@ -37,6 +36,7 @@ project (GAME) : acelib, cosmic_common {
     Interpreter.cpp
     Model.cpp
     Object.cpp
+    Part.cpp
     Project.cpp
     Reference.cpp
     RegistryNode.cpp
@@ -44,6 +44,7 @@ project (GAME) : acelib, cosmic_common {
     Territory.cpp
     XML.cpp
 
+    MetaAspect.cpp
     MetaAttribute.cpp
     MetaBase.cpp
     MetaEnumItem.cpp

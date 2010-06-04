@@ -13,7 +13,7 @@ namespace Meta
 //
 // kind
 //
-std::string Part::kind (void) const
+std::string Part::kind_aspect (void) const
 {
   CComBSTR kind;
   VERIFY_HRESULT (this->impl ()->get_KindAspect (&kind));
@@ -53,6 +53,17 @@ Role Part::role (void) const
   VERIFY_HRESULT (this->impl ()->get_Role (&role));
 
   return role.Detach ();
+}
+
+//
+// role
+// 
+Aspect Part::parent_aspect (void) const
+{
+  CComPtr <IMgaMetaAspect> aspect;
+  VERIFY_HRESULT (this->impl ()->get_ParentAspect (&aspect));
+
+  return Aspect (aspect);
 }
 
 }

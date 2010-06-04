@@ -19,130 +19,131 @@
 
 namespace GAME
 {
+/**
+ * @class Attribute
+ *
+ * Wrapper class for the IMgaAttribute interface.
+ */
+class GAME_Export Attribute
+{
+public:
+  /// Type definition of the COM pointer type.
+  typedef IMgaAttribute interface_type;
+
+  /// Default constructor.
+  Attribute (void);
+
   /**
-   * @class Attribute
+   * Initializing constructor
    *
-   * Wrapper class for the IMgaAttribute interface.
+   * @param[in]     attr      Raw pointer to attribute
    */
-  class GAME_Export Attribute
-  {
-  public:
-    /// Type definition of the COM pointer type.
-    typedef IMgaAttribute interface_type;
+  Attribute (IMgaAttribute * attr);
 
-    /// Default constructor.
-    Attribute (void);
+  /**
+   * Copy consturctor
+   *
+   * @param[in]     attr      Source attribute
+   */
+  Attribute (const Attribute & attr);
 
-    /**
-     * Initializing constructor
-     *
-     * @param[in]     attr      Raw pointer to attribute
-     */
-    Attribute (IMgaAttribute * attr);
+  /// Destructor.
+  virtual ~Attribute (void);
 
-    /**
-     * Copy consturctor
-     *
-     * @param[in]     attr      Source attribute
-     */
-    Attribute (const Attribute & attr);
+  void attach (IMgaAttribute * attr);
 
-    /// Destructor.
-    virtual ~Attribute (void);
+  const Attribute & operator = (const Attribute & attr);
 
-    void attach (IMgaAttribute * attr);
+  IMgaAttribute * impl (void);
 
-    const Attribute & operator = (const Attribute & attr);
+  long status (void) const;
 
-    IMgaAttribute * impl (void);
+  /**
+   * Get the owner of the attribute.
+   *
+   * @return        Owner of the attribute.
+   */
+  FCO owner (void) const;
 
-    long status (void) const;
+  /**
+   * Determine if the attribute has changed.
+   *
+   * @retval        true        Attribute has changed.
+   * @retval        false       Attribute has not changed.
+   */
+  bool has_changed (void) const;
 
-    /**
-     * Get the owner of the attribute.
-     *
-     * @return        Owner of the attribute.
-     */
-    FCO owner (void) const;
+  /// Clear the attribute.
+  void clear (void);
 
-    /**
-     * Determine if the attribute has changed.
-     *
-     * @retval        true        Attribute has changed.
-     * @retval        false       Attribute has not changed.
-     */
-    bool has_changed (void) const;
+  /**
+   * Get the string value of the attribute.
+   *
+   * @return        The string value of the attribute.
+   */
+  std::string string_value (void) const;
 
-    /// Clear the attribute.
-    void clear (void);
+  /**
+   * Set the string value of the attribute.
+   *
+   * @param[in]     val       The new string value.
+   */
+  void string_value (const std::string & val);
 
-    /**
-     * Get the string value of the attribute.
-     *
-     * @return        The string value of the attribute.
-     */
-    std::string string_value (void) const;
+  /**
+   * Get the integer value of the attribute.
+   *
+   * @return        The integer value of the attribute.
+   */
+  long int_value (void) const;
 
-    /**
-     * Set the string value of the attribute.
-     *
-     * @param[in]     val       The new string value.
-     */
-    void string_value (const std::string & val);
+  /**
+   * Set the integer value of the attribute.
+   *
+   * @param[in]     val       The new integer value.
+   */
+  void int_value (long val);
 
-    /**
-     * Get the integer value of the attribute.
-     *
-     * @return        The integer value of the attribute.
-     */
-    long int_value (void) const;
+  /**
+   * Get the boolean value of the attribute.
+   *
+   * @return        The boolean value of the attribute.
+   */
+  bool bool_value (void) const;
 
-    /**
-     * Set the integer value of the attribute.
-     *
-     * @param[in]     val       The new integer value.
-     */
-    void int_value (long val);
+  /**
+   * Set the boolean attribute of the attribute.
+   *
+   * @param[in]     val     The new boolean value.
+   */
+  void bool_value (bool val);
 
-    /**
-     * Get the boolean value of the attribute.
-     *
-     * @return        The boolean value of the attribute.
-     */
-    bool bool_value (void) const;
+  /**
+   * Get the float value of the attribute.
+   *
+   * @return        The float value of the attribute.
+   */
+  double float_value (void) const;
 
-    /**
-     * Set the boolean attribute of the attribute.
-     *
-     * @param[in]     val     The new boolean value.
-     */
-    void bool_value (bool val);
+  /**
+   * Set the float value of the attribute.
+   *
+   * @param[in]     val     The float value of the attribute.
+   */
+  void float_value (double val);
 
-    /**
-     * Get the float value of the attribute.
-     *
-     * @return        The float value of the attribute.
-     */
-    double float_value (void) const;
+  /**
+   * Retrieve the attributes meta information
+   *
+   * @return        Meta information
+   */
+  Meta::Attribute meta (void) const;
 
-    /**
-     * Set the float value of the attribute.
-     *
-     * @param[in]     val     The float value of the attribute.
-     */
-    void float_value (double val);
+private:
+  /// The underlying COM pointer to the attribute.
+  mutable ATL::CComPtr <IMgaAttribute> attr_;
+};
 
-    /**
-     * Retrieve the attributes meta information
-     *
-     * @return        Meta information
-     */
-    Meta::Attribute meta (void) const;
-
-  private:
-    /// The underlying COM pointer to the attribute.
-    mutable ATL::CComPtr <IMgaAttribute> attr_;
-  };
 };
 
 #if defined (__GAME_INLINE__)
