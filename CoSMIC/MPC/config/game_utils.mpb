@@ -1,6 +1,6 @@
 // $Id$
 
-project : game {
+project : boost_base, game {
   after += GAME_Utils
   libs  += GAME_Utils
 }

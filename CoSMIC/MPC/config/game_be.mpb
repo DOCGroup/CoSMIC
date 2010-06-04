@@ -1,7 +1,7 @@
 // $Id$
 
 project : game {
-  dynamicflags += _MIDL_USE_GUIDDEF_ _USRDLL
+  dynamicflags += _USRDLL
 
   libs  += GAME_BE
   after += GAME_BE

@@ -1,3 +1,11 @@
+Fri Jun  4 20:34:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * MPC/config/game_be.mpb:
+        * MPC/config/game_decorator.mpb:
+        * MPC/config/game_utils.mpb:
+        
+          . Base project for building GAME components.
+
 Fri Jun  4 20:30:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/Attribute.h:
@@ -24,22 +32,22 @@ Fri Jun  4 20:30:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/Part.h:
         * Utils/GAME/game/Part.inl:
         * Utils/GAME/game/Part.cpp:
-        
+
           . Added more functionality.
-        
+
         * Utils/GAME/game/be/Decorator_Impl.h:
         * Utils/GAME/game/be/Decorator_Impl.inl:
         * Utils/GAME/game/be/Decorator_T.h:
         * Utils/GAME/game/be/Decorator_T.inl:
         * Utils/GAME/game/be/Decorator_T.cpp:
-        
+
           . Removed function name overloading since it prevented methods
             with the same name in the subclass from being seen.
 
         * Utils/GAME/game/utils/Registrar.h:
         * Utils/GAME/game/utils/Registrar.inl:
         * Utils/GAME/game/utils/Registrar.cpp:
-        
+
           . Implemented a help class for locating icons on disk.
 
 Thu Jun  3 16:56:51 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
