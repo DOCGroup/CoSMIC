@@ -1,7 +1,14 @@
+Sat Jun  5 06:07:16 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+
+          . Updated package interpreter to new PICML metamodel.
+
 Sat Jun  5 05:36:14 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/BON/Sort_T.h:
-        
+
           . Fixed compile error related to a stale include file.
 
 Sat Jun  5 05:28:06 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

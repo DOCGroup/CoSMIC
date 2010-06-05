@@ -145,29 +145,16 @@ namespace PICML
     virtual void Visit_ComponentImplementations(const ComponentImplementations&);
     virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
     virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
-    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
 
-    virtual void Visit_Requirement(const Requirement&);
-    virtual void Visit_SatisfierProperty(const SatisfierProperty&);
-    virtual void Visit_ImplementationDependency(const ImplementationDependency&);
-    virtual void Visit_Capability(const Capability&);
-    virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&);
     virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-    virtual void Visit_PublishConnector(const PublishConnector&);
-    virtual void Visit_publish(const publish&);
-    virtual void Visit_deliverTo(const deliverTo&);
-    virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&);
+    virtual void Visit_sendsTo (const PICML::sendsTo & s);
     virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    virtual void Visit_emit(const emit&);
     virtual void Visit_invoke(const invoke&);
 
-    virtual void Visit_InfoProperty(const InfoProperty&);
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
-    virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&);
     virtual void Visit_ConfigProperty(const ConfigProperty&);
-    virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&);
     virtual void Visit_Implements(const Implements&);
-    virtual void Visit_ImplementationCapability(const ImplementationCapability&);
+
     // Component Attribute related operations
     virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
     virtual void Visit_AttributeValue(const AttributeValue&);
@@ -271,7 +258,7 @@ namespace PICML
 
 
     /// Representing a Component Port tuple
-    typedef std::map<Component, Port> Component_Port;
+    typedef std::map<ComponentInstance, Port> Component_Port;
 
 
     void GetReceptacleComponents (const RequiredRequestPort& receptacle,
@@ -290,20 +277,20 @@ namespace PICML
                                  std::set<std::pair<std::string, std::string> >& output);
 
     template <typename T, typename Del, typename DelRet, typename DelEndRet>
-      void GetComponents (const T& port,
-                          DelRet (T::*srcDel)() const,
-                          DelRet (T::*dstDel) () const,
-                          DelEndRet (Del::*srcDelEnd)() const,
-                          DelEndRet (Del::*dstDelEnd)() const,
-                          Component_Port& output,
-                          std::set<T>& visited);
+    void GetComponents (const T& port,
+                        DelRet (T::*srcDel)() const,
+                        DelRet (T::*dstDel) () const,
+                        DelEndRet (Del::*srcDelEnd)() const,
+                        DelEndRet (Del::*dstDelEnd)() const,
+                        Component_Port& output,
+                        std::set<T>& visited);
 
     void CreateConnections (const Component_Port& src,
                             const Component_Port& dst);
 
-    void CreateConnection (const Component& srcComp,
+    void CreateConnection (const ComponentInstance & srcComp,
                            const Port& srcPort,
-                           const Component& dstComp,
+                           const ComponentInstance & dstComp,
                            const Port& dstPort);
     void CreateAssemblyInstances (std::set<Component>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
@@ -328,7 +315,8 @@ namespace PICML
   typedef boost::graph_traits < Graph >::vertices_size_type size_type;
 
   void CalculatePath (std::vector < size_type >& discover);
-  std::set<Component> comps;
+  std::set<ComponentInstance> comps;
+
   //
     // The Graph object
     Graph the_graph_;

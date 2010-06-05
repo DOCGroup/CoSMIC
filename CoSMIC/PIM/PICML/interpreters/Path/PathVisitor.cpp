@@ -9,6 +9,8 @@
 #include <boost/graph/depth_first_search.hpp>
 #include <boost/pending/integer_range.hpp>
 #include <boost/pending/indirect_cmp.hpp>
+#include "boost/bind.hpp"
+
 #include <algorithm>
 #include <functional>
 #include <fstream>
@@ -1353,17 +1355,12 @@ namespace PICML
   }
 
 
-  void PathVisitor::Visit_ComponentAssembly(const ComponentAssembly& assembly)
+  void PathVisitor::Visit_ComponentAssembly (const ComponentAssembly& assembly)
   {
     std::string name = assembly.name ();
 
-  // get the underlying compoenents ...
-  std::set<Component> components =
-    assembly.Component_kind_children ();
-
-    // Collect all the Components of this assembly into a set.
-    //std::set<Component> comps = assembly.Component_kind_children();
-    comps = assembly.Component_kind_children();
+    // get the underlying compoenents ...
+    std::set <ComponentInstance> components = assembly.ComponentInstance_kind_children ();
 
     // Collect all the immediate ComponentAssembly children of this assembly
     std::vector<ComponentAssembly>
@@ -1382,15 +1379,15 @@ namespace PICML
       {
         ComponentAssembly rassembly = subasms.back();
         std::string rname = rassembly.name ();
+
         // Put the first assembly from the current list to the
         // assembly-specific list.
         assemblies.push_back (rassembly);
-
-        subasms.pop_back();
+        subasms.pop_back ();
 
         // Get the components of the current assembly, and insert them into
         // the component list
-        std::set<Component> rcomps = rassembly.Component_kind_children();
+        std::set<ComponentInstance> rcomps = rassembly.ComponentInstance_kind_children();
         comps.insert (rcomps.begin(), rcomps.end());
 
         // Get the subassemblies of the first assembly.
@@ -1405,7 +1402,7 @@ namespace PICML
 
   // Get the Component Ports .....
       int number =0;
-      std::set<Component>::iterator iter;
+      std::set<ComponentInstance>::iterator iter;
       for (iter = comps.begin ();
             iter != comps.end ();
             iter++)
@@ -1834,39 +1831,12 @@ namespace PICML
             invoke iv = *iter;
             iv.Accept (*this);
           }
-        const std::set<emit> emits = subasm.emit_kind_children();
-        for (std::set<emit>::const_iterator iter = emits.begin();
-             iter != emits.end();
-             ++iter)
-          {
-            emit ev = *iter;
-            ev.Accept (*this);
-          }
-        const std::set<publish> publishers = subasm.publish_kind_children();
-        for (std::set<publish>::const_iterator iter = publishers.begin();
-             iter != publishers.end();
-             ++iter)
-          {
-            publish ev = *iter;
-            ev.Accept (*this);
-          }
-        const std::set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
-        for (std::set<deliverTo>::const_iterator iter = deliverTos.begin();
-             iter != deliverTos.end();
-             ++iter)
-          {
-            deliverTo dv = *iter;
-            dv.Accept (*this);
-          }
-        const std::set<PublishConnector>
-          connectors = subasm.PublishConnector_kind_children();
-        for (std::set<PublishConnector>::const_iterator iter = connectors.begin();
-             iter != connectors.end();
-             ++iter)
-          {
-            PublishConnector conn = *iter;
-            conn.Accept (*this);
-          }
+
+        std::set <sendsTo> sends = subasm.sendsTo_kind_children ();
+        std::for_each (sends.begin (),
+                       sends.end (),
+                       boost::bind (&sendsTo::Accept, _1, boost::ref (*this)));
+
         this->publishers_.clear();
         this->consumers_.clear();
       }
@@ -1898,6 +1868,7 @@ namespace PICML
     Udm::Object par = port.parent();
     std::string recepName = port.name();
     std::string parentName = this->ExtractName (par);
+
     if (Udm::IsDerivedFrom (par.type(), ComponentAssembly::meta))
       {
         std::set<Del> delegates = (port.*dstDel)();
@@ -1929,9 +1900,9 @@ namespace PICML
                                   srcDelEnd, dstDelEnd, output, visited);
           }
       }
-    else if (Udm::IsDerivedFrom (par.type(), Component::meta))
+    else if (Udm::IsDerivedFrom (par.type(), ComponentInstance::meta))
       {
-        Component recep_comp = Component::Cast (par);
+        ComponentInstance recep_comp = ComponentInstance::Cast (par);
         output.insert (make_pair (recep_comp, port));
       }
     visited.erase (port);
@@ -1992,30 +1963,31 @@ namespace PICML
                          visited);
   }
 
-  void PathVisitor::CreateConnections (const Component_Port& src,
-                                          const Component_Port& dst)
+  void PathVisitor::
+  CreateConnections (const Component_Port& src, const Component_Port& dst)
   {
     for (Component_Port::const_iterator iter = src.begin();
          iter != src.end();
          ++iter)
       {
-        Component srcComp = iter->first;
+        ComponentInstance srcComp = iter->first;
         Port srcPort = iter->second;
         for (Component_Port::const_iterator iter = dst.begin();
              iter != dst.end();
              ++iter)
           {
-            Component dstComp = iter->first;
+            ComponentInstance dstComp = iter->first;
             Port dstPort = iter->second;
             this->CreateConnection (srcComp, srcPort, dstComp, dstPort);
           }
       }
   }
 
-  void PathVisitor::CreateConnection (const Component& srcComp,
-                                      const Port& srcPort,
-                                      const Component& dstComp,
-                                      const Port& dstPort)
+  void PathVisitor::
+  CreateConnection (const ComponentInstance & srcComp,
+                    const Port& srcPort,
+                    const ComponentInstance & dstComp,
+                    const Port& dstPort)
   {
 
     Component_Port_Vertex start (srcPort);
@@ -2138,146 +2110,44 @@ namespace PICML
     this->CreateConnections (emitters, consumers);
   }
 */
-  void PathVisitor::Visit_emit(const emit& ev)
+  void PathVisitor::Visit_sendsTo (const PICML::sendsTo & s)
   {
-    // Get the emitter end
-    OutEventPort emitter = ev.srcemit_end();
+    OutEventPort sender = s.srcsendsTo_end ();
+    InEventPort consumer = s.dstsendsTo_end ();
 
-    // Get the consumer end
-    InEventPort consumer = ev.dstemit_end();
+    if (sender.single_destination ())
+    {
+      Udm::Object parent = sender.parent ();
+      ComponentInstance source_component = ComponentInstance::Cast (parent);
 
-    Udm::Object parent = emitter.parent();
-    Component source_component = Component::Cast (parent);
-    parent = consumer.parent ();
-    Component target_component = Component::Cast (parent);
+      parent = consumer.parent ();
+      ComponentInstance target_component = ComponentInstance::Cast (parent);
 
-    std::string start_vertex = source_component.name ();
-    start_vertex += + "_";
-    start_vertex += emitter.name ();
+      std::string start_vertex = source_component.name ();
+      start_vertex += + "_";
+      start_vertex += sender.name ();
 
-    std::string end_vertex;
-    end_vertex += target_component.name ();
-    end_vertex += "_";
-    end_vertex += consumer.name ();
+      std::string end_vertex;
+      end_vertex += target_component.name ();
+      end_vertex += "_";
+      end_vertex += consumer.name ();
 
-    std::string connection
-        = start_vertex + "-" + end_vertex;
+      std::string connection = start_vertex + "-" + end_vertex;
 
-    /*
-    Component_Port_Vertex start (emitter , source_component.UUID ());
+      Component_Port_Vertex 
+        start (sender, sender.getPath (".", false, true, "name", true)),
+        end (consumer, consumer.getPath (".", false, true, "name", true));
 
-    Component_Port_Vertex end (consumer , target_component.UUID ());
-*/
-    Component_Port_Vertex start (emitter ,
-      emitter.getPath (".", false, true, "name", true));
-
-    Component_Port_Vertex end (consumer ,
-      consumer.getPath (".", false, true, "name", true));
-
-    add_the_edges (start , end);
+      this->add_the_edges (start , end);
+    }
+    else
+    {
+      this->CreateConnection (sender.ComponentInstance_parent (),
+                              sender,
+                              consumer.ComponentInstance_parent (),
+                              consumer);
+    }
   }
-
-  void PathVisitor::Visit_publish(const publish& ev)
-  {
-    // Get the publisher end
-    const OutEventPort publisher = ev.srcpublish_end();
-
-    // Get the connector end
-    const PublishConnector connector = ev.dstpublish_end();
-
-    // Create an entry in the publishers_ map
-    this->publishers_[std::string (connector.name())] = publisher;
-  }
-
-  void PathVisitor::Visit_deliverTo(const deliverTo& dv)
-  {
-    // Get the connector end
-    const  PublishConnector connector = dv.srcdeliverTo_end();
-
-    // Get the consumer end
-    const InEventPort consumer = dv.dstdeliverTo_end();
-
-    // Create an entry in the consumers_ map
-    this->consumers_.insert (make_pair (connector.name(), consumer));
-  }
-
-  void PathVisitor::Visit_PublishConnector(const PublishConnector& pubctor)
-  {
-    std::string ctor = pubctor.name();
-
-    // Get Publisher
-    OutEventPort publisher = this->publishers_[ctor];
-    Component_Port publishers;
-    this->GetEventSourceComponents (publisher, publishers);
-
-    for (Component_Port::const_iterator
-           iter = publishers.begin();
-         iter != publishers.end();
-         ++iter)
-      {
-        Component srcComp = iter->first;
-        Port srcPort = iter->second;
-
-        for (std::multimap<std::string, InEventPort>::const_iterator
-               iter = this->consumers_.lower_bound (ctor);
-             iter != this->consumers_.upper_bound (ctor);
-             ++iter)
-          {
-            // Get Consumer
-            InEventPort consumer = iter->second;
-            Component_Port consumers;
-            this->GetEventSinkComponents (consumer, consumers);
-            for (Component_Port::const_iterator
-                   iter = consumers.begin();
-                 iter != consumers.end();
-                 ++iter)
-              {
-                Component dstComp = iter->first;
-                Port dstPort = iter->second;
-                this->CreateConnection (srcComp, srcPort, dstComp,
-                                        dstPort);
-              }
-          }
-      }
-  }
-
-  void PathVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)
-  {}
-
-  void PathVisitor::Visit_Requirement(const Requirement&)
-  {}
-
-  void PathVisitor::Visit_SatisfierProperty(const SatisfierProperty&)
-  {}
-
-  void PathVisitor::Visit_ImplementationDependency(const ImplementationDependency&)
-  {}
-
-  void PathVisitor::Visit_Capability(const Capability&)
-  {}
-
-  void PathVisitor::Visit_AssemblyselectRequirement(const AssemblyselectRequirement&)
-  {}
-
-
-  void PathVisitor::Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&)
-  {}
-
-
-  void PathVisitor::Visit_InfoProperty(const InfoProperty&)
-  {}
-
-
-  void PathVisitor::Visit_MonolithDeployRequirement(const MonolithDeployRequirement&)
-  {}
-
-
-  void PathVisitor::Visit_ImplementationDependsOn(const ImplementationDependsOn&)
-  {}
-
-
-  void PathVisitor::Visit_ImplementationCapability(const ImplementationCapability&)
-  {}
 
   std::string PathVisitor::ExtractName(Udm::Object ob)
   {
