@@ -13,12 +13,14 @@ workspace {
   MPCComponent
   Path
   PathComponent
-  PAM
-  PAMComponent
   PICML
   PropertyManager
 
   Target
   TargetComponent
   IDLImporter
+
+  //PAM
+  //PAMComponent
+  //QED
 }
