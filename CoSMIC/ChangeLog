@@ -1,10 +1,16 @@
+Sat Jun  5 17:18:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * Utils/GAME/game/be/Decorator_Module.h:
+        
+          . Fixed Release build errors.
+          
 Sat Jun  5 16:23:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-        
+
           . Reverted Package paradigm sheet.
 
 Sat Jun  5 15:46:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
