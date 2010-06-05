@@ -1,8 +1,18 @@
+Sat Jun  5 00:37:36 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          . Metamodel with support for IDL3+ in both the interface 
+            definitions and the component assembly.
+
 Sat Jun  5 00:16:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/addons/PICMLManager/RawComponent.h:
         * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
-        
+
           . First attempt at synchronizing a component instance.
 
         * PIM/PICML/decorators/ComponentDecorator:
@@ -17,14 +27,14 @@ Sat Jun  5 00:16:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/ComponentDecorator/Component_Decoratord.reg:
         * PIM/PICML/decorators/ComponentDecorator/StdAfx.h:
         * PIM/PICML/decorators/ComponentDecorator/StdAfx.cpp:
-        
+
           . New implementation of the component decorator. It even
             shows the ports of inherited components.
 
         * PIM/PICML/decorators/IDMLDecorators.cpp:
         * PIM/PICML/decorators/ShowReference/Decorator.h:
         * PIM/PICML/decorators/ShowReference/Decorator.cpp:
-        
+
           . Updated decorator based on changes to GAME.
 
         * Utils/GAME/game/graphics:
@@ -37,13 +47,13 @@ Sat Jun  5 00:16:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * Utils/GAME/game/graphics/Image_Resolver.inl:
         * Utils/GAME/game/graphics/Image_Resolver.cpp:
         * MPC/config/game_graphics.mpb:
-        
+
           . Helper classes for doing graphics.
 
         * Utils/GAME/game/utils/Registrar.h:
         * Utils/GAME/game/utils/Registrar.inl:
         * Utils/GAME/game/utils/Registrar.cpp:
-        
+
           . Moved the Icon_Manager to the graphics library.
 
         * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
