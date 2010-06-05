@@ -13,8 +13,6 @@
 #ifndef _COSMIC_BON_UTILS_SORT_H_
 #define _COSMIC_BON_UTILS_SORT_H_
 
-#include "Point.h"
-
 namespace BON
 {
 namespace Utils
