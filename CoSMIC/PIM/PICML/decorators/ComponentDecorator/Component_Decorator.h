@@ -4,9 +4,9 @@
 
 
  /* File created by MIDL compiler version 7.00.0500 */
-/* at Thu Jun 03 12:32:33 2010
+/* at Fri Jun 04 18:29:04 2010
  */
-/* Compiler settings for .\DecoratorLib.idl:
+/* Compiler settings for .\Component_Decorator.idl:
     Oicf, W1, Zp8, env=Win32 (32b run)
     protocol : dce , ms_ext, c_ext, robust
     error checks: allocation ref bounds_check enum stub_data 
@@ -36,8 +36,8 @@
 #include "ole2.h"
 #endif /*COM_NO_WINDOWS_H*/
 
-#ifndef __DecoratorLib_h__
-#define __DecoratorLib_h__
+#ifndef __Component_Decorator_h__
+#define __Component_Decorator_h__
 
 #if defined(_MSC_VER) && (_MSC_VER >= 1020)
 #pragma once
@@ -123,16 +123,16 @@ typedef interface IMgaVersionInfo IMgaVersionInfo;
 #endif 	/* __IMgaVersionInfo_FWD_DEFINED__ */
 
 
-#ifndef __ShowReferenceDecorator_FWD_DEFINED__
-#define __ShowReferenceDecorator_FWD_DEFINED__
+#ifndef __Component_Decorator_FWD_DEFINED__
+#define __Component_Decorator_FWD_DEFINED__
 
 #ifdef __cplusplus
-typedef class ShowReferenceDecorator ShowReferenceDecorator;
+typedef class Component_Decorator Component_Decorator;
 #else
-typedef struct ShowReferenceDecorator ShowReferenceDecorator;
+typedef struct Component_Decorator Component_Decorator;
 #endif /* __cplusplus */
 
-#endif 	/* __ShowReferenceDecorator_FWD_DEFINED__ */
+#endif 	/* __Component_Decorator_FWD_DEFINED__ */
 
 
 /* header files for imported files */
@@ -145,7 +145,7 @@ extern "C"{
 #endif 
 
 
-/* interface __MIDL_itf_DecoratorLib_0000_0000 */
+/* interface __MIDL_itf_Component_Decorator_0000_0000 */
 /* [local] */ 
 
 typedef 
@@ -190,8 +190,8 @@ enum refresh_mode_enum
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0000_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0000_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0000_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0000_v0_0_s_ifspec;
 
 #ifndef __IMgaDecorator_INTERFACE_DEFINED__
 #define __IMgaDecorator_INTERFACE_DEFINED__
@@ -2007,7 +2007,7 @@ EXTERN_C const IID IID_IMgaElementDecorator;
 #endif 	/* __IMgaElementDecorator_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_DecoratorLib_0000_0005 */
+/* interface __MIDL_itf_Component_Decorator_0000_0005 */
 /* [local] */ 
 
 #ifndef INTERFACECOLL_INCLUDED
@@ -2075,8 +2075,8 @@ enum attribpanel_page
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0005_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0005_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0005_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0005_v0_0_s_ifspec;
 
 #ifndef __IMgaDataSource_INTERFACE_DEFINED__
 #define __IMgaDataSource_INTERFACE_DEFINED__
@@ -2229,14 +2229,14 @@ EXTERN_C const IID IID_IMgaDataSource;
 #endif 	/* __IMgaDataSource_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_DecoratorLib_0000_0006 */
+/* interface __MIDL_itf_Component_Decorator_0000_0006 */
 /* [local] */ 
 
 
 
 
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0006_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0006_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0006_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0006_v0_0_s_ifspec;
 
 #ifndef __IGMEOLEApp_INTERFACE_DEFINED__
 #define __IGMEOLEApp_INTERFACE_DEFINED__
@@ -4584,7 +4584,7 @@ EXTERN_C const IID IID_IGMEOLEColl;
 #endif 	/* __IGMEOLEColl_INTERFACE_DEFINED__ */
 
 
-/* interface __MIDL_itf_DecoratorLib_0000_0012 */
+/* interface __MIDL_itf_Component_Decorator_0000_0012 */
 /* [local] */ 
 
 typedef 
@@ -4597,8 +4597,8 @@ enum MgaInterfaceVersion_enum
 #define MgaInterfaceVersion MgaInterfaceVersion_enum
 
 
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0012_v0_0_c_ifspec;
-extern RPC_IF_HANDLE __MIDL_itf_DecoratorLib_0000_0012_v0_0_s_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0012_v0_0_c_ifspec;
+extern RPC_IF_HANDLE __MIDL_itf_Component_Decorator_0000_0012_v0_0_s_ifspec;
 
 #ifndef __IMgaVersionInfo_INTERFACE_DEFINED__
 #define __IMgaVersionInfo_INTERFACE_DEFINED__
@@ -4680,23 +4680,23 @@ EXTERN_C const IID IID_IMgaVersionInfo;
 
 
 
-#ifndef __ShowReferenceDecoratorLibrary_LIBRARY_DEFINED__
-#define __ShowReferenceDecoratorLibrary_LIBRARY_DEFINED__
+#ifndef __Component_DecoratorLib_LIBRARY_DEFINED__
+#define __Component_DecoratorLib_LIBRARY_DEFINED__
 
-/* library ShowReferenceDecoratorLibrary */
+/* library Component_DecoratorLib */
 /* [version][uuid] */ 
 
 
-EXTERN_C const IID LIBID_ShowReferenceDecoratorLibrary;
+EXTERN_C const IID LIBID_Component_DecoratorLib;
 
-EXTERN_C const CLSID CLSID_ShowReferenceDecorator;
+EXTERN_C const CLSID CLSID_Component_Decorator;
 
 #ifdef __cplusplus
 
-class DECLSPEC_UUID("E3EA54FF-CE85-4F3B-92C4-6652FF130FE4")
-ShowReferenceDecorator;
+class DECLSPEC_UUID("94049052-1212-4203-9965-19471BCF8960")
+Component_Decorator;
 #endif
-#endif /* __ShowReferenceDecoratorLibrary_LIBRARY_DEFINED__ */
+#endif /* __Component_DecoratorLib_LIBRARY_DEFINED__ */
 
 /* Additional Prototypes for ALL interfaces */
 

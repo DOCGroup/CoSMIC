@@ -7,21 +7,12 @@
 #include "DecoratorUtil.h"
 
 #include "game/be/Decorator_Module.h"
-#include "game/FCO.h"
 #include "game/Reference.h"
-#include "game/Project.h"
-#include "game/MetaRole.h"
 #include "game/MetaFCO.h"
-#include "game/MetaPart.h"
 #include "game/utils/Parser.hpp"
-#include <fstream>
+#include "game/utils/Registrar.h"
 
 static CDecoratorUtil d_util;
-
-//
-// registrar_
-//
-GAME::utils::Registrar Show_Reference_Decorator_Impl::registrar_;
 
 DECLARE_DECORATOR_MODULE (LIBID_ShowReferenceDecoratorLibrary, IDR_DECORATOR, "{CDD72C3A-3340-4225-83D6-46B10E9A763E}")
 
@@ -62,19 +53,22 @@ initialize (const GAME::Project & project,
             const GAME::Meta::Part & part,
             const GAME::FCO & fco)
 {
-  // Set the parser configuration.
-  GAME::utils::PathParserConfig config (project);
-
-  // Initialize the parser.
-  std::vector <std::string> paths;
-  GAME::utils::PathParser <std::string::const_iterator> grammar (config, paths);
+  using GAME::utils::PathParserConfig;
+  using GAME::utils::PathParser;
+  using GAME::utils::GLOBAL_REGISTRAR;
+  using GAME::utils::Registrar;
 
   // Extract paths from registrar and tokenize the string.
-  std::string path = this->registrar_.icon_path (GAME::utils::Registrar::ACCESS_BOTH);
+  std::string path = GLOBAL_REGISTRAR::instance ()->icon_path (Registrar::ACCESS_BOTH);
   
   using boost::phoenix::ref;
   namespace qi = boost::spirit::qi;
   namespace ascii = boost::spirit::ascii;
+
+  // Initialize the parser.
+  std::vector <std::string> paths;
+  PathParserConfig config (project);
+  PathParser <std::string::const_iterator> grammar (config, paths);
 
   bool result = qi::phrase_parse (path.begin (), 
                                   path.end (), 
@@ -97,7 +91,6 @@ initialize (const GAME::Project & project,
     // element is referenced, then display the reference's icon.
     GAME::Reference ref = GAME::Reference::_narrow (fco);
     GAME::FCO refers_to = ref.refers_to ();
-
 
     if (!refers_to.is_nil ())
       icon_filename = refers_to.registry_value ("icon");
@@ -187,8 +180,25 @@ int Show_Reference_Decorator_Impl::draw (CDC & context)
 //
 // draw
 //
-int Show_Reference_Decorator_Impl::
-draw (CDC & context, Gdiplus::Graphics & g)
+int Show_Reference_Decorator_Impl::draw (Gdiplus::Graphics & g)
 {
-  return this->draw (context);
+  CDC context;
+
+  try
+  {
+    // Let's call it the old way for now.
+    context.Attach (g.GetHDC ());
+    int retval = this->draw (context);
+
+    // Make sure we detach from the context.
+    context.Detach ();
+    return retval;
+  }
+  catch (...)
+  {
+    // Make sure we detach from the context.
+    context.Detach ();
+  }
+
+  return -1;
 }

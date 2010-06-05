@@ -68,6 +68,7 @@ private:
   void handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
   void handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
   void handle_CollocationGroup (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj);
   void handle_UUID (unsigned long eventmask, GAME::FCO & fco);
 
   /**

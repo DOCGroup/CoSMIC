@@ -42,56 +42,24 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
 {
   this->project_ = project;
 
-  this->handlers_.bind ("ExternalDelegate",
-                        &RawComponent::handle_ExternalDelegate);
-
-  this->handlers_.bind ("PublishConnector",
-                        &RawComponent::handle_PublishConnector);
-
-  this->handlers_.bind ("AttributeValue",
-                        &RawComponent::handle_AttributeValue);
-
-  this->handlers_.bind ("AttributeMember",
-                        &RawComponent::handle_AttributeMember);
-
-  this->handlers_.bind ("CollocationGroup",
-                        &RawComponent::handle_CollocationGroup);
-
-  this->handlers_.bind ("Component",
-                        &RawComponent::handle_Component);
-
-  this->handlers_.bind ("ComponentAssembly",
-                        &RawComponent::handle_ComponentAssembly);
-
-  this->handlers_.bind ("ComponentPackage",
-                        &RawComponent::handle_ComponentPackage);
-
-  this->handlers_.bind ("ComponentRef",
-                        &RawComponent::handle_ComponentRef);
-
-  this->handlers_.bind ("Domain",
-                        &RawComponent::handle_Domain);
-
-  this->handlers_.bind ("PackageConfiguration",
-                        &RawComponent::handle_PackageConfiguration);
-
-  this->handlers_.bind ("MonolithicImplementation",
-                        &RawComponent::handle_MonolithicImplementation);
-
-  this->handlers_.bind ("ImplementationArtifact",
-                        &RawComponent::handle_ImplementationArtifact);
-
-  this->handlers_.bind ("ComponentImplementation",
-                        &RawComponent::handle_ComponentImplementation);
-
-  this->handlers_.bind ("ComponentFactoryInstance",
-                        &RawComponent::handle_ComponentFactoryInstance);
-
-  this->handlers_.bind ("DeploymentPlan",
-                        &RawComponent::handle_DeploymentPlan);
-
-  this->handlers_.bind ("NodeReference",
-                        &RawComponent::handle_NodeReference);
+  this->handlers_.bind ("ExternalDelegate", &RawComponent::handle_ExternalDelegate);
+  this->handlers_.bind ("PublishConnector", &RawComponent::handle_PublishConnector);
+  this->handlers_.bind ("AttributeValue", &RawComponent::handle_AttributeValue);
+  this->handlers_.bind ("AttributeMember", &RawComponent::handle_AttributeMember);
+  this->handlers_.bind ("CollocationGroup", &RawComponent::handle_CollocationGroup);
+  this->handlers_.bind ("Component", &RawComponent::handle_Component);
+  this->handlers_.bind ("ComponentAssembly", &RawComponent::handle_ComponentAssembly);
+  this->handlers_.bind ("ComponentPackage", &RawComponent::handle_ComponentPackage);
+  this->handlers_.bind ("ComponentRef", &RawComponent::handle_ComponentRef);
+  this->handlers_.bind ("Domain", &RawComponent::handle_Domain);
+  this->handlers_.bind ("PackageConfiguration", &RawComponent::handle_PackageConfiguration);
+  this->handlers_.bind ("MonolithicImplementation", &RawComponent::handle_MonolithicImplementation);
+  this->handlers_.bind ("ImplementationArtifact", &RawComponent::handle_ImplementationArtifact);
+  this->handlers_.bind ("ComponentImplementation", &RawComponent::handle_ComponentImplementation);
+  this->handlers_.bind ("ComponentFactoryInstance", &RawComponent::handle_ComponentFactoryInstance);
+  this->handlers_.bind ("DeploymentPlan", &RawComponent::handle_DeploymentPlan);
+  this->handlers_.bind ("NodeReference", &RawComponent::handle_NodeReference);
+  this->handlers_.bind ("ComponentInstanceType", &RawComponent::handle_ComponentInstanceType);
 
   return S_OK;
 }
@@ -732,6 +700,160 @@ handle_NodeReference (unsigned long eventmask, GAME::Object & obj)
   }
 }
 
+struct attr_sync_t
+{
+  attr_sync_t (GAME::FCO & dst)
+    : dst_ (dst)
+  {
+
+  }
+
+  void operator () (const GAME::Attribute & src_attr)
+  {
+    GAME::Meta::Attribute meta = src_attr.meta ();
+    GAME::Attribute dst_attr = this->dst_.attribute (meta);
+
+    switch (meta.type ())
+    {
+    case ATTVAL_BOOLEAN:
+      dst_attr.bool_value (src_attr.bool_value ());
+      break;
+
+    case ATTVAL_DOUBLE:
+      dst_attr.float_value (src_attr.float_value ());
+      break;
+
+    case ATTVAL_STRING:
+    case ATTVAL_ENUM:
+      dst_attr.string_value (src_attr.string_value ());
+      break;
+
+    case ATTVAL_INTEGER:
+      dst_attr.int_value (src_attr.int_value ());
+      break;
+    }
+  }
+
+private:
+  GAME::FCO & dst_;
+};
+
+struct model_sync_t
+{
+  model_sync_t (GAME::Model & parent, 
+                const GAME::Meta::Aspect & src_aspect,
+                const GAME::Meta::Aspect & dst_aspect)
+    : parent_ (parent),
+      src_aspect_ (src_aspect),
+      dst_aspect_ (dst_aspect)
+  {
+
+  }
+
+  void operator () (const GAME::FCO & src_fco)
+  {
+    GAME::FCO new_fco;
+
+    switch (src_fco.meta ().type ())
+    {
+    case OBJTYPE_ATOM:
+      new_fco = this->handle_atom (src_fco);
+      break;
+
+    case OBJTYPE_REFERENCE:
+      new_fco = this->handle_reference (src_fco);
+      break;
+
+    case OBJTYPE_MODEL:
+      new_fco = this->handle_model (src_fco);
+      break;
+    }
+  
+    // Copy over the name of the source FCO.
+    new_fco.name (src_fco.name ());
+
+    // Set the location of the new FCO.
+    long x, y;
+    src_fco.part (this->src_aspect_).get_location (x, y);
+    new_fco.part (this->dst_aspect_).set_location (x, y);
+
+    // Copy over all the attributes of the source FCO.
+    std::vector <GAME::Attribute> attrs;
+    
+    if (src_fco.attributes (attrs))
+      std::for_each (attrs.begin (),
+                     attrs.end (),
+                     attr_sync_t (new_fco));
+  }
+
+private:
+  GAME::FCO handle_reference (const GAME::FCO & src_fco)
+  {
+    GAME::Reference ref = GAME::Reference::_create (this->parent_, src_fco.meta ().name ());
+    GAME::FCO refers_to = GAME::Reference::_narrow (src_fco).refers_to ();
+
+    ref.refers_to (refers_to);
+    return ref;
+  }
+
+  GAME::FCO handle_model (const GAME::FCO & src_fco)
+  {
+    GAME::Model model = GAME::Model::_create (this->parent_, src_fco.meta ().name ());
+    return model;
+  }
+
+  GAME::FCO handle_atom (const GAME::FCO & src_fco)
+  {
+    return GAME::Atom::_create (this->parent_, src_fco.meta ().name ());
+  }
+
+  GAME::Model & parent_;
+
+  const GAME::Meta::Aspect & src_aspect_;
+
+  const GAME::Meta::Aspect & dst_aspect_;
+};
+
+//
+// handle_ComponentInstanceType
+//
+void RawComponent::
+handle_ComponentInstanceType (unsigned long eventmask, GAME::Object & obj)
+{
+  if ((eventmask & OBJEVENT_RELATION))
+  {
+    GAME::Reference ref = GAME::Reference::_narrow (obj);
+    GAME::FCO refers_to = ref.refers_to ();
+
+    std::vector <GAME::Connection> implements;
+
+    if (refers_to.in_connections ("Implements", implements) != 1)
+      return;
+
+    GAME::Connection implement = implements[0];
+    GAME::FCO dst = implement[std::string ("dst")].target ();
+
+    GAME::Reference component_ref = GAME::Reference::_narrow (dst);
+    refers_to = component_ref.refers_to ();
+
+    if (refers_to.is_nil ())
+      return;
+
+    GAME::Model component = GAME::Model::_narrow (refers_to);  
+    GAME::Meta::Aspect src_aspect = component.meta ().aspect ("InterfaceDefinition");
+
+    std::vector <GAME::FCO> ports;
+    component.children (src_aspect, ports);
+
+    GAME::Model parent = GAME::Model::_narrow (obj.parent ());
+    GAME::Meta::Aspect dst_aspect = parent.meta ().aspect ("PortsAspect");
+
+    std::for_each (ports.begin (),
+                   ports.end (),
+                   model_sync_t (parent, src_aspect, dst_aspect));
+  }
+}
+
 //
 // handle_CollocationGroup
 //
@@ -775,7 +897,5 @@ void RawComponent::
 handle_ComponentRef (unsigned long eventmask, GAME::Object & obj)
 {
   if ((eventmask & OBJEVENT_SETINCLUDED) != 0)
-  {
     this->cg_member_ = GAME::FCO::_narrow (obj);
-  }
 }

@@ -13,11 +13,10 @@
 #ifndef __DECORATOR_H_
 #define __DECORATOR_H_
 
-#include "MaskedBitmap.h"
-#include "game/utils/Registrar.h"
-
+#include "DecoratorLib.h"
 #include "game/be/Decorator_T.h"
 #include "game/be/Decorator_Impl.h"
+#include "MaskedBitmap.h"
 
 /**
  * @class Show_Reference_Decorator_Impl
@@ -47,11 +46,9 @@ public:
 
   int draw (CDC & context);
 
-  int draw (CDC & context, Gdiplus::Graphics & g);
+  int draw (Gdiplus::Graphics & g);
 
 private:
-  static GAME::utils::Registrar registrar_;
-
   /// The bitmap image for the element.
   CMaskedBitmap bitmap_;
 

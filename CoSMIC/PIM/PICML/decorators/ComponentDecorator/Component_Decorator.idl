@@ -1,0 +1,41 @@
+// -*- IDL -*-
+
+//=============================================================================
+/**
+ *  @file     PortLayout.idl
+ *
+ *  $Id$
+ *
+ *  @author   James H. Hill
+ */
+//=============================================================================
+
+#ifndef _COMPONENT_DECORATOR_IDL_
+#define _COMPONENT_DECORATOR_IDL_
+
+#include "MgaDecorator.idl"
+#include "gme.idl"
+
+[
+	uuid (3B98D09C-1562-4D92-9686-5AF23CC87954),
+	version (1.0),
+]
+library Component_DecoratorLib
+{
+	importlib ("stdole32.tlb");
+	importlib ("stdole2.tlb");
+
+	[
+		uuid (94049052-1212-4203-9965-19471BCF8960),
+    version (1.0)
+	]
+	coclass Component_Decorator
+	{
+		[default] interface IMgaDecorator;
+		interface IMgaVersionInfo;
+	};
+
+};
+
+
+#endif

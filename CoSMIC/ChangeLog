@@ -1,9 +1,66 @@
+Sat Jun  5 00:16:50 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/addons/PICMLManager/RawComponent.h:
+        * PIM/PICML/addons/PICMLManager/RawComponent.cpp:
+        
+          . First attempt at synchronizing a component instance.
+
+        * PIM/PICML/decorators/ComponentDecorator:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.idl:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.reg:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Module.cpp:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_export.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decoratord.reg:
+        * PIM/PICML/decorators/ComponentDecorator/StdAfx.h:
+        * PIM/PICML/decorators/ComponentDecorator/StdAfx.cpp:
+        
+          . New implementation of the component decorator. It even
+            shows the ports of inherited components.
+
+        * PIM/PICML/decorators/IDMLDecorators.cpp:
+        * PIM/PICML/decorators/ShowReference/Decorator.h:
+        * PIM/PICML/decorators/ShowReference/Decorator.cpp:
+        
+          . Updated decorator based on changes to GAME.
+
+        * Utils/GAME/game/graphics:
+        * Utils/GAME/game/graphics/Graphics.mpc:
+        * Utils/GAME/game/graphics/Graphics_export.h:
+        * Utils/GAME/game/graphics/Image_Manager_T.h:
+        * Utils/GAME/game/graphics/Image_Manager_T.inl:
+        * Utils/GAME/game/graphics/Image_Manager_T.cpp:
+        * Utils/GAME/game/graphics/Image_Resolver.h:
+        * Utils/GAME/game/graphics/Image_Resolver.inl:
+        * Utils/GAME/game/graphics/Image_Resolver.cpp:
+        * MPC/config/game_graphics.mpb:
+        
+          . Helper classes for doing graphics.
+
+        * Utils/GAME/game/utils/Registrar.h:
+        * Utils/GAME/game/utils/Registrar.inl:
+        * Utils/GAME/game/utils/Registrar.cpp:
+        
+          . Moved the Icon_Manager to the graphics library.
+
+        * PIM/PICML/decorators/ShowReference/DecoratorLib.h:
+
+          Removed this file.
+
+Fri Jun  4 21:52:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+
 Fri Jun  4 20:34:38 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * MPC/config/game_be.mpb:
         * MPC/config/game_decorator.mpb:
         * MPC/config/game_utils.mpb:
-        
+
           . Base project for building GAME components.
 
 Fri Jun  4 20:30:59 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

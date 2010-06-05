@@ -78,43 +78,6 @@ typedef ACE_Singleton <Registrar, ACE_RW_Thread_Mutex> GLOBAL_REGISTRAR;
 
 GAME_UTILS_SINGLETON_DECLARE (ACE_Singleton, Registrar, ACE_RW_Thread_Mutex);
 
-/**
- * @class Icon_Manager
- */
-class GAME_UTILS_Export Icon_Manager
-{
-public:
-  /// Default constructor.
-  Icon_Manager (void);
-
-  /// Destructor.
-  ~Icon_Manager (void);
-
-  bool lookup_icon (const std::string & icon_filename, 
-                    std::string & out_filename);
-
-  bool refresh (const GAME::Project & project, 
-                const Registrar & r, 
-                Registrar::ACCESS_MODE mode);
-
-  bool init (const GAME::Project & project, 
-             const Registrar & r, 
-             Registrar::ACCESS_MODE mode);
-
-  bool is_init (void) const;
-
-private:
-  /// Initialization status for the class.
-  bool is_init_;
-
-  /// Colleciton of paths.
-  std::vector <std::string> paths_;
-};
-
-typedef ACE_Singleton <Icon_Manager, ACE_RW_Thread_Mutex> GLOBAL_ICON_MANAGER;
-
-GAME_UTILS_SINGLETON_DECLARE (ACE_Singleton, Icon_Manager, ACE_RW_Thread_Mutex);
-
 }
 }
 

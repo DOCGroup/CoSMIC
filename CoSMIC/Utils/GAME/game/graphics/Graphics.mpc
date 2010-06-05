@@ -1,0 +1,14 @@
+// $Id$
+
+project (GAME_Graphics) : game_utils, gdiplus, cosmic_lib {
+  sharedname    = GAME_Graphics
+  dynamicflags += GAME_GRAPHICS_BUILD_DLL
+  
+  Source_Files {
+    Image_Resolver.cpp
+  }
+  
+  Template_Files {
+    Image_Manager_T.cpp
+  }
+}
