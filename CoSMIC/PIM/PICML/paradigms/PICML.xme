@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE project SYSTEM "mga.dtd">
 
-<project guid="{737888BF-08FA-4295-B0C5-01B88C6D9690}" cdate="Mon May 17 16:25:05 2010" mdate="Mon May 17 16:25:05 2010" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
+<project guid="{575B1323-57E3-4EA1-84B0-76A6B632477D}" cdate="Mon May 17 16:25:05 2010" mdate="Mon May 17 16:25:05 2010" version="" metaguid="{9D3F9884-FE60-409C-8FC1-45789193989B}" metaversion="" metaname="MetaGME">
 	<name>PICML</name>
 	<comment>Platform-Independent Component Modeling Language (PICML) is a domain-specific
 modeling language that allows design, packaging and deployment of component 
@@ -78330,7 +78330,7 @@ rrName = referedbyRequiredRequestPort</value>
 					<value></value>
 				</attribute>
 				<attribute kind="Decorator">
-					<value>MGA.Decorator.IDMLDecorator</value>
+					<value>MGA.Decorator.ComponentRefDecorator</value>
 				</attribute>
 				<attribute kind="DisplayedName" status="meta">
 					<value></value>

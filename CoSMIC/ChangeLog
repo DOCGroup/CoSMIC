@@ -1,3 +1,27 @@
+Sat Jun  5 04:15:52 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        
+          . Updated implementation so that the component decorator can
+            be used in other decorators.
+
+        * PIM/PICML/decorators/ComponentRefDecorator:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.idl:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.h:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Module.cpp:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_export.h:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decoratord.reg:
+        * PIM/PICML/decorators/ComponentRefDecorator/StdAfx.h:
+        * PIM/PICML/decorators/ComponentRefDecorator/StdAfx.cpp:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          . Implemented the ComponentRef decorator.
+
 Sat Jun  5 02:13:57 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator.h:

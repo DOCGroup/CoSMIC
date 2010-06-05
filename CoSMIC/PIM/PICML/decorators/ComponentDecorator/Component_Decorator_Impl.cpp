@@ -1,6 +1,7 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "Component_Decorator.h"
 #include "Component_Decorator_Impl.h"
 
 #include "game/MetaFCO.h"
@@ -19,6 +20,8 @@
 
 #define GME_PORT_MARGIN_X       8
 #define GME_PORT_MARGIN_Y       8
+
+DECLARE_DECORATOR (Component_Decorator, Component_Decorator_Impl);
 
 /**
  * @struct draw_port_t
@@ -288,6 +291,16 @@ get_preferred_size (long & sx, long & sy)
 //
 int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
 {
+  return (this->draw_component (g) |
+          this->draw_label (g) |
+          this->draw_ports (g));
+}
+
+//
+// draw_component
+//
+int Component_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
+{
   // Draw the main bitmap for this element.
   g.DrawImage (this->bitmap_.get (),
                this->location_.x_,
@@ -295,14 +308,7 @@ int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
                this->location_.cx_ - this->location_.x_,
                this->location_.cy_ - this->location_.y_);
 
-  // Draw the component's label.
-  this->draw_label (g);
-
-  if (this->l_ports_.empty () && this->r_ports_.empty ())
-    return 0;
-
-  /// Draw the component's ports.
-  return this->draw_ports (g);
+  return 0;
 }
 
 //
@@ -339,6 +345,9 @@ int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
 //
 int Component_Decorator_Impl::draw_ports (Gdiplus::Graphics & g)
 {
+  if (this->l_ports_.empty () && this->r_ports_.empty ())
+    return 0;
+
   // Draw the ports for the model.
   std::for_each (this->l_ports_.begin (),
                  this->l_ports_.end (),

@@ -13,9 +13,9 @@
 #ifndef _COMPONENT_DECORATOR_IMPL_H_
 #define _COMPONENT_DECORATOR_IMPL_H_
 
-#include "Component_Decorator.h"
 #include "game/be/Decorator_T.h"
 #include "game/be/Decorator_Impl.h"
+
 #include "game/MetaAspect.h"
 #include "game/Part.h"
 #include "game/graphics/Image_Manager_T.h"
@@ -57,9 +57,8 @@ public:
   /// and the components label.
   int draw (Gdiplus::Graphics & g);
 
-protected:
-  int initialize_ports (const GAME::FCO & fco, 
-                        GAME::graphics::Image_Resolver * resolver);
+  /// Draw the actual component.
+  int draw_component (Gdiplus::Graphics & g);
 
   /// Draw the component's ports.
   int draw_ports (Gdiplus::Graphics & g);
@@ -67,7 +66,9 @@ protected:
   /// Draw the label for the component.
   int draw_label (Gdiplus::Graphics & g);
 
-private:
+protected:
+  int initialize_ports (const GAME::FCO &,  GAME::graphics::Image_Resolver *);
+
   /// Inline struction for sorting the ports.
   struct sort_t
   {
@@ -113,7 +114,5 @@ private:
 
   GAME::graphics::Image_Manager_T <GAME::FCO> port_bitmaps_;
 };
-
-DECLARE_DECORATOR (Component_Decorator, Component_Decorator_Impl);
 
 #endif  // !defined _PORT_LAYOUT_DECORATOR_IMPL_H_
