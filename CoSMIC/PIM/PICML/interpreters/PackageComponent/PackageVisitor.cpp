@@ -9,6 +9,7 @@
 #include "boost/bind.hpp"
 #include "boost/ref.hpp"
 #include "UmlExt.h"
+#include <sstream>
 
 namespace PICML
 {
@@ -1652,29 +1653,30 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
   this->curr_ = ele;
 
   // Collect all the Components of this assembly into a set.
-  set<Component> comps = assembly.Component_kind_children();
+  set <ComponentInstance> comps = assembly.ComponentInstance_children ();
 
-  // Add all the shared Components of this assembly into the set.  A
-  // shared Component is implemented as a reference to a Component.  So
-  // just traverse the reference and add it to the set.
+  // TEMP DISABLE
+  //// Add all the shared Components of this assembly into the set.  A
+  //// shared Component is implemented as a reference to a Component.  So
+  //// just traverse the reference and add it to the set.
   set<ComponentRef> scomps = assembly.ComponentRef_kind_children();
-  for_each (scomps.begin(), scomps.end(),
-            bind (&ComponentRef::Accept, _1, ref (*this)));
+  //for_each (scomps.begin(), 
+  //          scomps.end(),
+  //          bind (&ComponentRef::Accept, _1, ref (*this)));
 
   // Collect all the immediate ComponentAssembly children of this assembly
-  set<ComponentAssembly>
-    subasms = assembly.ComponentAssembly_kind_children();
+  set <ComponentAssembly> subasms = assembly.ComponentAssembly_kind_children();
 
   // Add all the shared ComponentAssemblies of the current assembly.
   // Like shared components, shared assemblies are also implemented as
   // references.  So just traverse the references, and add them to the set.
-  set<ComponentAssemblyReference>
-    sasms = assembly.ComponentAssemblyReference_kind_children();
-  for_each (sasms.begin(), sasms.end(),
+  set <ComponentAssemblyReference> sasms = assembly.ComponentAssemblyReference_kind_children();
+  for_each (sasms.begin(),  
+            sasms.end(),
             bind (&ComponentAssemblyReference::Accept, _1, ref (*this)));
 
   // Maintain a list of all ComponentAssemblies in this assembly
-  vector<ComponentAssembly> assemblies;
+  vector <ComponentAssembly> assemblies;
 
   // Put ourselves in the global list first.
   assemblies.push_back (assembly);
@@ -1683,55 +1685,59 @@ void PackageVisitor::CreateAssemblies (const ComponentAssembly& assembly)
   // Component children of this assembly, and add them to the
   // assembly-specific list.
   while (!subasms.empty())
-    {
-      ComponentAssembly rassembly = *subasms.begin();
-      // Put the first assembly from the current list to the
-      // assembly-specific list.
-      assemblies.push_back (rassembly);
+  {
+    ComponentAssembly rassembly = *subasms.begin ();
+    // Put the first assembly from the current list to the
+    // assembly-specific list.
+    assemblies.push_back (rassembly);
 
-      // Remove this assembly so that we don't process it again.
-      subasms.erase (rassembly);
+    // Remove this assembly so that we don't process it again.
+    subasms.erase (rassembly);
 
-      // Get the components of the current assembly
-      set<Component> rcomps = rassembly.Component_kind_children();
+    // Get the components of the current assembly
+    set <ComponentInstance> rcomps = rassembly.ComponentInstance_children ();
 
-      // Get the shared components of the current assembly
-      scomps = rassembly.ComponentRef_kind_children();
-      for (set<ComponentRef>::const_iterator iter = scomps.begin();
-           iter != scomps.end();
-           ++iter)
-        {
-          const ComponentRef compRef = *iter;
-          rcomps.insert (compRef.ref());
-        }
-      // Insert both into the component list.
-      comps.insert (rcomps.begin(), rcomps.end());
+    // TODO When shared component support is re-enabled, the code 
+    // below needs to be updated.
 
-      // Get the subassemblies of the first assembly.
-      set<ComponentAssembly>
-        rasms = rassembly.ComponentAssembly_kind_children();
+    // Get the shared components of the current assembly
+    //scomps = rassembly.ComponentRef_kind_children ();
+    //std::for_each (scomps.begin (),
+    //               scomps.end (),
+    //               boost::bind (&set <ComponentInstance>::insert, 
+    //                            boost::ref (rcomps),
+    //                            boost::bind (&ComponentRef::ref, _1)));
+    // Insert both into the component list.
+    // comps.insert (rcomps.begin(), rcomps.end());
 
-      // Add all the shared ComponentAssemblies of the current assembly.
-      // Like shared components, shared assemblies are also implemented
-      // as references.  So just traverse the references, and add them to
-      // the set.
-      set<ComponentAssemblyReference>
-        sasms = rassembly.ComponentAssemblyReference_kind_children();
-      for (set<ComponentAssemblyReference>::const_iterator iter = sasms.begin();
-           iter != sasms.end();
-           ++iter)
-        {
-          const ComponentAssemblyReference asmRef = *iter;
-          rasms.insert (asmRef.ref());
-        }
+    // Get the subassemblies of the first assembly.
+    set <ComponentAssembly> rasms = rassembly.ComponentAssembly_kind_children();
 
-      // Insert them to the current list.
-      subasms.insert (rasms.begin(), rasms.end());
-    }
+    // Add all the shared ComponentAssemblies of the current assembly.
+    // Like shared components, shared assemblies are also implemented
+    // as references.  So just traverse the references, and add them to
+    // the set.
+    set<ComponentAssemblyReference>
+      sasms = rassembly.ComponentAssemblyReference_kind_children();
+    for (set<ComponentAssemblyReference>::const_iterator iter = sasms.begin();
+         iter != sasms.end();
+         ++iter)
+      {
+        const ComponentAssemblyReference asmRef = *iter;
+        rasms.insert (asmRef.ref());
+      }
+
+    // Insert them to the current list.
+    subasms.insert (rasms.begin(), rasms.end());
+  }
 
   // Create the appropriate component attribute value mappings
   this->CreateAttributeMappings (assemblies);
-  this->CreateAssemblyInstances (comps);
+
+  std::for_each (comps.begin (),
+                 comps.end (),
+                 boost::bind (&PackageVisitor::CreateAssemblyInstance, this, _1));
+
   this->CreateAssemblyConnections (assemblies);
   this->pop();
 }
@@ -1829,76 +1835,63 @@ void PackageVisitor::GetAttributeComponents (const AttributeMapping& mapping,
     }
 }
 
-void PackageVisitor::CreateAssemblyInstances (set<Component>& comps)
+//
+// CreateAssemblyInstances
+//
+void PackageVisitor::
+CreateAssemblyInstance (const ComponentInstance & comp)
 {
-  for (set<Component>::iterator iter = comps.begin();
-       iter != comps.end();
+  DOMElement* instance = this->doc_->createElement (XStr ("instance"));
+
+  this->curr_->appendChild (instance);
+  this->push();
+  this->curr_ = instance;
+  Component typeParent;
+  string uniqueName = comp.UUID();
+
+  uniqueName = string ("_") + uniqueName;
+  instance->setAttribute (XStr ("id"), XStr (uniqueName));
+  instance->appendChild (this->createSimpleContent ("name",
+                                                    comp.getPath (".", false, true, "name", true)));
+
+  string interfaceName = typeParent.name();
+  string refName = this->interfaces_[interfaceName];
+  refName += ".cpd";
+  DOMElement* refEle = this->doc_->createElement (XStr ("basePackage"));
+  refEle->setAttribute (XStr ("href"), XStr (refName));
+  instance->appendChild (refEle);
+
+  // TODO Add AssemblyConfigProperty back to PICML.
+
+  //set <AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty ();
+  //for_each (cps.begin(), cps.end(),
+  //          bind (&AssemblyConfigProperty::Accept, _1, ref (*this)));
+
+  set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
+  for_each (attrs.begin(), attrs.end(),
+            bind (&ReadonlyAttribute::Accept, _1, ref (*this)));
+
+  for (map<pair<string, string>, Property>::const_iterator iter = this->attrValues_.begin();
+       iter != this->attrValues_.end();
        ++iter)
     {
-      Component comp = *iter;
-      DOMElement* instance = this->doc_->createElement (XStr ("instance"));
-      this->curr_->appendChild (instance);
-      this->push();
-      this->curr_ = instance;
-      Component typeParent;
-      string uniqueName = comp.UUID();
-      // If the component's UUID is empty, then simply assign one.
-      if (uniqueName.empty())
-        comp.UUID() = uniqueName =  ::Utils::CreateUuid();
-      // Make sure that every instance has a uniue UUID.
-      if (comp.isInstance())
+      pair<pair<string, string>, Property>
+        attrVal = *iter;
+      pair<string, string> compAttr = attrVal.first;
+      if (compAttr.first == comp.getPath (".", false, true, "name", true))
         {
-          typeParent = comp.Archetype();
-          string parentName (typeParent.UUID());
-          if (uniqueName == parentName)
-            comp.UUID() = uniqueName = ::Utils::CreateUuid();
+          this->push();
+          DOMElement*
+            ele = this->doc_->createElement (XStr ("configProperty"));
+          this->curr_->appendChild (ele);
+          this->curr_ = ele;
+          Property val = attrVal.second;
+          this->CreatePropertyElement (compAttr.second, val);
+          this->pop();
         }
-      uniqueName = string ("_") + uniqueName;
-      instance->setAttribute (XStr ("id"), XStr (uniqueName));
-      instance->appendChild (this->createSimpleContent ("name",
-                                                        comp.getPath (".", false, true, "name", true)));
-
-      if (comp.isInstance())
-        {
-          typeParent = comp.Archetype();
-          while (typeParent.isInstance())
-            typeParent = typeParent.Archetype();
-        }
-      string interfaceName = typeParent.name();
-      string refName = this->interfaces_[interfaceName];
-      refName += ".cpd";
-      DOMElement* refEle = this->doc_->createElement (XStr ("basePackage"));
-      refEle->setAttribute (XStr ("href"), XStr (refName));
-      instance->appendChild (refEle);
-      set<AssemblyConfigProperty> cps = comp.dstAssemblyConfigProperty();
-      for_each (cps.begin(), cps.end(),
-                bind (&AssemblyConfigProperty::Accept, _1, ref (*this)));
-
-      set<ReadonlyAttribute> attrs = comp.ReadonlyAttribute_children();
-      for_each (attrs.begin(), attrs.end(),
-                bind (&ReadonlyAttribute::Accept, _1, ref (*this)));
-
-      for (map<pair<string, string>, Property>::const_iterator iter = this->attrValues_.begin();
-           iter != this->attrValues_.end();
-           ++iter)
-        {
-          pair<pair<string, string>, Property>
-            attrVal = *iter;
-          pair<string, string> compAttr = attrVal.first;
-          if (compAttr.first == comp.getPath (".", false, true, "name", true))
-            {
-              this->push();
-              DOMElement*
-                ele = this->doc_->createElement (XStr ("configProperty"));
-              this->curr_->appendChild (ele);
-              this->curr_ = ele;
-              Property val = attrVal.second;
-              this->CreatePropertyElement (compAttr.second, val);
-              this->pop();
-            }
-        }
-      this->pop();
     }
+
+  this->pop();
 }
 
 void PackageVisitor::Visit_ReadonlyAttribute(const ReadonlyAttribute& attr)
@@ -1921,41 +1914,53 @@ void PackageVisitor::Visit_AttributeValue(const AttributeValue& value)
   this->pop();
 }
 
-void PackageVisitor::Visit_AttributeDelegate(const AttributeDelegate&){}
-void PackageVisitor::Visit_AttributeMappingValue(const AttributeMappingValue&){}
-void PackageVisitor::Visit_AttributeMappingDelegate(const AttributeMappingDelegate&){}
-
-void PackageVisitor::CreateAssemblyConnections (vector<ComponentAssembly>& assemblies)
+//
+// CreateAssemblyConnections
+//
+void PackageVisitor::
+CreateAssemblyConnections (vector <ComponentAssembly> & assemblies)
 {
   for (vector<ComponentAssembly>::iterator iter = assemblies.begin();
        iter != assemblies.end();
        ++iter)
-    {
-      ComponentAssembly subasm = *iter;
-      set<invoke> invokes = subasm.invoke_kind_children();
-      for_each (invokes.begin(), invokes.end(),
-                bind (&invoke::Accept, _1, ref (*this)));
+  {
+    ComponentAssembly subasm = *iter;
+    set <invoke> invokes = subasm.invoke_kind_children();
 
-      set<emit> emits = subasm.emit_kind_children();
-      for_each (emits.begin(), emits.end(),
-                bind (&emit::Accept, _1, ref (*this)));
+    for_each (invokes.begin(), 
+              invokes.end(),
+              bind (&invoke::Accept, _1, ref (*this)));
 
-      set<publish> publishers = subasm.publish_kind_children();
-      for_each (publishers.begin(), publishers.end(),
-                bind (&publish::Accept, _1, ref (*this)));
+    set <sendsTo> st = subasm.sendsTo_children ();
+    std::for_each (st.begin (),
+                   st.end (),
+                   boost::bind (&sendsTo::Accept, _1, boost::ref (*this)));
 
-      set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
-      for_each (deliverTos.begin(), deliverTos.end(),
-                bind (&deliverTo::Accept, _1, ref (*this)));
+    //set <emit> emits = subasm.emit_kind_children();
 
-      set<PublishConnector>
-        connectors = subasm.PublishConnector_kind_children();
-      for_each (connectors.begin(), connectors.end(),
-                bind (&PublishConnector::Accept, _1, ref (*this)));
+    //for_each (emits.begin(), 
+    //          emits.end(),
+    //          bind (&emit::Accept, _1, ref (*this)));
 
-      this->publishers_.clear();
-      this->consumers_.clear();
-    }
+    //set <publish> publishers = subasm.publish_kind_children();
+
+    //for_each (publishers.begin(), 
+    //          publishers.end(),
+    //          bind (&publish::Accept, _1, ref (*this)));
+
+    //set<deliverTo> deliverTos = subasm.deliverTo_kind_children();
+    //for_each (deliverTos.begin(), 
+    //          deliverTos.end(),
+    //          bind (&deliverTo::Accept, _1, ref (*this)));
+
+    //set<PublishConnector> connectors = subasm.PublishConnector_kind_children();
+    //for_each (connectors.begin(), 
+    //          connectors.end(),
+    //          bind (&PublishConnector::Accept, _1, ref (*this)));
+
+    this->publishers_.clear();
+    this->consumers_.clear();
+  }
 }
 
 template <typename T, typename Del, typename DelRet, typename DelEndRet>
@@ -2129,112 +2134,81 @@ void PackageVisitor::Visit_invoke(const invoke& iv)
 
   map<Component,string> receptacles;
   map<Component,string> facets;
+
   this->GetReceptacleComponents (receptacle, receptacles);
   this->GetFacetComponents (facet, facets);
   this->CreateConnections (receptacles, facets);
 }
 
-void PackageVisitor::Visit_emit(const emit& ev)
+//
+// Visit_sendsTo
+//
+void PackageVisitor::Visit_sendsTo (const PICML::sendsTo & s)
 {
-  // Get the emitter end
-  OutEventPort emitter = ev.srcemit_end();
+  OutEventPort sender = s.srcsendsTo_end ();
+  InEventPort consumer = s.dstsendsTo_end ();
 
-  // Get the consumer end
-  InEventPort consumer = ev.dstemit_end();
+  if (sender.single_destination ())
+  {
+    // This connection is going to only one destination. This
+    // means we are dealing with an emitter.
+    map <Component, string> emitters;
+    map <Component, string> consumers;
 
-  map<Component,string> emitters;
-  map<Component,string> consumers;
-  this->GetEventSourceComponents (emitter, emitters);
-  this->GetEventSinkComponents (consumer, consumers);
-  this->CreateConnections (emitters, consumers);
+    this->GetEventSourceComponents (sender, emitters);
+    this->GetEventSinkComponents (consumer, consumers);
+    this->CreateConnections (emitters, consumers);
+  }
+  else
+  {
+    std::ostringstream ostr;
+    ostr << '_' << sender.uniqueId () << '_' << consumer.uniqueId () << '_';
+
+    this->publishers_[ostr.str ()] = sender;
+    this->consumers_.insert (make_pair (ostr.str (), consumer));
+  }
 }
 
-void PackageVisitor::Visit_publish(const publish& ev)
-{
-  // Get the publisher end
-  const OutEventPort publisher = ev.srcpublish_end();
-
-  // Get the connector end
-  const PublishConnector connector = ev.dstpublish_end();
-
-  // Create an entry in the publishers_ map
-  this->publishers_[string (connector.name())] = publisher;
-}
-
-void PackageVisitor::Visit_deliverTo(const deliverTo& dv)
-{
-  // Get the connector end
-  const  PublishConnector connector = dv.srcdeliverTo_end();
-
-  // Get the consumer end
-  const InEventPort consumer = dv.dstdeliverTo_end();
-
-  // Create an entry in the consumers_ map
-  this->consumers_.insert (make_pair (connector.name(), consumer));
-}
-
-void PackageVisitor::Visit_PublishConnector(const PublishConnector& pubctor)
-{
-  string ctor = pubctor.name();
-
-  // Get Publisher
-  OutEventPort publisher = this->publishers_[ctor];
-  map<Component,string> publishers;
-  this->GetEventSourceComponents (publisher, publishers);
-
-  for (map<Component,string>::const_iterator
-         iter = publishers.begin();
-       iter != publishers.end();
-       ++iter)
-    {
-      Component srcComp = iter->first;
-      string srcPortName = iter->second;
-
-      for (multimap<string, InEventPort>::const_iterator
-             iter = this->consumers_.lower_bound (ctor);
-           iter != this->consumers_.upper_bound (ctor);
-           ++iter)
-        {
-          // Get Consumer
-          InEventPort consumer = iter->second;
-          map<Component,string> consumers;
-          this->GetEventSinkComponents (consumer, consumers);
-          for (map<Component,string>::const_iterator
-                 iter = consumers.begin();
-               iter != consumers.end();
-               ++iter)
-            {
-              Component dstComp = iter->first;
-              string dstPortName = iter->second;
-              this->CreateConnection (srcComp, srcPortName, dstComp,
-                                      dstPortName);
-            }
-        }
-    }
-}
-
-void PackageVisitor::Visit_MonolithExecParameter(const MonolithExecParameter&)
-{}
-
-void PackageVisitor::Visit_Requirement(const Requirement&)
-{}
-
-void PackageVisitor::Visit_SatisfierProperty(const SatisfierProperty&)
-{}
-
-void PackageVisitor::Visit_ImplementationDependency(const ImplementationDependency&)
-{}
-
-void PackageVisitor::Visit_Capability(const Capability&)
-{}
-
-void PackageVisitor::Visit_AssemblyselectRequirement(const AssemblyselectRequirement&)
-{}
-
-
-void PackageVisitor::Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&)
-{}
-
+//void PackageVisitor::
+//Visit_PublishConnector(const PublishConnector& pubctor)
+//{
+//  string ctor = pubctor.name();
+//
+//  // Get Publisher
+//  OutEventPort publisher = this->publishers_[ctor];
+//  map<Component,string> publishers;
+//  this->GetEventSourceComponents (publisher, publishers);
+//
+//  for (map<Component,string>::const_iterator
+//         iter = publishers.begin();
+//       iter != publishers.end();
+//       ++iter)
+//    {
+//      Component srcComp = iter->first;
+//      string srcPortName = iter->second;
+//
+//      for (multimap<string, InEventPort>::const_iterator
+//             iter = this->consumers_.lower_bound (ctor);
+//           iter != this->consumers_.upper_bound (ctor);
+//           ++iter)
+//        {
+//          // Get Consumer
+//          InEventPort consumer = iter->second;
+//          map<Component,string> consumers;
+//          this->GetEventSinkComponents (consumer, consumers);
+//          for (map<Component,string>::const_iterator
+//                 iter = consumers.begin();
+//               iter != consumers.end();
+//               ++iter)
+//            {
+//              Component dstComp = iter->first;
+//              string dstPortName = iter->second;
+//              this->CreateConnection (srcComp, srcPortName, dstComp,
+//                                      dstPortName);
+//            }
+//        }
+//    }
+//}
 
 void PackageVisitor::Visit_InfoProperty(const InfoProperty& ip)
 {
@@ -2246,18 +2220,6 @@ void PackageVisitor::Visit_InfoProperty(const InfoProperty& ip)
   ref.Accept (*this);
   this->pop();
 }
-
-
-void PackageVisitor::Visit_MonolithDeployRequirement(const MonolithDeployRequirement&)
-{}
-
-
-void PackageVisitor::Visit_ImplementationDependsOn(const ImplementationDependsOn&)
-{}
-
-
-void PackageVisitor::Visit_ImplementationCapability(const ImplementationCapability&)
-{}
 
 string PackageVisitor::ExtractName(Udm::Object ob)
 {

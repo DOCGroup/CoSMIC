@@ -124,36 +124,20 @@ namespace PICML
     virtual void Visit_ComponentImplementations(const ComponentImplementations&);
     virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
     virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
-    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
 
-    virtual void Visit_Requirement(const Requirement&);
-    virtual void Visit_SatisfierProperty(const SatisfierProperty&);
-    virtual void Visit_ImplementationDependency(const ImplementationDependency&);
-    virtual void Visit_Capability(const Capability&);
-    virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&);
     virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-    virtual void Visit_PublishConnector(const PublishConnector&);
-    virtual void Visit_publish(const publish&);
-    virtual void Visit_deliverTo(const deliverTo&);
-    virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&);
+    virtual void Visit_sendsTo (const PICML::sendsTo & s);
     virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    virtual void Visit_emit(const emit&);
     virtual void Visit_invoke(const invoke&);
 
     virtual void Visit_InfoProperty(const InfoProperty&);
     virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
-    virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&);
     virtual void Visit_ConfigProperty(const ConfigProperty&);
-    virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&);
     virtual void Visit_Implements(const Implements&);
-    virtual void Visit_ImplementationCapability(const ImplementationCapability&);
     // Component Attribute related operations
     virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
     virtual void Visit_AttributeValue(const AttributeValue&);
-    virtual void Visit_AttributeDelegate(const AttributeDelegate&);
     virtual void Visit_AttributeMapping(const AttributeMapping&);
-    virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
-    virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
 
     // Critical Path related operations
 
@@ -213,7 +197,9 @@ namespace PICML
                            const string& srcPortName,
                            const Component& dstComp,
                            const string& dstPortName);
-    void CreateAssemblyInstances (set<Component>& comps);
+
+    void CreateAssemblyInstance (const ComponentInstance & inst);
+
     void CreateAssemblyConnections (vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (vector<ComponentAssembly>& assemblies);
     void CreatePropertyElement (string name, const Property& property);
