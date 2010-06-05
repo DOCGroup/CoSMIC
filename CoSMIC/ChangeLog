@@ -1,10 +1,19 @@
-Sat Jun  5 15:46:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+Sat Jun  5 16:23:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
         
+          . Reverted Package paradigm sheet.
+
+Sat Jun  5 15:46:25 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+
           . Fixed cardinality constaints in the metamodel.
 
 Sat Jun  5 15:44:26 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
