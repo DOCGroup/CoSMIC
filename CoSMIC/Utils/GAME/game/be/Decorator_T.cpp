@@ -15,6 +15,9 @@ namespace GAME
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::SetParam (BSTR name, VARIANT value)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
@@ -24,6 +27,9 @@ STDMETHODIMP Decorator_T <T, pclsid>::SetParam (BSTR name, VARIANT value)
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::GetParam (BSTR name, VARIANT* value)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   return E_DECORATOR_UNKNOWN_PARAMETER;
 }
 
@@ -34,6 +40,12 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 GetLocation (long *sx, long *sy, long *ex, long *ey)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  if (!this->is_loc_set_)
+    return E_DECORATOR_LOCISNOTSET;
+
   try
   {
     const GAME::utils::Rect & location = this->impl_.get_location ();
@@ -59,6 +71,12 @@ template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::
 GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
+  if (!this->is_loc_set_)
+    return E_DECORATOR_LOCISNOTSET;
+
   try
   {
     GAME::FCO fco (pFCO);
@@ -80,6 +98,9 @@ GetPortLocation (IMgaFCO *pFCO, long *sx, long *sy, long *ex, long *ey)
 template <typename T, const CLSID * pclsid>
 STDMETHODIMP Decorator_T <T, pclsid>::GetPorts (IMgaFCOs **portFCOs)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   try
   {
     // First, let's get the ports for the FCO
@@ -118,16 +139,28 @@ MouseMoved (ULONG flags,
             LONG py, 
             ULONGLONG transformHDC)
 {
-  HDC hdc = reinterpret_cast <HDC> (transformHDC);
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   CDC context;
-  context.Attach (hdc);
-  
-  int retval = this->impl_.mouse_moved (flags, GAME::utils::Point (px, py), context);
 
-  // Make sure we release the context.
-  context.Detach ();
+  try
+  {
+    HDC hdc = reinterpret_cast <HDC> (transformHDC);
+    context.Attach (hdc);
+    
+    int retval = this->impl_.mouse_moved (flags, GAME::utils::Point (px, py), context);
 
-  return retval;
+    // Make sure we release the context.
+    context.Detach ();
+    return retval;
+  }
+  catch (...)
+  {
+    context.Detach ();
+  }
+
+  return S_FALSE;
 }
 
 //
@@ -140,6 +173,9 @@ MouseLeftButtonDown (ULONG flags,
                      LONG py, 
                      ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -162,6 +198,9 @@ MouseLeftButtonUp (ULONG flags,
                    LONG py, 
                    ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -184,6 +223,9 @@ MouseLeftButtonDoubleClick (ULONG flags,
                             LONG py, 
                             ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -207,6 +249,9 @@ MouseRightButtonDown (ULONGLONG hCtxMenu,
                       LONG py,
                       ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HMENU menu = reinterpret_cast <HMENU> (hCtxMenu);
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
@@ -238,6 +283,9 @@ MouseRightButtonUp (ULONG flags,
                     LONG py, 
                     ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -260,6 +308,9 @@ MouseRightButtonDoubleClick (ULONG flags,
                              LONG py,
                              ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -282,6 +333,9 @@ MouseMiddleButtonDown (ULONG flags,
                        LONG py, 
                        ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   CDC context;
   context.Attach (hdc);
@@ -304,6 +358,9 @@ MouseMiddleButtonUp (ULONG flags,
                      LONG py, 
                      ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
   CDC context;
@@ -327,6 +384,9 @@ MouseMiddleButtonDoubleClick (ULONG flags,
                               LONG py, 
                               ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
   CDC context;
@@ -353,6 +413,9 @@ MouseWheelTurned (ULONG flags,
                   LONG py, 
                   ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
   CDC context;
@@ -381,6 +444,9 @@ DragEnter (ULONG* effect,
            LONG py, 
            ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   COleDataObject * data_object = reinterpret_cast <COleDataObject *> (pCOleDataObject);
 
@@ -411,6 +477,9 @@ DragOver (ULONG* effect,
           LONG py, 
           ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   COleDataObject * data_object = reinterpret_cast <COleDataObject *> (pCOleDataObject);
 
@@ -440,6 +509,9 @@ Drop (ULONGLONG pCOleDataObject,
       LONG py, 
       ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
   COleDataObject * data_object = reinterpret_cast <COleDataObject *> (pCOleDataObject);
 
@@ -466,6 +538,9 @@ DropFile (ULONGLONG drop_info,
           LONG py,
           ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
   CDC context;
@@ -492,6 +567,9 @@ MenuItemSelected (ULONG menuItemId,
                   LONG py, 
                   ULONGLONG transformHDC)
 {
+  if (!this->is_init_)
+    return E_DECORATOR_UNINITIALIZED;
+
   HDC hdc = reinterpret_cast <HDC> (transformHDC);
 
   CDC context;

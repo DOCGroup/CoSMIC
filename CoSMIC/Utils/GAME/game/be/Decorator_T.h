@@ -83,6 +83,10 @@ public:
 private:
   /// The implementation of the decorator.
   T impl_;
+
+  bool is_init_;
+
+  bool is_loc_set_;
 };
 
 }
