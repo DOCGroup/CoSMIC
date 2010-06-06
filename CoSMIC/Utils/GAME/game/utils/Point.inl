@@ -194,5 +194,23 @@ const Rect & Rect::operator = (const Rect & r)
   return *this;
 }
 
+//
+// height
+//
+GAME_INLINE
+long Rect::height (void) const
+{
+  return this->cy_ - this->y_;
+}
+
+//
+// height
+//
+GAME_INLINE
+long Rect::width (void) const
+{
+  return this->cx_ - this->x_;
+}
+
 }
 }

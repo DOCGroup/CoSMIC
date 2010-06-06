@@ -21,6 +21,10 @@
 #define GME_PORT_MARGIN_X       8
 #define GME_PORT_MARGIN_Y       8
 
+#define COMPONENT_DEFUALT_WIDTH     143
+#define COMPONENT_DEFAULT_HEIGHT    70
+#define COMPONENT_LINE_WIDTH        3
+
 DECLARE_DECORATOR (Component_Decorator, Component_Decorator_Impl);
 
 /**
@@ -42,7 +46,7 @@ public:
 
   void operator () (const std::pair <GAME::FCO, GAME::utils::Point> & e)
   {
-    Gdiplus::Image * image = 0;
+    Gdiplus::Bitmap * image = 0;
 
     if (this->bitmaps_.get_image (e.first, image))
     {
@@ -86,7 +90,11 @@ Component_Decorator_Impl::~Component_Decorator_Impl (void)
 //
 void Component_Decorator_Impl::destroy (void)
 { 
+  this->aspect_.release ();
+
   this->port_bitmaps_.clear ();
+  this->l_ports_.clear ();
+  this->r_ports_.clear ();
 }
 
 //
@@ -119,25 +127,18 @@ initialize (const GAME::Project & project,
 
   // Initialize the icon manager.
   Image_Resolver * resolver = GLOBAL_IMAGE_RESOLVER::instance ();
-
+  
   if (!resolver->is_init ())
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
-  std::string icon_filename;
-
   if (fco.is_nil ())
   {
-    // Get the icon for the element in the parts browser.
+    // We are going to show the metaname.
     GAME::Meta::FCO metafco = part.role ().kind ();
-
-    icon_filename = metafco.registry_value ("icon");
     this->label_ = metafco.display_name ().c_str ();
   }
   else
   {
-    // Get the icon filename.
-    icon_filename = fco.registry_value ("icon");
-
     // Determine if we need to show the label for the element.
     std::string show_name = fco.registry_value ("isNameEnabled");
 
@@ -145,18 +146,8 @@ initialize (const GAME::Project & project,
       this->label_ = fco.name ();
   }
 
-  // Determine the exact location of the filename based on the
-  // paths retrieved from the registrar.
-  std::string filename;
-
-  if (!resolver->lookup_icon (icon_filename, filename))
-    return E_DECORATOR_INIT_WITH_NULL;
-
-  CA2W tempstr (filename.c_str ());
-  this->bitmap_.reset (Gdiplus::Bitmap::FromFile (tempstr));
-
   if (!fco.is_nil ())
-    this->initialize_ports (fco, resolver);
+    this->initialize_ports ("InterfaceDefinition", fco, resolver);
 
   return S_OK;
 }
@@ -165,11 +156,13 @@ initialize (const GAME::Project & project,
 // initialize_ports
 //
 int Component_Decorator_Impl::
-initialize_ports (const GAME::FCO & fco, GAME::graphics::Image_Resolver * resolver)
+initialize_ports (const std::string & aspect, 
+                  const GAME::FCO & fco,
+                  GAME::graphics::Image_Resolver * resolver)
 {
   GAME::Model model = GAME::Model::_narrow (fco);
   GAME::Meta::Model metamodel = model.meta ();
-  this->aspect_ = metamodel.aspect ("InterfaceDefinition");
+  this->aspect_ = metamodel.aspect (aspect);
 
   std::vector <GAME::FCO> ports;
   if (model.children (this->aspect_, ports) == 0)
@@ -180,6 +173,7 @@ initialize_ports (const GAME::FCO & fco, GAME::graphics::Image_Resolver * resolv
 
   GAME::Part part;
   std::string icon_filename, filename;
+  Gdiplus::Bitmap * image = 0;
 
   for (; iter != iter_end; ++ iter)
   {
@@ -214,19 +208,21 @@ initialize_ports (const GAME::FCO & fco, GAME::graphics::Image_Resolver * resolv
     GAME::FCO refers_to = inherit.refers_to ();
 
     if (!refers_to.is_nil ())
-      this->initialize_ports (refers_to, resolver);
+      this->initialize_ports ("InterfaceDefinition", refers_to, resolver);
   }
 
   return 0;
 }
 
+/**
+ * @struct set_port_location_t
+ *
+ * Functor to help set the port location.
+ */
 struct set_port_location_t
 {
   set_port_location_t (GAME::utils::Point & next)
-    : next_ (next)
-  {
-
-  }
+    : next_ (next) { }
 
   void operator () (std::pair <const GAME::FCO, GAME::utils::Point> & e) 
   {
@@ -247,6 +243,8 @@ private:
 void Component_Decorator_Impl::
 set_location (const GAME::utils::Rect & loc)
 {
+  // Now that we know our dimensions, let's draw the bitmap
+  // for this component to size.
   GAME::utils::Point pt (loc.x_, loc.y_);
 
   // Set the port locations for the left side of model. 
@@ -263,8 +261,39 @@ set_location (const GAME::utils::Rect & loc)
                  this->r_ports_.end (),
                  set_port_location_t (pt));
 
-  // Pass control to the base class.
+  // Pass control to the base class and set the graphics path.
   GAME::Decorator_Impl::set_location (loc);
+
+  // Initialize the graphics path for the component.
+  this->initialize_graphics_path ();
+}
+
+//
+// initialize_graphics_path
+//
+int Component_Decorator_Impl::initialize_graphics_path (void)
+{
+  static const int cs = 15;
+  int xr = this->location_.x_ + (this->location_.width () - cs);
+  int yr = this->location_.y_ + (this->location_.height () - cs);
+
+  Gdiplus::Rect tl (this->location_.x_, this->location_.y_, cs, cs);
+  Gdiplus::Rect tr (xr, this->location_.y_ , cs, cs);
+  Gdiplus::Rect bl (this->location_.x_, yr, cs, cs);
+  Gdiplus::Rect br (xr, yr, cs, cs);
+
+  // Reset the graphics path.
+  this->graphics_path_.Reset ();
+
+  // Start drawing the component image.
+  this->graphics_path_.StartFigure ();
+  this->graphics_path_.AddArc (tl, 180.0, 90.0);
+  this->graphics_path_.AddArc (tr, 270.0, 90.0);
+  this->graphics_path_.AddArc (br, 360.0, 90.0);
+  this->graphics_path_.AddArc (bl, 90.0, 90.0);
+  this->graphics_path_.CloseFigure ();
+
+  return 0;
 }
 
 //
@@ -274,10 +303,10 @@ int Component_Decorator_Impl::
 get_preferred_size (long & sx, long & sy)
 {
   // The width of the component is the same.
-  sx = this->bitmap_->GetWidth ();
+  sx = COMPONENT_DEFUALT_WIDTH;
 
   // Determine the height of the component's bitmap.
-  long curr_height = this->bitmap_->GetHeight ();
+  long curr_height = COMPONENT_DEFAULT_HEIGHT;
   long l_height = (this->l_ports_.size () * (GME_PORT_HEIGHT + GME_PORT_PADDING_Y)) + (2 * GME_PORT_MARGIN_Y);
   long r_height = (this->r_ports_.size () * (GME_PORT_HEIGHT + GME_PORT_PADDING_Y)) + (2 * GME_PORT_MARGIN_Y);
   long p_height = l_height > r_height ? l_height : r_height;
@@ -301,12 +330,12 @@ int Component_Decorator_Impl::draw (Gdiplus::Graphics & g)
 //
 int Component_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
 {
-  // Draw the main bitmap for this element.
-  g.DrawImage (this->bitmap_.get (),
-               this->location_.x_,
-               this->location_.y_,
-               this->location_.cx_ - this->location_.x_,
-               this->location_.cy_ - this->location_.y_);
+  // Start drawing the component image.
+  static const Gdiplus::SolidBrush brush (Gdiplus::Color (210, 210, 210));
+  g.FillPath (&brush, &this->graphics_path_);
+
+  static const Gdiplus::Pen pen (Gdiplus::Color (100, 100, 100), COMPONENT_LINE_WIDTH);
+  g.DrawPath (&pen, &this->graphics_path_);
 
   return 0;
 }
@@ -316,12 +345,12 @@ int Component_Decorator_Impl::draw_component (Gdiplus::Graphics & g)
 //
 int Component_Decorator_Impl::draw_label (Gdiplus::Graphics & g)
 {
-  float height = this->location_.cy_ - this->location_.y_;
-  float px = static_cast <float> (this->location_.x_) + (this->bitmap_->GetWidth () / 2.0);
+  float height = this->location_.height ();
+  float px = static_cast <float> (this->location_.x_) + (this->location_.width () / 2.0);
   float py = static_cast <float> (this->location_.y_) + (height + 15.0);
 
-  Gdiplus::Font font (L"Arial", 12);
-  Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
+  static const Gdiplus::Font font (L"Arial", 12);
+  static const Gdiplus::SolidBrush brush (Gdiplus::Color (0, 0, 0));
 
   Gdiplus::StringFormat format;
   format.SetAlignment (Gdiplus::StringAlignmentCenter);

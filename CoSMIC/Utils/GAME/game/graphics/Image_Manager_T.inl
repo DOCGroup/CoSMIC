@@ -25,5 +25,17 @@ Image_Manager_T <T>::~Image_Manager_T (void)
   this->clear ();
 }
 
+//
+// associate_image
+//
+template <typename T>
+GAME_INLINE
+bool Image_Manager_T <T>::
+associate_image (const T & key, const std::string & filename)
+{
+  Gdiplus::Bitmap * image = 0;
+  return this->associate_image (key, filename, image);
+}
+
 }
 }

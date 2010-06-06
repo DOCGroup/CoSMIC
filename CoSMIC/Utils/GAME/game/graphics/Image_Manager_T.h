@@ -35,19 +35,21 @@ public:
 
   bool associate_image (const T & key,  const std::string & filename);
 
-  bool get_image (const std::string & filename, Gdiplus::Image * & image) const;
+  bool associate_image (const T & key,  const std::string & filename, Gdiplus::Bitmap * & image);
 
-  bool get_image (const T & key, Gdiplus::Image * & image) const;
+  bool get_image (const std::string & filename, Gdiplus::Bitmap * & image) const;
+
+  bool get_image (const T & key, Gdiplus::Bitmap * & image) const;
 
   /// Clear the elements in the manager.
   void clear (void);
 
 private:
-  typedef std::map <std::string, Gdiplus::Image *> image_map_t;
+  typedef std::map <std::string, Gdiplus::Bitmap *> image_map_t;
 
   image_map_t images_;
 
-  std::map <T, Gdiplus::Image *> assoc_;
+  std::map <T, Gdiplus::Bitmap *> assoc_;
 };
 
 }

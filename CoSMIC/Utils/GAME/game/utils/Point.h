@@ -155,6 +155,10 @@ public:
   /// Assignment operator
   const Rect & operator = (const Rect & r);
 
+  long width (void) const;
+
+  long height (void) const;
+
   long x_;
   long y_;
 

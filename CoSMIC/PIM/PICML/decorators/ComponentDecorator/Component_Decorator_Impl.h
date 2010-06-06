@@ -67,7 +67,11 @@ public:
   int draw_label (Gdiplus::Graphics & g);
 
 protected:
-  int initialize_ports (const GAME::FCO &,  GAME::graphics::Image_Resolver *);
+  int initialize_ports (const std::string & aspect,
+                        const GAME::FCO &, 
+                        GAME::graphics::Image_Resolver *);
+
+  int initialize_graphics_path (void);
 
   /// Inline struction for sorting the ports.
   struct sort_t
@@ -102,7 +106,7 @@ protected:
   std::string label_;
 
   /// Pointer to the loaded bitmap.
-  std::auto_ptr <Gdiplus::Bitmap> bitmap_;
+  Gdiplus::GraphicsPath graphics_path_;
 
   GAME::Meta::Aspect aspect_;
 
