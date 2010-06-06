@@ -22,6 +22,6 @@ project (ComponentRef_Decorator): game_graphics, game_decorator {
   }
 
   Resource_Files {
-
+    ComponentRef_Decorator.rc
   }
 }

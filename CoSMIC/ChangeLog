@@ -1,21 +1,33 @@
+Sun Jun  6 16:54:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.rc:
+        * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.cpp:
+        * PIM/PICML/decorators/ComponentRefDecorator/refarrow.bmp:
+        * PIM/PICML/decorators/ComponentRefDecorator/resource.h:
+        
+          . The reference arrow is now bundled with the decorator.
+          
+          . Move the reference arrow to the opposite side.
+
 Sun Jun  6 16:18:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.h:
         * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
-        
-          . The component decorator is now drawn manually so that 
+
+          . The component decorator is now drawn manually so that
             it's image is not distorted when shows a LOT of ports
             that cause its height to be more than expected.
 
         * Utils/GAME/game/graphics/Image_Manager_T.h:
         * Utils/GAME/game/graphics/Image_Manager_T.inl:
         * Utils/GAME/game/graphics/Image_Manager_T.cpp:
-        
+
           . Change Image * to Bitmap *.
 
         * Utils/GAME/game/utils/Point.h:
         * Utils/GAME/game/utils/Point.inl:
-        
+
           . Added width () and height () methods.
 
 Sun Jun  6 12:36:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>

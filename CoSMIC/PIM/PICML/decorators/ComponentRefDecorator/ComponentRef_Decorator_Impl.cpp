@@ -1,6 +1,7 @@
 // $Id$
 
 #include "StdAfx.h"
+#include "resource.h"
 #include "ComponentRef_Decorator.h"
 #include "ComponentRef_Decorator_Impl.h"
 #include "../ComponentDecorator/Component_Decorator_Impl.h"
@@ -15,7 +16,6 @@ DECLARE_DECORATOR (ComponentRef_Decorator, ComponentRef_Decorator_Impl);
 
 namespace icons
 {
-  static const std::string refarrow ("refarrow.bmp");
   static const std::string component ("component.bmp");
 };
 
@@ -45,6 +45,8 @@ initialize_ex (const GAME::Project & project,
                IMgaCommonDecoratorEvents * eventSink, 
                ULONGLONG parentWnd)
 {
+  AFX_MANAGE_STATE (AfxGetStaticModuleState ());
+
   using GAME::utils::GLOBAL_REGISTRAR;
   using GAME::utils::Registrar;
 
@@ -58,12 +60,15 @@ initialize_ex (const GAME::Project & project,
     resolver->init (project, *GLOBAL_REGISTRAR::instance (), Registrar::ACCESS_BOTH);
 
   // Load the reference arrow into memory.
-  std::string filename;
-  if (!resolver->lookup_icon (icons::refarrow, filename))
-    return E_DECORATOR_INIT_WITH_NULL;
+  HINSTANCE hinst = ::AfxFindResourceHandle (MAKEINTRESOURCEA (IDB_REFARROW), 
+                                             RT_BITMAP);
 
-  CA2W tempstr (filename.c_str ());
-  this->refarrow_.reset (Gdiplus::Bitmap::FromFile (tempstr));
+  Gdiplus::Bitmap * bitmap = 
+    Gdiplus::Bitmap::FromResource (hinst, 
+                                   MAKEINTRESOURCEW (IDB_REFARROW));
+
+  std::string filename;
+  this->refarrow_.reset (bitmap);
 
   if (fco.is_nil ())
   {
@@ -159,15 +164,11 @@ int ComponentRef_Decorator_Impl::draw (Gdiplus::Graphics & g)
                  this->location_.cy_ - this->location_.y_);
   }
 
-  long width = this->location_.cx_ - this->location_.x_;
-  long height = this->location_.cy_ - this->location_.y_;
-
-  long px = (this->location_.x_ + width) - this->refarrow_->GetWidth ();
-  long py = (this->location_.y_ + height) - this->refarrow_->GetHeight ();
+  const long py = (this->location_.y_ + this->location_.height ()) - this->refarrow_->GetHeight ();
 
   // Draw the overlay image.
   g.DrawImage (this->refarrow_.get (),
-               px,
+               this->location_.x_,
                py, 
                this->refarrow_->GetWidth (),
                this->refarrow_->GetHeight ());
