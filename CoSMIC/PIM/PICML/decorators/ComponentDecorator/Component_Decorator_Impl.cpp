@@ -86,7 +86,7 @@ Component_Decorator_Impl::~Component_Decorator_Impl (void)
 //
 void Component_Decorator_Impl::destroy (void)
 { 
-
+  this->port_bitmaps_.clear ();
 }
 
 //

@@ -9,19 +9,6 @@ namespace GAME
 namespace graphics
 {
 //
-// ~Image_Manager
-//
-template <typename T>
-Image_Manager_T <T>::~Image_Manager_T (void)
-{
-  std::map <std::string, Gdiplus::Image *>::iterator 
-    iter = this->images_.begin (), iter_end = this->images_.end ();
-
-  for (; iter != iter_end; ++ iter)
-    delete iter->second;
-}
-
-//
 // associate_image
 //
 template <typename T>
@@ -75,6 +62,23 @@ get_image (const std::string & filename, Gdiplus::Image * & image) const
   }
 
   return false;
+}
+
+//
+// clear
+//
+template <typename T>
+void Image_Manager_T <T>::clear (void)
+{
+  image_map_t::iterator
+    iter = this->images_.begin (),
+    iter_end = this->images_.end ();
+
+  for (; iter != iter_end; ++ iter)
+    delete iter->second;
+
+  this->images_.clear ();
+  this->assoc_.clear ();
 }
 
 }

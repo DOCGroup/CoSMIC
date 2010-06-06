@@ -32,7 +32,9 @@ GAME_INLINE
 Registrar::Registrar (const Registrar & r)
 : impl_ (0)
 {
-  r.impl_->AddRef ();
+  if (r.impl_)
+    r.impl_->AddRef ();
+
   this->impl_ = r.impl_;
 }
 
@@ -41,7 +43,8 @@ Registrar::Registrar (const Registrar & r)
 //
 Registrar::~Registrar (void)
 {
-  this->impl_->Release ();
+  if (this->impl_)
+    this->impl_->Release ();
 }
 
 
@@ -74,6 +77,21 @@ get_paradigm_connstr (const std::string & name, ACCESS_MODE mode) const
 
   CW2A tempstr (connstr);
   return tempstr.m_psz;
+}
+
+//
+// operator = 
+//
+const Registrar & Registrar::operator = (const Registrar & r)
+{
+  if (r.impl_)
+    r.impl_->AddRef ();
+
+  if (this->impl_)
+    this->impl_->Release ();
+
+  this->impl_ = r.impl_;
+  return *this;
 }
 
 }

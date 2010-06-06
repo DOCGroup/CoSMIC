@@ -39,8 +39,13 @@ public:
 
   bool get_image (const T & key, Gdiplus::Image * & image) const;
 
+  /// Clear the elements in the manager.
+  void clear (void);
+
 private:
-  std::map <std::string, Gdiplus::Image *> images_;
+  typedef std::map <std::string, Gdiplus::Image *> image_map_t;
+
+  image_map_t images_;
 
   std::map <T, Gdiplus::Image *> assoc_;
 };

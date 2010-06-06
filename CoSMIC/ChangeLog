@@ -1,3 +1,21 @@
+Sun Jun  6 05:26:33 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/decorators/ComponentDecorator/Component_Decorator_Impl.cpp:
+        
+          . The destroy () method clears the image manager.
+
+        * Utils/GAME/game/graphics/Image_Manager_T.h:
+        * Utils/GAME/game/graphics/Image_Manager_T.inl:
+        * Utils/GAME/game/graphics/Image_Manager_T.cpp:
+        
+          . Implemented a clear () method for clearing the contents
+            of the manager. 
+
+        * Utils/GAME/game/utils/Registrar.h:
+        * Utils/GAME/game/utils/Registrar.cpp:
+        
+          . Added checks around the naked pointer.
+
 Sun Jun  6 04:34:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:
@@ -20,8 +38,8 @@ Sun Jun  6 04:34:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/paradigms/PICML.xme:
         * PIM/PICML/paradigms/PICML.xml:
         * PIM/PICML/paradigms/PICML.xmp:
-        
-          . Fixed capability to add a configProperty directly to a 
+
+          . Fixed capability to add a configProperty directly to a
             component instance.
 
         * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.h:

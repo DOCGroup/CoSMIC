@@ -67,6 +67,8 @@ public:
 
   std::string get_paradigm_connstr (const std::string & name, ACCESS_MODE mode) const;
 
+  const Registrar & operator = (const Registrar & r);
+
 private:
   /// Pointer to the implementation.
   IMgaRegistrar * impl_;
