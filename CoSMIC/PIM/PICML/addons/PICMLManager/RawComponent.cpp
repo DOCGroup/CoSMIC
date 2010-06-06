@@ -47,19 +47,29 @@ STDMETHODIMP RawComponent::Initialize (struct IMgaProject * project)
   this->handlers_.bind ("AttributeValue", &RawComponent::handle_AttributeValue);
   this->handlers_.bind ("AttributeMember", &RawComponent::handle_AttributeMember);
   this->handlers_.bind ("CollocationGroup", &RawComponent::handle_CollocationGroup);
+
   this->handlers_.bind ("Component", &RawComponent::handle_Component);
+  this->handlers_.bind ("ConnectorObject", &RawComponent::handle_ConnectorObject);
+
   this->handlers_.bind ("ComponentAssembly", &RawComponent::handle_ComponentAssembly);
   this->handlers_.bind ("ComponentPackage", &RawComponent::handle_ComponentPackage);
   this->handlers_.bind ("ComponentRef", &RawComponent::handle_ComponentRef);
   this->handlers_.bind ("Domain", &RawComponent::handle_Domain);
   this->handlers_.bind ("PackageConfiguration", &RawComponent::handle_PackageConfiguration);
+
   this->handlers_.bind ("MonolithicImplementation", &RawComponent::handle_MonolithicImplementation);
-  this->handlers_.bind ("ImplementationArtifact", &RawComponent::handle_ImplementationArtifact);
   this->handlers_.bind ("ComponentImplementation", &RawComponent::handle_ComponentImplementation);
+  this->handlers_.bind ("ConnectorImplementation", &RawComponent::handle_ConnectorImplementation);
+
   this->handlers_.bind ("ComponentFactoryInstance", &RawComponent::handle_ComponentFactoryInstance);
   this->handlers_.bind ("DeploymentPlan", &RawComponent::handle_DeploymentPlan);
   this->handlers_.bind ("NodeReference", &RawComponent::handle_NodeReference);
   this->handlers_.bind ("ComponentInstanceType", &RawComponent::handle_ComponentInstanceType);
+
+  this->handlers_.bind ("ImplementationArtifact", &RawComponent::handle_ImplementationArtifact);
+
+  this->handlers_.bind ("ComponentInstance", &RawComponent::handle_ComponentInstance);
+  this->handlers_.bind ("ConnectorInstance", &RawComponent::handle_ConnectorInstance);
 
   return S_OK;
 }
@@ -626,6 +636,42 @@ handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj)
 //
 void RawComponent::
 handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj)
+{
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+}
+
+//
+// handle_ConnectorImplementation
+//
+void RawComponent::
+handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj)
+{
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+}
+
+//
+// handle_ConnectorObject
+//
+void RawComponent::
+handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj)
+{
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+}
+
+//
+// handle_ComponentInstance
+//
+void RawComponent::
+handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj)
+{
+  this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
+}
+
+//
+// handle_ConnectorInstance
+//
+void RawComponent::
+handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj)
 {
   this->handle_UUID (eventmask, GAME::FCO::_narrow (obj));
 }

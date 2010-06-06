@@ -55,15 +55,25 @@ private:
   void handle_AttributeValue (unsigned long eventmask, GAME::Object & obj);
   void handle_ExternalDelegate (unsigned long eventmask, GAME::Object & obj);
   void handle_PublishConnector (unsigned long eventmask, GAME::Object & obj);
-  void handle_Component (unsigned long eventmask, GAME::Object & obj);
   void handle_DeploymentPlan (unsigned long eventmask, GAME::Object & obj);
   void handle_ComponentAssembly (unsigned long eventmask, GAME::Object & obj);
   void handle_ComponentPackage (unsigned long eventmask, GAME::Object & obj);
+
   void handle_ComponentRef (unsigned long eventmask, GAME::Object & obj);
-  void handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
+
+  void handle_ConnectorObject (unsigned long eventmask, GAME::Object & obj);
+  void handle_Component (unsigned long eventmask, GAME::Object & obj);
+
+  void handle_ComponentInstance (unsigned long eventmask, GAME::Object & obj);
+  void handle_ConnectorInstance (unsigned long eventmask, GAME::Object & obj);
+
   void handle_ComponentFactoryInstance (unsigned long eventmask, GAME::Object & obj);
   void handle_Domain (unsigned long eventmask, GAME::Object & obj);
+ 
   void handle_MonolithicImplementation (unsigned long eventmask, GAME::Object & obj);
+  void handle_ConnectorImplementation (unsigned long eventmask, GAME::Object & obj);
+  void handle_ComponentImplementation (unsigned long eventmask, GAME::Object & obj);
+
   void handle_ImplementationArtifact (unsigned long eventmask, GAME::Object & obj);
   void handle_PackageConfiguration (unsigned long eventmask, GAME::Object & obj);
   void handle_NodeReference (unsigned long eventmask, GAME::Object & obj);
