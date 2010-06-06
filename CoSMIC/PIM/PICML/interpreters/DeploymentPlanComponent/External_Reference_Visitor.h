@@ -28,13 +28,13 @@ class PICML_External_Reference_Visitor :
 {
 public:
   /// Default constructor.
-  PICML_External_Reference_Visitor (xercesc::DOMElement * parent);
+  PICML_External_Reference_Visitor (xercesc::DOMDocument * doc);
 
   /// Destructor
   virtual ~PICML_External_Reference_Visitor (void);
 
   // Visit a Component
-  virtual void Visit_Component (const PICML::Component & c);
+  virtual void Visit_ComponentInstance (const PICML::ComponentInstance & c);
 
   virtual void Visit_RequiredRequestPort (const PICML::RequiredRequestPort & receptacle);
 
@@ -44,11 +44,17 @@ public:
 
   virtual void Visit_OutEventPort (const PICML::OutEventPort & out_event);
 
-protected:
+  const std::vector <xercesc::DOMElement *> & connections (void) const;
+
+private:
   void Visit_Port (const PICML::Port & port,
                    const std::string & type,
-                   const std::string & provider,
+                   bool provider,
                    const PICML::ExternalDelegate & ed);
+
+  xercesc::DOMDocument * doc_;
+
+  std::vector <xercesc::DOMElement *> conns_;
 };
 
 #include "External_Reference_Visitor.inl"

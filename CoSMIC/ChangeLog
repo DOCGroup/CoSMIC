@@ -1,9 +1,40 @@
+Sun Jun  6 04:34:17 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/Connection_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanComponent.mpc:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/DeploymentPlanVisitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.inl:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/External_Reference_Visitor.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/UdmApp.cpp:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/XML_Document.h:
+
+          . Updated deployment plan generator so that it builds with
+            the latest version of the PICML model. Still need to add
+            support for generating connectors to model and re-add port
+            delegates.
+
+        * PIM/PICML/paradigms/PICML-uml.xme:
+        * PIM/PICML/paradigms/PICML.xme:
+        * PIM/PICML/paradigms/PICML.xml:
+        * PIM/PICML/paradigms/PICML.xmp:
+        
+          . Fixed capability to add a configProperty directly to a 
+            component instance.
+
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.h:
+        * PIM/PICML/interpreters/DeploymentPlanComponent/PlanLocalityVisitor.cpp:
+
+          Removed these files.
+
 Sat Jun  5 17:18:02 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * Utils/GAME/game/be/Decorator_Module.h:
-        
+
           . Fixed Release build errors.
-          
+
 Sat Jun  5 16:23:49 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/paradigms/PICML-uml.xme:

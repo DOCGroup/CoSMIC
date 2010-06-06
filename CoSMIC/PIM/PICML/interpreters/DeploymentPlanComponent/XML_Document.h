@@ -16,6 +16,8 @@
 #include "xercesc/dom/DOM.hpp"
 #include <string>
 
+#include "DeploymentPlan_Export.h"
+
 /**
  * @class XML_Document
  *
@@ -24,11 +26,11 @@
  * directory structure of CoSMIC is flushed out more, this class
  * will be moved elsewhere.
  */
-class XML_Document
+class DeploymentPlan_Export XML_Document
 {
 public:
   /// Default constructor
-  XML_Document (xercesc::DOMElement * curr);
+  XML_Document (xercesc::DOMElement * curr = 0);
 
   /// Destructor.
   virtual ~XML_Document (void);

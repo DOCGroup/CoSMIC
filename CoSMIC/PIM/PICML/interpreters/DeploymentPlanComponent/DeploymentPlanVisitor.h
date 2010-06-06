@@ -13,323 +13,170 @@
 #include "xercesc/util/XMLString.hpp"
 #include "xercesc/dom/DOM.hpp"
 #include "xercesc/framework/LocalFileFormatTarget.hpp"
-#include "DeploymentPlan_Export.h"
+
 #include "Utils/UDM/Abstract_Type_Dispatcher_T.h"
+#include "XML_Document.h"
 
-namespace PICML
+#include "DeploymentPlan_Export.h"
+
+/**
+ * @class PredefinedType_Dispatcher
+ */
+class PredefinedType_Dispatcher :
+  public UDM_Abstract_Type_Dispatcher_T <PICML::Visitor>
 {
-  using xercesc::DOMImplementation;
-  using xercesc::DOMDocument;
-  using xercesc::DOMElement;
-  using xercesc::DOMLSSerializer;
-  using xercesc::XMLFormatTarget;
-  using xercesc::LocalFileFormatTarget;
-
-  class DeploymentPlan_Export DeploymentPlanVisitor: public Visitor
+public:
+  PredefinedType_Dispatcher (void)
   {
-  public:
-    /**
-     * Initializing constructor.
-     */
-    DeploymentPlanVisitor (const std::string& outputPath,
-                           int disable_optmize);
+    this->insert <PICML::Boolean> ();
+    this->insert <PICML::Byte> ();
+    this->insert <PICML::String> ();
+    
+    this->insert <PICML::FloatNumber> ();
+    this->insert <PICML::DoubleNumber> ();
 
-    /// Destructor.
-    virtual ~DeploymentPlanVisitor (void);
+    this->insert <PICML::ShortInteger> ();
+    this->insert <PICML::LongInteger> ();
+    this->insert <PICML::Enum> ();
+  }
+};
 
-    void init();
-    void initTarget (const std::string& fileName);
-    void initNodeRefName (const std::string& nodeRefName);
-    std::string retNodeRefName ();
-    void initcgName (const std::string& cgName);
-    std::string retcgName ();
-    void initDocument (const std::string& rootName);
-    void initRootAttributes();
-    void dumpDocument();
+class CollocationGroupMember_Dispatcher :
+  public UDM_Abstract_Type_Dispatcher_T <PICML::Visitor>
+{
+public:
+  CollocationGroupMember_Dispatcher (void)
+  {
+    this->insert <PICML::ComponentInstanceRef> ();
+  }
+};
 
-    void push (void);
+/**
+ * @class DeploymentPlanVisitor
+ */
+class DeploymentPlan_Export DeploymentPlanVisitor : 
+  public PICML::Visitor,
+  public XML_Document
+{
+public:
+  /**
+   * Initializing constructor.
+   */
+  DeploymentPlanVisitor (const std::string & outputPath);
 
-    void pop (void);
+  /// Destructor.
+  virtual ~DeploymentPlanVisitor (void);
 
-    DOMElement* createSimpleContent (const std::string& name,
-                                     const std::string& value);
+  virtual void Visit_RootFolder (const PICML::RootFolder &);
+  
+  virtual void Visit_DeploymentPlans (const PICML::DeploymentPlans &);
+  
+  virtual void Visit_DeploymentPlan (const PICML::DeploymentPlan &);
+  
+  virtual void Visit_NodeReference (const PICML::NodeReference &);
+  
+  virtual void Visit_InstanceMapping (const PICML::InstanceMapping &);
+  
+  virtual void Visit_CollocationGroup (const PICML::CollocationGroup &);
 
-    // Lord Of the Rings..
-    virtual void Visit_RootFolder(const RootFolder&);
+  virtual void Visit_ComponentInstanceRef (const PICML::ComponentInstanceRef &);
 
-    // Implementation Artifact operations
+  virtual void Visit_ComponentInstance (const PICML::ComponentInstance &);
 
-    virtual void Visit_ImplementationArtifacts(const ImplementationArtifacts&);
-    virtual void Visit_ArtifactContainer(const ArtifactContainer&);
-    virtual void Visit_ImplementationArtifact(const ImplementationArtifact&);
-    virtual void Visit_ArtifactDependsOn(const ArtifactDependsOn&);
-    virtual void Visit_ImplementationArtifactReference(const ImplementationArtifactReference&);
-    virtual void Visit_ArtifactExecParameter(const ArtifactExecParameter&);
-    virtual void Visit_Property(const Property&);
-    virtual void Visit_DataType(const DataType&);
-    virtual void Visit_ComponentImplementationArtifact (const ComponentImplementationArtifact &);
-    virtual void Visit_ComponentServantArtifact (const ComponentServantArtifact &);
+  virtual void Visit_ComponentInstanceType (const PICML::ComponentInstanceType &);
 
-    virtual void Visit_ArtifactDeployRequirement(const ArtifactDeployRequirement&);
-    virtual void Visit_ArtifactInfoProperty(const ArtifactInfoProperty&);
-    virtual void Visit_ImplementationRequirement(const ImplementationRequirement&);
+  virtual void Visit_MonolithicImplementation (const PICML::MonolithicImplementation &);
 
-    // TopLevelPackage operations
+  virtual void Visit_MonolithprimaryArtifact (const PICML::MonolithprimaryArtifact & mpa);
 
-    virtual void Visit_TopLevelPackages(const TopLevelPackages&);
-    virtual void Visit_TopLevelPackageContainer(const TopLevelPackageContainer&);
-    virtual void Visit_TopLevelPackage(const TopLevelPackage&);
-    virtual void Visit_package(const package&);
-    virtual void Visit_PackageConfigurationReference(const PackageConfigurationReference&);
+  virtual void Visit_ImplementationArtifactReference (const PICML::ImplementationArtifactReference & );
 
-    // PackageConfiguration operations
+  virtual void Visit_ImplementationArtifact (const PICML::ImplementationArtifact & );
 
-    virtual void Visit_PackageConfigurations(const PackageConfigurations&);
-    virtual void Visit_PackageConfigurationContainer(const PackageConfigurationContainer&);
-    virtual void Visit_PackageConfiguration(const PackageConfiguration&);
-    virtual void Visit_PackageConfConfigProperty(const PackageConfConfigProperty&);
-    virtual void Visit_PackageConfReference(const PackageConfReference&);
-    virtual void Visit_PackageConfSpecializedConfig(const PackageConfSpecializedConfig&);
-    virtual void Visit_PackageConfSelectRequirement(const PackageConfSelectRequirement&);
-    virtual void Visit_PackageConfBasePackage(const PackageConfBasePackage&);
-    virtual void Visit_ComponentPackageReference(const ComponentPackageReference&);
+  virtual void Visit_MonolithExecParameter (const PICML::MonolithExecParameter & );
 
-    virtual void Visit_ComponentImplementations(const ComponentImplementations&);
-    virtual void Visit_ComponentImplementationContainer(const ComponentImplementationContainer&);
-    virtual void Visit_MonolithicImplementation(const MonolithicImplementation&);
-    virtual void Visit_MonolithExecParameter(const MonolithExecParameter&);
-    virtual void Visit_ComponentAssembly(const ComponentAssembly&);
-    virtual void update_connections(const ComponentAssembly&);
-    virtual void update_parent_connections(const ComponentAssembly&);
-    virtual void Visit_AssemblyConfigProperty(const AssemblyConfigProperty&);
-    virtual void Visit_DeploymentPlan(const DeploymentPlan&);
-    virtual void Visit_DeploymentPlans(const DeploymentPlans&);
-    virtual void Visit_MonolithprimaryArtifact(const MonolithprimaryArtifact&);
-    virtual void Visit_Implements(const Implements&);
-    virtual void Visit_ConfigProperty(const ConfigProperty&);
-    virtual void Visit_publish(const publish&);
-    virtual void Visit_PublishConnector(const PublishConnector&);
-    virtual void Visit_deliverTo(const deliverTo&);
-    virtual void Visit_emit(const emit&);
-    virtual void Visit_invoke(const invoke&);
+  virtual void Visit_ArtifactDependsOn (const PICML::ArtifactDependsOn & );
 
+  virtual void Visit_Property (const PICML::Property & );
 
-    //
-    virtual void Visit_ComponentPackage(const ComponentPackage&){};
-    virtual void Visit_ComponentPackages(const ComponentPackages&){};
-    virtual void Visit_Implementation(const Implementation&){};
-    virtual void Visit_PackageContainer(const PackageContainer&){};
-    virtual void Visit_PackageConfigProperty(const PackageConfigProperty&){};
-    virtual void Visit_PackageInfoProperty(const PackageInfoProperty&){};
-    virtual void Visit_PackageInterface(const PackageInterface&){};
-    virtual void Visit_InfoProperty(const InfoProperty&){};
+  virtual void Visit_DataType (const PICML::DataType & );
 
-    //
-    virtual void Visit_Requirement(const Requirement&){};
-    virtual void Visit_SatisfierProperty(const SatisfierProperty&){};
-    virtual void Visit_ImplementationDependency(const ImplementationDependency&){};
-    virtual void Visit_Capability(const Capability&){};
-    virtual void Visit_AssemblyselectRequirement(const AssemblyselectRequirement&){};
-    virtual void Visit_AssemblyDeployRequirement(const AssemblyDeployRequirement&){};
-    virtual void Visit_MonolithDeployRequirement(const MonolithDeployRequirement&){};
-    virtual void Visit_ComponentImplementationReference(const ComponentImplementationReference&){};
-    virtual void Visit_ImplementationDependsOn(const ImplementationDependsOn&){};
-    virtual void Visit_ImplementationCapability(const ImplementationCapability&){};
-    virtual void Visit_ComponentContainer(const ComponentContainer&){};
-    virtual void Visit_ComponentPropertyDescription(const ComponentPropertyDescription&){};
-    virtual void Visit_ComponentInfoProperty(const ComponentInfoProperty&){};
-    virtual void Visit_ComponentProperty(const ComponentProperty&){};
-    virtual void Visit_ComponentTypes(const ComponentTypes&){};
-    virtual void Visit_ComponentConfigProperty(const ComponentConfigProperty&){};
+  virtual void Visit_ArtifactExecParameter (const PICML::ArtifactExecParameter & );
 
-    //
-    virtual void Visit_Resource(const Resource&){};
-    virtual void Visit_SharedResource(const SharedResource&){};
-    virtual void Visit_NodeReference(const NodeReference&);
-    virtual void Visit_Bridge(const Bridge&){};
-    virtual void Visit_Node(const Node&){};
-    virtual void Visit_Interconnect(const Interconnect&){};
-    virtual void Visit_Domain(const Domain&){};
-    virtual void Visit_Targets(const Targets&){};
-    virtual void Visit_Shares(const Shares&){};
-    virtual void Visit_InstanceMapping(const InstanceMapping&);
-    virtual void Visit_CollocationGroup(const CollocationGroup&){};
-    virtual void Visit_InParameter(const InParameter&){};
-    virtual void Visit_TwowayOperation(const TwowayOperation&){};
-    virtual void Visit_OnewayOperation(const OnewayOperation&){};
-    virtual void Visit_FactoryOperation(const FactoryOperation&){};
-    virtual void Visit_LookupOperation(const LookupOperation&){};
-    virtual void Visit_InoutParameter(const InoutParameter&){};
-    virtual void Visit_OutParameter(const OutParameter&){};
-    virtual void Visit_ReturnType(const ReturnType&){};
-    virtual void Visit_Exception(const Exception&){};
-    virtual void Visit_Package(const Package&){};
-    virtual void Visit_File(const File&){};
-    virtual void Visit_Constant(const Constant&){};
-    virtual void Visit_InterfaceDefinitions(const InterfaceDefinitions&){};
-    virtual void Visit_FileRef(const FileRef&){};
-    virtual void Visit_ExceptionRef(const ExceptionRef&){};
-    virtual void Visit_SwitchedAggregate(const SwitchedAggregate&){};
-    virtual void Visit_Member(const Member&){};
-    virtual void Visit_Boxed(const Boxed&){};
-    virtual void Visit_EnumValue(const EnumValue&){};
-    virtual void Visit_Label(const Label&){};
-    virtual void Visit_Aggregate(const Aggregate&){};
-    virtual void Visit_Alias(const Alias&){};
-    virtual void Visit_Collection(const Collection&){};
-    virtual void Visit_Discriminator(const Discriminator&){};
-    virtual void Visit_Enum(const Enum&){};
-    virtual void Visit_LabelConnection(const LabelConnection&){};
-    virtual void Visit_SetException(const SetException&){};
-    virtual void Visit_LookupKey(const LookupKey&){};
-    virtual void Visit_Attribute(const Attribute&){};
-    virtual void Visit_Supports(const Supports&){};
-    virtual void Visit_MakeMemberPrivate(const MakeMemberPrivate&){};
-    virtual void Visit_PrivateFlag(const PrivateFlag&){};
-    virtual void Visit_GetException(const GetException&){};
-    virtual void Visit_Inherits(const Inherits&){};
-    virtual void Visit_Object(const Object&){};
-    virtual void Visit_ValueObject(const ValueObject&){};
-    virtual void Visit_Event(const Event&){};
-    virtual void Visit_AttributeMember(const AttributeMember&){};
-    virtual void Visit_OutEventPort(const OutEventPort&){};
-    virtual void Visit_ProvidedRequestPort(const ProvidedRequestPort&){};
-    virtual void Visit_Component(const Component&){};
-    virtual void Visit_RequiredRequestPort(const RequiredRequestPort&){};
-    virtual void Visit_ManagesComponent(const ManagesComponent&){};
-    virtual void Visit_InEventPort(const InEventPort&){};
-    virtual void Visit_ComponentRef(const ComponentRef&){};
-    virtual void Visit_ComponentFactory(const ComponentFactory&){};
-    virtual void Visit_Object(const Udm::Object&){};
-    void GetReceptacleComponents (const RequiredRequestPort& receptacle,
-                                                        std::map<Component,std::string>& output);
+  virtual void Visit_ComponentImplementationArtifact (const PICML::ComponentImplementationArtifact & );
 
-    void GetFacetComponents (const ProvidedRequestPort& facet,
-                                                   std::map<Component,std::string>& output);
+  virtual void Visit_ComponentServantArtifact (const PICML::ComponentServantArtifact & );
 
-    void GetEventSinkComponents (const InEventPort& consumer,
-                                                       std::map<Component,std::string>& output);
+  virtual void Visit_ConfigProperty (const PICML::ConfigProperty & );
 
-    void GetEventSourceComponents (const OutEventPort& publisher,
-                                                         std::map<Component,std::string>& output);
+  virtual void Visit_AssemblyConfigProperty (const PICML::AssemblyConfigProperty &);
 
-    void GetAttributeComponents (const AttributeMapping& mapping,
-                                                       std::set<std::pair<std::string, std::string> >& output);
+  virtual void Visit_ComponentAssembly (const PICML::ComponentAssembly & );
 
-    template <typename T, typename Del, typename DelRet, typename DelEndRet>
-    void GetComponents (const T& port,
-                        DelRet (T::*srcDel)() const,
-                        DelRet (T::*dstDel) () const,
-                        DelEndRet (Del::*srcDelEnd)() const,
-                        DelEndRet (Del::*dstDelEnd)() const,
-                        std::map<Component, std::string>& output,
-                        std::set<T>& visited);
+  virtual void Visit_ReadonlyAttribute (const PICML::ReadonlyAttribute & );
 
-    void CreateConnections (const std::map<Component, std::string>& src,
-                                                  const std::map<Component, std::string>& dst,
-                                                  const std::string& source_kind,
-                                                  const std::string& dest_kind);
+  virtual void Visit_AttributeValue (const PICML::AttributeValue & );
 
-    void CreateConnection (const Component& srcComp,
-                                                 const std::string& srcPortName,
-                                                 const Component& dstComp,
-                                                 const std::string& dstPortName,
-                                                 const std::string& source_kind,
-                                                 const std::string& dest_kind);
-    void CreateAssemblyInstances (std::set<Component>& comps);
-    void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
-    void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
-    //void CreatePropertyElement (std::string name, const Property& property);
-    virtual void Visit_ReadonlyAttribute(const ReadonlyAttribute&);
-    virtual void Visit_AttributeValue(const AttributeValue&);
-    virtual void Visit_AttributeDelegate(const AttributeDelegate&);
-    virtual void Visit_AttributeMapping(const AttributeMapping&);
-    virtual void Visit_AttributeMappingValue(const AttributeMappingValue&);
-    virtual void Visit_AttributeMappingDelegate(const AttributeMappingDelegate&);
-    std::string ExtractName (Udm::Object obj);
-    virtual void create_component_instance (const Component& comp);
-    virtual void update_component_instance (const Component& comp, std::string& nodeRefName);
-    virtual void update_component_parents (Component& comp);
-    virtual void update_shared_component_parents (ComponentRef& comp_ref);
-    virtual void update_component_assembly_parents (ComponentAssembly& comp_assembly);
-    virtual void create_assembly_config_properties (const Component& comp);
-    virtual void create_assembly_attribute_properties (const Component& comp);
-    virtual void create_component_readonly_attributes (const Component& comp);
-    virtual void update_monolith_impl (const Component& comp, std::string& comp_ref_name);
-    virtual void create_component_config_properties (MonolithicImplementation& mimpl);
-    virtual void generate_instance_deployment_descriptions (void);
-    virtual void generate_instance_deployment_description (const PICML::Component &);
-    virtual void generate_assembly_instance_deployment_descriptions (void);
-    virtual void generate_artifact_descriptions (const PICML::DeploymentPlan & );
-    virtual void generate_infoproperties (const DeploymentPlan &);
-    virtual void generate_implementation_descriptions (const PICML::DeploymentPlan & );
-    virtual void generate_child_connections (void);
-    virtual void generate_parent_connections (void);
-    virtual void instantiate_deployment_plan_descriptor (const DeploymentPlan & dp);
-    virtual void finalize_deployment_plan_descriptor (void);
-    virtual void create_label_and_uuid (const DeploymentPlan & dp);
+private:
+  /// Initialize the object.
+  void init (void);
 
-  protected:
-    template <typename T>
-    std::string unique_id (const T &comp);
+  void init_document (const std::string & root);
 
-  private:
-    void Visit_DeploymentPlan_i (const PICML::DeploymentPlan & );
+  void write_artifact_execParameter (const std::string & name,
+                                     const std::string & value);
 
-    void write_artifact_execParameter (const std::string & name,
-                                       const std::string & value);
+  PredefinedType_Dispatcher datatypes_;
 
-    static UDM_Abstract_Type_Dispatcher_T <PICML::Visitor> datatypes_;
+  CollocationGroupMember_Dispatcher cgm_dispatcher_;
 
-    DOMImplementation*  impl_;
-    DOMDocument*        doc_;
-    DOMElement*         root_;
-    DOMElement*         curr_;
-    DOMLSSerializer*    serializer_;
-    XMLFormatTarget*    target_;
-    std::string         outputPath_;
-    std::stack<DOMElement*> curr_stack_;
-    std::string         node_ref_name_;
-    std::string         cg_name_;
-    RootFolder          root_folder_;
+  xercesc::DOMImplementation *  impl_;
 
-    // Maintain associations between PublishConnector and event publishers
-    std::map <std::string, OutEventPort> publishers_;
-    std::map <std::string, MonolithicImplementation> monoimpls_;
-    std::set <std::string> selected_instances_;
-    std::set <PICML::ComponentAssembly> path_parents_;
-    std::set <PICML::ComponentAssembly> containing_assemblies_;
-    std::set <PICML::Component> assembly_components_;
-    PICML::MonolithicImplementation mimpl_;
-    std::map <std::string, MonolithicImplementation> selected_impls_;
-    std::map <std::string, std::string> deployed_instances_;
+  xercesc::DOMDocument * doc_;
 
-    /// Collection of instances for current deployment.
-    std::set <PICML::Component> monolith_components_;
+  xercesc::DOMLSOutput * output_;
 
-    /// Collection of implementations for current deployment.
-    std::set <PICML::Component> monolith_types_;
+  xercesc::DOMLSSerializer * serializer_;
 
-    /// Collection of instances from an assembly for current deployment.
-    std::set <PICML::Component> final_assembly_components_;
+  std::string outputPath_;
 
-    /// Collection of valid artifacts for the current deployment.
-    std::set <PICML::ImplementationArtifact> artifacts_;
+  /// The current node for the iteration.
+  PICML::Node current_node_;
 
-    /// Maintain associations between PublishConnector and event consumers
-    std::multimap<std::string, InEventPort> consumers_;
+  /// Collection of instances in the current deployment.
+  std::map <PICML::ComponentInstance, xercesc::DOMElement *> insts_;
 
-    std::map<std::string, std::string> interfaces_;
-    std::map<std::pair<std::string, std::string>, Property> attrValues_;
-    std::map<std::pair< std::string, std::set<PICML::Component> >, std::string> cg_set_;
+  /// Collection of implementation in the current deployment.
+  std::map <PICML::Implemenation, xercesc::DOMElement *> impls_;
+  
+  /// Collection of artifacts in the current deployment.
+  std::map <PICML::ImplementationArtifact, xercesc::DOMElement *> artifacts_;
+  
+  /// Collection of connections in the current deployment.
+  std::vector <xercesc::DOMElement *> conns_;
 
-    /// Disable the deployment plan optmizations.
-    int disable_opt_;
+  /// Collection of plan localities in the current deployment.
+  std::vector <xercesc::DOMElement *> locality_;
 
-    PICML::ComponentImplementationArtifact impl_artifact_;
+  xercesc::DOMElement * curr_locality_;
 
-    PICML::ComponentServantArtifact svnt_artifact_;
-  };
-}
+  xercesc::DOMElement * curr_instance_;
+
+  xercesc::DOMElement * curr_impl_;
+
+  xercesc::DOMElement * curr_artifact_;
+
+  xercesc::DOMElement * param_parent_;
+
+  xercesc::DOMElement * curr_param_;
+
+  xercesc::DOMElement * curr_value_;
+
+  PICML::ComponentImplementationArtifact impl_artifact_;
+
+  PICML::ComponentServantArtifact svnt_artifact_;
+
+  std::string parameter_type_;
+};
 
 #endif /* FLATPLAN_VISITOR_H */

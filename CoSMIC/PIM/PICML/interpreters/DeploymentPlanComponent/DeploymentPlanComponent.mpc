@@ -5,11 +5,11 @@ project (DeploymentPlan): boost_base, picml_udm_utils {
   dynamicflags += DEPLOYMENTPLAN_BUILD_DLL
 
   Source_Files {
+    Connection_Visitor.cpp
     Data_Type_Visitor.cpp
     Data_Value_Visitor.cpp
     DeploymentPlanVisitor.cpp
     External_Reference_Visitor.cpp
-    PlanLocalityVisitor.cpp
     XML_Document.cpp
   }
 

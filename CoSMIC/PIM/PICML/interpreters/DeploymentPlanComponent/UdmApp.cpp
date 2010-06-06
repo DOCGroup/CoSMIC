@@ -108,8 +108,7 @@ void CUdmApp::UdmMain (Udm::DataNetwork* p_backend,        // Backend pointer
         disable_optimize = dialog.disable_optimization ();
       }
 
-      PICML::DeploymentPlanVisitor
-        visitor (CUdmApp::output_path_, disable_optimize);
+      DeploymentPlanVisitor visitor (CUdmApp::output_path_);
 
       if (selected.empty ())
       {
