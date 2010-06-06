@@ -1725,13 +1725,14 @@ namespace PICML
       }
   }
 
-  void PathVisitor::CreateAssemblyInstances (std::set<Component>& comps)
+  void PathVisitor::
+  CreateAssemblyInstances (std::set <ComponentInstance> & comps)
   {
-    for (std::set<Component>::iterator iter = comps.begin();
+    for (std::set< ComponentInstance>::iterator iter = comps.begin();
          iter != comps.end();
          ++iter)
       {
-        Component comp = *iter;
+        ComponentInstance comp = *iter;
         //DOMElement* instance = this->doc_->createElement (XStr ("instance"));
         //this->curr_->appendChild (instance);
         //this->push();
@@ -1740,14 +1741,7 @@ namespace PICML
         //instance->setAttribute (XStr ("xmi:id"), XStr (uniqueName));
         //instance->appendChild (this->createSimpleContent ("name",
 //                                                          uniqueName));
-        Component typeParent;
-        if (comp.isInstance())
-          {
-           typeParent = comp.Archetype();
-            while (typeParent.isInstance())
-              typeParent = typeParent.Archetype();
-          }
-        std::string interfaceName = typeParent.name();
+        //std::string interfaceName = typeParent.name();
         //std::string refName = this->interfaces_[interfaceName];
         //refName += ".cpd";
         //DOMElement* refEle = this->doc_->createElement (XStr ("package"));

@@ -292,7 +292,7 @@ namespace PICML
                            const Port& srcPort,
                            const ComponentInstance & dstComp,
                            const Port& dstPort);
-    void CreateAssemblyInstances (std::set<Component>& comps);
+    void CreateAssemblyInstances (std::set<ComponentInstance>& comps);
     void CreateAssemblyConnections (std::vector<ComponentAssembly>& assemblies);
     void CreateAttributeMappings (std::vector<ComponentAssembly>& assemblies);
   void CreatePropertyElement (std::string name, const Property& property);

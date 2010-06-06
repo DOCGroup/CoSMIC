@@ -1,3 +1,10 @@
+Sun Jun  6 17:20:15 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
+
+        * PIM/PICML/interpreters/Path/PathVisitor.h:
+        * PIM/PICML/interpreters/Path/PathVisitor.cpp:
+        
+          Fixed build errors related to metamodel update.
+
 Sun Jun  6 16:54:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
 
         * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator.mpc:
@@ -5,9 +12,9 @@ Sun Jun  6 16:54:42 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
         * PIM/PICML/decorators/ComponentRefDecorator/ComponentRef_Decorator_Impl.cpp:
         * PIM/PICML/decorators/ComponentRefDecorator/refarrow.bmp:
         * PIM/PICML/decorators/ComponentRefDecorator/resource.h:
-        
+
           . The reference arrow is now bundled with the decorator.
-          
+
           . Move the reference arrow to the opposite side.
 
 Sun Jun  6 16:18:27 UTC 2010  James H. Hill  <hillj at cs dot iupui dot edu>
